@@ -37,7 +37,6 @@ body {
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
-    /* direction: rtl; */
 }
 
 /* کانتینر اصلی – موبایل‌فرست */
@@ -409,10 +408,11 @@ button:active {
     color: var(--text-soft);
     margin-top: 6px;
     line-height: 1.5;
+    direction: rtl;
 }
 
 .eq-line {
-    font-family: "SFMono-Regular", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-family: "arad", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     font-size: 0.76rem;
     background: #f9fafb;
     border-radius: 6px;
@@ -454,8 +454,13 @@ button:active {
     padding: 0;
 }
 
-mjx-math {
-    font-family: "arad", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+/* این‌جا دیگر mjx-math را دست‌کاری نمی‌کنیم تا فونت ریاضی MathJax سالم بماند */
+
+/* برای متن فارسی داخل \text{...} و utext از فونت arad استفاده کن */
+mjx-container mjx-mtext,
+mjx-container mjx-utext {
+    font-family: "arad", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+    direction: rtl;
 }
 
 .math-panel code {
@@ -467,25 +472,25 @@ mjx-math {
     border: 1px solid var(--border);
 }
 
-/* فرمول‌های MathJax روی موبایل از پنل نزنن بیرون */
-mjx-container[jax="CHTML"] {
+/* جلوگیر‌ی از بیرون‌زدن فرمول‌های MathJax در هر جایی از صفحه */
+mjx-container {
     max-width: 100%;
     overflow-x: auto;
-    /* فقط وقتی لازم شد اسکرول افقی می‌آید */
     overflow-y: hidden;
 }
 
-/* فرمول‌های نمایشی کمی فاصله بگیرند و شبیه بلوک باشند */
-mjx-container[jax="CHTML"][display="true"] {
+/* فرمول‌های نمایشی (display-mode) بلوکی و مرتب */
+mjx-container[display="true"] {
     display: block;
     margin: 0.4rem 0;
     padding-bottom: 2px;
 }
 
-/* اگر خواستی فرمول‌های داخل پنل‌ها جمع‌وجور باشند */
-.panel mjx-container[jax="CHTML"],
-.math-panel mjx-container[jax="CHTML"],
-.subtitle mjx-container[jax="CHTML"] {
+/* بالا بردن خوانایی روی پس‌زمینه‌ی پنل‌ها */
+.math-panel mjx-container,
+.panel mjx-container,
+.subtitle mjx-container,
+.info-panel mjx-container {
     max-width: 100%;
 }
 
@@ -578,29 +583,6 @@ mjx-container[jax="CHTML"][display="true"] {
     .details-grid {
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
-}
-
-/* جلوگیر‌ی از بیرون‌زدن فرمول‌های MathJax در هر جایی از صفحه */
-mjx-container {
-    max-width: 100%;
-    overflow-x: auto;
-    /* اگر فرمول عریض‌تر از کانتینرش باشد، اسکرول افقی بگیر */
-    overflow-y: hidden;
-}
-
-/* فرمول‌های نمایشی (display-mode) بلوکی و مرتب */
-mjx-container[display="true"] {
-    display: block;
-    margin: 0.4rem 0;
-    padding-bottom: 2px;
-}
-
-/* بالا بردن خوانایی روی پس‌زمینه‌ی پنل‌ها */
-.math-panel mjx-container,
-.panel mjx-container,
-.subtitle mjx-container,
-.info-panel mjx-container {
-    max-width: 100%;
 }
 
 /* جلوگیری از اسکرول افقی کل صفحه، در عین حفظ اسکرول فرمول‌ها */

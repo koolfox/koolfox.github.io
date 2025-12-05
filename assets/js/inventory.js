@@ -340,26 +340,9 @@ function startAutoPlay(weeks) {
 document.addEventListener("DOMContentLoaded", () => {
     // تنظیم فونت پیش‌فرض برای همه‌ی نمودارهای Chart.js
     if (window.Chart) {
-        Chart.defaults.font.family = '"arad", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+        Chart.defaults.font.family =
+            'arad, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
     }
-    window.MathJax = {
-        jax: ["input/TeX", "output/HTML-CSS"],
-        extensions: ["tex2jax.js", "[Contrib]/arabic/arabic.js"],
-        TeX: {
-            extensions: ["AMSmath.js", "AMSsymbols.js", "autoload-all.js"]
-        },
-        'HTML-CSS': {
-            undefinedFamily: 'arad'
-        },
-        tex2jax: {
-            inlineMath: [
-                ['$', '$'],
-                ["\\(", "\\)"]
-            ],
-            processEscapes: true
-        },
-      
-    };
 
     createChart();
 

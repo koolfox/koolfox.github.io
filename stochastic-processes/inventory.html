@@ -11,14 +11,20 @@
 
     <!-- Chart.js برای رسم نمودار -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- پیکربندی MathJax v3 + CHTML با فونت فارسی برای متن‌ها -->
     <script>
         window.MathJax = {
             tex: {
                 inlineMath: [['\\(', '\\)'], ['$', '$']]
+                // اگر جایی \text{متن فارسی} استفاده می‌کنی، متن داخل mtext می‌رود
             },
             chtml: {
                 mtextInheritFont: true,
-                matchFontHeight: false
+                merrorInheritFont: true,
+                matchFontHeight: true,
+                // برای کاراکترهایی که در فونت ریاضی نیستند (مثل فارسی)، این فونت استفاده شود
+                unknownFamily: 'arad, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
             },
             options: {
                 renderActions: {

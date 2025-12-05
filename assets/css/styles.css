@@ -31,6 +31,142 @@ body {
     min-height: 100vh;
 }
 
+/* هدر سایت بالا */
+.site-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.header-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--accent);
+    flex-shrink: 0;
+}
+
+.header-content {
+    flex: 1;
+}
+
+.header-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+/* چیپ‌های لینک (گیتهاب، ایمیل، ...) */
+.chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    background: #f9fafb;
+    border: 1px solid var(--border);
+    color: var(--text-soft);
+    text-decoration: none;
+}
+
+.chip:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+/* لیست آیتم‌ها (پروژه/نوشته) */
+.item-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.item {
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: #f9fafb;
+    border: 1px solid var(--border);
+}
+
+.item-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+}
+
+.item-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.item-title:hover {
+    text-decoration: underline;
+}
+
+.item-desc {
+    margin: 4px 0 6px;
+    font-size: 0.8rem;
+    color: var(--text-soft);
+}
+
+.item-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 0.75rem;
+    color: var(--text-soft);
+}
+
+.meta-link {
+    text-decoration: none;
+    color: var(--accent);
+}
+
+.meta-link:hover {
+    text-decoration: underline;
+}
+
+/* گرید کوچک برای بخش درباره من */
+.about-grid {
+    margin-top: 10px;
+}
+
+.about-grid .v {
+    text-align: right;
+}
+
+/* واکنش‌گرا برای موبایل */
+@media (max-width: 640px) {
+    .site-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-avatar {
+        width: 46px;
+        height: 46px;
+        font-size: 1rem;
+    }
+}
+
 .app-container {
     max-width: 1100px;
     margin: 0 auto;

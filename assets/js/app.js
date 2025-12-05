@@ -124,7 +124,7 @@ function createChart() {
                 {
                     label: "آستانه سفارش مجدد b",
                     data: [],
-                    borderColor: "#d1d5db",
+                    borderColor: "#d41515ff",
                     borderWidth: 1.5,
                     pointRadius: 0,
                     borderDash: [6, 4],

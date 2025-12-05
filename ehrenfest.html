@@ -9,25 +9,22 @@
     <!-- استایل مشترک -->
     <link rel="stylesheet" href="assets/css/styles.css" />
 
-    <!-- تنظیم MathJax: استفاده از CHTML و ارث‌بری فونت صفحه برای متن -->
     <script>
         window.MathJax = {
             tex: {
                 inlineMath: [['\\(', '\\)'], ['$', '$']]
             },
             chtml: {
-                // باعث می‌شود متن‌های عادی داخل فرمول، فونت صفحه را بگیرند
-                mtextInheritFont: true
+                mtextInheritFont: true,
+                matchFontHeight: false
             },
             options: {
-                // منو لازم نداریم
                 renderActions: {
                     addMenu: []
                 }
             }
         };
     </script>
-    <!-- MathJax نسخه ۳ -->
     <script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
     <!-- اسکریپت مخصوص این مسأله (ماژول ES) -->
@@ -38,7 +35,7 @@
     <div class="app-container">
         <h1 style="direction:rtl;">
             فرآیند مهره‌ها – مدل مارکوفی
-            <span class="badge">شبیه‌سازی  </span>
+            <span class="badge">شبیه‌سازی </span>
         </h1>
 
         <div class="subtitle" style="direction:rtl;">

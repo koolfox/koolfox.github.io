@@ -11,26 +11,23 @@
 
     <!-- Chart.js برای رسم نمودار -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <script>
         window.MathJax = {
             tex: {
                 inlineMath: [['\\(', '\\)'], ['$', '$']]
             },
             chtml: {
-                // باعث می‌شود متن‌های عادی داخل فرمول، فونت صفحه را بگیرند
-                mtextInheritFont: true
+                mtextInheritFont: true,
+                matchFontHeight: false
             },
             options: {
-                // منو لازم نداریم
                 renderActions: {
                     addMenu: []
                 }
             }
         };
     </script>
-    <!-- MathJax برای فرمول‌های ریاضی -->
-    <script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
     <!-- اسکریپت اصلی برنامه -->
     <script src="assets/js/app.js" defer></script>
@@ -40,7 +37,7 @@
     <div class="app-container">
         <h1 style="direction:rtl;">
             زنجیره مارکوف موجودی (b,B)
-            <span class="badge">شبیه‌سازی  </span>
+            <span class="badge">شبیه‌سازی </span>
         </h1>
         <div class="subtitle" style="direction:rtl;">
             تقاضای هفتگی \(Y_i\) مستقل و دارای توزیع یکسان

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="fa" dir="ltr">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>تقاطع PMX – الگوریتم ژنتیک</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- استایل مشترک پروژه شما -->
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+
+    <!-- پیکربندی MathJax v3 + CHTML با فونت فارسی برای متن‌ها -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)'], ['$', '$']]
+                // اگر جایی \text{متن فارسی} استفاده می‌کنی، متن داخل mtext می‌رود
+            },
+            chtml: {
+                mtextInheritFont: true,
+                merrorInheritFont: true,
+                matchFontHeight: true,
+                // برای کاراکترهایی که در فونت ریاضی نیستند (مثل فارسی)، این فونت استفاده شود
+                unknownFamily: 'arad, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
+            },
+            options: {
+                renderActions: {
+                    addMenu: []
+                }
+            }
+        };
+    </script>
+    <script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+
+    <!-- استایل‌های کوچک مخصوص نمایش کروموزوم و جدول نگاشت -->
+    <style>
+        .chrom-container {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        .chrom-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .chrom-label {
+            flex: 0 0 80px;
+            font-size: 0.8rem;
+            color: var(--text-soft);
+            text-align: right;
+        }
+
+        .chrom-genes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .chrom-gene {
+            min-width: 24px;
+            padding: 3px 6px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            font-size: 0.8rem;
+            background: #f9fafb;
+            text-align: center;
+        }
+
+        .chrom-gene.segment {
+            background: var(--accent-soft);
+            border-color: var(--accent);
+            font-weight: 600;
+        }
+
+        .chrom-gene.focus {
+            background: #f97316;
+            border-color: #ea580c;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .chrom-gene.empty {
+            opacity: 0.5;
+        }
+
+        .error-text {
+            font-size: 0.8rem;
+            color: var(--danger);
+            margin-top: 6px;
+        }
+
+        /* جدول نگاشت PMX */
+        .mapping-table {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 4px;
+            margin-top: 4px;
+            font-size: 0.78rem;
+        }
+
+        .mapping-cell {
+            padding: 3px 4px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            background: #ffffff;
+            text-align: center;
+        }
+
+        .mapping-header {
+            background: #f3f4f6;
+            font-weight: 600;
+            color: var(--text-soft);
+        }
+
+        .mapping-cell-active {
+            border-color: var(--accent);
+            background: var(--accent-soft);
+        }
+    </style>
+
+    <!-- اسکریپت PMX (ماژول ES) -->
+    <script type="module" src="../assets/js/pmx.js"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <h1 style="direction:rtl;">عملگر PMX<span class="badge">الگوریتم ژنتیک</span>
+        </h1>
+
+        <div class="subtitle" style="direction:rtl;">
+            دو رشته (والد) به‌صورت جایگشتی وارد کنید و بازه تقاطع دو نقطه‌ای را مشخص کنید.
+            این ابزار، PMX را روی آن‌ها اجرا می‌کند و گام‌به‌گام نشان می‌دهد
+            چطور براساس نگاشت بین والدها، برای هر ژن جای خالی مناسبی پیدا می‌شود.
+        </div>
+
+        <div class="stack">
+
+            <!-- پنل تنظیمات -->
+            <div class="panel">
+                <h2 style="direction:rtl;">
+                    پارامترها
+                    <span>رشته‌های والد و بازه تقاطع</span>
+                </h2>
+
+                <form id="pmx-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="parent1">والد 1 (با فاصله یا کاما جدا کنید)</label>
+                            <input id="parent1" type="text" value="3 1 2 8 6 5 7 4" />
+                        </div>
+                        <div class="form-group">
+                            <label for="parent2">والد 2</label>
+                            <input id="parent2" type="text" value="1 4 7 6 3 8 2 5" />
+                        </div>
+                        <div class="form-group">
+                            <label for="cut1">نقطه تقاطع اول (شماره‌گذاری از 1)</label>
+                            <input id="cut1" type="number" min="1" value="4" />
+                        </div>
+                        <div class="form-group">
+                            <label for="cut2">نقطه تقاطع دوم (شماره‌گذاری از 2)</label>
+                            <input id="cut2" type="number" min="1" value="7" />
+                        </div>
+                    </div>
+
+                    <div id="pmx-error" class="error-text" style="direction:rtl;"></div>
+
+                    <div class="help-text" style="direction:rtl;">
+                        هر والد باید یک جایگشت از همان مجموعه ژن‌ها باشد (بدون تکرار).
+                        دو نقطه تقاطع بازه بسته \([cut_1, cut_2]\) را در اندیس‌های 1-مبنایی تعیین می‌کنند؛
+                        PMX روی این بازه نگاشت می‌سازد و بیرون آن، با دنبال‌کردن نگاشت‌ها، جای خالی پیدا می‌کند.
+                    </div>
+
+                    <div class="btn-row">
+                        <button type="submit" class="primary">
+                            ▶ اجرای PMX
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- پنل نمایش کروموزوم‌ها و گام‌ها -->
+            <div class="panel chart-panel">
+                <h2 style="direction:rtl;">
+                    کروموزوم‌ها و PMX
+                    <span>حرکت گام‌به‌گام براساس نگاشت</span>
+                </h2>
+
+                <!-- نمایش کروموزوم‌ها به‌جای canvas سه‌بعدی -->
+                <div id="pmx-chromosome-box" class="chrom-container">
+                    <!-- با JS پر می‌شود -->
+                </div>
+
+                <div class="info-panel">
+                    <div class="info-row">
+                        <span class="label" style="direction:rtl;">انتخاب گام</span>
+                        <span id="pmx-step-label" class="pill">گام 0</span>
+                    </div>
+                    <input type="range" id="pmx-step-slider" min="0" max="0" value="0" />
+
+                    <div class="details-grid">
+                        <div class="k">والد 1</div>
+                        <div class="v" id="pmx-p1-display">–</div>
+
+                        <div class="k">والد 2</div>
+                        <div class="v" id="pmx-p2-display">–</div>
+
+                        <div class="k">فرزند 1</div>
+                        <div class="v" id="pmx-c1-display">–</div>
+
+                        <div class="k">فرزند 2</div>
+                        <div class="v" id="pmx-c2-display">–</div>
+                    </div>
+
+                    <div class="eq-explainer" style="direction:rtl;">
+                        توضیح PMX در این گام:
+                        <div id="pmx-explanation" class="eq-line">–</div>
+                    </div>
+
+                    <div class="eq-explainer" style="direction:rtl;">
+                        جدول نگاشت روی بازه تقاطع:
+                        <div id="pmx-mapping-table"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- پنل توضیح نظری -->
+            <section class="math-panel" style="direction:rtl;">
+                <h3>PMX روش انجام</h3>
+                <p>
+                    1. بازه بین دو نقطه تقاطع را از والد 1 به فرزند 1، و از والد 2 به فرزند 2
+                    عینا کپی می‌کنیم.
+                </p>
+                <p>
+                    2. برای ژن‌های همان بازه در والد دیگر، اگر ژنی هنوز در بخش میانی فرزند
+                    ظاهر نشده باشد، PMX با استفاده از نگاشت
+                    <code>(اندیس در والد 1 ↔ اندیس در والد 2)</code>
+                    بین دو والد «می گردد» تا یک خانه خالی پیدا کند و آن ژن را در آن‌جا قرار دهد.
+                </p>
+                <p>
+                    3. در انتها، هر خانه خالی باقی‌مانده در هر فرزند، با ژن متناظر
+                    از والد دیگر (در همان اندیس) پر می‌شود.
+                </p>
+                <p>
+                    جدول نگاشت بالا نشان می‌دهد که در بازه تقاطع، هر اندیس چه جفت ژن
+                    از والد 1 و والد 2 دارد؛ در هر گام، سطری که در حال استفاده است
+                    هایلایت می‌شود تا بهتر ببینید PMX چطور تصمیم می‌گیرد از کدام اندیس
+                    به کدام اندیس حرکت کند.
+                </p>
+            </section>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-inner" style="direction: ltr;">
+            <span class="footer-logo" aria-hidden="true">
+                <img src="../assets/img/logo.png" alt="" />
+            </span>
+            <span class="footer-text">
+                ©
+                <a href="https://hoosh.pro" target="_blank" rel="noopener">
+                    HOOSH PRO
+                </a>
+                — MADE WITH
+                <span class="footer-heart" aria-hidden="true">♥</span>
+            </span>
+        </div>
+    </footer>
+</body>
+
+</html>

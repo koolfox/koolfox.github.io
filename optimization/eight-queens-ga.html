@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="fa" dir="ltr">
+<html lang="fa" dir="rtl">
 
 <head>
     <meta charset="UTF-8" />
-    <title>مسأله ۸ وزیر با یک نسل الگوریتم ژنتیک</title>
+    <title>مسأله ۸ وزیر با الگوریتم ژنتیک</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- استایل کلی پروژه -->
     <link rel="stylesheet" href="../assets/css/styles.css" />
 
-    <!-- استایل‌های مخصوص این صفحه -->
     <style>
         .ga-pop-table {
             width: 100%;
@@ -24,6 +22,7 @@
             padding: 4px 6px;
             text-align: center;
             background: #ffffff;
+            vertical-align: middle;
         }
 
         .ga-pop-table th {
@@ -31,12 +30,21 @@
             color: var(--text-soft);
         }
 
-        .ga-pop-table td:nth-child(2) {
+        .chromosome-cell {
             direction: ltr;
             text-align: center;
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            white-space: nowrap;
+            overflow-x: auto;
+            max-width: 560px;
+            margin: 0 auto;
         }
 
+        .ga-pop-table td:nth-child(3) {
+            font-size: 0.75rem;
+            color: var(--text-soft);
+            white-space: nowrap;
+        }
 
         .ga-row-best {
             background: var(--accent-soft);
@@ -44,6 +52,11 @@
 
         .ga-row-solution {
             outline: 2px solid #10b981;
+            outline-offset: -2px;
+        }
+
+        .ga-row-target {
+            outline: 2px solid #8b5cf6;
             outline-offset: -2px;
         }
 
@@ -58,9 +71,10 @@
         }
 
         .board {
+            --n: 8;
             display: grid;
-            grid-template-columns: repeat(8, minmax(0, 1fr));
-            max-width: 260px;
+            grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+            width: min(560px, 92vw);
             aspect-ratio: 1;
             border-radius: 10px;
             overflow: hidden;
@@ -72,7 +86,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: clamp(0.55rem, 2.3vw, 1.2rem);
+            user-select: none;
+            box-shadow: none;
         }
 
         .square.light {
@@ -83,121 +99,128 @@
             background: #e5e7eb;
         }
 
+        .square.diag-safe {
+            box-shadow: inset 0 0 0 999px rgba(16, 185, 129, 0.18);
+        }
+
+        .square.diag-conflict {
+            box-shadow: inset 0 0 0 999px rgba(239, 68, 68, 0.18);
+        }
+
         .square.conflict {
             background: var(--danger-soft);
+            box-shadow: none;
+        }
+
+        .square.safe {
+            background: #dcfce7;
+            box-shadow: none;
         }
 
         .board-legend {
             font-size: 0.78rem;
             color: var(--text-soft);
+            line-height: 1.5;
+            white-space: pre-line;
         }
 
         .error-text {
             font-size: 0.8rem;
             color: var(--danger);
             margin-top: 6px;
+            white-space: pre-line;
+        }
+
+        .pill-muted {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: #fff;
+            color: var(--text-soft);
+            font-size: 0.78rem;
+            margin-top: 6px;
         }
 
         .target-options {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 6px;
             font-size: 0.8rem;
-            margin-top: 4px;
+            margin-top: 6px;
         }
 
         .target-options label {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             cursor: pointer;
         }
     </style>
 
-    <!-- پیکربندی MathJax v3 + CHTML با فونت فارسی برای متن‌ها -->
     <script>
         window.MathJax = {
-            tex: {
-                inlineMath: [['\\(', '\\)'], ['$', '$']]
-                // اگر جایی \text{متن فارسی} استفاده می‌کنی، متن داخل mtext می‌رود
-            },
+            tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] },
             chtml: {
                 mtextInheritFont: true,
                 merrorInheritFont: true,
                 matchFontHeight: true,
-                // برای کاراکترهایی که در فونت ریاضی نیستند (مثل فارسی)، این فونت استفاده شود
                 unknownFamily: 'arad, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
             },
-            options: {
-                renderActions: {
-                    addMenu: []
-                }
-            }
+            options: { renderActions: { addMenu: [] } }
         };
     </script>
     <script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
-    <!-- اسکریپت GA -->
     <script type="module" src="../assets/js/eight-queens-ga.js"></script>
 </head>
 
 <body>
     <div class="app-container">
-        <h1 style="direction:rtl;">
-            مسأله ۸ وزیر با یک نسل الگوریتم ژنتیک
-            <span class="badge">۴ کروموزوم، ۲ نسل، ۵۰٪ تقاطع، ۲۵٪ جهش</span>
+        <h1>
+            مسأله ۸ وزیر با الگوریتم ژنتیک
+            <span class="badge">Pop=4 • MaxGen=2 • Crossover=50% • Mutation=25% • PMX + Swap + Elite</span>
         </h1>
 
-        <div class="subtitle" style="direction:rtl;">
-            نمایش کروموزوم به اینصورت که هر ژن، شماره‌ی ستون وزیر در آن ردیف است.
-            مثلاً کروموزوم
-            <code>[4 2 7 3 6 8 5 1]</code> را در نظر بگیریم، یعنی:
+        <div class="subtitle">
+            کروموزوم یک <strong>جایگشت</strong> از 1..8 است؛ در هر ردیف دقیقاً یک وزیر داریم و چون ستون‌ها تکراری
+            نیستند،
+            <strong>برخورد ستونی نداریم</strong> و فقط <strong>قطرها</strong> بررسی می‌شوند.
             <br />
-            ردیف اول خانه‌ی اول وزیر دارد،
-            ردیف دوم خانه‌ی پنجم وزیر دارد،
-            ردیف سوم خانه‌ی هشتم،
-            ردیف چهارم خانه‌ی ششم،
-            ردیف پنجم خانه‌ی سوم،
-            ردیف ششم خانه‌ی هفتم،
-            ردیف هفتم خانه‌ی دوم،
-            ردیف هشتم خانه‌ی چهارم.
-            <br />
-            در این دمو تنها <strong>یک نسل GA</strong> از نسل ۰ به نسل ۱ اجرا می‌شود
-            و حداکثر نسل برابر ۲ است (نسل ۲ همان نسل ۱ است، چون زودتر به جواب می‌رسیم).
+            نمایش: قطرهای درگیر کم‌رنگ قرمز، قطرهای امن کم‌رنگ سبز؛ خودِ وزیرها (درگیر/امن) پررنگ‌تر.
         </div>
 
         <div class="stack">
-            <!-- پنل پارامترها -->
             <div class="panel">
-                <h2 style="direction:rtl;">
-                    پارامترهای الگوریتم ژنتیک
-                    <span>طبق صورت مسئله</span>
+                <h2>
+                    پارامترها
+                    <span>GA ثابت • توقف هدف (اختیاری)</span>
                 </h2>
 
                 <form id="ga8-form">
                     <div class="form-grid">
                         <div class="form-group">
-                            <label>اندازه‌ی جمعیت هر نسل</label>
+                            <label>Population Size</label>
                             <input type="number" value="4" disabled />
                         </div>
 
                         <div class="form-group">
-                            <label>حداکثر نسل</label>
+                            <label>Hard Max Gen</label>
                             <input type="number" value="2" disabled />
                         </div>
 
                         <div class="form-group">
-                            <label>درصد تقاطع (Crossover)</label>
+                            <label>Crossover</label>
                             <input type="number" value="50" disabled />
                         </div>
 
                         <div class="form-group">
-                            <label>درصد جهش (Mutation)</label>
+                            <label>Mutation</label>
                             <input type="number" value="25" disabled />
                         </div>
 
                         <div class="form-group">
-                            <label>انتخاب جواب بهینه‌ی هدف</label>
+                            <label>جواب دلخواه (اختیاری)</label>
                             <div class="target-options">
                                 <label>
                                     <input type="radio" name="target-solution" value="1" checked />
@@ -212,69 +235,72 @@
                                     4 2 5 8 6 1 3 7
                                 </label>
                             </div>
-                        </div>
-                    </div>
-
-                    <div id="ga8-error" class="error-text" style="direction:rtl;"></div>
-
-                    <div class="help-text" style="direction:rtl;">
-                        در این سناریو، نسل اولیه (نسل ۰) و اعداد تصادفی به صورت دلخواه
-                        انتخاب شده‌اند، اما روند تقاطع و جهش دقیقاً مطابق
-                        درصدهای ۵۰٪ و ۲۵٪ است و در نسل نهایی
-                        حتماً یکی از جواب‌های بهینه‌ی انتخاب‌شده به‌دست می‌آید.
-                    </div>
-
-                    <div class="btn-row">
-                        <button type="submit" class="primary">
-                            ▶ اجرای سناریوی GA
-                        </button>
-                    </div>
-                </form>
-            </div>
-
-            <!-- پنل نمایش نسل‌ها و صفحه‌ی شطرنج -->
-            <div class="panel chart-panel">
-                <h2 style="direction:rtl;">
-                    نسل‌ها و جمعیت
-                    <span>نسل ۰، نسل ۱ (بعد از یک نسل GA)، نسل ۲ (نهایی)</span>
-                </h2>
-
-                <div class="info-panel">
-                    <div class="info-row">
-                        <span class="label" style="direction:rtl;">انتخاب نسل</span>
-                        <span id="ga8-gen-label" class="pill">نسل ۰ (جمعیت اولیه)</span>
-                    </div>
-                    <input type="range" id="ga8-gen-slider" min="0" max="2" value="0" />
-
-                    <div class="eq-explainer" style="direction:rtl; margin-top:8px;">
-                        جمعیت این نسل (۴ کروموزوم):
-                        <div id="ga8-population-box"></div>
-                    </div>
-
-                    <div class="eq-explainer" style="direction:rtl; margin-top:10px;">
-                        کروموزوم انتخاب‌شده و صفحه‌ی ۸ وزیر:
-                        <div class="board-wrapper">
-                            <div id="ga8-board" class="board"></div>
-                            <div id="ga8-selected-info" class="board-legend">
-                                هیچ کروموزومی انتخاب نشده است.
+                            <div class="hint" style="margin-top:6px; color:var(--text-soft); font-size:0.78rem;">
+                                • هدف فقط شرط توقف/هایلایت است و در محاسبه برازندگی نقشی ندارد.
                             </div>
                         </div>
                     </div>
 
-                    <div class="eq-explainer" style="direction:rtl; margin-top:10px;">
-                        جزئیات ارزیابی برازندگی این کروموزوم:
+                    <div id="ga8-error" class="error-text"></div>
+
+                    <div class="help-text">
+                        در هر نسل:
+                        <strong>۲</strong> فرزند PMX،
+                        <strong>۱</strong> جهش Swap،
+                        و <strong>۱</strong> کپیِ <strong>بهترین نسل قبل</strong>.
+                        <br />
+                        (pairs فقط برای فرد انتخاب‌شده محاسبه می‌شود)
+                    </div>
+
+                    <div class="btn-row">
+                        <button type="submit" class="primary">▶ اجرای GA</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- پنل نسل‌ها -->
+            <div class="panel chart-panel">
+                <h2>
+                    نسل‌ها و جمعیت
+                    <span>اسلایدر را حرکت بده تا روند را ببینی</span>
+                </h2>
+
+                <div class="info-panel">
+                    <div class="info-row">
+                        <span class="label">انتخاب نسل</span>
+                        <span id="ga8-gen-label" class="pill">—</span>
+                    </div>
+
+                    <input type="range" id="ga8-gen-slider" min="0" max="0" value="0" />
+                    <div id="ga8-gen-stats" class="pill-muted">—</div>
+
+                    <div class="eq-explainer" style="margin-top:8px;">
+                        جمعیت این وضعیت (۴ کروموزوم):
+                        <div id="ga8-population-box"></div>
+                    </div>
+
+                    <div class="eq-explainer" style="margin-top:10px;">
+                        کروموزوم انتخاب‌شده و صفحه:
+                        <div class="board-wrapper">
+                            <div id="ga8-board" class="board" style="--n:8;"></div>
+                            <div id="ga8-selected-info" class="board-legend">هیچ کروموزومی انتخاب نشده است.</div>
+                        </div>
+                    </div>
+
+                    <div class="eq-explainer" style="margin-top:10px;">
+                        جزئیات برازندگی (دو حلقه، فقط قطر):
                         <div id="ga8-fitness-details" class="eq-line">–</div>
                     </div>
                 </div>
             </div>
 
-            <!-- توضیح تابع برازندگی (فلوچارت مفهومی) -->
             <section class="math-panel" style="direction:rtl;">
                 <h3>روش ارزیابی تابع برازندگی (فلوچارت مفهومی)</h3>
 
                 <p>
                     برای هر کروموزوم \(Q = [q_1,\dots,q_8]\) داریم:
                     \(q_i\) ستون وزیر در سطر \(i\) است.
+                    چون کروموزوم یک <strong>جایگشت</strong> از 1..8 است، برخورد ستونی نداریم و فقط قطرها بررسی می‌شوند.
                     تعداد کل جفت‌های ممکن بین ۸ وزیر برابر است با
                     \(\binom{8}{2} = 28\).
                 </p>
@@ -291,17 +317,18 @@
                     <li>
                         برای هر جفت \((i,j)\):
                         <ul>
-                            <li>اگر \(q_i = q_j\) ⇒ دو وزیر در یک ستون‌اند ⇒ <code>conflicts++</code></li>
-                            <li>وگرنه اگر \(|q_i - q_j| = |i - j|\) ⇒ روی یک قطر مشترک‌اند ⇒ <code>conflicts++</code>
+                            <li>
+                                اگر \(\lvert q_i - q_j \rvert = \lvert i - j \rvert\)
+                                ⇒ روی یک قطر مشترک‌اند ⇒ <code>conflicts++</code>
                             </li>
                         </ul>
                     </li>
                     <li>
                         پس از بررسی همه‌ی جفت‌ها:
                         \[
-                        \text{fitness} = 28 - \text{conflicts}
+                        fitness = 28 - conflicts
                         \]
-                        یعنی هر چه تعداد برخوردها کمتر باشد، برازندگی بیشتر است.
+                        یعنی هر چه تعداد برخوردهای قطری کمتر باشد، برازندگی بیشتر است.
                         برای جواب‌های بدون برخورد، برازندگی برابر ۲۸ است.
                     </li>
                     <li>خروجی: نمایش <code>conflicts</code> و <code>fitness</code> و پایان.</li>
@@ -316,17 +343,13 @@
     </div>
 
     <footer class="site-footer">
-        <div class="footer-inner" style="direction: ltr;">
+        <div class="footer-inner" style="direction:ltr;">
             <span class="footer-logo" aria-hidden="true">
                 <img src="../assets/img/logo.png" alt="" />
             </span>
             <span class="footer-text">
-                ©
-                <a href="https://hoosh.pro" target="_blank" rel="noopener">
-                    HOOSH PRO
-                </a>
-                — MADE WITH
-                <span class="footer-heart" aria-hidden="true">♥</span>
+                © <a href="https://hoosh.pro" target="_blank" rel="noopener">HOOSH PRO</a>
+                — MADE WITH <span class="footer-heart" aria-hidden="true">♥</span>
             </span>
         </div>
     </footer>

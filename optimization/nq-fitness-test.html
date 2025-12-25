@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>تست صحت تابع برازندگی N-Queens (Fast vs Slow)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+
+    <style>
+        .board-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: flex-start;
+        }
+
+        .board {
+            --n: 8;
+            display: grid;
+            grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+            width: min(560px, 92vw);
+            aspect-ratio: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            direction: ltr;
+        }
+
+        .square {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(0.7rem, 2.8vw, 1.5rem);
+            user-select: none;
+            box-shadow: none;
+        }
+
+        .square.light {
+            background: #f9fafb;
+        }
+
+        .square.dark {
+            background: #e5e7eb;
+        }
+
+        .panel {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px;
+        }
+
+        .stack {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 780px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-soft);
+            margin-bottom: 6px;
+        }
+
+        .form-group input {
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 8px;
+            font-size: 0.95rem;
+            background: #fff;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 6px;
+        }
+
+        button {
+            border: 1px solid var(--border);
+            background: #fff;
+            border-radius: 10px;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        button.primary {
+            background: #111827;
+            color: #fff;
+            border-color: #111827;
+        }
+
+        .pill-muted {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: #fff;
+            color: var(--text-soft);
+            font-size: 0.85rem;
+            margin-top: 10px;
+            white-space: pre-line;
+        }
+
+        .hint {
+            font-size: 0.85rem;
+            color: var(--text-soft);
+            margin-top: 8px;
+            white-space: pre-line;
+            line-height: 1.6;
+        }
+
+        .board-legend {
+            font-size: 0.9rem;
+            color: var(--text-soft);
+            line-height: 1.6;
+            white-space: pre-line;
+            direction: ltr;
+            text-align: left;
+        }
+
+        .square.q {
+            font-weight: 700;
+            border-radius: 8px;
+            border: 2px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .square.q.conflict-q {
+            background: #ef4444 !important;
+            color: #fff;
+            border-color: rgba(0, 0, 0, 0.15);
+        }
+
+        .flow-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 900px) {
+            .flow-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .flow-box {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 10px;
+            background: #fff;
+        }
+
+        .flow-box h3 {
+            margin: 0 0 8px 0;
+            font-size: 1rem;
+        }
+
+        pre.flow {
+            margin: 0;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: #f8fafc;
+            overflow: auto;
+            direction: ltr;
+            text-align: left;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            white-space: pre;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <h1>تست صحت شمارش برخوردها (Fast vs Slow)</h1>
+
+        <div class="subtitle">
+            هدف: ثابت کنیم بدون تولید <code>pairs</code> هم می‌توان <code>conflicts</code> را درست شمرد.
+            <br />
+            Fast: شمارش قطرها با یک حلقه (Map) — Slow: بررسی همه‌ی جفت‌ها با دو حلقه.
+        </div>
+
+        <div class="stack">
+            <div class="panel">
+                <h2>پارامترهای تست</h2>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="nq-n">اندازه مسئله (N)</label>
+                        <input id="nq-n" type="number" min="4" max="96" value="8" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nq-test-count">تعداد نمونه تصادفی</label>
+                        <input id="nq-test-count" type="number" min="1" max="50000" value="1000" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>اجرا</label>
+                        <div class="btn-row">
+                            <button id="nq-run-tests" type="button" class="primary">🧪 اجرای تست</button>
+                            <button id="nq-show-random" type="button">🎲 نمایش یک نمونه تصادفی</button>
+                            <button id="nq-show-solved" type="button">✅ نمایش نمونه بدون برخورد</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="nq-test-result" class="pill-muted">—</div>
+                <div id="nq-test-details" class="hint">—</div>
+            </div>
+
+            <div class="panel">
+                <h2>نمایش نمونه روی صفحه</h2>
+
+                <div class="board-wrapper">
+                    <div id="nq-board" class="board" style="--n:8;"></div>
+                    <div id="nq-board-info" class="board-legend">—</div>
+                </div>
+            </div>
+            <h2>فلوچارت محاسبه برخوردها (برای همین نمونه)</h2>
+            <div class="hint">
+                Slow: همه‌ی جفت‌ها بررسی می‌شوند.
+                 Fast: به ازای هر ردیف، تعداد برخوردهای جدید = تعداد وزیرهای قبلی روی همان قطرها.
+            </div>
+            <div class="panel">
+
+
+                <div class="flow-grid">
+                    <div class="flow-box">
+                        <h3>Slow (Pairwise)</h3>
+                        <pre id="nq-flow-slow" class="flow">—</pre>
+                    </div>
+                    <div class="flow-box">
+                        <h3>Fast (Diagonals / One Loop)</h3>
+                        <pre id="nq-flow-fast" class="flow">—</pre>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="module" src="/assets/js/nq-fitness-test.js"></script>
+</body>
+
+</html>

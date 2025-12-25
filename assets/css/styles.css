@@ -1,4 +1,3 @@
-/* وب‌فونت محلی: فایل arad.woff2 را کنار index.html و style.css بگذار */
 @font-face {
     font-family: "arad";
     src: url("/assets/fonts/arad.woff2") format("woff2");
@@ -7,7 +6,6 @@
     font-display: swap;
 }
 
-/* رنگ‌ها و متغیرهای کلی */
 :root {
     --bg: #f5f5f7;
     --bg-panel: #ffffff;
@@ -20,7 +18,6 @@
     --danger-soft: rgba(220, 38, 38, 0.08);
 }
 
-/* ریست ساده */
 *,
 *::before,
 *::after {
@@ -39,14 +36,12 @@ body {
     min-height: 100vh;
 }
 
-/* کانتینر اصلی – موبایل‌فرست */
 .app-container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 16px 12px 28px;
 }
 
-/* تیتر اصلی */
 h1 {
     font-size: clamp(1.3rem, 2.8vw, 1.9rem);
     margin: 0 0 6px;
@@ -69,18 +64,16 @@ h1 span.badge {
     font-size: 0.9rem;
     color: var(--text-soft);
     margin-bottom: 14px;
-    max-width: 760px;
+    max-width: auto;
     line-height: 1.6;
 }
 
-/* استک عمومی برای فاصله بین سکشن‌ها */
 .stack {
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
-/* پنل‌های کارت‌مانند */
 .panel {
     background: var(--bg-panel);
     border-radius: 12px;
@@ -106,7 +99,6 @@ h1 span.badge {
     color: var(--text-soft);
 }
 
-/* ---------- هدر سایت بالا ---------- */
 
 .site-header {
     display: flex;
@@ -141,7 +133,6 @@ h1 span.badge {
     margin-top: 8px;
 }
 
-/* چیپ‌های لینک (گیتهاب، ایمیل، ...) */
 .chip {
     display: inline-flex;
     align-items: center;
@@ -161,7 +152,6 @@ h1 span.badge {
     border-color: var(--accent);
 }
 
-/* ---------- لیست آیتم‌ها (پروژه/نوشته) ---------- */
 
 .item-list {
     list-style: none;
@@ -225,7 +215,6 @@ h1 span.badge {
     text-decoration: underline;
 }
 
-/* ---------- فرم‌ها ---------- */
 
 .form-grid {
     display: grid;
@@ -274,7 +263,6 @@ h1 span.badge {
     line-height: 1.4;
 }
 
-/* ---------- دکمه‌ها ---------- */
 
 .btn-row {
     display: flex;
@@ -319,7 +307,6 @@ button:active {
     transform: translateY(0);
 }
 
-/* ---------- چارت و اطلاعات ---------- */
 
 .chart-panel {
     display: flex;
@@ -370,7 +357,6 @@ button:active {
     accent-color: var(--accent);
 }
 
-/* ---------- گرید‌ها (درباره من و جزئیات) ---------- */
 
 .details-grid {
     display: grid;
@@ -392,7 +378,6 @@ button:active {
     text-align: center;
 }
 
-/* مخصوص about-grid اگر خواستی راست‌چین‌تر باشد */
 .about-grid {
     margin-top: 10px;
 }
@@ -401,7 +386,6 @@ button:active {
     text-align: right;
 }
 
-/* ---------- پنل فرمول و متن ریاضی ---------- */
 
 .eq-explainer {
     font-size: 0.8rem;
@@ -454,9 +438,7 @@ button:active {
     padding: 0;
 }
 
-/* این‌جا دیگر mjx-math را دست‌کاری نمی‌کنیم تا فونت ریاضی MathJax سالم بماند */
 
-/* برای متن فارسی داخل \text{...} و utext از فونت arad استفاده کن */
 mjx-container mjx-mtext,
 mjx-container mjx-utext {
     font-family: "arad", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
@@ -472,21 +454,18 @@ mjx-container mjx-utext {
     border: 1px solid var(--border);
 }
 
-/* جلوگیر‌ی از بیرون‌زدن فرمول‌های MathJax در هر جایی از صفحه */
 mjx-container {
     max-width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
 }
 
-/* فرمول‌های نمایشی (display-mode) بلوکی و مرتب */
 mjx-container[display="true"] {
     display: block;
     margin: 0.4rem 0;
     padding-bottom: 2px;
 }
 
-/* بالا بردن خوانایی روی پس‌زمینه‌ی پنل‌ها */
 .math-panel mjx-container,
 .panel mjx-container,
 .subtitle mjx-container,
@@ -494,7 +473,6 @@ mjx-container[display="true"] {
     max-width: 100%;
 }
 
-/* ---------- فوتر ---------- */
 
 .site-footer {
     margin-top: 28px;
@@ -533,11 +511,6 @@ mjx-container[display="true"] {
     vertical-align: middle;
 }
 
-/* =========================
-   Breakpoints – Tablet & Desktop
-   ========================= */
-
-/* ≥ 640px : موبایل بزرگ / تبلت عمودی */
 @media (min-width: 640px) {
     .app-container {
         padding: 20px 18px 32px;
@@ -566,7 +539,6 @@ mjx-container[display="true"] {
     }
 }
 
-/* ≥ 900px : تبلت افقی / دسکتاپ */
 @media (min-width: 900px) {
     .app-container {
         padding: 24px 20px 36px;
@@ -585,15 +557,187 @@ mjx-container[display="true"] {
     }
 }
 
-/* جلوگیری از اسکرول افقی کل صفحه، در عین حفظ اسکرول فرمول‌ها */
 html,
 body {
     max-width: 100%;
     overflow-x: hidden;
 }
 
-/* برای متن‌های طولانی/کلمات چسبیده، اجازه‌ی شکستن */
 .app-container {
     word-wrap: break-word;
     overflow-wrap: anywhere;
+}
+
+.ga-pop-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 6px;
+    font-size: .8rem
+}
+
+.ga-pop-table th,
+.ga-pop-table td {
+    border: 1px solid var(--border);
+    padding: 4px 6px;
+    text-align: center;
+    background: #fff;
+    vertical-align: middle
+}
+
+.ga-pop-table th {
+    background: #f3f4f6;
+    color: var(--text-soft)
+}
+
+.chromosome-cell {
+    direction: ltr;
+    text-align: center;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    white-space: nowrap;
+    overflow-x: auto;
+    max-width: 560px;
+    margin: 0 auto
+}
+
+.ga-pop-table td:nth-child(3) {
+    font-size: .75rem;
+    color: var(--text-soft);
+    white-space: nowrap
+}
+
+.ga-row-best {
+    background: var(--accent-soft)
+}
+
+.ga-row-solution {
+    outline: 2px solid #10b981;
+    outline-offset: -2px
+}
+
+.ga-row-target {
+    outline: 2px solid #8b5cf6;
+    outline-offset: -2px
+}
+
+.ga-row-selectable {
+    cursor: pointer
+}
+
+.board-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px
+}
+
+.board {
+    --n: 8;
+    display: grid;
+    grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+    width: min(560px, 92vw);
+    aspect-ratio: 1;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    direction: ltr;
+}
+
+.square {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(.55rem, 2.3vw, 1.2rem);
+    user-select: none;
+    box-shadow: none
+}
+
+.square.light {
+    background: #f9fafb
+}
+
+.square.dark {
+    background: #e5e7eb
+}
+
+.square.diag-safe {
+    box-shadow: inset 0 0 0 999px rgba(16, 185, 129, .18)
+}
+
+.square.diag-conflict {
+    box-shadow: inset 0 0 0 999px rgba(239, 68, 68, .18)
+}
+
+.square.conflict {
+    background: var(--danger-soft);
+    box-shadow: none
+}
+
+.square.safe {
+    background: #dcfce7;
+    box-shadow: none
+}
+
+.board-legend {
+    font-size: .78rem;
+    color: var(--text-soft);
+    line-height: 1.5;
+    white-space: pre-line
+}
+
+.error-text {
+    font-size: .8rem;
+    color: var(--danger);
+    margin-top: 6px;
+    white-space: pre-line
+}
+
+.pill-muted {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--text-soft);
+    font-size: .78rem;
+    margin-top: 6px;
+    white-space: pre-line
+}
+
+textarea {
+    width: 100%;
+    min-height: 90px;
+    resize: vertical;
+    padding: 8px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    direction: ltr;
+    line-height: 1.5;
+}
+
+.hint {
+    font-size: .78rem;
+    color: var(--text-soft);
+    margin-top: 6px;
+    white-space: pre-line
+}
+
+.form-group.checkbox-row {
+    margin-top: 6px
+}
+
+.form-group.checkbox-row .cb {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    margin: 0 !important;
+    line-height: 1.2
+}
+
+.form-group.checkbox-row .cb input[type="checkbox"] {
+    width: 16px !important;
+    height: 16px !important;
+    margin: 0 !important;
+    display: inline-block !important;
+    flex: 0 0 auto
 }

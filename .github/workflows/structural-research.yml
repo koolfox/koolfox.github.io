@@ -18,7 +18,7 @@ permissions:
 
 jobs:
   scientific-checks:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7.0.1
       - uses: astral-sh/setup-uv@v10.3.0
@@ -28,3 +28,19 @@ jobs:
       - run: uv run --project structural-bioinformatics pytest -q
       - run: uv run --project structural-bioinformatics ruff check structural-bioinformatics
       - run: uv run --project structural-bioinformatics ruff format --check structural-bioinformatics
+
+  browser-checks:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: structural-bioinformatics/browser-tests/package-lock.json
+      - run: npm ci --prefix structural-bioinformatics/browser-tests
+      - run: npx --prefix structural-bioinformatics/browser-tests playwright install --with-deps chromium
+      - name: Check the real static research page
+        run: |
+          python3 -m http.server 8000 --bind 127.0.0.1 > /tmp/research-http.log 2>&1 &
+          npm --prefix structural-bioinformatics/browser-tests test

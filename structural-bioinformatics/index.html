@@ -24,6 +24,7 @@
       <h1 id="page-title"><bdi>TNF-α</bdi> و اتصال آدالیموماب</h1>
       <p class="research-question">از ساختار سه‌بعدی و تماس مولکولی تا توالی و شواهد بیماری؛ یک پروژهٔ درسی دربارهٔ آرتریت روماتوئید.</p>
       <p class="intro-note">آدالیموماب یک آنتی‌بادیِ پروتئینی است؛ <bdi>TNF</bdi> هدف اتصال آن، <bdi>CRP</bdi> نشانگر التهاب و <bdi>TOP2A</bdi> موضوع مقایسهٔ غیرمستقیمِ پژوهش است.</p>
+      <div class="document-links"><a id="start-presentation" href="docs/class-presentation.fa.md">آغاز ارائهٔ گام‌به‌گام برای کلاس</a><span class="intro-note">۹ گام؛ معرفی پروتئین، سه مقاله و سؤال پیشنهادی</span></div>
     </section>
     <div class="research-tabs" id="research-tabs" role="tablist" aria-label="بخش‌های پروژه" aria-orientation="horizontal">
       <button type="button" id="tab-basics" role="tab" aria-selected="true" aria-controls="panel-basics" tabindex="0" data-tab="basics">مبانی و سؤال پژوهش</button>
@@ -236,7 +237,7 @@
           <li><strong>اندازه‌گیری:</strong> تماس اتم‌های سنگین با اشغال‌پذیری مثبت را در آستانهٔ <bdi>4.5 Å</bdi> گزارش کنید؛ تعداد تماس، قدرت اثر دارو را اندازه نمی‌گیرد.</li>
           <li><strong>نقد شواهد:</strong> نتیجهٔ ساختاری، اندازه‌گیری بالینی و تغییر بیان <bdi>RNA</bdi> را جدا بخوانید؛ برای پیوند غیرمستقیم، شواهد موافق و مخالف را ثبت کنید.</li>
         </ol>
-        <div class="document-links"><a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/course-guide.fa.md" target="_blank" rel="noopener noreferrer">راهنمای کامل پروژهٔ درسی</a><a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/research-questions.fa.md" target="_blank" rel="noopener noreferrer">پرسش‌های پژوهش</a><a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/visualization-tools.fa.md" target="_blank" rel="noopener noreferrer">ابزارها و بازتولید انیمیشن</a><a href="assets/teaching-provenance.json">منشأ شکل‌های آموزشی</a></div>
+        <div class="document-links"><a href="docs/class-presentation.fa.md">ارائهٔ گام‌به‌گام این هفته</a><a href="docs/academic-study-plan.fa.md">فرضیه، روش آزمون و معیار ادامه</a><a href="docs/paper-writing-guide.fa.md">راهنمای نوشتن گزارش و مقاله</a><a href="docs/structural-feasibility-results.fa.md">پیوست اختیاری؛ تحلیل عددی اجراشده</a><a href="assets/teaching-provenance.json">منشأ شکل‌های آموزشی</a></div>
       </section>
     <section id="datasets" class="reading-section" aria-labelledby="datasets-title">
       <div class="section-heading">
@@ -281,13 +282,14 @@
         <p class="section-description">متن‌های پروژه را اینجا بخوانید؛ از فهرست فصل‌ها یک بخش یا متن کامل را انتخاب کنید. فرمول‌ها و نمودارها از همان فایل منبع نمایش داده می‌شوند.</p>
         <div class="reading-controls">
           <div><label for="document-select">متن تحقیق و راهنما</label><select id="document-select" disabled><option>در حال آماده‌سازی کتابچه…</option></select></div>
-          <div><label for="chapter-select">فصل یا متن کامل</label><select id="chapter-select" disabled><option value="all">متن کامل</option></select></div>
+          <div><label for="chapter-select">فصل یا متن کامل</label><select id="chapter-select" aria-label="گام ارائه یا فصل کتابچه" disabled><option value="all">متن کامل</option></select></div>
         </div>
         <div class="reading-actions">
-          <div><button id="chapter-prev" type="button" disabled>فصل قبلی</button><button id="chapter-next" type="button" disabled>فصل بعدی</button></div>
+          <div><button id="chapter-prev" type="button" disabled>فصل قبلی</button><button id="chapter-next" type="button" disabled>فصل بعدی</button><button id="presentation-view" type="button" aria-pressed="false" hidden>نمای مطالعه</button></div>
           <a id="document-download" href="docs/research-questions.fa.md" download>دریافت فایل Markdown</a>
         </div>
         <p id="reading-status" class="section-status" data-state="idle" role="status" aria-live="polite">با انتخاب این تب، متن راهنما بارگذاری می‌شود.</p>
+        <p id="presentation-help" class="intro-note" hidden>هر گام یک قسمت از ارائه است. با دکمه‌ها یا <bdi>PageDown / PageUp</bdi> حرکت کنید؛ «برای گفتن» یادداشت تمرین شماست.</p>
         <nav id="document-toc" class="document-toc" aria-label="فصل‌های این متن" hidden></nav>
         <article id="markdown-content" class="markdown-content" tabindex="0" aria-busy="false"></article>
       </section>

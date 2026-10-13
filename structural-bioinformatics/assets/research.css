@@ -179,6 +179,26 @@
 .diagram-source { margin-top: 12px; font-size: 0.79rem; }
 .diagram-source summary { cursor: pointer; color: #245dc4; }
 .reader-render-note { color: #7a3142; font-size: 0.81rem; max-width: 75ch; }
+/* Class chapters reuse the reader's controls with less presentation chrome. */
+html[data-active-tab="reading"] .research-page[data-presentation-mode="true"] .research-header,
+html[data-active-tab="reading"] .research-page[data-presentation-mode="true"] .research-footer,
+html[data-active-tab="reading"] .research-page[data-presentation-mode="true"] .research-intro > :not(h1),
+html[data-active-tab="reading"] .research-page[data-presentation-mode="true"] #reading-title,
+html[data-active-tab="reading"] .research-page[data-presentation-mode="true"] #reading > .section-description,
+html[data-active-tab="reading"] .research-page[data-presentation-mode="true"] .reading-controls > div:first-child,
+html[data-active-tab="reading"] .research-page[data-presentation-mode="true"] .reading-controls label,
+html[data-active-tab="reading"] .research-page[data-presentation-mode="true"] #document-toc,
+html[data-active-tab="reading"] .research-page[data-presentation-mode="true"] #presentation-help { display: none; }
+html[data-active-tab="reading"] .research-page[data-presentation-mode="true"] .research-intro { padding-block: 12px; }
+html[data-active-tab="reading"] .research-page[data-presentation-mode="true"] .research-intro h1 { margin-bottom: 0; }
+html[data-active-tab="reading"] .research-page[data-presentation-mode="true"] #panel-reading { padding-top: 15px; }
+html[data-active-tab="reading"] .research-page[data-presentation-mode="true"] .reading-controls { grid-template-columns: minmax(0, 1fr); max-width: 760px; margin-top: 10px; }
+html[data-active-tab="reading"] .research-page[data-presentation-mode="true"] .reading-actions { margin-block: 10px; flex-wrap: wrap; }
+html[data-active-tab="reading"] .research-page[data-presentation-mode="true"] .reading-actions > div { flex-wrap: wrap; }
+html[data-active-tab="reading"] .research-page[data-presentation-mode="true"] #reading-status { margin-block: 10px; }
+html[data-active-tab="reading"] .research-page[data-presentation-mode="true"] .markdown-content { font-size: clamp(1rem, 1.4vw, 1.1rem); }
+html[data-active-tab="reading"] .research-page[data-presentation-mode="true"] .markdown-content h2:first-child { margin-top: 16px; }
+html[data-active-tab="reading"] .research-page[data-presentation-mode="true"] .markdown-content img { max-height: 42vh; width: auto; margin-block: 12px; }
 .viewer-toolbar { display: flex; justify-content: space-between; align-items: end; gap: 20px; margin-bottom: 12px; }
 .structure-select-group { display: grid; gap: 4px; }
 .structure-select-group label, .residue-inspection label, .dataset-filters label { color: var(--research-muted); font-size: 0.8rem; }

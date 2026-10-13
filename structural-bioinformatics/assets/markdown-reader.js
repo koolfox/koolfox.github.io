@@ -1,5 +1,9 @@
 // Repository-owned Markdown only; optional rendering libraries load on demand.
 const DOCUMENTS = [
+  ["class-presentation.fa.md", "ارائهٔ گام‌به‌گام برای کلاس", "ارائه و روش پژوهش"],
+  ["academic-study-plan.fa.md", "طرح آکادمیک و سنجش قابلیت پژوهش", "ارائه و روش پژوهش"],
+  ["paper-writing-guide.fa.md", "راهنمای گزارش و مقالهٔ قابل دفاع", "ارائه و روش پژوهش"],
+  ["structural-feasibility-results.fa.md", "پیوست اختیاری؛ تحلیل اجراشدهٔ سطح و کنترل", "ارائه و روش پژوهش"],
   ["research-questions.fa.md", "پرسش پژوهش و فرضیه‌ها", "آموزش و پژوهش"],
   ["course-guide.fa.md", "راهنمای پروژهٔ درسی", "آموزش و پژوهش"],
   ["structural-method.fa.md", "روش تحلیل ساختاری و فرمول‌ها", "آموزش و پژوهش"],
@@ -313,6 +317,7 @@ export function createMarkdownReader() {
   let documentState = null;
   let chapter = null;
   let generation = 0;
+  let presentationFocused = true;
   select.replaceChildren();
   for (const groupName of new Set(DOCUMENTS.map((entry) => entry[2]))) {
     const group = node("optgroup");
@@ -354,7 +359,17 @@ export function createMarkdownReader() {
   }
 
   function refreshNavigation() {
-    const chapters = documentState.chapters;
+    const presentation = documentState.filename === "class-presentation.fa.md";
+    const chapters = presentation ? documentState.chapters.filter(entry => entry.id !== "intro") : documentState.chapters;
+    const focused = presentation && presentationFocused && !["all", "intro"].includes(chapter);
+    document.body.dataset.presentationMode = String(focused);
+    $("presentation-view").hidden = !presentation;
+    $("presentation-view").setAttribute("aria-pressed", String(focused));
+    $("presentation-view").textContent = focused ? "نمای مطالعه" : "نمای ارائه";
+    status.dataset.presentation = String(presentation);
+    $("presentation-help").hidden = !presentation;
+    previous.textContent = presentation ? "گام قبلی" : "فصل قبلی";
+    next.textContent = presentation ? "گام بعدی" : "فصل بعدی";
     chapterSelect.value = chapter;
     const index = chapters.findIndex((entry) => entry.id === chapter);
     previous.disabled = index <= 0;
@@ -428,7 +443,13 @@ export function createMarkdownReader() {
     status.dataset.document = documentState.filename;
     status.dataset.chapter = chapter;
     status.dataset.optionalRender = failures ? "partial" : "ready";
-    status.textContent = (documentState.title || select.selectedOptions[0].textContent) + " · " + (chapter === "all" ? "متن کامل" : documentState.chapters.find((entry) => entry.id === chapter)?.title);
+    const steps = documentState.chapters.filter(entry => entry.id !== "intro");
+    const stepIndex = steps.findIndex(entry => entry.id === chapter);
+    const progress = documentState.filename === "class-presentation.fa.md" && stepIndex >= 0
+      ? `گام ${new Intl.NumberFormat("fa-IR").format(stepIndex + 1)} از ${new Intl.NumberFormat("fa-IR").format(steps.length)} · ` : "";
+    status.textContent = progress && document.body.dataset.presentationMode === "true"
+      ? progress.replace(/ · $/, "")
+      : progress + (documentState.title || select.selectedOptions[0].textContent) + " · " + (chapter === "all" ? "متن کامل" : documentState.chapters.find((entry) => entry.id === chapter)?.title);
     content.setAttribute("aria-busy", "false");
   }
 
@@ -499,14 +520,29 @@ export function createMarkdownReader() {
   });
   function moveChapter(direction) {
     if (!documentState) return;
-    const index = documentState.chapters.findIndex((entry) => entry.id === chapter);
-    const selected = documentState.chapters[index + direction];
+    const chapters = documentState.filename === "class-presentation.fa.md"
+      ? documentState.chapters.filter(entry => entry.id !== "intro") : documentState.chapters;
+    const index = chapters.findIndex((entry) => entry.id === chapter);
+    const selected = chapters[index + direction];
     if (!selected) return;
     chapter = selected.id;
     updateURL(documentState.filename, chapter, true);
     void renderChapter();
+    $("reading").scrollIntoView({ block: "start", behavior: "instant" });
   }
   previous.addEventListener("click", () => moveChapter(-1));
   next.addEventListener("click", () => moveChapter(1));
+  $("presentation-view").addEventListener("click", () => {
+    presentationFocused = !presentationFocused;
+    void renderChapter();
+  });
+  document.addEventListener("keydown", event => {
+    if ($("panel-reading").hidden || documentState?.filename !== "class-presentation.fa.md") return;
+    if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey || event.target.closest("input, select, textarea, [contenteditable]")) return;
+    const direction = event.key === "PageDown" ? 1 : event.key === "PageUp" ? -1 : 0;
+    if (!direction) return;
+    event.preventDefault();
+    moveChapter(direction);
+  });
   return { open };
 }

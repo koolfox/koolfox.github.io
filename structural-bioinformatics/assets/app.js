@@ -12,6 +12,7 @@ let sequenceText = "";
 let sequenceRequest = 0;
 let markdownReaderPromise = null;
 const readerDocuments = new Set([
+  "class-presentation.fa.md", "academic-study-plan.fa.md", "paper-writing-guide.fa.md", "structural-feasibility-results.fa.md",
   "research-questions.fa.md", "course-guide.fa.md", "structural-method.fa.md",
   "connection-evidence.fa.md", "sequences-primer.fa.md", "literature-review.fa.md",
   "top2a-cancer-comparison.fa.md", "visualization-tools.fa.md", "dataset-catalog.fa.md",
@@ -174,6 +175,7 @@ function initializeTabs() {
     const url = new URL(window.location.href);
     url.searchParams.set("document", filename);
     url.searchParams.delete("chapter");
+    if (link.id === "start-presentation") url.searchParams.set("chapter", "chapter-1");
     url.hash = "reading";
     window.history.pushState(null, "", url);
     activate("reading");

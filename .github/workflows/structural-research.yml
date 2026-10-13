@@ -6,12 +6,16 @@ on:
       - structural-bioinformatics/**
       - .github/workflows/structural-research.yml
       - AGENTS.md
+      - scripts/**
+      - start-local.command
   push:
     branches: [main, 'codex/tnf-adalimumab-*']
     paths:
       - structural-bioinformatics/**
       - .github/workflows/structural-research.yml
       - AGENTS.md
+      - scripts/**
+      - start-local.command
 
 permissions:
   contents: read
@@ -26,8 +30,8 @@ jobs:
           version: '0.11.2'
       - run: uv sync --project structural-bioinformatics --frozen --python 3.13
       - run: uv run --project structural-bioinformatics pytest -q
-      - run: uv run --project structural-bioinformatics ruff check structural-bioinformatics
-      - run: uv run --project structural-bioinformatics ruff format --check structural-bioinformatics
+      - run: uv run --project structural-bioinformatics ruff check structural-bioinformatics scripts/serve_local.py
+      - run: uv run --project structural-bioinformatics ruff format --check structural-bioinformatics scripts/serve_local.py
 
   browser-checks:
     runs-on: ubuntu-24.04

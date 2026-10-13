@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
       pages: write
@@ -31,6 +31,17 @@ jobs:
           uv run --project structural-bioinformatics ruff format --check structural-bioinformatics
       - name: Assemble public website files
         run: python3 scripts/build_pages.py --output dist/pages
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: structural-bioinformatics/browser-tests/package-lock.json
+      - run: npm ci --prefix structural-bioinformatics/browser-tests
+      - run: npx --prefix structural-bioinformatics/browser-tests playwright install --with-deps chromium
+      - name: Check the exact website artifact before publication
+        run: |
+          python3 -m http.server 8000 --bind 127.0.0.1 --directory dist/pages > /tmp/research-http.log 2>&1 &
+          npm --prefix structural-bioinformatics/browser-tests test
       - uses: actions/configure-pages@v6.0.0
       - uses: actions/upload-pages-artifact@v5.0.0
         with:
@@ -38,7 +49,7 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       pages: write
       id-token: write

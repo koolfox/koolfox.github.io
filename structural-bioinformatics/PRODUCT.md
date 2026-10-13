@@ -28,6 +28,8 @@ Persian RTL interface; rotatable experimental molecular coordinates; reproducibl
 
 The user explicitly asks for exploration without premature conclusions. The meaning of the user's nucleic-acid term is unresolved. DNA sequence, RNA abundance, RNA structure, protein geometry, biomarker concentrations and treatment outcomes remain separate evidence types. Lupus is a safety/comparator lane for this drug, not an assumed indication.
 
+Long-term direction confirmed by the user: an educational/research tool, with this case as its first study. Its roadmap is exploratory, not implemented functionality. Design priorities are correct Persian RTL, isolated Latin identifiers, a real Persian font and stronger visual hierarchy. The user prefers Paper for finding a stable direction, followed by Impeccable for code refinement; no active Paper connection exists in this session.
+
 ## Evidence on Hand
 
 Three reviewed recent primary papers; fourteen verified data sources; RCSB structures 3WD5, 1TNF and 1B09; a real ManimGX render. The deposited 3WD5 view contains one TNF protomer and Fab, with an incomplete physiological epitope. Patient-specific molecular structures and a linked four-disease clinical dataset are absent.

@@ -342,6 +342,12 @@ test("guided class presentation advances one step and resumes after the laborato
     await page.locator("#start-presentation").click();
     await expect(page.locator("#reading-status")).toHaveAttribute("data-document", "class-presentation.fa.md");
     await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-1");
+    await page.selectOption("#chapter-select", "chapter-5");
+    await page.locator("#slide-launch").click();
+    await expect(page).toHaveURL(/presentation\.html#slide-1$/);
+    await expect(page.locator("#deck")).toHaveAttribute("data-state", "ready");
+    await expect(page.locator(".cover")).toBeVisible();
+    await expect(page.locator("#slide-prev")).toBeDisabled();
 });
 
 test("executed surface analysis is readable as an optional numerical report", async ({ page }) => {

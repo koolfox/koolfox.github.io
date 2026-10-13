@@ -355,7 +355,7 @@ export function createMarkdownReader() {
     document.body.dataset.presentationMode = String(focused);
     $("presentation-view").hidden = !presentation;
     $("slide-launch").hidden = !presentation;
-    $("slide-launch").href = "presentation.html#slide-" + (Number(chapter?.match(/^chapter-(\d+)$/)?.[1] || 0) + 1);
+    $("slide-launch").href = "presentation.html#slide-1";
     $("presentation-view").setAttribute("aria-pressed", String(focused));
     $("presentation-view").textContent = focused ? "نمای مطالعه" : "نمای ارائه";
     status.dataset.presentation = String(presentation);

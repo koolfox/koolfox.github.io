@@ -5,6 +5,20 @@ let viewer = null;
 let structures = [];
 let datasets = [];
 let interfaceLoaded = false;
+let labHasFitted = false;
+let sequenceRecords = [];
+let selectedSequence = null;
+let sequenceText = "";
+let sequenceRequest = 0;
+let markdownReaderPromise = null;
+const readerDocuments = new Set([
+  "research-questions.fa.md", "course-guide.fa.md", "structural-method.fa.md",
+  "connection-evidence.fa.md", "sequences-primer.fa.md", "literature-review.fa.md",
+  "top2a-cancer-comparison.fa.md", "visualization-tools.fa.md", "dataset-catalog.fa.md",
+  "scientific-context.fa.md", "manuscript-outline.fa.md", "research-protocol.fa.md",
+  "top2a-hypothesis.fa.md", "paper-design-setup.fa.md", "product-roadmap.fa.md",
+  "literature-selection-audit.fa.md", "agent-workflow.md", "anatomy-evaluation.fa.md", "third-party-notices.md",
+]);
 const controls = ["structure-select", "spin-button", "reset-button", "zoom-in", "zoom-out", "residue-select"];
 
 function element(tag, text, className) {
@@ -51,6 +65,123 @@ function showError(target, text) {
   target.append(" ", retry);
 }
 
+function fitVisibleLaboratory() {
+  if (!viewer || $("panel-lab").hidden) return;
+  requestAnimationFrame(() => {
+    if (!viewer || $("panel-lab").hidden) return;
+    viewer.resize();
+    if (!labHasFitted) {
+      viewer.resetView();
+      labHasFitted = true;
+    }
+  });
+}
+
+async function loadReadingDocument(filename = null, chapter = null) {
+  try {
+    if (!markdownReaderPromise) {
+      markdownReaderPromise = import("./markdown-reader.js").then(({ createMarkdownReader }) => createMarkdownReader());
+    }
+    const reader = await markdownReaderPromise;
+    await reader.open(filename, chapter);
+  } catch {
+    markdownReaderPromise = null;
+    $("reading-status").dataset.state = "error";
+    showError($("reading-status"), "کتابچه بارگذاری نشد؛ مدل‌ها و توالی‌ها مستقل از آن در دسترس‌اند. متن اصلی از پیوند GitHub قابل خواندن است.");
+  }
+}
+
+function readerFilename(href) {
+  let url;
+  try { url = new URL(href, window.location.href); }
+  catch { return null; }
+  const localDocs = new URL("docs/", window.location.href);
+  const githubPrefix = "/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/";
+  let filename = null;
+  if (url.origin === localDocs.origin && url.pathname.startsWith(localDocs.pathname)) filename = url.pathname.slice(localDocs.pathname.length);
+  if (url.origin === "https://github.com" && url.pathname.startsWith(githubPrefix)) filename = url.pathname.slice(githubPrefix.length);
+  return readerDocuments.has(filename) ? filename : null;
+}
+
+function initializeTabs() {
+  const tabs = [...$("research-tabs").querySelectorAll('[role="tab"]')];
+  const names = tabs.map((tab) => tab.dataset.tab);
+  function activate(name, { focus = false, updateHash = false } = {}) {
+    if (!names.includes(name)) name = "basics";
+    for (const tab of tabs) {
+      const active = tab.dataset.tab === name;
+      tab.setAttribute("aria-selected", String(active));
+      tab.tabIndex = active ? 0 : -1;
+      $(tab.getAttribute("aria-controls")).hidden = !active;
+    }
+    document.documentElement.dataset.activeTab = name;
+    const tab = $("tab-" + name);
+    if (focus) tab.focus({ preventScroll: true });
+    tab.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "instant" });
+    if (updateHash && window.location.hash !== "#" + name) {
+      window.history.pushState(null, "", "#" + name);
+    }
+    if (name === "lab") fitVisibleLaboratory();
+    else if (viewer?.spinning) viewer.setSpinning(false);
+    if (name === "reading") void loadReadingDocument();
+    for (const video of document.querySelectorAll("video")) {
+      if (video.closest('[role="tabpanel"]')?.hidden) video.pause();
+    }
+  }
+  function followHash() {
+    let target;
+    try { target = decodeURIComponent(window.location.hash.slice(1)); }
+    catch { target = ""; }
+    if (!target) { activate("basics"); return; }
+    if (names.includes(target)) { activate(target); return; }
+    const node = $(target);
+    const panel = node?.closest('[role="tabpanel"]');
+    if (!panel) { activate("basics"); return; }
+    activate(panel.id.replace("panel-", ""));
+    if (node.tagName === "DETAILS") node.open = true;
+    requestAnimationFrame(() => node.scrollIntoView({ block: "start", behavior: "instant" }));
+  }
+  for (const tab of tabs) {
+    tab.addEventListener("click", () => activate(tab.dataset.tab, { updateHash: true }));
+    tab.addEventListener("keydown", (event) => {
+      let index = tabs.indexOf(tab);
+      // RTL visual order runs from right to left.
+      if (event.key === "ArrowLeft") index = (index + 1) % tabs.length;
+      else if (event.key === "ArrowRight") index = (index - 1 + tabs.length) % tabs.length;
+      else if (event.key === "Home") index = 0;
+      else if (event.key === "End") index = tabs.length - 1;
+      else return;
+      event.preventDefault();
+      activate(tabs[index].dataset.tab, { focus: true, updateHash: true });
+    });
+  }
+  window.addEventListener("hashchange", followHash);
+  window.addEventListener("popstate", followHash);
+  for (const link of document.querySelectorAll('a[href]')) {
+    const filename = readerFilename(link.href);
+    if (!filename || link.id === "document-source" || link.id === "document-download") continue;
+    link.dataset.document = filename;
+    link.href = "?document=" + encodeURIComponent(filename) + "#reading";
+    link.removeAttribute("target");
+  }
+  document.addEventListener("click", (event) => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const link = event.target.closest("a[href]");
+    if (!link || link.id === "document-source" || link.id === "document-download") return;
+    const filename = link.dataset.document || readerFilename(link.href);
+    if (!readerDocuments.has(filename)) return;
+    event.preventDefault();
+    const url = new URL(window.location.href);
+    url.searchParams.set("document", filename);
+    url.searchParams.delete("chapter");
+    url.hash = "reading";
+    window.history.pushState(null, "", url);
+    activate("reading");
+    $("tab-reading").focus({ preventScroll: true });
+  });
+  followHash();
+}
+
 const modelCopy = {
   "3WD5": {
     label: "یک زیرواحد TNF و قطعهٔ Fab آدالیموماب",
@@ -69,7 +200,7 @@ const modelCopy = {
   },
   "4FM9": {
     label: "هستهٔ برش DNA از TOP2A، همراه DNA",
-    caption: "واحد نامتقارن: بخشی از هستهٔ TOP2A و نقاط فسفات DNA در زنجیره‌های C/D. این نما پروتئین کامل، دایمر کامل یا بازهای DNA را بازسازی نمی‌کند؛ ارتباط مستقیم با TNF را نیز نشان نمی‌دهد.",
+    caption: "مقایسهٔ اختیاری: واحد نامتقارنِ بخشی از هستهٔ TOP2A و نقاط فسفات DNA در زنجیره‌های C/D. پروتئین و دایمر کامل در این فایل نیستند. تحلیل اتصال آدالیموماب در این پروژه مربوط به TNF است، نه TOP2A.",
     roles: { A: "هستهٔ TOP2A", C: "DNA فسفات", D: "DNA فسفات" },
   },
 };
@@ -92,7 +223,7 @@ function setBilingualText(node, text) {
 function renderModelControls(structure) {
   const copy = modelCopy[structure.id] || { label: structure.title, caption: "مختصات آزمایشگاهی؛ trace با مقیاس آنگستروم.", roles: {} };
   setBilingualText($("model-description"), copy.label);
-  setBilingualText($("model-caption"), copy.caption + " لوله‌ها فقط بین نقاط backbone درون‌یابی می‌شوند؛ سطح مولکولی یا مسیر دینامیکی نیستند.");
+  setBilingualText($("model-caption"), copy.caption + " لوله‌ها مسیر ستون اصلی را بین نقاط مشاهده‌شده روشن‌تر می‌کنند.");
   $("model-source").href = structure.source_url;
   $("model-source").replaceChildren(latin(structure.id), " در ", latin("RCSB PDB"));
   const legend = $("chain-legend");
@@ -118,7 +249,7 @@ function renderModelControls(structure) {
     legend.append(item);
   }
   const residueSelect = $("residue-select");
-  residueSelect.replaceChildren(element("option", "یک residue انتخاب کنید"));
+  residueSelect.replaceChildren(element("option", "یک نقطه انتخاب کنید"));
   residueSelect.firstElementChild.value = "";
   for (const chain of structure.chains) {
     const group = element("optgroup");
@@ -199,6 +330,7 @@ async function loadStructures() {
       $("residue-select").value = JSON.stringify([point.chain, point.number, point.insertion || ""]);
     });
     showModel("3WD5");
+    fitVisibleLaboratory();
     $("model-fallback").hidden = true;
     $("stage-status").hidden = true;
     $("molecular-stage").setAttribute("aria-busy", "false");
@@ -253,32 +385,23 @@ async function loadInterface() {
   }
 }
 
-const paperCopy = {
-  shi_2025_top2a_ra_ipf: {
-    title: "TOP2A در زمینهٔ RA و فیبروز ریوی",
-    evidence: "بازتحلیل بیان ژن و آزمایش‌های مدل سلولی، TOP2A را برای بررسی بیشتر پیشنهاد می‌کنند. مدل‌های SW982 و A549 منشأ سرطانی دارند.",
-    limit: "این مطالعه آدالیموماب را آزمایش نکرده و اتصال مستقیم TNF–TOP2A یا یک آزمون بالینی معتبر را اثبات نمی‌کند.",
-  },
-  bhamidipati_2026_spatial_ra: {
-    title: "بافت و مقاومت به درمان در RA",
-    evidence: "بیوپسی‌های جفتی از ۱۷ بیمار؛ ۶ بیمار آدالیموماب دریافت کردند. الگوهای فضایی فیبروبلاست و مسیرهای TGFβ زمینه‌ای برای بررسی پاسخ درمانی فراهم می‌کنند.",
-    limit: "نسخهٔ نهایی مقاله از ۲۰۲۶ است. TOP2A نتیجهٔ مکانیکی این مطالعه نیست؛ سلول‌ها جای تکرار مستقل در سطح بیمار را نمی‌گیرند.",
-  },
-  gehin_2024_admyra: {
-    title: "غلظت آدالیموماب، CRP و پیامد درمان",
-    evidence: "تحلیل اکتشافی غلظت سرمی و پیامد در داده‌های کارآزمایی ADMYRA؛ ارتباط با CRP پایین‌تر و remission در RA گزارش شده است.",
-    limit: "همهٔ بیماران متوترکسات دریافت کردند. ارتباط غلظت و پیامد، سود یک مداخلهٔ تغییر دوز یا یک آستانهٔ عمومی برای چهار بیماری را اثبات نمی‌کند.",
-  },
-};
-
 async function loadLiterature() {
   try {
     const data = await loadJSON("data/metadata/literature.json");
     if (!Array.isArray(data.papers) || !data.papers.length) throw new Error("No paper records");
+    const papers = data.papers.filter((paper) =>
+      Boolean(paper.project_role_fa) ||
+      !["shi_2025_top2a_ra_ipf", "bhamidipati_2026_spatial_ra"].includes(paper.id),
+    );
     const list = $("paper-list");
     list.replaceChildren();
-    for (const paper of data.papers) {
-      const copy = paperCopy[paper.id] || { title: paper.title, evidence: paper.findings?.interpretation || paper.study_design, limit: paper.evidence_limits?.[0] || "" };
+    for (const paper of papers) {
+      const copy = {
+        title: paper.project_role_fa || paper.title,
+        evidence: paper.summary_fa || paper.findings?.interpretation || paper.study_design,
+        rationale: paper.rationale_fa || "",
+        limit: paper.critique_fa || paper.evidence_limits?.[0] || "",
+      };
       const row = element("article", null, "paper-row");
       const heading = element("div");
       const title = element("h3");
@@ -291,18 +414,29 @@ async function loadLiterature() {
       heading.append(title, meta, original);
       const evidence = element("div", null, "paper-evidence");
       const finding = element("p");
+      const rationale = element("p", null, "paper-rationale");
       const limit = element("p", null, "paper-limit");
       setBilingualText(finding, copy.evidence);
+      finding.prepend(element("strong", "خلاصهٔ یافته: "));
+      if (copy.rationale) setBilingualText(rationale, copy.rationale);
+      rationale.prepend(element("strong", "علت انتخاب: "));
       setBilingualText(limit, copy.limit);
+      limit.prepend(element("strong", "نقد و مرز نتیجه‌گیری: "));
       const links = element("div", null, "paper-source-links");
       links.append(sourceLink("متن مقاله", "https://doi.org/" + paper.doi));
       if (paper.pmid) links.append(sourceLink("PubMed", "https://pubmed.ncbi.nlm.nih.gov/" + paper.pmid + "/"));
-      evidence.append(finding, limit, links);
+      evidence.append(finding);
+      if (copy.rationale) evidence.append(rationale);
+      if (copy.limit) evidence.append(limit);
+      evidence.append(links);
       row.append(heading, evidence);
       list.append(row);
     }
+    if (papers.length < 3) {
+      list.append(element("p", "مرور مقاله‌های ساختاری برای موضوع اصلی در حال تکمیل است.", "section-status"));
+    }
     list.dataset.state = "ready";
-    list.dataset.paperCount = String(data.papers.length);
+    list.dataset.paperCount = String(papers.length);
   } catch {
     $("paper-list").dataset.state = "error";
     showError($("paper-list"), "فهرست مقاله‌ها بارگذاری نشد. بررسی کامل مقاله‌ها از پیوند بالای این بخش قابل دریافت است.");
@@ -432,7 +566,192 @@ async function loadDatasets() {
   }
 }
 
+const sequenceCategoryLabels = {
+  refseq_mrna: "رونوشت مرجع mRNA",
+  refseq_protein: "پروتئین مرجع",
+  pdb_declared_polymer: "توالی اعلام‌شدهٔ سازهٔ 3WD5",
+  pdb_resolved_fragment: "آمینواسیدهای دارای مختصات پذیرفته‌شده",
+};
+
+function sequenceOptionLabel(record) {
+  if (record.accession_version) return record.gene + " · " + record.accession_version;
+  const role = { A: "TNF", H: "Fab سنگین", L: "Fab سبک" }[record.auth_chain_id] || "";
+  return record.pdb_id + " · " + record.auth_chain_id + " · " + role;
+}
+
+function sequenceMetadataRow(label, content, id) {
+  const row = element("div");
+  const value = element("dd");
+  if (id) value.id = id;
+  if (content instanceof Node) value.append(content);
+  else setBilingualText(value, content);
+  row.append(element("dt", label), value);
+  $("sequence-metadata").append(row);
+}
+
+function displaySequence() {
+  if (!selectedSequence || !sequenceText) return;
+  const converted = selectedSequence.molecule === "mRNA" && $("rna-display").checked;
+  const shown = converted ? sequenceText.replaceAll("T", "U") : sequenceText;
+  const preview = shown.slice(0, 300);
+  $("sequence-preview").textContent = preview.match(/.{1,60}/g).join("\n");
+  $("sequence-preview").dataset.alphabet = converted ? "RNA" : selectedSequence.alphabet;
+  $("sequence-preview-label").textContent = numeric(preview.length) + " حرف نخست از " + numeric(shown.length) + "؛ فایل اصلی کامل است.";
+  setBilingualText($("sequence-display-note"), selectedSequence.molecule === "mRNA"
+    ? (converted ? "نمایش RNA با U: فقط تبدیل حرف T به U است؛ فایل مرجع FASTA تغییر نکرده و این نمایش ساختار تاخوردهٔ RNA نیست."
+      : "فایل مرجع mRNA با حروف A/C/G/T ذخیره شده است. تبدیل اختیاری T به U فقط نمایش را عوض می‌کند؛ فایل دریافت‌شده همان مرجع اصلی است.")
+    : "حروف، آمینواسیدهای این رکورد را نشان می‌دهند؛ توالی به‌تنهایی مختصات سه‌بعدی یا میزان بیان پروتئین را مشخص نمی‌کند.");
+}
+
+function renderSequenceRecord(record) {
+  const meta = $("sequence-metadata");
+  meta.replaceChildren();
+  sequenceMetadataRow("شناسهٔ رکورد", latin(record.accession_version || record.pdb_id + " / " + record.auth_chain_id), "sequence-accession");
+  sequenceMetadataRow("نوع داده", sequenceCategoryLabels[record.category] || record.molecule);
+  sequenceMetadataRow("ژن / سازه", record.gene ? latin(record.gene) : "قطعهٔ آنتی‌بادیِ دارویی؛ ژن انسانی به نام آدالیموماب ندارد");
+  sequenceMetadataRow("طول توالی", numeric(record.length) + (record.molecule === "mRNA" ? " نوکلئوتید" : " آمینواسید"), "sequence-length");
+  if (record.cds) {
+    const cds = element("span");
+    cds.append(latin(record.cds.start_1based + "–" + record.cds.end_1based), "؛ شماره‌گذاری از ۱، دو سر شامل؛ کدون پایان در این بازه است");
+    sequenceMetadataRow("بخش کدکننده CDS", cds, "sequence-cds");
+    const protein = element("span");
+    protein.append(latin(record.cds.protein_accession_version), " · ", numeric(record.cds.translated_length_aa), " آمینواسید");
+    sequenceMetadataRow("پروتئین ترجمه‌شده", protein);
+  }
+  if (Number.isInteger(record.positive_occupancy_ca_count)) {
+    sequenceMetadataRow("نقاط مدل Cα", numeric(record.positive_occupancy_ca_count) + " نقطه با اشغال‌پذیری مثبت؛ برابر طول FASTA فرض نمی‌شود");
+  }
+  sequenceMetadataRow("رکورد اصلی", sourceLink("باز کردن منبع اصلی", record.source_page || record.source_url));
+  $("sequence-download").href = record.path;
+  $("sequence-download").download = record.path.split("/").at(-1);
+  $("rna-display").checked = false;
+  $("rna-display").disabled = record.molecule !== "mRNA";
+  const limitations = $("sequence-limitations");
+  limitations.replaceChildren();
+  const notes = [];
+  if (record.category === "refseq_mrna") notes.push("این رونوشتِ مرجعِ نسخه‌دار است؛ RNA بیمار، مقدار بیان ژن یا اندازه‌گیریِ شکل RNA نیست.");
+  if (record.category === "refseq_protein") notes.push("مرجع کامل پروتئین با سازهٔ کوتاه‌شدهٔ آزمایشگاهی یا بخش دارای مختصات یکسان فرض نمی‌شود.");
+  if (record.category === "pdb_declared_polymer") notes.push("توالی اعلام‌شدهٔ سازه است؛ وجود هر آمینواسید در این فایل به معنی داشتن مختصات پذیرفته‌شده برای همهٔ اتم‌های آن نیست.");
+  if (record.category === "pdb_resolved_fragment") notes.push("این FASTA هویت آمینواسیدهای دارای حداقل یک اتم سنگینِ پذیرفته‌شده را کنار هم می‌آورد؛ شکاف ساختار اتصال پپتیدی جدید ایجاد نمی‌کند. بعضی از این آمینواسیدها Cα با اشغال‌پذیری مثبت ندارند.");
+  if (record.auth_chain_id && ["H", "L"].includes(record.auth_chain_id)) notes.push("این زنجیره متعلق به سازهٔ Fab است؛ آنتی‌بادی کامل یا توالی RNA یکتای دارو نیست. از توالی آمینواسیدی، mRNA مهندسی‌شدهٔ یکتا تعیین نمی‌شود.");
+  if (record.related_refseq_protein?.mismatches?.length) notes.push("این سازه با مرجع TNF تطابق کامل ندارد: D در جایگاه ۳۱ سازه، در برابر R در جایگاه مرتبط ۱۰۷ مرجع. شمارهٔ سازه و شمارهٔ پروتئین کامل را جدا گزارش کنید.");
+  const list = element("ul", null, "sequence-notes");
+  for (const note of notes) {
+    const item = element("li");
+    setBilingualText(item, note);
+    list.append(item);
+  }
+  limitations.append(list, sourceLink("محدودیت‌ها و SHA-256 در فایل متاداده", "data/metadata/sequences.json"));
+  displaySequence();
+}
+
+async function selectSequence(id) {
+  const request = ++sequenceRequest;
+  const record = sequenceRecords.find((item) => item.id === id);
+  const status = $("sequence-status");
+  status.dataset.state = "loading";
+  status.classList.remove("inline-error");
+  status.textContent = "در حال خواندن فایل واقعی FASTA…";
+  $("sequence-record").hidden = true;
+  $("sequence-record").setAttribute("aria-busy", "true");
+  $("sequence-copy").disabled = true;
+  selectedSequence = null;
+  sequenceText = "";
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 12000);
+  try {
+    if (!record || !/^data\/sequences\/[A-Za-z0-9_.-]+\.fasta$/.test(record.path)) throw new Error("Invalid FASTA path");
+    const response = await fetch(record.path, { signal: controller.signal });
+    if (!response.ok) throw new Error("HTTP " + response.status);
+    const bytes = await response.arrayBuffer();
+    const text = new TextDecoder("utf-8", { fatal: true }).decode(bytes);
+    const lines = text.trim().split(/\r?\n/);
+    if (!lines[0]?.startsWith(">") || lines.slice(1).some((line) => line.startsWith(">"))) throw new Error("Expected one FASTA record");
+    const sequence = lines.slice(1).join("").replace(/\s/g, "").toUpperCase();
+    const alphabet = record.molecule === "mRNA" ? /^[ACGTRYSWKMBDHVN]+$/ : /^[ACDEFGHIKLMNPQRSTVWYBXZJUO]+$/;
+    if (!alphabet.test(sequence) || sequence.length !== record.length) throw new Error("FASTA alphabet or length mismatch");
+    let hashVerified = false;
+    if (globalThis.crypto?.subtle && record.sha256) {
+      const digest = await globalThis.crypto.subtle.digest("SHA-256", bytes);
+      const hash = [...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
+      if (hash !== record.sha256) throw new Error("FASTA provenance checksum mismatch");
+      hashVerified = true;
+    }
+    if (request !== sequenceRequest) return;
+    selectedSequence = record;
+    sequenceText = sequence;
+    renderSequenceRecord(record);
+    $("sequence-record").hidden = false;
+    $("sequence-record").setAttribute("aria-busy", "false");
+    $("sequence-copy").disabled = false;
+    status.dataset.state = "ready";
+    status.dataset.sequenceId = record.id;
+    status.dataset.sequenceLength = String(sequence.length);
+    status.dataset.hashVerified = String(hashVerified);
+    status.textContent = hashVerified ? "فایل اصلی خوانده شد؛ طول و SHA-256 با متاداده تطبیق دارند." : "فایل اصلی خوانده شد؛ طول و حروف با متاداده تطبیق دارند.";
+  } catch {
+    if (request !== sequenceRequest) return;
+    status.dataset.state = "error";
+    delete status.dataset.sequenceId;
+    delete status.dataset.sequenceLength;
+    status.classList.add("inline-error");
+    status.replaceChildren(element("span", "فایل FASTA این رکورد خوانده یا تأیید نشد. رکورد دیگری را انتخاب کنید یا دوباره تلاش کنید."));
+    const retry = element("button", "تلاش دوباره برای همین توالی");
+    retry.type = "button";
+    retry.addEventListener("click", () => selectSequence(id));
+    status.append(" ", retry);
+    $("sequence-record").setAttribute("aria-busy", "false");
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+async function loadSequences() {
+  try {
+    const data = await loadJSON("data/metadata/sequences.json");
+    if (!Array.isArray(data.sequences) || !data.sequences.length) throw new Error("No sequence records");
+    sequenceRecords = data.sequences;
+    const select = $("sequence-select");
+    select.replaceChildren();
+    for (const [category, label] of Object.entries(sequenceCategoryLabels)) {
+      const records = sequenceRecords.filter((record) => record.category === category);
+      if (!records.length) continue;
+      const group = element("optgroup");
+      group.label = label;
+      for (const record of records) {
+        const option = element("option", sequenceOptionLabel(record));
+        option.value = record.id;
+        option.dir = "ltr";
+        group.append(option);
+      }
+      select.append(group);
+    }
+    select.disabled = false;
+    select.addEventListener("change", () => selectSequence(select.value));
+    $("rna-display").addEventListener("change", displaySequence);
+    $("sequence-copy").addEventListener("click", async () => {
+      if (!selectedSequence || !sequenceText) return;
+      const text = selectedSequence.molecule === "mRNA" && $("rna-display").checked ? sequenceText.replaceAll("T", "U") : sequenceText;
+      try {
+        if (!navigator.clipboard?.writeText) throw new Error("Clipboard unavailable");
+        await navigator.clipboard.writeText(text);
+        $("sequence-status").textContent = "توالیِ کامل با حروف نمایشِ انتخاب‌شده کپی شد؛ فایل اصلی بدون تغییر است.";
+      } catch {
+        $("sequence-status").textContent = "کپی خودکار در این مرورگر در دسترس نیست. فایل FASTA را دریافت کنید.";
+      }
+    });
+    const initial = sequenceRecords.find((record) => record.id === "TNF_NM_000594.4") || sequenceRecords[0];
+    select.value = initial.id;
+    await selectSequence(initial.id);
+  } catch {
+    $("sequence-status").dataset.state = "error";
+    showError($("sequence-status"), "فهرست توالی‌ها بارگذاری نشد؛ آزمایشگاه سه‌بعدی و مقاله‌ها مستقل از این بخش در دسترس‌اند.");
+    throw new Error("Sequence metadata unavailable");
+  }
+}
+
+initializeTabs();
 const results = await Promise.allSettled([
-  loadStructures(), loadInterface(), loadLiterature(), loadDatasets(),
+  loadStructures(), loadInterface(), loadLiterature(), loadDatasets(), loadSequences(),
 ]);
 document.documentElement.dataset.researchState = results.every((result) => result.status === "fulfilled") ? "ready" : "partial";

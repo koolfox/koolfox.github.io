@@ -18,7 +18,12 @@ import numpy as np
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_PDB = PROJECT_ROOT / "data/raw/structures/3WD5.pdb"
 DEFAULT_OUTPUT = PROJECT_ROOT / "results/animations/tnf-adalimumab-3wd5.mp4"
-CHAIN_COLORS = {"A": "#F6B16B", "H": "#5DCBC1", "L": "#9EAFF5"}
+CHAIN_COLORS = {"A": "#5DCBC1", "H": "#F6B16B", "L": "#9EAFF5"}
+CHAIN_ROLES = {
+    "A": "TNF-alpha protomer",
+    "H": "adalimumab Fab heavy chain",
+    "L": "adalimumab Fab light chain",
+}
 
 
 def read_ca_coordinates(path: Path) -> dict[str, np.ndarray]:
@@ -200,6 +205,10 @@ def main() -> None:
         ),
         "altloc_tie_preference": ["blank", "A", "alphabetical"],
         "ca_counts": {chain: len(points) for chain, points in chains.items()},
+        "chain_colors": {
+            chain: {"hex": CHAIN_COLORS[chain], "biological_role": CHAIN_ROLES[chain]}
+            for chain in chains
+        },
         "representation": "C-alpha beads and trace; no interpolated gaps > 4.5 Angstrom",
         "assembly": "deposited asymmetric unit: one TNF protomer and one adalimumab Fab H/L",
         "display_transform": (

@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="پژوهش بیوانفورماتیک ساختاری دربارهٔ TNF، آدالیموماب، CRP و فرضیهٔ باز TOP2A در آرتریت روماتوئید؛ ساختارهای آزمایشگاهی، مقاله‌ها و منابع داده.">
+  <meta name="description" content="پروژهٔ درس بیوانفورماتیک ساختاری: ساختار TNF و اتصال آدالیموماب، توالی‌های واقعی RNA و پروتئین، و بررسی شواهد پیوند غیرمستقیم TOP2A در آرتریت روماتوئید.">
   <meta name="theme-color" content="#f5f5f7">
-  <title>TNF و فرضیهٔ TOP2A | بیوانفورماتیک ساختاری</title>
+  <title>TNF-α و اتصال آدالیموماب | بیوانفورماتیک ساختاری</title>
   <link rel="stylesheet" href="../assets/css/styles.css">
   <link rel="stylesheet" href="assets/research.css">
   <script type="importmap">
@@ -17,29 +17,80 @@
   <a class="skip-link" href="#main">رفتن به محتوای پژوهش</a>
   <header class="research-header">
     <a href="../" class="home-link">درس‌ها و پروژه‌های حسام</a>
-    <nav aria-label="بخش‌های پژوهش">
-      <a href="#structures">ساختارها</a>
-      <a href="#interface">رابط اتصال</a>
-      <a href="#literature">مقاله‌ها</a>
-      <a href="#datasets">داده‌ها</a>
-    </nav>
+    <a href="https://github.com/koolfox/koolfox.github.io/tree/main/structural-bioinformatics" target="_blank" rel="noopener noreferrer">کد و داده‌های پروژه</a>
   </header>
   <main id="main" class="research-main">
     <section class="research-intro" aria-labelledby="page-title">
-      <h1 id="page-title"><bdi>TNF</bdi>، آدالیموماب و فرضیهٔ <bdi>TOP2A</bdi> در <bdi>RA</bdi></h1>
-      <p class="research-question"><strong>پرسش باز:</strong> آیا تغییر بیان <bdi>TOP2A</bdi> با التهاب وابسته به <bdi>TNF</bdi> و پاسخ به آدالیموماب در آرتریت روماتوئید ارتباط دارد؟</p>
-      <p class="intro-note">از ساختار آزمایشگاهی شروع می‌کنیم؛ بیان ژن، غلظت نشانگر و پاسخ بیمار، شواهد جداگانه‌اند.</p>
+      <h1 id="page-title"><bdi>TNF-α</bdi> و اتصال آدالیموماب</h1>
+      <p class="research-question">از ساختار سه‌بعدی و تماس مولکولی تا توالی و شواهد بیماری؛ یک پروژهٔ درسی دربارهٔ آرتریت روماتوئید.</p>
+      <p class="intro-note">آدالیموماب یک آنتی‌بادیِ پروتئینی است؛ <bdi>TNF</bdi> هدف اتصال آن، <bdi>CRP</bdi> نشانگر التهاب و <bdi>TOP2A</bdi> موضوع مقایسهٔ غیرمستقیمِ پژوهش است.</p>
     </section>
-
+    <div class="research-tabs" id="research-tabs" role="tablist" aria-label="بخش‌های پروژه" aria-orientation="horizontal">
+      <button type="button" id="tab-basics" role="tab" aria-selected="true" aria-controls="panel-basics" tabindex="0" data-tab="basics">مبانی و سؤال پژوهش</button>
+      <button type="button" id="tab-lab" role="tab" aria-selected="false" aria-controls="panel-lab" tabindex="-1" data-tab="lab">آزمایشگاه سه‌بعدی</button>
+      <button type="button" id="tab-sequences" role="tab" aria-selected="false" aria-controls="panel-sequences" tabindex="-1" data-tab="sequences">زنجیره‌ها و توالی‌ها</button>
+      <button type="button" id="tab-literature" role="tab" aria-selected="false" aria-controls="panel-literature" tabindex="-1" data-tab="literature">مقاله‌ها و شواهد</button>
+      <button type="button" id="tab-methods" role="tab" aria-selected="false" aria-controls="panel-methods" tabindex="-1" data-tab="methods">روش و ارائه</button>
+      <button type="button" id="tab-reading" role="tab" aria-selected="false" aria-controls="panel-reading" tabindex="-1" data-tab="reading">کتابچهٔ پژوهش</button>
+    </div>
+    <noscript><p class="inline-error">برای تغییر تب و کاوش سه‌بعدی JavaScript را فعال کنید. <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/course-guide.fa.md" target="_blank" rel="noopener noreferrer">راهنمای متنی پروژه</a> نیز قابل خواندن است.</p></noscript>
+    <div id="panel-basics" class="research-panel" role="tabpanel" aria-labelledby="tab-basics" tabindex="0">
+      <section id="basics" class="reading-section" aria-labelledby="question-title">
+        <h2 id="question-title">یک پرسش ساختاری، سپس یک پیوند قابل بررسی</h2>
+        <p class="section-description"><strong>پرسش اصلی:</strong> <bdi>TNF-α</bdi> چه شکل سه‌بعدی دارد و قطعهٔ <bdi>Fab</bdi> آدالیموماب در ساختار آزمایشگاهی با کدام سطح آن تماس می‌گیرد؟ <a href="#lab">مدل و نقشهٔ تماس را ببینید.</a></p>
+        <p class="section-description"><strong>پرسش مقایسه‌ای:</strong> آیا شواهد موجود از پیوندی غیرمستقیم میان مهار <bdi>TNF</bdi> و تغییرات مرتبط با <bdi>TOP2A</bdi> در <bdi>RA</bdi> پشتیبانی می‌کنند؟ شواهد سرطان چه چیزی به این مقایسه می‌افزایند؟ نبودِ ارتباط یا نتیجهٔ مخالف هم پاسخ پژوهشی مفیدی است.</p>
+        <div class="document-links"><a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/research-questions.fa.md" target="_blank" rel="noopener noreferrer">پرسش‌ها و مرز پژوهش</a><a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/connection-evidence.fa.md" target="_blank" rel="noopener noreferrer">جزئیات شواهد پیوند غیرمستقیم</a></div>
+      </section>
+      <section id="molecular-roles" class="reading-section" aria-labelledby="roles-title">
+        <h2 id="roles-title">در این داستان هر مولکول چه نقشی دارد؟</h2>
+        <dl class="learning-terms molecular-roles">
+          <div><dt>آدالیموماب</dt><dd>داروی آنتی‌بادی از نوع <bdi>IgG</bdi> است. با بخش‌های شناسایی خود به <bdi>TNF</bdi> متصل می‌شود و پیام‌رسانی وابسته به آن را مهار می‌کند.</dd></div>
+          <div><dt><bdi>TNF-α</bdi></dt><dd>پروتئین پیام‌رسان التهابی؛ شکل محلول آن می‌تواند به صورت سه‌زیرواحدی باشد. <bdi>3WD5</bdi> فقط یک زیرواحد همراه با <bdi>Fab</bdi> را در نمای حاضر نشان می‌دهد.</dd></div>
+          <div><dt><bdi>CRP</bdi></dt><dd>پروتئین پاسخ التهابی که مقدارش در خون پیگیری می‌شود. نشانگر بالینی است؛ کاهش آن به‌تنهایی محل اتصال مولکولی دارو را تعیین نمی‌کند.</dd></div>
+          <div><dt><bdi>TOP2A</bdi></dt><dd>ژن <bdi>TOP2A</bdi> پروتئین توپوایزومراز <bdi>IIα</bdi> را می‌سازد؛ این آنزیم در هستهٔ سلول در تنظیم پیچ‌خوردگی <bdi>DNA</bdi> و تقسیم سلول نقش دارد. مقایسهٔ آن با التهاب و سرطان به شواهد جداگانه نیاز دارد؛ هدف اتصال آدالیموماب در این پروژه <bdi>TNF</bdi> است.</dd></div>
+        </dl>
+        <figure class="research-media teaching-figure anatomy-figure">
+          <img src="assets/antibody-anatomy.svg" width="900" height="450" alt="نمودار آموزشی آنتی‌بادی کامل IgG و اجزای Fab، Fc، زنجیره‌های سنگین و سبک.">
+          <figcaption>شماتیک آموزشیِ آنتی‌بادی کامل؛ مختصات آزمایشگاهی نیست. <bdi>Fab</bdi> بخش شناسایی آنتی‌ژن است و شامل بخش‌هایی از یک زنجیرهٔ سنگین و یک زنجیرهٔ سبک می‌شود. مدل <bdi>3WD5</bdi> فقط قطعهٔ <bdi>Fab</bdi> را دارد. <a href="assets/antibody-anatomy.svg" target="_blank" rel="noopener noreferrer">دیدن شکل در اندازهٔ اصلی</a></figcaption>
+        </figure>
+      </section>
+      <section id="evidence-bridge" class="reading-section" aria-labelledby="bridge-title">
+        <h2 id="bridge-title">کدام رابطه ثابت شده و کدام هنوز پرسش است؟</h2>
+        <figure class="research-media teaching-figure">
+          <img src="assets/evidence-pathway.svg" width="1100" height="550" loading="lazy" alt="نمودار آموزشی رابطهٔ شناخته‌شدهٔ آدالیموماب و TNF و شواهد جداگانهٔ SIRPG و TOP2A؛ مسیر غیرمستقیم فرضیه است.">
+          <figcaption>نمودار مفهومی است، نه مسیر مولکولیِ مشاهده‌شده یا شبیه‌سازی. خط پیوسته رابطهٔ شناخته‌شدهٔ آدالیموماب–<bdi>TNF</bdi> را نشان می‌دهد؛ اتصال‌های خط‌چین برای بررسی پیوند غیرمستقیم‌اند. <a href="assets/evidence-pathway.svg" target="_blank" rel="noopener noreferrer">باز کردن نمودار خوانا در اندازهٔ اصلی</a></figcaption>
+        </figure>
+        <dl class="evidence-levels">
+          <div><dt>پشتیبانی‌شده</dt><dd>اتصال مستقیم <bdi>Fab</bdi> آدالیموماب به <bdi>TNF</bdi> در ساختار بلوری ثبت شده است. نقشهٔ تماس ما نزدیکی اتم‌ها را در همان فایل اندازه می‌گیرد.</dd></div>
+          <div><dt>دو آزمایش جدا</dt><dd>در مطالعهٔ <bdi>Marguerie 2025</bdi>، یک آزمایش افزایش <bdi>SIRPG</bdi> پس از آدالیموماب را گزارش کرد؛ در آزمایشی دیگر، حذف ژن <bdi>SIRPG</bdi> با کاهش <bdi>RNA</bdi> مربوط به <bdi>TOP2A</bdi> همراه بود. این دو مشاهده، اندازه‌گیری مستقیمِ اثر آدالیموماب بر <bdi>TOP2A</bdi> نیستند.</dd></div>
+          <div><dt>فرضیهٔ بررسی‌پذیر</dt><dd>تغییر محیط التهابی ممکن است به‌طور غیرمستقیم با برنامهٔ تکثیر سلولی مرتبط باشد. در شواهد بالا، اثر آدالیموماب بر <bdi>TOP2A</bdi> مستقیماً اندازه‌گیری نشده؛ اتصال دارو به <bdi>TOP2A</bdi> یا فایدهٔ ضدسرطان از آن نتیجه نمی‌شود.</dd></div>
+        </dl>
+        <p class="section-description"><a href="#literature">نوع آزمایش و نقد مقاله‌ها</a> را پیش از ساختن یک زنجیرهٔ علّی بخوانید. <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/connection-evidence.fa.md" target="_blank" rel="noopener noreferrer">جدول شواهد و حلقه‌های اندازه‌گیری‌نشده</a></p>
+      </section>
+      <section id="clinical-context" class="reading-section" aria-labelledby="clinical-title">
+        <h2 id="clinical-title">زمینهٔ بیماری: آرتریت روماتوئید</h2>
+        <p class="section-description">در <bdi>RA</bdi> التهاب مفصل زمینهٔ بالینی این پروژه است. مدل سه‌بعدی اتصال به <bdi>TNF</bdi> را توضیح می‌دهد؛ اندازه‌گیری <bdi>CRP</bdi> و فعالیت بیماری به لایهٔ بالینی تعلق دارند. برای وصل کردن این دو لایه باید طراحی و محدودیت مطالعهٔ بیمار را هم بررسی کرد.</p>
+      </section>
+      <details id="next-comparison" class="future-work comparison-next">
+        <summary>مرحلهٔ بعد: مقایسهٔ <bdi>TOP2A</bdi> و شواهد سرطان</summary>
+        <p class="section-description">نقش <bdi>TOP2A</bdi> در تکثیر سلولی و مطالعات سرطان را با شواهد <bdi>RA</bdi> مقایسه می‌کنیم. مشابهت بیان یا نقش زیستی، انتقال خودکار یک نتیجهٔ درمانی میان بیماری‌ها را ثابت نمی‌کند.</p>
+        <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/top2a-cancer-comparison.fa.md" target="_blank" rel="noopener noreferrer">خواندن یادداشت مقایسهٔ TOP2A و سرطان</a>
+      </details>
+    </div>
+    <div id="panel-lab" class="research-panel" role="tabpanel" aria-labelledby="tab-lab" tabindex="0" hidden>
     <section id="structures" class="structure-section" aria-label="کاوش ساختارهای مولکولی">
       <div class="viewer-toolbar">
         <div class="structure-select-group">
           <label for="structure-select">ساختار آزمایشگاهی</label>
           <select id="structure-select" disabled>
-            <option value="3WD5">3WD5 · TNF و Fab آدالیموماب</option>
-            <option value="1TNF">1TNF · TNF آزاد</option>
-            <option value="1B09">1B09 · CRP</option>
-            <option value="4FM9">4FM9 · هستهٔ TOP2A و DNA</option>
+            <optgroup label="تحلیل اصلی: TNF و آدالیموماب">
+              <option value="3WD5" dir="ltr">3WD5 · TNF و Fab آدالیموماب</option>
+              <option value="1TNF" dir="ltr">1TNF · TNF آزاد</option>
+            </optgroup>
+            <optgroup label="مقایسه‌های اختیاری؛ خارج از تحلیل اصلی">
+              <option value="1B09" dir="ltr">1B09 · CRP</option>
+              <option value="4FM9" dir="ltr">4FM9 · هستهٔ TOP2A و DNA</option>
+            </optgroup>
           </select>
         </div>
         <div class="viewer-actions" aria-label="کنترل نمای مولکولی">
@@ -52,7 +103,7 @@
       <figure class="molecular-figure">
         <div id="molecular-stage" class="molecular-stage" data-state="loading" aria-busy="true">
           <img id="model-fallback" class="model-fallback" src="assets/complex-preview.png"
-            width="1800" height="1200" alt="تصویر ثابت ساختار 3WD5: یک زیرواحد TNF و زنجیره‌های H و L قطعهٔ Fab آدالیموماب.">
+            width="1620" height="1080" alt="تصویر ثابت ساختار 3WD5: یک زیرواحد TNF و زنجیره‌های H و L قطعهٔ Fab آدالیموماب.">
           <p id="stage-status" class="stage-status" role="status">در حال بارگذاری مختصات آزمایشگاهی…</p>
         </div>
         <div class="model-detail-bar">
@@ -66,12 +117,34 @@
         <p id="viewer-help">برای چرخش بکشید؛ با اسکرول یا دو انگشت بزرگ‌نمایی کنید. با تمرکز روی نما: کلیدهای جهتی، <bdi>+</bdi>، <bdi>−</bdi> و <bdi>0</bdi>. انتخاب اتم با کلیک یا فهرست زیر.</p>
         <div class="residue-inspection">
           <label for="residue-select">بررسی یک نقطه</label>
-          <select id="residue-select" disabled><option value="">یک residue انتخاب کنید</option></select>
+          <select id="residue-select" disabled><option value="">یک نقطه انتخاب کنید</option></select>
         </div>
       </div>
       <p id="residue-readout" class="residue-readout" role="status">مختصات هر نقطه در واحد آنگستروم گزارش می‌شود.</p>
       <noscript><p class="inline-error">برای کاوش تعاملی، JavaScript را فعال کنید. تصویر ثابت بالا فقط کمپلکس 3WD5 را نشان می‌دهد؛ مقاله‌ها و روش تحقیق از پیوندهای مستندات در انتهای صفحه قابل دسترسی‌اند.</p></noscript>
     </section>
+    <section id="learning-guide" class="reading-section" aria-labelledby="learning-title">
+      <h2 id="learning-title">این شکل را چطور بخوانیم؟</h2>
+      <dl class="learning-terms">
+        <div><dt><bdi>TNF-α</bdi></dt><dd>یک پروتئین پیام‌رسان در التهاب است. در مدل <bdi>3WD5</bdi> زنجیرهٔ <bdi>A</bdi>، بخشی از همین پروتئین را نشان می‌دهد.</dd></div>
+        <div><dt><bdi>Fab</bdi></dt><dd>بخش شناسایی آنتی‌ژن در آنتی‌بادی است. در این ساختار، زنجیره‌های <bdi>H</bdi> و <bdi>L</bdi> قطعهٔ <bdi>Fab</bdi> آدالیموماب‌اند.</dd></div>
+        <div><dt><bdi>Cα</bdi></dt><dd>کربن آلفای هر آمینواسید در ستون اصلی پروتئین است. نقاط مدل، جای این اتم‌ها را نشان می‌دهند؛ لوله، مسیر بین آن‌ها را برای دیدن شکل روشن‌تر می‌کند.</dd></div>
+        <div><dt>آنگستروم <bdi>Å</bdi></dt><dd>واحد فاصله در مقیاس اتمی است؛ <bdi>1 Å = 0.1 nm</bdi>. مختصات نقطهٔ انتخاب‌شده و فاصله‌های نقشه با همین واحد گزارش می‌شوند.</dd></div>
+      </dl>
+      <ol class="reading-steps">
+        <li>برای دیدن شکل سه‌زیرواحدی <bdi>TNF</bdi>، از فهرست بالا <bdi>1TNF</bdi> را انتخاب کنید.</li>
+        <li>در <bdi>3WD5</bdi> زنجیره‌های <bdi>H/L</bdi> را خاموش و روشن کنید تا جای <bdi>Fab</bdi> نسبت به <bdi>TNF</bdi> مشخص شود.</li>
+        <li><a href="#interface">نقاط رابط و نقشهٔ تماس</a> نشان می‌دهند کدام آمینواسیدها در همین فایل به یکدیگر نزدیک‌اند.</li>
+      </ol>
+    </section>
+    <figure class="research-media teaching-figure comparison-figure">
+      <img src="assets/structure-comparison.png" width="2520" height="936" loading="lazy" alt="سه نمای مختصاتی واقعی: TNF آزاد در 1TNF، TNF و Fab در 3WD5، و هستهٔ TOP2A همراه DNA در 4FM9.">
+      <figcaption>سه ساختار آزمایشگاهی؛ پنل‌ها مستقل از هم مقیاس شده‌اند. <bdi>1TNF</bdi> سه زیرواحد آزاد و <bdi>3WD5</bdi> یک زیرواحد و <bdi>Fab</bdi> را نشان می‌دهند. <bdi>4FM9</bdi> هستهٔ ناقص <bdi>TOP2A</bdi> با <bdi>DNA</bdi> در واحد نامتقارن است؛ <bdi>RNA</bdi>، پروتئین کامل یا نتیجهٔ داکینگ نیست. <a href="assets/structure-comparison.png" target="_blank" rel="noopener noreferrer">دیدن تصویر اصلی</a></figcaption>
+    </figure>
+    <details class="future-work construct-caveat">
+      <summary>نکتهٔ مقایسه: سازهٔ آزمایشگاهی با توالی مرجع یکسان نیست</summary>
+      <p class="section-description">توالی سازه‌های <bdi>1TNF</bdi> و <bdi>3WD5</bdi> در دو جایگاه تفاوت دارد؛ هر دو با مرجع کنونی <bdi>TNF</bdi> نیز کاملاً یکسان نیستند. تفاوت شکل این فایل‌ها را نمی‌توان خودکار به اتصال آدالیموماب نسبت داد؛ سازه و محیط بلوری هم متفاوت‌اند. این اختلافِ منبع، به‌تنهایی «جهش بیماری‌زا» نیست. <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/sequences-primer.fa.md" target="_blank" rel="noopener noreferrer">جایگاه‌ها و روش مقایسهٔ توالی</a></p>
+    </details>
 
     <section id="interface" class="reading-section" aria-labelledby="interface-title">
       <div class="section-heading">
@@ -80,17 +153,17 @@
       </div>
       <p class="section-description">تماس‌ها از اتم‌های سنگین با occupancy مثبت در زنجیره‌های <bdi>A/H/L</bdi> ساختار <bdi>3WD5</bdi> استخراج شده‌اند. این محاسبه، بخشی از رابط موجود در فایل را توصیف می‌کند.</p>
       <dl class="measurement-list" aria-live="polite">
-        <div><dt>جفت residue</dt><dd id="stat-residue-pairs">—</dd></div>
+        <div><dt>جفت آمینواسید</dt><dd id="stat-residue-pairs">—</dd></div>
         <div><dt>جفت اتم در تماس</dt><dd id="stat-atom-contacts">—</dd></div>
-        <div><dt>residue رابط در TNF</dt><dd id="stat-interface-residues">—</dd></div>
+        <div><dt>آمینواسید رابط در <bdi>TNF</bdi></dt><dd id="stat-interface-residues">—</dd></div>
         <div><dt>حد فاصله</dt><dd><span id="stat-cutoff">—</span> <bdi>Å</bdi></dd></div>
       </dl>
       <p id="interface-status" class="section-status" role="status">در حال خواندن خلاصهٔ محاسبه…</p>
       <button id="interface-button" type="button" aria-pressed="false" disabled>نمایش نقاط رابط روی TNF</button>
       <div class="interface-media">
         <figure class="research-media">
-          <img src="assets/interface-map.png" width="1800" height="1050" loading="lazy" alt="نقشهٔ تماس residueهای زنجیرهٔ A از TNF با زنجیره‌های H و L قطعهٔ Fab در 3WD5، در آستانهٔ 4.5 آنگستروم.">
-          <figcaption>نقشهٔ تماس از همین تحلیل؛ تماس هندسی، برآورد اثربخشی درمان نیست. <a href="docs/research-protocol.fa.md">روش محاسبه</a></figcaption>
+          <img src="assets/interface-map.png" width="1980" height="828" loading="lazy" alt="نقشهٔ تماس آمینواسیدهای زنجیرهٔ A از TNF با زنجیره‌های H و L قطعهٔ Fab در 3WD5، در آستانهٔ 4.5 آنگستروم.">
+          <figcaption>در هر بخش، محور عمودی شمارهٔ آمینواسید <bdi>TNF</bdi> و محور افقی شمارهٔ آمینواسید <bdi>Fab</bdi> است. رنگ هر نقطه کمترین فاصلهٔ اتم‌های سنگین آن جفت را نشان می‌دهد. <a href="assets/interface-map.png">دیدن نقشه در اندازهٔ اصلی</a> · <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/course-guide.fa.md" target="_blank" rel="noopener noreferrer">روش محاسبه و خواندن نقشه</a></figcaption>
         </figure>
         <figure class="research-media">
           <video controls preload="none" poster="assets/complex-preview.png" width="1280" height="720" aria-label="انیمیشن مشاهدهٔ ساختار TNF و Fab آدالیموماب">
@@ -101,34 +174,91 @@
         </figure>
       </div>
     </section>
-
+    </div>
+    <div id="panel-sequences" class="research-panel" role="tabpanel" aria-labelledby="tab-sequences" tabindex="0" hidden>
+      <section id="sequences" class="reading-section" aria-labelledby="sequences-title">
+        <div class="section-heading"><h2 id="sequences-title">از توالی تا زنجیرهٔ دیده‌شده</h2><a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/sequences-primer.fa.md" target="_blank" rel="noopener noreferrer">راهنمای توالی‌ها و محدودیت‌ها</a></div>
+        <p class="section-description"><bdi>mRNA</bdi> یک توالی نوکلئوتیدی است؛ بخش کدکنندهٔ آن، <bdi>CDS</bdi>، به توالی آمینواسیدیِ پروتئین ترجمه می‌شود. ساختار سه‌بعدی یک لایهٔ دیگر است: در مدل‌های حاضر مختصات پروتئین داریم و در <bdi>4FM9</bdi>، <bdi>DNA</bdi>؛ ساختار سه‌بعدی <bdi>RNA</bdi> در این داده‌ها وجود ندارد.</p>
+        <figure class="research-media teaching-figure sequence-diagram">
+          <img src="assets/sequence-to-structure.svg" width="1100" height="340" loading="lazy" alt="نمودار آموزشی تفاوت DNA، mRNA، توالی پروتئین و مختصات ساختار آزمایشگاهی؛ مقدار بیان و تاخوردگی RNA داده‌های جدا هستند.">
+          <figcaption>شماتیک آموزشیِ لایه‌های اطلاعات؛ از داشتن توالی، مقدار بیان ژن یا شکل تاخوردهٔ <bdi>RNA</bdi> به دست نمی‌آید. <a href="assets/sequence-to-structure.svg" target="_blank" rel="noopener noreferrer">دیدن نمودار اصلی</a></figcaption>
+        </figure>
+        <div class="sequence-selector"><label for="sequence-select">رکورد مرجع یا زنجیرهٔ ساختار</label><select id="sequence-select" disabled><option>در حال بارگذاری توالی‌ها…</option></select></div>
+        <p id="sequence-status" class="section-status" data-state="loading" role="status" aria-live="polite">در حال خواندن فهرست توالی‌های مستند…</p>
+        <div id="sequence-record" hidden aria-busy="false">
+          <dl id="sequence-metadata" class="sequence-metadata"></dl>
+          <div class="sequence-actions">
+            <label class="rna-display-control"><input id="rna-display" type="checkbox" disabled>نمایش <bdi>U</bdi> به جای <bdi>T</bdi>؛ فقط تغییر نمایش <bdi>mRNA</bdi></label>
+            <div><button id="sequence-copy" type="button" disabled>کپی توالی</button><a id="sequence-download" download>دریافت فایل اصلی FASTA</a></div>
+          </div>
+          <p id="sequence-preview-label" class="section-status">پیش‌نمایش توالی واقعی؛ فایل اصلی کامل است.</p>
+          <pre id="sequence-preview" class="sequence-preview" dir="ltr" tabindex="0" aria-label="پیش‌نمایش توالی واقعی"></pre>
+          <p id="sequence-display-note" class="section-description"></p>
+          <details class="future-work sequence-limitations" open>
+            <summary>محدودیت همین رکورد</summary>
+            <div id="sequence-limitations"></div>
+          </details>
+        </div>
+        <p class="section-description sequence-concepts">برای زنجیره‌های <bdi>3WD5</bdi> دو نوع رکورد داریم: توالی اعلام‌شدهٔ سازه و آمینواسیدهای دارای مختصات پذیرفته‌شده. تعداد آمینواسیدهای فایل توالی می‌تواند با تعداد نقاط <bdi>Cα</bdi> فرق کند؛ بعضی اتم‌ها ثبت نشده‌اند یا اشغال‌پذیریِ صفر دارند. زنجیره‌های <bdi>H/L</bdi> قطعهٔ دارویی‌اند، نه ژن انسانی به نام آدالیموماب.</p>
+        <details class="future-work construct-caveat">
+          <summary>اختلاف واقعی مرجع و سازهٔ TNF را چگونه بخوانیم؟</summary>
+          <p class="section-description">زنجیرهٔ <bdi>A</bdi> در <bdi>3WD5</bdi> در جایگاه ۳۱ دارای <bdi>D</bdi> است؛ جایگاه مرتبط ۱۰۷ در مرجع <bdi>NP_000585.2</bdi> دارای <bdi>R</bdi> است. سازهٔ <bdi>1TNF</bdi> نیز در جایگاه ۱۴۳ دارای <bdi>L</bdi> است، درحالی‌که مرجع در جایگاه ۲۱۹ دارای <bdi>D</bdi> است. این‌ها اختلاف توالیِ منابع‌اند؛ برای مقایسهٔ ساختاری باید ثبت شوند. <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/sequences-primer.fa.md" target="_blank" rel="noopener noreferrer">جزئیات و شماره‌گذاری</a></p>
+        </details>
+      </section>
+    </div>
+    <div id="panel-literature" class="research-panel" role="tabpanel" aria-labelledby="tab-literature" tabindex="0" hidden>
     <section id="literature" class="reading-section" aria-labelledby="literature-title">
       <div class="section-heading">
-        <h2 id="literature-title">سه مقالهٔ اولیه، سه سطح از شواهد</h2>
-        <a href="docs/literature-review.fa.md">بررسی کامل مقاله‌ها</a>
+        <h2 id="literature-title">مقاله‌های مرتبط با ساختار و دارو</h2>
+        <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/literature-review.fa.md" target="_blank" rel="noopener noreferrer">بررسی کامل مقاله‌ها</a>
       </div>
-      <p class="section-description">انتخاب هدفمند برای شروع پژوهش؛ مرور نظام‌مند نیست. ارتباط مستقیم TNF–TOP2A و نقش آن در پاسخ به آدالیموماب همچنان فرضیه‌ای باز است.</p>
+      <p class="section-description">سه مقالهٔ اصلی برای ساختار آنتی‌بادی، بررسی پیوند غیرمستقیم با <bdi>TOP2A</bdi>، و زمینهٔ بالینی <bdi>RA/CRP</bdi>. نوع آزمایش و مرز نتیجه‌گیری هر مقاله کنار آن آمده است.</p>
       <div id="paper-list" class="paper-list" data-state="loading">
         <p class="section-status" role="status">در حال خواندن مقاله‌های بررسی‌شده…</p>
       </div>
     </section>
-
-    <section class="reading-section disease-section" aria-labelledby="disease-title">
-      <h2 id="disease-title">چهار بیماری، مسیرهای پژوهشی جداگانه</h2>
-      <dl class="disease-lanes">
-        <div><dt>آرتریت روماتوئید <bdi>RA</bdi></dt><dd>مسیر اصلیِ فرضیهٔ TOP2A و پاسخ آدالیموماب؛ بافت، زمان نمونه‌گیری و تعریف پاسخ باید مشخص باشند.</dd></div>
-        <div><dt>پسوریازیس</dt><dd>بیان ژن در پوست و پاسخ درمانی را در یک جمعیت مستقل بررسی می‌کنیم؛ نتیجهٔ RA به پوست تعمیم داده نمی‌شود.</dd></div>
-        <div><dt>اسپوندیلیت آنکیلوزان <bdi>AS</bdi></dt><dd>شاخص فعالیت بیماری و شواهد کارآزمایی، مسیر مستقلی دارند؛ ثبت کارآزمایی به معنی دسترسی به دادهٔ فردی نیست.</dd></div>
-        <div><dt>لوپوس <bdi>SLE</bdi></dt><dd>مسیر مقایسه و ایمنی؛ کاربرد درمانی آدالیموماب در لوپوس فرض نمی‌شود. <a href="docs/scientific-context.fa.md">زمینهٔ بالینی و CRP</a></dd></div>
-      </dl>
-    </section>
-
+      <section class="reading-section" aria-labelledby="sirpg-title">
+        <h2 id="sirpg-title">دو نتیجهٔ SIRPG را یک آزمایش فرض نکنیم</h2>
+        <ol class="reading-steps">
+          <li><strong>آزمایش دارو:</strong> در مطالعهٔ <bdi>Marguerie 2025</bdi>، افزایش <bdi>SIRPG</bdi> پس از آدالیموماب گزارش شده است.</li>
+          <li><strong>آزمایش ژن:</strong> حذف <bdi>SIRPG</bdi> در آزمایش جداگانه با کاهش <bdi>TOP2A RNA</bdi> همراه بود.</li>
+          <li><strong>حلقهٔ اندازه‌گیری‌نشده:</strong> این طراحی، تغییر <bdi>TOP2A</bdi> پس از آدالیموماب را مستقیماً نشان نمی‌دهد. پاسخ به پرسش غیرمستقیم باید وزن و زمینهٔ هر آزمایش را جدا بررسی کند.</li>
+        </ol>
+        <div class="document-links"><a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/connection-evidence.fa.md" target="_blank" rel="noopener noreferrer">مقایسهٔ دقیق دو آزمایش</a><a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/top2a-cancer-comparison.fa.md" target="_blank" rel="noopener noreferrer">شواهد TOP2A و سرطان در لایهٔ مقایسه‌ای</a></div>
+      </section>
+    </div>
+    <div id="panel-methods" class="research-panel" role="tabpanel" aria-labelledby="tab-methods" tabindex="0" hidden>
+      <section id="methods" class="reading-section methods-section" aria-labelledby="methods-title">
+        <h2 id="methods-title">یک مسیر قابل ارائه و بازتولید</h2>
+        <ol class="reading-steps">
+          <li><strong>تعریف نقش‌ها:</strong> آنتی‌بادیِ دارویی، هدف <bdi>TNF</bdi>، نشانگر <bdi>CRP</bdi> و مقایسهٔ داخل‌سلولیِ <bdi>TOP2A</bdi> را مشخص کنید.</li>
+          <li><strong>خواندن شکل:</strong> ساختار آزاد <bdi>1TNF</bdi> و کمپلکس <bdi>3WD5</bdi> را با ذکر زنجیره‌ها و اختلاف سازه‌ها توضیح دهید.</li>
+          <li><strong>اندازه‌گیری:</strong> تماس اتم‌های سنگین با اشغال‌پذیری مثبت را در آستانهٔ <bdi>4.5 Å</bdi> گزارش کنید؛ تعداد تماس، قدرت اثر دارو را اندازه نمی‌گیرد.</li>
+          <li><strong>نقد شواهد:</strong> نتیجهٔ ساختاری، اندازه‌گیری بالینی و تغییر بیان <bdi>RNA</bdi> را جدا بخوانید؛ برای پیوند غیرمستقیم، شواهد موافق و مخالف را ثبت کنید.</li>
+        </ol>
+        <div class="document-links"><a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/course-guide.fa.md" target="_blank" rel="noopener noreferrer">راهنمای کامل پروژهٔ درسی</a><a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/research-questions.fa.md" target="_blank" rel="noopener noreferrer">پرسش‌های پژوهش</a><a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/visualization-tools.fa.md" target="_blank" rel="noopener noreferrer">ابزارها و بازتولید انیمیشن</a><a href="assets/teaching-provenance.json">منشأ شکل‌های آموزشی</a></div>
+      </section>
     <section id="datasets" class="reading-section" aria-labelledby="datasets-title">
       <div class="section-heading">
-        <h2 id="datasets-title">منابع داده برای قدم بعد</h2>
-        <a href="docs/dataset-catalog.fa.md">راهنمای انتخاب دیتاست</a>
+        <h2 id="datasets-title">منابع اصلی پروژه</h2>
+        <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/course-guide.fa.md" target="_blank" rel="noopener noreferrer">راهنمای استفاده از منابع</a>
       </div>
-      <p class="section-description">فهرست، منبع و نوع دسترسی را مشخص می‌کند. تأیید فراداده به معنی دریافت فایل‌های خام، بازتحلیل یا وجود یک دیتاست یکپارچه برای چهار بیماری نیست.</p>
+      <ul id="primary-sources" class="reference-source-list">
+        <li><a href="https://www.rcsb.org/structure/3WD5" target="_blank" rel="noopener noreferrer"><bdi>3WD5</bdi></a><span>مختصات کمپلکس <bdi>TNF–Fab</bdi>؛ مبنای نمایش و محاسبهٔ تماس</span></li>
+        <li><a href="https://www.rcsb.org/structure/1TNF" target="_blank" rel="noopener noreferrer"><bdi>1TNF</bdi></a><span>ساختار <bdi>TNF</bdi> آزاد برای شناخت شکل سه‌زیرواحدی</span></li>
+        <li><a href="https://www.rcsb.org/structure/1B09" target="_blank" rel="noopener noreferrer"><bdi>1B09</bdi></a><span>مقایسهٔ اختیاری: ساختار <bdi>CRP</bdi></span></li>
+        <li><a href="https://www.uniprot.org/uniprotkb/P01375" target="_blank" rel="noopener noreferrer"><bdi>P01375</bdi></a><span>توالی و اطلاعات پروتئین <bdi>TNF</bdi> در <bdi>UniProt</bdi></span></li>
+        <li><a href="https://www.uniprot.org/uniprotkb/P02741" target="_blank" rel="noopener noreferrer"><bdi>P02741</bdi></a><span>توالی و اطلاعات پروتئین <bdi>CRP</bdi> در <bdi>UniProt</bdi></span></li>
+      </ul>
+      <details id="future-work" class="future-work">
+      <summary>اختیاری برای مرحلهٔ بعد: منابع پیشرفته و یادداشت‌های قبلی</summary>
+      <p class="section-description">توالی‌های مرجع در تب توالی‌ها قابل بررسی‌اند. این فهرست گسترده برای مطالعهٔ اختیاری داده‌های بیان ژن و توسعهٔ بعدی نگه داشته شده؛ تحلیل جدید اُمیک در این نسخه اجرا نشده است.</p>
+      <div class="document-links">
+        <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/research-protocol.fa.md" target="_blank" rel="noopener noreferrer">آرشیو پروتکل و فرضیه‌های قبلی</a>
+        <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/dataset-catalog.fa.md" target="_blank" rel="noopener noreferrer">فهرست پیشرفتهٔ منابع</a>
+        <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/scientific-context.fa.md" target="_blank" rel="noopener noreferrer">یادداشت‌های زمینه و مقایسه‌ها</a>
+        <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/manuscript-outline.fa.md" target="_blank" rel="noopener noreferrer">طرح توسعهٔ پژوهش در آینده</a>
+      </div>
       <div class="dataset-filters">
         <div><label for="dataset-search">جست‌وجوی منبع، ژن یا بیماری</label><input id="dataset-search" type="search" placeholder="مثلاً TOP2A، آرتریت یا GSE15602" disabled></div>
         <div><label for="dataset-kind">نوع شواهد</label><select id="dataset-kind" disabled><option value="all">همهٔ منابع</option></select></div>
@@ -142,21 +272,30 @@
           <tbody id="datasets-body"><tr><td colspan="5">در حال بارگذاری…</td></tr></tbody>
         </table>
       </div>
+      </details>
     </section>
-
-    <section id="methods" class="reading-section methods-section" aria-labelledby="methods-title">
-      <h2 id="methods-title">پژوهش را قابل بازتولید نگه داریم</h2>
-      <p class="section-description">برای آزمودن فرضیه، بافت و جمعیت را ثابت نگه می‌داریم، ترکیب سلولی و تکثیر را به‌عنوان توضیح‌های جایگزین بررسی می‌کنیم و اعتبارسنجی را در دادهٔ مستقل انجام می‌دهیم. نتایج ساختاری، بیان ژن و پیامد بالینی جداگانه گزارش می‌شوند.</p>
-      <div class="document-links">
-        <a href="docs/research-protocol.fa.md">پروتکل و پرسش تحقیق</a>
-        <a href="docs/scientific-context.fa.md">پروتئین‌ها، DNA/RNA و نشانگرها</a>
-        <a href="docs/manuscript-outline.fa.md">طرح گزارش و مقاله</a>
-        <a href="docs/visualization-tools.fa.md">ابزارهای نمایش و بازتولید انیمیشن</a>
-      </div>
-    </section>
+    </div>
+    <div id="panel-reading" class="research-panel" role="tabpanel" aria-labelledby="tab-reading" tabindex="0" hidden>
+      <section id="reading" class="reading-section" aria-labelledby="reading-title">
+        <div class="section-heading"><h2 id="reading-title">کتابچهٔ پژوهش</h2><a id="document-source" href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/research-questions.fa.md" target="_blank" rel="noopener noreferrer">نسخهٔ اصلی در GitHub</a></div>
+        <p class="section-description">متن‌های پروژه را اینجا بخوانید؛ از فهرست فصل‌ها یک بخش یا متن کامل را انتخاب کنید. فرمول‌ها و نمودارها از همان فایل منبع نمایش داده می‌شوند.</p>
+        <div class="reading-controls">
+          <div><label for="document-select">متن تحقیق و راهنما</label><select id="document-select" disabled><option>در حال آماده‌سازی کتابچه…</option></select></div>
+          <div><label for="chapter-select">فصل یا متن کامل</label><select id="chapter-select" disabled><option value="all">متن کامل</option></select></div>
+        </div>
+        <div class="reading-actions">
+          <div><button id="chapter-prev" type="button" disabled>فصل قبلی</button><button id="chapter-next" type="button" disabled>فصل بعدی</button></div>
+          <a id="document-download" href="docs/research-questions.fa.md" download>دریافت فایل Markdown</a>
+        </div>
+        <p id="reading-status" class="section-status" data-state="idle" role="status" aria-live="polite">با انتخاب این تب، متن راهنما بارگذاری می‌شود.</p>
+        <nav id="document-toc" class="document-toc" aria-label="فصل‌های این متن" hidden></nav>
+        <article id="markdown-content" class="markdown-content" tabindex="0" aria-busy="false"></article>
+      </section>
+    </div>
   </main>
   <footer class="research-footer">
     <p>پروژهٔ درس بیوانفورماتیک ساختاری · کارشناسی ارشد مهندسی کامپیوتر، گرایش بیوانفورماتیک</p>
+    <p><a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/course-guide.fa.md" target="_blank" rel="noopener noreferrer">راهنمای پروژه و گزارش درسی</a></p>
     <a href="https://github.com/koolfox/koolfox.github.io/tree/main/structural-bioinformatics" target="_blank" rel="noopener noreferrer">کد، داده‌های مرجع و روش‌ها در GitHub</a>
   </footer>
 </body>

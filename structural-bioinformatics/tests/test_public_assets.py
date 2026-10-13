@@ -38,3 +38,9 @@ def test_vendor_and_animation_provenance_match_public_bytes():
     assets = json.loads((PROJECT / "data/metadata/visual-assets.json").read_text())
     for key in ("coordinates", "animation"):
         assert sha256(PROJECT / assets[key]["path"]) == assets[key]["sha256"]
+
+
+def test_reading_libraries_and_fonts_match_recorded_distributions():
+    manifest = json.loads((PROJECT / "data/metadata/reading-vendor.json").read_text())
+    for file in manifest["files"]:
+        assert sha256(PROJECT / file["path"]) == file["sha256"]

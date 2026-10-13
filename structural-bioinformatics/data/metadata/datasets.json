@@ -1794,9 +1794,175 @@
         "Metadata contains composite DAS28-CRP scores, not serum CRP concentration measurements.",
         "Full spatial/image archives were not downloaded; file-list and clinical metadata access are verified, not complete analysis readiness."
       ]
+    },
+    {
+      "id": "GSE296196",
+      "source": "NCBI GEO",
+      "kind": "human_cell_perturbation_omics",
+      "title": "Enhancement of activation-induced T cell proliferation by SIRPG in a CD47-independent manner",
+      "status": "metadata_and_processed_columns_TOP2A_verified_quantity_annotation_inconsistent",
+      "priority": "optional_SIRPG_TOP2A_perturbation_context_not_ADA_treatment_effect",
+      "verified_on": "2026-10-13",
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE296196",
+      "evidence_urls": [
+        "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE296nnn/GSE296196/matrix/GSE296196_series_matrix.txt.gz",
+        "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE296nnn/GSE296196/suppl/GSE296196_Counts_SK69M2SIRPG.xlsx",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC12678352/"
+      ],
+      "organism": "Homo sapiens",
+      "disease": "healthy donors; ex vivo activation and SIRPG perturbation",
+      "tissue": "PBMC-derived sorted live CD3+ CD4+ and CD3+ CD8+ T cells",
+      "assay": "bulk RNA-seq",
+      "platform": "GPL24676",
+      "participant_count": 6,
+      "sample_count": 46,
+      "library_count": 46,
+      "processed_sample_count": 44,
+      "subject_ids": [
+        "30",
+        "32",
+        "36",
+        "49",
+        "50",
+        "55"
+      ],
+      "sample_groups": {
+        "SIRPG_WT_libraries": 23,
+        "SIRPG_KO_libraries": 23,
+        "CD4_libraries": 22,
+        "CD8_libraries": 24,
+        "Day2_libraries": 22,
+        "Day4_libraries": 24
+      },
+      "perturbation": "CRISPR-mediated SIRPG ablation; SIRPG WT/KO labels from GEO",
+      "experimental_treatment": "anti-CD3 and IL-2 restimulation after anti-CD3/anti-CD28 activation for editing",
+      "drug": null,
+      "adalimumab_arm_in_verified_expression_design": false,
+      "timepoints": [
+        "Day 2 after restimulation",
+        "Day 4 after restimulation"
+      ],
+      "paired_before_after": false,
+      "pairing": {
+        "scope": "within donor/cell type/day SIRPG WT-versus-KO experimental conditions; not clinical pre/post treatment",
+        "GEO_complete_WT_KO_condition_pairs": 23,
+        "processed_complete_WT_KO_condition_pairs": 22,
+        "independent_donors": 6,
+        "absent_from_GEO_full_factorial_design": "Donor 36 CD4 WT and KO Day2",
+        "GEO_libraries_absent_from_processed_XLSX": [
+          {
+            "accession": "GSM8966858",
+            "condition": "Donor 32 SIRPG WT CD8 Day4"
+          },
+          {
+            "accession": "GSM8966859",
+            "condition": "Donor 32 SIRPG KO CD8 Day4"
+          }
+        ]
+      },
+      "sample_metadata_fields_verified": [
+        "donor ID in sample title",
+        "cell type",
+        "genotype",
+        "treatment",
+        "time"
+      ],
+      "clinical_fields_verified": [],
+      "response_labels": {
+        "availability": "absent; no clinical ADA response outcomes in inspected expression design"
+      },
+      "serum_crp": {
+        "availability": "absent_from_inspected_GEO_and_processed_workbook"
+      },
+      "urine_measurements": {
+        "availability": "absent_from_inspected_GEO_and_processed_workbook"
+      },
+      "processed_matrix": {
+        "format": "XLSX",
+        "sheets": [
+          {
+            "name": "Day2",
+            "gene_rows": 8879,
+            "sample_columns": 22,
+            "header_examples": [
+              "symbol",
+              "counts.30CD4SIRPGKOD2",
+              "counts.30CD4SIRPGWTD2"
+            ]
+          },
+          {
+            "name": "Day4",
+            "gene_rows": 9410,
+            "sample_columns": 22,
+            "header_examples": [
+              "symbol",
+              "counts.30CD4SIRPGKOD4",
+              "counts.30CD4SIRPGWTD4"
+            ]
+          }
+        ],
+        "quantity_status": "unresolved: actual XLSX columns are counts.* with fractional values; GEO data_processing describes CSV containing FPKM",
+        "transcript_quantification_in_GEO": "Salmon v1.3.2 quasi-mapping; GRCh38.p14 transcriptome",
+        "columns_mapped_to_design": "donor, CD4/CD8, WT/KO and D2/D4 encoded in counts.* headers; GEO ordering differs from workbook ordering"
+      },
+      "top2a_feature": {
+        "status": "observed_in_both_public_processed_expression_sheets",
+        "feature": "TOP2A",
+        "numeric_sample_values": 44,
+        "nonzero_sample_values": 44
+      },
+      "access": {
+        "classification": "open_omics",
+        "controlled_access_required": false,
+        "processed_access_requires_login": false,
+        "small_processed_workbook_inspected": true,
+        "raw_reads_download_performed": false
+      },
+      "license": {
+        "name": "GEO public access; submitter rights may apply",
+        "url": "https://www.ncbi.nlm.nih.gov/geo/info/disclaimer.html"
+      },
+      "downloads": [
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE296nnn/GSE296196/matrix/GSE296196_series_matrix.txt.gz",
+          "format": "GEO series matrix gzip",
+          "role": "sample_metadata"
+        },
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE296nnn/GSE296196/suppl/GSE296196_Counts_SK69M2SIRPG.xlsx",
+          "format": "XLSX",
+          "role": "processed_expression",
+          "size_bytes": 3394172,
+          "sha256": "603a7c7f09957bcc952a27438f1722dfa96ffa1119f798d75544a1ceaa59f4db",
+          "retrieved_at_utc": "2026-10-13T09:05:51.233777+00:00",
+          "download_performed": true,
+          "retained_in_repository": false,
+          "inspection": "workbook sheet headers and TOP2A row; no differential-expression analysis"
+        }
+      ],
+      "raw_reads": {
+        "availability": "public_SRA_linked_from_GEO",
+        "bioproject": "PRJNA1258190",
+        "url": "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1258190",
+        "download_performed": false
+      },
+      "related_publication": "PMC12678352",
+      "publication_pmid": "41357240",
+      "publication_doi": "10.3389/fimmu.2025.1668361",
+      "publication_year": 2025,
+      "limitations": [
+        "46 libraries represent six healthy donors, not 46 independent people or RA patients.",
+        "The broader article tests adalimumab phenotypes separately, but the verified RNA-seq design has no adalimumab treatment arm; it cannot estimate an ADA-induced TOP2A change.",
+        "Within-donor SIRPG perturbation can inform SIRPG-TOP2A/cycling context, not direct ADA-TOP2A molecular binding.",
+        "GEO has 46 libraries while the processed XLSX has 44 columns; two donor32 CD8 Day4 libraries are absent from the workbook.",
+        "GEO FPKM/CSV description conflicts with actual fractional counts.* XLSX columns; reconcile quantities and sample mapping before differential-expression methods.",
+        "TOP2A can reflect proliferation and activation state; donor, cell type and restimulation day must remain explicit.",
+        "No clinical CRP, urine measurements, ADA levels, RA treatment response or cancer efficacy outcomes were verified.",
+        "Raw SRA reads were not downloaded; only the small public processed workbook and sample metadata were inspected."
+      ]
     }
   ],
-  "dataset_count": 24,
+  "dataset_count": 25,
   "hypothesis_sources": [
     {
       "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11910056/",

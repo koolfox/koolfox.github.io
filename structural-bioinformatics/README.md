@@ -1,10 +1,12 @@
-# TNF, TOP2A & Adalimumab — Structural Bioinformatics
+# TNF & Adalimumab — Structural Bioinformatics Course
 
-پروژهٔ اکتشافی درس بیوانفورماتیک ساختاری، ارشد مهندسی کامپیوتر/بیوانفورماتیک. پرسش باز: **آیا بیان TOP2A و فعالیت چرخهٔ سلولی در بافت روماتوئید با مسیر TNF و پاسخ به آدالیموماب ارتباط دارند؟** این پروژه هنوز سازوکار مشترک یا پیش‌بین بالینی را اثبات نکرده است.
+پروژهٔ درس بیوانفورماتیک ساختاری، ارشد مهندسی کامپیوتر/بیوانفورماتیک. موضوع نسخهٔ درسی: **ساختار TNF-α و رابط اتصال قطعهٔ Fab آدالیموماب، با زمینهٔ آرتریت روماتوئید**. کار عملی، نمایش ساختار واقعی و یک تحلیل هندسی کوچک و قابل بازتولید است.
+
+از [راهنمای درسی](docs/course-guide.fa.md) و [سؤال و فرضیه‌های پژوهش](docs/research-questions.fa.md) شروع کنید. ابتدا ساختار و عملکرد دارو را می‌آموزیم؛ سپس می‌پرسیم شواهد از چه ارتباط غیرمستقیمی با TOP2A حمایت می‌کنند. [مقایسهٔ TOP2A و سرطان](docs/top2a-cancer-comparison.fa.md) به معنی اثبات درمان سرطان با آدالیموماب نیست. مثال‌های واقعی و کوچک توالی RNA/پروتئین برای آموزش اضافه شده‌اند؛ تحلیل وسیع بیان ژن هنوز انجام نشده است.
 
 **نسخهٔ شروع:** کاوشگر سه‌بعدی، منابع، پروتکل، تحلیل ساختار و ویدئو آماده‌اند. انتشار از طریق GitHub Actions، پس از تست کد علمی و همان فایل‌های سایت انجام می‌شود.
 
-[نمای سه‌بعدی پژوهش](https://koolfox.github.io/structural-bioinformatics/) · [پروتکل](docs/research-protocol.fa.md) · [سه مقالهٔ اصلی](docs/literature-review.fa.md) · [دیتاست‌ها](docs/dataset-catalog.fa.md) · [نقشهٔ زیستی و آزمایشگاهی](docs/scientific-context.fa.md)
+[نمای سه‌بعدی پژوهش](https://koolfox.github.io/structural-bioinformatics/) · [راهنمای درسی](docs/course-guide.fa.md) · [مرور و نقد مقاله‌ها](docs/literature-review.fa.md) · [دلیل انتخاب منابع](docs/literature-selection-audit.fa.md)
 
 ![نمای مختصات واقعی TNF–Fab](assets/complex-preview.png)
 
@@ -12,12 +14,15 @@
 
 - موتور سبک و قابل استفادهٔ مجدد Three.js: TNF–Fab `3WD5`، TNF آزاد `1TNF`، CRP `1B09` و هستهٔ TOP2A–DNA `4FM9`؛ چرخش، زنجیره/رنگ قابل انتخاب، بررسی باقی‌مانده و شرح محدودیت نمایش.
 - تحلیل واقعی و قابل بازتولید رابط **جزئی** TNF–Fab: در آستانهٔ `4.5 Å`، **۲۵۲ تماس اتم سنگین، ۴۰ جفت باقی‌مانده و ۱۷ باقی‌ماندهٔ TNF** در واحد نامتقارن ثبت شده‌اند. این اعداد معیار اثربخشی دارو نیستند.
-- مرور سه مطالعهٔ داوری‌شده: [Shi 2025، TOP2A و RA/IPF](https://doi.org/10.2147/JIR.S497734)، [Bhamidipati 2026، بافت سینوویال و مقاومت درمان](https://doi.org/10.1038/s41590-025-02386-2)، [Gehin 2024، غلظت آدالیموماب و CRP](https://doi.org/10.1136/rmdopen-2024-004888).
+- مرور و نقد سه مطالعهٔ محوری: [Bianchi، ساختار/شبیه‌سازی آدالیموماب، انتشار آنلاین ۲۰۲۶](https://doi.org/10.3389/fimmu.2025.1680199)، [Marguerie 2025، دو آزمایش مجزای آدالیموماب–SIRPG و SIRPG–TOP2A](https://doi.org/10.3389/fimmu.2025.1668361)، [Gehin 2024، غلظت آدالیموماب و CRP در RA](https://doi.org/10.1136/rmdopen-2024-004888). برای هرکدام دلیل انتخاب، خلاصه و نقد نوشته شده است؛ Hu 2013، Ubah 2025 و شواهد RA/TOP2A منابع پشتیبان‌اند.
 - کاتالوگ منشأ/دسترسی داده‌ها، نقشهٔ تماس PNG/SVG، و ویدئوی واقعی ManimGX در [assets/tnf-adalimumab.mp4](assets/tnf-adalimumab.mp4).
+- شش تب آموزشی با ناوبری صفحه‌کلید و نمایش کامل مسیر در موبایل؛ توالی‌های FASTA با شناسه و نسخه، طرح اجزای آنتی‌بادی و مسیر ژن تا ساختار. [آموزش توالی‌ها](docs/sequences-primer.fa.md) تفاوت توالی، مقدار بیان و ساختار RNA را توضیح می‌دهد.
+- [کتابچهٔ پژوهش داخل صفحه](https://koolfox.github.io/structural-bioinformatics/?document=course-guide.fa.md#reading): همان فایل‌های Markdown با انتخاب فصل، فرمول‌های LaTeX و نمودارهای Mermaid. [روش و فرمول‌ها](docs/structural-method.fa.md) خروجی حساسیت حد فاصله را با اعداد واقعی توضیح می‌دهد.
+- [نقشهٔ شواهد ارتباط](docs/connection-evidence.fa.md) نتیجهٔ مستقیم، مشاهدهٔ وابسته به شرایط آزمایش و فرضیهٔ اثبات‌نشده را جدا می‌کند. نتیجهٔ منفی یا نامشخص نیز پاسخ معتبر پژوهش است.
 
 ## اجرای محلی
 
-فرمان‌ها از **ریشهٔ مخزن** اجرا می‌شوند. Python `3.13` در `.python-version` مشخص شده است؛ تحلیل روی `3.13` آزموده شده و بسته بازهٔ `>=3.13,<3.15` را اعلام می‌کند. سایت به نصب Python علمی، Node یا CDN وابسته نیست؛ Node فقط برای تست مرورگر است.
+فرمان‌ها از **ریشهٔ مخزن** اجرا می‌شوند. Python `3.13` در `.python-version` مشخص شده است؛ تحلیل روی `3.13` آزموده شده و بسته بازهٔ `>=3.13,<3.15` را اعلام می‌کند. بازدید از سایت به نصب Python، Node یا CDN وابسته نیست؛ Node برای تست مرورگر و بازسازی کتابخانه‌های نمایشی استفاده می‌شود.
 
 ```sh
 python3 -m http.server 8000
@@ -26,12 +31,17 @@ python3 -m http.server 8000
 uv sync --project structural-bioinformatics --frozen
 uv run --project structural-bioinformatics tnf-atlas fetch-structures
 uv run --project structural-bioinformatics tnf-atlas analyze
+uv run --project structural-bioinformatics python structural-bioinformatics/scripts/plot_teaching_figures.py
 uv run --project structural-bioinformatics pytest -q
 uv run --project structural-bioinformatics ruff check structural-bioinformatics
 uv run --project structural-bioinformatics ruff format --check structural-bioinformatics
 ```
 
 دانلود ساختارها اینترنت می‌خواهد؛ تست‌های معمولی آفلاین هستند. فایل‌های `mmCIF` و `PDB` چهار ساختار و SHA-256 در manifest ثبت می‌شوند. ورودی‌ها در `data/raw/` و خروجی‌های موقت در `results/` می‌مانند؛ فقط خروجی‌های کوچک و مشخص برای نمایش عمومی نگهداری شده‌اند. هنگام بازسازی خروجی‌ها، manifest فایل‌های عمومی و ویدئو را نیز به‌روز کنید.
+
+![مقایسهٔ مختصات واقعی TNF، Fab و هستهٔ TOP2A–DNA](assets/structure-comparison.png)
+
+مقیاس نمایش سه پنل مستقل است؛ مقایسهٔ هم‌ترازی یا داکینگ نیست. طرح‌های SVG آنتی‌بادی و مسیر شواهد، شکل‌های مفهومیِ دارای برچسب‌اند. منشأ، روش و SHA در `assets/teaching-provenance.json` ثبت شده است.
 
 ## انیمیشن
 
@@ -54,9 +64,24 @@ npm --prefix structural-bioinformatics/browser-tests test
 
 تست‌ها باید مدل‌های واقعی، کنترل‌ها، عدم سرریز موبایل و مسیر fallback بدون WebGL را بررسی کنند. برای ثبت تصویرهای کنترل‌شده از همان تست‌ها استفاده می‌شود؛ تصویرها نتیجهٔ بالینی نیستند.
 
-## داده و محدودیت‌های پژوهش
+## نمایش Markdown، فرمول و نمودار
+
+کتابچه، سندهای مشخص مخزن را با `markdown-it 15.0.2`، `KaTeX 0.19.0` و `Mermaid 12.2.0` در خود صفحه نشان می‌دهد. کتابخانه‌ها و فونت‌های ریاضی میزبانی محلی دارند و هنگام نیاز بارگذاری می‌شوند؛ خطای رندر، متن یا کد اصلی را حذف نمی‌کند. HTML خام در Markdown فعال نیست. فایل‌های اصل برای دریافت باقی می‌مانند و پیوندهای میان راهنماها داخل کتابچه باز می‌شوند.
+
+فقط برای به‌روزرسانی دارایی‌های نمایشی، با Node.js `24`:
+
+```sh
+npm ci --prefix structural-bioinformatics/reading-tools --ignore-scripts
+npm --prefix structural-bioinformatics/reading-tools run vendor
+```
+
+نسخه، مجوز، integrity بسته و SHA-256 هر فایل در `data/metadata/reading-vendor.json` ثبت می‌شود. [ارزیابی واقعی Anatomy](docs/anatomy-evaluation.fa.md) و [مقایسهٔ ابزارها](docs/visualization-tools.fa.md) ابزار آزمایش‌شده را از قابلیت آینده جدا می‌کنند.
+
+## مسیرهای پژوهشی اختیاری؛ خارج از ارائهٔ اصلی
 
 مرور/کاتالوگ، به معنی اجرای تحلیل همهٔ کوهورت‌ها نیست. GSE138746 ردیف TOP2A و پاسخ بعدی دارد، اما RNA پایه است. دادهٔ spatial شش جفت ADA دارد و فایل‌های اصلی حجیم‌اند؛ GSE296117 پنج جفت ADA دارد، دادهٔ پردازش‌شده عمومی و دادهٔ خام کنترل‌شده است. هنوز تحلیل این کوهورت‌ها انجام نشده است. پروتکل، آمار مستقل بیمار، دارو/بافت، چرخهٔ سلولی و نوع پاسخ را پیش از مدل‌سازی بررسی می‌کند.
+
+[کاتالوگ گسترده](docs/dataset-catalog.fa.md)، [فرضیهٔ TOP2A](docs/top2a-hypothesis.fa.md) و [پروتکل اکتشافی قبلی](docs/research-protocol.fa.md) یادداشت‌های آینده‌اند؛ برای فهم و دفاع از تحقیق فعلی لازم نیست همهٔ این مسیرها اجرا یا ارائه شوند.
 
 3WD5، Fab و یک پروتومر TNF را نشان می‌دهد و تماس‌های همسایه‌های تقارن را ندارد؛ 4FM9 نیز هستهٔ ناقص TOP2A در واحد نامتقارن است. ستون CRP در نمرهٔ DAS28-CRP معادل اندازه‌گیری غلظت خام نیست. لوپوس در این دارو مسیر ایمنی/مقایسه است. مطالعهٔ TOP2A سال ۲۰۲۵ از رده‌های سرطان‌منشأ و مهارگر TOP2A استفاده کرده و آدالیموماب را آزمایش نکرده است.
 

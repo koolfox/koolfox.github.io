@@ -2,23 +2,25 @@
 version: 1
 slug: "structural-bioinformatics-index-html"
 primary_target: "structural-bioinformatics/index.html"
-related_targets: ["structural-bioinformatics/assets/research.css","structural-bioinformatics/assets/app.js"]
+related_targets: []
 ---
 
-# Research explorer surface
+# Structural bioinformatics presentation
 
-Mode: Read, with a small Operate molecular viewer. Audience: course student and instructor assessing an exploratory TNF–TOP2A–RA hypothesis. Existing authority: portfolio Arad font, light neutral backgrounds, blue actions, Persian RTL. Confirmed lightweight static stack and real Three.js animation capability. Code build path: the user requested a graphics engine and experimental coordinates.
+Mode: Read, with an Operate molecular laboratory. Audience: a new MSc student and the instructor reviewing an understandable, defensible course investigation. Existing authority: portfolio Arad font, light neutral backgrounds, blue actions, Persian RTL. Confirmed static HTML/CSS/JavaScript stack and real Three.js coordinate rendering. The user requested code and experimental geometry. Paper is not connected; preserve the existing direction while refining it with Impeccable.
 
 ## Direction contract
 
-THESIS: Make the distinction between experimental molecular geometry, gene-expression evidence and an open treatment-response hypothesis visible and testable.
+THESIS: Teach the direct adalimumab–TNF mechanism before asking whether evidence supports an indirect TOP2A connection in rheumatoid arthritis and cancer.
 
-OWN-WORLD: Inherit Arad, blue actions, light neutral surfaces and standard document navigation from the existing site. Chain colors carry biochemical identities, not efficacy.
+OWN-WORLD: Inherit Arad, blue actions, light neutral surfaces and readable document typography. Molecule colors identify chains; evidence labels identify what an experiment actually establishes.
 
-STORY: Read the open question, explore TNF–Fab, free TNF, CRP and TOP2A–DNA coordinates, inspect the partial-interface result, then follow the three papers and verified datasets.
+STORY: Understand the research question and antibody anatomy; operate the molecular laboratory; inspect authentic RNA and protein sequences; read selection rationales and critical appraisals; follow a bounded method and presentation plan, and read the full source documents inside the chapter-based research booklet.
 
-FIRST VIEWPORT: A concise Persian title and question above a large molecular stage, with a structure selector, chain legend, rotation/reset controls and explicit representation/source caption. The model leads at desktop and mobile.
+FIRST VIEWPORT: A concise Persian title and coherent open question, with six accessible tabs. The default view explains the biological objects and the proposed connection. The laboratory tab gives the real model visual priority and exposes its controls, source and representation.
 
-FORM: Precisely specified new scientific document inside the existing portfolio world; no new identity or concept tournament. Signature interaction: switch experimental structures and toggle chains while preserving the actual geometry. Camera motion pauses outside the viewport and honors reduced motion.
+FORM: Extend the existing portfolio identity. Use panels according to content, readable prose and scientific figures, with closed advanced details. Tabs reduce scrolling and support keyboard navigation and direct hash links; the phone layout exposes all six destinations. The reader shows repository Markdown by chapter with actual LaTeX and Mermaid rendering, preserving the source when optional rendering fails. Latin accessions and sequences remain LTR; the surrounding explanation remains Persian RTL.
 
-FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
+SIGNATURE: Switch experimental structures, toggle chains and inspect residues without changing their internal geometry. Distinguish a measured Fab interface from a conceptual pathway and from an untested hypothesis. Camera motion honors reduced motion and pauses when hidden.
+
+FINISH: Review desktop/mobile and the required tab states, address material findings in one batch, record the verdict and scoped DESIGN.md, and preserve provenance for every scientific figure. A structural measurement never establishes clinical or anticancer efficacy.

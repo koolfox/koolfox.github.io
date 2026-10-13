@@ -6,9 +6,10 @@
     <title>Hesam Sheini</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/portfolio.css">
 </head>
 
-<body>
+<body class="portfolio-page">
     <div class="app-container">
         <header class="site-header panel">
             <div class="header-avatar">H</div>
@@ -29,9 +30,14 @@
             </div>
         </header>
 
+        <nav class="portfolio-nav" aria-label="بخش‌های صفحهٔ حسام">
+            <a href="#github-projects">پروژه‌های گیت‌هاب</a>
+            <a href="#course-projects">پروژه‌های دانشگاهی</a>
+            <a href="#about-me">دربارهٔ من</a>
+        </nav>
         <main class="stack">
-            <section class="panel">
-                <h2>چند تا از تمرین هایی که دوست‌شان دارم<span>تمرین های جدید</span></h2>
+            <section class="panel" id="course-projects">
+                <h2>پروژه‌های دانشگاهی و تمرین‌ها<span>نمایش‌های تعاملی</span></h2>
                 <ul class="item-list">
                     <li class="item">
                         <div class="item-head">
@@ -85,7 +91,80 @@
                             </a>
                         </div>
                     </li>
+                    <li class="item">
+                        <div class="item-head"><span>حل مسئلهٔ وزیرها با الگوریتم ژنتیک</span><span class="meta-text">الگوریتم ژنتیک</span></div>
+                        <p class="item-desc">نمایش صفحهٔ شطرنج، جمعیت جواب‌ها و تغییر آن‌ها در نسل‌های الگوریتم.</p>
+                        <div class="item-meta project-actions"><a class="meta-link" href="optimization/eight-queens-ga-v2.html">مدل N وزیر</a><a class="meta-link" href="optimization/eight-queens-ga.html">مدل ۸ وزیر</a></div>
+                    </li>
+                    <li class="item">
+                        <div class="item-head"><span>ترکیب دو جواب با روش PMX</span><span class="meta-text">الگوریتم ژنتیک</span></div>
+                        <p class="item-desc">نمایش گام‌به‌گام جابه‌جایی بخش‌هایی از دو جواب در الگوریتم ژنتیک.</p>
+                        <div class="item-meta project-actions"><a class="meta-link" href="optimization/pmx.html">مشاهدهٔ نمایش PMX</a></div>
+                    </li>
+                    <li class="item">
+                        <div class="item-head"><span>بررسی شمارش برخوردهای وزیرها</span><span class="meta-text">الگوریتم ژنتیک</span></div>
+                        <p class="item-desc">مقایسهٔ دو روش شمارش برخوردها برای اطمینان از درست‌بودن تابع ارزیابی جواب.</p>
+                        <div class="item-meta project-actions"><a class="meta-link" href="optimization/nq-fitness-test.html">مشاهدهٔ آزمایش</a></div>
+                    </li>
                 </ul>
+            </section>
+
+            <section class="panel portfolio-repositories" id="github-projects" aria-labelledby="github-projects-title">
+                <h2 id="github-projects-title">پروژه‌ها و مخازن عمومی گیت‌هاب</h2>
+                <p class="portfolio-intro">ابزارها، تمرین‌ها و نسخه‌های متن‌باز موجود در حساب من؛ توضیح هر مورد بر اساس معرفی همان مخزن است.</p>
+                <ul class="item-list">
+                    <li class="item" data-repository="carla-local-autonomy">
+                        <div class="item-head"><a class="item-title" href="https://github.com/koolfox/carla-local-autonomy" target="_blank" rel="noopener noreferrer"><bdi dir="ltr">CARLA Vision Research Console</bdi></a><span class="meta-text">Python</span></div>
+                        <p class="item-desc">کنسول پژوهشی برای رانندگی در شبیه‌ساز CARLA، بررسی تصویر دوربین و ثبت داده‌های آزمایش.</p>
+                        <div class="item-meta"><a class="meta-link" href="https://github.com/koolfox/carla-local-autonomy" target="_blank" rel="noopener noreferrer">مشاهدهٔ کد و راهنمای پروژه</a></div>
+                    </li>
+                    <li class="item" data-repository="drill">
+                        <div class="item-head"><a class="item-title" href="https://github.com/koolfox/drill" target="_blank" rel="noopener noreferrer"><bdi dir="ltr">Drill · دریل</bdi></a><span class="meta-text">JavaScript</span></div>
+                        <p class="item-desc">تمرین تایپ کد با نمایش روی صفحه و اتصال به OpenCode؛ برای یادگیری و کار روی کد.</p>
+                        <div class="item-meta"><a class="meta-link" href="https://github.com/koolfox/drill" target="_blank" rel="noopener noreferrer">مشاهدهٔ کد و راهنمای پروژه</a></div>
+                    </li>
+                    <li class="item" data-repository="loopert">
+                        <div class="item-head"><a class="item-title" href="https://github.com/koolfox/loopert" target="_blank" rel="noopener noreferrer"><bdi dir="ltr">Loopert</bdi></a><span class="meta-text">JavaScript</span></div>
+                        <p class="item-desc">نمونهٔ اولیهٔ ابزار خودکارسازی کارهای مرورگر و دسکتاپ با کمک مدل‌های زبانی.</p>
+                        <div class="item-meta"><a class="meta-link" href="https://github.com/koolfox/loopert" target="_blank" rel="noopener noreferrer">مشاهدهٔ کد و راهنمای پروژه</a></div>
+                    </li>
+                    <li class="item" data-repository="FS-Snapshot-Cache">
+                        <div class="item-head"><a class="item-title" href="https://github.com/koolfox/FS-Snapshot-Cache" target="_blank" rel="noopener noreferrer"><bdi dir="ltr">FS Snapshot Cache</bdi></a><span class="meta-text">PHP</span></div>
+                        <p class="item-desc">افزونهٔ کش صفحات وردپرس؛ نگهداری نسخهٔ آمادهٔ صفحه و پاک‌کردن آن پس از تغییر محتوا.</p>
+                        <div class="item-meta"><a class="meta-link" href="https://github.com/koolfox/FS-Snapshot-Cache" target="_blank" rel="noopener noreferrer">مشاهدهٔ کد و راهنمای پروژه</a></div>
+                    </li>
+                    <li class="item" data-repository="hooshpro-core-cms">
+                        <div class="item-head"><a class="item-title" href="https://github.com/koolfox/hooshpro-core-cms" target="_blank" rel="noopener noreferrer"><bdi dir="ltr">HooshPro Core CMS</bdi></a><span class="meta-text">TypeScript</span></div>
+                        <p class="item-desc">سامانهٔ مدیریت محتوا برای کارهای داخلی و پروژه‌های مشتریان، طبق معرفی مخزن.</p>
+                        <div class="item-meta"><a class="meta-link" href="https://github.com/koolfox/hooshpro-core-cms" target="_blank" rel="noopener noreferrer">مشاهدهٔ کد و راهنمای پروژه</a></div>
+                    </li>
+                    <li class="item" data-repository="codingWithTks">
+                        <div class="item-head"><a class="item-title" href="https://github.com/koolfox/codingWithTks" target="_blank" rel="noopener noreferrer"><bdi dir="ltr">Coding with Tks</bdi></a><span class="meta-text">TypeScript</span></div>
+                        <p class="item-desc">تمرین برنامه‌نویسی با NestJS برای دریافت، خواندن و جست‌وجوی فهرست بسته‌های نرم‌افزاری.</p>
+                        <div class="item-meta"><a class="meta-link" href="https://github.com/koolfox/codingWithTks" target="_blank" rel="noopener noreferrer">مشاهدهٔ کد و راهنمای پروژه</a></div>
+                    </li>
+                    <li class="item" data-repository="rf-detr">
+                        <div class="item-head"><a class="item-title" href="https://github.com/koolfox/rf-detr" target="_blank" rel="noopener noreferrer"><bdi dir="ltr">RF-DETR</bdi></a><span class="meta-text">Python</span></div>
+                        <p class="item-desc">نسخه‌ای از پروژهٔ Roboflow برای تشخیص اشیا و جداکردن ناحیهٔ هر شیء در تصویر.</p>
+                        <div class="item-meta"><a class="meta-link" href="https://github.com/koolfox/rf-detr" target="_blank" rel="noopener noreferrer">مشاهدهٔ کد و راهنمای پروژه</a></div>
+                    </li>
+                    <li class="item" data-repository="ptunnel-ng">
+                        <div class="item-head"><a class="item-title" href="https://github.com/koolfox/ptunnel-ng" target="_blank" rel="noopener noreferrer"><bdi dir="ltr">ptunnel-ng</bdi></a><span class="meta-text">شبکه</span></div>
+                        <p class="item-desc">نسخه‌ای از ابزار متن‌باز انتقال اتصال TCP از طریق بسته‌های ICMP؛ پروژهٔ اصلی از lnslbrty.</p>
+                        <div class="item-meta"><a class="meta-link" href="https://github.com/koolfox/ptunnel-ng" target="_blank" rel="noopener noreferrer">مشاهدهٔ کد و راهنمای پروژه</a></div>
+                    </li>
+                    <li class="item" data-repository="code-server-vscode">
+                        <div class="item-head"><a class="item-title" href="https://github.com/koolfox/code-server-vscode" target="_blank" rel="noopener noreferrer"><bdi dir="ltr">code-server / VS Code</bdi></a><span class="meta-text">Shell</span></div>
+                        <p class="item-desc">مجموعهٔ راهنماها و اسکریپت‌های راه‌اندازی code-server برای محیط برنامه‌نویسی در مرورگر.</p>
+                        <div class="item-meta"><a class="meta-link" href="https://github.com/koolfox/code-server-vscode" target="_blank" rel="noopener noreferrer">مشاهدهٔ کد و راهنمای پروژه</a></div>
+                    </li>
+                    <li class="item" data-repository="openvscode-releases">
+                        <div class="item-head"><a class="item-title" href="https://github.com/koolfox/openvscode-releases" target="_blank" rel="noopener noreferrer"><bdi dir="ltr">OpenVSCode releases</bdi></a><span class="meta-text">Dockerfile</span></div>
+                        <p class="item-desc">مخزن ساخت انتشارهای OpenVSCode Server، بر پایهٔ پروژهٔ Gitpod.</p>
+                        <div class="item-meta"><a class="meta-link" href="https://github.com/koolfox/openvscode-releases" target="_blank" rel="noopener noreferrer">مشاهدهٔ کد و راهنمای پروژه</a></div>
+                    </li>
+                </ul>
+                <p class="portfolio-more"><a href="https://github.com/koolfox?tab=repositories" target="_blank" rel="noopener noreferrer">دیدن همهٔ مخازن و forkها در گیت‌هاب</a></p>
             </section>
 
             <!-- بخش نوشته‌ها / بلگ -->
@@ -131,7 +210,7 @@
                 </ul>
             </section> -->
 
-            <section class="panel">
+            <section class="panel" id="about-me">
                 <h2>درباره من <span>یک معرفی خیلی کوتاه</span></h2>
                 <p>
                     من <strong>حسام شینی</strong> هستم،

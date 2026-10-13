@@ -1,0 +1,18 @@
+/* Homepage additions inherit the portfolio's Arad type and blue/light palette. */
+.portfolio-nav { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 0 0 18px; }
+.portfolio-nav a, .portfolio-more a { color: var(--accent); text-underline-offset: 4px; }
+.portfolio-nav a { display: inline-flex; align-items: center; min-height: 44px; }
+.portfolio-page [id] { scroll-margin-top: 20px; }
+.portfolio-page :focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+.portfolio-page bdi { unicode-bidi: isolate; }
+.portfolio-intro { font-size: 16px; line-height: 1.7; color: var(--text-soft); margin: 0 0 8px; }
+.portfolio-repositories .item-list { gap: 0; }
+.portfolio-repositories .item { border: 0; border-bottom: 1px solid var(--border); border-radius: 0; background: transparent; padding: 18px 0; }
+.portfolio-repositories .item-title { font-size: 17px; overflow-wrap: anywhere; }
+.portfolio-repositories .item-desc { font-size: 16px; line-height: 1.7; max-width: 75ch; margin: 8px 0; }
+.portfolio-repositories .item-meta { font-size: 14px; }
+.portfolio-repositories .meta-link { display: inline-flex; align-items: center; min-height: 44px; }
+.project-actions { justify-content: flex-start; gap: 12px 24px; }
+.project-actions a { display: inline-flex; align-items: center; min-height: 44px; }
+.portfolio-more { font-size: 14px; line-height: 1.7; margin: 18px 0 0; }
+@media (prefers-reduced-motion: reduce) { .portfolio-page * { scroll-behavior: auto; transition: none; } }

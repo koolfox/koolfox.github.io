@@ -1,4 +1,4 @@
-import { isolateScientificText } from './text-direction.js';
+import { isolateScientificText, scientificDiagramSource, setDiagramDirection } from './text-direction.js';
 /** Audience slides and the research reader share one Markdown source. */
 const source = new URL('../docs/class-presentation.fa.md', import.meta.url);
 const project = new URL('../', import.meta.url);
@@ -86,23 +86,94 @@ async function renderDiagrams() {
     const mermaid = await loadDiagrams();
     await document.fonts.ready;
     for (const [index, code] of diagrams.entries()) {
-      const { svg } = await mermaid.render('slide-diagram-' + index, code.textContent);
+      const { svg } = await mermaid.render('slide-diagram-' + index, scientificDiagramSource(code.textContent));
       const figure = document.createElement('figure');
       figure.className = 'slide-diagram';
       figure.innerHTML = svg;
       const graphic = figure.querySelector('svg');
       graphic.setAttribute('role', 'img');
-      graphic.setAttribute('aria-label', 'طرح مفهومی پیام‌رسانی TNF و مهار آن؛ مقیاس اتمی ندارد');
+      graphic.setAttribute('aria-label', 'نمودار مفهومی روابط توضیح‌داده‌شده در این اسلاید؛ مقیاس اتمی ندارد');
+      setDiagramDirection(graphic);
       code.parentElement.replaceWith(figure);
     }
   } catch {
     for (const code of deck.querySelectorAll('pre code.language-mermaid')) {
       const note = document.createElement('p');
-      note.textContent = 'طرح مفهومی: اتصال TNF به گیرنده، پیام درون سلول را آغاز می‌کند. آدالیموماب با اتصال به TNF این تعامل را محدود می‌کند.';
+      note.textContent = 'نمودار آماده نشد؛ رابطه‌های آن در متن همین اسلاید توضیح داده شده‌اند.';
       code.parentElement.replaceWith(note);
     }
     deck.dataset.diagram = 'fallback';
   }
+}
+
+const mediaDialog = document.getElementById('slide-media-dialog');
+const mediaStage = document.getElementById('slide-media-stage');
+let mediaTrigger;
+let mediaHome;
+let activeModel;
+
+function closeMedia() { mediaDialog.close(); }
+mediaDialog.addEventListener('close', () => {
+  if (activeModel && mediaHome) mediaHome.append(activeModel);
+  mediaStage.replaceChildren();
+  activeModel = null;
+  mediaTrigger?.focus();
+});
+document.getElementById('close-slide-media').addEventListener('click', closeMedia);
+
+function openMedia(figure, trigger, model = false) {
+  mediaTrigger = trigger;
+  document.getElementById('slide-media-title').textContent = model ? 'مدل سه‌بعدی؛ مختصات تجربی' : 'نمای بزرگ شکل';
+  document.getElementById('slide-media-caption').textContent = figure.querySelector('figcaption')?.textContent || 'نمودار مفهومی همین اسلاید';
+  mediaStage.replaceChildren();
+  if (model) {
+    activeModel = figure.querySelector('iframe');
+    mediaHome = figure;
+    mediaStage.append(activeModel);
+  } else {
+    const graphic = figure.querySelector('img, svg').cloneNode(true);
+    if (graphic.tagName.toLowerCase() === 'svg') {
+      const ids = new Map([...graphic.querySelectorAll('[id]')].map(node => [node.id, node.id + '-enlarged']));
+      if (graphic.id) { ids.set(graphic.id, graphic.id + '-enlarged'); graphic.id += '-enlarged'; }
+      for (const node of graphic.querySelectorAll('*')) {
+        if (node.id) node.id = ids.get(node.id);
+        for (const attr of [...node.attributes]) {
+          if (attr.name === 'id') continue;
+          let value = attr.value;
+          for (const [id, replacement] of ids) value = value.replaceAll('#' + id, '#' + replacement);
+          if (value !== attr.value) node.setAttribute(attr.name, value);
+        }
+      }
+    }
+    mediaStage.append(graphic);
+  }
+  mediaDialog.showModal();
+}
+
+function addMediaControls(figure) {
+  const controls = document.createElement('div');
+  controls.className = 'slide-media-controls';
+  const enlarge = textElement('button', 'بزرگ‌نمایی شکل'); enlarge.type = 'button';
+  enlarge.addEventListener('click', () => openMedia(figure, enlarge));
+  controls.append(enlarge);
+  const image = figure.querySelector('img');
+  const modelId = image?.src.endsWith('complex-preview.png') ? '3WD5'
+    : image?.src.endsWith('structure-comparison.png') ? '4FM9' : null;
+  if (modelId) {
+    const model = textElement('button', 'مدل سه‌بعدی ' + modelId); model.type = 'button';
+    model.addEventListener('click', () => {
+      let frame = figure.querySelector('iframe');
+      if (!frame) {
+        frame = document.createElement('iframe');
+        frame.title = 'مدل سه‌بعدی ' + modelId + '؛ چرخش با ماوس یا کلیدها';
+        frame.src = new URL('assets/reference-viewer.html?pdb=' + modelId, project).href;
+        figure.append(frame);
+      }
+      openMedia(figure, model, true);
+    });
+    controls.append(model);
+  }
+  figure.append(controls);
 }
 
 function hashIndex() {
@@ -153,7 +224,17 @@ async function load() {
     }
     slides = [...deck.children];
     if (!slides.length) throw new Error('no slides');
-    for (const link of deck.querySelectorAll('a[href]')) link.href = new URL(link.getAttribute('href'), source).href;
+    // The notebook keeps its lab link; slides offer the same model in place.
+    for (const link of deck.querySelectorAll('a[href$="#lab"]')) link.parentElement.remove();
+    for (const link of deck.querySelectorAll('a[href]')) {
+      const destination = new URL(link.getAttribute('href'), source);
+      const documentName = destination.pathname.match(/\/docs\/([a-z0-9.-]+\.md)$/)?.[1];
+      link.href = documentName
+        ? new URL('index.html?document=' + documentName + '#reading', project).href
+        : destination.href;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+    }
     for (const img of deck.querySelectorAll('img')) {
       img.src = new URL(img.getAttribute('src'), source).href;
       const figure = document.createElement('figure');
@@ -167,6 +248,11 @@ async function load() {
     await renderDiagrams();
     for (const slide of slides) {
       const body = slide.querySelector('.slide-body');
+      const citations = [...(body?.querySelectorAll(':scope > blockquote') || [])];
+      const references = document.createElement('aside');
+      references.className = 'slide-references';
+      references.setAttribute('aria-label', 'منابع و حدود شواهد این اسلاید');
+      references.append(...citations);
       const figure = body?.querySelector(':scope > figure');
       if (figure) {
         slide.classList.add('has-media');
@@ -174,6 +260,8 @@ async function load() {
         for (const child of [...body.childNodes]) if (child !== figure) copy.append(child);
         body.replaceChildren(copy, figure);
       }
+      if (citations.length) slide.append(references);
+      for (const media of slide.querySelectorAll('figure')) addMediaControls(media);
       addSlideIdentity(slide, details);
       isolateScientificText(slide);
     }
@@ -196,6 +284,7 @@ next.addEventListener('click', () => show(current + 1, true));
 select.addEventListener('change', () => show(Number(select.value), true));
 addEventListener('hashchange', () => show(hashIndex(), true));
 addEventListener('keydown', event => {
+  if (mediaDialog.open) return;
   if (event.altKey || event.ctrlKey || event.metaKey || event.target.closest('select, input, textarea, [contenteditable]')) return;
   const changes = { ArrowLeft: 1, ArrowRight: -1, PageDown: 1, PageUp: -1 };
   if (event.key in changes) { event.preventDefault(); show(current + changes[event.key], true); }

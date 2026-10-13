@@ -1,0 +1,136 @@
+{
+  "accession": "GSE339038",
+  "gene_id": "ENSG00000131747",
+  "gene_symbol": "TOP2A",
+  "matrix_gene_rows": 63241,
+  "matrix_libraries": 64,
+  "selected_libraries": [
+    {
+      "column": "SH14181_SA339709",
+      "accession": "GSM9887325",
+      "cell type": "CD3+ T cells derived from PBMCs, flow sorted from MLR assay",
+      "treatment": "IgG1+IgG1",
+      "batch": "Donor A",
+      "estimated_count": 1421.0,
+      "library_estimated_count_sum": 21611344.102999944,
+      "cpm": 65.75250448225226
+    },
+    {
+      "column": "SH14181_SA339711",
+      "accession": "GSM9887327",
+      "cell type": "CD3+ T cells derived from PBMCs, flow sorted from MLR assay",
+      "treatment": "IgG1+IgG1",
+      "batch": "Donor B",
+      "estimated_count": 957.0,
+      "library_estimated_count_sum": 21445826.993000016,
+      "cpm": 44.624066039158464
+    },
+    {
+      "column": "SH14181_SA339713",
+      "accession": "GSM9887329",
+      "cell type": "CD3+ T cells derived from PBMCs, flow sorted from MLR assay",
+      "treatment": "IgG1+IgG1",
+      "batch": "Donor C",
+      "estimated_count": 836.0,
+      "library_estimated_count_sum": 20460992.87700005,
+      "cpm": 40.85823229720867
+    },
+    {
+      "column": "SH14181_SA339715",
+      "accession": "GSM9887331",
+      "cell type": "CD3+ T cells derived from PBMCs, flow sorted from MLR assay",
+      "treatment": "IgG1+IgG1",
+      "batch": "Donor D",
+      "estimated_count": 863.0,
+      "library_estimated_count_sum": 23443402.981999885,
+      "cpm": 36.812061826630774
+    },
+    {
+      "column": "SH14181_SA339725",
+      "accession": "GSM9887341",
+      "cell type": "CD3+ T cells derived from PBMCs, flow sorted from MLR assay",
+      "treatment": "Ada + IgG1",
+      "batch": "Donor A",
+      "estimated_count": 604.0,
+      "library_estimated_count_sum": 17096274.01000008,
+      "cpm": 35.329335482497754
+    },
+    {
+      "column": "SH14181_SA339727",
+      "accession": "GSM9887343",
+      "cell type": "CD3+ T cells derived from PBMCs, flow sorted from MLR assay",
+      "treatment": "Ada + IgG1",
+      "batch": "Donor B",
+      "estimated_count": 889.0,
+      "library_estimated_count_sum": 21331966.064999975,
+      "cpm": 41.67454595095246
+    },
+    {
+      "column": "SH14181_SA339729",
+      "accession": "GSM9887345",
+      "cell type": "CD3+ T cells derived from PBMCs, flow sorted from MLR assay",
+      "treatment": "Ada + IgG1",
+      "batch": "Donor C",
+      "estimated_count": 492.0,
+      "library_estimated_count_sum": 14210710.125000028,
+      "cpm": 34.62177439918746
+    },
+    {
+      "column": "SH14181_SA339731",
+      "accession": "GSM9887347",
+      "cell type": "CD3+ T cells derived from PBMCs, flow sorted from MLR assay",
+      "treatment": "Ada + IgG1",
+      "batch": "Donor D",
+      "estimated_count": 454.0,
+      "library_estimated_count_sum": 18640337.042000033,
+      "cpm": 24.35578278316837
+    }
+  ],
+  "donor_pairs": [
+    {
+      "donor": "Donor A",
+      "control_cpm": 65.75250448225226,
+      "adalimumab_cpm": 35.329335482497754,
+      "ratio": 0.5373078297273642
+    },
+    {
+      "donor": "Donor B",
+      "control_cpm": 44.624066039158464,
+      "adalimumab_cpm": 41.67454595095246,
+      "ratio": 0.933902928397028
+    },
+    {
+      "donor": "Donor C",
+      "control_cpm": 40.85823229720867,
+      "adalimumab_cpm": 34.62177439918746,
+      "ratio": 0.8473634920704273
+    },
+    {
+      "donor": "Donor D",
+      "control_cpm": 36.812061826630774,
+      "adalimumab_cpm": 24.35578278316837,
+      "ratio": 0.6616250645745896
+    }
+  ],
+  "normalization": "CPM = estimated gene count / sum of all gene counts * 1e6",
+  "status": "descriptive_only_not_differential_expression",
+  "limitations": [
+    "Salmon estimated counts can be fractional; no rounding was performed.",
+    "Library-total CPM does not apply composition correction (TMM).",
+    "No gene filtering, limma-voom model, p-value or FDR was computed.",
+    "RNA abundance is not TOP2A protein amount or enzymatic inhibition.",
+    "Four donors in an in-vitro MLR assay are not a patient treatment trial."
+  ],
+  "generated_at_utc": "2026-10-13T18:28:05.405458+00:00",
+  "provenance": {
+    "counts_url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE339nnn/GSE339038/suppl/GSE339038_Gene_counts_MLR.tsv.gz",
+    "counts_sha256": "401e5412488bcfe9e3744c8bf3330ac8f8053459749290188c8b241f4ef2e4ea",
+    "geo_metadata_sha256": "4d7e5c2a8b3ed5b336816560f8d425cf4161badaf001196e34b5b94ae20ab152",
+    "script_sha256": "db3affb01f8aa10e6f7dadc0bd8c6d083d3eb4b03e98fa972e8c2d56d21684e1"
+  },
+  "figure": {
+    "path": "top2a-paired-cpm.png",
+    "sha256": "887a56c6d695690fbb47cd559ab0465fde60cf0c98373e252c87e4d148478264",
+    "representation": "descriptive donor-paired TOP2A CPM; not enzyme activity"
+  }
+}

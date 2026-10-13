@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "verified_on": "2026-10-13",
-  "verification_scope": "Official source metadata, GEO series-matrix headers and selected count-file headers were read live; this catalog is not an expression analysis or a clinical validation result.",
+  "verification_scope": "Official source metadata, GEO series-matrix headers and selected count-file headers were read live; this catalog is not an expression analysis or a clinical validation result. GSE339038 also has an executed, descriptive-only TOP2A count inspection; no inferential expression analysis.",
   "access_classifications": {
     "open_structure": "Public coordinates and metadata; no authentication required.",
     "open_sequence": "Public sequence and annotation; no authentication required.",
@@ -1960,9 +1960,103 @@
         "No clinical CRP, urine measurements, ADA levels, RA treatment response or cancer efficacy outcomes were verified.",
         "Raw SRA reads were not downloaded; only the small public processed workbook and sample metadata were inspected."
       ]
+    },
+    {
+      "id": "GSE339038",
+      "source": "NCBI GEO",
+      "kind": "transcriptomics",
+      "title": "RNA-seq of CD3+ T cells from MLR with single and combination TNF/TNFR inhibitory treatments",
+      "verified_on": "2026-10-13",
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE339038",
+      "organism": "Homo sapiens",
+      "disease": "healthy-donor in-vitro allogeneic activation; not a rheumatoid arthritis patient cohort",
+      "tissue": "flow-sorted CD3+ T cells, day 5 MLR",
+      "assay": "bulk RNA-seq",
+      "participant_count": 4,
+      "sample_count": 64,
+      "library_count": 64,
+      "drug": "adalimumab and other single/combination treatments",
+      "adalimumab_arm_in_verified_expression_design": true,
+      "sample_groups": {
+        "Unstim": 4,
+        "Amlite + IgG1": 4,
+        "No drug": 4,
+        "Bam + IgG1": 4,
+        "IgG1+IgG1": 4,
+        "Ada + Dapiro": 4,
+        "IgG1+IgG4": 4,
+        "Ada + Amlite": 4,
+        "Ada + IgG1": 4,
+        "Dapiro + Amlite": 4,
+        "Ada + IgG4": 4,
+        "Dapiro + Bam": 4,
+        "Dapiro + IgG1": 4,
+        "CTLA4-Fc": 4,
+        "Dapiro + IgG4": 4,
+        "Immunocult": 4
+      },
+      "pairing": {
+        "independent_donors": 4,
+        "conditions_per_donor": 16,
+        "descriptive_contrast": "Ada + IgG1 vs IgG1+IgG1, donor-paired; eight libraries"
+      },
+      "access": {
+        "classification": "open_omics",
+        "controlled_access_required": false,
+        "processed_access_requires_login": false,
+        "raw_reads_download_performed": false
+      },
+      "license": {
+        "name": "GEO public access; submitter rights may apply",
+        "url": "https://www.ncbi.nlm.nih.gov/geo/info/disclaimer.html"
+      },
+      "serum_crp": {
+        "availability": "absent_from_inspected_expression_design"
+      },
+      "urine_measurements": {
+        "availability": "absent_from_inspected_expression_design"
+      },
+      "downloads": [
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE339nnn/GSE339038/suppl/GSE339038_Gene_counts_MLR.tsv.gz",
+          "retrieved_at_utc": "2026-10-13T18:16:09.480405+00:00",
+          "sha256": "401e5412488bcfe9e3744c8bf3330ac8f8053459749290188c8b241f4ef2e4ea",
+          "bytes": 3588365,
+          "rows": 63241,
+          "id": "GSE339038-counts",
+          "status": "downloaded_and_descriptively_inspected"
+        }
+      ],
+      "analysis_status": "TOP2A row extracted; library-total CPM computed; no differential expression or enzyme assay",
+      "limitations": [
+        "Four independent donors, not 64 independent people",
+        "Estimated counts include fractional values; no rounding",
+        "No TMM, limma-voom, p-value or FDR in project pilot",
+        "RNA abundance does not measure TOP2A enzymatic inhibition",
+        "No linked clinical response or cancer-treatment outcome"
+      ],
+      "provenance": [
+        {
+          "id": "GSE339038",
+          "url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE339038&targ=all&form=text&view=quick",
+          "retrieved_at_utc": "2026-10-13T18:00:24.740414+00:00",
+          "sha256": "4d7e5c2a8b3ed5b336816560f8d425cf4161badaf001196e34b5b94ae20ab152",
+          "bytes": 40746141,
+          "status": "downloaded"
+        },
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE339nnn/GSE339038/suppl/GSE339038_Gene_counts_MLR.tsv.gz",
+          "retrieved_at_utc": "2026-10-13T18:16:09.480405+00:00",
+          "sha256": "401e5412488bcfe9e3744c8bf3330ac8f8053459749290188c8b241f4ef2e4ea",
+          "bytes": 3588365,
+          "rows": 63241,
+          "id": "GSE339038-counts",
+          "status": "downloaded_and_descriptively_inspected"
+        }
+      ]
     }
   ],
-  "dataset_count": 25,
+  "dataset_count": 26,
   "hypothesis_sources": [
     {
       "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11910056/",

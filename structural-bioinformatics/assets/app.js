@@ -19,6 +19,7 @@ const readerDocuments = new Set([
   "class-presentation.fa.md", "academic-study-plan.fa.md", "paper-writing-guide.fa.md", "structural-feasibility-results.fa.md",
   "research-questions.fa.md", "course-guide.fa.md", "structural-method.fa.md",
   "binding-mechanism.fa.md", "molecular-display-audit.fa.md", "paper-explanations.fa.md",
+  "scientific-claim-audit.fa.md", "top2a-count-inspection.fa.md", "top2a-inhibition-feasibility.fa.md",
   "connection-evidence.fa.md", "sequences-primer.fa.md", "literature-review.fa.md",
   "top2a-cancer-comparison.fa.md", "visualization-tools.fa.md", "dataset-catalog.fa.md",
   "scientific-context.fa.md", "manuscript-outline.fa.md", "research-protocol.fa.md",

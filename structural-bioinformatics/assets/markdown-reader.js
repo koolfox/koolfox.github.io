@@ -1,6 +1,9 @@
-import { isolateScientificText } from './text-direction.js';
+import { isolateScientificText, scientificDiagramSource, setDiagramDirection } from './text-direction.js';
 // Repository-owned Markdown only; optional rendering libraries load on demand.
 const DOCUMENTS = [
+  ["top2a-count-inspection.fa.md", "بررسی اجراشدهٔ RNA ژن TOP2A", "آموزش و پژوهش"],
+  ["scientific-claim-audit.fa.md", "ممیزی جمله‌به‌جملهٔ ادعاها و منابع", "آموزش و پژوهش"],
+  ["top2a-inhibition-feasibility.fa.md", "آیا آدالیموماب می‌تواند TOP2A را مهار کند؟", "آموزش و پژوهش"],
   ["class-presentation.fa.md", "ارائهٔ گام‌به‌گام برای کلاس", "ارائه و روش پژوهش"],
   ["academic-study-plan.fa.md", "طرح آکادمیک و سنجش قابلیت پژوهش", "ارائه و روش پژوهش"],
   ["paper-writing-guide.fa.md", "راهنمای گزارش و مقالهٔ قابل دفاع", "ارائه و روش پژوهش"],
@@ -274,7 +277,7 @@ async function renderDiagrams(container, current) {
     if (!current()) return failures;
     const source = code.parentElement;
     try {
-      const result = await mermaid.render("research-diagram-" + (++diagramNumber), code.textContent);
+      const result = await mermaid.render("research-diagram-" + (++diagramNumber), scientificDiagramSource(code.textContent));
       if (!current()) return failures;
       const figure = node("figure", undefined, "reader-diagram");
       const drawing = node("div", undefined, "mermaid-diagram");
@@ -282,6 +285,7 @@ async function renderDiagrams(container, current) {
       const svg = drawing.querySelector("svg");
       if (!svg) throw new Error("Mermaid returned no SVG");
       svg.setAttribute("role", "img");
+      setDiagramDirection(svg);
       svg.setAttribute("aria-label", "نمودار مفهومی این فصل؛ توضیح روابط در متن و کد اصلی آمده است");
       drawing.dataset.state = "ready";
       const details = node("details", undefined, "diagram-source");

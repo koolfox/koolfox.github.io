@@ -16,3 +16,24 @@ export function isolateScientificText(container) {
     text.replaceWith(fragment);
   }
 }
+
+/** Isolate Latin identifiers inside quoted Mermaid labels before SVG layout. */
+export function scientificDiagramSource(source) {
+  return source.replace(/"([^"\n]*)"/g, (_, label) => '"' + label.replace(
+    /[A-Za-z0-9αβÅ][A-Za-z0-9αβÅ_.–/+−-]*(?:[ \t]+[A-Za-z0-9αβÅ][A-Za-z0-9αβÅ_.–/+−-]*)*/g,
+    term => '\u2066' + term + '\u2069',
+  ) + '"');
+}
+
+export function setDiagramDirection(svg) {
+  for (const label of svg.querySelectorAll('.node text, .edgeLabel text, .nodeLabel, .edgeLabel p')) {
+    const direction = /[\u0600-\u06ff]/.test(label.textContent) ? 'rtl' : 'ltr';
+    for (const line of [label, ...label.querySelectorAll('tspan')]) {
+      line.setAttribute('direction', direction);
+      line.style.direction = direction;
+      line.style.unicodeBidi = 'embed';
+    }
+    const html = label.closest('foreignObject')?.querySelector('div');
+    if (html) { html.style.direction = direction; html.style.unicodeBidi = 'isolate'; }
+  }
+}

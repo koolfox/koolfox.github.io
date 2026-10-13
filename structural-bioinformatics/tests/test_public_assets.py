@@ -44,3 +44,31 @@ def test_reading_libraries_and_fonts_match_recorded_distributions():
     manifest = json.loads((PROJECT / "data/metadata/reading-vendor.json").read_text())
     for file in manifest["files"]:
         assert sha256(PROJECT / file["path"]) == file["sha256"]
+
+
+def test_reference_viewer_uses_verified_local_packages_and_original_pdbs():
+    manifest = json.loads((PROJECT / "data/metadata/molecular-viewer-vendor.json").read_text())
+    sources = json.loads((PROJECT / "data/metadata/structure-downloads.json").read_text())
+    expected = {
+        entry["pdb_id"]: next(
+            source["sha256"] for source in entry["coordinates"] if source["path"].endswith(".pdb")
+        )
+        for entry in sources["files"]
+    }
+    for file in manifest["files"] + manifest["coordinates"]:
+        assert sha256(PROJECT / file["path"]) == file["sha256"]
+    for file in manifest["coordinates"]:
+        assert file["sha256"] == expected[file["pdb_id"]]
+
+
+def test_six_zero_occupancy_ca_atoms_explain_the_3wd5_trace_count_difference():
+    model = read_model(PROJECT / "assets/3wd5.pdb")
+    recorded = [atom for atom in model.get_atoms() if atom.name == "CA"]
+    excluded = {
+        (atom.get_parent().get_parent().id, atom.get_parent().id[1])
+        for atom in recorded
+        if atom.get_occupancy() == 0
+    }
+    assert len(recorded) == 579
+    assert excluded == {("L", 212), ("L", 213), ("H", 41), ("H", 135), ("H", 142), ("H", 198)}
+    assert sum(atom.get_occupancy() > 0 for atom in recorded) == 573

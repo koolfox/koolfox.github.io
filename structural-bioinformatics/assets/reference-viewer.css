@@ -1,0 +1,17 @@
+@font-face {
+  font-family: arad;
+  src: url("../../assets/fonts/arad.woff2") format("woff2");
+  font-display: swap;
+}
+html, body { height: 100%; margin: 0; background: #f8fafc; }
+body { font: 16px/1.8 arad, system-ui, sans-serif; color: #111827; }
+#reference-canvas { position: absolute; inset: 0; }
+#reference-status {
+  position: absolute; inset-inline: 20px; bottom: 12px; margin: 0;
+  padding: 8px 14px; background: #fff; border: 1px solid #dce2eb;
+  border-radius: 8px; font-size: 14px;
+}
+#reference-status[data-state="error"] { color: #912c3d; }
+[hidden] { display: none !important; }
+.msp-plugin { direction: ltr; }
+canvas:focus-visible { outline: 3px solid #245dc4; outline-offset: -5px; }

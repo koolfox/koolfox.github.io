@@ -1,10 +1,13 @@
 # TNF & Adalimumab — Structural Bioinformatics Course
 
+
+ارائهٔ مخاطب‌محور: [نمایش اسلایدها](presentation.html) — ۱۳ اسلاید با منابع در پایان، کلیدهای جهت/PageDown/PageUp، تمام‌صفحه و چاپ/PDF. متن اسلاید و کتابچه از `docs/class-presentation.fa.md` خوانده می‌شود.
+
 پروژهٔ درس بیوانفورماتیک ساختاری، ارشد مهندسی کامپیوتر/بیوانفورماتیک. موضوع نسخهٔ درسی: **ساختار TNF-α و رابط اتصال قطعهٔ Fab آدالیموماب، با زمینهٔ آرتریت روماتوئید**. کار عملی، نمایش ساختار واقعی و یک تحلیل هندسی کوچک و قابل بازتولید است.
 
 از [راهنمای درسی](docs/course-guide.fa.md) و [سؤال و فرضیه‌های پژوهش](docs/research-questions.fa.md) شروع کنید. ابتدا ساختار و عملکرد دارو را می‌آموزیم؛ سپس می‌پرسیم شواهد از چه ارتباط غیرمستقیمی با TOP2A حمایت می‌کنند. [مقایسهٔ TOP2A و سرطان](docs/top2a-cancer-comparison.fa.md) به معنی اثبات درمان سرطان با آدالیموماب نیست. مثال‌های واقعی و کوچک توالی RNA/پروتئین برای آموزش اضافه شده‌اند؛ تحلیل وسیع بیان ژن هنوز انجام نشده است.
 
-**برای کلاس این هفته:** [ارائهٔ گام‌به‌گام](https://koolfox.github.io/structural-bioinformatics/?document=class-presentation.fa.md&chapter=chapter-1#reading) انتخاب TNF/آدالیموماب، ساختار واقعی، سه مقاله و سؤال پیشنهادی را در ۹ گام توضیح می‌دهد. هر گام متن تمرین «برای گفتن» دارد؛ دکمه‌ها و PageDown/PageUp حرکت می‌دهند. [طرح آکادمیک](docs/academic-study-plan.fa.md) و [راهنمای نگارش](docs/paper-writing-guide.fa.md) مراحل بعد را با فرضیه، کنترل و مرز نتیجه‌گیری ثبت می‌کنند؛ MD برای این هفته الزام نشده و اجراشده معرفی نمی‌شود.
+**برای کلاس این هفته:** [ارائهٔ گام‌به‌گام](https://koolfox.github.io/structural-bioinformatics/?document=class-presentation.fa.md&chapter=chapter-1#reading) انتخاب TNF/آدالیموماب، ساختار واقعی، سه مقاله و سؤال پیشنهادی را در ۱۳ بخش خطاب به مخاطبان کلاس توضیح می‌دهد. نسخهٔ اسلایدی، شکل‌ها و نمودار را داخل ارائه و منابع را در پایان نشان می‌دهد؛ دکمه‌ها و PageDown/PageUp حرکت می‌دهند. [طرح آکادمیک](docs/academic-study-plan.fa.md) و [راهنمای نگارش](docs/paper-writing-guide.fa.md) مراحل بعد را با فرضیه، کنترل و مرز نتیجه‌گیری ثبت می‌کنند؛ MD برای این هفته الزام نشده و اجراشده معرفی نمی‌شود.
 
 **پیوست اختیاریِ اجراشده:** [تحلیل سطح و کنترل هندسی](docs/structural-feasibility-results.fa.md) از مختصات واقعی 3WD5 استفاده می‌کند. قرارداد سطح رابط جزئی `ΔSASA/2` در 960 نقطه حدود `785.89 Å²` است؛ کنترل دورکردنِ صلب، تماس و پوشیدگی را صفر می‌کند. این بازتحلیل هندسی، MD یا آزمایش اثر بر TOP2A نیست. بازاجرا از ریشهٔ مخزن: `uv run --project structural-bioinformatics python structural-bioinformatics/scripts/analyze_structural_feasibility.py`.
 

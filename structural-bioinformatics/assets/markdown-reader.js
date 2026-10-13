@@ -1,3 +1,4 @@
+import { isolateScientificText } from './text-direction.js';
 // Repository-owned Markdown only; optional rendering libraries load on demand.
 const DOCUMENTS = [
   ["class-presentation.fa.md", "ارائهٔ گام‌به‌گام برای کلاس", "ارائه و روش پژوهش"],
@@ -234,21 +235,7 @@ function prepareContent(container, sourceURL) {
     table.before(region);
     region.append(table);
   }
-  const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
-  const texts = [];
-  while (walker.nextNode()) {
-    const text = walker.currentNode;
-    if (text.parentElement.closest("pre, code, .reader-math") || !/[A-Za-z]/.test(text.textContent)) continue;
-    texts.push(text);
-  }
-  for (const text of texts) {
-    const fragment = document.createDocumentFragment();
-    for (const part of text.textContent.split(/([A-Za-z][A-Za-z0-9αβ/_.:–-]*(?:\s+[A-Za-z][A-Za-z0-9αβ/_.:–-]*)*)/g)) {
-      if (/^[A-Za-z][A-Za-z0-9αβ/_.:–\s-]*$/.test(part)) { const isolate = node("bdi", part); isolate.dir = "ltr"; fragment.append(isolate); }
-      else fragment.append(part);
-    }
-    text.replaceWith(fragment);
-  }
+  isolateScientificText(container);
 }
 
 async function renderMath(container, current) {
@@ -367,6 +354,8 @@ export function createMarkdownReader() {
     const focused = presentation && presentationFocused && !["all", "intro"].includes(chapter);
     document.body.dataset.presentationMode = String(focused);
     $("presentation-view").hidden = !presentation;
+    $("slide-launch").hidden = !presentation;
+    $("slide-launch").href = "presentation.html#slide-" + (chapter?.match(/^chapter-(\d+)$/)?.[1] || "1");
     $("presentation-view").setAttribute("aria-pressed", String(focused));
     $("presentation-view").textContent = focused ? "نمای مطالعه" : "نمای ارائه";
     status.dataset.presentation = String(presentation);

@@ -1,0 +1,67 @@
+@font-face { font-family: arad; src: url('../../assets/fonts/arad.woff2') format('woff2'); font-display: swap; }
+:root { color-scheme: light; --paper: #f5f5f8; --ink: #172339; --muted: #394b66; --blue: #245dc4; --line: #bfcbe0; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: arad, sans-serif; }
+button, select { font: inherit; }
+a { color: var(--blue); text-underline-offset: 4px; }
+button, select { border: 1px solid var(--line); border-radius: 8px; background: white; color: var(--ink); min-height: 44px; padding: 8px 14px; }
+button { cursor: pointer; }
+button:disabled { cursor: default; opacity: .5; }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+[hidden] { display: none !important; }
+.deck-toolbar, .deck-controls { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 3vw; }
+.deck-toolbar { border-bottom: 1px solid var(--line); }
+.deck-toolbar > div { display: flex; align-items: center; gap: 16px; }
+.deck-controls { border-top: 1px solid var(--line); justify-content: center; }
+.deck-controls select { max-width: 440px; min-width: 200px; }
+#slide-next { background: var(--blue); border-color: var(--blue); color: white; }
+#slide-progress { min-width: 65px; text-align: center; font-variant-numeric: tabular-nums; }
+#deck:focus-visible { outline: none; }
+#deck { min-height: calc(100dvh - 140px); }
+.slide { max-width: 1440px; margin: auto; padding: clamp(24px, 4vh, 48px) clamp(24px, 5vw, 80px); min-height: calc(100dvh - 140px); display: flex; flex-direction: column; justify-content: center; }
+.slide h1 { margin: 0 0 28px; font-size: clamp(30px, 3.2vw, 46px); line-height: 1.5; font-weight: 700; }
+.slide-body { font-size: clamp(21px, 1.85vw, 28px); line-height: 1.85; color: var(--muted); }
+.slide-body > :first-child, .slide-copy > :first-child { margin-top: 0; }
+.slide-body > :last-child, .slide-copy > :last-child { margin-bottom: 0; }
+.slide-body p { margin: 0 0 20px; }
+.slide-body ul, .slide-body ol { margin: 0; padding-inline-start: 1.3em; }
+.slide-body li { margin-bottom: 12px; }
+.slide-body strong { color: var(--ink); }
+.slide bdi, .slide-body code { direction: ltr; unicode-bidi: isolate; }
+.slide-body code { font-size: .88em; }
+.slide.has-media .slide-body { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 40px; }
+.slide figure { margin: 0; min-width: 0; }
+.slide img { display: block; width: 100%; max-height: 52vh; object-fit: contain; }
+.slide figcaption { margin-top: 12px; font-size: 16px; line-height: 1.7; }
+.slide .slide-diagram svg { display: block; margin-inline: auto; width: 100%; max-height: 52vh; }
+.slide .slide-diagram { direction: ltr; }
+.slide.sources .slide-body { font-size: clamp(18px, 1.5vw, 23px); }
+.slide.sources a { overflow-wrap: anywhere; }
+#deck-status { text-align: center; margin: 24px; }
+#deck-status:empty { display: none; }
+#retry-deck { display: block; margin: 24px auto; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (max-width: 760px) {
+  .deck-toolbar { flex-wrap: wrap; font-size: 14px; padding: 12px 16px; }
+  .deck-toolbar > div { gap: 10px; }
+  .deck-toolbar button { padding: 8px; }
+  .slide { padding: 28px 20px; min-height: calc(100dvh - 190px); }
+  .slide h1 { font-size: 28px; margin-bottom: 24px; }
+  .slide-body { font-size: 20px; }
+  .slide.has-media .slide-body { grid-template-columns: 1fr; gap: 24px; }
+  .slide img, .slide .slide-diagram svg { max-height: 45vh; }
+  .deck-controls { flex-wrap: wrap; gap: 10px; padding: 12px 16px; }
+  .deck-controls select { min-width: 0; max-width: 100%; width: 100%; order: -1; }
+}
+@media print {
+  @page { size: 330mm 210mm; margin: 12mm; }
+  body { background: white; }
+  .deck-toolbar, .deck-controls, #deck-status, #retry-deck { display: none !important; }
+  .slide, .slide[hidden] { display: flex !important; min-height: 175mm; max-width: none; padding: 10mm; break-after: page; break-inside: avoid; }
+  .slide:last-child { break-after: auto; }
+  .slide h1 { font-size: 30pt; }
+  .slide-body { font-size: 20pt; }
+  .slide img, .slide .slide-diagram svg { max-height: 120mm; }
+  .slide.sources .slide-body { font-size: 17pt; }
+  .slide figcaption { font-size: 12pt; }
+}

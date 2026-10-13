@@ -74,10 +74,18 @@ for (const width of [390, 1440]) {
         expect(actual.overflow).toBe(false);
         expect(actual.latinDirection).toBe("ltr");
         await expect(page.locator("canvas.molecular-canvas")).toBeVisible();
-        for (const panel of ["basics", "sequences", "literature", "methods"]) {
+        for (const panel of ["basics", "sequences", "literature", "methods", "reading"]) {
             await page.locator(`#tab-${panel}`).click();
             await expect(page.locator(`#panel-${panel}`)).toBeVisible();
+            if (panel === "reading") await expect(page.locator("#reading-status")).toHaveAttribute("data-state", "ready");
             expect(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth)).toBe(false);
+        }
+        if (width === 390) {
+            for (const tab of await page.locator('[role="tab"]').all()) {
+                const box = await tab.boundingBox();
+                expect(box.x).toBeGreaterThanOrEqual(0);
+                expect(box.x + box.width).toBeLessThanOrEqual(width);
+            }
         }
     });
 }
@@ -110,8 +118,8 @@ test("presentation tabs support keyboard navigation and direct links", async ({ 
     await expect(page.locator('[role="tabpanel"]:visible')).toHaveCount(1);
     await page.locator("#tab-basics").focus();
     await page.keyboard.press("End");
-    await expect(page.locator("#tab-methods")).toBeFocused();
-    await expect(page.locator("#tab-methods")).toHaveAttribute("aria-selected", "true");
+    await expect(page.locator("#tab-reading")).toBeFocused();
+    await expect(page.locator("#tab-reading")).toHaveAttribute("aria-selected", "true");
     await page.keyboard.press("Home");
     await expect(page.locator("#tab-basics")).toBeFocused();
     await expect(page.locator("#tab-basics")).toHaveAttribute("aria-selected", "true");
@@ -152,4 +160,49 @@ test("unavailable FASTA leaves other teaching panels usable", async ({ page }) =
     await expect(page.locator("#molecular-stage")).toHaveAttribute("data-state", "ready");
     await expect(page.locator("canvas.molecular-canvas")).toBeVisible();
     await expect(page.locator("#stat-atom-contacts")).toHaveText("۲۵۲");
+});
+
+test("research Markdown renders chapters, actual LaTeX and Mermaid inside the page", async ({ page }) => {
+    const requests = [];
+    page.on("request", request => requests.push(request.url()));
+    await ready(page);
+    expect(requests.some(url => url.includes("mermaid.min.js"))).toBe(false);
+    await page.locator("#tab-reading").click();
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-state", "ready");
+    await page.selectOption("#document-select", "structural-method.fa.md");
+    await expect(page.locator("#markdown-content")).toHaveAttribute("data-document", "structural-method.fa.md");
+    await page.selectOption("#chapter-select", "all");
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "all");
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-optional-render", "ready");
+    await expect(page.locator("#markdown-content .katex-display").first()).toBeVisible();
+    await expect(page.locator("#markdown-content .mermaid-diagram svg")).toBeVisible();
+    await expect(page.locator("#markdown-content table")).toContainText("445");
+    expect(await page.locator("#markdown-content .katex-display").count()).toBeGreaterThanOrEqual(4);
+    const mathDirection = await page.locator("#markdown-content .katex").first().evaluate(element => getComputedStyle(element).direction);
+    expect(mathDirection).toBe("ltr");
+    await expect(page).toHaveURL(/document=structural-method\.fa\.md.*#reading$/);
+    await page.reload();
+    await expect(page.locator("#document-select")).toHaveValue("structural-method.fa.md");
+    await expect(page.locator("#chapter-select")).toHaveValue("all");
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-optional-render", "ready");
+    await page.locator('#markdown-content a[href$="/sequences-primer.fa.md"]').click();
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-document", "sequences-primer.fa.md");
+    await expect(page).toHaveURL(/document=sequences-primer\.fa\.md.*#reading$/);
+    await page.selectOption("#document-select", "visualization-tools.fa.md");
+    await expect(page.locator("#markdown-content")).toHaveAttribute("data-document", "visualization-tools.fa.md");
+    await page.selectOption("#chapter-select", "all");
+    await page.locator('#markdown-content a[href$="/anatomy-evaluation.fa.md"]').first().click();
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-document", "anatomy-evaluation.fa.md");
+    await expect(page.locator("#document-select")).toHaveValue("anatomy-evaluation.fa.md");
+});
+
+test("optional diagram failure preserves Markdown and its original code", async ({ page }) => {
+    await page.route("**/vendor/mermaid/mermaid.min.js", request => request.fulfill({ status: 404, body: "Not found" }));
+    await page.goto(`${route}?document=structural-method.fa.md&chapter=all#reading`);
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-state", "ready");
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-optional-render", "partial");
+    await expect(page.locator("#markdown-content code").filter({ hasText: "flowchart TD" })).toBeVisible();
+    await page.locator("#tab-lab").click();
+    await expect(page.locator("#molecular-stage")).toHaveAttribute("data-state", "ready");
+    await expect(page.locator("canvas.molecular-canvas")).toBeVisible();
 });

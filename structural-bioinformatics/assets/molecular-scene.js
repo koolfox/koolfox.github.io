@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "./vendor/OrbitControls.js";
 
-const PALETTE = ["#c56a2c", "#2676bb", "#16826e", "#7754a3", "#ae4f70"];
+const PALETTE = ["#087b73", "#245cb7", "#a95015", "#7555a1", "#ae4f70"];
 
 /** Split observed backbones at gaps; never create missing atom coordinates. */
 export function splitBackbone(residues, kind = "protein_ca") {
@@ -209,8 +209,9 @@ export class MolecularScene extends EventTarget {
   }
 
   _defaultColor(id, chain, index) {
-    if (id === "3WD5") return { A: "#c56a2c", H: "#2676bb", L: "#16826e" }[chain.id] || PALETTE[index % PALETTE.length];
-    if (id === "4FM9") return { A: "#2676bb", C: "#c56a2c", D: "#16826e" }[chain.id] || PALETTE[index % PALETTE.length];
+    if (id === "3WD5") return { A: "#087b73", H: "#a95015", L: "#245cb7" }[chain.id] || PALETTE[index % PALETTE.length];
+    if (id === "1TNF") return { A: "#087b73", B: "#245cb7", C: "#a95015" }[chain.id] || PALETTE[index % PALETTE.length];
+    if (id === "4FM9") return { A: "#7555a1", C: "#aa6408", D: "#245cb7" }[chain.id] || PALETTE[index % PALETTE.length];
     return PALETTE[index % PALETTE.length];
   }
 

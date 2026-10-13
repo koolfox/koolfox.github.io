@@ -24,7 +24,7 @@ Existing public course/personal repository: `koolfox/koolfox.github.io`. Work in
 
 ## Capabilities and Constraints
 
-Persian RTL interface; rotatable experimental molecular coordinates; reproducible figures; a rendered structural animation; source-linked literature and dataset catalogs. Preserve the site's existing Arad font and visual identity.
+Persian RTL interface; rotatable experimental molecular coordinates; reproducible figures; a rendered structural animation; source-linked literature and dataset catalogs; an in-page Markdown reader with chapter navigation, LaTeX and Mermaid. Preserve the site's existing Arad font and visual identity. All six tabs remain discoverable on phones; rendering libraries are self-hosted and loaded when needed.
 
 The user explicitly asks for exploration without premature conclusions. DNA sequence, RNA abundance, RNA structure, protein geometry, biomarker concentrations and treatment outcomes remain separate evidence types. RefSeq mRNA displayed using T is a reference alphabet; a T-to-U conversion is a labeled teaching operation. None of the current PDB entries supplies an RNA structure. Lupus is a safety/comparator lane for this drug, not an assumed indication.
 

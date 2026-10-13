@@ -31,6 +31,7 @@
       <button type="button" id="tab-sequences" role="tab" aria-selected="false" aria-controls="panel-sequences" tabindex="-1" data-tab="sequences">زنجیره‌ها و توالی‌ها</button>
       <button type="button" id="tab-literature" role="tab" aria-selected="false" aria-controls="panel-literature" tabindex="-1" data-tab="literature">مقاله‌ها و شواهد</button>
       <button type="button" id="tab-methods" role="tab" aria-selected="false" aria-controls="panel-methods" tabindex="-1" data-tab="methods">روش و ارائه</button>
+      <button type="button" id="tab-reading" role="tab" aria-selected="false" aria-controls="panel-reading" tabindex="-1" data-tab="reading">کتابچهٔ پژوهش</button>
     </div>
     <noscript><p class="inline-error">برای تغییر تب و کاوش سه‌بعدی JavaScript را فعال کنید. <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/course-guide.fa.md" target="_blank" rel="noopener noreferrer">راهنمای متنی پروژه</a> نیز قابل خواندن است.</p></noscript>
     <div id="panel-basics" class="research-panel" role="tabpanel" aria-labelledby="tab-basics" tabindex="0">
@@ -273,6 +274,23 @@
       </div>
       </details>
     </section>
+    </div>
+    <div id="panel-reading" class="research-panel" role="tabpanel" aria-labelledby="tab-reading" tabindex="0" hidden>
+      <section id="reading" class="reading-section" aria-labelledby="reading-title">
+        <div class="section-heading"><h2 id="reading-title">کتابچهٔ پژوهش</h2><a id="document-source" href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/research-questions.fa.md" target="_blank" rel="noopener noreferrer">نسخهٔ اصلی در GitHub</a></div>
+        <p class="section-description">متن‌های پروژه را اینجا بخوانید؛ از فهرست فصل‌ها یک بخش یا متن کامل را انتخاب کنید. فرمول‌ها و نمودارها از همان فایل منبع نمایش داده می‌شوند.</p>
+        <div class="reading-controls">
+          <div><label for="document-select">متن تحقیق و راهنما</label><select id="document-select" disabled><option>در حال آماده‌سازی کتابچه…</option></select></div>
+          <div><label for="chapter-select">فصل یا متن کامل</label><select id="chapter-select" disabled><option value="all">متن کامل</option></select></div>
+        </div>
+        <div class="reading-actions">
+          <div><button id="chapter-prev" type="button" disabled>فصل قبلی</button><button id="chapter-next" type="button" disabled>فصل بعدی</button></div>
+          <a id="document-download" href="docs/research-questions.fa.md" download>دریافت فایل Markdown</a>
+        </div>
+        <p id="reading-status" class="section-status" data-state="idle" role="status" aria-live="polite">با انتخاب این تب، متن راهنما بارگذاری می‌شود.</p>
+        <nav id="document-toc" class="document-toc" aria-label="فصل‌های این متن" hidden></nav>
+        <article id="markdown-content" class="markdown-content" tabindex="0" aria-busy="false"></article>
+      </section>
     </div>
   </main>
   <footer class="research-footer">

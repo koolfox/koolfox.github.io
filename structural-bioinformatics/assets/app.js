@@ -10,6 +10,15 @@ let sequenceRecords = [];
 let selectedSequence = null;
 let sequenceText = "";
 let sequenceRequest = 0;
+let markdownReaderPromise = null;
+const readerDocuments = new Set([
+  "research-questions.fa.md", "course-guide.fa.md", "structural-method.fa.md",
+  "connection-evidence.fa.md", "sequences-primer.fa.md", "literature-review.fa.md",
+  "top2a-cancer-comparison.fa.md", "visualization-tools.fa.md", "dataset-catalog.fa.md",
+  "scientific-context.fa.md", "manuscript-outline.fa.md", "research-protocol.fa.md",
+  "top2a-hypothesis.fa.md", "paper-design-setup.fa.md", "product-roadmap.fa.md",
+  "literature-selection-audit.fa.md", "agent-workflow.md", "anatomy-evaluation.fa.md", "third-party-notices.md",
+]);
 const controls = ["structure-select", "spin-button", "reset-button", "zoom-in", "zoom-out", "residue-select"];
 
 function element(tag, text, className) {
@@ -68,6 +77,32 @@ function fitVisibleLaboratory() {
   });
 }
 
+async function loadReadingDocument(filename = null, chapter = null) {
+  try {
+    if (!markdownReaderPromise) {
+      markdownReaderPromise = import("./markdown-reader.js").then(({ createMarkdownReader }) => createMarkdownReader());
+    }
+    const reader = await markdownReaderPromise;
+    await reader.open(filename, chapter);
+  } catch {
+    markdownReaderPromise = null;
+    $("reading-status").dataset.state = "error";
+    showError($("reading-status"), "کتابچه بارگذاری نشد؛ مدل‌ها و توالی‌ها مستقل از آن در دسترس‌اند. متن اصلی از پیوند GitHub قابل خواندن است.");
+  }
+}
+
+function readerFilename(href) {
+  let url;
+  try { url = new URL(href, window.location.href); }
+  catch { return null; }
+  const localDocs = new URL("docs/", window.location.href);
+  const githubPrefix = "/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/";
+  let filename = null;
+  if (url.origin === localDocs.origin && url.pathname.startsWith(localDocs.pathname)) filename = url.pathname.slice(localDocs.pathname.length);
+  if (url.origin === "https://github.com" && url.pathname.startsWith(githubPrefix)) filename = url.pathname.slice(githubPrefix.length);
+  return readerDocuments.has(filename) ? filename : null;
+}
+
 function initializeTabs() {
   const tabs = [...$("research-tabs").querySelectorAll('[role="tab"]')];
   const names = tabs.map((tab) => tab.dataset.tab);
@@ -88,6 +123,7 @@ function initializeTabs() {
     }
     if (name === "lab") fitVisibleLaboratory();
     else if (viewer?.spinning) viewer.setSpinning(false);
+    if (name === "reading") void loadReadingDocument();
     for (const video of document.querySelectorAll("video")) {
       if (video.closest('[role="tabpanel"]')?.hidden) video.pause();
     }
@@ -121,6 +157,28 @@ function initializeTabs() {
   }
   window.addEventListener("hashchange", followHash);
   window.addEventListener("popstate", followHash);
+  for (const link of document.querySelectorAll('a[href]')) {
+    const filename = readerFilename(link.href);
+    if (!filename || link.id === "document-source" || link.id === "document-download") continue;
+    link.dataset.document = filename;
+    link.href = "?document=" + encodeURIComponent(filename) + "#reading";
+    link.removeAttribute("target");
+  }
+  document.addEventListener("click", (event) => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const link = event.target.closest("a[href]");
+    if (!link || link.id === "document-source" || link.id === "document-download") return;
+    const filename = link.dataset.document || readerFilename(link.href);
+    if (!readerDocuments.has(filename)) return;
+    event.preventDefault();
+    const url = new URL(window.location.href);
+    url.searchParams.set("document", filename);
+    url.searchParams.delete("chapter");
+    url.hash = "reading";
+    window.history.pushState(null, "", url);
+    activate("reading");
+    $("tab-reading").focus({ preventScroll: true });
+  });
   followHash();
 }
 

@@ -15,11 +15,11 @@ THESIS: Teach the direct adalimumab–TNF mechanism before asking whether eviden
 
 OWN-WORLD: Inherit Arad, blue actions, light neutral surfaces and readable document typography. Molecule colors identify chains; evidence labels identify what an experiment actually establishes.
 
-STORY: Understand the research question and antibody anatomy; operate the molecular laboratory; inspect authentic RNA and protein sequences; read selection rationales and critical appraisals; follow a bounded method and presentation plan.
+STORY: Understand the research question and antibody anatomy; operate the molecular laboratory; inspect authentic RNA and protein sequences; read selection rationales and critical appraisals; follow a bounded method and presentation plan, and read the full source documents inside the chapter-based research booklet.
 
-FIRST VIEWPORT: A concise Persian title and coherent open question, with five accessible tabs. The default view explains the biological objects and the proposed connection. The laboratory tab gives the real model visual priority and exposes its controls, source and representation.
+FIRST VIEWPORT: A concise Persian title and coherent open question, with six accessible tabs. The default view explains the biological objects and the proposed connection. The laboratory tab gives the real model visual priority and exposes its controls, source and representation.
 
-FORM: Extend the existing portfolio identity. Use panels according to content, readable prose and scientific figures, with closed advanced details. Tabs reduce scrolling and support keyboard navigation and direct hash links. Latin accessions and sequences remain LTR; the surrounding explanation remains Persian RTL.
+FORM: Extend the existing portfolio identity. Use panels according to content, readable prose and scientific figures, with closed advanced details. Tabs reduce scrolling and support keyboard navigation and direct hash links; the phone layout exposes all six destinations. The reader shows repository Markdown by chapter with actual LaTeX and Mermaid rendering, preserving the source when optional rendering fails. Latin accessions and sequences remain LTR; the surrounding explanation remains Persian RTL.
 
 SIGNATURE: Switch experimental structures, toggle chains and inspect residues without changing their internal geometry. Distinguish a measured Fab interface from a conceptual pathway and from an untested hypothesis. Camera motion honors reduced motion and pauses when hidden.
 

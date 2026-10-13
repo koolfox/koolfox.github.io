@@ -10,7 +10,7 @@ OWN-WORLD: Inherit Arad, blue actions, light neutral surfaces and readable docum
 
 STORY: Understand the research question and antibody anatomy; operate the molecular laboratory; inspect authentic RNA and protein sequences; read selection rationales and critical appraisals; follow a bounded method and presentation plan, and read the full source documents inside the chapter-based research booklet.
 
-CLASS ROUTE: Thirteen audience-facing slides share class-presentation.fa.md with the chapter reader. Each slide has one main point and any relevant local scientific figure. Retain the incumbent Arad/blue/light visual identity with larger projector typography and flat compositions. Previous/next, keyboard, slide selection, fullscreen and print support are part of presentation.html; sources appear in the closing appendix. Detailed beginner lessons remain in the notebook.
+CLASS ROUTE: Fourteen audience-facing slides include an academic cover followed by the thirteen class-presentation.fa.md chapters shared with the reader. Each slide has one main point and any relevant local scientific figure. Retain the incumbent Arad/blue/light visual identity with larger projector typography and flat compositions. Previous/next, keyboard, slide selection, fullscreen and print support are part of presentation.html; sources appear in the closing appendix. Detailed beginner lessons remain in the notebook.
 
 LEARNING DEPTH: Begin at high-school biology-interest level. Make the cell/protein/receptor/binding story explicit, define terms before using them, and offer full explanations alongside the short class route. The binding diagram is labeled schematic; the optional Mol* cartoon uses the same deposited coordinate source as the trace, with its different occupancy/representation policy explained.
 
@@ -21,3 +21,5 @@ FORM: Extend the existing portfolio identity. Use panels according to content, r
 SIGNATURE: Switch experimental structures, toggle chains and inspect residues without changing their internal geometry. Distinguish a measured Fab interface from a conceptual pathway and from an untested hypothesis. Camera motion honors reduced motion and pauses when hidden.
 
 FINISH: Review desktop/mobile and the required tab states, address material findings in one batch, record the verdict and scoped DESIGN.md, and preserve provenance for every scientific figure. A structural measurement never establishes clinical or anticancer efficacy.
+
+ACADEMIC IDENTITY: Follow the supplied sample: top-left university logo, top-right institution/course, bottom-right short title, bottom-left season. Cover presenter/supervisor/season come from data/metadata/presentation.json. Preserve the original supplied logo bytes; use CSS for its dark appearance on the light slide.

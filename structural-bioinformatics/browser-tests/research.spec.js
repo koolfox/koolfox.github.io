@@ -310,27 +310,27 @@ test("guided class presentation advances one step and resumes after the laborato
     await page.locator("#start-presentation").click();
     await expect(page.locator("#reading-status")).toHaveAttribute("data-document", "class-presentation.fa.md");
     await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-1");
-    await expect(page.locator("#reading-status")).toContainText("گام ۱ از ۹");
+    await expect(page.locator("#reading-status")).toContainText("گام ۱ از ۱۳");
     await expect(page.locator("body")).toHaveAttribute("data-presentation-mode", "true");
     await expect(page.locator("#document-select")).toBeHidden();
     await expect(page.locator("#chapter-prev")).toBeDisabled();
     await page.keyboard.press("PageDown");
     await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-2");
-    await expect(page.locator("#markdown-content img")).toHaveAttribute("src", /antibody-anatomy\.svg$/);
-    await page.locator("#chapter-next").click();
-    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-3");
+    await expect(page.locator("#markdown-content")).toContainText("سلول");
+    await page.selectOption("#chapter-select", "chapter-5");
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-5");
     await page.getByRole("link", { name: "باز کردن آزمایشگاه سه‌بعدی", exact: true }).click();
     await expect(page.locator("#molecular-stage")).toHaveAttribute("data-state", "ready");
     await expect(page.locator("#tab-lab")).toHaveAttribute("aria-selected", "true");
     await page.locator("#tab-reading").click();
-    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-3");
-    await page.selectOption("#chapter-select", "chapter-6");
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-5");
+    await page.selectOption("#chapter-select", "chapter-4");
     await expect(page.locator("#reading-status")).toHaveAttribute("data-optional-render", "ready");
     await expect(page.locator("#markdown-content .mermaid-diagram svg")).toBeVisible();
-    await page.selectOption("#chapter-select", "chapter-9");
+    await page.selectOption("#chapter-select", "chapter-13");
     await expect(page.locator("#chapter-next")).toBeDisabled();
     await page.locator("#chapter-prev").click();
-    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-8");
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-12");
     await page.locator("#presentation-view").click();
     await expect(page.locator("body")).toHaveAttribute("data-presentation-mode", "false");
     await expect(page.locator("#document-select")).toBeVisible();
@@ -354,4 +354,59 @@ test("executed surface analysis is readable as an optional numerical report", as
     await expect(page.locator("#markdown-content")).toContainText("0.355");
     await expect(page.locator("#markdown-content")).toContainText("MD نیست");
     await expect(page.locator("#presentation-help")).toBeHidden();
+});
+
+for (const width of [1440, 390]) {
+    test(`audience slides navigate offline with readable local media at ${width}px`, async ({ page, context }) => {
+        await page.setViewportSize({ width, height: 900 });
+        const origin = new URL(test.info().project.use.baseURL).origin;
+        const errors = [];
+        page.on('pageerror', error => errors.push(error.message));
+        await context.route('**/*', route => route.request().url().startsWith(origin) ? route.continue() : route.abort());
+        await page.goto(`${route}presentation.html#slide-1`);
+        await expect(page.locator('#deck')).toHaveAttribute('data-state', 'ready');
+        await expect(page.locator('.slide')).toHaveCount(13);
+        await expect(page.locator('#deck')).not.toContainText('برای گفتن');
+        await expect(page.locator('#slide-prev')).toBeDisabled();
+        for (let index = 0; index < 13; index++) {
+            await page.selectOption('#slide-select', String(index));
+            await expect(page.locator('.slide:visible')).toHaveCount(1);
+            await expect(page).toHaveURL(new RegExp(`#slide-${index + 1}$`));
+            const active = page.locator('.slide:visible');
+            for (const img of await active.locator('img').all()) {
+                await expect.poll(() => img.evaluate(node => node.complete && node.naturalWidth > 0)).toBe(true);
+            }
+            expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+            if (index < 12) await expect(active.locator('a[href^="https://"]')).toHaveCount(0);
+            if (index === 4) await expect(active.locator('h1 bdi')).toHaveText('3WD5');
+            if (index === 10) await expect(active.locator('strong bdi').filter({ hasText: '4.5 Å' })).toHaveAttribute('dir', 'ltr');
+            if (index === 12) {
+                for (const accession of ['3WD5', '1TNF', '4FM9']) {
+                    await expect(active.locator('a bdi').filter({ hasText: new RegExp('^' + accession + '$') })).toHaveAttribute('dir', 'ltr');
+                }
+            }
+        }
+        await expect(page.locator('#slide-next')).toBeDisabled();
+        await page.keyboard.press('Home');
+        await expect(page).toHaveURL(/#slide-1$/);
+        await page.keyboard.press('ArrowLeft');
+        await expect(page).toHaveURL(/#slide-2$/);
+        await page.keyboard.press('PageUp');
+        await expect(page).toHaveURL(/#slide-1$/);
+        await page.locator('#sources-link').click();
+        await expect(page).toHaveURL(/#slide-13$/);
+        await page.emulateMedia({ media: 'print' });
+        await expect(page.locator('.slide:visible')).toHaveCount(13);
+        expect(errors).toEqual([]);
+    });
+}
+
+test('slide source failure can be retried without losing notebook access', async ({ page }) => {
+    await page.route('**/docs/class-presentation.fa.md', route => route.abort());
+    await page.goto(`${route}presentation.html`);
+    await expect(page.locator('#deck')).toHaveAttribute('data-state', 'error');
+    await expect(page.locator('#notebook-link')).toBeVisible();
+    await page.unroute('**/docs/class-presentation.fa.md');
+    await page.locator('#retry-deck').click();
+    await expect(page.locator('#deck')).toHaveAttribute('data-state', 'ready');
 });

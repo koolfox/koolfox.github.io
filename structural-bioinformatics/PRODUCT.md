@@ -16,7 +16,7 @@ An MSc computer-engineering student specializing in bioinformatics, preparing a 
 
 Teach at the conceptual starting point of a biology-interested high-school student: explicitly define cell, protein, receptor, binding, gene/RNA and every new term. The user welcomes detailed explanations of basics. Introduce each paper as a concrete experiment and put technical/numerical detail after the plain-language meaning.
 
-Immediate weekly deliverable: select the protein and summarize three relevant papers in class. The visual notebook is the student's ongoing presentation surface. A nine-step chapter route provides short oral notes, actual figures, keyboard navigation and a return to the same step after molecular inspection. Numerical studies are optional appendices; MD and a complete original paper are later decisions.
+Immediate weekly deliverable: select the protein and summarize three relevant papers in class. The visual notebook is the student's ongoing presentation surface. A thirteen-slide audience-facing presentation uses the same Markdown as the reader, with actual figures, keyboard navigation, fullscreen and print support. Speak to the class in a friendly, moderately formal tone; keep coaching and self-talk out of presentation content. Sources belong in the closing appendix; explain essential referenced content on the relevant slide. Numerical studies are optional appendices; MD and a complete original paper are later decisions.
 
 ## Product Purpose
 

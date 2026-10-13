@@ -10,7 +10,7 @@ OWN-WORLD: Inherit Arad, blue actions, light neutral surfaces and readable docum
 
 STORY: Understand the research question and antibody anatomy; operate the molecular laboratory; inspect authentic RNA and protein sequences; read selection rationales and critical appraisals; follow a bounded method and presentation plan, and read the full source documents inside the chapter-based research booklet.
 
-CLASS ROUTE: This week's protein/paper presentation has nine short chapter steps with figures, source links and oral rehearsal notes. Previous/next and PageDown/PageUp preserve the step URL; laboratory inspection returns to that step. Advanced measured surface geometry and future MD/cellular protocols remain optional.
+CLASS ROUTE: Thirteen audience-facing slides share class-presentation.fa.md with the chapter reader. Each slide has one main point and any relevant local scientific figure. Retain the incumbent Arad/blue/light visual identity with larger projector typography and flat compositions. Previous/next, keyboard, slide selection, fullscreen and print support are part of presentation.html; sources appear in the closing appendix. Detailed beginner lessons remain in the notebook.
 
 LEARNING DEPTH: Begin at high-school biology-interest level. Make the cell/protein/receptor/binding story explicit, define terms before using them, and offer full explanations alongside the short class route. The binding diagram is labeled schematic; the optional Mol* cartoon uses the same deposited coordinate source as the trace, with its different occupancy/representation policy explained.
 

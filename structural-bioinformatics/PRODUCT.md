@@ -16,11 +16,11 @@ An MSc computer-engineering student specializing in bioinformatics, preparing a 
 
 Teach at the conceptual starting point of a biology-interested high-school student: explicitly define cell, protein, receptor, binding, gene/RNA and every new term. The user welcomes detailed explanations of basics. Introduce each paper as a concrete experiment and put technical/numerical detail after the plain-language meaning.
 
-Immediate weekly deliverable: select the protein and summarize three relevant papers in class. The visual notebook is the student's ongoing presentation surface. A fourteen-slide audience-facing presentation adds a title slide to the thirteen Markdown chapters shared with the reader, with actual figures, keyboard navigation, fullscreen and print support. Speak to the class in a friendly, moderately formal tone; keep coaching and self-talk out of presentation content. Sources belong in the closing appendix; explain essential referenced content on the relevant slide. Numerical studies are optional appendices; MD and a complete original paper are later decisions.
+Immediate weekly deliverable: select the protein and summarize three relevant papers in class. The visual notebook is the student's ongoing presentation surface. A twenty-four-slide audience-facing presentation adds a title slide to the twenty-three Markdown chapters shared with the reader, with actual figures, keyboard navigation, fullscreen and print support. Speak to the class in a friendly, moderately formal tone; keep coaching and self-talk out of presentation content. Short references appear on each factual slide; the closing appendix explains source roles. Each paper has explicit methods, results and limits. Images and local rotatable models enlarge within the slide page. Numerical studies are optional appendices; MD and a complete original paper are later decisions.
 
 ## Product Purpose
 
-Current course scope: understand the adalimumab antibody, its deposited Fab–TNF interface and rheumatoid-arthritis mechanism, then critically assess a possible indirect connection with TOP2A and cancer. The student needs explanations they can learn and defend. Small verified RNA/protein sequence examples support that understanding; a large gene-expression research program remains future work. A negative or inconclusive finding about the proposed connection is a valid outcome.
+Current course scope: understand the adalimumab antibody, its deposited Fab–TNF interface and rheumatoid-arthritis mechanism, then assess possible direct versus indirect effects on TOP2A activity. RNA, protein amount, enzymatic inhibition and cancer response are distinct measurements. The student needs explanations they can learn and defend. Small verified RNA/protein sequence examples support that understanding; a large gene-expression research program remains future work. A negative or inconclusive finding about the proposed connection is a valid outcome.
 
 ## Operating Context
 
@@ -46,4 +46,4 @@ Three core recent primary papers, with separately appraised structural and TOP2A
 - Use the same data for graphics and numerical readouts.
 - Organize the presentation into accessible tabs, keeping advanced sources and future experiments optional.
 
-Presentation identity follows the user-supplied university template: the university logo at top left, institution/course at top right, short title at bottom right and autumn season at bottom left. The cover states the supplied presenter and supervisor; do not infer a year.
+Presentation identity follows the user-supplied university template: the university logo at top left, institution/course at top right, short title at bottom right and autumn season at bottom left. The cover states the supplied presenter and supervisor; the date is user-confirmed as پاییز ۱۴۰۵.

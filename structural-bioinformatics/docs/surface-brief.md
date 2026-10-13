@@ -4,13 +4,13 @@ Mode: Read, with an Operate molecular laboratory. Audience: a new MSc student an
 
 ## Direction contract
 
-THESIS: Teach the direct adalimumab–TNF mechanism before asking whether evidence supports an indirect TOP2A connection in rheumatoid arthritis and cancer.
+THESIS: Teach the direct adalimumab–TNF mechanism before asking whether evidence supports a direct or indirect TOP2A effect in rheumatoid arthritis and cancer.
 
 OWN-WORLD: Inherit Arad, blue actions, light neutral surfaces and readable document typography. Molecule colors identify chains; evidence labels identify what an experiment actually establishes.
 
 STORY: Understand the research question and antibody anatomy; operate the molecular laboratory; inspect authentic RNA and protein sequences; read selection rationales and critical appraisals; follow a bounded method and presentation plan, and read the full source documents inside the chapter-based research booklet.
 
-CLASS ROUTE: Fourteen audience-facing slides include an academic cover followed by the thirteen class-presentation.fa.md chapters shared with the reader. Each slide has one main point and any relevant local scientific figure. Retain the incumbent Arad/blue/light visual identity with larger projector typography and flat compositions. Previous/next, keyboard, slide selection, fullscreen and print support are part of presentation.html; sources appear in the closing appendix. Detailed beginner lessons remain in the notebook.
+CLASS ROUTE: Twenty-four audience-facing slides include an academic cover followed by the twenty-three class-presentation.fa.md chapters shared with the reader. Each slide has one main point and any relevant local scientific figure. Retain the incumbent Arad/blue/light visual identity with larger projector typography and flat compositions. Previous/next, keyboard, slide selection, fullscreen and print support are part of presentation.html; sources appear beside the corresponding facts and in a closing appendix. Explain actual methods, findings and data in separate paper slides; images and local models enlarge within the page. Detailed beginner lessons remain in the notebook.
 
 LEARNING DEPTH: Begin at high-school biology-interest level. Make the cell/protein/receptor/binding story explicit, define terms before using them, and offer full explanations alongside the short class route. The binding diagram is labeled schematic; the optional Mol* cartoon uses the same deposited coordinate source as the trace, with its different occupancy/representation policy explained.
 

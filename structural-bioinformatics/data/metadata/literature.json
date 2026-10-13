@@ -1,6 +1,6 @@
 {
   "schema_version": "1.3",
-  "selection_status": "Question-driven staged course selection; primary-source attribution/design/data checks completed, independent scientific reproduction not performed",
+  "selection_status": "Primary-source audit; three course anchors plus explicit hypothesis-focused supplements; descriptive RNA pilot executed, full reproduction not performed",
   "retrieved_on": "2026-10-13",
   "review_type": "purposeful narrative selection; not a systematic review",
   "selection_window": {
@@ -437,6 +437,37 @@
   ],
   "selection_basis": "Three central recent anchors for a staged structural-to-cellular-to-clinical question: Bianchi structure, Marguerie indirect-mechanistic lead and Gehin RA/CRP. Older experimental structures and supplementary bridge studies are necessary context, not a completed ADA-to-TOP2A proof.",
   "supplementary_papers_not_counted_in_central_three": [
+    {
+      "id": "veerasubramanian_2026_mlr",
+      "title": "Combination antagonism of TNF superfamily signaling for T cell immunosuppression",
+      "first_author": "Praveen Krishna Veerasubramanian",
+      "year": 2026,
+      "publication_date": "2026-07-23",
+      "doi": "10.3389/fimmu.2026.1867995",
+      "pmid": "42564165",
+      "pmcid": "PMC13442446",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13442446/",
+      "current_selection_role": "supplementary; closest inspected drug/RNA design for proposed indirect TOP2A follow-up",
+      "study_design": "In-vitro mixed lymphocyte reaction, single and combination inhibitors, sorted T-cell RNA on day 5",
+      "dataset": "GSE339038",
+      "independent_donors": 4,
+      "libraries": 64,
+      "main_findings": "Combination treatments suppressed broader transcriptional programs than monotherapies; TOP2A mentioned in combination-specific proliferation gene groups",
+      "limitations": [
+        "Not a rheumatoid arthritis patient trial",
+        "Combination-specific findings cannot be assigned to adalimumab alone",
+        "No TOP2A enzyme-inhibition assay",
+        "Project count inspection is descriptive, not full paper reproduction"
+      ],
+      "source_provenance": {
+        "id": "veerasubramanian",
+        "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13442446/fullTextXML",
+        "retrieved_at_utc": "2026-10-13T17:59:15.399007+00:00",
+        "bytes": 157717,
+        "sha256": "809dc635fe1d9e2690c3d1242a16702f6622b9972d99afd4e9bdb14f4acf09b3",
+        "status": "downloaded"
+      }
+    },
     {
       "id": "ubah_2025_tnf_vnar",
       "title": "The structural basis for the selective antagonism of soluble TNF-alpha by shark variable new antigen receptors",
@@ -1142,6 +1173,14 @@
       "status": "not supported by reviewed evidence",
       "source_ids": [],
       "limitations": "Do not draw a solid target-binding or treatment-efficacy arrow"
+    },
+    {
+      "claim": "TOP2A descriptive CPM after adalimumab in four paired MLR donors",
+      "status": "executed descriptive pilot; not inferential differential expression or enzyme inhibition",
+      "source_ids": [
+        "veerasubramanian_2026_mlr"
+      ],
+      "limitations": "CPM only; no TMM, paired inference, protein/activity assay or clinical extrapolation"
     }
   ],
   "related_documents": {
@@ -1150,6 +1189,9 @@
     "connection_evidence": "docs/connection-evidence.fa.md",
     "literature_review": "docs/literature-review.fa.md",
     "selection_audit": "docs/literature-selection-audit.fa.md",
-    "manuscript_outline": "docs/manuscript-outline.fa.md"
+    "manuscript_outline": "docs/manuscript-outline.fa.md",
+    "claim_audit": "docs/scientific-claim-audit.fa.md",
+    "top2a_feasibility": "docs/top2a-inhibition-feasibility.fa.md",
+    "rna_pilot": "docs/top2a-count-inspection.fa.md"
   }
 }

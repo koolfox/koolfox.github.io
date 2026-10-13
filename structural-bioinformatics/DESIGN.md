@@ -300,3 +300,9 @@ Figures and video preserve their aspect ratio. Captions are small muted prose wi
 - **Don't** move source identifiers or caveats away from the scientific material they explain.
 - **Don't** turn local failures into an unusable whole-page state.
 - **Don't** add compulsory camera animation or preserve transitions under reduced motion.
+
+## Audience presentation refinement
+
+The twenty-four-slide web presentation preserves Arad, neutral paper and blue controls. Desktop reading slides use 21–28px body text; media slides use 21–23px with 1.75 line height so a complete factual explanation, figure and source fit a 900px-tall viewport. Headings use 30–46px, with a 30–40px media variant; the existing cover uses 42–72px. Phone body text is 20px; 14px source notes and 16px captions remain secondary. These projector and media roles deliberately extend the notebook type ramp.
+
+Short references form a full-width ruled row beneath the content. Tables use aligned headers and horizontal separators. A 44px-minimum button enlarges each figure in a native focus-contained dialog, with Escape and a labeled return button. Model buttons load the local Mol* deposited-coordinate view on demand inside that dialog; closing returns focus and preserves the current slide. The 3WD5 and 4FM9 scope stays in the caption. Mixed Persian/Latin Mermaid labels have explicit RTL SVG text and isolated Latin identifiers. Print omits interactive controls and retains the static scientific figure, caption and references.

@@ -60,7 +60,6 @@ function createCover(details) {
     textElement('p', details.program),
     textElement('p', 'ارائه‌دهنده: ' + details.presenter),
     supervisor,
-    textElement('p', 'زمان ارائه: ' + details.season),
   );
   cover.append(identity);
   return cover;

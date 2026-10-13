@@ -370,7 +370,8 @@ for (const width of [1440, 390]) {
         await expect(page.locator('#slide-prev')).toBeDisabled();
         await expect(page.locator('.cover .cover-details')).toContainText('شینی');
         await expect(page.locator('.cover .cover-details')).toContainText('دکتر فرزانه محمدی فارسانی');
-        await expect(page.locator('.cover .cover-details')).toContainText('زمان ارائه: پاییز');
+        await expect(page.locator('.cover .cover-details')).not.toContainText('زمان ارائه');
+        await expect(page.locator('.cover .slide-footer > p').last()).toHaveText('پاییز ۱۴۰۵');
         await expect(page.locator('.cover .supervisor-profile')).toHaveAttribute('href', 'https://scholar.google.com/citations?user=VA1rZ7MAAAAJ&hl=en');
         for (let index = 0; index < 14; index++) {
             await page.selectOption('#slide-select', String(index));

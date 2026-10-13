@@ -38,6 +38,7 @@
     <div id="panel-basics" class="research-panel" role="tabpanel" aria-labelledby="tab-basics" tabindex="0">
       <section id="basics" class="reading-section" aria-labelledby="question-title">
         <h2 id="question-title">یک پرسش ساختاری، سپس یک پیوند قابل بررسی</h2>
+        <p class="section-description"><a href="docs/binding-mechanism.fa.md">از پایه شروع کنید: سلول، پروتئین و اتصال دارو یعنی چه؟</a> این درس برای خوانندهٔ علاقه‌مند به زیست نوشته شده و پیش‌نیاز دانشگاهی فرض نمی‌کند.</p>
         <p class="section-description"><strong>پرسش اصلی:</strong> <bdi>TNF-α</bdi> چه شکل سه‌بعدی دارد و قطعهٔ <bdi>Fab</bdi> آدالیموماب در ساختار آزمایشگاهی با کدام سطح آن تماس می‌گیرد؟ <a href="#lab">مدل و نقشهٔ تماس را ببینید.</a></p>
         <p class="section-description"><strong>پرسش مقایسه‌ای:</strong> آیا شواهد موجود از پیوندی غیرمستقیم میان مهار <bdi>TNF</bdi> و تغییرات مرتبط با <bdi>TOP2A</bdi> در <bdi>RA</bdi> پشتیبانی می‌کنند؟ شواهد سرطان چه چیزی به این مقایسه می‌افزایند؟ نبودِ ارتباط یا نتیجهٔ مخالف هم پاسخ پژوهشی مفیدی است.</p>
         <div class="document-links"><a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/research-questions.fa.md" target="_blank" rel="noopener noreferrer">پرسش‌ها و مرز پژوهش</a><a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/connection-evidence.fa.md" target="_blank" rel="noopener noreferrer">جزئیات شواهد پیوند غیرمستقیم</a></div>
@@ -54,6 +55,18 @@
           <img src="assets/antibody-anatomy.svg" width="900" height="450" alt="نمودار آموزشی آنتی‌بادی کامل IgG و اجزای Fab، Fc، زنجیره‌های سنگین و سبک.">
           <figcaption>شماتیک آموزشیِ آنتی‌بادی کامل؛ مختصات آزمایشگاهی نیست. <bdi>Fab</bdi> بخش شناسایی آنتی‌ژن است و شامل بخش‌هایی از یک زنجیرهٔ سنگین و یک زنجیرهٔ سبک می‌شود. مدل <bdi>3WD5</bdi> فقط قطعهٔ <bdi>Fab</bdi> را دارد. <a href="assets/antibody-anatomy.svg" target="_blank" rel="noopener noreferrer">دیدن شکل در اندازهٔ اصلی</a></figcaption>
         </figure>
+      </section>
+      <section id="binding-explainer" class="reading-section" aria-labelledby="binding-title">
+        <h2 id="binding-title">اتصال دارو چطور پیام التهاب را کم می‌کند؟</h2>
+        <p class="section-description"><bdi>TNF</bdi> پیام‌رسان، <bdi>TNFR</bdi> گیرندهٔ روی سلول و آدالیموماب آنتی‌بادیِ متصل‌شونده به <bdi>TNF</bdi> است. سه مرحله را ببینید؛ شکل زیر یک طرح مفهومی است و از مختصات اتمی یا زمان واقعی واکنش ساخته نشده است.</p>
+        <div class="binding-steps" role="group" aria-label="مراحل مفهومی مهار پیام التهاب">
+          <button type="button" data-binding-step="0" aria-pressed="true">۱. پیام‌رسان و گیرنده</button>
+          <button type="button" data-binding-step="1" aria-pressed="false">۲. اتصال آدالیموماب</button>
+          <button type="button" data-binding-step="2" aria-pressed="false">۳. پیام‌رسانی کمتر</button>
+        </div>
+        <div id="binding-diagram" class="binding-diagram"></div>
+        <p id="binding-explanation" class="binding-explanation" role="status"></p>
+        <p class="section-description">تشبیه «قفل و کلید» کمک می‌کند اتصال اختصاصی را تصور کنیم؛ پروتئین‌ها انعطاف‌پذیرند و شیمی سطح هم اهمیت دارد. <a href="docs/binding-mechanism.fa.md">شرح قدم‌به‌قدم اتصال، میل اتصال و اثر درمان</a> · <a href="https://doi.org/10.1074/jbc.M113.491530" target="_blank" rel="noopener noreferrer">شاهد تجربی اتصال</a></p>
       </section>
       <section id="evidence-bridge" class="reading-section" aria-labelledby="bridge-title">
         <h2 id="bridge-title">کدام رابطه ثابت شده و کدام هنوز پرسش است؟</h2>
@@ -94,6 +107,13 @@
             </optgroup>
           </select>
         </div>
+        <div class="representation-field">
+          <label for="representation-select">نوع نمایش</label>
+          <select id="representation-select" aria-describedby="representation-help" disabled>
+            <option value="trace">مسیر Cα · بررسی نقاط</option>
+            <option value="cartoon">نمای نواری · شکل تاخوردگی</option>
+          </select>
+        </div>
         <div class="viewer-actions" aria-label="کنترل نمای مولکولی">
           <button type="button" id="spin-button" aria-pressed="false" disabled>چرخش آرام</button>
           <button type="button" id="reset-button" disabled>بازنشانی نما</button>
@@ -101,11 +121,15 @@
           <button type="button" id="zoom-out" aria-label="کوچک‌نمایی ساختار" disabled>کوچک‌تر</button>
         </div>
       </div>
+      <p id="representation-help" class="representation-help">مسیر نقاط و نمای نواری، دو روش رسم یک ساختارند. <a href="docs/molecular-display-audit.fa.md">تطبیق 3WD5 با RCSB و علت تفاوت ظاهر</a></p>
       <figure class="molecular-figure">
         <div id="molecular-stage" class="molecular-stage" data-state="loading" aria-busy="true">
           <img id="model-fallback" class="model-fallback" src="assets/complex-preview.png"
             width="1620" height="1080" alt="تصویر ثابت ساختار 3WD5: یک زیرواحد TNF و زنجیره‌های H و L قطعهٔ Fab آدالیموماب.">
           <p id="stage-status" class="stage-status" role="status">در حال بارگذاری مختصات آزمایشگاهی…</p>
+        </div>
+        <div id="reference-stage" class="molecular-stage reference-stage" data-state="idle" aria-busy="false" hidden>
+          <p id="reference-load-status" class="stage-status" role="status">در حال بارگذاری نمای نواری…</p>
         </div>
         <div class="model-detail-bar">
           <p id="model-description">یک زیرواحد <bdi>TNF</bdi> و قطعهٔ <bdi>Fab</bdi> آدالیموماب</p>
@@ -115,7 +139,7 @@
         <p id="model-caption" class="model-caption">نمای اولیهٔ ثابت: <bdi>3WD5</bdi>. این فایل آنتی‌بادی کامل یا TNF سه‌زیرواحدی را نمایش نمی‌دهد؛ همسایه‌های تقارن بلوریِ مؤثر در اپی‌توپ نیز در این نما نیستند.</p>
       </figure>
       <div class="inspection-row">
-        <p id="viewer-help">برای چرخش بکشید؛ با اسکرول یا دو انگشت بزرگ‌نمایی کنید. با تمرکز روی نما: کلیدهای جهتی، <bdi>+</bdi>، <bdi>−</bdi> و <bdi>0</bdi>. انتخاب اتم با کلیک یا فهرست زیر.</p>
+        <p id="viewer-help">برای چرخش بکشید؛ با اسکرول یا دو انگشت بزرگ‌نمایی کنید. با تمرکز روی هر نما: کلیدهای جهتی، <bdi>+</bdi>، <bdi>−</bdi> و <bdi>0</bdi>. در مسیر Cα، انتخاب نقطه با کلیک یا فهرست زیر.</p>
         <div class="residue-inspection">
           <label for="residue-select">بررسی یک نقطه</label>
           <select id="residue-select" disabled><option value="">یک نقطه انتخاب کنید</option></select>
@@ -211,6 +235,7 @@
     <section id="literature" class="reading-section" aria-labelledby="literature-title">
       <div class="section-heading">
         <h2 id="literature-title">مقاله‌های مرتبط با ساختار و دارو</h2>
+        <p class="section-description"><a href="docs/paper-explanations.fa.md">داستان آزمایش‌ها و معنی نتیجه‌های مقاله‌ها</a>؛ از تعریف اصطلاحات تا اینکه پژوهشگر چه کاری کرد و از داده چه نتیجه‌ای می‌تواند بگیرد.</p>
         <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/literature-review.fa.md" target="_blank" rel="noopener noreferrer">بررسی کامل مقاله‌ها</a>
       </div>
       <p class="section-description">سه مقالهٔ اصلی برای ساختار آنتی‌بادی، بررسی پیوند غیرمستقیم با <bdi>TOP2A</bdi>، و زمینهٔ بالینی <bdi>RA/CRP</bdi>. نوع آزمایش و مرز نتیجه‌گیری هر مقاله کنار آن آمده است.</p>

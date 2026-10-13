@@ -1,3 +1,5 @@
+import { initializeBindingExplainer } from "./binding-explainer.js";
+
 const $ = (id) => document.getElementById(id);
 const faNumber = new Intl.NumberFormat("fa-IR", { maximumFractionDigits: 2 });
 const numeric = (value) => faNumber.format(value);
@@ -11,16 +13,19 @@ let selectedSequence = null;
 let sequenceText = "";
 let sequenceRequest = 0;
 let markdownReaderPromise = null;
+let referenceRequest = 0;
+let referenceTimer = null;
 const readerDocuments = new Set([
   "class-presentation.fa.md", "academic-study-plan.fa.md", "paper-writing-guide.fa.md", "structural-feasibility-results.fa.md",
   "research-questions.fa.md", "course-guide.fa.md", "structural-method.fa.md",
+  "binding-mechanism.fa.md", "molecular-display-audit.fa.md", "paper-explanations.fa.md",
   "connection-evidence.fa.md", "sequences-primer.fa.md", "literature-review.fa.md",
   "top2a-cancer-comparison.fa.md", "visualization-tools.fa.md", "dataset-catalog.fa.md",
   "scientific-context.fa.md", "manuscript-outline.fa.md", "research-protocol.fa.md",
   "top2a-hypothesis.fa.md", "paper-design-setup.fa.md", "product-roadmap.fa.md",
   "literature-selection-audit.fa.md", "agent-workflow.md", "anatomy-evaluation.fa.md", "third-party-notices.md",
 ]);
-const controls = ["structure-select", "spin-button", "reset-button", "zoom-in", "zoom-out", "residue-select"];
+const controls = ["structure-select", "representation-select", "spin-button", "reset-button", "zoom-in", "zoom-out", "residue-select"];
 
 function element(tag, text, className) {
   const node = document.createElement(tag);
@@ -269,7 +274,74 @@ function renderModelControls(structure) {
   $("interface-button").textContent = "نمایش نقاط رابط روی TNF";
   $("interface-button").disabled = structure.id !== "3WD5" || !interfaceLoaded;
   $("residue-readout").textContent = "مختصات هر نقطه در واحد آنگستروم گزارش می‌شود.";
+  syncRepresentation();
 }
+
+function referenceCommand(command, extra = {}) {
+  $("reference-frame")?.contentWindow?.postMessage({ type: "molecular-command", command, ...extra }, window.location.origin);
+}
+
+function syncRepresentation() {
+  const cartoon = $("representation-select").value === "cartoon";
+  $("molecular-stage").hidden = cartoon;
+  $("reference-stage").hidden = !cartoon;
+  $("chain-legend").hidden = cartoon;
+  $("residue-select").closest(".residue-inspection").hidden = cartoon;
+  $("residue-readout").hidden = cartoon;
+  $("spin-button").disabled = cartoon || !viewer || viewer.failed;
+  if (cartoon) {
+    viewer?.setSpinning(false);
+    $("interface-button").disabled = true;
+    const id = $("structure-select").value;
+    setBilingualText($("model-caption"), "نمای نواری با Mol* از مدل اول ثبت‌شدهٔ " + id + ". رنگ‌ها زنجیره‌ها را جدا می‌کنند؛ نوارها سطح اتمی نیستند. فقط پروتئین و DNA نمایش داده می‌شوند؛ آب‌ها و لیگاندها پنهان‌اند. تقارن بلوری افزوده نشده است.");
+    if (id === "3WD5") $("model-caption").append(" این نما مختصات ثبت‌شدهٔ شش Cα با occupancy صفر را هم بارگذاری می‌کند؛ آن‌ها از مسیر و محاسبات تحلیلی کنار گذاشته شده‌اند.");
+    const frame = $("reference-frame");
+    if (frame?.dataset.pdb === id) return;
+    frame?.remove();
+    clearTimeout(referenceTimer);
+    const request = String(++referenceRequest);
+    const next = element("iframe", null, "reference-frame");
+    next.id = "reference-frame";
+    next.title = "نمای نواری ساختار " + id;
+    next.dataset.pdb = id;
+    next.src = "assets/reference-viewer.html?pdb=" + id + "&request=" + request;
+    $("reference-stage").dataset.state = "loading";
+    $("reference-stage").setAttribute("aria-busy", "true");
+    $("reference-load-status").hidden = false;
+    $("reference-load-status").textContent = "در حال بارگذاری نمای نواری " + id + "…";
+    for (const button of ["reset-button", "zoom-in", "zoom-out"]) $(button).disabled = true;
+    $("reference-stage").prepend(next);
+    referenceTimer = setTimeout(() => {
+      if ($("reference-stage").dataset.state !== "loading") return;
+      $("reference-stage").dataset.state = "error";
+      $("reference-stage").setAttribute("aria-busy", "false");
+      $("reference-load-status").textContent = "نمای نواری بارگذاری نشد. مسیر Cα را انتخاب کنید و برای تلاش دوباره به نمای نواری برگردید.";
+      $("reference-frame")?.remove();
+    }, 60000);
+  } else {
+    clearTimeout(referenceTimer);
+    $("reference-frame")?.remove();
+    if (viewer?.structure) {
+      setBilingualText($("model-caption"), modelCopy[viewer.structure.id].caption + " لوله‌ها مسیر بین نقاط مشاهده‌شده‌اند؛ نوار و سطح اتمی نیستند.");
+      $("interface-button").disabled = viewer.structure.id !== "3WD5" || !interfaceLoaded;
+      for (const button of ["reset-button", "zoom-in", "zoom-out"]) $(button).disabled = viewer.failed;
+      viewer.resize();
+    }
+  }
+}
+
+window.addEventListener("message", (event) => {
+  const frame = $("reference-frame");
+  if (!frame || event.origin !== window.location.origin || event.source !== frame.contentWindow) return;
+  const data = event.data;
+  if (data?.type !== "molecular-reference" || data.token !== String(referenceRequest) || data.id !== frame.dataset.pdb) return;
+  clearTimeout(referenceTimer);
+  $("reference-stage").dataset.state = data.state;
+  $("reference-stage").setAttribute("aria-busy", "false");
+  $("reference-load-status").hidden = data.state === "ready";
+  for (const button of ["reset-button", "zoom-in", "zoom-out"]) $(button).disabled = data.state !== "ready";
+  if (data.state === "error") $("reference-load-status").textContent = "نمای نواری در دسترس نیست. مسیر Cα را انتخاب کنید؛ برای تلاش دوباره به نمای نواری برگردید.";
+});
 
 function showModel(id) {
   const structure = structures.find((item) => item.id === id);
@@ -341,10 +413,11 @@ async function loadStructures() {
       try { showModel(event.target.value); }
       catch { failViewer("نمای ساختار بارگذاری نشد. تصویر ثابت 3WD5 نمایش داده می‌شود؛ صفحه را دوباره بارگذاری کنید."); }
     });
+    $("representation-select").addEventListener("change", syncRepresentation);
     $("spin-button").addEventListener("click", () => viewer.setSpinning(!viewer.spinning));
-    $("reset-button").addEventListener("click", () => viewer.resetView());
-    $("zoom-in").addEventListener("click", () => viewer.zoomBy(0.83));
-    $("zoom-out").addEventListener("click", () => viewer.zoomBy(1.2));
+    $("reset-button").addEventListener("click", () => $("representation-select").value === "cartoon" ? referenceCommand("reset") : viewer.resetView());
+    $("zoom-in").addEventListener("click", () => $("representation-select").value === "cartoon" ? referenceCommand("zoom", { factor: 0.83 }) : viewer.zoomBy(0.83));
+    $("zoom-out").addEventListener("click", () => $("representation-select").value === "cartoon" ? referenceCommand("zoom", { factor: 1.2 }) : viewer.zoomBy(1.2));
     $("residue-select").addEventListener("change", (event) => {
       if (event.target.value) viewer.selectResidue(...JSON.parse(event.target.value));
     });
@@ -379,7 +452,7 @@ async function loadInterface() {
     );
     $("interface-status").dataset.state = "ready";
     interfaceLoaded = true;
-    if (viewer?.structure?.id === "3WD5") $("interface-button").disabled = false;
+    if (viewer?.structure?.id === "3WD5" && $("representation-select").value === "trace") $("interface-button").disabled = false;
   } catch {
     showError($("interface-status"), "خلاصهٔ محاسبه خوانده نشد؛ عددی جایگزین نشده است.");
     $("interface-status").dataset.state = "error";
@@ -752,6 +825,7 @@ async function loadSequences() {
   }
 }
 
+initializeBindingExplainer();
 initializeTabs();
 const results = await Promise.allSettled([
   loadStructures(), loadInterface(), loadLiterature(), loadDatasets(), loadSequences(),

@@ -14,6 +14,8 @@ Confirmed: lightweight static HTML/CSS/JavaScript with a reusable Three.js graph
 
 An MSc computer-engineering student specializing in bioinformatics, preparing a structural-bioinformatics course investigation, and instructors reviewing its methods and evidence.
 
+Teach at the conceptual starting point of a biology-interested high-school student: explicitly define cell, protein, receptor, binding, gene/RNA and every new term. The user welcomes detailed explanations of basics. Introduce each paper as a concrete experiment and put technical/numerical detail after the plain-language meaning.
+
 Immediate weekly deliverable: select the protein and summarize three relevant papers in class. The visual notebook is the student's ongoing presentation surface. A nine-step chapter route provides short oral notes, actual figures, keyboard navigation and a return to the same step after molecular inspection. Numerical studies are optional appendices; MD and a complete original paper are later decisions.
 
 ## Product Purpose

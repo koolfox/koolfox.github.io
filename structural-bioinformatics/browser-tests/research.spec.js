@@ -35,6 +35,104 @@ test("experimental structures render with actual occupied points and working con
     expect(errors).toEqual([]);
 });
 
+test("offline cartoon models preserve the deposited coordinates and model scope", async ({ page, context }) => {
+    test.setTimeout(90000);
+    const errors = [];
+    const externalRequests = [];
+    page.on("pageerror", error => errors.push(error.message));
+    const base = new URL(test.info().project.use.baseURL).origin;
+    await context.route("**/*", route => {
+        const url = route.request().url();
+        if (url.startsWith(base + "/")) return route.continue();
+        externalRequests.push(url);
+        return route.abort();
+    });
+    await ready(page);
+    await page.selectOption("#representation-select", "cartoon");
+    for (const id of ["3WD5", "1TNF", "1B09", "4FM9"]) {
+        await page.selectOption("#structure-select", id);
+        await expect(page.locator("#reference-stage")).toHaveAttribute("data-state", "ready", { timeout: 20000 });
+        const frame = page.frames().find(frame => frame.url().includes("reference-viewer.html"));
+        const model = await frame.evaluate(() => {
+            const { state, model } = window.referenceViewer;
+            const hierarchy = model.atomicHierarchy;
+            const conformation = model.atomicConformation;
+            const points = [];
+            for (let index = 0; index < conformation.x.length; index++) {
+                const atom = hierarchy.atoms.label_atom_id.value(index);
+                if (!["CA", "P"].includes(atom) || conformation.occupancy.value(index) <= 0) continue;
+                const residue = hierarchy.residueAtomSegments.index[index];
+                const chain = hierarchy.chainAtomSegments.index[index];
+                points.push({
+                    atom,
+                    chain: hierarchy.chains.auth_asym_id.value(chain),
+                    number: hierarchy.residues.auth_seq_id.value(residue),
+                    insertion: hierarchy.residues.pdbx_PDB_ins_code.value(residue),
+                    xyz: [conformation.x[index], conformation.y[index], conformation.z[index]],
+                });
+            }
+            return { state, points };
+        });
+        expect(model.state.structureId).toBe(id);
+        expect(model.state.scope).toBe("deposited_model");
+        expect(model.state.representationLabel).toBe("Cartoon");
+        const traces = await page.evaluate(() => window.molecularViewer.structure.chains);
+        expect(model.state.authorChains).toEqual(traces.map(chain => chain.id));
+        for (const chain of traces) {
+            for (const point of chain.residues) {
+                const candidates = model.points.filter(atom => atom.chain === chain.id && atom.number === point.number && atom.insertion === (point.insertion || ""));
+                expect(candidates.some(atom => atom.xyz.every((coordinate, axis) => Math.abs(coordinate - point.xyz[axis]) < 0.001))).toBe(true);
+            }
+        }
+        if (id === "3WD5") {
+            expect(model.state.atomCount).toBe(4466);
+            expect(model.state.polymerResidueCount).toBe(579);
+            const cameraBefore = await frame.evaluate(() => Array.from(window.referenceViewer.plugin.canvas3d.camera.state.position));
+            await page.locator("#zoom-in").click();
+            await expect.poll(() => frame.evaluate(() => Array.from(window.referenceViewer.plugin.canvas3d.camera.state.position))).not.toEqual(cameraBefore);
+            await page.locator("#reset-button").click();
+            const beforeRotation = await frame.evaluate(() => Array.from(window.referenceViewer.plugin.canvas3d.camera.state.position));
+            await frame.locator("canvas").press("ArrowLeft");
+            await expect.poll(() => frame.evaluate(() => Array.from(window.referenceViewer.plugin.canvas3d.camera.state.position))).not.toEqual(beforeRotation);
+        }
+    }
+    await page.selectOption("#representation-select", "trace");
+    await expect(page.locator("#reference-frame")).toHaveCount(0);
+    await expect(page.locator("canvas.molecular-canvas")).toBeVisible();
+    await expect(page.locator("#chain-legend")).toBeVisible();
+    expect(externalRequests).toEqual([]);
+    expect(errors).toEqual([]);
+});
+
+test("cartoon download failure recovers to the working trace", async ({ page }) => {
+    await page.route("**/assets/3wd5.pdb", route => route.abort());
+    await ready(page);
+    await page.selectOption("#representation-select", "cartoon");
+    await expect(page.locator("#reference-stage")).toHaveAttribute("data-state", "error");
+    await expect(page.locator("#reference-load-status")).toContainText("مسیر Cα");
+    await page.selectOption("#representation-select", "trace");
+    await expect(page.locator("canvas.molecular-canvas")).toBeVisible();
+    await expect(page.locator("#interface-button")).toBeEnabled();
+    await page.unroute("**/assets/3wd5.pdb");
+    await page.selectOption("#representation-select", "cartoon");
+    await expect(page.locator("#reference-stage")).toHaveAttribute("data-state", "ready", { timeout: 20000 });
+});
+
+test("beginner mechanism and deeper paper explanations are reachable in the notebook", async ({ page }) => {
+    await page.goto(`${route}#binding-explainer`);
+    await expect(page.locator("#binding-diagram svg")).toBeVisible();
+    await page.locator('[data-binding-step="1"]').click();
+    await expect(page.locator("#binding-explanation")).toContainText("Fab");
+    await page.locator('[data-binding-step="2"]').click();
+    await expect(page.locator("#binding-explanation")).toContainText("پیش‌بینی نمی‌کند");
+    await page.getByRole('link', { name: 'شرح قدم‌به‌قدم اتصال، میل اتصال و اثر درمان' }).click();
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-state", "ready");
+    await expect(page.locator("#markdown-content")).toContainText("سلول");
+    await page.selectOption("#document-select", "paper-explanations.fa.md");
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-document", "paper-explanations.fa.md");
+    await expect(page.locator("#markdown-content")).toBeVisible();
+});
+
 test("curated evidence and dataset search keep available measurements distinct", async ({ page }) => {
     await ready(page);
     await expect(page.locator("#stat-residue-pairs")).toHaveText("۴۰");

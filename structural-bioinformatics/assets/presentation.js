@@ -99,7 +99,7 @@ async function renderDiagrams() {
   } catch {
     for (const code of deck.querySelectorAll('pre code.language-mermaid')) {
       const note = document.createElement('p');
-      note.textContent = 'طرح مفهومی: اتصال TNF به گیرنده، پیام درون سلول را آغاز می‌کند. آدالیموماب با اتصال به TNF این تعامل را محدود می‌کند.';
+      note.textContent = 'نمودار آماده نشد؛ رابطه‌های آن در متن همین اسلاید توضیح داده شده‌اند.';
       code.parentElement.replaceWith(note);
     }
     deck.dataset.diagram = 'fallback';

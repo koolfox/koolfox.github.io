@@ -105,17 +105,17 @@ button:hover:not(:disabled) { background: #e9effd; }
   @page { size: 330mm 210mm; margin: 12mm; }
   body { background: white; }
   .deck-toolbar, .deck-controls, #deck-status, #retry-deck, #slide-media-dialog, .slide-media-controls { display: none !important; }
-  .slide, .slide[hidden] { display: grid !important; min-height: 175mm; max-width: none; padding: 5mm; break-after: page; break-inside: avoid; }
+  .slide, .slide[hidden] { display: grid !important; min-height: 0; height: 180mm; max-width: none; padding: 5mm; gap: 12px; break-after: page; break-inside: avoid; }
   .slide:last-child { break-after: auto; }
-  .slide h1 { font-size: 30pt; }
-  .slide.has-media h1 { font-size: 28pt; }
-  .slide-body { font-size: 18pt; line-height: 1.7; }
-  .slide.has-media .slide-body { font-size: 17pt; line-height: 1.7; }
-  .slide img, .slide .slide-diagram svg { max-height: 78mm; }
-  .slide.sources .slide-body { font-size: 17pt; }
+  .slide h1, .slide.has-media h1 { font-size: 26pt; line-height: 1.35; margin-bottom: 5mm; }
+  .slide-body { font-size: 16pt; line-height: 1.65; }
+  .slide.has-media .slide-body { font-size: 15pt; line-height: 1.65; }
+  .slide img, .slide .slide-diagram svg { max-height: 65mm; }
+  .slide.sources .slide-body { font-size: 16pt; }
   .slide figcaption { font-size: 12pt; }
   .slide-references { font-size: 10pt; }
-  .slide-header { font-size: 11pt; }
+  .slide-header { font-size: 11pt; min-height: 16mm; }
+  .slide .university-logo { width: 16mm; height: 16mm; flex-basis: 16mm; }
   .slide-footer { font-size: 10pt; }
   .slide.cover h1 { font-size: 44pt; }
   .cover-subtitle { font-size: 22pt; }

@@ -36,7 +36,7 @@ Long-term direction confirmed by the user: an educational/research tool, with th
 
 ## Evidence on Hand
 
-Three core recent primary papers, with separately appraised structural and TOP2A bridge references; an optional 25-source catalog; RCSB structures 3WD5, 1TNF, 1B09 and 4FM9; a real ManimGX render. The deposited 3WD5 view contains one TNF protomer and Fab, with an incomplete physiological epitope. 4FM9 shows a TOP2A cleavage-core asymmetric unit with synthetic DNA. Patient-specific molecular structures and a linked four-disease clinical dataset are absent.
+Three core recent primary papers, with separately appraised structural and TOP2A bridge references; an optional 26-source catalog; RCSB structures 3WD5, 1TNF, 1B09 and 4FM9; a real ManimGX render. The deposited 3WD5 view contains one TNF protomer and Fab, with an incomplete physiological epitope. 4FM9 shows a TOP2A cleavage-core asymmetric unit with synthetic DNA. Patient-specific molecular structures and a linked four-disease clinical dataset are absent.
 
 ## Product Principles
 

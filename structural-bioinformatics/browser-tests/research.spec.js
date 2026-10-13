@@ -442,6 +442,10 @@ for (const width of [1440, 390]) {
         await expect(page).toHaveURL(/#slide-24$/);
         await page.emulateMedia({ media: 'print' });
         await expect(page.locator('.slide:visible')).toHaveCount(24);
+        if (width === 1440) {
+            const pdf = await page.pdf({ preferCSSPageSize: true, printBackground: true });
+            expect(pdf.toString('latin1').match(/\/Type \/Page\b/g)).toHaveLength(24);
+        }
         expect(errors).toEqual([]);
     });
 }

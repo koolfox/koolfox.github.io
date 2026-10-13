@@ -1,6 +1,7 @@
 import { isolateScientificText } from './text-direction.js';
 /** Audience slides and the research reader share one Markdown source. */
 const source = new URL('../docs/class-presentation.fa.md', import.meta.url);
+const project = new URL('../', import.meta.url);
 const deck = document.getElementById('deck');
 const status = document.getElementById('deck-status');
 const select = document.getElementById('slide-select');
@@ -10,6 +11,60 @@ let slides = [];
 let current = 0;
 let diagramLibrary;
 const fa = number => new Intl.NumberFormat('fa-IR').format(number);
+
+function textElement(tag, text, className) {
+  const element = document.createElement(tag);
+  element.textContent = text;
+  if (className) element.className = className;
+  return element;
+}
+
+function addSlideIdentity(slide, details) {
+  const header = document.createElement('header');
+  header.className = 'slide-header';
+  const university = document.createElement('div');
+  university.append(
+    textElement('p', details.institution, 'slide-institution'),
+    textElement('p', 'درس ' + details.course, 'slide-course'),
+  );
+  const logo = document.createElement('img');
+  logo.className = 'university-logo';
+  logo.src = new URL(details.logo.path, project).href;
+  logo.alt = 'نشان ' + details.institution;
+  logo.width = details.logo.width;
+  logo.height = details.logo.height;
+  header.append(university, logo);
+  const content = document.createElement('div');
+  content.className = 'slide-content';
+  content.append(...slide.childNodes);
+  const footer = document.createElement('footer');
+  footer.className = 'slide-footer';
+  footer.append(textElement('p', details.short_title), textElement('p', details.season));
+  slide.append(header, content, footer);
+}
+
+function createCover(details) {
+  const cover = document.createElement('section');
+  cover.className = 'slide cover';
+  cover.hidden = true;
+  cover.append(textElement('h1', details.title), textElement('p', details.subtitle, 'cover-subtitle'));
+  const identity = document.createElement('div');
+  identity.className = 'cover-details';
+  const supervisor = document.createElement('p');
+  const profile = document.createElement('a');
+  profile.className = 'supervisor-profile';
+  profile.href = details.supervisor_profile_url;
+  profile.textContent = 'استاد راهنما: ' + details.supervisor;
+  supervisor.append(profile);
+  identity.append(
+    textElement('p', details.program),
+    textElement('p', 'ارائه‌دهنده: ' + details.presenter),
+    supervisor,
+    textElement('p', 'زمان ارائه: ' + details.season),
+  );
+  cover.append(identity);
+  return cover;
+}
 
 function loadDiagrams() {
   if (!diagramLibrary) diagramLibrary = new Promise((resolve, reject) => {
@@ -64,7 +119,7 @@ function show(index, focus = false) {
   previous.disabled = current === 0;
   next.disabled = current === slides.length - 1;
   document.getElementById('slide-progress').textContent = `${fa(current + 1)} / ${fa(slides.length)}`;
-  document.getElementById('notebook-link').href = `index.html?document=class-presentation.fa.md&chapter=chapter-${current + 1}#reading`;
+  document.getElementById('notebook-link').href = `index.html?document=class-presentation.fa.md&chapter=chapter-${slides[current].dataset.chapter || 1}#reading`;
   history.replaceState(null, '', '#slide-' + (current + 1));
   document.title = slides[current].querySelector('h1').textContent + ' · ارائهٔ کلاسی';
   if (focus) { deck.focus({ preventScroll: true }); window.scrollTo({ top: 0, behavior: 'instant' }); }
@@ -75,17 +130,23 @@ async function load() {
   document.getElementById('retry-deck').hidden = true;
   status.textContent = 'در حال آماده‌سازی اسلایدها…';
   try {
-    const response = await fetch(source, { signal: AbortSignal.timeout(15000) });
-    if (!response.ok) throw new Error('source unavailable');
+    const [response, metadata] = await Promise.all([
+      fetch(source, { signal: AbortSignal.timeout(15000) }),
+      fetch(new URL('data/metadata/presentation.json', project), { signal: AbortSignal.timeout(15000) }),
+    ]);
+    if (!response.ok || !metadata.ok) throw new Error('source unavailable');
+    const details = await metadata.json();
     const markdown = window.markdownit({ html: false, linkify: false });
     const documentRoot = document.createElement('div');
     documentRoot.innerHTML = markdown.render(await response.text());
-    deck.replaceChildren();
+    deck.replaceChildren(createCover(details));
     let section;
     let body;
+    let chapter = 0;
     for (const child of [...documentRoot.children]) {
       if (child.tagName === 'H2') {
         section = document.createElement('section'); section.className = 'slide'; section.hidden = true;
+        section.dataset.chapter = String(++chapter);
         const title = document.createElement('h1'); title.textContent = child.textContent.replace(/^[\d۰-۹]+[.ـ\s]+/, '');
         body = document.createElement('div'); body.className = 'slide-body';
         section.append(title, body); deck.append(section);
@@ -107,13 +168,14 @@ async function load() {
     await renderDiagrams();
     for (const slide of slides) {
       const body = slide.querySelector('.slide-body');
-      const figure = body.querySelector(':scope > figure');
+      const figure = body?.querySelector(':scope > figure');
       if (figure) {
         slide.classList.add('has-media');
         const copy = document.createElement('div'); copy.className = 'slide-copy';
         for (const child of [...body.childNodes]) if (child !== figure) copy.append(child);
         body.replaceChildren(copy, figure);
       }
+      addSlideIdentity(slide, details);
       isolateScientificText(slide);
     }
     slides.at(-1).classList.add('sources');

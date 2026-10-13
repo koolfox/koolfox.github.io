@@ -18,7 +18,22 @@ button:disabled { cursor: default; opacity: .5; }
 #slide-progress { min-width: 65px; text-align: center; font-variant-numeric: tabular-nums; }
 #deck:focus-visible { outline: none; }
 #deck { min-height: calc(100dvh - 140px); }
-.slide { max-width: 1440px; margin: auto; padding: clamp(24px, 4vh, 48px) clamp(24px, 5vw, 80px); min-height: calc(100dvh - 140px); display: flex; flex-direction: column; justify-content: center; }
+.slide { max-width: 1440px; margin: auto; padding: 20px clamp(24px, 5vw, 80px) 14px; min-height: calc(100dvh - 140px); display: grid; grid-template-rows: auto 1fr auto; gap: 20px; }
+.slide-header, .slide-footer { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.slide-header p, .slide-footer p { margin: 0; }
+.slide-header { min-height: 78px; color: var(--muted); font-size: 15px; line-height: 1.8; }
+.slide-institution { font-weight: 600; }
+.slide .university-logo { display: block; width: 72px; height: 75px; flex: 0 0 72px; object-fit: contain; filter: brightness(0); }
+.slide-content { min-width: 0; align-self: center; }
+.slide-footer { color: var(--muted); font-size: 14px; line-height: 1.8; }
+.slide-footer > :first-child { text-align: right; }
+.slide-footer > :last-child { white-space: nowrap; }
+.slide.cover h1 { text-align: center; font-size: clamp(42px, 5vw, 72px); margin: 0; }
+.cover-subtitle { text-align: center; color: var(--muted); font-size: clamp(20px, 2vw, 28px); line-height: 1.8; margin: 12px auto 44px; max-width: 44ch; }
+.cover-details { font-size: 20px; line-height: 1.8; }
+.cover-details p { margin: 0 0 4px; }
+.supervisor-profile { color: inherit; text-decoration: none; }
+.supervisor-profile:hover { text-decoration: underline; }
 .slide h1 { margin: 0 0 28px; font-size: clamp(30px, 3.2vw, 46px); line-height: 1.5; font-weight: 700; }
 .slide-body { font-size: clamp(21px, 1.85vw, 28px); line-height: 1.85; color: var(--muted); }
 .slide-body > :first-child, .slide-copy > :first-child { margin-top: 0; }
@@ -45,7 +60,13 @@ button:disabled { cursor: default; opacity: .5; }
   .deck-toolbar { flex-wrap: wrap; font-size: 14px; padding: 12px 16px; }
   .deck-toolbar > div { gap: 10px; }
   .deck-toolbar button { padding: 8px; }
-  .slide { padding: 28px 20px; min-height: calc(100dvh - 190px); }
+  .slide { padding: 20px; min-height: calc(100dvh - 190px); gap: 24px; }
+  .slide-header { align-items: flex-start; gap: 16px; font-size: 13px; min-height: 65px; }
+  .slide .university-logo { width: 56px; height: 58px; flex-basis: 56px; }
+  .slide-footer { align-items: flex-end; font-size: 12px; gap: 14px; }
+  .slide.cover h1 { font-size: 38px; }
+  .cover-subtitle { font-size: 20px; margin-bottom: 32px; }
+  .cover-details { font-size: 17px; }
   .slide h1 { font-size: 28px; margin-bottom: 24px; }
   .slide-body { font-size: 20px; }
   .slide.has-media .slide-body { grid-template-columns: 1fr; gap: 24px; }
@@ -57,11 +78,16 @@ button:disabled { cursor: default; opacity: .5; }
   @page { size: 330mm 210mm; margin: 12mm; }
   body { background: white; }
   .deck-toolbar, .deck-controls, #deck-status, #retry-deck { display: none !important; }
-  .slide, .slide[hidden] { display: flex !important; min-height: 175mm; max-width: none; padding: 10mm; break-after: page; break-inside: avoid; }
+  .slide, .slide[hidden] { display: grid !important; min-height: 175mm; max-width: none; padding: 5mm; break-after: page; break-inside: avoid; }
   .slide:last-child { break-after: auto; }
   .slide h1 { font-size: 30pt; }
-  .slide-body { font-size: 20pt; }
-  .slide img, .slide .slide-diagram svg { max-height: 120mm; }
+  .slide-body { font-size: 18pt; line-height: 1.7; }
+  .slide img, .slide .slide-diagram svg { max-height: 78mm; }
   .slide.sources .slide-body { font-size: 17pt; }
   .slide figcaption { font-size: 12pt; }
+  .slide-header { font-size: 11pt; }
+  .slide-footer { font-size: 10pt; }
+  .slide.cover h1 { font-size: 44pt; }
+  .cover-subtitle { font-size: 22pt; }
+  .cover-details { font-size: 17pt; }
 }

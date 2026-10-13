@@ -365,10 +365,14 @@ for (const width of [1440, 390]) {
         await context.route('**/*', route => route.request().url().startsWith(origin) ? route.continue() : route.abort());
         await page.goto(`${route}presentation.html#slide-1`);
         await expect(page.locator('#deck')).toHaveAttribute('data-state', 'ready');
-        await expect(page.locator('.slide')).toHaveCount(13);
+        await expect(page.locator('.slide')).toHaveCount(14);
         await expect(page.locator('#deck')).not.toContainText('برای گفتن');
         await expect(page.locator('#slide-prev')).toBeDisabled();
-        for (let index = 0; index < 13; index++) {
+        await expect(page.locator('.cover .cover-details')).toContainText('شینی');
+        await expect(page.locator('.cover .cover-details')).toContainText('دکتر فرزانه محمدی فارسانی');
+        await expect(page.locator('.cover .cover-details')).toContainText('زمان ارائه: پاییز');
+        await expect(page.locator('.cover .supervisor-profile')).toHaveAttribute('href', 'https://scholar.google.com/citations?user=VA1rZ7MAAAAJ&hl=en');
+        for (let index = 0; index < 14; index++) {
             await page.selectOption('#slide-select', String(index));
             await expect(page.locator('.slide:visible')).toHaveCount(1);
             await expect(page).toHaveURL(new RegExp(`#slide-${index + 1}$`));
@@ -377,10 +381,16 @@ for (const width of [1440, 390]) {
                 await expect.poll(() => img.evaluate(node => node.complete && node.naturalWidth > 0)).toBe(true);
             }
             expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-            if (index < 12) await expect(active.locator('a[href^="https://"]')).toHaveCount(0);
-            if (index === 4) await expect(active.locator('h1 bdi')).toHaveText('3WD5');
-            if (index === 10) await expect(active.locator('strong bdi').filter({ hasText: '4.5 Å' })).toHaveAttribute('dir', 'ltr');
-            if (index === 12) {
+            await expect(active.locator('.slide-course')).toHaveText('درس بیوانفورماتیک ساختاری');
+            const logo = await active.locator('.university-logo').boundingBox();
+            const institution = await active.locator('.slide-institution').boundingBox();
+            expect(logo.x + logo.width).toBeLessThan(institution.x);
+            await expect(active.locator('.slide-footer')).toContainText('آدالیموماب');
+            if (width === 1440) expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBeLessThanOrEqual(902);
+            if (index > 0 && index < 13) await expect(active.locator('a[href^="https://"]')).toHaveCount(0);
+            if (index === 5) await expect(active.locator('h1 bdi')).toHaveText('3WD5');
+            if (index === 11) await expect(active.locator('strong bdi').filter({ hasText: '4.5 Å' })).toHaveAttribute('dir', 'ltr');
+            if (index === 13) {
                 for (const accession of ['3WD5', '1TNF', '4FM9']) {
                     await expect(active.locator('a bdi').filter({ hasText: new RegExp('^' + accession + '$') })).toHaveAttribute('dir', 'ltr');
                 }
@@ -394,9 +404,9 @@ for (const width of [1440, 390]) {
         await page.keyboard.press('PageUp');
         await expect(page).toHaveURL(/#slide-1$/);
         await page.locator('#sources-link').click();
-        await expect(page).toHaveURL(/#slide-13$/);
+        await expect(page).toHaveURL(/#slide-14$/);
         await page.emulateMedia({ media: 'print' });
-        await expect(page.locator('.slide:visible')).toHaveCount(13);
+        await expect(page.locator('.slide:visible')).toHaveCount(14);
         expect(errors).toEqual([]);
     });
 }

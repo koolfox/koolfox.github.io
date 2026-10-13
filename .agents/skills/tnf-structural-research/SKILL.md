@@ -5,7 +5,7 @@ description: "Advance this repository's structural-bioinformatics course study o
 
 # TNF Structural Research
 
-Work in `structural-bioinformatics/` in `koolfox/koolfox.github.io`. Current user-confirmed sequence: learn the adalimumab antibody's structure, TNF binding and RA mechanism first; then ask whether an indirect TOP2A connection is supported in RA/cancer. The student needs explanations, authentic small RNA/protein sequence examples, labeled figures and a tabbed presentation they can learn and defend. A premature large genetics/RNA research program remains outside the course task. The instructor's TOP2A interest is context, not proof of a shared drug mechanism. The user wants visible, incremental GitHub Pages updates.
+Work in `structural-bioinformatics/` in `koolfox/koolfox.github.io`. Current user-confirmed sequence: learn the adalimumab antibody's structure, TNF binding and RA mechanism first; then ask whether an indirect TOP2A connection is supported in RA/cancer. The student needs explanations, authentic small RNA/protein sequence examples, labeled figures and a tabbed presentation they can learn and defend. A premature large genetics/RNA research program remains outside the course task. Present the TOP2A motivation as the student's own interest, in their first-person presentation voice. Do not attribute the topic choice to the instructor or insert an awkward disclaimer about personal interest being evidence; explain scientific uncertainty where actual claims are evaluated. The user wants visible, incremental GitHub Pages updates.
 
 ## Choose the evidence needed
 

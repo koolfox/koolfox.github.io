@@ -415,6 +415,23 @@ for (const width of [1440, 390]) {
         await expect(page).toHaveURL(/#slide-2$/);
         await page.keyboard.press('PageUp');
         await expect(page).toHaveURL(/#slide-1$/);
+        await page.locator('#sources-link').click();
+        await expect(page).toHaveURL(/#slide-24$/);
+        await page.emulateMedia({ media: 'print' });
+        await expect(page.locator('.slide:visible')).toHaveCount(24);
+        expect(errors).toEqual([]);
+    });
+}
+
+
+for (const width of [1440, 390]) {
+    test(`in-slide figures and experimental models enlarge offline at ${width}px`, async ({ page, context }) => {
+        test.setTimeout(60000); // Two local molecular models on CI's software renderer.
+        await page.setViewportSize({ width, height: 900 });
+        const origin = new URL(test.info().project.use.baseURL).origin;
+        await context.route('**/*', route => route.request().url().startsWith(origin) ? route.continue() : route.abort());
+        await page.goto(`${route}presentation.html#slide-1`);
+        await expect(page.locator('#deck')).toHaveAttribute('data-state', 'ready');
         await page.selectOption('#slide-select', '3');
         const enlarge = page.locator('.slide:visible').getByRole('button', { name: 'بزرگ‌نمایی شکل', exact: true });
         await enlarge.click();
@@ -438,17 +455,19 @@ for (const width of [1440, 390]) {
         await expect(modelFrame.locator('body')).toHaveAttribute('data-state', 'ready', { timeout: 30000 });
         expect(await page.evaluate(() => document.querySelector('#slide-media-stage iframe').contentWindow.referenceViewer.state.scope)).toBe('deposited_model');
         await page.getByRole('button', { name: 'بستن و بازگشت به اسلاید' }).click();
-        await page.locator('#sources-link').click();
-        await expect(page).toHaveURL(/#slide-24$/);
-        await page.emulateMedia({ media: 'print' });
-        await expect(page.locator('.slide:visible')).toHaveCount(24);
-        if (width === 1440) {
-            const pdf = await page.pdf({ preferCSSPageSize: true, printBackground: true });
-            expect(pdf.toString('latin1').match(/\/Type \/Page\b/g)).toHaveLength(24);
-        }
-        expect(errors).toEqual([]);
     });
 }
+
+test('browser PDF keeps the 24 complete slides on 24 pages', async ({ page }) => {
+    test.setTimeout(60000); // PDF/font serialization has a separate bounded budget.
+    await page.goto(`${route}presentation.html#slide-1`);
+    await expect(page.locator('#deck')).toHaveAttribute('data-state', 'ready');
+    for (const image of await page.locator('.slide img').all()) {
+        await expect.poll(() => image.evaluate(node => node.complete && node.naturalWidth > 0)).toBe(true);
+    }
+    const pdf = await page.pdf({ preferCSSPageSize: true, printBackground: true });
+    expect(pdf.toString('latin1').match(/\/Type \/Page\b/g)).toHaveLength(24);
+});
 
 test('slide source failure can be retried without losing notebook access', async ({ page }) => {
     await page.route('**/docs/class-presentation.fa.md', route => route.abort());

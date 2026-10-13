@@ -294,4 +294,3 @@ Figures and video preserve their aspect ratio. Captions are small muted prose wi
 - **Don't** move source identifiers or caveats away from the scientific material they explain.
 - **Don't** turn local failures into an unusable whole-page state.
 - **Don't** add compulsory camera animation or preserve transitions under reduced motion.
-

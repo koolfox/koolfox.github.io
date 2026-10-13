@@ -30,6 +30,14 @@ def build_site(repository: Path, output: Path):
         destination.mkdir(parents=True)
         for path in (project / "data" / directory).glob("*.json"):
             shutil.copyfile(path, destination / path.name)
+    # Small, source-verified teaching sequences are deliberate public inputs.
+    sequences = project / "data" / "sequences"
+    if sequences.exists():
+        destination = target / "data" / "sequences"
+        destination.mkdir()
+        for pattern in ("*.fasta", "*.gb"):
+            for path in sequences.glob(pattern):
+                shutil.copyfile(path, destination / path.name)
     # Development direction contracts are not browser-delivered artifacts.
     (target / "docs" / "surface-brief.md").unlink(missing_ok=True)
     (output / ".nojekyll").touch()

@@ -1,0 +1,492 @@
+{
+  "schema_version": "1.0.0",
+  "verified_on": "2026-10-13",
+  "generated_at_utc": "2026-10-13T08:48:16.986899+00:00",
+  "sequence_count": 10,
+  "scope": "Small public teaching reference sequences and declared/resolved PDB constructs; not clinical expression data or an RNA-structure prediction.",
+  "coordinate_convention": "CDS endpoints are 1-based inclusive and include the terminal stop. PDB author and reference-protein positions remain separate.",
+  "verification": "FASTA sequence/length equals annotated GenBank record; CDS translation excluding only terminal stop exactly equals separately downloaded NP protein; PDB declared sequence agrees with polymer scheme; observed residues agree with construct position map.",
+  "source_policies": [
+    {
+      "source": "NCBI",
+      "url": "https://www.ncbi.nlm.nih.gov/home/about/policies/",
+      "notes": "Public reference records; retain accession/version/source attribution."
+    },
+    {
+      "source": "wwPDB/RCSB",
+      "url": "https://www.rcsb.org/pages/policies",
+      "license": "CC0-1.0 for archive data"
+    }
+  ],
+  "sequences": [
+    {
+      "id": "TNF_NM_000594.4",
+      "display_name": "TNF: representative human mRNA (NM_000594.4)",
+      "category": "refseq_mrna",
+      "molecule": "mRNA",
+      "organism": "Homo sapiens",
+      "gene": "TNF",
+      "accession_version": "NM_000594.4",
+      "pdb_id": null,
+      "auth_chain_id": null,
+      "alphabet": "DNA_letters_for_mRNA_reference",
+      "length": 1678,
+      "units": "nucleotides",
+      "path": "data/sequences/TNF_NM_000594.4.fasta",
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NM_000594.4&rettype=fasta&retmode=text",
+      "source_page": "https://www.ncbi.nlm.nih.gov/nuccore/NM_000594.4",
+      "retrieved_at_utc": "2026-10-13T08:48:11.456662+00:00",
+      "sha256": "6ccef3f9e9eb89b0b71c18f2867b7aac27ddb3d9056e634b2c22a04756dbc3f8",
+      "verified_on": "2026-10-13",
+      "description": "Homo sapiens tumor necrosis factor (TNF), mRNA",
+      "cds": {
+        "start_1based": 178,
+        "end_1based": 879,
+        "coordinate_system": "1-based inclusive on the representative RefSeq mRNA",
+        "length_nt": 702,
+        "includes_terminal_stop_codon": true,
+        "start_codon_dna_alphabet": "ATG",
+        "stop_codon_dna_alphabet": "TGA",
+        "codon_start": 1,
+        "protein_accession_version": "NP_000585.2",
+        "translated_length_aa": 233,
+        "translation_verified_against_downloaded_protein": true
+      },
+      "utr_ranges_1based": {
+        "five_prime": [
+          1,
+          177
+        ],
+        "three_prime": [
+          880,
+          1678
+        ]
+      },
+      "annotation": {
+        "path": "data/sequences/TNF_NM_000594.4.gb",
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NM_000594.4&rettype=gb&retmode=text",
+        "retrieved_at_utc": "2026-10-13T08:48:10.627611+00:00",
+        "sha256": "ff1088f2b503f34fece9dc1469e70c8f36492419fc78e35ceecd5869efb7292c",
+        "record_date": "27-APR-2025"
+      },
+      "rna_display": {
+        "conversion": "Replace T with U for an optional RNA-letter view only",
+        "experimental_structure": false,
+        "original_download_must_remain_unchanged": true
+      },
+      "limitations": [
+        "Representative versioned reference transcript, not patient RNA, a clinical expression dataset or an RNA-structure measurement.",
+        "Downloaded RefSeq mRNA is represented with A/C/G/T; optional T-to-U display is a computational letter conversion and says nothing about RNA folding.",
+        "CDS endpoints include the terminal stop codon, which does not encode a protein residue."
+      ]
+    },
+    {
+      "id": "TNF_NP_000585.2",
+      "display_name": "TNF: full RefSeq protein (NP_000585.2)",
+      "category": "refseq_protein",
+      "molecule": "protein",
+      "organism": "Homo sapiens",
+      "gene": "TNF",
+      "accession_version": "NP_000585.2",
+      "pdb_id": null,
+      "auth_chain_id": null,
+      "alphabet": "amino_acids",
+      "length": 233,
+      "units": "amino_acids",
+      "path": "data/sequences/TNF_NP_000585.2.fasta",
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=NP_000585.2&rettype=fasta&retmode=text",
+      "source_page": "https://www.ncbi.nlm.nih.gov/protein/NP_000585.2",
+      "retrieved_at_utc": "2026-10-13T08:48:12.256493+00:00",
+      "sha256": "e57f13a3cba124911f2d37cee6fb1ab91502625e2f90bb1b2b0f366282946811",
+      "cds": null,
+      "encoded_by": "NM_000594.4",
+      "description": "NP_000585.2 tumor necrosis factor [Homo sapiens]",
+      "verified_on": "2026-10-13",
+      "limitations": [
+        "Reference protein sequence alone provides no 3D coordinates.",
+        "Experimental constructs may differ from the full reference by truncation, unresolved residues or sequence substitutions."
+      ]
+    },
+    {
+      "id": "TOP2A_NM_001067.4",
+      "display_name": "TOP2A: representative human mRNA (NM_001067.4)",
+      "category": "refseq_mrna",
+      "molecule": "mRNA",
+      "organism": "Homo sapiens",
+      "gene": "TOP2A",
+      "accession_version": "NM_001067.4",
+      "pdb_id": null,
+      "auth_chain_id": null,
+      "alphabet": "DNA_letters_for_mRNA_reference",
+      "length": 5695,
+      "units": "nucleotides",
+      "path": "data/sequences/TOP2A_NM_001067.4.fasta",
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NM_001067.4&rettype=fasta&retmode=text",
+      "source_page": "https://www.ncbi.nlm.nih.gov/nuccore/NM_001067.4",
+      "retrieved_at_utc": "2026-10-13T08:48:14.207287+00:00",
+      "sha256": "701876dd9259abb8b8146dbab5a50ce5ba443d7078693b7e8edac0c3243d7c8e",
+      "verified_on": "2026-10-13",
+      "description": "Homo sapiens DNA topoisomerase II alpha (TOP2A), mRNA",
+      "cds": {
+        "start_1based": 106,
+        "end_1based": 4701,
+        "coordinate_system": "1-based inclusive on the representative RefSeq mRNA",
+        "length_nt": 4596,
+        "includes_terminal_stop_codon": true,
+        "start_codon_dna_alphabet": "ATG",
+        "stop_codon_dna_alphabet": "TAA",
+        "codon_start": 1,
+        "protein_accession_version": "NP_001058.2",
+        "translated_length_aa": 1531,
+        "translation_verified_against_downloaded_protein": true
+      },
+      "utr_ranges_1based": {
+        "five_prime": [
+          1,
+          105
+        ],
+        "three_prime": [
+          4702,
+          5695
+        ]
+      },
+      "annotation": {
+        "path": "data/sequences/TOP2A_NM_001067.4.gb",
+        "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NM_001067.4&rettype=gb&retmode=text",
+        "retrieved_at_utc": "2026-10-13T08:48:13.372318+00:00",
+        "sha256": "0f0e560f5b4d53338742d893bdda2776271c1c5a8223cf8121a69433456d2c26",
+        "record_date": "26-APR-2025"
+      },
+      "rna_display": {
+        "conversion": "Replace T with U for an optional RNA-letter view only",
+        "experimental_structure": false,
+        "original_download_must_remain_unchanged": true
+      },
+      "limitations": [
+        "Representative versioned reference transcript, not patient RNA, a clinical expression dataset or an RNA-structure measurement.",
+        "Downloaded RefSeq mRNA is represented with A/C/G/T; optional T-to-U display is a computational letter conversion and says nothing about RNA folding.",
+        "CDS endpoints include the terminal stop codon, which does not encode a protein residue."
+      ]
+    },
+    {
+      "id": "TOP2A_NP_001058.2",
+      "display_name": "TOP2A: full RefSeq protein (NP_001058.2)",
+      "category": "refseq_protein",
+      "molecule": "protein",
+      "organism": "Homo sapiens",
+      "gene": "TOP2A",
+      "accession_version": "NP_001058.2",
+      "pdb_id": null,
+      "auth_chain_id": null,
+      "alphabet": "amino_acids",
+      "length": 1531,
+      "units": "amino_acids",
+      "path": "data/sequences/TOP2A_NP_001058.2.fasta",
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=NP_001058.2&rettype=fasta&retmode=text",
+      "source_page": "https://www.ncbi.nlm.nih.gov/protein/NP_001058.2",
+      "retrieved_at_utc": "2026-10-13T08:48:15.342724+00:00",
+      "sha256": "031db775680c87f390adc54b56ace7205dc687bc417f113444ffe9fb69258329",
+      "cds": null,
+      "encoded_by": "NM_001067.4",
+      "description": "NP_001058.2 DNA topoisomerase 2-alpha [Homo sapiens]",
+      "verified_on": "2026-10-13",
+      "limitations": [
+        "Reference protein sequence alone provides no 3D coordinates.",
+        "Experimental constructs may differ from the full reference by truncation, unresolved residues or sequence substitutions."
+      ]
+    },
+    {
+      "id": "3WD5_A_declared",
+      "display_name": "3WD5 author A: TNF soluble construct (declared)",
+      "category": "pdb_declared_polymer",
+      "molecule": "protein",
+      "organism": "Homo sapiens",
+      "gene": "TNF",
+      "accession_version": null,
+      "pdb_id": "3WD5",
+      "auth_chain_id": "A",
+      "label_asym_id": "A",
+      "entity_id": "1",
+      "alphabet": "amino_acids",
+      "units": "amino_acids",
+      "length": 157,
+      "path": "data/sequences/3WD5_A_declared.fasta",
+      "source_url": "https://files.rcsb.org/download/3WD5.cif",
+      "source_page": "https://www.rcsb.org/structure/3WD5",
+      "retrieved_at_utc": "2026-10-13T07:08:16.818969+00:00",
+      "derived_at_utc": "2026-10-13T08:48:16.973927+00:00",
+      "sha256": "b94843e38b244000bc0156676b087976cec71c34f1b47cb96c90ccfc6ae890ed",
+      "source_path": "data/raw/structures/3WD5.cif",
+      "source_sha256": "f7a1f4e3b3467f3c35e571ba277ab6e6d80d6b6644af20fbed75bd07c21bdf50",
+      "cds": null,
+      "verified_on": "2026-10-13",
+      "description": "TNF soluble construct",
+      "derivation": "PDBx/mmCIF _entity_poly.pdbx_seq_one_letter_code_can",
+      "limitations": [
+        "Declared experimental construct sequence; not every residue has experimentally modeled coordinates.",
+        "3WD5 TNF construct has Asp31 where downloaded RefSeq NP_000585.2 and UniProt P01375 have Arg107; preserve source/version/construct discrepancy without calling it a pathogenic mutation."
+      ],
+      "related_refseq_protein": {
+        "accession_version": "NP_000585.2",
+        "annotated_soluble_start_1based": 77,
+        "annotated_soluble_end_1based": 233,
+        "mapping_evidence": "UniProt P01375 soluble-form annotation plus position-wise comparison of the related 157-residue construct; no exact-identity claim.",
+        "mapping_source_url": "https://rest.uniprot.org/uniprotkb/P01375.json",
+        "matching_positions": 156,
+        "compared_positions": 157,
+        "mismatches": [
+          {
+            "pdb_polymer_position_1based": 31,
+            "pdb_author_residue_number": 31,
+            "pdb_amino_acid": "D",
+            "refseq_protein_position_1based": 107,
+            "refseq_amino_acid": "R"
+          }
+        ]
+      }
+    },
+    {
+      "id": "3WD5_A_resolved",
+      "display_name": "3WD5 author A: TNF soluble construct (resolved)",
+      "category": "pdb_resolved_fragment",
+      "molecule": "protein",
+      "organism": "Homo sapiens",
+      "gene": "TNF",
+      "accession_version": null,
+      "pdb_id": "3WD5",
+      "auth_chain_id": "A",
+      "label_asym_id": "A",
+      "entity_id": "1",
+      "alphabet": "amino_acids",
+      "units": "amino_acids",
+      "length": 152,
+      "path": "data/sequences/3WD5_A_resolved.fasta",
+      "source_url": "https://files.rcsb.org/download/3WD5.cif",
+      "source_page": "https://www.rcsb.org/structure/3WD5",
+      "retrieved_at_utc": "2026-10-13T07:08:16.818969+00:00",
+      "derived_at_utc": "2026-10-13T08:48:16.973927+00:00",
+      "sha256": "d66ee035a49f9fff73fa9cf1926c19c8b05e8efe5c1b0bf10bc68e6e93f14300",
+      "source_path": "data/raw/structures/3WD5.cif",
+      "source_sha256": "f7a1f4e3b3467f3c35e571ba277ab6e6d80d6b6644af20fbed75bd07c21bdf50",
+      "cds": null,
+      "verified_on": "2026-10-13",
+      "description": "TNF soluble construct",
+      "derivation": "First model, author chain, protein ATOM residues with at least one finite positive-occupancy heavy atom accepted by tnf_atlas.structure.heavy_atoms",
+      "declared_length": 157,
+      "omitted_declared_positions_1based": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "fragments": [
+        {
+          "declared_start_1based": 6,
+          "declared_end_1based": 157,
+          "sequence_start_1based": 1,
+          "sequence_end_1based": 152,
+          "author_start": 6,
+          "author_end": 157
+        }
+      ],
+      "positive_occupancy_ca_count": 152,
+      "limitations": [
+        "Observed FASTA concatenates modeled residue identities; sequence gaps remain absent in the experimental structure, not new peptide connections.",
+        "Some residues have positive-occupancy heavy atoms but zero-occupancy CA; observed residue count and renderable CA count differ.",
+        "Author residue numbering is a separate namespace from the full reference protein.",
+        "3WD5 TNF construct has Asp31 where downloaded RefSeq NP_000585.2 and UniProt P01375 have Arg107; preserve source/version/construct discrepancy without calling it a pathogenic mutation."
+      ],
+      "related_refseq_protein": {
+        "accession_version": "NP_000585.2",
+        "annotated_soluble_start_1based": 77,
+        "annotated_soluble_end_1based": 233,
+        "mapping_evidence": "UniProt P01375 soluble-form annotation plus position-wise comparison of the related 157-residue construct; no exact-identity claim.",
+        "mapping_source_url": "https://rest.uniprot.org/uniprotkb/P01375.json",
+        "matching_positions": 156,
+        "compared_positions": 157,
+        "mismatches": [
+          {
+            "pdb_polymer_position_1based": 31,
+            "pdb_author_residue_number": 31,
+            "pdb_amino_acid": "D",
+            "refseq_protein_position_1based": 107,
+            "refseq_amino_acid": "R"
+          }
+        ]
+      }
+    },
+    {
+      "id": "3WD5_H_declared",
+      "display_name": "3WD5 author H: adalimumab Fab heavy-chain construct (declared)",
+      "category": "pdb_declared_polymer",
+      "molecule": "protein",
+      "organism": "Homo sapiens",
+      "gene": null,
+      "accession_version": null,
+      "pdb_id": "3WD5",
+      "auth_chain_id": "H",
+      "label_asym_id": "C",
+      "entity_id": "3",
+      "alphabet": "amino_acids",
+      "units": "amino_acids",
+      "length": 219,
+      "path": "data/sequences/3WD5_H_declared.fasta",
+      "source_url": "https://files.rcsb.org/download/3WD5.cif",
+      "source_page": "https://www.rcsb.org/structure/3WD5",
+      "retrieved_at_utc": "2026-10-13T07:08:16.818969+00:00",
+      "derived_at_utc": "2026-10-13T08:48:16.973927+00:00",
+      "sha256": "8e73123d5eb43601fb700cc5545a0638891dc1e96aab40d2a4da5597eed95a37",
+      "source_path": "data/raw/structures/3WD5.cif",
+      "source_sha256": "f7a1f4e3b3467f3c35e571ba277ab6e6d80d6b6644af20fbed75bd07c21bdf50",
+      "cds": null,
+      "verified_on": "2026-10-13",
+      "description": "adalimumab Fab heavy-chain construct",
+      "derivation": "PDBx/mmCIF _entity_poly.pdbx_seq_one_letter_code_can",
+      "limitations": [
+        "Declared experimental construct sequence; not every residue has experimentally modeled coordinates.",
+        "Fab heavy/light construct is not full therapeutic IgG or an endogenous gene called adalimumab; amino-acid sequence does not uniquely specify an engineered mRNA."
+      ]
+    },
+    {
+      "id": "3WD5_H_resolved",
+      "display_name": "3WD5 author H: adalimumab Fab heavy-chain construct (resolved)",
+      "category": "pdb_resolved_fragment",
+      "molecule": "protein",
+      "organism": "Homo sapiens",
+      "gene": null,
+      "accession_version": null,
+      "pdb_id": "3WD5",
+      "auth_chain_id": "H",
+      "label_asym_id": "C",
+      "entity_id": "3",
+      "alphabet": "amino_acids",
+      "units": "amino_acids",
+      "length": 214,
+      "path": "data/sequences/3WD5_H_resolved.fasta",
+      "source_url": "https://files.rcsb.org/download/3WD5.cif",
+      "source_page": "https://www.rcsb.org/structure/3WD5",
+      "retrieved_at_utc": "2026-10-13T07:08:16.818969+00:00",
+      "derived_at_utc": "2026-10-13T08:48:16.973927+00:00",
+      "sha256": "019b4967093fbfc5b1d1702d1032bcebfeeed9d05e3d2674c8fa8306c226a4db",
+      "source_path": "data/raw/structures/3WD5.cif",
+      "source_sha256": "f7a1f4e3b3467f3c35e571ba277ab6e6d80d6b6644af20fbed75bd07c21bdf50",
+      "cds": null,
+      "verified_on": "2026-10-13",
+      "description": "adalimumab Fab heavy-chain construct",
+      "derivation": "First model, author chain, protein ATOM residues with at least one finite positive-occupancy heavy atom accepted by tnf_atlas.structure.heavy_atoms",
+      "declared_length": 219,
+      "omitted_declared_positions_1based": [
+        137,
+        138,
+        139,
+        140,
+        141
+      ],
+      "fragments": [
+        {
+          "declared_start_1based": 1,
+          "declared_end_1based": 136,
+          "sequence_start_1based": 1,
+          "sequence_end_1based": 136,
+          "author_start": 1,
+          "author_end": 136
+        },
+        {
+          "declared_start_1based": 142,
+          "declared_end_1based": 219,
+          "sequence_start_1based": 137,
+          "sequence_end_1based": 214,
+          "author_start": 142,
+          "author_end": 219
+        }
+      ],
+      "positive_occupancy_ca_count": 210,
+      "limitations": [
+        "Observed FASTA concatenates modeled residue identities; sequence gaps remain absent in the experimental structure, not new peptide connections.",
+        "Some residues have positive-occupancy heavy atoms but zero-occupancy CA; observed residue count and renderable CA count differ.",
+        "Author residue numbering is a separate namespace from the full reference protein.",
+        "Fab heavy/light construct is not full therapeutic IgG or an endogenous gene called adalimumab; amino-acid sequence does not uniquely specify an engineered mRNA."
+      ]
+    },
+    {
+      "id": "3WD5_L_declared",
+      "display_name": "3WD5 author L: adalimumab Fab light-chain construct (declared)",
+      "category": "pdb_declared_polymer",
+      "molecule": "protein",
+      "organism": "Homo sapiens",
+      "gene": null,
+      "accession_version": null,
+      "pdb_id": "3WD5",
+      "auth_chain_id": "L",
+      "label_asym_id": "B",
+      "entity_id": "2",
+      "alphabet": "amino_acids",
+      "units": "amino_acids",
+      "length": 213,
+      "path": "data/sequences/3WD5_L_declared.fasta",
+      "source_url": "https://files.rcsb.org/download/3WD5.cif",
+      "source_page": "https://www.rcsb.org/structure/3WD5",
+      "retrieved_at_utc": "2026-10-13T07:08:16.818969+00:00",
+      "derived_at_utc": "2026-10-13T08:48:16.973927+00:00",
+      "sha256": "3db589fcb50f31fe4c54929bd3fa90e92052d1ed0f3bc0ff9a7b6d89f27aa298",
+      "source_path": "data/raw/structures/3WD5.cif",
+      "source_sha256": "f7a1f4e3b3467f3c35e571ba277ab6e6d80d6b6644af20fbed75bd07c21bdf50",
+      "cds": null,
+      "verified_on": "2026-10-13",
+      "description": "adalimumab Fab light-chain construct",
+      "derivation": "PDBx/mmCIF _entity_poly.pdbx_seq_one_letter_code_can",
+      "limitations": [
+        "Declared experimental construct sequence; not every residue has experimentally modeled coordinates.",
+        "Fab heavy/light construct is not full therapeutic IgG or an endogenous gene called adalimumab; amino-acid sequence does not uniquely specify an engineered mRNA."
+      ]
+    },
+    {
+      "id": "3WD5_L_resolved",
+      "display_name": "3WD5 author L: adalimumab Fab light-chain construct (resolved)",
+      "category": "pdb_resolved_fragment",
+      "molecule": "protein",
+      "organism": "Homo sapiens",
+      "gene": null,
+      "accession_version": null,
+      "pdb_id": "3WD5",
+      "auth_chain_id": "L",
+      "label_asym_id": "B",
+      "entity_id": "2",
+      "alphabet": "amino_acids",
+      "units": "amino_acids",
+      "length": 213,
+      "path": "data/sequences/3WD5_L_resolved.fasta",
+      "source_url": "https://files.rcsb.org/download/3WD5.cif",
+      "source_page": "https://www.rcsb.org/structure/3WD5",
+      "retrieved_at_utc": "2026-10-13T07:08:16.818969+00:00",
+      "derived_at_utc": "2026-10-13T08:48:16.973927+00:00",
+      "sha256": "e1e98e4d1445dc74e89d308f0d15a5f81911f2a64fa0b9f0611d5b9f7fe86583",
+      "source_path": "data/raw/structures/3WD5.cif",
+      "source_sha256": "f7a1f4e3b3467f3c35e571ba277ab6e6d80d6b6644af20fbed75bd07c21bdf50",
+      "cds": null,
+      "verified_on": "2026-10-13",
+      "description": "adalimumab Fab light-chain construct",
+      "derivation": "First model, author chain, protein ATOM residues with at least one finite positive-occupancy heavy atom accepted by tnf_atlas.structure.heavy_atoms",
+      "declared_length": 213,
+      "omitted_declared_positions_1based": [],
+      "fragments": [
+        {
+          "declared_start_1based": 1,
+          "declared_end_1based": 213,
+          "sequence_start_1based": 1,
+          "sequence_end_1based": 213,
+          "author_start": 1,
+          "author_end": 213
+        }
+      ],
+      "positive_occupancy_ca_count": 211,
+      "limitations": [
+        "Observed FASTA concatenates modeled residue identities; sequence gaps remain absent in the experimental structure, not new peptide connections.",
+        "Some residues have positive-occupancy heavy atoms but zero-occupancy CA; observed residue count and renderable CA count differ.",
+        "Author residue numbering is a separate namespace from the full reference protein.",
+        "Fab heavy/light construct is not full therapeutic IgG or an endogenous gene called adalimumab; amino-acid sequence does not uniquely specify an engineered mRNA."
+      ]
+    }
+  ]
+}

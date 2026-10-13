@@ -2,7 +2,7 @@
 
 [Personal site](https://koolfox.github.io/) with interactive coursework and research notes.
 
-- [Structural bioinformatics: TNF, TOP2A and adalimumab](structural-bioinformatics/README.md): exploratory RA hypothesis, verified literature/datasets, reproducible structural analysis and molecular graphics.
+- [Structural bioinformatics: adalimumab and TNF](structural-bioinformatics/README.md): a focused course study, verified literature, reproducible structural analysis, molecular graphics and a later TOP2A/cancer evidence comparison.
 - [Stochastic processes](stochastic-processes/): inventory and Ehrenfest demonstrations.
 - [Optimization](optimization/): genetic-algorithm and related coursework.
 

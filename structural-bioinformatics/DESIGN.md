@@ -205,7 +205,7 @@ The interface uses one blue action family against cool paper and white surfaces.
 - **Headline:** section headings. At the narrow breakpoint the size becomes (1.17rem), retaining the heavier weight and balanced wrapping.
 - **Title:** paper titles. Markdown subheadings use a close local variant (1.03rem, weight 690).
 - **Body:** the inherited reading baseline; introductory and explanatory paragraphs use nearby sizes appropriate to their role.
-- **Reader body:** repository Markdown, with paragraphs and lists constrained to (75ch). It becomes (0.86rem) at the narrow breakpoint.
+- **Reader body:** repository Markdown, with paragraphs and lists constrained to (75ch). It becomes (0.86rem) at the narrow breakpoint. Focused class chapters use a larger local variant (clamp(1rem, 1.4vw, 1.1rem)), keeping the same Arad voice, weight and line height.
 - **Label and control:** compact annotations and operable controls; tab labels use the separate tab role and a selected weight (720).
 - **Sequence:** exact sequence preview, with tabular numerals; it becomes (0.78rem) on phones. Coordinates use a smaller local monospace role (0.77rem).
 
@@ -218,6 +218,8 @@ Header, main content and footer share a centered outer width (1180px) and inline
 Reading content remains a single document flow. Regular sections are separated by (66px), becoming (48px) on phones; the active tab panel starts after (30px), becoming (24px). Figure, control and row gaps use the small observed spacing steps in the frontmatter. Long-document text is bounded to (1000px), with paragraphs and lists at (75ch); figures may occupy more width than the reading column.
 
 Tab navigation is sticky at the viewport top. All six destinations occupy equal columns on desktop, changing to three columns and two rows at (800px). At (560px), tab gaps close, labels wrap and each tab has a minimum height (48px). Reader selectors stack, the chapter list becomes one column, paper summaries stack, and the interface media becomes a single column. Tables, code, sequences and display mathematics scroll inside their own region when required.
+
+Focused class chapters keep the page title and all six tabs while hiding the site header/footer, supporting introduction, repeated booklet heading and description, document selector, field labels, chapter list and keyboard-help paragraph. The stage selector remains visible in one column with a maximum width (760px) and top margin (10px); the reading panel starts after (15px). Actions and their button group wrap with block margins (10px), and the first chapter heading starts after (16px). Class images retain their aspect ratio, use automatic width and a maximum height (42vh), and sit within smaller block margins (12px). Source/download links, the stage count and the visible study-view control remain beside the chapter.
 
 The molecular stage uses the height token in the frontmatter and becomes (325px) on phones. Its toolbar wraps at the intermediate breakpoint; model identity, controls, legend and readout remain outside or beside the stage so the geometry is not covered by a dashboard overlay.
 
@@ -271,7 +273,11 @@ The scene renders on demand, pauses while hidden and honors reduced motion. Inte
 
 ### Research Booklet and Scientific Media
 
-The reader places document/chapter selectors, previous/next controls, source/download links and a chapter list before the Markdown. Headings are deep-linked; formulas use actual KaTeX rendering and conceptual diagrams use Mermaid with Arad labels. A diagram has a white frame, caption and expandable source code. Optional renderer failures leave the original LaTeX or diagram source visible with a local note.
+In study view, the reader places document/chapter selectors, previous/next controls, source/download links and a chapter list before the Markdown. Headings are deep-linked; formulas use actual KaTeX rendering and conceptual diagrams use Mermaid with Arad labels. A diagram has a white frame, caption and expandable source code. Optional renderer failures leave the original LaTeX or diagram source visible with a local note.
+
+The class document adds a focused chapter variant of the same reader. Its nine numbered stages use “previous step” and “next step” controls, an accessible stage selector and a concise current-step count. PageDown/PageUp moves between stages while leaving editable fields alone; document and chapter remain in the URL, and laboratory inspection preserves the chapter for the return to reading. The introduction and full-document choice retain study view.
+
+The visible “Study view” (`نمای مطالعه`) button uses the existing pressed blue treatment to identify the focused state. It restores the full notebook controls and supporting text without changing the selected stage; its label becomes “Presentation view” (`نمای ارائه`) for returning to the focused chapter. Figures, oral rehearsal notes and source links stay in normal document flow, using the same reading hierarchy and scientific-media framing.
 
 Figures and video preserve their aspect ratio. Captions are small muted prose with source links and representation limits. Instructional diagrams remain distinguishable from experimental coordinates; the scientific claims and evidence constraints are governed by `PRODUCT.md` and the research methods rather than by this visual token system.
 

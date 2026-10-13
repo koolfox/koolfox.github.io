@@ -14,6 +14,8 @@ Confirmed: lightweight static HTML/CSS/JavaScript with a reusable Three.js graph
 
 An MSc computer-engineering student specializing in bioinformatics, preparing a structural-bioinformatics course investigation, and instructors reviewing its methods and evidence.
 
+Immediate weekly deliverable: select the protein and summarize three relevant papers in class. The visual notebook is the student's ongoing presentation surface. A nine-step chapter route provides short oral notes, actual figures, keyboard navigation and a return to the same step after molecular inspection. Numerical studies are optional appendices; MD and a complete original paper are later decisions.
+
 ## Product Purpose
 
 Current course scope: understand the adalimumab antibody, its deposited Fab–TNF interface and rheumatoid-arthritis mechanism, then critically assess a possible indirect connection with TOP2A and cancer. The student needs explanations they can learn and defend. Small verified RNA/protein sequence examples support that understanding; a large gene-expression research program remains future work. A negative or inconclusive finding about the proposed connection is a valid outcome.

@@ -9,6 +9,8 @@ Work in `structural-bioinformatics/` in `koolfox/koolfox.github.io`. Current use
 
 ## Choose the evidence needed
 
+Immediate course deliverable: protein selection and three paper summaries for this week's class. Use `docs/class-presentation.fa.md` for the nine-step visual/oral route. Keep supplementary numerical reports optional; MD is a future decision, not a current assignment requirement. `docs/academic-study-plan.fa.md` and `docs/paper-writing-guide.fa.md` separate proposed experiments from reported results.
+
 Start with `docs/course-guide.fa.md`, `docs/research-questions.fa.md`, `docs/connection-evidence.fa.md`, `docs/literature-selection-audit.fa.md` and the relevant `data/metadata/*.json`. The broad catalog and `research-protocol.fa.md` preserve optional future investigations. Use `docs/top2a-cancer-comparison.fa.md` for the comparison stage and `docs/sequences-primer.fa.md` for sequence interpretation.
 
 Verify publication year and peer-review status with publisher/PubMed records. A year embedded in a DOI is not necessarily publication year; the spatial RA paper's 2025 preprint was superseded in 2026. Keep three primary reviews in `literature.json`; distinguish supplemental context. Record study design, actual selected sample counts, access restrictions and limitations.
@@ -28,5 +30,7 @@ Verify publication year and peer-review status with publisher/PubMed records. A 
 Use source URLs, UTC retrieval times, SHA-256 and locked dependencies. Stream metadata or gene rows before downloading multi-gigabyte archives. A dataset record is not evidence that its full analysis ran.
 
 Run the documented Python and browser checks for changed behavior, including keyboard tabs and sequence states. Graphics must read the same experimental payload as numerical summaries, support reduced motion and identify schematic camera motion. Keep a measured coordinate plot distinct from a labeled pathway schematic. Keep publisher full text and patient-level records out of public commits.
+
+The executed supplementary study is in `docs/structural-feasibility-results.fa.md` and `data/processed/structural-feasibility.json`. Its partial-interface SASA loss, sphere-point sensitivity and rigid-separation control are static geometry, not dynamics, affinity, biological replication or an adalimumab-to-TOP2A test. Preserve associated Fab H/L and check source/code/figure hashes before reusing it.
 
 Work on a feature branch. For the user's authorized visible updates, push a concrete tested increment and publish through a checked PR merge; verify the Pages deployment and URL. Do not claim publication from a local render or a pushed feature branch alone. This skill does not schedule background updates or authorize contacting researchers.

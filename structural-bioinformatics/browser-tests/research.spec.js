@@ -206,3 +206,54 @@ test("optional diagram failure preserves Markdown and its original code", async 
     await expect(page.locator("#molecular-stage")).toHaveAttribute("data-state", "ready");
     await expect(page.locator("canvas.molecular-canvas")).toBeVisible();
 });
+
+test("guided class presentation advances one step and resumes after the laboratory", async ({ page }) => {
+    await ready(page);
+    await page.locator("#start-presentation").click();
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-document", "class-presentation.fa.md");
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-1");
+    await expect(page.locator("#reading-status")).toContainText("گام ۱ از ۹");
+    await expect(page.locator("body")).toHaveAttribute("data-presentation-mode", "true");
+    await expect(page.locator("#document-select")).toBeHidden();
+    await expect(page.locator("#chapter-prev")).toBeDisabled();
+    await page.keyboard.press("PageDown");
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-2");
+    await expect(page.locator("#markdown-content img")).toHaveAttribute("src", /antibody-anatomy\.svg$/);
+    await page.locator("#chapter-next").click();
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-3");
+    await page.getByRole("link", { name: "باز کردن آزمایشگاه سه‌بعدی", exact: true }).click();
+    await expect(page.locator("#molecular-stage")).toHaveAttribute("data-state", "ready");
+    await expect(page.locator("#tab-lab")).toHaveAttribute("aria-selected", "true");
+    await page.locator("#tab-reading").click();
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-3");
+    await page.selectOption("#chapter-select", "chapter-6");
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-optional-render", "ready");
+    await expect(page.locator("#markdown-content .mermaid-diagram svg")).toBeVisible();
+    await page.selectOption("#chapter-select", "chapter-9");
+    await expect(page.locator("#chapter-next")).toBeDisabled();
+    await page.locator("#chapter-prev").click();
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-8");
+    await page.locator("#presentation-view").click();
+    await expect(page.locator("body")).toHaveAttribute("data-presentation-mode", "false");
+    await expect(page.locator("#document-select")).toBeVisible();
+    await page.selectOption("#document-select", "research-questions.fa.md");
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-document", "research-questions.fa.md");
+    await expect(page.locator("#presentation-help")).toBeHidden();
+    await expect(page.locator("#chapter-next")).toHaveText("فصل بعدی");
+    await page.locator("#tab-basics").click();
+    await page.locator("#start-presentation").click();
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-document", "class-presentation.fa.md");
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-1");
+});
+
+test("executed surface analysis is readable as an optional numerical report", async ({ page }) => {
+    await page.goto(`${route}?document=structural-feasibility-results.fa.md&chapter=all#reading`);
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-state", "ready");
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-optional-render", "ready");
+    await expect(page.locator("#markdown-content .katex-display").first()).toBeVisible();
+    await expect(page.locator("#markdown-content img")).toHaveAttribute("src", /structural-feasibility\.svg$/);
+    await expect(page.locator("#markdown-content")).toContainText("785.89");
+    await expect(page.locator("#markdown-content")).toContainText("0.355");
+    await expect(page.locator("#markdown-content")).toContainText("MD نیست");
+    await expect(page.locator("#presentation-help")).toBeHidden();
+});

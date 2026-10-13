@@ -10,6 +10,8 @@ OWN-WORLD: Inherit Arad, blue actions, light neutral surfaces and readable docum
 
 STORY: Understand the research question and antibody anatomy; operate the molecular laboratory; inspect authentic RNA and protein sequences; read selection rationales and critical appraisals; follow a bounded method and presentation plan, and read the full source documents inside the chapter-based research booklet.
 
+CLASS ROUTE: This week's protein/paper presentation has nine short chapter steps with figures, source links and oral rehearsal notes. Previous/next and PageDown/PageUp preserve the step URL; laboratory inspection returns to that step. Advanced measured surface geometry and future MD/cellular protocols remain optional.
+
 FIRST VIEWPORT: A concise Persian title and coherent open question, with six accessible tabs. The default view explains the biological objects and the proposed connection. The laboratory tab gives the real model visual priority and exposes its controls, source and representation.
 
 FORM: Extend the existing portfolio identity. Use panels according to content, readable prose and scientific figures, with closed advanced details. Tabs reduce scrolling and support keyboard navigation and direct hash links; the phone layout exposes all six destinations. The reader shows repository Markdown by chapter with actual LaTeX and Mermaid rendering, preserving the source when optional rendering fails. Latin accessions and sequences remain LTR; the surrounding explanation remains Persian RTL.

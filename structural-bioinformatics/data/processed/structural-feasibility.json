@@ -1,0 +1,258 @@
+{
+  "schema_version": "1.0",
+  "experiment": "static_partial_tnf_fab_surface_and_rigid_separation_control",
+  "pdb_id": "3WD5",
+  "input": {
+    "path": "assets/3wd5.pdb",
+    "sha256": "fae6eee1b06b8cba0a466280dbc32563efaa54ec639afd921cb610d17debd216",
+    "bytes": 410994,
+    "source_url": "https://files.rcsb.org/download/3WD5.pdb",
+    "source_page": "https://www.rcsb.org/structure/3WD5",
+    "archive_retrieved_at_utc": "2026-10-13T07:08:16.818969+00:00",
+    "crystallographic_resolution_angstrom_rounded": 3.1
+  },
+  "execution": {
+    "started_at_utc": "2026-10-13T10:34:08.151251+00:00",
+    "completed_at_utc": "2026-10-13T10:34:34.041003+00:00",
+    "analysis_elapsed_seconds": 25.88964275000035,
+    "python": "3.13.9",
+    "system": "Darwin",
+    "architecture": "arm64",
+    "biopython": "1.88",
+    "numpy": "2.5.4",
+    "matplotlib": "3.11.2",
+    "code_sha256": {
+      "src/tnf_atlas/feasibility.py": "7c48bdb4fb66cde9acfe102453bf923353b3f473ea0522165313b04896bbd94b",
+      "src/tnf_atlas/structure.py": "31e6767e4266ec37ddc1e972d0d11f7b13091bf45d121e6814d635b110686ec0",
+      "scripts/analyze_structural_feasibility.py": "53e66057fb053ae19c57af4c614753f7d66e7e11c93b4def7c3755033eec4d67"
+    },
+    "biopython_sasa_implementation_sha256": "f083c039273fe14860869c30aff9f48642a4c5931f43cb0b089f4ec644c94f4f",
+    "random_seed": null,
+    "stochastic_sampling": false,
+    "reproduction_command": "uv run --project structural-bioinformatics python structural-bioinformatics/scripts/analyze_structural_feasibility.py"
+  },
+  "selection": {
+    "model_id": 0,
+    "chain_namespace": "author",
+    "target": [
+      "A"
+    ],
+    "associated_fab": [
+      "H",
+      "L"
+    ],
+    "policy": "protein ATOM, model 1, highest finite positive occupancy alternate; ties blank then A then alphabetical; exclude H/D, waters and heterogens",
+    "chain_counts": {
+      "A": {
+        "selected_heavy_atoms": 1187,
+        "selected_residues": 152,
+        "elements": {
+          "C": 756,
+          "N": 204,
+          "O": 225,
+          "S": 2
+        }
+      },
+      "H": {
+        "selected_heavy_atoms": 1593,
+        "selected_residues": 214,
+        "elements": {
+          "C": 1004,
+          "N": 266,
+          "O": 317,
+          "S": 6
+        }
+      },
+      "L": {
+        "selected_heavy_atoms": 1622,
+        "selected_residues": 213,
+        "elements": {
+          "C": 1010,
+          "N": 278,
+          "O": 329,
+          "S": 5
+        }
+      }
+    },
+    "representation": "deposited asymmetric unit: one TNF protomer and one Fab; no crystal symmetry mates or full IgG"
+  },
+  "surface_method": {
+    "algorithm": "Biopython ShrakeRupley, deterministic golden-spiral sphere points",
+    "probe_radius_angstrom": 1.4,
+    "atomic_vdw_radii_angstrom": {
+      "C": 1.7,
+      "N": 1.55,
+      "O": 1.52,
+      "S": 1.8
+    },
+    "relaxation_of_isolated_components": false,
+    "total_loss_definition": "SASA(A isolated) + SASA(H/L associated isolated) - SASA(A+H+L)",
+    "mean_side_area_definition": "total lost SASA / 2; explicitly chosen interface-area convention",
+    "documentation_url": "https://biopython.org/docs/latest/api/Bio.PDB.SASA.html",
+    "implementation_url": "https://github.com/biopython/biopython/blob/biopython-188/Bio/PDB/SASA.py",
+    "method_reference_doi": "10.1016/0022-2836(73)90011-9"
+  },
+  "contact_cutoff_sensitivity": [
+    {
+      "cutoff_angstrom": 4.0,
+      "heavy_atom_contact_count": 126,
+      "residue_pair_count": 34,
+      "target_interface_residue_count": 17,
+      "fab_interface_residue_count": 17
+    },
+    {
+      "cutoff_angstrom": 4.5,
+      "heavy_atom_contact_count": 252,
+      "residue_pair_count": 40,
+      "target_interface_residue_count": 17,
+      "fab_interface_residue_count": 20
+    },
+    {
+      "cutoff_angstrom": 5.0,
+      "heavy_atom_contact_count": 445,
+      "residue_pair_count": 53,
+      "target_interface_residue_count": 18,
+      "fab_interface_residue_count": 23
+    }
+  ],
+  "surface_sampling": [
+    {
+      "n_points_per_atom": 100,
+      "probe_radius_angstrom": 1.4,
+      "isolated_target_sasa_angstrom2": 8637.157585525229,
+      "isolated_associated_fab_sasa_angstrom2": 19020.74665850675,
+      "complex_sasa_angstrom2": 26086.187405456836,
+      "target_lost_sasa_angstrom2": 816.2656306878825,
+      "fab_lost_sasa_angstrom2": 755.4512078872576,
+      "total_lost_sasa_angstrom2": 1571.7168385751393,
+      "mean_side_interface_area_angstrom2": 785.8584192875696,
+      "calculation_elapsed_seconds": 0.9499963329999446
+    },
+    {
+      "n_points_per_atom": 480,
+      "probe_radius_angstrom": 1.4,
+      "isolated_target_sasa_angstrom2": 8634.85563429739,
+      "isolated_associated_fab_sasa_angstrom2": 18992.47061298004,
+      "complex_sasa_angstrom2": 26050.027561963878,
+      "target_lost_sasa_angstrom2": 809.1258613457676,
+      "fab_lost_sasa_angstrom2": 768.1728239677832,
+      "total_lost_sasa_angstrom2": 1577.2986853135517,
+      "mean_side_interface_area_angstrom2": 788.6493426567758,
+      "calculation_elapsed_seconds": 3.8746373750000203
+    },
+    {
+      "n_points_per_atom": 960,
+      "probe_radius_angstrom": 1.4,
+      "isolated_target_sasa_angstrom2": 8631.673820094857,
+      "isolated_associated_fab_sasa_angstrom2": 19004.238096217545,
+      "complex_sasa_angstrom2": 26064.127722252568,
+      "target_lost_sasa_angstrom2": 809.0301121466719,
+      "fab_lost_sasa_angstrom2": 762.7540819131609,
+      "total_lost_sasa_angstrom2": 1571.7841940598337,
+      "mean_side_interface_area_angstrom2": 785.8920970299168,
+      "calculation_elapsed_seconds": 8.156095833999643
+    }
+  ],
+  "numerical_sensitivity": {
+    "mean_side_area_range_angstrom2": [
+      785.8584192875696,
+      788.6493426567758
+    ],
+    "mean_side_range_relative_to_highest_points_percent": 0.35512806144174375,
+    "two_highest_point_resolutions_absolute_difference_angstrom2": 2.757245626859003,
+    "interpretation": "Discretization sensitivity at a fixed pose, not biological uncertainty, independent replicates or a confidence interval"
+  },
+  "rigid_separation_control": {
+    "translated_author_chains": [
+      "H",
+      "L"
+    ],
+    "translation_angstrom": [
+      150.0,
+      0.0,
+      0.0
+    ],
+    "time_or_force_model": null,
+    "minimum_cross_distance_before_angstrom": 2.3385257302356233,
+    "minimum_cross_distance_after_angstrom": 46.45345798166707,
+    "maximum_probe_inflated_atom_diameter_angstrom": 6.4,
+    "max_all_fab_atom_pair_distance_change_angstrom": 0.0,
+    "max_all_target_atom_pair_distance_change_angstrom": 0.0,
+    "contact_cutoff_sensitivity": [
+      {
+        "cutoff_angstrom": 4.0,
+        "heavy_atom_contact_count": 0,
+        "residue_pair_count": 0,
+        "target_interface_residue_count": 0,
+        "fab_interface_residue_count": 0
+      },
+      {
+        "cutoff_angstrom": 4.5,
+        "heavy_atom_contact_count": 0,
+        "residue_pair_count": 0,
+        "target_interface_residue_count": 0,
+        "fab_interface_residue_count": 0
+      },
+      {
+        "cutoff_angstrom": 5.0,
+        "heavy_atom_contact_count": 0,
+        "residue_pair_count": 0,
+        "target_interface_residue_count": 0,
+        "fab_interface_residue_count": 0
+      }
+    ],
+    "surface_sampling": [
+      {
+        "n_points_per_atom": 100,
+        "probe_radius_angstrom": 1.4,
+        "isolated_target_sasa_angstrom2": 8637.157585525229,
+        "isolated_associated_fab_sasa_angstrom2": 19020.74665850675,
+        "complex_sasa_angstrom2": 27657.904244031975,
+        "target_lost_sasa_angstrom2": 0.0,
+        "fab_lost_sasa_angstrom2": 0.0,
+        "total_lost_sasa_angstrom2": 0.0,
+        "mean_side_interface_area_angstrom2": 0.0,
+        "calculation_elapsed_seconds": 1.0015501670004596
+      },
+      {
+        "n_points_per_atom": 480,
+        "probe_radius_angstrom": 1.4,
+        "isolated_target_sasa_angstrom2": 8634.85563429739,
+        "isolated_associated_fab_sasa_angstrom2": 18992.47061298004,
+        "complex_sasa_angstrom2": 27627.326247277433,
+        "target_lost_sasa_angstrom2": -1.8189894035458565e-12,
+        "fab_lost_sasa_angstrom2": 0.0,
+        "total_lost_sasa_angstrom2": -3.637978807091713e-12,
+        "mean_side_interface_area_angstrom2": -1.8189894035458565e-12,
+        "calculation_elapsed_seconds": 3.8512055419996614
+      },
+      {
+        "n_points_per_atom": 960,
+        "probe_radius_angstrom": 1.4,
+        "isolated_target_sasa_angstrom2": 8631.673820094857,
+        "isolated_associated_fab_sasa_angstrom2": 19004.238096217545,
+        "complex_sasa_angstrom2": 27635.9119163124,
+        "target_lost_sasa_angstrom2": 0.0,
+        "fab_lost_sasa_angstrom2": 0.0,
+        "total_lost_sasa_angstrom2": 0.0,
+        "mean_side_interface_area_angstrom2": 0.0,
+        "calculation_elapsed_seconds": 7.9906131670013565
+      }
+    ],
+    "interpretation": "A geometry/software control; does not test sequence specificity, equilibrium dissociation or drug action"
+  },
+  "limitations": [
+    "Partial deposited interface excludes crystal-symmetry epitope contacts, physiological TNF trimer and full antibody Fc.",
+    "Missing and zero-occupancy atoms remain absent; no added hydrogens, solvent, repair or force-field preparation.",
+    "SASA loss and distance contacts are geometric descriptors; no binding affinity, hydrogen-bond assignment, free energy or efficacy inferred.",
+    "Rigid translation is a synthetic static control, not molecular dynamics or a measured dissociation trajectory.",
+    "Crystallographic resolution 3.10 Å is not the standard deviation of independent atomic-position noise.",
+    "Sphere-point sensitivity does not measure experimental uncertainty or generate independent biological observations.",
+    "No TOP2A, gene expression, CRP, RNA folding, clinical outcome or cancer response was simulated or measured."
+  ],
+  "original_figure": {
+    "path": "assets/structural-feasibility.svg",
+    "sha256": "5c1c53e1bf71aaf3cbe05108713afa6fb11b880c4052012954dc02bbf179a701",
+    "interpretation": "Original plot of executed static measurements and numerical control"
+  }
+}

@@ -36,7 +36,16 @@ def plot_contacts(report: dict, output: Path):
     axes[0].set_ylabel("TNF A author residue number")
     fig.suptitle(f"3WD5 asymmetric unit | contacts ≤ {report['cutoff_angstrom']:g} Å", fontsize=14)
     output.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(output, dpi=180)
+    fig.savefig(
+        output,
+        dpi=180,
+        metadata={
+            "impeccable:prompt": "Origin: original Matplotlib heavy-atom residue contact map "
+            "from experimental 3WD5; source https://www.rcsb.org/structure/3WD5; "
+            "method tnf-atlas analyze / src/tnf_atlas/figures.py. The partial "
+            "interface is geometric evidence, not binding energy or treatment response.",
+        },
+    )
     fig.savefig(output.with_suffix(".svg"))
     plt.close(fig)
 
@@ -77,5 +86,14 @@ def plot_coordinates(model, output: Path, interface: list):
     axis.set_axis_off()
     axis.legend(loc="upper left", frameon=False)
     axis.set_title("TNF–adalimumab Fab | 3WD5, 3.10 Å\nOne TNF protomer, experimental Cα trace")
-    fig.savefig(output, dpi=180)
+    fig.savefig(
+        output,
+        dpi=180,
+        metadata={
+            "impeccable:prompt": "Origin: original Matplotlib C-alpha trace from occupied "
+            "experimental 3WD5; source https://www.rcsb.org/structure/3WD5; "
+            "method tnf-atlas analyze / src/tnf_atlas/figures.py. One TNF protomer "
+            "and one Fab asymmetric unit; full IgG and symmetry contacts are absent.",
+        },
+    )
     plt.close(fig)

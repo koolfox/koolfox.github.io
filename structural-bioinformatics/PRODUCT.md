@@ -16,7 +16,7 @@ An MSc computer-engineering student specializing in bioinformatics, preparing a 
 
 ## Product Purpose
 
-Explore TNF, CRP, adalimumab and molecular/clinical evidence for rheumatoid arthritis, psoriasis, ankylosing spondylitis and lupus. Help select a defensible research question and prepare material that can later support a manuscript.
+Current course scope: understand the adalimumab antibody, its deposited Fab–TNF interface and rheumatoid-arthritis mechanism, then critically assess a possible indirect connection with TOP2A and cancer. The student needs explanations they can learn and defend. Small verified RNA/protein sequence examples support that understanding; a large gene-expression research program remains future work. A negative or inconclusive finding about the proposed connection is a valid outcome.
 
 ## Operating Context
 
@@ -26,13 +26,13 @@ Existing public course/personal repository: `koolfox/koolfox.github.io`. Work in
 
 Persian RTL interface; rotatable experimental molecular coordinates; reproducible figures; a rendered structural animation; source-linked literature and dataset catalogs. Preserve the site's existing Arad font and visual identity.
 
-The user explicitly asks for exploration without premature conclusions. The meaning of the user's nucleic-acid term is unresolved. DNA sequence, RNA abundance, RNA structure, protein geometry, biomarker concentrations and treatment outcomes remain separate evidence types. Lupus is a safety/comparator lane for this drug, not an assumed indication.
+The user explicitly asks for exploration without premature conclusions. DNA sequence, RNA abundance, RNA structure, protein geometry, biomarker concentrations and treatment outcomes remain separate evidence types. RefSeq mRNA displayed using T is a reference alphabet; a T-to-U conversion is a labeled teaching operation. None of the current PDB entries supplies an RNA structure. Lupus is a safety/comparator lane for this drug, not an assumed indication.
 
 Long-term direction confirmed by the user: an educational/research tool, with this case as its first study. Its roadmap is exploratory, not implemented functionality. Design priorities are correct Persian RTL, isolated Latin identifiers, a real Persian font and stronger visual hierarchy. The user prefers Paper for finding a stable direction, followed by Impeccable for code refinement; no active Paper connection exists in this session.
 
 ## Evidence on Hand
 
-Three reviewed recent primary papers; fourteen verified data sources; RCSB structures 3WD5, 1TNF and 1B09; a real ManimGX render. The deposited 3WD5 view contains one TNF protomer and Fab, with an incomplete physiological epitope. Patient-specific molecular structures and a linked four-disease clinical dataset are absent.
+Three core recent primary papers, with separately appraised structural and TOP2A bridge references; an optional 25-source catalog; RCSB structures 3WD5, 1TNF, 1B09 and 4FM9; a real ManimGX render. The deposited 3WD5 view contains one TNF protomer and Fab, with an incomplete physiological epitope. 4FM9 shows a TOP2A cleavage-core asymmetric unit with synthetic DNA. Patient-specific molecular structures and a linked four-disease clinical dataset are absent.
 
 ## Product Principles
 
@@ -40,3 +40,4 @@ Three reviewed recent primary papers; fourteen verified data sources; RCSB struc
 - Keep an exploratory result distinct from a causal or clinical claim.
 - Make analyses repeatable from source URLs, checksums and pinned dependencies.
 - Use the same data for graphics and numerical readouts.
+- Organize the presentation into accessible tabs, keeping advanced sources and future experiments optional.

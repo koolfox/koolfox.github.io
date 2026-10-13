@@ -1,0 +1,1836 @@
+{
+  "schema_version": "1.0.0",
+  "verified_on": "2026-10-13",
+  "verification_scope": "Official source metadata, GEO series-matrix headers and selected count-file headers were read live; this catalog is not an expression analysis or a clinical validation result.",
+  "access_classifications": {
+    "open_structure": "Public coordinates and metadata; no authentication required.",
+    "open_sequence": "Public sequence and annotation; no authentication required.",
+    "open_omics": "Public sample metadata and processed omics; raw availability is recorded separately.",
+    "public_processed_only": "Processed omics are public; raw sequencing reads are not supplied because of consent limitations.",
+    "aggregate_only": "Trial registry and aggregate results are public; participant-level data are not supplied by the registry.",
+    "registry_only": "Trial protocol metadata are public; this record currently has no posted registry results.",
+    "open_spatial_large": "Open spatial transcriptomics and images, with large per-patient archives; metadata is small and separately downloadable.",
+    "public_processed_controlled_raw": "Processed single-cell object is public; human raw sequencing files require a controlled-access application."
+  },
+  "global_limitations": [
+    "No verified dataset links all requested diseases, individual structures, drug exposure, serial CRP, blood and urine measurements.",
+    "Reference structures are not patient-specific and cannot be joined to GEO participants by patient ID.",
+    "Psoriasis skin data are not a psoriatic arthritis joint cohort.",
+    "Lupus nephritis is cataloged separately and must not be described as an adalimumab treatment cohort.",
+    "Metadata inspection does not certify data quality, causal treatment effects, predictive performance or publication novelty.",
+    "Third-party data and publications retain their own licenses independently of this repository."
+  ],
+  "recommended_primary_design": {
+    "structure": "3WD5",
+    "unbound_reference": "1TNF",
+    "discovery_cohort": "GSE85034",
+    "validation_cohort": "GSE74697",
+    "research_question": "Describe the experimentally observed TNF-adalimumab Fab interface and test paired changes in prespecified TNF-related expression signatures after adalimumab in psoriasis skin.",
+    "response_analysis": "Exploratory only: GSE85034 has 14 ADA baseline-lesional/week-16 pairs and a small response-labeled subgroup derived from PASI.",
+    "independent_unit": "participant",
+    "validation_limit": "GSE74697 supports independent before/after expression validation but has no inspected public PASI/response labels.",
+    "clinical_crp_analysis": "deferred_pending_a_verified_participant_level_dataset",
+    "exploratory_TOP2A_RA_extension": {
+      "question": "Is within-cell-type TOP2A expression associated with RA inflammatory/proliferative state and does it change after adalimumab, independently of changes in cell composition?",
+      "case_control_discovery": "GSE55235",
+      "case_control_validation": "GSE89408",
+      "baseline_response_secondary": "GSE138746",
+      "paired_synovial_candidate": [
+        "ZENODO:15058262",
+        "ZENODO:15058715"
+      ],
+      "paired_synovial_ADA_participants": 6,
+      "paired_synovial_fluid_candidate": "GSE296117",
+      "paired_synovial_fluid_ADA_participants": 5,
+      "analysis_readiness": "Metadata/feature feasibility established; actual spatial and Seurat expression import and QC are pending.",
+      "minimum_controls": [
+        "patient-level pairing/pseudobulk",
+        "cell-type abundance",
+        "proliferation and cell-cycle signatures excluding TOP2A itself",
+        "sample region/segmentation",
+        "concurrent DMARD exposure"
+      ],
+      "binding_claim": "No direct TNF-TOP2A or adalimumab-TOP2A binding claim is supported by these datasets."
+    }
+  },
+  "datasets": [
+    {
+      "id": "3WD5",
+      "source": "RCSB PDB",
+      "kind": "experimental_structure",
+      "title": "Crystal structure of TNFalpha in complex with Adalimumab Fab fragment",
+      "status": "metadata_verified",
+      "verified_on": "2026-10-13",
+      "source_url": "https://www.rcsb.org/structure/3WD5",
+      "evidence_urls": [
+        "https://data.rcsb.org/rest/v1/core/entry/3WD5",
+        "https://data.rcsb.org/rest/v1/core/polymer_entity/3WD5/1",
+        "https://data.rcsb.org/rest/v1/core/polymer_entity/3WD5/2",
+        "https://data.rcsb.org/rest/v1/core/polymer_entity/3WD5/3",
+        "https://data.rcsb.org/rest/v1/core/assembly/3WD5/1"
+      ],
+      "organism": "Homo sapiens",
+      "method": "X-RAY DIFFRACTION",
+      "resolution_angstrom": 3.101,
+      "access": {
+        "classification": "open_structure",
+        "controlled_access_required": false
+      },
+      "license": {
+        "name": "CC0-1.0",
+        "url": "https://www.rcsb.org/pages/policies"
+      },
+      "downloads": [
+        {
+          "url": "https://files.rcsb.org/download/3WD5.cif",
+          "format": "mmCIF",
+          "role": "asymmetric_unit"
+        },
+        {
+          "url": "https://files.rcsb.org/download/3WD5.pdb",
+          "format": "PDB",
+          "role": "asymmetric_unit"
+        },
+        {
+          "url": "https://files.rcsb.org/download/3WD5-assembly1.cif",
+          "format": "mmCIF",
+          "role": "author_assigned_assembly_1"
+        }
+      ],
+      "chains": [
+        {
+          "entity_id": "1",
+          "label_asym_id": "A",
+          "auth_asym_id": "A",
+          "molecule": "TNF",
+          "sequence_length": 157,
+          "uniprot_id": "P01375"
+        },
+        {
+          "entity_id": "2",
+          "label_asym_id": "B",
+          "auth_asym_id": "L",
+          "molecule": "Adalimumab light chain",
+          "sequence_length": 213
+        },
+        {
+          "entity_id": "3",
+          "label_asym_id": "C",
+          "auth_asym_id": "H",
+          "molecule": "Adalimumab heavy chain Fab fragment",
+          "sequence_length": 219
+        }
+      ],
+      "biological_assembly": {
+        "id": "1",
+        "polymer_chain_count": 3,
+        "stoichiometry": "A1B1C1",
+        "description": "One TNF chain, one Fab light chain and one Fab heavy chain; does not contain the complete TNF trimer plus three Fab fragments."
+      },
+      "limitations": [
+        "Fab only; Fc and the complete therapeutic IgG are absent.",
+        "Interface contacts from the deposited three chains do not include all inter-subunit contacts from crystal symmetry neighbors.",
+        "A physiological trimer-Fab rendering requires an explicitly documented derived symmetry assembly.",
+        "Reference experimental coordinates do not provide patient-level treatment-response labels."
+      ]
+    },
+    {
+      "id": "1TNF",
+      "source": "RCSB PDB",
+      "kind": "experimental_structure",
+      "title": "The structure of tumor necrosis factor-alpha at 2.6 angstroms resolution. Implications for receptor binding",
+      "status": "metadata_verified",
+      "verified_on": "2026-10-13",
+      "source_url": "https://www.rcsb.org/structure/1TNF",
+      "evidence_urls": [
+        "https://data.rcsb.org/rest/v1/core/entry/1TNF",
+        "https://data.rcsb.org/rest/v1/core/polymer_entity/1TNF/1",
+        "https://data.rcsb.org/rest/v1/core/assembly/1TNF/1"
+      ],
+      "organism": "Homo sapiens",
+      "method": "X-RAY DIFFRACTION",
+      "resolution_angstrom": 2.6,
+      "access": {
+        "classification": "open_structure",
+        "controlled_access_required": false
+      },
+      "license": {
+        "name": "CC0-1.0",
+        "url": "https://www.rcsb.org/pages/policies"
+      },
+      "downloads": [
+        {
+          "url": "https://files.rcsb.org/download/1TNF.cif",
+          "format": "mmCIF",
+          "role": "unbound_tnf_reference"
+        }
+      ],
+      "polymer_chains": [
+        "A",
+        "B",
+        "C"
+      ],
+      "sequence_length_per_chain": 157,
+      "uniprot_id": "P01375",
+      "biological_assembly": {
+        "id": "1",
+        "polymer_chain_count": 3,
+        "stoichiometry": "A3",
+        "symmetry": "C3"
+      },
+      "limitations": [
+        "Missing modeled residues and resolution differ from 3WD5; align comparable residues and report the alignment.",
+        "A bound/unbound coordinate difference is not by itself proof of a causal drug-induced conformational change."
+      ]
+    },
+    {
+      "id": "1B09",
+      "source": "RCSB PDB",
+      "kind": "experimental_structure",
+      "title": "Human C-reactive protein complexed with phosphocholine",
+      "status": "metadata_verified",
+      "verified_on": "2026-10-13",
+      "source_url": "https://www.rcsb.org/structure/1B09",
+      "evidence_urls": [
+        "https://data.rcsb.org/rest/v1/core/entry/1B09",
+        "https://data.rcsb.org/rest/v1/core/polymer_entity/1B09/1",
+        "https://data.rcsb.org/rest/v1/core/assembly/1B09/1"
+      ],
+      "organism": "Homo sapiens",
+      "method": "X-RAY DIFFRACTION",
+      "resolution_angstrom": 2.5,
+      "access": {
+        "classification": "open_structure",
+        "controlled_access_required": false
+      },
+      "license": {
+        "name": "CC0-1.0",
+        "url": "https://www.rcsb.org/pages/policies"
+      },
+      "downloads": [
+        {
+          "url": "https://files.rcsb.org/download/1B09.cif",
+          "format": "mmCIF",
+          "role": "crp_pentamer_reference"
+        }
+      ],
+      "polymer_chains": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "sequence_length_per_chain": 206,
+      "uniprot_id": "P02741",
+      "biological_assembly": {
+        "id": "1",
+        "polymer_chain_count": 5
+      },
+      "ligands": [
+        "PHOSPHOCHOLINE",
+        "CALCIUM ION"
+      ],
+      "limitations": [
+        "Educational CRP structure; no adalimumab molecule or treatment-effect measurement is present."
+      ]
+    },
+    {
+      "id": "P01375",
+      "source": "UniProtKB",
+      "kind": "protein_sequence_annotation",
+      "title": "Tumor necrosis factor",
+      "status": "metadata_verified",
+      "verified_on": "2026-10-13",
+      "source_url": "https://www.uniprot.org/uniprotkb/P01375",
+      "evidence_urls": [
+        "https://rest.uniprot.org/uniprotkb/P01375.json"
+      ],
+      "organism": "Homo sapiens",
+      "gene": "TNF",
+      "canonical_sequence_length": 233,
+      "soluble_form": {
+        "start": 77,
+        "end": 233,
+        "length": 157
+      },
+      "access": {
+        "classification": "open_sequence",
+        "controlled_access_required": false
+      },
+      "license": {
+        "name": "CC-BY-4.0",
+        "url": "https://www.uniprot.org/api-documentation/support-data"
+      },
+      "downloads": [
+        {
+          "url": "https://rest.uniprot.org/uniprotkb/P01375.fasta",
+          "format": "FASTA",
+          "role": "canonical_sequence"
+        }
+      ],
+      "limitations": [
+        "Canonical membrane precursor sequence is longer than the soluble fragment in 3WD5/1TNF.",
+        "Validate PDB-to-UniProt residue mapping before transferring interface annotations."
+      ]
+    },
+    {
+      "id": "P02741",
+      "source": "UniProtKB",
+      "kind": "protein_sequence_annotation",
+      "title": "C-reactive protein",
+      "status": "metadata_verified",
+      "verified_on": "2026-10-13",
+      "source_url": "https://www.uniprot.org/uniprotkb/P02741",
+      "evidence_urls": [
+        "https://rest.uniprot.org/uniprotkb/P02741.json"
+      ],
+      "organism": "Homo sapiens",
+      "gene": "CRP",
+      "canonical_sequence_length": 224,
+      "mature_chain": {
+        "start": 19,
+        "end": 224,
+        "length": 206
+      },
+      "access": {
+        "classification": "open_sequence",
+        "controlled_access_required": false
+      },
+      "license": {
+        "name": "CC-BY-4.0",
+        "url": "https://www.uniprot.org/api-documentation/support-data"
+      },
+      "downloads": [
+        {
+          "url": "https://rest.uniprot.org/uniprotkb/P02741.fasta",
+          "format": "FASTA",
+          "role": "canonical_sequence"
+        }
+      ],
+      "limitations": [
+        "CRP mRNA expression is not a serum CRP concentration measurement."
+      ]
+    },
+    {
+      "id": "GSE85034",
+      "source": "NCBI GEO",
+      "kind": "human_treatment_omics",
+      "title": "Shrinking the Psoriasis assessment gap: Early gene-expression profiling accurately predicts response to long-term treatment",
+      "status": "metadata_and_pairing_verified",
+      "priority": "primary_discovery",
+      "verified_on": "2026-10-13",
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE85034",
+      "evidence_urls": [
+        "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE85nnn/GSE85034/matrix/GSE85034_series_matrix.txt.gz"
+      ],
+      "organism": "Homo sapiens",
+      "disease": "plaque psoriasis",
+      "tissue": "skin biopsy",
+      "assay": "expression profiling by array",
+      "platform": "GPL10558",
+      "participant_count": 30,
+      "sample_count": 179,
+      "drug_groups": [
+        {
+          "drug": "adalimumab",
+          "metadata_code": "ADA",
+          "participant_count": 15,
+          "sample_count": 89
+        },
+        {
+          "drug": "methotrexate",
+          "metadata_code": "MTX",
+          "participant_count": 15,
+          "sample_count": 90
+        }
+      ],
+      "timepoints": [
+        "baseline non-lesional",
+        "baseline lesional",
+        "week 1",
+        "week 2",
+        "week 4",
+        "week 16"
+      ],
+      "paired_before_after": true,
+      "pairing": {
+        "id_source": "Subject number parsed from Sample_title",
+        "adalimumab_complete_baseline_lesional_week16_pairs": 14,
+        "adalimumab_subject_missing_week16": "10",
+        "adalimumab_subject_ids": [
+          "3",
+          "4",
+          "6",
+          "8",
+          "10",
+          "12",
+          "14",
+          "15",
+          "18",
+          "19",
+          "22",
+          "23",
+          "26",
+          "27",
+          "30"
+        ]
+      },
+      "response_labels": {
+        "availability": "derived_from_public_numeric_PASI",
+        "definition": "PASI75 at week 16: 100*(baseline_lesional_PASI-week16_PASI)/baseline_lesional_PASI >= 75",
+        "adalimumab_responders": 9,
+        "adalimumab_below_PASI75": 5,
+        "adalimumab_missing_week16": 1,
+        "derivation_status": "metadata_calculation_verified_not_a_published_result_replication"
+      },
+      "clinical_fields_verified": [
+        "treatment",
+        "timepoint",
+        "pasi"
+      ],
+      "serum_crp": {
+        "availability": "absent_from_inspected_series_matrix_header"
+      },
+      "urine_measurements": {
+        "availability": "absent_from_inspected_series_matrix_header"
+      },
+      "access": {
+        "classification": "open_omics",
+        "controlled_access_required": false
+      },
+      "license": {
+        "name": "GEO public access; submitter rights may apply",
+        "url": "https://www.ncbi.nlm.nih.gov/geo/info/disclaimer.html"
+      },
+      "downloads": [
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE85nnn/GSE85034/matrix/GSE85034_series_matrix.txt.gz",
+          "format": "GEO series matrix gzip",
+          "role": "processed_expression_and_metadata"
+        }
+      ],
+      "limitations": [
+        "14 ADA pairs are a small exploratory cohort; longitudinal arrays are not independent participants.",
+        "Non-lesional skin is from psoriasis participants and is not an independent healthy-control cohort.",
+        "ADA Subject27 week2 is labeled WK2; normalization of this known spelling variant must be recorded.",
+        "MTX Subject28 has anomalous WK 1NL/WK 1LS labels; resolve against primary study before interpreting as baseline.",
+        "No inspected public serum CRP, urine, drug trough concentration or anti-drug antibody values.",
+        "The deposited matrix was quantile-normalized using lumiN; record platform probe annotation and avoid unjustified repeated normalization."
+      ]
+    },
+    {
+      "id": "GSE74697",
+      "source": "NCBI GEO",
+      "kind": "human_treatment_omics",
+      "title": "Long non-coding RNAs in psoriatic and healthy skin",
+      "status": "metadata_and_title_pairing_verified",
+      "priority": "independent_expression_validation",
+      "verified_on": "2026-10-13",
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE74697",
+      "evidence_urls": [
+        "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE74nnn/GSE74697/matrix/GSE74697_series_matrix.txt.gz",
+        "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM1930408"
+      ],
+      "organism": "Homo sapiens",
+      "disease": "psoriasis",
+      "tissue": "skin",
+      "assay": "RNA-seq",
+      "platform": "GPL16791",
+      "sample_count": 52,
+      "sample_groups": {
+        "healthy_control": 16,
+        "pre_adalimumab": 18,
+        "post_adalimumab": 18
+      },
+      "drug": "adalimumab",
+      "timepoints": [
+        "before adalimumab",
+        "after 1 month of adalimumab"
+      ],
+      "paired_before_after": true,
+      "pairing": {
+        "evidence": "18 matching HuMPreN/HuMPostN sample-title suffixes; explicit participant-id field not present in inspected header",
+        "complete_pairs": 18,
+        "example": {
+          "subject_suffix": "14",
+          "pre_sample": "GSM1930390",
+          "post_sample": "GSM1930408"
+        }
+      },
+      "response_labels": {
+        "availability": "absent_from_inspected_series_matrix_header"
+      },
+      "serum_crp": {
+        "availability": "absent_from_inspected_series_matrix_header"
+      },
+      "urine_measurements": {
+        "availability": "absent_from_inspected_series_matrix_header"
+      },
+      "processed_units": "FPKM",
+      "genome_build": "hg19",
+      "raw_reads": {
+        "availability": "public_SRA_reported_by_GEO"
+      },
+      "access": {
+        "classification": "open_omics",
+        "controlled_access_required": false
+      },
+      "license": {
+        "name": "GEO public access; submitter rights may apply",
+        "url": "https://www.ncbi.nlm.nih.gov/geo/info/disclaimer.html"
+      },
+      "downloads": [
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE74nnn/GSE74697/matrix/GSE74697_series_matrix.txt.gz",
+          "format": "GEO series matrix gzip",
+          "role": "sample_metadata"
+        }
+      ],
+      "limitations": [
+        "Does not provide inspected public PASI/response labels; suitable for expression-change validation, not response-prediction validation.",
+        "FPKM values are not raw gene counts and must not be supplied to a raw-count model.",
+        "Confirm pairing against primary study before the final statistical analysis.",
+        "Skin transcriptomics do not provide patient protein structures or routine serum/urine laboratory tests."
+      ]
+    },
+    {
+      "id": "GSE138746",
+      "source": "NCBI GEO",
+      "kind": "human_response_omics",
+      "title": "Multi-omics and Machine Learning Accurately Predicts Clinical Response to Adalimumab and Etanercept Therapy in Patients with Rheumatoid Arthritis [RNA-Seq]",
+      "status": "metadata_and_count_headers_verified",
+      "priority": "secondary_RA_mechanistic_comparison",
+      "verified_on": "2026-10-13",
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE138746",
+      "evidence_urls": [
+        "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE138nnn/GSE138746/matrix/GSE138746_series_matrix.txt.gz",
+        "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE138nnn/GSE138746/suppl/GSE138746_rawReadsData.csv.gz"
+      ],
+      "organism": "Homo sapiens",
+      "disease": "rheumatoid arthritis",
+      "cohort": "BiOCURA",
+      "assay": "RNA-seq",
+      "platform": "GPL20301",
+      "participant_count": 80,
+      "sample_count": 240,
+      "cell_types": [
+        "PBMC",
+        "Monocytes",
+        "CD4+ T cells"
+      ],
+      "drug_groups": [
+        {
+          "drug": "adalimumab",
+          "participant_count": 38,
+          "sample_count": 114
+        },
+        {
+          "drug": "etanercept",
+          "participant_count": 42,
+          "sample_count": 126
+        }
+      ],
+      "timepoints": [
+        "baseline before treatment only"
+      ],
+      "paired_before_after": false,
+      "response_labels": {
+        "availability": "public_sample_metadata",
+        "criterion": "EULAR",
+        "followup_months": 6,
+        "adalimumab_participants": {
+          "good": 11,
+          "moderate": 9,
+          "no": 18
+        }
+      },
+      "participant_id_field": "studysubjectid",
+      "clinical_fields_verified": [
+        "Sex",
+        "age",
+        "drug",
+        "response",
+        "height",
+        "weight",
+        "rf",
+        "anti-ccp",
+        "hemoglobinecount",
+        "leucocytencount",
+        "trombocytencount"
+      ],
+      "serum_crp": {
+        "availability": "absent_from_inspected_series_matrix_header"
+      },
+      "urine_measurements": {
+        "availability": "absent_from_inspected_series_matrix_header"
+      },
+      "raw_reads": {
+        "availability": "public_SRA_reported_by_GEO",
+        "accession": "SRP225168"
+      },
+      "access": {
+        "classification": "open_omics",
+        "controlled_access_required": false
+      },
+      "license": {
+        "name": "GEO public access; submitter rights may apply",
+        "url": "https://www.ncbi.nlm.nih.gov/geo/info/disclaimer.html"
+      },
+      "downloads": [
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE138nnn/GSE138746/matrix/GSE138746_series_matrix.txt.gz",
+          "format": "GEO series matrix gzip",
+          "role": "sample_metadata"
+        },
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE138nnn/GSE138746/suppl/GSE138746_rawReadsData.csv.gz",
+          "format": "CSV gzip",
+          "role": "raw_gene_counts",
+          "sample_columns": 240,
+          "extra_header_rows": 1
+        },
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE138nnn/GSE138746/suppl/GSE138746_Counts_Normalization_PBMC.csv.gz",
+          "format": "CSV gzip",
+          "role": "author_normalized_counts",
+          "sample_columns": 79,
+          "adalimumab_columns": 37,
+          "excluded_from_raw": [
+            "PBMC_A_g_09"
+          ]
+        },
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE138nnn/GSE138746/suppl/GSE138746_Counts_Normalization_cd14.csv.gz",
+          "format": "CSV gzip",
+          "role": "author_normalized_counts",
+          "sample_columns": 78,
+          "adalimumab_columns": 38,
+          "excluded_from_raw": [
+            "cd14_E_g_32",
+            "cd14_E_g_39"
+          ]
+        },
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE138nnn/GSE138746/suppl/GSE138746_Counts_Normalization_cd4.csv.gz",
+          "format": "CSV gzip",
+          "role": "author_normalized_counts",
+          "sample_columns": 78,
+          "adalimumab_columns": 37,
+          "excluded_from_raw": [
+            "cd4_A_m_63",
+            "cd4_E_g_32"
+          ]
+        }
+      ],
+      "related_records": [
+        "GSE138653",
+        "GSE138747"
+      ],
+      "limitations": [
+        "All RNA samples precede treatment; response at month6 is an outcome label, not a post-treatment RNA sample.",
+        "Cell types from one participant are dependent; split model validation by participant.",
+        "Raw counts file includes a sequencing-ID row immediately after the column header; do not parse it as a gene.",
+        "Public normalized matrices exclude several samples; catalog sample_count is deposited library count rather than the final analyzed sample size.",
+        "alcoholuseunitsweek is populated by stopped/never/yes; preserve and flag the apparent mislabeled field rather than guessing its meaning.",
+        "Verify units of blood-cell counts before clinical comparisons.",
+        "No inspected public serum CRP, urine, drug trough concentration or anti-drug antibody values."
+      ],
+      "top2a_feature": {
+        "status": "observed_in_public_raw_gene_counts",
+        "feature": "ENSG00000131747",
+        "numeric_sample_values": 240,
+        "nonzero_sample_values": 240,
+        "analysis_scope": "baseline expression only; no treatment-change estimate"
+      }
+    },
+    {
+      "id": "GSE138653",
+      "source": "NCBI GEO",
+      "kind": "human_response_omics",
+      "title": "Multi-omics and Machine Learning Accurately Predicts Clinical Response to Adalimumab and Etanercept Therapy in Patients with Rheumatoid Arthritis [Methylation array]",
+      "status": "metadata_verified",
+      "priority": "optional_RA_methylation_extension",
+      "verified_on": "2026-10-13",
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE138653",
+      "evidence_urls": [
+        "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE138nnn/GSE138653/matrix/GSE138653_series_matrix.txt.gz"
+      ],
+      "organism": "Homo sapiens",
+      "disease": "rheumatoid arthritis",
+      "cohort": "BiOCURA",
+      "cell_type": "PBMC",
+      "assay": "Illumina Infinium MethylationEPIC",
+      "participant_count": 80,
+      "sample_count": 80,
+      "drug_groups": [
+        {
+          "drug": "adalimumab",
+          "participant_count": 38
+        },
+        {
+          "drug": "etanercept",
+          "participant_count": 42
+        }
+      ],
+      "timepoints": [
+        "baseline before treatment only"
+      ],
+      "paired_before_after": false,
+      "response_labels": {
+        "availability": "public_sample_metadata",
+        "criterion": "EULAR",
+        "followup_months": 6,
+        "adalimumab_participants": {
+          "good": 11,
+          "moderate": 9,
+          "no": 18
+        }
+      },
+      "serum_crp": {
+        "availability": "absent_from_inspected_series_matrix_header"
+      },
+      "access": {
+        "classification": "open_omics",
+        "controlled_access_required": false
+      },
+      "license": {
+        "name": "GEO public access; submitter rights may apply",
+        "url": "https://www.ncbi.nlm.nih.gov/geo/info/disclaimer.html"
+      },
+      "downloads": [
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE138nnn/GSE138653/matrix/GSE138653_series_matrix.txt.gz",
+          "format": "GEO series matrix gzip",
+          "role": "sample_metadata"
+        }
+      ],
+      "related_records": [
+        "GSE138746",
+        "GSE138747"
+      ],
+      "limitations": [
+        "Same participant cohort as GSE138746; not independent replication.",
+        "Pair RNA and methylation using verified participant mapping, not accession proximity or row order.",
+        "Methylation is not protein structure or measured serum CRP."
+      ]
+    },
+    {
+      "id": "GSE129705",
+      "source": "NCBI GEO",
+      "kind": "human_treatment_omics",
+      "title": "RNA-sequencing of whole blood samples from biologic naive rheumatoid arthritis patients initiating anti-TNF treatment",
+      "status": "metadata_verified_drug_specific_use_deferred",
+      "priority": "conditional_TNFi_class_comparator",
+      "verified_on": "2026-10-13",
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE129705",
+      "evidence_urls": [
+        "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129705/matrix/GSE129705_series_matrix.txt.gz"
+      ],
+      "organism": "Homo sapiens",
+      "disease": "rheumatoid arthritis",
+      "cohort": "Corrona CERTAIN",
+      "tissue": "whole blood",
+      "assay": "RNA-seq",
+      "participant_count": 76,
+      "sample_count": 128,
+      "drug_groups": [
+        {
+          "drug": "adalimumab",
+          "participant_count": null
+        },
+        {
+          "drug": "infliximab",
+          "participant_count": null
+        }
+      ],
+      "timepoints": [
+        "baseline",
+        "month 3"
+      ],
+      "timepoint_sample_counts": {
+        "baseline": 63,
+        "month_3": 65
+      },
+      "paired_before_after": true,
+      "pairing": {
+        "id_source": "subject_id",
+        "complete_pairs": 52,
+        "participants_with_one_timepoint": 24
+      },
+      "response_labels": {
+        "availability": "public_sample_metadata",
+        "criterion": "EULAR",
+        "labels": [
+          "Good",
+          "None"
+        ]
+      },
+      "serum_crp": {
+        "availability": "absent_from_inspected_series_matrix_header"
+      },
+      "raw_reads": {
+        "availability": "not_provided_due_to_consent_limitations"
+      },
+      "access": {
+        "classification": "public_processed_only",
+        "controlled_access_required": false,
+        "raw_data_access_verified": false
+      },
+      "license": {
+        "name": "GEO public access; consent and submitter rights apply",
+        "url": "https://www.ncbi.nlm.nih.gov/geo/info/disclaimer.html"
+      },
+      "downloads": [
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129705/matrix/GSE129705_series_matrix.txt.gz",
+          "format": "GEO series matrix gzip",
+          "role": "sample_metadata"
+        }
+      ],
+      "limitations": [
+        "Mixed infliximab/adalimumab cohort; inspected series-matrix header has no participant-level drug field.",
+        "Use as ADA-specific evidence only after independently verifying the drug mapping.",
+        "Raw reads are withheld, not verified as available through a controlled-access service.",
+        "Only 52 of 76 participants have both public timepoints."
+      ]
+    },
+    {
+      "id": "GSE200306",
+      "source": "NCBI GEO",
+      "kind": "human_disease_comparator_omics",
+      "title": "Molecular characterization of kidney compartments from serial biopsies to differentiate treatment responders from non-responders in lupus nephritis",
+      "status": "metadata_verified",
+      "priority": "separate_lupus_renal_comparator",
+      "verified_on": "2026-10-13",
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE200306",
+      "evidence_urls": [
+        "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE200nnn/GSE200306/matrix/GSE200306_series_matrix.txt.gz"
+      ],
+      "organism": "Homo sapiens",
+      "disease": "proliferative lupus nephritis",
+      "tissue": "laser-microdissected kidney glomerular and tubulointerstitial compartments",
+      "assay": "NanoString nCounter Human Immunology v2",
+      "platform": "GPL21847",
+      "transcript_panel_size": 574,
+      "sample_count": 181,
+      "initial_patient_count_reported_by_design": 58,
+      "healthy_donor_count_reported_by_design": 10,
+      "adalimumab_cohort": false,
+      "drug": "not_an_adalimumab_treatment_cohort",
+      "timepoints": [
+        "first biopsy at flare",
+        "second biopsy after treatment"
+      ],
+      "paired_before_after": true,
+      "pairing": {
+        "source": "GEO Overall_design; compartment-level pairs, not total independent participant count",
+        "glomerular_pairs_reported": 35,
+        "tubulointerstitial_pairs_reported": 46,
+        "individual_pair_map_audited": false
+      },
+      "response_labels": {
+        "availability": "public_sample_metadata",
+        "labels": [
+          "complete response",
+          "partial response",
+          "non-response"
+        ]
+      },
+      "clinical_fields_verified": [
+        "ln class",
+        "Sex",
+        "age (yrs)",
+        "proteinuria (g/24hr)",
+        "serum creatinine (mg/dl)",
+        "clinical response group"
+      ],
+      "serum_crp": {
+        "availability": "absent_from_inspected_series_matrix_header"
+      },
+      "urine_measurements": {
+        "availability": "public_proteinuria_metadata",
+        "field": "proteinuria (g/24hr)",
+        "raw_urine_C5a_FN1_ELISA_table": "mentioned_in_study_but_not_verified_in_GEO_files"
+      },
+      "access": {
+        "classification": "open_omics",
+        "controlled_access_required": false
+      },
+      "license": {
+        "name": "GEO public access; submitter rights may apply",
+        "url": "https://www.ncbi.nlm.nih.gov/geo/info/disclaimer.html"
+      },
+      "downloads": [
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE200nnn/GSE200306/matrix/GSE200306_series_matrix.txt.gz",
+          "format": "GEO series matrix gzip",
+          "role": "sample_metadata"
+        },
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE200nnn/GSE200306/suppl/GSE200306_normalized_Glom_expression_data.txt.gz",
+          "format": "TSV gzip",
+          "role": "normalized_glomerular_expression"
+        },
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE200nnn/GSE200306/suppl/GSE200306_normalized_TI_expression_Data.txt.gz",
+          "format": "TSV gzip",
+          "role": "normalized_tubulointerstitial_expression"
+        }
+      ],
+      "limitations": [
+        "Not evidence for treating lupus with adalimumab.",
+        "181 records include compartments, controls and technical replicates; do not report 181 independent patients.",
+        "Compartment-wise pairing counts are reported by depositor and the complete participant-pair mapping is not yet audited.",
+        "Immune gene panel is targeted, not whole-transcriptome RNA-seq.",
+        "Do not pool kidney and psoriasis skin expression as comparable participant observations.",
+        "Urine protein metadata do not establish public raw urine ELISA or urinalysis datasets."
+      ]
+    },
+    {
+      "id": "NCT00085644",
+      "source": "ClinicalTrials.gov",
+      "kind": "clinical_trial_registry",
+      "title": "Human Anti-tumor Necrosis Factor (TNF) Monoclonal Antibody Adalimumab in Subjects With Active Ankylosing Spondylitis",
+      "trial_name": "ATLAS",
+      "status": "registry_and_results_availability_verified",
+      "verified_on": "2026-10-13",
+      "source_url": "https://clinicaltrials.gov/study/NCT00085644",
+      "evidence_urls": [
+        "https://clinicaltrials.gov/api/v2/studies/NCT00085644"
+      ],
+      "disease": "ankylosing spondylitis",
+      "drug": "adalimumab",
+      "registry_enrollment": {
+        "count": 315,
+        "type": "ACTUAL"
+      },
+      "registry_has_results": true,
+      "primary_endpoint": "ASAS20 at week12; registry also lists mSASSS change at week104",
+      "participant_level_dataset": false,
+      "serum_crp": {
+        "availability": "individual_values_not_verified"
+      },
+      "access": {
+        "classification": "aggregate_only",
+        "controlled_IPD_access": "not_verified"
+      },
+      "license": {
+        "name": "Public registry information; participant data and third-party documents have separate terms",
+        "url": "https://clinicaltrials.gov/about-site/terms-conditions"
+      },
+      "downloads": [
+        {
+          "url": "https://clinicaltrials.gov/api/v2/studies/NCT00085644",
+          "format": "JSON",
+          "role": "protocol_and_aggregate_results"
+        }
+      ],
+      "limitations": [
+        "Registry aggregate outcomes cannot be joined to GEO participants.",
+        "Enrollment count is not assumed to equal randomized or analyzed population.",
+        "No public individual blood, urine, genotype or protein-structure linkage verified."
+      ]
+    },
+    {
+      "id": "NCT00929864",
+      "source": "ClinicalTrials.gov",
+      "kind": "clinical_trial_registry",
+      "title": "Abatacept Versus Adalimumab Head-to-Head",
+      "trial_name": "AMPLE",
+      "status": "registry_and_results_availability_verified",
+      "verified_on": "2026-10-13",
+      "source_url": "https://clinicaltrials.gov/study/NCT00929864",
+      "evidence_urls": [
+        "https://clinicaltrials.gov/api/v2/studies/NCT00929864"
+      ],
+      "disease": "rheumatoid arthritis",
+      "drugs": [
+        "abatacept",
+        "adalimumab"
+      ],
+      "registry_enrollment": {
+        "count": 869,
+        "type": "ACTUAL"
+      },
+      "registry_has_results": true,
+      "primary_endpoint": "ACR20 after12 months; CRP is described among component measures and screening DAS28-CRP",
+      "participant_level_dataset": false,
+      "serum_crp": {
+        "availability": "used_in_registry_composite_outcome_description_individual_values_not_supplied"
+      },
+      "access": {
+        "classification": "aggregate_only",
+        "controlled_IPD_access": "not_verified"
+      },
+      "license": {
+        "name": "Public registry information; participant data and third-party documents have separate terms",
+        "url": "https://clinicaltrials.gov/about-site/terms-conditions"
+      },
+      "downloads": [
+        {
+          "url": "https://clinicaltrials.gov/api/v2/studies/NCT00929864",
+          "format": "JSON",
+          "role": "protocol_and_aggregate_results"
+        }
+      ],
+      "limitations": [
+        "Registry enrollment of869 must not be substituted for the trial's randomized or analyzed population.",
+        "Presence of CRP in a composite outcome does not provide an individual CRP time series.",
+        "No individual participant dataset or controlled-access approval has been verified."
+      ]
+    },
+    {
+      "id": "NCT00237887",
+      "source": "ClinicalTrials.gov",
+      "kind": "clinical_trial_registry",
+      "title": "Efficacy and Safety of Adalimumab in Subjects With Moderate to Severe Chronic Plaque Psoriasis",
+      "trial_name": "REVEAL",
+      "status": "registry_verified_no_posted_results",
+      "verified_on": "2026-10-13",
+      "source_url": "https://clinicaltrials.gov/study/NCT00237887",
+      "evidence_urls": [
+        "https://clinicaltrials.gov/api/v2/studies/NCT00237887"
+      ],
+      "disease": "plaque psoriasis",
+      "drug": "adalimumab",
+      "registry_enrollment": {
+        "count": 1212,
+        "type": "ACTUAL"
+      },
+      "registry_has_results": false,
+      "primary_endpoint": "Proportion achieving PASI clinical response at week16 relative to baseline",
+      "participant_level_dataset": false,
+      "access": {
+        "classification": "registry_only",
+        "controlled_IPD_access": "not_verified"
+      },
+      "license": {
+        "name": "Public registry information; participant data and third-party documents have separate terms",
+        "url": "https://clinicaltrials.gov/about-site/terms-conditions"
+      },
+      "downloads": [
+        {
+          "url": "https://clinicaltrials.gov/api/v2/studies/NCT00237887",
+          "format": "JSON",
+          "role": "protocol_metadata"
+        }
+      ],
+      "limitations": [
+        "Official API hasResults=false at verification; obtain published efficacy values from the primary trial article rather than claiming posted registry results.",
+        "Not linked at participant level to the GEO cohorts.",
+        "No public individual CRP or urine values verified."
+      ]
+    },
+    {
+      "id": "P11388",
+      "source": "UniProtKB",
+      "kind": "protein_sequence_annotation",
+      "title": "DNA topoisomerase 2-alpha",
+      "status": "metadata_verified",
+      "verified_on": "2026-10-13",
+      "source_url": "https://www.uniprot.org/uniprotkb/P11388",
+      "evidence_urls": [
+        "https://rest.uniprot.org/uniprotkb/P11388.json"
+      ],
+      "organism": "Homo sapiens",
+      "gene": "TOP2A",
+      "canonical_sequence_length": 1531,
+      "ensembl_gene": "ENSG00000131747",
+      "ensembl_gene_version_in_uniprot": "ENSG00000131747.16",
+      "access": {
+        "classification": "open_sequence",
+        "controlled_access_required": false
+      },
+      "license": {
+        "name": "CC-BY-4.0",
+        "url": "https://www.uniprot.org/api-documentation/support-data"
+      },
+      "downloads": [
+        {
+          "url": "https://rest.uniprot.org/uniprotkb/P11388.fasta",
+          "format": "FASTA",
+          "role": "canonical_sequence"
+        }
+      ],
+      "limitations": [
+        "Nuclear DNA-topology enzyme; do not infer direct extracellular TNF binding from gene coexpression.",
+        "Changes in TOP2A expression may reflect cycling-cell abundance or cell-cycle state rather than a specific TNF mechanism."
+      ]
+    },
+    {
+      "id": "GSE55235",
+      "source": "NCBI GEO",
+      "kind": "human_disease_comparator_omics",
+      "status": "metadata_and_TOP2A_feature_verified",
+      "verified_on": "2026-10-13",
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE55235",
+      "evidence_urls": [
+        "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE55nnn/GSE55235/matrix/GSE55235_series_matrix.txt.gz"
+      ],
+      "organism": "Homo sapiens",
+      "access": {
+        "classification": "open_omics",
+        "controlled_access_required": false
+      },
+      "license": {
+        "name": "GEO public access; submitter rights may apply",
+        "url": "https://www.ncbi.nlm.nih.gov/geo/info/disclaimer.html"
+      },
+      "downloads": [
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE55nnn/GSE55235/matrix/GSE55235_series_matrix.txt.gz",
+          "format": "GEO series matrix gzip",
+          "role": "sample_metadata"
+        }
+      ],
+      "title": "Rheumatoid arthritis and osteoarthritis synovial gene expression",
+      "priority": "exploratory_TOP2A_RA_discovery",
+      "disease": "RA, osteoarthritis and healthy controls",
+      "tissue": "synovial tissue",
+      "assay": "expression profiling by array",
+      "platform": "GPL96",
+      "participant_count": 30,
+      "sample_count": 30,
+      "sample_groups": {
+        "RA": 10,
+        "healthy_control": 10,
+        "osteoarthritis": 10
+      },
+      "drug": null,
+      "paired_before_after": false,
+      "related_publication": "PMC11910056",
+      "top2a_feature": {
+        "status": "observed_in_public_processed_expression",
+        "feature": "201291_s_at",
+        "numeric_sample_values": 30,
+        "annotation_source": "https://ftp.ncbi.nlm.nih.gov/geo/platforms/GPLnnn/GPL96/annot/GPL96.annot.gz",
+        "alternative_annotated_probe": "201292_at",
+        "entrez_gene": "7153"
+      },
+      "limitations": [
+        "RA discovery subset is 10 RA versus 10 healthy controls; the 10 OA samples are a separate comparator, not healthy controls.",
+        "No ADA treatment, clinical response labels or paired treatment timepoints are verified.",
+        "Bulk tissue TOP2A associations are confounded by cell composition and proliferation; use a prespecified proliferation signature and robust probe handling."
+      ],
+      "participant_count_status": "inferred from unique sample titles; no explicit participant-id field in inspected header"
+    },
+    {
+      "id": "GSE89408",
+      "source": "NCBI GEO",
+      "kind": "human_disease_comparator_omics",
+      "status": "metadata_and_TOP2A_feature_verified",
+      "verified_on": "2026-10-13",
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE89408",
+      "evidence_urls": [
+        "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE89nnn/GSE89408/matrix/GSE89408_series_matrix.txt.gz"
+      ],
+      "organism": "Homo sapiens",
+      "access": {
+        "classification": "open_omics",
+        "controlled_access_required": false
+      },
+      "license": {
+        "name": "GEO public access; submitter rights may apply",
+        "url": "https://www.ncbi.nlm.nih.gov/geo/info/disclaimer.html"
+      },
+      "downloads": [
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE89nnn/GSE89408/matrix/GSE89408_series_matrix.txt.gz",
+          "format": "GEO series matrix gzip",
+          "role": "sample_metadata"
+        },
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE89nnn/GSE89408/suppl/GSE89408_GEO_count_matrix_rename.txt.gz",
+          "format": "TSV gzip",
+          "role": "gene_counts"
+        }
+      ],
+      "title": "RNAseq study of synovial biopsies",
+      "priority": "exploratory_TOP2A_RA_independent_case_control_validation",
+      "disease": "RA and other joint states",
+      "tissue": "synovial biopsy",
+      "assay": "RNA-seq",
+      "platform": "GPL11154",
+      "participant_count": 218,
+      "sample_count": 218,
+      "sample_groups": {
+        "healthy_control": 28,
+        "osteoarthritis": 22,
+        "arthralgia": 10,
+        "undifferentiated_arthritis": 6,
+        "early_RA": 57,
+        "established_RA": 95
+      },
+      "drug": null,
+      "paired_before_after": false,
+      "clinical_fields_verified": [
+        "Sex",
+        "age",
+        "disease",
+        "acpa positivity"
+      ],
+      "related_publication": "PMC11910056",
+      "top2a_feature": {
+        "status": "observed_in_public_gene_count_matrix",
+        "feature": "TOP2A",
+        "numeric_sample_values": 218,
+        "nonzero_sample_values": 215
+      },
+      "limitations": [
+        "Independent RA-versus-healthy subset comprises 152 RA and 28 controls; the full 218 samples contain additional diagnoses.",
+        "Cross-sectional, one biopsy per participant; not an ADA-response or treatment-change cohort.",
+        "Separate early and established RA or adjust their disease-stage differences; age metadata include missing values.",
+        "TOP2A may capture differing proliferating immune/fibroblast fractions."
+      ]
+    },
+    {
+      "id": "GSE213001",
+      "source": "NCBI GEO",
+      "kind": "human_disease_comparator_omics",
+      "status": "metadata_and_TOP2A_feature_verified",
+      "verified_on": "2026-10-13",
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE213001",
+      "evidence_urls": [
+        "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE213nnn/GSE213001/matrix/GSE213001_series_matrix.txt.gz"
+      ],
+      "organism": "Homo sapiens",
+      "access": {
+        "classification": "open_omics",
+        "controlled_access_required": false
+      },
+      "license": {
+        "name": "GEO public access; submitter rights may apply",
+        "url": "https://www.ncbi.nlm.nih.gov/geo/info/disclaimer.html"
+      },
+      "downloads": [
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE213nnn/GSE213001/matrix/GSE213001_series_matrix.txt.gz",
+          "format": "GEO series matrix gzip",
+          "role": "sample_metadata"
+        },
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE213nnn/GSE213001/suppl/GSE213001_Entrez-IDs-Lung-IPF-GRCh38-p12-raw_counts.csv.gz",
+          "format": "CSV gzip",
+          "role": "gene_counts"
+        }
+      ],
+      "title": "Bulk tissue RNA sequencing from human donors with and without lung fibrosis",
+      "priority": "optional_TOP2A_IPF_comparator",
+      "disease": "IPF, other ILD, CLAD and nondiseased controls",
+      "tissue": "whole lung apex/base and left/right locations",
+      "assay": "RNA-seq",
+      "platform": "GPL21290",
+      "participant_count": 46,
+      "sample_count": 139,
+      "participant_groups": {
+        "IPF": 20,
+        "non_diseased_control": 14,
+        "other_ILD": 9,
+        "CLAD": 3
+      },
+      "sample_groups": {
+        "IPF": 62,
+        "non_diseased_control": 41,
+        "other_ILD": 26,
+        "CLAD": 10
+      },
+      "participant_id_field": "donorid",
+      "drug": null,
+      "paired_before_after": false,
+      "repeated_locations_per_donor": true,
+      "related_publication": "PMC11910056",
+      "top2a_feature": {
+        "status": "observed_in_public_gene_count_matrix",
+        "feature": "ENSG00000131747",
+        "numeric_sample_values": 139
+      },
+      "limitations": [
+        "139 tissue libraries represent 46 donors, not 139 independent patients; model repeated apex/base/left/right locations by donor.",
+        "62 IPF and 41 control libraries correspond to 20 IPF and 14 control donors.",
+        "GEO Overall_design lists IPF/control/other ILD donors but omits the three CLAD donors present in sample metadata.",
+        "Filename mentions Entrez IDs, but inspected TOP2A row is an Ensembl gene ID; determine actual identifier schema from contents.",
+        "IPF is not a verified RA-associated ILD diagnosis for this cohort; no ADA treatment or within-patient RA-IPF comorbidity linkage."
+      ]
+    },
+    {
+      "id": "GSE92592",
+      "source": "NCBI GEO",
+      "kind": "human_disease_comparator_omics",
+      "status": "metadata_and_TOP2A_feature_verified",
+      "verified_on": "2026-10-13",
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE92592",
+      "evidence_urls": [
+        "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92592/matrix/GSE92592_series_matrix.txt.gz"
+      ],
+      "organism": "Homo sapiens",
+      "access": {
+        "classification": "open_omics",
+        "controlled_access_required": false
+      },
+      "license": {
+        "name": "GEO public access; submitter rights may apply",
+        "url": "https://www.ncbi.nlm.nih.gov/geo/info/disclaimer.html"
+      },
+      "downloads": [
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92592/matrix/GSE92592_series_matrix.txt.gz",
+          "format": "GEO series matrix gzip",
+          "role": "sample_metadata"
+        },
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92592/suppl/GSE92592_gene.counts.txt.gz",
+          "format": "TSV gzip",
+          "role": "gene_counts"
+        }
+      ],
+      "title": "mRNA sequencing of IPF and control samples from the Lung Tissue Research Consortium",
+      "priority": "optional_TOP2A_IPF_case_control_validation",
+      "disease": "idiopathic pulmonary fibrosis",
+      "tissue": "lung",
+      "assay": "RNA-seq",
+      "platform": "GPL11154",
+      "participant_count": null,
+      "sample_count": 39,
+      "sample_groups": {
+        "IPF": 20,
+        "healthy_control": 19
+      },
+      "drug": null,
+      "paired_before_after": false,
+      "related_publication": "PMC11910056",
+      "top2a_feature": {
+        "status": "observed_in_public_gene_count_matrix",
+        "feature": "TOP2A.chr17",
+        "numeric_sample_values": 39
+      },
+      "limitations": [
+        "Cross-sectional lung cohort, not RA or ADA treatment.",
+        "Gene features include chromosome suffixes such as TOP2A.chr17; preserve and explicitly normalize feature identifiers.",
+        "Independent case-control association validation does not establish direct TNF-TOP2A binding or drug benefit.",
+        "Do not assert 39 independently verified donor IDs solely from 39 sample accession records."
+      ],
+      "participant_count_status": "39 cross-sectional samples are reported; individual donor IDs were not verified in inspected metadata"
+    },
+    {
+      "id": "GSE296117",
+      "source": "NCBI GEO",
+      "kind": "human_treatment_single_cell_omics",
+      "status": "metadata_and_patient_pairing_verified_TOP2A_counts_not_inspected",
+      "verified_on": "2026-10-13",
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE296117",
+      "evidence_urls": [
+        "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE296nnn/GSE296117/matrix/GSE296117_series_matrix.txt.gz"
+      ],
+      "organism": "Homo sapiens",
+      "access": {
+        "classification": "public_processed_controlled_raw",
+        "processed_access_requires_login": false,
+        "raw_access_requires_application": true
+      },
+      "license": {
+        "name": "GEO public access; submitter rights may apply",
+        "url": "https://www.ncbi.nlm.nih.gov/geo/info/disclaimer.html"
+      },
+      "downloads": [
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE296nnn/GSE296117/matrix/GSE296117_series_matrix.txt.gz",
+          "format": "GEO series matrix gzip",
+          "role": "sample_metadata"
+        },
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE296nnn/GSE296117/suppl/GSE296117_RA_geo.rds",
+          "format": "R Seurat object",
+          "role": "processed_single_cell_expression",
+          "download_performed": false
+        }
+      ],
+      "title": "A single-cell RNA-seq dataset of synovial fluid from rheumatoid arthritis treated with TNF-alpha/JAK inhibitor",
+      "priority": "exploratory_TOP2A_RA_ADA_longitudinal_candidate",
+      "disease": "rheumatoid arthritis",
+      "tissue": "knee synovial fluid",
+      "assay": "10x Genomics 3-prime v3 scRNA-seq",
+      "platform": "GPL24676",
+      "participant_count": 9,
+      "sample_count": 18,
+      "drug_groups": [
+        {
+          "drug": "adalimumab",
+          "participant_count": 5,
+          "sample_count": 10,
+          "subject_ids": [
+            "1",
+            "2",
+            "3",
+            "9",
+            "11"
+          ]
+        },
+        {
+          "drug": "tofacitinib",
+          "participant_count": 4,
+          "sample_count": 8,
+          "subject_ids": [
+            "4",
+            "5",
+            "6",
+            "10"
+          ]
+        }
+      ],
+      "concurrent_treatment": "stable methotrexate",
+      "sex_distribution": {
+        "female_participants": 9
+      },
+      "timepoints": [
+        "before treatment",
+        "one month after treatment"
+      ],
+      "paired_before_after": true,
+      "pairing": {
+        "id_source": "RA_<patient>_1 and RA_<patient>_2 sample titles with matching age/sex and explicit post-treatment drug",
+        "complete_pairs": 9,
+        "adalimumab_complete_pairs": 5,
+        "example": {
+          "subject": "1",
+          "pre": "GSM8965453",
+          "post": "GSM8965454"
+        }
+      },
+      "response_labels": {
+        "availability": "absent_from_inspected_series_matrix_header; clinical supplementary tables require further inspection"
+      },
+      "top2a_feature": {
+        "status": "not_yet_verified_in_processed_Seurat_object",
+        "reason": "Public processed RDS is about 2.3 GiB; no full RDS/raw sequencing download performed."
+      },
+      "raw_reads": {
+        "availability": "controlled_GSA_Human",
+        "accession": "HRA011646",
+        "url": "https://ngdc.cncb.ac.cn/gsa-human/browse/HRA011646",
+        "access_approval_obtained": false
+      },
+      "related_publication": "PMC12152119",
+      "limitations": [
+        "Only five ADA participant pairs; cells are not independent treatment replicates.",
+        "All participants are female and also receive stable MTX; generalization and attribution to ADA alone are limited.",
+        "Published article says 100387 cells after QC, while GEO summary says 106506; audit processed object rather than treating these as identical.",
+        "Fibroblasts are sparse and mainly from one donor according to the primary article; this is a weak cohort for patient-replicated fibroblast-specific TOP2A inference.",
+        "RNA detection and changes in cycling-cell fraction require separate analyses; treatment effects need patient-by-cell-type pseudobulk.",
+        "Raw FASTQ files require controlled access; public processed-data availability is not an approval for raw data."
+      ]
+    },
+    {
+      "id": "GSE15602",
+      "source": "NCBI GEO",
+      "kind": "human_response_omics",
+      "status": "metadata_and_TOP2A_feature_verified",
+      "verified_on": "2026-10-13",
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE15602",
+      "evidence_urls": [
+        "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE15nnn/GSE15602/matrix/GSE15602_series_matrix.txt.gz"
+      ],
+      "organism": "Homo sapiens",
+      "access": {
+        "classification": "open_omics",
+        "controlled_access_required": false
+      },
+      "license": {
+        "name": "GEO public access; submitter rights may apply",
+        "url": "https://www.ncbi.nlm.nih.gov/geo/info/disclaimer.html"
+      },
+      "downloads": [
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE15nnn/GSE15602/matrix/GSE15602_series_matrix.txt.gz",
+          "format": "GEO series matrix gzip",
+          "role": "sample_metadata"
+        }
+      ],
+      "title": "Differential gene expression in RA synovial biopsies from responders versus non-responders to adalimumab therapy",
+      "priority": "limited_legacy_RA_ADA_post_only_comparator",
+      "disease": "rheumatoid arthritis",
+      "tissue": "knee synovium",
+      "assay": "expression profiling by array",
+      "platform": "GPL570",
+      "sample_count": 11,
+      "participant_count": 11,
+      "drug": "adalimumab",
+      "timepoints": [
+        "week12 after treatment only"
+      ],
+      "paired_before_after": false,
+      "response_labels": {
+        "availability": "public_sample_titles",
+        "criterion": "EULAR",
+        "counts": {
+          "good": 3,
+          "moderate": 5,
+          "poor": 3
+        }
+      },
+      "top2a_feature": {
+        "status": "observed_in_public_processed_expression",
+        "feature": "201291_s_at",
+        "numeric_sample_values": 11
+      },
+      "related_publication": "PMC2688209",
+      "limitations": [
+        "Published study discusses eight paired biopsy transcriptomes, but this public series contains only 11 post-treatment arrays; do not infer baseline samples from baseline clinical scores.",
+        "Can explore response association at week12, not within-person TOP2A change.",
+        "Tiny sample groups and concomitant DMARD/steroid exposure limit causal interpretation."
+      ]
+    },
+    {
+      "id": "GSE15615",
+      "source": "NCBI GEO",
+      "kind": "in_vitro_cytokine_expression",
+      "status": "metadata_and_TOP2A_feature_verified",
+      "verified_on": "2026-10-13",
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE15615",
+      "evidence_urls": [
+        "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE15nnn/GSE15615/matrix/GSE15615_series_matrix.txt.gz"
+      ],
+      "organism": "Homo sapiens",
+      "access": {
+        "classification": "open_omics",
+        "controlled_access_required": false
+      },
+      "license": {
+        "name": "GEO public access; submitter rights may apply",
+        "url": "https://www.ncbi.nlm.nih.gov/geo/info/disclaimer.html"
+      },
+      "downloads": [
+        {
+          "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE15nnn/GSE15615/matrix/GSE15615_series_matrix.txt.gz",
+          "format": "GEO series matrix gzip",
+          "role": "sample_metadata"
+        }
+      ],
+      "title": "Differential effects of TNFalpha and IL1beta on FLS global gene expression profile",
+      "priority": "limited_TNF_TOP2A_FLS_stimulation_comparator",
+      "disease": "RA-derived cultured fibroblast-like synoviocytes",
+      "assay": "expression profiling by array",
+      "platform": "GPL570",
+      "donor_count": 3,
+      "sample_count": 6,
+      "treatment_groups": {
+        "no_cytokine": 1,
+        "TNF_alpha": 3,
+        "IL1_beta": 2
+      },
+      "drug": null,
+      "adalimumab_cohort": false,
+      "paired_before_after": false,
+      "matched_conditions": {
+        "donor_A": [
+          "untreated",
+          "TNF_alpha"
+        ],
+        "donor_B": [
+          "TNF_alpha",
+          "IL1_beta"
+        ],
+        "donor_C": [
+          "TNF_alpha",
+          "IL1_beta"
+        ]
+      },
+      "top2a_feature": {
+        "status": "observed_in_public_processed_expression",
+        "feature": "201291_s_at",
+        "numeric_sample_values": 6
+      },
+      "related_publication": "PMC2688209",
+      "limitations": [
+        "Not an ADA-treatment cohort and not the paired patient biopsies discussed in the linked publication.",
+        "Only one donor has an untreated/TNF matched contrast; B/C lack untreated controls, so TNF-versus-untreated is not replicated across three donors.",
+        "Cell passage and proliferation state may alter TOP2A independently of disease-specific regulation."
+      ]
+    },
+    {
+      "id": "ZENODO:15058262",
+      "source": "Zenodo",
+      "kind": "human_treatment_spatial_omics",
+      "title": "Spatial patterning of fibroblast TGF-beta signaling underlies treatment resistance in RA - Xenium pre-treatment data",
+      "status": "repository_and_clinical_metadata_verified_patient_gene_counts_not_downloaded",
+      "priority": "exploratory_TOP2A_RA_ADA_paired_spatial_candidate",
+      "verified_on": "2026-10-13",
+      "source_url": "https://zenodo.org/records/15058262",
+      "evidence_urls": [
+        "https://zenodo.org/api/records/15058262",
+        "https://zenodo.org/api/records/15058262/files/samples_metadata.xlsx/content",
+        "https://cdn.10xgenomics.com/raw/upload/v1715644508/software-support/Xenium-panels/5K_panel_files/xenium_human_5k_gene_expression.json",
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12956583/fullTextXML"
+      ],
+      "organism": "Homo sapiens",
+      "disease": "early rheumatoid arthritis",
+      "tissue": "synovial biopsy",
+      "assay": "Xenium Prime human pan-tissue 5k plus custom add-on",
+      "target_panel_gene_count": 5101,
+      "participant_count": 17,
+      "sample_count": 17,
+      "timepoints": [
+        "baseline"
+      ],
+      "paired_before_after": true,
+      "pairing": {
+        "scope": "matching patient IDs across pre/post Zenodo repositories",
+        "complete_archive_pairs": 17,
+        "adalimumab_complete_archive_pairs": 6,
+        "gene_count_QC_and_cell_recovery_audited": false,
+        "companion_record": "ZENODO:15058715"
+      },
+      "drug_groups": [
+        {
+          "drug": "adalimumab",
+          "participant_count": 6,
+          "subject_ids": [
+            "3",
+            "6",
+            "14",
+            "15",
+            "16",
+            "17"
+          ],
+          "response_counts": {
+            "remission": 3,
+            "non_remission": 3
+          }
+        },
+        {
+          "drug": "triple conventional DMARD therapy",
+          "participant_count": 11,
+          "response_counts": {
+            "remission": 7,
+            "non_remission": 2,
+            "borderline": 2
+          }
+        }
+      ],
+      "clinical_fields_verified": [
+        "Patient ID",
+        "Sex",
+        "Age",
+        "Pathotype",
+        "DAS28-ESR_baseline",
+        "DAS28-CRP_baseline",
+        "DAS28-ESR 6 months",
+        "DAS28-CRP 6 months",
+        "Response",
+        "Treatment"
+      ],
+      "response_labels": {
+        "availability": "public_samples_metadata_xlsx",
+        "criterion_in_published_2026_article": "remission requires DAS28-ESR<2.6 and DAS28-CRP<2.4; borderline meets only one"
+      },
+      "serum_crp": {
+        "availability": "DAS28_CRP_composite_scores_present_not_raw_CRP_concentrations"
+      },
+      "top2a_feature": {
+        "status": "present_in_specified_vendor_base_panel_actual_patient_counts_not_inspected",
+        "gene": "TOP2A",
+        "ensembl_gene": "ENSG00000131747",
+        "panel_source": "https://cdn.10xgenomics.com/raw/upload/v1715644508/software-support/Xenium-panels/5K_panel_files/xenium_human_5k_gene_expression.json"
+      },
+      "access": {
+        "classification": "open_spatial_large",
+        "controlled_access_required": false,
+        "archive_total_bytes": 29352850227,
+        "patient_archives": 17,
+        "archive_download_performed": false
+      },
+      "license": {
+        "name": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "downloads": [
+        {
+          "url": "https://zenodo.org/api/records/15058262",
+          "format": "JSON",
+          "role": "file_listing_and_checksums"
+        },
+        {
+          "url": "https://zenodo.org/api/records/15058262/files/samples_metadata.xlsx/content",
+          "format": "XLSX",
+          "role": "clinical_metadata",
+          "size_bytes": 10633,
+          "repository_checksum": "md5:b70908e1e4878a90a559ed96a53319d3"
+        }
+      ],
+      "related_publication": "PMC12956583",
+      "publication_doi": "10.1038/s41590-025-02386-2",
+      "publication_year": 2026,
+      "superseded_preprint": "PMC11956964",
+      "limitations": [
+        "Only six ADA participants; patient-level replication remains small even with many segmented cells.",
+        "TOP2A is in the stated base assay panel, but detected patient-level expression and adequate cycling fibroblast counts must be verified before selecting this as the primary TOP2A analysis.",
+        "Gene expression can change with immune depletion, fibroblast abundance, proliferation, tissue region and segmentation; analyze within cell type and aggregate by patient/timepoint.",
+        "Spatial observations/cells are not independent patients; do not use per-cell treatment tests without donor-level inference.",
+        "5k spatial measurement is a targeted panel, not whole-transcriptome sequencing.",
+        "Metadata contains composite DAS28-CRP scores, not serum CRP concentration measurements.",
+        "Full spatial/image archives were not downloaded; file-list and clinical metadata access are verified, not complete analysis readiness."
+      ]
+    },
+    {
+      "id": "ZENODO:15058715",
+      "source": "Zenodo",
+      "kind": "human_treatment_spatial_omics",
+      "title": "Spatial patterning of fibroblast TGF-beta signaling underlies treatment resistance in RA - Xenium post-treatment data",
+      "status": "repository_and_clinical_metadata_verified_patient_gene_counts_not_downloaded",
+      "priority": "exploratory_TOP2A_RA_ADA_paired_spatial_candidate",
+      "verified_on": "2026-10-13",
+      "source_url": "https://zenodo.org/records/15058715",
+      "evidence_urls": [
+        "https://zenodo.org/api/records/15058715",
+        "https://zenodo.org/api/records/15058262/files/samples_metadata.xlsx/content",
+        "https://cdn.10xgenomics.com/raw/upload/v1715644508/software-support/Xenium-panels/5K_panel_files/xenium_human_5k_gene_expression.json",
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12956583/fullTextXML"
+      ],
+      "organism": "Homo sapiens",
+      "disease": "early rheumatoid arthritis",
+      "tissue": "synovial biopsy",
+      "assay": "Xenium Prime human pan-tissue 5k plus custom add-on",
+      "target_panel_gene_count": 5101,
+      "participant_count": 17,
+      "sample_count": 17,
+      "timepoints": [
+        "six months after treatment"
+      ],
+      "paired_before_after": true,
+      "pairing": {
+        "scope": "matching patient IDs across pre/post Zenodo repositories",
+        "complete_archive_pairs": 17,
+        "adalimumab_complete_archive_pairs": 6,
+        "gene_count_QC_and_cell_recovery_audited": false,
+        "companion_record": "ZENODO:15058262"
+      },
+      "drug_groups": [
+        {
+          "drug": "adalimumab",
+          "participant_count": 6,
+          "subject_ids": [
+            "3",
+            "6",
+            "14",
+            "15",
+            "16",
+            "17"
+          ],
+          "response_counts": {
+            "remission": 3,
+            "non_remission": 3
+          }
+        },
+        {
+          "drug": "triple conventional DMARD therapy",
+          "participant_count": 11,
+          "response_counts": {
+            "remission": 7,
+            "non_remission": 2,
+            "borderline": 2
+          }
+        }
+      ],
+      "clinical_fields_verified": [
+        "Patient ID",
+        "Sex",
+        "Age",
+        "Pathotype",
+        "DAS28-ESR_baseline",
+        "DAS28-CRP_baseline",
+        "DAS28-ESR 6 months",
+        "DAS28-CRP 6 months",
+        "Response",
+        "Treatment"
+      ],
+      "response_labels": {
+        "availability": "public_samples_metadata_xlsx",
+        "criterion_in_published_2026_article": "remission requires DAS28-ESR<2.6 and DAS28-CRP<2.4; borderline meets only one"
+      },
+      "serum_crp": {
+        "availability": "DAS28_CRP_composite_scores_present_not_raw_CRP_concentrations"
+      },
+      "top2a_feature": {
+        "status": "present_in_specified_vendor_base_panel_actual_patient_counts_not_inspected",
+        "gene": "TOP2A",
+        "ensembl_gene": "ENSG00000131747",
+        "panel_source": "https://cdn.10xgenomics.com/raw/upload/v1715644508/software-support/Xenium-panels/5K_panel_files/xenium_human_5k_gene_expression.json"
+      },
+      "access": {
+        "classification": "open_spatial_large",
+        "controlled_access_required": false,
+        "archive_total_bytes": 25080982008,
+        "patient_archives": 17,
+        "archive_download_performed": false
+      },
+      "license": {
+        "name": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "downloads": [
+        {
+          "url": "https://zenodo.org/api/records/15058715",
+          "format": "JSON",
+          "role": "file_listing_and_checksums"
+        },
+        {
+          "url": "https://zenodo.org/api/records/15058715/files/samples_metadata.xlsx/content",
+          "format": "XLSX",
+          "role": "clinical_metadata",
+          "size_bytes": 10633,
+          "repository_checksum": "md5:b70908e1e4878a90a559ed96a53319d3"
+        }
+      ],
+      "related_publication": "PMC12956583",
+      "publication_doi": "10.1038/s41590-025-02386-2",
+      "publication_year": 2026,
+      "superseded_preprint": "PMC11956964",
+      "limitations": [
+        "Only six ADA participants; patient-level replication remains small even with many segmented cells.",
+        "TOP2A is in the stated base assay panel, but detected patient-level expression and adequate cycling fibroblast counts must be verified before selecting this as the primary TOP2A analysis.",
+        "Gene expression can change with immune depletion, fibroblast abundance, proliferation, tissue region and segmentation; analyze within cell type and aggregate by patient/timepoint.",
+        "Spatial observations/cells are not independent patients; do not use per-cell treatment tests without donor-level inference.",
+        "5k spatial measurement is a targeted panel, not whole-transcriptome sequencing.",
+        "Metadata contains composite DAS28-CRP scores, not serum CRP concentration measurements.",
+        "Full spatial/image archives were not downloaded; file-list and clinical metadata access are verified, not complete analysis readiness."
+      ]
+    }
+  ],
+  "dataset_count": 24,
+  "hypothesis_sources": [
+    {
+      "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11910056/",
+      "doi": "10.2147/JIR.S497734",
+      "year": 2025,
+      "publication_status": "peer_reviewed",
+      "role": "TOP2A_RA_IPF_hypothesis_support",
+      "public_external_GEO_records": [
+        "GSE55235",
+        "GSE213001",
+        "GSE89408",
+        "GSE92592"
+      ],
+      "author_generated_experimental_data_access": "on_request_not_download_verified",
+      "limits": [
+        "No adalimumab experiment or direct TNF-TOP2A binding demonstrated.",
+        "Cross-tissue disease comparisons and immortalized cell models do not establish a patient-level RA-ILD mechanism."
+      ]
+    },
+    {
+      "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12956583/",
+      "doi": "10.1038/s41590-025-02386-2",
+      "year": 2026,
+      "publication_status": "peer_reviewed",
+      "supersedes": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11956964/",
+      "role": "RA_spatial_treatment_cell_context",
+      "datasets": [
+        "ZENODO:15058262",
+        "ZENODO:15058715"
+      ],
+      "limits": [
+        "TOP2A is not a mechanistic result of this paper.",
+        "Archived patient counts and drug metadata verified; TOP2A patient expression and QC remain deferred."
+      ]
+    }
+  ]
+}

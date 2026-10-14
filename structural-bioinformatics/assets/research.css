@@ -392,3 +392,11 @@ html[data-active-tab="reading"] .research-page[data-presentation-mode="true"] .m
 @media (prefers-reduced-motion: reduce) {
   .research-page *, .research-page *::before, .research-page *::after { scroll-behavior: auto !important; transition: none !important; }
 }
+
+/* Actual reference codons remain LTR inside the Persian lesson. */
+.codon-strip { display:flex; flex-wrap:wrap; gap:8px; list-style:none; padding:0; margin:16px 0; }
+.codon-strip button { display:flex; flex-direction:column; align-items:center; justify-content:center; min-width:58px; min-height:58px; gap:3px; }
+.codon-strip button > span { font-size:1.1rem; font-weight:700; }
+.codon-strip small { font-size:.8rem; }
+.codon-strip button[aria-pressed="true"] { background:#214f88; color:white; border-color:#214f88; }
+#codon-readout bdi { overflow-wrap:anywhere; }

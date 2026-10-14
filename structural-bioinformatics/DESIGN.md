@@ -301,6 +301,10 @@ Figures and video preserve their aspect ratio. Captions are small muted prose wi
 - **Don't** turn local failures into an unusable whole-page state.
 - **Don't** add compulsory camera animation or preserve transitions under reduced motion.
 
+## Guided study route
+
+The notebook now begins with one start/resume action above the incumbent six tabs. Eight learning sections lead to a separate rehearsal document and then slide one. A flat ruled list exposes the complete order; each active lesson names its exact reading chapters and a short recall exercise. The completion button records the learner's own reading status in browser-local storage, without grading or claiming validated knowledge. Lesson links preserve their context across chapters and glossary detours. Free library exploration and direct presentation remain available; advanced source selectors recede during guided study. Inline first mentions link to local glossary chapters in HTML, Markdown and slides, inheriting text color with a thin underline. Figures, diagram labels, code and citation links retain their existing behavior.
+
 ## Audience presentation refinement
 
 The twenty-four-slide web presentation preserves Arad, neutral paper and blue controls. Desktop reading slides use 21–28px body text; media slides use 21–23px with 1.75 line height so a complete factual explanation, figure and source fit a 900px-tall viewport. Headings use 30–46px, with a 30–40px media variant; the existing cover uses 42–72px. Phone body text is 20px; 14px source notes and 16px captions remain secondary. These projector and media roles deliberately extend the notebook type ramp.

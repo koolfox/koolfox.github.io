@@ -133,6 +133,86 @@ test("beginner mechanism and deeper paper explanations are reachable in the note
     await expect(page.locator("#markdown-content")).toBeVisible();
 });
 
+test('learning starts with one lesson, saves progress, then leads to rehearsal and slide one', async ({ page }) => {
+    await page.goto(route);
+    await expect(page.locator('#study-status')).toHaveAttribute('data-state', 'ready');
+    await expect(page.locator('#study-start')).toContainText('از اینجا شروع کنید');
+    await page.locator('#study-start').click();
+    await expect(page.locator('#reading-status')).toHaveAttribute('data-chapter', 'chapter-1');
+    await expect(page.locator('#reading-status')).toHaveAttribute('data-state', 'ready');
+    await expect(page.locator('#lesson-title')).toContainText('۱ از ۸');
+    await expect(page.locator('#lesson-title')).toBeInViewport();
+    await expect(page.locator('.reading-controls')).toBeHidden();
+    expect(await page.locator('#lesson-finish').evaluate(node => Boolean(document.querySelector('#markdown-content').compareDocumentPosition(node) & Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
+    await page.locator('#lesson-complete').click();
+    await page.reload();
+    await expect(page.locator('#study-status')).toContainText('۱ از ۸');
+    await expect(page.locator('#lesson-complete')).toHaveAttribute('aria-pressed', 'true');
+    for (let lesson = 2; lesson <= 8; lesson++) {
+        await page.locator('#lesson-next').click();
+        await expect(page).toHaveURL(new RegExp('lesson=' + lesson));
+        await expect(page.locator('#reading-status')).toHaveAttribute('data-state', 'ready');
+        await expect(page.locator('#lesson-complete')).toHaveAttribute('data-lesson', String(lesson));
+        await expect(page.locator('#lesson-complete')).toBeEnabled();
+        if (lesson === 4) {
+            await page.locator('#lesson-resources a[href$="#lab"]').click();
+            await expect(page.locator('#tab-lab')).toHaveAttribute('aria-selected', 'true');
+            await page.locator('#tab-reading').click();
+            await expect(page.locator('#reading-status')).toHaveAttribute('data-document', 'preparation-guide.fa.md');
+            await expect(page.locator('#reading-status')).toHaveAttribute('data-chapter', 'chapter-4');
+            await expect(page.locator('#reading-status')).toHaveAttribute('data-state', 'ready');
+        }
+        await page.locator('#lesson-complete').click();
+    }
+    await expect(page.locator('#study-status')).toContainText('۸ بخش یادگیری');
+    await expect(page.locator('#lesson-next')).toContainText('تمرین ارائه');
+    await page.locator('#lesson-next').click();
+    await expect(page.locator('#reading-status')).toHaveAttribute('data-document', 'presentation-rehearsal.fa.md');
+    await expect(page.locator('#reading-status')).toHaveAttribute('data-state', 'ready');
+    await page.locator('#lesson-complete').click();
+    await expect(page.locator('#lesson-next')).toContainText('اسلاید ۱');
+    await page.locator('#lesson-next').click();
+    await expect(page).toHaveURL(/presentation\.html#slide-1$/);
+    await expect(page.locator('#deck')).toHaveAttribute('data-state', 'ready');
+    await expect(page.locator('.cover')).toBeVisible();
+});
+
+test('definitions are linked in the main page and dynamic explanation without linking code', async ({ page }) => {
+    await page.goto(`${route}#molecular-roles`);
+    const definition = page.locator('#molecular-roles').getByRole('link', { name: 'IgG1', exact: true });
+    await expect(definition).toHaveAttribute('href', /document=glossary\.fa\.md.*chapter=chapter-2/);
+    expect(await definition.evaluate(link => getComputedStyle(link).color === getComputedStyle(link.parentElement).color)).toBe(true);
+    await definition.click();
+    await expect(page.locator('#reading-status')).toHaveAttribute('data-document', 'glossary.fa.md');
+    await expect(page.locator('#reading-status')).toHaveAttribute('data-chapter', 'chapter-2');
+    await page.goto(`${route}#binding-explainer`);
+    await page.locator('[data-binding-step="1"]').click();
+    await expect(page.locator('#binding-explanation').getByRole('link', { name: 'Fab', exact: true })).toHaveAttribute('href', /chapter=chapter-4/);
+    await expect(page.locator('#binding-diagram svg a')).toHaveCount(0);
+    await page.goto(`${route}?document=codons-primer.fa.md&chapter=all#reading`);
+    await expect(page.locator('#reading-status')).toHaveAttribute('data-state', 'ready');
+    await expect(page.locator('#markdown-content code a')).toHaveCount(0);
+});
+
+test('reading remains usable without course metadata or persistent browser storage', async ({ page }) => {
+    await page.route('**/data/metadata/learning-journey.json', request => request.abort());
+    await page.goto(route);
+    await expect(page.locator('#study-status')).toHaveAttribute('data-state', 'error');
+    await page.locator('#study-start').click();
+    await expect(page.locator('#reading-status')).toHaveAttribute('data-state', 'ready');
+    await expect(page.locator('#markdown-content')).toContainText('سلول');
+    await page.unroute('**/data/metadata/learning-journey.json');
+    await page.addInitScript(() => {
+        Storage.prototype.getItem = () => { throw new Error('Storage blocked'); };
+        Storage.prototype.setItem = () => { throw new Error('Storage blocked'); };
+    });
+    await page.reload();
+    await expect(page.locator('#study-status')).toHaveAttribute('data-state', 'ready');
+    await expect(page.locator('#lesson-save-note')).toContainText('همین نوبت');
+    await page.locator('#lesson-complete').click();
+    await expect(page.locator('#study-status')).toContainText('۱ از ۸');
+});
+
 test('reference codons connect real CDS positions to amino acids and stop', async ({ page }) => {
     await page.goto(`${route}?tab=sequences#codon-lesson`);
     await expect(page.locator('#codon-status')).toHaveAttribute('data-state', 'ready');
@@ -380,6 +460,7 @@ for (const width of [1440, 390]) {
 
 test("guided class presentation advances one step and resumes after the laboratory", async ({ page }) => {
     await ready(page);
+    await page.locator('#study-shortcuts summary').click();
     await page.locator("#start-presentation").click();
     await expect(page.locator("#reading-status")).toHaveAttribute("data-document", "class-presentation.fa.md");
     await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-1");
@@ -412,6 +493,7 @@ test("guided class presentation advances one step and resumes after the laborato
     await expect(page.locator("#presentation-help")).toBeHidden();
     await expect(page.locator("#chapter-next")).toHaveText("فصل بعدی");
     await page.locator("#tab-basics").click();
+    if (!await page.locator('#study-shortcuts').evaluate(details => details.open)) await page.locator('#study-shortcuts summary').click();
     await page.locator("#start-presentation").click();
     await expect(page.locator("#reading-status")).toHaveAttribute("data-document", "class-presentation.fa.md");
     await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-1");

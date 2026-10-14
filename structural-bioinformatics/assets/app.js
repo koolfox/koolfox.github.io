@@ -1,4 +1,6 @@
 import { initializeBindingExplainer } from "./binding-explainer.js";
+import { linkGlossaryTerms } from "./glossary-terms.js";
+import { initializeLearningJourney } from "./learning-journey.js";
 
 const $ = (id) => document.getElementById(id);
 const faNumber = new Intl.NumberFormat("fa-IR", { maximumFractionDigits: 2 });
@@ -17,7 +19,7 @@ let referenceRequest = 0;
 let referenceTimer = null;
 const readerDocuments = new Set([
   "learning-path.fa.md", "top2a-primer.fa.md", "codons-primer.fa.md", "glossary.fa.md",
-  "preparation-guide.fa.md",
+  "preparation-guide.fa.md", "presentation-rehearsal.fa.md",
   "class-presentation.fa.md", "academic-study-plan.fa.md", "paper-writing-guide.fa.md", "structural-feasibility-results.fa.md",
   "research-questions.fa.md", "course-guide.fa.md", "structural-method.fa.md",
   "binding-mechanism.fa.md", "molecular-display-audit.fa.md", "paper-explanations.fa.md",
@@ -89,7 +91,7 @@ function fitVisibleLaboratory() {
 async function loadReadingDocument(filename = null, chapter = null) {
   try {
     if (!markdownReaderPromise) {
-      markdownReaderPromise = import("./markdown-reader.js").then(({ createMarkdownReader }) => createMarkdownReader());
+      markdownReaderPromise = import("./markdown-reader.js?v=20261014-learning").then(({ createMarkdownReader }) => createMarkdownReader());
     }
     const reader = await markdownReaderPromise;
     await reader.open(filename, chapter);
@@ -173,6 +175,11 @@ function initializeTabs() {
     link.dataset.document = filename;
     const destination = new URL("?document=" + encodeURIComponent(filename) + "#reading", window.location.href);
     if (/^(intro|all|chapter-\d+)$/.test(chapter || "")) destination.searchParams.set("chapter", chapter);
+    const lesson = new URL(link.href).searchParams.get("lesson");
+    if (/^[1-9]$/.test(lesson || "")) {
+      destination.searchParams.set("lesson", lesson);
+      destination.hash = "lesson-guide";
+    }
     link.href = destination.href;
     link.removeAttribute("target");
   }
@@ -188,8 +195,13 @@ function initializeTabs() {
     url.searchParams.delete("chapter");
     const chapter = new URL(link.href).searchParams.get("chapter");
     if (/^(intro|all|chapter-\d+)$/.test(chapter || "")) url.searchParams.set("chapter", chapter);
-    if (link.id === "start-presentation") url.searchParams.set("chapter", "chapter-1");
-    url.hash = "reading";
+    const lesson = new URL(link.href).searchParams.get("lesson");
+    if (/^[1-9]$/.test(lesson || "")) url.searchParams.set("lesson", lesson);
+    if (link.id === "start-presentation") {
+      url.searchParams.set("chapter", "chapter-1");
+      url.searchParams.delete("lesson");
+    }
+    url.hash = /^[1-9]$/.test(lesson || "") ? "lesson-guide" : "reading";
     window.history.pushState(null, "", url);
     activate("reading");
     $("tab-reading").focus({ preventScroll: true });
@@ -835,6 +847,11 @@ async function loadSequences() {
 
 initializeBindingExplainer();
 initializeTabs();
+for (const section of document.querySelectorAll('#panel-basics .reading-section')) linkGlossaryTerms(section);
+void initializeLearningJourney().catch(() => {
+  $("study-status").dataset.state = "error";
+  $("study-status").textContent = "راهنمای متنی مسیر یادگیری و دکمهٔ شروع همچنان قابل استفاده‌اند.";
+});
 const results = await Promise.allSettled([
   loadStructures(), loadInterface(), loadLiterature(), loadDatasets(), loadSequences(),
 ]);

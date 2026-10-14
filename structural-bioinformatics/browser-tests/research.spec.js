@@ -133,6 +133,39 @@ test("beginner mechanism and deeper paper explanations are reachable in the note
     await expect(page.locator("#markdown-content")).toBeVisible();
 });
 
+test('reference codons connect real CDS positions to amino acids and stop', async ({ page }) => {
+    await page.goto(`${route}?tab=sequences#codon-lesson`);
+    await expect(page.locator('#codon-status')).toHaveAttribute('data-state', 'ready');
+    await expect(page.locator('#codon-strip button')).toHaveCount(12);
+    await expect(page.locator('#codon-readout')).toContainText('NM_000594.4');
+    await expect(page.locator('#codon-readout')).toContainText('178–180');
+    await expect(page.locator('#codon-readout')).toContainText('Met / M');
+    await page.locator('#codon-strip button').nth(3).click();
+    await expect(page.locator('#codon-strip button').nth(3)).toBeFocused();
+    await expect(page.locator('#codon-readout')).toContainText('Glu / E');
+    await page.selectOption('#codon-gene', 'TOP2A');
+    await expect(page.locator('#codon-readout')).toContainText('106–108');
+    await expect(page.locator('#codon-note')).toContainText('NP_001058.2');
+    await page.locator('#codon-stop').click();
+    await expect(page.locator('#codon-readout')).toContainText('UAA');
+    await expect(page.locator('#codon-readout')).toContainText('آمینواسید اضافه نمی‌شود');
+    await expect(page.locator('#codon-code-body tr')).toHaveCount(64);
+    await page.locator('#codon-strip button').first().click();
+    await expect(page.locator('#codon-stop')).toHaveAttribute('aria-pressed', 'false');
+});
+
+test('unavailable codon data can retry while reference FASTA remains usable', async ({ page }) => {
+    await page.route('**/data/processed/codon-lesson.json', request => request.abort());
+    await page.goto(`${route}?tab=sequences#codon-lesson`);
+    await expect(page.locator('#codon-status')).toHaveAttribute('data-state', 'error');
+    await expect(page.locator('#sequence-record')).toBeVisible();
+    await expect(page.locator('#sequence-copy')).toBeEnabled();
+    await page.unroute('**/data/processed/codon-lesson.json');
+    await page.locator('#codon-status').getByRole('button', { name: 'تلاش دوباره' }).click();
+    await expect(page.locator('#codon-status')).toHaveAttribute('data-state', 'ready');
+    await expect(page.locator('#codon-strip button')).toHaveCount(12);
+});
+
 test("curated evidence and dataset search keep available measurements distinct", async ({ page }) => {
     await ready(page);
     await expect(page.locator("#stat-residue-pairs")).toHaveText("۴۰");

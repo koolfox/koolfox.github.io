@@ -12,6 +12,7 @@
     {"imports":{"three":"./assets/vendor/three.module.js"}}
   </script>
   <script type="module" src="assets/app.js"></script>
+  <script type="module" src="assets/codon-lesson.js"></script>
 </head>
 <body class="research-page">
   <a class="skip-link" href="#main">رفتن به محتوای پژوهش</a>
@@ -22,9 +23,9 @@
   <main id="main" class="research-main">
     <section class="research-intro" aria-labelledby="page-title">
       <h1 id="page-title"><bdi>TNF-α</bdi> و اتصال آدالیموماب</h1>
-      <p class="research-question">از ساختار سه‌بعدی و تماس مولکولی تا توالی و شواهد بیماری؛ یک پروژهٔ درسی دربارهٔ آرتریت روماتوئید.</p>
-      <p class="intro-note">آدالیموماب یک آنتی‌بادیِ پروتئینی است؛ <bdi>TNF</bdi> هدف اتصال آن، <bdi>CRP</bdi> نشانگر التهاب و <bdi>TOP2A</bdi> موضوع مقایسهٔ غیرمستقیمِ پژوهش است.</p>
-      <div class="document-links"><a href="?document=preparation-guide.fa.md&amp;chapter=intro#reading">جزوهٔ آمادگی و RNA-seq</a><a href="assets/preparation-guide.fa.pdf" download>دریافت جزوهٔ PDF</a><a id="start-slides" href="presentation.html#slide-1">شروع ارائهٔ اسلایدی</a><a id="start-presentation" href="docs/class-presentation.fa.md">مطالعهٔ متن ارائه</a><span class="intro-note">۲۴ اسلاید؛ سازوکار دارو، مقاله‌ها و سؤال پژوهش</span></div>
+      <p class="research-question">از شناخت آرتریت روماتوئید و سازوکار دارو شروع می‌کنیم؛ سپس ساختار، کدون‌ها و داده‌های RNA-seq را می‌خوانیم.</p>
+      <p class="intro-note">مسیر اصلی: بیماری، <bdi>TNF</bdi> و آدالیموماب. مسیر موازی: شناخت <bdi>DNA</bdi> و <bdi>TOP2A</bdi>. سؤال ارتباط دارویی پس از یادگیری پایه‌ها و تأیید داده انتخاب می‌شود.</p>
+      <div class="document-links"><a href="?document=learning-path.fa.md&amp;chapter=intro#reading">مسیر یادگیری از پایه</a><a href="?document=preparation-guide.fa.md&amp;chapter=intro#reading">جزوهٔ آمادگی و RNA-seq</a><a href="assets/preparation-guide.fa.pdf" download>دریافت جزوهٔ PDF</a><a id="start-slides" href="presentation.html#slide-1">شروع ارائهٔ اسلایدی</a><a id="start-presentation" href="docs/class-presentation.fa.md">مطالعهٔ متن ارائه</a><span class="intro-note">۲۴ اسلاید؛ سازوکار دارو، مقاله‌ها و سؤال پژوهش</span></div>
     </section>
     <div class="research-tabs" id="research-tabs" role="tablist" aria-label="بخش‌های پروژه" aria-orientation="horizontal">
       <button type="button" id="tab-basics" role="tab" aria-selected="true" aria-controls="panel-basics" tabindex="0" data-tab="basics">مبانی و سؤال پژوهش</button>
@@ -37,11 +38,11 @@
     <noscript><p class="inline-error">برای تغییر تب و کاوش سه‌بعدی JavaScript را فعال کنید. <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/course-guide.fa.md" target="_blank" rel="noopener noreferrer">راهنمای متنی پروژه</a> نیز قابل خواندن است.</p></noscript>
     <div id="panel-basics" class="research-panel" role="tabpanel" aria-labelledby="tab-basics" tabindex="0">
       <section id="basics" class="reading-section" aria-labelledby="question-title">
-        <h2 id="question-title">یک پرسش ساختاری، سپس یک پیوند قابل بررسی</h2>
+        <h2 id="question-title">اول بیماری و دارو را بفهمیم، سپس سؤال انتخاب کنیم</h2>
         <p class="section-description"><a href="docs/binding-mechanism.fa.md">از پایه شروع کنید: سلول، پروتئین و اتصال دارو یعنی چه؟</a> این درس برای خوانندهٔ علاقه‌مند به زیست نوشته شده و پیش‌نیاز دانشگاهی فرض نمی‌کند.</p>
-        <p class="section-description"><strong>پرسش اصلی:</strong> آیا آدالیموماب می‌تواند فعالیت <bdi>TOP2A</bdi> را مستقیم یا غیرمستقیم کاهش دهد، و تحلیل ساختاری چه بخشی از این فرضیه را می‌آزماید؟ <a href="docs/top2a-inhibition-feasibility.fa.md">تعریف مهار و طرح آزمون</a></p>
-        <p class="section-description"><strong>مرجع ساختاری:</strong> اتصال شناخته‌شدهٔ <bdi>TNF–Fab</bdi> پایهٔ یادگیری روش است. «اتصال»، «کاهش فعالیت آنزیم» و «کاهش RNA» سنجه‌های جدا هستند؛ <a href="docs/scientific-claim-audit.fa.md">ممیزی ادعاها و منابع</a> حدود هر شاهد را مشخص می‌کند.</p>
-        <div class="document-links"><a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/research-questions.fa.md" target="_blank" rel="noopener noreferrer">پرسش‌ها و مرز پژوهش</a><a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/connection-evidence.fa.md" target="_blank" rel="noopener noreferrer">جزئیات شواهد پیوند غیرمستقیم</a></div>
+        <p class="section-description"><strong>پرسش فعلی:</strong> آدالیموماب در آرتریت روماتوئید چگونه با هدف‌گیری <bdi>TNF</bdi> عمل می‌کند و ساختار، مطالعهٔ بیمار و <bdi>RNA-seq</bdi> چه چیزهای متفاوتی را نشان می‌دهند؟ <a href="docs/learning-path.fa.md">ترتیب مطالعه و خروجی هر بخش</a></p>
+        <p class="section-description"><strong>مرجع ساختاری:</strong> اتصال شناخته‌شدهٔ <bdi>TNF–Fab</bdi> پایهٔ یادگیری شکل و محل اتصال دارو است. مسیر توالی هم از باز و کدون به آمینواسید می‌رسد. مقدار <bdi>RNA</bdi> و پاسخ بیمار، اندازه‌گیری‌های جدا هستند؛ <a href="docs/scientific-claim-audit.fa.md">ممیزی ادعاها و منابع</a> حدود هر شاهد را مشخص می‌کند.</p>
+        <div class="document-links"><a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/research-questions.fa.md" target="_blank" rel="noopener noreferrer">پرسش‌ها و مرز پژوهش</a><a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/connection-evidence.fa.md" target="_blank" rel="noopener noreferrer">شواهد پیوند غیرمستقیم؛ برای مرحلهٔ بعد</a></div>
       </section>
       <section id="molecular-roles" class="reading-section" aria-labelledby="roles-title">
         <h2 id="roles-title">در این داستان هر مولکول چه نقشی دارد؟</h2>
@@ -66,8 +67,10 @@
         </div>
         <div id="binding-diagram" class="binding-diagram"></div>
         <p id="binding-explanation" class="binding-explanation" role="status"></p>
-        <p class="section-description">تشبیه «قفل و کلید» کمک می‌کند اتصال اختصاصی را تصور کنیم؛ پروتئین‌ها انعطاف‌پذیرند و شیمی سطح هم اهمیت دارد. <a href="docs/binding-mechanism.fa.md">شرح قدم‌به‌قدم اتصال، میل اتصال و اثر درمان</a> · <a href="https://doi.org/10.1074/jbc.M113.491530" target="_blank" rel="noopener noreferrer">شاهد تجربی اتصال</a></p>
+        <p class="section-description">تشبیه «قفل و کلید» کمک می‌کند اتصال به یک هدف مشخص را تصور کنیم؛ پروتئین‌ها انعطاف‌پذیرند و شیمی سطح هم اهمیت دارد. <a href="docs/binding-mechanism.fa.md">شرح قدم‌به‌قدم اتصال، میل اتصال و اثر درمان</a> · <a href="https://doi.org/10.1074/jbc.M113.491530" target="_blank" rel="noopener noreferrer">شاهد تجربی اتصال</a></p>
       </section>
+      <details id="later-evidence" class="future-work">
+        <summary>پس از مبانی: منابعِ ارتباط احتمالی با TOP2A</summary>
       <section id="evidence-bridge" class="reading-section" aria-labelledby="bridge-title">
         <h2 id="bridge-title">کدام رابطه ثابت شده و کدام هنوز پرسش است؟</h2>
         <figure class="research-media teaching-figure">
@@ -81,14 +84,15 @@
         </dl>
         <p class="section-description"><a href="#literature">نوع آزمایش و نقد مقاله‌ها</a> را پیش از ساختن یک زنجیرهٔ علّی بخوانید. <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/connection-evidence.fa.md" target="_blank" rel="noopener noreferrer">جدول شواهد و حلقه‌های اندازه‌گیری‌نشده</a></p>
       </section>
+      </details>
       <section id="clinical-context" class="reading-section" aria-labelledby="clinical-title">
         <h2 id="clinical-title">زمینهٔ بیماری: آرتریت روماتوئید</h2>
         <p class="section-description">در <bdi>RA</bdi> التهاب مفصل زمینهٔ بالینی این پروژه است. مدل سه‌بعدی اتصال به <bdi>TNF</bdi> را توضیح می‌دهد؛ اندازه‌گیری <bdi>CRP</bdi> و فعالیت بیماری به لایهٔ بالینی تعلق دارند. برای وصل کردن این دو لایه باید طراحی و محدودیت مطالعهٔ بیمار را هم بررسی کرد.</p>
       </section>
       <details id="next-comparison" class="future-work comparison-next">
-        <summary>مرحلهٔ بعد: مقایسهٔ <bdi>TOP2A</bdi> و شواهد سرطان</summary>
-        <p class="section-description">نقش <bdi>TOP2A</bdi> در تکثیر سلولی و مطالعات سرطان را با شواهد <bdi>RA</bdi> مقایسه می‌کنیم. مشابهت بیان یا نقش زیستی، انتقال خودکار یک نتیجهٔ درمانی میان بیماری‌ها را ثابت نمی‌کند.</p>
-        <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/top2a-cancer-comparison.fa.md" target="_blank" rel="noopener noreferrer">خواندن یادداشت مقایسهٔ TOP2A و سرطان</a>
+        <summary>مسیر موازی: شناخت <bdi>TOP2A</bdi> و کار آن روی DNA</summary>
+        <p class="section-description">ابتدا <bdi>DNA</bdi>، معنی آنزیم و نقش <bdi>TOP2A</bdi> در تقسیم سلول را می‌آموزیم. بررسی ارتباط با بیماری یا دارو پس از این شناخت و وجود دادهٔ مناسب انجام می‌شود. <a href="docs/top2a-primer.fa.md">درس مستقل و مقدماتی TOP2A</a></p>
+        <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/top2a-cancer-comparison.fa.md" target="_blank" rel="noopener noreferrer">مرور پیشرفتهٔ مقایسه با سرطان؛ برای مطالعهٔ بعدی</a>
       </details>
     </div>
     <div id="panel-lab" class="research-panel" role="tabpanel" aria-labelledby="tab-lab" tabindex="0" hidden>
@@ -224,6 +228,29 @@
             <div id="sequence-limitations"></div>
           </details>
         </div>
+        <section id="codon-lesson" class="reading-section" aria-labelledby="codon-title">
+          <h2 id="codon-title">کدون چگونه به آمینواسید می‌رسد؟</h2>
+          <p class="section-description">هر کدون در بخش کدکننده، <bdi>CDS</bdi>، سه باز دارد. از شروع CDS ثبت‌شده می‌خوانیم؛ کل RNA را دلخواه سه‌تا سه‌تا ترجمه نمی‌کنیم. این درس، توالی مرجع را نشان می‌دهد و با شمارش RNA در بیمار فرق دارد. <a href="docs/codons-primer.fa.md">درس باز، کدون و آمینواسید با مثال واقعی</a></p>
+          <div class="sequence-selector"><label for="codon-gene">نمونهٔ RNA مرجع</label><select id="codon-gene" disabled><option>در حال خواندن…</option></select></div>
+          <p id="codon-status" class="section-status" data-state="loading" role="status">در حال خواندن نمونه‌های کدون…</p>
+          <div id="codon-content" hidden>
+            <p class="section-description">۱۲ کدون اول از چپ به راست، در جهت <bdi>5′ → 3′</bdi>. یک کدون را انتخاب کنید؛ بخش میانیِ توالی در این پیش‌نمایش نیست.</p>
+            <ol id="codon-strip" class="codon-strip" dir="ltr" aria-label="دوازده کدون واقعی آغاز CDS"></ol>
+            <button id="codon-stop" type="button" aria-pressed="false" disabled>دیدن کدون پایان CDS</button>
+            <p id="codon-number" class="section-status" aria-live="polite"></p>
+            <dl id="codon-readout" class="sequence-metadata"></dl>
+            <p id="codon-note" class="section-description"></p>
+            <p class="section-description">نمایش <bdi>U</bdi> به جای <bdi>T</bdi>، فقط تبدیل حروف رکورد مرجع mRNA است؛ شکل RNA یا توالی اختصاصی بیمار تولید نمی‌شود. <a id="codon-reference" target="_blank" rel="noopener noreferrer">رکورد اصلی</a></p>
+            <details class="future-work"><summary>جدول کامل ۶۴ کدونِ کد استاندارد</summary>
+              <p class="section-description">۶۱ کدون برای ۲۰ نوع آمینواسید و سه کدون پایان. ستون T قرارداد حروف است. <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi#SG1" target="_blank" rel="noopener noreferrer">جدول NCBI</a></p>
+              <div class="table-scroll" tabindex="0" role="region" aria-label="جدول کدون‌ها"><table><thead><tr><th>کدون RNA</th><th>نمای T</th><th>علامت آمینواسید</th><th>نام</th></tr></thead><tbody id="codon-code-body"></tbody></table></div>
+            </details>
+            <details class="future-work"><summary>در خود آدالیموماب چه حروفی داریم؟</summary>
+              <p class="section-description">این‌ها آمینواسیدهای توالی اعلام‌شدهٔ زنجیره‌های <bdi>H/L</bdi> قطعهٔ Fab در <bdi>3WD5</bdi> هستند؛ همهٔ دارو نیستند. چند کدون می‌توانند یک آمینواسید بسازند، پس از این حروف یک RNA یکتا تعیین نمی‌شود.</p>
+              <dl id="codon-drug-chains" class="sequence-metadata"></dl>
+            </details>
+          </div>
+        </section>
         <p class="section-description sequence-concepts">برای زنجیره‌های <bdi>3WD5</bdi> دو نوع رکورد داریم: توالی اعلام‌شدهٔ سازه و آمینواسیدهای دارای مختصات پذیرفته‌شده. تعداد آمینواسیدهای فایل توالی می‌تواند با تعداد نقاط <bdi>Cα</bdi> فرق کند؛ بعضی اتم‌ها ثبت نشده‌اند یا اشغال‌پذیریِ صفر دارند. زنجیره‌های <bdi>H/L</bdi> قطعهٔ دارویی‌اند، نه ژن انسانی به نام آدالیموماب.</p>
         <details class="future-work construct-caveat">
           <summary>اختلاف واقعی مرجع و سازهٔ TNF را چگونه بخوانیم؟</summary>
@@ -238,7 +265,7 @@
         <p class="section-description"><a href="docs/paper-explanations.fa.md">داستان آزمایش‌ها و معنی نتیجه‌های مقاله‌ها</a>؛ از تعریف اصطلاحات تا اینکه پژوهشگر چه کاری کرد و از داده چه نتیجه‌ای می‌تواند بگیرد.</p>
         <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/literature-review.fa.md" target="_blank" rel="noopener noreferrer">بررسی کامل مقاله‌ها</a>
       </div>
-      <p class="section-description">سه مقالهٔ اصلی برای ساختار آنتی‌بادی، بررسی پیوند غیرمستقیم با <bdi>TOP2A</bdi>، و زمینهٔ بالینی <bdi>RA/CRP</bdi>. نوع آزمایش و مرز نتیجه‌گیری هر مقاله کنار آن آمده است.</p>
+      <p class="section-description">مطالعات برای شناخت اتصال <bdi>TNF–Fab</bdi>، دادهٔ بیماران <bdi>RA</bdi> و <bdi>RNA-seq</bdi>؛ منابع مدل‌سازی و ارتباط احتمالی با <bdi>TOP2A</bdi> برای مطالعهٔ بعدی. نوع آزمایش و مرز نتیجه‌گیری هر مقاله کنار آن آمده است.</p>
       <div id="paper-list" class="paper-list" data-state="loading">
         <p class="section-status" role="status">در حال خواندن مقاله‌های بررسی‌شده…</p>
       </div>

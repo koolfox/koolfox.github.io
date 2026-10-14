@@ -1,0 +1,52 @@
+{
+  "verified_on": "2026-10-14",
+  "accession": "GSE138746",
+  "purpose": "Introductory RA RNA-seq data literacy; no expression-response statistical analysis",
+  "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE138746",
+  "study": "BiOCURA; rheumatoid arthritis; RNA drawn before ADA or ETN initiation; response assessed at month 6",
+  "metadata_libraries": 240,
+  "unique_participants": 80,
+  "participant_drug_counts": {
+    "Etanercept": 42,
+    "Adalimumab": 38
+  },
+  "PBMC_normalized_matrix": {
+    "sample_columns": 79,
+    "gene_rows": 18333,
+    "ADA_columns": 37,
+    "ADA_response_labels": {
+      "moderate": 9,
+      "no": 18,
+      "good": 10
+    },
+    "TOP2A_row_present": true,
+    "count_columns_match_GEO_titles": true,
+    "negative_count_detected": false
+  },
+  "RNA_time": "baseline only",
+  "paired_before_after_RNA": false,
+  "clinical_followup_months": 6,
+  "drug_specific_RNA_change_estimable": false,
+  "new_inferential_analysis_executed": false,
+  "provenance": [
+    {
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE138nnn/GSE138746/matrix/GSE138746_series_matrix.txt.gz",
+      "bytes": 15790,
+      "sha256": "e24b153928ee5514ef68961a35b09096023d2fcb89ad967701b6d84ae168bc50",
+      "retrieved_at_utc": "2026-10-14T06:00:40.435050+00:00"
+    },
+    {
+      "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE138nnn/GSE138746/suppl/GSE138746_Counts_Normalization_PBMC.csv.gz",
+      "bytes": 2330947,
+      "sha256": "7cbfdce01aff9a837db654f77e2eb7944998d5df91f9186f4c8ba9ef65d6feaa",
+      "retrieved_at_utc": "2026-10-14T06:00:42.172339+00:00"
+    }
+  ],
+  "limitations": [
+    "Baseline RNA and six-month clinical response are different measurements and timepoints.",
+    "One cell compartment is used; multiple compartments from one patient are not independent patients.",
+    "Use author-normalized values as labeled; they are not raw FASTQ or a new normalization performed here.",
+    "Presence of a gene row does not establish a drug effect or sufficient expression for a future filtered analysis.",
+    "Full source files and participant-level clinical metadata are not republished."
+  ]
+}

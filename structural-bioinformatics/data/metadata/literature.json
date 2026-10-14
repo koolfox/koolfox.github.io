@@ -1,11 +1,12 @@
 {
   "schema_version": "1.3",
-  "selection_status": "Primary-source audit; three course anchors plus explicit hypothesis-focused supplements; descriptive RNA pilot executed, full reproduction not performed",
-  "retrieved_on": "2026-10-13",
+  "selection_status": "Foundations-first course: experimental binding, RA clinical study and baseline RNA data first; simulation and TOP2A hypotheses are later extensions",
+  "retrieved_on": "2026-10-14",
   "review_type": "purposeful narrative selection; not a systematic review",
   "selection_window": {
-    "start": "2024-01-01",
-    "end": "2026-10-13"
+    "start": "2013-01-01",
+    "end": "2026-10-14",
+    "note": "Foundational primary studies plus recent optional extensions; not a systematic search window"
   },
   "selection_keywords": [
     "TNF-alpha",
@@ -29,6 +30,128 @@
   "central_paper_count": 3,
   "papers": [
     {
+      "id": "gehin_2024_admyra",
+      "title": "Therapeutic serum level for adalimumab in rheumatoid arthritis: explorative analyses of data from a randomised phase III trial",
+      "first_author": "Johanna Elin Gehin",
+      "journal": "RMD Open",
+      "year": 2024,
+      "volume": "10",
+      "issue": "4",
+      "article_number": "e004888",
+      "publication_date": "2024-11-13",
+      "doi": "10.1136/rmdopen-2024-004888",
+      "pmid": "39537558",
+      "pmcid": "PMC11575345",
+      "trial_id": "NCT02744755",
+      "study_design": "Post hoc longitudinal concentration-outcome analysis of a 48-week randomised phase III biosimilarity trial (ADMYRA); not a randomised trial of concentration-guided dosing",
+      "cohort": {
+        "disease": "active rheumatoid arthritis",
+        "tnf_inhibitor_naive": true,
+        "all_received_concomitant_methotrexate": true,
+        "drug_groups": [
+          "GP2017 adalimumab biosimilar",
+          "reference adalimumab"
+        ],
+        "analyses_pooled_drug_groups": true,
+        "participants_with_trough_data_by_week": {
+          "12": 336,
+          "24": 330,
+          "48": 302
+        }
+      },
+      "endpoints": [
+        "DAS28-ESR remission and low disease activity",
+        "CRP concentration",
+        "Longitudinal serum adalimumab trough concentration"
+      ],
+      "findings": {
+        "trough_threshold_associated_with_remission_mg_per_l": 3.9,
+        "remission_odds_ratio": 3.88,
+        "remission_odds_ratio_ci95": [
+          1.8,
+          8.38
+        ],
+        "crp_association": "Lower CRP at trough concentrations at or above 3.9 mg/L",
+        "interpretation": "The approximately 4 mg/L proposal is population-specific association evidence, not a universal threshold or demonstrated benefit of dosing intervention."
+      },
+      "data_availability": {
+        "public_individual_level_dataset": false,
+        "access": "Data available from Sandoz upon reasonable request",
+        "accession": null,
+        "access_requested": false
+      },
+      "evidence_limits": [
+        "Post hoc concentration-response associations are not randomised exposure comparisons",
+        "Stringent trial inclusion criteria limit external validity",
+        "All participants received methotrexate; cannot isolate its influence on drug levels or immunogenicity",
+        "Selected continuation after week 24 and changing denominators require care",
+        "Does not establish thresholds for psoriasis, AS or lupus",
+        "No TOP2A, RNA expression or patient-specific binding geometry endpoint; does not complete the indirect mechanistic bridge"
+      ],
+      "primary_sources": [
+        "https://rmdopen.bmj.com/content/10/4/e004888",
+        "https://pubmed.ncbi.nlm.nih.gov/39537558/",
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11575345/fullTextXML"
+      ],
+      "publication_status": "peer-reviewed original research article",
+      "project_role_fa": "زمینهٔ بالینی آدالیموماب و CRP در آرتریت روماتوئید",
+      "rationale_fa": "بین داروی واقعی، آزمایش CRP و فعالیت RA ارتباط بررسی می‌کند و تفاوت سنجش بالینی با مشاهدهٔ شکل پروتئین را روشن می‌سازد.",
+      "summary_fa": "در تحلیل ثانویهٔ داده‌های ۴۸هفته‌ای کارآزمایی ADMYRA، غلظت سرمی بیشتر آدالیموماب با فعالیت کمتر بیماری و CRP کمتر همراه بود. همهٔ بیماران متوترکسات همراه دریافت می‌کردند.",
+      "critique_fa": "ارتباط آماری، اثر تنظیم دوز را ثابت نمی‌کند؛ این تحلیل شکل اتصال در هر بیمار را اندازه نگرفته است. دادهٔ فردی عمومی نیست و آستانهٔ پژوهش، توصیهٔ درمان عمومی محسوب نمی‌شود.",
+      "verification": {
+        "bibliographic_metadata_checked": true,
+        "primary_full_methods_checked": true,
+        "data_access_statement_checked": true,
+        "scientific_results_independently_reproduced": false,
+        "evidence_pointers": [
+          "PubMed and Europe PMC publication date/DOI",
+          "Methods: post hoc ADMYRA analysis and concomitant methotrexate",
+          "Results: longitudinal sample denominators and CRP association",
+          "Data availability: nonpublic Sandoz data upon request"
+        ]
+      },
+      "current_selection_role": "foundational_RA_clinical"
+    },
+    {
+      "id": "tao_2021_ra_rnaseq",
+      "title": "Multiomics and Machine Learning Accurately Predict Clinical Response to Adalimumab and Etanercept Therapy in Patients With Rheumatoid Arthritis",
+      "first_author": "Weiyang Tao",
+      "journal": "Arthritis & Rheumatology",
+      "year": 2021,
+      "doi": "10.1002/art.41516",
+      "pmid": "32909363",
+      "pmcid": "PMC7898388",
+      "publication_status": "peer-reviewed original research article; journal issue 2021, electronic publication 2020",
+      "project_role_fa": "برای شروع: RNA اولیهٔ بیمار RA و پاسخ درمان",
+      "rationale_fa": "دیتاست GSE138746 نام دارو، نوع سلول و پاسخ شش‌ماهه دارد؛ برای فهم طراحی RNA-seq در زمینهٔ RA مناسب است. در مرحلهٔ فعلی، رکورد و ماتریس را می‌خوانیم.",
+      "summary_fa": "RNA سلول‌های خون ۸۰ بیمار RA پیش از آدالیموماب یا اتانرسپت بررسی و در کنار پاسخ شش‌ماهه تحلیل شد. مطالعه نشانگرها و مدل‌های پیش‌بینی پاسخ را بررسی کرد؛ مدل‌ها در پروژه بازتولید نشده‌اند.",
+      "critique_fa": "RNA فقط پیش از درمان گرفته شده؛ پاسخ ماه ششم، RNA ماه ششم نیست. این داده تغییر RNA پس از دارو یا مهار TOP2A را اندازه نمی‌گیرد.",
+      "study_design": "Observational BiOCURA baseline multi-omics and subsequent six-month clinical response; not paired pre/post RNA",
+      "data_availability": {
+        "repository": "NCBI GEO",
+        "accession": "GSE138746",
+        "url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE138746",
+        "metadata_libraries": 240,
+        "participants": 80,
+        "PBMC_processed_columns_inspected": 79,
+        "ADA_PBMC_processed_columns_inspected": 37,
+        "analysis_executed_in_project": false,
+        "verified_on": "2026-10-14",
+        "audit_path": "data/metadata/ra-rnaseq-learning.json"
+      },
+      "current_selection_role": "foundational_RA_RNA_data",
+      "verification": {
+        "primary_abstract_and_publication_record_checked": true,
+        "GEO_metadata_and_PBMC_matrix_inspected": true,
+        "ML_or_expression_response_results_reproduced": false
+      },
+      "primary_sources": [
+        "https://doi.org/10.1002/art.41516",
+        "https://pubmed.ncbi.nlm.nih.gov/32909363/",
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7898388/fullTextXML"
+      ]
+    },
+    {
       "id": "bianchi_2026_antibody_dynamics",
       "title": "Antigen binding triggers long-range conformational changes in monoclonal antibodies",
       "first_author": "Davide Bianchi",
@@ -50,7 +173,7 @@
         "note": "Online publication is 2026; volume 16 and PubMed bibliography use 2025. Do not infer the online date from the DOI or volume label."
       },
       "publication_status": "peer-reviewed original research article",
-      "project_role_fa": "ساختار و حرکت آدالیموماب هنگام اتصال به TNF",
+      "project_role_fa": "برای مرحلهٔ بعد: مدل‌سازی حرکت آدالیموماب",
       "rationale_fa": "مستقیماً آدالیموماب/TNF را در سه‌بعد بررسی می‌کند و مدل‌های عمومی دارد؛ برای فهم بخش‌های Fab و Fc و تفاوت مدل با ساختار تجربی مناسب است.",
       "summary_fa": "نویسندگان از قالب‌های بلوری، مدل آنتی‌بادی کامل ساختند و حالت‌های اتصال و قندگذاری را شبیه‌سازی کردند. در مدل‌ها، اتصال به آنتی‌ژن با تغییر شکل و هم‌حرکتی بخش‌های آنتی‌بادی و دسترسی سطح Fc همراه بود.",
       "critique_fa": "پژوهش مدل‌سازی و شبیه‌سازی است؛ ساختار تجربی جدید آنتی‌بادی کامل یا اثر درمان در بیمار را اندازه نمی‌گیرد. پیش‌بینی عملکرد نیازمند آزمایش است. دانشجو برای این فاز لازم نیست شبیه‌سازی طولانی اجرا کند.",
@@ -181,7 +304,7 @@
         "https://api.crossref.org/works/10.3389/fimmu.2025.1680199",
         "https://dataverse.unimi.it/api/datasets/:persistentId/?persistentId=doi:10.13130/RD_UNIMI/FULQXI"
       ],
-      "current_selection_role": "central recent paper"
+      "current_selection_role": "later_structural_simulation"
     },
     {
       "id": "marguerie_2025_sirpg_tcells",
@@ -210,7 +333,7 @@
         "europe_pmc_first_publication": "2025-11-21"
       },
       "publication_status": "peer-reviewed original research article",
-      "project_role_fa": "سرنخ سلولی برای پرسش ارتباط غیرمستقیم آدالیموماب و TOP2A",
+      "project_role_fa": "برای مرحلهٔ بعد: آزمایش‌های جدا دربارهٔ SIRPG و TOP2A",
       "rationale_fa": "دو مداخلهٔ مشخص دارد: اثر آدالیموماب بر SIRPG و اثر حذف SIRPG بر TOP2A/تکثیر. برای ساختن پرسش واسطهٔ سلولی مفید است؛ مسیر کامل یا جهت اثر دارو را اثبات نمی‌کند.",
       "summary_fa": "آدالیموماب در سلول T فعال‌شدهٔ اهداکنندهٔ سالم، SIRPG سطحی را افزایش داد. در آزمایش جدا، حذف SIRPG با کاهش RNA ژن TOP2A و ژن‌های چرخه و تکثیر همراه بود؛ qPCR نیز گزارش شد.",
       "critique_fa": "افزایش SIRPG با دارو و کاهش TOP2A با حذف SIRPG، دو آزمایش جدا هستند؛ اثر دارو بر TOP2A یا میانجی‌گری اثبات نشده است. دادهٔ RNA گروه آدالیموماب ندارد و سلول سالم فعال‌شده، بیمار RA نیست.",
@@ -306,90 +429,7 @@
         "https://api.crossref.org/works/10.3389/fimmu.2025.1668361",
         "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE296196&targ=all&form=text&view=quick"
       ],
-      "current_selection_role": "central recent paper"
-    },
-    {
-      "id": "gehin_2024_admyra",
-      "title": "Therapeutic serum level for adalimumab in rheumatoid arthritis: explorative analyses of data from a randomised phase III trial",
-      "first_author": "Johanna Elin Gehin",
-      "journal": "RMD Open",
-      "year": 2024,
-      "volume": "10",
-      "issue": "4",
-      "article_number": "e004888",
-      "publication_date": "2024-11-13",
-      "doi": "10.1136/rmdopen-2024-004888",
-      "pmid": "39537558",
-      "pmcid": "PMC11575345",
-      "trial_id": "NCT02744755",
-      "study_design": "Post hoc longitudinal concentration-outcome analysis of a 48-week randomised phase III biosimilarity trial (ADMYRA); not a randomised trial of concentration-guided dosing",
-      "cohort": {
-        "disease": "active rheumatoid arthritis",
-        "tnf_inhibitor_naive": true,
-        "all_received_concomitant_methotrexate": true,
-        "drug_groups": [
-          "GP2017 adalimumab biosimilar",
-          "reference adalimumab"
-        ],
-        "analyses_pooled_drug_groups": true,
-        "participants_with_trough_data_by_week": {
-          "12": 336,
-          "24": 330,
-          "48": 302
-        }
-      },
-      "endpoints": [
-        "DAS28-ESR remission and low disease activity",
-        "CRP concentration",
-        "Longitudinal serum adalimumab trough concentration"
-      ],
-      "findings": {
-        "trough_threshold_associated_with_remission_mg_per_l": 3.9,
-        "remission_odds_ratio": 3.88,
-        "remission_odds_ratio_ci95": [
-          1.8,
-          8.38
-        ],
-        "crp_association": "Lower CRP at trough concentrations at or above 3.9 mg/L",
-        "interpretation": "The approximately 4 mg/L proposal is population-specific association evidence, not a universal threshold or demonstrated benefit of dosing intervention."
-      },
-      "data_availability": {
-        "public_individual_level_dataset": false,
-        "access": "Data available from Sandoz upon reasonable request",
-        "accession": null,
-        "access_requested": false
-      },
-      "evidence_limits": [
-        "Post hoc concentration-response associations are not randomised exposure comparisons",
-        "Stringent trial inclusion criteria limit external validity",
-        "All participants received methotrexate; cannot isolate its influence on drug levels or immunogenicity",
-        "Selected continuation after week 24 and changing denominators require care",
-        "Does not establish thresholds for psoriasis, AS or lupus",
-        "No TOP2A, RNA expression or patient-specific binding geometry endpoint; does not complete the indirect mechanistic bridge"
-      ],
-      "primary_sources": [
-        "https://rmdopen.bmj.com/content/10/4/e004888",
-        "https://pubmed.ncbi.nlm.nih.gov/39537558/",
-        "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11575345/fullTextXML"
-      ],
-      "publication_status": "peer-reviewed original research article",
-      "project_role_fa": "زمینهٔ بالینی آدالیموماب و CRP در آرتریت روماتوئید",
-      "rationale_fa": "بین داروی واقعی، آزمایش CRP و فعالیت RA ارتباط بررسی می‌کند و تفاوت سنجش بالینی با مشاهدهٔ شکل پروتئین را روشن می‌سازد.",
-      "summary_fa": "در تحلیل ثانویهٔ داده‌های ۴۸هفته‌ای کارآزمایی ADMYRA، غلظت سرمی بیشتر آدالیموماب با فعالیت کمتر بیماری و CRP کمتر همراه بود. همهٔ بیماران متوترکسات همراه دریافت می‌کردند.",
-      "critique_fa": "ارتباط آماری، اثر تنظیم دوز را ثابت نمی‌کند؛ این تحلیل شکل اتصال در هر بیمار را اندازه نگرفته است. دادهٔ فردی عمومی نیست و آستانهٔ پژوهش، توصیهٔ درمان عمومی محسوب نمی‌شود.",
-      "verification": {
-        "bibliographic_metadata_checked": true,
-        "primary_full_methods_checked": true,
-        "data_access_statement_checked": true,
-        "scientific_results_independently_reproduced": false,
-        "evidence_pointers": [
-          "PubMed and Europe PMC publication date/DOI",
-          "Methods: post hoc ADMYRA analysis and concomitant methotrexate",
-          "Results: longitudinal sample denominators and CRP association",
-          "Data availability: nonpublic Sandoz data upon request"
-        ]
-      },
-      "current_selection_role": "central recent paper"
+      "current_selection_role": "later_indirect_comparison"
     }
   ],
   "structural_foundation_not_counted_in_recent_three": {
@@ -435,7 +475,7 @@
     "Old direct experimental foundations remain required and are not counted among the three recent reviews",
     "No copyrighted full text or identifying clinical records are committed in this metadata file"
   ],
-  "selection_basis": "Three central recent anchors for a staged structural-to-cellular-to-clinical question: Bianchi structure, Marguerie indirect-mechanistic lead and Gehin RA/CRP. Older experimental structures and supplementary bridge studies are necessary context, not a completed ADA-to-TOP2A proof.",
+  "selection_basis": "Current user-confirmed order is RA, adalimumab/TNF mechanism and data literacy; learn codons and TOP2A in parallel, then choose an evidence-supported advanced question. Hu 2013, Gehin 2024 and Tao 2021 serve different foundational roles; recency alone does not determine the teaching order.",
   "supplementary_papers_not_counted_in_central_three": [
     {
       "id": "veerasubramanian_2026_mlr",

@@ -21,37 +21,16 @@
     "Third-party data and publications retain their own licenses independently of this repository."
   ],
   "recommended_primary_design": {
+    "stage": "foundational_RA_course_study",
     "structure": "3WD5",
-    "unbound_reference": "1TNF",
-    "discovery_cohort": "GSE85034",
-    "validation_cohort": "GSE74697",
-    "research_question": "Describe the experimentally observed TNF-adalimumab Fab interface and test paired changes in prespecified TNF-related expression signatures after adalimumab in psoriasis skin.",
-    "response_analysis": "Exploratory only: GSE85034 has 14 ADA baseline-lesional/week-16 pairs and a small response-labeled subgroup derived from PASI.",
-    "independent_unit": "participant",
-    "validation_limit": "GSE74697 supports independent before/after expression validation but has no inspected public PASI/response labels.",
-    "clinical_crp_analysis": "deferred_pending_a_verified_participant_level_dataset",
-    "exploratory_TOP2A_RA_extension": {
-      "question": "Is within-cell-type TOP2A expression associated with RA inflammatory/proliferative state and does it change after adalimumab, independently of changes in cell composition?",
-      "case_control_discovery": "GSE55235",
-      "case_control_validation": "GSE89408",
-      "baseline_response_secondary": "GSE138746",
-      "paired_synovial_candidate": [
-        "ZENODO:15058262",
-        "ZENODO:15058715"
-      ],
-      "paired_synovial_ADA_participants": 6,
-      "paired_synovial_fluid_candidate": "GSE296117",
-      "paired_synovial_fluid_ADA_participants": 5,
-      "analysis_readiness": "Metadata/feature feasibility established; actual spatial and Seurat expression import and QC are pending.",
-      "minimum_controls": [
-        "patient-level pairing/pseudobulk",
-        "cell-type abundance",
-        "proliferation and cell-cycle signatures excluding TOP2A itself",
-        "sample region/segmentation",
-        "concurrent DMARD exposure"
-      ],
-      "binding_claim": "No direct TNF-TOP2A or adalimumab-TOP2A binding claim is supported by these datasets."
-    }
+    "clinical_anchor": "Gehin 2024 / ADMYRA published results",
+    "RNA_data_literacy_cohort": "GSE138746",
+    "RNA_time": "baseline before treatment; six-month clinical response labels",
+    "first_RNA_exercise": "Understand sample, cell compartment, drug label, time and the public PBMC processed matrix; no treatment-change or predictive model result",
+    "parallel_learning": "TOP2A gene, mRNA, protein and DNA-bound structure 4FM9; not a presumed RA cause or adalimumab target",
+    "later_paired_RA_candidate": "GSE129705, drug mapping remains unresolved",
+    "later_in_vitro_drug_candidate": "GSE339038, distinct from an RA patient cohort",
+    "advanced_question_gate": "Choose a bounded hypothesis only after foundational understanding and verified compatible data."
   },
   "datasets": [
     {
@@ -500,7 +479,7 @@
       "kind": "human_response_omics",
       "title": "Multi-omics and Machine Learning Accurately Predicts Clinical Response to Adalimumab and Etanercept Therapy in Patients with Rheumatoid Arthritis [RNA-Seq]",
       "status": "metadata_and_count_headers_verified",
-      "priority": "secondary_RA_mechanistic_comparison",
+      "priority": "current_RA_data_literacy",
       "verified_on": "2026-10-13",
       "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE138746",
       "evidence_urls": [
@@ -642,7 +621,8 @@
         "numeric_sample_values": 240,
         "nonzero_sample_values": 240,
         "analysis_scope": "baseline expression only; no treatment-change estimate"
-      }
+      },
+      "current_PBMC_review": "data/metadata/ra-rnaseq-learning.json"
     },
     {
       "id": "GSE138653",
@@ -2092,5 +2072,38 @@
         "Archived patient counts and drug metadata verified; TOP2A patient expression and QC remain deferred."
       ]
     }
-  ]
+  ],
+  "archived_optional_psoriasis_design": {
+    "structure": "3WD5",
+    "unbound_reference": "1TNF",
+    "discovery_cohort": "GSE85034",
+    "validation_cohort": "GSE74697",
+    "research_question": "Describe the experimentally observed TNF-adalimumab Fab interface and test paired changes in prespecified TNF-related expression signatures after adalimumab in psoriasis skin.",
+    "response_analysis": "Exploratory only: GSE85034 has 14 ADA baseline-lesional/week-16 pairs and a small response-labeled subgroup derived from PASI.",
+    "independent_unit": "participant",
+    "validation_limit": "GSE74697 supports independent before/after expression validation but has no inspected public PASI/response labels.",
+    "clinical_crp_analysis": "deferred_pending_a_verified_participant_level_dataset",
+    "exploratory_TOP2A_RA_extension": {
+      "question": "Is within-cell-type TOP2A expression associated with RA inflammatory/proliferative state and does it change after adalimumab, independently of changes in cell composition?",
+      "case_control_discovery": "GSE55235",
+      "case_control_validation": "GSE89408",
+      "baseline_response_secondary": "GSE138746",
+      "paired_synovial_candidate": [
+        "ZENODO:15058262",
+        "ZENODO:15058715"
+      ],
+      "paired_synovial_ADA_participants": 6,
+      "paired_synovial_fluid_candidate": "GSE296117",
+      "paired_synovial_fluid_ADA_participants": 5,
+      "analysis_readiness": "Metadata/feature feasibility established; actual spatial and Seurat expression import and QC are pending.",
+      "minimum_controls": [
+        "patient-level pairing/pseudobulk",
+        "cell-type abundance",
+        "proliferation and cell-cycle signatures excluding TOP2A itself",
+        "sample region/segmentation",
+        "concurrent DMARD exposure"
+      ],
+      "binding_claim": "No direct TNF-TOP2A or adalimumab-TOP2A binding claim is supported by these datasets."
+    }
+  }
 }

@@ -1,0 +1,92 @@
+{
+  "reviewed_at_utc": "2026-10-14T06:45:38.688498+00:00",
+  "scope": "Foundations-first course narrative and new codon/RA data examples; not a clinical or mechanistic validation",
+  "confirmed_user_order": [
+    "RA biology",
+    "Adalimumab antibody and TNF mechanism",
+    "Experimental structure and codon-to-amino-acid teaching",
+    "Read a real RA RNA-seq record before selecting a new test",
+    "Learn TOP2A independently in parallel",
+    "Choose an advanced drug-to-TOP2A question only after foundations and compatible data"
+  ],
+  "sources": [
+    {
+      "role": "RA disease foundation",
+      "url": "https://www.niams.nih.gov/health-topics/rheumatoid-arthritis"
+    },
+    {
+      "role": "Known adalimumab mechanism",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=608d4f0d-b19f-46d3-749a-7159aa5f933d"
+    },
+    {
+      "role": "Standard codons and GenBank mRNA alphabet convention",
+      "url": "https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi#SG1"
+    },
+    {
+      "role": "RA baseline RNA and future clinical response",
+      "url": "https://doi.org/10.1002/art.41516"
+    },
+    {
+      "role": "RNA and protein references",
+      "record_manifest": "data/metadata/sequences.json"
+    }
+  ],
+  "checks": [
+    "GSE138746 metadata and complete PBMC normalized matrix inspected; column names agree, 79 columns, 37 adalimumab.",
+    "No post-treatment RNA is represented by the six-month response labels.",
+    "Codon previews are derived from annotated CDS; full translation agrees with independently downloaded NP proteins.",
+    "Stop codons remain stop markers and do not add an amino acid.",
+    "Fab H/L examples come from declared construct protein sequences; no unique drug RNA is inferred.",
+    "Old TOP2A library-total CPM pilot retained as an optional appendix; no new differential-expression or enzyme-inhibition result."
+  ],
+  "files": [
+    {
+      "path": "docs/learning-path.fa.md",
+      "sha256": "0c6d6ed6f7c5e28636f2ac25560953c12bf2a2ac908c1cf672d736c79a941a8b"
+    },
+    {
+      "path": "docs/preparation-guide.fa.md",
+      "sha256": "29b4aed8bec51511625c4637759cfe424905535426f0b4a745af05609a4bfbcd"
+    },
+    {
+      "path": "docs/codons-primer.fa.md",
+      "sha256": "dff29dbcc602cd4e486baa402763ecf74c6c2dfee8da0a2ebbf241255cf6f282"
+    },
+    {
+      "path": "docs/top2a-primer.fa.md",
+      "sha256": "c750833bb6312eaa06fbd2626365db08083ed4c5eb74e1234b549a21f746ad3a"
+    },
+    {
+      "path": "docs/class-presentation.fa.md",
+      "sha256": "14df67c458df1ab42b9a72a1ceb1e96a8d8372f3e686ebabaf9b2f4d3939e99a"
+    },
+    {
+      "path": "docs/research-questions.fa.md",
+      "sha256": "a01c4b4b6a0c283a3006c7b10a49a5645019f550fe6c207b838356156cfa46b2"
+    },
+    {
+      "path": "data/processed/codon-lesson.json",
+      "sha256": "c1fd2fde2f6addb4cd400b44d8e279f8ad4e81db1ac511088308bc8e7bbc1ccb"
+    },
+    {
+      "path": "data/metadata/ra-rnaseq-learning.json",
+      "sha256": "467859879b3893c5781b29efc3ee713f3721a48cd23d96c7ada40fec85357a2d"
+    }
+  ],
+  "handout_pdf": {
+    "path": "assets/preparation-guide.fa.pdf",
+    "pages": 11,
+    "sha256": "578252302dfd739341e82000b88c64d02e3707e89a66951f3dc191f65dd906ab",
+    "all_pages_rendered_and_visually_reviewed": true,
+    "local_URLs_in_PDF": false
+  },
+  "validation": {
+    "offline_scientific_checks": 49,
+    "browser_checks": 23,
+    "skill_quick_validation": "passed",
+    "new_codon_control_checked_at_widths": [
+      1440,
+      390
+    ]
+  }
+}

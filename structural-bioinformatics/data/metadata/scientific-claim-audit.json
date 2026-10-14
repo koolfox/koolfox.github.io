@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "reviewed_at_utc": "2026-10-13T18:26:03.284724+00:00",
-  "scope": "Every Markdown content block of 23 class chapters, plus separate drug claim table; not all historical repository documents or a systematic review",
+  "reviewed_at_utc": "2026-10-14T06:40:40.292983+00:00",
+  "scope": "Current 23 class chapters reorganized for foundational RA/drug/data learning; new codon and RA sample-count statements checked against references and official files. Original experiments and predictive models not reproduced.",
   "reviewed_file": "docs/class-presentation.fa.md",
-  "reviewed_sha256": "fa68f750b800c0d9ed8dae0d28474565f4702eca66f079cdd7fce371ac20fae3",
+  "reviewed_sha256": "14df67c458df1ab42b9a72a1ceb1e96a8d8372f3e686ebabaf9b2f4d3939e99a",
   "sources": [
     {
       "id": "hu",
@@ -159,6 +159,47 @@
     {
       "id": "fda-biosimilars",
       "url": "https://www.fda.gov/drugs/things-know-about/9-things-know-about-biosimilars-and-interchangeable-biosimilars"
+    },
+    {
+      "id": "niams-ra",
+      "url": "https://www.niams.nih.gov/health-topics/rheumatoid-arthritis",
+      "verified_on": "2026-10-14",
+      "passage": "Autoimmunity, inflammation of synovium and cartilage/bone damage; cell increase is not a TOP2A causal assay."
+    },
+    {
+      "id": "ncbi-standard-code",
+      "url": "https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi#SG1",
+      "verified_on": "2026-10-14",
+      "passage": "Standard code; T alphabet convention for GenBank mRNA; starts/stops and codon mappings."
+    },
+    {
+      "id": "codon-references",
+      "path": "data/processed/codon-lesson.json",
+      "sha256": "c1fd2fde2f6addb4cd400b44d8e279f8ad4e81db1ac511088308bc8e7bbc1ccb",
+      "passage": "Versioned NM/NP files, annotated CDS coordinates, full translations and first 12 codons independently checked in offline tests."
+    },
+    {
+      "id": "RA-RNA-learning",
+      "path": "data/metadata/ra-rnaseq-learning.json",
+      "sha256": "467859879b3893c5781b29efc3ee713f3721a48cd23d96c7ada40fec85357a2d",
+      "passage": "240 deposited libraries / 80 participants, 38 ADA; PBMC processed 79 columns / 37 ADA; baseline RNA and month-6 response."
+    },
+    {
+      "id": "Tao2021",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7898388/fullTextXML",
+      "sha256": "1e400a887bd2ce9c9bb004fb901aa4ac44b63d064e7af66e28f9207c10cef482",
+      "local_download_completed_utc": "2026-10-14T06:04:17.965408+00:00",
+      "passage": "Abstract, bibliographic header and GEO design; baseline RNA with six-month clinical response; no reproduced ML performance."
+    },
+    {
+      "id": "GSE129705-pairs",
+      "path": "data/metadata/preparation-guide-datasets.json",
+      "passage": "76 subjects / 128 libraries / 52 complete pairs; individual drug field unresolved in inspected public metadata."
+    },
+    {
+      "id": "course-scope",
+      "path": "docs/learning-path.fa.md",
+      "passage": "User-confirmed foundations first and parallel TOP2A literacy; advanced question deferred until foundations and compatible data."
     }
   ],
   "limited_search": {
@@ -174,71 +215,80 @@
     {
       "id": "slide-content-01-block-01",
       "chapter": 1,
-      "exact_text": "**التهاب** بخشی از پاسخ دفاعی بدن است. در **آرتریت روماتوئید**، پاسخ ایمنی نامناسب می‌تواند التهاب پایدار و آسیب مفصل ایجاد کند. TNF یکی از پیام‌رسان‌های این پاسخ است.",
+      "exact_text": "**آرتریت روماتوئید** بیماری خودایمنی است؛ دستگاه ایمنی به بافت‌های خود بدن حمله می‌کند و التهاب پایدارِ پوشش مفصل می‌تواند به غضروف و استخوان آسیب بزند. TNF یکی از پیام‌رسان‌های این پاسخ است.",
       "source_ids": [
+        "niams-ra",
         "label-html",
-        "top2a-json"
+        "course-scope"
       ],
-      "passage": "Indications and mechanism 1/12.1; TOP2A function",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-01-block-02",
       "chapter": 1,
-      "exact_text": "**آدالیموماب** دارویی پروتئینی است که به TNF متصل می‌شود و پیام‌رسانی آن را محدود می‌کند. هدف این پژوهش، توضیح همین اتصال و بررسی امکان اثر دارو بر آنزیم دیگری به نام **توپوایزومراز IIα** است. TOP2A نام ژن سازندهٔ آن آنزیم است؛ اثر دارو بر آن، هنوز نتیجهٔ اثبات‌شدهٔ این پروژه نیست.",
+      "exact_text": "**آدالیموماب** یک آنتی‌بادی پروتئینی است که به TNF متصل می‌شود و پیام‌رسانی آن را محدود می‌کند. مسیر این ارائه: شناخت سلول و دارو، بررسی اتصال واقعی، و خواندن داده‌های بیمار و RNA-seq. هم‌زمان نقش TOP2A را مستقل می‌آموزیم؛ بررسی اثر دارو بر آن موضوع مرحلهٔ بعد است.",
       "source_ids": [
+        "niams-ra",
         "label-html",
-        "top2a-json"
+        "course-scope"
       ],
-      "passage": "Indications and mechanism 1/12.1; TOP2A function",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-01-block-03",
       "chapter": 1,
-      "exact_text": "> منبع: [برچسب Humira، بخش‌های ۱ و ۱۲٫۱](https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=608d4f0d-b19f-46d3-749a-7159aa5f933d)؛ [UniProt: TOP2A](https://www.uniprot.org/uniprotkb/P11388).",
+      "exact_text": "> منابع: [NIAMS، روماتوئید](https://www.niams.nih.gov/health-topics/rheumatoid-arthritis)؛ [برچسب Humira، بخش‌های ۱ و ۱۲٫۱](https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=608d4f0d-b19f-46d3-749a-7159aa5f933d).",
       "source_ids": [
+        "niams-ra",
         "label-html",
-        "top2a-json"
+        "course-scope"
       ],
-      "passage": "Indications and mechanism 1/12.1; TOP2A function",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-02-block-01",
       "chapter": 2,
       "exact_text": "**سلول** واحد زندهٔ بدن است؛ غشای سلول مرز آن با محیط اطراف است. **پروتئین** از زنجیره‌های اسیدآمینه ساخته می‌شود. ترتیب اسیدآمینه‌ها و تاخوردگی زنجیره‌ها، شکل و ویژگی‌های شیمیایی آن را تعیین می‌کنند.",
       "source_ids": [
+        "nhgri",
         "label-html"
       ],
-      "passage": "12.1 and NHGRI protein definition",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-02-block-01",
+      "passage": "12.1 and NHGRI protein definition"
     },
     {
       "id": "slide-content-02-block-02",
       "chapter": 2,
       "exact_text": "**گیرنده** پروتئینی است که اتصال یک پیام‌رسان را به پاسخ سلول مرتبط می‌کند. TNF پیام‌رسان و TNFR گیرندهٔ آن است. اتصال این دو می‌تواند رویدادهایی درون سلول آغاز کند؛ پروتئین پیام‌رسان لازم نیست خودش وارد هسته شود.",
       "source_ids": [
+        "nhgri",
         "label-html"
       ],
-      "passage": "12.1 and NHGRI protein definition",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-02-block-02",
+      "passage": "12.1 and NHGRI protein definition"
     },
     {
       "id": "slide-content-02-block-03",
       "chapter": 2,
       "exact_text": "> منبع: [NHGRI: پروتئین](https://www.genome.gov/genetics-glossary/Protein)؛ [برچسب Humira، بخش ۱۲٫۱](https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=608d4f0d-b19f-46d3-749a-7159aa5f933d).",
       "source_ids": [
+        "nhgri",
         "label-html"
       ],
-      "passage": "12.1 and NHGRI protein definition",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-02-block-03",
+      "passage": "12.1 and NHGRI protein definition"
     },
     {
       "id": "slide-content-03-block-01",
@@ -248,9 +298,10 @@
         "label-html",
         "bianchi"
       ],
-      "passage": "11; antibody architecture introduction",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-03-block-01",
+      "passage": "11; antibody architecture introduction"
     },
     {
       "id": "slide-content-03-block-02",
@@ -260,9 +311,10 @@
         "label-html",
         "bianchi"
       ],
-      "passage": "11; antibody architecture introduction",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-03-block-02",
+      "passage": "11; antibody architecture introduction"
     },
     {
       "id": "slide-content-03-block-03",
@@ -272,9 +324,10 @@
         "label-html",
         "bianchi"
       ],
-      "passage": "11; antibody architecture introduction",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-03-block-03",
+      "passage": "11; antibody architecture introduction"
     },
     {
       "id": "slide-content-03-block-04",
@@ -284,9 +337,10 @@
         "label-html",
         "bianchi"
       ],
-      "passage": "11; antibody architecture introduction",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-03-block-04",
+      "passage": "11; antibody architecture introduction"
     },
     {
       "id": "slide-content-04-block-01",
@@ -296,9 +350,10 @@
         "label-html",
         "hu-indexed"
       ],
-      "passage": "12.1; neutralisation discussion",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-04-block-01",
+      "passage": "12.1; neutralisation discussion"
     },
     {
       "id": "slide-content-04-block-02",
@@ -308,9 +363,10 @@
         "label-html",
         "hu-indexed"
       ],
-      "passage": "12.1; neutralisation discussion",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-04-block-02",
+      "passage": "12.1; neutralisation discussion"
     },
     {
       "id": "slide-content-04-block-03",
@@ -320,9 +376,10 @@
         "label-html",
         "hu-indexed"
       ],
-      "passage": "12.1; neutralisation discussion",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-04-block-03",
+      "passage": "12.1; neutralisation discussion"
     },
     {
       "id": "slide-content-04-block-04",
@@ -332,64 +389,75 @@
         "label-html",
         "hu-indexed"
       ],
-      "passage": "12.1; neutralisation discussion",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-04-block-04",
+      "passage": "12.1; neutralisation discussion"
     },
     {
       "id": "slide-content-05-block-01",
       "chapter": 5,
       "exact_text": "**PDB** بانک مختصات ساختارهای مولکولی است. **3WD5** ساختاری با تفکیک‌پذیری 3.1 Å است که با پراش پرتو X تعیین شده است؛ تصویر از مختصات همان فایل ساخته شده است.",
       "source_ids": [
+        "rcsb3wd5",
         "hu-indexed"
       ],
-      "passage": "RCSB 3WD5 deposited model and resolution; Hu structure",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-05-block-01",
+      "passage": "RCSB 3WD5 deposited model and resolution; Hu structure"
     },
     {
       "id": "slide-content-05-block-02",
       "chapter": 5,
       "exact_text": "در نمای ثبت‌شده، زنجیرهٔ **A** یک زیرواحد TNF و زنجیره‌های **H/L** بخش سنگین/سبک Fab هستند. مولکول کامل آدالیموماب، Fc و گیرندهٔ TNFR در این فایلِ نمایش‌داده‌شده حضور ندارند. ظاهر نواری با سطح اتمی فرق دارد؛ رنگ‌ها ابزار تشخیص زنجیره‌اند.",
       "source_ids": [
+        "rcsb3wd5",
         "hu-indexed"
       ],
-      "passage": "RCSB 3WD5 deposited model and resolution; Hu structure",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-05-block-02",
+      "passage": "RCSB 3WD5 deposited model and resolution; Hu structure"
     },
     {
       "id": "slide-content-05-block-03",
       "chapter": 5,
       "exact_text": "![3WD5؛ یک زیرواحد TNF و Fab؛ مدل کامل آنتی‌بادی یا مجموعهٔ کامل TNF نیست](../assets/complex-preview.png)",
       "source_ids": [
+        "rcsb3wd5",
         "hu-indexed"
       ],
-      "passage": "RCSB 3WD5 deposited model and resolution; Hu structure",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-05-block-03",
+      "passage": "RCSB 3WD5 deposited model and resolution; Hu structure"
     },
     {
       "id": "slide-content-05-block-04",
       "chapter": 5,
       "exact_text": "[باز کردن آزمایشگاه سه‌بعدی](../index.html?document=class-presentation.fa.md&chapter=chapter-5#lab)",
       "source_ids": [
+        "rcsb3wd5",
         "hu-indexed"
       ],
-      "passage": "RCSB 3WD5 deposited model and resolution; Hu structure",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-05-block-04",
+      "passage": "RCSB 3WD5 deposited model and resolution; Hu structure"
     },
     {
       "id": "slide-content-05-block-05",
       "chapter": 5,
       "exact_text": "> منبع داده: [RCSB: 3WD5](https://www.rcsb.org/structure/3WD5)؛ [Hu 2013](https://doi.org/10.1074/jbc.M113.491530). مدل چرخان در همین اسلاید نیز قابل بازکردن است.",
       "source_ids": [
+        "rcsb3wd5",
         "hu-indexed"
       ],
-      "passage": "RCSB 3WD5 deposited model and resolution; Hu structure",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-05-block-05",
+      "passage": "RCSB 3WD5 deposited model and resolution; Hu structure"
     },
     {
       "id": "slide-content-06-block-01",
@@ -398,9 +466,10 @@
       "source_ids": [
         "hu-indexed"
       ],
-      "passage": "Structure and SPR methods; table 3",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-06-block-01",
+      "passage": "Structure and SPR methods; table 3"
     },
     {
       "id": "slide-content-06-block-02",
@@ -409,9 +478,10 @@
       "source_ids": [
         "hu-indexed"
       ],
-      "passage": "Structure and SPR methods; table 3",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-06-block-02",
+      "passage": "Structure and SPR methods; table 3"
     },
     {
       "id": "slide-content-06-block-03",
@@ -420,9 +490,10 @@
       "source_ids": [
         "hu-indexed"
       ],
-      "passage": "Structure and SPR methods; table 3",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-06-block-03",
+      "passage": "Structure and SPR methods; table 3"
     },
     {
       "id": "slide-content-07-block-01",
@@ -431,9 +502,10 @@
       "source_ids": [
         "hu-indexed"
       ],
-      "passage": "Table 3 WT/Q21A; ratio calculated",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-07-block-01",
+      "passage": "Table 3 WT/Q21A; ratio calculated"
     },
     {
       "id": "slide-content-07-block-02",
@@ -442,9 +514,10 @@
       "source_ids": [
         "hu-indexed"
       ],
-      "passage": "Table 3 WT/Q21A; ratio calculated",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-07-block-02",
+      "passage": "Table 3 WT/Q21A; ratio calculated"
     },
     {
       "id": "slide-content-07-block-03",
@@ -453,9 +526,10 @@
       "source_ids": [
         "hu-indexed"
       ],
-      "passage": "Table 3 WT/Q21A; ratio calculated",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-07-block-03",
+      "passage": "Table 3 WT/Q21A; ratio calculated"
     },
     {
       "id": "slide-content-07-block-04",
@@ -464,9 +538,10 @@
       "source_ids": [
         "hu-indexed"
       ],
-      "passage": "Table 3 WT/Q21A; ratio calculated",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-07-block-04",
+      "passage": "Table 3 WT/Q21A; ratio calculated"
     },
     {
       "id": "slide-content-08-block-01",
@@ -475,9 +550,10 @@
       "source_ids": [
         "bianchi"
       ],
-      "passage": "Methods modelling and MD",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-08-block-01",
+      "passage": "Methods modelling and MD"
     },
     {
       "id": "slide-content-08-block-02",
@@ -486,9 +562,10 @@
       "source_ids": [
         "bianchi"
       ],
-      "passage": "Methods modelling and MD",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-08-block-02",
+      "passage": "Methods modelling and MD"
     },
     {
       "id": "slide-content-08-block-03",
@@ -497,9 +574,10 @@
       "source_ids": [
         "bianchi"
       ],
-      "passage": "Methods modelling and MD",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-08-block-03",
+      "passage": "Methods modelling and MD"
     },
     {
       "id": "slide-content-09-block-01",
@@ -508,9 +586,10 @@
       "source_ids": [
         "bianchi"
       ],
-      "passage": "Results figures 2-4; not independent functional evidence",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-09-block-01",
+      "passage": "Results figures 2-4; not independent functional evidence"
     },
     {
       "id": "slide-content-09-block-02",
@@ -519,9 +598,10 @@
       "source_ids": [
         "bianchi"
       ],
-      "passage": "Results figures 2-4; not independent functional evidence",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-09-block-02",
+      "passage": "Results figures 2-4; not independent functional evidence"
     },
     {
       "id": "slide-content-09-block-03",
@@ -530,9 +610,10 @@
       "source_ids": [
         "bianchi"
       ],
-      "passage": "Results figures 2-4; not independent functional evidence",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-09-block-03",
+      "passage": "Results figures 2-4; not independent functional evidence"
     },
     {
       "id": "slide-content-09-block-04",
@@ -541,113 +622,118 @@
       "source_ids": [
         "bianchi"
       ],
-      "passage": "Results figures 2-4; not independent functional evidence",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-09-block-04",
+      "passage": "Results figures 2-4; not independent functional evidence"
     },
     {
       "id": "slide-content-10-block-01",
       "chapter": 10,
-      "exact_text": "**سلول T** یکی از سلول‌های دفاعی بدن است. **SIRPG** نام یک پروتئین روی سطح این سلول است. «افزایش بیان سطحی» یعنی پروتئین بیشتری با روش رنگ‌آمیزی روی سطح تشخیص داده شده است.",
+      "exact_text": "**باز** با یک حرف مانند A یا G نشان داده می‌شود. در RNA چهار حرف A، U، C و G داریم. در بخش کدکنندهٔ mRNA، **CDS**، هر سه حرف یک کدون‌اند؛ کدون به آمینواسید یا پایان ترجمه مربوط است. از شروع CDS ثبت‌شده می‌خوانیم، نه از اولین حرف دلخواه RNA.",
       "source_ids": [
-        "marguerie"
+        "ncbi-standard-code",
+        "codon-references"
       ],
-      "passage": "Figure 2 drug and flow cytometry; distinct from figure 3",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-10-block-02",
       "chapter": 10,
-      "exact_text": "**آزمایش دارو:** سلول‌های خون اهداکنندگان سالم در آزمایشگاه تحریک شدند. پس از آدالیموماب، SIRPG سطحی افزایش یافت؛ پژوهشگران این تغییر را با **فلوسایتومتری**، شمارش سلول‌های رنگ‌آمیزی‌شده در جریان، سنجیدند.",
+      "exact_text": "**مثال واقعی TNF، NM_000594.4:** آغاز CDS از جایگاه ۱۷۸ است:",
       "source_ids": [
-        "marguerie"
+        "ncbi-standard-code",
+        "codon-references"
       ],
-      "passage": "Figure 2 drug and flow cytometry; distinct from figure 3",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-10-block-03",
       "chapter": 10,
-      "exact_text": "**حد نتیجه:** این آزمایش دربارهٔ SIRPG است؛ در همین مقایسه، مهار فعالیت TOP2A نشان داده نشده است.",
+      "exact_text": "`AUG AGC ACU GAA AGC` → `MSTES`",
       "source_ids": [
-        "marguerie"
+        "ncbi-standard-code",
+        "codon-references"
       ],
-      "passage": "Figure 2 drug and flow cytometry; distinct from figure 3",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-10-block-04",
       "chapter": 10,
-      "exact_text": "> منبع: [Marguerie 2025، شکل ۲ و روش‌های فلوسایتومتری](https://doi.org/10.3389/fimmu.2025.1668361).",
+      "exact_text": "یعنی متیونین، سرین، ترئونین، گلوتامات و سرین. ترجمهٔ کامل CDS با پروتئین مرجع NP_000585.2 تطبیق دارد. [دیدن کدون‌های واقعی و زنجیره‌های Fab](../?tab=sequences#codon-lesson)",
       "source_ids": [
-        "marguerie"
+        "ncbi-standard-code",
+        "codon-references"
       ],
-      "passage": "Figure 2 drug and flow cytometry; distinct from figure 3",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
+    },
+    {
+      "id": "slide-content-10-block-05",
+      "chapter": 10,
+      "exact_text": "> منابع: [NHGRI، کدون](https://www.genome.gov/genetics-glossary/Codon)؛ [RNA مرجع TNF](https://www.ncbi.nlm.nih.gov/nuccore/NM_000594.4)؛ [پروتئین مرجع](https://www.ncbi.nlm.nih.gov/protein/NP_000585.2).",
+      "source_ids": [
+        "ncbi-standard-code",
+        "codon-references"
+      ],
+      "status": "reviewed_with_scope_and_limitations",
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-11-block-01",
       "chapter": 11,
-      "exact_text": "**آزمایش جدا:** ژن، بخشی از DNA است که اطلاعات وراثتی را نگه می‌دارد؛ RNA پیام‌رسان رونوشتِ ژن برای ساخت پروتئین است. پژوهشگران با دست‌کاری کنترل‌شدهٔ ژن SIRPG، آن را غیرفعال کردند. سلول‌های دارای ژن سالم و غیرفعال‌شده را مقایسه کردند و RNA آن‌ها را خواندند. در گروه غیرفعال‌شده، RNA ژن TOP2A و تقسیم سلول کمتر بود.",
+      "exact_text": "**RNA-seq** RNA نمونه را می‌خواند؛ جدول شمارشِ ژن‌ها با حروف توالی یا شکل مولکول فرق دارد. **GSE138746** از ۸۰ بیمار RA آمده است؛ ۳۸ نفر آدالیموماب و ۴۲ نفر اتانرسپت دریافت کرده‌اند. سه بخش سلولی بررسی شده‌اند، پس ۲۴۰ کتابخانه به معنی ۲۴۰ بیمار نیست.",
       "source_ids": [
-        "marguerie",
-        "GSE296196"
+        "Tao2021",
+        "RA-RNA-learning"
       ],
-      "passage": "Figures 3-4 and GEO design; no ADA RNA arm",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-11-block-02",
       "chapter": 11,
-      "exact_text": "دادهٔ RNA با شناسهٔ **GSE296196** شامل ۴۶ کتابخانه از شش اهداکننده است: ۲۳ کنترل و ۲۳ حذف ژن. کتابخانه، یک خروجی آماده‌شده برای توالی‌یابی است؛ ۴۶ کتابخانه به معنی ۴۶ فرد نیست.",
+      "exact_text": "**زمان مهم است:** RNA پیش از شروع درمان گرفته شده؛ پاسخ بالینی شش ماه بعد ثبت شده است. برای تمرین، فایل PBMC نویسندگان را می‌خوانیم: ۷۹ ستون، از جمله ۳۷ ستون آدالیموماب. PBMC مجموعهٔ سلول‌های تک‌هسته‌ای خون است.",
       "source_ids": [
-        "marguerie",
-        "GSE296196"
+        "Tao2021",
+        "RA-RNA-learning"
       ],
-      "passage": "Figures 3-4 and GEO design; no ADA RNA arm",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-11-block-03",
       "chapter": 11,
-      "exact_text": "**حد نتیجه:** این دیتاست بازوی آدالیموماب ندارد؛ نمی‌توان زنجیرهٔ «دارو ← SIRPG ← TOP2A» را از دو آزمایش جدا اثبات کرد.",
+      "exact_text": "این داده به شناخت RNA اولیه و پاسخ آینده کمک می‌کند؛ RNA پس از درمان در آن نیست. فعلاً نام نمونه، دارو، نوع سلول و زمان را می‌خوانیم؛ مدل پیش‌بینی یا تغییر RNA پس از دارو اجرا نکرده‌ایم.",
       "source_ids": [
-        "marguerie",
-        "GSE296196"
+        "Tao2021",
+        "RA-RNA-learning"
       ],
-      "passage": "Figures 3-4 and GEO design; no ADA RNA arm",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-11-block-04",
       "chapter": 11,
-      "exact_text": "![دو آزمایش جدا در Marguerie؛ اثر دارو بر SIRPG و اثر حذف ژن بر RNA و تکثیر](../assets/evidence-pathway.svg)",
+      "exact_text": "> منابع: [GEO: GSE138746](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE138746)؛ [Tao و همکاران، شمارهٔ مجلهٔ ۲۰۲۱](https://doi.org/10.1002/art.41516)؛ [ثبت بررسی فایل‌ها](../data/metadata/ra-rnaseq-learning.json).",
       "source_ids": [
-        "marguerie",
-        "GSE296196"
+        "Tao2021",
+        "RA-RNA-learning"
       ],
-      "passage": "Figures 3-4 and GEO design; no ADA RNA arm",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
-    },
-    {
-      "id": "slide-content-11-block-05",
-      "chapter": 11,
-      "exact_text": "> منبع: [Marguerie 2025، شکل ۳ و روش RNA-seq](https://doi.org/10.3389/fimmu.2025.1668361)؛ [GEO: GSE296196](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE296196).",
-      "source_ids": [
-        "marguerie",
-        "GSE296196"
-      ],
-      "passage": "Figures 3-4 and GEO design; no ADA RNA arm",
-      "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-12-block-01",
@@ -656,9 +742,10 @@
       "source_ids": [
         "gehin"
       ],
-      "passage": "Methods and results cohort counts",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-12-block-01",
+      "passage": "Methods and results cohort counts"
     },
     {
       "id": "slide-content-12-block-02",
@@ -667,9 +754,10 @@
       "source_ids": [
         "gehin"
       ],
-      "passage": "Methods and results cohort counts",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-12-block-02",
+      "passage": "Methods and results cohort counts"
     },
     {
       "id": "slide-content-12-block-03",
@@ -678,9 +766,10 @@
       "source_ids": [
         "gehin"
       ],
-      "passage": "Methods and results cohort counts",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-12-block-03",
+      "passage": "Methods and results cohort counts"
     },
     {
       "id": "slide-content-13-block-01",
@@ -689,9 +778,10 @@
       "source_ids": [
         "gehin"
       ],
-      "passage": "Figure 2 and longitudinal analyses",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-13-block-01",
+      "passage": "Figure 2 and longitudinal analyses"
     },
     {
       "id": "slide-content-13-block-02",
@@ -700,9 +790,10 @@
       "source_ids": [
         "gehin"
       ],
-      "passage": "Figure 2 and longitudinal analyses",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-13-block-02",
+      "passage": "Figure 2 and longitudinal analyses"
     },
     {
       "id": "slide-content-13-block-03",
@@ -711,9 +802,10 @@
       "source_ids": [
         "gehin"
       ],
-      "passage": "Figure 2 and longitudinal analyses",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-13-block-03",
+      "passage": "Figure 2 and longitudinal analyses"
     },
     {
       "id": "slide-content-13-block-04",
@@ -722,141 +814,170 @@
       "source_ids": [
         "gehin"
       ],
-      "passage": "Figure 2 and longitudinal analyses",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-13-block-04",
+      "passage": "Figure 2 and longitudinal analyses"
     },
     {
       "id": "slide-content-14-block-01",
       "chapter": 14,
       "exact_text": "**DNA** اطلاعات وراثتی سلول را نگه می‌دارد. هنگام کپی‌شدن DNA و تقسیم سلول، رشته‌ها می‌توانند درهم بپیچند. **توپوایزومراز IIα** با مصرف ATP، مولکول حامل انرژی در سلول، یک قطعهٔ DNA را موقتاً می‌بُرد، قطعهٔ دیگری را عبور می‌دهد و بریدگی را دوباره متصل می‌کند.",
       "source_ids": [
-        "top2a-json"
+        "top2a-json",
+        "rcsb4fm9",
+        "wendorff"
       ],
-      "passage": "Catalysis; RCSB 4FM9 and Wendorff 2012 core",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-14-block-01",
+      "passage": "Catalysis; RCSB 4FM9 and Wendorff 2012 core"
     },
     {
       "id": "slide-content-14-block-02",
       "chapter": 14,
       "exact_text": "**TOP2A** نام ژن سازندهٔ این آنزیم است. این کار در تقسیم سلولی اهمیت دارد، بنابراین TOP2A در مطالعات تکثیر و سرطان مطرح است. **4FM9** فقط هستهٔ برش آنزیم همراه DNA مصنوعی را نشان می‌دهد؛ آدالیموماب در آن وجود ندارد.",
       "source_ids": [
-        "top2a-json"
+        "top2a-json",
+        "rcsb4fm9",
+        "wendorff"
       ],
-      "passage": "Catalysis; RCSB 4FM9 and Wendorff 2012 core",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-14-block-02",
+      "passage": "Catalysis; RCSB 4FM9 and Wendorff 2012 core"
     },
     {
       "id": "slide-content-14-block-03",
       "chapter": 14,
       "exact_text": "![مقایسهٔ ساختارهای مستقل؛ TNF، TNF–Fab و هستهٔ TOP2A همراه DNA؛ مقیاس تصاویر مستقل است](../assets/structure-comparison.png)",
       "source_ids": [
-        "top2a-json"
+        "top2a-json",
+        "rcsb4fm9",
+        "wendorff"
       ],
-      "passage": "Catalysis; RCSB 4FM9 and Wendorff 2012 core",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-14-block-03",
+      "passage": "Catalysis; RCSB 4FM9 and Wendorff 2012 core"
     },
     {
       "id": "slide-content-14-block-04",
       "chapter": 14,
       "exact_text": "> منبع: [UniProt: P11388، عملکرد](https://www.uniprot.org/uniprotkb/P11388)؛ [Wendorff 2012](https://doi.org/10.1016/j.jmb.2012.07.014)؛ [RCSB: 4FM9](https://www.rcsb.org/structure/4FM9).",
       "source_ids": [
-        "top2a-json"
+        "top2a-json",
+        "rcsb4fm9",
+        "wendorff"
       ],
-      "passage": "Catalysis; RCSB 4FM9 and Wendorff 2012 core",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-14-block-04",
+      "passage": "Catalysis; RCSB 4FM9 and Wendorff 2012 core"
     },
     {
       "id": "slide-content-15-block-01",
       "chapter": 15,
       "exact_text": "**ژن** بخشی از DNA است. برای ژن پروتئین‌ساز، رونوشت پیام‌رسان **mRNA** ساخته می‌شود و سلول از اطلاعات آن برای ساخت پروتئین استفاده می‌کند. همهٔ RNAها پیام‌رسان یا پروتئین‌ساز نیستند.",
       "source_ids": [
+        "nhgri",
         "top2a-json"
       ],
-      "passage": "Function plus NHGRI RNA/translation definitions",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-15-block-01",
+      "passage": "Function plus NHGRI RNA/translation definitions"
     },
     {
       "id": "slide-content-15-block-02",
       "chapter": 15,
       "exact_text": "**کاهش RNA** یعنی رونوشت کمتری اندازه‌گیری شده است. **کاهش مقدار پروتئین** باید با آزمون پروتئینی سنجیده شود. **مهار فعالیت** یعنی آنزیمِ موجود کار کمتری انجام می‌دهد؛ این سه مشاهده هم‌معنی نیستند.",
       "source_ids": [
+        "nhgri",
         "top2a-json"
       ],
-      "passage": "Function plus NHGRI RNA/translation definitions",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-15-block-02",
+      "passage": "Function plus NHGRI RNA/translation definitions"
     },
     {
       "id": "slide-content-15-block-03",
       "chapter": 15,
       "exact_text": "```mermaid\nflowchart TB\n    A[\"ژن TOP2A در DNA\"] --> B[\"رونوشت پیام‌رسان\"]\n    B --> C[\"ساخت آنزیم\"]\n    C --> D[\"فعالیت روی DNA؛ نیازمند ATP\"]\n```",
       "source_ids": [
+        "nhgri",
         "top2a-json"
       ],
-      "passage": "Function plus NHGRI RNA/translation definitions",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-15-block-03",
+      "passage": "Function plus NHGRI RNA/translation definitions"
     },
     {
       "id": "slide-content-15-block-04",
       "chapter": 15,
       "exact_text": "> منبع: [NHGRI: RNA](https://www.genome.gov/genetics-glossary/Ribonucleic-Acid-RNA) و [ترجمه](https://www.genome.gov/genetics-glossary/Translation)؛ [UniProt: TOP2A](https://www.uniprot.org/uniprotkb/P11388).",
       "source_ids": [
+        "nhgri",
         "top2a-json"
       ],
-      "passage": "Function plus NHGRI RNA/translation definitions",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-15-block-04",
+      "passage": "Function plus NHGRI RNA/translation definitions"
     },
     {
       "id": "slide-content-16-block-01",
       "chapter": 16,
-      "exact_text": "**روش:** از SW982، ردهٔ مشتق از سارکوم سینوویال، برای مدل التهاب شبیه RA و از A549، ردهٔ سرطان ریه، برای مدل فیبروز استفاده شد. به سلول‌ها محرک التهابی و سپس ترکیب **PluriSIn#2** داده شد.",
+      "exact_text": "**TNF** پیام‌رسان ایمنی است؛ **TOP2A** آنزیمی است که با DNA و تقسیم سلول کار می‌کند. این‌ها دو نقش متفاوت‌اند. در RA، التهاب پوشش مفصل می‌تواند با افزایش تعداد سلول‌ها همراه باشد؛ این زمینه برای مطالعهٔ تقسیم سلولی جالب است.",
       "source_ids": [
-        "shi"
+        "niams-ra",
+        "top2a-json",
+        "label-html"
       ],
-      "passage": "Methods SW982/A549 and PluriSIn#2; no ADA",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-16-block-02",
       "chapter": 16,
-      "exact_text": "**یافته:** تغییرات نشانگرهای التهابی/فیبروزی گزارش شد؛ مقاله نقش TOP2A را پیشنهاد می‌کند.",
+      "exact_text": "وجود تقسیم سلولی در التهاب یا سرطان، علت مشترک یا هدف دومِ دارو را مشخص نمی‌کند. برای ارتباط TOP2A و RA، باید مقالهٔ همان نوع سلول و بیماری را بخوانیم؛ برای اثر آدالیموماب، گروه دارویی و خروجی اندازه‌گیری‌شده لازم است.",
       "source_ids": [
-        "shi"
+        "niams-ra",
+        "top2a-json",
+        "label-html"
       ],
-      "passage": "Methods SW982/A549 and PluriSIn#2; no ADA",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-16-block-03",
       "chapter": 16,
-      "exact_text": "**حد نتیجه:** دارو آدالیموماب نبود، ردهٔ سرطانی نمونهٔ مفصل بیمار نیست و از اثر این ترکیب به‌تنهایی نمی‌توان مطمئن شد که تغییرات فقط از اثر آن بر TOP2A آمده‌اند. این مقاله انگیزهٔ آزمایش است؛ شاهد مهار TOP2A توسط آدالیموماب نیست.",
+      "exact_text": "در این مرحله نقش آنزیم را می‌آموزیم. گزارش‌های مدل‌های آزمایشگاهی، برای مطالعهٔ بعدی در کتابخانه باقی می‌مانند.",
       "source_ids": [
-        "shi"
+        "niams-ra",
+        "top2a-json",
+        "label-html"
       ],
-      "passage": "Methods SW982/A549 and PluriSIn#2; no ADA",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-16-block-04",
       "chapter": 16,
-      "exact_text": "> منبع: [Shi 2025، روش‌ها و نتایج](https://doi.org/10.2147/JIR.S497734). منبع مکملِ مقایسهٔ التهاب و TOP2A.",
+      "exact_text": "> منابع: [NIAMS، تغییرات سینوویوم در RA](https://www.niams.nih.gov/health-topics/rheumatoid-arthritis)؛ [UniProt، TOP2A](https://www.uniprot.org/uniprotkb/P11388)؛ [برچسب Humira، هدف TNF](https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=608d4f0d-b19f-46d3-749a-7159aa5f933d).",
       "source_ids": [
-        "shi"
+        "niams-ra",
+        "top2a-json",
+        "label-html"
       ],
-      "passage": "Methods SW982/A549 and PluriSIn#2; no ADA",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-17-block-01",
@@ -866,9 +987,10 @@
         "veerasubramanian",
         "GSE339038"
       ],
-      "passage": "MLR methods, RNA day 5, GEO 64 libraries",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-17-block-01",
+      "passage": "MLR methods, RNA day 5, GEO 64 libraries"
     },
     {
       "id": "slide-content-17-block-02",
@@ -878,9 +1000,10 @@
         "veerasubramanian",
         "GSE339038"
       ],
-      "passage": "MLR methods, RNA day 5, GEO 64 libraries",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-17-block-02",
+      "passage": "MLR methods, RNA day 5, GEO 64 libraries"
     },
     {
       "id": "slide-content-17-block-03",
@@ -890,9 +1013,10 @@
         "veerasubramanian",
         "GSE339038"
       ],
-      "passage": "MLR methods, RNA day 5, GEO 64 libraries",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-17-block-03",
+      "passage": "MLR methods, RNA day 5, GEO 64 libraries"
     },
     {
       "id": "slide-content-17-block-04",
@@ -902,113 +1026,112 @@
         "veerasubramanian",
         "GSE339038"
       ],
-      "passage": "MLR methods, RNA day 5, GEO 64 libraries",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-17-block-04",
+      "passage": "MLR methods, RNA day 5, GEO 64 libraries"
     },
     {
       "id": "slide-content-18-block-01",
       "chapter": 18,
-      "exact_text": "در گزارش نویسندگان، آدالیموماب با کنترل IgG1، **۱۲۲ ژن** و ترکیب آدالیموماب–داپیرولیزوماب، **۵۲۴ ژن** را نسبت به وضعیت MLR بدون دارو کاهش داد. این شمارش‌ها نتیجهٔ تحلیل نویسندگان‌اند.",
+      "exact_text": "**Marguerie 2025** دو آزمایش جدا دارد. در سلول T فعال‌شده، آدالیموماب با افزایش پروتئین سطحی SIRPG همراه شد. در آزمایش دیگر، حذف ژن SIRPG با کاهش RNA ژن TOP2A و تکثیر همراه بود.",
       "source_ids": [
-        "veerasubramanian"
+        "marguerie",
+        "GSE296196"
       ],
-      "passage": "RNA results figure 4; combination gene paragraph",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-18-block-02",
       "chapter": 18,
-      "exact_text": "TOP2A در متن، میان ژن‌های تکثیر در گروه‌های مرتبط با ترکیب درمان‌ها نام برده شده است. این جمله به‌تنهایی مقدار اثرِ آدالیمومابِ تنها بر TOP2A را مشخص نمی‌کند.",
+      "exact_text": "**معنی ساده:** ابتدا اثر دارو بر یک پروتئین و سپس اثر حذف یک ژن بررسی شده‌اند. این دو آزمایش، اندازه‌گیریِ مسیر کاملِ دارو تا TOP2A نیستند. دیتاست GSE296196 گروه آدالیموماب ندارد.",
       "source_ids": [
-        "veerasubramanian"
+        "marguerie",
+        "GSE296196"
       ],
-      "passage": "RNA results figure 4; combination gene paragraph",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-18-block-03",
       "chapter": 18,
-      "exact_text": "**اهمیت:** این دیتاست اجازه می‌دهد تک‌دارو را جدا از ترکیب بررسی کنیم. مهار دو مسیر ایمنی را نمی‌توان به اثر یکی از داروها نسبت داد.",
+      "exact_text": "این منبع برای زمانی نگه داشته می‌شود که سلول T، بیان ژن و گروه کنترل را شناخته باشیم. در مطالعهٔ فعلی از آن جهت اثر دارو بر TOP2A را نتیجه نمی‌گیریم.",
       "source_ids": [
-        "veerasubramanian"
+        "marguerie",
+        "GSE296196"
       ],
-      "passage": "RNA results figure 4; combination gene paragraph",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-18-block-04",
       "chapter": 18,
-      "exact_text": "> منبع: [Veerasubramanian 2026، شکل ۴ و نتایج RNA](https://doi.org/10.3389/fimmu.2026.1867995). نسبت‌دادن اثر ترکیبی به تک‌دارو مجاز نیست.",
+      "exact_text": "> منابع: [Marguerie 2025، شکل‌های ۲ تا ۴](https://doi.org/10.3389/fimmu.2025.1668361)؛ [GEO: GSE296196](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE296196).",
       "source_ids": [
-        "veerasubramanian"
+        "marguerie",
+        "GSE296196"
       ],
-      "passage": "RNA results figure 4; combination gene paragraph",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-19-block-01",
       "chapter": 19,
-      "exact_text": "**دیتاست** مجموعهٔ سازمان‌یافتهٔ اندازه‌گیری‌هاست؛ مدل سه‌بعدی، RNA و دادهٔ بالینی، ستون‌های یک آزمایش واحد نیستند.",
+      "exact_text": "| منبع | داده | کاربرد و حد آن |\n| --- | --- | --- |\n| 3WD5 | ساختار TNF–Fab | شناخت محل اتصال؛ دادهٔ بیمار نیست |\n| GSE138746 | RNA اولیهٔ بیماران RA | یادگیری نمونه/دارو/پاسخ؛ RNA پس از درمان ندارد |\n| GSE129705 | RNA پیش/پسِ ضد TNF در RA | ۵۲ جفت کامل؛ برچسب داروی هر بیمار هنوز تأیید نشده |\n| GSE339038 | RNA سلول‌های T آزمایشگاهی | گروه آدالیموماب دارد؛ کارآزمایی RA نیست |",
       "source_ids": [
-        "GSE296196",
+        "rcsb3wd5",
+        "RA-RNA-learning",
+        "GSE129705-pairs",
         "GSE339038"
       ],
-      "passage": "Official GEO sample metadata; distinct datasets",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-19-block-02",
       "chapter": 19,
-      "exact_text": "| شناسه | دادهٔ موجود | کاربرد در این پژوهش |\n| --- | --- | --- |\n| 3WD5 | مختصات TNF–Fab | بررسی محل اتصال واقعی |\n| GSE296196 | RNA؛ حذف SIRPG و کنترل | بررسی ارتباط SIRPG با TOP2A؛ بدون دارو |\n| GSE339038 | RNA؛ تیمار تکی و ترکیبی | مقایسهٔ آدالیموماب و کنترل در چهار فرد |",
+      "exact_text": "این منابع از افراد و آزمایش‌های متفاوت آمده‌اند. برای یک سؤال، منبعی انتخاب می‌کنیم که واقعاً همان مقایسه و اندازه‌گیری را داشته باشد.",
       "source_ids": [
-        "GSE296196",
+        "rcsb3wd5",
+        "RA-RNA-learning",
+        "GSE129705-pairs",
         "GSE339038"
       ],
-      "passage": "Official GEO sample metadata; distinct datasets",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-19-block-03",
       "chapter": 19,
-      "exact_text": "نمونه‌های این منابع به هم متصل نیستند. CRP، ادرار یا پاسخ سرطانِ همان اهداکنندگان در این مجموعهٔ ترکیبی نداریم.",
+      "exact_text": "> منابع: [3WD5](https://www.rcsb.org/structure/3WD5)، [GSE138746](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE138746)، [GSE129705](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE129705)، [GSE339038](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE339038).",
       "source_ids": [
-        "GSE296196",
+        "rcsb3wd5",
+        "RA-RNA-learning",
+        "GSE129705-pairs",
         "GSE339038"
       ],
-      "passage": "Official GEO sample metadata; distinct datasets",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
-    },
-    {
-      "id": "slide-content-19-block-04",
-      "chapter": 19,
-      "exact_text": "> منابع داده: [3WD5](https://www.rcsb.org/structure/3WD5)، [GSE296196](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE296196)، [GSE339038](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE339038).",
-      "source_ids": [
-        "GSE296196",
-        "GSE339038"
-      ],
-      "passage": "Official GEO sample metadata; distinct datasets",
-      "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-20-block-01",
       "chapter": 20,
-      "exact_text": "از فایل عمومی GSE339038، ردیف TOP2A استخراج شد. **CPM** مقدار شمارش تقسیم بر مجموع شمارش‌های همان کتابخانه، ضربدر یک میلیون است؛ تفاوت عمق خوانش را تا حدی قابل مقایسه می‌کند.",
+      "exact_text": "این مثالِ قبلی از سلول‌های T آزمایشگاهی است و سؤال اصلیِ مرحلهٔ یادگیری نیست. از فایل عمومی GSE339038، ردیف TOP2A استخراج شد. **CPM** مقدار شمارش تقسیم بر مجموع شمارش‌های همان کتابخانه، ضربدر یک میلیون است؛ تفاوت عمق خوانش را تا حدی قابل مقایسه می‌کند.",
       "source_ids": [
         "GSE339038-counts",
         "GSE339038"
       ],
-      "passage": "Project descriptive CPM output; no FDR or enzyme claim",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Descriptive pilot, no inferential or enzyme conclusion"
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-20-block-02",
@@ -1018,9 +1141,10 @@
         "GSE339038-counts",
         "GSE339038"
       ],
-      "passage": "Project descriptive CPM output; no FDR or enzyme claim",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Descriptive pilot, no inferential or enzyme conclusion"
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-20-block-02",
+      "passage": "Project descriptive CPM output; no FDR or enzyme claim"
     },
     {
       "id": "slide-content-20-block-03",
@@ -1030,9 +1154,10 @@
         "GSE339038-counts",
         "GSE339038"
       ],
-      "passage": "Project descriptive CPM output; no FDR or enzyme claim",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Descriptive pilot, no inferential or enzyme conclusion"
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-20-block-03",
+      "passage": "Project descriptive CPM output; no FDR or enzyme claim"
     },
     {
       "id": "slide-content-20-block-04",
@@ -1042,153 +1167,174 @@
         "GSE339038-counts",
         "GSE339038"
       ],
-      "passage": "Project descriptive CPM output; no FDR or enzyme claim",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Descriptive pilot, no inferential or enzyme conclusion"
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-20-block-04",
+      "passage": "Project descriptive CPM output; no FDR or enzyme claim"
     },
     {
       "id": "slide-content-21-block-01",
       "chapter": 21,
       "exact_text": "مختصات 3WD5 خوانده شد؛ اتم‌های هیدروژن و جایگاه‌های اشغال‌نشده کنار گذاشته شدند. در فاصلهٔ حداکثر **4.5 Å**، **۲۵۲ جفت اتم** در **۴۰ جفت اسیدآمینه** نزدیک‌اند. آنگستروم، Å، برابر یک ده‌میلیاردم متر است.",
       "source_ids": [
-        "hu-indexed"
+        "hu-indexed",
+        "rcsb3wd5"
       ],
-      "passage": "Project independent coordinate count 252/40/17; 4.5 A",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-21-block-01",
+      "passage": "Project independent coordinate count 252/40/17; 4.5 A"
     },
     {
       "id": "slide-content-21-block-02",
       "chapter": 21,
       "exact_text": "نقشه نشان می‌دهد کدام جایگاه‌های TNF و Fab در این نمای ناقص نزدیک‌اند. این **محاسبهٔ هندسی اجرا شده است**؛ انرژی اتصال، دینامیک مولکولی یا اثر درمان از تعداد تماس نتیجه نمی‌شود. هیچ کمپلکس آدالیموماب–TOP2A در این پروژه ساخته یا آزموده نشده است.",
       "source_ids": [
-        "hu-indexed"
+        "hu-indexed",
+        "rcsb3wd5"
       ],
-      "passage": "Project independent coordinate count 252/40/17; 4.5 A",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-21-block-02",
+      "passage": "Project independent coordinate count 252/40/17; 4.5 A"
     },
     {
       "id": "slide-content-21-block-03",
       "chapter": 21,
       "exact_text": "![نقشهٔ تماس 3WD5؛ فاصلهٔ هندسی بین اسیدآمینه‌های TNF و زنجیره‌های H/L در نمای ثبت‌شده](../assets/interface-map.png)",
       "source_ids": [
-        "hu-indexed"
+        "hu-indexed",
+        "rcsb3wd5"
       ],
-      "passage": "Project independent coordinate count 252/40/17; 4.5 A",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-21-block-03",
+      "passage": "Project independent coordinate count 252/40/17; 4.5 A"
     },
     {
       "id": "slide-content-21-block-04",
       "chapter": 21,
       "exact_text": "> منبع مختصات: [3WD5](https://www.rcsb.org/structure/3WD5)؛ [روش و خروجی تحلیل پروژه](../docs/structural-feasibility-results.fa.md).",
       "source_ids": [
-        "hu-indexed"
+        "hu-indexed",
+        "rcsb3wd5"
       ],
-      "passage": "Project independent coordinate count 252/40/17; 4.5 A",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-21-block-04",
+      "passage": "Project independent coordinate count 252/40/17; 4.5 A"
     },
     {
       "id": "slide-content-22-block-01",
       "chapter": 22,
-      "exact_text": "**آیا آدالیموماب، مستقیم یا پس از مهار TNF، فعالیت TOP2A را کاهش می‌دهد؟**",
+      "exact_text": "**اکنون:** شناخت RA، هدف TNF، ساختمان آدالیموماب، اتصال واقعی و معنی اندازه‌گیری بالینی. در توالی، باز و کدون را به آمینواسید وصل می‌کنیم؛ در RNA-seq، نمونه، دارو و زمان را تشخیص می‌دهیم.",
       "source_ids": [
-        "top2a-json",
-        "label-html"
+        "course-scope",
+        "nhgri",
+        "top2a-json"
       ],
-      "passage": "Proposed direct/indirect design; not a reported result",
-      "status": "proposed",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "status": "reviewed_with_scope_and_limitations",
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-22-block-02",
       "chapter": 22,
-      "exact_text": "- **مسیر مستقیم:** دسترسی دارو، اتصال به TOP2A در مقایسه با یک آنتی‌بادی نامرتبط، و فعالیت آنزیم با مقدار پروتئین ثابت باید بررسی شوند. docking، پیش‌بینی آرایش اتصال است؛ اثبات مهار نیست.\n- **مسیر غیرمستقیم:** ابتدا RNA در تیمار و کنترلِ همان اهداکننده تحلیل می‌شود؛ سپس مقدار پروتئین و فعالیت آنزیم جدا سنجیده می‌شوند.\n- **وضعیت فعلی:** اتصال TNF شناخته شده؛ بررسی RNA ما توصیفی است؛ مهار مستقیم TOP2A و فایدهٔ ضدسرطان هنوز نشان داده نشده‌اند.",
+      "exact_text": "**موازی:** DNA و نقش TOP2A در تقسیم سلول را مستقل می‌آموزیم. شباهت فرایندها را از رابطهٔ اندازه‌گیری‌شده جدا می‌خوانیم.",
       "source_ids": [
-        "top2a-json",
-        "label-html"
+        "course-scope",
+        "nhgri",
+        "top2a-json"
       ],
-      "passage": "Proposed direct/indirect design; not a reported result",
-      "status": "proposed",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "status": "reviewed_with_scope_and_limitations",
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-22-block-03",
       "chapter": 22,
-      "exact_text": "> مبنای تفکیک: [UniProt: عملکرد TOP2A](https://www.uniprot.org/uniprotkb/P11388)؛ [طرح امکان‌سنجی پژوهش](../docs/top2a-inhibition-feasibility.fa.md). این اسلاید، برنامهٔ آزمون است.",
+      "exact_text": "**پس از مبانی:** اگر یک دیتاستِ دارای مقایسهٔ مناسب تأیید شد، سؤال محدودِ تغییر TOP2A انتخاب می‌شود. مقدار RNA، مقدار پروتئین و فعالیت آنزیم به داده‌های متفاوت نیاز دارند. سؤال مهار مستقیم و اثر ضدسرطان در مرحلهٔ فعلی بررسی نمی‌شود.",
       "source_ids": [
-        "top2a-json",
-        "label-html"
+        "course-scope",
+        "nhgri",
+        "top2a-json"
       ],
-      "passage": "Proposed direct/indirect design; not a reported result",
-      "status": "proposed",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "status": "reviewed_with_scope_and_limitations",
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
+    },
+    {
+      "id": "slide-content-22-block-04",
+      "chapter": 22,
+      "exact_text": "> منابع راهنما: [NHGRI، RNA-seq](https://www.genome.gov/genetics-glossary/RNA-seq)؛ [UniProt، TOP2A](https://www.uniprot.org/uniprotkb/P11388)؛ [مسیر یادگیری پروژه](../docs/learning-path.fa.md).",
+      "source_ids": [
+        "course-scope",
+        "nhgri",
+        "top2a-json"
+      ],
+      "status": "reviewed_with_scope_and_limitations",
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-23-block-01",
       "chapter": 23,
-      "exact_text": "**سه مقالهٔ اصلی کلاس:** [Bianchi 2026](https://doi.org/10.3389/fimmu.2025.1680199)، [Marguerie 2025](https://doi.org/10.3389/fimmu.2025.1668361)، [Gehin 2024](https://doi.org/10.1136/rmdopen-2024-004888): به‌ترتیب ساختار/حرکت، آزمایش سلولی و پاسخ بالینی.",
+      "exact_text": "**برای مبانی:** [Hu 2013](https://doi.org/10.1074/jbc.M113.491530)، اتصال تجربی؛ [Gehin 2024](https://doi.org/10.1136/rmdopen-2024-004888)، مطالعهٔ بیمار و غلظت دارو؛ [Tao 2021](https://doi.org/10.1002/art.41516)، RNA اولیه و پاسخ درمان. قدیمی‌تر بودن منبعِ ساختار، نقش پایهٔ آن را حذف نمی‌کند.",
       "source_ids": [
-        "bianchi",
-        "marguerie",
-        "gehin",
+        "course-scope",
         "hu-indexed",
-        "shi",
-        "veerasubramanian"
+        "gehin",
+        "Tao2021",
+        "ncbi-standard-code"
       ],
-      "passage": "Bibliographic references and source roles",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-23-block-02",
       "chapter": 23,
-      "exact_text": "**منابع مکمل:** [Hu 2013](https://doi.org/10.1074/jbc.M113.491530)، [Shi 2025](https://doi.org/10.2147/JIR.S497734)، [Veerasubramanian 2026](https://doi.org/10.3389/fimmu.2026.1867995): پایهٔ اتصال، مقایسهٔ TOP2A و دادهٔ دارو–RNA.",
+      "exact_text": "**برای مطالعهٔ بعدی:** [Bianchi 2026](https://doi.org/10.3389/fimmu.2025.1680199)، مدل‌سازی حرکت؛ [Marguerie 2025](https://doi.org/10.3389/fimmu.2025.1668361)، دو آزمایش سلولی؛ [Veerasubramanian 2026](https://doi.org/10.3389/fimmu.2026.1867995)، RNA گروه‌های دارویی در مدل آزمایشگاهی.",
       "source_ids": [
-        "bianchi",
-        "marguerie",
-        "gehin",
+        "course-scope",
         "hu-indexed",
-        "shi",
-        "veerasubramanian"
+        "gehin",
+        "Tao2021",
+        "ncbi-standard-code"
       ],
-      "passage": "Bibliographic references and source roles",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-23-block-03",
       "chapter": 23,
-      "exact_text": "**ساختارها:** [3WD5](https://www.rcsb.org/structure/3WD5)، [1TNF](https://www.rcsb.org/structure/1TNF)، [4FM9](https://www.rcsb.org/structure/4FM9). **تعاریف و دارو:** [UniProt](https://www.uniprot.org/uniprotkb/P11388)، [NHGRI](https://www.genome.gov/genetics-glossary)، [برچسب Humira](https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=608d4f0d-b19f-46d3-749a-7159aa5f933d).",
+      "exact_text": "**ساختارها:** [3WD5](https://www.rcsb.org/structure/3WD5)، [1TNF](https://www.rcsb.org/structure/1TNF)، [4FM9](https://www.rcsb.org/structure/4FM9). **تعاریف:** [کدون](https://www.genome.gov/genetics-glossary/Codon)، [کد استاندارد](https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi#SG1)، [برچسب Humira](https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=608d4f0d-b19f-46d3-749a-7159aa5f933d).",
       "source_ids": [
-        "bianchi",
-        "marguerie",
-        "gehin",
+        "course-scope",
         "hu-indexed",
-        "shi",
-        "veerasubramanian"
+        "gehin",
+        "Tao2021",
+        "ncbi-standard-code"
       ],
-      "passage": "Bibliographic references and source roles",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
       "id": "slide-content-23-block-04",
       "chapter": 23,
-      "exact_text": "[دفتر صحت‌سنجی ادعاها](../docs/scientific-claim-audit.fa.md) و [گزارش بررسی RNA](../docs/top2a-count-inspection.fa.md) جزئیات داده، روش، برداشت و محدودیت را نگه می‌دارند.",
+      "exact_text": "[جزوهٔ مقدماتی](../docs/preparation-guide.fa.md)، [درس کدون‌های واقعی](../docs/codons-primer.fa.md)، [آشنایی با TOP2A](../docs/top2a-primer.fa.md) و [مسیر یادگیری](../docs/learning-path.fa.md) ادامهٔ مطالعه را مرحله‌بندی می‌کنند.",
       "source_ids": [
-        "bianchi",
-        "marguerie",
-        "gehin",
+        "course-scope",
         "hu-indexed",
-        "shi",
-        "veerasubramanian"
+        "gehin",
+        "Tao2021",
+        "ncbi-standard-code"
       ],
-      "passage": "Bibliographic references and source roles",
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Source, measurement and inference kept separate; figures labeled by representation."
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     }
   ],
   "independent_geometry_recheck": {
@@ -1196,5 +1342,13 @@
     "heavy_atom_contact_count": 252,
     "residue_pair_count": 40,
     "target_interface_residue_count": 17
+  },
+  "current_scope_review": "data/metadata/foundations-course-review.json",
+  "previous_review": {
+    "reviewed_at_utc": "2026-10-13T18:26:03.284724+00:00",
+    "source_sha256": "fa68f750b800c0d9ed8dae0d28474565f4702eca66f079cdd7fce371ac20fae3",
+    "block_count": 88,
+    "git_ref": "33639193c3e617d28446dc1d202e3b82378e131a",
+    "note": "Historical source-specific audit retained in Git; unchanged exact paragraphs retain that prior source review."
   }
 }

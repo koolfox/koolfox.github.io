@@ -389,7 +389,8 @@ export function createMarkdownReader() {
     toc.replaceChildren();
     const details = node("details");
     details.append(node("summary", "فهرست فصل‌های این متن"));
-    const list = node("ol");
+    const list = node("ul");
+    list.setAttribute("role", "list");
     for (const entry of documentState.chapters) {
       const option = node("option", entry.title);
       option.value = entry.id;

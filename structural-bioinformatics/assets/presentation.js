@@ -1,4 +1,5 @@
 import { isolateScientificText, scientificDiagramSource, setDiagramDirection } from './text-direction.js';
+import { linkGlossaryTerms } from './glossary-terms.js';
 /** Audience slides and the research reader share one Markdown source. */
 const source = new URL('../docs/class-presentation.fa.md', import.meta.url);
 const project = new URL('../', import.meta.url);
@@ -268,6 +269,13 @@ async function load() {
       if (citations.length) slide.append(references);
       for (const media of slide.querySelectorAll('figure')) addMediaControls(media);
       addSlideIdentity(slide, details);
+      if (body) {
+        linkGlossaryTerms(body);
+        for (const link of body.querySelectorAll('a.term-link')) {
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+        }
+      }
       isolateScientificText(slide);
     }
     slides.at(-1).classList.add('sources');

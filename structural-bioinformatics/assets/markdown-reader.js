@@ -1,7 +1,9 @@
 import { isolateScientificText, scientificDiagramSource, setDiagramDirection } from './text-direction.js';
+import { linkGlossaryTerms } from './glossary-terms.js';
 // Repository-owned Markdown only; optional rendering libraries load on demand.
 const DOCUMENTS = [
   ["learning-path.fa.md", "مسیر یادگیری از پایه و ترتیب مطالعه", "شروع از پایه"],
+  ["presentation-rehearsal.fa.md", "پس از یادگیری؛ تمرین و آماده‌سازی ارائه", "ارائه و روش پژوهش"],
   ["glossary.fa.md", "واژه‌نامهٔ آموزشی؛ آنتی‌بادی، IgG1 و اصطلاحات پژوهش", "شروع از پایه"],
   ["codons-primer.fa.md", "از باز و کدون به آمینواسید؛ مثال‌های واقعی", "شروع از پایه"],
   ["top2a-primer.fa.md", "آشنایی مستقل و مقدماتی با TOP2A", "آشنایی موازی"],
@@ -254,6 +256,7 @@ function prepareContent(container, sourceURL) {
     table.before(region);
     region.append(table);
   }
+  if (!sourceURL.pathname.endsWith('/glossary.fa.md')) linkGlossaryTerms(container);
   isolateScientificText(container);
 }
 
@@ -348,7 +351,7 @@ export function createMarkdownReader() {
     url.searchParams.set("document", filename);
     if (selectedChapter) url.searchParams.set("chapter", selectedChapter);
     else url.searchParams.delete("chapter");
-    url.hash = "reading";
+    if (url.hash !== "#lesson-guide" || !url.searchParams.has("lesson")) url.hash = "reading";
     window.history[push ? "pushState" : "replaceState"](null, "", url);
   }
 
@@ -369,7 +372,7 @@ export function createMarkdownReader() {
   }
 
   function refreshNavigation() {
-    const presentation = documentState.filename === "class-presentation.fa.md";
+    const presentation = documentState.filename === "class-presentation.fa.md" && !new URLSearchParams(location.search).has("lesson");
     const chapters = presentation ? documentState.chapters.filter(entry => entry.id !== "intro") : documentState.chapters;
     const focused = presentation && presentationFocused && !["all", "intro"].includes(chapter);
     document.body.dataset.presentationMode = String(focused);
@@ -458,7 +461,7 @@ export function createMarkdownReader() {
     status.dataset.optionalRender = failures ? "partial" : "ready";
     const steps = documentState.chapters.filter(entry => entry.id !== "intro");
     const stepIndex = steps.findIndex(entry => entry.id === chapter);
-    const progress = documentState.filename === "class-presentation.fa.md" && stepIndex >= 0
+    const progress = documentState.filename === "class-presentation.fa.md" && !new URLSearchParams(location.search).has("lesson") && stepIndex >= 0
       ? `گام ${new Intl.NumberFormat("fa-IR").format(stepIndex + 1)} از ${new Intl.NumberFormat("fa-IR").format(steps.length)} · ` : "";
     status.textContent = progress && document.body.dataset.presentationMode === "true"
       ? progress.replace(/ · $/, "")

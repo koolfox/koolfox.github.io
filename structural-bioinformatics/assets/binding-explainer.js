@@ -1,4 +1,5 @@
 /** An explicit schematic of binding/competition, never a molecular trajectory. */
+import { linkGlossaryTerms } from './glossary-terms.js';
 const steps = [
   "TNF می‌تواند به گیرندهٔ TNFR روی سلول متصل شود. این اتصال آغازگر پیام‌رسانی درون سلول است؛ در زمینهٔ التهاب، این مسیر می‌تواند پاسخ التهابی را تقویت کند.",
   "بخش شناسایی‌کنندهٔ آدالیموماب، یعنی Fab، به سطحی از TNF متصل می‌شود که با محل اتصال گیرنده هم‌پوشانی دارد. در این طرح، TNF پوشیده‌شده از گیرنده جدا نشان داده شده تا مسدودشدن تعامل روشن باشد.",
@@ -41,6 +42,7 @@ export function initializeBindingExplainer() {
     container.innerHTML = diagram(step);
     container.dataset.step = String(step);
     readout.textContent = steps[step];
+    linkGlossaryTerms(readout);
     for (const button of buttons) button.setAttribute("aria-pressed", String(Number(button.dataset.bindingStep) === step));
   }
   for (const button of buttons) button.addEventListener("click", () => show(Number(button.dataset.bindingStep)));

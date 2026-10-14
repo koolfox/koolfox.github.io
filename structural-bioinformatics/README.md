@@ -1,6 +1,6 @@
 # TNF & Adalimumab — Structural Bioinformatics Course
 
-**شروع از پایه:** [مسیر یادگیری](https://koolfox.github.io/structural-bioinformatics/?document=learning-path.fa.md&chapter=intro#reading) · [جزوهٔ آمادگی](https://koolfox.github.io/structural-bioinformatics/?document=preparation-guide.fa.md&chapter=intro#reading) · [PDF آفلاین](assets/preparation-guide.fa.pdf). موضوع اصلی RA، TNF و آدالیموماب است؛ سؤال دربارهٔ مهار TOP2A پس از شناخت پایه‌ها و تأیید داده انتخاب می‌شود.
+**از اینجا شروع کنید:** [بخش ۱: سلول، ژن، RNA و پروتئین](https://koolfox.github.io/structural-bioinformatics/?document=preparation-guide.fa.md&chapter=chapter-1&lesson=1#lesson-guide). مسیر مشخص است: **۸ بخش یادگیری → [تمرین ارائه](docs/presentation-rehearsal.fa.md) → اسلاید ۱**. هر بخش متن لازم، تمرین کوتاه و گام بعد دارد؛ علامت پایان مطالعه روی همان مرورگر ذخیره می‌شود. [ترتیب کامل مطالعه](docs/learning-path.fa.md) · [PDF آفلاین](assets/preparation-guide.fa.pdf). موضوع اصلی RA، TNF و آدالیموماب است؛ سؤال دربارهٔ مهار TOP2A پس از شناخت پایه‌ها و تأیید داده انتخاب می‌شود.
 
 **پل توالی به ساختار:** [درس کدون](docs/codons-primer.fa.md) و [نمای تعاملی](https://koolfox.github.io/structural-bioinformatics/?tab=sequences#codon-lesson)، با دوازده کدون واقعیِ آغاز CDS و کدون پایان TNF/TOP2A، جدول استاندارد ۶۴ کدون و توالی آمینواسیدیِ زنجیره‌های Fab. RNA مرجع، RNA-seq بیمار و پروتئین دارو سه نوع دادهٔ متفاوت‌اند.
 
@@ -10,7 +10,7 @@
 
 پروژهٔ درس بیوانفورماتیک ساختاری، ارشد مهندسی کامپیوتر/بیوانفورماتیک. موضوع نسخهٔ درسی: **ساختار TNF-α و رابط اتصال قطعهٔ Fab آدالیموماب، با زمینهٔ آرتریت روماتوئید**. کار عملی، نمایش ساختار واقعی و یک تحلیل هندسی کوچک و قابل بازتولید است.
 
-از [راهنمای درسی](docs/course-guide.fa.md) و [سؤال و فرضیه‌های پژوهش](docs/research-questions.fa.md) شروع کنید. ابتدا بیماری، ساختار و عملکرد دارو و معنی داده‌ها را می‌آموزیم. شناخت TOP2A موازی است؛ سؤال ارتباط دارویی بعداً و با دادهٔ متناسب انتخاب می‌شود. [مقایسهٔ TOP2A و سرطان](docs/top2a-cancer-comparison.fa.md) به معنی اثبات درمان سرطان با آدالیموماب نیست. مثال‌های واقعی و کوچک توالی RNA/پروتئین برای آموزش اضافه شده‌اند؛ تحلیل وسیع بیان ژن هنوز انجام نشده است.
+برای معرفی پروژه، [راهنمای درسی](docs/course-guide.fa.md) را بخوانید. ابتدا بیماری، ساختار و عملکرد دارو و معنی داده‌ها را می‌آموزیم. شناخت TOP2A موازی است؛ [سؤال ارتباط دارویی](docs/research-questions.fa.md) بعداً و با دادهٔ متناسب انتخاب می‌شود. [مقایسهٔ TOP2A و سرطان](docs/top2a-cancer-comparison.fa.md) به معنی اثبات درمان سرطان با آدالیموماب نیست. مثال‌های واقعی و کوچک توالی RNA/پروتئین برای آموزش اضافه شده‌اند؛ تحلیل وسیع بیان ژن هنوز انجام نشده است.
 
 **برای کلاس این هفته:** [ارائهٔ گام‌به‌گام](https://koolfox.github.io/structural-bioinformatics/?document=class-presentation.fa.md&chapter=chapter-1#reading) انتخاب TNF/آدالیموماب، ساختار واقعی، سه مقاله و سؤال پیشنهادی را در ۲۳ بخش خطاب به مخاطبان کلاس توضیح می‌دهد. نسخهٔ اسلایدی، روش و یافتهٔ مقاله‌ها، دیتاست‌های مشخص، منابع کوتاه و شکل‌های بزرگ‌شونده را داخل ارائه نشان می‌دهد؛ دکمه‌ها و PageDown/PageUp حرکت می‌دهند. [طرح آکادمیک](docs/academic-study-plan.fa.md) و [راهنمای نگارش](docs/paper-writing-guide.fa.md) مراحل بعد را با فرضیه، کنترل و مرز نتیجه‌گیری ثبت می‌کنند؛ MD برای این هفته الزام نشده و اجراشده معرفی نمی‌شود.
 

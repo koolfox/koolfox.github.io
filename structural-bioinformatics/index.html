@@ -7,11 +7,11 @@
   <meta name="theme-color" content="#f5f5f7">
   <title>TNF-α و اتصال آدالیموماب | بیوانفورماتیک ساختاری</title>
   <link rel="stylesheet" href="../assets/css/styles.css">
-  <link rel="stylesheet" href="assets/research.css">
+  <link rel="stylesheet" href="assets/research.css?v=20261014-learning">
   <script type="importmap">
     {"imports":{"three":"./assets/vendor/three.module.js"}}
   </script>
-  <script type="module" src="assets/app.js"></script>
+  <script type="module" src="assets/app.js?v=20261014-learning"></script>
   <script type="module" src="assets/codon-lesson.js"></script>
 </head>
 <body class="research-page">
@@ -25,7 +25,10 @@
       <h1 id="page-title"><bdi>TNF-α</bdi> و اتصال آدالیموماب</h1>
       <p class="research-question">از شناخت آرتریت روماتوئید و سازوکار دارو شروع می‌کنیم؛ سپس ساختار، کدون‌ها و داده‌های RNA-seq را می‌خوانیم.</p>
       <p class="intro-note">مسیر اصلی: بیماری، <bdi>TNF</bdi> و آدالیموماب. مسیر موازی: شناخت <bdi>DNA</bdi> و <bdi>TOP2A</bdi>. سؤال ارتباط دارویی پس از یادگیری پایه‌ها و تأیید داده انتخاب می‌شود.</p>
+      <div class="study-entry"><a id="study-start" class="study-primary" href="docs/preparation-guide.fa.md?chapter=chapter-1&amp;lesson=1">از اینجا شروع کنید: سلول، ژن و پروتئین</a><a href="#study-path">ترتیب مطالعه و گام بعد</a></div>
+      <details id="study-shortcuts" class="study-shortcuts"><summary>منابع کامل و ورود مستقیم به ارائه</summary>
       <div class="document-links"><a href="?document=learning-path.fa.md&amp;chapter=intro#reading">مسیر یادگیری از پایه</a><a href="docs/glossary.fa.md?chapter=intro">واژه‌نامهٔ اصطلاحات</a><a href="?document=preparation-guide.fa.md&amp;chapter=intro#reading">جزوهٔ آمادگی و RNA-seq</a><a href="assets/preparation-guide.fa.pdf" download>دریافت جزوهٔ PDF</a><a id="start-slides" href="presentation.html#slide-1">شروع ارائهٔ اسلایدی</a><a id="start-presentation" href="docs/class-presentation.fa.md">مطالعهٔ متن ارائه</a><span class="intro-note">۲۴ اسلاید؛ سازوکار دارو، مقاله‌ها و سؤال پژوهش</span></div>
+      </details>
     </section>
     <div class="research-tabs" id="research-tabs" role="tablist" aria-label="بخش‌های پروژه" aria-orientation="horizontal">
       <button type="button" id="tab-basics" role="tab" aria-selected="true" aria-controls="panel-basics" tabindex="0" data-tab="basics">مبانی و سؤال پژوهش</button>
@@ -37,6 +40,14 @@
     </div>
     <noscript><p class="inline-error">برای تغییر تب و کاوش سه‌بعدی JavaScript را فعال کنید. <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/course-guide.fa.md" target="_blank" rel="noopener noreferrer">راهنمای متنی پروژه</a> نیز قابل خواندن است.</p></noscript>
     <div id="panel-basics" class="research-panel" role="tabpanel" aria-labelledby="tab-basics" tabindex="0">
+      <section id="study-path" class="reading-section study-path" aria-labelledby="study-title">
+        <h2 id="study-title">از یادگیری تا ارائه؛ به همین ترتیب پیش بروید</h2>
+        <ol class="study-phases" aria-label="ترتیب آمادگی" role="list"><li>۱. یادگیری ۸ بخش</li><li>۲. تمرین بیان مطالب</li><li>۳. ارائه از اسلاید ۱</li></ol>
+        <p>برای اولین نوبت، فقط فصل «سلول، ژن، RNA و پروتئین» را بخوانید. در هر بخش، متن لازم و یک تمرین کوتاه مشخص شده است. پس از انجام تمرین، پایان مطالعه را علامت بزنید و سراغ بخش بعد بروید.</p>
+        <p id="study-status" class="section-status" data-state="loading">پیشرفت مطالعه: هنوز بخشی علامت نخورده است.</p>
+        <details class="study-outline"><summary>ترتیب دقیق ۸ بخش و تمرین ارائه</summary><ol id="study-steps" role="list"></ol></details>
+        <p class="section-description"><a href="docs/learning-path.fa.md?chapter=intro">راهنمای متنی: دقیقاً چه بخوانم و چه چیزی آماده کنم؟</a></p>
+      </section>
       <section id="basics" class="reading-section" aria-labelledby="question-title">
         <h2 id="question-title">اول بیماری و دارو را بفهمیم، سپس سؤال انتخاب کنیم</h2>
         <p class="section-description"><a href="docs/binding-mechanism.fa.md">از پایه شروع کنید: سلول، پروتئین و اتصال دارو یعنی چه؟</a> این درس برای خوانندهٔ علاقه‌مند به زیست نوشته شده و پیش‌نیاز دانشگاهی فرض نمی‌کند.</p>
@@ -47,7 +58,7 @@
       <section id="molecular-roles" class="reading-section" aria-labelledby="roles-title">
         <h2 id="roles-title">در این داستان هر مولکول چه نقشی دارد؟</h2>
         <dl class="learning-terms molecular-roles">
-          <div><dt>آدالیموماب</dt><dd>داروی آنتی‌بادی از نوع <bdi>IgG</bdi> است. با بخش‌های شناسایی خود به <bdi>TNF</bdi> متصل می‌شود و پیام‌رسانی وابسته به آن را مهار می‌کند.</dd></div>
+          <div><dt>آدالیموماب</dt><dd>داروی آنتی‌بادی از نوع <bdi>IgG1</bdi> است. با بخش‌های شناسایی خود به <bdi>TNF</bdi> متصل می‌شود و پیام‌رسانی وابسته به آن را مهار می‌کند.</dd></div>
           <div><dt><bdi>TNF-α</bdi></dt><dd>پروتئین پیام‌رسان التهابی؛ شکل محلول آن می‌تواند به صورت سه‌زیرواحدی باشد. <bdi>3WD5</bdi> فقط یک زیرواحد همراه با <bdi>Fab</bdi> را در نمای حاضر نشان می‌دهد.</dd></div>
           <div><dt><bdi>CRP</bdi></dt><dd>پروتئین پاسخ التهابی که مقدارش در خون پیگیری می‌شود. نشانگر بالینی است؛ کاهش آن به‌تنهایی محل اتصال مولکولی دارو را تعیین نمی‌کند.</dd></div>
           <div><dt><bdi>TOP2A</bdi></dt><dd>ژن <bdi>TOP2A</bdi> پروتئین توپوایزومراز <bdi>IIα</bdi> را می‌سازد؛ این آنزیم در هستهٔ سلول در تنظیم پیچ‌خوردگی <bdi>DNA</bdi> و تقسیم سلول نقش دارد. مقایسهٔ آن با التهاب و سرطان به شواهد جداگانه نیاز دارد؛ هدف اتصال آدالیموماب در این پروژه <bdi>TNF</bdi> است.</dd></div>
@@ -334,6 +345,11 @@
     </section>
     </div>
     <div id="panel-reading" class="research-panel" role="tabpanel" aria-labelledby="tab-reading" tabindex="0" hidden>
+      <section id="lesson-guide" class="lesson-guide" aria-labelledby="lesson-title" hidden>
+        <h2 id="lesson-title">بخش فعلی یادگیری</h2>
+        <p id="lesson-goal"></p>
+        <nav id="lesson-resources" class="lesson-resources" aria-label="متن‌های همین بخش"></nav>
+      </section>
       <section id="reading" class="reading-section" aria-labelledby="reading-title">
         <div class="section-heading"><h2 id="reading-title">کتابچهٔ پژوهش</h2><a id="document-source" href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/research-questions.fa.md" target="_blank" rel="noopener noreferrer">نسخهٔ اصلی در GitHub</a></div>
         <p class="section-description">متن‌های پروژه را اینجا بخوانید؛ از فهرست فصل‌ها یک بخش یا متن کامل را انتخاب کنید. فرمول‌ها و نمودارها از همان فایل منبع نمایش داده می‌شوند.</p>
@@ -350,6 +366,12 @@
         <p id="presentation-help" class="intro-note" hidden>متن ارائه برای مخاطبان کلاس نوشته شده است. با دکمه‌ها یا <bdi>PageDown / PageUp</bdi> حرکت کنید؛ برای نمایش روی پرده، «نمایش اسلایدی» را انتخاب کنید.</p>
         <nav id="document-toc" class="document-toc" aria-label="فصل‌های این متن" hidden></nav>
         <article id="markdown-content" class="markdown-content" tabindex="0" aria-busy="false"></article>
+      </section>
+      <section id="lesson-finish" class="lesson-guide" aria-label="تمرین و گام بعد یادگیری" hidden>
+        <details class="lesson-check" open><summary>پس از مطالعه، این تمرین را انجام دهید</summary><p id="lesson-check"></p></details>
+        <p id="lesson-save-note" class="section-description"></p>
+        <div class="lesson-actions"><button id="lesson-complete" type="button" aria-pressed="false" disabled>این بخش را خواندم و تمرین را انجام دادم</button><a id="lesson-next" class="study-primary" hidden>گام بعد</a><a href="#study-path">بازگشت به ترتیب مطالعه</a><a href="?document=learning-path.fa.md&amp;chapter=intro#reading">کاوش آزاد کتابخانه</a></div>
+        <p id="lesson-feedback" class="section-status" role="status"></p>
       </section>
     </div>
   </main>

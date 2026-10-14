@@ -2,6 +2,7 @@ import { isolateScientificText, scientificDiagramSource, setDiagramDirection } f
 // Repository-owned Markdown only; optional rendering libraries load on demand.
 const DOCUMENTS = [
   ["learning-path.fa.md", "مسیر یادگیری از پایه و ترتیب مطالعه", "شروع از پایه"],
+  ["glossary.fa.md", "واژه‌نامهٔ آموزشی؛ آنتی‌بادی، IgG1 و اصطلاحات پژوهش", "شروع از پایه"],
   ["codons-primer.fa.md", "از باز و کدون به آمینواسید؛ مثال‌های واقعی", "شروع از پایه"],
   ["top2a-primer.fa.md", "آشنایی مستقل و مقدماتی با TOP2A", "آشنایی موازی"],
   ["preparation-guide.fa.md", "جزوهٔ مقدماتی روماتوئید، دارو و RNA-seq", "شروع از پایه"],
@@ -222,6 +223,17 @@ function prepareContent(container, sourceURL) {
     const url = safeURL(link.getAttribute("href"), sourceURL);
     if (!url) { link.removeAttribute("href"); continue; }
     link.href = url.href;
+    if (url.origin === PROJECT_URL.origin && url.pathname === new URL("glossary.fa.md", DOCS_URL).pathname) {
+      link.classList.add("term-link");
+      link.title = "توضیح «" + link.textContent.trim() + "» در واژه‌نامه";
+      const destination = new URL(PROJECT_URL);
+      destination.searchParams.set("document", "glossary.fa.md");
+      const chapter = url.searchParams.get("chapter");
+      if (/^(intro|all|chapter-\d+)$/.test(chapter || "")) destination.searchParams.set("chapter", chapter);
+      destination.hash = "reading";
+      link.href = destination.href;
+      link.dataset.document = "glossary.fa.md";
+    }
     if (url.origin !== PROJECT_URL.origin) { link.target = "_blank"; link.rel = "noopener noreferrer"; }
   }
   for (const image of container.querySelectorAll("img")) {

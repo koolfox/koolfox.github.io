@@ -338,6 +338,46 @@ test("optional diagram failure preserves Markdown and its original code", async 
     await expect(page.locator("canvas.molecular-canvas")).toBeVisible();
 });
 
+for (const width of [1440, 390]) {
+    test(`glossary links keep text color and open the exact definition at ${width}px`, async ({ page, context }) => {
+        const origin = new URL(test.info().project.use.baseURL).origin;
+        await context.route('**/*', request => request.request().url().startsWith(origin) ? request.continue() : request.abort());
+        await page.setViewportSize({ width, height: 900 });
+        await page.goto(`${route}?document=class-presentation.fa.md&chapter=chapter-3#reading`);
+        await expect(page.locator('#reading-status')).toHaveAttribute('data-state', 'ready');
+        await expect(page.locator('#markdown-content')).toContainText('آنتی‌بادی، پروتئینی');
+        const term = page.locator('#markdown-content').getByRole('link', { name: 'IgG1', exact: true });
+        const before = await term.evaluate(link => ({
+            color: getComputedStyle(link).color,
+            parentColor: getComputedStyle(link.parentElement).color,
+            underline: getComputedStyle(link).textDecorationLine,
+        }));
+        expect(before.color).toBe(before.parentColor);
+        expect(before.underline).toBe('underline');
+        await term.hover();
+        expect(await term.evaluate(link => getComputedStyle(link).color)).toBe(before.color);
+        await term.press('Enter');
+        await expect(page.locator('#reading-status')).toHaveAttribute('data-document', 'glossary.fa.md');
+        await expect(page.locator('#reading-status')).toHaveAttribute('data-chapter', 'chapter-2');
+        await expect(page.locator('#markdown-content h2')).toContainText('IgG1');
+        await expect(page.locator('#markdown-content')).toContainText('نوع مولکول IgG1 و هدف اتصال آن TNF');
+        await page.goBack();
+        await expect(page.locator('#reading-status')).toHaveAttribute('data-document', 'class-presentation.fa.md');
+        await expect(page.locator('#reading-status')).toHaveAttribute('data-chapter', 'chapter-3');
+        await page.goto(`${route}presentation.html#slide-4`);
+        await expect(page.locator('#deck')).toHaveAttribute('data-state', 'ready');
+        const slideLink = page.locator('.slide:visible').getByRole('link', { name: 'IgG1', exact: true });
+        expect(await slideLink.evaluate(link => getComputedStyle(link).color === getComputedStyle(link.parentElement).color)).toBe(true);
+        const popupPromise = page.waitForEvent('popup');
+        await slideLink.click();
+        const definition = await popupPromise;
+        await expect(definition.locator('#reading-status')).toHaveAttribute('data-document', 'glossary.fa.md');
+        await expect(definition.locator('#reading-status')).toHaveAttribute('data-chapter', 'chapter-2');
+        await expect(page).toHaveURL(/#slide-4$/);
+        await definition.close();
+    });
+}
+
 test("guided class presentation advances one step and resumes after the laboratory", async ({ page }) => {
     await ready(page);
     await page.locator("#start-presentation").click();

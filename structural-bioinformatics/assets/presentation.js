@@ -229,9 +229,14 @@ async function load() {
     for (const link of deck.querySelectorAll('a[href]')) {
       const destination = new URL(link.getAttribute('href'), source);
       const documentName = destination.pathname.match(/\/docs\/([a-z0-9.-]+\.md)$/)?.[1];
-      link.href = documentName
-        ? new URL('index.html?document=' + documentName + '#reading', project).href
-        : destination.href;
+      const notebookURL = new URL('index.html?document=' + documentName + '#reading', project);
+      const chapter = destination.searchParams.get('chapter');
+      if (/^(intro|all|chapter-\d+)$/.test(chapter || '')) notebookURL.searchParams.set('chapter', chapter);
+      link.href = documentName ? notebookURL.href : destination.href;
+      if (documentName === 'glossary.fa.md') {
+        link.classList.add('term-link');
+        link.title = 'توضیح «' + link.textContent.trim() + '» در واژه‌نامه';
+      }
       link.target = '_blank';
       link.rel = 'noopener noreferrer';
     }

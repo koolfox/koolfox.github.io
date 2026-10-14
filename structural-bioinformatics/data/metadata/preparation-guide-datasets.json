@@ -1,0 +1,141 @@
+{
+  "verified_on": "2026-10-14",
+  "purpose": "Dataset feasibility for the introductory course handout; no new inferential RNA-seq analysis",
+  "datasets": [
+    {
+      "accession": "GSE339038",
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE339038",
+      "metadata_provenance": {
+        "url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE339038&targ=all&form=text&view=quick",
+        "retrieved_utc": "2026-10-14T05:05:27.208203+00:00",
+        "bytes": 40752878,
+        "sha256": "19a4e6c3cd228ea26c00fb68f461ef59c7aa3513f8727b89370a6214af883ffe"
+      },
+      "counts_provenance": {
+        "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE339nnn/GSE339038/suppl/GSE339038_Gene_counts_MLR.tsv.gz",
+        "retrieved_utc": "2026-10-14T05:09:18.499553+00:00",
+        "sha256": "401e5412488bcfe9e3744c8bf3330ac8f8053459749290188c8b241f4ef2e4ea",
+        "bytes": 3588365
+      },
+      "sample_libraries": 64,
+      "matrix_gene_rows": 63241,
+      "matrix_sample_columns": 64,
+      "TOP2A_row_identifiers": [
+        "ENSG00000131747"
+      ],
+      "system": "Day-5 in-vitro MLR; flow-sorted CD3+ T cells; not an RA treatment cohort",
+      "independent_donors": 4,
+      "treatment_counts": {
+        "Unstim": 4,
+        "Amlite + IgG1": 4,
+        "No drug": 4,
+        "Bam + IgG1": 4,
+        "IgG1+IgG1": 4,
+        "Ada + Dapiro": 4,
+        "IgG1+IgG4": 4,
+        "Ada + Amlite": 4,
+        "Ada + IgG1": 4,
+        "Dapiro + Amlite": 4,
+        "Ada + IgG4": 4,
+        "Dapiro + Bam": 4,
+        "Dapiro + IgG1": 4,
+        "CTLA4-Fc": 4,
+        "Dapiro + IgG4": 4,
+        "Immunocult": 4
+      },
+      "planned_comparison": [
+        "Ada + IgG1",
+        "IgG1+IgG1"
+      ],
+      "selected_libraries": 8,
+      "paired_biological_replicates": 4,
+      "selected_markers_present": [
+        {
+          "gene_id": "ENSG00000131747",
+          "symbol": "TOP2A"
+        },
+        {
+          "gene_id": "ENSG00000132646",
+          "symbol": "PCNA"
+        },
+        {
+          "gene_id": "ENSG00000148773",
+          "symbol": "MKI67"
+        }
+      ],
+      "executed_analysis": "Existing library-total CPM pilot reproduced from fresh official files; donor pairs exactly match data/processed/top2a-count-inspection.json",
+      "inferential_analysis_executed": false
+    },
+    {
+      "accession": "GSE129705",
+      "source_url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE129705",
+      "metadata_provenance": {
+        "url": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE129705&targ=all&form=text&view=quick",
+        "retrieved_utc": "2026-10-14T05:05:15.917925+00:00",
+        "bytes": 13802930,
+        "sha256": "a3dafe87e4ba002daa09d4e247e52d1eba16b6c6b8b534fc29534ab1a5e24fc8"
+      },
+      "counts_provenance": {
+        "url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE129nnn/GSE129705/suppl/GSE129705_c12-ra-wb-bl-mo3-processed-data-file.txt.gz",
+        "retrieved_utc": "2026-10-14T05:06:19.687734+00:00",
+        "sha256": "27ec3e010b46196286d092ed454cfd11a233932a4faf1656c744f821ae322f5e",
+        "bytes": 5856216
+      },
+      "sample_libraries": 128,
+      "matrix_gene_rows": 25370,
+      "matrix_sample_columns": 128,
+      "TOP2A_row_identifiers": [
+        "TOP2A"
+      ],
+      "system": "RA whole blood; adalimumab or infliximab alongside MTX; baseline and month 3",
+      "unique_subjects": 76,
+      "complete_baseline_month3_pairs": 52,
+      "cohorts": [
+        {
+          "cohort": "Cohort 1",
+          "libraries": 72,
+          "subjects": 40,
+          "complete_baseline_month3_pairs": 32
+        },
+        {
+          "cohort": "Cohort 2",
+          "libraries": 56,
+          "subjects": 36,
+          "complete_baseline_month3_pairs": 20
+        }
+      ],
+      "sample_characteristic_fields": [
+        "ccp_status_bl",
+        "cohort",
+        "eular_response",
+        "rf_status_bl",
+        "subject status",
+        "subject_id",
+        "visit_time"
+      ],
+      "individual_drug_label_present_in_GEO_characteristic_fields": false,
+      "adalimumab_specific_subset_ready": false,
+      "raw_sequence_reads_available": false,
+      "raw_access_limit": "Consent restrictions stated in GEO",
+      "counts_to_GEO_titles_match": true,
+      "expression_analysis_executed": false,
+      "limitations": [
+        "Missing individual drug assignment prevents an adalimumab-only contrast at present.",
+        "Use actual complete pairs rather than assuming 64 pairs from 128 libraries.",
+        "Blood cell composition, concomitant MTX, observational design and technical cohort differences require review.",
+        "TOP2A row availability does not establish sufficient expression after filtering or a treatment effect."
+      ]
+    }
+  ],
+  "handout": {
+    "source_path": "docs/preparation-guide.fa.md",
+    "source_sha256": "fba5c5ec1ded03dab4c02a8f4fbcb2a7fd88cd5ea695ae9628913a7bb32fc3cf",
+    "pdf_path": "assets/preparation-guide.fa.pdf",
+    "pdf_sha256": "aa6c69aceee82c241222e163ed4958965edb09c7bef4a784f664966d483e6cda",
+    "export_script_path": "scripts/export_preparation_guide.mjs",
+    "export_script_sha256": "8d86f70dc64175343e7c278cec3094b5b48ee7fc6e801e5ee574fcd0072aedee",
+    "renderer": "Playwright 1.58.2 Chromium; repository Markdown, Mermaid, KaTeX and Arad font",
+    "generated_at_utc": "2026-10-14T05:21:56.862897+00:00",
+    "chromium_version": "145.0.7632.6"
+  }
+}

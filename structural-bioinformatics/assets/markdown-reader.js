@@ -1,6 +1,7 @@
 import { isolateScientificText, scientificDiagramSource, setDiagramDirection } from './text-direction.js';
 // Repository-owned Markdown only; optional rendering libraries load on demand.
 const DOCUMENTS = [
+  ["preparation-guide.fa.md", "جزوهٔ مقدماتی آدالیموماب و RNA-seq", "آموزش و پژوهش"],
   ["top2a-count-inspection.fa.md", "بررسی اجراشدهٔ RNA ژن TOP2A", "آموزش و پژوهش"],
   ["scientific-claim-audit.fa.md", "ممیزی جمله‌به‌جملهٔ ادعاها و منابع", "آموزش و پژوهش"],
   ["top2a-inhibition-feasibility.fa.md", "آیا آدالیموماب می‌تواند TOP2A را مهار کند؟", "آموزش و پژوهش"],

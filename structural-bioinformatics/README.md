@@ -1,5 +1,7 @@
 # TNF & Adalimumab — Structural Bioinformatics Course
 
+**جزوهٔ آمادگی:** [مطالعهٔ فصل‌به‌فصل](https://koolfox.github.io/structural-bioinformatics/?document=preparation-guide.fa.md&chapter=intro#reading) · [PDF برای مطالعهٔ آفلاین](assets/preparation-guide.fa.pdf) · [منبع Markdown](docs/preparation-guide.fa.md). از سلول، ژن و RNA تا سازوکار آدالیموماب، سؤال اجرایی، دو دیتاست RNA-seq و تمرین‌های مرور. دیتاست اصلی GSE339038 با چهار جفت دارو/کنترل است؛ GSE129705 برای مقایسهٔ بالینی ضد TNF، ۵۲ جفت کامل دارد و نگاشت داروی هر بیمار هنوز تأیید نشده است.
+
 
 ارائهٔ مخاطب‌محور: [نمایش اسلایدها](presentation.html) — ۲۴ اسلاید با صفحهٔ عنوان، منابع کنار هر مطلب و بزرگ‌نمایی شکل/مدل سه‌بعدی در همان صفحه، کلیدهای جهت/PageDown/PageUp، تمام‌صفحه و چاپ/PDF. متن اسلاید و کتابچه از `docs/class-presentation.fa.md` خوانده می‌شود.
 
@@ -28,6 +30,10 @@
 - شش تب آموزشی با ناوبری صفحه‌کلید و نمایش کامل مسیر در موبایل؛ توالی‌های FASTA با شناسه و نسخه، طرح اجزای آنتی‌بادی و مسیر ژن تا ساختار. [آموزش توالی‌ها](docs/sequences-primer.fa.md) تفاوت توالی، مقدار بیان و ساختار RNA را توضیح می‌دهد.
 - [کتابچهٔ پژوهش داخل صفحه](https://koolfox.github.io/structural-bioinformatics/?document=course-guide.fa.md#reading): همان فایل‌های Markdown با انتخاب فصل، فرمول‌های LaTeX و نمودارهای Mermaid. [روش و فرمول‌ها](docs/structural-method.fa.md) خروجی حساسیت حد فاصله را با اعداد واقعی توضیح می‌دهد.
 - [نقشهٔ شواهد ارتباط](docs/connection-evidence.fa.md) نتیجهٔ مستقیم، مشاهدهٔ وابسته به شرایط آزمایش و فرضیهٔ اثبات‌نشده را جدا می‌کند. نتیجهٔ منفی یا نامشخص نیز پاسخ معتبر پژوهش است.
+
+## بازسازی PDF جزوه
+
+پس از نصب وابستگی‌های مرورگر و اجرای سرور از ریشهٔ مخزن، `node structural-bioinformatics/scripts/export_preparation_guide.mjs` همان متن کتابچه را به `assets/preparation-guide.fa.pdf` تبدیل می‌کند. سرور پیش‌فرض `http://127.0.0.1:8000` است؛ با `RESEARCH_BASE_URL` تغییر می‌کند. نمودارها، فرمول و فونت محلی باید کامل بارگذاری شوند. لینک‌های داخل PDF به سایت عمومی اشاره می‌کنند.
 
 ## اجرای محلی
 

@@ -16,6 +16,7 @@ let markdownReaderPromise = null;
 let referenceRequest = 0;
 let referenceTimer = null;
 const readerDocuments = new Set([
+  "preparation-guide.fa.md",
   "class-presentation.fa.md", "academic-study-plan.fa.md", "paper-writing-guide.fa.md", "structural-feasibility-results.fa.md",
   "research-questions.fa.md", "course-guide.fa.md", "structural-method.fa.md",
   "binding-mechanism.fa.md", "molecular-display-audit.fa.md", "paper-explanations.fa.md",

@@ -16,7 +16,7 @@ let markdownReaderPromise = null;
 let referenceRequest = 0;
 let referenceTimer = null;
 const readerDocuments = new Set([
-  "learning-path.fa.md", "top2a-primer.fa.md", "codons-primer.fa.md",
+  "learning-path.fa.md", "top2a-primer.fa.md", "codons-primer.fa.md", "glossary.fa.md",
   "preparation-guide.fa.md",
   "class-presentation.fa.md", "academic-study-plan.fa.md", "paper-writing-guide.fa.md", "structural-feasibility-results.fa.md",
   "research-questions.fa.md", "course-guide.fa.md", "structural-method.fa.md",
@@ -169,8 +169,11 @@ function initializeTabs() {
   for (const link of document.querySelectorAll('a[href]')) {
     const filename = readerFilename(link.href);
     if (!filename || link.id === "document-source" || link.id === "document-download") continue;
+    const chapter = new URL(link.href).searchParams.get("chapter");
     link.dataset.document = filename;
-    link.href = "?document=" + encodeURIComponent(filename) + "#reading";
+    const destination = new URL("?document=" + encodeURIComponent(filename) + "#reading", window.location.href);
+    if (/^(intro|all|chapter-\d+)$/.test(chapter || "")) destination.searchParams.set("chapter", chapter);
+    link.href = destination.href;
     link.removeAttribute("target");
   }
   document.addEventListener("click", (event) => {
@@ -183,6 +186,8 @@ function initializeTabs() {
     const url = new URL(window.location.href);
     url.searchParams.set("document", filename);
     url.searchParams.delete("chapter");
+    const chapter = new URL(link.href).searchParams.get("chapter");
+    if (/^(intro|all|chapter-\d+)$/.test(chapter || "")) url.searchParams.set("chapter", chapter);
     if (link.id === "start-presentation") url.searchParams.set("chapter", "chapter-1");
     url.hash = "reading";
     window.history.pushState(null, "", url);

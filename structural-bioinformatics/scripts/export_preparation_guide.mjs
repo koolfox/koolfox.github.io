@@ -49,6 +49,7 @@ h2 { font-size:16pt; line-height:1.65; margin:8mm 0 3mm; color:#123658; break-af
 h3,strong { font-weight:700; }
 p { margin:0 0 3.5mm; orphans:3; widows:3; }
 a { color:#185576; text-decoration:none; overflow-wrap:anywhere; }
+a.term-link { color:inherit; text-decoration:underline; }
 img { display:block; margin:4mm auto; max-width:100%; max-height:62mm; object-fit:contain; break-inside:avoid; }
 .table-scroll { overflow:visible!important; width:auto!important; margin:4mm 0!important; }
 table { width:100%!important; min-width:0!important; border-collapse:collapse; font-size:10.5pt; margin:0; break-inside:avoid; }

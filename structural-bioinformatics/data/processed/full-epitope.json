@@ -1,0 +1,2058 @@
+{
+  "pdb_id": "3WD5",
+  "question": "Which TNF and Fab residues form the complete adalimumab epitope once the crystallographic TNF trimer is restored?",
+  "inputs": {
+    "assets/3wd5.pdb": "fae6eee1b06b8cba0a466280dbc32563efaa54ec639afd921cb610d17debd216",
+    "assets/1tnf.pdb": "0c598aba6411f7170251e846cf71d987e8602f9d8bf07d8aab350bc0fec79b39",
+    "cell_angstrom_degrees": [
+      161.849,
+      161.849,
+      161.849,
+      90.0,
+      90.0,
+      90.0
+    ],
+    "space_group": "I 21 3"
+  },
+  "method": [
+    "Strict heavy-atom selection identical to the existing contact analysis.",
+    "Symmetry copies from the twelve I 2_1 3 general positions plus body centring, lattice shifts −2…+2; the two nearest equidistant copies define the trimer.",
+    "Contacts: heavy atoms ≤ 4.5 Å between each TNF protomer and the Fab bound to A.",
+    "ΔSASA: Shrake–Rupley, 960 points/atom, probe 1.4 Å, pinned radii; trimer and Fab separated rigidly without relaxation.",
+    "CDRs: Kabat-style spans located by Martin's sequence rules on deposited H/L."
+  ],
+  "trimer_validation": {
+    "reference_pdb": "1TNF",
+    "best_chain_pairing": {
+      "A": "C",
+      "B": "A",
+      "C": "B"
+    },
+    "paired_ca_atoms": 456,
+    "ca_rmsd_angstrom": 1.178,
+    "note": "Optimal Kabsch superposition; 1TNF is an independent unbound TNF crystal."
+  },
+  "symmetry_search": [
+    {
+      "centroid_distance_angstrom": 0.0,
+      "operator": "x,y,z",
+      "lattice_and_centring_shift": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "centroid_distance_angstrom": 21.412,
+      "operator": "y,z,x",
+      "lattice_and_centring_shift": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "centroid_distance_angstrom": 21.412,
+      "operator": "z,x,y",
+      "lattice_and_centring_shift": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "centroid_distance_angstrom": 35.611,
+      "operator": "-x+1/2,-y,z+1/2",
+      "lattice_and_centring_shift": [
+        -0.5,
+        0.5,
+        -0.5
+      ]
+    }
+  ],
+  "per_protomer": {
+    "A": {
+      "heavy_atom_contact_count": 252,
+      "residue_pair_count": 40,
+      "tnf_residues": [
+        "A:PRO20",
+        "A:GLN21",
+        "A:GLU23",
+        "A:LYS65",
+        "A:GLY66",
+        "A:GLN67",
+        "A:GLU110",
+        "A:ALA111",
+        "A:PRO113",
+        "A:TYR115",
+        "A:ASP140",
+        "A:TYR141",
+        "A:ASP143",
+        "A:PHE144",
+        "A:ALA145",
+        "A:GLU146",
+        "A:SER147"
+      ]
+    },
+    "B": {
+      "heavy_atom_contact_count": 0,
+      "residue_pair_count": 0,
+      "tnf_residues": []
+    },
+    "C": {
+      "heavy_atom_contact_count": 113,
+      "residue_pair_count": 25,
+      "tnf_residues": [
+        "C:THR72",
+        "C:HIS73",
+        "C:LEU75",
+        "C:THR77",
+        "C:THR79",
+        "C:SER81",
+        "C:LYS90",
+        "C:VAL91",
+        "C:ASN92",
+        "C:ILE97",
+        "C:GLU135",
+        "C:ILE136",
+        "C:ASN137",
+        "C:ARG138"
+      ]
+    }
+  },
+  "neighbour_fraction_of_contacts": 0.3096,
+  "buried_surface": {
+    "points_per_atom": 960,
+    "probe_radius_angstrom": 1.4,
+    "residue_threshold_angstrom2": 1.0,
+    "full_epitope_total_delta_sasa_angstrom2": 2307.6,
+    "full_epitope_mean_side_area_angstrom2": 1153.8,
+    "single_protomer_total_delta_sasa_angstrom2": 1571.8,
+    "tnf_by_protomer_angstrom2": {
+      "A": 752.5,
+      "B": 0,
+      "C": 358.0
+    },
+    "fab_by_region_angstrom2": {
+      "CDR-H1": 51.4,
+      "CDR-H2": 334.4,
+      "CDR-H3": 267.0,
+      "CDR-L1": 220.2,
+      "CDR-L2": 70.5,
+      "CDR-L3": 177.6,
+      "framework": 75.6
+    },
+    "tnf_residues": [
+      {
+        "residue": "A:PRO20",
+        "delta_sasa_angstrom2": 15.5
+      },
+      {
+        "residue": "A:GLN21",
+        "delta_sasa_angstrom2": 75.2
+      },
+      {
+        "residue": "A:GLU23",
+        "delta_sasa_angstrom2": 55.4
+      },
+      {
+        "residue": "A:LYS65",
+        "delta_sasa_angstrom2": 70.4
+      },
+      {
+        "residue": "A:GLY66",
+        "delta_sasa_angstrom2": 18.4
+      },
+      {
+        "residue": "A:GLN67",
+        "delta_sasa_angstrom2": 124.5
+      },
+      {
+        "residue": "A:GLU110",
+        "delta_sasa_angstrom2": 34.4
+      },
+      {
+        "residue": "A:ALA111",
+        "delta_sasa_angstrom2": 50.7
+      },
+      {
+        "residue": "A:LYS112",
+        "delta_sasa_angstrom2": 2.4
+      },
+      {
+        "residue": "A:PRO113",
+        "delta_sasa_angstrom2": 29.4
+      },
+      {
+        "residue": "A:TYR115",
+        "delta_sasa_angstrom2": 28.1
+      },
+      {
+        "residue": "A:ASP140",
+        "delta_sasa_angstrom2": 27.0
+      },
+      {
+        "residue": "A:TYR141",
+        "delta_sasa_angstrom2": 16.4
+      },
+      {
+        "residue": "A:LEU142",
+        "delta_sasa_angstrom2": 1.5
+      },
+      {
+        "residue": "A:ASP143",
+        "delta_sasa_angstrom2": 3.5
+      },
+      {
+        "residue": "A:PHE144",
+        "delta_sasa_angstrom2": 29.9
+      },
+      {
+        "residue": "A:ALA145",
+        "delta_sasa_angstrom2": 72.6
+      },
+      {
+        "residue": "A:GLU146",
+        "delta_sasa_angstrom2": 71.0
+      },
+      {
+        "residue": "A:SER147",
+        "delta_sasa_angstrom2": 26.2
+      },
+      {
+        "residue": "C:THR72",
+        "delta_sasa_angstrom2": 16.8
+      },
+      {
+        "residue": "C:HIS73",
+        "delta_sasa_angstrom2": 24.5
+      },
+      {
+        "residue": "C:LEU75",
+        "delta_sasa_angstrom2": 42.1
+      },
+      {
+        "residue": "C:THR77",
+        "delta_sasa_angstrom2": 32.1
+      },
+      {
+        "residue": "C:THR79",
+        "delta_sasa_angstrom2": 18.3
+      },
+      {
+        "residue": "C:LYS90",
+        "delta_sasa_angstrom2": 52.2
+      },
+      {
+        "residue": "C:VAL91",
+        "delta_sasa_angstrom2": 8.8
+      },
+      {
+        "residue": "C:ASN92",
+        "delta_sasa_angstrom2": 38.7
+      },
+      {
+        "residue": "C:ILE97",
+        "delta_sasa_angstrom2": 19.2
+      },
+      {
+        "residue": "C:GLU135",
+        "delta_sasa_angstrom2": 22.4
+      },
+      {
+        "residue": "C:ILE136",
+        "delta_sasa_angstrom2": 12.6
+      },
+      {
+        "residue": "C:ASN137",
+        "delta_sasa_angstrom2": 50.5
+      },
+      {
+        "residue": "C:ARG138",
+        "delta_sasa_angstrom2": 19.7
+      }
+    ],
+    "fab_residues": [
+      {
+        "residue": "H:ASP31",
+        "region": "CDR-H1",
+        "delta_sasa_angstrom2": 51.4
+      },
+      {
+        "residue": "H:THR52",
+        "region": "CDR-H2",
+        "delta_sasa_angstrom2": 19.4
+      },
+      {
+        "residue": "H:TRP53",
+        "region": "CDR-H2",
+        "delta_sasa_angstrom2": 90.9
+      },
+      {
+        "residue": "H:ASN54",
+        "region": "CDR-H2",
+        "delta_sasa_angstrom2": 76.6
+      },
+      {
+        "residue": "H:SER55",
+        "region": "CDR-H2",
+        "delta_sasa_angstrom2": 18.1
+      },
+      {
+        "residue": "H:GLY56",
+        "region": "CDR-H2",
+        "delta_sasa_angstrom2": 64.1
+      },
+      {
+        "residue": "H:HIS57",
+        "region": "CDR-H2",
+        "delta_sasa_angstrom2": 57.2
+      },
+      {
+        "residue": "H:ASP59",
+        "region": "CDR-H2",
+        "delta_sasa_angstrom2": 3.9
+      },
+      {
+        "residue": "H:ASP62",
+        "region": "CDR-H2",
+        "delta_sasa_angstrom2": 4.1
+      },
+      {
+        "residue": "H:TYR101",
+        "region": "CDR-H3",
+        "delta_sasa_angstrom2": 112.6
+      },
+      {
+        "residue": "H:LEU102",
+        "region": "CDR-H3",
+        "delta_sasa_angstrom2": 78.2
+      },
+      {
+        "residue": "H:SER103",
+        "region": "CDR-H3",
+        "delta_sasa_angstrom2": 49.7
+      },
+      {
+        "residue": "H:THR104",
+        "region": "CDR-H3",
+        "delta_sasa_angstrom2": 9.8
+      },
+      {
+        "residue": "H:ALA105",
+        "region": "CDR-H3",
+        "delta_sasa_angstrom2": 16.6
+      },
+      {
+        "residue": "L:ASP1",
+        "region": "framework",
+        "delta_sasa_angstrom2": 49.6
+      },
+      {
+        "residue": "L:GLN27",
+        "region": "CDR-L1",
+        "delta_sasa_angstrom2": 19.9
+      },
+      {
+        "residue": "L:ARG30",
+        "region": "CDR-L1",
+        "delta_sasa_angstrom2": 102.1
+      },
+      {
+        "residue": "L:ASN31",
+        "region": "CDR-L1",
+        "delta_sasa_angstrom2": 36.0
+      },
+      {
+        "residue": "L:TYR32",
+        "region": "CDR-L1",
+        "delta_sasa_angstrom2": 62.2
+      },
+      {
+        "residue": "L:TYR49",
+        "region": "framework",
+        "delta_sasa_angstrom2": 26.0
+      },
+      {
+        "residue": "L:ALA50",
+        "region": "CDR-L2",
+        "delta_sasa_angstrom2": 24.6
+      },
+      {
+        "residue": "L:SER52",
+        "region": "CDR-L2",
+        "delta_sasa_angstrom2": 2.6
+      },
+      {
+        "residue": "L:THR53",
+        "region": "CDR-L2",
+        "delta_sasa_angstrom2": 43.3
+      },
+      {
+        "residue": "L:ARG90",
+        "region": "CDR-L3",
+        "delta_sasa_angstrom2": 3.0
+      },
+      {
+        "residue": "L:TYR91",
+        "region": "CDR-L3",
+        "delta_sasa_angstrom2": 13.3
+      },
+      {
+        "residue": "L:ASN92",
+        "region": "CDR-L3",
+        "delta_sasa_angstrom2": 24.5
+      },
+      {
+        "residue": "L:ARG93",
+        "region": "CDR-L3",
+        "delta_sasa_angstrom2": 114.2
+      },
+      {
+        "residue": "L:ALA94",
+        "region": "CDR-L3",
+        "delta_sasa_angstrom2": 6.6
+      },
+      {
+        "residue": "L:PRO95",
+        "region": "CDR-L3",
+        "delta_sasa_angstrom2": 10.2
+      },
+      {
+        "residue": "L:TYR96",
+        "region": "CDR-L3",
+        "delta_sasa_angstrom2": 5.9
+      }
+    ]
+  },
+  "interaction_candidates": {
+    "definitions": {
+      "hydrogen_bond_candidate": "donor–acceptor N/O(/S) heavy atoms ≤ 3.5 Å; no H or angle",
+      "salt_bridge_candidate": "Lys NZ/Arg NE,NH1,NH2 to Asp/Glu carboxylate O ≤ 4.0 Å",
+      "side_chain_carbon_contact": "side-chain C–C ≤ 4.0 Å"
+    },
+    "residue_pair_counts": {
+      "hydrogen_bond_candidate": 17,
+      "salt_bridge_candidate": 1,
+      "side_chain_carbon_contact": 15
+    },
+    "residue_pairs": {
+      "hydrogen_bond_candidate": [
+        "A:ALA111 — L:THR53",
+        "A:ALA145 — H:HIS57",
+        "A:ASP140 — L:ARG30",
+        "A:GLN21 — L:ASP1",
+        "A:GLN67 — L:ASN31",
+        "A:GLN67 — L:TYR91",
+        "A:GLU146 — H:SER103",
+        "A:GLY66 — L:TYR32",
+        "A:LYS65 — L:ARG30",
+        "A:LYS65 — L:ASN92",
+        "A:PRO20 — L:ARG93",
+        "A:SER147 — H:HIS57",
+        "C:ASN92 — H:ASN54",
+        "C:ASN92 — H:GLY56",
+        "C:GLU135 — H:ASN54",
+        "C:LYS90 — H:ASN54",
+        "C:THR79 — H:ASN54"
+      ],
+      "salt_bridge_candidate": [
+        "A:GLU23 — L:ARG93"
+      ],
+      "side_chain_carbon_contact": [
+        "A:ALA145 — H:ALA105",
+        "A:GLN21 — L:ASP1",
+        "A:GLN67 — L:ALA50",
+        "A:GLN67 — L:TYR32",
+        "A:GLN67 — L:TYR91",
+        "A:GLU146 — H:HIS57",
+        "A:GLU23 — L:ARG93",
+        "A:GLU23 — L:GLN27",
+        "A:LYS65 — L:TYR32",
+        "A:PRO113 — H:TYR101",
+        "C:GLU135 — H:TRP53",
+        "C:HIS73 — H:TYR101",
+        "C:ILE97 — H:LEU102",
+        "C:LEU75 — H:TYR101",
+        "C:THR77 — H:TRP53"
+      ]
+    }
+  },
+  "fab_contacts_by_region": {
+    "CDR-H1": 9,
+    "CDR-H2": 114,
+    "CDR-H3": 46,
+    "CDR-L1": 109,
+    "CDR-L2": 22,
+    "CDR-L3": 49,
+    "framework": 16
+  },
+  "cdr_definitions": {
+    "CDR-H1": {
+      "chain": "H",
+      "author_start": 31,
+      "author_end": 35,
+      "sequence": "DYAMH"
+    },
+    "CDR-H2": {
+      "chain": "H",
+      "author_start": 50,
+      "author_end": 66,
+      "sequence": "AITWNSGHIDYADSVEG"
+    },
+    "CDR-H3": {
+      "chain": "H",
+      "author_start": 99,
+      "author_end": 110,
+      "sequence": "VSYLSTASSLDY"
+    },
+    "CDR-L1": {
+      "chain": "L",
+      "author_start": 24,
+      "author_end": 34,
+      "sequence": "RASQGIRNYLA"
+    },
+    "CDR-L2": {
+      "chain": "L",
+      "author_start": 50,
+      "author_end": 56,
+      "sequence": "AASTLQS"
+    },
+    "CDR-L3": {
+      "chain": "L",
+      "author_start": 89,
+      "author_end": 97,
+      "sequence": "QRYNRAPYT"
+    }
+  },
+  "simultaneous_fab_minimum_distance_angstrom": {
+    "HL–IM": 12.14,
+    "HL–JN": 12.14
+  },
+  "hu_2013_q21a_context": {
+    "source": "Hu et al. 2013, J Biol Chem 288:27059, Table 3; doi:10.1074/jbc.M113.491530",
+    "kd_wild_type_molar": 1.152e-10,
+    "kd_q21a_molar": 2.335e-08,
+    "kd_ratio": 202.7,
+    "q21_delta_sasa_angstrom2": 75.2,
+    "q21_partners": [
+      {
+        "partner": "L:ASP1",
+        "region": "framework",
+        "minimum_distance_angstrom": 3.184,
+        "types": [
+          "hydrogen_bond_candidate",
+          "side_chain_carbon_contact"
+        ]
+      },
+      {
+        "partner": "L:ARG93",
+        "region": "CDR-L3",
+        "minimum_distance_angstrom": 3.605,
+        "types": []
+      }
+    ]
+  },
+  "construct_note": {
+    "residue": "A:ASP31",
+    "record": "_struct_ref_seq_dif: ASP vs UniProt P01375 ARG107, details 'conflict'",
+    "fab_contacts_on_any_protomer": []
+  },
+  "rows": [
+    {
+      "target": {
+        "chain": "A",
+        "number": 20,
+        "insertion": "",
+        "name": "PRO"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 93,
+        "insertion": "",
+        "name": "ARG",
+        "region": "CDR-L3"
+      },
+      "atom_pair_count": 7,
+      "minimum_distance_angstrom": 3.04,
+      "interaction_types": {
+        "hydrogen_bond_candidate": [
+          {
+            "target_atom": "O",
+            "partner_atom": "NE",
+            "distance": 3.04
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 21,
+        "insertion": "",
+        "name": "GLN"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 1,
+        "insertion": "",
+        "name": "ASP",
+        "region": "framework"
+      },
+      "atom_pair_count": 13,
+      "minimum_distance_angstrom": 3.184,
+      "interaction_types": {
+        "hydrogen_bond_candidate": [
+          {
+            "target_atom": "NE2",
+            "partner_atom": "OD1",
+            "distance": 3.184
+          }
+        ],
+        "side_chain_carbon_contact": [
+          {
+            "target_atom": "CD",
+            "partner_atom": "CG",
+            "distance": 3.732
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 21,
+        "insertion": "",
+        "name": "GLN"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 93,
+        "insertion": "",
+        "name": "ARG",
+        "region": "CDR-L3"
+      },
+      "atom_pair_count": 3,
+      "minimum_distance_angstrom": 3.605,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 23,
+        "insertion": "",
+        "name": "GLU"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 1,
+        "insertion": "",
+        "name": "ASP",
+        "region": "framework"
+      },
+      "atom_pair_count": 1,
+      "minimum_distance_angstrom": 3.465,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 23,
+        "insertion": "",
+        "name": "GLU"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 27,
+        "insertion": "",
+        "name": "GLN",
+        "region": "CDR-L1"
+      },
+      "atom_pair_count": 10,
+      "minimum_distance_angstrom": 3.141,
+      "interaction_types": {
+        "side_chain_carbon_contact": [
+          {
+            "target_atom": "CD",
+            "partner_atom": "CD",
+            "distance": 3.998
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 23,
+        "insertion": "",
+        "name": "GLU"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 93,
+        "insertion": "",
+        "name": "ARG",
+        "region": "CDR-L3"
+      },
+      "atom_pair_count": 10,
+      "minimum_distance_angstrom": 3.146,
+      "interaction_types": {
+        "salt_bridge_candidate": [
+          {
+            "target_atom": "OE1",
+            "partner_atom": "NH1",
+            "distance": 3.583
+          }
+        ],
+        "side_chain_carbon_contact": [
+          {
+            "target_atom": "CG",
+            "partner_atom": "CZ",
+            "distance": 3.738
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 65,
+        "insertion": "",
+        "name": "LYS"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 105,
+        "insertion": "",
+        "name": "ALA",
+        "region": "CDR-H3"
+      },
+      "atom_pair_count": 2,
+      "minimum_distance_angstrom": 3.794,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 65,
+        "insertion": "",
+        "name": "LYS"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 30,
+        "insertion": "",
+        "name": "ARG",
+        "region": "CDR-L1"
+      },
+      "atom_pair_count": 7,
+      "minimum_distance_angstrom": 2.339,
+      "interaction_types": {
+        "hydrogen_bond_candidate": [
+          {
+            "target_atom": "O",
+            "partner_atom": "NH2",
+            "distance": 2.339
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 65,
+        "insertion": "",
+        "name": "LYS"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 32,
+        "insertion": "",
+        "name": "TYR",
+        "region": "CDR-L1"
+      },
+      "atom_pair_count": 17,
+      "minimum_distance_angstrom": 3.299,
+      "interaction_types": {
+        "side_chain_carbon_contact": [
+          {
+            "target_atom": "CE",
+            "partner_atom": "CZ",
+            "distance": 3.591
+          },
+          {
+            "target_atom": "CE",
+            "partner_atom": "CE1",
+            "distance": 3.681
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 65,
+        "insertion": "",
+        "name": "LYS"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 92,
+        "insertion": "",
+        "name": "ASN",
+        "region": "CDR-L3"
+      },
+      "atom_pair_count": 5,
+      "minimum_distance_angstrom": 2.484,
+      "interaction_types": {
+        "hydrogen_bond_candidate": [
+          {
+            "target_atom": "NZ",
+            "partner_atom": "O",
+            "distance": 2.484
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 66,
+        "insertion": "",
+        "name": "GLY"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 30,
+        "insertion": "",
+        "name": "ARG",
+        "region": "CDR-L1"
+      },
+      "atom_pair_count": 4,
+      "minimum_distance_angstrom": 3.638,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 66,
+        "insertion": "",
+        "name": "GLY"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 32,
+        "insertion": "",
+        "name": "TYR",
+        "region": "CDR-L1"
+      },
+      "atom_pair_count": 7,
+      "minimum_distance_angstrom": 3.205,
+      "interaction_types": {
+        "hydrogen_bond_candidate": [
+          {
+            "target_atom": "N",
+            "partner_atom": "OH",
+            "distance": 3.325
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 67,
+        "insertion": "",
+        "name": "GLN"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 31,
+        "insertion": "",
+        "name": "ASN",
+        "region": "CDR-L1"
+      },
+      "atom_pair_count": 19,
+      "minimum_distance_angstrom": 3.001,
+      "interaction_types": {
+        "hydrogen_bond_candidate": [
+          {
+            "target_atom": "NE2",
+            "partner_atom": "OD1",
+            "distance": 3.001
+          },
+          {
+            "target_atom": "O",
+            "partner_atom": "ND2",
+            "distance": 3.07
+          },
+          {
+            "target_atom": "NE2",
+            "partner_atom": "O",
+            "distance": 3.181
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 67,
+        "insertion": "",
+        "name": "GLN"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 32,
+        "insertion": "",
+        "name": "TYR",
+        "region": "CDR-L1"
+      },
+      "atom_pair_count": 22,
+      "minimum_distance_angstrom": 3.714,
+      "interaction_types": {
+        "side_chain_carbon_contact": [
+          {
+            "target_atom": "CD",
+            "partner_atom": "CE1",
+            "distance": 3.79
+          },
+          {
+            "target_atom": "CG",
+            "partner_atom": "CZ",
+            "distance": 3.923
+          },
+          {
+            "target_atom": "CD",
+            "partner_atom": "CD1",
+            "distance": 3.975
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 67,
+        "insertion": "",
+        "name": "GLN"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 50,
+        "insertion": "",
+        "name": "ALA",
+        "region": "CDR-L2"
+      },
+      "atom_pair_count": 8,
+      "minimum_distance_angstrom": 3.775,
+      "interaction_types": {
+        "side_chain_carbon_contact": [
+          {
+            "target_atom": "CD",
+            "partner_atom": "CB",
+            "distance": 3.851
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 67,
+        "insertion": "",
+        "name": "GLN"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 91,
+        "insertion": "",
+        "name": "TYR",
+        "region": "CDR-L3"
+      },
+      "atom_pair_count": 10,
+      "minimum_distance_angstrom": 2.581,
+      "interaction_types": {
+        "hydrogen_bond_candidate": [
+          {
+            "target_atom": "OE1",
+            "partner_atom": "OH",
+            "distance": 2.581
+          }
+        ],
+        "side_chain_carbon_contact": [
+          {
+            "target_atom": "CD",
+            "partner_atom": "CE1",
+            "distance": 3.996
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 110,
+        "insertion": "",
+        "name": "GLU"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 49,
+        "insertion": "",
+        "name": "TYR",
+        "region": "framework"
+      },
+      "atom_pair_count": 1,
+      "minimum_distance_angstrom": 4.416,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 110,
+        "insertion": "",
+        "name": "GLU"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 53,
+        "insertion": "",
+        "name": "THR",
+        "region": "CDR-L2"
+      },
+      "atom_pair_count": 6,
+      "minimum_distance_angstrom": 3.711,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 111,
+        "insertion": "",
+        "name": "ALA"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 49,
+        "insertion": "",
+        "name": "TYR",
+        "region": "framework"
+      },
+      "atom_pair_count": 1,
+      "minimum_distance_angstrom": 4.011,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 111,
+        "insertion": "",
+        "name": "ALA"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 50,
+        "insertion": "",
+        "name": "ALA",
+        "region": "CDR-L2"
+      },
+      "atom_pair_count": 2,
+      "minimum_distance_angstrom": 4.09,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 111,
+        "insertion": "",
+        "name": "ALA"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 53,
+        "insertion": "",
+        "name": "THR",
+        "region": "CDR-L2"
+      },
+      "atom_pair_count": 6,
+      "minimum_distance_angstrom": 3.11,
+      "interaction_types": {
+        "hydrogen_bond_candidate": [
+          {
+            "target_atom": "N",
+            "partner_atom": "OG1",
+            "distance": 3.11
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 113,
+        "insertion": "",
+        "name": "PRO"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 101,
+        "insertion": "",
+        "name": "TYR",
+        "region": "CDR-H3"
+      },
+      "atom_pair_count": 8,
+      "minimum_distance_angstrom": 3.519,
+      "interaction_types": {
+        "side_chain_carbon_contact": [
+          {
+            "target_atom": "CG",
+            "partner_atom": "CD2",
+            "distance": 3.519
+          },
+          {
+            "target_atom": "CG",
+            "partner_atom": "CG",
+            "distance": 3.831
+          },
+          {
+            "target_atom": "CD",
+            "partner_atom": "CD2",
+            "distance": 3.888
+          },
+          {
+            "target_atom": "CD",
+            "partner_atom": "CE2",
+            "distance": 3.953
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 115,
+        "insertion": "",
+        "name": "TYR"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 103,
+        "insertion": "",
+        "name": "SER",
+        "region": "CDR-H3"
+      },
+      "atom_pair_count": 2,
+      "minimum_distance_angstrom": 3.518,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 140,
+        "insertion": "",
+        "name": "ASP"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 30,
+        "insertion": "",
+        "name": "ARG",
+        "region": "CDR-L1"
+      },
+      "atom_pair_count": 7,
+      "minimum_distance_angstrom": 3.152,
+      "interaction_types": {
+        "hydrogen_bond_candidate": [
+          {
+            "target_atom": "O",
+            "partner_atom": "NE",
+            "distance": 3.152
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 141,
+        "insertion": "",
+        "name": "TYR"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 30,
+        "insertion": "",
+        "name": "ARG",
+        "region": "CDR-L1"
+      },
+      "atom_pair_count": 16,
+      "minimum_distance_angstrom": 3.625,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 143,
+        "insertion": "",
+        "name": "ASP"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 92,
+        "insertion": "",
+        "name": "ASN",
+        "region": "CDR-L3"
+      },
+      "atom_pair_count": 1,
+      "minimum_distance_angstrom": 3.905,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 144,
+        "insertion": "",
+        "name": "PHE"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 93,
+        "insertion": "",
+        "name": "ARG",
+        "region": "CDR-L3"
+      },
+      "atom_pair_count": 5,
+      "minimum_distance_angstrom": 3.649,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 145,
+        "insertion": "",
+        "name": "ALA"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 57,
+        "insertion": "",
+        "name": "HIS",
+        "region": "CDR-H2"
+      },
+      "atom_pair_count": 6,
+      "minimum_distance_angstrom": 3.046,
+      "interaction_types": {
+        "hydrogen_bond_candidate": [
+          {
+            "target_atom": "O",
+            "partner_atom": "NE2",
+            "distance": 3.046
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 145,
+        "insertion": "",
+        "name": "ALA"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 59,
+        "insertion": "",
+        "name": "ASP",
+        "region": "CDR-H2"
+      },
+      "atom_pair_count": 1,
+      "minimum_distance_angstrom": 3.694,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 145,
+        "insertion": "",
+        "name": "ALA"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 104,
+        "insertion": "",
+        "name": "THR",
+        "region": "CDR-H3"
+      },
+      "atom_pair_count": 1,
+      "minimum_distance_angstrom": 4.322,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 145,
+        "insertion": "",
+        "name": "ALA"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 105,
+        "insertion": "",
+        "name": "ALA",
+        "region": "CDR-H3"
+      },
+      "atom_pair_count": 1,
+      "minimum_distance_angstrom": 3.613,
+      "interaction_types": {
+        "side_chain_carbon_contact": [
+          {
+            "target_atom": "CB",
+            "partner_atom": "CB",
+            "distance": 3.613
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 145,
+        "insertion": "",
+        "name": "ALA"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 92,
+        "insertion": "",
+        "name": "ASN",
+        "region": "CDR-L3"
+      },
+      "atom_pair_count": 2,
+      "minimum_distance_angstrom": 3.803,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 145,
+        "insertion": "",
+        "name": "ALA"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 93,
+        "insertion": "",
+        "name": "ARG",
+        "region": "CDR-L3"
+      },
+      "atom_pair_count": 4,
+      "minimum_distance_angstrom": 3.62,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 145,
+        "insertion": "",
+        "name": "ALA"
+      },
+      "partner": {
+        "chain": "L",
+        "number": 96,
+        "insertion": "",
+        "name": "TYR",
+        "region": "CDR-L3"
+      },
+      "atom_pair_count": 2,
+      "minimum_distance_angstrom": 4.082,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 146,
+        "insertion": "",
+        "name": "GLU"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 52,
+        "insertion": "",
+        "name": "THR",
+        "region": "CDR-H2"
+      },
+      "atom_pair_count": 4,
+      "minimum_distance_angstrom": 3.687,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 146,
+        "insertion": "",
+        "name": "GLU"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 57,
+        "insertion": "",
+        "name": "HIS",
+        "region": "CDR-H2"
+      },
+      "atom_pair_count": 10,
+      "minimum_distance_angstrom": 3.836,
+      "interaction_types": {
+        "side_chain_carbon_contact": [
+          {
+            "target_atom": "CB",
+            "partner_atom": "CD2",
+            "distance": 3.836
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 146,
+        "insertion": "",
+        "name": "GLU"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 103,
+        "insertion": "",
+        "name": "SER",
+        "region": "CDR-H3"
+      },
+      "atom_pair_count": 6,
+      "minimum_distance_angstrom": 2.665,
+      "interaction_types": {
+        "hydrogen_bond_candidate": [
+          {
+            "target_atom": "OE1",
+            "partner_atom": "OG",
+            "distance": 2.665
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 146,
+        "insertion": "",
+        "name": "GLU"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 104,
+        "insertion": "",
+        "name": "THR",
+        "region": "CDR-H3"
+      },
+      "atom_pair_count": 4,
+      "minimum_distance_angstrom": 3.519,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 147,
+        "insertion": "",
+        "name": "SER"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 56,
+        "insertion": "",
+        "name": "GLY",
+        "region": "CDR-H2"
+      },
+      "atom_pair_count": 1,
+      "minimum_distance_angstrom": 4.027,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "A",
+        "number": 147,
+        "insertion": "",
+        "name": "SER"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 57,
+        "insertion": "",
+        "name": "HIS",
+        "region": "CDR-H2"
+      },
+      "atom_pair_count": 10,
+      "minimum_distance_angstrom": 3.136,
+      "interaction_types": {
+        "hydrogen_bond_candidate": [
+          {
+            "target_atom": "OG",
+            "partner_atom": "ND1",
+            "distance": 3.136
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "C",
+        "number": 72,
+        "insertion": "",
+        "name": "THR"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 101,
+        "insertion": "",
+        "name": "TYR",
+        "region": "CDR-H3"
+      },
+      "atom_pair_count": 2,
+      "minimum_distance_angstrom": 3.673,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "C",
+        "number": 73,
+        "insertion": "",
+        "name": "HIS"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 101,
+        "insertion": "",
+        "name": "TYR",
+        "region": "CDR-H3"
+      },
+      "atom_pair_count": 8,
+      "minimum_distance_angstrom": 3.501,
+      "interaction_types": {
+        "side_chain_carbon_contact": [
+          {
+            "target_atom": "CB",
+            "partner_atom": "CE1",
+            "distance": 3.501
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "C",
+        "number": 75,
+        "insertion": "",
+        "name": "LEU"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 101,
+        "insertion": "",
+        "name": "TYR",
+        "region": "CDR-H3"
+      },
+      "atom_pair_count": 4,
+      "minimum_distance_angstrom": 3.719,
+      "interaction_types": {
+        "side_chain_carbon_contact": [
+          {
+            "target_atom": "CD2",
+            "partner_atom": "CB",
+            "distance": 3.719
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "C",
+        "number": 75,
+        "insertion": "",
+        "name": "LEU"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 102,
+        "insertion": "",
+        "name": "LEU",
+        "region": "CDR-H3"
+      },
+      "atom_pair_count": 2,
+      "minimum_distance_angstrom": 4.205,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "C",
+        "number": 77,
+        "insertion": "",
+        "name": "THR"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 53,
+        "insertion": "",
+        "name": "TRP",
+        "region": "CDR-H2"
+      },
+      "atom_pair_count": 4,
+      "minimum_distance_angstrom": 3.548,
+      "interaction_types": {
+        "side_chain_carbon_contact": [
+          {
+            "target_atom": "CG2",
+            "partner_atom": "CZ2",
+            "distance": 3.751
+          },
+          {
+            "target_atom": "CG2",
+            "partner_atom": "CE2",
+            "distance": 3.759
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "C",
+        "number": 77,
+        "insertion": "",
+        "name": "THR"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 102,
+        "insertion": "",
+        "name": "LEU",
+        "region": "CDR-H3"
+      },
+      "atom_pair_count": 2,
+      "minimum_distance_angstrom": 4.02,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "C",
+        "number": 79,
+        "insertion": "",
+        "name": "THR"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 53,
+        "insertion": "",
+        "name": "TRP",
+        "region": "CDR-H2"
+      },
+      "atom_pair_count": 1,
+      "minimum_distance_angstrom": 4.149,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "C",
+        "number": 79,
+        "insertion": "",
+        "name": "THR"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 54,
+        "insertion": "",
+        "name": "ASN",
+        "region": "CDR-H2"
+      },
+      "atom_pair_count": 3,
+      "minimum_distance_angstrom": 3.242,
+      "interaction_types": {
+        "hydrogen_bond_candidate": [
+          {
+            "target_atom": "OG1",
+            "partner_atom": "ND2",
+            "distance": 3.242
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "C",
+        "number": 81,
+        "insertion": "",
+        "name": "SER"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 54,
+        "insertion": "",
+        "name": "ASN",
+        "region": "CDR-H2"
+      },
+      "atom_pair_count": 1,
+      "minimum_distance_angstrom": 3.528,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "C",
+        "number": 90,
+        "insertion": "",
+        "name": "LYS"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 54,
+        "insertion": "",
+        "name": "ASN",
+        "region": "CDR-H2"
+      },
+      "atom_pair_count": 11,
+      "minimum_distance_angstrom": 3.068,
+      "interaction_types": {
+        "hydrogen_bond_candidate": [
+          {
+            "target_atom": "NZ",
+            "partner_atom": "O",
+            "distance": 3.255
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "C",
+        "number": 90,
+        "insertion": "",
+        "name": "LYS"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 55,
+        "insertion": "",
+        "name": "SER",
+        "region": "CDR-H2"
+      },
+      "atom_pair_count": 2,
+      "minimum_distance_angstrom": 3.674,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "C",
+        "number": 90,
+        "insertion": "",
+        "name": "LYS"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 56,
+        "insertion": "",
+        "name": "GLY",
+        "region": "CDR-H2"
+      },
+      "atom_pair_count": 3,
+      "minimum_distance_angstrom": 4.208,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "C",
+        "number": 91,
+        "insertion": "",
+        "name": "VAL"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 56,
+        "insertion": "",
+        "name": "GLY",
+        "region": "CDR-H2"
+      },
+      "atom_pair_count": 8,
+      "minimum_distance_angstrom": 3.332,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "C",
+        "number": 92,
+        "insertion": "",
+        "name": "ASN"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 52,
+        "insertion": "",
+        "name": "THR",
+        "region": "CDR-H2"
+      },
+      "atom_pair_count": 1,
+      "minimum_distance_angstrom": 4.455,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "C",
+        "number": 92,
+        "insertion": "",
+        "name": "ASN"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 54,
+        "insertion": "",
+        "name": "ASN",
+        "region": "CDR-H2"
+      },
+      "atom_pair_count": 6,
+      "minimum_distance_angstrom": 3.445,
+      "interaction_types": {
+        "hydrogen_bond_candidate": [
+          {
+            "target_atom": "OD1",
+            "partner_atom": "ND2",
+            "distance": 3.445
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "C",
+        "number": 92,
+        "insertion": "",
+        "name": "ASN"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 56,
+        "insertion": "",
+        "name": "GLY",
+        "region": "CDR-H2"
+      },
+      "atom_pair_count": 16,
+      "minimum_distance_angstrom": 2.985,
+      "interaction_types": {
+        "hydrogen_bond_candidate": [
+          {
+            "target_atom": "N",
+            "partner_atom": "O",
+            "distance": 2.985
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "C",
+        "number": 92,
+        "insertion": "",
+        "name": "ASN"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 57,
+        "insertion": "",
+        "name": "HIS",
+        "region": "CDR-H2"
+      },
+      "atom_pair_count": 2,
+      "minimum_distance_angstrom": 4.184,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "C",
+        "number": 97,
+        "insertion": "",
+        "name": "ILE"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 102,
+        "insertion": "",
+        "name": "LEU",
+        "region": "CDR-H3"
+      },
+      "atom_pair_count": 3,
+      "minimum_distance_angstrom": 3.595,
+      "interaction_types": {
+        "side_chain_carbon_contact": [
+          {
+            "target_atom": "CD1",
+            "partner_atom": "CD1",
+            "distance": 3.595
+          },
+          {
+            "target_atom": "CG2",
+            "partner_atom": "CD1",
+            "distance": 3.765
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "C",
+        "number": 97,
+        "insertion": "",
+        "name": "ILE"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 103,
+        "insertion": "",
+        "name": "SER",
+        "region": "CDR-H3"
+      },
+      "atom_pair_count": 1,
+      "minimum_distance_angstrom": 4.136,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "C",
+        "number": 135,
+        "insertion": "",
+        "name": "GLU"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 53,
+        "insertion": "",
+        "name": "TRP",
+        "region": "CDR-H2"
+      },
+      "atom_pair_count": 2,
+      "minimum_distance_angstrom": 3.887,
+      "interaction_types": {
+        "side_chain_carbon_contact": [
+          {
+            "target_atom": "CB",
+            "partner_atom": "CH2",
+            "distance": 3.887
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "C",
+        "number": 135,
+        "insertion": "",
+        "name": "GLU"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 54,
+        "insertion": "",
+        "name": "ASN",
+        "region": "CDR-H2"
+      },
+      "atom_pair_count": 4,
+      "minimum_distance_angstrom": 3.094,
+      "interaction_types": {
+        "hydrogen_bond_candidate": [
+          {
+            "target_atom": "OE1",
+            "partner_atom": "ND2",
+            "distance": 3.094
+          }
+        ]
+      }
+    },
+    {
+      "target": {
+        "chain": "C",
+        "number": 136,
+        "insertion": "",
+        "name": "ILE"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 53,
+        "insertion": "",
+        "name": "TRP",
+        "region": "CDR-H2"
+      },
+      "atom_pair_count": 9,
+      "minimum_distance_angstrom": 3.4,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "C",
+        "number": 137,
+        "insertion": "",
+        "name": "ASN"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 31,
+        "insertion": "",
+        "name": "ASP",
+        "region": "CDR-H1"
+      },
+      "atom_pair_count": 5,
+      "minimum_distance_angstrom": 3.39,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "C",
+        "number": 137,
+        "insertion": "",
+        "name": "ASN"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 53,
+        "insertion": "",
+        "name": "TRP",
+        "region": "CDR-H2"
+      },
+      "atom_pair_count": 9,
+      "minimum_distance_angstrom": 3.689,
+      "interaction_types": {}
+    },
+    {
+      "target": {
+        "chain": "C",
+        "number": 138,
+        "insertion": "",
+        "name": "ARG"
+      },
+      "partner": {
+        "chain": "H",
+        "number": 31,
+        "insertion": "",
+        "name": "ASP",
+        "region": "CDR-H1"
+      },
+      "atom_pair_count": 4,
+      "minimum_distance_angstrom": 3.679,
+      "interaction_types": {}
+    }
+  ],
+  "limitations": [
+    "3.1 Å X-ray coordinates; side-chain positions and atom-type rules are uncertain.",
+    "Interaction labels are distance candidates, not measured hydrogen bonds or energies.",
+    "ΔSASA uses rigid partners; it is neither affinity nor a hot-spot energy.",
+    "The trimer is crystal-symmetry generated; the deposited assembly record lists only the identity operator although its oligomeric_details reads 'trimeric'.",
+    "No result here measures neutralization, clinical response or TOP2A."
+  ],
+  "software": {
+    "python": "3.13.9",
+    "numpy": "2.5.4",
+    "biopython": "1.88",
+    "matplotlib": "3.11.2"
+  },
+  "generated_at_utc": "2026-10-16T20:57:17+00:00"
+}

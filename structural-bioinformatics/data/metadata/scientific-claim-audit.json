@@ -3,7 +3,7 @@
   "reviewed_at_utc": "2026-10-14T06:40:40.292983+00:00",
   "scope": "Current 23 class chapters reorganized for foundational RA/drug/data learning; new codon and RA sample-count statements checked against references and official files. Original experiments and predictive models not reproduced.",
   "reviewed_file": "docs/class-presentation.fa.md",
-  "reviewed_sha256": "9528b8d647b5486151ed2b1f06b747bd11aa9b75baf5081bb840ca2e203a2c5b",
+  "reviewed_sha256": "e9d81d9add86970309d3e585491b68c23fc4e15636349e6ff6b920178c9f5c91",
   "sources": [
     {
       "id": "hu",
@@ -200,6 +200,18 @@
       "id": "course-scope",
       "path": "docs/learning-path.fa.md",
       "passage": "User-confirmed foundations first and parallel TOP2A literacy; advanced question deferred until foundations and compatible data."
+    },
+    {
+      "id": "rcsb1tnf",
+      "url": "https://www.rcsb.org/structure/1TNF",
+      "passage": "Independent apo TNF trimer, 2.6 Å; Eck & Sprang 1989, PMID 2551905"
+    },
+    {
+      "id": "project-full-epitope",
+      "path": "data/processed/full-epitope.json",
+      "script": "scripts/analyze_full_epitope.py",
+      "sha256_at_review": "51ef365b6591a20d4df525ca9bb4e45156b72cfd083cc410b9397051659d07a2",
+      "passage": "Crystal-symmetry trimer reconstruction and full-epitope geometry; regenerating changes the timestamp and hence this hash."
     }
   ],
   "limited_search": {
@@ -1175,54 +1187,44 @@
     {
       "id": "slide-content-21-block-01",
       "chapter": 21,
-      "exact_text": "مختصات 3WD5 خوانده شد؛ اتم‌های هیدروژن و جایگاه‌های اشغال‌نشده کنار گذاشته شدند. در فاصلهٔ حداکثر **4.5 Å**، **۲۵۲ جفت اتم** در **۴۰ جفت اسیدآمینه** نزدیک‌اند. آنگستروم، Å، برابر یک ده‌میلیاردم متر است.",
+      "exact_text": "3WD5 فقط یک زیرواحد TNF دارد. سه‌تایی را با تقارن بلور بازسازی کردیم؛ اختلاف آن با ساختار مستقل 1TNF فقط **1.18 Å** بود. در فاصلهٔ **4.5 Å**، از ۳۶۵ تماس اتمی **۱۱۳ تماس (۳۱٪)** روی زیرواحد همسایه است و سطح رابط از **786** به **1154 Å²** می‌رسد. **CDR-H2 و H3** بیشترین سهم را دارند. Gln21، که جهش آن در مقالهٔ Hu اتصال را حدود ۲۰۰ برابر ضعیف کرد، دومین باقی‌مانده از نظر سطح پوشیده است. این‌ها **محاسبهٔ هندسی** است، نه انرژی اتصال یا اثر درمان.",
       "source_ids": [
+        "rcsb3wd5",
+        "rcsb1tnf",
         "hu-indexed",
-        "rcsb3wd5"
+        "project-full-epitope"
       ],
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
-      "prior_exact_text_review": "slide-content-21-block-01",
-      "passage": "Project independent coordinate count 252/40/17; 4.5 A"
+      "review_note": "Numbers checked against data/processed/full-epitope.json and the offline test tests/test_full_epitope.py; Hu Q21A KD values are the previously verified Table 3 rows. Geometry only; no affinity, efficacy or TOP2A claim.",
+      "passage": "Symmetry trimer RMSD 1.178 Å/456 CA vs 1TNF; contacts 252 (A) + 113 (neighbour) at 4.5 Å; ΔSASA/2 785.9 → 1153.8 Å²; Q21 ΔSASA 75.2 Å², rank 2."
     },
     {
       "id": "slide-content-21-block-02",
       "chapter": 21,
-      "exact_text": "نقشه نشان می‌دهد کدام جایگاه‌های TNF و Fab در این نمای ناقص نزدیک‌اند. این **محاسبهٔ هندسی اجرا شده است**؛ انرژی اتصال، دینامیک مولکولی یا اثر درمان از تعداد تماس نتیجه نمی‌شود. هیچ کمپلکس آدالیموماب–TOP2A در این پروژه ساخته یا آزموده نشده است.",
+      "exact_text": "![سهم هر باقی‌ماندهٔ TNF و هر CDR در سطح رابط؛ سه‌تایی بازسازی‌شده از 3WD5](../assets/full-epitope.png)",
       "source_ids": [
+        "rcsb3wd5",
+        "rcsb1tnf",
         "hu-indexed",
-        "rcsb3wd5"
+        "project-full-epitope"
       ],
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
-      "prior_exact_text_review": "slide-content-21-block-02",
-      "passage": "Project independent coordinate count 252/40/17; 4.5 A"
+      "review_note": "Numbers checked against data/processed/full-epitope.json and the offline test tests/test_full_epitope.py; Hu Q21A KD values are the previously verified Table 3 rows. Geometry only; no affinity, efficacy or TOP2A claim.",
+      "passage": "Symmetry trimer RMSD 1.178 Å/456 CA vs 1TNF; contacts 252 (A) + 113 (neighbour) at 4.5 Å; ΔSASA/2 785.9 → 1153.8 Å²; Q21 ΔSASA 75.2 Å², rank 2."
     },
     {
       "id": "slide-content-21-block-03",
       "chapter": 21,
-      "exact_text": "![نقشهٔ تماس 3WD5؛ فاصلهٔ هندسی بین اسیدآمینه‌های TNF و زنجیره‌های H/L در نمای ثبت‌شده](../assets/interface-map.png)",
+      "exact_text": "> منبع: [3WD5](https://www.rcsb.org/structure/3WD5)، [1TNF](https://www.rcsb.org/structure/1TNF)، [Hu 2013 جدول ۳](https://doi.org/10.1074/jbc.M113.491530)؛ [روش و نتایج کامل](../docs/full-epitope-results.fa.md).",
       "source_ids": [
+        "rcsb3wd5",
+        "rcsb1tnf",
         "hu-indexed",
-        "rcsb3wd5"
+        "project-full-epitope"
       ],
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
-      "prior_exact_text_review": "slide-content-21-block-03",
-      "passage": "Project independent coordinate count 252/40/17; 4.5 A"
-    },
-    {
-      "id": "slide-content-21-block-04",
-      "chapter": 21,
-      "exact_text": "> منبع مختصات: [3WD5](https://www.rcsb.org/structure/3WD5)؛ [روش و خروجی تحلیل پروژه](../docs/structural-feasibility-results.fa.md).",
-      "source_ids": [
-        "hu-indexed",
-        "rcsb3wd5"
-      ],
-      "status": "reviewed_with_scope_and_limitations",
-      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
-      "prior_exact_text_review": "slide-content-21-block-04",
-      "passage": "Project independent coordinate count 252/40/17; 4.5 A"
+      "review_note": "Numbers checked against data/processed/full-epitope.json and the offline test tests/test_full_epitope.py; Hu Q21A KD values are the previously verified Table 3 rows. Geometry only; no affinity, efficacy or TOP2A claim.",
+      "passage": "Symmetry trimer RMSD 1.178 Å/456 CA vs 1TNF; contacts 252 (A) + 113 (neighbour) at 4.5 Å; ΔSASA/2 785.9 → 1153.8 Å²; Q21 ΔSASA 75.2 Å², rank 2."
     },
     {
       "id": "slide-content-22-block-01",
@@ -1355,5 +1357,10 @@
     "updated_at_utc": "2026-10-14T07:40:56.200419+00:00",
     "previous_sha256": "14df67c458df1ab42b9a72a1ceb1e96a8d8372f3e686ebabaf9b2f4d3939e99a",
     "scope": "Definition punctuation and explicit glossary links; scientific claims and experimental measurements unchanged"
+  },
+  "full_epitope_update": {
+    "updated_at_utc": "2026-10-16T21:02:35+00:00",
+    "previous_sha256": "9528b8d647b5486151ed2b1f06b747bd11aa9b75baf5081bb840ca2e203a2c5b",
+    "scope": "Chapter 21 replaced with the executed full-epitope analysis; other chapters unchanged."
   }
 }

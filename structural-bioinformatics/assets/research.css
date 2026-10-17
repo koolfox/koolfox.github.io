@@ -459,3 +459,21 @@ body[data-learning-mode="true"] :is(.reading-controls, #document-toc, #chapter-p
 .week-expect { color: var(--research-muted); max-width: 85ch; }
 .week-nav { margin: 16px 0 0; }
 @media (max-width: 560px) { .week-card { padding: 14px; } }
+
+/* RNA-seq group summary (aggregates only) */
+.rnaseq-groups .residue-inspection { max-width: 240px; }
+.rnaseq-figure { margin: 14px 0 6px; }
+.rnaseq-chart { display: grid; gap: 12px; padding: 14px 0; max-width: 760px; }
+.rnaseq-row { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); align-items: center; gap: 12px; }
+.rnaseq-label { font-size: 0.84rem; color: #152e52; }
+.rnaseq-track { position: relative; height: 22px; background: #eef2f7; border-radius: 6px; }
+.rnaseq-box { position: absolute; top: 3px; bottom: 3px; background: #9cc9c3; border: 1px solid #087b73; border-radius: 4px; }
+.rnaseq-median { position: absolute; top: 0; bottom: 0; width: 3px; margin-left: -1.5px; background: #0b3f3a; }
+.rnaseq-axis { display: flex; justify-content: space-between; margin-right: calc(9.5rem + 12px); font-size: 0.74rem; color: var(--research-muted); font-variant-numeric: tabular-nums; }
+@media (max-width: 560px) {
+  .rnaseq-row { grid-template-columns: 1fr; gap: 4px; }
+  .rnaseq-axis { margin-right: 0; }
+}
+.weekly-goal { max-width: 85ch; padding: 10px 14px; border-inline-start: 4px solid #087b73; background: #f1f8f7; border-radius: 6px; font-size: 0.88rem; }
+.week-paper { background: #f7f9fc; margin-inline: -20px; padding-inline: 20px; padding-bottom: 6px; }
+@media (max-width: 560px) { .week-paper { margin-inline: -14px; padding-inline: 14px; } }

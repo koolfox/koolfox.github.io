@@ -700,6 +700,8 @@ test("weekly plan shows one class step at a time and filters the deck to that we
     await expect(page.locator("#week-card")).toHaveAttribute("data-week", "5");
     await expect(page.locator('#week-buttons button[data-week="5"]')).toHaveAttribute("aria-pressed", "true");
     await expect(page.locator("#week-experiment-link")).toHaveAttribute("href", "?tab=lab#epitope-lab");
+    await expect(page.locator("#weekly-goal")).toContainText("3WD5");
+    await expect(page.locator("#week-paper-link")).toHaveAttribute("href", /document=manuscript-draft\.fa\.md&chapter=chapter-4/);
     await page.locator('#week-buttons button[data-week="2"]').click();
     await expect(page.locator("#week-card")).toContainText("3WD5");
     await expect(page.locator("#week-slides-link")).toHaveAttribute("href", "presentation.html?week=2#slide-1");
@@ -724,4 +726,20 @@ test("unknown week falls back to the complete deck", async ({ page }) => {
     await expect(page.locator("#deck")).toHaveAttribute("data-state", "ready");
     await expect(page.locator("#slide-select option")).toHaveCount(24);
     await expect(page.locator("#deck-status")).toContainText("همهٔ اسلایدها");
+});
+
+test("RNA-seq response groups show only aggregates and switch genes", async ({ page }) => {
+    const errors = [];
+    page.on("pageerror", error => errors.push(error.message));
+    await page.goto(`${route}?tab=methods#rnaseq-groups`);
+    await page.locator("#rnaseq-groups").scrollIntoViewIfNeeded();
+    await expect(page.locator("#rnaseq-groups")).toHaveAttribute("data-state", "ready");
+    await expect(page.locator("#rnaseq-chart")).toHaveAttribute("data-gene", "TNF");
+    await expect(page.locator("#rnaseq-chart .rnaseq-row")).toHaveCount(3);
+    await expect(page.locator("#rnaseq-body tr")).toHaveCount(3);
+    await expect(page.locator("#rnaseq-body")).toContainText("۱۸");
+    await page.selectOption("#rnaseq-gene", "TOP2A");
+    await expect(page.locator("#rnaseq-chart")).toHaveAttribute("data-gene", "TOP2A");
+    await expect(page.locator("#rnaseq-gene-role")).toContainText("TOP2A");
+    expect(errors).toEqual([]);
 });

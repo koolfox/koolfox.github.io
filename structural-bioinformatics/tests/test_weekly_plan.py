@@ -54,3 +54,25 @@ def test_weeks_are_ordered_and_reference_existing_content():
         assert panel < index.index(f'id="{section}"') < end
     # Every research slide is presented in some week.
     assert covered == set(range(1, slides + 1))
+
+
+def test_every_week_writes_an_existing_manuscript_section():
+    assert PLAN["paper_goal"]["document"] == "manuscript-draft.fa.md"
+    sections = chapter_count("manuscript-draft.fa.md")
+    for week in PLAN["weeks"]:
+        paper = week["manuscript"]
+        assert paper["document"] == "manuscript-draft.fa.md"
+        assert 1 <= int(paper["chapter"].removeprefix("chapter-")) <= sections
+        assert paper["task"] and paper["output"] and paper["done_when"]
+    # The abstract is written last, from results that already exist.
+    assert PLAN["weeks"][-1]["manuscript"]["chapter"] == "chapter-1"
+
+
+def test_quoted_rnaseq_medians_match_the_published_summary():
+    summary = json.loads((PROJECT / "data/processed/rnaseq-group-summary.json").read_text())
+    tnf = next(g for g in summary["genes"] if g["symbol"] == "TNF")["groups"]
+    expect = PLAN["weeks"][3]["experiment"]["expect"]
+    for response in ("good", "moderate", "no"):
+        value = f"{tnf[response]['median']:g}".replace(".", "٫")
+        assert builder.fa(value) in expect
+        assert builder.fa(tnf[response]["n"]) in expect

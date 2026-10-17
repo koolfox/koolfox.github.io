@@ -66,7 +66,7 @@ curl -O https://ftp.ncbi.nlm.nih.gov/geo/series/GSE138nnn/GSE138746/matrix/GSE13
 curl -O https://ftp.ncbi.nlm.nih.gov/geo/series/GSE138nnn/GSE138746/suppl/GSE138746_Counts_Normalization_PBMC.csv.gz
 ```
 
-هش این دو فایل در `data/metadata/ra-rnaseq-learning.json` ثبت شده است. **مهم:** این RNA فقط پیش از درمان گرفته شده است. پس «تغییر بیان پس از آدالیموماب» را نمی‌توان از آن برآورد کرد. هر بیمار یک واحد مستقل است، نه هر کتابخانه.
+هش این دو فایل در `data/metadata/ra-rnaseq-learning.json` ثبت شده است. برای ساختن خلاصهٔ گروهی، دو فایل را در `structural-bioinformatics/data/raw/gse138746/` بگذارید (این پوشه commit نمی‌شود) و `scripts/summarize_rnaseq_groups.py` را اجرا کنید. اسکریپت پیش از هر محاسبه هش‌ها را کنترل می‌کند و فقط خلاصهٔ گروه‌ها را می‌نویسد، نه مقدار هر بیمار. **مهم:** این RNA فقط پیش از درمان گرفته شده است. پس «تغییر بیان پس از آدالیموماب» را نمی‌توان از آن برآورد کرد. هر بیمار یک واحد مستقل است، نه هر کتابخانه.
 
 ## ۴. داده‌های مقالات مرور‌شده
 
@@ -98,5 +98,6 @@ uv run --project structural-bioinformatics pytest -q
 | سطح رابط و کنترل جداسازی | `data/processed/structural-feasibility.json` | [تحلیل سطح](structural-feasibility-results.fa.md) |
 | اپی‌توپ کامل روی سه‌تایی | `data/processed/full-epitope.json` | [اپی‌توپ کامل](full-epitope-results.fa.md) |
 | دادهٔ خرده‌آزمایش‌های مرورگر | `data/processed/epitope-lab.json` | [بخش خرده‌آزمایش‌ها](../?tab=lab#epitope-lab) |
+| خلاصهٔ گروهی RNA-seq (فقط میانه و چارک‌ها) | `data/processed/rnaseq-group-summary.json` | [خلاصهٔ گروه‌های پاسخ](../?tab=methods#rnaseq-groups) |
 
 اگر عددی در متن با فایل JSON فرق داشت، فایل JSON مرجع است و متن باید اصلاح شود.

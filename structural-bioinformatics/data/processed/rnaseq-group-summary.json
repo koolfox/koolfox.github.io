@@ -1,0 +1,148 @@
+{
+  "accession": "GSE138746",
+  "compartment": "PBMC",
+  "arm": "Adalimumab",
+  "value_type": "author-normalized counts as published in GSE138746_Counts_Normalization_PBMC.csv.gz; no new normalization",
+  "timing": "RNA drawn before adalimumab started; response group assessed at month 6",
+  "group_definition": "EULAR-style response label recorded by the authors: good, moderate, no",
+  "statistics": "n, 25th percentile, median, 75th percentile (numpy linear interpolation). No minimum, maximum, individual value, test or p-value.",
+  "inputs": {
+    "GSE138746_series_matrix.txt.gz": "e24b153928ee5514ef68961a35b09096023d2fcb89ad967701b6d84ae168bc50",
+    "GSE138746_Counts_Normalization_PBMC.csv.gz": "7cbfdce01aff9a837db654f77e2eb7944998d5df91f9186f4c8ba9ef65d6feaa"
+  },
+  "generator": "scripts/summarize_rnaseq_groups.py",
+  "genes": [
+    {
+      "symbol": "TNF",
+      "ensembl_gene_id": "ENSG00000232810",
+      "role": "the drug's target; mRNA in blood cells, not TNF protein",
+      "groups": {
+        "good": {
+          "n": 10,
+          "q1": 98.0,
+          "median": 117.5,
+          "q3": 205.2
+        },
+        "moderate": {
+          "n": 9,
+          "q1": 95.0,
+          "median": 127.0,
+          "q3": 226.0
+        },
+        "no": {
+          "n": 18,
+          "q1": 110.0,
+          "median": 156.0,
+          "q3": 229.0
+        }
+      }
+    },
+    {
+      "symbol": "TNFRSF1A",
+      "ensembl_gene_id": "ENSG00000067182",
+      "role": "TNF receptor 1",
+      "groups": {
+        "good": {
+          "n": 10,
+          "q1": 2509.8,
+          "median": 2786.5,
+          "q3": 3093.5
+        },
+        "moderate": {
+          "n": 9,
+          "q1": 1710.0,
+          "median": 2218.0,
+          "q3": 2414.0
+        },
+        "no": {
+          "n": 18,
+          "q1": 1658.8,
+          "median": 2418.0,
+          "q3": 3024.0
+        }
+      }
+    },
+    {
+      "symbol": "TNFRSF1B",
+      "ensembl_gene_id": "ENSG00000028137",
+      "role": "TNF receptor 2",
+      "groups": {
+        "good": {
+          "n": 10,
+          "q1": 13122.5,
+          "median": 15771.5,
+          "q3": 16739.0
+        },
+        "moderate": {
+          "n": 9,
+          "q1": 12784.0,
+          "median": 14055.0,
+          "q3": 16797.0
+        },
+        "no": {
+          "n": 18,
+          "q1": 11619.0,
+          "median": 13667.5,
+          "q3": 16457.5
+        }
+      }
+    },
+    {
+      "symbol": "TOP2A",
+      "ensembl_gene_id": "ENSG00000131747",
+      "role": "parallel track; cell-division enzyme",
+      "groups": {
+        "good": {
+          "n": 10,
+          "q1": 58.5,
+          "median": 115.5,
+          "q3": 142.8
+        },
+        "moderate": {
+          "n": 9,
+          "q1": 166.0,
+          "median": 208.0,
+          "q3": 386.0
+        },
+        "no": {
+          "n": 18,
+          "q1": 115.2,
+          "median": 132.0,
+          "q3": 227.2
+        }
+      }
+    },
+    {
+      "symbol": "ACTB",
+      "ensembl_gene_id": "ENSG00000075624",
+      "role": "reference gene for scale; not a normalization step here",
+      "groups": {
+        "good": {
+          "n": 10,
+          "q1": 87576.2,
+          "median": 90672.5,
+          "q3": 99162.0
+        },
+        "moderate": {
+          "n": 9,
+          "q1": 74655.0,
+          "median": 80586.0,
+          "q3": 94263.0
+        },
+        "no": {
+          "n": 18,
+          "q1": 81106.5,
+          "median": 89125.5,
+          "q3": 102797.5
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Baseline RNA only: differences between response groups are not drug effects.",
+    "Descriptive only: no hypothesis test, multiple-testing control or covariates.",
+    "Group sizes are small (9–18); quartiles are unstable and overlap is expected.",
+    "mRNA in peripheral blood cells is neither TNF protein in the joint nor drug binding.",
+    "Participant-level values and clinical covariates are not republished."
+  ]
+}

@@ -7,14 +7,15 @@
   <meta name="theme-color" content="#f5f5f7">
   <title>TNF-α و اتصال آدالیموماب | بیوانفورماتیک ساختاری</title>
   <link rel="stylesheet" href="../assets/css/styles.css">
-  <link rel="stylesheet" href="assets/research.css?v=20261017-weekly">
+  <link rel="stylesheet" href="assets/research.css?v=20261017-manuscript">
   <script type="importmap">
     {"imports":{"three":"./assets/vendor/three.module.js"}}
   </script>
   <script type="module" src="assets/app.js?v=20261014-learning"></script>
   <script type="module" src="assets/codon-lesson.js"></script>
   <script type="module" src="assets/epitope-lab.js?v=20261017-epitope"></script>
-  <script type="module" src="assets/weekly-plan.js?v=20261017-weekly"></script>
+  <script type="module" src="assets/weekly-plan.js?v=20261017-manuscript"></script>
+  <script type="module" src="assets/rnaseq-groups.js?v=20261017-manuscript"></script>
 </head>
 <body class="research-page">
   <a class="skip-link" href="#main">رفتن به محتوای پژوهش</a>
@@ -55,7 +56,8 @@
           <h2 id="weekly-title">برنامهٔ هفته‌به‌هفتهٔ ارائه در کلاس</h2>
           <a href="docs/weekly-plan.fa.md">همهٔ هفته‌ها در یک صفحه</a>
         </div>
-        <p class="section-description">همه‌چیز آماده است، ولی هر هفته فقط یک گام را ارائه می‌کنیم تا از کلاس جلو نزنیم. هفتهٔ کلاس را انتخاب کنید: اسلایدهای همان هفته، خواندنی‌ها، یک خرده‌آزمایش و تحویلی هفته را می‌بینید.</p>
+        <p class="section-description">همه‌چیز آماده است، ولی هر هفته فقط یک گام را ارائه می‌کنیم تا از کلاس جلو نزنیم. هر هفته یک بخش از مقاله هم نوشته می‌شود تا در پایان، پیش‌نویس کامل داشته باشیم. هفتهٔ کلاس را انتخاب کنید: اسلایدها، خواندنی‌ها، خرده‌آزمایش، تحویلی ارائه و گام مقالهٔ همان هفته را می‌بینید.</p>
+        <p id="weekly-goal" class="weekly-goal"></p>
         <div id="week-buttons" class="week-buttons" role="group" aria-label="انتخاب هفته"></div>
         <article id="week-card" class="week-card" aria-live="polite"></article>
         <p id="weekly-status" class="section-status" role="status">در حال خواندن برنامهٔ هفتگی…</p>
@@ -422,6 +424,29 @@
         </table>
       </div>
       </details>
+    </section>
+    <section id="rnaseq-groups" class="reading-section rnaseq-groups" aria-labelledby="rnaseq-title" data-state="idle">
+      <div class="section-heading">
+        <h2 id="rnaseq-title">RNA-seq بیماران: هر گروه پاسخ چه شکلی دارد؟</h2>
+        <a href="data/processed/rnaseq-group-summary.json">داده و روش خلاصه</a>
+      </div>
+      <p class="section-description">دیتاست <bdi>GSE138746</bdi>، سلول‌های خون (<bdi>PBMC</bdi>) بیماران روماتوئیدِ گروه آدالیموماب. <strong>RNA پیش از شروع دارو</strong> گرفته شده و پاسخ در ماه ۶ ثبت شده است؛ پس این‌جا اثر دارو روی RNA دیده نمی‌شود. برای هر گروه فقط میانه و چارک‌ها نشان داده می‌شود، نه مقدار تک‌تک بیماران، و هیچ آزمون آماری انجام نشده است.</p>
+      <div class="residue-inspection">
+        <label for="rnaseq-gene">ژن</label>
+        <select id="rnaseq-gene" disabled></select>
+      </div>
+      <p id="rnaseq-gene-role" class="section-status"></p>
+      <figure class="rnaseq-figure">
+        <div id="rnaseq-chart" class="rnaseq-chart" role="img" aria-describedby="rnaseq-caption"></div>
+        <figcaption id="rnaseq-caption" class="model-caption">هر نوار از چارک اول تا سوم است و خط تیره میانه است. محور: مقدار نرمال‌شدهٔ نویسندگان، بدون نرمال‌سازی دوباره. هم‌پوشانی نوارها طبیعی است؛ با این اندازهٔ گروه (۹ تا ۱۸ نفر) تفاوت ظاهری میانه‌ها نتیجه نیست.</figcaption>
+      </figure>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="خلاصهٔ عددی گروه‌ها">
+        <table>
+          <thead><tr><th>گروه پاسخ در ماه ۶</th><th>تعداد بیمار</th><th>چارک اول</th><th>میانه</th><th>چارک سوم</th></tr></thead>
+          <tbody id="rnaseq-body"></tbody>
+        </table>
+      </div>
+      <p id="rnaseq-status" class="section-status" role="status">داده‌ها هنگام رسیدن به این بخش بارگذاری می‌شوند.</p>
     </section>
     </div>
     <div id="panel-reading" class="research-panel" role="tabpanel" aria-labelledby="tab-reading" tabindex="0" hidden>

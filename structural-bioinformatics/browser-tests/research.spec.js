@@ -633,3 +633,60 @@ test('slide source failure can be retried without losing notebook access', async
     await page.locator('#retry-deck').click();
     await expect(page.locator('#deck')).toHaveAttribute('data-state', 'ready');
 });
+
+test("epitope mini-experiments re-threshold contacts, list partners and truncate side chains", async ({ page }) => {
+    const errors = [];
+    page.on("pageerror", error => errors.push(error.message));
+    await ready(page);
+    await page.locator("#epitope-lab").scrollIntoViewIfNeeded();
+    await expect(page.locator("#epitope-lab")).toHaveAttribute("data-state", "ready");
+    // Default 4.5 Å reproduces data/processed/full-epitope.json.
+    await expect(page.locator("#epitope-stat-atoms")).toHaveText("۳۶۵");
+    await expect(page.locator("#epitope-stat-own")).toHaveText("۲۵۲");
+    await expect(page.locator("#epitope-stat-neighbour")).toHaveText("۱۱۳");
+    await expect(page.locator("#epitope-types")).toContainText("تحلیل اصلی");
+    await page.locator("#epitope-cutoff").fill("3.5");
+    await expect(page.locator("#epitope-cutoff-value")).toHaveText("3.5 Å");
+    const tight = Number(await page.locator("#epitope-lab").getAttribute("data-contacts"));
+    expect(tight).toBeGreaterThan(0);
+    expect(tight).toBeLessThan(365);
+    await page.locator("#epitope-cutoff").fill("4.5");
+    // Gln21 is preselected: its partners are the light-chain residues reported in the paper draft.
+    await expect(page.locator("#epitope-residue")).toHaveValue(/\d+/);
+    await expect(page.locator("#epitope-partners")).toContainText("L:ASP1");
+    await expect(page.locator("#epitope-partners")).toContainText("L:ARG93");
+    await expect(page.locator("#epitope-residue-summary")).toContainText("75.2 Å²");
+    await page.locator("#epitope-alanine").click();
+    await expect(page.locator("#epitope-alanine")).toHaveAttribute("aria-pressed", "true");
+    await expect(page.locator("#epitope-alanine-result")).toContainText("جفت اتم حذف شد");
+    expect(Number(await page.locator("#epitope-lab").getAttribute("data-contacts"))).toBeLessThan(365);
+    // 3D trimer with three Fabs; the two other Fabs can be hidden.
+    await expect(page.locator("#epitope-stage")).toHaveAttribute("data-state", "ready");
+    const data = await page.evaluate(() => fetch("data/processed/epitope-lab.json").then(r => r.json()));
+    const total = data.trace.reduce((sum, chain) => sum + chain.residues.length, 0);
+    const other = data.trace.filter(c => ["I", "M", "J", "N"].includes(c.id)).reduce((s, c) => s + c.residues.length, 0);
+    expect((await page.evaluate(() => window.epitopeScene.getState())).pointCount).toBe(total);
+    await page.locator("#epitope-other-fabs").uncheck();
+    expect((await page.evaluate(() => window.epitopeScene.getState())).visiblePointCount).toBe(total - other);
+    // A different residue resets truncation and updates the partner table.
+    await page.selectOption("#epitope-residue", { label: "A:GLN67" });
+    await expect(page.locator("#epitope-alanine")).toHaveAttribute("aria-pressed", "false");
+    await expect(page.locator("#epitope-residue-summary")).toContainText("A:GLN67");
+    expect(errors).toEqual([]);
+});
+
+test("epitope experiments keep working without WebGL", async ({ page }) => {
+    await page.addInitScript(() => {
+        const original = HTMLCanvasElement.prototype.getContext;
+        HTMLCanvasElement.prototype.getContext = function (type, ...options) {
+            return type.startsWith("webgl") ? null : original.call(this, type, ...options);
+        };
+    });
+    await page.goto(`${route}#lab`);
+    await page.locator("#epitope-lab").scrollIntoViewIfNeeded();
+    await expect(page.locator("#epitope-stage")).toHaveAttribute("data-state", "error");
+    await expect(page.locator("#epitope-fallback")).toBeVisible();
+    await expect(page.locator("#epitope-stat-atoms")).toHaveText("۳۶۵");
+    await page.locator("#epitope-alanine").click();
+    await expect(page.locator("#epitope-alanine-result")).toContainText("جفت اتم حذف شد");
+});

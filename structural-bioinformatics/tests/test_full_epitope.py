@@ -128,3 +128,30 @@ def test_public_epitope_summary_reproduces_contacts(reconstruction):
     assert public["buried_surface"]["single_protomer_total_delta_sasa_angstrom2"] / 2 == (
         pytest.approx(785.9, abs=0.2)
     )
+
+
+def test_browser_lab_data_reproduces_published_epitope():
+    """The in-browser experiments re-filter this list; at 4.5 Å it must equal full-epitope.json."""
+    lab = json.loads((PROJECT / "data/processed/epitope-lab.json").read_text())
+    public = json.loads((PROJECT / "data/processed/full-epitope.json").read_text())
+    assert lab["inputs"]["assets/3wd5.pdb"] == script.sha256(PROJECT / "assets/3wd5.pdb")
+    residues, cutoff = lab["residues"], lab["default_cutoff_angstrom"]
+    active = [p for p in lab["pairs"] if p[4] <= cutoff]
+    assert max(p[4] for p in lab["pairs"]) <= lab["max_distance_angstrom"]
+    for protomer, summary in public["per_protomer"].items():
+        rows = [p for p in active if residues[p[0]]["chain"] == protomer]
+        assert len(rows) == summary["heavy_atom_contact_count"]
+        assert len({(p[0], p[2]) for p in rows}) == summary["residue_pair_count"]
+    bits = lab["flag_bits"]
+    for kind, count in public["interaction_candidates"]["residue_pair_counts"].items():
+        assert len({(p[0], p[2]) for p in active if p[5] & bits[kind]}) == count
+    assert {r["region"] for r in residues if r["chain"] in "HL"} <= {
+        *public["cdr_definitions"],
+        "framework",
+    }
+    assert [c["id"] for c in lab["trace"]] == ["A", "B", "C", "H", "L", "I", "M", "J", "N"]
+    # Virtual alanine on Gln21 removes all its Fab contacts: they all come from atoms beyond Cβ.
+    q21 = next(i for i, r in enumerate(residues) if (r["chain"], r["number"]) == ("A", 21))
+    kept = set(lab["alanine_kept_atoms"])
+    q21_rows = [p for p in active if p[0] == q21]
+    assert q21_rows and all(p[1] not in kept for p in q21_rows)

@@ -7,12 +7,13 @@
   <meta name="theme-color" content="#f5f5f7">
   <title>TNF-α و اتصال آدالیموماب | بیوانفورماتیک ساختاری</title>
   <link rel="stylesheet" href="../assets/css/styles.css">
-  <link rel="stylesheet" href="assets/research.css?v=20261014-learning">
+  <link rel="stylesheet" href="assets/research.css?v=20261017-epitope">
   <script type="importmap">
     {"imports":{"three":"./assets/vendor/three.module.js"}}
   </script>
   <script type="module" src="assets/app.js?v=20261014-learning"></script>
   <script type="module" src="assets/codon-lesson.js"></script>
+  <script type="module" src="assets/epitope-lab.js?v=20261017-epitope"></script>
 </head>
 <body class="research-page">
   <a class="skip-link" href="#main">رفتن به محتوای پژوهش</a>
@@ -213,6 +214,74 @@
           <figcaption>نمای مشاهده‌شدهٔ 3WD5 با ManimGX؛ فقط دوربین و آشکارشدن زنجیره‌ها حرکت می‌کنند. <a href="assets/animation-provenance.json">منشأ و پارامترهای ویدئو</a></figcaption>
         </figure>
       </div>
+    </section>
+    <section id="epitope-lab" class="reading-section epitope-lab" aria-labelledby="epitope-lab-title" data-state="idle">
+      <div class="section-heading">
+        <h2 id="epitope-lab-title">خرده‌آزمایش‌ها روی TNF سه‌تایی و آدالیموماب</h2>
+        <a href="data/processed/epitope-lab.json">داده و قواعد این آزمایش‌ها</a>
+      </div>
+      <p class="section-description">سه‌تایی <bdi>TNF</bdi> از تقارن بلور <bdi>3WD5</bdi> بازسازی شده است. این‌جا خودتان آستانهٔ تماس را تغییر می‌دهید، شریک‌های هر آمینواسید را می‌بینید و زنجیرهٔ جانبی یک آمینواسید را «حذف مجازی» می‌کنید. <strong>همهٔ نتایج هندسی‌اند؛</strong> قدرت اتصال، ΔΔG یا اثر درمان را اندازه نمی‌گیرند. <a href="docs/full-epitope-results.fa.md">روش و نتایج کامل</a></p>
+      <figure class="molecular-figure">
+        <div id="epitope-stage" class="molecular-stage" data-state="loading" aria-busy="true">
+          <img id="epitope-fallback" class="model-fallback" src="assets/full-epitope.png" width="1760" height="1024" loading="lazy"
+            alt="نمودار سطح پوشیدهٔ هر آمینواسید TNF و هر CDR آدالیموماب در سه‌تایی بازسازی‌شده از 3WD5.">
+          <p id="epitope-stage-status" class="stage-status" role="status">در حال بارگذاری سه‌تایی و سه Fab…</p>
+        </div>
+        <div class="epitope-view-controls">
+          <label class="chain-control"><input type="checkbox" id="epitope-other-fabs" checked disabled> دو <bdi>Fab</bdi> دیگر (روی زیرواحدهای <bdi>B</bdi> و <bdi>C</bdi>)</label>
+          <button type="button" id="epitope-reset" disabled>بازنشانی نما</button>
+        </div>
+        <ul class="epitope-key" aria-label="رنگ‌ها">
+          <li><span class="swatch" style="--swatch:#087b73"></span><bdi>TNF</bdi> زیرواحد <bdi>A</bdi> (ثبت‌شده)</li>
+          <li><span class="swatch" style="--swatch:#8a97a8"></span>زیرواحدهای همسایه <bdi>B</bdi> و <bdi>C</bdi></li>
+          <li><span class="swatch" style="--swatch:#a95015"></span>زنجیرهٔ سنگین <bdi>H</bdi></li>
+          <li><span class="swatch" style="--swatch:#245cb7"></span>زنجیرهٔ سبک <bdi>L</bdi></li>
+          <li><span class="swatch" style="--swatch:#bf3159"></span>آمینواسیدهای در تماس، با آستانهٔ فعلی</li>
+        </ul>
+        <figcaption class="model-caption">مسیر <bdi>Cα</bdi>. رابط فقط بین سه‌تایی و <bdi>Fab</bdi> متصل به زیرواحد <bdi>A</bdi> محاسبه شده است. روی یک نقطه کلیک کنید تا در آزمایش ۲ انتخاب شود.</figcaption>
+      </figure>
+
+      <div class="experiment">
+        <h3>آزمایش ۱. آستانهٔ فاصله را تغییر دهید</h3>
+        <p class="section-description">دو اتم را «در تماس» می‌شماریم اگر فاصله‌شان از آستانه کمتر باشد. مقدار پیش‌فرض تحلیل <bdi>4.5 Å</bdi> است. ببینید آیا یافتهٔ اصلی، یعنی سهم زیرواحد همسایه، به این انتخاب حساس است.</p>
+        <div class="range-field">
+          <label for="epitope-cutoff">آستانه</label>
+          <input type="range" id="epitope-cutoff" min="3" max="6" step="0.1" value="4.5" disabled aria-describedby="epitope-cutoff-value">
+          <output id="epitope-cutoff-value" for="epitope-cutoff" dir="ltr">4.5 Å</output>
+        </div>
+        <dl class="measurement-list" aria-live="polite">
+          <div><dt>جفت اتم در تماس</dt><dd id="epitope-stat-atoms">—</dd></div>
+          <div><dt>روی زیرواحد <bdi>A</bdi></dt><dd id="epitope-stat-own">—</dd></div>
+          <div><dt>روی زیرواحد همسایه</dt><dd id="epitope-stat-neighbour">—</dd></div>
+          <div><dt>سهم همسایه</dt><dd id="epitope-stat-share">—</dd></div>
+          <div><dt>آمینواسید <bdi>TNF</bdi></dt><dd id="epitope-stat-tnf">—</dd></div>
+          <div><dt>جفت آمینواسید</dt><dd id="epitope-stat-pairs">—</dd></div>
+        </dl>
+        <p id="epitope-types" class="section-status" aria-live="polite"></p>
+      </div>
+
+      <div class="experiment">
+        <h3>آزمایش ۲. شریک‌های یک آمینواسید</h3>
+        <div class="residue-inspection">
+          <label for="epitope-residue">آمینواسید</label>
+          <select id="epitope-residue" disabled><option value="">یک آمینواسید انتخاب کنید</option></select>
+        </div>
+        <p id="epitope-residue-summary" class="section-status" aria-live="polite">پیشنهاد: <bdi>A:GLN21</bdi>؛ جهش آن در مقالهٔ Hu اتصال را حدود ۲۰۰ برابر ضعیف کرد.</p>
+        <div class="table-scroll" tabindex="0" role="region" aria-label="شریک‌های آمینواسید انتخاب‌شده">
+          <table>
+            <thead><tr><th>شریک</th><th>ناحیه</th><th>کمترین فاصله (<bdi>Å</bdi>)</th><th>جفت اتم</th><th>نوع احتمالی</th></tr></thead>
+            <tbody id="epitope-partners"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="experiment">
+        <h3>آزمایش ۳. حذف مجازی زنجیرهٔ جانبی (آلانین مجازی)</h3>
+        <p class="section-description">در جهش‌زایی آلانین، زنجیرهٔ جانبی پس از <bdi>Cβ</bdi> حذف می‌شود. این‌جا همان اتم‌ها را از شمارش برمی‌داریم و می‌بینیم کدام تماس‌ها از دست می‌روند. ساختار شل نمی‌شود و انرژی محاسبه نمی‌شود؛ پس این عدد با ΔΔG یا <bdi>K<sub>D</sub></bdi> آزمایشگاهی برابر نیست و فقط برای مقایسهٔ کیفی است.</p>
+        <button type="button" id="epitope-alanine" aria-pressed="false" disabled>حذف مجازی زنجیرهٔ جانبی</button>
+        <p id="epitope-alanine-result" class="section-status" aria-live="polite"></p>
+      </div>
+      <p id="epitope-lab-status" class="section-status" role="status">داده‌ها هنگام رسیدن به این بخش بارگذاری می‌شوند.</p>
     </section>
     </div>
     <div id="panel-sequences" class="research-panel" role="tabpanel" aria-labelledby="tab-sequences" tabindex="0" hidden>

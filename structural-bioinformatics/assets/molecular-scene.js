@@ -176,18 +176,10 @@ export class MolecularScene extends EventTarget {
     this.center = bounds.getCenter(new THREE.Vector3());
     this.radius = Math.max(bounds.getBoundingSphere(new THREE.Sphere()).radius, 5);
     this.model.position.copy(this.center).multiplyScalar(-1);
+    this.markerGeometry = new THREE.SphereGeometry(0.86, 12, 8);
+    this.markerMaterial = new THREE.MeshStandardMaterial({ color: "#bf3159", roughness: 0.5 });
     this.interfaceMarkers = new THREE.Group();
-    const markerGeometry = new THREE.SphereGeometry(0.86, 12, 8);
-    const markerMaterial = new THREE.MeshStandardMaterial({ color: "#bf3159", roughness: 0.5 });
-    for (const chain of structure.chains) {
-      for (const residue of chain.residues) {
-        if (!this.interface.has(this._residueKey({ ...residue, chain: chain.id }))) continue;
-        const marker = new THREE.Mesh(markerGeometry, markerMaterial);
-        marker.position.set(...residue.xyz);
-        marker.userData.chain = chain.id;
-        this.interfaceMarkers.add(marker);
-      }
-    }
+    this._buildInterfaceMarkers();
     this.interfaceMarkers.visible = false;
     this.model.add(this.interfaceMarkers);
     this.selectionMarker = new THREE.Mesh(
@@ -245,6 +237,29 @@ export class MolecularScene extends EventTarget {
       chain.beads.setColorAt(index, new THREE.Color(color));
     }
     chain.beads.instanceColor.needsUpdate = true;
+    this.requestRender();
+  }
+
+  _buildInterfaceMarkers() {
+    this.interfaceMarkers.clear();
+    for (const chain of this.structure.chains) {
+      const visible = this.chains.get(chain.id)?.group.visible ?? true;
+      for (const residue of chain.residues) {
+        if (!this.interface.has(this._residueKey({ ...residue, chain: chain.id }))) continue;
+        const marker = new THREE.Mesh(this.markerGeometry, this.markerMaterial);
+        marker.position.set(...residue.xyz);
+        marker.userData.chain = chain.id;
+        marker.visible = visible;
+        this.interfaceMarkers.add(marker);
+      }
+    }
+  }
+
+  /** Replace highlighted residues ({chain, number, insertion}) without resetting the view. */
+  setInterfaceResidues(residues) {
+    if (!this.model) return;
+    this.interface = new Set((residues || []).map((r) => this._residueKey(r)));
+    this._buildInterfaceMarkers();
     this.requestRender();
   }
 

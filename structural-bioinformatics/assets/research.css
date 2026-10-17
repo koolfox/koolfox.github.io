@@ -426,3 +426,19 @@ body[data-learning-mode="true"] :is(.reading-controls, #document-toc, #chapter-p
 .codon-strip small { font-size:.8rem; }
 .codon-strip button[aria-pressed="true"] { background:#214f88; color:white; border-color:#214f88; }
 #codon-readout bdi { overflow-wrap:anywhere; }
+
+/* Epitope mini-experiments on the reconstructed TNF trimer */
+.epitope-lab .experiment { margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--research-line); }
+.epitope-lab h3 { font-size: 1rem; margin: 0 0 8px; color: #152e52; }
+.epitope-view-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 18px; margin-top: 12px; }
+.epitope-key { display: flex; flex-wrap: wrap; gap: 6px 18px; list-style: none; margin: 10px 0 0; padding: 0; font-size: 0.78rem; color: var(--research-muted); }
+.epitope-key li { display: inline-flex; align-items: center; gap: 6px; }
+.epitope-key .swatch { width: 12px; height: 12px; border-radius: 50%; background: var(--swatch); flex: none; }
+.range-field { display: flex; align-items: center; gap: 14px; margin-top: 12px; max-width: 520px; }
+.range-field label { color: var(--research-muted); font-size: 0.84rem; }
+.range-field input[type="range"] { flex: 1; min-width: 0; min-height: 0; padding: 0; accent-color: #087b73; }
+.range-field output { min-width: 5ch; font-weight: 690; font-variant-numeric: tabular-nums; color: #152e52; }
+.epitope-lab .residue-inspection { max-width: 320px; }
+.epitope-lab table td:first-child, .epitope-lab table td:nth-child(3), .epitope-lab table td:nth-child(4) { direction: ltr; unicode-bidi: isolate; }
+.epitope-lab #epitope-alanine[aria-pressed="true"] { background: #912c3d; color: #fff; border-color: #912c3d; }
+.lost-contact { color: #912c3d; font-weight: 640; }

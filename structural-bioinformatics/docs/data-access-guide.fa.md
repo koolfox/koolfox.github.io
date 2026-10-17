@@ -88,6 +88,7 @@ uv run --project structural-bioinformatics tnf-atlas fetch-structures   # نیا
 uv run --project structural-bioinformatics tnf-atlas analyze
 uv run --project structural-bioinformatics python structural-bioinformatics/scripts/analyze_structural_feasibility.py
 uv run --project structural-bioinformatics python structural-bioinformatics/scripts/analyze_full_epitope.py
+uv run --project structural-bioinformatics python structural-bioinformatics/scripts/export_epitope_lab.py
 uv run --project structural-bioinformatics pytest -q
 ```
 
@@ -96,5 +97,6 @@ uv run --project structural-bioinformatics pytest -q
 | تماس‌های یک‌زیرواحدی | `data/processed/interface-summary.json` | [روش تماس](structural-method.fa.md) |
 | سطح رابط و کنترل جداسازی | `data/processed/structural-feasibility.json` | [تحلیل سطح](structural-feasibility-results.fa.md) |
 | اپی‌توپ کامل روی سه‌تایی | `data/processed/full-epitope.json` | [اپی‌توپ کامل](full-epitope-results.fa.md) |
+| دادهٔ خرده‌آزمایش‌های مرورگر | `data/processed/epitope-lab.json` | [بخش خرده‌آزمایش‌ها](../?tab=lab#epitope-lab) |
 
 اگر عددی در متن با فایل JSON فرق داشت، فایل JSON مرجع است و متن باید اصلاح شود.

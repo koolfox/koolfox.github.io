@@ -690,3 +690,38 @@ test("epitope experiments keep working without WebGL", async ({ page }) => {
     await page.locator("#epitope-alanine").click();
     await expect(page.locator("#epitope-alanine-result")).toContainText("جفت اتم حذف شد");
 });
+
+test("weekly plan shows one class step at a time and filters the deck to that week", async ({ page }) => {
+    const errors = [];
+    page.on("pageerror", error => errors.push(error.message));
+    await page.goto(`${route}?week=5`);
+    await expect(page.locator("#weekly-plan")).toHaveAttribute("data-state", "ready");
+    await expect(page.locator("#week-buttons button")).toHaveCount(8);
+    await expect(page.locator("#week-card")).toHaveAttribute("data-week", "5");
+    await expect(page.locator('#week-buttons button[data-week="5"]')).toHaveAttribute("aria-pressed", "true");
+    await expect(page.locator("#week-experiment-link")).toHaveAttribute("href", "?tab=lab#epitope-lab");
+    await page.locator('#week-buttons button[data-week="2"]').click();
+    await expect(page.locator("#week-card")).toContainText("3WD5");
+    await expect(page.locator("#week-slides-link")).toHaveAttribute("href", "presentation.html?week=2#slide-1");
+    // The choice is remembered in this browser only.
+    await page.goto(route);
+    await expect(page.locator("#week-card")).toHaveAttribute("data-week", "2");
+    await page.locator("#week-slides-link").click();
+    await expect(page.locator("#deck")).toHaveAttribute("data-state", "ready");
+    await expect(page.locator("#deck")).toHaveAttribute("data-week", "2");
+    await expect(page.locator("#slide-select option")).toHaveCount(4);
+    await expect(page.locator(".cover-week")).toContainText("هفتهٔ ۲");
+    await expect(page.locator("#slide-progress")).toHaveText("۱ / ۴");
+    await page.keyboard.press("End");
+    await expect(page.locator(".slide:not([hidden]) h1")).toHaveText("Hu: یک تغییر کوچک، اتصال ضعیف‌تر");
+    await page.locator("#all-slides-link").click();
+    await expect(page.locator("#slide-select option")).toHaveCount(24);
+    expect(errors).toEqual([]);
+});
+
+test("unknown week falls back to the complete deck", async ({ page }) => {
+    await page.goto(`${route}presentation.html?week=99#slide-1`);
+    await expect(page.locator("#deck")).toHaveAttribute("data-state", "ready");
+    await expect(page.locator("#slide-select option")).toHaveCount(24);
+    await expect(page.locator("#deck-status")).toContainText("همهٔ اسلایدها");
+});

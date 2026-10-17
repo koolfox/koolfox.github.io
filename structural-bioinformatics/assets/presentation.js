@@ -177,6 +177,35 @@ function addMediaControls(figure) {
   figure.append(controls);
 }
 
+/** `?week=N` keeps the cover and only that week's chapters (data/metadata/weekly-plan.json). */
+async function applyWeek() {
+  const requested = new URLSearchParams(location.search).get('week');
+  if (requested === null) return;
+  try {
+    const response = await fetch(new URL('data/metadata/weekly-plan.json', project), { signal: AbortSignal.timeout(15000) });
+    if (!response.ok) throw new Error('plan unavailable');
+    const plan = await response.json();
+    const week = plan.weeks?.find(entry => String(entry.week) === requested);
+    if (!week) throw new Error('unknown week');
+    const keep = new Set(week.chapters.map(String));
+    for (const slide of slides.slice(1)) if (!keep.has(slide.dataset.chapter)) slide.remove();
+    slides = [...deck.children];
+    const label = textElement('p', `ارائهٔ هفتهٔ ${fa(week.week)}: ${week.title}`, 'cover-week');
+    slides[0].querySelector('.cover-subtitle').after(label);
+    deck.dataset.week = String(week.week);
+    document.getElementById('sources-link').hidden = !keep.has(String(plan.weeks.at(-1).chapters.at(-1)));
+    if (document.getElementById('all-slides-link')) return;
+    const all = document.createElement('a');
+    all.href = 'presentation.html#slide-1';
+    all.textContent = 'همهٔ اسلایدها';
+    all.id = 'all-slides-link';
+    document.getElementById('sources-link').before(all);
+  } catch {
+    status.dataset.weekError = 'true';
+    status.textContent = 'برنامهٔ این هفته پیدا نشد؛ همهٔ اسلایدها نمایش داده می‌شود.';
+  }
+}
+
 function hashIndex() {
   const number = Number(location.hash.match(/^#slide-(\d+)$/)?.[1]);
   return Number.isInteger(number) && number >= 1 && number <= slides.length ? number - 1 : 0;
@@ -199,6 +228,7 @@ function show(index, focus = false) {
 async function load() {
   deck.setAttribute('aria-busy', 'true');
   document.getElementById('retry-deck').hidden = true;
+  delete status.dataset.weekError;
   status.textContent = 'در حال آماده‌سازی اسلایدها…';
   try {
     const [response, metadata] = await Promise.all([
@@ -279,11 +309,12 @@ async function load() {
       isolateScientificText(slide);
     }
     slides.at(-1).classList.add('sources');
+    await applyWeek();
     select.replaceChildren(...slides.map((slide, index) => new Option(`${fa(index + 1)}. ${slide.querySelector('h1').textContent}`, String(index))));
     select.disabled = false;
     document.getElementById('print-slides').disabled = false;
     document.getElementById('sources-link').href = '#slide-' + slides.length;
-    status.textContent = '';
+    if (!status.dataset.weekError) status.textContent = '';
     deck.dataset.state = 'ready';
     show(hashIndex());
   } catch {

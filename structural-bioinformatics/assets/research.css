@@ -442,3 +442,20 @@ body[data-learning-mode="true"] :is(.reading-controls, #document-toc, #chapter-p
 .epitope-lab table td:first-child, .epitope-lab table td:nth-child(3), .epitope-lab table td:nth-child(4) { direction: ltr; unicode-bidi: isolate; }
 .epitope-lab #epitope-alanine[aria-pressed="true"] { background: #912c3d; color: #fff; border-color: #912c3d; }
 .lost-contact { color: #912c3d; font-weight: 640; }
+
+/* Week-by-week class plan */
+.week-buttons { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 18px; }
+.week-buttons button { min-height: 38px; padding: 6px 14px; border-radius: 999px; font-size: 0.84rem; }
+.week-buttons button[data-state="done"] { opacity: 0.7; }
+.week-buttons button[aria-pressed="true"] { background: #087b73; border-color: #087b73; color: #fff; }
+.week-card { border: 1px solid var(--research-line); border-radius: 12px; padding: 18px 20px; background: #fff; }
+.week-card h3 { margin: 0 0 10px; font-size: 1.05rem; color: #152e52; }
+.week-card h4 { margin: 0 0 6px; font-size: 0.92rem; color: #152e52; }
+.week-card ul { margin: 0 0 8px; padding-inline-start: 20px; }
+.week-card li, .week-card p { font-size: 0.88rem; }
+.week-question { max-width: 80ch; }
+.week-block { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--research-line); }
+.week-primary { font-weight: 680; }
+.week-expect { color: var(--research-muted); max-width: 85ch; }
+.week-nav { margin: 16px 0 0; }
+@media (max-width: 560px) { .week-card { padding: 14px; } }

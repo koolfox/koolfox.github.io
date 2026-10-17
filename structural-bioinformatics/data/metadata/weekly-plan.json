@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "purpose": "Week-by-week class schedule: each week presents one step, with its slides, reading, one hands-on mini-experiment and a deliverable. Everything is already built; the order keeps the presentation in step with the class.",
+  "document": "weekly-plan.fa.md",
+  "weeks": [
+    {
+      "week": 1,
+      "title": "بیماری، TNF و سازوکار آدالیموماب",
+      "question": "آدالیموماب چیست و چرا مهار TNF التهاب مفصل را کم می‌کند؟",
+      "chapters": [1, 2, 3, 4],
+      "reading": [
+        {"document": "learning-path.fa.md", "chapter": "chapter-1", "label": "سلول، ژن، RNA و پروتئین"},
+        {"document": "learning-path.fa.md", "chapter": "chapter-2", "label": "التهاب مفصل و نقش TNF"},
+        {"document": "learning-path.fa.md", "chapter": "chapter-3", "label": "آنتی‌بادی و اجزای آن"}
+      ],
+      "experiment": {
+        "label": "سه مرحلهٔ مفهومی اتصال دارو را قدم‌به‌قدم ببینید",
+        "href": "?tab=basics#binding-explainer",
+        "expect": "این شکل یک طرح مفهومی است و از مختصات اتمی ساخته نشده است؛ این تفاوت را در کلاس بگویید."
+      },
+      "deliverable": "در ۵ دقیقه، مسیر «TNF → گیرنده → پیام التهاب» و جای اتصال دارو را بدون نگاه به متن توضیح دهید."
+    },
+    {
+      "week": 2,
+      "title": "دادهٔ ساختاری 3WD5 و آزمایش جهش Hu",
+      "question": "ساختار بلوری 3WD5 دقیقاً چه چیزی را نشان می‌دهد و چه چیزی را نه؟",
+      "chapters": [5, 6, 7],
+      "reading": [
+        {"document": "learning-path.fa.md", "chapter": "chapter-4", "label": "خواندن مدل سه‌بعدی 3WD5"},
+        {"document": "data-access-guide.fa.md", "chapter": "chapter-1", "label": "یافتن و دانلود ساختار از PDB"},
+        {"document": "paper-explanations.fa.md", "chapter": "intro", "label": "نقشهٔ مقاله‌ها؛ مقالهٔ Hu 2013"}
+      ],
+      "experiment": {
+        "label": "در آزمایشگاه سه‌بعدی، زنجیره‌های H و L را خاموش و روشن کنید و 3WD5 را با 1TNF مقایسه کنید",
+        "href": "?tab=lab#structures",
+        "expect": "3WD5 فقط یک زیرواحد TNF (زنجیرهٔ A) و یک Fab (H و L) دارد؛ ۵۷۳ نقطهٔ Cα. 1TNF سه زیرواحد دارد؛ ۴۵۶ نقطه. تفکیک‌پذیری 3WD5 برابر ۳٫۱ آنگستروم است."
+      },
+      "deliverable": "فایل 3WD5 را دانلود کنید، هش آن را با فایل ثبت‌شده مقایسه کنید و در کلاس بگویید چرا «یک زیرواحد» محدودیت مهمی است."
+    },
+    {
+      "week": 3,
+      "title": "از توالی تا آنتی‌بادی کامل",
+      "question": "توالی RNA چگونه به آمینواسید می‌رسد و مدل کامل آنتی‌بادی چه چیزی به ساختار بلوری اضافه می‌کند؟",
+      "chapters": [8, 9, 10],
+      "reading": [
+        {"document": "learning-path.fa.md", "chapter": "chapter-5", "label": "از کدون RNA به آمینواسید"},
+        {"document": "codons-primer.fa.md", "chapter": "chapter-1", "label": "درس باز، کدون و آمینواسید"},
+        {"document": "data-access-guide.fa.md", "chapter": "chapter-2", "label": "توالی‌ها در UniProt و RefSeq"}
+      ],
+      "experiment": {
+        "label": "در درس کدون، چند کدون را انتخاب کنید و آمینواسید هر کدام را بخوانید",
+        "href": "?tab=sequences#codon-lesson",
+        "expect": "شمارهٔ هر جایگاه در 3WD5 به‌علاوهٔ ۷۶ برابر شمارهٔ UniProt است؛ مثلاً Gln21 در 3WD5 همان جایگاه ۹۷ در P01375 است."
+      },
+      "deliverable": "یک نمونهٔ واقعی «کدون → آمینواسید» از توالی TNF را روی تخته نشان دهید و بگویید چرا از توالی پروتئین نمی‌شود RNA یکتا را ساخت."
+    },
+    {
+      "week": 4,
+      "title": "دادهٔ بیماران: RNA-seq و مطالعهٔ بالینی",
+      "question": "دیتاست GSE138746 برای چه پرسشی ساخته شده و چه چیزی را نمی‌تواند نشان دهد؟",
+      "chapters": [11, 12, 13, 19],
+      "reading": [
+        {"document": "learning-path.fa.md", "chapter": "chapter-6", "label": "خواندن دیتاست RNA-seq روماتوئید"},
+        {"document": "data-access-guide.fa.md", "chapter": "chapter-3", "label": "دریافت دادهٔ GEO و کنترل هش"},
+        {"document": "learning-path.fa.md", "chapter": "chapter-7", "label": "سه مطالعه را خلاصه کنیم"}
+      ],
+      "experiment": {
+        "label": "در جدول دیتاست‌ها، طراحی GSE138746 را پیدا کنید و زمان نمونه‌گیری RNA را بخوانید",
+        "href": "?tab=methods#datasets",
+        "expect": "ماتریس PBMC: ۷۹ ستون نمونه، ۳۷ ستون آدالیموماب، ۱۸٬۳۳۳ ژن. RNA فقط پیش از درمان گرفته شده و پاسخ در ماه ۶ ثبت شده است."
+      },
+      "deliverable": "یک جدول سه‌ستونه بسازید: «این داده چه می‌سنجد، چه زمانی، و چه نتیجه‌ای از آن نمی‌شود گرفت» و آن را ارائه کنید."
+    },
+    {
+      "week": 5,
+      "title": "تحلیل ما (۱): بازسازی TNF سه‌تایی و تماس‌ها",
+      "question": "وقتی سه‌تایی TNF از تقارن بلور بازسازی شود، چه سهمی از تماس‌های Fab روی زیرواحد همسایه است؟",
+      "chapters": [21],
+      "reading": [
+        {"document": "full-epitope-results.fa.md", "chapter": "chapter-1", "label": "سؤال این بخش"},
+        {"document": "full-epitope-results.fa.md", "chapter": "chapter-3", "label": "روش، قدم‌به‌قدم"},
+        {"document": "structural-method.fa.md", "chapter": "intro", "label": "روش پایهٔ شمارش تماس"}
+      ],
+      "experiment": {
+        "label": "آزمایش ۱: سه‌تایی را بچرخانید و آستانهٔ تماس را بین ۳ و ۶ آنگستروم تغییر دهید",
+        "href": "?tab=lab#epitope-lab",
+        "expect": "در ۴٫۵ آنگستروم: ۳۶۵ تماس، ۲۵۲ روی زیرواحد A و ۱۱۳ روی همسایه (۳۱٪). سهم همسایه در ۳ تا ۶ آنگستروم بین ۲۰ و ۳۶ درصد می‌ماند. RMSD با 1TNF برابر ۱٫۱۸ آنگستروم روی ۴۵۶ اتم Cα است."
+      },
+      "deliverable": "نشان دهید یافتهٔ «۳۱٪ روی همسایه» به آستانه حساس نیست و بگویید درستی بازسازی را چگونه کنترل کردیم."
+    },
+    {
+      "week": 6,
+      "title": "تحلیل ما (۲): CDRها، سطح پوشیده و مقایسه با آزمایش",
+      "question": "کدام CDRها و کدام آمینواسیدهای TNF بیشترین سهم را دارند و این با آزمایش جهش Hu چه نسبتی دارد؟",
+      "chapters": [7, 21],
+      "reading": [
+        {"document": "full-epitope-results.fa.md", "chapter": "chapter-4", "label": "نتایج: سطح، CDRها و مقایسه با Hu"},
+        {"document": "full-epitope-results.fa.md", "chapter": "chapter-5", "label": "محدودیت‌ها"}
+      ],
+      "experiment": {
+        "label": "آزمایش‌های ۲ و ۳: Gln21 را انتخاب کنید، شریک‌هایش را ببینید و زنجیرهٔ جانبی‌اش را حذف مجازی کنید",
+        "href": "?tab=lab#epitope-lab",
+        "expect": "Gln21 با سطح پوشیدهٔ ۷۵٫۲ Å² دوم است؛ شریک‌ها L:Asp1 (۳٫۱۸ Å) و L:Arg93 (۳٫۶۰ Å، CDR-L3). با حذف مجازی، هر ۱۶ تماسش از بین می‌رود. CDR-H2 با ۳۳۴٫۴ Å² بیشترین سطح را دارد. در Hu 2013 جهش Q21A مقدار KD را حدود ۲۰۰ برابر بیشتر کرد."
+      },
+      "deliverable": "یک آمینواسید دیگر را با همین روش بررسی کنید و آن را به‌عنوان «پیشنهاد آزمایش جهش بعدی» ارائه دهید؛ روشن بگویید این پیش‌بینی است، نه نتیجه."
+    },
+    {
+      "week": 7,
+      "title": "مسیر موازی: TOP2A",
+      "question": "TOP2A چه کاری روی DNA انجام می‌دهد و چرا شباهت فرایندها به معنی علت مشترک نیست؟",
+      "chapters": [14, 15, 16, 17, 18, 20],
+      "reading": [
+        {"document": "learning-path.fa.md", "chapter": "chapter-8", "label": "آشنایی مستقل و مقایسه با TOP2A"},
+        {"document": "top2a-primer.fa.md", "chapter": "chapter-1", "label": "درس مقدماتی TOP2A"}
+      ],
+      "experiment": {
+        "label": "در آزمایشگاه سه‌بعدی، ساختار 4FM9 (هستهٔ TOP2A و DNA) را باز کنید",
+        "href": "?tab=lab#structures",
+        "expect": "4FM9 هستهٔ ناقص TOP2A همراه DNA است؛ ۷۵۶ نقطه. پروتئین کامل، RNA یا نتیجهٔ داکینگ دارو نیست."
+      },
+      "deliverable": "تفاوت «مقدار RNA»، «مقدار پروتئین» و «فعالیت آنزیم» را با یک مثال توضیح دهید و بگویید چه داده‌ای برای پرسش دارو–TOP2A لازم است."
+    },
+    {
+      "week": 8,
+      "title": "جمع‌بندی، پیش‌نویس مقاله و ارائهٔ نهایی",
+      "question": "از مجموع این هفته‌ها چه چیزی را می‌توانیم ادعا کنیم و قدم بعدی پژوهش چیست؟",
+      "chapters": [22, 23],
+      "reading": [
+        {"document": "manuscript-draft.fa.md", "chapter": "intro", "label": "پیش‌نویس مقاله"},
+        {"document": "presentation-rehearsal.fa.md", "chapter": "chapter-2", "label": "پرسش‌های احتمالی کلاس"},
+        {"document": "learning-path.fa.md", "chapter": "chapter-9", "label": "تمرین پیش از ارائه"}
+      ],
+      "experiment": {
+        "label": "نمایش زندهٔ ۲ دقیقه‌ای: چرخاندن سه‌تایی، تغییر آستانه و حذف مجازی Gln21",
+        "href": "?tab=lab#epitope-lab",
+        "expect": "جملهٔ پایانی: «این هندسه است، نه اندازه‌گیری قدرت اتصال.» اگر WebGL در کلاس کار نکرد، شکل ثابت و اسلاید ۲۲ جایگزین است."
+      },
+      "deliverable": "کل ارائه را از اسلاید ۱ تا آخر اجرا کنید و جاهای «[تکمیل شود]» پیش‌نویس مقاله را فهرست کنید."
+    }
+  ]
+}

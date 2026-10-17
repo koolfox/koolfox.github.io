@@ -3,6 +3,7 @@ import { linkGlossaryTerms } from './glossary-terms.js';
 // Repository-owned Markdown only; optional rendering libraries load on demand.
 const DOCUMENTS = [
   ["learning-path.fa.md", "مسیر یادگیری از پایه و ترتیب مطالعه", "شروع از پایه"],
+  ["weekly-plan.fa.md", "برنامهٔ هفته‌به‌هفتهٔ ارائه در کلاس", "شروع از پایه"],
   ["presentation-rehearsal.fa.md", "پس از یادگیری؛ تمرین و آماده‌سازی ارائه", "ارائه و روش پژوهش"],
   ["glossary.fa.md", "واژه‌نامهٔ آموزشی؛ آنتی‌بادی، IgG1 و اصطلاحات پژوهش", "شروع از پایه"],
   ["codons-primer.fa.md", "از باز و کدون به آمینواسید؛ مثال‌های واقعی", "شروع از پایه"],

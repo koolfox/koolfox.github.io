@@ -464,7 +464,7 @@ test("guided class presentation advances one step and resumes after the laborato
     await page.locator("#start-presentation").click();
     await expect(page.locator("#reading-status")).toHaveAttribute("data-document", "class-presentation.fa.md");
     await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-1");
-    await expect(page.locator("#reading-status")).toContainText("گام ۱ از ۲۳");
+    await expect(page.locator("#reading-status")).toContainText("گام ۱ از ۲۴");
     await expect(page.locator("body")).toHaveAttribute("data-presentation-mode", "true");
     await expect(page.locator("#document-select")).toBeHidden();
     await expect(page.locator("#chapter-prev")).toBeDisabled();
@@ -481,10 +481,10 @@ test("guided class presentation advances one step and resumes after the laborato
     await page.selectOption("#chapter-select", "chapter-4");
     await expect(page.locator("#reading-status")).toHaveAttribute("data-optional-render", "ready");
     await expect(page.locator("#markdown-content .mermaid-diagram svg")).toBeVisible();
-    await page.selectOption("#chapter-select", "chapter-23");
+    await page.selectOption("#chapter-select", "chapter-24");
     await expect(page.locator("#chapter-next")).toBeDisabled();
     await page.locator("#chapter-prev").click();
-    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-22");
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-23");
     await page.locator("#presentation-view").click();
     await expect(page.locator("body")).toHaveAttribute("data-presentation-mode", "false");
     await expect(page.locator("#document-select")).toBeVisible();
@@ -526,7 +526,7 @@ for (const width of [1440, 390]) {
         await context.route('**/*', route => route.request().url().startsWith(origin) ? route.continue() : route.abort());
         await page.goto(`${route}presentation.html#slide-1`);
         await expect(page.locator('#deck')).toHaveAttribute('data-state', 'ready');
-        await expect(page.locator('.slide')).toHaveCount(24);
+        await expect(page.locator('.slide')).toHaveCount(25);
         await expect(page.locator('#deck')).not.toContainText('برای گفتن');
         await expect(page.locator('#slide-prev')).toBeDisabled();
         await expect(page.locator('.cover .cover-details')).toContainText('شینی');
@@ -534,7 +534,7 @@ for (const width of [1440, 390]) {
         await expect(page.locator('.cover .cover-details')).not.toContainText('زمان ارائه');
         await expect(page.locator('.cover .slide-footer > p').last()).toHaveText('پاییز ۱۴۰۵');
         await expect(page.locator('.cover .supervisor-profile')).toHaveAttribute('href', 'https://scholar.google.com/citations?user=VA1rZ7MAAAAJ&hl=en');
-        for (let index = 0; index < 24; index++) {
+        for (let index = 0; index < 25; index++) {
             await page.selectOption('#slide-select', String(index));
             await expect(page.locator('.slide:visible')).toHaveCount(1);
             await expect(page).toHaveURL(new RegExp(`#slide-${index + 1}$`));
@@ -549,7 +549,7 @@ for (const width of [1440, 390]) {
             expect(logo.x + logo.width).toBeLessThan(institution.x);
             await expect(active.locator('.slide-footer')).toContainText('آدالیموماب');
             if (width === 1440) expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBeLessThanOrEqual(902);
-            if (index > 0 && index < 23) expect(await active.locator('.slide-references a[href^="https://"]').count()).toBeGreaterThan(0);
+            if (index > 0 && index < 24) expect(await active.locator('.slide-references a[href^="https://"]').count()).toBeGreaterThan(0);
             for (const label of await active.locator('.nodeLabel').all()) {
                 if (/[\u0600-\u06ff]/.test(await label.textContent())) {
                     expect(await label.evaluate(node => getComputedStyle(node).direction)).toBe('rtl');
@@ -557,7 +557,7 @@ for (const width of [1440, 390]) {
             }
             if (index === 5) await expect(active.locator('h1 bdi').filter({ hasText: /^3WD5$/ })).toHaveText('3WD5');
             if (index === 21) await expect(active.locator('strong bdi').filter({ hasText: '4.5 Å' })).toHaveAttribute('dir', 'ltr');
-            if (index === 23) {
+            if (index === 24) {
                 for (const accession of ['3WD5', '1TNF', '4FM9']) {
                     await expect(active.locator('a bdi').filter({ hasText: new RegExp('^' + accession + '$') })).toHaveAttribute('dir', 'ltr');
                 }
@@ -571,9 +571,9 @@ for (const width of [1440, 390]) {
         await page.keyboard.press('PageUp');
         await expect(page).toHaveURL(/#slide-1$/);
         await page.locator('#sources-link').click();
-        await expect(page).toHaveURL(/#slide-24$/);
+        await expect(page).toHaveURL(/#slide-25$/);
         await page.emulateMedia({ media: 'print' });
-        await expect(page.locator('.slide:visible')).toHaveCount(24);
+        await expect(page.locator('.slide:visible')).toHaveCount(25);
         expect(errors).toEqual([]);
     });
 }
@@ -613,7 +613,7 @@ for (const width of [1440, 390]) {
     });
 }
 
-test('browser PDF keeps the 24 complete slides on 24 pages', async ({ page }) => {
+test('browser PDF keeps the 25 complete slides on 25 pages', async ({ page }) => {
     test.setTimeout(60000); // PDF/font serialization has a separate bounded budget.
     await page.goto(`${route}presentation.html#slide-1`);
     await expect(page.locator('#deck')).toHaveAttribute('data-state', 'ready');
@@ -621,7 +621,7 @@ test('browser PDF keeps the 24 complete slides on 24 pages', async ({ page }) =>
         await expect.poll(() => image.evaluate(node => node.complete && node.naturalWidth > 0)).toBe(true);
     }
     const pdf = await page.pdf({ preferCSSPageSize: true, printBackground: true });
-    expect(pdf.toString('latin1').match(/\/Type \/Page\b/g)).toHaveLength(24);
+    expect(pdf.toString('latin1').match(/\/Type \/Page\b/g)).toHaveLength(25);
 });
 
 test('slide source failure can be retried without losing notebook access', async ({ page }) => {
@@ -700,7 +700,7 @@ test("weekly plan shows one class step at a time and filters the deck to that we
     await expect(page.locator("#week-card")).toHaveAttribute("data-week", "5");
     await expect(page.locator('#week-buttons button[data-week="5"]')).toHaveAttribute("aria-pressed", "true");
     await expect(page.locator("#week-experiment-link")).toHaveAttribute("href", "?tab=lab#epitope-lab");
-    await expect(page.locator("#weekly-goal")).toContainText("3WD5");
+    await expect(page.locator("#weekly-goal")).toContainText("طراحی مهارکننده");
     await expect(page.locator("#week-paper-link")).toHaveAttribute("href", /document=manuscript-draft\.fa\.md&chapter=chapter-4/);
     await page.locator('#week-buttons button[data-week="2"]').click();
     await expect(page.locator("#week-card")).toContainText("3WD5");
@@ -717,14 +717,14 @@ test("weekly plan shows one class step at a time and filters the deck to that we
     await page.keyboard.press("End");
     await expect(page.locator(".slide:not([hidden]) h1")).toHaveText("Hu: یک تغییر کوچک، اتصال ضعیف‌تر");
     await page.locator("#all-slides-link").click();
-    await expect(page.locator("#slide-select option")).toHaveCount(24);
+    await expect(page.locator("#slide-select option")).toHaveCount(25);
     expect(errors).toEqual([]);
 });
 
 test("unknown week falls back to the complete deck", async ({ page }) => {
     await page.goto(`${route}presentation.html?week=99#slide-1`);
     await expect(page.locator("#deck")).toHaveAttribute("data-state", "ready");
-    await expect(page.locator("#slide-select option")).toHaveCount(24);
+    await expect(page.locator("#slide-select option")).toHaveCount(25);
     await expect(page.locator("#deck-status")).toContainText("همهٔ اسلایدها");
 });
 

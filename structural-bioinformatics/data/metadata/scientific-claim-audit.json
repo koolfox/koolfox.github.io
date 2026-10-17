@@ -3,7 +3,7 @@
   "reviewed_at_utc": "2026-10-14T06:40:40.292983+00:00",
   "scope": "Current 23 class chapters reorganized for foundational RA/drug/data learning; new codon and RA sample-count statements checked against references and official files. Original experiments and predictive models not reproduced.",
   "reviewed_file": "docs/class-presentation.fa.md",
-  "reviewed_sha256": "e9d81d9add86970309d3e585491b68c23fc4e15636349e6ff6b920178c9f5c91",
+  "reviewed_sha256": "90f49b831d337e0ece202e378a20ec616eb53226f4a675d3902edf771452cdb7",
   "sources": [
     {
       "id": "hu",
@@ -1229,6 +1229,54 @@
     {
       "id": "slide-content-22-block-01",
       "chapter": 22,
+      "exact_text": "**محدودیت طراحی:** جایگاه هدف روی مرز دو زیرواحد TNF است و روی یک زیرواحد تنها کامل نمی‌شود. پس غربالگری روی مدل تک‌زیرواحدی حدود یک‌سوم جایگاه را نمی‌بیند. در آدالیموماب فقط زنجیرهٔ سنگین به زیرواحد همسایه می‌رسد.",
+      "source_ids": [
+        "project-full-epitope",
+        "hu"
+      ],
+      "status": "reviewed_with_scope_and_limitations",
+      "review_note": "Two-protomer constraint follows from the 31% neighbour contact share and 358.0 Å² buried on the neighbour in full-epitope.json; 'only the heavy chain reaches the neighbour' is the recorded per-chain contact result.",
+      "passage": "full-epitope.json: neighbour_fraction_of_contacts 0.3096; buried_surface A:GLN67 124.5, A:GLN21 75.2, A:ALA145 72.6 Å²; hu_2013_q21a_context kd_ratio 202.7."
+    },
+    {
+      "id": "slide-content-22-block-02",
+      "chapter": 22,
+      "exact_text": "**جایگاه‌های هدف، به ترتیب سطح پوشیده:** `Gln67` برابر `124.5 Å²`، `Gln21` برابر `75.2 Å²`، `Ala145` برابر `72.6 Å²`. از این‌ها فقط Gln21 شاهد تجربی مستقل دارد: جهش Q21A در گزارش Hu و همکاران KD را حدود ۲۰۳ برابر افزایش داد.",
+      "source_ids": [
+        "project-full-epitope",
+        "hu"
+      ],
+      "status": "reviewed_with_scope_and_limitations",
+      "review_note": "ΔSASA values read from full-epitope.json buried_surface.tnf_residues; the Hu Q21A K_D ratio (≈203×) is the previously verified Table 3 row, attributed to its authors.",
+      "passage": "full-epitope.json: neighbour_fraction_of_contacts 0.3096; buried_surface A:GLN67 124.5, A:GLN21 75.2, A:ALA145 72.6 Å²; hu_2013_q21a_context kd_ratio 202.7."
+    },
+    {
+      "id": "slide-content-22-block-03",
+      "chapter": 22,
+      "exact_text": "**آزمون پیشنهادی:** جهش آلانین روی `Gln67` و اندازه‌گیری KD. این‌ها فرضیه و نقطهٔ شروع آزمایش‌اند؛ در این کار داکینگ، پیش‌بینی میل اتصال یا طراحی مولکول انجام نشده است.",
+      "source_ids": [
+        "project-full-epitope",
+        "hu"
+      ],
+      "status": "reviewed_with_scope_and_limitations",
+      "review_note": "Proposal only: the slide states that no docking, affinity prediction or molecule design was performed here.",
+      "passage": "full-epitope.json: neighbour_fraction_of_contacts 0.3096; buried_surface A:GLN67 124.5, A:GLN21 75.2, A:ALA145 72.6 Å²; hu_2013_q21a_context kd_ratio 202.7."
+    },
+    {
+      "id": "slide-content-22-block-04",
+      "chapter": 22,
+      "exact_text": "> منبع: [تحلیل اجراشدهٔ ما](../data/processed/full-epitope.json)؛ [Hu 2013، جدول ۳](https://doi.org/10.1074/jbc.M113.491530)؛ [روش و نتایج کامل](../docs/full-epitope-results.fa.md).",
+      "source_ids": [
+        "project-full-epitope",
+        "hu"
+      ],
+      "status": "reviewed_with_scope_and_limitations",
+      "review_note": "Source line; links resolve to the executed analysis and the Hu paper.",
+      "passage": "full-epitope.json: neighbour_fraction_of_contacts 0.3096; buried_surface A:GLN67 124.5, A:GLN21 75.2, A:ALA145 72.6 Å²; hu_2013_q21a_context kd_ratio 202.7."
+    },
+    {
+      "id": "slide-content-23-block-01",
+      "chapter": 23,
       "exact_text": "**اکنون:** شناخت RA، هدف TNF، ساختمان آدالیموماب، اتصال واقعی و معنی اندازه‌گیری بالینی. در توالی، باز و کدون را به آمینواسید وصل می‌کنیم؛ در RNA-seq، نمونه، دارو و زمان را تشخیص می‌دهیم.",
       "source_ids": [
         "course-scope",
@@ -1240,8 +1288,8 @@
       "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
-      "id": "slide-content-22-block-02",
-      "chapter": 22,
+      "id": "slide-content-23-block-02",
+      "chapter": 23,
       "exact_text": "**موازی:** DNA و نقش TOP2A در تقسیم سلول را مستقل می‌آموزیم. شباهت فرایندها را از رابطهٔ اندازه‌گیری‌شده جدا می‌خوانیم.",
       "source_ids": [
         "course-scope",
@@ -1253,8 +1301,8 @@
       "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
-      "id": "slide-content-22-block-03",
-      "chapter": 22,
+      "id": "slide-content-23-block-03",
+      "chapter": 23,
       "exact_text": "**پس از مبانی:** اگر یک دیتاستِ دارای مقایسهٔ مناسب تأیید شد، سؤال محدودِ تغییر TOP2A انتخاب می‌شود. مقدار RNA، مقدار پروتئین و فعالیت آنزیم به داده‌های متفاوت نیاز دارند. سؤال مهار مستقیم و اثر ضدسرطان در مرحلهٔ فعلی بررسی نمی‌شود.",
       "source_ids": [
         "course-scope",
@@ -1266,8 +1314,8 @@
       "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
-      "id": "slide-content-22-block-04",
-      "chapter": 22,
+      "id": "slide-content-23-block-04",
+      "chapter": 23,
       "exact_text": "> منابع راهنما: [NHGRI، RNA-seq](https://www.genome.gov/genetics-glossary/RNA-seq)؛ [UniProt، TOP2A](https://www.uniprot.org/uniprotkb/P11388)؛ [مسیر یادگیری پروژه](../docs/learning-path.fa.md).",
       "source_ids": [
         "course-scope",
@@ -1279,8 +1327,8 @@
       "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
-      "id": "slide-content-23-block-01",
-      "chapter": 23,
+      "id": "slide-content-24-block-01",
+      "chapter": 24,
       "exact_text": "**برای مبانی:** [Hu 2013](https://doi.org/10.1074/jbc.M113.491530)، اتصال تجربی؛ [Gehin 2024](https://doi.org/10.1136/rmdopen-2024-004888)، مطالعهٔ بیمار و غلظت دارو؛ [Tao 2021](https://doi.org/10.1002/art.41516)، RNA اولیه و پاسخ درمان. قدیمی‌تر بودن منبعِ ساختار، نقش پایهٔ آن را حذف نمی‌کند.",
       "source_ids": [
         "course-scope",
@@ -1294,8 +1342,8 @@
       "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
-      "id": "slide-content-23-block-02",
-      "chapter": 23,
+      "id": "slide-content-24-block-02",
+      "chapter": 24,
       "exact_text": "**برای مطالعهٔ بعدی:** [Bianchi 2026](https://doi.org/10.3389/fimmu.2025.1680199)، مدل‌سازی حرکت؛ [Marguerie 2025](https://doi.org/10.3389/fimmu.2025.1668361)، دو آزمایش سلولی؛ [Veerasubramanian 2026](https://doi.org/10.3389/fimmu.2026.1867995)، RNA گروه‌های دارویی در مدل آزمایشگاهی.",
       "source_ids": [
         "course-scope",
@@ -1309,8 +1357,8 @@
       "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
-      "id": "slide-content-23-block-03",
-      "chapter": 23,
+      "id": "slide-content-24-block-03",
+      "chapter": 24,
       "exact_text": "**ساختارها:** [3WD5](https://www.rcsb.org/structure/3WD5)، [1TNF](https://www.rcsb.org/structure/1TNF)، [4FM9](https://www.rcsb.org/structure/4FM9). **تعاریف:** [کدون](https://www.genome.gov/genetics-glossary/Codon)، [کد استاندارد](https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi#SG1)، [برچسب Humira](https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=608d4f0d-b19f-46d3-749a-7159aa5f933d).",
       "source_ids": [
         "course-scope",
@@ -1324,8 +1372,8 @@
       "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
-      "id": "slide-content-23-block-04",
-      "chapter": 23,
+      "id": "slide-content-24-block-04",
+      "chapter": 24,
       "exact_text": "[جزوهٔ مقدماتی](../docs/preparation-guide.fa.md)، [درس کدون‌های واقعی](../docs/codons-primer.fa.md)، [آشنایی با TOP2A](../docs/top2a-primer.fa.md) و [مسیر یادگیری](../docs/learning-path.fa.md) ادامهٔ مطالعه را مرحله‌بندی می‌کنند.",
       "source_ids": [
         "course-scope",
@@ -1362,5 +1410,10 @@
     "updated_at_utc": "2026-10-16T21:02:35+00:00",
     "previous_sha256": "9528b8d647b5486151ed2b1f06b747bd11aa9b75baf5081bb840ca2e203a2c5b",
     "scope": "Chapter 21 replaced with the executed full-epitope analysis; other chapters unchanged."
+  },
+  "drug_design_framing": {
+    "reviewed_at_utc": "2026-10-18T00:00:00+00:00",
+    "scope": "New chapter 22 presents the epitope map as input for inhibitor design; previous chapters 22-23 shift to 23-24. Manuscript draft gained section 6 with the same content, and the title now names a structural framework for design. No new measurement was made.",
+    "guard": "No affinity, docking score, designed molecule or efficacy claim appears in the added text; each proposal names the experiment that would test it, and the only mutation result quoted is Hu's measured Q21A row, attributed to its authors."
   }
 }

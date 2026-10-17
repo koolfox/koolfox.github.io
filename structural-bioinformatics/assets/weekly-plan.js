@@ -73,11 +73,21 @@ function renderWeek(plan, titles, week) {
   experiment.append(runLine, expect);
 
   const deliverable = node("div", "", "week-block");
-  deliverable.append(node("h4", "۴. تحویلی این هفته"), node("p", week.deliverable));
+  deliverable.append(node("h4", "۴. تحویلی ارائه"), node("p", week.deliverable));
+
+  const paper = node("div", "", "week-block week-paper");
+  paper.id = "week-paper";
+  const sectionLink = link(week.manuscript.section, readerHref(week.manuscript));
+  sectionLink.id = "week-paper-link";
+  const paperTitle = node("h4", "۵. گام مقاله: ");
+  paperTitle.append(sectionLink);
+  const paperList = node("ul");
+  paperList.append(node("li", "خروجی: " + week.manuscript.output), node("li", "وقتی تمام است که: " + week.manuscript.done_when));
+  paper.append(paperTitle, node("p", week.manuscript.task), paperList);
 
   const navigation = node("p", "", "week-nav");
   navigation.append(link("شرح کامل این هفته در کتابچه", readerHref({ document: plan.document, chapter: "chapter-" + week.week })));
-  card.replaceChildren(heading, question, slides, reading, experiment, deliverable, navigation);
+  card.replaceChildren(heading, question, slides, reading, experiment, deliverable, paper, navigation);
 }
 
 function select(plan, titles, number, store = true) {
@@ -105,6 +115,11 @@ async function initialize() {
     const titles = deckResponse.ok
       ? (await deckResponse.text()).split("\n").filter((line) => line.startsWith("## ")).map((line) => line.slice(3).replace(/^[\d۰-۹]+\.\s*/, ""))
       : [];
+    const goal = $("weekly-goal");
+    if (goal && plan.paper_goal) {
+      const manuscript = link("پیش‌نویس مقاله", readerHref({ document: plan.paper_goal.document, chapter: "intro" }));
+      goal.replaceChildren(node("strong", "مقصد هفتهٔ " + fa(plan.weeks.length) + ": "), plan.paper_goal.title + ". ", plan.paper_goal.claim + " ", manuscript);
+    }
     const buttons = $("week-buttons");
     for (const week of plan.weeks) {
       const button = node("button", "هفتهٔ " + fa(week.week));

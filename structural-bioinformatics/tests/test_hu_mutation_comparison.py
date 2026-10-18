@@ -2,6 +2,7 @@
 
 import importlib.util
 import json
+import math
 from pathlib import Path
 
 PROJECT = Path(__file__).resolve().parents[1]
@@ -55,6 +56,22 @@ def test_authors_values_stay_labelled_as_theirs():
     for row in PUBLISHED["comparison"]:
         assert "authors_kd_fold_change_vs_wild_type" in row
     assert PUBLISHED["limitations"]
+
+
+def test_pdf_spot_check_agrees_with_the_recorded_table():
+    # Two rows were read back from the publisher PDF; the record may not drift away from them.
+    rows = {row["label"]: row for row in RECORD["table_3"]["rows"]}
+    checked = RECORD["provenance"]["user_supplied_pdf"]["spot_check"]["rows"]
+    assert checked
+    for entry in checked:
+        assert entry["matches_record"] is True
+        value, error = entry["pdf_reading"].removesuffix(" M").split(" x 10^")
+        mantissa, uncertainty = (float(part) for part in value.split(" +/- "))
+        scale = 10.0 ** int(error)
+        row = rows[entry["label"]]
+        # Decimal mantissas do not round-trip exactly through binary floats.
+        assert math.isclose(row[entry["field"]], mantissa * scale, rel_tol=1e-12)
+        assert math.isclose(row[f"{entry['field']}_error"], uncertainty * scale, rel_tol=1e-12)
 
 
 def test_no_publisher_pdf_is_committed():

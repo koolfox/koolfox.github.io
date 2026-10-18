@@ -33,6 +33,57 @@ function remember(week) {
   try { localStorage.setItem(storageKey, String(week)); } catch { /* storage unavailable */ }
 }
 
+function block(number, heading) {
+  const wrapper = node("div", "", "week-block");
+  wrapper.append(node("h4", number + ". " + heading));
+  return wrapper;
+}
+
+function list(items, render) {
+  const element = node("ul");
+  for (const item of items) element.append(render(item));
+  return element;
+}
+
+function paperBlock(papers) {
+  const wrapper = block("۳", "مقالهٔ این هفته");
+  if (!papers.length) {
+    wrapper.append(node("p", "این هفته مقالهٔ تازه‌ای معرفی نمی‌شود؛ تمرکز روی کمیت‌های اندازه‌گیری و تحلیل اجراشدهٔ خودمان است."));
+    return wrapper;
+  }
+  for (const paper of papers) {
+    const heading = node("p", "", "week-paper-title");
+    heading.append(node("strong", paper.label + " — " + paper.focus));
+    const rows = [
+      ["پرسش مقاله", paper.question],
+      ["روش", paper.method],
+      ["نتیجهٔ خودِ مقاله", paper.result],
+      ["محدودیت", paper.limit],
+      ["چرا ما به آن نیاز داریم", paper.our_use],
+    ];
+    wrapper.append(heading, list(rows, ([label, value]) => {
+      const entry = node("li");
+      entry.append(node("strong", label + ": "), value);
+      return entry;
+    }));
+  }
+  return wrapper;
+}
+
+function questionBlock(questions) {
+  const wrapper = block("۷", "پرسش‌هایی که احتمالاً می‌پرسند");
+  for (const item of questions) {
+    const entry = node("div", "", "week-qa");
+    const question = node("p");
+    question.append(node("strong", "پرسش: "), item.q);
+    const answer = node("p");
+    answer.append(node("strong", "پاسخ کوتاه: "), item.a);
+    entry.append(question, answer);
+    wrapper.append(entry);
+  }
+  return wrapper;
+}
+
 function renderWeek(plan, titles, week) {
   const card = $("week-card");
   const total = plan.weeks.length;
@@ -41,29 +92,42 @@ function renderWeek(plan, titles, week) {
   const question = node("p", "", "week-question");
   question.append(node("strong", "پرسش این هفته: "), week.question);
 
-  const slides = node("div", "", "week-block");
-  slides.append(node("h4", "۱. ارائهٔ این هفته"));
-  const list = node("ul");
-  for (const chapter of week.chapters) {
-    list.append(node("li", "اسلاید " + fa(chapter + 1) + ": " + (titles[chapter - 1] || "")));
+  const course = node("p", "", "week-course");
+  course.id = "week-course";
+  course.append(node("strong", "جای این هفته در درس: "), "بخش «" + week.course.block_title + "»، " + week.course.sessions + ". " + week.course.uses);
+  if (week.course.ahead) {
+    const ahead = node("p", "", "week-ahead");
+    ahead.append(node("strong", "جلوتر از کلاس: "), week.course.ahead);
+    course.append(ahead);
   }
+
+  const slides = block("۱", "ارائهٔ این هفته");
+  slides.append(list(week.chapters, (chapter) => node("li", "اسلاید " + fa(chapter + 1) + ": " + (titles[chapter - 1] || ""))));
   const open = link("باز کردن فقط اسلایدهای هفتهٔ " + fa(week.week), "presentation.html?week=" + week.week + "#slide-1");
   open.className = "week-primary";
   open.id = "week-slides-link";
-  slides.append(list, open);
+  slides.append(open);
 
-  const reading = node("div", "", "week-block");
-  reading.append(node("h4", "۲. پیش از کلاس بخوانید"));
-  const readingList = node("ul");
-  for (const item of week.reading) {
+  const reading = block("۲", "پیش از کلاس بخوانید");
+  reading.append(list(week.reading, (item) => {
     const entry = node("li");
     entry.append(link(item.label, readerHref(item)));
-    readingList.append(entry);
-  }
-  reading.append(readingList);
+    return entry;
+  }));
 
-  const experiment = node("div", "", "week-block");
-  experiment.append(node("h4", "۳. خرده‌آزمایش"));
+  const concepts = block("۴", "واژه‌های کلاسی که این هفته به کار می‌بریم");
+  concepts.append(list(week.concepts, (concept) => {
+    const entry = node("li");
+    entry.append(node("strong", concept.term + ": "), concept.meaning);
+    return entry;
+  }));
+
+  const talk = block("۵", "ترتیب گفتن مطلب در کلاس");
+  const beats = node("ol");
+  for (const beat of week.talk) beats.append(node("li", beat));
+  talk.append(beats);
+
+  const experiment = block("۶", "خرده‌آزمایش");
   const run = link(week.experiment.label, week.experiment.href);
   run.id = "week-experiment-link";
   const expect = node("p", "", "week-expect");
@@ -71,15 +135,20 @@ function renderWeek(plan, titles, week) {
   const runLine = node("p");
   runLine.append(run);
   experiment.append(runLine, expect);
+  if (week.experiment.ahead_note) {
+    const ahead = node("p", "", "week-expect");
+    ahead.append(node("strong", "همان کار با ابزار کلاس: "), week.experiment.ahead_note);
+    experiment.append(ahead);
+  }
 
-  const deliverable = node("div", "", "week-block");
-  deliverable.append(node("h4", "۴. تحویلی ارائه"), node("p", week.deliverable));
+  const deliverable = block("۸", "تحویلی ارائه");
+  deliverable.append(node("p", week.deliverable));
 
   const paper = node("div", "", "week-block week-paper");
   paper.id = "week-paper";
   const sectionLink = link(week.manuscript.section, readerHref(week.manuscript));
   sectionLink.id = "week-paper-link";
-  const paperTitle = node("h4", "۵. گام مقاله: ");
+  const paperTitle = node("h4", "۹. گام مقاله: ");
   paperTitle.append(sectionLink);
   const paperList = node("ul");
   paperList.append(node("li", "خروجی: " + week.manuscript.output), node("li", "وقتی تمام است که: " + week.manuscript.done_when));
@@ -87,7 +156,12 @@ function renderWeek(plan, titles, week) {
 
   const navigation = node("p", "", "week-nav");
   navigation.append(link("شرح کامل این هفته در کتابچه", readerHref({ document: plan.document, chapter: "chapter-" + week.week })));
-  card.replaceChildren(heading, question, slides, reading, experiment, deliverable, paper, navigation);
+  if (plan.appendix) {
+    const appendix = link(plan.appendix.title, readerHref({ document: plan.document, chapter: "chapter-" + (plan.weeks.length + 1) }));
+    appendix.id = "week-appendix-link";
+    navigation.append(appendix);
+  }
+  card.replaceChildren(heading, question, course, slides, reading, paperBlock(week.papers), concepts, talk, experiment, questionBlock(week.expect_questions), deliverable, paper, navigation);
 }
 
 function select(plan, titles, number, store = true) {

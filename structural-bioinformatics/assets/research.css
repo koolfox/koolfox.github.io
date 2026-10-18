@@ -457,7 +457,14 @@ body[data-learning-mode="true"] :is(.reading-controls, #document-toc, #chapter-p
 .week-block { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--research-line); }
 .week-primary { font-weight: 680; }
 .week-expect { color: var(--research-muted); max-width: 85ch; }
-.week-nav { margin: 16px 0 0; }
+.week-course { max-width: 85ch; color: var(--research-muted); }
+.week-ahead { margin: 6px 0 0; color: #7a4a00; }
+.week-card ol { margin: 0 0 8px; padding-inline-start: 20px; }
+.week-card ol li { margin-bottom: 4px; }
+.week-paper-title { margin: 0 0 4px; }
+.week-qa { margin-bottom: 10px; }
+.week-qa p { margin: 0 0 2px; max-width: 85ch; }
+.week-nav { margin: 16px 0 0; display: flex; flex-wrap: wrap; gap: 6px 18px; }
 @media (max-width: 560px) { .week-card { padding: 14px; } }
 
 /* RNA-seq group summary (aggregates only) */

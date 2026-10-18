@@ -33,7 +33,7 @@
 **به این ترتیب بخوانید:**
 
 - [اول این فصل را بخوانید: آدالیموماب چگونه عمل می‌کند](preparation-guide.fa.md?chapter=chapter-3&lesson=3#lesson-guide)
-- [همان توضیح کوتاه در متن ارائه](class-presentation.fa.md?chapter=chapter-3&lesson=3#lesson-guide)
+- [همان توضیح کوتاه در متن ارائه](class-presentation.fa.md?chapter=chapter-5&lesson=3#lesson-guide)
 
 **پس از مطالعه آماده کنید:** روی شکل، بازوی اتصال Fab و بخش Fc را پیدا کنید؛ سپس فرق «نوع IgG1» با «هدف TNF» را توضیح دهید.
 

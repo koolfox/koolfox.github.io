@@ -12,6 +12,7 @@ spec = importlib.util.spec_from_file_location(
 builder = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(builder)
 PLAN = json.loads((PROJECT / "data/metadata/weekly-plan.json").read_text())
+SYLLABUS = json.loads((PROJECT / "data/metadata/course-syllabus.json").read_text())
 
 
 def chapter_count(document):
@@ -20,10 +21,10 @@ def chapter_count(document):
 
 
 def test_generated_document_matches_plan():
-    expected = builder.render(PLAN, builder.slide_titles(PROJECT))
+    expected = builder.render(PLAN, builder.slide_titles(PROJECT), SYLLABUS)
     assert (PROJECT / "docs/weekly-plan.fa.md").read_text() == expected
-    # One chapter per week plus the closing note, so reader chapter-N is week N.
-    assert chapter_count("weekly-plan.fa.md") == len(PLAN["weeks"]) + 1
+    # One chapter per week, then the appendix and the closing note, so chapter-N is week N.
+    assert chapter_count("weekly-plan.fa.md") == len(PLAN["weeks"]) + 2
 
 
 def test_weeks_are_ordered_and_reference_existing_content():
@@ -52,8 +53,12 @@ def test_weeks_are_ordered_and_reference_existing_content():
         ]
         end = min([p for p in following if p > panel], default=len(index))
         assert panel < index.index(f'id="{section}"') < end
-    # Every research slide is presented in some week.
-    assert covered == set(range(1, slides + 1))
+    # Every research slide is presented in some week or kept in the optional appendix.
+    appendix = set(PLAN["appendix"]["chapters"])
+    assert covered | appendix == set(range(1, slides + 1))
+    # The appendix holds the material that is outside this course's syllabus.
+    assert appendix == set(SYLLABUS["outside_syllabus"]["chapters"])
+    assert not appendix & covered
 
 
 def test_every_week_writes_an_existing_manuscript_section():
@@ -68,10 +73,29 @@ def test_every_week_writes_an_existing_manuscript_section():
     assert PLAN["weeks"][-1]["manuscript"]["chapter"] == "chapter-1"
 
 
+def test_each_week_follows_the_course_syllabus():
+    blocks = {block["id"]: block for block in SYLLABUS["blocks"]}
+    assert sum(block["sessions"] for block in SYLLABUS["blocks"]) == SYLLABUS["total_sessions"]
+    reached = 0
+    for week in PLAN["weeks"]:
+        course = week["course"]
+        block = blocks[course["block"]]
+        # A week may not present material the class has not reached yet.
+        assert block["first_session"] >= reached
+        reached = block["first_session"]
+        assert week["week"] in block["weeks"]
+        assert week["papers"] is not None and week["concepts"] and week["talk"]
+        assert week["expect_questions"]
+    # Every syllabus block is claimed by the week it was assigned to.
+    for block in SYLLABUS["blocks"]:
+        for number in block["weeks"]:
+            assert PLAN["weeks"][number - 1]["week"] == number
+
+
 def test_quoted_rnaseq_medians_match_the_published_summary():
     summary = json.loads((PROJECT / "data/processed/rnaseq-group-summary.json").read_text())
     tnf = next(g for g in summary["genes"] if g["symbol"] == "TNF")["groups"]
-    expect = PLAN["weeks"][3]["experiment"]["expect"]
+    expect = PLAN["appendix"]["items"][0]["experiment"]["expect"]
     for response in ("good", "moderate", "no"):
         value = f"{tnf[response]['median']:g}".replace(".", "٫")
         assert builder.fa(value) in expect

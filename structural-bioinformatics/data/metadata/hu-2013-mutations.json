@@ -18,29 +18,187 @@
       "bytes": 2431993,
       "pages": 9,
       "committed": false,
-      "note": "The student supplied the publisher PDF locally. It is gitignored and never committed; no text extractor was available on this machine, so the transcription above came from the PMC rendering of the same article."
+      "note": "The student supplied the publisher PDF locally. It is gitignored and never committed; no text extractor was available on this machine, so the transcription came from the PMC rendering of the same article and was then spot-checked against the PDF by the student.",
+      "spot_check": {
+        "checked_at_utc": "2026-10-18T07:40:00+00:00",
+        "checked_by": "student, reading Table 3 in the supplied PDF",
+        "rows": [
+          {
+            "label": "TNF Q67A",
+            "field": "KD",
+            "pdf_reading": "1.989 +/- 0.298 x 10^-8 M",
+            "matches_record": true
+          },
+          {
+            "label": "TNF E135A",
+            "field": "KD",
+            "pdf_reading": "1.183 +/- 0.177 x 10^-8 M",
+            "matches_record": true
+          }
+        ],
+        "note": "Two rows were read back from the PDF and agree with this record exactly, including the printed errors. The remaining rows are not independently confirmed against the PDF."
+      }
     }
   },
   "table_3": {
     "title": "Kinetics and binding affinity of TNF-alpha mutants with the adalimumab Fab",
     "method_as_printed": "Kinetics and affinity of TNF-alpha mutant and the adalimumab Fab were analyzed using a BIAcore T100. Wild type TNF-alpha and the mutants were passed over the immobilized adalimumab Fab surface, and the data were globally analyzed using a simultaneous fit for both dissociation (kd) and association (ka). The value for KD was calculated as kd/ka.",
-    "units": {"ka": "M^-1 s^-1", "kd": "s^-1", "kd_equilibrium": "M"},
+    "units": {
+      "ka": "M^-1 s^-1",
+      "kd": "s^-1",
+      "kd_equilibrium": "M"
+    },
     "rows": [
-      {"label": "WT TNFalpha", "residue": null, "ka": 4.784e5, "ka_error": 0.717e5, "kd": 5.512e-5, "kd_error": 0.826e-5, "KD": 1.152e-10, "KD_error": 0.172e-10},
-      {"label": "TNF P20A", "residue": "PRO20", "ka": 3.785e5, "ka_error": 0.567e5, "kd": 8.491e-5, "kd_error": 1.273e-5, "KD": 2.244e-10, "KD_error": 0.336e-10},
-      {"label": "TNF Q21A", "residue": "GLN21", "ka": 2.286e4, "ka_error": 0.342e4, "kd": 5.338e-4, "kd_error": 0.801e-4, "KD": 2.335e-8, "KD_error": 0.350e-8},
-      {"label": "TNF E23A", "residue": "GLU23", "ka": 2.665e5, "ka_error": 0.399e5, "kd": 3.886e-4, "kd_error": 0.582e-4, "KD": 1.458e-9, "KD_error": 0.218e-9},
-      {"label": "TNF K65A", "residue": "LYS65", "ka": 3.211e4, "ka_error": 0.481e4, "kd": 4.339e-4, "kd_error": 0.650e-4, "KD": 1.351e-8, "KD_error": 0.202e-8},
-      {"label": "TNF Q67A", "residue": "GLN67", "ka": 2.557e4, "ka_error": 3.383e4, "kd": 5.087e-4, "kd_error": 0.763e-4, "KD": 1.989e-8, "KD_error": 0.298e-8},
-      {"label": "TNF T72A", "residue": "THR72", "ka": 4.778e5, "ka_error": 0.716e5, "kd": 5.033e-5, "kd_error": 0.755e-5, "KD": 1.053e-10, "KD_error": 0.157e-10},
-      {"label": "TNF K90A", "residue": "LYS90", "ka": 3.956e5, "ka_error": 0.593e5, "kd": 3.893e-4, "kd_error": 0.583e-4, "KD": 9.841e-10, "KD_error": 1.476e-10},
-      {"label": "TNF V91A", "residue": "VAL91", "ka": 1.159e5, "ka_error": 0.173e5, "kd": 8.496e-5, "kd_error": 1.274e-5, "KD": 5.593e-10, "KD_error": 0.838e-10},
-      {"label": "TNF N92A", "residue": "ASN92", "ka": 2.554e5, "ka_error": 0.383e5, "kd": 5.223e-4, "kd_error": 0.783e-4, "KD": 2.045e-9, "KD_error": 0.306e-9},
-      {"label": "TNF E110A", "residue": "GLU110", "ka": 2.144e5, "ka_error": 0.321e5, "kd": 2.967e-5, "kd_error": 0.445e-5, "KD": 1.384e-10, "KD_error": 0.207e-10},
-      {"label": "TNF P113A", "residue": "PRO113", "ka": 1.187e6, "ka_error": 0.178e6, "kd": 1.394e-3, "kd_error": 0.209e-3, "KD": 1.175e-9, "KD_error": 0.176e-9},
-      {"label": "TNF E135A", "residue": "GLU135", "ka": 2.493e4, "ka_error": 0.373e4, "kd": 2.948e-4, "kd_error": 0.442e-4, "KD": 1.183e-8, "KD_error": 0.177e-8},
-      {"label": "TNF I136A", "residue": "ILE136", "ka": 4.666e5, "ka_error": 0.699e5, "kd": 5.133e-5, "kd_error": 0.769e-5, "KD": 1.100e-10, "KD_error": 0.165e-10},
-      {"label": "TNF E146A", "residue": "GLU146", "ka": 2.337e4, "ka_error": 0.350e4, "kd": 4.223e-4, "kd_error": 0.633e-4, "KD": 1.808e-8, "KD_error": 0.271e-8}
+      {
+        "label": "WT TNFalpha",
+        "residue": null,
+        "ka": 478400.0,
+        "ka_error": 71700.0,
+        "kd": 5.512e-05,
+        "kd_error": 8.26e-06,
+        "KD": 1.152e-10,
+        "KD_error": 1.72e-11
+      },
+      {
+        "label": "TNF P20A",
+        "residue": "PRO20",
+        "ka": 378500.0,
+        "ka_error": 56700.0,
+        "kd": 8.491e-05,
+        "kd_error": 1.273e-05,
+        "KD": 2.244e-10,
+        "KD_error": 3.36e-11
+      },
+      {
+        "label": "TNF Q21A",
+        "residue": "GLN21",
+        "ka": 22860.0,
+        "ka_error": 3420.0,
+        "kd": 0.0005338,
+        "kd_error": 8.01e-05,
+        "KD": 2.335e-08,
+        "KD_error": 3.5e-09
+      },
+      {
+        "label": "TNF E23A",
+        "residue": "GLU23",
+        "ka": 266500.0,
+        "ka_error": 39900.0,
+        "kd": 0.0003886,
+        "kd_error": 5.82e-05,
+        "KD": 1.458e-09,
+        "KD_error": 2.18e-10
+      },
+      {
+        "label": "TNF K65A",
+        "residue": "LYS65",
+        "ka": 32110.0,
+        "ka_error": 4810.0,
+        "kd": 0.0004339,
+        "kd_error": 6.5e-05,
+        "KD": 1.351e-08,
+        "KD_error": 2.02e-09
+      },
+      {
+        "label": "TNF Q67A",
+        "residue": "GLN67",
+        "ka": 25570.0,
+        "ka_error": 33830.0,
+        "kd": 0.0005087,
+        "kd_error": 7.63e-05,
+        "KD": 1.989e-08,
+        "KD_error": 2.98e-09
+      },
+      {
+        "label": "TNF T72A",
+        "residue": "THR72",
+        "ka": 477800.0,
+        "ka_error": 71600.0,
+        "kd": 5.033e-05,
+        "kd_error": 7.55e-06,
+        "KD": 1.053e-10,
+        "KD_error": 1.57e-11
+      },
+      {
+        "label": "TNF K90A",
+        "residue": "LYS90",
+        "ka": 395600.0,
+        "ka_error": 59300.0,
+        "kd": 0.0003893,
+        "kd_error": 5.83e-05,
+        "KD": 9.841e-10,
+        "KD_error": 1.476e-10
+      },
+      {
+        "label": "TNF V91A",
+        "residue": "VAL91",
+        "ka": 115900.0,
+        "ka_error": 17300.0,
+        "kd": 8.496e-05,
+        "kd_error": 1.274e-05,
+        "KD": 5.593e-10,
+        "KD_error": 8.38e-11
+      },
+      {
+        "label": "TNF N92A",
+        "residue": "ASN92",
+        "ka": 255400.0,
+        "ka_error": 38300.0,
+        "kd": 0.0005223,
+        "kd_error": 7.83e-05,
+        "KD": 2.045e-09,
+        "KD_error": 3.06e-10
+      },
+      {
+        "label": "TNF E110A",
+        "residue": "GLU110",
+        "ka": 214400.0,
+        "ka_error": 32100.0,
+        "kd": 2.967e-05,
+        "kd_error": 4.45e-06,
+        "KD": 1.384e-10,
+        "KD_error": 2.07e-11
+      },
+      {
+        "label": "TNF P113A",
+        "residue": "PRO113",
+        "ka": 1187000.0,
+        "ka_error": 178000.0,
+        "kd": 0.001394,
+        "kd_error": 0.000209,
+        "KD": 1.175e-09,
+        "KD_error": 1.76e-10
+      },
+      {
+        "label": "TNF E135A",
+        "residue": "GLU135",
+        "ka": 24930.0,
+        "ka_error": 3730.0,
+        "kd": 0.0002948,
+        "kd_error": 4.42e-05,
+        "KD": 1.183e-08,
+        "KD_error": 1.77e-09
+      },
+      {
+        "label": "TNF I136A",
+        "residue": "ILE136",
+        "ka": 466600.0,
+        "ka_error": 69900.0,
+        "kd": 5.133e-05,
+        "kd_error": 7.69e-06,
+        "KD": 1.1e-10,
+        "KD_error": 1.65e-11
+      },
+      {
+        "label": "TNF E146A",
+        "residue": "GLU146",
+        "ka": 23370.0,
+        "ka_error": 3500.0,
+        "kd": 0.0004223,
+        "kd_error": 6.33e-05,
+        "KD": 1.808e-08,
+        "KD_error": 2.71e-09
+      }
     ],
     "transcription_notes": [
       "The kd cell for P113A is printed as 1.394 +/- 0.209 x 10(3) s^-1. The printed KD and ka are self-consistent only with 1.394 x 10(-3); the exponent sign is missing in the rendering, so the negative exponent is recorded here.",
@@ -49,9 +207,26 @@
     ]
   },
   "authors_own_conclusions_as_printed": {
-    "no_obvious_effect": ["PRO20", "THR72", "LYS90", "VAL91", "GLU110", "ILE136"],
-    "five_to_ten_fold_decrease": ["GLU23", "ASN92", "PRO113"],
-    "hundred_to_two_hundred_fold_decrease": ["GLN21", "LYS65", "GLN67", "GLU135", "GLU146"],
+    "no_obvious_effect": [
+      "PRO20",
+      "THR72",
+      "LYS90",
+      "VAL91",
+      "GLU110",
+      "ILE136"
+    ],
+    "five_to_ten_fold_decrease": [
+      "GLU23",
+      "ASN92",
+      "PRO113"
+    ],
+    "hundred_to_two_hundred_fold_decrease": [
+      "GLN21",
+      "LYS65",
+      "GLN67",
+      "GLU135",
+      "GLU146"
+    ],
     "quote": "Notably, the mutant TNF Q21A presented a sharp decrease in the binding to Adalimumab with a 200-fold lower binding affinity. The same phenomenon was observed in the TNF K65A, TNF Q67A, TNF E135A, and TNF E146A mutations. All of these mutants resulted in a 100-200-fold affinity decrease.",
     "note": "The authors' own residue labels in this passage use the numbering of Table 3, which matches the deposited 3WD5 author numbering."
   },
@@ -66,8 +241,24 @@
     "cdr_claim_quote": "Both the heavy and light chains of Adalimumab participated in the interaction with TNF-alpha, with all of the contacts coming from CDRs. CDRs L2 and H2 contribute to the majority of the interactions with the antigen.",
     "hydrogen_bond_claim_quote": "Over 20 pairs of hydrogen bonds or salt bridges stabilized the TNF-alpha-Adalimumab Fab complex (Table 2).",
     "epitope_residue_list_as_printed": {
-      "deposited_protomer": ["PRO19", "GLN20", "GLU23", "LYS65-GLN67", "GLU110-PRO113", "TYR141", "ALA145-GLU146"],
-      "adjacent_protomer": ["THR71", "HIS72", "THR77", "THR79", "SER81", "LYS89-ASN91", "GLU135-ASN137"],
+      "deposited_protomer": [
+        "PRO19",
+        "GLN20",
+        "GLU23",
+        "LYS65-GLN67",
+        "GLU110-PRO113",
+        "TYR141",
+        "ALA145-GLU146"
+      ],
+      "adjacent_protomer": [
+        "THR71",
+        "HIS72",
+        "THR77",
+        "THR79",
+        "SER81",
+        "LYS89-ASN91",
+        "GLU135-ASN137"
+      ],
       "numbering_note": "Part of this printed list is offset by one relative to Table 3 and to the deposited 3WD5 coordinates: the printed Pro-19/Gln-20 and Thr-71/His-72 and Lys-89 to Asn-91 correspond to Pro20/Gln21, Thr72/His73 and Lys90 to Asn92 in Table 3 and in the coordinate file. The remaining listed residues match. This is recorded as an observation about the printed text, not a correction of the structure."
     }
   },

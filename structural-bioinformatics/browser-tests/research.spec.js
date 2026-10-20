@@ -517,6 +517,24 @@ test("executed surface analysis is readable as an optional numerical report", as
     await expect(page.locator("#presentation-help")).toBeHidden();
 });
 
+test("docking validation shows its gates and names the one that failed", async ({ page }) => {
+    const errors = [];
+    page.on("pageerror", error => errors.push(error.message));
+    await page.goto(`${route}?tab=methods`);
+    await expect(page.locator("#docking-validation")).toHaveAttribute("data-state", "ready");
+    const rows = page.locator("#docking-gates-body tr");
+    await expect(rows).toHaveCount(3);
+    // The two gates that passed and the one that failed are all visible.
+    await expect(rows.nth(0)).toHaveAttribute("data-passed", "true");
+    await expect(rows.nth(1)).toHaveAttribute("data-passed", "true");
+    await expect(rows.nth(2)).toHaveAttribute("data-passed", "false");
+    await expect(page.locator("#docking-gates-body")).toContainText("۱٫۱۵۵");
+    await expect(page.locator("#docking-status")).toContainText("قبول نشد");
+    // A failed gate is never dressed up as a pass.
+    await expect(page.locator('#docking-gates-body tr[data-passed="false"] td:last-child')).toHaveText("خیر");
+    expect(errors).toEqual([]);
+});
+
 for (const width of [1440, 390]) {
     test(`audience slides navigate offline with readable local media at ${width}px`, async ({ page, context }) => {
         await page.setViewportSize({ width, height: 900 });

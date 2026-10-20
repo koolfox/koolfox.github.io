@@ -267,6 +267,10 @@ The weekly plan carries the course outline. A closed disclosure lists every syll
 
 Sequence previews use the dedicated monospace role, a pale stage surface, visible border and control radius. They remain LTR, keyboard focusable and locally scrollable. Code blocks use code paper and local horizontal scrolling; inline code receives a small quiet fill. Source FASTA and Markdown downloads remain available beside the corresponding view.
 
+### Executed Numerical Panels
+
+The methods tab carries executed analyses as reading tables driven by a small processed record: the RNA-seq group summary and the docking validation gates. Each panel states its own limits next to the numbers, and a gate that failed stays visible as a failure in the local failure ink. A panel never summarises a mixed result as a pass, and the source record stays the single place the numbers live.
+
 ### Molecular Stage
 
 The experimental-coordinate view is framed with a thin stroke and the stage radius. The static image remains an available fallback. Status, chain visibility/color controls, source accession, representation caveat and residue readout stay tied to the displayed structure. Movement controls affect the camera and visibility; the interface does not suggest molecular dynamics.

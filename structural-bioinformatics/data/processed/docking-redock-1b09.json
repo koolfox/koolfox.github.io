@@ -1,0 +1,341 @@
+{
+  "pdb_id": "1B09",
+  "question": "Can the docking engine reproduce a ligand pose that the crystal structure already shows, and does the score tell the true site from a wrong one?",
+  "method": {
+    "engine": "AutoDock Vina",
+    "engine_version": "1.2.7",
+    "scoring_function": "vina",
+    "parameters": {
+      "exhaustiveness": 32,
+      "seed": 42,
+      "cpu": 4,
+      "poses_requested": 20
+    },
+    "receptor": {
+      "chains": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "protein_atoms": 8160,
+      "calcium_ions": 10,
+      "waters_removed": 0,
+      "ligand_removed": 55,
+      "source_file": "data/raw/structures/1B09.pdb",
+      "source_sha256": "364ab3d32aa82059cb2727daeaf2b642c3e885fb16c1bd9954cf45f542eeb872"
+    },
+    "ligand": {
+      "code": "PC",
+      "name": "phosphocholine",
+      "source": {
+        "url": "https://files.rcsb.org/ligands/download/PC_ideal.sdf",
+        "sha256": "63fde3890ff28f5338e8364d83cf505f32a985fbdcb3ede788a3dcd419bd5ac6",
+        "bytes": 1844
+      },
+      "note": "the deposited ligand is the RMSD reference; the ideal model is docked"
+    },
+    "reference_pose": {
+      "chain": "A",
+      "residue": 500,
+      "atoms": [
+        "P1",
+        "O1",
+        "O3",
+        "O4",
+        "O2",
+        "C1",
+        "C2",
+        "N1",
+        "C3",
+        "C4",
+        "C5"
+      ],
+      "heavy_atoms": 11
+    },
+    "rmsd": "symmetry-corrected heavy-atom RMSD to the deposited phosphocholine"
+  },
+  "checks": {
+    "pose_reproduced": {
+      "criterion": "RMSD of the top ranked pose to the crystal pose is at most 2.0 Å",
+      "top_pose_rmsd_angstrom": 1.155,
+      "best_pose_rmsd_angstrom": 1.044,
+      "best_pose_rank": 3,
+      "passed": true
+    },
+    "site_reproduced": {
+      "criterion": "the phosphorus of the top pose sits in the calcium pocket of the crystal ligand, within 1 Å of the crystal distance",
+      "crystal_phosphorus_to_calcium_angstrom": 3.05,
+      "top_pose_phosphorus_to_calcium_angstrom": 3.26,
+      "control_pose_phosphorus_to_calcium_angstrom": 28.85,
+      "passed": true
+    },
+    "score_separates_sites": {
+      "criterion": "the native site scores at least 1.0 kcal/mol better than the wrong site",
+      "native_affinity_kcal_per_mole": -4.201,
+      "control_affinity_kcal_per_mole": -4.56,
+      "difference_kcal_per_mole": 0.359,
+      "passed": false
+    }
+  },
+  "poses": {
+    "native": [
+      {
+        "rank": 1,
+        "affinity_kcal_per_mole": -4.201,
+        "rmsd_to_crystal_pose_angstrom": 1.155,
+        "phosphorus_to_nearest_calcium_angstrom": 3.26
+      },
+      {
+        "rank": 2,
+        "affinity_kcal_per_mole": -4.169,
+        "rmsd_to_crystal_pose_angstrom": 1.127,
+        "phosphorus_to_nearest_calcium_angstrom": 2.97
+      },
+      {
+        "rank": 3,
+        "affinity_kcal_per_mole": -4.015,
+        "rmsd_to_crystal_pose_angstrom": 1.044,
+        "phosphorus_to_nearest_calcium_angstrom": 2.87
+      },
+      {
+        "rank": 4,
+        "affinity_kcal_per_mole": -3.99,
+        "rmsd_to_crystal_pose_angstrom": 1.128,
+        "phosphorus_to_nearest_calcium_angstrom": 3.02
+      },
+      {
+        "rank": 5,
+        "affinity_kcal_per_mole": -3.857,
+        "rmsd_to_crystal_pose_angstrom": 1.165,
+        "phosphorus_to_nearest_calcium_angstrom": 2.98
+      },
+      {
+        "rank": 6,
+        "affinity_kcal_per_mole": -3.668,
+        "rmsd_to_crystal_pose_angstrom": 4.721,
+        "phosphorus_to_nearest_calcium_angstrom": 6.96
+      },
+      {
+        "rank": 7,
+        "affinity_kcal_per_mole": -3.601,
+        "rmsd_to_crystal_pose_angstrom": 2.682,
+        "phosphorus_to_nearest_calcium_angstrom": 2.95
+      },
+      {
+        "rank": 8,
+        "affinity_kcal_per_mole": -3.503,
+        "rmsd_to_crystal_pose_angstrom": 6.653,
+        "phosphorus_to_nearest_calcium_angstrom": 2.93
+      },
+      {
+        "rank": 9,
+        "affinity_kcal_per_mole": -3.464,
+        "rmsd_to_crystal_pose_angstrom": 3.019,
+        "phosphorus_to_nearest_calcium_angstrom": 3.25
+      },
+      {
+        "rank": 10,
+        "affinity_kcal_per_mole": -3.447,
+        "rmsd_to_crystal_pose_angstrom": 2.542,
+        "phosphorus_to_nearest_calcium_angstrom": 3.0
+      },
+      {
+        "rank": 11,
+        "affinity_kcal_per_mole": -3.431,
+        "rmsd_to_crystal_pose_angstrom": 9.777,
+        "phosphorus_to_nearest_calcium_angstrom": 11.4
+      },
+      {
+        "rank": 12,
+        "affinity_kcal_per_mole": -3.413,
+        "rmsd_to_crystal_pose_angstrom": 9.227,
+        "phosphorus_to_nearest_calcium_angstrom": 11.22
+      },
+      {
+        "rank": 13,
+        "affinity_kcal_per_mole": -3.256,
+        "rmsd_to_crystal_pose_angstrom": 8.396,
+        "phosphorus_to_nearest_calcium_angstrom": 9.43
+      },
+      {
+        "rank": 14,
+        "affinity_kcal_per_mole": -3.227,
+        "rmsd_to_crystal_pose_angstrom": 4.939,
+        "phosphorus_to_nearest_calcium_angstrom": 3.1
+      },
+      {
+        "rank": 15,
+        "affinity_kcal_per_mole": -3.21,
+        "rmsd_to_crystal_pose_angstrom": 2.977,
+        "phosphorus_to_nearest_calcium_angstrom": 3.41
+      },
+      {
+        "rank": 16,
+        "affinity_kcal_per_mole": -3.177,
+        "rmsd_to_crystal_pose_angstrom": 8.422,
+        "phosphorus_to_nearest_calcium_angstrom": 8.44
+      },
+      {
+        "rank": 17,
+        "affinity_kcal_per_mole": -3.171,
+        "rmsd_to_crystal_pose_angstrom": 8.072,
+        "phosphorus_to_nearest_calcium_angstrom": 8.11
+      },
+      {
+        "rank": 18,
+        "affinity_kcal_per_mole": -3.151,
+        "rmsd_to_crystal_pose_angstrom": 8.332,
+        "phosphorus_to_nearest_calcium_angstrom": 9.41
+      },
+      {
+        "rank": 19,
+        "affinity_kcal_per_mole": -3.149,
+        "rmsd_to_crystal_pose_angstrom": 5.001,
+        "phosphorus_to_nearest_calcium_angstrom": 7.8
+      },
+      {
+        "rank": 20,
+        "affinity_kcal_per_mole": -3.109,
+        "rmsd_to_crystal_pose_angstrom": 2.194,
+        "phosphorus_to_nearest_calcium_angstrom": 4.02
+      }
+    ],
+    "control": [
+      {
+        "rank": 1,
+        "affinity_kcal_per_mole": -4.56,
+        "rmsd_to_crystal_pose_angstrom": 67.501,
+        "phosphorus_to_nearest_calcium_angstrom": 28.85
+      },
+      {
+        "rank": 2,
+        "affinity_kcal_per_mole": -4.554,
+        "rmsd_to_crystal_pose_angstrom": 67.413,
+        "phosphorus_to_nearest_calcium_angstrom": 29.41
+      },
+      {
+        "rank": 3,
+        "affinity_kcal_per_mole": -4.55,
+        "rmsd_to_crystal_pose_angstrom": 67.861,
+        "phosphorus_to_nearest_calcium_angstrom": 28.43
+      },
+      {
+        "rank": 4,
+        "affinity_kcal_per_mole": -4.537,
+        "rmsd_to_crystal_pose_angstrom": 67.776,
+        "phosphorus_to_nearest_calcium_angstrom": 28.75
+      },
+      {
+        "rank": 5,
+        "affinity_kcal_per_mole": -4.495,
+        "rmsd_to_crystal_pose_angstrom": 67.905,
+        "phosphorus_to_nearest_calcium_angstrom": 28.39
+      },
+      {
+        "rank": 6,
+        "affinity_kcal_per_mole": -4.492,
+        "rmsd_to_crystal_pose_angstrom": 67.18,
+        "phosphorus_to_nearest_calcium_angstrom": 29.29
+      },
+      {
+        "rank": 7,
+        "affinity_kcal_per_mole": -4.448,
+        "rmsd_to_crystal_pose_angstrom": 67.894,
+        "phosphorus_to_nearest_calcium_angstrom": 28.38
+      },
+      {
+        "rank": 8,
+        "affinity_kcal_per_mole": -4.25,
+        "rmsd_to_crystal_pose_angstrom": 66.533,
+        "phosphorus_to_nearest_calcium_angstrom": 26.97
+      },
+      {
+        "rank": 9,
+        "affinity_kcal_per_mole": -4.179,
+        "rmsd_to_crystal_pose_angstrom": 66.925,
+        "phosphorus_to_nearest_calcium_angstrom": 26.39
+      },
+      {
+        "rank": 10,
+        "affinity_kcal_per_mole": -4.151,
+        "rmsd_to_crystal_pose_angstrom": 66.669,
+        "phosphorus_to_nearest_calcium_angstrom": 25.94
+      },
+      {
+        "rank": 11,
+        "affinity_kcal_per_mole": -4.136,
+        "rmsd_to_crystal_pose_angstrom": 68.11,
+        "phosphorus_to_nearest_calcium_angstrom": 28.96
+      },
+      {
+        "rank": 12,
+        "affinity_kcal_per_mole": -4.126,
+        "rmsd_to_crystal_pose_angstrom": 68.32,
+        "phosphorus_to_nearest_calcium_angstrom": 28.47
+      },
+      {
+        "rank": 13,
+        "affinity_kcal_per_mole": -4.085,
+        "rmsd_to_crystal_pose_angstrom": 67.574,
+        "phosphorus_to_nearest_calcium_angstrom": 30.81
+      },
+      {
+        "rank": 14,
+        "affinity_kcal_per_mole": -3.864,
+        "rmsd_to_crystal_pose_angstrom": 67.863,
+        "phosphorus_to_nearest_calcium_angstrom": 29.03
+      },
+      {
+        "rank": 15,
+        "affinity_kcal_per_mole": -3.863,
+        "rmsd_to_crystal_pose_angstrom": 68.244,
+        "phosphorus_to_nearest_calcium_angstrom": 31.81
+      },
+      {
+        "rank": 16,
+        "affinity_kcal_per_mole": -3.778,
+        "rmsd_to_crystal_pose_angstrom": 68.292,
+        "phosphorus_to_nearest_calcium_angstrom": 29.31
+      },
+      {
+        "rank": 17,
+        "affinity_kcal_per_mole": -3.682,
+        "rmsd_to_crystal_pose_angstrom": 66.877,
+        "phosphorus_to_nearest_calcium_angstrom": 27.83
+      },
+      {
+        "rank": 18,
+        "affinity_kcal_per_mole": -3.554,
+        "rmsd_to_crystal_pose_angstrom": 66.66,
+        "phosphorus_to_nearest_calcium_angstrom": 25.97
+      }
+    ]
+  },
+  "pose_distribution": {
+    "native_poses_written": 20,
+    "native_poses_within_2_angstrom": 5,
+    "native_rmsd_range_angstrom": [
+      1.044,
+      9.777
+    ],
+    "control_poses_written": 18,
+    "control_rmsd_range_angstrom": [
+      66.533,
+      68.32
+    ]
+  },
+  "limitations": [
+    "This is a method check on one known case, not a search for a new binder.",
+    "The Vina score is a ranking function, not an affinity; it is not a binding free energy.",
+    "The control site is the protein atom furthest from every phosphocholine that is also at least 6 Å from every calcium, so it holds neither a known ligand nor a metal site.",
+    "The ligand is docked as the ideal chemical component model and compared with the deposited pose; the two are not the same conformer to begin with.",
+    "Nothing here measures adalimumab, TNF binding strength, or the TOP2A question."
+  ],
+  "software": {
+    "python": "3.12.15",
+    "engine": "1.2.7"
+  },
+  "generated_at_utc": "2026-10-20T07:29:50+00:00"
+}

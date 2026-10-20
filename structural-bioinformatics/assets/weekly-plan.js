@@ -33,6 +33,87 @@ function remember(week) {
   try { localStorage.setItem(storageKey, String(week)); } catch { /* storage unavailable */ }
 }
 
+function sessionsLabel(first, last) {
+  return first === last ? "جلسهٔ " + fa(first) : "جلسات " + fa(first) + " تا " + fa(last);
+}
+
+function coverageSummary(entries, legend) {
+  const counts = new Map();
+  for (const entry of entries) counts.set(entry.status, (counts.get(entry.status) || 0) + 1);
+  if (!counts.size) return "";
+  const parts = [];
+  for (const status of Object.keys(legend)) {
+    if (!counts.has(status)) continue;
+    parts.push(fa(counts.get(status)) + " " + legend[status].label);
+  }
+  return parts.join("، ");
+}
+
+/** The whole course outline, so the reader can see where each week sits. */
+function renderSyllabusMap(plan) {
+  const container = $("syllabus-map-body");
+  if (!container) return;
+  const legend = plan.coverage_legend || {};
+  const rows = [];
+  let sessions = 0;
+  let blocks = 0;
+  for (const week of plan.weeks) {
+    for (const outline of week.course.blocks) {
+      blocks += 1;
+      sessions += outline.last_session - outline.first_session + 1;
+      const entries = week.course.topics.filter((entry) => entry.block === outline.id);
+      const row = node("div", "", "syllabus-map-row");
+      const title = node("p", "", "syllabus-map-title");
+      title.append(node("strong", outline.title));
+      const meta = node("p", "", "syllabus-map-meta");
+      meta.append(sessionsLabel(outline.first_session, outline.last_session));
+      const coverage = coverageSummary(entries, legend);
+      if (coverage) meta.append(" — " + coverage);
+      const weekLink = link("هفتهٔ " + fa(week.week), readerHref({ document: plan.document, chapter: "chapter-" + week.week }));
+      weekLink.className = "syllabus-map-week";
+      row.append(title, meta, weekLink);
+      rows.push(row);
+    }
+  }
+  const summary = node("ul", "", "syllabus-map-legend");
+  for (const status of Object.keys(legend)) {
+    const item = node("li");
+    item.append(node("strong", legend[status].label + " — "), legend[status].meaning);
+    summary.append(item);
+  }
+  const note = node("p", "", "syllabus-map-note");
+  note.append("این جدول وضعیت ارائهٔ ماست، نه برنامهٔ استاد درس؛ انتخاب موضوع‌ها به ایشان نسبت داده نمی‌شود.");
+  const heading = node("p", "", "syllabus-map-count");
+  heading.append(fa(blocks) + " بخش سرفصل، " + fa(sessions) + " جلسه، " + fa(plan.weeks.length) + " هفتهٔ ارائه.");
+  container.replaceChildren(heading, ...rows, summary, note);
+}
+
+/** The syllabus topics of one week and how far this project has taken each of them. */
+function renderWeekTopics(week, legend) {
+  const topics = week.course.topics || [];
+  if (!topics.length) return null;
+  const wrapper = node("div", "", "week-block week-topics-block");
+  wrapper.id = "week-syllabus";
+  wrapper.append(node("h4", "سرفصل این هفته و پوشش ما در پروژه"));
+  const list = node("ul", "", "week-topics");
+  for (const entry of topics) {
+    const item = node("li");
+    item.dataset.status = entry.status;
+    const status = node("span", "", "week-topic-status");
+    status.textContent = legend[entry.status] ? legend[entry.status].label : entry.status;
+    const topic = node("span", "", "week-topic");
+    topic.setAttribute("dir", "auto");
+    topic.textContent = entry.topic;
+    const note = node("span", "", "week-topic-note");
+    note.setAttribute("dir", "auto");
+    note.textContent = entry.note;
+    item.append(status, topic, note);
+    list.append(item);
+  }
+  wrapper.append(list);
+  return wrapper;
+}
+
 function block(number, heading) {
   const wrapper = node("div", "", "week-block");
   wrapper.append(node("h4", number + ". " + heading));
@@ -94,12 +175,16 @@ function renderWeek(plan, titles, week) {
 
   const course = node("p", "", "week-course");
   course.id = "week-course";
-  course.append(node("strong", "جای این هفته در درس: "), "بخش «" + week.course.block_title + "»، " + week.course.sessions + ". " + week.course.uses);
+  const blocks = week.course.blocks
+    .map((block) => "بخش «" + block.title + "» (" + sessionsLabel(block.first_session, block.last_session) + ")")
+    .join(" و ");
+  course.append(node("strong", "جای این هفته در درس: "), blocks + ". " + week.course.uses);
   if (week.course.ahead) {
     const ahead = node("p", "", "week-ahead");
     ahead.append(node("strong", "جلوتر از کلاس: "), week.course.ahead);
     course.append(ahead);
   }
+  const topics = renderWeekTopics(week, plan.coverage_legend || {});
 
   const slides = block("۱", "ارائهٔ این هفته");
   slides.append(list(week.chapters, (chapter) => node("li", "اسلاید " + fa(chapter + 1) + ": " + (titles[chapter - 1] || ""))));
@@ -161,7 +246,9 @@ function renderWeek(plan, titles, week) {
     appendix.id = "week-appendix-link";
     navigation.append(appendix);
   }
-  card.replaceChildren(heading, question, course, slides, reading, paperBlock(week.papers), concepts, talk, experiment, questionBlock(week.expect_questions), deliverable, paper, navigation);
+  card.replaceChildren(heading, question, course);
+  if (topics) card.append(topics);
+  card.append(slides, reading, paperBlock(week.papers), concepts, talk, experiment, questionBlock(week.expect_questions), deliverable, paper, navigation);
 }
 
 function select(plan, titles, number, store = true) {
@@ -185,7 +272,7 @@ async function initialize() {
     ]);
     if (!planResponse.ok) throw new Error("plan unavailable");
     const plan = await planResponse.json();
-    if (plan.version !== 1 || !Array.isArray(plan.weeks) || !plan.weeks.length) throw new Error("Unexpected plan");
+    if (plan.version !== 2 || !Array.isArray(plan.weeks) || !plan.weeks.length) throw new Error("Unexpected plan");
     const titles = deckResponse.ok
       ? (await deckResponse.text()).split("\n").filter((line) => line.startsWith("## ")).map((line) => line.slice(3).replace(/^[\d۰-۹]+\.\s*/, ""))
       : [];
@@ -206,6 +293,7 @@ async function initialize() {
     const fromURL = Number(new URLSearchParams(location.search).get("week"));
     const fromStorage = Number(remembered());
     select(plan, titles, fromURL || fromStorage || 1, Boolean(fromURL));
+    renderSyllabusMap(plan);
     section.dataset.state = "ready";
     $("weekly-status").textContent = "هفته‌های قبل با رنگ کم‌رنگ‌تر علامت خورده‌اند. انتخاب شما فقط در همین مرورگر ذخیره می‌شود.";
   } catch {

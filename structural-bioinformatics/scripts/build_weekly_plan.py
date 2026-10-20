@@ -33,6 +33,41 @@ def reader_link(item, label):
     return f"[{label}]({item['document']}{chapter})"
 
 
+def sessions_label(first, last):
+    if first == last:
+        return f"جلسهٔ {fa(first)}"
+    return f"جلسات {fa(first)} تا {fa(last)}"
+
+
+def course_heading(course):
+    """Name the syllabus blocks a week sits in, with their session ranges."""
+    parts = [
+        f"بخش «{block['title']}» ({sessions_label(block['first_session'], block['last_session'])})"
+        for block in course["blocks"]
+    ]
+    return " و ".join(parts)
+
+
+def block_topics(week, syllabus):
+    """Split a week's topic list back into the syllabus blocks it belongs to."""
+    grouped = {block["id"]: [] for block in syllabus["blocks"]}
+    for entry in week["course"]["topics"]:
+        grouped[entry["block"]].append(entry)
+    return grouped
+
+
+def coverage_summary(entries, legend):
+    counts = {}
+    for entry in entries:
+        counts[entry["status"]] = counts.get(entry["status"], 0) + 1
+    if not counts:
+        return "—"
+    parts = [
+        f"{fa(counts[status])} {legend[status]['label']}" for status in legend if status in counts
+    ]
+    return "، ".join(parts)
+
+
 def goal_block(goal, weeks):
     return [
         f"**هدف نهایی: یک مقالهٔ کوتاه در پایان هفتهٔ {fa(len(weeks))}**",
@@ -55,6 +90,16 @@ def goal_block(goal, weeks):
     ]
 
 
+def course_sessions(course):
+    blocks = course["blocks"]
+    if len(blocks) == 1:
+        return sessions_label(blocks[0]["first_session"], blocks[0]["last_session"])
+    ranges = " و ".join(
+        f"{fa(block['first_session'])} تا {fa(block['last_session'])}" for block in blocks
+    )
+    return f"جلسات {ranges}"
+
+
 def overview_table(plan):
     rows = [
         "| هفته | بخش سرفصل درس | جلسات | گام ارائهٔ ما | اسلایدها |",
@@ -63,14 +108,38 @@ def overview_table(plan):
     for week in plan["weeks"]:
         slides = "، ".join(fa(c + 1) for c in week["chapters"])
         course = week["course"]
+        titles = " و ".join(block["title"] for block in course["blocks"])
         rows.append(
-            f"| {fa(week['week'])} | {course['block_title']} | {course['sessions']} | "
+            f"| {fa(week['week'])} | {titles} | {course_sessions(course)} | "
             f"{week['title']} | {slides} |"
         )
     return rows
 
 
-def week_section(week, titles):
+def syllabus_map(plan, syllabus):
+    """The whole course outline next to the coverage this project actually reached."""
+    legend = plan["coverage_legend"]
+    rows = [
+        "| بخش سرفصل درس | جلسات | هفتهٔ ارائه | موضوع‌ها | پوشش ما |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for block in syllabus["blocks"]:
+        week = block["weeks"][0]
+        entries = block_topics(plan["weeks"][week - 1], syllabus)[block["id"]]
+        count = fa(len(block["topics"])) if block["topics"] else "—"
+        sessions = sessions_label(block["first_session"], block["last_session"])
+        rows.append(
+            f"| {block['title']} | {sessions} | {fa(week)} | {count} | "
+            f"{coverage_summary(entries, legend)} |"
+        )
+    return rows
+
+
+def legend_list(legend):
+    return [f"- **{item['label']}**: {item['meaning']}" for item in legend.values()]
+
+
+def week_section(week, titles, legend):
     number = week["week"]
     course = week["course"]
     out = [
@@ -78,12 +147,20 @@ def week_section(week, titles):
         "",
         f"**پرسش این هفته:** {week['question']}",
         "",
-        f"**جای این هفته در درس:** بخش «{course['block_title']}»، {course['sessions']}. "
-        f"{course['uses']}",
+        f"**جای این هفته در درس:** {course_heading(course)}. {course['uses']}",
         "",
     ]
     if course.get("ahead"):
         out += [f"> جلوتر از کلاس: {course['ahead']}", ""]
+    out += ["**سرفصل این هفته و پوشش ما در پروژه:**", ""]
+    if course["topics"]:
+        out += ["| موضوع سرفصل | وضعیت | آنچه در این پروژه هست |", "| --- | --- | --- |"]
+        for entry in course["topics"]:
+            status = legend[entry["status"]]
+            out.append(f"| {entry['topic']} | {status['label']} | {entry['note']} |")
+    else:
+        out.append("این بخش از سرفصل موضوع جداگانه‌ای ندارد؛ فقط جای پروژه در درس تعریف می‌شود.")
+    out += [""]
     out += [
         f"**۱. ارائهٔ این هفته:** [اسلایدهای هفتهٔ {fa(number)}]"
         f"(../presentation.html?week={number}#slide-1)",
@@ -179,9 +256,15 @@ def render(plan, titles, syllabus):
         "خورده و فقط مفهومی را به کار می‌برد که کلاس تا آن جلسه گفته است؛ جایی که جلو می‌زنیم، "
         "با برچسب «جلوتر از کلاس» مشخص شده است.",
         "",
-        "هر هفته نُه بخش دارد: پرسش، جای آن در سرفصل، اسلایدها، خواندنی‌ها، شرح مقالهٔ همان "
-        "هفته، واژه‌های کلاسی، ترتیب گفتن مطلب، یک خرده‌آزمایش با عددهایی که باید ببینید، "
-        "پرسش‌های احتمالی کلاس، و یک گام مقاله.",
+        "**پوشش، جداست از سرفصل.** برای هر موضوع سرفصل نوشته شده که این پروژه تا کجا آن را "
+        "باز کرده است: «اجرا شده» یعنی با دادهٔ واقعی محاسبه شده، «بخشی» یعنی تنها بخشی از آن "
+        "پوشش داده شده، «مفهومی» یعنی فقط برای توضیح و تعیین مرز می‌آید، و «هنوز اجرا نشده» "
+        "یعنی برنامه‌ریزی‌شده ولی در این پروژه انجام نشده است. این جدول وضعیت ارائهٔ ماست، نه "
+        "برنامهٔ استاد درس.",
+        "",
+        "پیش از این بخش‌ها، پرسش هفته، جای آن در سرفصل و جدول پوشش موضوع‌های سرفصل می‌آید. "
+        "هر هفته نُه بخش شماره‌گذاری‌شده دارد: ارائه، پیش از کلاس، مقاله، واژه‌های کلاسی، "
+        "ترتیب گفتن مطلب، خرده‌آزمایش، پرسش‌های احتمالی کلاس، تحویلی ارائه و گام مقاله.",
         "",
         "**اسلایدهای هر هفته جدا باز می‌شوند.** پیوند «ارائهٔ این هفته» فقط صفحهٔ عنوان و "
         "اسلایدهای همان هفته را نشان می‌دهد. ارائهٔ کامل همچنان در "
@@ -192,12 +275,18 @@ def render(plan, titles, syllabus):
     out += overview_table(plan)
     out += [
         "",
+        "**نقشهٔ سرفصل درس و پوشش ما:**",
+        "",
+    ]
+    out += syllabus_map(plan, syllabus)
+    out += [
+        "",
         "شمارهٔ اسلاید با احتساب صفحهٔ عنوان است؛ یعنی فصل N متن ارائه، اسلاید N+1 است. "
         "در ارائهٔ هر هفته، اسلایدها از ۱ (صفحهٔ عنوان) دوباره شماره می‌خورند.",
         "",
     ]
     for week in plan["weeks"]:
-        out += week_section(week, titles)
+        out += week_section(week, titles, plan["coverage_legend"])
     out += appendix_section(plan["appendix"], titles)
     out += [
         "## اگر برنامهٔ کلاس فرق داشت",
@@ -208,6 +297,15 @@ def render(plan, titles, syllabus):
         "مفهومی که کلاس گفته تکیه دارد. اگر جلسه‌ها کمتر شد، دو هفتهٔ پشت‌سرهم را ادغام کنید "
         "(مثلاً ۵ و ۶). یک تست خودکار کنترل می‌کند که این سند، فایل JSON و شمارهٔ اسلایدها با "
         "هم یکی بمانند.",
+        "",
+        "**معنی چهار وضعیت پوشش:**",
+        "",
+    ]
+    out += legend_list(plan["coverage_legend"])
+    out += [
+        "",
+        "وضعیت هر موضوع در `data/metadata/weekly-plan.json` نگه داشته می‌شود و یک تست خودکار "
+        "کنترل می‌کند که هر موضوع سرفصل دقیقاً یک‌بار و با همان متن سرفصل پوشش داده شده باشد.",
         "",
     ]
     return "\n".join(out)

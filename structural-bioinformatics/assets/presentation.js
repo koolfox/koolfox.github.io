@@ -308,12 +308,13 @@ async function load() {
       }
       isolateScientificText(slide);
     }
-    slides.at(-1).classList.add('sources');
+    const sourcesSlide = slides.find((slide) => (slide.querySelector('h1')?.textContent || '').trim().startsWith('منابع')) || slides.at(-1);
+    sourcesSlide.classList.add('sources');
     await applyWeek();
     select.replaceChildren(...slides.map((slide, index) => new Option(`${fa(index + 1)}. ${slide.querySelector('h1').textContent}`, String(index))));
     select.disabled = false;
     document.getElementById('print-slides').disabled = false;
-    document.getElementById('sources-link').href = '#slide-' + slides.length;
+    document.getElementById('sources-link').href = '#slide-' + (slides.indexOf(sourcesSlide) + 1);
     if (!status.dataset.weekError) status.textContent = '';
     deck.dataset.state = 'ready';
     show(hashIndex());

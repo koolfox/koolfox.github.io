@@ -65,6 +65,6 @@ def test_claim_audit_matches_current_presentation_and_all_chapters():
     ledger = json.loads((PROJECT / "data/metadata/scientific-claim-audit.json").read_text())
     source = (PROJECT / ledger["reviewed_file"]).read_bytes()
     assert ledger["reviewed_sha256"] == hashlib.sha256(source).hexdigest()
-    assert {b["chapter"] for b in ledger["blocks"]} == set(range(1, 28))
+    assert {b["chapter"] for b in ledger["blocks"]} == set(range(1, 39))
     for block in ledger["blocks"]:
         assert block["exact_text"] in source.decode()

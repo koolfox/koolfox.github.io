@@ -19,6 +19,12 @@ def build_site(repository: Path, output: Path):
         shutil.copyfile(repository / name, output / name)
     for directory in ("assets", "optimization", "stochastic-processes"):
         shutil.copytree(repository / directory, output / directory)
+    karpathy = repository / "karpathy"
+    karpathy_target = output / "karpathy"
+    karpathy_target.mkdir()
+    for name in ("index.html", "README.md"):
+        shutil.copyfile(karpathy / name, karpathy_target / name)
+    shutil.copytree(karpathy / "assets", karpathy_target / "assets")
     project = repository / "structural-bioinformatics"
     target = output / "structural-bioinformatics"
     target.mkdir()

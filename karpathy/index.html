@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>از صفر تا GPT — دورهٔ Neural Networks: Zero to Hero</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="یادگیری هوش مصنوعی از صفر با روش تدریس کارپتی: هشت ویدیو، آزمایشگاه زندهٔ گرادیان و نقشهٔ راه." />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/karpathy.css" />
+</head>
+
+<body class="karpathy-page">
+    <div class="app-container">
+        <header class="site-header panel karpathy-header">
+            <div class="header-avatar" aria-hidden="true">K</div>
+            <div class="header-content">
+                <h1>
+                    از صفر تا GPT
+                    <span class="badge">Neural Networks: Zero to Hero</span>
+                </h1>
+                <p class="subtitle">
+                    هشت ویدیوی <bdi dir="ltr">Andrej Karpathy</bdi> به روش خودش: اول حدس بزن، بعد کد را اجرا کن.
+                    اینجا یک موتور <bdi dir="ltr">autograd</bdi> واقعی داری که گرادیان را قدم‌به‌قدم
+                    روی گراف نشانت می‌دهد، پس قبل از دیدن پاسخ، خودت حدس بزن.
+                </p>
+                <div class="header-links">
+                    <a class="chip" href="https://github.com/koolfox/Karpathy" target="_blank" rel="noopener noreferrer">ریپوی یادگیری</a>
+                    <a class="chip" href="https://github.com/karpathy/micrograd" target="_blank" rel="noopener noreferrer">micrograd</a>
+                    <a class="chip" href="../">صفحهٔ اصلی</a>
+                </div>
+            </div>
+        </header>
+
+        <nav class="portfolio-nav karpathy-nav" aria-label="بخش‌های صفحهٔ کارپتی">
+            <a href="#videos">۱. ویدیوها</a>
+            <a href="#lab">۲. آزمایشگاه گرادیان</a>
+            <a href="#roadmap">۳. نقشهٔ راه</a>
+        </nav>
+
+        <main class="stack">
+            <div class="karpathy-split">
+                <!-- ① ویدیوها -->
+                <section class="panel karpathy-catalog" id="videos" aria-labelledby="videos-title">
+                    <h2 id="videos-title">هشت جلسه <span>هر جلسه یک ویدیو و یک تمرین</span></h2>
+
+                    <ol class="lecture-list" id="lecture-list">
+                        <li class="lecture" data-lesson="1">
+                            <div class="lecture-thumb">
+                                <a href="https://www.youtube.com/watch?v=VMj-3S1tku0" target="_blank" rel="noopener noreferrer"
+                                    aria-label="تماشای ویدیوی یک: مقدمهٔ کامل شبکه‌های عصبی و بک‌پراپ">
+                                    <img src="https://img.youtube.com/vi/VMj-3S1tku0/0.jpg" width="320" height="180"
+                                        loading="lazy" alt="تصویر بندانگشتی ویدیوی یک: The spelled-out intro to neural networks" />
+                                </a>
+                            </div>
+                            <div class="lecture-body">
+                                <div class="lecture-head">
+                                    <h3>مقدمهٔ کامل شبکه‌های عصبی و بک‌پراپ</h3>
+                                    <span class="lecture-duration">۱۴۶ دقیقه</span>
+                                </div>
+                                <p class="lecture-topic">
+                                    ساخت <bdi dir="ltr">micrograd</bdi> از صفر: گراف پویا، مرتب‌سازی توپولوژیک، قاعدهٔ زنجیره.
+                                </p>
+                                <p class="lecture-original" dir="ltr">The spelled-out intro to neural networks and backpropagation</p>
+                                <div class="lecture-actions">
+                                    <button type="button" class="ghost-button" data-action="predict">پیش‌بینی کن</button>
+                                    <a class="meta-link" href="https://www.youtube.com/watch?v=VMj-3S1tku0" target="_blank"
+                                        rel="noopener noreferrer">تماشا در یوتیوب ↗</a>
+                                    <label class="watch-check">
+                                        <input type="checkbox" data-progress="1" />
+                                        <span>دیده شد</span>
+                                    </label>
+                                </div>
+                                <div class="prediction" data-prediction="1" hidden></div>
+                            </div>
+                        </li>
+
+                        <li class="lecture" data-lesson="2">
+                            <div class="lecture-thumb">
+                                <a href="https://www.youtube.com/watch?v=PaCmpygFfXo" target="_blank" rel="noopener noreferrer"
+                                    aria-label="تماشای ویدیوی دو: مقدمهٔ کامل مدل‌سازی زبان">
+                                    <img src="https://img.youtube.com/vi/PaCmpygFfXo/0.jpg" width="320" height="180"
+                                        loading="lazy" alt="تصویر بندانگشتی ویدیوی دو: The spelled-out intro to language modeling" />
+                                </a>
+                            </div>
+                            <div class="lecture-body">
+                                <div class="lecture-head">
+                                    <h3>مقدمهٔ کامل مدل‌سازی زبان</h3>
+                                    <span class="lecture-duration">۱۱۸ دقیقه</span>
+                                </div>
+                                <p class="lecture-topic">
+                                    <bdi dir="ltr">bigram</bdi> و بعد <bdi dir="ltr">bigram</bdi> با کانولوشن چندسطحی؛ آمار، نمونه‌گیری و
+                                    <bdi dir="ltr">temperature</bdi>.
+                                </p>
+                                <p class="lecture-original" dir="ltr">The spelled-out intro to language modeling</p>
+                                <div class="lecture-actions">
+                                    <button type="button" class="ghost-button" data-action="predict">پیش‌بینی کن</button>
+                                    <a class="meta-link" href="https://www.youtube.com/watch?v=PaCmpygFfXo" target="_blank"
+                                        rel="noopener noreferrer">تماشا در یوتیوب ↗</a>
+                                    <label class="watch-check">
+                                        <input type="checkbox" data-progress="2" />
+                                        <span>دیده شد</span>
+                                    </label>
+                                </div>
+                                <div class="prediction" data-prediction="2" hidden></div>
+                            </div>
+                        </li>
+
+                        <li class="lecture" data-lesson="3">
+                            <div class="lecture-thumb">
+                                <a href="https://www.youtube.com/watch?v=TCH_1BHY58I" target="_blank" rel="noopener noreferrer"
+                                    aria-label="تماشای ویدیوی سه: makemore بخش دوم، MLP">
+                                    <img src="https://img.youtube.com/vi/TCH_1BHY58I/0.jpg" width="320" height="180"
+                                        loading="lazy" alt="تصویر بندانگشتی ویدیوی سه: Building makemore Part 2, MLP" />
+                                </a>
+                            </div>
+                            <div class="lecture-body">
+                                <div class="lecture-head">
+                                    <h3><bdi dir="ltr">makemore</bdi> بخش ۲: <bdi dir="ltr">MLP</bdi></h3>
+                                    <span class="lecture-duration">۷۶ دقیقه</span>
+                                </div>
+                                <p class="lecture-topic">
+                                    چرا <bdi dir="ltr">MLP</bdi> از <bdi dir="ltr">bigram</bdi> بهتر است، با همان ابزاری که خودمان ساختیم.
+                                </p>
+                                <p class="lecture-original" dir="ltr">Building makemore Part 2: MLP</p>
+                                <div class="lecture-actions">
+                                    <button type="button" class="ghost-button" data-action="predict">پیش‌بینی کن</button>
+                                    <a class="meta-link" href="https://www.youtube.com/watch?v=TCH_1BHY58I" target="_blank"
+                                        rel="noopener noreferrer">تماشا در یوتیوب ↗</a>
+                                    <label class="watch-check">
+                                        <input type="checkbox" data-progress="3" />
+                                        <span>دیده شد</span>
+                                    </label>
+                                </div>
+                                <div class="prediction" data-prediction="3" hidden></div>
+                            </div>
+                        </li>
+
+                        <li class="lecture" data-lesson="4">
+                            <div class="lecture-thumb">
+                                <a href="https://www.youtube.com/watch?v=P6sfmUTpUmc" target="_blank" rel="noopener noreferrer"
+                                    aria-label="تماشای ویدیوی چهار: اکتیویشن‌ها و گرادیان">
+                                    <img src="https://img.youtube.com/vi/P6sfmUTpUmc/0.jpg" width="320" height="180"
+                                        loading="lazy" alt="تصویر بندانگشتی ویدیوی چهار: Activations and Gradients, BatchNorm" />
+                                </a>
+                            </div>
+                            <div class="lecture-body">
+                                <div class="lecture-head">
+                                    <h3>اکتیویشن‌ها و جریان گرادیان</h3>
+                                    <span class="lecture-duration">۱۱۶ دقیقه</span>
+                                </div>
+                                <p class="lecture-topic">
+                                    گرادیان ناپایدار، <bdi dir="ltr">tanh</bdi> در برابر <bdi dir="ltr">ReLU</bdi>،
+                                    <bdi dir="ltr">BatchNorm</bdi> و اتصال‌های باقی‌مانده.
+                                </p>
+                                <p class="lecture-original" dir="ltr">Building makemore Part 3: Activations &amp; Gradients, BatchNorm</p>
+                                <div class="lecture-actions">
+                                    <button type="button" class="ghost-button" data-action="predict">پیش‌بینی کن</button>
+                                    <a class="meta-link" href="https://www.youtube.com/watch?v=P6sfmUTpUmc" target="_blank"
+                                        rel="noopener noreferrer">تماشا در یوتیوب ↗</a>
+                                    <label class="watch-check">
+                                        <input type="checkbox" data-progress="4" />
+                                        <span>دیده شد</span>
+                                    </label>
+                                </div>
+                                <div class="prediction" data-prediction="4" hidden></div>
+                            </div>
+                        </li>
+
+                        <li class="lecture" data-lesson="5">
+                            <div class="lecture-thumb">
+                                <a href="https://www.youtube.com/watch?v=q8SA3rM6ckI" target="_blank" rel="noopener noreferrer"
+                                    aria-label="تماشای ویدیوی پنج: جادوی بک‌پراپ">
+                                    <img src="https://img.youtube.com/vi/q8SA3rM6ckI/0.jpg" width="320" height="180"
+                                        loading="lazy" alt="تصویر بندانگشتی ویدیوی پنج: Becoming a Backprop Ninja" />
+                                </a>
+                            </div>
+                            <div class="lecture-body">
+                                <div class="lecture-head">
+                                    <h3>جادوی بک‌پراپ</h3>
+                                    <span class="lecture-duration">۱۱۵ دقیقه</span>
+                                </div>
+                                <p class="lecture-topic">
+                                    درک شهودی گرادیان، چندجمله‌ای‌سازی، روش‌های عددی و کار عملی با
+                                    <bdi dir="ltr">micrograd</bdi>.
+                                </p>
+                                <p class="lecture-original" dir="ltr">Building makemore Part 4: Becoming a Backprop Ninja</p>
+                                <div class="lecture-actions">
+                                    <button type="button" class="ghost-button" data-action="predict">پیش‌بینی کن</button>
+                                    <a class="meta-link" href="https://www.youtube.com/watch?v=q8SA3rM6ckI" target="_blank"
+                                        rel="noopener noreferrer">تماشا در یوتیوب ↗</a>
+                                    <label class="watch-check">
+                                        <input type="checkbox" data-progress="5" />
+                                        <span>دیده شد</span>
+                                    </label>
+                                </div>
+                                <div class="prediction" data-prediction="5" hidden></div>
+                            </div>
+                        </li>
+
+                        <li class="lecture" data-lesson="6">
+                            <div class="lecture-thumb">
+                                <a href="https://www.youtube.com/watch?v=t3YJ5hKiMQ0" target="_blank" rel="noopener noreferrer"
+                                    aria-label="تماشای ویدیوی شش: ساخت WaveNet">
+                                    <img src="https://img.youtube.com/vi/t3YJ5hKiMQ0/0.jpg" width="320" height="180"
+                                        loading="lazy" alt="تصویر بندانگشتی ویدیوی شش: Building a WaveNet" />
+                                </a>
+                            </div>
+                            <div class="lecture-body">
+                                <div class="lecture-head">
+                                    <h3>ساخت <bdi dir="ltr">WaveNet</bdi></h3>
+                                    <span class="lecture-duration">۵۶ دقیقه</span>
+                                </div>
+                                <p class="lecture-topic">
+                                    کانولوشن علّی و پشتهٔ باقی‌مانده؛ معماری‌ای که خودش چند میلیارد پارامتر دارد.
+                                </p>
+                                <p class="lecture-original" dir="ltr">Building makemore Part 5: Building a WaveNet</p>
+                                <div class="lecture-actions">
+                                    <button type="button" class="ghost-button" data-action="predict">پیش‌بینی کن</button>
+                                    <a class="meta-link" href="https://www.youtube.com/watch?v=t3YJ5hKiMQ0" target="_blank"
+                                        rel="noopener noreferrer">تماشا در یوتیوب ↗</a>
+                                    <label class="watch-check">
+                                        <input type="checkbox" data-progress="6" />
+                                        <span>دیده شد</span>
+                                    </label>
+                                </div>
+                                <div class="prediction" data-prediction="6" hidden></div>
+                            </div>
+                        </li>
+
+                        <li class="lecture" data-lesson="7">
+                            <div class="lecture-thumb">
+                                <a href="https://www.youtube.com/watch?v=kCc8FmEb1nY" target="_blank" rel="noopener noreferrer"
+                                    aria-label="تماشای ویدیوی هفت: ساخت GPT از صفر">
+                                    <img src="https://img.youtube.com/vi/kCc8FmEb1nY/0.jpg" width="320" height="180"
+                                        loading="lazy" alt="تصویر بندانگشتی ویدیوی هفت: Let's build GPT from scratch" />
+                                </a>
+                            </div>
+                            <div class="lecture-body">
+                                <div class="lecture-head">
+                                    <h3>ساخت <bdi dir="ltr">GPT</bdi> از صفر</h3>
+                                    <span class="lecture-duration">۱۱۶ دقیقه</span>
+                                </div>
+                                <p class="lecture-topic">
+                                    <bdi dir="ltr">attention</bdi> از صفر، <bdi dir="ltr">AdamW</bdi>، برنامهٔ
+                                    <bdi dir="ltr">cosine</bdi> و آموزش توزیع‌شده.
+                                </p>
+                                <p class="lecture-original" dir="ltr">Let's build GPT: from scratch, in code, spelled out</p>
+                                <div class="lecture-actions">
+                                    <button type="button" class="ghost-button" data-action="predict">پیش‌بینی کن</button>
+                                    <a class="meta-link" href="https://www.youtube.com/watch?v=kCc8FmEb1nY" target="_blank"
+                                        rel="noopener noreferrer">تماشا در یوتیوب ↗</a>
+                                    <label class="watch-check">
+                                        <input type="checkbox" data-progress="7" />
+                                        <span>دیده شد</span>
+                                    </label>
+                                </div>
+                                <div class="prediction" data-prediction="7" hidden></div>
+                            </div>
+                        </li>
+
+                        <li class="lecture" data-lesson="8">
+                            <div class="lecture-thumb">
+                                <a href="https://www.youtube.com/watch?v=zduSFxRajkE" target="_blank" rel="noopener noreferrer"
+                                    aria-label="تماشای ویدیوی هشت: ساخت توکنایزر GPT">
+                                    <img src="https://img.youtube.com/vi/zduSFxRajkE/0.jpg" width="320" height="180"
+                                        loading="lazy" alt="تصویر بندانگشتی ویدیوی هشت: Let's build the GPT Tokenizer" />
+                                </a>
+                            </div>
+                            <div class="lecture-body">
+                                <div class="lecture-head">
+                                    <h3>ساخت توکنایزر <bdi dir="ltr">GPT</bdi></h3>
+                                    <span class="lecture-duration">۱۳۴ دقیقه</span>
+                                </div>
+                                <p class="lecture-topic">
+                                    <bdi dir="ltr">BPE</bdi> از صفر: بایت‌به‌بایت، <bdi dir="ltr">regex</bdi>، جفت‌های مرجوع و مقایسه با
+                                    <bdi dir="ltr">tiktoken</bdi>.
+                                </p>
+                                <p class="lecture-original" dir="ltr">Let's build the GPT Tokenizer</p>
+                                <div class="lecture-actions">
+                                    <button type="button" class="ghost-button" data-action="predict">پیش‌بینی کن</button>
+                                    <a class="meta-link" href="https://www.youtube.com/watch?v=zduSFxRajkE" target="_blank"
+                                        rel="noopener noreferrer">تماشا در یوتیوب ↗</a>
+                                    <label class="watch-check">
+                                        <input type="checkbox" data-progress="8" />
+                                        <span>دیده شد</span>
+                                    </label>
+                                </div>
+                                <div class="prediction" data-prediction="8" hidden></div>
+                            </div>
+                        </li>
+                    </ol>
+                </section>
+
+                <!-- ② آزمایشگاه گرادیان -->
+                <section class="panel karpathy-lab" id="lab" aria-labelledby="lab-title">
+                    <h2 id="lab-title">آزمایشگاه گرادیان <span>همان موتوری که کارپتی می‌سازد</span></h2>
+
+                    <p class="lab-note">
+                        یک عبارت بنویس، اجرا کن و ببین گرادیان چطور از انتهای گراف به عقب می‌رود.
+                        متغیرها را عوض کن و دوباره اجرا کن؛ عددها همان‌هایی هستند که
+                        <bdi dir="ltr">micrograd</bdi> واقعاً حساب می‌کند.
+                    </p>
+
+                    <div class="lab-controls">
+                        <div class="variable-fields" id="variable-fields"></div>
+
+                        <div class="expression-row">
+                            <label class="expression-label" for="expression">عبارت</label>
+                            <input id="expression" type="text" value="a * b + b ** 3" spellcheck="false"
+                                autocomplete="off" autocapitalize="off" dir="ltr"
+                                aria-describedby="expression-help" />
+                            <button type="button" id="run" class="primary">اجرا ▸</button>
+                        </div>
+                        <p class="help-text" id="expression-help" dir="ltr">
+                            operators: + − * / ** &nbsp;·&nbsp; functions: relu tanh exp log sqrt abs &nbsp;·&nbsp; variables: a b c
+                        </p>
+
+                        <div class="preset-row" id="preset-row" role="group" aria-label="عبارت‌های آماده"></div>
+                    </div>
+
+                    <div class="lab-result" id="lab-result" aria-live="polite"></div>
+
+                    <figure class="lab-graph">
+                        <figcaption>
+                            گراف محاسبات <span>اعداد بالای هر گره مقدار و عدد پایین گرادیان است</span>
+                        </figcaption>
+                        <div class="graph-sheet" id="graph-sheet"></div>
+                    </figure>
+                </section>
+            </div>
+
+            <!-- ③ نقشهٔ راه -->
+            <section class="panel" id="roadmap" aria-labelledby="roadmap-title">
+                <h2 id="roadmap-title">نقشهٔ راه <span>چطور درس بدهیم</span></h2>
+
+                <div class="progress-panel">
+                    <div class="progress-head">
+                        <span class="progress-label" id="progress-label">۰ از ۸ جلسه دیده شده</span>
+                        <span class="progress-count" id="prediction-count">۰ پیش‌بینی بررسی‌شده</span>
+                    </div>
+                    <div class="progress-track" role="progressbar" aria-labelledby="progress-label"
+                        aria-valuemin="0" aria-valuemax="8" aria-valuenow="0" id="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <p class="progress-hint">
+                        پیشرفت شما فقط در همین مرورگر ذخیره می‌شود و جایی فرستاده نمی‌شود.
+                        <button type="button" class="ghost-button" id="reset-progress">پاک کردن پیشرفت</button>
+                    </p>
+                </div>
+
+                <div class="roadmap-grid">
+                    <article class="roadmap-step">
+                        <h3>۱. تماشا</h3>
+                        <p>ویدیو را ببین و سؤال‌هایت را یادداشت کن. کد را یادداشت نکن.</p>
+                    </article>
+                    <article class="roadmap-step">
+                        <h3>۲. بازسازی</h3>
+                        <p>کد را از صفر خودت بنویس، بدون نگاه کردن به راه‌حل. همین‌جاست که یادگیری اتفاق می‌افتد.</p>
+                    </article>
+                    <article class="roadmap-step">
+                        <h3>۳. تمرین</h3>
+                        <p>پیش‌بینی‌های همین صفحه و تمرین‌های ریپو را حل کن؛ بعد جواب را ببین.</p>
+                    </article>
+                    <article class="roadmap-step">
+                        <h3>۴. یادداشت</h3>
+                        <p>چیزی که فهمیدی را به زبان خودت در <bdi dir="ltr">notes/</bdi> بنویس.</p>
+                    </article>
+                </div>
+
+                <div class="details-grid roadmap-topics">
+                    <div class="k">پایه</div>
+                    <div class="v">گرادیان descent، مشتق جزئی، قاعدهٔ زنجیره، پدیدهٔ کوه تند</div>
+
+                    <div class="k">میانی</div>
+                    <div class="v"><bdi dir="ltr">SGD</bdi> در برابر <bdi dir="ltr">Adam</bdi>، مقداردهی اولیه، نرمال‌سازی، بیش‌برازش</div>
+
+                    <div class="k">پیشرفته</div>
+                    <div class="v"><bdi dir="ltr">FlashAttention</bdi>، <bdi dir="ltr">KV-cache</bdi>، دقت مخلوط، قوانین مقیاس‌دهی، <bdi dir="ltr">RLHF</bdi></div>
+                </div>
+
+                <p class="portfolio-more">
+                    <a href="https://github.com/koolfox/Karpathy" target="_blank" rel="noopener noreferrer">ریپوی یادگیری: یادداشت‌ها، تمرین‌ها و کد</a>
+                </p>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="footer-inner">
+                <span class="footer-logo" aria-hidden="true">
+                    <img src="../assets/img/logo.png" alt="" width="20" height="20" />
+                </span>
+                <span class="footer-text">
+                    <bdi dir="ltr">Hesam Sheini</bdi>، ساخته شده با <span class="footer-heart">♥</span>
+                </span>
+            </div>
+        </footer>
+    </div>
+
+    <script type="module" src="assets/js/karpathy-lab.js"></script>
+</body>
+
+</html>

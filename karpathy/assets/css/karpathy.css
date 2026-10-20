@@ -1,0 +1,787 @@
+/* Karpathy learning surface — inherits the portfolio's Arad type and blue/light palette.
+   The workbench is a graph-paper worksheet; the catalogue keeps the airy panel rhythm. */
+
+.karpathy-page {
+    --grid-ink: rgba(17, 24, 39, 0.05);
+    --sheet: #fcfcfd;
+}
+
+.karpathy-page .app-container {
+    max-width: 1240px;
+}
+
+.karpathy-page bdi {
+    unicode-bidi: isolate;
+}
+
+.karpathy-header {
+    align-items: flex-start;
+}
+
+.karpathy-page .panel h2 {
+    font-size: 1.3rem;
+}
+
+.karpathy-page .panel h2 span {
+    font-size: 0.82rem;
+}
+
+.karpathy-header .header-avatar {
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+.karpathy-nav {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+
+.karpathy-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-decoration: none;
+    text-underline-offset: 4px;
+}
+
+.karpathy-nav a:hover {
+    text-decoration: underline;
+}
+
+.karpathy-page [id] {
+    scroll-margin-top: 76px;
+}
+
+.karpathy-page :focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* ── split layout ─────────────────────────────────────────────── */
+
+.karpathy-split {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 16px;
+    align-items: start;
+}
+
+.karpathy-catalog {
+    /* The page scrolls; the catalogue is not a nested scroll area. */
+    max-height: none;
+    overflow-y: visible;
+}
+
+.karpathy-lab {
+    position: sticky;
+    top: 76px;
+}
+
+/* ── catalogue ────────────────────────────────────────────────── */
+
+.lecture-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.lecture {
+    display: grid;
+    grid-template-columns: 132px minmax(0, 1fr);
+    gap: 12px;
+    padding: 12px;
+    background: #f9fafb;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.lecture-thumb {
+    position: relative;
+}
+
+.lecture-thumb a {
+    display: block;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #e5e7eb;
+    line-height: 0;
+}
+
+.lecture-thumb img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.lecture-thumb a:hover img {
+    transform: scale(1.04);
+}
+
+.thumb-fallback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #e5e7eb;
+    color: #6b7280;
+    border-radius: 8px;
+}
+
+.thumb-fallback-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+.lecture-body {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.lecture-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.lecture-head h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.lecture-duration {
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    color: var(--text-soft);
+    font-variant-numeric: tabular-nums;
+}
+
+.lecture-topic {
+    margin: 0;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--text-soft);
+}
+
+.lecture-original {
+    margin: 0;
+    font-size: 0.78rem;
+    color: var(--text-soft);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+.lecture-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+.lecture-actions .meta-link {
+    font-size: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+}
+
+.ghost-button {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    color: var(--accent);
+    font-size: 0.75rem;
+    padding: 4px 12px;
+    min-height: 32px;
+}
+
+.ghost-button:hover {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+}
+
+.watch-check {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: var(--text-soft);
+    cursor: pointer;
+    min-height: 32px;
+}
+
+.watch-check input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    accent-color: var(--accent);
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.lecture.is-watched {
+    background: #ffffff;
+    border-color: #bfdbfe;
+}
+
+.lecture.is-watched .lecture-head h3 {
+    color: var(--text-soft);
+}
+
+/* ── prediction panel ─────────────────────────────────────────── */
+
+.prediction {
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 10px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+}
+
+.prediction-question {
+    margin: 0 0 8px;
+    font-size: 0.82rem;
+    line-height: 1.7;
+}
+
+.prediction-question code,
+.prediction-explain code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 0.78rem;
+    background: #f3f4f6;
+    padding: 1px 5px;
+    border-radius: 4px;
+    direction: ltr;
+    display: inline-block;
+}
+
+.prediction-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.prediction-row input {
+    width: 120px;
+    background: #f9fafb;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 0.85rem;
+    direction: ltr;
+    text-align: left;
+}
+
+.prediction-row input:focus {
+    outline: 1px solid var(--accent);
+    border-color: var(--accent);
+    background: #ffffff;
+}
+
+.prediction-verdict {
+    font-size: 0.8rem;
+    line-height: 1.7;
+    margin: 8px 0 0;
+}
+
+.prediction-verdict.is-correct {
+    color: #047857;
+}
+
+.prediction-verdict.is-wrong {
+    color: var(--danger);
+}
+
+.prediction-explain {
+    margin: 6px 0 0;
+    font-size: 0.78rem;
+    line-height: 1.8;
+    color: var(--text-soft);
+}
+
+/* ── workbench ────────────────────────────────────────────────── */
+
+.lab-note {
+    margin: 0 0 14px;
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: var(--text-soft);
+}
+
+.lab-controls {
+    padding: 14px;
+    border-radius: 10px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+}
+
+.variable-fields {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.variable-field {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 4px 10px;
+}
+
+.variable-field label {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.variable-field input {
+    width: 72px;
+    border: none;
+    background: transparent;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 0.85rem;
+    color: var(--text);
+    direction: ltr;
+    text-align: left;
+    padding: 2px 0;
+}
+
+.variable-field input:focus {
+    outline: none;
+}
+
+.variable-field:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent);
+}
+
+.expression-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.expression-label {
+    font-size: 0.78rem;
+    color: var(--text-soft);
+}
+
+.expression-row input {
+    flex: 1 1 220px;
+    min-width: 0;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 0.95rem;
+    color: var(--text);
+    direction: ltr;
+    text-align: left;
+}
+
+.expression-row input:focus {
+    outline: 1px solid var(--accent);
+    border-color: var(--accent);
+}
+
+.expression-row button.primary {
+    padding: 8px 20px;
+    font-size: 0.85rem;
+    min-height: 38px;
+}
+
+.preset-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.preset-chip {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 4px 11px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 0.78rem;
+    color: var(--text-soft);
+    cursor: pointer;
+}
+
+.preset-chip:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* ── results ──────────────────────────────────────────────────── */
+
+.lab-result {
+    margin-top: 14px;
+}
+
+.lab-result:empty {
+    display: none;
+}
+
+.result-value {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 12px 14px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.result-value dt {
+    font-size: 0.8rem;
+    color: var(--text-soft);
+    margin: 0;
+}
+
+.result-value dd {
+    margin: 0;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+}
+
+.gradient-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    direction: ltr;
+}
+
+.gradient-table th,
+.gradient-table td {
+    padding: 7px 12px;
+    text-align: left;
+    font-size: 0.8rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.gradient-table thead th {
+    color: var(--text-soft);
+    font-weight: 400;
+}
+
+.gradient-table thead th:last-child {
+    text-align: right;
+}
+
+.gradient-table tbody th {
+    color: var(--text-soft);
+    font-weight: 400;
+}
+
+.gradient-table tbody tr:last-child th,
+.gradient-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.gradient-table td {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    color: var(--text);
+}
+
+.lab-error {
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: var(--danger-soft);
+    border: 1px solid rgba(220, 38, 38, 0.25);
+    color: var(--danger);
+    font-size: 0.8rem;
+    line-height: 1.7;
+    direction: ltr;
+    text-align: left;
+}
+
+/* ── graph sheet ──────────────────────────────────────────────── */
+
+.lab-graph {
+    margin: 14px 0 0;
+}
+
+.lab-graph figcaption {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.lab-graph figcaption span {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--text-soft);
+}
+
+.graph-sheet {
+    /* The worksheet: the DAG is drawn on graph paper, as karpathy draws it. */
+    background: var(--sheet);
+    background-image:
+        linear-gradient(var(--grid-ink) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-ink) 1px, transparent 1px);
+    background-size: 24px 24px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    min-height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: auto;
+}
+
+.graph-sheet svg {
+    display: block;
+    margin: 0 auto;
+}
+
+.graph-node rect {
+    fill: #ffffff;
+    stroke: #cbd5e1;
+    stroke-width: 1;
+    transition: fill 0.18s ease, stroke 0.18s ease;
+}
+
+.graph-rule {
+    stroke: #e5e7eb;
+    stroke-width: 1;
+}
+
+.graph-node text {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 11px;
+    fill: var(--text);
+}
+
+.graph-node .graph-grad {
+    fill: var(--text-soft);
+}
+
+.graph-node.is-active rect {
+    fill: var(--accent-soft);
+    stroke: var(--accent);
+}
+
+.graph-node.is-active .graph-grad {
+    fill: var(--accent);
+}
+
+.graph-node.is-output rect {
+    stroke: var(--accent);
+    stroke-width: 1.5;
+}
+
+.graph-edge {
+    fill: none;
+    stroke: #cbd5e1;
+    stroke-width: 1.2;
+}
+
+.graph-edge.is-active {
+    stroke: var(--accent);
+    stroke-width: 1.8;
+}
+
+.graph-empty {
+    font-size: 0.8rem;
+    color: var(--text-soft);
+    padding: 40px 8px;
+    text-align: center;
+}
+
+/* ── roadmap ──────────────────────────────────────────────────── */
+
+.progress-panel {
+    padding: 14px;
+    background: #f9fafb;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 16px;
+}
+
+.progress-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.progress-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.progress-count {
+    font-size: 0.78rem;
+    color: var(--text-soft);
+    font-variant-numeric: tabular-nums;
+}
+
+.progress-track {
+    height: 8px;
+    border-radius: 999px;
+    background: #e5e7eb;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 100%;
+    background: var(--accent);
+    border-radius: 999px;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 0.3s ease;
+}
+
+.progress-hint {
+    margin: 10px 0 0;
+    font-size: 0.76rem;
+    color: var(--text-soft);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.roadmap-step {
+    padding: 12px;
+    background: #f9fafb;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.roadmap-step h3 {
+    margin: 0 0 4px;
+    font-size: 1rem;
+}
+
+.roadmap-step p {
+    margin: 0;
+    font-size: 0.78rem;
+    line-height: 1.7;
+    color: var(--text-soft);
+}
+
+.roadmap-topics {
+    margin-top: 14px;
+    grid-template-columns: 88px minmax(0, 1fr);
+    gap: 10px 16px;
+}
+
+.roadmap-topics .v {
+    text-align: right;
+    font-size: 0.8rem;
+    line-height: 1.6;
+}
+
+/* ── responsive ───────────────────────────────────────────────── */
+
+@media (max-width: 1023px) {
+    .karpathy-split {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .karpathy-catalog {
+        max-height: none;
+        overflow-y: visible;
+    }
+
+    .karpathy-lab {
+        position: static;
+    }
+
+    .roadmap-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 639px) {
+    .lecture {
+        grid-template-columns: 108px minmax(0, 1fr);
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .lecture-head h3 {
+        font-size: 0.85rem;
+    }
+
+    .roadmap-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .karpathy-nav {
+        gap: 4px 14px;
+        padding: 6px 10px;
+    }
+
+    .karpathy-nav a {
+        font-size: 0.8rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .karpathy-page *,
+    .karpathy-page *::before,
+    .karpathy-page *::after {
+        transition: none !important;
+        animation: none !important;
+    }
+}

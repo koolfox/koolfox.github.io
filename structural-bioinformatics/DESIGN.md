@@ -259,6 +259,10 @@ The phone presentation keeps all six destinations visible in its three-by-two ar
 
 Paper appraisals, source lists, molecular terms and evidence explanations use straight separators and aligned label/content columns. Paper appraisals use two columns on desktop and stack at the intermediate breakpoint. A disclosure is framed by upper and lower rules; its visible summary uses blue-gray text and a native marker. Optional advanced material starts closed; a selected sequence's limitations remain open beside that record.
 
+### Course Outline and Coverage Rows
+
+The weekly plan carries the course outline. A closed disclosure lists every syllabus block with its session range, the week that teaches it and how far this project reached the topics inside it; a link opens that week in the booklet. The week card then repeats that week's topics as reading rows: a leading coverage label, the syllabus topic wording, and one muted sentence about what this project actually holds for it. Four labels are used and they are content rather than color: «اجرا شده» (computed with real data), «بخشی» (partly covered), «مفهومی» (concept and boundary only) and «هنوز اجرا نشده» (planned, not run). The rows reuse the fine separator, the muted ink and the blue-gray label of the existing disclosures, and no new surface, accent or card is introduced. The booklet version of the same information is a table inside the reader's own scrolling region. The coverage record is the presenter's own account of the project, never a statement about the instructor's plan.
+
 ### Sequence and Code Panels
 
 Sequence previews use the dedicated monospace role, a pale stage surface, visible border and control radius. They remain LTR, keyboard focusable and locally scrollable. Code blocks use code paper and local horizontal scrolling; inline code receives a small quiet fill. Source FASTA and Markdown downloads remain available beside the corresponding view.

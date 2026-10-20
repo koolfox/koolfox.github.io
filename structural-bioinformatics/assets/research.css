@@ -467,6 +467,30 @@ body[data-learning-mode="true"] :is(.reading-controls, #document-toc, #chapter-p
 .week-nav { margin: 16px 0 0; display: flex; flex-wrap: wrap; gap: 6px 18px; }
 @media (max-width: 560px) { .week-card { padding: 14px; } }
 
+/* Course outline and its coverage in this project (weekly plan) */
+.syllabus-map { margin-top: 16px; font-size: 0.88rem; }
+.syllabus-map summary { padding-block: 5px; cursor: pointer; color: #2b456b; font-size: 0.88rem; font-weight: 650; }
+.syllabus-map summary::marker { color: #2563eb; }
+.syllabus-map[open] summary { margin-bottom: 12px; }
+.syllabus-map-count { margin: 0 0 4px; color: var(--research-muted); }
+.syllabus-map-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 2px 16px; padding: 9px 0; border-top: 1px solid var(--research-line); }
+.syllabus-map-title { margin: 0; font-size: 0.9rem; color: #152e52; }
+.syllabus-map-meta { margin: 0; color: var(--research-muted); font-size: 0.8rem; }
+.syllabus-map-week { grid-row: 1 / span 2; align-self: center; font-size: 0.84rem; white-space: nowrap; }
+.syllabus-map-legend { margin: 14px 0 0; padding: 0; list-style: none; color: var(--research-muted); font-size: 0.8rem; max-width: 85ch; }
+.syllabus-map-legend li { padding: 3px 0; }
+.syllabus-map-legend strong { color: #2b456b; }
+.syllabus-map-note { margin: 6px 0 0; color: var(--research-muted); font-size: 0.8rem; max-width: 85ch; }
+.week-topics { list-style: none; margin: 0 0 8px; padding: 0; max-width: 85ch; }
+.week-topics li { padding: 8px 0; border-top: 1px solid var(--research-line); }
+.week-topic { font-size: 0.88rem; }
+.week-topic-status { display: inline-block; margin-inline-end: 8px; color: #2b456b; font-size: 0.8rem; font-weight: 650; }
+.week-topic-note { display: block; color: var(--research-muted); font-size: 0.82rem; }
+@media (max-width: 560px) {
+  .syllabus-map-row { grid-template-columns: 1fr; }
+  .syllabus-map-week { grid-row: auto; }
+}
+
 /* RNA-seq group summary (aggregates only) */
 .rnaseq-groups .residue-inspection { max-width: 240px; }
 .rnaseq-figure { margin: 14px 0 6px; }

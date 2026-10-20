@@ -704,6 +704,12 @@ test("weekly plan shows one class step at a time and filters the deck to that we
     // Each week names its syllabus block, explains that week's paper and lists the talk order.
     await expect(page.locator("#week-course")).toContainText("مناظر انرژی بیومولکولی");
     await expect(page.locator("#week-course")).toContainText("جلوتر از کلاس");
+    // The course outline is integrated with the plan: every block, and what this project covered.
+    await expect(page.locator("#syllabus-map-body .syllabus-map-row")).toHaveCount(9);
+    await expect(page.locator("#syllabus-map-body")).toContainText("مناظر انرژی بیومولکولی");
+    await expect(page.locator("#syllabus-map-body .syllabus-map-week").first()).toHaveAttribute("href", /chapter=chapter-1/);
+    await expect(page.locator("#week-syllabus .week-topics li")).toHaveCount(4);
+    await expect(page.locator("#week-syllabus")).toContainText("مفهومی");
     await expect(page.locator("#week-card")).toContainText("نتیجهٔ خودِ مقاله");
     await expect(page.locator("#week-card ol li")).not.toHaveCount(0);
     await expect(page.locator("#week-appendix-link")).toHaveAttribute("href", /chapter=chapter-9/);

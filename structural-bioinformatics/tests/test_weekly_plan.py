@@ -79,17 +79,50 @@ def test_each_week_follows_the_course_syllabus():
     reached = 0
     for week in PLAN["weeks"]:
         course = week["course"]
-        block = blocks[course["block"]]
+        assert course["blocks"]
+        first = min(block["first_session"] for block in course["blocks"])
         # A week may not present material the class has not reached yet.
-        assert block["first_session"] >= reached
-        reached = block["first_session"]
-        assert week["week"] in block["weeks"]
+        assert first >= reached
+        reached = first
+        for entry in course["blocks"]:
+            block = blocks[entry["id"]]
+            # The plan repeats the outline, so it must repeat it exactly.
+            assert entry["title"] == block["title"]
+            assert entry["first_session"] == block["first_session"]
+            assert entry["last_session"] == block["last_session"]
+            assert week["week"] in block["weeks"]
         assert week["papers"] is not None and week["concepts"] and week["talk"]
         assert week["expect_questions"]
     # Every syllabus block is claimed by the week it was assigned to.
     for block in SYLLABUS["blocks"]:
         for number in block["weeks"]:
             assert PLAN["weeks"][number - 1]["week"] == number
+            assert block["id"] in [
+                entry["id"] for entry in PLAN["weeks"][number - 1]["course"]["blocks"]
+            ]
+
+
+def test_the_plan_covers_every_syllabus_topic():
+    legend = PLAN["coverage_legend"]
+    blocks = {block["id"]: block for block in SYLLABUS["blocks"]}
+    seen = {}
+    for week in PLAN["weeks"]:
+        week_blocks = [entry["id"] for entry in week["course"]["blocks"]]
+        for entry in week["course"]["topics"]:
+            assert entry["status"] in legend
+            assert entry["note"].strip()
+            assert entry["block"] in week_blocks
+            # The topic wording is the syllabus wording, not a paraphrase.
+            assert entry["topic"] in blocks[entry["block"]]["topics"]
+            assert entry["topic"] not in seen
+            seen[entry["topic"]] = (week["week"], entry["status"])
+    # Every topic of the syllabus is covered exactly once.
+    syllabus_topics = [topic for block in SYLLABUS["blocks"] for topic in block["topics"]]
+    assert sorted(seen) == sorted(syllabus_topics)
+    # A topic is only claimed as covered in the week that teaches its block.
+    for block in SYLLABUS["blocks"]:
+        for topic in block["topics"]:
+            assert seen[topic][0] in block["weeks"]
 
 
 def test_quoted_rnaseq_medians_match_the_published_summary():

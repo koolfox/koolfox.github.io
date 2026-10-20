@@ -508,3 +508,8 @@ body[data-learning-mode="true"] :is(.reading-controls, #document-toc, #chapter-p
 .weekly-goal { max-width: 85ch; padding: 10px 14px; border-inline-start: 4px solid #087b73; background: #f1f8f7; border-radius: 6px; font-size: 0.88rem; }
 .week-paper { background: #f7f9fc; margin-inline: -20px; padding-inline: 20px; padding-bottom: 6px; }
 @media (max-width: 560px) { .week-paper { margin-inline: -14px; padding-inline: 14px; } }
+
+/* Docking validation gates (methods tab) */
+.docking-validation table td:first-child { width: 20%; }
+.docking-validation table td:nth-child(2) { width: 30%; }
+.docking-validation tr[data-passed="false"] td:last-child { color: #912c3d; font-weight: 640; }

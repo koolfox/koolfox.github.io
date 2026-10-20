@@ -464,27 +464,27 @@ test("guided class presentation advances one step and resumes after the laborato
     await page.locator("#start-presentation").click();
     await expect(page.locator("#reading-status")).toHaveAttribute("data-document", "class-presentation.fa.md");
     await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-1");
-    await expect(page.locator("#reading-status")).toContainText("گام ۱ از ۲۷");
+    await expect(page.locator("#reading-status")).toContainText("گام ۱ از ۳۸");
     await expect(page.locator("body")).toHaveAttribute("data-presentation-mode", "true");
     await expect(page.locator("#document-select")).toBeHidden();
     await expect(page.locator("#chapter-prev")).toBeDisabled();
     await page.keyboard.press("PageDown");
     await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-2");
     await expect(page.locator("#markdown-content")).toContainText("Hu 2013");
-    await page.selectOption("#chapter-select", "chapter-7");
-    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-7");
+    await page.selectOption("#chapter-select", "chapter-13");
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-13");
     await page.getByRole("link", { name: "باز کردن آزمایشگاه سه‌بعدی", exact: true }).click();
     await expect(page.locator("#molecular-stage")).toHaveAttribute("data-state", "ready");
     await expect(page.locator("#tab-lab")).toHaveAttribute("aria-selected", "true");
     await page.locator("#tab-reading").click();
-    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-7");
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-13");
     await page.selectOption("#chapter-select", "chapter-6");
     await expect(page.locator("#reading-status")).toHaveAttribute("data-optional-render", "ready");
     await expect(page.locator("#markdown-content .mermaid-diagram svg")).toBeVisible();
-    await page.selectOption("#chapter-select", "chapter-27");
+    await page.selectOption("#chapter-select", "chapter-38");
     await expect(page.locator("#chapter-next")).toBeDisabled();
     await page.locator("#chapter-prev").click();
-    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-26");
+    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-37");
     await page.locator("#presentation-view").click();
     await expect(page.locator("body")).toHaveAttribute("data-presentation-mode", "false");
     await expect(page.locator("#document-select")).toBeVisible();
@@ -544,7 +544,7 @@ for (const width of [1440, 390]) {
         await context.route('**/*', route => route.request().url().startsWith(origin) ? route.continue() : route.abort());
         await page.goto(`${route}presentation.html#slide-1`);
         await expect(page.locator('#deck')).toHaveAttribute('data-state', 'ready');
-        await expect(page.locator('.slide')).toHaveCount(28);
+        await expect(page.locator('.slide')).toHaveCount(39);
         await expect(page.locator('#deck')).not.toContainText('برای گفتن');
         await expect(page.locator('#slide-prev')).toBeDisabled();
         await expect(page.locator('.cover .cover-details')).toContainText('شینی');
@@ -552,7 +552,7 @@ for (const width of [1440, 390]) {
         await expect(page.locator('.cover .cover-details')).not.toContainText('زمان ارائه');
         await expect(page.locator('.cover .slide-footer > p').last()).toHaveText('پاییز ۱۴۰۵');
         await expect(page.locator('.cover .supervisor-profile')).toHaveAttribute('href', 'https://scholar.google.com/citations?user=VA1rZ7MAAAAJ&hl=en');
-        for (let index = 0; index < 28; index++) {
+        for (let index = 0; index < 39; index++) {
             await page.selectOption('#slide-select', String(index));
             await expect(page.locator('.slide:visible')).toHaveCount(1);
             await expect(page).toHaveURL(new RegExp(`#slide-${index + 1}$`));
@@ -567,15 +567,15 @@ for (const width of [1440, 390]) {
             expect(logo.x + logo.width).toBeLessThan(institution.x);
             await expect(active.locator('.slide-footer')).toContainText('آدالیموماب');
             if (width === 1440) expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBeLessThanOrEqual(902);
-            if (index > 0 && index < 27) expect(await active.locator('.slide-references a[href^="https://"]').count()).toBeGreaterThan(0);
+            if (index > 0 && index !== 29) expect(await active.locator('.slide-references a[href^="https://"]').count()).toBeGreaterThan(0);
             for (const label of await active.locator('.nodeLabel').all()) {
                 if (/[\u0600-\u06ff]/.test(await label.textContent())) {
                     expect(await label.evaluate(node => getComputedStyle(node).direction)).toBe('rtl');
                 }
             }
-            if (index === 7) await expect(active.locator('h1 bdi').filter({ hasText: /^3WD5$/ })).toHaveText('3WD5');
-            if (index === 23) await expect(active.locator('strong bdi').filter({ hasText: '4.5 Å' })).toHaveAttribute('dir', 'ltr');
-            if (index === 27) {
+            if (index === 13) await expect(active.locator('h1 bdi').filter({ hasText: /^3WD5$/ })).toHaveText('3WD5');
+            if (index === 12) await expect(active.locator('strong bdi').filter({ hasText: '4.5 Å' })).toHaveAttribute('dir', 'ltr');
+            if (index === 29) {
                 for (const accession of ['3WD5', '1TNF', '4FM9']) {
                     await expect(active.locator('a bdi').filter({ hasText: new RegExp('^' + accession + '$') })).toHaveAttribute('dir', 'ltr');
                 }
@@ -589,9 +589,9 @@ for (const width of [1440, 390]) {
         await page.keyboard.press('PageUp');
         await expect(page).toHaveURL(/#slide-1$/);
         await page.locator('#sources-link').click();
-        await expect(page).toHaveURL(/#slide-28$/);
+        await expect(page).toHaveURL(/#slide-30$/);
         await page.emulateMedia({ media: 'print' });
-        await expect(page.locator('.slide:visible')).toHaveCount(28);
+        await expect(page.locator('.slide:visible')).toHaveCount(39);
         expect(errors).toEqual([]);
     });
 }
@@ -615,15 +615,15 @@ for (const width of [1440, 390]) {
         await expect(page.locator('#slide-media-dialog')).not.toBeVisible();
         await expect(enlarge).toBeFocused();
         await expect(page).toHaveURL(/#slide-6$/);
-        await page.selectOption('#slide-select', '7');
+        await page.selectOption('#slide-select', '13');
         await page.getByRole('button', { name: 'مدل سه‌بعدی 3WD5', exact: true }).click();
         const modelFrame = page.frameLocator('#slide-media-stage iframe');
         await expect(modelFrame.locator('body')).toHaveAttribute('data-state', 'ready', { timeout: 30000 });
         expect(await page.evaluate(() => document.querySelector('#slide-media-stage iframe').contentWindow.referenceViewer.state.polymerResidueCount)).toBe(579);
         await page.getByRole('button', { name: 'بستن و بازگشت به اسلاید' }).click();
-        await expect(page).toHaveURL(/#slide-8$/);
-        await expect(page.locator('.slide:visible')).toContainText('Fc');
-        await page.selectOption('#slide-select', '16');
+        await expect(page).toHaveURL(/#slide-14$/);
+        await expect(page.locator('.slide:visible')).toContainText('Fab');
+        await page.selectOption('#slide-select', '33');
         await page.getByRole('button', { name: 'مدل سه‌بعدی 4FM9', exact: true }).click();
         await expect(modelFrame.locator('body')).toHaveAttribute('data-state', 'ready', { timeout: 30000 });
         expect(await page.evaluate(() => document.querySelector('#slide-media-stage iframe').contentWindow.referenceViewer.state.scope)).toBe('deposited_model');
@@ -631,7 +631,7 @@ for (const width of [1440, 390]) {
     });
 }
 
-test('browser PDF keeps the 28 complete slides on 28 pages', async ({ page }) => {
+test('browser PDF keeps the 39 complete slides on 39 pages', async ({ page }) => {
     test.setTimeout(60000); // PDF/font serialization has a separate bounded budget.
     await page.goto(`${route}presentation.html#slide-1`);
     await expect(page.locator('#deck')).toHaveAttribute('data-state', 'ready');
@@ -639,7 +639,7 @@ test('browser PDF keeps the 28 complete slides on 28 pages', async ({ page }) =>
         await expect.poll(() => image.evaluate(node => node.complete && node.naturalWidth > 0)).toBe(true);
     }
     const pdf = await page.pdf({ preferCSSPageSize: true, printBackground: true });
-    expect(pdf.toString('latin1').match(/\/Type \/Page\b/g)).toHaveLength(28);
+    expect(pdf.toString('latin1').match(/\/Type \/Page\b/g)).toHaveLength(39);
 });
 
 test('slide source failure can be retried without losing notebook access', async ({ page }) => {
@@ -741,20 +741,20 @@ test("weekly plan shows one class step at a time and filters the deck to that we
     await page.locator("#week-slides-link").click();
     await expect(page.locator("#deck")).toHaveAttribute("data-state", "ready");
     await expect(page.locator("#deck")).toHaveAttribute("data-week", "2");
-    await expect(page.locator("#slide-select option")).toHaveCount(5);
+    await expect(page.locator("#slide-select option")).toHaveCount(7);
     await expect(page.locator(".cover-week")).toContainText("هفتهٔ ۲");
-    await expect(page.locator("#slide-progress")).toHaveText("۱ / ۵");
+    await expect(page.locator("#slide-progress")).toHaveText("۱ / ۷");
     await page.keyboard.press("End");
     await expect(page.locator(".slide:not([hidden]) h1")).toHaveText("سه باز یک کدون؛ پل RNA به آمینواسید");
     await page.locator("#all-slides-link").click();
-    await expect(page.locator("#slide-select option")).toHaveCount(28);
+    await expect(page.locator("#slide-select option")).toHaveCount(39);
     expect(errors).toEqual([]);
 });
 
 test("unknown week falls back to the complete deck", async ({ page }) => {
     await page.goto(`${route}presentation.html?week=99#slide-1`);
     await expect(page.locator("#deck")).toHaveAttribute("data-state", "ready");
-    await expect(page.locator("#slide-select option")).toHaveCount(28);
+    await expect(page.locator("#slide-select option")).toHaveCount(39);
     await expect(page.locator("#deck-status")).toContainText("همهٔ اسلایدها");
 });
 

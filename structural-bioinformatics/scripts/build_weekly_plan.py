@@ -120,16 +120,18 @@ def syllabus_map(plan, syllabus):
     """The whole course outline next to the coverage this project actually reached."""
     legend = plan["coverage_legend"]
     rows = [
-        "| بخش سرفصل درس | جلسات | هفتهٔ ارائه | موضوع‌ها | پوشش ما |",
-        "| --- | --- | --- | --- | --- |",
+        "| بخش سرفصل درس | جلسات | هفتهٔ ارائه | اسلایدها | موضوع‌ها | پوشش ما |",
+        "| --- | --- | --- | --- | --- | --- |",
     ]
     for block in syllabus["blocks"]:
         week = block["weeks"][0]
         entries = block_topics(plan["weeks"][week - 1], syllabus)[block["id"]]
         count = fa(len(block["topics"])) if block["topics"] else "—"
         sessions = sessions_label(block["first_session"], block["last_session"])
+        slides = sorted({slide for entry in entries for slide in entry.get("slide", [])})
+        slide_text = "، ".join(fa(slide) for slide in slides) if slides else "—"
         rows.append(
-            f"| {block['title']} | {sessions} | {fa(week)} | {count} | "
+            f"| {block['title']} | {sessions} | {fa(week)} | {slide_text} | {count} | "
             f"{coverage_summary(entries, legend)} |"
         )
     return rows
@@ -154,10 +156,14 @@ def week_section(week, titles, legend):
         out += [f"> جلوتر از کلاس: {course['ahead']}", ""]
     out += ["**سرفصل این هفته و پوشش ما در پروژه:**", ""]
     if course["topics"]:
-        out += ["| موضوع سرفصل | وضعیت | آنچه در این پروژه هست |", "| --- | --- | --- |"]
+        out += [
+            "| موضوع سرفصل | اسلاید | وضعیت | آنچه در این پروژه هست |",
+            "| --- | --- | --- | --- |",
+        ]
         for entry in course["topics"]:
             status = legend[entry["status"]]
-            out.append(f"| {entry['topic']} | {status['label']} | {entry['note']} |")
+            slides = "، ".join(fa(slide) for slide in entry.get("slide", []))
+            out.append(f"| {entry['topic']} | {slides} | {status['label']} | {entry['note']} |")
     else:
         out.append("این بخش از سرفصل موضوع جداگانه‌ای ندارد؛ فقط جای پروژه در درس تعریف می‌شود.")
     out += [""]

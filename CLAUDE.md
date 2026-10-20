@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Scope
 
-This checkout is the public `koolfox/koolfox.github.io` GitHub Pages site. Root `index.html`/`assets/` are the homepage; `optimization/` and `stochastic-processes/` are finished coursework — leave them alone. Active work lives in `structural-bioinformatics/` (a Persian-language course study of TNF-α / adalimumab structure, with a later TOP2A comparison) plus its homepage link. `AGENTS.md` holds the shared repo rules; the project skill `.agents/skills/tnf-structural-research/SKILL.md` holds the scientific constraints and must be read before changing scientific content, docs or claims.
+This checkout is the public `koolfox/koolfox.github.io` GitHub Pages site. Root `index.html`/`assets/` are the homepage; `optimization/` and `stochastic-processes/` are finished coursework — leave them alone. Active work lives in `structural-bioinformatics/` (a Persian-language course study of TNF-α / adalimumab structure, with a later TOP2A comparison) plus its homepage link. `karpathy/` is a third surface: a Persian learning hub for Karpathy's *Neural Networks: Zero to Hero*, with a live autograd workbench, predict-then-run exercises and a progress tracker kept in the reader's browser. `AGENTS.md` holds the shared repo rules; the project skill `.agents/skills/tnf-structural-research/SKILL.md` holds the scientific constraints and must be read before changing scientific content, docs or claims.
 
 ## Commands
 
@@ -28,6 +28,10 @@ npm ci --prefix structural-bioinformatics/browser-tests
 npx --prefix structural-bioinformatics/browser-tests playwright install chromium
 npm --prefix structural-bioinformatics/browser-tests test
 
+# Port 8000 is often already taken by another project on this machine, and a
+# backgrounded server that cannot bind fails silently. Pick a free port and
+# point the suite at it with RESEARCH_BASE_URL.
+RESEARCH_BASE_URL=http://127.0.0.1:8123 npm --prefix structural-bioinformatics/browser-tests test
 # Offline preview of exactly what Pages publishes (port 8787)
 python3 scripts/serve_local.py --no-browser
 ```
@@ -42,7 +46,7 @@ Optional/maintenance only: ManimGX animation (`--group animation`, `scripts/anim
 - **Docs are the content source.** The in-page reader (`assets/markdown-reader.js`) renders files from `docs/*.fa.md` via a hard-coded document list (filename, Persian title, group); a new doc must be registered there to appear. `presentation.html` + `assets/presentation.js` build the slide deck by parsing `docs/class-presentation.fa.md` together with `data/metadata/presentation.json`, so slide text is edited in the Markdown, not in HTML. URLs like `?document=…&chapter=…#reading` deep-link into the reader.
 - **Python package `src/tnf_atlas/`** (`tnf-atlas` CLI in `cli.py`): `structure.py` parses coordinates and computes contacts, `feasibility.py` the SASA/rigid-separation analysis, `figures.py` plotting, `provenance.py` hashes/manifests. `analyze` writes small curated outputs to `data/processed/*.json` (e.g. `structures-view.json` feeds the browser viewer) and the interface map assets. Raw downloads (`data/raw/`) and `results/` are gitignored.
 - **Provenance is enforced by tests.** `data/metadata/*.json` and `assets/*-provenance.json` record source URLs, accessions, UTC retrieval times and SHA-256 of public bytes; `tests/test_public_assets.py` and others recompute these. Changing a PDB, vendored file, figure, video or sequence file requires regenerating/updating its recorded hash.
-- **Publication allow-list.** `scripts/build_pages.py` copies only specific paths into the Pages artifact (structural-bioinformatics `index.html`, `presentation.html`, `README.md`, `assets/`, `docs/`, `data/metadata|processed/*.json`, `data/sequences/*.fasta|*.gb`) and fails if dev/raw directories leak in. New public file types or locations must be added there.
+- **Publication allow-list.** `scripts/build_pages.py` copies only specific paths into the Pages artifact (structural-bioinformatics `index.html`, `presentation.html`, `README.md`, `assets/`, `docs/`, `data/metadata|processed/*.json`, `data/sequences/*.fasta|*.gb`; the karpathy `index.html`, `README.md` and `assets/`; plus the homepage, shared `assets/`, `optimization/` and `stochastic-processes/`) and fails if dev/raw directories leak in. New public file types or locations must be added there.
 
 ## Conventions
 

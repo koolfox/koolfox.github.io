@@ -2,13 +2,15 @@
 
 ## Project Structure & Module Organization
 
-This checkout tracks the public `koolfox/koolfox.github.io` portfolio. Root `index.html` and `assets/` serve the homepage; `optimization/` and `stochastic-processes/` contain existing coursework. Keep research changes scoped to `structural-bioinformatics/` and its homepage link.
+This checkout tracks the public `koolfox/koolfox.github.io` portfolio. Root `index.html` and `assets/` serve the homepage; `optimization/` and `stochastic-processes/` contain existing coursework. Keep research changes scoped to `structural-bioinformatics/` and its homepage link. `karpathy/` is a separate learning surface with its own `PRODUCT.md` and direction contract; changes there stay inside that folder plus the publication allow-list and the browser checks.
 
 Inside the research project, `src/tnf_atlas/` contains Python analysis; `tests/` contains offline scientific checks; `scripts/` exports animations; `docs/` records methods and reviews; `data/metadata/` tracks provenance; `data/processed/` holds small curated outputs; `assets/` serves the molecular viewer and presentation files. Raw downloads and generated `results/` are ignored.
 
+`karpathy/` ships a DOM-free autograd engine in `assets/js/engine.js` that is asserted against the upstream `micrograd` reference outputs on every page load. Keep the engine free of DOM access, and never let a number reach the page that the upstream engine would not produce.
+
 ## Build, Test, and Development Commands
 
-- `python3 -m http.server 8000`: serve the static site from the repository root.
+- `python3 -m http.server 8000`: serve the static site from the repository root. Port 8000 is frequently taken by another project on this machine and a backgrounded server that cannot bind fails silently, so use a different port and confirm it answers before trusting a preview.
 - `uv sync --project structural-bioinformatics --frozen`: install the locked Python 3.13+ environment.
 - `uv run --project structural-bioinformatics pytest -q`: run offline tests.
 - `uv run --project structural-bioinformatics ruff check structural-bioinformatics`: lint project Python.

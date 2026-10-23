@@ -207,6 +207,11 @@ test.describe("phone layout", () => {
         expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
         await page.locator(".weights summary").click();
         expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
+        for (const selector of ["#gate", "#model", "#play", "#step", "#reset", "#finish", "#frame"]) {
+            const bounds = await page.locator(selector).boundingBox();
+            expect(bounds.x, `${selector} must not spill left in RTL`).toBeGreaterThanOrEqual(0);
+            expect(bounds.x + bounds.width, `${selector} must fit the viewport`).toBeLessThanOrEqual(390);
+        }
         for (const id of ["lab", "course", "exercises", "project", "sources"]) {
             await expect(page.locator(`#${id}`)).toBeVisible();
         }

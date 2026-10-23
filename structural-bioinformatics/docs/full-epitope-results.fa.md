@@ -90,7 +90,7 @@ RMSD کربن‌های آلفا بین سه‌تایی ما و 1TNF برابر *
 
 ### ۴.۶ مقایسه با هر ۱۴ جهش جدول ۳ مقالهٔ Hu
 
-جدول ۳ مقالهٔ Hu برای ۱۴ جهش آلانین روی TNF مقدار `K_D` را با حسگر SPR گزارش می‌کند. متن کامل مقاله در ۲۰۲۶-۱۰-۱۸ خوانده شد و مقادیر جدول در [`hu-2013-mutations.json`](../data/metadata/hu-2013-mutations.json) ثبت شدند. مقایسهٔ زیر با [`scripts/compare_hu_mutations.py`](../scripts/compare_hu_mutations.py) ساخته می‌شود و در [`hu-mutation-comparison.json`](../data/processed/hu-mutation-comparison.json) است.
+جدول ۳ مقالهٔ Hu برای ۱۴ جهش آلانین روی TNF مقدار `K_D` را با حسگر SPR گزارش می‌کند. متن کامل مقاله در ۲۰۲۶-۱۰-۱۸ خوانده شد و مقادیر جدول در [`hu-2013-mutations.json`](../data/metadata/hu-2013-mutations.json) ثبت شدند. مقایسهٔ زیر با [`scripts/compare_hu_mutations.py`](https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/scripts/compare_hu_mutations.py) ساخته می‌شود و در [`hu-mutation-comparison.json`](../data/processed/hu-mutation-comparison.json) است.
 
 | جهش | زیرواحد در تماس | ΔSASA ما (Å²) | تماس اتمی ما | نسبت K_D به حالت بدون جهش |
 | --- | --- | --- | --- | --- |

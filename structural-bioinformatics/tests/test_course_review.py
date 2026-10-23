@@ -84,3 +84,24 @@ def test_reference_identity_review_covers_current_literature_pairs():
         assert row["status"] == "match"
         assert row["expected_doi"].lower() == row["observed_doi"].lower()
         assert len(row["sha256"]) == 64
+
+
+def test_markdown_targets_exist_in_the_actual_pages_artifact(tmp_path):
+    import re
+    from urllib.parse import unquote, urlsplit
+
+    spec = importlib.util.spec_from_file_location(
+        "pages_builder", PROJECT.parent / "scripts/build_pages.py"
+    )
+    builder = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(builder)
+    artifact = builder.build_site(PROJECT.parent, tmp_path / "pages")
+    public_project = artifact / "structural-bioinformatics"
+    assert not (public_project / "data/raw").exists()
+    for document in (public_project / "docs").glob("*.md"):
+        for link in re.findall(r"\]\(([^\s)]+)", document.read_text()):
+            target = urlsplit(link)
+            if target.scheme or not target.path:
+                continue
+            resolved = (document.parent / unquote(target.path)).resolve()
+            assert resolved.exists(), (document.name, link)

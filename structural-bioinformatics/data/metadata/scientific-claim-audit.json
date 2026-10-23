@@ -3,7 +3,7 @@
   "reviewed_at_utc": "2026-10-20T09:20:34+00:00",
   "scope": "All 38 class chapters reordered to follow the course syllabus; the eleven new chapters cover the syllabus topics that had no slide, each with its reviewed block above.",
   "reviewed_file": "docs/class-presentation.fa.md",
-  "reviewed_sha256": "7e5539459a8e370123aae44c8faf7c3a0ca1593590d3e9fad9912e7b409060f3",
+  "reviewed_sha256": "aa5d2de510a1f563eebecd8b7f1c232b48f4d5955ec4d9c061bddff6fff7fb84",
   "sources": [
     {
       "id": "hu",
@@ -240,9 +240,19 @@
       "passage": "R-work 0.1867 and R-free 0.2750 read from the 3WD5 refinement records"
     },
     {
-      "id": "bourne-schlick",
-      "url": "https://doi.org/10.1002/9780470035205",
-      "passage": "Bourne and Weissig, Structural Bioinformatics; Schlick, Molecular Modeling and Simulation"
+      "id": "tao-primary",
+      "url": "https://doi.org/10.1002/art.41516",
+      "passage": "Baseline molecular profiling and subsequent response; early discontinuation limitations in the full text."
+    },
+    {
+      "id": "surface-crosscheck",
+      "path": "data/processed/surface-crosscheck.json",
+      "passage": "FreeSASA 2.2.1 with matched radii; Shrake-Rupley and Lee-Richards totals and separation control."
+    },
+    {
+      "id": "gromacs-reference",
+      "url": "https://manual.gromacs.org/current/reference-manual/index.html",
+      "passage": "Molecular mechanics, force-field potential functions, simulation and free-energy distinctions; no execution claimed in this study."
     }
   ],
   "limited_search": {
@@ -283,25 +293,40 @@
     {
       "id": "slide-content-01-block-03",
       "chapter": 1,
-      "exact_text": "**خروجی هشت هفته:** یک مقالهٔ کوتاه با نقشهٔ کامل اپی‌توپ و فهرست اولویت‌دار جایگاه‌های هدف، به‌عنوان ورودی طراحی مهارکنندهٔ تازه. همهٔ نتیجه‌ها هندسی‌اند؛ قدرت اتصال، داکینگ و اثر درمانی اندازه‌گیری نمی‌شود.",
+      "exact_text": "**خروجی هشت بسته:** گزارش درسیِ بازتحلیل اپی‌توپ و جایگاه‌های پیشنهادی برای طراحی آینده. این تحلیل هندسی است؛ میل اتصال یا اثر درمانی اندازه نمی‌گیرد و مهارکنندهٔ جدید طراحی نشده است.",
       "source_ids": [
         "project-full-epitope",
         "course-scope"
       ],
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "States the deliverable and the explicit limit: geometry only, with no affinity, docking or clinical effect claimed anywhere in the project.",
+      "review_note": "Final classroom review: reconcile source roles and actual execution, correct chemistry/force-field language, and separate numerical surface control from biological validation.",
       "passage": "Project scope: geometric analysis; binding strength, docking and treatment effect are not computed."
+    },
+    {
+      "source_ids": [
+        "course-scope",
+        "hu",
+        "project-full-epitope",
+        "rcsb1tnf",
+        "rcsb3wd5"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
+      "id": "slide-content-01-block-04",
+      "chapter": 1,
+      "exact_text": "> منابع: [RCSB: 3WD5](https://www.rcsb.org/structure/3WD5)؛ [RCSB: 1TNF](https://www.rcsb.org/structure/1TNF)؛ [روش و نتایج کامل ما](../docs/full-epitope-results.fa.md)؛ [برنامهٔ هفته‌به‌هفته](../docs/weekly-plan.fa.md)."
     },
     {
       "id": "slide-content-02-block-01",
       "chapter": 2,
-      "exact_text": "**ساختار و آزمایش:** [Hu 2013](https://doi.org/10.1074/jbc.M113.491530) ساختار TNF–Fab آدالیموماب را تعیین کرد و اثر تغییر تک‌اسیدآمینه را با حسگر SPR سنجید. این پایهٔ ساختاری ما و شاهد تجربیِ اهمیت یک اسیدآمینه است؛ آنتی‌بادی کامل در آن فایل نیست.",
+      "exact_text": "**ساختار و آزمایش:** [Hu 2013](https://doi.org/10.1074/jbc.M113.491530) ساختار TNF–Fab آدالیموماب را تعیین کرد و اثر تغییر تک‌اسیدآمینه را با حسگر SPR سنجید. اپی‌توپ دو زیرواحدی را خودِ مقاله گزارش کرده بود؛ سهم ما بازتحلیل عددی است، نه کشف اولیه. فایل، آنتی‌بادی کامل نیست.",
       "source_ids": [
         "hu",
         "hu-html"
       ],
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Hu and colleagues' own method and result; the mutation evidence is theirs, not ours.",
+      "review_note": "Final classroom review: reconcile source roles and actual execution, correct chemistry/force-field language, and separate numerical surface control from biological validation.",
       "passage": "Hu 2013: TNF–Fab crystal structure with single-residue substitutions measured by SPR."
     },
     {
@@ -319,14 +344,32 @@
     {
       "id": "slide-content-02-block-03",
       "chapter": 2,
-      "exact_text": "**بیمار و داده:** [Gehin 2024](https://doi.org/10.1136/rmdopen-2024-004888) غلظت سرمی دارو و پاسخ بالینی را بررسی کرد؛ مرز کار ما را نشان می‌دهد، چون هندسه پاسخ بیمار را نمی‌سنجد. خودِ Hu هم نوشته بود که اپی‌توپ روی دو زیرواحد است؛ کار ما بازتولید باز و عددیِ همان رابط از فایل ثبت‌شده است.",
+      "exact_text": "**بیمار و RNA:** [Gehin 2024](https://doi.org/10.1136/rmdopen-2024-004888) غلظت دارو و پاسخ بالینی را بررسی کرد؛ [Tao 2021](https://doi.org/10.1002/art.41516) RNA اولیه را با پاسخ بعدی مقایسه کرد. این دو نوع داده، پاسخ بیمار را از هندسهٔ اتصال جدا می‌کنند.",
       "source_ids": [
         "gehin",
-        "rcsb3wd5"
+        "rcsb3wd5",
+        "tao-primary"
       ],
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Gehin's clinical study is used only to mark the boundary of a geometric study. The absence statement is limited to these reports and to the identity-only assembly record.",
+      "review_note": "Final classroom review: reconcile source roles and actual execution, correct chemistry/force-field language, and separate numerical surface control from biological validation.",
       "passage": "Gehin 2024: serum concentration and clinical response. Geometry does not measure patient response."
+    },
+    {
+      "source_ids": [
+        "bianchi",
+        "gehin",
+        "hu",
+        "hu-html",
+        "rcsb1tnf",
+        "rcsb3wd5",
+        "tao-primary"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
+      "id": "slide-content-02-block-04",
+      "chapter": 2,
+      "exact_text": "> منابع: [Hu 2013](https://doi.org/10.1074/jbc.M113.491530)؛ [Bianchi 2026](https://doi.org/10.3389/fimmu.2025.1680199)؛ [Gehin 2024](https://doi.org/10.1136/rmdopen-2024-004888)؛ [شرح کامل آزمایش هر مقاله](../docs/paper-explanations.fa.md)."
     },
     {
       "id": "slide-content-03-block-01",
@@ -511,7 +554,20 @@
       "passage": "12.1; neutralisation discussion"
     },
     {
+      "source_ids": [
+        "project-full-epitope",
+        "rcsb1tnf",
+        "rcsb3wd5"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
       "id": "slide-content-07-block-01",
+      "chapter": 7,
+      "exact_text": "**پرسش:** پروتئین از چه لایه‌هایی ساخته می‌شود و در TNF کدام لایه را می‌بینیم؟ **ساختار اول** توالی است، **ساختار دوم** چیدمان محلی زنجیره، **ساختار سوم** شکل سه‌بعدی زنجیرهٔ تاخورده و **ساختار چهارم** آرایش چند زنجیره کنار هم است."
+    },
+    {
+      "id": "slide-content-07-block-02",
       "chapter": 7,
       "exact_text": "**آنچه ما واقعاً داریم:** توالی سازه و بخش دارای مختصات زنجیره‌های Fab از فایل 3WD5، و سه‌تایی TNF که خودمان از روی گروه فضایی همان فایل بازسازی کرده‌ایم. درستی این بازسازی را با ساختار مستقل 1TNF سنجیده‌ایم: ۴۵۶ جفت اتم Cα و RMSD برابر 1.178 Å.",
       "source_ids": [
@@ -525,7 +581,7 @@
       "review_note_before_20261023": "The 456 paired C-alpha atoms and the 1.178 A RMSD are the values recorded in data/processed/full-epitope.json; 1TNF is the independent apo control."
     },
     {
-      "id": "slide-content-07-block-02",
+      "id": "slide-content-07-block-03",
       "chapter": 7,
       "exact_text": "**مرز:** طبقه‌بندی رسمی ساختار دوم، مانند DSSP، در این پروژه اجرا نشده است؛ دربارهٔ چینش زنجیره حرف می‌زنیم، نه دربارهٔ درصد هلیکس.",
       "source_ids": [
@@ -536,18 +592,44 @@
       "passage": "scripts/analyze_full_epitope.py performs contacts and buried surface only"
     },
     {
+      "source_ids": [
+        "project-full-epitope",
+        "rcsb1tnf",
+        "rcsb3wd5"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
+      "id": "slide-content-07-block-04",
+      "chapter": 7,
+      "exact_text": "> منابع: [3WD5](https://www.rcsb.org/structure/3WD5)؛ [1TNF](https://www.rcsb.org/structure/1TNF)؛ [روش بازسازی و سنجش](../docs/full-epitope-results.fa.md)."
+    },
+    {
+      "source_ids": [
+        "GSE339038-counts",
+        "course-scope",
+        "rcsb4fm9"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
       "id": "slide-content-08-block-01",
       "chapter": 8,
-      "exact_text": "**DNA** در ساختار 4FM9 به‌صورت دوکس دیده می‌شود: دو زنجیرهٔ ضدهم روی هم پیچیده و کنار هستهٔ TOP2A. آنچه می‌بینیم مختصات اتمی است.",
+      "exact_text": "**پرسش:** DNA و RNA هر دو اسیدنوکلئیک‌اند؛ چرا یکی را با ساختار و دیگری را با توالی می‌شناسیم؟"
+    },
+    {
+      "id": "slide-content-08-block-02",
+      "chapter": 8,
+      "exact_text": "**DNA** در ساختار 4FM9 به‌صورت دوبلکس دیده می‌شود: دو زنجیرهٔ ضدهم روی هم پیچیده و کنار هستهٔ TOP2A. آنچه می‌بینیم مختصات اتمی است.",
       "source_ids": [
         "rcsb4fm9"
       ],
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "The deposited 4FM9 entry contains the TOP2A cleavage core with a DNA duplex; the statement is about the deposited view only.",
+      "review_note": "Final classroom review: reconcile source roles and actual execution, correct chemistry/force-field language, and separate numerical surface control from biological validation.",
       "passage": "RCSB entry 4FM9: human topoisomerase II alpha bound to DNA"
     },
     {
-      "id": "slide-content-08-block-02",
+      "id": "slide-content-08-block-03",
       "chapter": 8,
       "exact_text": "**RNA** دو نوع دادهٔ جدا دارد: حروف RefSeq برای توالی مرجع، و جدول RNA-seq برای فراوانی نسبی رونوشت‌ها. جدول شمارش، توالی یا ساختار سه‌بعدی RNA را تعیین نمی‌کند.",
       "source_ids": [
@@ -558,6 +640,32 @@
       "review_note": "2026-10-23 scoped correction: distinguish geometry, source measurements, proposed analyses and validation limits. See comprehensive-review.json; this is not blanket independent verification.",
       "passage": "data/processed/top2a-count-inspection.json holds counts and CPM only",
       "review_note_before_20261023": "The patient RNA data are counts and sequences; no RNA structure is available or claimed."
+    },
+    {
+      "source_ids": [
+        "GSE339038-counts",
+        "course-scope",
+        "rcsb4fm9"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
+      "id": "slide-content-08-block-04",
+      "chapter": 8,
+      "exact_text": "**شیمی مشترک:** باز نیتروژنی، قند پنتوز و فسفات. قند RNA در کربن ۲′ گروه OH دارد؛ DNA در همان جایگاه H دارد. گروه ۲′-OH می‌تواند شکستن ستون فقرات RNA را، به‌ویژه در محیط قلیایی، تسهیل کند."
+    },
+    {
+      "source_ids": [
+        "GSE339038-counts",
+        "course-scope",
+        "rcsb4fm9"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
+      "id": "slide-content-08-block-05",
+      "chapter": 8,
+      "exact_text": "> منابع: [4FM9](https://www.rcsb.org/structure/4FM9)؛ [راهنمای RNA و پروتئین](../docs/sequences-primer.fa.md)."
     },
     {
       "id": "slide-content-09-block-01",
@@ -666,6 +774,19 @@
       "passage": "docs/structural-method.fa.md separates the measured geometry from any energy claim"
     },
     {
+      "source_ids": [
+        "project-full-epitope",
+        "rcsb1tnf",
+        "rcsb3wd5"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
+      "id": "slide-content-10-block-05",
+      "chapter": 10,
+      "exact_text": "> منابع: [3WD5](https://www.rcsb.org/structure/3WD5)؛ [گزارش سطح و تماس](../docs/structural-feasibility-results.fa.md)."
+    },
+    {
       "id": "slide-content-11-block-01",
       "chapter": 11,
       "exact_text": "**TCL** زبان اسکریپتی است که VMD با آن کنترل می‌شود. در کلاس دو دستور کلیدی را می‌نویسیم: `measure rmsd` برای فاصلهٔ جذر میانگین مربعات و `measure sasa` برای سطح در دسترس حلال. برای RMSD ابتدا تطابق و ترتیب اتم‌ها و سپس انطباق با `measure fit` لازم است؛ `measure rmsd` خودش هم‌راستاسازی نمی‌کند.",
@@ -680,28 +801,53 @@
     {
       "id": "slide-content-11-block-02",
       "chapter": 11,
-      "exact_text": "**ما چه کرده‌ایم:** در این پروژه اسکریپت TCL/VMD نوشته نشده است. عددهای ما از اسکریپت‌های پایتون خودمان می‌آید: شمارش تماس اتمی و SASA با همان روش Shrake–Rupley. VMD یک کنترل مقایسه‌ای ممکن است؛ انتخاب اتم، شعاع‌ها، نمونه‌برداری سطح و انطباق باید یکسان شوند و برابری عددها تضمین نشده است.",
+      "exact_text": "**ما چه کرده‌ایم:** نمونهٔ دستور Tcl در درس‌نامه هست، ولی اجرای VMD گزارش نشده است. عددهای ما از اسکریپت‌های پایتون خودمان می‌آید: شمارش تماس اتمی و SASA با همان روش Shrake–Rupley. VMD یک کنترل مقایسه‌ای ممکن است؛ انتخاب اتم، شعاع‌ها، نمونه‌برداری سطح و انطباق باید یکسان شوند و برابری عددها تضمین نشده است.",
       "source_ids": [
         "project-full-epitope",
         "vmd-docs"
       ],
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "2026-10-23 scoped correction: distinguish geometry, source measurements, proposed analyses and validation limits. See comprehensive-review.json; this is not blanket independent verification.",
+      "review_note": "Final classroom review: reconcile source roles and actual execution, correct chemistry/force-field language, and separate numerical surface control from biological validation.",
       "passage": "repository search: no .tcl file; scripts/analyze_full_epitope.py performs the contact and SASA work",
       "review_note_before_20261023": "No TCL or VMD script exists in the repository; the numbers come from the project scripts, and the class tool is offered as the same measurement."
     },
     {
+      "source_ids": [
+        "project-full-epitope",
+        "vmd-docs"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
+      "id": "slide-content-11-block-03",
+      "chapter": 11,
+      "exact_text": "**مرز:** نمایشگر سه‌بعدی این صفحه جای VMD را نمی‌گیرد؛ ابزار کلاس است و جایگزین تحلیل ما نیست."
+    },
+    {
+      "source_ids": [
+        "project-full-epitope",
+        "vmd-docs"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
+      "id": "slide-content-11-block-04",
+      "chapter": 11,
+      "exact_text": "> منابع: [راهنمای VMD](https://www.ks.uiuc.edu/Research/vmd/)؛ [دستور measure](https://www.ks.uiuc.edu/Research/vmd/vmd/latest/ug_html/node122.html)."
+    },
+    {
       "id": "slide-content-12-block-01",
       "chapter": 12,
-      "exact_text": "3WD5 فقط یک زیرواحد TNF دارد. سه‌تایی را با تقارن بلور بازسازی کردیم؛ اختلاف آن با ساختار مستقل 1TNF فقط **1.18 Å** بود. در فاصلهٔ **4.5 Å**، از ۳۶۵ تماس اتمی **۱۱۳ تماس (۳۱٪)** روی زیرواحد همسایه است و سطح رابط از **786** به **1154 Å²** می‌رسد. **CDR-H2 و H3** بیشترین سهم را دارند. سطح کل رابط ما **2308 Å²** است و به **2540 Å²** مقاله نزدیک است؛ تعریف سطح دو روش باید تطبیق داده شود؛ تحلیل تک‌زیرواحدی فقط **1572 Å²** می‌دهد. این‌ها **محاسبهٔ هندسی** است، نه انرژی اتصال یا اثر درمان.",
+      "exact_text": "3WD5 فقط یک زیرواحد TNF دارد. سه‌تایی را با تقارن بلور بازسازی کردیم؛ اختلاف آن با ساختار مستقل 1TNF فقط **1.18 Å** بود. در فاصلهٔ **4.5 Å**، از ۳۶۵ تماس اتمی **۱۱۳ تماس (۳۱٪)** روی زیرواحد همسایه است و سطح رابط از **786** به **1154 Å²** می‌رسد. **CDR-H2 و H3** بیشترین سهم را دارند. مجموع ΔSASA ما **2308 Å²** است؛ کنترل مستقل FreeSASA نیز حدود **2308 Å²** داد. نمای تک‌زیرواحدی **1572 Å²** می‌دهد. این‌ها **محاسبهٔ هندسی** است، نه انرژی اتصال یا اثر درمان.",
       "source_ids": [
         "rcsb3wd5",
         "rcsb1tnf",
         "hu-indexed",
-        "project-full-epitope"
+        "project-full-epitope",
+        "surface-crosscheck"
       ],
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "2026-10-23 scoped correction: distinguish geometry, source measurements, proposed analyses and validation limits. See comprehensive-review.json; this is not blanket independent verification.",
+      "review_note": "Final classroom review: reconcile source roles and actual execution, correct chemistry/force-field language, and separate numerical surface control from biological validation.",
       "passage": "Symmetry trimer RMSD 1.178 Å/456 CA vs 1TNF; contacts 252 (A) + 113 (neighbour) at 4.5 Å; ΔSASA/2 785.9 → 1153.8 Å²; Q21 ΔSASA 75.2 Å², rank 2.",
       "review_note_before_20261023": "Numbers checked against data/processed/full-epitope.json and the offline test tests/test_full_epitope.py; Hu Q21A KD values are the previously verified Table 3 rows. Geometry only; no affinity, efficacy or TOP2A claim."
     },
@@ -801,17 +947,31 @@
     {
       "id": "slide-content-14-block-01",
       "chapter": 14,
-      "exact_text": "**PDB** آرشیو ساختارهای سه‌بعدی است. هر فایل رکوردهایی برای اتم‌ها، برای گروه فضایی بلوری و برای شرایط آزمایش دارد. 3WD5 با پراش پرتو X و تفکیک‌پذیری 3.10 Å اندازه‌گیری شده است؛ R-work برابر 0.1867 و R-free برابر 0.2750. گروه فضایی آن I 21 3 است و رکورد اسمبلی فقط عملگر همانی را دارد.",
+      "exact_text": "**PDB** آرشیو ساختارهای سه‌بعدی است. هر فایل رکوردهایی برای اتم‌ها، برای گروه فضایی بلوری و برای شرایط آزمایش دارد. 3WD5 با پراش پرتو X و تفکیک‌پذیری 3.10 Å اندازه‌گیری شده است؛ در رکورد سپرده‌شده R-work برابر 0.1867 و R-free برابر 0.2750 است. گروه فضایی آن I 21 3 است و رکورد اسمبلی فقط عملگر همانی را دارد.",
       "source_ids": [
         "rcsb3wd5",
         "project-data-access"
       ],
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Resolution, refinement values, space group and the identity-only assembly record are read from the deposited entry and the local header records.",
+      "review_note": "Final classroom review: reconcile source roles and actual execution, correct chemistry/force-field language, and separate numerical surface control from biological validation.",
       "passage": "RCSB entry 3WD5 and the _refine records listed in docs/data-access-guide.fa.md"
     },
     {
+      "source_ids": [
+        "codon-references",
+        "project-data-access",
+        "project-full-epitope",
+        "rcsb3wd5"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
       "id": "slide-content-14-block-02",
+      "chapter": 14,
+      "exact_text": "**همین یک نکته کل کار ما را توضیح می‌دهد:** در این فایل سه‌تایی را با تقارن بلور بازسازی می‌کنیم، پس هر محاسبهٔ تماس باید بگوید از کدام نسخهٔ تقارنی استفاده کرده است. دو همسایهٔ نزدیک را پیدا کردیم و درستی‌اش را با 1TNF سنجیدیم."
+    },
+    {
+      "id": "slide-content-14-block-03",
       "chapter": 14,
       "exact_text": "**توالی‌ها از کجا می‌آیند:** توالی مرجع از NCBI و توالی سازه از خود wwPDB گرفته و اعتبارسنجی شده است. شمارهٔ جایگاه در فایل ساختار با شمارهٔ UniProt یکی نیست: برای TNF، جایگاه فایل برابر شمارهٔ UniProt منهای 76 است، و همین تطبیق را در درس کدون می‌بینیم.",
       "source_ids": [
@@ -821,6 +981,20 @@
       "status": "reviewed_with_scope_and_limitations",
       "review_note": "Sequence provenance and the 76-residue offset between the deposited numbering and UniProt P01375 are recorded in the project's sequence metadata. Wording tightened for the projector fit; the claim is unchanged.",
       "passage": "data/metadata/sequences.json and the codon lesson record"
+    },
+    {
+      "source_ids": [
+        "codon-references",
+        "project-data-access",
+        "project-full-epitope",
+        "rcsb3wd5"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
+      "id": "slide-content-14-block-04",
+      "chapter": 14,
+      "exact_text": "> منابع: [3WD5](https://www.rcsb.org/structure/3WD5)."
     },
     {
       "id": "slide-content-15-block-01",
@@ -849,17 +1023,30 @@
     {
       "id": "slide-content-15-block-03",
       "chapter": 15,
-      "exact_text": "> منبع: [Hu 2013، روش‌های ساختار و SPR، جدول ۳](https://doi.org/10.1074/jbc.M113.491530). این مقالهٔ پایهٔ ساختاری است؛ جزو سه مقالهٔ جدید نیست.",
+      "exact_text": "> منبع: [Hu 2013، روش‌های ساختار و SPR، جدول ۳](https://doi.org/10.1074/jbc.M113.491530). این منبع تجربی، مستقل از شرط تازگی، پایهٔ مطالعه است.",
       "source_ids": [
         "hu-indexed"
       ],
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "review_note": "Final classroom review: reconcile source roles and actual execution, correct chemistry/force-field language, and separate numerical surface control from biological validation.",
       "prior_exact_text_review": "slide-content-06-block-03",
       "passage": "Structure and SPR methods; table 3"
     },
     {
+      "source_ids": [
+        "ccd-pc",
+        "project-docking",
+        "rcsb1b09"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
       "id": "slide-content-16-block-01",
+      "chapter": 16,
+      "exact_text": "**پرسش:** یک مولکول کوچک درون ساختار کریستال از کجا می‌آید و چه اطلاعاتی دارد؟"
+    },
+    {
+      "id": "slide-content-16-block-02",
       "chapter": 16,
       "exact_text": "**مؤلفهٔ شیمیایی (CCD)** همان چیزی است که RCSB برای هر لیگاند کوچک نگه می‌دارد: ساختار، پیوندها، بارها و نام اتم‌ها. در 1B09 فسفوکولین با کد `PC` در هر پنج زیرواحد CRP دیده می‌شود.",
       "source_ids": [
@@ -871,7 +1058,7 @@
       "passage": "RCSB entry 1B09 and the CCD component PC"
     },
     {
-      "id": "slide-content-16-block-02",
+      "id": "slide-content-16-block-03",
       "chapter": 16,
       "exact_text": "**ما از همین استفاده کردیم:** مدل ایده‌آل فسفوکولین را از مؤلفهٔ شیمیایی گرفتیم و در بازداکینگ داک کردیم. هش فایل در رکورد اجرا ثبت شده است تا معلوم باشد دقیقاً کدام نسخه به کار رفته است.",
       "source_ids": [
@@ -881,6 +1068,32 @@
       "status": "reviewed_with_scope_and_limitations",
       "review_note": "The prepared ligand is the ideal CCD model; its URL and SHA-256 are recorded in the run record.",
       "passage": "data/processed/docking-redock-1b09.json: method.ligand.source"
+    },
+    {
+      "source_ids": [
+        "ccd-pc",
+        "project-docking",
+        "rcsb1b09"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
+      "id": "slide-content-16-block-04",
+      "chapter": 16,
+      "exact_text": "**چرا مهم است:** لیگاندی که در ساختار کریستال دیده می‌شود فقط با همان پیوندها و بارها معنا دارد؛ بدون آن، آماده‌سازی لیگاند حدس‌زدنی می‌شود."
+    },
+    {
+      "source_ids": [
+        "ccd-pc",
+        "project-docking",
+        "rcsb1b09"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
+      "id": "slide-content-16-block-05",
+      "chapter": 16,
+      "exact_text": "> منابع: [مؤلفهٔ شیمیایی PC](https://www.rcsb.org/ligand/PC)؛ [پروتکل داکینگ](../docs/docking-protocol.fa.md)."
     },
     {
       "id": "slide-content-17-block-01",
@@ -925,16 +1138,52 @@
       "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
+      "source_ids": [
+        "gromacs-reference",
+        "project-full-epitope"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
       "id": "slide-content-18-block-01",
       "chapter": 18,
-      "exact_text": "**مرز صریح ما:** در این پروژه هیچ انرژی‌ای محاسبه نشده است. ما هندسه را می‌شماریم و انرژی را نه. بنابراین ΔSASA را با ΔG اشتباه نمی‌گیریم و دربارهٔ محکم‌تر یا ضعیف‌تر حرفی نمی‌زنیم؛ تنها می‌گوییم این اسیدآمینه در این آرایش چقدر سطح پوشانده می‌شود.",
+      "exact_text": "**پرسش:** چرا «تماس دارد» با «محکم می‌چسبد» فرق دارد؟"
+    },
+    {
+      "source_ids": [
+        "gromacs-reference",
+        "project-full-epitope"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
+      "id": "slide-content-18-block-02",
+      "chapter": 18,
+      "exact_text": "**منظر انرژی** حالت‌های ممکن و انرژی آن‌ها را توصیف می‌کند؛ در منظر انرژی آزاد و شرایط مشخص، جمعیت حالت‌ها و سدهای میان آن‌ها مهم‌اند. **تاشدن پروتئین** رسیدن به مجموعهٔ آرایش‌های تاخورده است. **بهینه‌سازی ژئومتری** معمولاً کمینهٔ محلی پیدا می‌کند. **پروتئین‌های بی‌نظم ذاتی** یک شکل ثابت یکتا ندارند؛ نبود مختصات بلوری به‌تنهایی بی‌نظمی را ثابت نمی‌کند."
+    },
+    {
+      "id": "slide-content-18-block-03",
+      "chapter": 18,
+      "exact_text": "**مرز صریح ما:** در تحلیل رابط، انرژی آزاد محاسبه نشده است؛ تماس و پوشیدگی سطح را می‌سنجیم. بنابراین ΔSASA را با ΔG اشتباه نمی‌گیریم و دربارهٔ محکم‌تر یا ضعیف‌تر حرفی نمی‌زنیم؛ تنها می‌گوییم این اسیدآمینه در این آرایش چقدر سطح پوشانده می‌شود.",
       "source_ids": [
         "project-full-epitope",
-        "bourne-schlick"
+        "gromacs-reference"
       ],
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "The project computes no energies and the slide states that; the textbook is the concept reference, not a measurement.",
+      "review_note": "Final classroom review: reconcile source roles and actual execution, correct chemistry/force-field language, and separate numerical surface control from biological validation.",
       "passage": "docs/structural-method.fa.md and the executed analysis scope"
+    },
+    {
+      "source_ids": [
+        "gromacs-reference",
+        "project-full-epitope"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
+      "id": "slide-content-18-block-04",
+      "chapter": 18,
+      "exact_text": "> منابع: [GROMACS، مبانی مدل و انرژی](https://manual.gromacs.org/current/reference-manual/index.html)؛ [روش و مرزهای تفسیر](../docs/structural-method.fa.md)."
     },
     {
       "id": "slide-content-19-block-01",
@@ -1023,11 +1272,49 @@
       "passage": "Six of the 14 mutated residues contact the Fab only through the neighbouring protomer; E135A raised the authors' KD 103-fold."
     },
     {
+      "source_ids": [
+        "hu",
+        "hu-indexed",
+        "project-full-epitope",
+        "rcsb3wd5"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
+      "id": "slide-content-20-block-04",
+      "chapter": 20,
+      "exact_text": "> منبع: [Hu 2013، جدول ۳](https://doi.org/10.1074/jbc.M113.491530)؛ [مقایسهٔ اجراشدهٔ ما](../data/processed/hu-mutation-comparison.json)؛ [روش و نتایج کامل](../docs/full-epitope-results.fa.md)."
+    },
+    {
+      "source_ids": [
+        "gromacs-reference",
+        "course-scope"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
       "id": "slide-content-21-block-01",
+      "chapter": 21,
+      "exact_text": "**پرسش:** تحلیل ایستای ما چه چیزی را از دست می‌دهد؟"
+    },
+    {
+      "source_ids": [
+        "gromacs-reference",
+        "course-scope"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
+      "id": "slide-content-21-block-02",
+      "chapter": 21,
+      "exact_text": "**مکانیک مولکولی** می‌گوید نیروها چگونه حرکت را می‌سازند: کشش پیوند، زاویه، پیچش و برهم‌کنش‌های غیرکووالان. **میدان نیرو** مجموعه‌ای از پارامترها است که انرژی هر حالت را حساب می‌کند. **شبیه‌سازی دینامیک مولکولی** با گام‌های کوچک زمان، حرکت اتم‌ها را دنبال می‌کند و گروهی از آرایش‌ها را نمونه‌برداری می‌کند."
+    },
+    {
+      "id": "slide-content-21-block-03",
       "chapter": 21,
       "exact_text": "**مرز صریح ما:** در این پروژه هیچ شبیه‌سازی دینامیک مولکولی اجرا نشده است. بنابراین هیچ ادعایی دربارهٔ پویایی، دربارهٔ اثر جهش‌ها بر زمان‌بندی، یا دربارهٔ پایداری رابط نداریم. تحلیل ما ایستاست و در مقاله هم همین‌طور نوشته شده.",
       "source_ids": [
-        "bourne-schlick",
+        "gromacs-reference",
         "course-scope"
       ],
       "status": "reviewed_with_scope_and_limitations",
@@ -1035,56 +1322,20 @@
       "passage": "docs/manuscript-draft.fa.md states the static scope of the analysis"
     },
     {
+      "source_ids": [
+        "gromacs-reference",
+        "course-scope"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
+      "id": "slide-content-21-block-04",
+      "chapter": 21,
+      "exact_text": "> منابع: [GROMACS، مکانیک مولکولی و میدان نیرو](https://manual.gromacs.org/current/reference-manual/index.html)؛ [محدودیت‌های روش](../docs/structural-method.fa.md)."
+    },
+    {
       "id": "slide-content-22-block-01",
       "chapter": 22,
-      "exact_text": "**یافته:** در مدل‌های متصل به هدف، حرکت بخش‌های اتصال Fab با بخش‌های دورتر لولا و Fc همبستگی داشت؛ الگو به وضعیت قندهای Fc وابسته بود. همبستگی حرکت یعنی تغییرات دو بخش در مسیر شبیه‌سازی با هم همراه‌اند.",
-      "source_ids": [
-        "bianchi"
-      ],
-      "status": "reviewed_with_scope_and_limitations",
-      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
-      "prior_exact_text_review": "slide-content-09-block-01",
-      "passage": "Results figures 2-4; not independent functional evidence"
-    },
-    {
-      "id": "slide-content-22-block-02",
-      "chapter": 22,
-      "exact_text": "**اهمیت:** اتصال روی یک بازو می‌تواند با تغییر آرایش بخش‌های دورتر همراه شود؛ آنتی‌بادی جسم صلب نیست.",
-      "source_ids": [
-        "bianchi"
-      ],
-      "status": "reviewed_with_scope_and_limitations",
-      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
-      "prior_exact_text_review": "slide-content-09-block-02",
-      "passage": "Results figures 2-4; not independent functional evidence"
-    },
-    {
-      "id": "slide-content-22-block-03",
-      "chapter": 22,
-      "exact_text": "**حد نتیجه:** این مطالعه برای TOP2A آزمایشی ندارد و کارایی درمان یا عملکرد تازهٔ سلولی را مستقیماً اندازه نگرفته است. ما نیز مسیرهای دینامیک مولکولی این مقاله را بازاجرا نکرده‌ایم.",
-      "source_ids": [
-        "bianchi"
-      ],
-      "status": "reviewed_with_scope_and_limitations",
-      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
-      "prior_exact_text_review": "slide-content-09-block-03",
-      "passage": "Results figures 2-4; not independent functional evidence"
-    },
-    {
-      "id": "slide-content-22-block-04",
-      "chapter": 22,
-      "exact_text": "> منبع: [Bianchi 2026، شکل‌های ۲ تا ۴ و بحث](https://doi.org/10.3389/fimmu.2025.1680199).",
-      "source_ids": [
-        "bianchi"
-      ],
-      "status": "reviewed_with_scope_and_limitations",
-      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
-      "prior_exact_text_review": "slide-content-09-block-04",
-      "passage": "Results figures 2-4; not independent functional evidence"
-    },
-    {
-      "id": "slide-content-23-block-01",
-      "chapter": 23,
       "exact_text": "**روش:** پژوهشگران آدالیموماب–TNF و آولوماب–PD-L1 را از قالب‌های تجربی مدل‌سازی کردند. برای آدالیموماب، Fab از 3WD5 و بخش‌های دیگر از قالب آنتی‌بادی کامل ساخته شدند؛ ساختار کامل مستقیماً از 3WD5 به دست نمی‌آید.",
       "source_ids": [
         "bianchi"
@@ -1095,8 +1346,8 @@
       "passage": "Methods modelling and MD"
     },
     {
-      "id": "slide-content-23-block-02",
-      "chapter": 23,
+      "id": "slide-content-22-block-02",
+      "chapter": 22,
       "exact_text": "**دینامیک مولکولی** محاسبهٔ حرکت اتم‌ها با مدل نیرو است. برای هر کمپلکس، ۵۰ نانوثانیه شبیه‌سازی معمولی و سپس ۱ میکروثانیه شبیه‌سازی شتاب‌داده‌شده برای کاوش حالت‌های بیشتر اجرا شد. نانوثانیه یک میلیاردم و میکروثانیه یک میلیونم ثانیه است؛ زمانِ مدل، مدت درمان بیمار نیست. دو حالت متفاوت قندیِ Fc مقایسه شدند.",
       "source_ids": [
         "bianchi"
@@ -1107,8 +1358,8 @@
       "passage": "Methods modelling and MD"
     },
     {
-      "id": "slide-content-23-block-03",
-      "chapter": 23,
+      "id": "slide-content-22-block-03",
+      "chapter": 22,
       "exact_text": "> منبع: [Bianchi، انتشار آنلاین ۸ ژانویهٔ ۲۰۲۶، بخش روش‌ها](https://doi.org/10.3389/fimmu.2025.1680199). سال ۲۰۲۵ در DOI، تاریخ انتشار آنلاین نیست.",
       "source_ids": [
         "bianchi"
@@ -1119,7 +1370,68 @@
       "passage": "Methods modelling and MD"
     },
     {
+      "id": "slide-content-23-block-01",
+      "chapter": 23,
+      "exact_text": "**یافته:** در مدل‌های متصل به هدف، حرکت بخش‌های اتصال Fab با بخش‌های دورتر لولا و Fc همبستگی داشت؛ الگو به وضعیت قندهای Fc وابسته بود. همبستگی حرکت یعنی تغییرات دو بخش در مسیر شبیه‌سازی با هم همراه‌اند.",
+      "source_ids": [
+        "bianchi"
+      ],
+      "status": "reviewed_with_scope_and_limitations",
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-09-block-01",
+      "passage": "Results figures 2-4; not independent functional evidence"
+    },
+    {
+      "id": "slide-content-23-block-02",
+      "chapter": 23,
+      "exact_text": "**اهمیت:** اتصال روی یک بازو می‌تواند با تغییر آرایش بخش‌های دورتر همراه شود؛ آنتی‌بادی جسم صلب نیست.",
+      "source_ids": [
+        "bianchi"
+      ],
+      "status": "reviewed_with_scope_and_limitations",
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-09-block-02",
+      "passage": "Results figures 2-4; not independent functional evidence"
+    },
+    {
+      "id": "slide-content-23-block-03",
+      "chapter": 23,
+      "exact_text": "**حد نتیجه:** این مطالعه برای TOP2A آزمایشی ندارد و کارایی درمان یا عملکرد تازهٔ سلولی را مستقیماً اندازه نگرفته است. ما نیز مسیرهای دینامیک مولکولی این مقاله را بازاجرا نکرده‌ایم.",
+      "source_ids": [
+        "bianchi"
+      ],
+      "status": "reviewed_with_scope_and_limitations",
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-09-block-03",
+      "passage": "Results figures 2-4; not independent functional evidence"
+    },
+    {
+      "id": "slide-content-23-block-04",
+      "chapter": 23,
+      "exact_text": "> منبع: [Bianchi 2026، شکل‌های ۲ تا ۴ و بحث](https://doi.org/10.3389/fimmu.2025.1680199).",
+      "source_ids": [
+        "bianchi"
+      ],
+      "status": "reviewed_with_scope_and_limitations",
+      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "prior_exact_text_review": "slide-content-09-block-04",
+      "passage": "Results figures 2-4; not independent functional evidence"
+    },
+    {
+      "source_ids": [
+        "bianchi",
+        "course-scope",
+        "rcsb3wd5"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
       "id": "slide-content-24-block-01",
+      "chapter": 24,
+      "exact_text": "**سه رویکرد:** **همولوژی** از قالب هم‌خانواده استفاده می‌کند؛ **تردینگ** سازگاری توالی با تاخوردگی‌های شناخته‌شده را می‌سنجد، حتی وقتی شباهت توالی کم است؛ **یادگیری ماشین** ممکن است از توالی، هم‌ترازی و قالب استفاده کند. اجرای بدون قالب به معنی مستقل‌بودن آموزش مدل از ساختارهای شناخته‌شده نیست. در کنار آن‌ها، **پیش‌بینی ساختار دوم** فقط چیدمان محلی رشته است."
+    },
+    {
+      "id": "slide-content-24-block-02",
       "chapter": 24,
       "exact_text": "**در این پروژه:** مدل کامل آنتی‌بادی در گزارش Bianchi یک ساختار پیش‌بینی‌شده است، نه ساختار تجربی؛ برای همین آن را با 3WD5 که ساختار تجربی با پرتو X است مقایسه می‌کنیم و تفاوت این دو را صریح می‌گوییم.",
       "source_ids": [
@@ -1131,7 +1443,7 @@
       "passage": "Bianchi 2026 report and the RCSB 3WD5 entry"
     },
     {
-      "id": "slide-content-24-block-02",
+      "id": "slide-content-24-block-03",
       "chapter": 24,
       "exact_text": "**مرز:** ما خودمان مدل نمی‌سازیم. هیچ مدل‌سازی همولوژی، تردینگ یا مدل یادگیری ماشینی در این پروژه اجرا نشده است؛ آنچه داریم یک مدل گزارش‌شده در مقالهٔ دیگر است که با آن مقایسه می‌کنیم.",
       "source_ids": [
@@ -1143,15 +1455,28 @@
       "passage": "repository scope: no homology modelling, threading or machine learning predictor was executed"
     },
     {
+      "source_ids": [
+        "bianchi",
+        "course-scope",
+        "rcsb3wd5"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
+      "id": "slide-content-24-block-04",
+      "chapter": 24,
+      "exact_text": "> منابع: [Bianchi 2026](https://doi.org/10.3389/fimmu.2025.1680199)؛ [3WD5](https://www.rcsb.org/structure/3WD5)."
+    },
+    {
       "id": "slide-content-25-block-01",
       "chapter": 25,
-      "exact_text": "**محدودیت طراحی:** جایگاه هدف روی مرز دو زیرواحد TNF است و روی یک زیرواحد تنها کامل نمی‌شود. پس غربالگری روی مدل تک‌زیرواحدی حدود یک‌سوم تماس‌های اتمی این رابط را نمی‌بیند. در آدالیموماب فقط زنجیرهٔ سنگین به زیرواحد همسایه می‌رسد.",
+      "exact_text": "**برای تقلید همین رابط:** جایگاه هدف روی مرز دو زیرواحد TNF است و روی یک زیرواحد تنها کامل نمی‌شود. پس غربالگری روی مدل تک‌زیرواحدی حدود یک‌سوم تماس‌های اتمی این رابط را نمی‌بیند. در آدالیموماب فقط زنجیرهٔ سنگین به زیرواحد همسایه می‌رسد.",
       "source_ids": [
         "project-full-epitope",
         "hu"
       ],
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "2026-10-23 scoped correction: distinguish geometry, source measurements, proposed analyses and validation limits. See comprehensive-review.json; this is not blanket independent verification.",
+      "review_note": "Final classroom review: reconcile source roles and actual execution, correct chemistry/force-field language, and separate numerical surface control from biological validation.",
       "passage": "full-epitope.json: neighbour_fraction_of_contacts 0.3096; buried_surface A:GLN67 124.5, A:GLN21 75.2, A:ALA145 72.6 Å²; hu_2013_q21a_context kd_ratio 202.7.",
       "review_note_before_20261023": "Two-protomer constraint follows from the 31% neighbour contact share and 358.0 Å² buried on the neighbour in full-epitope.json; 'only the heavy chain reaches the neighbour' is the recorded per-chain contact result."
     },
@@ -1230,7 +1555,32 @@
       "passage": "docs/docking-protocol.fa.md, section on the protein-protein half"
     },
     {
+      "source_ids": [
+        "course-scope",
+        "project-docking",
+        "rcsb1b09"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
+      "id": "slide-content-26-block-04",
+      "chapter": 26,
+      "exact_text": "> منابع: [1B09](https://www.rcsb.org/structure/1B09)؛ [پروتکل داکینگ](../docs/docking-protocol.fa.md)."
+    },
+    {
+      "source_ids": [
+        "gromacs-reference",
+        "project-full-epitope"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
       "id": "slide-content-27-block-01",
+      "chapter": 27,
+      "exact_text": "**پرسش:** جدول تماس‌های ما چه چیزی از یک شبکه دارد؟"
+    },
+    {
+      "id": "slide-content-27-block-02",
       "chapter": 27,
       "exact_text": "**شبکهٔ برهم‌کنش اسیدآمینه:** هر باقی‌مانده یک گره؛ هر جفت در تماس یک یال. در `4.5 Å`، ۳۶۵ جفت اتم به ۶۵ جفت باقی‌مانده می‌رسد. Gln21 دو شریک و ۱۶ تماس اتمی دارد. در شکل، شریک‌های Fab بر حسب CDR تجمیع شده‌اند.",
       "source_ids": [
@@ -1242,17 +1592,41 @@
       "review_note_before_20261023": "365 heavy-atom contacts at 4.5 A and the 31 % neighbour share are the executed values."
     },
     {
-      "id": "slide-content-27-block-02",
+      "id": "slide-content-27-block-03",
       "chapter": 27,
       "exact_text": "**مرز:** شبکهٔ انرژی پروتئین یال‌های وزن‌دار با تعریف مشخص از انرژی برهم‌کنش دارد؛ شبکهٔ هم‌بستگی حرکت تعریف دیگری است. شبکهٔ انرژی به مدل انرژی نیاز دارد و ما انرژی حساب نکرده‌ایم، پس چنین شبکه‌ای در این پروژه ساخته نشده است. مرکزیت و مسیرهای کوتاه هم محاسبه نشده‌اند.",
       "source_ids": [
         "project-full-epitope",
-        "bourne-schlick"
+        "gromacs-reference"
       ],
       "status": "reviewed_with_scope_and_limitations",
       "review_note": "2026-10-23 scoped correction: distinguish geometry, source measurements, proposed analyses and validation limits. See comprehensive-review.json; this is not blanket independent verification.",
       "passage": "data/processed/full-epitope.json holds contacts, buried surface and interaction types only",
       "review_note_before_20261023": "No energy network and no centrality metrics exist in the project; the contact table is read as a network, nothing more."
+    },
+    {
+      "source_ids": [
+        "gromacs-reference",
+        "project-full-epitope"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
+      "id": "slide-content-27-block-04",
+      "chapter": 27,
+      "exact_text": "![شبکهٔ برهم‌کنش اپی‌توپ: گره‌های اسیدآمینهٔ TNF و ناحیه‌های Fab، با یال‌های تماس](../assets/epitope-network.svg)"
+    },
+    {
+      "source_ids": [
+        "gromacs-reference",
+        "project-full-epitope"
+      ],
+      "status": "reviewed_classroom_scope",
+      "review_note": "Final classroom source/scope review. Sources are inherited from the chapter unless a prior passage-level review exists; not a claim of experimental replication.",
+      "source_mapping_level": "chapter_references",
+      "id": "slide-content-27-block-05",
+      "chapter": 27,
+      "exact_text": "> منابع: [3WD5](https://www.rcsb.org/structure/3WD5)؛ [نتیجهٔ کامل اپی‌توپ](../docs/full-epitope-results.fa.md)."
     },
     {
       "id": "slide-content-28-block-01",
@@ -1381,13 +1755,13 @@
     {
       "id": "slide-content-30-block-02",
       "chapter": 30,
-      "exact_text": "**زمان مهم است:** RNA پیش از شروع درمان گرفته شده؛ پاسخ بالینی شش ماه بعد ثبت شده است. برای تمرین، فایل PBMC نویسندگان را می‌خوانیم: ۷۹ ستون، از جمله ۳۷ ستون آدالیموماب. PBMC مجموعهٔ سلول‌های تک‌هسته‌ای خون است.",
+      "exact_text": "**زمان مهم است:** RNA پیش از شروع درمان گرفته شده؛ پاسخ در پیگیری تا شش ماه ارزیابی شد؛ برخی قطع‌کنندگان زودهنگام با آخرین ویزیت برچسب خوردند. برای تمرین، فایل PBMC نویسندگان را می‌خوانیم: ۷۹ ستون، از جمله ۳۷ ستون آدالیموماب. PBMC مجموعهٔ سلول‌های تک‌هسته‌ای خون است.",
       "source_ids": [
         "Tao2021",
         "RA-RNA-learning"
       ],
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "References and measurement scope checked for current teaching role; future questions are not measured drug mechanisms.",
+      "review_note": "Final classroom review: reconcile source roles and actual execution, correct chemistry/force-field language, and separate numerical surface control from biological validation.",
       "passage": "Current chapter references and source records listed above; genotype/reference/cell/blood measurements kept distinct."
     },
     {
@@ -1915,5 +2289,57 @@
         "previous_sha256": "5ef4b596e53bcfb2eea227711948f8a0f904430cabe55823b224f06b559aae50"
       }
     ]
+  },
+  "final_classroom_review": {
+    "at_utc": "2026-10-23T17:20:18.108633+00:00",
+    "changed_blocks": [
+      {
+        "block": "slide-content-01-block-03",
+        "previous_sha256": "fdd49f42ae3f3e8f9d4c3e0221dcf829972a3e4fa846e3919b51b8f9475dca30"
+      },
+      {
+        "block": "slide-content-02-block-01",
+        "previous_sha256": "ebd94a62eedcd63dfea35c37bbd3978fd09babba3d600197c6ac041a180dbbb5"
+      },
+      {
+        "block": "slide-content-02-block-03",
+        "previous_sha256": "f460d43509144c1e17fa31e94680599e61826c6edaf6febfa91bb7aac03181ad"
+      },
+      {
+        "block": "slide-content-08-block-01",
+        "previous_sha256": "044f4925193f31ae680aef52926b806c3c486f5e3f70c1c0ebde7529af325b4a"
+      },
+      {
+        "block": "slide-content-11-block-02",
+        "previous_sha256": "88efd901c63be275fc6b771b978fe2f9c1ae7c1a791027502bba5792af55ced9"
+      },
+      {
+        "block": "slide-content-12-block-01",
+        "previous_sha256": "959ce5c6e352add370fdd3470f97ed2ad50cb53bcf2583db2f1ef43766cc4d27"
+      },
+      {
+        "block": "slide-content-14-block-01",
+        "previous_sha256": "418f42802fa0992a7f05fd282ccec7fd813d44df6127ecf92a9d1d72b6f0ed99"
+      },
+      {
+        "block": "slide-content-15-block-03",
+        "previous_sha256": "12ea9f1fa88c13991f140592d1f26ecee91986c3ffc953ac665f86ed29ac5c46"
+      },
+      {
+        "block": "slide-content-18-block-01",
+        "previous_sha256": "bcc3aeb51e21d3e814c706edf42984fabf36e75f39ccb20017453dab0c4e75fe"
+      },
+      {
+        "block": "slide-content-25-block-01",
+        "previous_sha256": "190020130c0df025a136dc3e4eb56c1e1c1b08e56c0f8db990fd5b1586c26304"
+      },
+      {
+        "block": "slide-content-30-block-02",
+        "previous_sha256": "1664f4536a901ae3b5d62a4457aba090f5a376a69a8bbb9c977ade0cd58666ff"
+      }
+    ],
+    "scope": "Content and reproduction review complete for the classroom package; not experimental certification.",
+    "previous_block_set_sha256": "d471ccea6bbface76b3027d58fd1e76920942d388687f8794dd10e783d3cc0df",
+    "coverage": "Every nonempty paragraph/table/diagram/reference block of every chapter is recorded. Mapping level remains explicit; a matching hash is integrity evidence, not external scientific certification."
   }
 }

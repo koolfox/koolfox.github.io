@@ -788,3 +788,17 @@ test('course review routes thirty lessons and separates the RNA research protoco
     await expect(page.locator('#markdown-content')).toContainText('23943614');
     await expect(page.locator('#markdown-content')).toContainText('صددرصدی نیست');
 });
+
+test('finished report exposes the executed surface control and a current handout', async ({ page, request }) => {
+    await page.goto(`${route}?document=full-epitope-results.fa.md&chapter=chapter-4#reading`);
+    await expect(page.locator('#reading-status')).toHaveAttribute('data-state', 'ready');
+    await expect(page.locator('#markdown-content')).toContainText('FreeSASA');
+    await expect(page.locator('#markdown-content')).toContainText('2307.616');
+    await page.selectOption('#document-select', 'manuscript-draft.fa.md');
+    await page.selectOption('#chapter-select', 'all');
+    await expect(page.locator('#markdown-content')).toContainText('متن کامل گزارش درسی');
+    await expect(page.locator('#markdown-content')).not.toContainText('[تکمیل شود]');
+    const pdf = await request.get(`${route}assets/preparation-guide.fa.pdf`);
+    expect(pdf.ok()).toBe(true);
+    expect((await pdf.body()).subarray(0, 5).toString()).toBe('%PDF-');
+});

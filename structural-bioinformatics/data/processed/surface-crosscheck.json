@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "status": "executed_independent_implementation_check_same_coordinates",
+  "executed_at_utc": "2026-10-23T17:11:21.811287+00:00",
+  "software": {
+    "python": "3.13.9",
+    "freesasa": "2.2.1"
+  },
+  "parameters": {
+    "probe_radius_angstrom": 1.4,
+    "shrake_rupley_points": 960,
+    "lee_richards_slices": 100,
+    "threads": 1,
+    "radii_angstrom": {
+      "C": 1.7,
+      "N": 1.55,
+      "O": 1.52,
+      "S": 1.8
+    }
+  },
+  "provenance": {
+    "input": "assets/3wd5.pdb",
+    "input_sha256": "fae6eee1b06b8cba0a466280dbc32563efaa54ec639afd921cb610d17debd216",
+    "reference": "data/processed/full-epitope.json",
+    "reference_sha256": "51ef365b6591a20d4df525ca9bb4e45156b72cfd083cc410b9397051659d07a2",
+    "assembly_script_sha256": "d2973ddd2627cd4d5f7c6eb4f9b53de737d25994f5100c5ccc2e121a9990548c",
+    "generator_sha256": "2d496648481208c6f154139b0e84ae0ebddd5df1cf4242c243694cfa69db9793",
+    "binary_sha256": "4ba9dc0ac1965ef018dbd864757694b09102cd68c7d4a51d601f6889bbc1a4ef",
+    "documentation": "https://freesasa.github.io/python/functions.html#freesasa.calcCoord"
+  },
+  "results": {
+    "shrake_rupley": {
+      "deposited": {
+        "target_atom_count": 1187,
+        "fab_atom_count": 3215,
+        "isolated_target_angstrom2": 8631.67382,
+        "isolated_fab_angstrom2": 19004.238096,
+        "complex_angstrom2": 26064.127722,
+        "total_delta_sasa_angstrom2": 1571.784194,
+        "half_delta_sasa_angstrom2": 785.892097,
+        "separated_total_delta_sasa_angstrom2": 0.0,
+        "biopython_reference_total_angstrom2": 1571.8,
+        "relative_difference_from_biopython": -1e-05
+      },
+      "trimer": {
+        "target_atom_count": 3561,
+        "fab_atom_count": 3215,
+        "isolated_target_angstrom2": 18823.972858,
+        "isolated_fab_angstrom2": 19004.238096,
+        "complex_angstrom2": 35520.595111,
+        "total_delta_sasa_angstrom2": 2307.615843,
+        "half_delta_sasa_angstrom2": 1153.807921,
+        "separated_total_delta_sasa_angstrom2": 0.0,
+        "biopython_reference_total_angstrom2": 2307.6,
+        "relative_difference_from_biopython": 7e-06
+      }
+    },
+    "lee_richards": {
+      "deposited": {
+        "target_atom_count": 1187,
+        "fab_atom_count": 3215,
+        "isolated_target_angstrom2": 8633.872553,
+        "isolated_fab_angstrom2": 19007.736827,
+        "complex_angstrom2": 26067.917329,
+        "total_delta_sasa_angstrom2": 1573.692051,
+        "half_delta_sasa_angstrom2": 786.846026,
+        "separated_total_delta_sasa_angstrom2": 0.0,
+        "biopython_reference_total_angstrom2": 1571.8,
+        "relative_difference_from_biopython": 0.001204
+      },
+      "trimer": {
+        "target_atom_count": 3561,
+        "fab_atom_count": 3215,
+        "isolated_target_angstrom2": 18819.911556,
+        "isolated_fab_angstrom2": 19007.736827,
+        "complex_angstrom2": 35519.201438,
+        "total_delta_sasa_angstrom2": 2308.446945,
+        "half_delta_sasa_angstrom2": 1154.223472,
+        "separated_total_delta_sasa_angstrom2": 0.0,
+        "biopython_reference_total_angstrom2": 2307.6,
+        "relative_difference_from_biopython": 0.000367
+      }
+    }
+  },
+  "limits": [
+    "Coordinates, chain mapping and radii are shared with the primary analysis.",
+    "FreeSASA is a separate SASA implementation; this is not an independent experiment.",
+    "PISA was not run, and the area convention used by Hu remains undocumented.",
+    "SASA is geometric, not affinity, free energy or therapeutic efficacy."
+  ]
+}

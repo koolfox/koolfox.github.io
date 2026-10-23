@@ -186,9 +186,10 @@ test("keyboard users can operate native controls and inspect the network", async
 });
 
 test.describe("reduced motion", () => {
-    test.use({ reducedMotion: "reduce" });
+    test.use({ contextOptions: { reducedMotion: "reduce" } });
     test("loads a static usable result, with no autoplay", async ({ page }) => {
         await ready(page);
+        expect(await page.evaluate(() => matchMedia("(prefers-reduced-motion: reduce)").matches)).toBe(true);
         const initial = await page.inputValue("#frame");
         await page.waitForTimeout(950);
         await expect(page.locator("#frame")).toHaveValue(initial);

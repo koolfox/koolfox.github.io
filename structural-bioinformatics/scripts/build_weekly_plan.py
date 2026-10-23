@@ -70,7 +70,7 @@ def coverage_summary(entries, legend):
 
 def goal_block(goal, weeks):
     return [
-        f"**هدف نهایی: یک مقالهٔ کوتاه در پایان هفتهٔ {fa(len(weeks))}**",
+        f"**مقصد {fa(len(weeks))} بسته: ساختن پایهٔ یک مرور انتقادی**",
         "",
         f"**عنوان کاری:** {goal['title']}",
         "",

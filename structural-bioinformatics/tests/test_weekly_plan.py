@@ -61,15 +61,14 @@ def test_weeks_are_ordered_and_reference_existing_content():
     assert not appendix & covered
 
 
-def test_every_week_writes_an_existing_manuscript_section():
-    assert PLAN["paper_goal"]["document"] == "manuscript-draft.fa.md"
-    sections = chapter_count("manuscript-draft.fa.md")
+def test_every_week_builds_the_survey_from_an_existing_protocol_or_draft_section():
+    assert PLAN["paper_goal"]["document"] == "survey-draft.fa.md"
     for week in PLAN["weeks"]:
         paper = week["manuscript"]
-        assert paper["document"] == "manuscript-draft.fa.md"
+        assert paper["document"] in {"survey-protocol.fa.md", "survey-draft.fa.md"}
+        sections = chapter_count(paper["document"])
         assert 1 <= int(paper["chapter"].removeprefix("chapter-")) <= sections
         assert paper["task"] and paper["output"] and paper["done_when"]
-    # The abstract is written last, from results that already exist.
     assert PLAN["weeks"][-1]["manuscript"]["chapter"] == "chapter-1"
 
 

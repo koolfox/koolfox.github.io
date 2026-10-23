@@ -28,7 +28,7 @@ def build_site(repository: Path, output: Path):
     project = repository / "structural-bioinformatics"
     target = output / "structural-bioinformatics"
     target.mkdir()
-    for name in ("index.html", "presentation.html"):
+    for name in ("index.html", "presentation.html", "learn.html"):
         if (project / name).exists():
             shutil.copyfile(project / name, target / name)
     shutil.copyfile(project / "README.md", target / "README.md")
@@ -39,6 +39,9 @@ def build_site(repository: Path, output: Path):
         destination.mkdir(parents=True)
         for path in (project / "data" / directory).glob("*.json"):
             shutil.copyfile(path, destination / path.name)
+    templates = project / "data" / "templates"
+    if templates.exists():
+        shutil.copytree(templates, target / "data" / "templates")
     # Small, source-verified teaching sequences are deliberate public inputs.
     sequences = project / "data" / "sequences"
     if sequences.exists():

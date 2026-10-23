@@ -98,7 +98,7 @@ def test_markdown_targets_exist_in_the_actual_pages_artifact(tmp_path):
     artifact = builder.build_site(PROJECT.parent, tmp_path / "pages")
     public_project = artifact / "structural-bioinformatics"
     assert not (public_project / "data/raw").exists()
-    for document in (public_project / "docs").glob("*.md"):
+    for document in (public_project / "docs").rglob("*.md"):
         for link in re.findall(r"\]\(([^\s)]+)", document.read_text()):
             target = urlsplit(link)
             if target.scheme or not target.path:

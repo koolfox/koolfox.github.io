@@ -1,5 +1,5 @@
 /** A local Mol* polymer cartoon of the deposited model, without assembly expansion. */
-const allowed = new Set(["3WD5", "1TNF", "1B09", "4FM9"]);
+const allowed = new Set(["3WD5", "1TNF", "1B09", "4FM9", "1EHZ"]);
 const id = new URLSearchParams(location.search).get("pdb") || "3WD5";
 const status = document.getElementById("reference-status");
 const token = new URLSearchParams(location.search).get("request");
@@ -36,7 +36,7 @@ try {
   // Never use the default assembly preset: e.g. 4FM9's assembly has another protomer.
   const structure = await plugin.builders.structure.createStructure(model, { name: "model", params: {} });
   const polymer = await plugin.builders.structure.tryCreateComponentStatic(structure, "polymer");
-  if (!polymer) throw new Error("زنجیرهٔ پروتئین یا DNA در فایل یافت نشد.");
+  if (!polymer) throw new Error("زنجیرهٔ پروتئین، DNA یا RNA در فایل یافت نشد.");
   const colors = id === "4FM9" ? [0x7555a1, 0xaa6408, 0x245cb7]
     : [0x087b73, 0x245cb7, 0xa95015, 0x7555a1, 0xae4f70];
   const representation = await plugin.builders.structure.representation.addRepresentation(polymer, {

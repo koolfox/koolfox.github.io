@@ -1,0 +1,79 @@
+{
+  "at_utc": "2026-10-23T20:08:41.662596+00:00",
+  "purpose": "Executed teaching controls, not new biological experiments or a learner mastery certificate",
+  "python": "3.13.9",
+  "input": "assets/3wd5.pdb",
+  "input_sha256": "fae6eee1b06b8cba0a466280dbc32563efaa54ec639afd921cb610d17debd216",
+  "script": "scripts/course_lab.py",
+  "script_sha256": "8cdb37953fdcb5013ddc772c4dba95517292f46539537899438c9c00040cb98c",
+  "inspect": {
+    "input": "assets/3wd5.pdb; first model, selected positive-occupancy protein heavy atoms",
+    "chains": {
+      "A": {
+        "residues": 152,
+        "heavy_atoms": 1187
+      },
+      "H": {
+        "residues": 214,
+        "heavy_atoms": 1593
+      },
+      "L": {
+        "residues": 213,
+        "heavy_atoms": 1622
+      }
+    },
+    "roles": {
+      "A": "deposited TNF protomer",
+      "H": "Fab heavy",
+      "L": "Fab light"
+    },
+    "missing": "Neither full IgG nor the complete biological TNF trimer"
+  },
+  "translation_control": {
+    "selection": "3WD5 author chain A, positive-occupancy CA",
+    "ca_count": 152,
+    "equal_weight_ca_rg_angstrom": 17.025613174666052,
+    "known_translation_angstrom": 10.0,
+    "raw_rmsd_angstrom": 10.0,
+    "translation_removed_rmsd_angstrom": 0.0,
+    "interpretation": "Same conformation; translation changes raw RMSD, not centered RMSD or Rg."
+  },
+  "oscillator_small_step": {
+    "system": "One dimensionless harmonic oscillator; not molecular dynamics of a protein",
+    "dt": 0.01,
+    "steps": 1000,
+    "initial_energy": 0.5,
+    "final_energy": 0.49999630003737894,
+    "maximum_absolute_energy_error": 1.2499992203318655e-05,
+    "x_final": -0.8390488605467809
+  },
+  "oscillator_large_step_equal_time": {
+    "system": "One dimensionless harmonic oscillator; not molecular dynamics of a protein",
+    "dt": 0.1,
+    "steps": 100,
+    "initial_energy": 0.5,
+    "final_energy": 0.4996252821875471,
+    "maximum_absolute_energy_error": 0.0012498640644602599,
+    "x_final": -0.8367949271103875
+  },
+  "graph_control": {
+    "selection": "3WD5 chain A, positive-occupancy CA; |author residue numbers| > 1",
+    "cutoff_angstrom": 8.0,
+    "nodes": 152,
+    "edge_count": 552,
+    "degree_sum": 1104,
+    "interpretation": "Geometric contact graph, not an energy or causal network"
+  },
+  "not_executed": [
+    "VMD Tcl protocol",
+    "full protein MD",
+    "new protein-protein docking",
+    "new structure prediction"
+  ],
+  "limitations": [
+    "The oscillator is dimensionless and not a protein.",
+    "CA Rg uses equal weights, not all-atom masses.",
+    "Graph degree describes the chosen geometric threshold, not energy.",
+    "The survey evidence extraction remains in progress."
+  ]
+}

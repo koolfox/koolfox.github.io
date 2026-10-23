@@ -2,6 +2,11 @@ import { isolateScientificText, scientificDiagramSource, setDiagramDirection } f
 import { linkGlossaryTerms } from './glossary-terms.js';
 // Repository-owned Markdown only; optional rendering libraries load on demand.
 const DOCUMENTS = [
+  ["learning-redesign-review.fa.md", "بازطراحی مسیر و مرزهای بررسی", "آموزش و پژوهش"],
+  ["md-training-workshop.fa.md", "کارگاه MD واقعی؛ دستورکار اجرا‌نشدهٔ یوبیکوئیتین", "ابزارها و منابع"],
+  ["software-workbook.fa.md", "دفتر نصب و اجرای نرم‌افزار", "ابزارها و منابع"],
+  ["survey-protocol.fa.md", "پرسش و پروتکل مرور انتقادی", "ارائه و روش پژوهش"],
+  ["survey-draft.fa.md", "طرح نگارش سوروی؛ هنوز در حال تکمیل شواهد", "ارائه و روش پژوهش"],
   ["course-guide.fa.md", "از اینجا شروع کنید؛ نقشهٔ واحد پروژه", "شروع از پایه"],
   ["course-sessions.fa.md", "درس‌نامهٔ ۳۰ جلسه با تمرین و منبع", "شروع از پایه"],
   ["rnaseq-research-plan.fa.md", "مسیر پژوهش RNA-seq در روماتوئید", "آموزش و پژوهش"],
@@ -21,7 +26,7 @@ const DOCUMENTS = [
   ["paper-writing-guide.fa.md", "راهنمای گزارش و مقالهٔ قابل دفاع", "ارائه و روش پژوهش"],
   ["structural-feasibility-results.fa.md", "پیوست اختیاری؛ تحلیل اجراشدهٔ سطح و کنترل", "ارائه و روش پژوهش"],
   ["docking-protocol.fa.md", "پروتکل داکینگ؛ اعتبارسنجی با پاسخ کریستالی معلوم", "ارائه و روش پژوهش"],
-  ["manuscript-draft.fa.md", "پیش‌نویس مقاله؛ اپی‌توپ کامل آدالیموماب", "ارائه و روش پژوهش"],
+  ["manuscript-draft.fa.md", "گزارش مطالعهٔ موردی؛ بازتحلیل اپی‌توپ", "ارائه و روش پژوهش"],
   ["full-epitope-results.fa.md", "محل کامل اتصال آدالیموماب روی TNF سه‌تایی؛ تحلیل اجراشده", "ارائه و روش پژوهش"],
   ["data-access-guide.fa.md", "راهنمای یافتن و دریافت داده‌ها", "ابزارها و منابع"],
   ["research-questions.fa.md", "پرسش پژوهش و فرضیه‌ها", "آموزش و پژوهش"],

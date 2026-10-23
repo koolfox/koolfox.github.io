@@ -25,6 +25,16 @@ def build_site(repository: Path, output: Path):
     for name in ("index.html", "README.md"):
         shutil.copyfile(karpathy / name, karpathy_target / name)
     shutil.copytree(karpathy / "assets", karpathy_target / "assets")
+    # Deliberate public teaching assets only; lecture uploads stay private.
+    learning = repository / "deep-learning"
+    learning_target = output / "deep-learning"
+    learning_target.mkdir()
+    for name in ("index.html", "README.md"):
+        shutil.copyfile(learning / name, learning_target / name)
+    shutil.copytree(learning / "assets", learning_target / "assets")
+    (learning_target / "python").mkdir()
+    for name in ("logic_gates.py", "README.md"):
+        shutil.copyfile(learning / "python" / name, learning_target / "python" / name)
     project = repository / "structural-bioinformatics"
     target = output / "structural-bioinformatics"
     target.mkdir()

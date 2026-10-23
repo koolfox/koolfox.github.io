@@ -11,7 +11,7 @@ from pathlib import Path
 PROJECT = Path(__file__).resolve().parents[1]
 RECORD = PROJECT / "data" / "processed" / "docking-redock-1b09.json"
 DOCUMENT = PROJECT / "docs" / "docking-protocol.fa.md"
-PLAN = PROJECT / "data" / "metadata" / "weekly-plan.json"
+PLAN = PROJECT / "data" / "metadata" / "archive" / "weekly-plan.json"
 
 
 def test_the_protocol_reports_the_recorded_numbers():

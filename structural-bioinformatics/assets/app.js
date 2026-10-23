@@ -1,6 +1,5 @@
 import { initializeBindingExplainer } from "./binding-explainer.js";
 import { linkGlossaryTerms } from "./glossary-terms.js";
-import { initializeLearningJourney } from "./learning-journey.js";
 
 const $ = (id) => document.getElementById(id);
 const faNumber = new Intl.NumberFormat("fa-IR", { maximumFractionDigits: 2 });
@@ -14,22 +13,8 @@ let sequenceRecords = [];
 let selectedSequence = null;
 let sequenceText = "";
 let sequenceRequest = 0;
-let markdownReaderPromise = null;
 let referenceRequest = 0;
 let referenceTimer = null;
-const readerDocuments = new Set([
-  "learning-path.fa.md", "top2a-primer.fa.md", "codons-primer.fa.md", "glossary.fa.md",
-  "preparation-guide.fa.md", "presentation-rehearsal.fa.md",
-  "class-presentation.fa.md", "academic-study-plan.fa.md", "paper-writing-guide.fa.md", "structural-feasibility-results.fa.md",
-  "research-questions.fa.md", "course-guide.fa.md", "structural-method.fa.md",
-  "binding-mechanism.fa.md", "molecular-display-audit.fa.md", "paper-explanations.fa.md",
-  "scientific-claim-audit.fa.md", "top2a-count-inspection.fa.md", "top2a-inhibition-feasibility.fa.md",
-  "connection-evidence.fa.md", "sequences-primer.fa.md", "literature-review.fa.md",
-  "top2a-cancer-comparison.fa.md", "visualization-tools.fa.md", "dataset-catalog.fa.md",
-  "scientific-context.fa.md", "manuscript-outline.fa.md", "research-protocol.fa.md",
-  "top2a-hypothesis.fa.md", "paper-design-setup.fa.md", "product-roadmap.fa.md",
-  "literature-selection-audit.fa.md", "agent-workflow.md", "anatomy-evaluation.fa.md", "third-party-notices.md",
-]);
 const controls = ["structure-select", "representation-select", "spin-button", "reset-button", "zoom-in", "zoom-out", "residue-select"];
 
 function element(tag, text, className) {
@@ -77,136 +62,15 @@ function showError(target, text) {
 }
 
 function fitVisibleLaboratory() {
-  if (!viewer || $("panel-lab").hidden) return;
+  if (!viewer || !$("molecular-stage").getClientRects().length) return;
   requestAnimationFrame(() => {
-    if (!viewer || $("panel-lab").hidden) return;
+    if (!viewer || !$("molecular-stage").getClientRects().length) return;
     viewer.resize();
     if (!labHasFitted) {
       viewer.resetView();
       labHasFitted = true;
     }
   });
-}
-
-async function loadReadingDocument(filename = null, chapter = null) {
-  try {
-    if (!markdownReaderPromise) {
-      markdownReaderPromise = import("./markdown-reader.js?v=20261014-learning").then(({ createMarkdownReader }) => createMarkdownReader());
-    }
-    const reader = await markdownReaderPromise;
-    await reader.open(filename, chapter);
-  } catch {
-    markdownReaderPromise = null;
-    $("reading-status").dataset.state = "error";
-    showError($("reading-status"), "کتابچه بارگذاری نشد؛ مدل‌ها و توالی‌ها مستقل از آن در دسترس‌اند. متن اصلی از پیوند GitHub قابل خواندن است.");
-  }
-}
-
-function readerFilename(href) {
-  let url;
-  try { url = new URL(href, window.location.href); }
-  catch { return null; }
-  const localDocs = new URL("docs/", window.location.href);
-  const githubPrefix = "/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/";
-  let filename = null;
-  if (url.origin === localDocs.origin && url.pathname.startsWith(localDocs.pathname)) filename = url.pathname.slice(localDocs.pathname.length);
-  if (url.origin === "https://github.com" && url.pathname.startsWith(githubPrefix)) filename = url.pathname.slice(githubPrefix.length);
-  return readerDocuments.has(filename) ? filename : null;
-}
-
-function initializeTabs() {
-  const tabs = [...$("research-tabs").querySelectorAll('[role="tab"]')];
-  const names = tabs.map((tab) => tab.dataset.tab);
-  function activate(name, { focus = false, updateHash = false } = {}) {
-    if (!names.includes(name)) name = "basics";
-    for (const tab of tabs) {
-      const active = tab.dataset.tab === name;
-      tab.setAttribute("aria-selected", String(active));
-      tab.tabIndex = active ? 0 : -1;
-      $(tab.getAttribute("aria-controls")).hidden = !active;
-    }
-    document.documentElement.dataset.activeTab = name;
-    const tab = $("tab-" + name);
-    if (focus) tab.focus({ preventScroll: true });
-    tab.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "instant" });
-    if (updateHash && window.location.hash !== "#" + name) {
-      window.history.pushState(null, "", "#" + name);
-    }
-    if (name === "lab") fitVisibleLaboratory();
-    else if (viewer?.spinning) viewer.setSpinning(false);
-    if (name === "reading") void loadReadingDocument();
-    for (const video of document.querySelectorAll("video")) {
-      if (video.closest('[role="tabpanel"]')?.hidden) video.pause();
-    }
-  }
-  function followHash() {
-    let target;
-    try { target = decodeURIComponent(window.location.hash.slice(1)); }
-    catch { target = ""; }
-    if (!target) { activate("basics"); return; }
-    if (names.includes(target)) { activate(target); return; }
-    const node = $(target);
-    const panel = node?.closest('[role="tabpanel"]');
-    if (!panel) { activate("basics"); return; }
-    activate(panel.id.replace("panel-", ""));
-    if (node.tagName === "DETAILS") node.open = true;
-    requestAnimationFrame(() => node.scrollIntoView({ block: "start", behavior: "instant" }));
-  }
-  for (const tab of tabs) {
-    tab.addEventListener("click", () => activate(tab.dataset.tab, { updateHash: true }));
-    tab.addEventListener("keydown", (event) => {
-      let index = tabs.indexOf(tab);
-      // RTL visual order runs from right to left.
-      if (event.key === "ArrowLeft") index = (index + 1) % tabs.length;
-      else if (event.key === "ArrowRight") index = (index - 1 + tabs.length) % tabs.length;
-      else if (event.key === "Home") index = 0;
-      else if (event.key === "End") index = tabs.length - 1;
-      else return;
-      event.preventDefault();
-      activate(tabs[index].dataset.tab, { focus: true, updateHash: true });
-    });
-  }
-  window.addEventListener("hashchange", followHash);
-  window.addEventListener("popstate", followHash);
-  for (const link of document.querySelectorAll('a[href]')) {
-    const filename = readerFilename(link.href);
-    if (!filename || link.id === "document-source" || link.id === "document-download") continue;
-    const chapter = new URL(link.href).searchParams.get("chapter");
-    link.dataset.document = filename;
-    const destination = new URL("?document=" + encodeURIComponent(filename) + "#reading", window.location.href);
-    if (/^(intro|all|chapter-\d+)$/.test(chapter || "")) destination.searchParams.set("chapter", chapter);
-    const lesson = new URL(link.href).searchParams.get("lesson");
-    if (/^[1-9]$/.test(lesson || "")) {
-      destination.searchParams.set("lesson", lesson);
-      destination.hash = "lesson-guide";
-    }
-    link.href = destination.href;
-    link.removeAttribute("target");
-  }
-  document.addEventListener("click", (event) => {
-    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    const link = event.target.closest("a[href]");
-    if (!link || link.id === "document-source" || link.id === "document-download") return;
-    const filename = link.dataset.document || readerFilename(link.href);
-    if (!readerDocuments.has(filename)) return;
-    event.preventDefault();
-    const url = new URL(window.location.href);
-    url.searchParams.set("document", filename);
-    url.searchParams.delete("chapter");
-    const chapter = new URL(link.href).searchParams.get("chapter");
-    if (/^(intro|all|chapter-\d+)$/.test(chapter || "")) url.searchParams.set("chapter", chapter);
-    const lesson = new URL(link.href).searchParams.get("lesson");
-    if (/^[1-9]$/.test(lesson || "")) url.searchParams.set("lesson", lesson);
-    if (link.id === "start-presentation") {
-      url.searchParams.set("chapter", "chapter-1");
-      url.searchParams.delete("lesson");
-    }
-    url.hash = /^[1-9]$/.test(lesson || "") ? "lesson-guide" : "reading";
-    window.history.pushState(null, "", url);
-    activate("reading");
-    $("tab-reading").focus({ preventScroll: true });
-  });
-  followHash();
 }
 
 const modelCopy = {
@@ -845,14 +709,28 @@ async function loadSequences() {
   }
 }
 
-initializeBindingExplainer();
-initializeTabs();
-for (const section of document.querySelectorAll('#panel-basics .reading-section')) linkGlossaryTerms(section);
-void initializeLearningJourney().catch(() => {
-  $("study-status").dataset.state = "error";
-  $("study-status").textContent = "راهنمای متنی مسیر یادگیری و دکمهٔ شروع همچنان قابل استفاده‌اند.";
-});
-const results = await Promise.allSettled([
-  loadStructures(), loadInterface(), loadLiterature(), loadDatasets(), loadSequences(),
-]);
-document.documentElement.dataset.researchState = results.every((result) => result.status === "fulfilled") ? "ready" : "partial";
+const initialized = new Map();
+/** Only the requested chapter tool is initialized; this module has no page navigation. */
+export async function activateTool(name) {
+  if (!initialized.has(name)) {
+    let task;
+    if (name === "lab") task = Promise.allSettled([loadStructures(), loadInterface()]);
+    else if (name === "sequences") task = Promise.allSettled([loadSequences(), import("./codon-lesson.js")]);
+    else if (name === "datasets") task = Promise.allSettled([loadDatasets()]);
+    else if (name === "papers") task = Promise.allSettled([loadLiterature()]);
+    else if (["comparison","method","evidence"].includes(name)) { linkGlossaryTerms($("tool-"+name)); task=Promise.resolve([]); }
+    else if (name === "binding") { initializeBindingExplainer(); task = Promise.resolve([]); }
+    else if (name === "epitope") task = Promise.allSettled([import("./epitope-lab.js")]);
+    else if (name === "rna") task = Promise.allSettled([import("./rnaseq-groups.js")]);
+    else if (name === "docking") task = Promise.allSettled([import("./docking-validation.js")]);
+    else throw new Error("Unknown course tool");
+    initialized.set(name, task);
+  }
+  const results = await initialized.get(name);
+  document.documentElement.dataset.researchState = results.every(r => r.status === "fulfilled") ? "ready" : "partial";
+  if (name === "lab") fitVisibleLaboratory();
+}
+export function pauseTools() {
+  if (viewer?.spinning) viewer.setSpinning(false);
+  for (const video of document.querySelectorAll("video")) video.pause();
+}

@@ -1,12 +1,15 @@
 import { test, expect } from '@playwright/test';
-const route='/structural-bioinformatics/learn.html';
-test('default entry leads to the syllabus course, preserving explicit workspace links',async({page})=>{
-  await page.goto('/structural-bioinformatics/');
-  await expect(page).toHaveURL(/learn\.html/);
+const route='/structural-bioinformatics/';
+test('the root owns the nine chapter application with no second entry or global tabs',async({page})=>{
+  await page.goto(route);
+  await expect(page).not.toHaveURL(/learn\.html/);
   await expect(page.locator('#lesson')).toContainText('سلول کوچک‌ترین');
-  await expect(page.locator('#sessions a')).toHaveCount(30);
-  await page.getByRole('link',{name:'کارگاه مولکولی و اسناد پژوهش',exact:true}).click();
-  await expect(page).toHaveURL(/workspace=1#lab/);
+  await expect(page.locator('#sessions > details')).toHaveCount(9);
+  await expect(page.locator('#research-tabs,#study-path,#weekly-plan')).toHaveCount(0);
+  await page.locator('#sessions > details').nth(2).locator('summary').click();
+  await page.locator('#sessions > details').nth(2).getByRole('link',{name:'کارگاه این فصل',exact:true}).click();
+  await expect(page).toHaveURL(/unit=3/);
+  await expect(page.locator('#molecular-stage')).toBeVisible();
 });
 test('deep linking, reading phases and history keep a single coherent session',async({page})=>{
   await page.goto(`${route}?session=8&part=practice`);
@@ -64,7 +67,7 @@ test('all thirty lesson files and phases are available from the actual public ro
   await page.goto(route);
   for(let n=1;n<=30;n++) {
     await page.goto(`${route}?session=${n}&part=lesson`);
-    await expect(page.locator('#sessions [aria-current=page]')).toHaveAttribute('href',`?topic=${n}&part=lesson`);
+    await expect(page.locator('#sessions [aria-current=page]')).toHaveAttribute('href',new RegExp(`topic=${n}&part=lesson$`));
     await expect(page.locator('#lesson p').first()).not.toBeEmpty();
     for(const part of ['practice','research','presentation']) {
       await page.locator(`[data-part=${part}]`).click();
@@ -80,9 +83,9 @@ test('mobile course is readable without horizontal overflow',async({page})=>{
   await expect(page.locator('#lesson pre')).toBeVisible();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   await page.locator('#contents > summary').click();
-  await expect(page.locator('#sessions a')).toHaveCount(30);
+  await expect(page.locator('#sessions details > a')).toHaveCount(30);
   await page.locator('#sessions > details').last().locator('summary').click();
-  await page.locator('#sessions a').last().click();
+  await page.locator('#sessions details > a').last().click();
   await expect(page.locator('#session-title')).toContainText('دفاع');
 });
 
@@ -101,7 +104,7 @@ test('nine chapters are independent of the official classroom session allocation
   await expect(page.locator('#position')).toContainText('فصل ۱ از ۹');
   await expect(page.locator('#position')).not.toContainText('جلسه');
   await page.locator('#sessions > details').last().locator('summary').click();
-  await page.locator('#sessions a').last().click();
+  await page.locator('#sessions details > a').last().click();
   await expect(page.locator('#position')).toContainText('فصل ۹ از ۹');
 });
 test('unavailable quiz does not prevent reading and can be fetched again',async({page})=>{
@@ -133,4 +136,68 @@ test('mobile quiz stays within the viewport and remains usable when saving fails
   await page.locator('[data-part=lesson]').click();
   await page.locator('[data-part=presentation]').click();
   await expect(page.locator('#own-answer')).toHaveValue('تا بستن صفحه');
+});
+
+test('tools, documents and presentation stay inside the same chapter application',async({page,request})=>{
+  const map=await (await request.get('/structural-bioinformatics/data/metadata/course-map.json')).json();
+  await page.goto(`${route}?unit=6&part=research&document=paper-explanations.fa.md&chapter=chapter-3`);
+  await expect(page.locator('#position')).toContainText('فصل ۶');
+  await expect(page.locator('#reading-status')).toHaveAttribute('data-state','ready');
+  await expect(page.locator('#markdown-content')).toContainText('Bianchi');
+  const names=await page.locator('#document-select option').evaluateAll(options=>options.map(o=>o.value));
+  expect(names.sort()).toEqual([...map.chapters[5].documents].sort());
+  await page.locator('[data-part=presentation]').click();
+  await page.getByRole('link',{name:'متن ارائهٔ همین فصل',exact:true}).click();
+  await expect(page.locator('#reading-status')).toHaveAttribute('data-document','chapter-presentation.fa.md');
+  await expect(page.locator('#reading-status')).toHaveAttribute('data-chapter','chapter-6');
+  await expect(page.locator('#chapter-select option')).toHaveCount(1);
+  await expect(page.locator('#chapter-prev')).toBeDisabled();
+  await expect(page.locator('#position')).toContainText('فصل ۶');
+  await expect(page.locator('iframe[src*="learn.html"],iframe[src*="index.html"]')).toHaveCount(0);
+});
+test('legacy learning and weekly links resolve only into the one chapter application',async({page})=>{
+  await page.goto('/structural-bioinformatics/learn.html?topic=8&part=presentation');
+  await expect(page).toHaveURL(/index\.html\?unit=3/);
+  await expect(page.locator('#position')).toContainText('فصل ۳');
+  await expect(page.locator('#quiz-form')).toBeVisible();
+  await page.goto(`${route}?document=weekly-plan.fa.md#reading`);
+  await expect(page.locator('#reading-status')).toHaveAttribute('data-document','course-guide.fa.md');
+  await expect(page.locator('#weekly-plan,#study-path,#research-tabs')).toHaveCount(0);
+});
+test('every tool opens in its owning chapter without opening another curriculum',async({page,request})=>{
+  test.setTimeout(120000);
+  const map=await (await request.get('/structural-bioinformatics/data/metadata/course-map.json')).json();
+  for(const tool of map.tools) {
+    await page.goto(`${route}?unit=${tool.unit}&part=practice&tool=${tool.id}`);
+    await expect(page.locator(`[data-course-tool="${tool.id}"]`)).toBeVisible();
+    await expect(page.locator('[data-course-tool]:visible')).toHaveCount(1);
+    await expect(page.locator('#position')).toContainText(`فصل ${tool.unit.toLocaleString('fa-IR')}`);
+    await expect(page.locator('#research-tabs,#study-path,#weekly-plan')).toHaveCount(0);
+  }
+});
+test('chapter presentations share the same course map and return to their chapter',async({page,request})=>{
+  const map=await (await request.get('/structural-bioinformatics/data/metadata/course-map.json')).json();
+  for(const unit of [2,3,6,8,9]) {
+    await page.goto(`/structural-bioinformatics/presentation.html?unit=${unit}`);
+    await expect(page.locator('#deck')).toHaveAttribute('data-state','ready');
+    await expect(page.locator('#deck')).toHaveAttribute('data-unit',String(unit));
+    const ids=await page.locator('.slide[data-chapter]').evaluateAll(slides=>slides.map(s=>Number(s.dataset.chapter)));
+    expect(ids).toEqual(map.chapters[unit-1].slides);
+    await page.locator('#notebook-link').click();
+    await expect(page.locator('#position')).toContainText(`فصل ${unit.toLocaleString('fa-IR')}`);
+    await expect(page.locator('#check')).toBeVisible();
+  }
+});
+
+test('the chapter context remains visible while reading on a phone',async({page})=>{
+  await page.setViewportSize({width:390,height:844});
+  await page.goto(`${route}?unit=6&part=research&document=paper-explanations.fa.md&chapter=chapter-3`);
+  await expect(page.locator('#reading-status')).toHaveAttribute('data-state','ready');
+  await page.locator('#markdown-content').scrollIntoViewIfNeeded();
+  expect((await page.locator('#chapter-context').boundingBox()).y).toBeGreaterThanOrEqual(0);
+  expect((await page.locator('#chapter-context').boundingBox()).y).toBeLessThan(5);
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  await page.locator('#show-contents').click();
+  await expect(page.locator('#contents')).toHaveJSProperty('open',true);
+  await expect(page.locator('#position')).toContainText('فصل ۶');
 });

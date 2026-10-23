@@ -1,31 +1,21 @@
-# Structural Bioinformatics Learning Course
+# Structural Bioinformatics: One Chapter-Based Course
 
 <!-- impeccable:product-schema 1 -->
 
 ## Platform
 
-Static web; Persian RTL, Arad font. Python/uv exercises; no backend or learner account.
+Static Persian RTL application; Arad, HTML/CSS/JavaScript; Python/uv analyses. No account or backend.
 
-## Users
+## Users and purpose
 
-A novice MSc bioinformatics student preparing to understand and explain the full supplied structural-bioinformatics syllabus. No biological vocabulary is assumed at entry. Readers choose what to skip; foundations are not hidden by an inferred proficiency level.
+A novice MSc bioinformatics student and classmates learning the official syllabus and preparing an understandable research presentation. Define biological and technical terms before use. Teach connected explanations with executable practice, paper interpretation and oral rehearsal.
 
-## Product Purpose
+## One information architecture
 
-One canonical nine-chapter course, following the actual nine syllabus blocks. Each session connects continuous explanation, an explicit practical activity, paper reading and oral presentation. Eight weekly packages are student presentation opportunities, not a replacement timetable for thirty class sessions.
+`index.html` is the application. Its nine syllabus chapters own topics, molecular tools, documents and slide selections through `data/metadata/course-map.json`. Four views within the same chapter are lesson, practice, evidence reading and presentation/quiz. There is no parallel workbench, global six-tab site, eight-step journey or weekly curriculum. `learn.html` only redirects older URLs to the same index. Existing document and tool links resolve into their owning chapter.
 
-The research question asks what structural and mutagenesis evidence about adalimumab–TNF establishes and limits for antibody engineering. The intended paper is a focused critical survey with a transparent search/extraction protocol. The existing epitope calculations are a separately labelled case study, not the survey itself. RNA-seq/RA is a complementary learning/research route; TOP2A and cancer are outside the core question.
+Tools initialize on demand inside the chapter. Documents render in the same page with a selector limited to that chapter. Slides are a presentation mode/export of the same chapter map, not a second educational system. Readers choose pace and topic; no proficiency lock is applied. Notes and formative responses are local to the browser and separate from self-reported study status.
 
-## Main surfaces
+## Evidence
 
-`learn.html` is the entry. A bare visit to `index.html` redirects there. Explicit document, tab and hash URLs remain compatible with the existing workbench. The workbench preserves molecular experiments and historical reports; it is not a competing curriculum. Markdown lesson files are canonical and the combined reader is generated from them.
-
-## Evidence and limitations
-
-Definitions precede technical claims. Coordinate geometry, binding experiments, simulation, RNA abundance and clinical outcomes remain distinct. Software practice says whether it is executed, proposed or dependent on external installation. No full new protein MD, protein docking or new drug is claimed. Self-reported progress is not a mastery score. No software test proves complete understanding or 100% scientific correctness.
-
-## Design
-
-Read mode: restrained typography, one lesson at a time, a syllabus contents column, four reading phases, previous/next and direct links. Preserve Arad, light neutral surfaces and blue actions. Do not use decorative dashboards, counters or molecular animations in the course entry. Technical media open only when the activity needs them.
-
-The official Sharif 40553 syllabus supplies nine blocks and classroom allocations totaling thirty; website topics are author-written subdivisions, not the university class calendar. Local formative quizzes store answers, notes and up to twenty recent attempts per question in the current browser. Self-reported study state is separate.
+The adalimumab–TNF case supports learning and a bounded critical survey. Geometry, binding, simulation, RNA abundance and clinical outcomes are distinct. RNA-seq and TOP2A evidence are labelled supplements. Every active document has chapter ownership; retired plans redirect to the current guide. Scientific outputs and the audited source slide bank remain traceable. No new drug, efficacy, completed survey or universal learner mastery is claimed.

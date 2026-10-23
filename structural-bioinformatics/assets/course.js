@@ -9,92 +9,187 @@ try { quizRecords = JSON.parse(localStorage.getItem("tnf-course-quizzes-v1") || 
 let progress = {};
 let storageAvailable = true;
 try { progress = JSON.parse(localStorage.getItem("tnf-course-progress-v1") || "{}"); if (!progress || typeof progress !== "object" || Array.isArray(progress)) progress = {}; } catch { storageAvailable = false; }
-const url = (n, part="lesson") => `?topic=${n}&part=${part}`;
+
+let courseMap, reader, toolModule;
+const phaseNames={lesson:"درس",practice:"کارگاه",research:"خواندن مقاله",presentation:"ارائه و آزمون"};
+const canonical = (unit,topic,part="lesson",extra={}) => {
+  const params=new URLSearchParams({unit:String(unit),topic:String(topic),part,...extra});
+  return "?"+params;
+};
+const ownerOfTopic = n => courseMap.chapters.find(c=>c.block===course.sessions[n-1]?.block);
+const firstTopic = unit => course.sessions.find(s=>s.block===unit.block).session;
+function url(n,part="lesson") { return canonical(ownerOfTopic(n).unit,n,part); }
+function ownerOfDocument(name,current=null) {
+  return (current?.documents.includes(name) ? current : null) || courseMap.chapters.find(c=>c.documents.includes(name));
+}
 function state() {
-  const params = new URLSearchParams(location.search);
-  const n = Number(params.get("topic") ?? params.get("session") ?? 1);
-  const invalid = !Number.isInteger(n) || n < 1 || n > course.sessions.length || (params.has("part") && !phases.includes(params.get("part")));
-  return {n: invalid ? 1 : n, part:invalid ? "lesson" : params.get("part") || "lesson", invalid};
+  const params=new URLSearchParams(location.search);
+  const requestedTopic=params.get("topic") ?? params.get("session");
+  let n=Number(requestedTopic ?? 1), part=params.get("part") || "lesson";
+  let unit=courseMap.chapters.find(c=>c.unit===Number(params.get("unit")));
+  let tool=params.get("tool");
+  let document=params.get("document");
+  let chapter=params.get("chapter");
+  const hash=decodeURIComponent(location.hash.slice(1));
+  if (!document && ["reading","weekly-plan","study-path","lesson-guide"].includes(hash)) document="course-guide.fa.md";
+  if (!tool && !document) tool=courseMap.legacy_tools[hash] || courseMap.legacy_tools[params.get("tab")];
+  if (document === "class-presentation.fa.md") {
+    const slideNumber=Number(chapter?.replace("chapter-",""));
+    const slideOwner=courseMap.chapters.find(c=>[...c.slides,...c.supplementary_slides].includes(slideNumber));
+    unit=unit || slideOwner; chapter="chapter-"+(unit?.unit || 1);
+  }
+  if (courseMap.document_aliases[document]) {
+    if (courseMap.document_aliases[document] === "@chapter") {
+      unit=unit || courseMap.chapters.find(c=>c.unit===Number(chapter?.replace("chapter-","")));
+      document=null; part="lesson";
+    } else document=courseMap.document_aliases[document];
+  }
+  if (document) {
+    unit=ownerOfDocument(document,unit);
+    if (unit) part="research"; else document=null;
+  }
+  if (tool) {
+    const entry=courseMap.tools.find(t=>t.id===tool);
+    if (entry) { unit=courseMap.chapters.find(c=>c.unit===entry.unit); part="practice"; }
+    else tool=null;
+  }
+  let invalid=false;
+  if (requestedTopic !== null && (!Number.isInteger(n)||!ownerOfTopic(n))) invalid=true;
+  if (!phases.includes(part)) invalid=true;
+  if (invalid) {n=1;unit=courseMap.chapters[0];part="lesson";tool=null;document=null;chapter=null;}
+  else if (unit && (!requestedTopic || ownerOfTopic(n)?.unit !== unit.unit)) n=firstTopic(unit);
+  else unit=ownerOfTopic(n);
+  return {n,part,unit,tool,document,chapter,invalid};
 }
 function drawContents(n) {
-  const nav = $("#sessions"); nav.replaceChildren();
-  for (const [index,block] of syllabus.blocks.entries()) {
-    const topics = course.sessions.filter(s => s.block === block.id);
-    const group = document.createElement("details");
-    group.open = topics.some(s => s.session === n);
-    const heading = document.createElement("summary");
-    heading.textContent = `فصل ${(index+1).toLocaleString("fa-IR")}: ${block.title}`;
-    group.append(heading);
-    for (const [topicIndex,session] of topics.entries()) {
-      const link = document.createElement("a"); link.href = url(session.session);
-      link.textContent = `${(topicIndex+1).toLocaleString("fa-IR")}. ${session.title}`;
-      if (session.session === n) link.setAttribute("aria-current", "page");
-      const note = document.createElement("span"); note.className = "state";
-      note.textContent = names[progress[session.session]] || "";
-      link.append(note); group.append(link);
+  const nav=$("#sessions");nav.replaceChildren();
+  for(const unit of courseMap.chapters) {
+    const group=document.createElement("details"); group.open=ownerOfTopic(n).unit===unit.unit;
+    const heading=document.createElement("summary");heading.textContent=`فصل ${unit.unit.toLocaleString("fa-IR")}: ${unit.title}`;group.append(heading);
+    const topics=course.sessions.filter(s=>s.block===unit.block);
+    for (const [i,topic] of topics.entries()) {
+      const a=document.createElement("a");a.href=url(topic.session);a.textContent=`${(i+1).toLocaleString("fa-IR")}. ${topic.title}`;
+      if(topic.session===n)a.setAttribute("aria-current","page");
+      const note=document.createElement("span");note.className="state";note.textContent=names[progress[topic.session]]||"";a.append(note);group.append(a);
     }
-    nav.append(group);
+    const shortcuts=document.createElement("div");shortcuts.className="chapter-shortcuts";
+    for(const part of ["practice","research","presentation"]) {
+      const a=document.createElement("a");a.href=canonical(unit.unit,firstTopic(unit),part);a.textContent=phaseNames[part]+" این فصل";shortcuts.append(a);
+    }
+    group.append(shortcuts);nav.append(group);
   }
 }
-async function getJSON(path) { const r = await fetch(path); if (!r.ok) throw Error("HTTP " + r.status); return r.json(); }
+async function getJSON(path) {const r=await fetch(path);if(!r.ok)throw Error("HTTP "+r.status);return r.json();}
+function documentURL(name,chapter=null,current=null) {
+  name=courseMap.document_aliases[name] || name;
+  if(name==="@chapter")return url(firstTopic(current||courseMap.chapters[0]));
+  const unit=ownerOfDocument(name,current);
+  if(!unit)return null;
+  return canonical(unit.unit,ownerOfTopic(active?.session)?.unit===unit.unit?active.session:firstTopic(unit),"research",{document:name,...(chapter?{chapter}:{})});
+}
+function link(label,href) {const a=document.createElement("a");a.textContent=label;a.href=href;return a;}
+function documentName(filename) {
+  return filename.replace(/\.fa\.md$|\.md$/g,"").replaceAll("-"," ");
+}
+async function renderResources(ctx,ticket) {
+  const {unit,n,part}=ctx;
+  const nav=$("#resource-links");nav.replaceChildren();
+  $("#resource-status").textContent="";
+  $("#resources-title").textContent=phaseNames[part]+" در فصل «"+unit.title+"»";
+  if(part==="lesson") {$("#chapter-resources").hidden=true;return;}
+  $("#chapter-resources").hidden=false;
+  if(part==="practice") {
+    for(const id of unit.tools) {
+      const tool=courseMap.tools.find(t=>t.id===id);
+      const a=link(tool.title,canonical(unit.unit,n,"practice",{tool:id}));
+      if(id===(ctx.tool||unit.tools[0]))a.setAttribute("aria-current","page");nav.append(a);
+    }
+    nav.append(link("راهنمای نصب و اجرای نرم‌افزار",documentURL("software-workbook.fa.md",null,unit)));
+    const selected=ctx.tool||unit.tools[0];
+    if(selected) {
+      $("#chapter-tools").hidden=false;
+      const group=$("#tool-"+selected);group.hidden=false;
+      if(selected==="datasets")group.querySelectorAll("details").forEach(d=>d.open=true);
+      $("#resource-status").textContent="در حال آماده‌سازی ابزار همین فصل…";
+      try {
+        if(!toolModule)toolModule=await import("./app.js?v=20261024-unified");
+        if(ticket!==revision)return;
+        await toolModule.activateTool(selected);
+        if(ticket===revision)$("#resource-status").textContent="";
+      }catch{if(ticket===revision)$("#resource-status").textContent="ابزار آماده نشد؛ متن، منابع و خروجی‌های ثابت همین فصل قابل استفاده‌اند.";}
+    } else $("#resource-status").textContent="دستورکار و تمرین این فصل در متن بالا آمده است؛ اجرای نرم‌افزار روی دستگاه شما انجام می‌شود.";
+  } else if(part==="research") {
+    for(const name of unit.documents)nav.append(link(courseMap.document_titles[name]||documentName(name),documentURL(name,unit.document_sections?.[name]||null,unit)));
+    if(ctx.document) {
+      $("#panel-reading").hidden=false;
+      try {
+        if(!reader) {const module=await import("./markdown-reader.js?v=20261024-unified");if(ticket!==revision)return;reader=module.createMarkdownReader({chapterScope:name=>name==="chapter-presentation.fa.md"?"chapter-"+state().unit.unit:null});}
+        reader.filterDocuments(unit.documents);
+        await reader.open(ctx.document,ctx.chapter||"intro");
+        if(ticket===revision)reader.filterDocuments(unit.documents);
+      }catch{if(ticket===revision)$("#resource-status").textContent="این متن دریافت نشد. دوباره آن را انتخاب کنید؛ درس همچنان قابل مطالعه است.";}
+    }
+  } else {
+    nav.append(link("نمایش اسلایدهای همین فصل",`presentation.html?unit=${unit.unit}#slide-1`),link("متن ارائهٔ همین فصل",documentURL("chapter-presentation.fa.md","chapter-"+unit.unit,unit)));
+    if(unit.supplementary_slides.length)nav.append(link("اسلایدهای مکمل همین فصل",`presentation.html?unit=${unit.unit}&appendix=1#slide-1`));
+  }
+}
 async function render(focus=false) {
-  const ticket = ++revision;
-  $("#status").textContent = "در حال بارگذاری…"; $("#retry").hidden = true;
-  $("#check").hidden = true; $("#study-state").hidden = true; $("#lesson").replaceChildren();
+  const ticket=++revision;quizReady=false;
+  toolModule?.pauseTools();
+  $("#status").textContent="در حال بارگذاری…";$("#retry").hidden=true;
+  $("#check").hidden=true;$("#study-state").hidden=true;$("#chapter-resources").hidden=true;
+  $("#chapter-tools").hidden=true;$("#panel-reading").hidden=true;
+  document.querySelectorAll('[data-course-tool]').forEach(el=>el.hidden=true);
+  $("#lesson").replaceChildren();
   try {
-    if (!course) {
-      [course, syllabus] = await Promise.all([getJSON("data/metadata/learning-course.json"), getJSON("data/metadata/course-syllabus.json")]);
-    }
-    if (ticket !== revision) return;
-    const {n,part,invalid} = state(); active = course.sessions[n-1]; drawContents(n);
-    $("#position").textContent = `فصل ${(syllabus.blocks.findIndex(b => b.id === active.block)+1).toLocaleString("fa-IR")} از ${syllabus.blocks.length.toLocaleString("fa-IR")} · مبحث ${(course.sessions.filter(s => s.block === active.block).findIndex(s => s.session === n)+1).toLocaleString("fa-IR")}`;
-    $("#session-title").textContent = active.title;
-    document.title = active.title + " | بیوانفورماتیک ساختاری";
-    const pre = $("#prerequisites"); pre.replaceChildren(document.createTextNode(n === 1 ? "از پایه شروع می‌کنیم؛ پیش‌نیاز زیستی لازم نیست." : "پیشنهاد پیش از این جلسه: "));
-    for (const p of active.prerequisites) { const link = document.createElement("a"); link.href=url(p); link.textContent=course.sessions[p-1].title; pre.append(link); }
-    document.querySelectorAll("#parts a").forEach(a => { a.href = url(n,a.dataset.part); if(a.dataset.part === part) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
-    const response = await fetch(active.path); if (!response.ok) throw Error("درس دریافت نشد");
-    const text = await response.text(); if (ticket !== revision) return;
-    const sections = text.split(/<!-- course:(lesson|practice|research|presentation) -->/);
-    const i = sections.indexOf(part); if (i < 0 || !window.markdownit) throw Error("درس یا نمایشگر آماده نیست");
-    const md = window.markdownit({html:false,linkify:false});
-    $("#lesson").innerHTML = md.render(sections[i+1]);
-    // Markdown paths are relative to the lesson file, not this HTML surface.
-    $("#lesson").querySelectorAll("a[href],img[src]").forEach(el => {
-      const attr = el.tagName === "IMG" ? "src" : "href";
-      const resolved = new URL(el.getAttribute(attr),new URL(active.path,location.href));
-      if (!["http:","https:"].includes(resolved.protocol)) { el.removeAttribute(attr); return; }
-      if (attr === "href" && resolved.origin === location.origin && /\/docs\/[^/]+\.fa\.md$/.test(resolved.pathname)) {
-        const reader = new URL("index.html", location.href);
-        reader.searchParams.set("document", resolved.pathname.split("/").pop()); reader.hash="reading";
-        el.setAttribute(attr,reader.href);
-      } else el.setAttribute(attr,resolved.href);
+    if(!course || !courseMap) [course,syllabus,courseMap]=await Promise.all([getJSON("data/metadata/learning-course.json"),getJSON("data/metadata/course-syllabus.json"),getJSON("data/metadata/course-map.json")]);
+    if(ticket!==revision)return;
+    const ctx=state(); const {n,part,unit,invalid}=ctx;active=course.sessions[n-1];drawContents(n);
+    const extras={...(ctx.tool?{tool:ctx.tool}:{}),...(ctx.document?{document:ctx.document}:{}),...(ctx.chapter&&ctx.document?{chapter:ctx.chapter}:{})};
+    history.replaceState(null,"",canonical(unit.unit,n,part,extras));
+    $("#position").textContent=`فصل ${unit.unit.toLocaleString("fa-IR")} از ۹ · ${unit.title}`;
+    $("#session-title").textContent=active.title;document.title=active.title+" | بیوانفورماتیک ساختاری";
+    const pre=$("#prerequisites");pre.replaceChildren(document.createTextNode(n===1?"مفاهیم از پایه توضیح داده می‌شوند.":"پیشنهاد پیش‌نیاز: "));
+    for(const id of active.prerequisites)pre.append(link(course.sessions[id-1].title,url(id)));
+    document.querySelectorAll("#parts a").forEach(a=>{a.href=url(n,a.dataset.part);if(a.dataset.part===part)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current");});
+    const response=await fetch(active.path);if(!response.ok)throw Error("Missing topic");
+    const text=await response.text();if(ticket!==revision)return;
+    const sections=text.split(/<!-- course:(lesson|practice|research|presentation) -->/);const i=sections.indexOf(part);
+    if(i<0||!window.markdownit)throw Error("Missing phase");
+    $("#lesson").innerHTML=window.markdownit({html:false,linkify:false}).render(sections[i+1]);
+    $("#lesson").querySelectorAll("a[href],img[src]").forEach(el=>{
+      const attr=el.tagName==="IMG"?"src":"href";
+      const resolved=new URL(el.getAttribute(attr),new URL(active.path,location.href));
+      if(!["http:","https:"].includes(resolved.protocol)){el.removeAttribute(attr);return;}
+      const match=resolved.pathname.match(/\/docs\/([^/]+\.md)$/);
+      const destination=attr==="href"&&resolved.origin===location.origin&&match?documentURL(match[1],resolved.searchParams.get("chapter"),unit):null;
+      el.setAttribute(attr,destination||resolved.href);
     });
-    $("#status").textContent = invalid ? "نشانی مبحث معتبر نبود؛ مبحث اول نمایش داده شد." : "";
-    $("#check").hidden = part !== "presentation";
-    $("#study-state").hidden = false; $("#progress").value = names[progress[n]] ? progress[n] : "new";
-    storageNote();
-    if (part === "presentation") await renderQuiz(n,ticket);
-    if (ticket !== revision) return;
-    for (const [id,target] of [["previous",n-1],["next",n+1]]) { const link=$("#"+id); link.hidden=target<1||target>course.sessions.length; link.href=url(target); }
-    if (focus) { $("#lesson").focus({preventScroll:true}); $("#session-title").scrollIntoView({block:"start"}); }
-  } catch {
-    if (ticket !== revision) return;
-    $("#status").textContent = "بارگذاری کامل نشد. اتصال یا فایل‌های محلی را بررسی کنید و دوباره تلاش کنید.";
-    $("#retry").hidden = false;
-  }
+    $("#status").textContent=invalid?"نشانی مبحث معتبر نبود؛ مبحث اول نمایش داده شد.":"";
+    $("#study-state").hidden=false;$("#progress").value=names[progress[n]]?progress[n]:"new";storageNote();
+    for(const [id,target] of [["previous",n-1],["next",n+1]]){const a=$("#"+id);a.hidden=target<1||target>course.sessions.length;if(!a.hidden)a.href=url(target);}
+    if(part==="presentation"){$("#check").hidden=false;await renderQuiz(n,ticket);}
+    if(ticket!==revision)return;
+    await renderResources(ctx,ticket);
+    if(focus&&ticket===revision){$("#lesson").focus({preventScroll:true});$("#session-title").scrollIntoView({block:"start"});}
+  }catch{if(ticket!==revision)return;$("#status").textContent="بارگذاری کامل نشد؛ دوباره تلاش کنید.";$("#retry").hidden=false;}
 }
-document.addEventListener("click",event => {
-  const link=event.target.closest("a[href]"); if(!link || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return;
-  const destination = new URL(link.href);
-  if(destination.origin !== location.origin || destination.pathname !== location.pathname || (!destination.searchParams.has("topic") && !destination.searchParams.has("session"))) return;
-  event.preventDefault(); history.pushState(null,"",destination); render(true);
+document.addEventListener("click",event=>{
+  const a=event.target.closest("a[href]");if(event.defaultPrevented||!a||a.hasAttribute("download")||["document-source","document-download"].includes(a.id)||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey||event.button!==0)return;
+  const destination=new URL(a.href);
+  const githubDocument=destination.origin==="https://github.com" && destination.pathname.startsWith("/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/");
+  if(destination.origin!==location.origin && !githubDocument)return;
+  const file=destination.pathname.match(/\/docs\/([^/]+\.md)$/)?.[1] || destination.searchParams.get("document");
+  let href=file&&courseMap?documentURL(file,destination.searchParams.get("chapter"),state().unit):null;
+  if(!href && /\/(index\.html|learn\.html)?$/.test(destination.pathname) && destination.pathname.startsWith(location.pathname.replace(/index\.html$/,""))) {
+    if(destination.searchParams.has("topic")||destination.searchParams.has("session")||destination.searchParams.has("unit")||destination.searchParams.has("tool"))href=destination.search+destination.hash;
+    else if(courseMap?.legacy_tools[destination.hash.slice(1)])href=destination.search+destination.hash;
+  }
+  if(!href)return;
+  event.preventDefault();history.pushState(null,"",href);render(true);
 });
-$("#progress").addEventListener("change",() => {
-  const n=state().n; progress[n]=$("#progress").value;
-  try { localStorage.setItem("tnf-course-progress-v1",JSON.stringify(progress)); } catch { storageAvailable=false; }
-  storageNote(); drawContents(n);
-});
+$("#progress").addEventListener("change",()=>{const n=state().n;progress[n]=$("#progress").value;try{localStorage.setItem("tnf-course-progress-v1",JSON.stringify(progress));}catch{storageAvailable=false;}storageNote();drawContents(n);});
 function storageNote() {
   $("#storage-note").textContent = storageAvailable
     ? "وضعیت مطالعه، پاسخ آزمون و یادداشت در همین مرورگر ذخیره می‌شوند؛ به سرور ارسال نمی‌شوند."
@@ -172,6 +267,7 @@ $("#clear-answer").addEventListener("click",() => {
   delete quizRecords[state().n]; saveQuizzes(); renderQuiz(state().n,revision);
 });
 $("#quiz-retry").addEventListener("click",()=>renderQuiz(state().n,revision));
+$("#show-contents").addEventListener("click",()=>{$("#contents").open=true;$("#contents").scrollIntoView({block:"start"});$("#contents > summary").focus();});
 $("#retry").addEventListener("click",()=>render());
 window.addEventListener("popstate",()=>render(true));
 if(matchMedia("(max-width:850px)").matches) $("#contents").open=false;

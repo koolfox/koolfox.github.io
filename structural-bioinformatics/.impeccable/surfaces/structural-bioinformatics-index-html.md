@@ -18,3 +18,5 @@ FORM: Arad, Persian RTL, light neutral reading surface and restrained blue links
 FIRST VIEWPORT: State the purpose, then expose the current lesson and the syllabus. Load molecular engines only in the separate workbench. Bare index visits route to learn.html; established document and lab URLs remain valid.
 
 FINISH: Check desktop/mobile, URL navigation/history, all lesson phases, failure/retry and unavailable storage. Tests verify operation and numerical exercise invariants, not learning mastery. Do not call a survey complete before the evidence search and extraction are complete.
+
+Navigation refinement: nine chapter disclosure groups from the official Sharif 40553 syllabus; author-written topics within each chapter, without an imposed study calendar. Prefer topic URLs; legacy session URLs remain accepted. Formative question, answer explanation, retry, current-browser persistence and per-topic clearing are separate from self-reported study state.

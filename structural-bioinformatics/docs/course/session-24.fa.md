@@ -1,4 +1,4 @@
-# جلسهٔ 24: Threading و تشخیص تاخوردگی
+# Threading و تشخیص تاخوردگی
 
 <!-- course:lesson -->
 

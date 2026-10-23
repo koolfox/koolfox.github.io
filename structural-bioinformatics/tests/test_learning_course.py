@@ -101,3 +101,22 @@ def test_teaching_coordinates_are_traceable_and_md_input_has_a_complete_backbone
     assert len(residues) == 76
     assert [r.id[1] for r in residues] == list(range(1, 77))
     assert all({"N", "CA", "C", "O"} <= {a.name for a in r} for r in residues)
+
+
+def test_nine_chapter_reader_and_formative_quizzes_match_all_topics():
+    import re
+
+    course = json.loads((PROJECT / "data/metadata/learning-course.json").read_text())
+    syllabus = json.loads((PROJECT / "data/metadata/course-syllabus.json").read_text())
+    quizzes = json.loads((PROJECT / "data/metadata/course-quizzes.json").read_text())["quizzes"]
+    reader = (PROJECT / "docs/course-sessions.fa.md").read_text()
+    assert len(re.findall(r"^## ", reader, re.M)) == len(syllabus["blocks"]) == 9
+    assert syllabus["source_kind"] == "official_course_webpage"
+    assert syllabus["source_url"] == "https://docs.ce.sharif.edu/courses/40553"
+    assert sum(b["sessions"] for b in syllabus["blocks"]) == 30
+    assert {q["topic"] for q in quizzes} == {s["session"] for s in course["sessions"]}
+    assert len({q["id"] for q in quizzes}) == len(quizzes)
+    for q in quizzes:
+        assert 0 <= q["correct"] < len(q["options"])
+        assert len(set(q["options"])) == len(q["options"]) >= 3
+        assert q["explanation"] and (PROJECT / q["lesson"]).is_file()

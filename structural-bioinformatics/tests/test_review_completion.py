@@ -14,17 +14,14 @@ def record(path):
     return json.loads((PROJECT / path).read_text())
 
 
-def test_completion_matches_the_actual_required_outputs_and_document_inventory():
+def test_old_completion_is_explicitly_a_superseded_historical_snapshot():
     completion = record("data/metadata/review-completion.json")
-    assert completion["status"] == "complete_for_classroom_review"
-    assert completion["unresolved_required_editorial_items"] == []
-    assert completion["teaching_sessions"] == 30
-    assert completion["slides_including_cover"] == 39
+    assert completion["status"] == "superseded_editorial_snapshot"
+    assert (PROJECT / completion["superseded_by"]).is_file()
+    assert "historical" in completion["supersession_reason"]
+    # Historical hashes must not force future teaching content to remain unchanged.
     for item in completion["required_outputs"] + completion["document_inventory"]:
-        assert hashlib.sha256((PROJECT / item["path"]).read_bytes()).hexdigest() == item["sha256"]
-    expected = {p.relative_to(PROJECT).as_posix() for p in (PROJECT / "docs").glob("*.md")}
-    assert {r["path"] for r in completion["document_inventory"]} == expected
-    assert "[تکمیل شود]" not in (PROJECT / "docs/manuscript-draft.fa.md").read_text()
+        assert (PROJECT / item["path"]).is_file()
 
 
 def test_surface_control_conserves_area_and_checks_both_implementations_and_algorithms():

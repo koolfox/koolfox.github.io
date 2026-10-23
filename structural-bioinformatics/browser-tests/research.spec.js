@@ -134,7 +134,7 @@ test("beginner mechanism and deeper paper explanations are reachable in the note
 });
 
 test('learning starts with one lesson, saves progress, then leads to rehearsal and slide one', async ({ page }) => {
-    await page.goto(route);
+    await page.goto(`${route}?workspace=1`);
     await expect(page.locator('#study-status')).toHaveAttribute('data-state', 'ready');
     await expect(page.locator('#study-start')).toContainText('از اینجا شروع کنید');
     await page.locator('#study-start').click();
@@ -196,7 +196,7 @@ test('definitions are linked in the main page and dynamic explanation without li
 
 test('reading remains usable without course metadata or persistent browser storage', async ({ page }) => {
     await page.route('**/data/metadata/learning-journey.json', request => request.abort());
-    await page.goto(route);
+    await page.goto(`${route}?workspace=1`);
     await expect(page.locator('#study-status')).toHaveAttribute('data-state', 'error');
     await page.locator('#study-start').click();
     await expect(page.locator('#reading-status')).toHaveAttribute('data-state', 'ready');
@@ -324,7 +324,7 @@ test("reduced motion starts still and WebGL failure retains the evidence", async
 });
 
 test("presentation tabs support keyboard navigation and direct links", async ({ page }) => {
-    await page.goto(route);
+    await page.goto(`${route}?workspace=1`);
     await expect(page.locator("#tab-basics")).toHaveAttribute("aria-selected", "true");
     await expect(page.locator('[role="tabpanel"]:visible')).toHaveCount(1);
     await page.locator("#tab-basics").focus();
@@ -718,7 +718,7 @@ test("weekly plan shows one class step at a time and filters the deck to that we
     await expect(page.locator("#week-card")).toHaveAttribute("data-week", "5");
     await expect(page.locator('#week-buttons button[data-week="5"]')).toHaveAttribute("aria-pressed", "true");
     await expect(page.locator("#week-experiment-link")).toHaveAttribute("href", "?tab=lab#epitope-lab");
-    await expect(page.locator("#weekly-goal")).toContainText("طراحی مهارکننده");
+    await expect(page.locator("#weekly-goal")).toContainText("مرور انتقادی");
     // Each week names its syllabus block, explains that week's paper and lists the talk order.
     await expect(page.locator("#week-course")).toContainText("مناظر انرژی بیومولکولی");
     await expect(page.locator("#week-course")).toContainText("جلوتر از کلاس");
@@ -731,12 +731,12 @@ test("weekly plan shows one class step at a time and filters the deck to that we
     await expect(page.locator("#week-card")).toContainText("نتیجهٔ خودِ مقاله");
     await expect(page.locator("#week-card ol li")).not.toHaveCount(0);
     await expect(page.locator("#week-appendix-link")).toHaveAttribute("href", /chapter=chapter-9/);
-    await expect(page.locator("#week-paper-link")).toHaveAttribute("href", /document=manuscript-draft\.fa\.md&chapter=chapter-4/);
+    await expect(page.locator("#week-paper-link")).toHaveAttribute("href", /document=survey-draft\.fa\.md&chapter=chapter-3/);
     await page.locator('#week-buttons button[data-week="2"]').click();
     await expect(page.locator("#week-card")).toContainText("3WD5");
     await expect(page.locator("#week-slides-link")).toHaveAttribute("href", "presentation.html?week=2#slide-1");
     // The choice is remembered in this browser only.
-    await page.goto(route);
+    await page.goto(`${route}?workspace=1`);
     await expect(page.locator("#week-card")).toHaveAttribute("data-week", "2");
     await page.locator("#week-slides-link").click();
     await expect(page.locator("#deck")).toHaveAttribute("data-state", "ready");

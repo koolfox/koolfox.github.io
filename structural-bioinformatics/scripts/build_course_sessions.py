@@ -1,63 +1,38 @@
-"""Render all thirty course sessions from course-sessions.json with resolvable source links."""
+"""Build a single printable reader from the canonical individual course lessons."""
 
 import json
+import re
 from pathlib import Path
 
 PROJECT = Path(__file__).resolve().parents[1]
 
 
 def render(project=PROJECT):
-    curriculum = json.loads((project / "data/metadata/course-sessions.json").read_text())
-    records = json.loads((project / "data/metadata/review-sources.json").read_text())
-    sources = {item["id"]: item for item in records["sources"]}
-    fa = str.maketrans("0123456789", "۰۱۲۳۴۵۶۷۸۹")
+    course = json.loads((project / "data/metadata/learning-course.json").read_text())
     out = [
-        "# درس‌نامهٔ سی جلسه؛ از مفهوم تا تمرین و مقاله",
+        "# دورهٔ سی جلسه؛ از پایه تا مرور انتقادی",
         "",
-        "این درس‌نامه ترتیب همان سرفصل ۳۰ جلسه‌ای را دنبال می‌کند. "
-        "هشت هفتهٔ سایت هشت بستهٔ ارائهٔ دانشجو هستند و تاریخ یا سرعت تدریس استاد را "
-        "تعیین نمی‌کنند. "
-        "شروع هر بسته به رسیدن کلاس به پیش‌نیازهای آن وابسته است.",
-        "",
-        "برای استفاده: ابتدا [نقشهٔ پروژه](course-guide.fa.md)، سپس جلسهٔ جاری همین درس‌نامه، "
-        "و بعد [بستهٔ ارائهٔ هفتگی](weekly-plan.fa.md) را باز کنید. "
-        "[مسیر RNA-seq و RA](rnaseq-research-plan.fa.md) مکمل این سرفصل است.",
-        "",
-        "هر جلسه سؤال، توضیح، تمرین، تحویلی و منبع دارد. "
-        "تمرین پیشنهادی یا نمونهٔ دستور تا وقتی خروجی و شرایط اجرای آن ثبت نشده، "
-        "نتیجهٔ اجراشده نیست. "
-        "وضعیت دسترسی منابع و موارد حل‌نشده در [گزارش "
-        "بازبینی](comprehensive-review.fa.md) آمده است.",
+        "نسخهٔ خواندنی یک‌جای همان درس‌های [مسیر اصلی](../learn.html). "
+        "هر جلسه چهار بخش دارد: درس، کارگاه، خواندن مقاله و تمرین ارائه. "
+        "همهٔ جلسه‌ها آزادند؛ پیش‌نیازها برای کمک به انتخاب ترتیب هستند. "
+        "هشت بستهٔ ارائه، جای سی جلسهٔ سیلابس را نمی‌گیرند.",
         "",
     ]
-    for entry in curriculum["sessions"]:
-        num = str(entry["session"]).translate(fa)
-        out.extend(
-            [
-                f"## جلسهٔ {num}. {entry['title']}",
-                "",
-                f"**پرسش جلسه:** {entry['question']}",
-                "",
-                entry["lesson"],
-                "",
-                f"**مثال توضیح‌داده‌شده:** {entry['worked_example']}",
-                "",
-                f"**خودسنجی:** {entry['self_check']}",
-                "",
-                f"**پاسخ و علت:** {entry['answer']}",
-                "",
-                f"**تمرین مرحله‌ای:** {entry['exercise']}",
-                "",
-                f"**تحویلی و معیار پایان:** {entry['deliverable']}",
-                "",
-            ]
-        )
-        links = []
-        for key in entry["sources"]:
-            source = sources[key]
-            href = source.get("url") or "../" + source["path"]
-            links.append(f"[{source['title']}]({href})")
-        out.extend(["**منابع این جلسه:** " + "؛ ".join(links), ""])
+    for entry in course["sessions"]:
+        text = (project / entry["path"]).read_text().split("\n", 1)[1]
+        # Keep exactly one reader chapter per syllabus session.
+        text = re.sub(r"^(#{2,5}) ", r"\1# ", text, flags=re.M)
+        labels = {
+            "lesson": "درس و توضیح مفهوم",
+            "practice": "کارگاه و خروجی قابل بررسی",
+            "research": "خواندن مقاله و کاربرد پژوهشی",
+            "presentation": "تمرین ارائه",
+        }
+        for marker, label in labels.items():
+            text = text.replace(f"<!-- course:{marker} -->", f"### {label}")
+        # Files are one directory deeper than this combined reader.
+        text = re.sub(r"\]\(\.\./([^\s)]+)\)", r"](\1)", text)
+        out.extend([f"## جلسهٔ {entry['session']}. {entry['title']}", "", text.strip(), ""])
     return "\n".join(out)
 
 

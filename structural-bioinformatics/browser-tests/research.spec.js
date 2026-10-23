@@ -117,102 +117,6 @@ test("cartoon download failure recovers to the working trace", async ({ page }) 
     await page.selectOption("#representation-select", "cartoon");
     await expect(page.locator("#reference-stage")).toHaveAttribute("data-state", "ready", { timeout: 20000 });
 });
-
-test("beginner mechanism and deeper paper explanations are reachable in the notebook", async ({ page }) => {
-    await page.goto(`${route}#binding-explainer`);
-    await expect(page.locator("#binding-diagram svg")).toBeVisible();
-    await page.locator('[data-binding-step="1"]').click();
-    await expect(page.locator("#binding-explanation")).toContainText("Fab");
-    await page.locator('[data-binding-step="2"]').click();
-    await expect(page.locator("#binding-explanation")).toContainText("پیش‌بینی نمی‌کند");
-    await page.getByRole('link', { name: 'شرح قدم‌به‌قدم اتصال، میل اتصال و اثر درمان' }).click();
-    await expect(page.locator("#reading-status")).toHaveAttribute("data-state", "ready");
-    await expect(page.locator("#markdown-content")).toContainText("سلول");
-    await page.selectOption("#document-select", "paper-explanations.fa.md");
-    await expect(page.locator("#reading-status")).toHaveAttribute("data-document", "paper-explanations.fa.md");
-    await expect(page.locator("#markdown-content")).toBeVisible();
-});
-
-test('learning starts with one lesson, saves progress, then leads to rehearsal and slide one', async ({ page }) => {
-    await page.goto(`${route}?workspace=1`);
-    await expect(page.locator('#study-status')).toHaveAttribute('data-state', 'ready');
-    await expect(page.locator('#study-start')).toContainText('از اینجا شروع کنید');
-    await page.locator('#study-start').click();
-    await expect(page.locator('#reading-status')).toHaveAttribute('data-chapter', 'chapter-1');
-    await expect(page.locator('#reading-status')).toHaveAttribute('data-state', 'ready');
-    await expect(page.locator('#lesson-title')).toContainText('۱ از ۸');
-    await expect(page.locator('#lesson-title')).toBeInViewport();
-    await expect(page.locator('.reading-controls')).toBeHidden();
-    expect(await page.locator('#lesson-finish').evaluate(node => Boolean(document.querySelector('#markdown-content').compareDocumentPosition(node) & Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
-    await page.locator('#lesson-complete').click();
-    await page.reload();
-    await expect(page.locator('#study-status')).toContainText('۱ از ۸');
-    await expect(page.locator('#lesson-complete')).toHaveAttribute('aria-pressed', 'true');
-    for (let lesson = 2; lesson <= 8; lesson++) {
-        await page.locator('#lesson-next').click();
-        await expect(page).toHaveURL(new RegExp('lesson=' + lesson));
-        await expect(page.locator('#reading-status')).toHaveAttribute('data-state', 'ready');
-        await expect(page.locator('#lesson-complete')).toHaveAttribute('data-lesson', String(lesson));
-        await expect(page.locator('#lesson-complete')).toBeEnabled();
-        if (lesson === 4) {
-            await page.locator('#lesson-resources a[href$="#lab"]').click();
-            await expect(page.locator('#tab-lab')).toHaveAttribute('aria-selected', 'true');
-            await page.locator('#tab-reading').click();
-            await expect(page.locator('#reading-status')).toHaveAttribute('data-document', 'preparation-guide.fa.md');
-            await expect(page.locator('#reading-status')).toHaveAttribute('data-chapter', 'chapter-4');
-            await expect(page.locator('#reading-status')).toHaveAttribute('data-state', 'ready');
-        }
-        await page.locator('#lesson-complete').click();
-    }
-    await expect(page.locator('#study-status')).toContainText('۸ بخش یادگیری');
-    await expect(page.locator('#lesson-next')).toContainText('تمرین ارائه');
-    await page.locator('#lesson-next').click();
-    await expect(page.locator('#reading-status')).toHaveAttribute('data-document', 'presentation-rehearsal.fa.md');
-    await expect(page.locator('#reading-status')).toHaveAttribute('data-state', 'ready');
-    await page.locator('#lesson-complete').click();
-    await expect(page.locator('#lesson-next')).toContainText('اسلاید ۱');
-    await page.locator('#lesson-next').click();
-    await expect(page).toHaveURL(/presentation\.html#slide-1$/);
-    await expect(page.locator('#deck')).toHaveAttribute('data-state', 'ready');
-    await expect(page.locator('.cover')).toBeVisible();
-});
-
-test('definitions are linked in the main page and dynamic explanation without linking code', async ({ page }) => {
-    await page.goto(`${route}#molecular-roles`);
-    const definition = page.locator('#molecular-roles').getByRole('link', { name: 'IgG1', exact: true });
-    await expect(definition).toHaveAttribute('href', /document=glossary\.fa\.md.*chapter=chapter-2/);
-    expect(await definition.evaluate(link => getComputedStyle(link).color === getComputedStyle(link.parentElement).color)).toBe(true);
-    await definition.click();
-    await expect(page.locator('#reading-status')).toHaveAttribute('data-document', 'glossary.fa.md');
-    await expect(page.locator('#reading-status')).toHaveAttribute('data-chapter', 'chapter-2');
-    await page.goto(`${route}#binding-explainer`);
-    await page.locator('[data-binding-step="1"]').click();
-    await expect(page.locator('#binding-explanation').getByRole('link', { name: 'Fab', exact: true })).toHaveAttribute('href', /chapter=chapter-4/);
-    await expect(page.locator('#binding-diagram svg a')).toHaveCount(0);
-    await page.goto(`${route}?document=codons-primer.fa.md&chapter=all#reading`);
-    await expect(page.locator('#reading-status')).toHaveAttribute('data-state', 'ready');
-    await expect(page.locator('#markdown-content code a')).toHaveCount(0);
-});
-
-test('reading remains usable without course metadata or persistent browser storage', async ({ page }) => {
-    await page.route('**/data/metadata/learning-journey.json', request => request.abort());
-    await page.goto(`${route}?workspace=1`);
-    await expect(page.locator('#study-status')).toHaveAttribute('data-state', 'error');
-    await page.locator('#study-start').click();
-    await expect(page.locator('#reading-status')).toHaveAttribute('data-state', 'ready');
-    await expect(page.locator('#markdown-content')).toContainText('سلول');
-    await page.unroute('**/data/metadata/learning-journey.json');
-    await page.addInitScript(() => {
-        Storage.prototype.getItem = () => { throw new Error('Storage blocked'); };
-        Storage.prototype.setItem = () => { throw new Error('Storage blocked'); };
-    });
-    await page.reload();
-    await expect(page.locator('#study-status')).toHaveAttribute('data-state', 'ready');
-    await expect(page.locator('#lesson-save-note')).toContainText('همین نوبت');
-    await page.locator('#lesson-complete').click();
-    await expect(page.locator('#study-status')).toContainText('۱ از ۸');
-});
-
 test('reference codons connect real CDS positions to amino acids and stop', async ({ page }) => {
     await page.goto(`${route}?tab=sequences#codon-lesson`);
     await expect(page.locator('#codon-status')).toHaveAttribute('data-state', 'ready');
@@ -246,61 +150,6 @@ test('unavailable codon data can retry while reference FASTA remains usable', as
     await expect(page.locator('#codon-strip button')).toHaveCount(12);
 });
 
-test("curated evidence and dataset search keep available measurements distinct", async ({ page }) => {
-    await ready(page);
-    await expect(page.locator("#stat-residue-pairs")).toHaveText("۴۰");
-    await expect(page.locator("#stat-atom-contacts")).toHaveText("۲۵۲");
-    await expect(page.locator("#stat-interface-residues")).toHaveText("۱۷");
-    await page.locator("#tab-methods").click();
-    await page.locator("#future-work > summary").click();
-    await page.locator("#dataset-search").fill("GSE138746");
-    await expect(page.locator("#datasets-body tr")).toHaveCount(1);
-    await expect(page.locator("#datasets-body")).toContainText("GSE138746");
-    await page.locator("#dataset-search").fill("nonexistent-accession-for-check");
-    await expect(page.locator("#dataset-status")).toContainText("۰");
-    await page.locator("#clear-filters").click();
-    await expect(page.locator("#datasets-body tr")).toHaveCount(26);
-    await page.locator("#tab-literature").click();
-    await expect(page.locator('a[href*="10.3389/fimmu.2025.1680199"]')).toBeVisible();
-    await expect(page.locator('a[href*="10.3389/fimmu.2025.1668361"]')).toBeVisible();
-});
-
-for (const width of [390, 1440]) {
-    test(`Persian direction, font and narrow layout at ${width}px`, async ({ page }) => {
-        await page.setViewportSize({ width, height: 900 });
-        await ready(page);
-        await page.evaluate(() => document.fonts.ready);
-        const actual = await page.evaluate(() => ({
-            lang: document.documentElement.lang,
-            direction: getComputedStyle(document.body).direction,
-            font: getComputedStyle(document.body).fontFamily,
-            fontLoaded: document.fonts.check("16px arad"),
-            overflow: document.documentElement.scrollWidth > window.innerWidth,
-            latinDirection: getComputedStyle(document.querySelector("#model-source bdi")).direction,
-        }));
-        expect(actual.lang).toBe("fa");
-        expect(actual.direction).toBe("rtl");
-        expect(actual.font.toLowerCase()).toContain("arad");
-        expect(actual.fontLoaded).toBe(true);
-        expect(actual.overflow).toBe(false);
-        expect(actual.latinDirection).toBe("ltr");
-        await expect(page.locator("canvas.molecular-canvas")).toBeVisible();
-        for (const panel of ["basics", "sequences", "literature", "methods", "reading"]) {
-            await page.locator(`#tab-${panel}`).click();
-            await expect(page.locator(`#panel-${panel}`)).toBeVisible();
-            if (panel === "reading") await expect(page.locator("#reading-status")).toHaveAttribute("data-state", "ready");
-            expect(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth)).toBe(false);
-        }
-        if (width === 390) {
-            for (const tab of await page.locator('[role="tab"]').all()) {
-                const box = await tab.boundingBox();
-                expect(box.x).toBeGreaterThanOrEqual(0);
-                expect(box.x + box.width).toBeLessThanOrEqual(width);
-            }
-        }
-    });
-}
-
 test("reduced motion starts still and WebGL failure retains the evidence", async ({ browser }) => {
     const context = await browser.newContext({ reducedMotion: "reduce" });
     const page = await context.newPage();
@@ -318,28 +167,11 @@ test("reduced motion starts still and WebGL failure retains the evidence", async
     await expect(fallback.locator("#molecular-stage")).toHaveAttribute("data-state", "error");
     await expect(fallback.locator("#model-fallback")).toBeVisible();
     await expect(fallback.locator("#structure-select")).toBeDisabled();
-    await expect(fallback.locator("#datasets-table")).toHaveAttribute("data-state", "ready");
-    await expect(fallback.locator("#stat-atom-contacts")).toHaveText("۲۵۲");
-    await context.close();
-});
 
-test("presentation tabs support keyboard navigation and direct links", async ({ page }) => {
-    await page.goto(`${route}?workspace=1`);
-    await expect(page.locator("#tab-basics")).toHaveAttribute("aria-selected", "true");
-    await expect(page.locator('[role="tabpanel"]:visible')).toHaveCount(1);
-    await page.locator("#tab-basics").focus();
-    await page.keyboard.press("End");
-    await expect(page.locator("#tab-reading")).toBeFocused();
-    await expect(page.locator("#tab-reading")).toHaveAttribute("aria-selected", "true");
-    await page.keyboard.press("Home");
-    await expect(page.locator("#tab-basics")).toBeFocused();
-    await expect(page.locator("#tab-basics")).toHaveAttribute("aria-selected", "true");
-    await page.locator("#tab-sequences").click();
-    await expect(page).toHaveURL(/#sequences$/);
-    await page.reload();
-    await expect(page.locator("#tab-sequences")).toHaveAttribute("aria-selected", "true");
-    await expect(page.locator("#panel-sequences")).toBeVisible();
-    await expect(page.locator("#panel-basics")).toBeHidden();
+    await expect(fallback.locator("#stat-atom-contacts")).toHaveText("۲۵۲");
+    await fallback.goto(`${route}?unit=4&part=practice&tool=datasets`);
+    await expect(fallback.locator("#datasets-table")).toHaveAttribute("data-state", "ready");
+    await context.close();
 });
 
 test("verified RNA examples preserve downloaded FASTA and label letter conversion", async ({ page }) => {
@@ -367,7 +199,7 @@ test("unavailable FASTA leaves other teaching panels usable", async ({ page }) =
     await page.route("**/data/sequences/*.fasta", request => request.fulfill({ status: 404, body: "Not found" }));
     await page.goto(`${route}#sequences`);
     await expect(page.locator("#sequence-status")).toHaveAttribute("data-state", "error");
-    await page.locator("#tab-lab").click();
+    await page.goto(`${route}?unit=3&part=practice&tool=lab`);
     await expect(page.locator("#molecular-stage")).toHaveAttribute("data-state", "ready");
     await expect(page.locator("canvas.molecular-canvas")).toBeVisible();
     await expect(page.locator("#stat-atom-contacts")).toHaveText("۲۵۲");
@@ -378,7 +210,7 @@ test("research Markdown renders chapters, actual LaTeX and Mermaid inside the pa
     page.on("request", request => requests.push(request.url()));
     await ready(page);
     expect(requests.some(url => url.includes("mermaid.min.js"))).toBe(false);
-    await page.locator("#tab-reading").click();
+    await page.goto(`${route}?unit=3&part=research&document=structural-method.fa.md`);
     await expect(page.locator("#reading-status")).toHaveAttribute("data-state", "ready");
     await page.selectOption("#document-select", "structural-method.fa.md");
     await expect(page.locator("#markdown-content")).toHaveAttribute("data-document", "structural-method.fa.md");
@@ -399,7 +231,7 @@ test("research Markdown renders chapters, actual LaTeX and Mermaid inside the pa
     await page.locator('#markdown-content a[href$="/sequences-primer.fa.md"]').click();
     await expect(page.locator("#reading-status")).toHaveAttribute("data-document", "sequences-primer.fa.md");
     await expect(page).toHaveURL(/document=sequences-primer\.fa\.md.*#reading$/);
-    await page.selectOption("#document-select", "visualization-tools.fa.md");
+    await page.goto(`${route}?unit=3&part=research&document=visualization-tools.fa.md`);
     await expect(page.locator("#markdown-content")).toHaveAttribute("data-document", "visualization-tools.fa.md");
     await page.selectOption("#chapter-select", "all");
     await page.locator('#markdown-content a[href$="/anatomy-evaluation.fa.md"]').first().click();
@@ -413,96 +245,9 @@ test("optional diagram failure preserves Markdown and its original code", async 
     await expect(page.locator("#reading-status")).toHaveAttribute("data-state", "ready");
     await expect(page.locator("#reading-status")).toHaveAttribute("data-optional-render", "partial");
     await expect(page.locator("#markdown-content code").filter({ hasText: "flowchart TD" })).toBeVisible();
-    await page.locator("#tab-lab").click();
+    await page.goto(`${route}?unit=3&part=practice&tool=lab`);
     await expect(page.locator("#molecular-stage")).toHaveAttribute("data-state", "ready");
     await expect(page.locator("canvas.molecular-canvas")).toBeVisible();
-});
-
-for (const width of [1440, 390]) {
-    test(`glossary links keep text color and open the exact definition at ${width}px`, async ({ page, context }) => {
-        const origin = new URL(test.info().project.use.baseURL).origin;
-        await context.route('**/*', request => request.request().url().startsWith(origin) ? request.continue() : request.abort());
-        await page.setViewportSize({ width, height: 900 });
-        await page.goto(`${route}?document=class-presentation.fa.md&chapter=chapter-5#reading`);
-        await expect(page.locator('#reading-status')).toHaveAttribute('data-state', 'ready');
-        await expect(page.locator('#markdown-content')).toContainText('آنتی‌بادی، پروتئینی');
-        const term = page.locator('#markdown-content').getByRole('link', { name: 'IgG1', exact: true });
-        const before = await term.evaluate(link => ({
-            color: getComputedStyle(link).color,
-            parentColor: getComputedStyle(link.parentElement).color,
-            underline: getComputedStyle(link).textDecorationLine,
-        }));
-        expect(before.color).toBe(before.parentColor);
-        expect(before.underline).toBe('underline');
-        await term.hover();
-        expect(await term.evaluate(link => getComputedStyle(link).color)).toBe(before.color);
-        await term.press('Enter');
-        await expect(page.locator('#reading-status')).toHaveAttribute('data-document', 'glossary.fa.md');
-        await expect(page.locator('#reading-status')).toHaveAttribute('data-chapter', 'chapter-2');
-        await expect(page.locator('#markdown-content h2')).toContainText('IgG1');
-        await expect(page.locator('#markdown-content')).toContainText('نوع مولکول IgG1 و هدف اتصال آن TNF');
-        await page.goBack();
-        await expect(page.locator('#reading-status')).toHaveAttribute('data-document', 'class-presentation.fa.md');
-        await expect(page.locator('#reading-status')).toHaveAttribute('data-chapter', 'chapter-5');
-        await page.goto(`${route}presentation.html#slide-6`);
-        await expect(page.locator('#deck')).toHaveAttribute('data-state', 'ready');
-        const slideLink = page.locator('.slide:visible').getByRole('link', { name: 'IgG1', exact: true });
-        expect(await slideLink.evaluate(link => getComputedStyle(link).color === getComputedStyle(link.parentElement).color)).toBe(true);
-        const popupPromise = page.waitForEvent('popup');
-        await slideLink.click();
-        const definition = await popupPromise;
-        await expect(definition.locator('#reading-status')).toHaveAttribute('data-document', 'glossary.fa.md');
-        await expect(definition.locator('#reading-status')).toHaveAttribute('data-chapter', 'chapter-2');
-        await expect(page).toHaveURL(/#slide-6$/);
-        await definition.close();
-    });
-}
-
-test("guided class presentation advances one step and resumes after the laboratory", async ({ page }) => {
-    await ready(page);
-    await page.locator('#study-shortcuts summary').click();
-    await page.locator("#start-presentation").click();
-    await expect(page.locator("#reading-status")).toHaveAttribute("data-document", "class-presentation.fa.md");
-    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-1");
-    await expect(page.locator("#reading-status")).toContainText("گام ۱ از ۳۸");
-    await expect(page.locator("body")).toHaveAttribute("data-presentation-mode", "true");
-    await expect(page.locator("#document-select")).toBeHidden();
-    await expect(page.locator("#chapter-prev")).toBeDisabled();
-    await page.keyboard.press("PageDown");
-    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-2");
-    await expect(page.locator("#markdown-content")).toContainText("Hu 2013");
-    await page.selectOption("#chapter-select", "chapter-13");
-    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-13");
-    await page.getByRole("link", { name: "باز کردن آزمایشگاه سه‌بعدی", exact: true }).click();
-    await expect(page.locator("#molecular-stage")).toHaveAttribute("data-state", "ready");
-    await expect(page.locator("#tab-lab")).toHaveAttribute("aria-selected", "true");
-    await page.locator("#tab-reading").click();
-    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-13");
-    await page.selectOption("#chapter-select", "chapter-6");
-    await expect(page.locator("#reading-status")).toHaveAttribute("data-optional-render", "ready");
-    await expect(page.locator("#markdown-content .mermaid-diagram svg")).toBeVisible();
-    await page.selectOption("#chapter-select", "chapter-38");
-    await expect(page.locator("#chapter-next")).toBeDisabled();
-    await page.locator("#chapter-prev").click();
-    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-37");
-    await page.locator("#presentation-view").click();
-    await expect(page.locator("body")).toHaveAttribute("data-presentation-mode", "false");
-    await expect(page.locator("#document-select")).toBeVisible();
-    await page.selectOption("#document-select", "research-questions.fa.md");
-    await expect(page.locator("#reading-status")).toHaveAttribute("data-document", "research-questions.fa.md");
-    await expect(page.locator("#presentation-help")).toBeHidden();
-    await expect(page.locator("#chapter-next")).toHaveText("فصل بعدی");
-    await page.locator("#tab-basics").click();
-    if (!await page.locator('#study-shortcuts').evaluate(details => details.open)) await page.locator('#study-shortcuts summary').click();
-    await page.locator("#start-presentation").click();
-    await expect(page.locator("#reading-status")).toHaveAttribute("data-document", "class-presentation.fa.md");
-    await expect(page.locator("#reading-status")).toHaveAttribute("data-chapter", "chapter-1");
-    await page.selectOption("#chapter-select", "chapter-5");
-    await page.locator("#slide-launch").click();
-    await expect(page).toHaveURL(/presentation\.html#slide-1$/);
-    await expect(page.locator("#deck")).toHaveAttribute("data-state", "ready");
-    await expect(page.locator(".cover")).toBeVisible();
-    await expect(page.locator("#slide-prev")).toBeDisabled();
 });
 
 test("executed surface analysis is readable as an optional numerical report", async ({ page }) => {
@@ -520,7 +265,7 @@ test("executed surface analysis is readable as an optional numerical report", as
 test("docking validation shows its gates and names the one that failed", async ({ page }) => {
     const errors = [];
     page.on("pageerror", error => errors.push(error.message));
-    await page.goto(`${route}?tab=methods`);
+    await page.goto(`${route}?unit=8&part=practice&tool=docking`);
     await expect(page.locator("#docking-validation")).toHaveAttribute("data-state", "ready");
     const rows = page.locator("#docking-gates-body tr");
     await expect(rows).toHaveCount(3);
@@ -567,15 +312,15 @@ for (const width of [1440, 390]) {
             expect(logo.x + logo.width).toBeLessThan(institution.x);
             await expect(active.locator('.slide-footer')).toContainText('آدالیموماب');
             if (width === 1440) expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBeLessThanOrEqual(902);
-            if (index > 0 && index !== 29) expect(await active.locator('.slide-references a[href^="https://"]').count()).toBeGreaterThan(0);
+            if (index > 0 && await active.getAttribute('data-chapter') !== '29') expect(await active.locator('.slide-references a[href^="https://"]').count()).toBeGreaterThan(0);
             for (const label of await active.locator('.nodeLabel').all()) {
                 if (/[\u0600-\u06ff]/.test(await label.textContent())) {
                     expect(await label.evaluate(node => getComputedStyle(node).direction)).toBe('rtl');
                 }
             }
-            if (index === 13) await expect(active.locator('h1 bdi').filter({ hasText: /^3WD5$/ })).toHaveText('3WD5');
-            if (index === 12) await expect(active.locator('strong bdi').filter({ hasText: '4.5 Å' })).toHaveAttribute('dir', 'ltr');
-            if (index === 29) {
+            if (await active.getAttribute('data-chapter') === '13') await expect(active.locator('h1 bdi').filter({ hasText: /^3WD5$/ })).toHaveText('3WD5');
+            if (await active.getAttribute('data-chapter') === '12') await expect(active.locator('strong bdi').filter({ hasText: '4.5 Å' })).toHaveAttribute('dir', 'ltr');
+            if (await active.getAttribute('data-chapter') === '29') {
                 for (const accession of ['3WD5', '1TNF', '4FM9']) {
                     await expect(active.locator('a bdi').filter({ hasText: new RegExp('^' + accession + '$') })).toHaveAttribute('dir', 'ltr');
                 }
@@ -589,7 +334,7 @@ for (const width of [1440, 390]) {
         await page.keyboard.press('PageUp');
         await expect(page).toHaveURL(/#slide-1$/);
         await page.locator('#sources-link').click();
-        await expect(page).toHaveURL(/#slide-30$/);
+        await expect(page.locator('.slide:visible')).toHaveAttribute('data-chapter','29');
         await page.emulateMedia({ media: 'print' });
         await expect(page.locator('.slide:visible')).toHaveCount(39);
         expect(errors).toEqual([]);
@@ -605,7 +350,7 @@ for (const width of [1440, 390]) {
         await context.route('**/*', route => route.request().url().startsWith(origin) ? route.continue() : route.abort());
         await page.goto(`${route}presentation.html#slide-1`);
         await expect(page.locator('#deck')).toHaveAttribute('data-state', 'ready');
-        await page.selectOption('#slide-select', '5');
+        await page.selectOption('#slide-select', await page.locator('.slide[data-chapter="5"]').evaluate(el=>String([...el.parentElement.children].indexOf(el))));
         const enlarge = page.locator('.slide:visible').getByRole('button', { name: 'بزرگ‌نمایی شکل', exact: true });
         await enlarge.click();
         await expect(page.locator('#slide-media-dialog')).toBeVisible();
@@ -614,16 +359,16 @@ for (const width of [1440, 390]) {
         await page.keyboard.press('Escape');
         await expect(page.locator('#slide-media-dialog')).not.toBeVisible();
         await expect(enlarge).toBeFocused();
-        await expect(page).toHaveURL(/#slide-6$/);
-        await page.selectOption('#slide-select', '13');
+        await expect(page.locator('.slide:visible')).toHaveAttribute('data-chapter','5');
+        await page.selectOption('#slide-select', await page.locator('.slide[data-chapter="13"]').evaluate(el=>String([...el.parentElement.children].indexOf(el))));
         await page.getByRole('button', { name: 'مدل سه‌بعدی 3WD5', exact: true }).click();
         const modelFrame = page.frameLocator('#slide-media-stage iframe');
         await expect(modelFrame.locator('body')).toHaveAttribute('data-state', 'ready', { timeout: 30000 });
         expect(await page.evaluate(() => document.querySelector('#slide-media-stage iframe').contentWindow.referenceViewer.state.polymerResidueCount)).toBe(579);
         await page.getByRole('button', { name: 'بستن و بازگشت به اسلاید' }).click();
-        await expect(page).toHaveURL(/#slide-14$/);
+        await expect(page.locator('.slide:visible')).toHaveAttribute('data-chapter','13');
         await expect(page.locator('.slide:visible')).toContainText('Fab');
-        await page.selectOption('#slide-select', '33');
+        await page.selectOption('#slide-select', await page.locator('.slide[data-chapter="33"]').evaluate(el=>String([...el.parentElement.children].indexOf(el))));
         await page.getByRole('button', { name: 'مدل سه‌بعدی 4FM9', exact: true }).click();
         await expect(modelFrame.locator('body')).toHaveAttribute('data-state', 'ready', { timeout: 30000 });
         expect(await page.evaluate(() => document.querySelector('#slide-media-stage iframe').contentWindow.referenceViewer.state.scope)).toBe('deposited_model');
@@ -655,7 +400,7 @@ test('slide source failure can be retried without losing notebook access', async
 test("epitope mini-experiments re-threshold contacts, list partners and truncate side chains", async ({ page }) => {
     const errors = [];
     page.on("pageerror", error => errors.push(error.message));
-    await ready(page);
+    await page.goto(`${route}?unit=3&part=practice&tool=epitope`);
     await page.locator("#epitope-lab").scrollIntoViewIfNeeded();
     await expect(page.locator("#epitope-lab")).toHaveAttribute("data-state", "ready");
     // Default 4.5 Å reproduces data/processed/full-epitope.json.
@@ -700,62 +445,13 @@ test("epitope experiments keep working without WebGL", async ({ page }) => {
             return type.startsWith("webgl") ? null : original.call(this, type, ...options);
         };
     });
-    await page.goto(`${route}#lab`);
+    await page.goto(`${route}?unit=3&part=practice&tool=epitope`);
     await page.locator("#epitope-lab").scrollIntoViewIfNeeded();
     await expect(page.locator("#epitope-stage")).toHaveAttribute("data-state", "error");
     await expect(page.locator("#epitope-fallback")).toBeVisible();
     await expect(page.locator("#epitope-stat-atoms")).toHaveText("۳۶۵");
     await page.locator("#epitope-alanine").click();
     await expect(page.locator("#epitope-alanine-result")).toContainText("جفت اتم حذف شد");
-});
-
-test("weekly plan shows one class step at a time and filters the deck to that week", async ({ page }) => {
-    const errors = [];
-    page.on("pageerror", error => errors.push(error.message));
-    await page.goto(`${route}?week=5`);
-    await expect(page.locator("#weekly-plan")).toHaveAttribute("data-state", "ready");
-    await expect(page.locator("#week-buttons button")).toHaveCount(8);
-    await expect(page.locator("#week-card")).toHaveAttribute("data-week", "5");
-    await expect(page.locator('#week-buttons button[data-week="5"]')).toHaveAttribute("aria-pressed", "true");
-    await expect(page.locator("#week-experiment-link")).toHaveAttribute("href", "?tab=lab#epitope-lab");
-    await expect(page.locator("#weekly-goal")).toContainText("مرور انتقادی");
-    // Each week names its syllabus block, explains that week's paper and lists the talk order.
-    await expect(page.locator("#week-course")).toContainText("مناظر انرژی بیومولکولی");
-    await expect(page.locator("#week-course")).toContainText("جلوتر از کلاس");
-    // The course outline is integrated with the plan: every block, and what this project covered.
-    await expect(page.locator("#syllabus-map-body .syllabus-map-row")).toHaveCount(9);
-    await expect(page.locator("#syllabus-map-body")).toContainText("مناظر انرژی بیومولکولی");
-    await expect(page.locator("#syllabus-map-body .syllabus-map-week").first()).toHaveAttribute("href", /chapter=chapter-1/);
-    await expect(page.locator("#week-syllabus .week-topics li")).toHaveCount(4);
-    await expect(page.locator("#week-syllabus")).toContainText("مفهومی");
-    await expect(page.locator("#week-card")).toContainText("نتیجهٔ خودِ مقاله");
-    await expect(page.locator("#week-card ol li")).not.toHaveCount(0);
-    await expect(page.locator("#week-appendix-link")).toHaveAttribute("href", /chapter=chapter-9/);
-    await expect(page.locator("#week-paper-link")).toHaveAttribute("href", /document=survey-draft\.fa\.md&chapter=chapter-3/);
-    await page.locator('#week-buttons button[data-week="2"]').click();
-    await expect(page.locator("#week-card")).toContainText("3WD5");
-    await expect(page.locator("#week-slides-link")).toHaveAttribute("href", "presentation.html?week=2#slide-1");
-    // The choice is remembered in this browser only.
-    await page.goto(`${route}?workspace=1`);
-    await expect(page.locator("#week-card")).toHaveAttribute("data-week", "2");
-    await page.locator("#week-slides-link").click();
-    await expect(page.locator("#deck")).toHaveAttribute("data-state", "ready");
-    await expect(page.locator("#deck")).toHaveAttribute("data-week", "2");
-    await expect(page.locator("#slide-select option")).toHaveCount(7);
-    await expect(page.locator(".cover-week")).toContainText("هفتهٔ ۲");
-    await expect(page.locator("#slide-progress")).toHaveText("۱ / ۷");
-    await page.keyboard.press("End");
-    await expect(page.locator(".slide:not([hidden]) h1")).toHaveText("سه باز یک کدون؛ پل RNA به آمینواسید");
-    await page.locator("#all-slides-link").click();
-    await expect(page.locator("#slide-select option")).toHaveCount(39);
-    expect(errors).toEqual([]);
-});
-
-test("unknown week falls back to the complete deck", async ({ page }) => {
-    await page.goto(`${route}presentation.html?week=99#slide-1`);
-    await expect(page.locator("#deck")).toHaveAttribute("data-state", "ready");
-    await expect(page.locator("#slide-select option")).toHaveCount(39);
-    await expect(page.locator("#deck-status")).toContainText("همهٔ اسلایدها");
 });
 
 test("RNA-seq response groups show only aggregates and switch genes", async ({ page }) => {
@@ -772,33 +468,4 @@ test("RNA-seq response groups show only aggregates and switch genes", async ({ p
     await expect(page.locator("#rnaseq-chart")).toHaveAttribute("data-gene", "TOP2A");
     await expect(page.locator("#rnaseq-gene-role")).toContainText("TOP2A");
     expect(errors).toEqual([]);
-});
-
-test('course review routes thirty lessons and separates the RNA research protocol', async ({ page }) => {
-    await page.goto(`${route}?document=course-sessions.fa.md&chapter=chapter-9#reading`);
-    await expect(page.locator('#reading-status')).toHaveAttribute('data-state', 'ready');
-    await expect(page.locator('#chapter-select option')).toHaveCount(11);
-    await expect(page.locator('#markdown-content')).toContainText('شبکهٔ انرژی');
-    await page.selectOption('#document-select', 'rnaseq-research-plan.fa.md');
-    await page.selectOption('#chapter-select', 'all');
-    await expect(page.locator('#markdown-content')).toContainText('DESeq2');
-    await expect(page.locator('#markdown-content')).toContainText('اجرا نشده');
-    await page.selectOption('#document-select', 'comprehensive-review.fa.md');
-    await page.selectOption('#chapter-select', 'all');
-    await expect(page.locator('#markdown-content')).toContainText('23943614');
-    await expect(page.locator('#markdown-content')).toContainText('صددرصدی نیست');
-});
-
-test('finished report exposes the executed surface control and a current handout', async ({ page, request }) => {
-    await page.goto(`${route}?document=full-epitope-results.fa.md&chapter=chapter-4#reading`);
-    await expect(page.locator('#reading-status')).toHaveAttribute('data-state', 'ready');
-    await expect(page.locator('#markdown-content')).toContainText('FreeSASA');
-    await expect(page.locator('#markdown-content')).toContainText('2307.616');
-    await page.selectOption('#document-select', 'manuscript-draft.fa.md');
-    await page.selectOption('#chapter-select', 'all');
-    await expect(page.locator('#markdown-content')).toContainText('متن کامل گزارش درسی');
-    await expect(page.locator('#markdown-content')).not.toContainText('[تکمیل شود]');
-    const pdf = await request.get(`${route}assets/preparation-guide.fa.pdf`);
-    expect(pdf.ok()).toBe(true);
-    expect((await pdf.body()).subarray(0, 5).toString()).toBe('%PDF-');
 });

@@ -177,33 +177,34 @@ function addMediaControls(figure) {
   figure.append(controls);
 }
 
-/** `?week=N` keeps the cover and only that week's chapters (data/metadata/weekly-plan.json). */
-async function applyWeek() {
-  const requested = new URLSearchParams(location.search).get('week');
-  if (requested === null) return;
-  try {
-    const response = await fetch(new URL('data/metadata/weekly-plan.json', project), { signal: AbortSignal.timeout(15000) });
-    if (!response.ok) throw new Error('plan unavailable');
-    const plan = await response.json();
-    const week = plan.weeks?.find(entry => String(entry.week) === requested);
-    if (!week) throw new Error('unknown week');
-    const keep = new Set(week.chapters.map(String));
-    for (const slide of slides.slice(1)) if (!keep.has(slide.dataset.chapter)) slide.remove();
-    slides = [...deck.children];
-    const label = textElement('p', `ارائهٔ هفتهٔ ${fa(week.week)}: ${week.title}`, 'cover-week');
-    slides[0].querySelector('.cover-subtitle').after(label);
-    deck.dataset.week = String(week.week);
-    document.getElementById('sources-link').hidden = !keep.has(String(plan.weeks.at(-1).chapters.at(-1)));
-    if (document.getElementById('all-slides-link')) return;
-    const all = document.createElement('a');
-    all.href = 'presentation.html#slide-1';
-    all.textContent = 'همهٔ اسلایدها';
-    all.id = 'all-slides-link';
-    document.getElementById('sources-link').before(all);
-  } catch {
-    status.dataset.weekError = 'true';
-    status.textContent = 'برنامهٔ این هفته پیدا نشد؛ همهٔ اسلایدها نمایش داده می‌شود.';
+/** Slide order and chapter exports share the one course-map.json; week is a legacy alias. */
+async function applyChapters() {
+  const response=await fetch(new URL('data/metadata/course-map.json',project),{signal:AbortSignal.timeout(15000)});
+  if(!response.ok)throw Error('course map unavailable');
+  const map=await response.json();
+  const params=new URLSearchParams(location.search);
+  const requested=params.get('unit') ?? params.get('week');
+  const unit=map.chapters.find(c=>String(c.unit)===requested);
+  const cover=slides[0];
+  const bySource=new Map(slides.slice(1).map(s=>[Number(s.dataset.chapter),s]));
+  const order=[];
+  for(const chapter of map.chapters) {
+    for(const number of [...chapter.slides,...chapter.supplementary_slides]) {
+      const slide=bySource.get(number);if(!slide)throw Error('slide missing');
+      slide.dataset.unit=String(chapter.unit);order.push(slide);
+    }
   }
+  deck.replaceChildren(cover,...order);slides=[...deck.children];
+  if(requested && !unit) {status.dataset.weekError='true';status.textContent='فصل پیدا نشد؛ ارائهٔ کامل به ترتیب فصل‌های درس نمایش داده می‌شود.';}
+  if(unit) {
+    const keep=new Set([...unit.slides,...(params.get('appendix')==='1'?unit.supplementary_slides:[])]);
+    for(const slide of slides.slice(1))if(!keep.has(Number(slide.dataset.chapter)))slide.remove();
+    slides=[...deck.children];deck.dataset.unit=String(unit.unit);
+    const label=textElement('p',`فصل ${fa(unit.unit)}: ${unit.title}`,'cover-week');cover.querySelector('.cover-subtitle').after(label);
+    document.getElementById('sources-link').hidden=!keep.has(29);
+    const all=document.createElement('a');all.href='presentation.html#slide-1';all.textContent='ارائهٔ کامل به ترتیب فصل‌ها';all.id='all-slides-link';document.getElementById('sources-link').before(all);
+  }
+  slides.forEach((slide,i)=>slide.id='slide-'+(i+1));
 }
 
 function hashIndex() {
@@ -219,7 +220,7 @@ function show(index, focus = false) {
   previous.disabled = current === 0;
   next.disabled = current === slides.length - 1;
   document.getElementById('slide-progress').textContent = `${fa(current + 1)} / ${fa(slides.length)}`;
-  document.getElementById('notebook-link').href = `index.html?document=class-presentation.fa.md&chapter=chapter-${slides[current].dataset.chapter || 1}#reading`;
+  document.getElementById('notebook-link').href = `index.html?unit=${slides[current].dataset.unit || new URLSearchParams(location.search).get("unit") || 1}&part=presentation`;
   history.replaceState(null, '', '#slide-' + (current + 1));
   document.title = slides[current].querySelector('h1').textContent + ' · ارائهٔ کلاسی';
   if (focus) { deck.focus({ preventScroll: true }); window.scrollTo({ top: 0, behavior: 'instant' }); }
@@ -310,7 +311,7 @@ async function load() {
     }
     const sourcesSlide = slides.find((slide) => (slide.querySelector('h1')?.textContent || '').trim().startsWith('منابع')) || slides.at(-1);
     sourcesSlide.classList.add('sources');
-    await applyWeek();
+    await applyChapters();
     select.replaceChildren(...slides.map((slide, index) => new Option(`${fa(index + 1)}. ${slide.querySelector('h1').textContent}`, String(index))));
     select.disabled = false;
     document.getElementById('print-slides').disabled = false;

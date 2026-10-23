@@ -24,7 +24,7 @@ PDB قدیمی قالبی ستونی است؛ جای هر فیلد اهمیت د
 
 برای نصب، محل اجرای فرمان و نگه‌داشتن خروجی، [دفتر کار نرم‌افزار](../software-workbook.fa.md) را کنار این تمرین باز کنید.
 
-فرمان inspect را با همان پیشوند uv توضیح‌داده‌شده در [مبحث RMSD](../../learn.html?session=8&part=practice) اجرا کنید:
+فرمان inspect را با همان پیشوند uv توضیح‌داده‌شده در [مبحث RMSD](../../index.html?session=8&part=practice) اجرا کنید:
 
 ```sh
 uv run --project structural-bioinformatics python structural-bioinformatics/scripts/course_lab.py inspect

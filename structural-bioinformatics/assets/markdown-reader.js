@@ -2,6 +2,7 @@ import { isolateScientificText, scientificDiagramSource, setDiagramDirection } f
 import { linkGlossaryTerms } from './glossary-terms.js';
 // Repository-owned Markdown only; optional rendering libraries load on demand.
 const DOCUMENTS = [
+  ["chapter-presentation.fa.md", "ارائه‌های همین نه فصل", "ارائه و روش پژوهش"],
   ["learning-redesign-review.fa.md", "بازطراحی مسیر و مرزهای بررسی", "آموزش و پژوهش"],
   ["md-training-workshop.fa.md", "کارگاه MD واقعی؛ دستورکار اجرا‌نشدهٔ یوبیکوئیتین", "ابزارها و منابع"],
   ["software-workbook.fa.md", "دفتر نصب و اجرای نرم‌افزار", "ابزارها و منابع"],
@@ -330,7 +331,7 @@ async function renderDiagrams(container, current) {
   return failures;
 }
 
-export function createMarkdownReader() {
+export function createMarkdownReader({ chapterScope = () => null } = {}) {
   const select = $("document-select");
   const chapterSelect = $("chapter-select");
   const content = $("markdown-content");
@@ -396,13 +397,14 @@ export function createMarkdownReader() {
     $("presentation-view").textContent = focused ? "نمای مطالعه" : "نمای ارائه";
     status.dataset.presentation = String(presentation);
     $("presentation-help").hidden = !presentation;
-    previous.textContent = presentation ? "گام قبلی" : "فصل قبلی";
-    next.textContent = presentation ? "گام بعدی" : "فصل بعدی";
+    previous.textContent = presentation ? "گام قبلی" : "بخش قبلی";
+    next.textContent = presentation ? "گام بعدی" : "بخش بعدی";
     chapterSelect.value = chapter;
     const index = chapters.findIndex((entry) => entry.id === chapter);
     previous.disabled = index <= 0;
     next.disabled = index === chapters.length - 1;
     if (chapter === "all") { previous.disabled = true; next.disabled = !chapters.length; }
+    if (chapterScope(documentState.filename)) previous.disabled = next.disabled = true;
     for (const link of toc.querySelectorAll("a[data-chapter]")) {
       if (link.dataset.chapter === chapter) link.setAttribute("aria-current", "true");
       else link.removeAttribute("aria-current");
@@ -413,13 +415,14 @@ export function createMarkdownReader() {
     chapterSelect.replaceChildren();
     const all = node("option", "متن کامل");
     all.value = "all";
-    chapterSelect.append(all);
+    if (!chapterScope(documentState.filename)) chapterSelect.append(all);
     toc.replaceChildren();
     const details = node("details");
-    details.append(node("summary", "فهرست فصل‌های این متن"));
+    details.append(node("summary", "فهرست بخش‌های این متن"));
     const list = node("ul");
     list.setAttribute("role", "list");
     for (const entry of documentState.chapters) {
+      if (chapterScope(documentState.filename) && entry.id !== chapterScope(documentState.filename)) continue;
       const option = node("option", entry.title);
       option.value = entry.id;
       chapterSelect.append(option);
@@ -485,7 +488,7 @@ export function createMarkdownReader() {
   async function open(filename = null, selectedChapter = null, force = false) {
     const params = new URLSearchParams(window.location.search);
     filename = filename || params.get("document") || "research-questions.fa.md";
-    selectedChapter = selectedChapter || params.get("chapter");
+    selectedChapter = chapterScope(filename) || selectedChapter || params.get("chapter");
     if (!ALLOWED_DOCUMENTS.has(filename)) {
       showLocalError("این نام در فهرست متن‌های مجاز پروژه نیست. یکی از راهنماها را از فهرست انتخاب کنید.", "research-questions.fa.md");
       return;
@@ -493,6 +496,7 @@ export function createMarkdownReader() {
     if (!force && documentState?.filename === filename) {
       if (selectedChapter && selectedChapter !== chapter) {
         chapter = selectedChapter;
+        populateChapters();
         await renderChapter();
       }
       return;
@@ -548,7 +552,7 @@ export function createMarkdownReader() {
     void renderChapter();
   });
   function moveChapter(direction) {
-    if (!documentState) return;
+    if (!documentState || chapterScope(documentState.filename)) return;
     const chapters = documentState.filename === "class-presentation.fa.md"
       ? documentState.chapters.filter(entry => entry.id !== "intro") : documentState.chapters;
     const index = chapters.findIndex((entry) => entry.id === chapter);
@@ -573,5 +577,14 @@ export function createMarkdownReader() {
     event.preventDefault();
     moveChapter(direction);
   });
-  return { open };
+  function filterDocuments(filenames) {
+    const selected = select.value;
+    select.replaceChildren();
+    for (const [filename, title] of DOCUMENTS) {
+      if (!filenames.includes(filename)) continue;
+      select.append(new Option(title, filename));
+    }
+    select.value = selected;
+  }
+  return { open, filterDocuments };
 }

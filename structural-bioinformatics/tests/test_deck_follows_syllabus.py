@@ -10,7 +10,7 @@ import json
 from pathlib import Path
 
 PROJECT = Path(__file__).resolve().parents[1]
-PLAN = json.loads((PROJECT / "data/metadata/weekly-plan.json").read_text())
+PLAN = json.loads((PROJECT / "data/metadata/archive/weekly-plan.json").read_text())
 SYLLABUS = json.loads((PROJECT / "data/metadata/course-syllabus.json").read_text())
 DECK = (PROJECT / "docs/class-presentation.fa.md").read_text()
 

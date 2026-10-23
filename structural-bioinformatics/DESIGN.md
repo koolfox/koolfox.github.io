@@ -319,10 +319,6 @@ The twenty-four-slide web presentation preserves Arad, neutral paper and blue co
 
 Short references form a full-width ruled row beneath the content. Tables use aligned headers and horizontal separators. A 44px-minimum button enlarges each figure in a native focus-contained dialog, with Escape and a labeled return button. Model buttons load the local Mol* deposited-coordinate view on demand inside that dialog; closing returns focus and preserves the current slide. The 3WD5 and 4FM9 scope stays in the caption. Mixed Persian/Latin Mermaid labels have explicit RTL SVG text and isolated Latin identifiers. Print omits interactive controls and retains the static scientific figure, caption and references.
 
-## Learning-first route, 2026-10-23
+## Single application, 2026-10-24
 
-The canonical entrance is now `learn.html`, an editorial reading layout with syllabus navigation. Arad, blue links, Persian RTL and the existing light palette remain. The first viewport explains the purpose and how to start rather than advertising metrics or loading molecular engines. Four explicit phases connect concept, practice, evidence and presentation. `index.html?workspace=1` preserves the laboratory; existing query/hash links still work. Mobile collapses the syllabus list without hiding the reading task. Progress is self-report, and retry/storage failure states remain usable. The prior nine-step and six-tab routes are supporting/archive surfaces, not the primary course.
-
-Course reading type: 17px at desktop, 16px on phones; 2.15 body leading, about 73ch maximum. Two-pixel current-link markers are navigation state, not card accent strips.
-
-Nine-chapter navigation uses native details/summary, opening the current chapter while every other chapter remains selectable. Quiz controls use a fieldset/legend and radio choices with 44px rows, a live feedback region, separate history and notes, and explicit local-storage limitations.
+index.html owns the nine-chapter navigation, lessons, scientific tools, chapter-scoped documents and presentation links. learn.html redirects only. There is no separate workbench or weekly/step navigation. The same sidebar and chapter title remain visible when selecting tools or papers; tools are native DOM components, not an embedded second app. Slide exports use the same chapter map. Preserve Arad, RTL, neutral surfaces and blue links. Desktop reading uses 17px type; mobile uses 16px. Native chapter disclosures and 44px quiz/control rows support free navigation.

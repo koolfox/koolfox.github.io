@@ -2,6 +2,10 @@ import { isolateScientificText, scientificDiagramSource, setDiagramDirection } f
 import { linkGlossaryTerms } from './glossary-terms.js';
 // Repository-owned Markdown only; optional rendering libraries load on demand.
 const DOCUMENTS = [
+  ["course-guide.fa.md", "از اینجا شروع کنید؛ نقشهٔ واحد پروژه", "شروع از پایه"],
+  ["course-sessions.fa.md", "درس‌نامهٔ ۳۰ جلسه با تمرین و منبع", "شروع از پایه"],
+  ["rnaseq-research-plan.fa.md", "مسیر پژوهش RNA-seq در روماتوئید", "آموزش و پژوهش"],
+  ["comprehensive-review.fa.md", "گزارش بازبینی، اصلاح‌ها و موارد باز", "آموزش و پژوهش"],
   ["learning-path.fa.md", "مسیر یادگیری از پایه و ترتیب مطالعه", "شروع از پایه"],
   ["weekly-plan.fa.md", "برنامهٔ هفته‌به‌هفتهٔ ارائه در کلاس", "شروع از پایه"],
   ["presentation-rehearsal.fa.md", "پس از یادگیری؛ تمرین و آماده‌سازی ارائه", "ارائه و روش پژوهش"],
@@ -21,10 +25,9 @@ const DOCUMENTS = [
   ["full-epitope-results.fa.md", "محل کامل اتصال آدالیموماب روی TNF سه‌تایی؛ تحلیل اجراشده", "ارائه و روش پژوهش"],
   ["data-access-guide.fa.md", "راهنمای یافتن و دریافت داده‌ها", "ابزارها و منابع"],
   ["research-questions.fa.md", "پرسش پژوهش و فرضیه‌ها", "آموزش و پژوهش"],
-  ["course-guide.fa.md", "راهنمای پروژهٔ درسی", "آموزش و پژوهش"],
   ["binding-mechanism.fa.md", "قفل و کلید، اتصال و مهار پیام التهاب", "آموزش و پژوهش"],
   ["molecular-display-audit.fa.md", "تطبیق شکل مولکول با مرجع RCSB", "آموزش و پژوهش"],
-  ["paper-explanations.fa.md", "معنی آزمایش‌ها و نتایج سه مقاله", "آموزش و پژوهش"],
+  ["paper-explanations.fa.md", "شرح روش، یافته و محدودیت مقاله‌ها", "آموزش و پژوهش"],
   ["structural-method.fa.md", "روش تحلیل ساختاری و فرمول‌ها", "آموزش و پژوهش"],
   ["connection-evidence.fa.md", "نقشهٔ شواهد آدالیموماب، TNF و TOP2A", "پژوهش پس از مبانی"],
   ["sequences-primer.fa.md", "راهنمای RNA، پروتئین و زنجیره‌ها", "آموزش و پژوهش"],

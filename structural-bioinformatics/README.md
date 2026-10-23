@@ -1,26 +1,14 @@
 # TNF & Adalimumab — Structural Bioinformatics Course
 
-**از اینجا شروع کنید:** [بخش ۱: سلول، ژن، RNA و پروتئین](https://koolfox.github.io/structural-bioinformatics/?document=preparation-guide.fa.md&chapter=chapter-1&lesson=1#lesson-guide). مسیر مشخص است: **۸ بخش یادگیری → [تمرین ارائه](docs/presentation-rehearsal.fa.md) → اسلاید ۱**. هر بخش متن لازم، تمرین کوتاه و گام بعد دارد؛ علامت پایان مطالعه روی همان مرورگر ذخیره می‌شود. [ترتیب کامل مطالعه](docs/learning-path.fa.md) · [PDF آفلاین](assets/preparation-guide.fa.pdf). موضوع اصلی RA، TNF و آدالیموماب است؛ سؤال دربارهٔ مهار TOP2A پس از شناخت پایه‌ها و تأیید داده انتخاب می‌شود.
+**شروع واحد:** [نقشهٔ پروژه](docs/course-guide.fa.md) ← [درس‌نامهٔ ۳۰ جلسه](docs/course-sessions.fa.md) ← [هشت بستهٔ ارائه](docs/weekly-plan.fa.md). درس‌نامه برای هر جلسه توضیح، مثال، خودسنجی با پاسخ، تمرین و تحویلی دارد. هشت بستهٔ ارائه، تقویم سی جلسهٔ کلاس را تعیین نمی‌کنند.
 
-**پل توالی به ساختار:** [درس کدون](docs/codons-primer.fa.md) و [نمای تعاملی](https://koolfox.github.io/structural-bioinformatics/?tab=sequences#codon-lesson)، با دوازده کدون واقعیِ آغاز CDS و کدون پایان TNF/TOP2A، جدول استاندارد ۶۴ کدون و توالی آمینواسیدیِ زنجیره‌های Fab. RNA مرجع، RNA-seq بیمار و پروتئین دارو سه نوع دادهٔ متفاوت‌اند.
+**پرسش اصلی:** بازتحلیل بازتولیدپذیر رابط Fab آدالیموماب و TNF سه‌تایی، با سنجش سهم زیرواحد همسایه و مقایسهٔ توصیفی چهارده جهش Hu. حضور همسایه قبلاً در Hu گزارش شده؛ ادعای کشف اپی‌توپ یا داروی تازه نداریم. [یافته‌ها](docs/full-epitope-results.fa.md) · [پیش‌نویس](docs/manuscript-draft.fa.md) · [راهنمای نگارش](docs/paper-writing-guide.fa.md)
 
-**دیتاستِ نخستین درس:** GSE138746، RNA اولیهٔ بیماران RA و پاسخ بالینی شش‌ماهه؛ فایل PBMC نویسندگان ۷۹ ستون دارد، از جمله ۳۷ ستون آدالیموماب. [منشأ و شمارش فایل‌ها](data/metadata/ra-rnaseq-learning.json). تغییر RNA پس از دارو یا مدل پیش‌بینی در این مرحله اجرا نشده است. [TOP2A از پایه](docs/top2a-primer.fa.md) مسیر موازی است.
+**RA و RNA-seq:** [پروتکل پژوهش مکمل](docs/rnaseq-research-plan.fa.md) دادهٔ RNA اولیه/پاسخ، پیش‌وپس و MLR را جدا می‌کند. خلاصه‌های گروهی و CPM فعلی توصیفی‌اند؛ DESeq2، مدل بالینی معتبر و اثر دارو بر فعالیت TOP2A از این‌ها نتیجه نمی‌شود. [مقاله‌ها](docs/literature-review.fa.md) · [شرح آموزشی](docs/paper-explanations.fa.md)
 
-ارائهٔ مخاطب‌محور: [نمایش اسلایدها](presentation.html) — ۲۴ اسلاید با صفحهٔ عنوان، منابع کنار هر مطلب و بزرگ‌نمایی شکل/مدل سه‌بعدی در همان صفحه، کلیدهای جهت/PageDown/PageUp، تمام‌صفحه و چاپ/PDF. متن اسلاید و کتابچه از `docs/class-presentation.fa.md` خوانده می‌شود.
+**کنترل کیفیت علمی:** [اصلاح‌ها و موارد باز](docs/comprehensive-review.fa.md) و [دفتر منابع](data/metadata/review-sources.json). رفع ایرادهای مشخص به معنی تضمین صحت صددرصدی یا بازبینی مستقل همهٔ جمله‌های آرشیوی نیست. نسخهٔ PDF جزوه یک snapshot قدیمی‌تر است؛ متن آنلاین مرجع به‌روز است.
 
-پروژهٔ درس بیوانفورماتیک ساختاری، ارشد مهندسی کامپیوتر/بیوانفورماتیک. موضوع نسخهٔ درسی: **ساختار TNF-α و رابط اتصال قطعهٔ Fab آدالیموماب، با زمینهٔ آرتریت روماتوئید**. کار عملی، نمایش ساختار واقعی و یک تحلیل هندسی کوچک و قابل بازتولید است.
-
-برای معرفی پروژه، [راهنمای درسی](docs/course-guide.fa.md) را بخوانید. ابتدا بیماری، ساختار و عملکرد دارو و معنی داده‌ها را می‌آموزیم. شناخت TOP2A موازی است؛ [سؤال ارتباط دارویی](docs/research-questions.fa.md) بعداً و با دادهٔ متناسب انتخاب می‌شود. [مقایسهٔ TOP2A و سرطان](docs/top2a-cancer-comparison.fa.md) به معنی اثبات درمان سرطان با آدالیموماب نیست. مثال‌های واقعی و کوچک توالی RNA/پروتئین برای آموزش اضافه شده‌اند؛ تحلیل وسیع بیان ژن هنوز انجام نشده است.
-
-**برای کلاس این هفته:** [ارائهٔ گام‌به‌گام](https://koolfox.github.io/structural-bioinformatics/?document=class-presentation.fa.md&chapter=chapter-1#reading) انتخاب TNF/آدالیموماب، ساختار واقعی، سه مقاله و سؤال پیشنهادی را در ۲۳ بخش خطاب به مخاطبان کلاس توضیح می‌دهد. نسخهٔ اسلایدی، روش و یافتهٔ مقاله‌ها، دیتاست‌های مشخص، منابع کوتاه و شکل‌های بزرگ‌شونده را داخل ارائه نشان می‌دهد؛ دکمه‌ها و PageDown/PageUp حرکت می‌دهند. [طرح آکادمیک](docs/academic-study-plan.fa.md) و [راهنمای نگارش](docs/paper-writing-guide.fa.md) مراحل بعد را با فرضیه، کنترل و مرز نتیجه‌گیری ثبت می‌کنند؛ MD برای این هفته الزام نشده و اجراشده معرفی نمی‌شود.
-
-**پیوست اختیاریِ اجراشده:** [تحلیل سطح و کنترل هندسی](docs/structural-feasibility-results.fa.md) از مختصات واقعی 3WD5 استفاده می‌کند. قرارداد سطح رابط جزئی `ΔSASA/2` در 960 نقطه حدود `785.89 Å²` است؛ کنترل دورکردنِ صلب، تماس و پوشیدگی را صفر می‌کند. این بازتحلیل هندسی، MD یا آزمایش اثر بر TOP2A نیست. بازاجرا از ریشهٔ مخزن: `uv run --project structural-bioinformatics python structural-bioinformatics/scripts/analyze_structural_feasibility.py`.
-
-**نسخهٔ شروع:** کاوشگر سه‌بعدی، منابع، پروتکل، تحلیل ساختار و ویدئو آماده‌اند. انتشار از طریق GitHub Actions، پس از تست کد علمی و همان فایل‌های سایت انجام می‌شود.
-
-[نمای سه‌بعدی پژوهش](https://koolfox.github.io/structural-bioinformatics/) · [راهنمای درسی](docs/course-guide.fa.md) · [مرور و نقد مقاله‌ها](docs/literature-review.fa.md) · [دلیل انتخاب منابع](docs/literature-selection-audit.fa.md)
-
-![نمای مختصات واقعی TNF–Fab](assets/complex-preview.png)
+[سایت](https://koolfox.github.io/structural-bioinformatics/) · [۳۹ اسلاید](presentation.html) · [مبانی زیست](docs/learning-path.fa.md) · [دریافت داده](docs/data-access-guide.fa.md)
 
 ## چه چیزی در نسخهٔ شروع آماده است؟
 

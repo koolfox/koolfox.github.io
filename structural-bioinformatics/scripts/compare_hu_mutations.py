@@ -103,7 +103,7 @@ def compare(project):
             "spearman_delta_sasa_vs_log_fold_change": round(
                 spearman(
                     [r["our_delta_sasa_angstrom2"] for r in results],
-                    [np.log10(r["authors_kd_fold_change_vs_wild_type"]) for r in results],
+                    [np.log10(r["authors_kd_molar"] / wild_type["KD"]) for r in results],
                 ),
                 2,
             ),
@@ -131,10 +131,15 @@ def compare(project):
             "deposited_view_fraction_of_authors_value": round(
                 buried["single_protomer_total_delta_sasa_angstrom2"] / authors_area, 3
             ),
-            "note": "Both totals sum the buried surface of the two partners. The authors did not "
+            "note": "The project total sums the losses on both partners. The original "
+            "paper calls its value total buried surface but its exact convention "
+            "requires verification. The authors did not "
             "publish their probe radius or sphere-point count, so exact agreement is not "
-            "expected; the comparison shows that the deposited single-protomer view cannot "
-            "reach the published interface size while the reconstructed trimer comes close.",
+            "expected; this is a contextual numerical comparison, not independent "
+            "validation. With our fixed selection the deposited view does not "
+            "reach the reported number and the reconstructed trimer is numerically "
+            "closer; this does not establish uniqueness of the reconstruction or "
+            "equivalence of area conventions.",
         },
         "cdr_usage_check": {
             "authors_claim": record["authors_reported_interface"]["cdr_claim_quote"],
@@ -154,7 +159,9 @@ def compare(project):
             "little surface may still matter, and the reverse.",
             "Only 14 of the interface residues were mutated by the authors, and alanine is one "
             "substitution out of many.",
-            "The comparison is unpaired and descriptive: no hypothesis test is reported.",
+            "The comparison matches KD and buried surface by residue (paired at the "
+            "residue level), is descriptive, and reports no hypothesis test. Residues "
+            "are selected interface positions, not independent patient replicates.",
         ],
         "generator": "scripts/compare_hu_mutations.py",
     }

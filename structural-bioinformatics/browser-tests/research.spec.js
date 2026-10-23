@@ -773,3 +773,18 @@ test("RNA-seq response groups show only aggregates and switch genes", async ({ p
     await expect(page.locator("#rnaseq-gene-role")).toContainText("TOP2A");
     expect(errors).toEqual([]);
 });
+
+test('course review routes thirty lessons and separates the RNA research protocol', async ({ page }) => {
+    await page.goto(`${route}?document=course-sessions.fa.md&chapter=chapter-30#reading`);
+    await expect(page.locator('#reading-status')).toHaveAttribute('data-state', 'ready');
+    await expect(page.locator('#chapter-select option')).toHaveCount(32);
+    await expect(page.locator('#markdown-content')).toContainText('شبکهٔ انرژی');
+    await page.selectOption('#document-select', 'rnaseq-research-plan.fa.md');
+    await page.selectOption('#chapter-select', 'all');
+    await expect(page.locator('#markdown-content')).toContainText('DESeq2');
+    await expect(page.locator('#markdown-content')).toContainText('اجرا نشده');
+    await page.selectOption('#document-select', 'comprehensive-review.fa.md');
+    await page.selectOption('#chapter-select', 'all');
+    await expect(page.locator('#markdown-content')).toContainText('23943614');
+    await expect(page.locator('#markdown-content')).toContainText('صددرصدی نیست');
+});

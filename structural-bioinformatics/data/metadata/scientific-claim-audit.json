@@ -3,7 +3,7 @@
   "reviewed_at_utc": "2026-10-20T09:20:34+00:00",
   "scope": "All 38 class chapters reordered to follow the course syllabus; the eleven new chapters cover the syllabus topics that had no slide, each with its reviewed block above.",
   "reviewed_file": "docs/class-presentation.fa.md",
-  "reviewed_sha256": "f32f63fda548566aacc5d786c7d3d64029ab558be4a72e40aed02e52d02500b6",
+  "reviewed_sha256": "7e5539459a8e370123aae44c8faf7c3a0ca1593590d3e9fad9912e7b409060f3",
   "sources": [
     {
       "id": "hu",
@@ -513,15 +513,16 @@
     {
       "id": "slide-content-07-block-01",
       "chapter": 7,
-      "exact_text": "**آنچه ما واقعاً داریم:** توالی کامل زنجیره‌های Fab از فایل 3WD5، و سه‌تایی TNF که خودمان از روی گروه فضایی همان فایل بازسازی کرده‌ایم. درستی این بازسازی را با ساختار مستقل 1TNF سنجیده‌ایم: ۴۵۶ جفت اتم Cα و RMSD برابر 1.178 Å.",
+      "exact_text": "**آنچه ما واقعاً داریم:** توالی سازه و بخش دارای مختصات زنجیره‌های Fab از فایل 3WD5، و سه‌تایی TNF که خودمان از روی گروه فضایی همان فایل بازسازی کرده‌ایم. درستی این بازسازی را با ساختار مستقل 1TNF سنجیده‌ایم: ۴۵۶ جفت اتم Cα و RMSD برابر 1.178 Å.",
       "source_ids": [
         "rcsb3wd5",
         "rcsb1tnf",
         "project-full-epitope"
       ],
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "The 456 paired C-alpha atoms and the 1.178 A RMSD are the values recorded in data/processed/full-epitope.json; 1TNF is the independent apo control.",
-      "passage": "full-epitope.json: trimer_validation.paired_ca_atoms and ca_rmsd_angstrom"
+      "review_note": "2026-10-23 scoped correction: distinguish geometry, source measurements, proposed analyses and validation limits. See comprehensive-review.json; this is not blanket independent verification.",
+      "passage": "full-epitope.json: trimer_validation.paired_ca_atoms and ca_rmsd_angstrom",
+      "review_note_before_20261023": "The 456 paired C-alpha atoms and the 1.178 A RMSD are the values recorded in data/processed/full-epitope.json; 1TNF is the independent apo control."
     },
     {
       "id": "slide-content-07-block-02",
@@ -548,14 +549,15 @@
     {
       "id": "slide-content-08-block-02",
       "chapter": 8,
-      "exact_text": "**RNA** در این پروژه دادهٔ توالی است: شمارش ژن‌ها از بیماران، بدون ساختار فضایی. توالی می‌گوید «چه رشته‌ای»، نه «چه شکلی».",
+      "exact_text": "**RNA** دو نوع دادهٔ جدا دارد: حروف RefSeq برای توالی مرجع، و جدول RNA-seq برای فراوانی نسبی رونوشت‌ها. جدول شمارش، توالی یا ساختار سه‌بعدی RNA را تعیین نمی‌کند.",
       "source_ids": [
         "GSE339038-counts",
         "course-scope"
       ],
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "The patient RNA data are counts and sequences; no RNA structure is available or claimed.",
-      "passage": "data/processed/top2a-count-inspection.json holds counts and CPM only"
+      "review_note": "2026-10-23 scoped correction: distinguish geometry, source measurements, proposed analyses and validation limits. See comprehensive-review.json; this is not blanket independent verification.",
+      "passage": "data/processed/top2a-count-inspection.json holds counts and CPM only",
+      "review_note_before_20261023": "The patient RNA data are counts and sequences; no RNA structure is available or claimed."
     },
     {
       "id": "slide-content-09-block-01",
@@ -666,30 +668,32 @@
     {
       "id": "slide-content-11-block-01",
       "chapter": 11,
-      "exact_text": "**TCL** زبان اسکریپتی است که VMD با آن کنترل می‌شود. در کلاس دو دستور کلیدی را می‌نویسیم: `measure rmsd` برای فاصلهٔ جذر میانگین مربعات و `measure sasa` برای سطح در دسترس حلال. با همین دو دستور می‌شود همان دو کمیت اسلاید قبل را در چند ثانیه حساب کرد.",
+      "exact_text": "**TCL** زبان اسکریپتی است که VMD با آن کنترل می‌شود. در کلاس دو دستور کلیدی را می‌نویسیم: `measure rmsd` برای فاصلهٔ جذر میانگین مربعات و `measure sasa` برای سطح در دسترس حلال. برای RMSD ابتدا تطابق و ترتیب اتم‌ها و سپس انطباق با `measure fit` لازم است؛ `measure rmsd` خودش هم‌راستاسازی نمی‌کند.",
       "source_ids": [
         "vmd-docs"
       ],
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Class-tool reference; the two commands are the documented VMD measurements of the same two quantities.",
-      "passage": "VMD measure documentation"
+      "review_note": "2026-10-23 scoped correction: distinguish geometry, source measurements, proposed analyses and validation limits. See comprehensive-review.json; this is not blanket independent verification.",
+      "passage": "VMD measure documentation",
+      "review_note_before_20261023": "Class-tool reference; the two commands are the documented VMD measurements of the same two quantities."
     },
     {
       "id": "slide-content-11-block-02",
       "chapter": 11,
-      "exact_text": "**ما چه کرده‌ایم:** در این پروژه اسکریپت TCL/VMD نوشته نشده است. عددهای ما از اسکریپت‌های پایتون خودمان می‌آید: شمارش تماس اتمی و SASA با همان روش Shrake–Rupley. اگر در کلاس VMD دارید، می‌توانید همان اعداد را آنجا هم بازتولید کنید.",
+      "exact_text": "**ما چه کرده‌ایم:** در این پروژه اسکریپت TCL/VMD نوشته نشده است. عددهای ما از اسکریپت‌های پایتون خودمان می‌آید: شمارش تماس اتمی و SASA با همان روش Shrake–Rupley. VMD یک کنترل مقایسه‌ای ممکن است؛ انتخاب اتم، شعاع‌ها، نمونه‌برداری سطح و انطباق باید یکسان شوند و برابری عددها تضمین نشده است.",
       "source_ids": [
         "project-full-epitope",
         "vmd-docs"
       ],
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "No TCL or VMD script exists in the repository; the numbers come from the project scripts, and the class tool is offered as the same measurement.",
-      "passage": "repository search: no .tcl file; scripts/analyze_full_epitope.py performs the contact and SASA work"
+      "review_note": "2026-10-23 scoped correction: distinguish geometry, source measurements, proposed analyses and validation limits. See comprehensive-review.json; this is not blanket independent verification.",
+      "passage": "repository search: no .tcl file; scripts/analyze_full_epitope.py performs the contact and SASA work",
+      "review_note_before_20261023": "No TCL or VMD script exists in the repository; the numbers come from the project scripts, and the class tool is offered as the same measurement."
     },
     {
       "id": "slide-content-12-block-01",
       "chapter": 12,
-      "exact_text": "3WD5 فقط یک زیرواحد TNF دارد. سه‌تایی را با تقارن بلور بازسازی کردیم؛ اختلاف آن با ساختار مستقل 1TNF فقط **1.18 Å** بود. در فاصلهٔ **4.5 Å**، از ۳۶۵ تماس اتمی **۱۱۳ تماس (۳۱٪)** روی زیرواحد همسایه است و سطح رابط از **786** به **1154 Å²** می‌رسد. **CDR-H2 و H3** بیشترین سهم را دارند. سطح کل رابط ما **2308 Å²** است و با **2540 Å²** گزارش‌شده در همان مقاله هم‌خوان است؛ تحلیل تک‌زیرواحدی فقط **1572 Å²** می‌دهد. این‌ها **محاسبهٔ هندسی** است، نه انرژی اتصال یا اثر درمان.",
+      "exact_text": "3WD5 فقط یک زیرواحد TNF دارد. سه‌تایی را با تقارن بلور بازسازی کردیم؛ اختلاف آن با ساختار مستقل 1TNF فقط **1.18 Å** بود. در فاصلهٔ **4.5 Å**، از ۳۶۵ تماس اتمی **۱۱۳ تماس (۳۱٪)** روی زیرواحد همسایه است و سطح رابط از **786** به **1154 Å²** می‌رسد. **CDR-H2 و H3** بیشترین سهم را دارند. سطح کل رابط ما **2308 Å²** است و به **2540 Å²** مقاله نزدیک است؛ تعریف سطح دو روش باید تطبیق داده شود؛ تحلیل تک‌زیرواحدی فقط **1572 Å²** می‌دهد. این‌ها **محاسبهٔ هندسی** است، نه انرژی اتصال یا اثر درمان.",
       "source_ids": [
         "rcsb3wd5",
         "rcsb1tnf",
@@ -697,8 +701,9 @@
         "project-full-epitope"
       ],
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Numbers checked against data/processed/full-epitope.json and the offline test tests/test_full_epitope.py; Hu Q21A KD values are the previously verified Table 3 rows. Geometry only; no affinity, efficacy or TOP2A claim.",
-      "passage": "Symmetry trimer RMSD 1.178 Å/456 CA vs 1TNF; contacts 252 (A) + 113 (neighbour) at 4.5 Å; ΔSASA/2 785.9 → 1153.8 Å²; Q21 ΔSASA 75.2 Å², rank 2."
+      "review_note": "2026-10-23 scoped correction: distinguish geometry, source measurements, proposed analyses and validation limits. See comprehensive-review.json; this is not blanket independent verification.",
+      "passage": "Symmetry trimer RMSD 1.178 Å/456 CA vs 1TNF; contacts 252 (A) + 113 (neighbour) at 4.5 Å; ΔSASA/2 785.9 → 1153.8 Å²; Q21 ΔSASA 75.2 Å², rank 2.",
+      "review_note_before_20261023": "Numbers checked against data/processed/full-epitope.json and the offline test tests/test_full_epitope.py; Hu Q21A KD values are the previously verified Table 3 rows. Geometry only; no affinity, efficacy or TOP2A claim."
     },
     {
       "id": "slide-content-12-block-02",
@@ -1140,14 +1145,15 @@
     {
       "id": "slide-content-25-block-01",
       "chapter": 25,
-      "exact_text": "**محدودیت طراحی:** جایگاه هدف روی مرز دو زیرواحد TNF است و روی یک زیرواحد تنها کامل نمی‌شود. پس غربالگری روی مدل تک‌زیرواحدی حدود یک‌سوم جایگاه را نمی‌بیند. در آدالیموماب فقط زنجیرهٔ سنگین به زیرواحد همسایه می‌رسد.",
+      "exact_text": "**محدودیت طراحی:** جایگاه هدف روی مرز دو زیرواحد TNF است و روی یک زیرواحد تنها کامل نمی‌شود. پس غربالگری روی مدل تک‌زیرواحدی حدود یک‌سوم تماس‌های اتمی این رابط را نمی‌بیند. در آدالیموماب فقط زنجیرهٔ سنگین به زیرواحد همسایه می‌رسد.",
       "source_ids": [
         "project-full-epitope",
         "hu"
       ],
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Two-protomer constraint follows from the 31% neighbour contact share and 358.0 Å² buried on the neighbour in full-epitope.json; 'only the heavy chain reaches the neighbour' is the recorded per-chain contact result.",
-      "passage": "full-epitope.json: neighbour_fraction_of_contacts 0.3096; buried_surface A:GLN67 124.5, A:GLN21 75.2, A:ALA145 72.6 Å²; hu_2013_q21a_context kd_ratio 202.7."
+      "review_note": "2026-10-23 scoped correction: distinguish geometry, source measurements, proposed analyses and validation limits. See comprehensive-review.json; this is not blanket independent verification.",
+      "passage": "full-epitope.json: neighbour_fraction_of_contacts 0.3096; buried_surface A:GLN67 124.5, A:GLN21 75.2, A:ALA145 72.6 Å²; hu_2013_q21a_context kd_ratio 202.7.",
+      "review_note_before_20261023": "Two-protomer constraint follows from the 31% neighbour contact share and 358.0 Å² buried on the neighbour in full-epitope.json; 'only the heavy chain reaches the neighbour' is the recorded per-chain contact result."
     },
     {
       "id": "slide-content-25-block-02",
@@ -1164,14 +1170,15 @@
     {
       "id": "slide-content-25-block-03",
       "chapter": 25,
-      "exact_text": "**آزمون پیشنهادی:** `Asn137` روی زیرواحد همسایه؛ `50.5 Å²` سطح می‌پوشاند و جهشش آزمایش نشده، در حالی که همسایه‌اش E135A اتصال را ۱۰۳ برابر ضعیف کرد. روی `Ala145` آزمون آلانین معنی ندارد، چون خودش آلانین است. این یک فرضیه است؛ در این کار داکینگ، پیش‌بینی میل اتصال یا طراحی مولکول انجام نشده است.",
+      "exact_text": "**آزمون پیشنهادی:** `Asn137` روی زیرواحد همسایه؛ `50.5 Å²` سطح می‌پوشاند و جهشش در جدول ۳ Hu گزارش نشده، در حالی که همسایه‌اش E135A اتصال را ۱۰۳ برابر ضعیف کرد. روی `Ala145` آزمون آلانین معنی ندارد، چون خودش آلانین است. این یک فرضیه است؛ برای TNF داکینگ، پیش‌بینی میل اتصال یا طراحی مولکول انجام نشده است.",
       "source_ids": [
         "project-full-epitope",
         "hu"
       ],
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "Proposal only: the slide states that no docking, affinity prediction or molecule design was performed here.",
-      "passage": "full-epitope.json: neighbour_fraction_of_contacts 0.3096; buried_surface A:GLN67 124.5, A:GLN21 75.2, A:ALA145 72.6 Å²; hu_2013_q21a_context kd_ratio 202.7."
+      "review_note": "2026-10-23 scoped correction: distinguish geometry, source measurements, proposed analyses and validation limits. See comprehensive-review.json; this is not blanket independent verification.",
+      "passage": "full-epitope.json: neighbour_fraction_of_contacts 0.3096; buried_surface A:GLN67 124.5, A:GLN21 75.2, A:ALA145 72.6 Å²; hu_2013_q21a_context kd_ratio 202.7.",
+      "review_note_before_20261023": "Proposal only: the slide states that no docking, affinity prediction or molecule design was performed here."
     },
     {
       "id": "slide-content-25-block-04",
@@ -1188,25 +1195,27 @@
     {
       "id": "slide-content-26-block-01",
       "chapter": 26,
-      "exact_text": "**نتیجهٔ ما:** pose اول با 1.155 Å از pose کریستال بازتولید شد و فسفر آن در همان حفرهٔ کلسیمی نشست؛ 3.26 Å در برابر 3.05 Å در کریستال. یعنی خط لوله درست کار می‌کند.",
+      "exact_text": "**بازداکینگ** یعنی بازسازی pose لیگاندِ شناخته‌شده. در 1B09، فاصلهٔ pose اول از کریستال `1.155 Å` بود؛ فاصلهٔ فسفر از کلسیم `3.26 Å` در برابر `3.05 Å` در کریستال. بازسازی pose موفق بود؛ کنترل امتیاز موفق نبود.",
       "source_ids": [
         "project-docking",
         "rcsb1b09"
       ],
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "The RMSD, the calcium distances and the gate result are the recorded values of the executed redocking.",
-      "passage": "data/processed/docking-redock-1b09.json: checks.pose_reproduced and checks.site_reproduced"
+      "review_note": "2026-10-23 scoped correction: distinguish geometry, source measurements, proposed analyses and validation limits. See comprehensive-review.json; this is not blanket independent verification.",
+      "passage": "data/processed/docking-redock-1b09.json: checks.pose_reproduced and checks.site_reproduced",
+      "review_note_before_20261023": "The RMSD, the calcium distances and the gate result are the recorded values of the executed redocking."
     },
     {
       "id": "slide-content-26-block-02",
       "chapter": 26,
-      "exact_text": "**اما نتیجهٔ منفی هم داریم:** جایگاه کنترل، که نه لیگاندی داشت و نه کلسیمی، 0.36 kcal/mol بهتر امتیاز گرفت. پس امتیاز Vina به‌تنهایی جایگاه درست را پیدا نمی‌کند و نباید نقل شود. امتیاز یک تابع رتبه‌بندی است، نه انرژی آزاد اتصال.",
+      "exact_text": "**اما نتیجهٔ منفی هم داریم:** جایگاه کنترل، که نه لیگاندی داشت و نه کلسیمی، 0.36 kcal/mol بهتر امتیاز گرفت. پس در این آزمون، امتیاز Vina جایگاه واقعی را از کنترل جدا نکرد؛ هر دو امتیاز باید با نتیجهٔ منفی گزارش شوند. امتیاز یک تابع رتبه‌بندی است، نه انرژی آزاد اتصال.",
       "source_ids": [
         "project-docking"
       ],
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "The failed gate is reported with the recorded difference; the score is a ranking function and no affinity is claimed.",
-      "passage": "data/processed/docking-redock-1b09.json: checks.score_separates_sites"
+      "review_note": "2026-10-23 scoped correction: distinguish geometry, source measurements, proposed analyses and validation limits. See comprehensive-review.json; this is not blanket independent verification.",
+      "passage": "data/processed/docking-redock-1b09.json: checks.score_separates_sites",
+      "review_note_before_20261023": "The failed gate is reported with the recorded difference; the score is a ranking function and no affinity is claimed."
     },
     {
       "id": "slide-content-26-block-03",
@@ -1223,25 +1232,27 @@
     {
       "id": "slide-content-27-block-01",
       "chapter": 27,
-      "exact_text": "**شبکهٔ برهم‌کنش اسیدآمینه** یعنی هر اسیدآمینه یک گره، و هر تماس یک یال. جدول ما دقیقاً همین است: ۳۶۵ تماس اتم سنگین در آستانهٔ 4.5 Å. درجهٔ هر گره یعنی چند شریک دارد. با این زبان، سهم زیرواحد همسایه یعنی ۳۱ درصد تماس‌ها روی زیرواحدی نشسته که در نمای تک‌زیرواحدی اصلاً دیده نمی‌شود.",
+      "exact_text": "**شبکهٔ برهم‌کنش اسیدآمینه:** هر باقی‌مانده یک گره؛ هر جفت در تماس یک یال. در `4.5 Å`، ۳۶۵ جفت اتم به ۶۵ جفت باقی‌مانده می‌رسد. Gln21 دو شریک و ۱۶ تماس اتمی دارد. در شکل، شریک‌های Fab بر حسب CDR تجمیع شده‌اند.",
       "source_ids": [
         "project-full-epitope"
       ],
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "365 heavy-atom contacts at 4.5 A and the 31 % neighbour share are the executed values.",
-      "passage": "data/processed/full-epitope.json: per_protomer and neighbour_fraction_of_contacts"
+      "review_note": "2026-10-23 scoped correction: distinguish geometry, source measurements, proposed analyses and validation limits. See comprehensive-review.json; this is not blanket independent verification.",
+      "passage": "data/processed/full-epitope.json: per_protomer and neighbour_fraction_of_contacts",
+      "review_note_before_20261023": "365 heavy-atom contacts at 4.5 A and the 31 % neighbour share are the executed values."
     },
     {
       "id": "slide-content-27-block-02",
       "chapter": 27,
-      "exact_text": "**مرز:** شبکهٔ انرژی پروتئین چیز دیگری است؛ گره‌هایی که آن‌قدر به هم وابسته‌اند که با هم حرکت می‌کنند. آن شبکه به انرژی نیاز دارد و ما انرژی حساب نکرده‌ایم، پس چنین شبکه‌ای در این پروژه ساخته نشده است. مرکزیت و مسیرهای کوتاه هم محاسبه نشده‌اند.",
+      "exact_text": "**مرز:** شبکهٔ انرژی پروتئین یال‌های وزن‌دار با تعریف مشخص از انرژی برهم‌کنش دارد؛ شبکهٔ هم‌بستگی حرکت تعریف دیگری است. شبکهٔ انرژی به مدل انرژی نیاز دارد و ما انرژی حساب نکرده‌ایم، پس چنین شبکه‌ای در این پروژه ساخته نشده است. مرکزیت و مسیرهای کوتاه هم محاسبه نشده‌اند.",
       "source_ids": [
         "project-full-epitope",
         "bourne-schlick"
       ],
       "status": "reviewed_with_scope_and_limitations",
-      "review_note": "No energy network and no centrality metrics exist in the project; the contact table is read as a network, nothing more.",
-      "passage": "data/processed/full-epitope.json holds contacts, buried surface and interaction types only"
+      "review_note": "2026-10-23 scoped correction: distinguish geometry, source measurements, proposed analyses and validation limits. See comprehensive-review.json; this is not blanket independent verification.",
+      "passage": "data/processed/full-epitope.json holds contacts, buried surface and interaction types only",
+      "review_note_before_20261023": "No energy network and no centrality metrics exist in the project; the contact table is read as a network, nothing more."
     },
     {
       "id": "slide-content-28-block-01",
@@ -1843,5 +1854,66 @@
     "previous_sha256": "e4312843cb9abbf0f7a65ff227c7a75f55adf3cc6447e4c7c0dc9ed5b829a00d",
     "scope": "Chapters were reordered so each week of the plan presents its own slides; no reviewed passage was rewritten, only moved. New chapters carry the syllabus topics that had no slide and state the boundary of what this project measured.",
     "syllabus_record": "data/metadata/course-syllabus.json"
+  },
+  "course_review_20261023": {
+    "scope": "Scoped source corrections and pedagogical edits; not blanket independent verification of all claims",
+    "changed_blocks": [
+      {
+        "block": "slide-content-07-block-01",
+        "previous_sha256": "706e80e8dd1b5627b1b430a0c6efea90bab5c9d8c0f758630646ed6e5408c33c"
+      },
+      {
+        "block": "slide-content-08-block-02",
+        "previous_sha256": "19cea7172bff7a7ed9395898b2d88a9dad57d54c77cf59aeacb2aa627d659a3a"
+      },
+      {
+        "block": "slide-content-11-block-01",
+        "previous_sha256": "ae9f8d8642ea87ff1999aaa50af6bb5e2794b95f61e9ea14ec2c52a0990ea1a0"
+      },
+      {
+        "block": "slide-content-11-block-02",
+        "previous_sha256": "8645a46b145efadf65b484ca602c6f6fb11ccb24b7f6db80802a851d2c0fd8e5"
+      },
+      {
+        "block": "slide-content-12-block-01",
+        "previous_sha256": "5842d3632f1f61c7978a50c1bf0ffc768900126756b92e8650989caa86f32b78"
+      },
+      {
+        "block": "slide-content-25-block-03",
+        "previous_sha256": "0fa38c1b494e0eb3b3c91149e15d4c59ba0b347da2b5ee1a5f8aa57a188283a1"
+      },
+      {
+        "block": "slide-content-26-block-01",
+        "previous_sha256": "c0f82ab51e8ae6eae0b0fb934c20e4c7d80764bf8c98cb7d2e7a25cbfcfb50ae"
+      },
+      {
+        "block": "slide-content-26-block-02",
+        "previous_sha256": "a58855126523fd14e0898df91be3e451be281a226d545ef1b72257843e4ac674"
+      },
+      {
+        "block": "slide-content-27-block-01",
+        "previous_sha256": "fed1184b1ffaa34e2485477d4190af69bb5e816814b00a5279547ada28d5803e"
+      },
+      {
+        "block": "slide-content-27-block-02",
+        "previous_sha256": "5236919afb81930f01e5c00ef7af8ec21abb6c72156c01ab2383f6141f6a43e4"
+      },
+      {
+        "block": "slide-content-26-block-01",
+        "previous_sha256": "9df6fd93d4caa48c75c89acb05a7083444e2a299a5bce484a927d7eb6af40c95"
+      },
+      {
+        "block": "slide-content-27-block-01",
+        "previous_sha256": "e8f6b760466b2c7b561acdbe41a6089fd7a500f1834c893aac69601dd109f084"
+      },
+      {
+        "block": "slide-content-25-block-01",
+        "previous_sha256": "b6a884d11c8ed1b5c58c70ee1115a3114bd3053438d88847bd7116b2e965a0d2"
+      },
+      {
+        "block": "slide-content-25-block-03",
+        "previous_sha256": "5ef4b596e53bcfb2eea227711948f8a0f904430cabe55823b224f06b559aae50"
+      }
+    ]
   }
 }

@@ -1,4 +1,4 @@
-"""The slide deck must teach every topic of the course syllabus.
+"""Check topic routing and keyword anchors, not completeness or scientific truth.
 
 The plan records, for every syllabus topic, the slides that cover it. This test
 checks three things: the recorded slides belong to the week that teaches the
@@ -61,7 +61,7 @@ def slide_text(slide):
     return chapters[index]
 
 
-def test_every_syllabus_topic_is_taught_by_a_slide_of_its_week():
+def test_every_syllabus_topic_has_keyword_anchors_in_its_assigned_slides():
     blocks = {block["id"]: block for block in SYLLABUS["blocks"]}
     topics = {topic for block in SYLLABUS["blocks"] for topic in block["topics"]}
     assert len(topics) == len(TOPIC_TERMS)

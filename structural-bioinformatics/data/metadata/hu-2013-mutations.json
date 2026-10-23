@@ -4,7 +4,7 @@
     "id": "hu_2013_tnf_adalimumab",
     "citation": "Hu S. et al. (2013) Comparison of the inhibition mechanisms of adalimumab and infliximab in treating tumor necrosis factor alpha-associated diseases from a molecular view. J Biol Chem 288:27059-27067",
     "doi": "10.1074/jbc.M113.491530",
-    "pmid": "23904290",
+    "pmid": "23943614",
     "pmcid": "PMC3779706",
     "pdb_id": "3WD5"
   },
@@ -38,6 +38,12 @@
         ],
         "note": "Two rows were read back from the PDF and agree with this record exactly, including the printed errors. The remaining rows are not independently confirmed against the PDF."
       }
+    },
+    "pdf_text_review": {
+      "reviewed_at_utc": "2026-10-23T13:16:37.408552+00:00",
+      "method": "pypdf extraction of the supplied nine-page PDF, including Table 3; extracted text stays outside the repository.",
+      "pdf_sha256": "453032ffe3387960ccb71c63e54c781455fb3bb139a69db74c63e65ac6825706",
+      "scope": "Numeric KD column and table anomalies compared to extracted publisher text. Extraction is not independent replication of the assays."
     }
   },
   "table_3": {
@@ -167,7 +173,10 @@
         "kd": 0.001394,
         "kd_error": 0.000209,
         "KD": 1.175e-09,
-        "KD_error": 1.76e-10
+        "KD_error": 1.76e-10,
+        "kd_as_printed": 1394.0,
+        "kd_error_as_printed": 209.0,
+        "kd_interpretation": "The existing kd=1.394e-3 is inferred from ka and printed KD; it is not the printed exponent. Use printed KD only for the comparison."
       },
       {
         "label": "TNF E135A",
@@ -204,7 +213,12 @@
       "The kd cell for P113A is printed as 1.394 +/- 0.209 x 10(3) s^-1. The printed KD and ka are self-consistent only with 1.394 x 10(-3); the exponent sign is missing in the rendering, so the negative exponent is recorded here.",
       "The ka error for Q67A is printed as 2.557 +/- 3.383 x 10(4): the error exceeds the value. It is recorded exactly as printed and is not used in any comparison.",
       "KD values are recorded as printed, not recomputed from ka and kd."
-    ]
+    ],
+    "internal_consistency_audit": {
+      "V91A": "Printed kd/ka is about 7.33e-10 M, whereas printed KD is 5.593e-10 M; retain both and do not silently recompute KD.",
+      "Q67A": "Printed uncertainty of ka exceeds its mean; retain as printed.",
+      "P113A": "Printed kd exponent is positive 3. The negative exponent previously stored was an interpretation, now explicitly labelled."
+    }
   },
   "authors_own_conclusions_as_printed": {
     "no_obvious_effect": [
@@ -260,6 +274,11 @@
         "GLU135-ASN137"
       ],
       "numbering_note": "Part of this printed list is offset by one relative to Table 3 and to the deposited 3WD5 coordinates: the printed Pro-19/Gln-20 and Thr-71/His-72 and Lys-89 to Asn-91 correspond to Pro20/Gln21, Thr72/His73 and Lys90 to Asn92 in Table 3 and in the coordinate file. The remaining listed residues match. This is recorded as an observation about the printed text, not a correction of the structure."
+    },
+    "paper_refinement": {
+      "r_work": 0.197,
+      "r_free": 0.285,
+      "note": "Article Results/Table 1; deposited mmCIF records 0.1867/0.2750. These are different source values."
     }
   },
   "project_use": [

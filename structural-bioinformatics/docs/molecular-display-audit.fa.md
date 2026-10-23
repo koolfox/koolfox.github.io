@@ -1,5 +1,7 @@
 # چرا شکل 3WD5 با RCSB متفاوت به نظر می‌رسد؟
 
+> **جای این سند در مسیر:** [نقشهٔ واحد پروژه](course-guide.fa.md) · [جلسات درس](course-sessions.fa.md) · [پروتکل RNA-seq](rnaseq-research-plan.fa.md) · [اصلاح‌ها و موارد باز](comprehensive-review.fa.md).
+
 **کنترل منبع: ۲۰۲۶-۱۰-۱۳.** فایل `assets/3wd5.pdb` با دانلود تازهٔ رسمی RCSB مقایسه شد: تمام **۴۱۰٬۹۹۴ بایت یکسان** بودند. اختلاف ظاهر، شاهد تغییر مختصات پروتئین نیست. [دانلود رسمی](https://files.rcsb.org/download/3WD5.pdb)، [ثبت ساختار](https://www.rcsb.org/structure/3WD5).
 
 ## ۱. یک ساختار، چند روش رسم

@@ -1,5 +1,7 @@
 # بررسی توصیفی RNA ژن TOP2A در GSE339038
 
+> **جای این سند در مسیر:** [نقشهٔ واحد پروژه](course-guide.fa.md) · [جلسات درس](course-sessions.fa.md) · [پروتکل RNA-seq](rnaseq-research-plan.fa.md) · [اصلاح‌ها و موارد باز](comprehensive-review.fa.md).
+
 ## داده و مقایسهٔ مشخص
 
 منبع، [GSE339038](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE339038) مرتبط با [Veerasubramanian 2026](https://doi.org/10.3389/fimmu.2026.1867995) است. ماتریس عمومی شامل ۶۳٬۲۴۱ ردیف ژن و ۶۴ کتابخانه از چهار اهداکننده در ۱۶ وضعیت است. سلول‌های T در آزمایش MLR، هم‌کشت با سلول‌های تحریک‌کنندهٔ فرد متفاوت، بررسی شدند؛ این مطالعه، کارآزمایی درمان بیماران RA نیست.

@@ -232,8 +232,8 @@
 
 **۲. پیش از کلاس بخوانید:**
 
-- [درس پیوستهٔ متناظر با این بسته](course-sessions.fa.md?chapter=chapter-6)
-- [درس‌نامهٔ جلسات 6 تا 9؛ همراه تمرین و منبع](course-sessions.fa.md?chapter=chapter-6)
+- [درس پیوستهٔ متناظر با این بسته](course-sessions.fa.md?chapter=chapter-3)
+- [درس‌نامهٔ جلسات 6 تا 9؛ همراه تمرین و منبع](course-sessions.fa.md?chapter=chapter-3)
 - [روش پایهٔ شمارش تماس و فرمول‌ها](structural-method.fa.md)
 - [سؤال این بخش](full-epitope-results.fa.md?chapter=chapter-1)
 - [روش، قدم‌به‌قدم](full-epitope-results.fa.md?chapter=chapter-3)
@@ -313,8 +313,8 @@
 
 **۲. پیش از کلاس بخوانید:**
 
-- [درس پیوستهٔ متناظر با این بسته](course-sessions.fa.md?chapter=chapter-10)
-- [درس‌نامهٔ جلسات 10 تا 13؛ همراه تمرین و منبع](course-sessions.fa.md?chapter=chapter-10)
+- [درس پیوستهٔ متناظر با این بسته](course-sessions.fa.md?chapter=chapter-4)
+- [درس‌نامهٔ جلسات 10 تا 13؛ همراه تمرین و منبع](course-sessions.fa.md?chapter=chapter-4)
 - [خواندن مدل سه‌بعدی 3WD5](learning-path.fa.md?chapter=chapter-4)
 - [یافتن و دانلود ساختار از PDB](data-access-guide.fa.md?chapter=chapter-1)
 - [تطبیق نمای ما با مرجع RCSB](molecular-display-audit.fa.md)
@@ -397,8 +397,8 @@
 
 **۲. پیش از کلاس بخوانید:**
 
-- [درس پیوستهٔ متناظر با این بسته](course-sessions.fa.md?chapter=chapter-14)
-- [درس‌نامهٔ جلسات 14 تا 18؛ همراه تمرین و منبع](course-sessions.fa.md?chapter=chapter-14)
+- [درس پیوستهٔ متناظر با این بسته](course-sessions.fa.md?chapter=chapter-5)
+- [درس‌نامهٔ جلسات 14 تا 18؛ همراه تمرین و منبع](course-sessions.fa.md?chapter=chapter-5)
 - [نتایج: سطح، CDRها و مقایسهٔ ۱۴ جهش مقالهٔ Hu](full-epitope-results.fa.md?chapter=chapter-4)
 - [محدودیت‌ها](full-epitope-results.fa.md?chapter=chapter-5)
 - [شرح کامل آزمایش Hu 2013](paper-explanations.fa.md?chapter=chapter-2)
@@ -485,8 +485,8 @@
 
 **۲. پیش از کلاس بخوانید:**
 
-- [درس پیوستهٔ متناظر با این بسته](course-sessions.fa.md?chapter=chapter-19)
-- [درس‌نامهٔ جلسات 19 تا 22؛ همراه تمرین و منبع](course-sessions.fa.md?chapter=chapter-19)
+- [درس پیوستهٔ متناظر با این بسته](course-sessions.fa.md?chapter=chapter-6)
+- [درس‌نامهٔ جلسات 19 تا 22؛ همراه تمرین و منبع](course-sessions.fa.md?chapter=chapter-6)
 - [شرح کامل مدل‌سازی Bianchi 2026](paper-explanations.fa.md?chapter=chapter-3)
 - [کنترل جداسازی صلب و حساسیت نقاط](structural-feasibility-results.fa.md)
 - [محدودیت‌های تحلیل ما](full-epitope-results.fa.md?chapter=chapter-5)
@@ -567,8 +567,8 @@
 
 **۲. پیش از کلاس بخوانید:**
 
-- [درس پیوستهٔ متناظر با این بسته](course-sessions.fa.md?chapter=chapter-23)
-- [درس‌نامهٔ جلسات 23 تا 28؛ همراه تمرین و منبع](course-sessions.fa.md?chapter=chapter-23)
+- [درس پیوستهٔ متناظر با این بسته](course-sessions.fa.md?chapter=chapter-7)
+- [درس‌نامهٔ جلسات 23 تا 28؛ همراه تمرین و منبع](course-sessions.fa.md?chapter=chapter-7)
 - [بخش پیشنهاد برای طراحی مهارکنندهٔ جدید](manuscript-draft.fa.md?chapter=chapter-6)
 - [سطح پوشیده و برهم‌کنش‌های نامزد](full-epitope-results.fa.md?chapter=chapter-4)
 - [مرور منابع و ساختارهای مرتبط TNF](literature-review.fa.md)
@@ -658,8 +658,8 @@
 
 **۲. پیش از کلاس بخوانید:**
 
-- [درس پیوستهٔ متناظر با این بسته](course-sessions.fa.md?chapter=chapter-29)
-- [درس‌نامهٔ جلسات 29 تا 30؛ همراه تمرین و منبع](course-sessions.fa.md?chapter=chapter-29)
+- [درس پیوستهٔ متناظر با این بسته](course-sessions.fa.md?chapter=chapter-9)
+- [درس‌نامهٔ جلسات 29 تا 30؛ همراه تمرین و منبع](course-sessions.fa.md?chapter=chapter-9)
 - [پیش‌نویس مقاله](manuscript-draft.fa.md)
 - [پرسش‌های احتمالی کلاس](presentation-rehearsal.fa.md?chapter=chapter-2)
 - [تمرین پیش از ارائه](learning-path.fa.md?chapter=chapter-9)

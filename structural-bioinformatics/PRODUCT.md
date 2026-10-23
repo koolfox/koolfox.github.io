@@ -12,7 +12,7 @@ A novice MSc bioinformatics student preparing to understand and explain the full
 
 ## Product Purpose
 
-One canonical thirty-session course, following the actual nine syllabus blocks. Each session connects continuous explanation, an explicit practical activity, paper reading and oral presentation. Eight weekly packages are student presentation opportunities, not a replacement timetable for thirty class sessions.
+One canonical nine-chapter course, following the actual nine syllabus blocks. Each session connects continuous explanation, an explicit practical activity, paper reading and oral presentation. Eight weekly packages are student presentation opportunities, not a replacement timetable for thirty class sessions.
 
 The research question asks what structural and mutagenesis evidence about adalimumab–TNF establishes and limits for antibody engineering. The intended paper is a focused critical survey with a transparent search/extraction protocol. The existing epitope calculations are a separately labelled case study, not the survey itself. RNA-seq/RA is a complementary learning/research route; TOP2A and cancer are outside the core question.
 
@@ -27,3 +27,5 @@ Definitions precede technical claims. Coordinate geometry, binding experiments, 
 ## Design
 
 Read mode: restrained typography, one lesson at a time, a syllabus contents column, four reading phases, previous/next and direct links. Preserve Arad, light neutral surfaces and blue actions. Do not use decorative dashboards, counters or molecular animations in the course entry. Technical media open only when the activity needs them.
+
+The official Sharif 40553 syllabus supplies nine blocks and classroom allocations totaling thirty; website topics are author-written subdivisions, not the university class calendar. Local formative quizzes store answers, notes and up to twenty recent attempts per question in the current browser. Self-reported study state is separate.

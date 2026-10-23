@@ -775,9 +775,9 @@ test("RNA-seq response groups show only aggregates and switch genes", async ({ p
 });
 
 test('course review routes thirty lessons and separates the RNA research protocol', async ({ page }) => {
-    await page.goto(`${route}?document=course-sessions.fa.md&chapter=chapter-30#reading`);
+    await page.goto(`${route}?document=course-sessions.fa.md&chapter=chapter-9#reading`);
     await expect(page.locator('#reading-status')).toHaveAttribute('data-state', 'ready');
-    await expect(page.locator('#chapter-select option')).toHaveCount(32);
+    await expect(page.locator('#chapter-select option')).toHaveCount(11);
     await expect(page.locator('#markdown-content')).toContainText('شبکهٔ انرژی');
     await page.selectOption('#document-select', 'rnaseq-research-plan.fa.md');
     await page.selectOption('#chapter-select', 'all');

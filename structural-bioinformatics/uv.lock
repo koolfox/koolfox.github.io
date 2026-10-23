@@ -227,6 +227,12 @@ wheels = [
 ]
 
 [[package]]
+name = "freesasa"
+version = "2.2.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/52/fc/1b28f7973952934737387172ef0a40c0ea7cb9a6132264c3e731760f8efa/freesasa-2.2.1.tar.gz", hash = "sha256:5630e65d619cf6a062028d7c6297afe8c5b18c677c75f1c32a0938399f4f6850", size = 270138, upload-time = "2023-11-15T16:59:28.197Z" }
+
+[[package]]
 name = "idna"
 version = "3.20"
 source = { registry = "https://pypi.org/simple" }
@@ -688,6 +694,9 @@ dev = [
     { name = "pytest" },
     { name = "ruff" },
 ]
+validation = [
+    { name = "freesasa" },
+]
 
 [package.metadata]
 requires-dist = [
@@ -703,6 +712,7 @@ dev = [
     { name = "pytest", specifier = ">=8.3,<10" },
     { name = "ruff", specifier = ">=0.12,<1" },
 ]
+validation = [{ name = "freesasa", specifier = "==2.2.1" }]
 
 [[package]]
 name = "typer"

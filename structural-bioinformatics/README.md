@@ -6,17 +6,17 @@
 
 **RA و RNA-seq:** [پروتکل پژوهش مکمل](docs/rnaseq-research-plan.fa.md) دادهٔ RNA اولیه/پاسخ، پیش‌وپس و MLR را جدا می‌کند. خلاصه‌های گروهی و CPM فعلی توصیفی‌اند؛ DESeq2، مدل بالینی معتبر و اثر دارو بر فعالیت TOP2A از این‌ها نتیجه نمی‌شود. [مقاله‌ها](docs/literature-review.fa.md) · [شرح آموزشی](docs/paper-explanations.fa.md)
 
-**کنترل کیفیت علمی:** [اصلاح‌ها و موارد باز](docs/comprehensive-review.fa.md) و [دفتر منابع](data/metadata/review-sources.json). رفع ایرادهای مشخص به معنی تضمین صحت صددرصدی یا بازبینی مستقل همهٔ جمله‌های آرشیوی نیست. نسخهٔ PDF جزوه یک snapshot قدیمی‌تر است؛ متن آنلاین مرجع به‌روز است.
+**کنترل کیفیت علمی:** [اصلاح‌ها و موارد باز](docs/comprehensive-review.fa.md) و [دفتر منابع](data/metadata/review-sources.json). رفع ایرادهای مشخص به معنی تضمین صحت صددرصدی یا بازبینی مستقل همهٔ جمله‌های آرشیوی نیست. جزوهٔ PDF با متن فعلی بازتولید و هر ۱۱ صفحه از نظر صفحه‌آرایی بررسی شده‌اند.
 
 [سایت](https://koolfox.github.io/structural-bioinformatics/) · [۳۹ اسلاید](presentation.html) · [مبانی زیست](docs/learning-path.fa.md) · [دریافت داده](docs/data-access-guide.fa.md)
 
 ## چه چیزی در نسخهٔ شروع آماده است؟
 
-- برای یادگیری از پایه: [سلول، پروتئین، قفل و کلید و سازوکار آدالیموماب](docs/binding-mechanism.fa.md) و [داستان آزمایش‌ها و معنی سه مقاله](docs/paper-explanations.fa.md)، با تعریف اصطلاحات و مثال‌های قابل ارائه.
+- برای یادگیری از پایه: [سلول، پروتئین، قفل و کلید و سازوکار آدالیموماب](docs/binding-mechanism.fa.md) و [شرح روش، یافته و محدودیت مقاله‌ها](docs/paper-explanations.fa.md)، با تعریف اصطلاحات و مثال‌های قابل ارائه.
 - انتخاب میان مسیر Cα و نمای نواری Mol* در همان آزمایشگاه؛ هر چهار ساختار با دادهٔ محلی کار می‌کنند. [تطبیق 3WD5 با RCSB](docs/molecular-display-audit.fa.md) تفاوت روش رسم، نام زنجیره و occupancy را توضیح می‌دهد. نمایش نواری به‌صورت درخواستی بارگذاری می‌شود و محاسبات علمی را تغییر نمی‌دهد.
 - موتور سبک و قابل استفادهٔ مجدد Three.js: TNF–Fab `3WD5`، TNF آزاد `1TNF`، CRP `1B09` و هستهٔ TOP2A–DNA `4FM9`؛ چرخش، زنجیره/رنگ قابل انتخاب، بررسی باقی‌مانده و شرح محدودیت نمایش.
 - تحلیل واقعی و قابل بازتولید رابط **جزئی** TNF–Fab: در آستانهٔ `4.5 Å`، **۲۵۲ تماس اتم سنگین، ۴۰ جفت باقی‌مانده و ۱۷ باقی‌ماندهٔ TNF** در واحد نامتقارن ثبت شده‌اند. این اعداد معیار اثربخشی دارو نیستند.
-- مرور و نقد منابع موجود برای مطالعهٔ بعدی: [Bianchi، ساختار/شبیه‌سازی آدالیموماب، انتشار آنلاین ۲۰۲۶](https://doi.org/10.3389/fimmu.2025.1680199)، [Marguerie 2025، دو آزمایش مجزای آدالیموماب–SIRPG و SIRPG–TOP2A](https://doi.org/10.3389/fimmu.2025.1668361)، [Gehin 2024، غلظت آدالیموماب و CRP در RA](https://doi.org/10.1136/rmdopen-2024-004888). برای هرکدام دلیل انتخاب، خلاصه و نقد نوشته شده است؛ Hu 2013، Ubah 2025 و شواهد RA/TOP2A منابع پشتیبان‌اند.
+- مرور و نقد منابع موجود برای مطالعهٔ بعدی: [Bianchi، ساختار/شبیه‌سازی آدالیموماب، انتشار آنلاین ۲۰۲۶](https://doi.org/10.3389/fimmu.2025.1680199)، [Marguerie 2025، دو آزمایش مجزای آدالیموماب–SIRPG و SIRPG–TOP2A](https://doi.org/10.3389/fimmu.2025.1668361)، [Gehin 2024، غلظت آدالیموماب و CRP در RA](https://doi.org/10.1136/rmdopen-2024-004888). برای هرکدام دلیل انتخاب، خلاصه و نقد نوشته شده است؛ Hu 2013 منبع تجربی اصلی رابط است؛ Ubah و شواهد RA/TOP2A مقایسه‌های مکمل‌اند.
 - کاتالوگ منشأ/دسترسی داده‌ها، نقشهٔ تماس PNG/SVG، و ویدئوی واقعی ManimGX در [assets/tnf-adalimumab.mp4](assets/tnf-adalimumab.mp4).
 - شش تب آموزشی با ناوبری صفحه‌کلید و نمایش کامل مسیر در موبایل؛ توالی‌های FASTA با شناسه و نسخه، طرح اجزای آنتی‌بادی و مسیر ژن تا ساختار. [آموزش توالی‌ها](docs/sequences-primer.fa.md) تفاوت توالی، مقدار بیان و ساختار RNA را توضیح می‌دهد.
 - [کتابچهٔ پژوهش داخل صفحه](https://koolfox.github.io/structural-bioinformatics/?document=course-guide.fa.md#reading): همان فایل‌های Markdown با انتخاب فصل، فرمول‌های LaTeX و نمودارهای Mermaid. [روش و فرمول‌ها](docs/structural-method.fa.md) خروجی حساسیت حد فاصله را با اعداد واقعی توضیح می‌دهد.
@@ -108,3 +108,13 @@ npm --prefix structural-bioinformatics/reading-tools run vendor
 کد و خروجی‌های اصلی پروژه مستقل از متن ناشران نوشته/ساخته شده‌اند. مختصات PDB با شرایط CC0 و استناد علمی، و Three.js با مجوز MIT و notice اصلی ارائه شده‌اند. [حقوق منابع](docs/third-party-notices.md)
 
 **بازبینی جدید و پایلوت RNA:** [دفتر صحت‌سنجی](docs/scientific-claim-audit.fa.md)، [طرح مهار مستقیم/غیرمستقیم TOP2A](docs/top2a-inhibition-feasibility.fa.md) و [بررسی توصیفی چهار جفت GSE339038](docs/top2a-count-inspection.fa.md). ماتریس عمومی خوانده و CPM محاسبه شد؛ تحلیل آماری کامل و سنجش آنزیمی انجام نشده‌اند.
+
+## کنترل نهایی سطح و متن
+
+کنترل جداگانهٔ سطح با FreeSASA 2.2.1، Shrake–Rupley و Lee–Richards اجرا شده است؛ این گروه اختیاری به کامپایل C نیاز دارد و برای خواندن سایت یا آزمون‌های معمول اجباری نیست.
+
+```sh
+uv run --project structural-bioinformatics --frozen --group validation python structural-bioinformatics/scripts/crosscheck_surface.py
+```
+
+[خروجی ثبت‌شده](data/processed/surface-crosscheck.json) و [وضعیت بسته‌شدن بازبینی](data/metadata/review-completion.json) مرزِ تحویل درسیِ تکمیل‌شده و پژوهش‌های جدید را مشخص می‌کنند.

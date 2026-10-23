@@ -34,7 +34,7 @@ shasum -a 256 3WD5.cif
 | تفاوت توالی با UniProt | `_struct_ref_seq_dif` | جایگاه ۳۱: Asp به‌جای Arg، `conflict` |
 | اسمبلی زیستی | `_pdbx_struct_assembly` | «trimeric»، ولی فقط عملگر همانی |
 
-**کنترل مستقل سطح رابط:** سرویس [PDBe PISA](https://www.ebi.ac.uk/pdbe/pisa/) رابط‌های یک ساختار را محاسبه می‌کند. با واردکردن 3WD5 می‌توانید سطح رابط آن را با عدد ما مقایسه کنید. تعریف‌ها و شعاع‌ها در ابزارها فرق دارند؛ پس اختلاف کوچک طبیعی است و باید گزارش شود.
+**کنترل اجراشدهٔ سطح:** مقایسه با FreeSASA و دو روش عددی در [گزارش نتایج](full-epitope-results.fa.md?chapter=chapter-4) و [رکورد اجرا](../data/processed/surface-crosscheck.json) ثبت است. فرمان آن در انتهای همین راهنما آمده است. سرویس [PDBe PISA](https://www.ebi.ac.uk/pdbe/pisa/) گزینهٔ دیگری است، اما در پروژه اجرا نشده؛ خروجی پیش‌فرض یک assembly سپرده‌شده را بدون تطبیق زنجیره، تقارن، شعاع و قرارداد مجموع/نصف، با TNF سه‌تایی و Fab گروه‌شده یکسان ندانید.
 
 ## ۲. توالی‌ها (UniProt و RefSeq)
 
@@ -103,3 +103,9 @@ uv run --project structural-bioinformatics pytest -q
 | خلاصهٔ گروهی RNA-seq (فقط میانه و چارک‌ها) | `data/processed/rnaseq-group-summary.json` | [خلاصهٔ گروه‌های پاسخ](../?tab=methods#rnaseq-groups) |
 
 اگر عددی در متن با فایل JSON فرق داشت، فایل JSON مرجع است و متن باید اصلاح شود.
+
+**کنترل FreeSASA:**
+
+```sh
+uv run --project structural-bioinformatics --frozen --group validation python structural-bioinformatics/scripts/crosscheck_surface.py
+```

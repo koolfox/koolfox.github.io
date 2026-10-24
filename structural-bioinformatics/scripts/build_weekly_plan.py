@@ -9,7 +9,19 @@ PROJECT = Path(__file__).resolve().parents[1]
 def render(*_args):
     mapping = json.loads((PROJECT / "data/metadata/course-map.json").read_text())
     thread = json.loads((PROJECT / "data/metadata/research-thread.json").read_text())
-    prior = json.loads((PROJECT / "data/metadata/archive/weekly-plan.json").read_text())
+    evidence = json.loads((PROJECT / "data/processed/survey-evidence.json").read_text())
+    papers = {row["study_id"]: row for row in evidence["studies"]}
+    reading = {
+        1: ["ho", "marguerie"],
+        2: ["hu", "marguerie"],
+        3: ["hu"],
+        4: ["ho", "veerasubramanian", "tao"],
+        5: ["hu"],
+        6: ["bianchi"],
+        7: ["hu", "bianchi"],
+        8: ["hu"],
+        9: ["marguerie", "veerasubramanian"],
+    }
     out = [
         "# راهنمای مطالعه و تمرین",
         "",
@@ -24,26 +36,27 @@ def render(*_args):
     for chapter in mapping["chapters"]:
         unit = chapter["unit"]
         out.extend([f"## فصل {unit}. {chapter['title']}", ""])
-        matched = [
-            w
-            for w in prior["weeks"]
-            if any(b["id"] == chapter["block"] for b in w["course"]["blocks"])
-        ]
-        seen = set()
-        for week in matched:
-            for paper in week.get("papers", []):
-                if paper["label"] in seen:
-                    continue
-                seen.add(paper["label"])
-                out.extend(["### مقاله‌ای که در این فصل می‌خوانیم: " + paper["label"], ""])
-                for key, label in (
-                    ("question", "پرسش مقاله"),
-                    ("method", "روش"),
-                    ("result", "نتیجهٔ گزارش‌شده"),
-                    ("limit", "نکته‌ای برای نقد"),
-                    ("our_use", "کاربرد در مطالعهٔ ما"),
-                ):
-                    out.extend([f"**{label}:** {paper[key]}", ""])
+        argument = thread["chapter_arguments"][unit - 1]
+        out.extend(
+            [
+                argument["explanation"],
+                "",
+                "**بخشی که به مقاله اضافه می‌شود:** " + argument["manuscript"],
+                "",
+            ]
+        )
+        for ident in reading[unit]:
+            paper = papers[ident]
+            out.extend(["### مطالعهٔ این فصل: " + paper["title"], ""])
+            for key, label in (
+                ("system", "نمونه"),
+                ("comparison", "مقایسه"),
+                ("method", "روش"),
+                ("finding", "یافته"),
+                ("limitations", "محدودیت"),
+            ):
+                out.extend([f"**{label}:** {paper[key]}", ""])
+            out.extend([f"[منبع اولیه]({paper['source_url']})", ""])
         for step in (s for s in thread["steps"] if s["unit"] == unit):
             topic = step["topic"]
             out.extend(

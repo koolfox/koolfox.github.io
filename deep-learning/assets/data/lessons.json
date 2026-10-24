@@ -1189,8 +1189,8 @@
       ],
       "practice": "دامنه نویز را بیشتر کنید و پراکندگی خطا را ببینید. نتایج را با همان بذرها مقایسه کنید، اما از آزمون برای انتخاب بهترین تنظیم استفاده نکنید.",
       "limitations": "این تمرین تالیفی پیشنهادی برای ارزیابی پژوهش است و ادعا نمی کند محتوای اسلایدهای دسترس ناپذیر جلسه را بازسازی کرده است. روش خطی است، نه یک فناوری نوین خاص.",
-      "code": "\"\"\"Our proposed reproducibility exercise, not code from the course slides.\"\"\"\nimport numpy as np\n\n\ndef evaluate(seed):\n    rng = np.random.default_rng(seed)\n    x = rng.normal(size=(100, 2))\n    y = x @ np.array([2., -1.]) + rng.normal(scale=0.2, size=100)\n    # Split before fitting: the last 30 samples never enter model training.\n    design = np.column_stack([x, np.ones(len(x))])\n    train_x, test_x = design[:70], design[70:]\n    train_y, test_y = y[:70], y[70:]\n    weights = np.linalg.lstsq(train_x, train_y, rcond=None)[0]\n    predictions = test_x @ weights\n    mse = np.mean((predictions - test_y) ** 2)\n    baseline = np.mean((train_y.mean() - test_y) ** 2)\n    return mse, baseline\n\n\nseeds = [23, 24, 25, 26, 27]\nresults = np.array([evaluate(seed) for seed in seeds])\nrepeat = np.array([evaluate(seed) for seed in seeds])\nassert np.array_equal(results, repeat)\nassert np.all(results[:, 0] < results[:, 1])\nprint(\"NumPy version:\", np.__version__)\nprint(\"Seeds:\", seeds)\nprint(\"Test MSE per run:\", results[:, 0].round(4))\nprint(\"Mean and descriptive standard deviation:\", results[:, 0].mean(), results[:, 0].std())\nprint(\"Baseline mean test MSE:\", results[:, 1].mean())\n",
-      "output": "NumPy version: 2.3.5\nSeeds: [23, 24, 25, 26, 27]\nTest MSE per run: [0.0365 0.0318 0.0543 0.0397 0.0528]\nMean and descriptive standard deviation: 0.04302454051225883 0.008962552090584977\nBaseline mean test MSE: 5.650361751626067",
+      "code": "\"\"\"Our proposed reproducibility exercise, not code from the course slides.\"\"\"\nimport numpy as np\n\n\ndef evaluate(seed):\n    rng = np.random.default_rng(seed)\n    x = rng.normal(size=(100, 2))\n    y = x @ np.array([2., -1.]) + rng.normal(scale=0.2, size=100)\n    # Split before fitting: the last 30 samples never enter model training.\n    design = np.column_stack([x, np.ones(len(x))])\n    train_x, test_x = design[:70], design[70:]\n    train_y, test_y = y[:70], y[70:]\n    weights = np.linalg.lstsq(train_x, train_y, rcond=None)[0]\n    predictions = test_x @ weights\n    mse = np.mean((predictions - test_y) ** 2)\n    baseline = np.mean((train_y.mean() - test_y) ** 2)\n    return mse, baseline\n\n\nseeds = [23, 24, 25, 26, 27]\nresults = np.array([evaluate(seed) for seed in seeds])\nrepeat = np.array([evaluate(seed) for seed in seeds])\nassert np.array_equal(results, repeat)\nassert np.all(results[:, 0] < results[:, 1])\nprint(\"NumPy version:\", np.__version__)\nprint(\"Seeds:\", seeds)\nprint(\"Test MSE per run:\", results[:, 0].round(4))\nprint(f\"Mean and descriptive standard deviation: {results[:, 0].mean():.6f} {results[:, 0].std():.6f}\")\nprint(f\"Baseline mean test MSE: {results[:, 1].mean():.6f}\")\n",
+      "output": "NumPy version: 2.3.5\nSeeds: [23, 24, 25, 26, 27]\nTest MSE per run: [0.0365 0.0318 0.0543 0.0397 0.0528]\nMean and descriptive standard deviation: 0.043025 0.008963\nBaseline mean test MSE: 5.650362",
       "output_explanation": "این خروجی با اجرای همین فایل پایتون ثبت شده است. با تغییر کد، خروجی اجرای خودت را مقایسه کن.",
       "filename": "lesson_23.py",
       "source_path": "python/spring2026/lesson_23.py",
@@ -1203,7 +1203,7 @@
       "source_status": "Exact live official schedule and links inspected; PDF contents not yet fully inspected",
       "verified": true,
       "visual": null,
-      "code_sha256": "b47f1ceebb0ffbcac3686095076549bbc3356369b1151293429810015e777517"
+      "code_sha256": "05892219738a231f731d96f3a7f09f6c6ea4aeafaa8334d62f5b5b7c33e6191a"
     },
     {
       "id": "spring2026-28",

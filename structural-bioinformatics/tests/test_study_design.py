@@ -20,10 +20,9 @@ def test_scope_and_study_roles_agree_across_the_actual_entry_points():
             design[role + "_studies"]
         )
     for name in (
-        "index.html",
+        "research.html",
         "docs/research-questions.fa.md",
         "docs/survey-protocol.fa.md",
-        "docs/course-guide.fa.md",
         "docs/survey-draft.fa.md",
         "docs/paper-writing-guide.fa.md",
         "docs/class-presentation.fa.md",
@@ -34,16 +33,12 @@ def test_scope_and_study_roles_agree_across_the_actual_entry_points():
 def test_chapter_arguments_are_available_in_lessons_and_have_a_writing_output():
     thread = read("data/metadata/research-thread.json")
     assert [a["unit"] for a in thread["chapter_arguments"]] == list(range(1, 10))
-    book = (PROJECT / "docs/course-sessions.fa.md").read_text()
-    for argument in thread["chapter_arguments"]:
-        # The printed book introduces the chapter argument once, not once per topic.
-        assert book.count(argument["explanation"]) == 1
-        assert argument["manuscript"]
     for step in thread["steps"]:
         argument = thread["chapter_arguments"][step["unit"] - 1]
-        text = (PROJECT / f"docs/course/session-{step['topic']:02}.fa.md").read_text()
+        text = (PROJECT / f"docs/research-notes/topic-{step['topic']:02}.fa.md").read_text()
         assert argument["explanation"] in text
-        assert argument["presentation"] in text
+        speaker = (PROJECT / f"docs/presentation-notes/topic-{step['topic']:02}.fa.md").read_text()
+        assert argument["presentation"] in speaker
 
 
 def test_active_question_data_is_in_the_default_chapter_presentations():

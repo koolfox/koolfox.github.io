@@ -38,7 +38,20 @@ def build_site(repository: Path, output: Path):
     project = repository / "structural-bioinformatics"
     target = output / "structural-bioinformatics"
     target.mkdir()
-    for name in ("index.html", "presentation.html", "learn.html"):
+    for name in (
+        "index.html",
+        "presentation.html",
+        "learn.html",
+        "course.html",
+        "research.html",
+        "library.html",
+        "papers.html",
+        "structures.html",
+        "datasets.html",
+        "docking.html",
+        "exercises.html",
+        "presentations.html",
+    ):
         if (project / name).exists():
             shutil.copyfile(project / name, target / name)
     shutil.copyfile(project / "README.md", target / "README.md")

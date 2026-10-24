@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>دیتاست‌ها | بیوانفورماتیک ساختاری</title>
+<meta name="description" content="شناسه، منبع، طرح نمونه‌برداری، فایل‌ها و محدودیت هر داده؛ برای انتخاب و دریافت ورودی مناسب.">
+<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="assets/research.css">
+<link rel="stylesheet" href="assets/course.css">
+<link rel="stylesheet" href="assets/sections.css">
+<script type="importmap">{"imports":{"three":"./assets/vendor/three.module.js"}}</script>
+<script src="assets/vendor/markdown-it/markdown-it.min.js"></script>
+<script type="module" src="assets/site.js?v=20261025-sections"></script>
+<script type="module" src="assets/app.js?v=20261025-sections"></script>
+<script type="module" src="assets/rnaseq-groups.js?v=20261025-sections"></script>
+</head>
+<body class="research-page separated-site" data-section="datasets">
+<a class="skip-link" href="#main">رفتن به محتوا</a>
+<header class="site-header">
+<a class="site-name" href="index.html">بیوانفورماتیک ساختاری</a>
+<a href="https://github.com/koolfox/koolfox.github.io/tree/main/structural-bioinformatics">دربارهٔ منابع و کد</a>
+</header>
+<nav id="section-nav" aria-label="بخش‌های پروژه"><a href="course.html" id="tab-basics">درس و سیلابس</a><a href="research.html" id="nav-research">پژوهش</a><a href="library.html" id="tab-reading">کتابخانه</a><a href="papers.html" id="tab-literature">مقاله‌ها و بررسی‌ها</a><a href="structures.html" id="tab-lab">ساختار و نمایش سه‌بعدی</a><a href="datasets.html" id="tab-methods" aria-current="page">دیتاست‌ها</a><a href="docking.html" id="nav-docking">داکینگ مولکولی</a><a href="exercises.html" id="nav-exercises">تمرین‌ها و آزمون‌ها</a><a href="presentations.html" id="nav-presentations">اسلایدها و ارائه</a></nav>
+<main id="main">
+<header class="page-heading"><h1>دیتاست‌ها</h1><p>شناسه، منبع، طرح نمونه‌برداری، فایل‌ها و محدودیت هر داده؛ برای انتخاب و دریافت ورودی مناسب.</p></header>
+<noscript><p>محتوای تعاملی به JavaScript نیاز دارد.
+<a href="https://github.com/koolfox/koolfox.github.io/tree/main/structural-bioinformatics/docs">متن‌ها و فایل‌های پروژه</a>
+مستقل قابل دریافت‌اند.</p></noscript>
+<nav class="section-documents" aria-label="متن‌های این بخش"><a href="datasets.html?document=data-access-guide.fa.md&amp;chapter=all#reading" >دریافت فایل‌ها</a><a href="datasets.html?document=dataset-catalog.fa.md&amp;chapter=all#reading" >فهرست داده‌ها</a><a href="datasets.html?document=rnaseq-research-plan.fa.md&amp;chapter=all#reading" >طراحی تحلیل RNA</a></nav><section data-course-tool="datasets" id="datasets" class="reading-section" aria-labelledby="datasets-title">
+      <div class="section-heading">
+        <h2 id="datasets-title">منابع اصلی پروژه</h2>
+        <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/course-guide.fa.md" target="_blank" rel="noopener noreferrer">راهنمای استفاده از منابع</a>
+      </div>
+      <ul id="primary-sources" class="reference-source-list">
+        <li><a href="https://www.rcsb.org/structure/3WD5" target="_blank" rel="noopener noreferrer"><bdi>3WD5</bdi></a><span>مختصات کمپلکس <bdi>TNF–Fab</bdi>؛ مبنای نمایش و محاسبهٔ تماس</span></li>
+        <li><a href="https://www.rcsb.org/structure/1TNF" target="_blank" rel="noopener noreferrer"><bdi>1TNF</bdi></a><span>ساختار <bdi>TNF</bdi> آزاد برای شناخت شکل سه‌زیرواحدی</span></li>
+        <li><a href="https://www.rcsb.org/structure/1B09" target="_blank" rel="noopener noreferrer"><bdi>1B09</bdi></a><span>مقایسهٔ اختیاری: ساختار <bdi>CRP</bdi></span></li>
+        <li><a href="https://www.uniprot.org/uniprotkb/P01375" target="_blank" rel="noopener noreferrer"><bdi>P01375</bdi></a><span>توالی و اطلاعات پروتئین <bdi>TNF</bdi> در <bdi>UniProt</bdi></span></li>
+        <li><a href="https://www.uniprot.org/uniprotkb/P02741" target="_blank" rel="noopener noreferrer"><bdi>P02741</bdi></a><span>توالی و اطلاعات پروتئین <bdi>CRP</bdi> در <bdi>UniProt</bdi></span></li>
+      </ul>
+      <details id="future-work" class="future-work" open>
+      <summary>جست‌وجو در فهرست منابع داده</summary>
+      <p class="section-description">توالی‌های مرجع در بخش ساختار و نمایش سه‌بعدی قابل بررسی‌اند. این فهرست گسترده برای مطالعهٔ اختیاری داده‌های بیان ژن و توسعهٔ بعدی نگه داشته شده؛ تحلیل جدید اُمیک در این نسخه اجرا نشده است.</p>
+      <div class="document-links">
+        <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/research-protocol.fa.md" target="_blank" rel="noopener noreferrer">آرشیو پروتکل و فرضیه‌های قبلی</a>
+        <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/dataset-catalog.fa.md" target="_blank" rel="noopener noreferrer">فهرست پیشرفتهٔ منابع</a>
+        <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/scientific-context.fa.md" target="_blank" rel="noopener noreferrer">یادداشت‌های زمینه و مقایسه‌ها</a>
+        <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/manuscript-outline.fa.md" target="_blank" rel="noopener noreferrer">طرح توسعهٔ پژوهش در آینده</a>
+      </div>
+      <div class="dataset-filters">
+        <div><label for="dataset-search">جست‌وجوی منبع، ژن یا بیماری</label><input id="dataset-search" type="search" placeholder="مثلاً TOP2A، آرتریت یا GSE15602" disabled></div>
+        <div><label for="dataset-kind">نوع شواهد</label><select id="dataset-kind" disabled><option value="all">همهٔ منابع</option></select></div>
+        <button id="clear-filters" type="button" disabled>پاک کردن فیلترها</button>
+      </div>
+      <p id="dataset-status" class="section-status" role="status">در حال خواندن فهرست منابع…</p>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="فهرست منابع داده؛ برای ستون‌های بیشتر در نمایش کوچک، افقی حرکت کنید">
+        <table id="datasets-table" data-state="loading">
+          <caption>منابعِ ثبت‌شده در <a href="data/metadata/datasets.json">فهرست قابل دریافت JSON</a></caption>
+          <thead><tr><th scope="col">شناسه و منبع</th><th scope="col">نوع شواهد</th><th scope="col">زمینه</th><th scope="col">دسترسی</th><th scope="col">رکورد اصلی</th></tr></thead>
+          <tbody id="datasets-body"><tr><td colspan="5">در حال بارگذاری…</td></tr></tbody>
+        </table>
+      </div>
+      </details>
+    </section><section data-course-tool="rna" id="rnaseq-groups" class="reading-section rnaseq-groups" aria-labelledby="rnaseq-title" data-state="idle">
+      <div class="section-heading">
+        <h2 id="rnaseq-title">RNA-seq بیماران: هر گروه پاسخ چه شکلی دارد؟</h2>
+        <a href="data/processed/rnaseq-group-summary.json">داده و روش خلاصه</a>
+      </div>
+      <p class="section-description">دیتاست <bdi>GSE138746</bdi>، سلول‌های خون (<bdi>PBMC</bdi>) بیماران روماتوئیدِ گروه آدالیموماب. <strong>RNA پیش از شروع دارو</strong> گرفته شده و پاسخ در ماه ۶ ثبت شده است؛ پس این‌جا اثر دارو روی RNA دیده نمی‌شود. برای هر گروه فقط میانه و چارک‌ها نشان داده می‌شود، نه مقدار تک‌تک بیماران، و هیچ آزمون آماری انجام نشده است.</p>
+      <div class="residue-inspection">
+        <label for="rnaseq-gene">ژن</label>
+        <select id="rnaseq-gene" disabled></select>
+      </div>
+      <p id="rnaseq-gene-role" class="section-status"></p>
+      <figure class="rnaseq-figure">
+        <div id="rnaseq-chart" class="rnaseq-chart" role="img" aria-describedby="rnaseq-caption"></div>
+        <figcaption id="rnaseq-caption" class="model-caption">هر نوار از چارک اول تا سوم است و خط تیره میانه است. محور: مقدار نرمال‌شدهٔ نویسندگان، بدون نرمال‌سازی دوباره. هم‌پوشانی نوارها طبیعی است؛ با این اندازهٔ گروه (۹ تا ۱۸ نفر) تفاوت ظاهری میانه‌ها نتیجه نیست.</figcaption>
+      </figure>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="خلاصهٔ عددی گروه‌ها">
+        <table>
+          <thead><tr><th>گروه پاسخ در ماه ۶</th><th>تعداد بیمار</th><th>چارک اول</th><th>میانه</th><th>چارک سوم</th></tr></thead>
+          <tbody id="rnaseq-body"></tbody>
+        </table>
+      </div>
+      <p id="rnaseq-status" class="section-status" role="status">داده‌ها هنگام رسیدن به این بخش بارگذاری می‌شوند.</p>
+    </section>
+<div id="panel-reading" class="research-panel">
+      <section id="reading" class="reading-section" aria-labelledby="reading-title">
+        <div class="section-heading"><h2 id="reading-title">متن‌ها و راهنماها</h2><a id="document-source" href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/research-questions.fa.md" target="_blank" rel="noopener noreferrer">نسخهٔ اصلی در GitHub</a></div>
+        <p class="section-description">متن‌های پروژه را اینجا بخوانید؛ از فهرست فصل‌ها یک بخش یا متن کامل را انتخاب کنید. فرمول‌ها و نمودارها از همان فایل منبع نمایش داده می‌شوند.</p>
+        <div class="reading-controls">
+          <div><label for="document-select">انتخاب متن</label><select id="document-select" disabled><option>در حال آماده‌سازی کتابچه…</option></select></div>
+          <div><label for="chapter-select">فصل یا متن کامل</label><select id="chapter-select" aria-label="گام ارائه یا فصل کتابچه" disabled><option value="all">متن کامل</option></select></div>
+        </div>
+        <div class="reading-actions">
+          <div><button id="chapter-prev" type="button" disabled>فصل قبلی</button><button id="chapter-next" type="button" disabled>فصل بعدی</button><button id="presentation-view" type="button" aria-pressed="false" hidden>نمای مطالعه</button></div>
+          <a id="slide-launch" href="presentation.html#slide-1" hidden>نمایش اسلایدی</a>
+          <a id="document-download" href="docs/research-questions.fa.md" download>دریافت فایل Markdown</a>
+        </div>
+        <p id="reading-status" class="section-status" data-state="idle" role="status" aria-live="polite">در حال دریافت متن انتخاب‌شده…</p>
+        <p id="presentation-help" class="intro-note" hidden>متن ارائه برای مخاطبان کلاس نوشته شده است. با دکمه‌ها یا <bdi>PageDown / PageUp</bdi> حرکت کنید؛ برای نمایش روی پرده، «نمایش اسلایدی» را انتخاب کنید.</p>
+        <nav id="document-toc" class="document-toc" aria-label="فصل‌های این متن" hidden></nav>
+        <article id="markdown-content" class="markdown-content" tabindex="0" aria-busy="false"></article>
+      </section>
+    </div>
+
+</main>
+<footer class="site-footer">
+<p>پروژهٔ درس بیوانفورماتیک ساختاری · منابع علمی و حدود هر نتیجه در بخش مربوط آمده‌اند.</p>
+<a href="index.html">فهرست بخش‌ها</a>
+</footer>
+</body>
+</html>

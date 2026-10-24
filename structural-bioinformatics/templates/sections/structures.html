@@ -1,0 +1,110 @@
+
+    <section data-course-tool="lab" id="structures" class="structure-section" aria-label="کاوش ساختارهای مولکولی">
+      <div class="viewer-toolbar">
+        <div class="structure-select-group">
+          <label for="structure-select">ساختار آزمایشگاهی</label>
+          <select id="structure-select" disabled>
+            <optgroup label="تحلیل اصلی: TNF و آدالیموماب">
+              <option value="3WD5" dir="ltr">3WD5 · TNF و Fab آدالیموماب</option>
+              <option value="1TNF" dir="ltr">1TNF · TNF آزاد</option>
+            </optgroup>
+            <optgroup label="مقایسه‌های اختیاری؛ خارج از تحلیل اصلی">
+              <option value="1B09" dir="ltr">1B09 · CRP</option>
+              <option value="4FM9" dir="ltr">4FM9 · هستهٔ TOP2A و DNA</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="representation-field">
+          <label for="representation-select">نوع نمایش</label>
+          <select id="representation-select" aria-describedby="representation-help" disabled>
+            <option value="trace">مسیر Cα · بررسی نقاط</option>
+            <option value="cartoon">نمای نواری · شکل تاخوردگی</option>
+          </select>
+        </div>
+        <div class="viewer-actions" aria-label="کنترل نمای مولکولی">
+          <button type="button" id="spin-button" aria-pressed="false" disabled>چرخش آرام</button>
+          <button type="button" id="reset-button" disabled>بازنشانی نما</button>
+          <button type="button" id="zoom-in" aria-label="بزرگ‌نمایی ساختار" disabled>بزرگ‌تر</button>
+          <button type="button" id="zoom-out" aria-label="کوچک‌نمایی ساختار" disabled>کوچک‌تر</button>
+        </div>
+      </div>
+      <p id="representation-help" class="representation-help">مسیر نقاط و نمای نواری، دو روش رسم یک ساختارند. <a href="docs/molecular-display-audit.fa.md">تطبیق 3WD5 با RCSB و علت تفاوت ظاهر</a></p>
+      <figure class="molecular-figure">
+        <div id="molecular-stage" class="molecular-stage" data-state="loading" aria-busy="true">
+          <img id="model-fallback" class="model-fallback" src="assets/complex-preview.png"
+            width="1620" height="1080" alt="تصویر ثابت ساختار 3WD5: یک زیرواحد TNF و زنجیره‌های H و L قطعهٔ Fab آدالیموماب.">
+          <p id="stage-status" class="stage-status" role="status">در حال بارگذاری مختصات آزمایشگاهی…</p>
+        </div>
+        <div id="reference-stage" class="molecular-stage reference-stage" data-state="idle" aria-busy="false" hidden>
+          <p id="reference-load-status" class="stage-status" role="status">در حال بارگذاری نمای نواری…</p>
+        </div>
+        <div class="model-detail-bar">
+          <p id="model-description">یک زیرواحد <bdi>TNF</bdi> و قطعهٔ <bdi>Fab</bdi> آدالیموماب</p>
+          <a id="model-source" href="https://www.rcsb.org/structure/3WD5" target="_blank" rel="noopener noreferrer"><bdi>3WD5</bdi> در <bdi>RCSB PDB</bdi></a>
+        </div>
+        <div id="chain-legend" class="chain-legend" aria-label="نمایش و رنگ زنجیره‌ها"></div>
+        <p id="model-caption" class="model-caption">نمای اولیهٔ ثابت: <bdi>3WD5</bdi>. این فایل آنتی‌بادی کامل یا TNF سه‌زیرواحدی را نمایش نمی‌دهد؛ همسایه‌های تقارن بلوریِ مؤثر در اپی‌توپ نیز در این نما نیستند.</p>
+      </figure>
+      <div class="inspection-row">
+        <p id="viewer-help">برای چرخش بکشید؛ با اسکرول یا دو انگشت بزرگ‌نمایی کنید. با تمرکز روی هر نما: کلیدهای جهتی، <bdi>+</bdi>، <bdi>−</bdi> و <bdi>0</bdi>. در مسیر Cα، انتخاب نقطه با کلیک یا فهرست زیر.</p>
+        <div class="residue-inspection">
+          <label for="residue-select">بررسی یک نقطه</label>
+          <select id="residue-select" disabled><option value="">یک نقطه انتخاب کنید</option></select>
+        </div>
+      </div>
+      <p id="residue-readout" class="residue-readout" role="status">مختصات هر نقطه در واحد آنگستروم گزارش می‌شود.</p>
+      <noscript><p class="inline-error">برای کاوش تعاملی، JavaScript را فعال کنید. تصویر ثابت بالا فقط کمپلکس 3WD5 را نشان می‌دهد؛ مقاله‌ها و روش تحقیق از پیوندهای مستندات در انتهای صفحه قابل دسترسی‌اند.</p></noscript>
+    </section>
+    <section id="learning-guide" class="reading-section" aria-labelledby="learning-title">
+      <h2 id="learning-title">این شکل را چطور بخوانیم؟</h2>
+      <dl class="learning-terms">
+        <div><dt><bdi>TNF-α</bdi></dt><dd>یک پروتئین پیام‌رسان در التهاب است. در مدل <bdi>3WD5</bdi> زنجیرهٔ <bdi>A</bdi>، بخشی از همین پروتئین را نشان می‌دهد.</dd></div>
+        <div><dt><bdi>Fab</bdi></dt><dd>بخش شناسایی آنتی‌ژن در آنتی‌بادی است. در این ساختار، زنجیره‌های <bdi>H</bdi> و <bdi>L</bdi> قطعهٔ <bdi>Fab</bdi> آدالیموماب‌اند.</dd></div>
+        <div><dt><bdi>Cα</bdi></dt><dd>کربن آلفای هر آمینواسید در ستون اصلی پروتئین است. نقاط مدل، جای این اتم‌ها را نشان می‌دهند؛ لوله، مسیر بین آن‌ها را برای دیدن شکل روشن‌تر می‌کند.</dd></div>
+        <div><dt>آنگستروم <bdi>Å</bdi></dt><dd>واحد فاصله در مقیاس اتمی است؛ <bdi>1 Å = 0.1 nm</bdi>. مختصات نقطهٔ انتخاب‌شده و فاصله‌های نقشه با همین واحد گزارش می‌شوند.</dd></div>
+      </dl>
+      <ol class="reading-steps">
+        <li>برای دیدن شکل سه‌زیرواحدی <bdi>TNF</bdi>، از فهرست بالا <bdi>1TNF</bdi> را انتخاب کنید.</li>
+        <li>در <bdi>3WD5</bdi> زنجیره‌های <bdi>H/L</bdi> را خاموش و روشن کنید تا جای <bdi>Fab</bdi> نسبت به <bdi>TNF</bdi> مشخص شود.</li>
+        <li><a href="#interface">نقاط رابط و نقشهٔ تماس</a> نشان می‌دهند کدام آمینواسیدها در همین فایل به یکدیگر نزدیک‌اند.</li>
+      </ol>
+    </section>
+    <figure class="research-media teaching-figure comparison-figure">
+      <img src="assets/structure-comparison.png" width="2520" height="936" loading="lazy" alt="سه نمای مختصاتی واقعی: TNF آزاد در 1TNF، TNF و Fab در 3WD5، و هستهٔ TOP2A همراه DNA در 4FM9.">
+      <figcaption>سه ساختار آزمایشگاهی؛ پنل‌ها مستقل از هم مقیاس شده‌اند. <bdi>1TNF</bdi> سه زیرواحد آزاد و <bdi>3WD5</bdi> یک زیرواحد و <bdi>Fab</bdi> را نشان می‌دهند. <bdi>4FM9</bdi> هستهٔ ناقص <bdi>TOP2A</bdi> با <bdi>DNA</bdi> در واحد نامتقارن است؛ <bdi>RNA</bdi>، پروتئین کامل یا نتیجهٔ داکینگ نیست. <a href="assets/structure-comparison.png" target="_blank" rel="noopener noreferrer">دیدن تصویر اصلی</a></figcaption>
+    </figure>
+    <details class="future-work construct-caveat">
+      <summary>نکتهٔ مقایسه: سازهٔ آزمایشگاهی با توالی مرجع یکسان نیست</summary>
+      <p class="section-description">توالی سازه‌های <bdi>1TNF</bdi> و <bdi>3WD5</bdi> در دو جایگاه تفاوت دارد؛ هر دو با مرجع کنونی <bdi>TNF</bdi> نیز کاملاً یکسان نیستند. تفاوت شکل این فایل‌ها را نمی‌توان خودکار به اتصال آدالیموماب نسبت داد؛ سازه و محیط بلوری هم متفاوت‌اند. این اختلافِ منبع، به‌تنهایی «جهش بیماری‌زا» نیست. <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/sequences-primer.fa.md" target="_blank" rel="noopener noreferrer">جایگاه‌ها و روش مقایسهٔ توالی</a></p>
+    </details>
+
+    <section id="interface" class="reading-section" aria-labelledby="interface-title">
+      <div class="section-heading">
+        <h2 id="interface-title">آنچه در رابط اتصال اندازه گرفته‌ایم</h2>
+        <a href="data/processed/interface-summary.json">دادهٔ محاسبه و پارامترها</a>
+      </div>
+      <p class="section-description">تماس‌ها از اتم‌های سنگین با occupancy مثبت در زنجیره‌های <bdi>A/H/L</bdi> ساختار <bdi>3WD5</bdi> استخراج شده‌اند. این محاسبه، بخشی از رابط موجود در فایل را توصیف می‌کند.</p>
+      <dl class="measurement-list" aria-live="polite">
+        <div><dt>جفت آمینواسید</dt><dd id="stat-residue-pairs">—</dd></div>
+        <div><dt>جفت اتم در تماس</dt><dd id="stat-atom-contacts">—</dd></div>
+        <div><dt>آمینواسید رابط در <bdi>TNF</bdi></dt><dd id="stat-interface-residues">—</dd></div>
+        <div><dt>حد فاصله</dt><dd><span id="stat-cutoff">—</span> <bdi>Å</bdi></dd></div>
+      </dl>
+      <p id="interface-status" class="section-status" role="status">در حال خواندن خلاصهٔ محاسبه…</p>
+      <button id="interface-button" type="button" aria-pressed="false" disabled>نمایش نقاط رابط روی TNF</button>
+      <div class="interface-media">
+        <figure class="research-media">
+          <img src="assets/interface-map.png" width="1980" height="828" loading="lazy" alt="نقشهٔ تماس آمینواسیدهای زنجیرهٔ A از TNF با زنجیره‌های H و L قطعهٔ Fab در 3WD5، در آستانهٔ 4.5 آنگستروم.">
+          <figcaption>در هر بخش، محور عمودی شمارهٔ آمینواسید <bdi>TNF</bdi> و محور افقی شمارهٔ آمینواسید <bdi>Fab</bdi> است. رنگ هر نقطه کمترین فاصلهٔ اتم‌های سنگین آن جفت را نشان می‌دهد. <a href="assets/interface-map.png">دیدن نقشه در اندازهٔ اصلی</a> · <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/course-guide.fa.md" target="_blank" rel="noopener noreferrer">روش محاسبه و خواندن نقشه</a></figcaption>
+        </figure>
+        <figure class="research-media">
+          <video controls preload="none" poster="assets/complex-preview.png" width="1280" height="720" aria-label="انیمیشن مشاهدهٔ ساختار TNF و Fab آدالیموماب">
+            <source src="assets/tnf-adalimumab.mp4" type="video/mp4">
+            <a href="assets/tnf-adalimumab.mp4">دانلود انیمیشن ساختار</a>
+          </video>
+          <figcaption>نمای مشاهده‌شدهٔ 3WD5 با ManimGX؛ فقط دوربین و آشکارشدن زنجیره‌ها حرکت می‌کنند. <a href="assets/animation-provenance.json">منشأ و پارامترهای ویدئو</a></figcaption>
+        </figure>
+      </div>
+    </section>
+    
+    

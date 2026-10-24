@@ -1,25 +1,9 @@
-# Structural bioinformatics presentation
+# Structural bioinformatics project sections
 
-Mode: Read, with an Operate molecular laboratory. Audience: a new MSc student and the instructor reviewing an understandable, defensible course investigation. Existing authority: portfolio Arad font, light neutral backgrounds, blue actions, Persian RTL. Confirmed static HTML/CSS/JavaScript stack and real Three.js coordinate rendering. The user requested code and experimental geometry. Paper is not connected; preserve the existing direction while refining it with Impeccable.
+The homepage directs readers to nine independent pages: course, research, library, paper reviews, structural visualization, datasets, docking, exercises and presentations. This is the user's 2026-10-25 direction. The prior single-page workspace, six-tab navigation and global course ownership are superseded.
 
-## Direction contract
+Retain Arad, Persian RTL, neutral backgrounds and blue links. Use native page navigation with the current section marked. Each page explains what belongs there and exposes its own content. Chapter navigation is local to the course, exercise selection and presentation catalog. A scientific tool or library text does not require selecting a chapter.
 
-THESIS: Teach the direct adalimumab–TNF mechanism before asking whether evidence supports a direct or indirect TOP2A effect in rheumatoid arthritis and cancer.
+Lesson, exercise, research and speaker source files are separate. Preserve local notes and quiz attempts. Retain source provenance, actual molecular coordinates and the reviewed slide bank. No claims of new biological results follow from the reorganization.
 
-OWN-WORLD: Inherit Arad, blue actions, light neutral surfaces and readable document typography. Molecule colors identify chains; evidence labels identify what an experiment actually establishes.
-
-STORY: Understand the research question and antibody anatomy; operate the molecular laboratory; inspect authentic RNA and protein sequences; read selection rationales and critical appraisals; follow a bounded method and presentation plan, and read the full source documents inside the chapter-based research booklet.
-
-CLASS ROUTE: Twenty-eight audience-facing slides include an academic cover followed by the twenty-seven class-presentation.fa.md chapters shared with the reader; the first two chapters state the project's own plan and each source paper's role. Each slide has one main point and any relevant local scientific figure. Retain the incumbent Arad/blue/light visual identity with larger projector typography and flat compositions. Previous/next, keyboard, slide selection, fullscreen and print support are part of presentation.html; sources appear beside the corresponding facts and in a closing appendix. Explain actual methods, findings and data in separate paper slides; images and local models enlarge within the page. Detailed beginner lessons remain in the notebook.
-
-LEARNING DEPTH: Begin at high-school biology-interest level. Make the cell/protein/receptor/binding story explicit, define terms before using them, and offer full explanations alongside the short class route. The binding diagram is labeled schematic; the optional Mol* cartoon uses the same deposited coordinate source as the trace, with its different occupancy/representation policy explained.
-
-FIRST VIEWPORT: A concise Persian title and one prominent start/resume action. The default route gives eight ordered learning sections, then rehearsal, then a slide-one presentation action. Every section has exact chapter links, a concrete goal and a self-reported completion check; browser-local progress preserves the next action. Full sources and direct presentation are available in a closed disclosure, and six accessible tabs remain available for free exploration. The laboratory tab gives the real model visual priority and exposes its controls, source and representation.
-
-FORM: Extend the existing portfolio identity. Use panels according to content, readable prose and scientific figures, with closed advanced details. Tabs reduce scrolling and support keyboard navigation and direct hash links; the phone layout exposes all six destinations. The reader shows repository Markdown by chapter with actual LaTeX and Mermaid rendering, preserving the source when optional rendering fails. Latin accessions and sequences remain LTR; the surrounding explanation remains Persian RTL.
-
-SIGNATURE: Switch experimental structures, toggle chains and inspect residues without changing their internal geometry. Distinguish a measured Fab interface from a conceptual pathway and from an untested hypothesis. Camera motion honors reduced motion and pauses when hidden.
-
-FINISH: Review desktop/mobile and the required tab states, address material findings in one batch, record the verdict and scoped DESIGN.md, and preserve provenance for every scientific figure. A structural measurement never establishes clinical or anticancer efficacy.
-
-ACADEMIC IDENTITY: Follow the supplied sample: top-left university logo, top-right institution/course, bottom-right short title, bottom-left season. Cover presenter/supervisor/season come from data/metadata/presentation.json. Preserve the original supplied logo bytes; use CSS for its dark appearance on the light slide.
+Check native navigation, mobile layout, saved browser state, deep links, independent error recovery and all scientific controls. Build the exact publication artifact and verify the deployed pages.

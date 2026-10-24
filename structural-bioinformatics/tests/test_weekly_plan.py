@@ -49,17 +49,12 @@ def test_every_audited_slide_is_assigned_once_and_preserved_in_generated_chapter
         assert section.strip() in generated
 
 
-def test_restored_workspace_contains_one_embedded_course_and_direct_tools():
+def test_sections_replace_the_embedded_workspace_without_a_second_course():
     index = (PROJECT / "index.html").read_text()
-    alias = (PROJECT / "learn.html").read_text()
-    assert 'id="sessions"' in index and 'id="chapter-tools"' in index
-    assert 'id="research-tabs"' in index and 'id="study-start"' in index
-    for old in ('id="study-path"', 'id="weekly-plan"'):
-        assert old not in index
-    assert "location.replace" not in index
-    assert "location.replace" in alias and 'id="sessions"' not in alias
-    assert not (PROJECT / "assets/weekly-plan.js").exists()
-    assert not (PROJECT / "assets/learning-journey.js").exists()
+    course = (PROJECT / "course.html").read_text()
+    assert 'id="sessions"' in course and 'id="sessions"' not in index
+    assert 'id="research-tabs"' not in index + course
+    assert "legacy-routes.js" in index
     assert (PROJECT / "docs/weekly-plan.fa.md").read_text() == load_script(
         "build_weekly_plan"
     ).render()

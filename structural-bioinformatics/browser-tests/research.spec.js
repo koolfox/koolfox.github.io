@@ -228,13 +228,13 @@ test("research Markdown renders chapters, actual LaTeX and Mermaid inside the pa
     await expect(page.locator("#document-select")).toHaveValue("structural-method.fa.md");
     await expect(page.locator("#chapter-select")).toHaveValue("all");
     await expect(page.locator("#reading-status")).toHaveAttribute("data-optional-render", "ready");
-    await page.locator('#markdown-content a[href$="/sequences-primer.fa.md"]').click();
+    await page.locator('#markdown-content a[href*="document=sequences-primer.fa.md"]').click();
     await expect(page.locator("#reading-status")).toHaveAttribute("data-document", "sequences-primer.fa.md");
     await expect(page).toHaveURL(/document=sequences-primer\.fa\.md.*#reading$/);
     await page.goto(`${route}?unit=3&part=research&document=visualization-tools.fa.md`);
     await expect(page.locator("#markdown-content")).toHaveAttribute("data-document", "visualization-tools.fa.md");
     await page.selectOption("#chapter-select", "all");
-    await page.locator('#markdown-content a[href$="/anatomy-evaluation.fa.md"]').first().click();
+    await page.locator('#markdown-content a[href*="document=anatomy-evaluation.fa.md"]').first().click();
     await expect(page.locator("#reading-status")).toHaveAttribute("data-document", "anatomy-evaluation.fa.md");
     await expect(page.locator("#document-select")).toHaveValue("anatomy-evaluation.fa.md");
 });

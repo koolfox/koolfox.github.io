@@ -1,22 +1,24 @@
-# بیوانفورماتیک ساختاری؛ یک درس در نه فصل
+# بیوانفورماتیک ساختاری
 
-[صفحهٔ اصلی پروژه](https://koolfox.github.io/structural-bioinformatics/) ساختار شش‌بخشی پژوهش را حفظ می‌کند: درس و پژوهش، آزمایشگاه، توالی‌ها، مقاله‌ها، روش و ارائه، و کتابچه. درس‌های نه فصل در همان صفحه قرار دارند و هر مبحث از درس به پژوهش و ارائه می‌رسد. `learn.html` فقط به این صفحه هدایت می‌کند؛ دورهٔ دیگری نمی‌سازد.
+[صفحهٔ اصلی](https://koolfox.github.io/structural-bioinformatics/) فهرست نه بخش مستقل است. برای استفاده از یک ابزار یا منبع، انتخاب فصل یا دنبال‌کردن مسیر پژوهش لازم نیست.
 
-فصل‌ها از [سیلابس رسمی شریف، درس ۴۰۵۵۳](https://docs.ce.sharif.edu/courses/40553) می‌آیند. ترتیب درس، متن‌های مرتبط، ابزارها و اسلایدها در `data/metadata/course-map.json` با هم ثبت می‌شوند. فایل‌های `docs/course/` منبع مباحث‌اند؛ درس‌نامهٔ یک‌جا از آن‌ها ساخته می‌شود. [راهنمای استفاده](docs/course-guide.fa.md)
+| بخش | ورودی |
+|---|---|
+| درس و سیلابس | [course.html](course.html)؛ نه فصل و سی مبحث درسی |
+| پژوهش | [research.html](research.html)؛ سؤال، روش، گزارش و پیش‌نویس سوروی |
+| کتابخانه | [library.html](library.html)؛ جست‌وجو و خواندن متن‌ها |
+| مقاله‌ها و بررسی‌ها | [papers.html](papers.html)؛ منبع، روش، یافته و نقد |
+| ساختار و نمایش سه‌بعدی | [structures.html](structures.html)؛ مدل، زنجیره، توالی و شکل |
+| دیتاست‌ها | [datasets.html](datasets.html)؛ شناسه، طراحی، منبع و فایل |
+| داکینگ مولکولی | [docking.html](docking.html)؛ دستورکار و اعتبارسنجی |
+| تمرین‌ها و آزمون‌ها | [exercises.html](exercises.html)؛ دستورکار، خودآزمایی و یادداشت |
+| اسلایدها و ارائه | [presentations.html](presentations.html)؛ انتخاب فصل و یادداشت گوینده |
 
-## ساختار واحد
+## منابع محتوا
 
-- فصل ۱: مبانی زیستی، مسئله و سازوکار اتصال.
-- فصل ۲: شیمی و ساختار مولکول‌ها، توالی و کدون.
-- فصل ۳: مشاهده و اندازه‌گیری؛ مدل سه‌بعدی، RMSD، SASA و خرده‌آزمایش رابط.
-- فصل ۴: پایگاه‌ها و بازیابی داده؛ RNA-seq با برچسب مکمل.
-- فصل ۵: انرژی، تاخوردگی و شواهد جهش‌زایی.
-- فصل ۶: دینامیک، نقد مقالهٔ Bianchi و دستورکار MD.
-- فصل ۷: پیش‌بینی ساختار و ارزیابی مدل.
-- فصل ۸: داکینگ و کنترل‌های روش.
-- فصل ۹: شبکه‌ها، ترکیب شواهد و مسیر مقالهٔ مرور.
+`data/metadata/site-sections.json` فهرست بخش‌ها و متن‌های مرتبط را مشخص می‌کند. `scripts/build_section_pages.py` صفحه‌ها را از `templates/` می‌سازد. فایل‌های علمی و ابزارها در صفحهٔ اختصاصی خود استفاده می‌شوند؛ نسخهٔ مخفیِ رابط قدیمی وجود ندارد. نشانی‌های قدیمی از طریق `legacy-routes.js` به صفحهٔ مناسب هدایت می‌شوند.
 
-هر مبحث یک زنجیرهٔ **درس → پژوهش → ارائه** دارد. `data/metadata/research-thread.json` مشخص می‌کند مفهوم درسی چگونه به پرسش اصلی، کار عملی، نوع شاهد، محصول پژوهشی، یادداشت گوینده و اسلایدهای همان قدم وصل می‌شود. ورود به مباحث آزاد است. یادداشت، پاسخ و تلاش‌های خودآزمایی در مرورگر نگه‌داری می‌شوند و به سرور فرستاده نمی‌شوند. وضعیت مطالعه از نتیجهٔ آزمون مستقل است.
+سرفصل درس از [درس ۴۰۵۵۳ شریف](https://docs.ce.sharif.edu/courses/40553) آمده است. مباحث در `learning-course.json` و درس‌ها در `docs/course/` هستند. دستور تمرین در `docs/exercises/`، یادداشت پژوهش در `docs/research-notes/` و یادداشت گوینده در `docs/presentation-notes/` جدا نگه‌داری می‌شوند. `course-sessions.fa.md` فقط درسنامه را یک‌جا گردآوری می‌کند. نقشهٔ `course-map.json` برای انتخاب اسلایدهای مرتبط حفظ شده است؛ ابزارها را به فصل جاری مقید نمی‌کند.
 
 ## اجرا و بازسازی
 
@@ -25,16 +27,23 @@
 ```sh
 uv sync --project structural-bioinformatics --frozen
 uv run --project structural-bioinformatics python structural-bioinformatics/scripts/build_course_sessions.py
+uv run --project structural-bioinformatics python structural-bioinformatics/scripts/build_section_pages.py
 uv run --project structural-bioinformatics python structural-bioinformatics/scripts/build_chapter_presentation.py
-uv run --project structural-bioinformatics pytest -q
+uv run --project structural-bioinformatics pytest -q structural-bioinformatics/tests
 uv run --project structural-bioinformatics ruff check structural-bioinformatics
 python3 -m http.server 8875 --bind 127.0.0.1
 ```
 
-بررسی مرورگر با `RESEARCH_BASE_URL=http://127.0.0.1:8875 npm --prefix structural-bioinformatics/browser-tests test` انجام می‌شود. برای تمرین محاسبات و نصب نرم‌افزار، [دفتر کار](docs/software-workbook.fa.md) را از فصل مربوط باز کنید. دستورکار VMD و MD پروتئین به‌تنهایی گزارش اجرای موفق نیست؛ وضعیت اجرای هر تمرین باید حفظ شود.
+بررسی مرورگر:
 
-## پژوهش و منشأ داده
+```sh
+RESEARCH_BASE_URL=http://127.0.0.1:8875 npm --prefix structural-bioinformatics/browser-tests test
+```
 
-پرسش مرور این است: آدالیموماب چگونه به TNF متصل می‌شود و پژوهش‌ها دربارهٔ این اتصال چه یافته‌اند؟ [پروتکل مرور](docs/survey-protocol.fa.md) و [طرح نگارش](docs/survey-draft.fa.md) در فصل جمع‌بندی قرار دارند. محاسبات اپی‌توپ یک مطالعهٔ موردی‌اند و به‌تنهایی سوروی نیستند. ساختار، فراوانی RNA، اتصال و پاسخ بالینی داده‌های متفاوت‌اند؛ از هندسه، اثربخشی دارو نتیجه نمی‌گیریم.
+نصب و اجرای محاسبات در [دفتر کار نرم‌افزار](docs/software-workbook.fa.md) توضیح داده شده است. فایل ورودی یا دستورکار MD و VMD، گزارش اجرای موفق نیست. وضعیت واقعی هر تحلیل کنار نتیجه حفظ می‌شود.
 
-منابع، accession، UTC، SHA-256 و پارامترها در `data/metadata/` و خروجی‌های کوچک در `data/processed/` هستند. PDF ناشر و دادهٔ فردی تازه وارد مخزن عمومی نمی‌شوند. اسلایدها از بانک متن ممیزی‌شده و نقشهٔ همان نه فصل ساخته می‌شوند؛ `presentation.html?unit=3` نمونهٔ ارائهٔ فصل آنالیز است. اسناد و متادیتای برنامه‌های قبلی صرفاً سابقه‌اند و مسیر فعال برنامه نیستند.
+## داده و حدود شواهد
+
+پرسش مرور، ارتباط آدالیموماب با تغییر بیان TOP2A در سلول‌های ایمنیِ فعال‌شده است. [پرسش](docs/research-questions.fa.md)، [روش مرور](docs/survey-protocol.fa.md) و [پیش‌نویس](docs/survey-draft.fa.md) در بخش پژوهش قرار دارند. جست‌وجو و غربالگری کامل نشده و بازتحلیل RNA توصیفی است. تماس هندسی، فراوانی RNA، فعالیت آنزیم و پاسخ بیمار اندازه‌گیری‌های متفاوت‌اند.
+
+منابع، UTC، SHA-256 و پارامترها در `data/metadata/` و خروجی‌های کوچک در `data/processed/` هستند. PDF ناشر و دادهٔ فردی تازه منتشر نمی‌شوند. پاسخ‌های آزمون و یادداشت‌ها با همان کلیدهای قبلی در مرورگر ذخیره می‌شوند؛ پاک‌کردن داده‌های مرورگر آن‌ها را حذف می‌کند. فایل‌های اصلی اسلایدها و دفترهای تحلیل نیز حفظ شده‌اند.

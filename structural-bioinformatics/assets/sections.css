@@ -1,0 +1,51 @@
+.separated-site { margin:0; background:#f5f5f7; color:#111827; font-family:arad,system-ui,sans-serif; }
+.separated-site * { box-sizing:border-box; }
+.separated-site .site-header,.separated-site #section-nav,.separated-site main,.separated-site .site-footer { width:min(1250px,100% - 48px); margin-inline:auto; }
+.separated-site .site-header { display:flex; gap:24px; justify-content:space-between; align-items:center; padding-block:24px; }
+.separated-site .site-name { color:#111827; font-size:1.2rem; font-weight:750; text-decoration:none; }
+.separated-site #section-nav { display:flex; flex-wrap:wrap; gap:0 24px; border-block:1px solid #dce2eb; padding-block:8px; }
+.separated-site #section-nav a { padding:10px 0; min-height:44px; text-decoration:none; }
+.separated-site #section-nav a[aria-current=page] { color:#111827; font-weight:750; text-decoration:underline; text-underline-offset:10px; }
+.separated-site .page-heading { padding-block:42px 26px; }
+.separated-site .page-heading h1 { margin:0 0 14px; font-size:clamp(1.7rem,4vw,2.5rem); line-height:1.6; }
+.separated-site .page-heading p { max-width:75ch; color:#465973; margin:0; font-size:1.05rem; }
+.separated-site .section-directory { border-top:1px solid #dce2eb; }
+.separated-site .section-directory article { display:grid; grid-template-columns:minmax(210px,1fr) 2fr; gap:14px 40px; padding-block:24px; border-bottom:1px solid #dce2eb; }
+.separated-site .section-directory h2 { font-size:1.25rem; margin:0; }
+.separated-site .section-directory p { margin:0; max-width:70ch; color:#465973; }
+.separated-site .section-documents,.separated-site .local-nav,.separated-site .topic-links { display:flex; flex-wrap:wrap; gap:12px 24px; padding-block:16px; margin-bottom:24px; border-block:1px solid #dce2eb; }
+.separated-site .section-documents a,.separated-site .topic-links a { min-height:44px; display:inline-flex; align-items:center; }
+.separated-site .restored-course { margin:0; background:transparent; }
+.separated-site .restored-course .reading { min-width:0; }
+.separated-site .restored-course aside a[aria-current=page] { border-inline-start:1px solid #245dc4; }
+.separated-site .restored-course #position { font-size:.85rem; color:#536179; }
+.separated-site #library-search { width:min(100%,600px); display:block; margin-block:10px 16px; }
+.separated-site #library-catalog { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:36px; }
+.separated-site #library-catalog article { padding-block:16px; border-bottom:1px solid #dce2eb; }
+.separated-site #library-catalog p { margin:5px 0 0; font-size:.85rem; color:#536179; }
+.separated-site #panel-reading { margin-top:40px; }
+.separated-site .site-footer { margin-top:60px; padding-block:30px; border-top:1px solid #dce2eb; font-size:.88rem; }
+.separated-site .research-summary { max-width:75ch; margin-bottom:26px; }
+.separated-site #dataset-workflow textarea { width:100%; }
+.separated-site #presentation-catalog details a { display:block; padding-block:8px; }
+.separated-site .skip-link { position:absolute; top:-100px; right:24px; background:white; padding:12px; z-index:10; }
+.separated-site .skip-link:focus { top:12px; }
+.separated-site pre { overflow:auto; max-width:100%; }
+.separated-site [hidden] { display:none!important; }
+@media(max-width:850px) {
+ .separated-site .site-header,.separated-site #section-nav,.separated-site main,.separated-site .site-footer { width:calc(100% - 32px); }
+ .separated-site .site-header { align-items:flex-start; flex-direction:column; gap:10px; }
+ .separated-site #section-nav { gap:0 18px; font-size:.9rem; }
+ .separated-site .page-heading { padding-block:30px 22px; }
+ .separated-site .section-directory article { grid-template-columns:1fr; gap:8px; }
+ .separated-site #library-catalog { grid-template-columns:1fr; }
+ .separated-site .restored-course { grid-template-columns:1fr; }
+ .separated-site .restored-course aside { border-inline-end:0; padding:0 0 20px; }
+ .separated-site .restored-course .reading { padding:24px 0; }
+}
+@media print { .separated-site #section-nav,.separated-site .site-header,.separated-site .site-footer { display:none; } }
+html:has(body.separated-site),body.research-page.separated-site { overflow:visible; }
+.separated-site .section-directory { padding-block:8px; }
+.separated-site .site-name { font-size:1.02rem; }
+.separated-site .page-heading h1 { font-size:clamp(1.45rem,2.7vw,2.05rem); }
+.separated-site .section-directory h2 { font-size:1.38rem; }

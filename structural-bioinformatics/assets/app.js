@@ -13,10 +13,9 @@ let sequenceRecords = [];
 let selectedSequence = null;
 let sequenceText = "";
 let sequenceRequest = 0;
-let markdownReaderPromise = null;
 let referenceRequest = 0;
 let referenceTimer = null;
-const readerDocuments = new Set(["weekly-plan.fa.md", "top2a-cancer-comparison.fa.md", "md-training-workshop.fa.md", "binding-mechanism.fa.md", "dataset-catalog.fa.md", "structural-method.fa.md", "learning-redesign-review.fa.md", "docking-protocol.fa.md", "manuscript-draft.fa.md", "third-party-notices.md", "academic-study-plan.fa.md", "full-epitope-results.fa.md", "software-workbook.fa.md", "chapter-presentation.fa.md", "literature-review.fa.md", "glossary.fa.md", "paper-writing-guide.fa.md", "presentation-rehearsal.fa.md", "preparation-guide.fa.md", "learning-path.fa.md", "course-guide.fa.md", "top2a-primer.fa.md", "structural-feasibility-results.fa.md", "top2a-count-inspection.fa.md", "literature-selection-audit.fa.md", "product-roadmap.fa.md", "manuscript-outline.fa.md", "paper-design-setup.fa.md", "top2a-inhibition-feasibility.fa.md", "course-sessions.fa.md", "scientific-claim-audit.fa.md", "research-questions.fa.md", "class-presentation.fa.md", "visualization-tools.fa.md", "codons-primer.fa.md", "paper-explanations.fa.md", "comprehensive-review.fa.md", "survey-protocol.fa.md", "scientific-context.fa.md", "connection-evidence.fa.md", "agent-workflow.md", "molecular-display-audit.fa.md", "sequences-primer.fa.md", "anatomy-evaluation.fa.md", "research-protocol.fa.md", "top2a-hypothesis.fa.md", "data-access-guide.fa.md", "survey-draft.fa.md", "rnaseq-research-plan.fa.md"]);
+
 const controls = ["structure-select", "representation-select", "spin-button", "reset-button", "zoom-in", "zoom-out", "residue-select"];
 
 function element(tag, text, className) {
@@ -73,136 +72,6 @@ function fitVisibleLaboratory() {
       labHasFitted = true;
     }
   });
-}
-
-async function loadReadingDocument(filename = null, chapter = null) {
-  try {
-    if (!markdownReaderPromise) {
-      markdownReaderPromise = import("./markdown-reader.js?v=20261024-workspace").then(({ createMarkdownReader }) => createMarkdownReader());
-    }
-    const reader = await markdownReaderPromise;
-    await reader.open(filename, chapter);
-  } catch {
-    markdownReaderPromise = null;
-    $("reading-status").dataset.state = "error";
-    showError($("reading-status"), "کتابچه بارگذاری نشد؛ مدل‌ها و توالی‌ها مستقل از آن در دسترس‌اند. متن اصلی از پیوند GitHub قابل خواندن است.");
-  }
-}
-
-function readerFilename(href) {
-  let url;
-  try { url = new URL(href, window.location.href); }
-  catch { return null; }
-  const localDocs = new URL("docs/", window.location.href);
-  const githubPrefix = "/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/";
-  let filename = null;
-  if (url.origin === localDocs.origin && url.pathname.startsWith(localDocs.pathname)) filename = url.pathname.slice(localDocs.pathname.length);
-  if (url.origin === "https://github.com" && url.pathname.startsWith(githubPrefix)) filename = url.pathname.slice(githubPrefix.length);
-  return readerDocuments.has(filename) ? filename : null;
-}
-
-function initializeTabs() {
-  const tabs = [...$("research-tabs").querySelectorAll('[role="tab"]')];
-  const sizeTabs=()=>document.documentElement.style.setProperty("--research-tabs-height",$("research-tabs").getBoundingClientRect().height+"px");
-  sizeTabs();new ResizeObserver(sizeTabs).observe($("research-tabs"));
-  const names = tabs.map((tab) => tab.dataset.tab);
-  function activate(name, { focus = false, updateHash = false } = {}) {
-    if (!names.includes(name)) name = "basics";
-    for (const tab of tabs) {
-      const active = tab.dataset.tab === name;
-      tab.setAttribute("aria-selected", String(active));
-      tab.tabIndex = active ? 0 : -1;
-      $(tab.getAttribute("aria-controls")).hidden = !active;
-    }
-    document.documentElement.dataset.activeTab = name;
-    const tab = $("tab-" + name);
-    if (focus) tab.focus({ preventScroll: true });
-    tab.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "instant" });
-    if (updateHash && window.location.hash !== "#" + name) {
-      window.history.pushState(null, "", "#" + name);
-    }
-    if (name === "lab") fitVisibleLaboratory();
-    else if (viewer?.spinning) viewer.setSpinning(false);
-    if (name === "reading") void loadReadingDocument();
-    for (const video of document.querySelectorAll("video")) {
-      if (video.closest('[role="tabpanel"]')?.hidden) video.pause();
-    }
-  }
-  function followHash() {
-    let target;
-    try { target = decodeURIComponent(window.location.hash.slice(1)); }
-    catch { target = ""; }
-    if (!target) { activate("basics"); return; }
-    if (names.includes(target)) { activate(target); return; }
-    const node = $(target);
-    const panel = node?.closest('[role="tabpanel"]');
-    if (!panel) { activate("basics"); return; }
-    activate(panel.id.replace("panel-", ""));
-    if (node.tagName === "DETAILS") node.open = true;
-    requestAnimationFrame(() => node.scrollIntoView({ block: "start", behavior: "instant" }));
-  }
-  for (const tab of tabs) {
-    tab.addEventListener("click", () => activate(tab.dataset.tab, { updateHash: true }));
-    tab.addEventListener("keydown", (event) => {
-      let index = tabs.indexOf(tab);
-      // RTL visual order runs from right to left.
-      if (event.key === "ArrowLeft") index = (index + 1) % tabs.length;
-      else if (event.key === "ArrowRight") index = (index - 1 + tabs.length) % tabs.length;
-      else if (event.key === "Home") index = 0;
-      else if (event.key === "End") index = tabs.length - 1;
-      else return;
-      event.preventDefault();
-      activate(tabs[index].dataset.tab, { focus: true, updateHash: true });
-    });
-  }
-  window.addEventListener("hashchange", followHash);
-  window.addEventListener("popstate", followHash);
-  for (const link of document.querySelectorAll('a[href]')) {
-    const filename = readerFilename(link.href);
-    if (!filename || link.id === "document-source" || link.id === "document-download") continue;
-    const chapter = new URL(link.href).searchParams.get("chapter");
-    link.dataset.document = filename;
-    const destination = new URL("?document=" + encodeURIComponent(filename) + "#reading", window.location.href);
-    if (/^(intro|all|chapter-\d+)$/.test(chapter || "")) destination.searchParams.set("chapter", chapter);
-    const lesson = new URL(link.href).searchParams.get("lesson");
-    if (/^[1-9]$/.test(lesson || "")) {
-      destination.searchParams.set("lesson", lesson);
-      destination.hash = "lesson-guide";
-    }
-    link.href = destination.href;
-    link.removeAttribute("target");
-  }
-  document.addEventListener("click", (event) => {
-    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    const link = event.target.closest("a[href]");
-    if (!link || link.id === "document-source" || link.id === "document-download") return;
-    const filename = link.dataset.document || readerFilename(link.href);
-    if (!readerDocuments.has(filename)) return;
-    event.preventDefault();
-    const url = new URL(window.location.href);
-    url.searchParams.set("document", filename);
-    url.searchParams.delete("chapter");
-    const chapter = new URL(link.href).searchParams.get("chapter");
-    if (/^(intro|all|chapter-\d+)$/.test(chapter || "")) url.searchParams.set("chapter", chapter);
-    const lesson = new URL(link.href).searchParams.get("lesson");
-    if (/^[1-9]$/.test(lesson || "")) url.searchParams.set("lesson", lesson);
-    if (link.id === "start-presentation") {
-      url.searchParams.set("chapter", "chapter-1");
-      url.searchParams.delete("lesson");
-    }
-    url.hash = /^[1-9]$/.test(lesson || "") ? "lesson-guide" : "reading";
-    window.history.pushState(null, "", url);
-    activate("reading");
-    $("tab-reading").focus({ preventScroll: true });
-  });
-  const toolTargets={binding:["basics","binding-explainer"],lab:["lab","structures"],epitope:["lab","epitope-lab"],sequences:["sequences","sequences"],comparison:["basics","molecular-roles"],datasets:["methods","datasets"],rna:["methods","rnaseq-groups"],docking:["methods","docking-validation"],papers:["literature","literature"],method:["methods","methods"],evidence:["basics","evidence-bridge"]};
-  window.researchWorkspace={
-    showLesson(){activate("basics");},
-    openTool(name){const target=toolTargets[name];if(!target)return;activate(target[0],{updateHash:true});const node=$(target[1]);for(let parent=node;parent;parent=parent.parentElement)if(parent.tagName==="DETAILS")parent.open=true;requestAnimationFrame(()=>node?.scrollIntoView({block:"start"}));},
-    async openDocument(name,chapter){activate("reading",{updateHash:true});await loadReadingDocument(name,chapter);}
-  };
-  document.dispatchEvent(new Event("research-workspace-ready"));
-  followHash();
 }
 
 const modelCopy = {
@@ -842,9 +711,12 @@ async function loadSequences() {
 }
 
 initializeBindingExplainer();
-initializeTabs();
+
 for (const section of document.querySelectorAll('#panel-basics .reading-section')) linkGlossaryTerms(section);
 const results = await Promise.allSettled([
-  loadStructures(), loadInterface(), loadLiterature(), loadDatasets(), loadSequences(),
+  ...($("molecular-stage") ? [loadStructures(), loadInterface()] : []),
+  ...($("paper-list") ? [loadLiterature()] : []),
+  ...($("datasets-table") ? [loadDatasets()] : []),
+  ...($("sequence-select") ? [loadSequences()] : []),
 ]);
 document.documentElement.dataset.researchState = results.every((result) => result.status === "fulfilled") ? "ready" : "partial";

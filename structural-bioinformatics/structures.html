@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ساختار و نمایش سه‌بعدی | بیوانفورماتیک ساختاری</title>
+<meta name="description" content="مدل‌های مولکولی، زنجیره‌ها و توالی‌ها؛ برای مشاهده و اندازه‌گیری ساختارهای واقعی.">
+<link rel="stylesheet" href="../assets/css/styles.css">
+<link rel="stylesheet" href="assets/research.css">
+<link rel="stylesheet" href="assets/course.css">
+<link rel="stylesheet" href="assets/sections.css">
+<script type="importmap">{"imports":{"three":"./assets/vendor/three.module.js"}}</script>
+<script src="assets/vendor/markdown-it/markdown-it.min.js"></script>
+<script type="module" src="assets/site.js?v=20261025-sections"></script>
+<script type="module" src="assets/app.js?v=20261025-sections"></script>
+<script type="module" src="assets/codon-lesson.js?v=20261025-sections"></script>
+</head>
+<body class="research-page separated-site" data-section="structures">
+<a class="skip-link" href="#main">رفتن به محتوا</a>
+<header class="site-header">
+<a class="site-name" href="index.html">بیوانفورماتیک ساختاری</a>
+<a href="https://github.com/koolfox/koolfox.github.io/tree/main/structural-bioinformatics">دربارهٔ منابع و کد</a>
+</header>
+<nav id="section-nav" aria-label="بخش‌های پروژه"><a href="course.html" id="tab-basics">درس و سیلابس</a><a href="research.html" id="nav-research">پژوهش</a><a href="library.html" id="tab-reading">کتابخانه</a><a href="papers.html" id="tab-literature">مقاله‌ها و بررسی‌ها</a><a href="structures.html" id="tab-lab" aria-current="page">ساختار و نمایش سه‌بعدی</a><a href="datasets.html" id="tab-methods">دیتاست‌ها</a><a href="docking.html" id="nav-docking">داکینگ مولکولی</a><a href="exercises.html" id="nav-exercises">تمرین‌ها و آزمون‌ها</a><a href="presentations.html" id="nav-presentations">اسلایدها و ارائه</a></nav>
+<main id="main">
+<header class="page-heading"><h1>ساختار و نمایش سه‌بعدی</h1><p>مدل‌های مولکولی، زنجیره‌ها و توالی‌ها؛ برای مشاهده و اندازه‌گیری ساختارهای واقعی.</p></header>
+<noscript><p>محتوای تعاملی به JavaScript نیاز دارد.
+<a href="https://github.com/koolfox/koolfox.github.io/tree/main/structural-bioinformatics/docs">متن‌ها و فایل‌های پروژه</a>
+مستقل قابل دریافت‌اند.</p></noscript>
+<nav class="local-nav"><a href="#structures" >مدل‌های سه‌بعدی</a><a href="#sequences" id="tab-sequences">زنجیره‌ها و توالی‌ها</a><a href="#molecular-roles" >شکل آموزشی آنتی‌بادی</a></nav>
+    <section data-course-tool="lab" id="structures" class="structure-section" aria-label="کاوش ساختارهای مولکولی">
+      <div class="viewer-toolbar">
+        <div class="structure-select-group">
+          <label for="structure-select">ساختار آزمایشگاهی</label>
+          <select id="structure-select" disabled>
+            <optgroup label="تحلیل اصلی: TNF و آدالیموماب">
+              <option value="3WD5" dir="ltr">3WD5 · TNF و Fab آدالیموماب</option>
+              <option value="1TNF" dir="ltr">1TNF · TNF آزاد</option>
+            </optgroup>
+            <optgroup label="مقایسه‌های اختیاری؛ خارج از تحلیل اصلی">
+              <option value="1B09" dir="ltr">1B09 · CRP</option>
+              <option value="4FM9" dir="ltr">4FM9 · هستهٔ TOP2A و DNA</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="representation-field">
+          <label for="representation-select">نوع نمایش</label>
+          <select id="representation-select" aria-describedby="representation-help" disabled>
+            <option value="trace">مسیر Cα · بررسی نقاط</option>
+            <option value="cartoon">نمای نواری · شکل تاخوردگی</option>
+          </select>
+        </div>
+        <div class="viewer-actions" aria-label="کنترل نمای مولکولی">
+          <button type="button" id="spin-button" aria-pressed="false" disabled>چرخش آرام</button>
+          <button type="button" id="reset-button" disabled>بازنشانی نما</button>
+          <button type="button" id="zoom-in" aria-label="بزرگ‌نمایی ساختار" disabled>بزرگ‌تر</button>
+          <button type="button" id="zoom-out" aria-label="کوچک‌نمایی ساختار" disabled>کوچک‌تر</button>
+        </div>
+      </div>
+      <p id="representation-help" class="representation-help">مسیر نقاط و نمای نواری، دو روش رسم یک ساختارند. <a href="docs/molecular-display-audit.fa.md">تطبیق 3WD5 با RCSB و علت تفاوت ظاهر</a></p>
+      <figure class="molecular-figure">
+        <div id="molecular-stage" class="molecular-stage" data-state="loading" aria-busy="true">
+          <img id="model-fallback" class="model-fallback" src="assets/complex-preview.png"
+            width="1620" height="1080" alt="تصویر ثابت ساختار 3WD5: یک زیرواحد TNF و زنجیره‌های H و L قطعهٔ Fab آدالیموماب.">
+          <p id="stage-status" class="stage-status" role="status">در حال بارگذاری مختصات آزمایشگاهی…</p>
+        </div>
+        <div id="reference-stage" class="molecular-stage reference-stage" data-state="idle" aria-busy="false" hidden>
+          <p id="reference-load-status" class="stage-status" role="status">در حال بارگذاری نمای نواری…</p>
+        </div>
+        <div class="model-detail-bar">
+          <p id="model-description">یک زیرواحد <bdi>TNF</bdi> و قطعهٔ <bdi>Fab</bdi> آدالیموماب</p>
+          <a id="model-source" href="https://www.rcsb.org/structure/3WD5" target="_blank" rel="noopener noreferrer"><bdi>3WD5</bdi> در <bdi>RCSB PDB</bdi></a>
+        </div>
+        <div id="chain-legend" class="chain-legend" aria-label="نمایش و رنگ زنجیره‌ها"></div>
+        <p id="model-caption" class="model-caption">نمای اولیهٔ ثابت: <bdi>3WD5</bdi>. این فایل آنتی‌بادی کامل یا TNF سه‌زیرواحدی را نمایش نمی‌دهد؛ همسایه‌های تقارن بلوریِ مؤثر در اپی‌توپ نیز در این نما نیستند.</p>
+      </figure>
+      <div class="inspection-row">
+        <p id="viewer-help">برای چرخش بکشید؛ با اسکرول یا دو انگشت بزرگ‌نمایی کنید. با تمرکز روی هر نما: کلیدهای جهتی، <bdi>+</bdi>، <bdi>−</bdi> و <bdi>0</bdi>. در مسیر Cα، انتخاب نقطه با کلیک یا فهرست زیر.</p>
+        <div class="residue-inspection">
+          <label for="residue-select">بررسی یک نقطه</label>
+          <select id="residue-select" disabled><option value="">یک نقطه انتخاب کنید</option></select>
+        </div>
+      </div>
+      <p id="residue-readout" class="residue-readout" role="status">مختصات هر نقطه در واحد آنگستروم گزارش می‌شود.</p>
+      <noscript><p class="inline-error">برای کاوش تعاملی، JavaScript را فعال کنید. تصویر ثابت بالا فقط کمپلکس 3WD5 را نشان می‌دهد؛ مقاله‌ها و روش تحقیق از پیوندهای مستندات در انتهای صفحه قابل دسترسی‌اند.</p></noscript>
+    </section>
+    <section id="learning-guide" class="reading-section" aria-labelledby="learning-title">
+      <h2 id="learning-title">این شکل را چطور بخوانیم؟</h2>
+      <dl class="learning-terms">
+        <div><dt><bdi>TNF-α</bdi></dt><dd>یک پروتئین پیام‌رسان در التهاب است. در مدل <bdi>3WD5</bdi> زنجیرهٔ <bdi>A</bdi>، بخشی از همین پروتئین را نشان می‌دهد.</dd></div>
+        <div><dt><bdi>Fab</bdi></dt><dd>بخش شناسایی آنتی‌ژن در آنتی‌بادی است. در این ساختار، زنجیره‌های <bdi>H</bdi> و <bdi>L</bdi> قطعهٔ <bdi>Fab</bdi> آدالیموماب‌اند.</dd></div>
+        <div><dt><bdi>Cα</bdi></dt><dd>کربن آلفای هر آمینواسید در ستون اصلی پروتئین است. نقاط مدل، جای این اتم‌ها را نشان می‌دهند؛ لوله، مسیر بین آن‌ها را برای دیدن شکل روشن‌تر می‌کند.</dd></div>
+        <div><dt>آنگستروم <bdi>Å</bdi></dt><dd>واحد فاصله در مقیاس اتمی است؛ <bdi>1 Å = 0.1 nm</bdi>. مختصات نقطهٔ انتخاب‌شده و فاصله‌های نقشه با همین واحد گزارش می‌شوند.</dd></div>
+      </dl>
+      <ol class="reading-steps">
+        <li>برای دیدن شکل سه‌زیرواحدی <bdi>TNF</bdi>، از فهرست بالا <bdi>1TNF</bdi> را انتخاب کنید.</li>
+        <li>در <bdi>3WD5</bdi> زنجیره‌های <bdi>H/L</bdi> را خاموش و روشن کنید تا جای <bdi>Fab</bdi> نسبت به <bdi>TNF</bdi> مشخص شود.</li>
+        <li><a href="#interface">نقاط رابط و نقشهٔ تماس</a> نشان می‌دهند کدام آمینواسیدها در همین فایل به یکدیگر نزدیک‌اند.</li>
+      </ol>
+    </section>
+    <figure class="research-media teaching-figure comparison-figure">
+      <img src="assets/structure-comparison.png" width="2520" height="936" loading="lazy" alt="سه نمای مختصاتی واقعی: TNF آزاد در 1TNF، TNF و Fab در 3WD5، و هستهٔ TOP2A همراه DNA در 4FM9.">
+      <figcaption>سه ساختار آزمایشگاهی؛ پنل‌ها مستقل از هم مقیاس شده‌اند. <bdi>1TNF</bdi> سه زیرواحد آزاد و <bdi>3WD5</bdi> یک زیرواحد و <bdi>Fab</bdi> را نشان می‌دهند. <bdi>4FM9</bdi> هستهٔ ناقص <bdi>TOP2A</bdi> با <bdi>DNA</bdi> در واحد نامتقارن است؛ <bdi>RNA</bdi>، پروتئین کامل یا نتیجهٔ داکینگ نیست. <a href="assets/structure-comparison.png" target="_blank" rel="noopener noreferrer">دیدن تصویر اصلی</a></figcaption>
+    </figure>
+    <details class="future-work construct-caveat">
+      <summary>نکتهٔ مقایسه: سازهٔ آزمایشگاهی با توالی مرجع یکسان نیست</summary>
+      <p class="section-description">توالی سازه‌های <bdi>1TNF</bdi> و <bdi>3WD5</bdi> در دو جایگاه تفاوت دارد؛ هر دو با مرجع کنونی <bdi>TNF</bdi> نیز کاملاً یکسان نیستند. تفاوت شکل این فایل‌ها را نمی‌توان خودکار به اتصال آدالیموماب نسبت داد؛ سازه و محیط بلوری هم متفاوت‌اند. این اختلافِ منبع، به‌تنهایی «جهش بیماری‌زا» نیست. <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/sequences-primer.fa.md" target="_blank" rel="noopener noreferrer">جایگاه‌ها و روش مقایسهٔ توالی</a></p>
+    </details>
+
+    <section id="interface" class="reading-section" aria-labelledby="interface-title">
+      <div class="section-heading">
+        <h2 id="interface-title">آنچه در رابط اتصال اندازه گرفته‌ایم</h2>
+        <a href="data/processed/interface-summary.json">دادهٔ محاسبه و پارامترها</a>
+      </div>
+      <p class="section-description">تماس‌ها از اتم‌های سنگین با occupancy مثبت در زنجیره‌های <bdi>A/H/L</bdi> ساختار <bdi>3WD5</bdi> استخراج شده‌اند. این محاسبه، بخشی از رابط موجود در فایل را توصیف می‌کند.</p>
+      <dl class="measurement-list" aria-live="polite">
+        <div><dt>جفت آمینواسید</dt><dd id="stat-residue-pairs">—</dd></div>
+        <div><dt>جفت اتم در تماس</dt><dd id="stat-atom-contacts">—</dd></div>
+        <div><dt>آمینواسید رابط در <bdi>TNF</bdi></dt><dd id="stat-interface-residues">—</dd></div>
+        <div><dt>حد فاصله</dt><dd><span id="stat-cutoff">—</span> <bdi>Å</bdi></dd></div>
+      </dl>
+      <p id="interface-status" class="section-status" role="status">در حال خواندن خلاصهٔ محاسبه…</p>
+      <button id="interface-button" type="button" aria-pressed="false" disabled>نمایش نقاط رابط روی TNF</button>
+      <div class="interface-media">
+        <figure class="research-media">
+          <img src="assets/interface-map.png" width="1980" height="828" loading="lazy" alt="نقشهٔ تماس آمینواسیدهای زنجیرهٔ A از TNF با زنجیره‌های H و L قطعهٔ Fab در 3WD5، در آستانهٔ 4.5 آنگستروم.">
+          <figcaption>در هر بخش، محور عمودی شمارهٔ آمینواسید <bdi>TNF</bdi> و محور افقی شمارهٔ آمینواسید <bdi>Fab</bdi> است. رنگ هر نقطه کمترین فاصلهٔ اتم‌های سنگین آن جفت را نشان می‌دهد. <a href="assets/interface-map.png">دیدن نقشه در اندازهٔ اصلی</a> · <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/course-guide.fa.md" target="_blank" rel="noopener noreferrer">روش محاسبه و خواندن نقشه</a></figcaption>
+        </figure>
+        <figure class="research-media">
+          <video controls preload="none" poster="assets/complex-preview.png" width="1280" height="720" aria-label="انیمیشن مشاهدهٔ ساختار TNF و Fab آدالیموماب">
+            <source src="assets/tnf-adalimumab.mp4" type="video/mp4">
+            <a href="assets/tnf-adalimumab.mp4">دانلود انیمیشن ساختار</a>
+          </video>
+          <figcaption>نمای مشاهده‌شدهٔ 3WD5 با ManimGX؛ فقط دوربین و آشکارشدن زنجیره‌ها حرکت می‌کنند. <a href="assets/animation-provenance.json">منشأ و پارامترهای ویدئو</a></figcaption>
+        </figure>
+      </div>
+    </section>
+    
+    
+
+      <section data-course-tool="sequences" id="sequences" class="reading-section" aria-labelledby="sequences-title">
+        <div class="section-heading"><h2 id="sequences-title">از توالی تا زنجیرهٔ دیده‌شده</h2><a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/sequences-primer.fa.md" target="_blank" rel="noopener noreferrer">راهنمای توالی‌ها و محدودیت‌ها</a></div>
+        <p class="section-description"><bdi>mRNA</bdi> یک توالی نوکلئوتیدی است؛ بخش کدکنندهٔ آن، <bdi>CDS</bdi>، به توالی آمینواسیدیِ پروتئین ترجمه می‌شود. ساختار سه‌بعدی یک لایهٔ دیگر است: در مدل‌های حاضر مختصات پروتئین داریم و در <bdi>4FM9</bdi>، <bdi>DNA</bdi>؛ ساختار سه‌بعدی <bdi>RNA</bdi> در این داده‌ها وجود ندارد.</p>
+        <figure class="research-media teaching-figure sequence-diagram">
+          <img src="assets/sequence-to-structure.svg" width="1100" height="340" loading="lazy" alt="نمودار آموزشی تفاوت DNA، mRNA، توالی پروتئین و مختصات ساختار آزمایشگاهی؛ مقدار بیان و تاخوردگی RNA داده‌های جدا هستند.">
+          <figcaption>شماتیک آموزشیِ لایه‌های اطلاعات؛ از داشتن توالی، مقدار بیان ژن یا شکل تاخوردهٔ <bdi>RNA</bdi> به دست نمی‌آید. <a href="assets/sequence-to-structure.svg" target="_blank" rel="noopener noreferrer">دیدن نمودار اصلی</a></figcaption>
+        </figure>
+        <div class="sequence-selector"><label for="sequence-select">رکورد مرجع یا زنجیرهٔ ساختار</label><select id="sequence-select" disabled><option>در حال بارگذاری توالی‌ها…</option></select></div>
+        <p id="sequence-status" class="section-status" data-state="loading" role="status" aria-live="polite">در حال خواندن فهرست توالی‌های مستند…</p>
+        <div id="sequence-record" hidden aria-busy="false">
+          <dl id="sequence-metadata" class="sequence-metadata"></dl>
+          <div class="sequence-actions">
+            <label class="rna-display-control"><input id="rna-display" type="checkbox" disabled>نمایش <bdi>U</bdi> به جای <bdi>T</bdi>؛ فقط تغییر نمایش <bdi>mRNA</bdi></label>
+            <div><button id="sequence-copy" type="button" disabled>کپی توالی</button><a id="sequence-download" download>دریافت فایل اصلی FASTA</a></div>
+          </div>
+          <p id="sequence-preview-label" class="section-status">پیش‌نمایش توالی واقعی؛ فایل اصلی کامل است.</p>
+          <pre id="sequence-preview" class="sequence-preview" dir="ltr" tabindex="0" aria-label="پیش‌نمایش توالی واقعی"></pre>
+          <p id="sequence-display-note" class="section-description"></p>
+          <details class="future-work sequence-limitations" open>
+            <summary>محدودیت همین رکورد</summary>
+            <div id="sequence-limitations"></div>
+          </details>
+        </div>
+        <section id="codon-lesson" class="reading-section" aria-labelledby="codon-title">
+          <h2 id="codon-title">کدون چگونه به آمینواسید می‌رسد؟</h2>
+          <p class="section-description">هر کدون در بخش کدکننده، <bdi>CDS</bdi>، سه باز دارد. از شروع CDS ثبت‌شده می‌خوانیم؛ کل RNA را دلخواه سه‌تا سه‌تا ترجمه نمی‌کنیم. این درس، توالی مرجع را نشان می‌دهد و با شمارش RNA در بیمار فرق دارد. <a href="docs/codons-primer.fa.md">درس باز، کدون و آمینواسید با مثال واقعی</a></p>
+          <div class="sequence-selector"><label for="codon-gene">نمونهٔ RNA مرجع</label><select id="codon-gene" disabled><option>در حال خواندن…</option></select></div>
+          <p id="codon-status" class="section-status" data-state="loading" role="status">در حال خواندن نمونه‌های کدون…</p>
+          <div id="codon-content" hidden>
+            <p class="section-description">۱۲ کدون اول از چپ به راست، در جهت <bdi>5′ → 3′</bdi>. یک کدون را انتخاب کنید؛ بخش میانیِ توالی در این پیش‌نمایش نیست.</p>
+            <ol id="codon-strip" class="codon-strip" dir="ltr" aria-label="دوازده کدون واقعی آغاز CDS"></ol>
+            <button id="codon-stop" type="button" aria-pressed="false" disabled>دیدن کدون پایان CDS</button>
+            <p id="codon-number" class="section-status" aria-live="polite"></p>
+            <dl id="codon-readout" class="sequence-metadata"></dl>
+            <p id="codon-note" class="section-description"></p>
+            <p class="section-description">نمایش <bdi>U</bdi> به جای <bdi>T</bdi>، فقط تبدیل حروف رکورد مرجع mRNA است؛ شکل RNA یا توالی اختصاصی بیمار تولید نمی‌شود. <a id="codon-reference" target="_blank" rel="noopener noreferrer">رکورد اصلی</a></p>
+            <details class="future-work"><summary>جدول کامل ۶۴ کدونِ کد استاندارد</summary>
+              <p class="section-description">۶۱ کدون برای ۲۰ نوع آمینواسید و سه کدون پایان. ستون T قرارداد حروف است. <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi#SG1" target="_blank" rel="noopener noreferrer">جدول NCBI</a></p>
+              <div class="table-scroll" tabindex="0" role="region" aria-label="جدول کدون‌ها"><table><thead><tr><th>کدون RNA</th><th>نمای T</th><th>علامت آمینواسید</th><th>نام</th></tr></thead><tbody id="codon-code-body"></tbody></table></div>
+            </details>
+            <details class="future-work"><summary>در خود آدالیموماب چه حروفی داریم؟</summary>
+              <p class="section-description">این‌ها آمینواسیدهای توالی اعلام‌شدهٔ زنجیره‌های <bdi>H/L</bdi> قطعهٔ Fab در <bdi>3WD5</bdi> هستند؛ همهٔ دارو نیستند. چند کدون می‌توانند یک آمینواسید بسازند، پس از این حروف یک RNA یکتا تعیین نمی‌شود.</p>
+              <dl id="codon-drug-chains" class="sequence-metadata"></dl>
+            </details>
+          </div>
+        </section>
+        <p class="section-description sequence-concepts">برای زنجیره‌های <bdi>3WD5</bdi> دو نوع رکورد داریم: توالی اعلام‌شدهٔ سازه و آمینواسیدهای دارای مختصات پذیرفته‌شده. تعداد آمینواسیدهای فایل توالی می‌تواند با تعداد نقاط <bdi>Cα</bdi> فرق کند؛ بعضی اتم‌ها ثبت نشده‌اند یا اشغال‌پذیریِ صفر دارند. زنجیره‌های <bdi>H/L</bdi> قطعهٔ دارویی‌اند، نه ژن انسانی به نام آدالیموماب.</p>
+        <details class="future-work construct-caveat">
+          <summary>اختلاف واقعی مرجع و سازهٔ TNF را چگونه بخوانیم؟</summary>
+          <p class="section-description">زنجیرهٔ <bdi>A</bdi> در <bdi>3WD5</bdi> در جایگاه ۳۱ دارای <bdi>D</bdi> است؛ جایگاه مرتبط ۱۰۷ در مرجع <bdi>NP_000585.2</bdi> دارای <bdi>R</bdi> است. سازهٔ <bdi>1TNF</bdi> نیز در جایگاه ۱۴۳ دارای <bdi>L</bdi> است، درحالی‌که مرجع در جایگاه ۲۱۹ دارای <bdi>D</bdi> است. این‌ها اختلاف توالیِ منابع‌اند؛ برای مقایسهٔ ساختاری باید ثبت شوند. <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/sequences-primer.fa.md" target="_blank" rel="noopener noreferrer">جزئیات و شماره‌گذاری</a></p>
+        </details>
+      </section>
+    
+<section data-course-tool="comparison" id="molecular-roles" class="reading-section" aria-labelledby="roles-title">
+        <h2 id="roles-title">در این داستان هر مولکول چه نقشی دارد؟</h2>
+        <dl class="learning-terms molecular-roles">
+          <div><dt>آدالیموماب</dt><dd>داروی آنتی‌بادی از نوع <bdi>IgG1</bdi> است. با بخش‌های شناسایی خود به <bdi>TNF</bdi> متصل می‌شود و پیام‌رسانی وابسته به آن را مهار می‌کند.</dd></div>
+          <div><dt><bdi>TNF-α</bdi></dt><dd>پروتئین پیام‌رسان التهابی؛ شکل محلول آن می‌تواند به صورت سه‌زیرواحدی باشد. <bdi>3WD5</bdi> فقط یک زیرواحد همراه با <bdi>Fab</bdi> را در نمای حاضر نشان می‌دهد.</dd></div>
+          <div><dt><bdi>CRP</bdi></dt><dd>پروتئین پاسخ التهابی که مقدارش در خون پیگیری می‌شود. نشانگر بالینی است؛ کاهش آن به‌تنهایی محل اتصال مولکولی دارو را تعیین نمی‌کند.</dd></div>
+          <div><dt><bdi>TOP2A</bdi></dt><dd>ژن <bdi>TOP2A</bdi> پروتئین توپوایزومراز <bdi>IIα</bdi> را می‌سازد؛ این آنزیم در هستهٔ سلول در تنظیم پیچ‌خوردگی <bdi>DNA</bdi> و تقسیم سلول نقش دارد. مقایسهٔ آن با التهاب و سرطان به شواهد جداگانه نیاز دارد؛ هدف اتصال آدالیموماب در این پروژه <bdi>TNF</bdi> است.</dd></div>
+        </dl>
+        <figure class="research-media teaching-figure anatomy-figure">
+          <img src="assets/antibody-anatomy.svg" width="900" height="450" alt="نمودار آموزشی آنتی‌بادی کامل IgG و اجزای Fab، Fc، زنجیره‌های سنگین و سبک.">
+          <figcaption>شماتیک آموزشیِ آنتی‌بادی کامل؛ مختصات آزمایشگاهی نیست. <bdi>Fab</bdi> بخش شناسایی آنتی‌ژن است و شامل بخش‌هایی از یک زنجیرهٔ سنگین و یک زنجیرهٔ سبک می‌شود. مدل <bdi>3WD5</bdi> فقط قطعهٔ <bdi>Fab</bdi> را دارد. <a href="assets/antibody-anatomy.svg" target="_blank" rel="noopener noreferrer">دیدن شکل در اندازهٔ اصلی</a></figcaption>
+        </figure>
+      </section><section data-course-tool="binding" id="binding-explainer" class="reading-section" aria-labelledby="binding-title">
+        <h2 id="binding-title">اتصال دارو چطور پیام التهاب را کم می‌کند؟</h2>
+        <p class="section-description"><bdi>TNF</bdi> پیام‌رسان، <bdi>TNFR</bdi> گیرندهٔ روی سلول و آدالیموماب آنتی‌بادیِ متصل‌شونده به <bdi>TNF</bdi> است. سه مرحله را ببینید؛ شکل زیر یک طرح مفهومی است و از مختصات اتمی یا زمان واقعی واکنش ساخته نشده است.</p>
+        <div class="binding-steps" role="group" aria-label="مراحل مفهومی مهار پیام التهاب">
+          <button type="button" data-binding-step="0" aria-pressed="true">۱. پیام‌رسان و گیرنده</button>
+          <button type="button" data-binding-step="1" aria-pressed="false">۲. اتصال آدالیموماب</button>
+          <button type="button" data-binding-step="2" aria-pressed="false">۳. پیام‌رسانی کمتر</button>
+        </div>
+        <div id="binding-diagram" class="binding-diagram"></div>
+        <p id="binding-explanation" class="binding-explanation" role="status"></p>
+        <p class="section-description">تشبیه «قفل و کلید» کمک می‌کند اتصال به یک هدف مشخص را تصور کنیم؛ پروتئین‌ها انعطاف‌پذیرند و شیمی سطح هم اهمیت دارد. <a href="docs/binding-mechanism.fa.md">شرح قدم‌به‌قدم اتصال، میل اتصال و اثر درمان</a> · <a href="https://doi.org/10.1074/jbc.M113.491530" target="_blank" rel="noopener noreferrer">شاهد تجربی اتصال</a></p>
+      </section>
+<nav class="section-documents" aria-label="متن‌های این بخش"><a href="structures.html?document=molecular-display-audit.fa.md&amp;chapter=all#reading" >محدوده و صحت نمایش</a><a href="structures.html?document=structural-method.fa.md&amp;chapter=all#reading" >روش اندازه‌گیری ساختاری</a><a href="structures.html?document=visualization-tools.fa.md&amp;chapter=all#reading" >ابزارهای نمایش</a><a href="structures.html?document=sequences-primer.fa.md&amp;chapter=all#reading" >خواندن توالی‌ها</a></nav><div id="panel-reading" class="research-panel">
+      <section id="reading" class="reading-section" aria-labelledby="reading-title">
+        <div class="section-heading"><h2 id="reading-title">متن‌ها و راهنماها</h2><a id="document-source" href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/research-questions.fa.md" target="_blank" rel="noopener noreferrer">نسخهٔ اصلی در GitHub</a></div>
+        <p class="section-description">متن‌های پروژه را اینجا بخوانید؛ از فهرست فصل‌ها یک بخش یا متن کامل را انتخاب کنید. فرمول‌ها و نمودارها از همان فایل منبع نمایش داده می‌شوند.</p>
+        <div class="reading-controls">
+          <div><label for="document-select">انتخاب متن</label><select id="document-select" disabled><option>در حال آماده‌سازی کتابچه…</option></select></div>
+          <div><label for="chapter-select">فصل یا متن کامل</label><select id="chapter-select" aria-label="گام ارائه یا فصل کتابچه" disabled><option value="all">متن کامل</option></select></div>
+        </div>
+        <div class="reading-actions">
+          <div><button id="chapter-prev" type="button" disabled>فصل قبلی</button><button id="chapter-next" type="button" disabled>فصل بعدی</button><button id="presentation-view" type="button" aria-pressed="false" hidden>نمای مطالعه</button></div>
+          <a id="slide-launch" href="presentation.html#slide-1" hidden>نمایش اسلایدی</a>
+          <a id="document-download" href="docs/research-questions.fa.md" download>دریافت فایل Markdown</a>
+        </div>
+        <p id="reading-status" class="section-status" data-state="idle" role="status" aria-live="polite">در حال دریافت متن انتخاب‌شده…</p>
+        <p id="presentation-help" class="intro-note" hidden>متن ارائه برای مخاطبان کلاس نوشته شده است. با دکمه‌ها یا <bdi>PageDown / PageUp</bdi> حرکت کنید؛ برای نمایش روی پرده، «نمایش اسلایدی» را انتخاب کنید.</p>
+        <nav id="document-toc" class="document-toc" aria-label="فصل‌های این متن" hidden></nav>
+        <article id="markdown-content" class="markdown-content" tabindex="0" aria-busy="false"></article>
+      </section>
+    </div>
+
+</main>
+<footer class="site-footer">
+<p>پروژهٔ درس بیوانفورماتیک ساختاری · منابع علمی و حدود هر نتیجه در بخش مربوط آمده‌اند.</p>
+<a href="index.html">فهرست بخش‌ها</a>
+</footer>
+</body>
+</html>

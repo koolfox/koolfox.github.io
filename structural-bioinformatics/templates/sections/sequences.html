@@ -1,0 +1,54 @@
+
+      <section data-course-tool="sequences" id="sequences" class="reading-section" aria-labelledby="sequences-title">
+        <div class="section-heading"><h2 id="sequences-title">از توالی تا زنجیرهٔ دیده‌شده</h2><a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/sequences-primer.fa.md" target="_blank" rel="noopener noreferrer">راهنمای توالی‌ها و محدودیت‌ها</a></div>
+        <p class="section-description"><bdi>mRNA</bdi> یک توالی نوکلئوتیدی است؛ بخش کدکنندهٔ آن، <bdi>CDS</bdi>، به توالی آمینواسیدیِ پروتئین ترجمه می‌شود. ساختار سه‌بعدی یک لایهٔ دیگر است: در مدل‌های حاضر مختصات پروتئین داریم و در <bdi>4FM9</bdi>، <bdi>DNA</bdi>؛ ساختار سه‌بعدی <bdi>RNA</bdi> در این داده‌ها وجود ندارد.</p>
+        <figure class="research-media teaching-figure sequence-diagram">
+          <img src="assets/sequence-to-structure.svg" width="1100" height="340" loading="lazy" alt="نمودار آموزشی تفاوت DNA، mRNA، توالی پروتئین و مختصات ساختار آزمایشگاهی؛ مقدار بیان و تاخوردگی RNA داده‌های جدا هستند.">
+          <figcaption>شماتیک آموزشیِ لایه‌های اطلاعات؛ از داشتن توالی، مقدار بیان ژن یا شکل تاخوردهٔ <bdi>RNA</bdi> به دست نمی‌آید. <a href="assets/sequence-to-structure.svg" target="_blank" rel="noopener noreferrer">دیدن نمودار اصلی</a></figcaption>
+        </figure>
+        <div class="sequence-selector"><label for="sequence-select">رکورد مرجع یا زنجیرهٔ ساختار</label><select id="sequence-select" disabled><option>در حال بارگذاری توالی‌ها…</option></select></div>
+        <p id="sequence-status" class="section-status" data-state="loading" role="status" aria-live="polite">در حال خواندن فهرست توالی‌های مستند…</p>
+        <div id="sequence-record" hidden aria-busy="false">
+          <dl id="sequence-metadata" class="sequence-metadata"></dl>
+          <div class="sequence-actions">
+            <label class="rna-display-control"><input id="rna-display" type="checkbox" disabled>نمایش <bdi>U</bdi> به جای <bdi>T</bdi>؛ فقط تغییر نمایش <bdi>mRNA</bdi></label>
+            <div><button id="sequence-copy" type="button" disabled>کپی توالی</button><a id="sequence-download" download>دریافت فایل اصلی FASTA</a></div>
+          </div>
+          <p id="sequence-preview-label" class="section-status">پیش‌نمایش توالی واقعی؛ فایل اصلی کامل است.</p>
+          <pre id="sequence-preview" class="sequence-preview" dir="ltr" tabindex="0" aria-label="پیش‌نمایش توالی واقعی"></pre>
+          <p id="sequence-display-note" class="section-description"></p>
+          <details class="future-work sequence-limitations" open>
+            <summary>محدودیت همین رکورد</summary>
+            <div id="sequence-limitations"></div>
+          </details>
+        </div>
+        <section id="codon-lesson" class="reading-section" aria-labelledby="codon-title">
+          <h2 id="codon-title">کدون چگونه به آمینواسید می‌رسد؟</h2>
+          <p class="section-description">هر کدون در بخش کدکننده، <bdi>CDS</bdi>، سه باز دارد. از شروع CDS ثبت‌شده می‌خوانیم؛ کل RNA را دلخواه سه‌تا سه‌تا ترجمه نمی‌کنیم. این درس، توالی مرجع را نشان می‌دهد و با شمارش RNA در بیمار فرق دارد. <a href="docs/codons-primer.fa.md">درس باز، کدون و آمینواسید با مثال واقعی</a></p>
+          <div class="sequence-selector"><label for="codon-gene">نمونهٔ RNA مرجع</label><select id="codon-gene" disabled><option>در حال خواندن…</option></select></div>
+          <p id="codon-status" class="section-status" data-state="loading" role="status">در حال خواندن نمونه‌های کدون…</p>
+          <div id="codon-content" hidden>
+            <p class="section-description">۱۲ کدون اول از چپ به راست، در جهت <bdi>5′ → 3′</bdi>. یک کدون را انتخاب کنید؛ بخش میانیِ توالی در این پیش‌نمایش نیست.</p>
+            <ol id="codon-strip" class="codon-strip" dir="ltr" aria-label="دوازده کدون واقعی آغاز CDS"></ol>
+            <button id="codon-stop" type="button" aria-pressed="false" disabled>دیدن کدون پایان CDS</button>
+            <p id="codon-number" class="section-status" aria-live="polite"></p>
+            <dl id="codon-readout" class="sequence-metadata"></dl>
+            <p id="codon-note" class="section-description"></p>
+            <p class="section-description">نمایش <bdi>U</bdi> به جای <bdi>T</bdi>، فقط تبدیل حروف رکورد مرجع mRNA است؛ شکل RNA یا توالی اختصاصی بیمار تولید نمی‌شود. <a id="codon-reference" target="_blank" rel="noopener noreferrer">رکورد اصلی</a></p>
+            <details class="future-work"><summary>جدول کامل ۶۴ کدونِ کد استاندارد</summary>
+              <p class="section-description">۶۱ کدون برای ۲۰ نوع آمینواسید و سه کدون پایان. ستون T قرارداد حروف است. <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi#SG1" target="_blank" rel="noopener noreferrer">جدول NCBI</a></p>
+              <div class="table-scroll" tabindex="0" role="region" aria-label="جدول کدون‌ها"><table><thead><tr><th>کدون RNA</th><th>نمای T</th><th>علامت آمینواسید</th><th>نام</th></tr></thead><tbody id="codon-code-body"></tbody></table></div>
+            </details>
+            <details class="future-work"><summary>در خود آدالیموماب چه حروفی داریم؟</summary>
+              <p class="section-description">این‌ها آمینواسیدهای توالی اعلام‌شدهٔ زنجیره‌های <bdi>H/L</bdi> قطعهٔ Fab در <bdi>3WD5</bdi> هستند؛ همهٔ دارو نیستند. چند کدون می‌توانند یک آمینواسید بسازند، پس از این حروف یک RNA یکتا تعیین نمی‌شود.</p>
+              <dl id="codon-drug-chains" class="sequence-metadata"></dl>
+            </details>
+          </div>
+        </section>
+        <p class="section-description sequence-concepts">برای زنجیره‌های <bdi>3WD5</bdi> دو نوع رکورد داریم: توالی اعلام‌شدهٔ سازه و آمینواسیدهای دارای مختصات پذیرفته‌شده. تعداد آمینواسیدهای فایل توالی می‌تواند با تعداد نقاط <bdi>Cα</bdi> فرق کند؛ بعضی اتم‌ها ثبت نشده‌اند یا اشغال‌پذیریِ صفر دارند. زنجیره‌های <bdi>H/L</bdi> قطعهٔ دارویی‌اند، نه ژن انسانی به نام آدالیموماب.</p>
+        <details class="future-work construct-caveat">
+          <summary>اختلاف واقعی مرجع و سازهٔ TNF را چگونه بخوانیم؟</summary>
+          <p class="section-description">زنجیرهٔ <bdi>A</bdi> در <bdi>3WD5</bdi> در جایگاه ۳۱ دارای <bdi>D</bdi> است؛ جایگاه مرتبط ۱۰۷ در مرجع <bdi>NP_000585.2</bdi> دارای <bdi>R</bdi> است. سازهٔ <bdi>1TNF</bdi> نیز در جایگاه ۱۴۳ دارای <bdi>L</bdi> است، درحالی‌که مرجع در جایگاه ۲۱۹ دارای <bdi>D</bdi> است. این‌ها اختلاف توالیِ منابع‌اند؛ برای مقایسهٔ ساختاری باید ثبت شوند. <a href="https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/docs/sequences-primer.fa.md" target="_blank" rel="noopener noreferrer">جزئیات و شماره‌گذاری</a></p>
+        </details>
+      </section>
+    

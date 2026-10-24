@@ -30,7 +30,7 @@ export async function renderDatasetWorkflow(container, unit) {
   section.append(element('h4', 'فایل‌های این تمرین'), files);
   if (item.source_url) { const a = element('a', 'دریافت ماتریس اصلی از GEO'); a.href = item.source_url; section.append(a); }
   const guide = element('a', 'راهنمای نصب و اجرای دستورها');
-  guide.href = `?unit=${unit}&part=research&document=software-workbook.fa.md&chapter=all`;
+  guide.href = 'library.html?document=software-workbook.fa.md&chapter=all#reading';
   section.append(element('p', 'فایل‌ها را می‌توانید بدون نصب بخوانید. برای بازاجرای محاسبات، راهنمای نرم‌افزار را دنبال کنید.'), guide);
   const steps = element('ol'); item.steps.forEach(text => steps.append(element('li', text)));
   section.append(element('h4', 'انجام تمرین'), steps);

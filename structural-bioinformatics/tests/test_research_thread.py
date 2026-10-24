@@ -59,9 +59,9 @@ def test_numeric_bridge_examples_match_existing_recorded_results():
     assert steps[30]["evidence_status"] == "survey_in_progress"
 
 
-def test_printable_reader_has_three_connected_stages_and_nine_chapters():
+def test_printable_textbook_has_nine_chapters_and_no_research_phases():
     text = (PROJECT / "docs/course-sessions.fa.md").read_text()
     assert len(re.findall(r"^## ", text, re.M)) == 9
-    for label in ("۱. درس", "۲. پژوهش", "۳. ارائه"):
-        assert text.count("#### " + label) == 30
-    assert "#### کارگاه و خروجی" not in text
+    assert "<!-- course:" not in text
+    assert "#### کار این فصل در مقاله" not in text
+    assert "#### یادداشت ارائه" not in text

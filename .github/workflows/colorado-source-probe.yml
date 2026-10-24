@@ -1,4 +1,4 @@
-name: Inspect official Colorado source access
+name: Retrieve official Colorado course sources
 on:
   push:
     branches: [research/colorado-source-probe-20261024]
@@ -8,54 +8,106 @@ permissions:
 jobs:
   inspect:
     runs-on: ubuntu-24.04
-    timeout-minutes: 5
+    timeout-minutes: 15
     steps:
-      - name: Inspect public certificate chains without disabling verification
+      - name: Verify the published issuer against existing OS trust
         run: |
           mkdir -p source-probe
-          for host in home.cs.colorado.edu home4.cs.colorado.edu; do
-            timeout 20 openssl s_client -connect "$host:443" -servername "$host" -showcerts </dev/null > "source-probe/$host-chain.txt" 2>&1 || true
-            openssl x509 -in "source-probe/$host-chain.txt" -noout -subject -issuer -dates -ext authorityInfoAccess || true
-          done
-      - name: Complete the public chain using an already trusted root
-        run: |
           curl --fail --silent --show-error --location http://crt.sectigo.com/SectigoPublicServerAuthenticationCAOVR36.crt -o source-probe/issuer.der
           openssl x509 -inform DER -in source-probe/issuer.der -out source-probe/issuer.pem
           openssl verify -CAfile /etc/ssl/certs/ca-certificates.crt source-probe/issuer.pem
-          openssl x509 -in source-probe/issuer.pem -noout -subject -issuer -dates
-      - name: Retrieve exact public official URLs
+      - name: Retrieve official course pages and PDFs with strict HTTPS
         run: |
-          mkdir -p source-probe
           python3 - <<'PY'
-          import hashlib, json, pathlib, ssl, urllib.request, urllib.error
+          import concurrent.futures, hashlib, json, pathlib, re, ssl, time
+          import urllib.request, urllib.error, urllib.parse
+          from html.parser import HTMLParser
+          sources = json.loads(r'''[{"id":"spring-2022","page":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/CourseContent.html","lectures":[{"number":1,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/01-Introduction.pdf"},{"number":2,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/02-ArtificialNeurons.pdf"},{"number":3,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/03-Feedforward_NN.pdf"},{"number":4,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/04-NN_Training.pdf"},{"number":5,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/05-NN_Training.pdf"},{"number":6,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/06-ConvolutionalNeuralNetworks.pdf"},{"number":7,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/07-CV_and_ImageClassification.pdf"},{"number":8,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/08-Regularization.pdf"},{"number":9,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/09-PretrainedFeaturesAndFineTuning.pdf"},{"number":10,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/10-DetectionAndSegmentation.pdf"},{"number":11,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/11-RecurrentNeuralNetworks.pdf"},{"number":12,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/12-WordEmbeddings.pdf"},{"number":13,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/13-Attention.pdf"},{"number":14,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/14-Transformers.pdf"},{"number":15,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/15-PopularTransformers.pdf"},{"number":16,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/16-ImageCaptioning.pdf"},{"number":17,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/17-VisualQuestionAnswering.pdf"},{"number":18,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/18-VisualDialog.pdf"},{"number":19,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/19_TransferLearning.pdf"},{"number":20,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/20_TransferLearning.pdf"},{"number":21,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/21_ModelCompression.pdf"},{"number":22,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/22_EfficientAndReinforcementLearning.pdf"},{"number":23,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/23_Speech.pdf"}]},{"id":"fall-2022","page":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/CourseContent.html","lectures":[{"number":1,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/01-Introduction.pdf"},{"number":2,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/02-ArtificialNeurons.pdf"},{"number":3,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/03-Feedforward_NN.pdf"},{"number":4,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/04-NN_Training.pdf"},{"number":5,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/05-NN_Training.pdf"},{"number":6,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/06-ConvolutionalNeuralNetworks.pdf"},{"number":7,"url":null},{"number":8,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/08-Regularization.pdf"},{"number":9,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/09-PretrainedFeaturesAndFineTuning.pdf"},{"number":10,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/10-DetectionAndSegmentation.pdf"},{"number":11,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/11-RecurrentNeuralNetworks.pdf"},{"number":12,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/12-WordEmbeddings.pdf"},{"number":13,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/13-Attention.pdf"},{"number":14,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/14-Transformers.pdf"},{"number":15,"url":"https://home4.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/15-PopularTransformers.pdf"},{"number":16,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/16-VisualQuestionAnswering.pdf"},{"number":17,"url":"https://home4.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/17-ImageCaptioning.pdf"},{"number":18,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/18-VisualDialog.pdf"},{"number":19,"url":"https://home4.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/19_TransferLearning.pdf"},{"number":20,"url":"https://home4.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/20_TransferLearning.pdf"},{"number":21,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/21-ResponsibleDL.pdf"},{"number":22,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/22_SpeechAndNeuralSearch.pdf"},{"number":23,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/23_ModelCompression.pdf"},{"number":24,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/24-EfficientLearning.pdf"},{"number":25,"url":"https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/25-ReinforcementLearning.pdf"}]},{"id":"spring-2024","page":"https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2024/","lectures":[{"number":1,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/01-Introduction.pdf"},{"number":2,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/02-ArtificialNeurons.pdf"},{"number":3,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/03-Feedforward_NN.pdf"},{"number":4,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/04-NN_Training-Part1.pdf"},{"number":5,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/05-NN_Training-Part2.pdf"},{"number":6,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/06-NN_Training-Part3.pdf"},{"number":7,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/07-Regularization.pdf"},{"number":8,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/08-ConvolutionalNeuralNetworks"},{"number":9,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/09-CV_and_ImageClassification.pdf"},{"number":10,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/10-Classification-RepresentationLearning-FineTuning.pdf"},{"number":11,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/11-ObjectDetection.pdf"},{"number":12,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/12-ImageToImageTranslation.pdf"},{"number":13,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/13-RecurrentNeuralNetworks.pdf"},{"number":14,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/14-NLP_and_WordEmbeddings.pdf"},{"number":15,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/15-Attention.pdf"},{"number":16,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/16-TransformersOverview.pdf"},{"number":17,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/17-PopularTransformers.pdf"},{"number":18,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/18-FoundationModelsAndPrompts"},{"number":19,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/19-MultimodalLearning.pdf"},{"number":20,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/20-SystemsPerspective.pdf"},{"number":21,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/21-SelfSupervisedLearning.pdf"},{"number":22,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/22-ModelCompression.pdf"},{"number":23,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/23-EfficientLearning.pdf"},{"number":24,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/24-ResponsibleCV-Part1.pdf"},{"number":25,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/25-ResponsibleCV-Part2.pdf"},{"number":26,"url":"https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/26-CourseSummary.pdf"}]},{"id":"spring-2025","page":"https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2025/","lectures":[{"number":1,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/01-Introduction.pdf"},{"number":2,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/02-ArtificialNeurons.pdf"},{"number":3,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/03-Feedforward_NN.pdf"},{"number":4,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/04-Gradient-Descent.pdf"},{"number":5,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/05-Optimization.pdf"},{"number":6,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/06-Capacity-Regularization-Hyperparameters.pdf"},{"number":7,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/07-ConvolutionalNeuralNetworks.pdf"},{"number":8,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/08-CNNs-for-Image-Classification.pdf"},{"number":9,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/09-Datasets-Hardware.pdf"},{"number":10,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/10-DensePredictionWithCNNs.pdf"},{"number":11,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/11-RecurrentNeuralNetworks.pdf"},{"number":12,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/12-Tokenization_and_WordEmbeddings.pdf"},{"number":13,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/13-Attention.pdf"},{"number":14,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/14-TransformerBasics.pdf"},{"number":15,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/15-PioneeringTransformers.pdf"},{"number":16,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/16-Multimodal-Vision-And-Language.pdf"},{"number":17,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/17-Audio-and-ScalingLaws.pdf"},{"number":18,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/18-FoundationModelsAndPrompts.pdf"},{"number":19,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/19-TuningFoundationModels.pdf"},{"number":20,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/20-PracticalSystemsDevelopment.pdf"},{"number":21,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/21-ModelCompression.pdf"},{"number":22,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/22-FasterLearningAndInference.pdf"},{"number":23,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/23-LearningWithLessHumanSupervision.pdf"},{"number":24,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL//24-ResponsibleNNandDL-Part1.pdf"},{"number":26,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/26-FutureOfNNandDL.pdf"},{"number":27,"url":"https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/27-CourseSummary.pdf"}]},{"id":"spring-2026","page":"https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/","lectures":[{"number":1,"url":"https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/01-Introduction.pdf"},{"number":2,"url":"https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/02-Artificial-Neurons.pdf"},{"number":3,"url":"https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/03-Fully-Connected-NN.pdf"},{"number":4,"url":"https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf"},{"number":5,"url":"https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/05-Convolutional-Neural-Networks.pdf"},{"number":6,"url":"https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/06-Shallow-Learning.pdf"},{"number":7,"url":"https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/07-Deep-Learning-Birth.pdf"},{"number":8,"url":"https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/08-Quest-for-Depth.pdf"},{"number":9,"url":"https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf"},{"number":10,"url":"https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/10-Dense-Prediction.pdf"},{"number":11,"url":"https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/11-Multimodal-Vision-And-Language.pdf"},{"number":12,"url":"https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/12-Attention.pdf"},{"number":13,"url":"https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/13-Transformer-Basics.pdf"},{"number":14,"url":"https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/14-Pioneering-Transformers.pdf"},{"number":15,"url":"https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/15-Scaling.pdf"},{"number":16,"url":"https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/16-Foundation-Models-And-Prompts.pdf"},{"number":17,"url":"https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/17-Post-Training-Foundation-Models.pdf"},{"number":20,"url":"https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/20-Sustainable-NN-and-DL.pdf"},{"number":21,"url":"https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/21-Responsible-NN-and-DL.pdf"},{"number":23,"url":"https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/23-CuttingEdgeAndFuture-NN-and-DL.pdf"},{"number":28,"url":"https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/28-Course-Summary.pdf"}]}]''')
+          root = pathlib.Path("source-probe")
           context = ssl.create_default_context()
-          context.load_verify_locations(cafile='source-probe/issuer.pem')
+          context.load_verify_locations(cafile=str(root / "issuer.pem"))
           assert context.check_hostname and context.verify_mode == ssl.CERT_REQUIRED
-          urls = {
-            "spring2022-neurons": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/02-ArtificialNeurons.pdf",
-            "spring2026-neurons": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/02-Artificial-Neurons.pdf",
-          }
-          results = []
-          for name, url in urls.items():
-              item = {"name": name, "requested_url": url}
+          allowed = {"home.cs.colorado.edu", "home4.cs.colorado.edu", "dannagurari.colorado.edu"}
+          class Links(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.links = []
+              def handle_starttag(self, tag, attrs):
+                  if tag == "a":
+                      href = dict(attrs).get("href")
+                      if href:
+                          self.links.append(href)
+          requests = []
+          page_results = []
+          for edition in sources:
+              folder = root / edition["id"]
+              folder.mkdir()
+              catalog = {str(x["number"]): dict(x, url_source="catalog") for x in edition["lectures"]}
+              page = {"edition": edition["id"], "url": edition["page"]}
               try:
-                  with urllib.request.urlopen(url, timeout=40, context=context) as response:
-                      data = response.read()
-                      item.update(status=response.status, final_url=response.url,
-                                  bytes=len(data), sha256=hashlib.sha256(data).hexdigest(),
-                                  is_pdf=data.startswith(b"%PDF"))
-                      if item["is_pdf"]:
-                          pathlib.Path("source-probe", name + ".pdf").write_bytes(data)
+                  with urllib.request.urlopen(edition["page"], timeout=40, context=context) as response:
+                      data = response.read(5_000_001)
+                      if len(data) > 5_000_000:
+                          raise ValueError("HTML exceeds bounded inspection size")
+                      page.update(status=response.status, final_url=response.url,
+                                  sha256=hashlib.sha256(data).hexdigest())
+                      (folder / "course-page.html").write_bytes(data)
+                      parser = Links()
+                      parser.feed(data.decode("utf-8", errors="replace"))
+                      for href in parser.links:
+                          url = urllib.parse.urljoin(response.url, href)
+                          parsed = urllib.parse.urlparse(url)
+                          match = re.match(r"^(\d{2})[-_].*\.pdf$", pathlib.PurePosixPath(parsed.path).name, re.I)
+                          if parsed.hostname in allowed and match:
+                              number = int(match.group(1))
+                              if str(number) in catalog:
+                                  catalog[str(number)] = {"number": number, "url": url, "url_source": "live_official_course_page"}
               except Exception as exc:
-                  item["error"] = str(exc)
-              results.append(item)
-              print(json.dumps(item))
-          pathlib.Path("source-probe/results.json").write_text(json.dumps(results, indent=2))
+                  page["error"] = str(exc)
+              page_results.append(page)
+              for entry in catalog.values():
+                  requests.append(dict(entry, edition=edition["id"]))
+          def retrieve(item):
+              result = dict(item)
+              url = item.get("url")
+              if not url:
+                  return dict(result, error="No verified official PDF URL")
+              try:
+                  original = url
+                  try:
+                      response = urllib.request.urlopen(url, timeout=50, context=context)
+                  except urllib.error.HTTPError as exc:
+                      if exc.code != 404 or pathlib.PurePosixPath(urllib.parse.urlparse(url).path).suffix:
+                          raise
+                      url += ".pdf"
+                      response = urllib.request.urlopen(url, timeout=50, context=context)
+                      result["verified_link_repair"] = {"original": original, "candidate": url, "reason": "Official href without extension returned 404"}
+                  with response:
+                      data = response.read(50_000_001)
+                      if len(data) > 50_000_000:
+                          raise ValueError("PDF exceeds bounded inspection size")
+                      result.update(status=response.status, final_url=response.url, bytes=len(data),
+                                    sha256=hashlib.sha256(data).hexdigest(), is_pdf=data.startswith(b"%PDF"))
+                      if result["is_pdf"]:
+                          filename = f'{int(item["number"]):02d}.pdf'
+                          (root / item["edition"] / filename).write_bytes(data)
+                          result["relative_path"] = f'{item["edition"]}/{filename}'
+                      else:
+                          result["error"] = "Response is not a PDF"
+              except Exception as exc:
+                  result["error"] = str(exc)
+              print(json.dumps(result), flush=True)
+              time.sleep(0.1)
+              return result
+          with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
+              results = list(pool.map(retrieve, requests))
+          (root / "retrieval.json").write_text(json.dumps({"pages": page_results, "pdfs": results}, indent=2))
+          print("Verified PDF files:", sum(x.get("is_pdf", False) for x in results), "of", len(results))
           PY
-      - name: Retain official-source inspection evidence briefly
+      - name: Retain source evidence for private inspection, not site publication
         if: always()
         uses: actions/upload-artifact@v7.0.2
         with:
-          name: official-colorado-source-probe
+          name: official-colorado-course-files
           path: source-probe
           retention-days: 1

@@ -284,3 +284,21 @@ test('the research question opens the aligned survey and its actual RNA panel',a
   await expect(page.locator('#markdown-content')).toContainText('Ho 2021');
   await expect(page.locator('#markdown-content a[href*="top2a-panel-inspection.json"]')).toHaveCount(1);
 });
+
+test('chapter data exercises connect real files, paired RNA results and a persistent notebook', async({page})=>{
+  await page.goto(`${route}?unit=4&topic=10&part=research`);
+  await expect(page.locator('#dataset-workflow')).toContainText('انتخاب مقایسهٔ درست در GEO');
+  await expect(page.locator('#workflow-gene-result')).toContainText('0.754');
+  await page.locator('#workflow-gene').selectOption('TNF');
+  await expect(page.locator('#workflow-gene-result')).toContainText('1.103');
+  await expect(page.locator('#dataset-workflow a[href="data/metadata/top2a-followup-dataset.json"]')).toBeVisible();
+  await page.locator('#dataset-notes').fill('چهار اهداکننده؛ نسبت CPM آزمون مهار آنزیم نیست.');
+  await page.reload();
+  await expect(page.locator('#dataset-notes')).toHaveValue('چهار اهداکننده؛ نسبت CPM آزمون مهار آنزیم نیست.');
+  const download = page.waitForEvent('download');
+  await page.getByRole('button',{name:'دریافت یادداشت‌های تمرین‌ها'}).click();
+  expect((await download).suggestedFilename()).toBe('dataset-notebook.fa.txt');
+  await page.goto(`${route}?unit=3&topic=8&part=research`);
+  await expect(page.locator('#dataset-workflow')).toContainText('course_lab.py geometry --shift 10');
+  await expect(page.locator('#dataset-notes')).toHaveValue('');
+});

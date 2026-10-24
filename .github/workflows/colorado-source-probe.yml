@@ -1,0 +1,45 @@
+name: Inspect official Colorado source access
+on:
+  push:
+    branches: [research/colorado-source-probe-20261024]
+    paths: [.github/workflows/colorado-source-probe.yml]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Retrieve exact public official URLs
+        run: |
+          mkdir -p source-probe
+          python3 - <<'PY'
+          import hashlib, json, pathlib, urllib.request, urllib.error
+          urls = {
+            "spring2022-neurons": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/02-ArtificialNeurons.pdf",
+            "spring2026-neurons": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/02-Artificial-Neurons.pdf",
+          }
+          results = []
+          for name, url in urls.items():
+              item = {"name": name, "requested_url": url}
+              try:
+                  with urllib.request.urlopen(url, timeout=40) as response:
+                      data = response.read()
+                      item.update(status=response.status, final_url=response.url,
+                                  bytes=len(data), sha256=hashlib.sha256(data).hexdigest(),
+                                  is_pdf=data.startswith(b"%PDF"))
+                      if item["is_pdf"]:
+                          pathlib.Path("source-probe", name + ".pdf").write_bytes(data)
+              except Exception as exc:
+                  item["error"] = str(exc)
+              results.append(item)
+              print(json.dumps(item))
+          pathlib.Path("source-probe/results.json").write_text(json.dumps(results, indent=2))
+          PY
+      - name: Retain official-source inspection evidence briefly
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: official-colorado-source-probe
+          path: source-probe
+          retention-days: 1

@@ -80,7 +80,7 @@ function drawContents(n) {
     group.append(shortcuts);nav.append(group);
   }
 }
-async function getJSON(path) {const r=await fetch(path);if(!r.ok)throw Error("HTTP "+r.status);return r.json();}
+async function getJSON(path) {const r=await fetch(path,{cache:"no-cache"});if(!r.ok)throw Error("HTTP "+r.status);return r.json();}
 function documentURL(name,chapter=null,current=null) {
   name=courseMap.document_aliases[name] || name;
   if(name==="@chapter")return url(firstTopic(current||courseMap.chapters[0]));
@@ -112,7 +112,12 @@ async function renderResources(ctx,ticket) {
     }
     for(const name of unit.documents.filter(name=>!step.documents.includes(name)))extras.append(link(courseMap.document_titles[name]||documentName(name),documentURL(name,unit.document_sections?.[name]||null,unit)));
     nav.append(extras);
-    const selected=ctx.tool || (!ctx.document?step.tool:null);
+    const selected=window.researchWorkspace?ctx.tool:(ctx.tool || (!ctx.document?step.tool:null));
+    if(window.researchWorkspace){
+      if(selected)window.researchWorkspace.openTool(selected);
+      else if(ctx.document)await window.researchWorkspace.openDocument(ctx.document,ctx.chapter||"intro");
+      return;
+    }
     if(selected) {
       $("#chapter-tools").hidden=false;const group=$("#tool-"+selected);group.hidden=false;
       if(selected==="datasets")group.querySelectorAll("details").forEach(d=>d.open=true);
@@ -160,8 +165,8 @@ async function render(focus=false) {
   toolModule?.pauseTools();
   $("#status").textContent="در حال بارگذاری…";$("#retry").hidden=true;
   $("#check").hidden=true;$("#study-state").hidden=true;$("#chapter-resources").hidden=true;
-  $("#chapter-tools").hidden=true;$("#panel-reading").hidden=true;
-  document.querySelectorAll('[data-course-tool]').forEach(el=>el.hidden=true);
+  $("#chapter-tools").hidden=true;if(!window.researchWorkspace)$("#panel-reading").hidden=true;
+  if(!window.researchWorkspace)document.querySelectorAll('[data-course-tool]').forEach(el=>el.hidden=true);
   $("#lesson").replaceChildren();
   try {
     if(!course || !courseMap || !researchThread) [course,syllabus,courseMap,researchThread]=await Promise.all([getJSON("data/metadata/learning-course.json"),getJSON("data/metadata/course-syllabus.json"),getJSON("data/metadata/course-map.json"),getJSON("data/metadata/research-thread.json")]);
@@ -170,15 +175,17 @@ async function render(focus=false) {
     const extras={...(ctx.tool?{tool:ctx.tool}:{}),...(ctx.document?{document:ctx.document}:{}),...(ctx.chapter&&ctx.document?{chapter:ctx.chapter}:{})};
     history.replaceState(null,"",canonical(unit.unit,n,part,extras));
     $("#position").textContent=`فصل ${unit.unit.toLocaleString("fa-IR")} از ۹ · ${unit.title}`;
+    $("#workspace-lesson").href=url(n,part);
     $("#session-title").textContent=active.title;document.title=active.title+" | بیوانفورماتیک ساختاری";
     const pre=$("#prerequisites");pre.replaceChildren(document.createTextNode(n===1?"مفاهیم از پایه توضیح داده می‌شوند.":"پیشنهاد پیش‌نیاز: "));
     for(const id of active.prerequisites)pre.append(link(course.sessions[id-1].title,url(id)));
     document.querySelectorAll("#parts a").forEach(a=>{a.href=url(n,a.dataset.part);if(a.dataset.part===part)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current");});
-    const response=await fetch(active.path);if(!response.ok)throw Error("Missing topic");
+    const response=await fetch(active.path,{cache:"no-cache"});if(!response.ok)throw Error("Missing topic");
     const text=await response.text();if(ticket!==revision)return;
     const sections=text.split(/<!-- course:(lesson|practice|research|presentation) -->/);const i=sections.indexOf(part);
     if(i<0||!window.markdownit)throw Error("Missing phase");
     const step=researchThread.steps.find(s=>s.topic===n);if(!step)throw Error("Missing research step");
+    if(!ctx.tool&&!ctx.document&&(!location.hash||location.hash==="#basics"))window.researchWorkspace?.showLesson();
     showThread(step,part);
     const body=sections[i+1]+(part==="research"?"\n\n## انجام عملی همین بررسی\n\n"+sections[sections.indexOf("practice")+1]:"");
     $("#lesson").innerHTML=window.markdownit({html:false,linkify:false}).render(body);
@@ -293,7 +300,7 @@ $("#clear-answer").addEventListener("click",() => {
   delete quizRecords[state().n]; saveQuizzes(); renderQuiz(state().n,revision);
 });
 $("#quiz-retry").addEventListener("click",()=>renderQuiz(state().n,revision));
-$("#show-contents").addEventListener("click",()=>{$("#contents").open=true;$("#contents").scrollIntoView({block:"start"});$("#contents > summary").focus();});
+$("#show-contents").addEventListener("click",()=>{window.researchWorkspace?.showLesson();$("#contents").open=true;$("#contents").scrollIntoView({block:"start"});$("#contents > summary").focus();});
 $("#retry").addEventListener("click",()=>render());
 window.addEventListener("popstate",()=>render(true));
 if(matchMedia("(max-width:850px)").matches) $("#contents").open=false;

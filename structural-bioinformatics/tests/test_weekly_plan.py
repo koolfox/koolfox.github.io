@@ -49,11 +49,12 @@ def test_every_audited_slide_is_assigned_once_and_preserved_in_generated_chapter
         assert section.strip() in generated
 
 
-def test_no_second_curriculum_or_tab_application_survives_in_the_entry():
+def test_restored_workspace_contains_one_embedded_course_and_direct_tools():
     index = (PROJECT / "index.html").read_text()
     alias = (PROJECT / "learn.html").read_text()
     assert 'id="sessions"' in index and 'id="chapter-tools"' in index
-    for old in ('id="research-tabs"', 'id="study-path"', 'id="weekly-plan"', 'id="study-start"'):
+    assert 'id="research-tabs"' in index and 'id="study-start"' in index
+    for old in ('id="study-path"', 'id="weekly-plan"'):
         assert old not in index
     assert "location.replace" not in index
     assert "location.replace" in alias and 'id="sessions"' not in alias

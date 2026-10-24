@@ -5,10 +5,10 @@ primary_target: "structural-bioinformatics/index.html"
 related_targets: ["structural-bioinformatics/assets/course.css", "structural-bioinformatics/assets/course.js", "structural-bioinformatics/assets/app.js"]
 ---
 
-# One course, one nine-chapter application
+# Research workspace with the course inside it
 
-Read/Operate mode within one chapter context. The novice MSc reader must find definitions, software, evidence and presentation under the same syllabus chapters. index.html is canonical. learn.html is only a compatibility redirect; it contains no course UI. The six-tab atlas and eight-step/week navigation are retired.
+The user selected the 20 October 2026 six-section research workspace as the baseline to improve. Preserve the visible navigation: learning/basics, laboratory, sequences, papers, methods/presentation and the complete book reader. Do not hide the tools behind an exclusive chapter selector or replace substantive books with short redirection stubs.
 
-Each chapter owns topic text, live tools, documents and audited slide selections in course-map.json. Three connected stages select lesson, research and presentation without leaving the topic. Practice belongs to research, and the main question, purpose of the current step and expected presentation artifact remain explicit. The document selector is scoped to the current chapter. Slides are an export/presentation mode of the same chapter map. No embedded second application is allowed; molecular-coordinate iframes remain scientific viewers only.
+The nine syllabus chapters live in the first panel. Each topic links lesson, research and presentation, including software practice, evidence, source material and oral preparation. Tools and books remain directly accessible as well as linked from the relevant topic. The shared chapter context and return link connect the workspace to the current lesson. There is one application and no second course page; learn.html is a compatibility redirect.
 
-Preserve Arad, Persian RTL, neutral background and blue links. Tools load when selected and remain within the reading page; responsive controls, loading/failure states and keyboard access are required. Local notes and formative responses retain existing identifiers. Evidence types and execution limitations remain explicit.
+Preserve Arad, Persian RTL, neutral surfaces, blue controls, scientific-media framing and keyboard tab navigation. Scope lesson CSS to the embedded course rather than changing the rest of the workspace. Keep browser-local quiz and note identifiers. Retain subsequent scientific corrections when restoring the earlier interface. Scientific viewers may use local iframes; the course itself does not.

@@ -1,15 +1,19 @@
 import { test, expect } from '@playwright/test';
 const route='/structural-bioinformatics/';
-test('the root owns the nine chapter application with no second entry or global tabs',async({page})=>{
+test('the restored six-section workspace contains the same nine-chapter course',async({page})=>{
   await page.goto(route);
   await expect(page).not.toHaveURL(/learn\.html/);
   await expect(page.locator('#lesson')).toContainText('سلول کوچک‌ترین');
   await expect(page.locator('#sessions > details')).toHaveCount(9);
-  await expect(page.locator('#research-tabs,#study-path,#weekly-plan')).toHaveCount(0);
+  await expect(page.locator('#research-tabs [role=tab]')).toHaveCount(6);
+  await expect(page.locator('#study-path,#weekly-plan')).toHaveCount(0);
   await page.locator('#sessions > details').nth(2).locator('summary').click();
   await page.locator('#sessions > details').nth(2).getByRole('link',{name:'پژوهش این فصل',exact:true}).click();
   await expect(page).toHaveURL(/unit=3/);
+  await page.locator('#tab-lab').click();
   await expect(page.locator('#molecular-stage')).toBeVisible();
+  await page.locator('#tab-basics').click();
+  await expect(page.locator('#position')).toContainText('فصل ۳');
 });
 test('deep linking, reading phases and history keep a single coherent session',async({page})=>{
   await page.goto(`${route}?session=8&part=practice`);
@@ -145,13 +149,13 @@ test('tools, documents and presentation stay inside the same chapter application
   await expect(page.locator('#reading-status')).toHaveAttribute('data-state','ready');
   await expect(page.locator('#markdown-content')).toContainText('Bianchi');
   const names=await page.locator('#document-select option').evaluateAll(options=>options.map(o=>o.value));
-  expect(names.sort()).toEqual([...map.chapters[5].documents].sort());
+  for(const name of map.chapters[5].documents)expect(names).toContain(name);
+  await page.locator('#workspace-lesson').click();
   await page.locator('[data-part=presentation]').click();
   await page.getByRole('link',{name:'متن ارائهٔ همین فصل',exact:true}).click();
   await expect(page.locator('#reading-status')).toHaveAttribute('data-document','chapter-presentation.fa.md');
   await expect(page.locator('#reading-status')).toHaveAttribute('data-chapter','chapter-6');
-  await expect(page.locator('#chapter-select option')).toHaveCount(1);
-  await expect(page.locator('#chapter-prev')).toBeDisabled();
+  await expect(page.locator('#chapter-select')).toHaveValue('chapter-6');
   await expect(page.locator('#position')).toContainText('فصل ۶');
   await expect(page.locator('iframe[src*="learn.html"],iframe[src*="index.html"]')).toHaveCount(0);
 });
@@ -161,8 +165,9 @@ test('legacy learning and weekly links resolve only into the one chapter applica
   await expect(page.locator('#position')).toContainText('فصل ۳');
   await expect(page.locator('#quiz-form')).toBeVisible();
   await page.goto(`${route}?document=weekly-plan.fa.md#reading`);
-  await expect(page.locator('#reading-status')).toHaveAttribute('data-document','course-guide.fa.md');
-  await expect(page.locator('#weekly-plan,#study-path,#research-tabs')).toHaveCount(0);
+  await expect(page.locator('#reading-status')).toHaveAttribute('data-document','weekly-plan.fa.md');
+  await expect(page.locator('#weekly-plan,#study-path')).toHaveCount(0);
+  await expect(page.locator('#research-tabs [role=tab]')).toHaveCount(6);
 });
 test('every tool opens in its owning chapter without opening another curriculum',async({page,request})=>{
   test.setTimeout(120000);
@@ -170,9 +175,10 @@ test('every tool opens in its owning chapter without opening another curriculum'
   for(const tool of map.tools) {
     await page.goto(`${route}?unit=${tool.unit}&part=practice&tool=${tool.id}`);
     await expect(page.locator(`[data-course-tool="${tool.id}"]`)).toBeVisible();
-    await expect(page.locator('[data-course-tool]:visible')).toHaveCount(1);
+    await expect(page.locator('#research-tabs [aria-selected=true]')).toHaveCount(1);
     await expect(page.locator('#position')).toContainText(`فصل ${tool.unit.toLocaleString('fa-IR')}`);
-    await expect(page.locator('#research-tabs,#study-path,#weekly-plan')).toHaveCount(0);
+    await expect(page.locator('#research-tabs [role=tab]')).toHaveCount(6);
+  await expect(page.locator('#study-path,#weekly-plan')).toHaveCount(0);
   }
 });
 test('chapter presentations share the same course map and return to their chapter',async({page,request})=>{

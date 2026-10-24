@@ -210,7 +210,7 @@ async function applyChapters(details) {
     if(step) {
       const bridge=document.createElement('section');bridge.className='slide step-intro';bridge.hidden=true;bridge.dataset.unit=String(unit.unit);bridge.dataset.topic=String(step.topic);
       const body=document.createElement('div');body.className='slide-body';
-      body.append(textElement('p','درس: '+step.terms[0].term+' یعنی '+step.terms[0].meaning),textElement('p','پژوهش: '+step.question),textElement('p','خروجی این قدم: '+step.output));
+      body.append(textElement('p','درس: '+(step.teaching_point || step.terms[0].term+' یعنی '+step.terms[0].meaning)),textElement('p','پژوهش: '+step.question),textElement('p','خروجی این قدم: '+step.output));
       const refs=document.createElement('div');refs.className='slide-references';
       for(const id of step.source_ids) {const source=sources.find(s=>s.id===id);if(!source)continue;const a=document.createElement('a');a.href=source.url||new URL(source.path,project).href;a.textContent=source.title;refs.append(a);}
       bridge.append(textElement('h1',step.title),body,refs);addSlideIdentity(bridge,details);isolateScientificText(bridge);cover.after(bridge);

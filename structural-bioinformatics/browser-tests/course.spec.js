@@ -201,7 +201,10 @@ test('the chapter context remains visible while reading on a phone',async({page}
   await expect(page.locator('#reading-status')).toHaveAttribute('data-state','ready');
   await page.locator('#markdown-content').scrollIntoViewIfNeeded();
   expect((await page.locator('#chapter-context').boundingBox()).y).toBeGreaterThanOrEqual(0);
-  expect((await page.locator('#chapter-context').boundingBox()).y).toBeLessThan(5);
+  const tabs=await page.locator('#research-tabs').boundingBox();
+  const context=await page.locator('#chapter-context').boundingBox();
+  expect(context.y).toBeGreaterThanOrEqual(tabs.y+tabs.height-1);
+  expect(context.y+context.height).toBeLessThan(250);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   await page.locator('#show-contents').click();
   await expect(page.locator('#contents')).toHaveJSProperty('open',true);

@@ -103,6 +103,8 @@ function readerFilename(href) {
 
 function initializeTabs() {
   const tabs = [...$("research-tabs").querySelectorAll('[role="tab"]')];
+  const sizeTabs=()=>document.documentElement.style.setProperty("--research-tabs-height",$("research-tabs").getBoundingClientRect().height+"px");
+  sizeTabs();new ResizeObserver(sizeTabs).observe($("research-tabs"));
   const names = tabs.map((tab) => tab.dataset.tab);
   function activate(name, { focus = false, updateHash = false } = {}) {
     if (!names.includes(name)) name = "basics";

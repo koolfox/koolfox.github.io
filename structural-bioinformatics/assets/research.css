@@ -515,7 +515,9 @@ body[data-learning-mode="true"] :is(.reading-controls, #document-toc, #chapter-p
 .docking-validation tr[data-passed="false"] td:last-child { color: #912c3d; font-weight: 640; }
 
 /* Keep the lesson position available while using the restored research workspace. */
-#chapter-context{position:sticky;top:0;z-index:15;background:var(--research-bg,#f5f5f7);border-bottom:1px solid #dce2eb;display:flex;align-items:center;gap:16px;padding:10px 0}#chapter-context p{flex:1;margin:0}#chapter-context a,#chapter-context button{min-height:44px;display:inline-flex;align-items:center}#course-start,#session-title{scroll-margin-top:90px}
+#chapter-context{position:sticky;top:var(--research-tabs-height,64px);z-index:15;background:var(--research-bg,#f5f5f7);border-bottom:1px solid #dce2eb;display:flex;align-items:center;gap:16px;padding:10px 0}#chapter-context p{flex:1;margin:0}#chapter-context a,#chapter-context button{min-height:44px;display:inline-flex;align-items:center}#course-start,#session-title{scroll-margin-top:90px}
 @media(max-width:600px){#chapter-context{gap:8px;font-size:.8rem}#chapter-context button{font-size:.8rem;padding:8px}}
 
 html:has(body.research-page){overflow-x:clip;overflow-y:visible}body.research-page{overflow-x:clip;overflow-y:visible}
+
+.research-panel :is(section,details){scroll-margin-top:calc(var(--research-tabs-height,64px) + 70px)}

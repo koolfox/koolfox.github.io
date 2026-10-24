@@ -3,7 +3,7 @@
 [Personal site](https://koolfox.github.io/) with interactive coursework and research notes.
 
 - [Structural bioinformatics: adalimumab and TNF](structural-bioinformatics/README.md): a focused course study, verified literature, reproducible structural analysis, molecular graphics and a later TOP2A/cancer evidence comparison.
-- [Deep learning](deep-learning/README.md): chapter-based coursework, a Python-trained logic-gate laboratory, reproducible model traces and browser-local study progress.
+- [Deep learning](deep-learning/README.md): 21 code-first lessons and seven additional sessions following the official Colorado Spring 2026 syllabus, runnable NumPy examples, verified outputs, explainable visuals and an optional logic-gate laboratory.
 - [From zero to GPT](karpathy/README.md): an interactive Persian study surface for Karpathy's *Neural Networks: Zero to Hero* — the eight lectures, a live autograd workbench that draws the graph and runs the backward pass, predict-then-run exercises, and progress kept in the reader's own browser.
 - [Stochastic processes](stochastic-processes/): inventory and Ehrenfest demonstrations.
 - [Optimization](optimization/): genetic-algorithm and related coursework.

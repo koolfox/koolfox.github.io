@@ -28,6 +28,8 @@ def test_every_topic_has_a_concrete_research_step_and_valid_evidence_paths():
         assert set(step["source_ids"]) <= sources
         for path in step["source_paths"]:
             assert (PROJECT / path).is_file()
+        lesson = (PROJECT / f"docs/course/session-{step['topic']:02}.fa.md").read_text()
+        assert step["teaching_point"] in lesson
         assert len(step["terms"]) >= 3 and len(step["actions"]) >= 3
         assert all(
             step[field]

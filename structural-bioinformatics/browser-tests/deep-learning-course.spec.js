@@ -75,6 +75,10 @@ test('reading-first landing, sequential boundaries, deep links, history, and key
     await page.locator('.source-details summary').click();
     await expect(page.locator('#extra-sessions a')).toHaveCount(7);
     await expect(page.locator('#extra-sessions input')).toHaveCount(0);
+    await expect(page.locator('#source-status-note')).toBeVisible();
+    await expect(page.locator('#source-status-note')).toContainText('PDF');
+    await expect(page.locator('#source-status-note')).toHaveText(inventory.source_note_fa);
+    await page.locator('.source-details').screenshot({ path: test.info().outputPath('learning-source-disclosure.png') });
     await expect(page.locator('a[href="lab.html"]')).toBeVisible();
     await expect(page.locator('#previous-lesson')).toBeDisabled();
     await page.locator('#next-lesson').focus();
@@ -93,6 +97,11 @@ test('reading-first landing, sequential boundaries, deep links, history, and key
     await expect(page).toHaveURL(/#spring2026-23$/);
     await ready(page, '#not-a-lesson');
     await expect(page).toHaveURL(/#spring2026-01$/);
+    await expect(page.locator('#lesson-select')).toHaveValue('spring2026-01');
+    await expect(page.locator('#previous-lesson')).toBeDisabled();
+    await page.goBack();
+    await expect(page).toHaveURL(/#spring2026-23$/);
+    await expect(page.locator('#lesson-select')).toHaveValue('spring2026-23');
 });
 
 test('progress is explicit, persisted, exportable and isolated from old laboratory progress', async ({ page }) => {
@@ -189,6 +198,19 @@ test('desktop lesson presents code and genuine recorded output, not an invented 
     await expect(page.locator('#lesson-output')).toBeVisible();
     await expect(page.locator('#learning-meter')).toHaveAttribute('value', '0');
     await expect(page.locator('#execution-note')).toContainText('اجرای واقعی');
+    const titles = await page.locator('.lesson-link').evaluateAll(buttons => buttons.map(button => {
+        const title = button.querySelector('span:nth-child(2)');
+        const outer = button.getBoundingClientRect();
+        const inner = title.getBoundingClientRect();
+        return { id: button.dataset.lesson, scroll: title.scrollWidth, width: title.clientWidth,
+            left: inner.left - outer.left, right: outer.right - inner.right };
+    }));
+    expect(titles).toHaveLength(ids.length);
+    for (const title of titles) {
+        expect(title.scroll, `${title.id} title text width`).toBeLessThanOrEqual(title.width + 1);
+        expect(title.left, `${title.id} title left bound`).toBeGreaterThanOrEqual(-1);
+        expect(title.right, `${title.id} title right bound`).toBeGreaterThanOrEqual(-1);
+    }
     await page.screenshot({ path: test.info().outputPath('learning-desktop.png'), fullPage: true });
 });
 

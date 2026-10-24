@@ -98,3 +98,7 @@ footer { margin: 30px 0 0; padding: 20px 0; font-size: .75rem; color: #636b78; t
 .source-exercises article p { margin: 4px 0; }
 .project-guidance { margin-top: 12px; }
 .project-guidance ul { padding-inline-start: 22px; font-size: .8rem; }
+/* Long lesson names wrap instead of inheriting the shared button nowrap. */
+.lesson-link { white-space: normal; justify-content: flex-start; }
+.lesson-link > span:nth-child(2) { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.lesson-link .lesson-number, .lesson-link .completion-mark { flex-shrink: 0; }

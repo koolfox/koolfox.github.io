@@ -194,10 +194,13 @@ function showLesson(index, focus = false, updateHistory = true) {
     }
 }
 
-window.addEventListener('popstate', () => {
+function restoreLessonFromHash() {
+    if (!lessons.length) return;
     const index = lessons.findIndex((lesson) => `#${lesson.id}` === location.hash);
-    if (index >= 0) showLesson(index, false, false);
-});
+    showLesson(index < 0 ? 0 : index, false, index < 0);
+}
+window.addEventListener('popstate', restoreLessonFromHash);
+window.addEventListener('hashchange', restoreLessonFromHash);
 
 byId('lesson-select').addEventListener('change', (event) => {
     showLesson(lessons.findIndex((lesson) => lesson.id === event.target.value), true);

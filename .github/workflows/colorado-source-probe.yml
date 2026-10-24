@@ -19,7 +19,7 @@ jobs:
           done
       - name: Complete the public chain using an already trusted root
         run: |
-          curl --fail --silent --show-error --location https://crt.sectigo.com/SectigoPublicServerAuthenticationCAOVR36.crt -o source-probe/issuer.der
+          curl --fail --silent --show-error --location http://crt.sectigo.com/SectigoPublicServerAuthenticationCAOVR36.crt -o source-probe/issuer.der
           openssl x509 -inform DER -in source-probe/issuer.der -out source-probe/issuer.pem
           openssl verify -CAfile /etc/ssl/certs/ca-certificates.crt source-probe/issuer.pem
           openssl x509 -in source-probe/issuer.pem -noout -subject -issuer -dates

@@ -10,6 +10,13 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
+      - name: Inspect public certificate chains without disabling verification
+        run: |
+          mkdir -p source-probe
+          for host in home.cs.colorado.edu home4.cs.colorado.edu; do
+            timeout 20 openssl s_client -connect "$host:443" -servername "$host" -showcerts </dev/null > "source-probe/$host-chain.txt" 2>&1 || true
+            openssl x509 -in "source-probe/$host-chain.txt" -noout -subject -issuer -dates -ext authorityInfoAccess || true
+          done
       - name: Retrieve exact public official URLs
         run: |
           mkdir -p source-probe

@@ -276,7 +276,7 @@ test('delayed workspace dependencies cannot hide the lesson or laboratory',async
 test('the research question opens the aligned survey and its actual RNA panel',async({page})=>{
   await page.goto(`${route}?unit=1&topic=1&part=lesson&document=research-questions.fa.md&chapter=intro#literature`);
   await expect(page.locator('#reading-status')).toHaveAttribute('data-document','research-questions.fa.md');
-  await page.locator('#markdown-content').getByRole('link',{name:'مرور مقاله‌ها',exact:true}).click();
+  await page.locator('#markdown-content').getByRole('link',{name:'پیش‌نویس مرور',exact:true}).click();
   await expect(page.locator('#reading-status')).toHaveAttribute('data-document','survey-draft.fa.md');
   await page.selectOption('#chapter-select','all');
   await expect(page.locator('#markdown-content')).toContainText('MKI67');
@@ -301,4 +301,19 @@ test('chapter data exercises connect real files, paired RNA results and a persis
   await page.goto(`${route}?unit=3&topic=8&part=research`);
   await expect(page.locator('#dataset-workflow')).toContainText('course_lab.py geometry --shift 10');
   await expect(page.locator('#dataset-notes')).toHaveValue('');
+});
+
+test('the research scope and chapter contribution remain readable through lesson and presentation',async({page})=>{
+  await page.goto(`${route}?unit=4&topic=10&part=research`);
+  await expect(page.locator('#lesson')).toContainText('GSE339038');
+  await expect(page.locator('#lesson')).toContainText('کار این فصل در مقاله');
+  await expect(page.locator('#lesson')).toContainText('RNA پیش از درمان');
+  await page.locator('[data-part=presentation]').click();
+  await expect(page.locator('#lesson')).toContainText('چهار اهداکننده');
+  await page.goto('/structural-bioinformatics/presentation.html');
+  await expect(page.locator('#deck')).toHaveAttribute('data-state','ready');
+  await page.selectOption('#slide-select','1');
+  await expect(page.locator('.slide:not([hidden])')).toContainText('تغییر بیان TOP2A');
+  await page.selectOption('#slide-select','2');
+  await expect(page.locator('.slide:not([hidden])')).toContainText('آزمایش‌های جدا');
 });

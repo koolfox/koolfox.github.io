@@ -24,12 +24,27 @@ def render(project=PROJECT):
     out.extend(["**پرسش مورد مطالعه:** " + thread["question"], ""])
     for index, block in enumerate(syllabus["blocks"], 1):
         out.extend([f"## فصل {index}. {block['title']}", ""])
+        argument = thread["chapter_arguments"][index - 1]
+        out.extend(
+            [argument["explanation"], "", "**سهم این فصل در مقاله:** " + argument["manuscript"], ""]
+        )
         topics = [s for s in course["sessions"] if s["block"] == block["id"]]
         for number, entry in enumerate(topics, 1):
             step = steps[entry["session"]]
             text = (project / entry["path"]).read_text().split("\n", 1)[1]
             segments = re.split(r"<!-- course:(lesson|practice|research|presentation) -->", text)
             parts = {segments[i]: segments[i + 1] for i in range(1, len(segments), 2)}
+            research_intro = (
+                "\n\n### "
+                + argument["title"]
+                + "\n\n"
+                + argument["explanation"]
+                + "\n\n**کار این فصل در مقاله:** "
+                + argument["manuscript"]
+            )
+            parts["research"] = parts["research"].replace(research_intro, "", 1)
+            presentation_intro = "\n\n### پاسخ این فصل به پرسش مرور\n\n" + argument["presentation"]
+            parts["presentation"] = parts["presentation"].replace(presentation_intro, "", 1)
             definitions = "\n\n".join(f"**{t['term']}:** {t['meaning']}" for t in step["terms"])
             research = parts["research"] + "\n\nتمرین عملی:\n\n" + parts["practice"]
             research += (

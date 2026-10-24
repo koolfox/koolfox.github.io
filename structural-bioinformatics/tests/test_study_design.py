@@ -44,3 +44,11 @@ def test_chapter_arguments_are_available_in_lessons_and_have_a_writing_output():
         text = (PROJECT / f"docs/course/session-{step['topic']:02}.fa.md").read_text()
         assert argument["explanation"] in text
         assert argument["presentation"] in text
+
+
+def test_active_question_data_is_in_the_default_chapter_presentations():
+    mapping = read("data/metadata/course-map.json")["chapters"]
+    thread = read("data/metadata/research-thread.json")
+    assert {33, 34} <= set(mapping[1]["slides"])
+    assert {36, 38} <= set(mapping[3]["slides"])
+    assert {36, 38} <= set(thread["steps"][12]["slides"])

@@ -1,3 +1,4 @@
+import { renderDatasetWorkflow } from "./dataset-workflow.js";
 import { gradeQuiz, restoredRecord } from "./course-quiz.js";
 const $ = (selector) => document.querySelector(selector);
 const phases = ["lesson", "research", "presentation"];
@@ -159,6 +160,12 @@ function showThread(step,part) {
   $("#research-result").textContent=step.result;
   $("#research-deliverable").textContent="گزارش تمرین: "+step.output;
   $("#next-research-step").textContent=step.next_step;
+  const workflow=$("#dataset-workflow");
+  if(part==="research") {
+    const unit=ownerOfTopic(step.topic).unit;
+    workflow.textContent="در حال دریافت تمرین داده…";
+    renderDatasetWorkflow(workflow,unit).catch(()=>{workflow.textContent="تمرین دریافت نشد؛ صفحه را دوباره بارگذاری کنید.";});
+  } else workflow.replaceChildren();
 }
 
 async function waitForWorkspace() {

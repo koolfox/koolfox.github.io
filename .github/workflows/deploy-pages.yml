@@ -28,7 +28,7 @@ jobs:
       - name: Check scientific code and curated data
         run: |
           uv sync --project structural-bioinformatics --frozen --python 3.13
-          uv run --project structural-bioinformatics pytest -q
+          uv run --project structural-bioinformatics pytest structural-bioinformatics/tests -q
           uv run --project structural-bioinformatics ruff check structural-bioinformatics scripts/serve_local.py
           uv run --project structural-bioinformatics ruff format --check structural-bioinformatics scripts/serve_local.py
       - name: Check deep learning teaching models

@@ -11,7 +11,7 @@ def render(*_args):
     thread = json.loads((PROJECT / "data/metadata/research-thread.json").read_text())
     prior = json.loads((PROJECT / "data/metadata/archive/weekly-plan.json").read_text())
     out = [
-        "# راهنمای کار و ارائه در نه فصل درس",
+        "# راهنمای مطالعه و تمرین",
         "",
         "هر فصل با یادگیری یک مفهوم شروع می‌شود، آن را در مطالعهٔ آدالیموماب به کار "
         "می‌برد و با آماده‌کردن توضیح و اسلاید پایان می‌یابد. این راهنما "
@@ -52,21 +52,21 @@ def render(*_args):
                     "",
                     f"[خواندن درس](../index.html?topic={topic}&part=lesson#basics) · "
                     f"[انجام پژوهش](../index.html?topic={topic}&part=research#basics) · "
-                    f"[اسلایدهای این قدم](../presentation.html?topic={topic})",
+                    f"[اسلایدهای این مبحث](../presentation.html?topic={topic})",
                     "",
-                    "**درس چه چیزی را روشن می‌کند؟** " + step["example"],
+                    "**مثال:** " + step["example"],
                     "",
-                    "**پرسش پژوهش در این قدم:** " + step["question"],
+                    "**پرسش:** " + step["question"],
                     "",
                     step["connection"],
                     "",
-                    "**انجام کار:**",
+                    "**تمرین:**",
                     "",
                     *[f"{i}. {action}" for i, action in enumerate(step["actions"], 1)],
                     "",
-                    "**چیزی که آماده می‌کنیم:** " + step["output"],
+                    "**گزارش تمرین:** " + step["output"],
                     "",
-                    "**توضیح پیشنهادی برای ارائه:** " + step["speaker_notes"],
+                    "**یادداشت ارائه:** " + step["speaker_notes"],
                     "",
                     "**پرسش کلاس:** " + step["question_and_answer"]["question"],
                     "",

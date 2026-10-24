@@ -152,7 +152,7 @@ test('tools, documents and presentation stay inside the same chapter application
   for(const name of map.chapters[5].documents)expect(names).toContain(name);
   await page.locator('#workspace-lesson').click();
   await page.locator('[data-part=presentation]').click();
-  await page.getByRole('link',{name:'متن ارائهٔ همین فصل',exact:true}).click();
+  await page.getByRole('link',{name:'متن ارائهٔ فصل',exact:true}).click();
   await expect(page.locator('#reading-status')).toHaveAttribute('data-document','chapter-presentation.fa.md');
   await expect(page.locator('#reading-status')).toHaveAttribute('data-chapter','chapter-6');
   await expect(page.locator('#chapter-select')).toHaveValue('chapter-6');
@@ -225,10 +225,10 @@ test('one topic advances the same question from lesson through research to its o
   await page.locator('#next-phase').click();
   await expect(page.locator('#lesson')).toContainText('چهار سطح ساختار');
   await expect(page.locator('#lesson')).toContainText('در پروژهٔ ما');
-  await page.getByRole('link',{name:'اسلایدهای این قدم',exact:true}).click();
+  await page.getByRole('link',{name:'اسلایدهای این مبحث',exact:true}).click();
   await expect(page.locator('#deck')).toHaveAttribute('data-topic','3');
   await expect(page.locator('.step-intro')).toHaveCount(1);
-  await expect(page.locator('#deck')).toContainText('خروجی این قدم');
+  await expect(page.locator('#deck')).toContainText('تمرین:');
   await page.locator('#notebook-link').click();
   await expect(page).toHaveURL(/topic=3/);
   await expect(page.locator('#parts [aria-current=page]')).toHaveAttribute('data-part','presentation');

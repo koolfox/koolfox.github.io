@@ -272,3 +272,15 @@ test('delayed workspace dependencies cannot hide the lesson or laboratory',async
   await page.locator('#tab-basics').click();
   await expect(page.locator('#lesson')).toContainText('--shift 10');
 });
+
+test('the research question opens the aligned survey and its actual RNA panel',async({page})=>{
+  await page.goto(`${route}?unit=1&topic=1&part=lesson&document=research-questions.fa.md&chapter=intro#literature`);
+  await expect(page.locator('#reading-status')).toHaveAttribute('data-document','research-questions.fa.md');
+  await page.locator('#markdown-content').getByRole('link',{name:'مرور مقاله‌ها',exact:true}).click();
+  await expect(page.locator('#reading-status')).toHaveAttribute('data-document','survey-draft.fa.md');
+  await page.selectOption('#chapter-select','all');
+  await expect(page.locator('#markdown-content')).toContainText('MKI67');
+  await expect(page.locator('#markdown-content')).toContainText('0.754');
+  await expect(page.locator('#markdown-content')).toContainText('Ho 2021');
+  await expect(page.locator('#markdown-content a[href*="top2a-panel-inspection.json"]')).toHaveCount(1);
+});

@@ -114,6 +114,20 @@ def render_pages(project=PROJECT):
             )
             article += fragment("topic-navigation")
             body = '<div class="restored-course">' + contents(section["page"]) + article + "</div>"
+            if ident == "course":
+                outline = [
+                    '<details id="syllabus-outline"><summary>سرفصل کامل و منبع درس</summary>'
+                ]
+                outline.append(
+                    link("سیلابس درس ۴۰۵۵۳ شریف", "https://docs.ce.sharif.edu/courses/40553")
+                )
+                for block in syllabus["blocks"]:
+                    outline.append("<h2>" + html.escape(block["title"]) + "</h2><ul>")
+                    outline.extend(
+                        "<li>" + html.escape(topic) + "</li>" for topic in block["topics"]
+                    )
+                    outline.append("</ul>")
+                body = "".join(outline) + "</details>" + body
             if ident == "exercises":
                 body += (
                     """<section>

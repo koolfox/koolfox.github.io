@@ -17,11 +17,20 @@ jobs:
             timeout 20 openssl s_client -connect "$host:443" -servername "$host" -showcerts </dev/null > "source-probe/$host-chain.txt" 2>&1 || true
             openssl x509 -in "source-probe/$host-chain.txt" -noout -subject -issuer -dates -ext authorityInfoAccess || true
           done
+      - name: Complete the public chain using an already trusted root
+        run: |
+          curl --fail --silent --show-error --location https://crt.sectigo.com/SectigoPublicServerAuthenticationCAOVR36.crt -o source-probe/issuer.der
+          openssl x509 -inform DER -in source-probe/issuer.der -out source-probe/issuer.pem
+          openssl verify -CAfile /etc/ssl/certs/ca-certificates.crt source-probe/issuer.pem
+          openssl x509 -in source-probe/issuer.pem -noout -subject -issuer -dates
       - name: Retrieve exact public official URLs
         run: |
           mkdir -p source-probe
           python3 - <<'PY'
-          import hashlib, json, pathlib, urllib.request, urllib.error
+          import hashlib, json, pathlib, ssl, urllib.request, urllib.error
+          context = ssl.create_default_context()
+          context.load_verify_locations(cafile='source-probe/issuer.pem')
+          assert context.check_hostname and context.verify_mode == ssl.CERT_REQUIRED
           urls = {
             "spring2022-neurons": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/02-ArtificialNeurons.pdf",
             "spring2026-neurons": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/02-Artificial-Neurons.pdf",
@@ -30,7 +39,7 @@ jobs:
           for name, url in urls.items():
               item = {"name": name, "requested_url": url}
               try:
-                  with urllib.request.urlopen(url, timeout=40) as response:
+                  with urllib.request.urlopen(url, timeout=40, context=context) as response:
                       data = response.read()
                       item.update(status=response.status, final_url=response.url,
                                   bytes=len(data), sha256=hashlib.sha256(data).hexdigest(),

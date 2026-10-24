@@ -1,0 +1,139 @@
+{
+  "matrix_rows": 63241,
+  "matrix_libraries": 64,
+  "selected_libraries": 8,
+  "biological_donors": 4,
+  "panel": [
+    {
+      "gene": "TOP2A",
+      "gene_id": "ENSG00000131747",
+      "n_pairs": 4,
+      "lower_cpm_pairs": 4,
+      "equal_cpm_pairs": 0,
+      "valid_ratio_pairs": 4,
+      "valid_log_ratio_pairs": 4,
+      "median_paired_cpm_ratio": 0.7544942783225084,
+      "median_paired_log2_cpm_ratio": -0.4174306636728776,
+      "ratio_range": [
+        0.5373078297273642,
+        0.933902928397028
+      ]
+    },
+    {
+      "gene": "MKI67",
+      "gene_id": "ENSG00000148773",
+      "n_pairs": 4,
+      "lower_cpm_pairs": 4,
+      "equal_cpm_pairs": 0,
+      "valid_ratio_pairs": 4,
+      "valid_log_ratio_pairs": 4,
+      "median_paired_cpm_ratio": 0.6443849178226253,
+      "median_paired_log2_cpm_ratio": -0.6346249463722013,
+      "ratio_range": [
+        0.4908992220181539,
+        0.8431021031201056
+      ]
+    },
+    {
+      "gene": "UBE2C",
+      "gene_id": "ENSG00000175063",
+      "n_pairs": 4,
+      "lower_cpm_pairs": 3,
+      "equal_cpm_pairs": 0,
+      "valid_ratio_pairs": 4,
+      "valid_log_ratio_pairs": 4,
+      "median_paired_cpm_ratio": 0.6873854907470249,
+      "median_paired_log2_cpm_ratio": -0.574526990088788,
+      "ratio_range": [
+        0.4013005497963757,
+        1.1471159487808265
+      ]
+    },
+    {
+      "gene": "CCNB1",
+      "gene_id": "ENSG00000134057",
+      "n_pairs": 4,
+      "lower_cpm_pairs": 4,
+      "equal_cpm_pairs": 0,
+      "valid_ratio_pairs": 4,
+      "valid_log_ratio_pairs": 4,
+      "median_paired_cpm_ratio": 0.7681754352075065,
+      "median_paired_log2_cpm_ratio": -0.3999961517132586,
+      "ratio_range": [
+        0.49936550406340224,
+        0.9710530614357789
+      ]
+    },
+    {
+      "gene": "PCNA",
+      "gene_id": "ENSG00000132646",
+      "n_pairs": 4,
+      "lower_cpm_pairs": 3,
+      "equal_cpm_pairs": 0,
+      "valid_ratio_pairs": 4,
+      "valid_log_ratio_pairs": 4,
+      "median_paired_cpm_ratio": 0.6983038925701979,
+      "median_paired_log2_cpm_ratio": -0.5183177778117443,
+      "ratio_range": [
+        0.5339670499180322,
+        1.0387672896311024
+      ]
+    },
+    {
+      "gene": "SIRPG",
+      "gene_id": "ENSG00000089012",
+      "n_pairs": 4,
+      "lower_cpm_pairs": 4,
+      "equal_cpm_pairs": 0,
+      "valid_ratio_pairs": 4,
+      "valid_log_ratio_pairs": 4,
+      "median_paired_cpm_ratio": 0.9250724820135243,
+      "median_paired_log2_cpm_ratio": -0.11305863377247352,
+      "ratio_range": [
+        0.5638892309810974,
+        0.9887049945677798
+      ]
+    },
+    {
+      "gene": "TNF",
+      "gene_id": "ENSG00000232810",
+      "n_pairs": 4,
+      "lower_cpm_pairs": 2,
+      "equal_cpm_pairs": 0,
+      "valid_ratio_pairs": 4,
+      "valid_log_ratio_pairs": 4,
+      "median_paired_cpm_ratio": 1.1029629215766423,
+      "median_paired_log2_cpm_ratio": 0.13257932095946165,
+      "ratio_range": [
+        0.6643506398585122,
+        1.2782207176894058
+      ]
+    }
+  ],
+  "accession": "GSE339038",
+  "python": "3.13.9",
+  "status": "descriptive_only_not_differential_expression",
+  "contrast": {
+    "drug": "Ada + IgG1",
+    "control": "IgG1+IgG1",
+    "paired_by": "donor"
+  },
+  "panel_selection": "TOP2A; four cell-cycle context genes; SIRPG and TNF. Fixed in code before execution; not selected by significance.",
+  "normalization": "Gene estimated count / whole-library gene-count sum * 1e6; no TMM or inferred absolute RNA amount",
+  "provenance": {
+    "at_utc": "2026-10-24T06:36:51.794731+00:00",
+    "source_url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE339nnn/GSE339038/suppl/GSE339038_Gene_counts_MLR.tsv.gz",
+    "source_sha256": "401e5412488bcfe9e3744c8bf3330ac8f8053459749290188c8b241f4ef2e4ea",
+    "sample_selection_file": "data/processed/top2a-count-inspection.json",
+    "sample_selection_sha256": "93a01325f15c893886ab6d5d6fc7eb8b7b702cb22dd44973fe0dcf1b235c9fff",
+    "script_sha256": "c02cf4902e3ddd9047b6f958008ee317435bd824d196d126a64d2ee1a346cc15"
+  },
+  "limitations": [
+    "Four healthy donors in an in-vitro MLR; not RA patients.",
+    "No TMM, differential-expression model, p-value or FDR.",
+    "No mediation test, protein assay or direct enzyme inhibition measured.",
+    "No pseudocount; zero denominators/log ratios are explicitly excluded and counted.",
+    "Parallel RNA changes do not establish a specific mechanism.",
+    "The existing TOP2A pilot motivated this follow-up; not independent validation."
+  ]
+}

@@ -178,13 +178,21 @@ function addMediaControls(figure) {
 }
 
 /** Slide order and chapter exports share the one course-map.json; week is a legacy alias. */
-async function applyChapters() {
+async function applyChapters(details) {
   const response=await fetch(new URL('data/metadata/course-map.json',project),{signal:AbortSignal.timeout(15000)});
   if(!response.ok)throw Error('course map unavailable');
   const map=await response.json();
   const params=new URLSearchParams(location.search);
   const requested=params.get('unit') ?? params.get('week');
-  const unit=map.chapters.find(c=>String(c.unit)===requested);
+  let unit=map.chapters.find(c=>String(c.unit)===requested);
+  let step=null, sources=[];
+  if(params.has('topic')) {
+    const [threadResponse,sourceResponse]=await Promise.all([fetch(new URL('data/metadata/research-thread.json',project)),fetch(new URL('data/metadata/review-sources.json',project))]);
+    if(!threadResponse.ok||!sourceResponse.ok)throw Error('research step unavailable');
+    const thread=await threadResponse.json();sources=(await sourceResponse.json()).sources;step=thread.steps.find(s=>String(s.topic)===params.get('topic'));
+    if(!step)throw Error('unknown research step');
+    unit=map.chapters.find(c=>c.unit===step.unit);deck.dataset.topic=String(step.topic);
+  }
   const cover=slides[0];
   const bySource=new Map(slides.slice(1).map(s=>[Number(s.dataset.chapter),s]));
   const order=[];
@@ -197,8 +205,16 @@ async function applyChapters() {
   deck.replaceChildren(cover,...order);slides=[...deck.children];
   if(requested && !unit) {status.dataset.weekError='true';status.textContent='فصل پیدا نشد؛ ارائهٔ کامل به ترتیب فصل‌های درس نمایش داده می‌شود.';}
   if(unit) {
-    const keep=new Set([...unit.slides,...(params.get('appendix')==='1'?unit.supplementary_slides:[])]);
+    const keep=new Set(step?step.slides:[...unit.slides,...(params.get('appendix')==='1'?unit.supplementary_slides:[])]);
     for(const slide of slides.slice(1))if(!keep.has(Number(slide.dataset.chapter)))slide.remove();
+    if(step) {
+      const bridge=document.createElement('section');bridge.className='slide step-intro';bridge.hidden=true;bridge.dataset.unit=String(unit.unit);bridge.dataset.topic=String(step.topic);
+      const body=document.createElement('div');body.className='slide-body';
+      body.append(textElement('p','درس: '+step.terms[0].term+' یعنی '+step.terms[0].meaning),textElement('p','پژوهش: '+step.question),textElement('p','خروجی این قدم: '+step.output));
+      const refs=document.createElement('div');refs.className='slide-references';
+      for(const id of step.source_ids) {const source=sources.find(s=>s.id===id);if(!source)continue;const a=document.createElement('a');a.href=source.url||new URL(source.path,project).href;a.textContent=source.title;refs.append(a);}
+      bridge.append(textElement('h1',step.title),body,refs);addSlideIdentity(bridge,details);isolateScientificText(bridge);cover.after(bridge);
+    }
     slides=[...deck.children];deck.dataset.unit=String(unit.unit);
     const label=textElement('p',`فصل ${fa(unit.unit)}: ${unit.title}`,'cover-week');cover.querySelector('.cover-subtitle').after(label);
     document.getElementById('sources-link').hidden=!keep.has(29);
@@ -220,7 +236,7 @@ function show(index, focus = false) {
   previous.disabled = current === 0;
   next.disabled = current === slides.length - 1;
   document.getElementById('slide-progress').textContent = `${fa(current + 1)} / ${fa(slides.length)}`;
-  document.getElementById('notebook-link').href = `index.html?unit=${slides[current].dataset.unit || new URLSearchParams(location.search).get("unit") || 1}&part=presentation`;
+  document.getElementById('notebook-link').href = `index.html?unit=${slides[current].dataset.unit || new URLSearchParams(location.search).get("unit") || 1}${deck.dataset.topic ? "&topic="+deck.dataset.topic : ""}&part=presentation`;
   history.replaceState(null, '', '#slide-' + (current + 1));
   document.title = slides[current].querySelector('h1').textContent + ' · ارائهٔ کلاسی';
   if (focus) { deck.focus({ preventScroll: true }); window.scrollTo({ top: 0, behavior: 'instant' }); }
@@ -311,7 +327,7 @@ async function load() {
     }
     const sourcesSlide = slides.find((slide) => (slide.querySelector('h1')?.textContent || '').trim().startsWith('منابع')) || slides.at(-1);
     sourcesSlide.classList.add('sources');
-    await applyChapters();
+    await applyChapters(details);
     select.replaceChildren(...slides.map((slide, index) => new Option(`${fa(index + 1)}. ${slide.querySelector('h1').textContent}`, String(index))));
     select.disabled = false;
     document.getElementById('print-slides').disabled = false;

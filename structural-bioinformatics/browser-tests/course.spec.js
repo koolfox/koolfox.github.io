@@ -7,7 +7,7 @@ test('the root owns the nine chapter application with no second entry or global 
   await expect(page.locator('#sessions > details')).toHaveCount(9);
   await expect(page.locator('#research-tabs,#study-path,#weekly-plan')).toHaveCount(0);
   await page.locator('#sessions > details').nth(2).locator('summary').click();
-  await page.locator('#sessions > details').nth(2).getByRole('link',{name:'کارگاه این فصل',exact:true}).click();
+  await page.locator('#sessions > details').nth(2).getByRole('link',{name:'پژوهش این فصل',exact:true}).click();
   await expect(page).toHaveURL(/unit=3/);
   await expect(page.locator('#molecular-stage')).toBeVisible();
 });
@@ -69,7 +69,7 @@ test('all thirty lesson files and phases are available from the actual public ro
     await page.goto(`${route}?session=${n}&part=lesson`);
     await expect(page.locator('#sessions [aria-current=page]')).toHaveAttribute('href',new RegExp(`topic=${n}&part=lesson$`));
     await expect(page.locator('#lesson p').first()).not.toBeEmpty();
-    for(const part of ['practice','research','presentation']) {
+    for(const part of ['research','presentation']) {
       await page.locator(`[data-part=${part}]`).click();
       await expect(page.locator(`#parts [data-part=${part}]`)).toHaveAttribute('aria-current','page');
       await expect(page.locator('#status')).toHaveText('');
@@ -111,7 +111,7 @@ test('unavailable quiz does not prevent reading and can be fetched again',async(
   let failed=true;
   await page.route('**/course-quizzes.json',r=>failed?r.abort():r.continue());
   await page.goto(`${route}?session=8&part=presentation`);
-  await expect(page.locator('#lesson')).toContainText('جابه‌جایی');
+  await expect(page.locator('#lesson')).toContainText('RMSD');
   await expect(page.locator('#quiz-retry')).toBeVisible();
   failed=false; await page.locator('#quiz-retry').click();
   await expect(page.locator('#quiz-options input')).toHaveCount(3);
@@ -200,4 +200,42 @@ test('the chapter context remains visible while reading on a phone',async({page}
   await page.locator('#show-contents').click();
   await expect(page.locator('#contents')).toHaveJSProperty('open',true);
   await expect(page.locator('#position')).toContainText('فصل ۶');
+});
+
+test('one topic advances the same question from lesson through research to its own slides',async({page})=>{
+  await page.goto(`${route}?topic=3`);
+  await expect(page.locator('#parts a')).toHaveCount(3);
+  await expect(page.locator('#main-research-question')).toContainText('آدالیموماب');
+  await expect(page.locator('#topic-terms')).toContainText('زیرواحد');
+  await expect(page.locator('#topic-example')).toContainText('3WD5');
+  await page.locator('#next-phase').click();
+  await expect(page.locator('#parts [aria-current=page]')).toHaveAttribute('data-part','research');
+  await expect(page.locator('#lesson')).toContainText('دو زیرواحد');
+  await expect(page.locator('#research-outcome')).toContainText('انرژی');
+  await expect(page.locator('#research-deliverable')).toContainText('دو شکل');
+  await page.locator('#next-phase').click();
+  await expect(page.locator('#lesson')).toContainText('چهار سطح ساختار');
+  await expect(page.locator('#lesson')).toContainText('در پروژهٔ ما');
+  await page.getByRole('link',{name:'اسلایدهای این قدم',exact:true}).click();
+  await expect(page.locator('#deck')).toHaveAttribute('data-topic','3');
+  await expect(page.locator('.step-intro')).toHaveCount(1);
+  await expect(page.locator('#deck')).toContainText('خروجی این قدم');
+  await page.locator('#notebook-link').click();
+  await expect(page).toHaveURL(/topic=3/);
+  await expect(page.locator('#parts [aria-current=page]')).toHaveAttribute('data-part','presentation');
+});
+test('every research step has a usable slide bridge within the desktop height budget',async({page,request})=>{
+  test.setTimeout(120000);
+  await page.setViewportSize({width:1440,height:900});
+  const thread=await (await request.get('/structural-bioinformatics/data/metadata/research-thread.json')).json();
+  for(const step of thread.steps) {
+    await page.goto(`/structural-bioinformatics/presentation.html?topic=${step.topic}`);
+    await expect(page.locator('#deck')).toHaveAttribute('data-state','ready');
+    await expect(page.locator('.slide')).toHaveCount(step.slides.length+2);
+    await page.selectOption('#slide-select','1');
+    await expect(page.locator('.step-intro')).toBeVisible();
+    await expect(page.locator('.step-intro')).toContainText(step.question);
+    await page.evaluate(()=>document.fonts.ready);
+    expect(await page.evaluate(()=>document.documentElement.scrollHeight)).toBeLessThanOrEqual(902);
+  }
 });

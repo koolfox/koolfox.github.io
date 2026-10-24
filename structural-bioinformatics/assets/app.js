@@ -201,6 +201,7 @@ function initializeTabs() {
     openTool(name){const target=toolTargets[name];if(!target)return;activate(target[0],{updateHash:true});const node=$(target[1]);for(let parent=node;parent;parent=parent.parentElement)if(parent.tagName==="DETAILS")parent.open=true;requestAnimationFrame(()=>node?.scrollIntoView({block:"start"}));},
     async openDocument(name,chapter){activate("reading",{updateHash:true});await loadReadingDocument(name,chapter);}
   };
+  document.dispatchEvent(new Event("research-workspace-ready"));
   followHash();
 }
 

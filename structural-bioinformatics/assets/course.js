@@ -160,6 +160,15 @@ function showThread(step,part) {
   $("#next-research-step").textContent=step.next_step;
 }
 
+async function waitForWorkspace() {
+  if(!$("#research-tabs")||window.researchWorkspace)return;
+  await new Promise((resolve,reject)=>{
+    const ready=()=>{clearTimeout(timer);resolve();};
+    const timer=setTimeout(()=>{document.removeEventListener("research-workspace-ready",ready);reject(Error("Workspace unavailable"));},15000);
+    document.addEventListener("research-workspace-ready",ready,{once:true});
+  });
+}
+
 async function render(focus=false) {
   const ticket=++revision;quizReady=false;
   toolModule?.pauseTools();
@@ -169,6 +178,8 @@ async function render(focus=false) {
   if(!window.researchWorkspace)document.querySelectorAll('[data-course-tool]').forEach(el=>el.hidden=true);
   $("#lesson").replaceChildren();
   try {
+    await waitForWorkspace();
+    if(ticket!==revision)return;
     if(!course || !courseMap || !researchThread) [course,syllabus,courseMap,researchThread]=await Promise.all([getJSON("data/metadata/learning-course.json"),getJSON("data/metadata/course-syllabus.json"),getJSON("data/metadata/course-map.json"),getJSON("data/metadata/research-thread.json")]);
     if(ticket!==revision)return;
     const ctx=state(); const {n,part,unit,invalid}=ctx;active=course.sessions[n-1];drawContents(n);

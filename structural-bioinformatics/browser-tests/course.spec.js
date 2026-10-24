@@ -248,3 +248,27 @@ test('every research step has a usable slide bridge within the desktop height bu
     expect(await page.evaluate(()=>document.documentElement.scrollHeight)).toBeLessThanOrEqual(902);
   }
 });
+
+// The lesson renderer must exist before a fast metadata response starts the course.
+test('a delayed Markdown dependency never leaves the initial lesson empty',async({page})=>{
+  await page.route('**/markdown-it.min.js',async route=>{
+    await new Promise(resolve=>setTimeout(resolve,300));
+    await route.continue();
+  });
+  await page.goto(`${route}?topic=8&part=research`);
+  await expect(page.locator('#lesson')).toContainText('--shift 10');
+  await expect(page.locator('#retry')).toBeHidden();
+});
+
+test('delayed workspace dependencies cannot hide the lesson or laboratory',async({page})=>{
+  await page.route('**/glossary-terms.js',async route=>{
+    await new Promise(resolve=>setTimeout(resolve,300));
+    await route.continue();
+  });
+  await page.goto(`${route}?topic=8&part=research`);
+  await expect(page.locator('#lesson')).toContainText('--shift 10');
+  await page.locator('#tab-lab').click();
+  await expect(page.locator('#structures')).toBeVisible();
+  await page.locator('#tab-basics').click();
+  await expect(page.locator('#lesson')).toContainText('--shift 10');
+});

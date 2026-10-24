@@ -322,3 +322,7 @@ Short references form a full-width ruled row beneath the content. Tables use ali
 ## Research workspace restoration, 2026-10-24
 
 Retain the established six-tab research workspace from 20 October: basics/learning, laboratory, sequences, literature, methods, and the document reader. Embed the nine syllabus chapters in the first panel; lesson, research and presentation belong to each topic. Keep direct tool access and the complete book selector. A shared chapter context and return link connect tools and books to the current lesson. Preserve Arad, RTL, scientific-media framing and keyboard tab navigation. Course CSS is scoped to the embedded lesson so it does not restyle the research workspace. There is one page, not a second course or embedded app.
+
+## Independent sections, 2026-10-25
+
+The user's latest direction supersedes the previous embedded workspace navigation. Preserve Arad, RTL, scientific figures and established colors. Use a quiet directory of descriptive rows on the homepage and normal page links for nine independent sections. Chapter navigation lives only in the course and topic selection in exercises/presentations. No global chapter context, tab switching or lesson/research/presentation phase controls. Resources open within the appropriate page, not an implicit course owner. Keep technical detail in the relevant tool or document rather than homepage navigation copy.

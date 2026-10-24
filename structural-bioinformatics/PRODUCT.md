@@ -1,26 +1,27 @@
-# Structural Bioinformatics: One Chapter-Based Course
-
-<!-- impeccable:product-schema 1 -->
+# Structural Bioinformatics
 
 ## Platform
 
-Static Persian RTL application; Arad, HTML/CSS/JavaScript; Python/uv analyses. No account or backend.
+web
 
-## Users and purpose
+## Readers
 
-A novice MSc bioinformatics student and classmates learning the official syllabus and preparing an understandable research presentation. Define biological and technical terms before use. Teach connected explanations with executable practice, paper interpretation and oral rehearsal.
+A novice MSc student, classmates and readers seeking a particular scientific resource. Keep Persian RTL and Arad. Explain biological and technical terms before relying on them.
 
-## One information architecture
+## Information architecture
 
-`index.html` is the application. Its nine syllabus chapters own topics, molecular tools, documents and slide selections through `data/metadata/course-map.json`. Each topic advances one research thread through lesson, research and presentation. Practice belongs to research. research-thread.json supplies prerequisite vocabulary, an example, the research connection/actions/evidence state, the expected artifact, speaker notes and a topic-specific slide selection. There is no parallel workbench, global six-tab site, eight-step journey or weekly curriculum. `learn.html` only redirects older URLs to the same index. Existing document and tool links resolve into their owning chapter.
+The user requested independent sections on 2026-10-25. `index.html` is a directory, not a combined application or course gate. Nine public pages provide lesson/syllabus, research, library, paper reviews, structures, datasets, docking, exercises and presentations. `site-sections.json` defines their navigation and document collections; `build_section_pages.py` builds them from source fragments.
 
-Scientific tools remain directly available in the original workspace tabs. Documents render in the same page with the complete book selector; chapter reading links suggest relevant texts without hiding the rest. Slides are a presentation mode/export of the same chapter map, not a second educational system. Readers choose pace and topic; no proficiency lock is applied. Notes and formative responses are local to the browser and separate from self-reported study status.
+The course has nine syllabus chapters and thirty topics. Lesson, exercise, research-note and speaker-note source files are separate. Topic and chapter links are recommendations, never a global context that relocates tools or narrows access. The research question belongs on the research page. Numerical viewers belong on their own pages. The library searches all registered documents; focused pages offer their relevant documents. Presentation exports retain the reviewed slide bank.
+
+## Persistence and compatibility
+
+Existing quiz attempts and notes remain in the same localStorage keys. No accounts or server submission. Old index query and fragment links resolve to the appropriate independent page. There is no hidden legacy all-in-one workspace.
 
 ## Evidence
 
-The adalimumab–TNF case supports learning and a bounded critical survey. Geometry, binding, simulation, RNA abundance and clinical outcomes are distinct. RNA-seq and TOP2A evidence are labelled supplements. Every active document has chapter ownership; retired plans redirect to the current guide. Scientific outputs and the audited source slide bank remain traceable. No new drug, efficacy, completed survey or universal learner mastery is claimed.
+Preserve provenance and distinguish geometry, RNA abundance, enzyme activity and clinical outcomes. The current review is a focused narrative draft; screening and inferential RNA analysis are incomplete. Moving content creates no new scientific result. Keep publisher full text and raw patient records out of publication.
 
+## Acceptance
 
-## Current restoration direction, 2026-10-24
-
-The user selected the 20 October research workspace as the baseline to improve. Preserve its six visible sections and direct access to scientific tools and complete books. Keep the nine syllabus chapters embedded in the first section, with lesson → research → presentation for each topic. Do not remove substantive guide content to replace it with a short redirect. The central review asks how adalimumab binds TNF and what published studies have found. Retain subsequent scientific corrections and browser-local quizzes.
+All sections are directly reachable, independently usable, keyboard accessible and readable on mobile. Test scientific controls, storage, deep links, errors and the exact Pages artifact. Verify deployment and actual live routes before announcing publication.

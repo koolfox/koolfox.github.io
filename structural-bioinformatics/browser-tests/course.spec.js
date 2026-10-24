@@ -1,319 +1,137 @@
 import { test, expect } from '@playwright/test';
-const route='/structural-bioinformatics/';
-test('the restored six-section workspace contains the same nine-chapter course',async({page})=>{
-  await page.goto(route);
-  await expect(page).not.toHaveURL(/learn\.html/);
-  await expect(page.locator('#lesson')).toContainText('سلول کوچک‌ترین');
-  await expect(page.locator('#sessions > details')).toHaveCount(9);
-  await expect(page.locator('#research-tabs [role=tab]')).toHaveCount(6);
-  await expect(page.locator('#study-path,#weekly-plan')).toHaveCount(0);
-  await page.locator('#sessions > details').nth(2).locator('summary').click();
-  await page.locator('#sessions > details').nth(2).getByRole('link',{name:'پژوهش این فصل',exact:true}).click();
-  await expect(page).toHaveURL(/unit=3/);
-  await page.locator('#tab-lab').click();
-  await expect(page.locator('#molecular-stage')).toBeVisible();
-  await page.locator('#tab-basics').click();
-  await expect(page.locator('#position')).toContainText('فصل ۳');
+const root='/structural-bioinformatics/';
+const sections=['course','research','library','papers','structures','datasets','docking','exercises','presentations'];
+
+test('the directory links to nine actual independent pages without a course gate',async({page,request})=>{
+ await page.goto(root);
+ await expect(page.locator('#section-nav a')).toHaveCount(9);
+ await expect(page.locator('.section-directory article')).toHaveCount(9);
+ await expect(page.locator('#lesson,#quiz-form,#molecular-stage,#chapter-context,[role=tab]')).toHaveCount(0);
+ for(const section of sections) {
+  const response=await request.get(`${root}${section}.html`);expect(response.ok()).toBe(true);
+  expect(await response.text()).toContain(`data-section="${section}"`);
+ }
+ await page.getByRole('navigation',{name:'بخش‌های پروژه'}).getByRole('link',{name:'دیتاست‌ها',exact:true}).click();
+ await expect(page).toHaveURL(/datasets\.html/);
+ await expect(page.locator('#section-nav [aria-current=page]')).toHaveText('دیتاست‌ها');
+ await expect(page.locator('#sessions,#parts,#chapter-context')).toHaveCount(0);
 });
-test('deep linking, reading phases and history keep a single coherent session',async({page})=>{
-  await page.goto(`${route}?session=8&part=practice`);
-  await expect(page.locator('#lesson')).toContainText('--shift 10');
-  await expect(page.locator('#session-title')).toContainText('RMSD');
-  await page.locator('[data-part=lesson]').click();
-  await expect(page.locator('#lesson')).toContainText('اتم‌های متناظر');
-  await page.goBack();
-  await expect(page.locator('#lesson')).toContainText('--shift 10');
-  await page.locator('#next').click();
-  await expect(page.locator('#session-title')).toContainText('SASA');
+
+test('the course shows only lessons with nine chapters and thirty topic links',async({page})=>{
+ await page.goto(`${root}course.html?topic=8`);
+ await expect(page.locator('#lesson')).toContainText('اتم‌های متناظر');
+ await expect(page.locator('#sessions > details')).toHaveCount(9);
+ await expect(page.locator('#sessions a[data-topic]')).toHaveCount(30);
+ await expect(page.locator('#parts,#quiz-form,#research-outcome,#dataset-workflow')).toHaveCount(0);
+ await expect(page.locator('#lesson')).not.toContainText('کار این فصل در مقاله');
+ await page.locator('#next').click();
+ await expect(page.locator('#session-title')).toContainText('SASA');
+ await page.goBack();await expect(page.locator('#session-title')).toContainText('RMSD');
+ await page.locator('#topic-links').getByRole('link',{name:'تمرین و خودآزمایی این مبحث'}).click();
+ await expect(page).toHaveURL(/exercises\.html\?topic=8/);
+ await expect(page.locator('#lesson')).toContainText('--shift 10');
 });
-test('quiz answers, notes and study state persist independently and can be retried',async({page})=>{
-  await page.goto(`${route}?session=1&part=presentation`);
-  await expect(page.locator('#quiz-options input')).toHaveCount(3);
-  await page.locator('#quiz-options input[value="1"]').check();
-  await page.locator('#quiz-form button').click();
-  await expect(page.locator('#quiz-feedback')).toHaveAttribute('data-result','incorrect');
-  await page.locator('#quiz-options input[value="0"]').check();
-  await page.locator('#quiz-form button').click();
-  await expect(page.locator('#quiz-feedback')).toHaveAttribute('data-result','correct');
-  await expect(page.locator('#quiz-history')).toContainText('۲');
-  await page.locator('#own-answer').fill('نکتهٔ شخصی برای تمرین');
-  await page.locator('#progress').selectOption('read');
-  await page.reload();
-  await expect(page.locator('#own-answer')).toHaveValue('نکتهٔ شخصی برای تمرین');
-  await expect(page.locator('#quiz-options input[value="0"]')).toBeChecked();
-  await expect(page.locator('#quiz-feedback')).toHaveAttribute('data-result','correct');
-  await expect(page.locator('#progress')).toHaveValue('read');
-  await page.locator('#clear-answer').click();
-  await expect(page.locator('#own-answer')).toHaveValue('');
-  await expect(page.locator('#quiz-history')).toContainText('هنوز پاسخی');
-  await expect(page.locator('#progress')).toHaveValue('read');
+
+test('separate lesson, exercise, research and speaker files remain accessible',async({request})=>{
+ const response=await request.get(`${root}data/metadata/learning-course.json`);const data=await response.json();
+ for(const topic of data.sessions) {
+  const results=await Promise.all(['path','exercise_path','research_path','presentation_path'].map(async key=>{
+   const result=await request.get(root+topic[key]);expect(result.ok()).toBe(true);return result.text();
+  }));
+  for(const body of results)expect(body).not.toContain('<!-- course:');
+ }
 });
-test('invalid address and blocked storage have explicit usable fallbacks',async({page})=>{
-  await page.addInitScript(()=>{Object.defineProperty(window,'localStorage',{get(){throw Error('blocked')}});});
-  await page.goto(`${route}?session=99&part=unknown`);
-  await expect(page.locator('#status')).toContainText('معتبر نبود');
-  await expect(page.locator('#lesson')).toContainText('سلول کوچک‌ترین');
-  await expect(page.locator('#storage-note')).toContainText('در دسترس نیست');
-  await page.locator('#progress').selectOption('read');
-  await expect(page.locator('#storage-note')).toContainText('ممکن نشد');
+
+test('quiz responses and notes survive reload and clearing remains topic-specific',async({page})=>{
+ await page.goto(`${root}exercises.html?topic=1`);
+ await expect(page.locator('#quiz-options input')).toHaveCount(3);
+ await page.locator('#quiz-options input[value="1"]').check();await page.locator('#quiz-form button').click();
+ await expect(page.locator('#quiz-feedback')).toHaveAttribute('data-result','incorrect');
+ await page.locator('#quiz-options input[value="0"]').check();await page.locator('#quiz-form button').click();
+ await expect(page.locator('#quiz-feedback')).toHaveAttribute('data-result','correct');
+ await page.locator('#own-answer').fill('تفاوت RNA و مختصات را توضیح می‌دهم.');
+ await page.reload();await expect(page.locator('#own-answer')).toHaveValue('تفاوت RNA و مختصات را توضیح می‌دهم.');
+ await expect(page.locator('#quiz-feedback')).toHaveAttribute('data-result','correct');
+ await expect(page.locator('#quiz-history')).toContainText('۲');
+ await page.locator('#clear-answer').click();await expect(page.locator('#own-answer')).toHaveValue('');
+ await expect(page.locator('#quiz-history')).toContainText('هنوز پاسخی');
 });
-test('network failure can be retried without a blank lesson',async({page})=>{
-  let failed=true;
-  await page.route('**/docs/course/session-01.fa.md',r=>failed?r.abort():r.continue());
-  await page.goto(route);
-  await expect(page.locator('#retry')).toBeVisible();
-  failed=false; await page.locator('#retry').click();
-  await expect(page.locator('#lesson')).toContainText('سلول کوچک‌ترین');
-  await expect(page.locator('#retry')).toBeHidden();
+
+test('existing browser quiz records migrate without losing notes and changed revisions reset',async({page,request})=>{
+ const bank=await (await request.get(`${root}data/metadata/course-quizzes.json`)).json();const quiz=bank.quizzes[0];
+ await page.addInitScript(({id,revision})=>{if(!localStorage.getItem('tnf-course-quizzes-v1'))localStorage.setItem('tnf-course-quizzes-v1',JSON.stringify({'1':{id,revision,choice:0,notes:'یادداشت قبلی',attempts:[{choice:0,at:'2026-10-24T00:00:00Z'}]}}));},{id:quiz.id,revision:quiz.revision});
+ await page.goto(`${root}exercises.html?topic=1`);await expect(page.locator('#own-answer')).toHaveValue('یادداشت قبلی');
+ await page.evaluate(()=>localStorage.setItem('tnf-course-quizzes-v1',JSON.stringify({'1':{revision:'outdated',choice:0,notes:'منسوخ',attempts:[]}})));
+ await page.reload();await expect(page.locator('#own-answer')).toHaveValue('');
 });
-test('all thirty lesson files and phases are available from the actual public routes',async({page})=>{
-  test.setTimeout(120000);
-  await page.goto(route);
-  for(let n=1;n<=30;n++) {
-    await page.goto(`${route}?session=${n}&part=lesson`);
-    await expect(page.locator('#sessions [aria-current=page]')).toHaveAttribute('href',new RegExp(`topic=${n}&part=lesson$`));
-    await expect(page.locator('#lesson p').first()).not.toBeEmpty();
-    for(const part of ['research','presentation']) {
-      await page.locator(`[data-part=${part}]`).click();
-      await expect(page.locator(`#parts [data-part=${part}]`)).toHaveAttribute('aria-current','page');
-      await expect(page.locator('#status')).toHaveText('');
-      await expect(page.locator('#lesson p').first()).not.toBeEmpty();
-    }
-  }
+
+test('course progress stays separate from exercise answers',async({page})=>{
+ await page.goto(`${root}course.html?topic=1`);await expect(page.locator('#lesson')).toContainText('سلول');
+ await page.locator('#progress').selectOption('read');
+ await page.goto(`${root}exercises.html?topic=1`);await expect(page.locator('#quiz-form')).toBeVisible();
+ await page.locator('#own-answer').fill('پاسخ تمرین');
+ await page.goto(`${root}course.html?topic=1`);await expect(page.locator('#progress')).toHaveValue('read');
 });
-test('mobile course is readable without horizontal overflow',async({page})=>{
-  await page.setViewportSize({width:390,height:844});
-  await page.goto(`${route}?session=7&part=practice`);
-  await expect(page.locator('#lesson pre')).toBeVisible();
+
+test('lesson failures can retry and quiz failures do not erase exercise instructions',async({page})=>{
+ await page.route('**/docs/course/session-01.fa.md',r=>r.abort());
+ await page.goto(`${root}course.html`);await expect(page.locator('#retry')).toBeVisible();
+ await page.unroute('**/docs/course/session-01.fa.md');await page.locator('#retry').click();await expect(page.locator('#lesson')).toContainText('سلول');
+ await page.route('**/data/metadata/course-quizzes.json',r=>r.abort());
+ await page.goto(`${root}exercises.html`);await expect(page.locator('#quiz-retry')).toBeVisible();await expect(page.locator('#lesson')).toContainText('دفتر یادگیری');
+ await page.unroute('**/data/metadata/course-quizzes.json');await page.locator('#quiz-retry').click();await expect(page.locator('#quiz-options input')).toHaveCount(3);
+});
+
+test('blocked storage has a clear fallback while exercise and download still work',async({page})=>{
+ await page.addInitScript(()=>Object.defineProperty(window,'localStorage',{get(){throw Error('blocked')}}));
+ await page.goto(`${root}exercises.html?topic=10`);
+ await page.locator('#dataset-notes').fill('یادداشت موقت');
+ await expect(page.locator('#dataset-workflow [role=status]')).toContainText('اجازهٔ ذخیره نداد');
+ const download=page.waitForEvent('download');await page.getByRole('button',{name:'دریافت یادداشت‌های تمرین‌ها'}).click();expect((await download).suggestedFilename()).toBe('dataset-notebook.fa.txt');
+ await page.locator('#quiz-options input').first().check();await page.locator('#quiz-form button').click();await expect(page.locator('#quiz-feedback')).not.toBeEmpty();
+});
+
+test('the exercise notebook retains measured RNA summaries and independent chapter notes',async({page})=>{
+ await page.goto(`${root}exercises.html?topic=10`);
+ await expect(page.locator('#workflow-gene-result')).toContainText('0.754');
+ await page.locator('#workflow-gene').selectOption('TNF');await expect(page.locator('#workflow-gene-result')).toContainText('1.103');
+ await page.locator('#dataset-notes').fill('چهار اهداکننده؛ نتیجه توصیفی است.');await page.reload();await expect(page.locator('#dataset-notes')).toHaveValue('چهار اهداکننده؛ نتیجه توصیفی است.');
+ await page.goto(`${root}exercises.html?topic=8`);await expect(page.locator('#dataset-notes')).toHaveValue('');
+});
+
+test('library search and full documents do not require a chapter selection',async({page})=>{
+ await page.goto(`${root}library.html`);await expect(page.locator('#library-catalog article')).not.toHaveCount(0);
+ await page.locator('#library-search').fill('واژه');await expect(page.locator('#library-catalog')).toContainText('واژه‌نامه');
+ await page.locator('#library-search').fill('not-a-real-topic-999');await expect(page.locator('#library-status')).toContainText('پیدا نشد');
+ await page.goto(`${root}library.html?document=software-workbook.fa.md&chapter=all#reading`);await expect(page.locator('#reading-status')).toHaveAttribute('data-document','software-workbook.fa.md');
+ await expect(page.locator('#sessions,#chapter-context')).toHaveCount(0);
+});
+
+test('research, paper reviews, datasets and docking have separate primary content',async({page})=>{
+ await page.goto(`${root}research.html`);await expect(page.locator('.research-summary')).toContainText('تغییر بیان TOP2A');await expect(page.locator('#molecular-stage,#quiz-form,#datasets-table')).toHaveCount(0);
+ await page.goto(`${root}papers.html`);await expect(page.locator('#paper-list')).toHaveAttribute('data-state','ready');await expect(page.locator('#sessions,#quiz-form')).toHaveCount(0);
+ await page.goto(`${root}datasets.html`);await expect(page.locator('#dataset-search')).toBeEnabled();await page.locator('#dataset-search').fill('GSE339038');await expect(page.locator('#datasets-table')).toContainText('GSE339038');
+ await page.goto(`${root}docking.html`);await expect(page.locator('#docking-validation')).toHaveAttribute('data-state','ready');await expect(page.locator('#molecular-stage,#datasets-table')).toHaveCount(0);
+});
+
+test('presentations offer chapter decks and speaker notes independently of lessons',async({page})=>{
+ await page.goto(`${root}presentations.html`);await expect(page.locator('#presentation-catalog article')).toHaveCount(9);
+ await page.goto(`${root}presentations.html?topic=10`);await expect(page.locator('#speaker-notes')).toBeVisible();await expect(page.locator('#speaker-body')).toContainText('چهار اهداکننده');
+ await page.locator('#topic-slides').click();await expect(page.locator('#deck')).toHaveAttribute('data-topic','10');
+ await page.locator('#notebook-link').click();await expect(page).toHaveURL(/presentations\.html/);
+});
+
+test('older links resolve to the corresponding independent section',async({page})=>{
+ for(const [old,target] of [['?topic=8','course.html'],['?unit=4&part=research','exercises.html'],['?tool=lab','structures.html'],['?tool=docking','docking.html'],['?document=survey-draft.fa.md','research.html'],['?document=paper-explanations.fa.md','papers.html'],['#sequences','structures.html'],['?document=glossary.fa.md','library.html']]) {
+  await page.goto(root+old);await expect(page).toHaveURL(new RegExp(target.replace('.','\\.')));
+ }
+});
+
+test('all sections stay readable on mobile with native keyboard navigation',async({page})=>{
+ await page.setViewportSize({width:390,height:844});
+ for(const section of sections) {
+  await page.goto(`${root}${section}.html`);await expect(page.locator('#section-nav')).toBeVisible();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-  await page.locator('#contents > summary').click();
-  await expect(page.locator('#sessions details > a')).toHaveCount(30);
-  await page.locator('#sessions > details').last().locator('summary').click();
-  await page.locator('#sessions details > a').last().click();
-  await expect(page.locator('#session-title')).toContainText('دفاع');
-});
-
-test('the RNA teaching model renders actual local polymer coordinates',async({page})=>{
-  await page.goto('/structural-bioinformatics/assets/reference-viewer.html?pdb=1EHZ');
-  await expect(page.locator('body')).toHaveAttribute('data-state','ready',{timeout:30000});
-  const state=await page.evaluate(()=>window.referenceViewer.state);
-  expect(state.structureId).toBe('1EHZ');
-  expect(state.polymerResidueCount).toBe(76);
-  expect(state.representation).toBe('cartoon');
-});
-
-test('nine chapters are independent of the official classroom session allocations',async({page})=>{
-  await page.goto(route);
-  await expect(page.locator('#sessions > details')).toHaveCount(9);
-  await expect(page.locator('#position')).toContainText('فصل ۱ از ۹');
-  await expect(page.locator('#position')).not.toContainText('جلسه');
-  await page.locator('#sessions > details').last().locator('summary').click();
-  await page.locator('#sessions details > a').last().click();
-  await expect(page.locator('#position')).toContainText('فصل ۹ از ۹');
-});
-test('unavailable quiz does not prevent reading and can be fetched again',async({page})=>{
-  let failed=true;
-  await page.route('**/course-quizzes.json',r=>failed?r.abort():r.continue());
-  await page.goto(`${route}?session=8&part=presentation`);
-  await expect(page.locator('#lesson')).toContainText('RMSD');
-  await expect(page.locator('#quiz-retry')).toBeVisible();
-  failed=false; await page.locator('#quiz-retry').click();
-  await expect(page.locator('#quiz-options input')).toHaveCount(3);
-});
-test('changed question revision does not inherit an earlier result',async({page})=>{
-  await page.addInitScript(()=>localStorage.setItem('tnf-course-quizzes-v1',JSON.stringify({1:{id:'topic-01-concept-1',revision:0,choice:0,notes:'old',attempts:[{choice:0,at:'2026-01-01'}]}})));
-  await page.goto(`${route}?session=1&part=presentation`);
-  await expect(page.locator('#quiz-history')).toContainText('هنوز پاسخی');
-  await expect(page.locator('#own-answer')).toHaveValue('');
-});
-
-test('mobile quiz stays within the viewport and remains usable when saving fails',async({page})=>{
-  await page.setViewportSize({width:390,height:844});
-  await page.addInitScript(()=>{Storage.prototype.setItem=function(){throw Error('quota')};});
-  await page.goto(`${route}?session=1&part=presentation`);
-  await page.locator('#quiz-options input[value="0"]').check();
-  await page.locator('#quiz-form button').click();
-  await expect(page.locator('#quiz-feedback')).toHaveAttribute('data-result','correct');
-  await expect(page.locator('#storage-note')).toContainText('ممکن نشد');
-  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-  await page.locator('#own-answer').fill('تا بستن صفحه');
-  await page.locator('[data-part=lesson]').click();
-  await page.locator('[data-part=presentation]').click();
-  await expect(page.locator('#own-answer')).toHaveValue('تا بستن صفحه');
-});
-
-test('tools, documents and presentation stay inside the same chapter application',async({page,request})=>{
-  const map=await (await request.get('/structural-bioinformatics/data/metadata/course-map.json')).json();
-  await page.goto(`${route}?unit=6&part=research&document=paper-explanations.fa.md&chapter=chapter-3`);
-  await expect(page.locator('#position')).toContainText('فصل ۶');
-  await expect(page.locator('#reading-status')).toHaveAttribute('data-state','ready');
-  await expect(page.locator('#markdown-content')).toContainText('Bianchi');
-  const names=await page.locator('#document-select option').evaluateAll(options=>options.map(o=>o.value));
-  for(const name of map.chapters[5].documents)expect(names).toContain(name);
-  await page.locator('#workspace-lesson').click();
-  await page.locator('[data-part=presentation]').click();
-  await page.getByRole('link',{name:'متن ارائهٔ فصل',exact:true}).click();
-  await expect(page.locator('#reading-status')).toHaveAttribute('data-document','chapter-presentation.fa.md');
-  await expect(page.locator('#reading-status')).toHaveAttribute('data-chapter','chapter-6');
-  await expect(page.locator('#chapter-select')).toHaveValue('chapter-6');
-  await expect(page.locator('#position')).toContainText('فصل ۶');
-  await expect(page.locator('iframe[src*="learn.html"],iframe[src*="index.html"]')).toHaveCount(0);
-});
-test('legacy learning and weekly links resolve only into the one chapter application',async({page})=>{
-  await page.goto('/structural-bioinformatics/learn.html?topic=8&part=presentation');
-  await expect(page).toHaveURL(/index\.html\?unit=3/);
-  await expect(page.locator('#position')).toContainText('فصل ۳');
-  await expect(page.locator('#quiz-form')).toBeVisible();
-  await page.goto(`${route}?document=weekly-plan.fa.md#reading`);
-  await expect(page.locator('#reading-status')).toHaveAttribute('data-document','weekly-plan.fa.md');
-  await expect(page.locator('#weekly-plan,#study-path')).toHaveCount(0);
-  await expect(page.locator('#research-tabs [role=tab]')).toHaveCount(6);
-});
-test('every tool opens in its owning chapter without opening another curriculum',async({page,request})=>{
-  test.setTimeout(120000);
-  const map=await (await request.get('/structural-bioinformatics/data/metadata/course-map.json')).json();
-  for(const tool of map.tools) {
-    await page.goto(`${route}?unit=${tool.unit}&part=practice&tool=${tool.id}`);
-    await expect(page.locator(`[data-course-tool="${tool.id}"]`)).toBeVisible();
-    await expect(page.locator('#research-tabs [aria-selected=true]')).toHaveCount(1);
-    await expect(page.locator('#position')).toContainText(`فصل ${tool.unit.toLocaleString('fa-IR')}`);
-    await expect(page.locator('#research-tabs [role=tab]')).toHaveCount(6);
-  await expect(page.locator('#study-path,#weekly-plan')).toHaveCount(0);
-  }
-});
-test('chapter presentations share the same course map and return to their chapter',async({page,request})=>{
-  const map=await (await request.get('/structural-bioinformatics/data/metadata/course-map.json')).json();
-  for(const unit of [2,3,6,8,9]) {
-    await page.goto(`/structural-bioinformatics/presentation.html?unit=${unit}`);
-    await expect(page.locator('#deck')).toHaveAttribute('data-state','ready');
-    await expect(page.locator('#deck')).toHaveAttribute('data-unit',String(unit));
-    const ids=await page.locator('.slide[data-chapter]').evaluateAll(slides=>slides.map(s=>Number(s.dataset.chapter)));
-    expect(ids).toEqual(map.chapters[unit-1].slides);
-    await page.locator('#notebook-link').click();
-    await expect(page.locator('#position')).toContainText(`فصل ${unit.toLocaleString('fa-IR')}`);
-    await expect(page.locator('#check')).toBeVisible();
-  }
-});
-
-test('the chapter context remains visible while reading on a phone',async({page})=>{
-  await page.setViewportSize({width:390,height:844});
-  await page.goto(`${route}?unit=6&part=research&document=paper-explanations.fa.md&chapter=chapter-3`);
-  await expect(page.locator('#reading-status')).toHaveAttribute('data-state','ready');
-  await page.locator('#markdown-content').scrollIntoViewIfNeeded();
-  expect((await page.locator('#chapter-context').boundingBox()).y).toBeGreaterThanOrEqual(0);
-  const tabs=await page.locator('#research-tabs').boundingBox();
-  const context=await page.locator('#chapter-context').boundingBox();
-  expect(context.y).toBeGreaterThanOrEqual(tabs.y+tabs.height-1);
-  expect(context.y+context.height).toBeLessThan(250);
-  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-  await page.locator('#show-contents').click();
-  await expect(page.locator('#contents')).toHaveJSProperty('open',true);
-  await expect(page.locator('#position')).toContainText('فصل ۶');
-});
-
-test('one topic advances the same question from lesson through research to its own slides',async({page})=>{
-  await page.goto(`${route}?topic=3`);
-  await expect(page.locator('#parts a')).toHaveCount(3);
-  await expect(page.locator('#main-research-question')).toContainText('آدالیموماب');
-  await expect(page.locator('#topic-terms')).toContainText('زیرواحد');
-  await expect(page.locator('#topic-example')).toContainText('3WD5');
-  await page.locator('#next-phase').click();
-  await expect(page.locator('#parts [aria-current=page]')).toHaveAttribute('data-part','research');
-  await expect(page.locator('#lesson')).toContainText('دو زیرواحد');
-  await expect(page.locator('#research-outcome')).toContainText('انرژی');
-  await expect(page.locator('#research-deliverable')).toContainText('دو شکل');
-  await page.locator('#next-phase').click();
-  await expect(page.locator('#lesson')).toContainText('چهار سطح ساختار');
-  await expect(page.locator('#lesson')).toContainText('در پروژهٔ ما');
-  await page.getByRole('link',{name:'اسلایدهای این مبحث',exact:true}).click();
-  await expect(page.locator('#deck')).toHaveAttribute('data-topic','3');
-  await expect(page.locator('.step-intro')).toHaveCount(1);
-  await expect(page.locator('#deck')).toContainText('تمرین:');
-  await page.locator('#notebook-link').click();
-  await expect(page).toHaveURL(/topic=3/);
-  await expect(page.locator('#parts [aria-current=page]')).toHaveAttribute('data-part','presentation');
-});
-test('every research step has a usable slide bridge within the desktop height budget',async({page,request})=>{
-  test.setTimeout(120000);
-  await page.setViewportSize({width:1440,height:900});
-  const thread=await (await request.get('/structural-bioinformatics/data/metadata/research-thread.json')).json();
-  for(const step of thread.steps) {
-    await page.goto(`/structural-bioinformatics/presentation.html?topic=${step.topic}`);
-    await expect(page.locator('#deck')).toHaveAttribute('data-state','ready');
-    await expect(page.locator('.slide')).toHaveCount(step.slides.length+2);
-    await page.selectOption('#slide-select','1');
-    await expect(page.locator('.step-intro')).toBeVisible();
-    await expect(page.locator('.step-intro')).toContainText(step.question);
-    await page.evaluate(()=>document.fonts.ready);
-    expect(await page.evaluate(()=>document.documentElement.scrollHeight)).toBeLessThanOrEqual(902);
-  }
-});
-
-// The lesson renderer must exist before a fast metadata response starts the course.
-test('a delayed Markdown dependency never leaves the initial lesson empty',async({page})=>{
-  await page.route('**/markdown-it.min.js',async route=>{
-    await new Promise(resolve=>setTimeout(resolve,300));
-    await route.continue();
-  });
-  await page.goto(`${route}?topic=8&part=research`);
-  await expect(page.locator('#lesson')).toContainText('--shift 10');
-  await expect(page.locator('#retry')).toBeHidden();
-});
-
-test('delayed workspace dependencies cannot hide the lesson or laboratory',async({page})=>{
-  await page.route('**/glossary-terms.js',async route=>{
-    await new Promise(resolve=>setTimeout(resolve,300));
-    await route.continue();
-  });
-  await page.goto(`${route}?topic=8&part=research`);
-  await expect(page.locator('#lesson')).toContainText('--shift 10');
-  await page.locator('#tab-lab').click();
-  await expect(page.locator('#structures')).toBeVisible();
-  await page.locator('#tab-basics').click();
-  await expect(page.locator('#lesson')).toContainText('--shift 10');
-});
-
-test('the research question opens the aligned survey and its actual RNA panel',async({page})=>{
-  await page.goto(`${route}?unit=1&topic=1&part=lesson&document=research-questions.fa.md&chapter=intro#literature`);
-  await expect(page.locator('#reading-status')).toHaveAttribute('data-document','research-questions.fa.md');
-  await page.locator('#markdown-content').getByRole('link',{name:'پیش‌نویس مرور',exact:true}).click();
-  await expect(page.locator('#reading-status')).toHaveAttribute('data-document','survey-draft.fa.md');
-  await page.selectOption('#chapter-select','all');
-  await expect(page.locator('#markdown-content')).toContainText('MKI67');
-  await expect(page.locator('#markdown-content')).toContainText('0.754');
-  await expect(page.locator('#markdown-content')).toContainText('Ho 2021');
-  await expect(page.locator('#markdown-content a[href*="top2a-panel-inspection.json"]')).toHaveCount(1);
-});
-
-test('chapter data exercises connect real files, paired RNA results and a persistent notebook', async({page})=>{
-  await page.goto(`${route}?unit=4&topic=10&part=research`);
-  await expect(page.locator('#dataset-workflow')).toContainText('انتخاب مقایسهٔ درست در GEO');
-  await expect(page.locator('#workflow-gene-result')).toContainText('0.754');
-  await page.locator('#workflow-gene').selectOption('TNF');
-  await expect(page.locator('#workflow-gene-result')).toContainText('1.103');
-  await expect(page.locator('#dataset-workflow a[href="data/metadata/top2a-followup-dataset.json"]')).toBeVisible();
-  await page.locator('#dataset-notes').fill('چهار اهداکننده؛ نسبت CPM آزمون مهار آنزیم نیست.');
-  await page.reload();
-  await expect(page.locator('#dataset-notes')).toHaveValue('چهار اهداکننده؛ نسبت CPM آزمون مهار آنزیم نیست.');
-  const download = page.waitForEvent('download');
-  await page.getByRole('button',{name:'دریافت یادداشت‌های تمرین‌ها'}).click();
-  expect((await download).suggestedFilename()).toBe('dataset-notebook.fa.txt');
-  await page.goto(`${route}?unit=3&topic=8&part=research`);
-  await expect(page.locator('#dataset-workflow')).toContainText('course_lab.py geometry --shift 10');
-  await expect(page.locator('#dataset-notes')).toHaveValue('');
-});
-
-test('the research scope and chapter contribution remain readable through lesson and presentation',async({page})=>{
-  await page.goto(`${route}?unit=4&topic=10&part=research`);
-  await expect(page.locator('#lesson')).toContainText('GSE339038');
-  await expect(page.locator('#lesson')).toContainText('کار این فصل در مقاله');
-  await expect(page.locator('#lesson')).toContainText('RNA پیش از درمان');
-  await page.locator('[data-part=presentation]').click();
-  await expect(page.locator('#lesson')).toContainText('چهار اهداکننده');
-  await page.goto('/structural-bioinformatics/presentation.html');
-  await expect(page.locator('#deck')).toHaveAttribute('data-state','ready');
-  await page.selectOption('#slide-select','1');
-  await expect(page.locator('.slide:not([hidden])')).toContainText('تغییر بیان TOP2A');
-  await page.selectOption('#slide-select','2');
-  await expect(page.locator('.slide:not([hidden])')).toContainText('آزمایش‌های جدا');
+  await page.locator('#section-nav a').first().focus();await expect(page.locator('#section-nav a').first()).toBeFocused();
+ }
 });

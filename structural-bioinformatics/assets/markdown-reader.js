@@ -1,25 +1,28 @@
+import { documentAddress } from './section-routes.js';
+let documentSections=null;
+export function configureDocumentRoutes(sections) { documentSections=sections; }
 import { isolateScientificText, scientificDiagramSource, setDiagramDirection } from './text-direction.js';
 import { linkGlossaryTerms } from './glossary-terms.js';
 // Repository-owned Markdown only; optional rendering libraries load on demand.
-const DOCUMENTS = [
+export const DOCUMENTS = [
   ["chapter-presentation.fa.md", "ارائه‌های همین نه فصل", "ارائه و روش پژوهش"],
   ["learning-redesign-review.fa.md", "بازطراحی مسیر و مرزهای بررسی", "آموزش و پژوهش"],
   ["md-training-workshop.fa.md", "کارگاه MD واقعی؛ دستورکار اجرا‌نشدهٔ یوبیکوئیتین", "ابزارها و منابع"],
   ["software-workbook.fa.md", "دفتر نصب و اجرای نرم‌افزار", "ابزارها و منابع"],
   ["survey-protocol.fa.md", "پرسش و پروتکل مرور انتقادی", "ارائه و روش پژوهش"],
-  ["survey-draft.fa.md", "طرح نگارش سوروی؛ هنوز در حال تکمیل شواهد", "ارائه و روش پژوهش"],
-  ["course-guide.fa.md", "از اینجا شروع کنید؛ نقشهٔ واحد پروژه", "شروع از پایه"],
+  ["survey-draft.fa.md", "پیش‌نویس مرور انتقادی", "ارائه و روش پژوهش"],
+  ["course-guide.fa.md", "راهنمای بخش‌های پروژه", "شروع از پایه"],
   ["course-sessions.fa.md", "درس‌نامهٔ نه فصل با مباحث و تمرین", "شروع از پایه"],
   ["rnaseq-research-plan.fa.md", "مسیر پژوهش RNA-seq در روماتوئید", "آموزش و پژوهش"],
   ["comprehensive-review.fa.md", "گزارش بازبینی، گزارش نهایی بازبینی", "آموزش و پژوهش"],
   ["learning-path.fa.md", "مسیر یادگیری از پایه و ترتیب مطالعه", "شروع از پایه"],
-  ["weekly-plan.fa.md", "برنامهٔ هفته‌به‌هفتهٔ ارائه در کلاس", "شروع از پایه"],
+  ["weekly-plan.fa.md", "راهنمای مطالعه و تمرین فصل‌ها", "شروع از پایه"],
   ["presentation-rehearsal.fa.md", "پس از یادگیری؛ تمرین و آماده‌سازی ارائه", "ارائه و روش پژوهش"],
   ["glossary.fa.md", "واژه‌نامهٔ آموزشی؛ آنتی‌بادی، IgG1 و اصطلاحات پژوهش", "شروع از پایه"],
   ["codons-primer.fa.md", "از باز و کدون به آمینواسید؛ مثال‌های واقعی", "شروع از پایه"],
   ["top2a-primer.fa.md", "آشنایی مستقل و مقدماتی با TOP2A", "آشنایی موازی"],
   ["preparation-guide.fa.md", "جزوهٔ مقدماتی روماتوئید، دارو و RNA-seq", "شروع از پایه"],
-  ["top2a-count-inspection.fa.md", "پیوست؛ بررسی توصیفی قبلی RNA ژن TOP2A", "پژوهش پس از مبانی"],
+  ["top2a-count-inspection.fa.md", "گزارش بازتحلیل توصیفی RNA ژن TOP2A", "پژوهش پس از مبانی"],
   ["scientific-claim-audit.fa.md", "ممیزی جمله‌به‌جملهٔ ادعاها و منابع", "آموزش و پژوهش"],
   ["top2a-inhibition-feasibility.fa.md", "طرح پیشرفتهٔ مهار TOP2A؛ برای مرحلهٔ بعد", "پژوهش پس از مبانی"],
   ["class-presentation.fa.md", "ارائهٔ گام‌به‌گام برای کلاس", "ارائه و روش پژوهش"],
@@ -249,6 +252,15 @@ function prepareContent(container, sourceURL) {
       destination.hash = "reading";
       link.href = destination.href;
       link.dataset.document = "glossary.fa.md";
+    }
+    const filename = url.origin === PROJECT_URL.origin && url.pathname.startsWith(DOCS_URL.pathname)
+      ? url.pathname.slice(DOCS_URL.pathname.length) : link.dataset.document;
+    if(documentSections && ALLOWED_DOCUMENTS.has(filename)) {
+      const chapter=url.searchParams.get('chapter')||'all';
+      const address=document.body.dataset.section==='library'
+        ? `library.html?${new URLSearchParams({document:filename,chapter})}#reading`
+        : documentAddress(filename,documentSections,chapter);
+      link.href=new URL(address,PROJECT_URL).href;
     }
     if (url.origin !== PROJECT_URL.origin) { link.target = "_blank"; link.rel = "noopener noreferrer"; }
   }

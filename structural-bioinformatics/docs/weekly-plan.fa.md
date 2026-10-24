@@ -38,7 +38,7 @@
 
 [منبع اولیه](https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2025.1668361/full)
 
-### پرسش ساختاری و نقشهٔ راه پژوهش
+### آشنایی با بیوانفورماتیک ساختاری
 
 [خواندن درس](../index.html?topic=1&part=lesson#basics) · [انجام پژوهش](../index.html?topic=1&part=research#basics) · [اسلایدهای این مبحث](../presentation.html?topic=1)
 

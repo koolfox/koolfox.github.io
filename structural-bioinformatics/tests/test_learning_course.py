@@ -51,8 +51,9 @@ def test_lessons_follow_syllabus_and_have_all_reading_phases_and_valid_prerequis
         assert block["first_session"] <= s["session"] <= block["last_session"]
         assert all(1 <= p < s["session"] for p in s["prerequisites"])
         text = (PROJECT / s["path"]).read_text()
-        for phase in ("lesson", "practice", "research", "presentation"):
-            assert text.count(f"<!-- course:{phase} -->") == 1
+        assert "<!-- course:" not in text
+        for field in ("exercise_path", "research_path", "presentation_path"):
+            assert (PROJECT / s[field]).is_file()
         assert s["check"]["question"] and s["check"]["answer"]
 
 

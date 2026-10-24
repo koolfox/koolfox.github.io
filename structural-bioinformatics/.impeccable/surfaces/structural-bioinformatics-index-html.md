@@ -2,13 +2,11 @@
 version: 1
 slug: "structural-bioinformatics-index-html"
 primary_target: "structural-bioinformatics/index.html"
-related_targets: ["structural-bioinformatics/assets/course.css", "structural-bioinformatics/assets/course.js", "structural-bioinformatics/assets/app.js"]
+related_targets: ["structural-bioinformatics/assets/sections.css", "structural-bioinformatics/assets/site.js", "structural-bioinformatics/assets/course.js", "structural-bioinformatics/assets/app.js"]
 ---
 
-# Research workspace with the course inside it
+# Independent scientific and learning sections
 
-The user selected the 20 October 2026 six-section research workspace as the baseline to improve. Preserve the visible navigation: learning/basics, laboratory, sequences, papers, methods/presentation and the complete book reader. Do not hide the tools behind an exclusive chapter selector or replace substantive books with short redirection stubs.
+The user's direction on 2026-10-25 replaces the previous six-tab embedded workspace. The homepage is a directory of nine real pages: course, research, library, papers, structures, datasets, docking, exercises and presentations. Use descriptive rows and native navigation links. No global chapter context or lesson/research/presentation phase switching.
 
-The nine syllabus chapters live in the first panel. Each topic links lesson, research and presentation, including software practice, evidence, source material and oral preparation. Tools and books remain directly accessible as well as linked from the relevant topic. The shared chapter context and return link connect the workspace to the current lesson. There is one application and no second course page; learn.html is a compatibility redirect.
-
-Preserve Arad, Persian RTL, neutral surfaces, blue controls, scientific-media framing and keyboard tab navigation. Scope lesson CSS to the embedded course rather than changing the rest of the workspace. Keep browser-local quiz and note identifiers. Retain subsequent scientific corrections when restoring the earlier interface. Scientific viewers may use local iframes; the course itself does not.
+Retain Arad, Persian RTL, neutral backgrounds, blue links and scientific-media framing. The course has nine chapters. Exercises and speaker notes have independent source files. Preserve browser quiz/note keys and all scientific controls, data provenance and limits. Existing deep links redirect to the appropriate section; no hidden legacy workspace is kept.

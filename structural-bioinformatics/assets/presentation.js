@@ -236,7 +236,7 @@ function show(index, focus = false) {
   previous.disabled = current === 0;
   next.disabled = current === slides.length - 1;
   document.getElementById('slide-progress').textContent = `${fa(current + 1)} / ${fa(slides.length)}`;
-  document.getElementById('notebook-link').href = `index.html?unit=${slides[current].dataset.unit || new URLSearchParams(location.search).get("unit") || 1}${deck.dataset.topic ? "&topic="+deck.dataset.topic : ""}&part=presentation`;
+  document.getElementById('notebook-link').href = `presentations.html?unit=${slides[current].dataset.unit || new URLSearchParams(location.search).get("unit") || 1}${deck.dataset.topic ? "&topic="+deck.dataset.topic : ""}`;
   history.replaceState(null, '', '#slide-' + (current + 1));
   document.title = slides[current].querySelector('h1').textContent + ' · ارائهٔ کلاسی';
   if (focus) { deck.focus({ preventScroll: true }); window.scrollTo({ top: 0, behavior: 'instant' }); }

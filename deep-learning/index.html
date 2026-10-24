@@ -1,24 +1,106 @@
 <!doctype html>
 <html lang="fa" dir="rtl">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>یادگیری ژرف | دفتر درس حسام</title><meta name="description" content="دفتر درس یادگیری عمیق: مسیر مطالعه، تمرین گیت‌های منطقی و بازپخش آموزش واقعی شبکه عصبی با پایتون."><link rel="stylesheet" href="../assets/css/styles.css"><link rel="stylesheet" href="assets/css/course.css"></head>
-<body><a class="skip" href="#main">رفتن به محتوای اصلی</a><div class="app-container">
-<header class="panel course-header"><div><h1>یادگیری ژرف <span class="badge">دفتر درس حسام</span></h1><p class="subtitle">از یک نورون تا شبکه‌ای که XOR را یاد می‌گیرد.<br>مسیر درس، تمرین‌ها و آزمایش‌های قابل بازتولید، در یک دفتر.</p></div><a class="chip" href="../">بازگشت به درس‌ها</a></header>
-<nav class="section-nav" aria-label="بخش‌های درس"><a href="#lab">آزمایشگاه گیت‌ها</a><a href="#course">مسیر درس</a><a href="#exercises">تمرین‌ها</a><a href="#project">پروژه پایانی</a><a href="#sources">منابع و بازتولید</a></nav>
-<main id="main" class="stack">
-<section class="course-position" aria-label="جایگاه فعلی درس"><strong>اکنون در درس</strong><span>تمرین فصل ۲؛ شروع فصل ۳</span><span class="muted">این جایگاه حسام در کلاس است، نه پیشرفت بازدیدکننده.</span></section>
-<section class="panel lab" id="lab" aria-labelledby="lab-title"><div class="section-heading"><div><h2 id="lab-title">یک مسئله، دو ظرفیت یادگیری</h2><p>اول XOR را با یک نورون ببین؛ بعد لایه پنهان را اضافه کن. تفاوت را در خروجی و مرز تصمیم دنبال کن.</p></div><span class="pill">اجرای ضبط‌شده پایتون</span></div>
-<p class="notice">این صفحه نتیجه آموزش واقعی پایتون را بازپخش می‌کند؛ پایتون در مرورگر اجرا نمی‌شود. داده‌های نمودار و وزن‌ها از همان اجرای ذخیره‌شده می‌آیند.</p>
-<div id="lab-error" class="error" role="alert" hidden></div>
-<div class="lab-controls"><label>گیت منطقی<select id="gate" disabled><option>XOR</option></select></label><label>مدل<select id="model" disabled><option>در حال خواندن اجرای پایتون</option></select></label><div class="play-controls"><button id="play" class="primary" disabled>پخش آموزش</button><button id="step" disabled>یک گام جلو</button><button id="reset" disabled>از ابتدا</button><button id="finish" disabled>نتیجه نهایی</button></div></div>
-<p id="model-explanation" class="model-explanation"></p>
-<div class="replay-line"><label for="frame">گام ذخیره‌شده</label><input id="frame" type="range" min="0" max="1" value="0" disabled><output id="epoch" for="frame" dir="ltr">—</output></div>
-<div class="lab-grid"><div class="surface-block"><h3>مرز تصمیم در طول آموزش</h3><canvas id="decision" width="500" height="400" role="img" aria-label="نقشه خروجی مدل برای دو ورودی؛ مقادیر چهار نقطه در جدول کنار نمودار آمده است"></canvas><p id="surface-caption" class="caption">محور افقی: x₁؛ محور عمودی: x₂. چهار نقطه، تمام داده آموزشی هستند.</p><div class="legend"><span class="swatch light"></span><span>خروجی ۰</span><span class="swatch dark"></span><span>خروجی ۱</span></div></div><div class="results-block"><h3>از جدول درستی تا پیش‌بینی</h3><div class="table-scroll"><table><thead><tr><th scope="col">x₁</th><th scope="col">x₂</th><th scope="col">هدف</th><th scope="col" id="output-label">خروجی مدل</th><th scope="col">کلاس</th></tr></thead><tbody id="truth-body"></tbody></table></div><dl class="metrics"><div><dt id="loss-label">خطا</dt><dd id="loss" dir="ltr">—</dd></div><div><dt>درست روی داده آموزش</dt><dd id="accuracy" dir="ltr">—</dd></div></dl><h3 id="loss-title">مسیر خطای آموزش</h3><canvas id="loss-chart" width="500" height="180" role="img" aria-label="خطای واقعی آموزش تا گام انتخاب‌شده"></canvas><p id="run-meta" class="caption"></p></div></div>
-<details class="weights"><summary>داخل شبکه: اتصال‌ها، وزن‌ها و بایاس‌ها</summary><div id="network" class="network" aria-label="ساختار شبکه"></div><pre id="weights" dir="ltr"></pre><p>وزن، سهم هر ورودی را تعیین می‌کند؛ بایاس، آستانه یا جابه‌جایی نورون را تنظیم می‌کند.</p></details>
-<p class="scientific-note">چهار حالت جدول درستی، همگی برای آموزش استفاده شده‌اند. درست شدن این چهار پاسخ، برازش جدول است؛ نه شاهد تعمیم به داده دیده‌نشده. بین نقاط دودویی، رنگ‌ها فقط رفتار مدل را نشان می‌دهند و معنای گیت منطقی ندارند.</p><p id="run-status" class="sr-only" role="status"></p>
-</section>
-<div class="course-layout"><section class="panel" id="course" aria-labelledby="course-title"><h2 id="course-title">مسیر مطالعه</h2><p class="muted">فقط فصل‌های موجود در فایل‌های درس نمایش داده می‌شوند. علامت‌ها در همین مرورگر ذخیره می‌شوند و وضعیت رسمی کلاس نیستند.</p><div id="curriculum" class="chapter-list"><p>در حال خواندن فهرست مستند درس…</p></div></section>
-<aside class="panel progress-panel" aria-labelledby="progress-title"><h2 id="progress-title">پیشرفت من در این مرورگر</h2><p id="progress-count">هنوز موردی ثبت نشده</p><progress id="progress-meter" max="1" value="0" aria-label="پیشرفت شخصی"></progress><p class="caption">بدون حساب کاربری و بدون ارسال به سرور. مطالعه یک فصل با تسلط بر آن یکسان نیست.</p><div class="progress-actions"><button id="export-progress">دریافت نسخه پشتیبان</button><label class="file-button" for="import-progress">بازیابی از فایل</label><input id="import-progress" type="file" accept="application/json,.json"><button id="clear-progress">پاک کردن پیشرفت من</button></div><p id="storage-status" role="status" class="caption"></p></aside></div>
-<section class="panel" id="exercises" aria-labelledby="exercises-title"><h2 id="exercises-title">تمرین فصل ۲: گیت‌های منطقی</h2><p>تمرین فصل ۲: پیاده‌سازی و آموزش شبکه برای گیت‌های منطقی با پایتون.</p><ol class="exercise-list"><li><label><input type="checkbox" data-check="exercise-truth"> جدول درستی AND، OR، XOR و NOR را بنویس.</label><p>قبل از پخش، حدس بزن کدام گیت با یک خط قابل جداسازی نیست.</p></li><li><label><input type="checkbox" data-check="exercise-perceptron"> آموزش پرسپترون تک‌لایه را گام‌به‌گام بررسی کن.</label><p>خطا و تغییر وزن و بایاس را با قانون فصل ۲ مقایسه کن. ناتوانی XOR را با یک جداکننده خطی توضیح بده.</p></li><li><label><input type="checkbox" data-check="exercise-network"> XOR را با مدل دارای لایه پنهان مقایسه کن.</label><p>این بخش پل آموزشی به فصل‌های ۳ و ۴ است؛ ساختار مدل و روش بهینه‌سازی را از مشخصات اجرا بخوان.</p></li><li><label><input type="checkbox" data-check="exercise-reproduce"> کد پایتون را اجرا و نتیجه خودت را ثبت کن.</label><p>بذر تصادفی، نرخ یادگیری و خطای نهایی را یادداشت کن. نتیجه اجرای این صفحه، پاسخ شخصی تو نیست.</p></li></ol><details><summary>پرسش مفهومی: چرا یک نورون برای XOR کافی نیست؟</summary><p>در XOR، دو گوشه مقابل مربع کلاس ۱ و دو گوشه دیگر کلاس ۰ هستند. یک خط نمی‌تواند این دو گروه را جدا کند. اضافه کردن زمان آموزش این محدودیت هندسی را رفع نمی‌کند؛ یک لایه پنهان با فعال‌سازی غیرخطی ظرفیت متفاوتی فراهم می‌کند.</p></details></section>
-<section class="panel" id="project" aria-labelledby="project-title"><h2 id="project-title">پروژه پایانی، مدل‌ها و داده‌ها</h2><div class="project-empty"><div><h3>پروژه پایانی در ادامه ترم</h3><p>موضوع، دیتاست و مدل پروژه پایانی هنوز ثبت نشده‌اند. این بخش برای افزودن شواهد واقعی در طول ترم آماده است.</p></div><span class="pill">برنامه‌ریزی‌نشده</span></div><div id="project-items"></div><details><summary>برای هر مرحله چه چیزی ثبت می‌شود؟</summary><p>عنوان و وضعیت، پرسش پژوهش، منبع داده و مجوز، تقسیم آموزش/اعتبارسنجی/آزمون، نسخه کد، تنظیمات مدل، معیار ارزیابی، محدودیت‌ها و پیوند خروجی. نتایج فقط پس از اجرا و بررسی ثبت می‌شوند.</p></details></section>
-<section class="panel" id="sources" aria-labelledby="sources-title"><h2 id="sources-title">منابع، کد و بازتولید</h2><p>مرور فصل‌ها از فایل‌های ارائه‌شده درس تهیه شده است. خود PDFها در این صفحه منتشر نشده‌اند؛ شماره صفحه‌ها به صفحه PDF اشاره دارند.</p><div id="source-notes"></div><div class="source-links"><a id="python-download" href="python/logic_gates.py" download>دریافت کد آموزش پایتون</a><a href="assets/data/gates.json" download>دریافت اجرای ضبط‌شده</a><a href="README.md">راهنمای بازتولید</a></div><pre id="reproduce" dir="ltr">python3 deep-learning/python/logic_gates.py --output deep-learning/assets/data/gates.json</pre><p class="caption">پس از دریافت فایل‌های صفحه، بازپخش به سرویس محاسباتی یا اینترنت نیاز ندارد. برای اجرای محلی، فایل‌ها را با یک وب‌سرور باز کن.</p></section>
-</main><footer>دفتر یادگیری حسام · محتوای آموزشی، نه ادعای تکمیل درس یا پروژه</footer></div><noscript><p class="panel">برای بازپخش آموزش و ذخیره پیشرفت، جاوااسکریپت را فعال کن. کد پایتون و توضیحات تمرین بدون آن قابل دسترسی‌اند.</p></noscript><script type="module" src="assets/js/course.js"></script></body></html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>یادگیری ژرف، بهار ۲۰۲۶ | حسام</title>
+    <meta name="description" content="یادگیری ژرف از ابتدا: هر درس با یک هدف روشن، کد ساده پایتون، خروجی واقعی و یک تمرین کوتاه.">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/learning.css">
+</head>
+<body>
+<a class="skip-link" href="#lesson">رفتن به درس</a>
+<div class="app-container learning-shell">
+    <header class="learning-header">
+        <div>
+            <h1>یادگیری ژرف، بهار ۲۰۲۶</h1>
+            <p>یک مفهوم را بخوان، کد کوتاهش را بنویس و خروجی را بررسی کن.</p>
+        </div>
+        <a href="../">همه درس‌ها</a>
+    </header>
+    <div class="source-line">
+        <a href="https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/" target="_blank" rel="noopener noreferrer">مرجع دوره: دانشگاه کلرادو بولدر، بهار ۲۰۲۶</a>
+        <span>۲۱ موضوع با مثال پایتون و ۷ جلسه تکمیلی؛ شماره‌ها مطابق برنامه رسمی‌اند.</span>
+    </div>
+    <details class="setup-note"><summary>برای اجرای مثال‌ها چه لازم است؟</summary><p>پایتون و NumPy کافی است. NumPy ابزار ساده محاسبه با بردارها و ماتریس‌هاست؛ فقط یک بار نصبش کن.</p><pre dir="ltr">python3 -m pip install numpy</pre><p>سپس فایل هر درس را دریافت کن و دستور همان درس را اجرا کن.</p></details>
+    <main class="learning-layout">
+        <aside class="course-sidebar" aria-label="مسیر یادگیری">
+            <div class="sidebar-heading"><h2>مسیر درس</h2><span id="lesson-count"></span></div>
+            <label class="mobile-select-label" for="lesson-select">انتخاب درس</label>
+            <select id="lesson-select" disabled><option>در حال خواندن فهرست درس‌ها</option></select>
+            <nav id="lesson-nav" aria-label="درس‌ها به ترتیب"></nav>
+            <div class="progress-summary">
+                <p id="learning-progress">پیشرفت شخصی در همین مرورگر</p>
+                <progress id="learning-meter" value="0" max="1" aria-label="پیشرفت شخصی"></progress>
+                <p class="small">علامت‌ها فقط برای خودت ذخیره می‌شوند؛ وضعیت کلاس را تغییر نمی‌دهند.</p>
+            </div>
+        </aside>
+        <article id="lesson" class="panel lesson-sheet" tabindex="-1" aria-labelledby="lesson-title">
+            <div id="lesson-error" class="load-error" role="alert" hidden></div>
+            <div id="lesson-content" hidden>
+                <header class="lesson-heading">
+                    <p id="lesson-position" class="small"></p>
+                    <h2 id="lesson-title"></h2>
+                    <p id="lesson-goal" class="lesson-goal"></p>
+                </header>
+                <div id="lesson-explanation" class="lesson-explanation"></div>
+                <section class="code-section" aria-labelledby="code-heading">
+                    <div class="code-toolbar">
+                        <h3 id="code-heading">کد را بنویس</h3>
+                        <div class="code-actions"><button id="copy-code" type="button">کپی کد</button><a id="download-code" download>دریافت فایل پایتون</a></div>
+                    </div>
+                    <p id="code-filename" class="filename" dir="ltr"></p>
+                    <pre class="python-code" tabindex="0"><code id="lesson-code" dir="ltr"></code></pre>
+                    <p class="small">فایل را ذخیره کن و با دستور زیر اجرا کن. نمایش این صفحه، پایتون را در مرورگر اجرا نمی‌کند.</p>
+                    <pre class="run-command" dir="ltr"><code id="lesson-command"></code></pre>
+                </section>
+                <section class="output-section" aria-labelledby="output-heading">
+                    <h3 id="output-heading">خروجی واقعی همین کد</h3>
+                    <pre class="python-output" tabindex="0" dir="ltr"><samp id="lesson-output"></samp></pre>
+                    <p id="output-explanation"></p>
+                    <p id="execution-note" class="small"></p>
+                </section>
+                <div id="lesson-visual" hidden></div>
+                <section class="practice-section" aria-labelledby="practice-heading">
+                    <h3 id="practice-heading">حالا یک تغییر کوچک</h3>
+                    <p id="lesson-practice"></p>
+                    <p class="small">تمرین پیشنهادی این دفتر است، نه تکلیف رسمی کلاس. دستورهای <bdi dir="ltr">assert</bdi> پاسخ ورودی اولیه را بررسی می‌کنند؛ اگر ورودی را عوض کردی، پاسخ مورد انتظار آزمون را هم متناسب با آن تغییر بده.</p>
+                </section>
+                <section id="source-exercises" class="source-exercises" aria-labelledby="source-exercises-heading" hidden>
+                    <h3 id="source-exercises-heading">پرسش‌ها و تمرین‌های داخل منبع</h3>
+                    <div id="source-exercise-items"></div>
+                </section>
+                <section class="lesson-reference" aria-labelledby="reference-heading">
+                    <h3 id="reference-heading">بیشتر بخوان</h3>
+                    <div id="lesson-sources"></div>
+                    <p id="lesson-limit" class="small"></p>
+                </section>
+                <div class="lesson-completion"><label><input id="complete-lesson" type="checkbox"> این درس را خواندم و کدش را بررسی کردم</label></div>
+                <nav class="lesson-pagination" aria-label="درس قبلی و بعدی"><button id="previous-lesson" type="button">درس قبلی</button><button id="next-lesson" class="primary" type="button">درس بعدی</button></nav>
+            </div>
+            <p id="loading-note" role="status">در حال خواندن درس و مثال پایتون…</p>
+        </article>
+    </main>
+    <section class="additional-resources" aria-label="ابزارها و ادامه کار">
+        <div><h2>اگر خواستی عمیق‌تر بررسی کنی</h2><p>آزمایشگاه گیت‌ها ابزار تکمیلی از دفتر قبلی و منابع ۲۰۲۲ است؛ بخشی از تکالیف تاییدشده دوره ۲۰۲۶ محسوب نمی‌شود.</p><a href="lab.html">باز کردن آزمایشگاه گیت‌های منطقی</a></div>
+        <details class="progress-tools"><summary>نسخه پشتیبان پیشرفت</summary><div class="backup-controls"><button id="export-learning" type="button" disabled>دریافت فایل</button><label for="import-learning">بازیابی فایل</label><input id="import-learning" disabled type="file" accept="application/json,.json"><button id="reset-learning" type="button" disabled>پاک کردن پیشرفت</button></div></details>
+        <details class="project-guidance"><summary>الزامات پروژه در مرجع دانشگاه کلرادو</summary>
+            <p>این موارد از مرجع بهار ۲۰۲۶ دانشگاه کلرادو آمده‌اند، نه تکلیف استاد شما یا موعدهای شخصی تو.</p>
+            <ul>
+                <li>طرح پروژه: ۳ تا ۴ صفحه، بدون شمارش منابع.</li>
+                <li>ارائه: پیوند ویدیوی ۴ دقیقه‌ای و پوستر PDF در یک فایل ZIP.</li>
+                <li>ارزیابی همتا: بررسی فردی ۱۵ تا ۲۰ پروژه تخصیص‌یافته.</li>
+                <li>گزارش نهایی دانشجویان تحصیلات تکمیلی، فقط <bdi dir="ltr">CSCI 5922</bdi>: حداقل ۷ صفحه بدون منابع.</li>
+            </ul>
+            <p>برنامه این دوره همچنین ۳ مجموعه مسئله و ۳ تمرین آزمایشگاهی دارد؛ متن این موارد را نباید از عنوانشان حدس زد.</p>
+            <a href="https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/" target="_blank" rel="noopener noreferrer">جزئیات و معیارها در مرجع رسمی ۲۰۲۶</a>
+        </details>
+        <details class="source-details"><summary>جلسه‌های تکمیلی و وضعیت منابع ۲۰۲۶</summary><p id="source-status-note" class="small"></p><div id="extra-sessions"></div></details>
+        <p id="learning-status" class="small" role="status"></p>
+    </section>
+    <footer>دفتر یادگیری حسام · <a href="README.md">منابع و راهنمای اجرای مثال‌ها</a></footer>
+</div>
+<noscript><p class="panel">برای جابه‌جایی بین درس‌ها، جاوااسکریپت را فعال کن. منابع رسمی و راهنمای دریافت کد از پیوندهای همین صفحه در دسترس‌اند.</p></noscript>
+<script type="module" src="assets/js/learning.js"></script>
+</body>
+</html>

@@ -1,53 +1,57 @@
-# دفتر درس یادگیری ژرف
+# یادگیری ژرف، بهار ۲۰۲۶
 
-Persian RTL course surface, inheriting the portfolio's Arad, quiet blue and light surfaces. No framework, CDN, tracking, account, paid service or Python runtime in the browser.
+A Persian, learning-first companion to [Danna Gurari's Spring 2026 Neural Networks and Deep Learning course](https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/), University of Colorado Boulder.
 
-## Preview and reproduce
+The official schedule has **28 sessions: 21 with linked lecture PDFs and seven without slide links**. The main page follows the 21 slide-linked topics with a short goal and explanation, original Python/NumPy code, output recorded from actual execution, one suggested change and the verified official reference. Official session numbers are preserved: 1–17, 20, 21, 23 and 28. The gaps are not missing lessons. The seven remaining sessions appear separately in chronological order without invented code or completion records.
 
-From the repository root:
+## Read and run
 
 ```sh
 python3 -m http.server 8765
-# Open http://localhost:8765/deep-learning/
-python3 deep-learning/python/logic_gates.py --output deep-learning/assets/data/gates.json
+# http://localhost:8765/deep-learning/
+python3 -m pip install numpy
+# Download the selected example, then:
+python3 lesson_01.py
+```
+
+The downloadable examples live in `python/spring2026/`. The page displays source and recorded stdout; it does not run Python in the browser. `assets/data/lessons.json` is produced by real execution, not by writing plausible-looking output. Examples are original educational adaptations of the official topics, not official university code, complete production systems, or verified solutions to PDF assignments. Small, deterministic inputs make mechanisms visible; each example states its limits.
+
+From the repository checkout, regenerate the outputs and run tests:
+
+```sh
+python3 -m pip install -r deep-learning/python/requirements.txt
+python3 deep-learning/python/build_lessons.py
 python3 -m unittest discover -s deep-learning/tests -v
 ```
 
-Python 3.10+ and the standard library suffice. Defaults: seed 7, 6000 epochs, learning rate 1, hidden width 4. All six gates have a hard-threshold perceptron, a single sigmoid baseline, and a sigmoid 2–4–1 MLP. See [the Python source](python/logic_gates.py) and [the numerical methods guide](python/README.md) for implementation details.
+Visual explanations use variables from the same actual example. Labels, captions and a code reference explain what each plot or matrix represents. The graphic is not a separate invented result.
 
-The browser loads `assets/data/gates.json`. It does not train a Python model. The slider replays stored checkpoints; displayed losses are actual recorded measurements. Decision-surface values are forward evaluations in JavaScript using the selected checkpoint's actual Python weights and matching activation. The visual grid extends from -0.25 to 1.25 in each coordinate to provide space around the four training corners. Colors outside Boolean corners are model behavior, not Boolean ground truth. Weight diagrams encode magnitude as line width and negative weights as dashed lines; exact weights and biases are available as text.
+## Source verification and exercises
 
-Perceptron loss is misclassification fraction; its outputs are labels, not probabilities. The differentiable baselines use mean binary cross-entropy. All four possible inputs train the network. Training-domain accuracy is not held-out generalization. A single linear boundary cannot represent XOR or XNOR. The MLP is a chapter 3–4 extension, not the source's preset 2–2–1 ReLU demonstration.
+`assets/data/curriculum.json` preserves the live Spring 2026 schedule, all 28 session titles and exact official links. The live HTML and all nine syllabus pages were inspected. Downloads of the 21 lecture PDFs failed with server/connection errors through multiple supported routes. Therefore **PDF-specific questions and assignments have not yet been verified**. A known PDF URL is not evidence that its contents were read, and failed retrieval is not evidence that it contains no exercises.
 
-## Curriculum provenance
+Verified source exercises belong in a separate per-lesson section, with file, page and kind. The suggested practice we write is clearly distinguished from discussion questions, exercises or formal assignments in the official material. Public project requirements on the live course page are distinct from unavailable PDF contents. Source PDFs and classroom recordings are not republished.
 
-The seven supplied source files were fully reviewed. They total 446 pages/slides:
+The updated sequence includes residual learning, data and hardware, dense prediction, multimodal models, attention, transformers, foundation models and their post-training, sustainable and responsible learning, and current directions, in addition to the foundations. It is not the Fall 2022 sequence with a new year label.
 
-- `01-IntroductionFA.pptx`: 44 slides; Persian introduction, instructor دکتر نگار مجمع.
-- `02-Artificial Neurons.pdf`: 65 pages; perceptron updates pp. 42–45, worked three-input majority pp. 47–61. The source example uses -1/+1; code deliberately uses consistent 0/1 Boolean labels.
-- `03-FeedforwardNN.pdf`: 74 pages; XOR pp. 8–14, nonlinear activations pp. 36–55, output choices pp. 57–71. The preset XOR demo is 2–2–1 ReLU, not the trained sigmoid MLP on this page.
-- `04-GradientDescent.pdf`: 82 pages; loss pp. 5–14, gradients pp. 16–28, backpropagation pp. 30–73.
-- `05-NNTraining.pdf`: 53 pages; capacity pp. 11–21, validation pp. 23–39, optimizers pp. 41–50.
-- `06-Convolutional_unlocked.pdf`: 76 pages; spatial data p. 5, history pp. 7–17, convolution and filters pp. 19–54, activations and stacked layers pp. 55–62, stride/padding pp. 63–66, pooling pp. 68–74. The illustrated operation is cross-correlation (no kernel flip); pooling is not perfectly invariant to every translation. This file introduces no new complete CNN project or dataset assignment.
-- `08-Regularization.pdf`: 52 pages; L1/L2 pp. 5–16, early stopping pp. 18–19, augmentation pp. 21–24, dropout pp. 26–40, batch normalization pp. 42–50.
+The seven non-slide sessions are the practical Q&A, data-center impact session, ethics exercise, three industry/efficient-ML guest sessions, and final-project presentations. Historical course dates are not the visitor's personal deadlines.
 
-English lectures are attributed to Danna Gurari, CU Boulder, Spring 2022. Page numbers refer to PDF page order, not extracted-line numbers. Source files are not published. No public URL is invented for these private uploads. Chapter 7 was not provided. Historical deadlines and private Canvas exercises are not carried over.
+## Legacy supplementary gate laboratory
 
-Current course position comes from the owner: chapter 2 gate exercise, beginning chapter 3. The gate exercise was stated by the owner, not verified as an assignment sheet inside the PDFs. No completed assignments, future homework, project title, datasets, models or results are invented.
+`lab.html` retains the earlier detailed gate experiment as a separately labeled **2022-source supplementary tool**. It is not presented as a verified Spring 2026 assignment. The old uploaded seven-file collection (446 pages/slides) and any questions extracted from it belong to that older source context, never to the current 2026 PDF-exercise section.
 
-## Progress and future projects
+The lab compares a hard-threshold perceptron, sigmoid baseline and 2–4–1 sigmoid MLP on six Boolean gates. All four rows are training data; fitting the truth table is not held-out generalization. Its real saved checkpoints, loss and weights are replayed, not retrained in the browser.
 
-Browser key: `koolfox.deep-learning.progress.v1`. Schema: `{"version":1,"completed":["chapter-2","exercise-truth"]}`. Only known completion IDs are accepted. Import is size-limited and validated before replacement, requires confirmation, and never inserts HTML. Export contains completion IDs only. Storage failure is visible; corrupt data is not silently treated as valid. Browser completions are separate from the owner's course position.
-
-Future project records can use this schema (initial records are empty, not dummy results):
-
-```json
-{"schema_version":1,"items":[]}
+```sh
+python3 deep-learning/python/logic_gates.py --output deep-learning/assets/data/gates.json
 ```
 
-Each future item should contain `id`, `title`, `kind` (`milestone`, `dataset`, `model`, `result`), `status` (`planned`, `in_progress`, `blocked`, `complete`), `description`, `source_links`, and optional `artifact_url`, `updated_at`. Research records should additionally document license, data split, code revision, metrics and limitations as applicable. Only real supported records should be added; do not turn a planned item into a completed result without evidence.
+See [the gate implementation notes](python/README.md).
 
-## Accessibility and failure handling
+## Progress and accessibility
 
-Keyboard-native buttons/selects/range, explicit labels, focus rings, skip link, RTL layout and isolated technical values. Canvas values have equivalent truth-table and metric text. Reduced-motion preference changes autoplay to immediate final-state display; manual stepping remains available. Playback pauses when the tab is hidden or controls switch runs. Missing or invalid trace shows an explicit error and disables lab controls without disabling study progress. Mobile layout stacks sections without fixed-width tables.
+The 2026 path stores `{ "version": 1, "completed": ["spring2026-01"] }` under `koolfox.deep-learning.spring2026.v1`. Only the 21 actual coded-topic IDs are accepted. Backup imports are size-limited, validated and confirmed before replacement. Corrupt storage and invalid backups produce recovery messages. Nothing is transmitted.
 
+No previous-course completion is migrated into different 2026 topics. The optional lab retains its earlier `koolfox.deep-learning.progress.v1` key unchanged. Progress represents personal study, not the owner's class status.
+
+Local Arad, RTL layout, isolated LTR code/output, native keyboard controls, focus rings, a compact mobile selector, deep links, browser history, reduced-motion support and bounded code scrolling keep the page usable. All displayed code/output is inserted as text, never evaluated as HTML or JavaScript.

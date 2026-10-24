@@ -29,12 +29,15 @@ def build_site(repository: Path, output: Path):
     learning = repository / "deep-learning"
     learning_target = output / "deep-learning"
     learning_target.mkdir()
-    for name in ("index.html", "README.md"):
+    for name in ("index.html", "lab.html", "README.md"):
         shutil.copyfile(learning / name, learning_target / name)
     shutil.copytree(learning / "assets", learning_target / "assets")
     (learning_target / "python").mkdir()
-    for name in ("logic_gates.py", "README.md"):
+    for name in ("logic_gates.py", "README.md", "requirements.txt"):
         shutil.copyfile(learning / "python" / name, learning_target / "python" / name)
+    (learning_target / "python" / "spring2026").mkdir()
+    for path in sorted((learning / "python" / "spring2026").glob("lesson_*.py")):
+        shutil.copyfile(path, learning_target / "python" / "spring2026" / path.name)
     project = repository / "structural-bioinformatics"
     target = output / "structural-bioinformatics"
     target.mkdir()

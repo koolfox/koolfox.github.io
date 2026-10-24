@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test";
 import { createHash } from "node:crypto";
 
 const route = "/deep-learning/";
+const labRoute = `${route}lab.html`;
 const gates = ["AND", "OR", "NAND", "NOR", "XOR", "XNOR"];
 
 function replay(checkpoint, inputs, activation) {
@@ -46,7 +47,7 @@ test("every Python checkpoint replays from its actual weights for all gates and 
 });
 
 async function ready(page) {
-    await page.goto(route);
+    await page.goto(labRoute);
     await expect(page.locator("#gate")).toBeEnabled();
     await expect(page.locator("#truth-body tr")).toHaveCount(4);
 }
@@ -123,7 +124,7 @@ test("Python source download is real, and code stays left-to-right in the RTL co
 
 test("a failed Python artifact fetch explains the problem without fake results", async ({ page }) => {
     await page.route("**/assets/data/gates.json", route => route.abort());
-    await page.goto(route);
+    await page.goto(labRoute);
     await expect(page.locator("#lab-error")).toBeVisible();
     await expect(page.locator("#play")).toBeDisabled();
     await expect(page.locator("#truth-body tr")).toHaveCount(0);

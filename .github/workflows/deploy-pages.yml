@@ -28,11 +28,11 @@ jobs:
       - name: Check scientific code and curated data
         run: |
           uv sync --project structural-bioinformatics --frozen --python 3.13
-          uv run --project structural-bioinformatics pytest -q
+          uv run --project structural-bioinformatics pytest structural-bioinformatics/tests -q
           uv run --project structural-bioinformatics ruff check structural-bioinformatics scripts/serve_local.py
           uv run --project structural-bioinformatics ruff format --check structural-bioinformatics scripts/serve_local.py
       - name: Check deep learning teaching models
-        run: python3 -m unittest discover -s deep-learning/tests -v
+        run: uv run --python 3.13 --with numpy==2.3.5 python -m unittest discover -s deep-learning/tests -v
       - name: Assemble public website files
         run: python3 scripts/build_pages.py --output dist/pages
       - uses: actions/setup-node@v7.1.0

@@ -12,9 +12,11 @@ Inside the research project, `src/tnf_atlas/` contains Python analysis; `tests/`
 
 - `python3 -m http.server 8000`: serve the static site from the repository root. Port 8000 is frequently taken by another project on this machine and a backgrounded server that cannot bind fails silently, so use a different port and confirm it answers before trusting a preview.
 - `uv sync --project structural-bioinformatics --frozen`: install the locked Python 3.13+ environment.
-- `uv run --project structural-bioinformatics pytest -q`: run offline tests.
+- `uv run --project structural-bioinformatics pytest structural-bioinformatics/tests -q`: run offline tests.
 - `uv run --project structural-bioinformatics ruff check structural-bioinformatics`: lint project Python.
 - `uv run --project structural-bioinformatics tnf-atlas fetch-structures` then `tnf-atlas analyze` with the same prefix: download and analyze experimental coordinates.
+
+Deep-learning examples use their own pinned NumPy environment: `uv run --python 3.13 --with numpy==2.3.5 python -m unittest discover -s deep-learning/tests -v`. Do not run their exact-output checks in the separate structural-research environment.
 
 See the research README for browser checks and optional ManimGX rendering.
 

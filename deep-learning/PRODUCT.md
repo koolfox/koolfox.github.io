@@ -1,4 +1,4 @@
-# Deep Learning Course Surface
+# Spring 2026 Deep Learning: Simple Code, Visible Output
 
 <!-- impeccable:product-schema 1 -->
 
@@ -8,47 +8,48 @@ web
 
 ## Stack
 
-Static HTML/CSS and two ES modules, no build step, framework or CDN. Python standard-library training exports reproducible JSON; JavaScript replays it and evaluates saved weights for visualization, never claims to execute Python.
+Static HTML/CSS/ES modules, no framework or CDN. Original small Python/NumPy examples are executed during export; the browser displays their source, exact saved stdout and optional visual explanations derived from the same variables. The legacy gate laboratory remains separate.
 
 ## Users
 
-Hesam studying a university deep-learning course, and Persian-speaking visitors following the exercises independently.
+Hesam and Persian-speaking learners following the current course from beginning to end. The priority is writing and understanding simple correct Python, not operating a technical dashboard.
 
 ## Product Purpose
 
-Keep the real course path, current gate exercise, reproducible experiments and eventually final-project evidence together. The central learning move is comparing a single perceptron's failure on XOR against a genuinely trained nonlinear network.
+Follow the actual Spring 2026 curriculum. Each coded topic has one clear goal, brief explanation, readable source, real output, a small practice and an official reference. Success means running and changing the example and explaining the observed result.
 
 ## Positioning
 
-A working study notebook with a recorded scientific experiment, not a fabricated progress dashboard or a list of slide downloads.
+An original coding companion to the official course, not a claim to reproduce unread PDF contents, a production benchmark, or a repository of official assignment answers.
 
 ## Operating Context
 
-The owner is doing chapter 2 exercises and beginning chapter 3. Seven supplied source files total 446 pages/slides across chapters 1, 2, 3, 4, 5, 6 and 8. Chapter 7 is absent. Later uploaded chapters are available material, not completed work. The surface is served with the portfolio through GitHub Pages.
+The live official Spring 2026 page and its nine-page syllabus were read. The schedule contains 28 sessions: 21 slide-linked lectures and seven other sessions. Code follows official numbers 1–17, 20, 21, 23 and 28. Non-slide sessions remain listed chronologically, without invented code or completion. This is a revised curriculum, not the old Fall 2022 topics relabeled.
 
 ## Capabilities and Constraints
 
-Select six Boolean gates and three actual Python-trained models. Replay checkpoints with play, pause, step, reset, endpoint and slider controls. Read actual outputs, loss, training accuracy, weights, biases and a derived decision surface. Download source and data. Progress is private to the browser and exportable/importable. No private course PDF publication, uploaded file leaks, account, remote telemetry or runtime service.
+A compact navigator and one active lesson keep the learner focused. Source, output, copy/download and the local run command are prominent. Small visual explanations have captions, axes/labels and code connections; no unnecessary controls. Direct links and browser back/forward work. Personal progress is private and backed up safely.
+
+Lecture PDF downloads currently fail with server errors. No claim is made that their pages or embedded exercises were read. Verified PDF exercises will be separately attributed by file/page/type; an empty section does not assert absence. Source PDFs and classroom recordings are not republished.
 
 ## Brand Commitments
 
-Inherit root DESIGN.md: Arad, Persian RTL, one blue accent, light surfaces and clear prose without Arabic vowel marks. Technical terms and numbers remain directionally isolated. Natural Persian teaching, with scientific distinctions explained instead of hidden.
+Inherit root DESIGN.md: local Arad, Persian RTL, quiet light surfaces and one blue accent. Code and output stay LTR. Short natural Persian without Arabic vowel marks. Explain what an example demonstrates before technical details.
 
 ## Evidence on Hand
 
-Fully reviewed course files described in README. Chapter 2 teaches sample-wise hard-threshold perceptron updates and a three-input majority worked example. Chapter 3 establishes XOR's nonseparability and a preset ReLU network; chapter 4 explains backpropagation. Chapter 6 covers spatial data, local connectivity and weight sharing, filters and feature maps, nonlinear activations, stacked layers, stride, padding and pooling. Python exports record actual trained parameters and losses for perceptron, sigmoid baseline and a 2–4–1 sigmoid MLP. The MLP is an educational extension, not a reproduction of the lecture's preset 2–2–1 architecture.
-
-Absent and not fabricated: chapter 7, future assigned homework, solved submissions by the owner, final-project topic, models, datasets, evaluations, publications or results.
+The live official 2026 schedule and syllabus; exact source URLs; original runnable examples and actual execution records. Earlier uploaded 2022 material is explicitly legacy supplementary evidence, not evidence of 2026 assignments. The old gate lab remains available with that distinction visible.
 
 ## Product Principles
 
-- Course location and visitor completion are distinct.
-- Recorded training is not live Python execution.
-- Perceptron labels are not probabilities; its error fraction is not BCE.
-- Fitting all four truth-table rows does not demonstrate held-out generalization.
-- Interpolated grid colors are model behavior, not extra Boolean training examples.
-- Every future project result requires a real source or artifact.
+- One concept, short code, observable output.
+- Preserve the exact current curriculum and official numbering.
+- Separate our practice, verified source questions and formal assignments.
+- Never infer absent exercises from an unavailable PDF.
+- Label toy demonstrations and methodological limits honestly.
+- Do not transfer completion across different course versions.
+- Keep non-lecture events and optional technical tools distinct from the coding path.
 
 ## Accessibility & Inclusion
 
-Responsive Persian RTL, keyboard-native controls, visible focus, reduced-motion behavior, text equivalents for plotted values, robust storage/import checks and explicit missing-data recovery. No color-only distinction for network weight sign.
+Native controls, keyboard focus, responsive RTL, mobile selector, LTR code with bounded scrolling, direct links/history, reduced-motion support, validated backups and explicit load-error recovery.

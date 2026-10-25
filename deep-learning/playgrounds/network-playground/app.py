@@ -185,6 +185,10 @@ app_ui = ui.page_fluid(
         ),
         ui.tags.section(
             ui.h2("داخل شبکه"),
+            ui.p(
+                "برای دیدن همهٔ لایه‌ها، نمودار را به طرفین حرکت بده.",
+                class_="caption network-scroll-hint",
+            ),
             ui.tags.div(
                 ui.tags.canvas(
                     id="network",

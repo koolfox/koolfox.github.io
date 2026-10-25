@@ -1,0 +1,1044 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s04",
+  "reviewer": "Codex — spring-2026 source reviewer",
+  "reviewed_at_utc": "2026-10-25T09:51:29.312175+00:00",
+  "method": {
+    "text": "All61 page texts read in bounded batches; image-only final page read visually.",
+    "visual": "Every page viewed in11 PDFium contact sheets; pages27,34,35,36,47,57,58 additionally enlarged.",
+    "verification": "Recomputed source character example including both states, output matrix and softmax at printed precision; parity signs and derivative product checked. Four independent worked examples executed. Historical context, stock imagery, external videos and inaccessible Canvas work were not empirically audited.",
+    "reproduction_script": "/tmp/danna-full-review/author_s04_2026.py",
+    "rights": "Only independent lesson, original exercises, links and observations are published; source screenshots stay temporary."
+  },
+  "sources": [
+    {
+      "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf",
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page_count": 61
+    }
+  ],
+  "pages": [
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 1,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "عنوان درس و نشان تصویری CC BY-NC-SA؛ نسخه و لینک annotation مشخص نیست.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-001-006.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=1"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 2,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "مرور و موعد Canvas مربوط به همان ترم؛ تکلیف در دسترس عمومی بررسی نشده.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-001-006.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=2"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 3,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "فهرست مباحث جلسه.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-001-006.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=3"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 4,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "نقشه راه آغاز مسئله دنباله.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-001-006.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=4"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 5,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "مسئله زوجیت نیاز به تعریف تعداد یک‌ها دارد.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-001-006.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=5"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 6,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "حفظ زوج/فرد بودن برای شمارش جریانی کافی است؛ نیازی به نگهداری همه ورودی‌ها نیست.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-001-006.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=6"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 7,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "محدودیت بیان‌شده مخصوص MLP ساده با ورودی ثابت است؛ همه معماری‌های پیش‌خور را شامل نمی‌شود.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-007-012.jpg",
+      "evidence_urls": [
+        "https://docs.pytorch.org/docs/2.14/generated/torch.nn.RNN.html"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 8,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "نمونه کاربردهای دنباله‌ای؛ هیچ عملکرد تجربی ادعا یا بازتولید نشد.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-007-012.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=8"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 9,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "سه آرایش ورودی/خروجی با مسئله‌های نمونه سازگارند.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-007-012.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=9"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 10,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "نقشه راه ورود به بازگشت.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-007-012.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=10"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 11,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "خط زمانی زمینه تاریخی است؛ ۱۹۸۶ را نباید آغاز مطلق backprop دانست؛ این صفحه ممیزی تاریخی کامل نشده است.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-007-012.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=11"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 12,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "پیکان تأخیردار به حالت گام قبل می‌رود؛ لایه فضایی با گام زمانی فرق دارد.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-007-012.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=12"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 13,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "تابع انتقال پارامتر ثابت ولی ورودی و حالت متغیر دارد.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-013-018.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=13"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 14,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "بازکردن نخستین گام زمانی در نمودار.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-013-018.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=14"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 15,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "حالت و ورودی گام اول از وزن‌های مشترک متمایزند.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-013-018.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=15"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 16,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "گام دوم از حالت قبلی استفاده می‌کند.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-013-018.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=16"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 17,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "گام سوم همان تابع را تکرار می‌کند.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-013-018.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=17"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 18,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "گراف بازشده برای دنباله متناهی بدون دور است.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-013-018.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=18"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 19,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "طول متغیر با تعداد اجرای بیشتر ممکن است؛ تضمین حافظه یا تعمیم به طول نامحدود نیست.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-019-024.jpg",
+      "evidence_urls": [
+        "https://docs.pytorch.org/docs/2.14/generated/torch.nn.RNN.html"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 20,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "نمادگذاری حالت، ورودی و پارامتر در بازگشت بررسی شد.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-019-024.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=20"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 21,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "رابطه بازگشت در گام‌های مختلف ثابت است.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-019-024.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=21"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 22,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "بازکردن زمان وزن مستقل تازه ایجاد نمی‌کند.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-019-024.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=22"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 23,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "وزن یکسان؛ داده و مقدار فعال‌سازی متفاوت.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-019-024.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=23"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 24,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "حافظه مؤثر به دینامیک مدل و داده وابسته است.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-019-024.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=24"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 25,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "مسیر تأثیر ورودی گذشته در حالت‌ها مشخص است؛ ذخیره بی‌نقص گذشته تضمین نشده.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-025-030.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=25"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 26,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "بازه tanh و sigmoid برای ورودی متناهی باز است؛ نمودار حدی ±۱ را نشان می‌دهد.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-025-030.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=26"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 27,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "سلول ضربی ویژه s=tanh(3xs_prev) با Elman جمعی متفاوت است. علامت‌های زوجیت درست؛ ±۱ها گرد شده‌اند.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/p027-zoom.jpg",
+      "evidence_urls": [
+        "https://docs.pytorch.org/docs/2.14/generated/torch.nn.RNN.html"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 28,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "زنجیره کدگذاری، حالت و softmax برای پیش‌بینی توکن بررسی شد.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-025-030.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=28"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 29,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "واژگان چهارعضوی و بردارهای one-hot صحیح‌اند؛ ترتیب واژگان باید ثابت بماند.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-025-030.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=29"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 30,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "سیگموید مستقل به مجموع۱ مقید نیست؛ argmax جدا از softmax است.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-025-030.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=30"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 31,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "در این نمودار احتمال حرف o برابر۰٫۶۵ و بیشینه است؛ مجموع۱.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-031-036.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=31"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 32,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "صورت exp و مخرج مجموع همان امتیازها؛ K=4. برای محاسبه پایدار می‌توان بیشینه را کم کرد.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-031-036.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=32"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 33,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "ضرب ماتریس۳×۴ در one-hot ستون نخست را برمی‌گرداند؛ اندازه حالت۳.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-031-036.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=33"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 34,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "حالت اول tanh(input+bias) با محاسبه تا دقت گردکردن مطابقت دارد.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/p034-zoom.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=34"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 35,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "حالت دوم و اعداد بازتولید شد. ضریب بازگشتی اسکالر به معنی حالت ویژه W=0.427043I است، نه ماتریس متراکم عمومی.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/p035-zoom.jpg",
+      "evidence_urls": [
+        "https://docs.pytorch.org/docs/2.14/generated/torch.nn.RNN.html"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 36,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "ضرب۴×۳، امتیازها و softmax با تلورانس۱e-5 بازتولید شد؛ تفاوت رقم آخر ناشی از گردکردن ورودی چاپی است.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/p036-zoom.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=36"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 37,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "بیشینه۰٫۴۱۹۷۴۸ به h مربوط است؛ مدل تصادفی الزاماً حرف بعدی واقعی را نمی‌گوید.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-037-042.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=37"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 38,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "تولید خودبازگشتی و معیار توقف؛ در آموزش teacher forcing ورودی قبلی می‌تواند توکن واقعی باشد.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-037-042.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=38"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 39,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "آرایش چندبه‌یک برای طبقه‌بندی متن و چندبه‌چند هم‌تراز/ناهم‌تراز درست تفکیک شده.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-037-042.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=39"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 40,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "محور عمق با محور زمان مستقل است؛ وزن میان لایه‌های عمقی لزوماً مشترک نیست.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-037-042.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=40"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 41,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "اشتراک پارامتر باعث جمع سهم گرادیان زمان‌ها می‌شود.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-037-042.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=41"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 42,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "پنجره‌بندی و padding یک راه اجراست؛ الزامی برای همه RNNها نیست. mask و جداسازی زمانی داده لازم است.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-037-042.jpg",
+      "evidence_urls": [
+        "https://docs.pytorch.org/docs/2.14/generated/torch.nn.RNN.html"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 43,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "گام loss در حلقه آموزش مشخص است.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-043-048.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=43"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 44,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "lossهای زمان می‌توانند جمع یا میانگین شوند؛ مقیاس نرخ یادگیری باید سازگار باشد.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-043-048.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=44"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 45,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "برای طبقه‌بندی تک‌برچسب، loss بر کلاس هدف محاسبه می‌شود.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-043-048.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=45"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 46,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "one-hot هدف مشاهده‌شده است؛ لزوماً توزیع واقعی مشروط داده نیست.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-043-048.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=46"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 47,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "فرمول منفی log درست است. تغییر پایه log فقط ضریب ثابت ایجاد می‌کند؛ بهبود ذاتی گرادیان از انتخاب ln نتیجه نمی‌شود.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/p047-zoom.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=47"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 48,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "صفر و بی‌نهایت مقادیر حدی‌اند. پیش‌بینی اشتباه با احتمال مثبت loss متناهی دارد؛ درست بودن argmax الزاماً loss صفر نیست.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-043-048.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=48"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 49,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "اشاره به دشواری آموزش؛ ادعای درصد شکست مشخصی ندارد.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-049-054.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=49"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 50,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "نقشه راه شبکه دروازه‌ای.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-049-054.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=50"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 51,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "مشتق tanh≤۱ و sigmoid≤۱/۴ است؛ اثر وزن‌ها نیز در ژاکوبین لازم است.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-049-054.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=51"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 52,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "۰٫۲۵ به توان۴ برابر۰٫۰۰۳۹۰۶۲۵ است. مثال فقط بخشی از زنجیره مشتق را توضیح می‌دهد؛ وزن‌ها می‌توانند گرادیان را بزرگ کنند.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-049-054.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=52"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 53,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "تشبیه برف‌روبی صرفاً شهودی است و اثبات کمی نیست.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-049-054.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=53"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 54,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "LSTM مشکل مسیر گرادیان را کاهش می‌دهد؛ جلوگیری قطعی از محوشدن برای هر پارامتر و داده تضمین نیست.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-049-054.jpg",
+      "evidence_urls": [
+        "https://docs.pytorch.org/docs/2.14/generated/torch.nn.LSTM.html"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 55,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "دروازه ورودی روی نامزد حافظه اثر دارد؛ خروجی فقط حالت آشکار را تنظیم می‌کند.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-055-060.jpg",
+      "evidence_urls": [
+        "https://docs.pytorch.org/docs/2.14/generated/torch.nn.LSTM.html"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 56,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "دروازه فراموشی سهم حافظه قبلی را مقیاس می‌کند؛ صفر/یک حالت‌های حدی‌اند.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-055-060.jpg",
+      "evidence_urls": [
+        "https://docs.pytorch.org/docs/2.14/generated/torch.nn.LSTM.html"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 57,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "مشتق مسیر مستقیم سلول f است با ثابت گرفتن دروازه‌ها؛ مشتق کل مسیرهای غیرمستقیم هم دارد و حاصل‌ضرب f ممکن است محو شود.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/p057-zoom.jpg",
+      "evidence_urls": [
+        "https://docs.pytorch.org/docs/2.14/generated/torch.nn.LSTM.html"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 58,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "دروازه update دو سهم مکمل را کنترل می‌کند؛ reset نیز وجود دارد. نام نویسنده Cho است، نه Chou.",
+      "concept_ids": [
+        "recurrent-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/p058-zoom.jpg",
+      "evidence_urls": [
+        "https://docs.pytorch.org/docs/2.14/generated/torch.nn.GRU.html",
+        "https://aclanthology.org/D14-1179.pdf"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 59,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "جمع‌بندی مباحث.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-055-060.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=59"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 60,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "اشاره به آموزش PyTorch؛ کد یا نوت‌بوک اجرایی در PDF درج نشده است.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-055-060.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=60"
+      ]
+    },
+    {
+      "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+      "page": 61,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "صفحه پایانی تصویرمحور؛ متن قابل استخراج ندارد، تصویر دیده شد.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s04/sheet-061-061.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=61"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "page": 1,
+      "category": "license_evidence",
+      "explanation_fa": "عنوان درس و نشان تصویری CC BY-NC-SA؛ نسخه و لینک annotation مشخص نیست.",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=1"
+      ],
+      "resolution": "explicit_correction_or_qualification_in_companion"
+    },
+    {
+      "page": 7,
+      "category": "nuance",
+      "explanation_fa": "محدودیت بیان‌شده مخصوص MLP ساده با ورودی ثابت است؛ همه معماری‌های پیش‌خور را شامل نمی‌شود.",
+      "evidence_urls": [
+        "https://docs.pytorch.org/docs/2.14/generated/torch.nn.RNN.html"
+      ],
+      "resolution": "explicit_correction_or_qualification_in_companion"
+    },
+    {
+      "page": 19,
+      "category": "nuance",
+      "explanation_fa": "طول متغیر با تعداد اجرای بیشتر ممکن است؛ تضمین حافظه یا تعمیم به طول نامحدود نیست.",
+      "evidence_urls": [
+        "https://docs.pytorch.org/docs/2.14/generated/torch.nn.RNN.html"
+      ],
+      "resolution": "explicit_correction_or_qualification_in_companion"
+    },
+    {
+      "page": 27,
+      "category": "nuance",
+      "explanation_fa": "سلول ضربی ویژه s=tanh(3xs_prev) با Elman جمعی متفاوت است. علامت‌های زوجیت درست؛ ±۱ها گرد شده‌اند.",
+      "evidence_urls": [
+        "https://docs.pytorch.org/docs/2.14/generated/torch.nn.RNN.html"
+      ],
+      "resolution": "explicit_correction_or_qualification_in_companion"
+    },
+    {
+      "page": 30,
+      "category": "nuance",
+      "explanation_fa": "سیگموید مستقل به مجموع۱ مقید نیست؛ argmax جدا از softmax است.",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=30"
+      ],
+      "resolution": "explicit_correction_or_qualification_in_companion"
+    },
+    {
+      "page": 35,
+      "category": "nuance",
+      "explanation_fa": "حالت دوم و اعداد بازتولید شد. ضریب بازگشتی اسکالر به معنی حالت ویژه W=0.427043I است، نه ماتریس متراکم عمومی.",
+      "evidence_urls": [
+        "https://docs.pytorch.org/docs/2.14/generated/torch.nn.RNN.html"
+      ],
+      "resolution": "explicit_correction_or_qualification_in_companion"
+    },
+    {
+      "page": 42,
+      "category": "nuance",
+      "explanation_fa": "پنجره‌بندی و padding یک راه اجراست؛ الزامی برای همه RNNها نیست. mask و جداسازی زمانی داده لازم است.",
+      "evidence_urls": [
+        "https://docs.pytorch.org/docs/2.14/generated/torch.nn.RNN.html"
+      ],
+      "resolution": "explicit_correction_or_qualification_in_companion"
+    },
+    {
+      "page": 46,
+      "category": "nuance",
+      "explanation_fa": "one-hot هدف مشاهده‌شده است؛ لزوماً توزیع واقعی مشروط داده نیست.",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=46"
+      ],
+      "resolution": "explicit_correction_or_qualification_in_companion"
+    },
+    {
+      "page": 47,
+      "category": "nuance",
+      "explanation_fa": "فرمول منفی log درست است. تغییر پایه log فقط ضریب ثابت ایجاد می‌کند؛ بهبود ذاتی گرادیان از انتخاب ln نتیجه نمی‌شود.",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=47"
+      ],
+      "resolution": "explicit_correction_or_qualification_in_companion"
+    },
+    {
+      "page": 48,
+      "category": "verified_error",
+      "explanation_fa": "صفر و بی‌نهایت مقادیر حدی‌اند. پیش‌بینی اشتباه با احتمال مثبت loss متناهی دارد؛ درست بودن argmax الزاماً loss صفر نیست.",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=48"
+      ],
+      "resolution": "explicit_correction_or_qualification_in_companion"
+    },
+    {
+      "page": 52,
+      "category": "nuance",
+      "explanation_fa": "۰٫۲۵ به توان۴ برابر۰٫۰۰۳۹۰۶۲۵ است. مثال فقط بخشی از زنجیره مشتق را توضیح می‌دهد؛ وزن‌ها می‌توانند گرادیان را بزرگ کنند.",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf#page=52"
+      ],
+      "resolution": "explicit_correction_or_qualification_in_companion"
+    },
+    {
+      "page": 54,
+      "category": "nuance",
+      "explanation_fa": "LSTM مشکل مسیر گرادیان را کاهش می‌دهد؛ جلوگیری قطعی از محوشدن برای هر پارامتر و داده تضمین نیست.",
+      "evidence_urls": [
+        "https://docs.pytorch.org/docs/2.14/generated/torch.nn.LSTM.html"
+      ],
+      "resolution": "explicit_correction_or_qualification_in_companion"
+    },
+    {
+      "page": 57,
+      "category": "nuance",
+      "explanation_fa": "مشتق مسیر مستقیم سلول f است با ثابت گرفتن دروازه‌ها؛ مشتق کل مسیرهای غیرمستقیم هم دارد و حاصل‌ضرب f ممکن است محو شود.",
+      "evidence_urls": [
+        "https://docs.pytorch.org/docs/2.14/generated/torch.nn.LSTM.html"
+      ],
+      "resolution": "explicit_correction_or_qualification_in_companion"
+    },
+    {
+      "page": 58,
+      "category": "verified_error",
+      "explanation_fa": "دروازه update دو سهم مکمل را کنترل می‌کند؛ reset نیز وجود دارد. نام نویسنده Cho است، نه Chou.",
+      "evidence_urls": [
+        "https://docs.pytorch.org/docs/2.14/generated/torch.nn.GRU.html",
+        "https://aclanthology.org/D14-1179.pdf"
+      ],
+      "resolution": "explicit_correction_or_qualification_in_companion"
+    }
+  ]
+}

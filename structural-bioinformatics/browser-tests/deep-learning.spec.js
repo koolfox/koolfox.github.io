@@ -1,7 +1,8 @@
 import { expect, test } from "@playwright/test";
 import { createHash } from "node:crypto";
 
-const route = "/deep-learning/";
+const base = "/deep-learning/";
+const route = base + "replay.html";
 const gates = ["AND", "OR", "NAND", "NOR", "XOR", "XNOR"];
 
 function replay(checkpoint, inputs, activation) {
@@ -16,12 +17,12 @@ function replay(checkpoint, inputs, activation) {
 }
 
 test("every Python checkpoint replays from its actual weights for all gates and models", async ({ request }) => {
-    const response = await request.get(`${route}assets/data/gates.json`);
+    const response = await request.get(`${base}assets/data/gates.json`);
     expect(response.ok()).toBe(true);
     const data = await response.json();
     expect(Object.keys(data.gates).sort()).toEqual([...gates].sort());
     expect(data.provenance.execution).toContain("actual Python training");
-    const source = await request.get(`${route}python/logic_gates.py`);
+    const source = await request.get(`${base}python/logic_gates.py`);
     expect(source.ok()).toBe(true);
     expect(createHash("sha256").update(await source.body()).digest("hex")).toBe(data.provenance.source_sha256);
     for (const gate of gates) {
@@ -61,7 +62,7 @@ async function goToFrame(page, value) {
 test("six gates and all three models show genuine stored Python predictions", async ({ page, request }) => {
     const errors = [];
     page.on("pageerror", error => errors.push(error.message));
-    const data = await (await request.get(`${route}assets/data/gates.json`)).json();
+    const data = await (await request.get(`${base}assets/data/gates.json`)).json();
     await ready(page);
     for (const gate of gates) {
         await page.selectOption("#gate", gate);
@@ -130,47 +131,6 @@ test("a failed Python artifact fetch explains the problem without fake results",
     await expect(page.locator("#python-download")).toBeVisible();
 });
 
-test("progress persists, exports, imports, and resets without touching other courses", async ({ page }) => {
-    await ready(page);
-    const check = page.locator('[data-check="exercise-truth"]');
-    await check.check();
-    await page.reload();
-    await expect(check).toBeChecked();
-    const pending = page.waitForEvent("download");
-    await page.click("#export-progress");
-    const download = await pending;
-    const path = await download.path();
-    await page.evaluate(() => localStorage.setItem("koolfox.karpathy.progress.v1", "sentinel"));
-    page.on("dialog", dialog => dialog.accept());
-    await page.click("#clear-progress");
-    await expect(check).not.toBeChecked();
-    expect(await page.evaluate(() => localStorage.getItem("koolfox.karpathy.progress.v1"))).toBe("sentinel");
-    await page.locator("#import-progress").setInputFiles(path);
-    await expect(check).toBeChecked();
-    await page.reload();
-    await expect(check).toBeChecked();
-    await page.locator("#import-progress").setInputFiles({name:"invalid.json",mimeType:"application/json",buffer:Buffer.from('{"invalid":true}')});
-    await expect(page.locator("#storage-status")).not.toBeEmpty();
-    await expect(check).toBeChecked();
-});
-
-for (const mode of ["corrupt", "blocked"]) {
-    test(`${mode} browser storage does not break the lesson or replay`, async ({ page }) => {
-        await page.addInitScript(mode => {
-            if (mode === "corrupt") localStorage.setItem("koolfox.deep-learning.progress.v1", "{broken");
-            else {
-                Storage.prototype.getItem = () => { throw new Error("Storage blocked"); };
-                Storage.prototype.setItem = () => { throw new Error("Storage blocked"); };
-            }
-        }, mode);
-        await ready(page);
-        await page.locator('[data-check="exercise-truth"]').check();
-        await expect(page.locator('[data-check="exercise-truth"]')).toBeChecked();
-        await page.click("#step");
-        await expect(page.locator("#frame")).toHaveValue("1");
-    });
-}
-
 test("keyboard users can operate native controls and inspect the network", async ({ page }) => {
     await ready(page);
     await page.locator("#step").focus();
@@ -212,7 +172,7 @@ test.describe("phone layout", () => {
             expect(bounds.x, `${selector} must not spill left in RTL`).toBeGreaterThanOrEqual(0);
             expect(bounds.x + bounds.width, `${selector} must fit the viewport`).toBeLessThanOrEqual(390);
         }
-        for (const id of ["lab", "course", "exercises", "project", "sources"]) {
+        for (const id of ["lab", "sources"]) {
             await expect(page.locator(`#${id}`)).toBeVisible();
         }
         await page.screenshot({ path: test.info().outputPath("deep-learning-mobile.png"), fullPage: true });
@@ -223,9 +183,6 @@ test("desktop course renders without runtime errors", async ({ page }) => {
     const errors = [];
     page.on("pageerror", error => errors.push(error.message));
     await ready(page);
-    await expect(page.locator("#curriculum [data-check]")).toHaveCount(7);
-    await expect(page.locator('[data-check="chapter-6"]')).toHaveCount(1);
-    await expect(page.locator("#source-notes")).toContainText("۴۴۶");
     await page.click("#finish");
     await page.screenshot({ path: test.info().outputPath("deep-learning-desktop.png"), fullPage: true });
     expect(errors).toEqual([]);

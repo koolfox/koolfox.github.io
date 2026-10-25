@@ -1,0 +1,1262 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s05",
+  "reviewer": "Codex / danna_2022",
+  "reviewed_at_utc": "2026-10-25T09:42:11.729727Z",
+  "method": "تمام ۸۲ صفحه متن خوانده و در ۲۱ contact sheet دیده شد؛ ۱۰ صفحه فرمول، شکل یا خطای احتمالی بزرگ‌نمایی شد. پیش‌رو، سه delta و هر۱۱ به‌روزرسانی با Python بازحساب شد؛ هر۱۱ مشتق با تفاضل مرکزی h=1e-6 برای L=½(t−o)² با حداکثر اختلاف3.75e-11 تأیید شد. این قرارداد با یادداشت جدا از فرمول ناسازگار منبع مشخص است؛ PDF اصلی تغییر نکرده است. صفحات حساس 30,42,43,49,67,69,70,78 دوباره با PDFium 5.14.0 رندر و جداگانه دیده شد؛ خطاهای ثبت‌شده ناشی از clipping رندر PyMuPDF نبود.",
+  "sources": [
+    {
+      "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/04-NN_Training.pdf",
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page_count": 82
+    }
+  ],
+  "pages": [
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 1,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "جلد با نشان CC BY دیده شد؛ نسخه مجوز مشخص نیست و حقوق شکل‌های بیرونی جداست.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-001-004.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 2,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "مرور جلسه و موعد Canvas تاریخی است؛ محتوای خصوصی آزمایشگاه بررسی نشده است.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-001-004.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 3,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "فهرست جلسه.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-001-004.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 4,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "گذار به تابع هدف.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-001-004.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 5,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "آموزش کودک و حیوان فقط قیاس انگیزشی است؛ معادل الگوریتم عددی نیست.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-005-008.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 6,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "هدف پیوسته و گسسته برای انتخاب زیان از هم تفکیک شده‌اند.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-005-008.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 7,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "فرمول MSE درست است؛ با مقادیر متناهی زیان متناهی است و کران بالا ندارد، نه اینکه هر پیش‌بینی غلط بی‌نهایت شود. حداقل صفر به برابری دقیق همه اهداف نیاز دارد.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-005-008.png",
+      "evidence_urls": [
+        "https://www.deeplearningbook.org/contents/optimization.html"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 8,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "گذار به هدف طبقه‌بندی.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-005-008.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 9,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "کراس‌انتروپی تابع زیان است، نه فاصله متریک متقارن؛ one-hot برچسب هدف است و تصمیم شناسه کلاس argmax است.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-009-012.png",
+      "evidence_urls": [
+        "https://www.deeplearningbook.org/contents/optimization.html"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 10,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "فرمول منفی لگاریتم احتمال کلاس صحیح درست است؛ توضیح متنی باید «منفی لگاریتم» بگوید و شرط تک‌برچسب/one-hot حفظ شود.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-009-012.png",
+      "evidence_urls": [
+        "https://www.deeplearningbook.org/contents/optimization.html"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 11,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "برای 0<p≤1، زیان −log(p) است؛ صفر فقط در p=1 و واگرایی در حد p→0 رخ می‌دهد، نه برای هر پیش‌بینی درست/غلط.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-009-012.png",
+      "evidence_urls": [
+        "https://www.deeplearningbook.org/contents/optimization.html"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 12,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "منحنی −log(p) درست است؛ اطمینان بیشتر به کلاس غلط احتمال کلاس صحیح را کم و زیان را زیاد می‌کند؛ بی‌نهایت یک حد است.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-009-012.png",
+      "evidence_urls": [
+        "https://www.deeplearningbook.org/contents/optimization.html"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 13,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "جمع‌بندی دو نوع هدف.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-013-016.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 14,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "وجود چندین تابع هدف بیان درستی است؛ انتخاب به مسئله وابسته است.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-013-016.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 15,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "گذار به نزول گرادیان.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-013-016.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 16,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "خط زمان منتخب تاریخی است؛ نام کامل ریاضیدان Augustin-Louis Cauchy است و عبارت اولین ماشین۱۹۴۵ همچنان نیازمند قید ENIAC است.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-013-016.png",
+      "evidence_urls": [
+        "https://www.computerhistory.org/timeline/1941/"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 17,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "مقیاس‌پذیری مزیت روش‌های گرادیانی است، تضمین زمان یا موفقیت هر مدل نیست.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-017-020.png",
+      "evidence_urls": [
+        "https://www.deeplearningbook.org/contents/optimization.html"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 18,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "جهت تبدیل در جمله آغازین جابه‌جا نوشته شده: نمودار و داده ورودی مایل و خروجی کیلومتر دارند؛ عبارت kilometers to miles باید miles to kilometers باشد. ضریب نمایش‌شده گرد شده است.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-017-020.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 19,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "تبدیل ارز نمونه فرضی برای حدس یک ضریب است؛ نرخ جاری یا پیش‌بینی مالی نیست.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-017-020.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 20,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "تفاضل حدس و هدف خطای علامت‌دار است؛ با زیان مربعی یا کراس‌انتروپی یکسان نیست.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-017-020.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 21,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "تکرار مرحله حدس در مثال ضریب فرضی.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-021-024.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 22,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "بازمحاسبه خطای علامت‌دار پس از حدس؛ نرخ واقعی ارز ادعا نشده است.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-021-024.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 23,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "تکرار مرحله حدس برای شهود بهینه‌سازی.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-021-024.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 24,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "اصلاح تکراری پارامتر برای کاهش زیان هدف است؛ فرمول مشتق در مثال هنوز داده نشده.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-021-024.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 25,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "نزول برای کمینه‌سازی است؛ برای بیشینه‌سازی جهت علامت عوض می‌شود. رسیدن به کمینه سراسری از قیاس کوه تضمین نمی‌شود.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-025-028.png",
+      "evidence_urls": [
+        "https://www.deeplearningbook.org/contents/optimization.html"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 26,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "جهت منفی گرادیان برای گام کافی کوچک نزولی است؛ در نمودار C کمینه سراسری و A,B,C کمینه محلی‌اند.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-025-028.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 27,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "نرخ یادگیری ضریب گرادیان است، نه طول هندسی ثابت گام؛ گام بزرگ می‌تواند واگرا شود ولی گزاره برای همه توابع مطلق نیست.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-025-028.png",
+      "evidence_urls": [
+        "https://www.deeplearningbook.org/contents/optimization.html"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 28,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "batch/SGD/minibatch درست تفکیک شده‌اند؛ اندازه دسته صرفاً بیشینه حافظه نیست و حافظه پارامتر/فعال‌سازی هم لازم است.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-025-028.png",
+      "evidence_urls": [
+        "https://www.deeplearningbook.org/contents/optimization.html"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 29,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "گذار به آموزش شبکه.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-029-032.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 30,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "دو یال پنهان به خروجی هر دو w21 برچسب خورده‌اند؛ باید دو پارامتر متمایز مانند v1,v2 یا w11,w21 باشند. شش وزن و سه بایاس دیده می‌شود.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/pdfium-030.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 31,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "پیش‌رو، محاسبه زیان، پس‌انتشار و به‌روزرسانی چهار مرحله جدا هستند؛ پس‌انتشار به‌تنهایی قانون بهینه‌ساز نیست.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-029-032.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 32,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "معیار توقف نمونه‌ای است؛ کوچک‌شدن وزن یا خطای آموزش به‌تنهایی گواه تعمیم نیست و اعتبارسنجی باید از آزمون نهایی جدا باشد.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-029-032.png",
+      "evidence_urls": [
+        "https://www.deeplearningbook.org/contents/optimization.html"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 33,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "گرادیان به فعال‌سازی، زیان و مسیر محاسباتی وابسته است؛ پارامترها در همان نقطه پیش از به‌روزرسانی ارزیابی شوند.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-033-036.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 34,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "۱۹۸۶ نقطه عطف رواج است نه اختراع نخستین قاعده زنجیره‌ای؛ نام نویسنده Rumelhart است، نه Rulhart.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-033-036.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 35,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "قاعده زنجیره‌ای برای x=f(w)، y=f(x)، z=f(y) و حاصل سه مشتق درست است؛ نمودار مسیر عقب بررسی شد.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/zoom-035.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 36,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "شبکه مثال سه ورودی، دو واحد پنهان، یک خروجی سیگمویدی دارد؛ بایاس‌ها بعداً اضافه می‌شوند.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-033-036.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 37,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "زیان نوشته‌شده (t−o)² است؛ مشتق آن عامل۲ دارد. مثال عددی بعدی در عمل با ½(t−o)² یا نرخ مؤثر نصف این قرارداد سازگار است.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-037-040.png",
+      "evidence_urls": [
+        "https://cs231n.github.io/optimization-2/"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 38,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "ثابت‌بودن t نسبت به وزن درست است؛ جای ورودی، پنهان و خروجی در شکل بررسی شد.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-037-040.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 39,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "مشتق سیگموید σ(1−σ) و مشتق مربع −2(t−o) درست به دست آمده‌اند.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-037-040.png",
+      "evidence_urls": [
+        "https://cs231n.github.io/optimization-2/"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 40,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "مشتق کامل وزن شامل عامل ورودی o_j است و درست نمایش داده شده؛ برای شبکه بایاس‌دار باید بایاس در logit لحاظ شود.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/zoom-040.png",
+      "evidence_urls": [
+        "https://cs231n.github.io/optimization-2/"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 41,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "مشتق‌پذیری برای قاعده معمول کافی است؛ لازم نیست تابع در همه نقاط هموار باشد، زیرا ReLU با قرارداد زیرگرادیان استفاده می‌شود.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-041-044.png",
+      "evidence_urls": [
+        "https://cs231n.github.io/optimization-2/"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 42,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "سمت راست بدون عامل ورودی و ضریب۲ مشتق وزنِ زیان نوشته‌شده نیست. با L=½(t−o)² و δ=(o−t)o(1−o)، باید ∂L/∂w_jk=δ_k o_j نوشت؛ e=−δ در مثال است.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/pdfium-042.png",
+      "evidence_urls": [
+        "https://cs231n.github.io/optimization-2/"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 43,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "فرمول پنهان نیز عامل ورودی o_i را برای مشتق وزن کم دارد. δ_j=o_j(1−o_j)Σ_k w_jkδ_k و ∂L/∂w_ij=o_iδ_j؛ حذف عامل برای محاسبه موقت delta مجاز است ولی عنوان مشتق وزن غلط می‌شود.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/pdfium-043.png",
+      "evidence_urls": [
+        "https://cs231n.github.io/optimization-2/"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 44,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "یازده پارامتر آغازین (هشت وزن و سه بایاس) از شکل خوانده و در محاسبه مستقل وارد شد.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-041-044.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 45,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "نمونه x=(1,0,1)، t=1 و بایاس ورودی۱ به‌وضوح مشخص است.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-045-048.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 46,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "فقط مرحله پیش‌رو برجسته شده؛ جریان شکل درست است.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-045-048.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 47,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "z4=−0.7 و o4≈0.331812 درست محاسبه و به ۰٫۳۳۲ گرد شده است.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-045-048.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 48,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "z5=0.1 و o5≈0.524979 درست است؛ ورودی خام۰٫۱ با خروجی۰٫۵۲۵ یکی نیست.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-045-048.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 49,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "در جمع z6 ضریب o5 به‌اشتباه 0.1 نوشته؛ باید≈0.525 باشد. محاسبه صحیح z6≈−0.1045395 و o6≈0.4738889 است؛ نتیجه گرد شده اسلاید از مقدار درست پیروی می‌کند.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/pdfium-049.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 50,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "مرحله محاسبه زیان و پس‌انتشار جدا از به‌روزرسانی نشان داده شده است.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-049-052.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 51,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "پرسش delta خروجی؛ طبق قرارداد مثال e6=(t−o6)o6(1−o6) است و منفی مشتق نسبت به logit محسوب می‌شود.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-049-052.png",
+      "evidence_urls": [
+        "https://cs231n.github.io/optimization-2/"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 52,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "عدد e6≈0.1311 با ورودی‌های گرد شده درست است؛ مقدار دقیق≈0.131169. این e6 خود مشتق وزن نیست و فرمول پایین همان نقص صفحه۴۲ را دارد.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-049-052.png",
+      "evidence_urls": [
+        "https://cs231n.github.io/optimization-2/"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 53,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "e5≈−0.0065 از وزن قدیمی−0.2 درست محاسبه شده؛ فرمول پایین باید delta را از مشتق وزن جدا کند.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-053-056.png",
+      "evidence_urls": [
+        "https://cs231n.github.io/optimization-2/"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 54,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "e4≈−0.0087 از وزن قدیمی−0.3 درست است؛ عامل ورودی در مشتق هر وزن جدا ضرب می‌شود.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-053-056.png",
+      "evidence_urls": [
+        "https://cs231n.github.io/optimization-2/"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 55,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "سه مقدار delta عددی درست‌اند؛ آن‌ها متعلق به پارامترهای پیش از update هستند.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-053-056.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 56,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "مرحله update پس از محاسبه همه گرادیان‌ها مشخص شده است.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-053-056.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 57,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "پرسش به‌روزرسانی یازده پارامتر؛ مقدارهای delta از همان گذر قبلی ثابت می‌مانند.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-057-060.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 58,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "w46≈−0.261 درست است؛ جمع ηe×input با قرارداد e=−δ نزول است. بازگرداندن ورودی در این مرحله نقص عنوان مشتق قبلی را توضیح می‌دهد، ولی آن عنوان را صحیح نمی‌کند.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-057-060.png",
+      "evidence_urls": [
+        "https://cs231n.github.io/optimization-2/"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 59,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "w56≈−0.138 درست است؛ محاسبه مستقل −0.138025.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-057-060.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 60,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "b6≈0.218 درست است؛ ورودی بایاس۱ است.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-057-060.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 61,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "w14≈0.192 درست است؛ ورودی اول۱ است.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-061-064.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 62,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "w15≈−0.306 درست است.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-061-064.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 63,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "w24=0.4 ثابت می‌ماند چون ورودی دوم صفر است.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-061-064.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 64,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "w25=0.1 ثابت می‌ماند چون ورودی دوم صفر است.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-061-064.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 65,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "تکرار صفحه قبل است؛ w25 همچنان۰٫۱ و محاسبه درست است.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-065-068.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 66,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "w34≈−0.508 درست است.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-065-068.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 67,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "خطای اعشاری آشکار: 01.94 باید≈0.194 باشد؛ 0.2+0.9×(−0.0065)=0.19415 و محاسبه دقیق۰٫۱۹۴۱۱۲ است.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/pdfium-067.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 68,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "b5≈0.194 درست محاسبه شده است.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-065-068.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 69,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "b4≈−0.408 درست است ولی در شکل مقدار قدیمی b5=0.2 باقی مانده؛ پس از صفحه۶۸ باید≈0.194 باشد.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/pdfium-069.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 70,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "در خلاصه نهایی b5=0.2 اشتباه باقی مانده؛ مقدار درست≈0.194 است. خروجی‌ها و deltaهای قدیمی باید پیش از نمونه بعدی دوباره محاسبه شوند.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/pdfium-070.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 71,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "تکرار چرخه با داده بعدی درست است؛ هر بار forward تازه لازم است.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-069-072.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 72,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "به‌روزرسانی پس از یک نمونه در این مثال SGD است؛ ترتیب تصادفی/نمونه‌گیری نیز باید مشخص شود.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-069-072.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 73,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "میانگین گرادیان برای زیان میانگین درست است؛ اگر زیان جمع باشد مقیاس گرادیان و نرخ یادگیری متفاوت است.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-073-076.png",
+      "evidence_urls": [
+        "https://www.deeplearningbook.org/contents/optimization.html"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 74,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "استانداردسازی باید فقط روی آموزش برازش شود و سپس به اعتبارسنجی/آزمون اعمال شود؛ واریانس وزن تصادفی نیز مهم است، نه صرفاً نام توزیع.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-073-076.png",
+      "evidence_urls": [
+        "https://www.deeplearningbook.org/contents/optimization.html"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 75,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "گذار به فعال‌سازی و گرادیان.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-073-076.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 76,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "گرادیان مفید شرط عملی است؛ ReLU در صفر مشتق معمول ندارد ولی با قرارداد مشتق/زیرگرادیان آموزش می‌یابد.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-073-076.png",
+      "evidence_urls": [
+        "https://cs231n.github.io/optimization-2/"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 77,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "مشتق پله خارج آستانه صفر و در آستانه تعریف‌نشده است؛ این مانع گرادیان معمول است، نه قانون یادگیری مخصوص پرسپترون.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-077-080.png",
+      "evidence_urls": [
+        "https://cs231n.github.io/optimization-2/"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 78,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "منحنی‌های اشباع و مشتق‌ها بررسی شدند؛ برچسب max(0,1) برای مشتق ReLU غلط است: برای z<0 صفر و z>0 یک، و در صفر قرارداد لازم است.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/pdfium-078.png",
+      "evidence_urls": [
+        "https://cs231n.github.io/optimization-2/"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 79,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "مشتق مثبت ReLU/ELU برابر۱ است؛ ELU در ناحیه منفی αexp(z) دارد و می‌تواند کوچک شود، پس «همواره گرادیان بزرگ» تعمیم درستی نیست. برچسب مشتق ReLU همان خطای صفحه۷۸ را تکرار می‌کند.",
+      "concept_ids": [
+        "gradient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/zoom-079.png",
+      "evidence_urls": [
+        "https://docs.pytorch.org/docs/2.14/generated/torch.nn.ELU.html"
+      ]
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 80,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "مرور فهرست جلسه.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-077-080.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 81,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "مرور نهایی موضوع‌ها.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-081-082.png",
+      "evidence_urls": []
+    },
+    {
+      "sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+      "page": 82,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "تصویر پایان دیده شد؛ متن علمی استخراج‌پذیر ندارد.",
+      "concept_ids": [],
+      "visual_evidence": "/tmp/danna-full-review/spring-2022/s05/sheet-081-082.png",
+      "evidence_urls": []
+    }
+  ],
+  "findings": [
+    {
+      "id": "license-cover",
+      "pages": [
+        1
+      ],
+      "category": "license_observation",
+      "note_fa": "جلد با نشان CC BY دیده شد؛ نسخه مجوز مشخص نیست و حقوق شکل‌های بیرونی جداست.",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/04-NN_Training.pdf"
+      ]
+    },
+    {
+      "id": "conversion-direction",
+      "pages": [
+        18
+      ],
+      "category": "verified_error",
+      "note_fa": "جهت تبدیل در جمله آغازین جابه‌جا نوشته شده: نمودار و داده ورودی مایل و خروجی کیلومتر دارند؛ عبارت kilometers to miles باید miles to kilometers باشد. ضریب نمایش‌شده گرد شده است.",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/04-NN_Training.pdf"
+      ]
+    },
+    {
+      "id": "duplicate-output-edge-label",
+      "pages": [
+        30
+      ],
+      "category": "verified_error",
+      "note_fa": "دو یال پنهان به خروجی هر دو w21 برچسب خورده‌اند؛ باید دو پارامتر متمایز مانند v1,v2 یا w11,w21 باشند. شش وزن و سه بایاس دیده می‌شود.",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/04-NN_Training.pdf"
+      ]
+    },
+    {
+      "id": "delta-not-weight-gradient",
+      "pages": [
+        37,
+        40,
+        42,
+        43,
+        52,
+        53,
+        54,
+        58
+      ],
+      "category": "verified_error",
+      "note_fa": "برای L=½(t−o)²، δ_k=(o_k−t_k)o_k(1−o_k)، δ_j=o_j(1−o_j)Σw_jkδ_k و مشتق وزن=ورودی×delta؛ e منبع برابر−δ است. اگر L بدون½ باشد همه این گرادیان‌ها دوبرابرند. حذف ورودی به عنوان صرفه‌جویی تنها با تغییر نام کمیت به delta صحیح است.",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/04-NN_Training.pdf",
+        "https://cs231n.github.io/optimization-2/"
+      ]
+    },
+    {
+      "id": "wrong-output-input",
+      "pages": [
+        49
+      ],
+      "category": "verified_error",
+      "note_fa": "در جمع z6 ضریب o5 به‌اشتباه 0.1 نوشته؛ باید≈0.525 باشد. محاسبه صحیح z6≈−0.1045395 و o6≈0.4738889 است؛ نتیجه گرد شده اسلاید از مقدار درست پیروی می‌کند.",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/04-NN_Training.pdf"
+      ]
+    },
+    {
+      "id": "decimal-point",
+      "pages": [
+        67
+      ],
+      "category": "verified_error",
+      "note_fa": "خطای اعشاری آشکار: 01.94 باید≈0.194 باشد؛ 0.2+0.9×(−0.0065)=0.19415 و محاسبه دقیق۰٫۱۹۴۱۱۲ است.",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/04-NN_Training.pdf"
+      ]
+    },
+    {
+      "id": "stale-bias-label",
+      "pages": [
+        69,
+        70
+      ],
+      "category": "verified_error",
+      "note_fa": "در خلاصه نهایی b5=0.2 اشتباه باقی مانده؛ مقدار درست≈0.194 است. خروجی‌ها و deltaهای قدیمی باید پیش از نمونه بعدی دوباره محاسبه شوند.",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/04-NN_Training.pdf"
+      ]
+    },
+    {
+      "id": "relu-derivative-label",
+      "pages": [
+        78,
+        79
+      ],
+      "category": "verified_error",
+      "note_fa": "منحنی‌های اشباع و مشتق‌ها بررسی شدند؛ برچسب max(0,1) برای مشتق ReLU غلط است: برای z<0 صفر و z>0 یک، و در صفر قرارداد لازم است.",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/04-NN_Training.pdf",
+        "https://cs231n.github.io/optimization-2/"
+      ]
+    },
+    {
+      "id": "elu-negative-saturation",
+      "pages": [
+        79
+      ],
+      "category": "clarification",
+      "note_fa": "مشتق مثبت ReLU/ELU برابر۱ است؛ ELU در ناحیه منفی αexp(z) دارد و می‌تواند کوچک شود، پس «همواره گرادیان بزرگ» تعمیم درستی نیست. برچسب مشتق ReLU همان خطای صفحه۷۸ را تکرار می‌کند.",
+      "evidence_urls": [
+        "https://docs.pytorch.org/docs/2.14/generated/torch.nn.ELU.html"
+      ]
+    },
+    {
+      "id": "loss-range",
+      "pages": [
+        7,
+        9,
+        10,
+        11,
+        12
+      ],
+      "category": "clarification",
+      "note_fa": "زیان و درصد تشخیص درست یکی نیستند؛ کراس‌انتروپی صفر فقط در احتمال۱ است و بی‌نهایت حد احتمال صفر. MSE متناهی می‌تواند به دلخواه بزرگ شود.",
+      "evidence_urls": [
+        "https://www.deeplearningbook.org/contents/optimization.html"
+      ]
+    },
+    {
+      "id": "complete-numeric-check",
+      "pages": [
+        44,
+        45,
+        47,
+        48,
+        49,
+        52,
+        53,
+        54,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70
+      ],
+      "category": "checked",
+      "note_fa": "بازحساب مستقل: o=(0.331812,0.524979,0.473889)، e=(−0.00872456,−0.00654209,0.131169)، بایاس‌های تازه=(−0.407852,0.194112,0.218052). جز موارد مشخص‌شده، اعداد گرد شده درست‌اند.",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/04-NN_Training.pdf"
+      ]
+    }
+  ],
+  "calculation_evidence": "/tmp/danna-full-review/spring-2022/s05/independent-calculation.json"
+}

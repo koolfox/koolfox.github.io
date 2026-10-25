@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2024",
+  "session_id": "s02",
+  "concept_ids": [
+    "artificial-neuron"
+  ],
+  "source_guides": [
+    {
+      "url": "https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/02-ArtificialNeurons.pdf",
+      "sha256": "5be85e3d9791a1df1826752bc178b406c62b521006cddb553ee547fd270ff566",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 4,
+          "topic_fa": "مرور و نقشه جلسه"
+        },
+        {
+          "start": 5,
+          "end": 12,
+          "topic_fa": "کاربردهای طبقه‌بندی دودویی"
+        },
+        {
+          "start": 13,
+          "end": 25,
+          "topic_fa": "تعمیم و ارزیابی طبقه‌بندی"
+        },
+        {
+          "start": 26,
+          "end": 31,
+          "topic_fa": "الهام زیستی و محدودیت قیاس"
+        },
+        {
+          "start": 32,
+          "end": 47,
+          "topic_fa": "مدل آستانه و پرسپترون"
+        },
+        {
+          "start": 48,
+          "end": 68,
+          "topic_fa": "یادگیری و اکثریت سه ورودی"
+        },
+        {
+          "start": 69,
+          "end": 71,
+          "topic_fa": "جمع‌بندی و اعتبار تصاویر"
+        }
+      ]
+    }
+  ],
+  "differences_fa": [
+    "نسخه ۲۰۲۴ ابتدا کاربردهای دودویی و معیارهای ارزیابی را می‌آورد؛ نسخه ۲۰۲۵ معیارها را پس از آموزش پرسپترون قرار می‌دهد.",
+    "این نسخه ۷۱ صفحه و بحث جداگانه McCulloch–Pitts و OR/AND دارد.",
+    "اکثریت سه ورودی از برچسب ±۱، آستانه امتیاز صفر و نرخ یادگیری ۰٫۱ استفاده می‌کند.",
+    "Sensitivity در صفحه ۲۱ اشتباهاً کنار precision آمده است؛ تعریف درست در درس مستقل اعمال می‌شود."
+  ],
+  "additional_exercises": [
+    {
+      "id": "metrics-transfer-2024",
+      "prompt_fa": "در یک مسئله دودویی TP=18 و FP=6 و FN=2 است. حساسیت را به درصد حساب کنید و بگویید چرا با precision برابر نیست.",
+      "hints_fa": [
+        "حساسیت به تمام مثبت‌های واقعی نگاه می‌کند."
+      ],
+      "solution_fa": "حساسیت ۱۸/(۱۸+۲)=۹۰٪ است؛ precision برابر ۱۸/(۱۸+۶)=۷۵٪ و مخرج آن مثبت‌های پیش‌بینی‌شده است.",
+      "source_kind": "original",
+      "answer": {
+        "kind": "number",
+        "value": 90,
+        "tolerance": 0
+      }
+    }
+  ],
+  "review_file": "data/reviews/spring-2024/s02.json"
+}

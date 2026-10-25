@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s09",
+  "concept_ids": [
+    "image-classification"
+  ],
+  "source_guides": [
+    {
+      "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/07-CV_and_ImageClassification.pdf",
+      "sha256": "cc1db564e3d432a2220a094e59fe1233d64691cd856612ab919d917ecd6ed73c",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 4,
+          "topic_fa": "جلد، اطلاعیه و مسیر جلسه"
+        },
+        {
+          "start": 5,
+          "end": 20,
+          "topic_fa": "کاربردها و چالش‌های بینایی"
+        },
+        {
+          "start": 21,
+          "end": 28,
+          "topic_fa": "داده مشترک و ارزیابی رقابتی"
+        },
+        {
+          "start": 29,
+          "end": 41,
+          "topic_fa": "MNIST و معماری تاریخی LeNet"
+        },
+        {
+          "start": 42,
+          "end": 49,
+          "topic_fa": "ILSVRC،معیار و قیود مقایسه"
+        },
+        {
+          "start": 50,
+          "end": 65,
+          "topic_fa": "زوال گرادیان،ReLU وAlexNet"
+        },
+        {
+          "start": 66,
+          "end": 75,
+          "topic_fa": "VGG،میدان پذیرش و مقداردهی اولیه"
+        },
+        {
+          "start": 76,
+          "end": 90,
+          "topic_fa": "بلوک باقیمانده و ارزیابی ResNet"
+        },
+        {
+          "start": 91,
+          "end": 93,
+          "topic_fa": "استقبال تاریخی و محدودیت بازنمایی جغرافیایی"
+        },
+        {
+          "start": 94,
+          "end": 96,
+          "topic_fa": "جمع‌بندی و عنوان تمرین برنامه‌نویسی"
+        }
+      ]
+    }
+  ],
+  "differences_fa": [
+    "نسخه بهار۹۶صفحه است؛ ورودی۲۲۷ شکل AlexNet نسخه آموزشی حساب‌پذیر است و با۲۲۴ متن مقاله اصلی باید متمایز بماند.",
+    "در۳۶–۳۸ گرادیان وزن مشترک باید جمع شود؛ در۵۳ عوامل وزن ودر۵۷ مشتق قطعه‌ای ReLU اصلاح توضیح داده می‌شوند.",
+    "شکل مقایسه۶۷/۶۸/۷۳ poolingهای اول AlexNet را نادرست جای‌گذاری کرده است. تعداد حدود۶۱میلیون نیز به اتصال گروهی اصلی مربوط است.",
+    "VGG برنده طبقه‌بندی۲۰۱۴ نبود؛ نتیجه ResNet۳٫۵۷٪ ensemble و جدول۸۷ validation۱۰برش است. برتری نسبت به انسان فقط برای پروتکل تاریخی محدود است.",
+    "نقشه۹۳ از de Vries2019 است و نسبت‌دادن آن به Zhao2017 اصلاح می‌شود؛ زیرمجموعه Flickr تمام ImageNet نیست.",
+    "در پایان فقط عنوان tutorial موجود است؛ کد یا تکلیف عمومی غایب ساخته نشده است."
+  ],
+  "additional_exercises": [
+    {
+      "id": "shared-weight-gradient",
+      "prompt_fa": "دو خروجیy₁=w×۱ وy₂=w×۲ و زیانL=(y₁²+y₂²)/۲ داریم. درw=۱ مشتقL نسبت بهw چند است؟",
+      "hints_fa": [
+        "دو مسیر وابستگی را با هم جمع کنید."
+      ],
+      "solution_fa": "L=۵w²/۲،پسdL/dw=۵w و درw=۱ برابر۵ است؛ میانگین‌گیری دلخواه روی دو اتصال مقدار نادرست۲٫۵ می‌دهد.",
+      "source_kind": "original",
+      "answer": {
+        "kind": "number",
+        "value": 5,
+        "tolerance": 0
+      }
+    }
+  ],
+  "review_file": "data/reviews/spring-2022/s09.json"
+}

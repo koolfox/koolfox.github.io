@@ -10,8 +10,11 @@ University of Colorado Boulder course archive:
 learning paths: Spring 2026, Spring 2025, Spring 2024, Fall 2022 and Spring 2022.
 The previously supplied local slides no longer define the target curriculum.
 
-The owner confirmed there is no permission to translate/re-publish entire slide
-decks and chose official slide links with independently authored Persian lessons.
+The owner has not supplied separate permission and chose official slide links
+with independently authored Persian lessons. Full visual review subsequently
+found Creative Commons badges on some decks; record and verify their exact
+license, version and scope per source. The earlier text-only license search was
+incomplete and must not be treated as a blanket absence of source licenses.
 Do not modify or publicly mirror the original slides. Every correction belongs
 in a separate annotation identifying semester, PDF page, reason, evidence and
 whether it is a verified error, historical update, clarification or open question.

@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s04",
+  "concept_ids": [
+    "feedforward-network"
+  ],
+  "source_guides": [
+    {
+      "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/03-Feedforward_NN.pdf",
+      "sha256": "ad3aa008952b4e86a71cbd7d92ff096d9adf037571ef99b3adce85767f63eea1",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 7,
+          "topic_fa": "مقدمه و مرور تاریخی"
+        },
+        {
+          "start": 8,
+          "end": 15,
+          "topic_fa": "XOR و محدودیت یک مرز خطی"
+        },
+        {
+          "start": 16,
+          "end": 32,
+          "topic_fa": "لایه پنهان، اتصال و شمار پارامترها"
+        },
+        {
+          "start": 33,
+          "end": 38,
+          "topic_fa": "ترکیب آفین و نیاز به غیرخطی‌سازی"
+        },
+        {
+          "start": 39,
+          "end": 55,
+          "topic_fa": "شبکه ReLU ثابت برای XOR و نقش پارامترها"
+        },
+        {
+          "start": 56,
+          "end": 71,
+          "topic_fa": "نوع خروجی، سیگموید و سافت‌مکس"
+        },
+        {
+          "start": 72,
+          "end": 74,
+          "topic_fa": "ارجاع خصوصی Canvas و پایان"
+        }
+      ]
+    }
+  ],
+  "differences_fa": [
+    "مثال رسمی XOR یک شبکه ReLU با پارامترهای ازپیش‌تعیین‌شده است؛ هدف آن بررسی گذر رو به جلو و توان نمایش است. آموزش شبکه سیگمویدی در آزمایشگاه توسعه مستقل آموزشی است.",
+    "در مثال شمار پارامترها، شبکه ۳–۴–۴–۱ دارای ۴۱ پارامتر است؛ ورودی در شمار عمق منظور نشده است.",
+    "در مطالعه صفحات ۳۳–۳۴ اصطلاح دقیق با بایاس «آفین» است. در صفحات ۶۱–۶۸ تصمیم کلاس argmax است و one-hot هدف با خروجی پیوسته سافت‌مکس یکسان نیست.",
+    "آموزش برنامه‌نویسیِ صفحه ۷۲ به Canvas ارجاع دارد؛ محتوای خصوصی بازسازی یا جعل نشده است."
+  ],
+  "additional_exercises": [
+    {
+      "id": "relu-xor-off-grid",
+      "prompt_fa": "شبکه رسمی را با h₁=ReLU(x₁+x₂)، h₂=ReLU(x₁+x₂−1) و y=ReLU(h₁−2h₂) در ورودی (0.25,0.25) ارزیابی کنید. خروجی چند است؟",
+      "hints_fa": [
+        "این ورودی عضو جدول حقیقت دودویی نیست، اما تابع شبکه روی آن تعریف شده است."
+      ],
+      "solution_fa": "h₁=0.5 و h₂=0؛ بنابراین y=0.5. درست‌بودن چهار رأس به‌تنهایی معنای خروجی‌های میان آن‌ها را تعیین نمی‌کند.",
+      "source_kind": "original",
+      "answer": {
+        "kind": "number",
+        "value": 0.5,
+        "tolerance": 1e-12
+      }
+    }
+  ],
+  "review_file": "data/reviews/spring-2022/s04.json"
+}

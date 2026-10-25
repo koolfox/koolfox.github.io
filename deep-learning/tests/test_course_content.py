@@ -18,7 +18,7 @@ class CourseContentTests(unittest.TestCase):
     def test_vector_notation_stays_one_ltr_run_and_html_is_escaped(self):
         rendered = prose("اگر x=(3, −1), w=(0.5, 2) و بایاس صفر باشد")
         self.assertIn('<bdi dir="ltr">x=(3, −1), w=(0.5, 2)</bdi>', rendered)
-        self.assertNotIn('<script>', prose('اگر <script> باشد'))
+        self.assertNotIn("<script>", prose("اگر <script> باشد"))
 
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()
@@ -109,6 +109,25 @@ class CourseContentTests(unittest.TestCase):
         }
         with self.assertRaisesRegex(ValueError, "Invalid choice"):
             course_content.check_exercise(exercise)
+        exercise["answer"] = {"kind": "manual"}
+        with self.assertRaisesRegex(ValueError, "needs criteria"):
+            course_content.check_exercise(exercise)
+
+    def test_mapping_cannot_omit_an_entire_source_guide(self):
+        mapping_path = self.root / f"content/terms/{TERMS[0]}/s01.json"
+        mapping_path.parent.mkdir(parents=True)
+        mapping_path.write_text(
+            json.dumps(
+                {
+                    "term_id": TERMS[0],
+                    "session_id": "s01",
+                    "concept_ids": ["introduction"],
+                    "source_guides": [],
+                }
+            )
+        )
+        with self.assertRaisesRegex(ValueError, "every source needs exactly one"):
+            course_content.load_course(self.root)
 
 
 if __name__ == "__main__":

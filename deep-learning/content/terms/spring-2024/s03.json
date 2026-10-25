@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2024",
+  "session_id": "s03",
+  "concept_ids": [
+    "feedforward-network"
+  ],
+  "source_guides": [
+    {
+      "url": "https://home.cs.colorado.edu/~DrG/Courses/2024-Spring-DL/03-Feedforward_NN.pdf",
+      "sha256": "93d5e757d3aa17276632c3293502a78f7eb4e7176751874444605e0960afa3aa",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 7,
+          "topic_fa": "مرور و انگیزه تاریخی"
+        },
+        {
+          "start": 8,
+          "end": 15,
+          "topic_fa": "محدودیت XOR"
+        },
+        {
+          "start": 16,
+          "end": 34,
+          "topic_fa": "شبکه پیشرو، پارامترها و ترکیب افاین"
+        },
+        {
+          "start": 35,
+          "end": 56,
+          "topic_fa": "فعال‌سازی و XOR با ReLU"
+        },
+        {
+          "start": 57,
+          "end": 73,
+          "topic_fa": "انتخاب واحد خروجی"
+        },
+        {
+          "start": 74,
+          "end": 75,
+          "topic_fa": "جمع‌بندی"
+        }
+      ]
+    }
+  ],
+  "differences_fa": [
+    "این PDF فقط شبکه‌های پیشرو و واحد خروجی را پوشش می‌دهد؛ برخلاف s03 سال ۲۰۲۵، بخش MSE و cross-entropy در آن نیست و تابع هدف در جلسه بعدی مسیر ۲۰۲۴ دنبال می‌شود.",
+    "معماری شمارش پارامتر ۳→۴→۴→۱ است: ۳۲ وزن، ۹ بایاس و ۴۱ پارامتر.",
+    "XOR با ReLU و دو واحد پنهان، بایاس‌های ۰ و −۱ و وزن خروجی −۲ حل می‌شود.",
+    "این نسخه نمودار اثر وزن و بایاس بر sigmoid در صفحه ۵۵ و ارجاع به Lab assignment set 1 در صفحه‌های ۳۲ و ۵۶ دارد.",
+    "جدول عددی softmax مانند ۲۰۲۵ است، اما چندبرچسبی پس از چندکلاسه توضیح داده می‌شود."
+  ],
+  "additional_exercises": [
+    {
+      "id": "sigmoid-center-2024",
+      "prompt_fa": "در σ(2x−6)، مقدار x که خروجی را ۰٫۵ می‌کند چیست؟",
+      "hints_fa": [
+        "sigmoid در امتیاز صفر برابر ۰٫۵ است."
+      ],
+      "solution_fa": "۲x−۶=۰، پس x=۳.",
+      "source_kind": "original",
+      "answer": {
+        "kind": "number",
+        "value": 3,
+        "tolerance": 0
+      }
+    }
+  ],
+  "review_file": "data/reviews/spring-2024/s03.json"
+}

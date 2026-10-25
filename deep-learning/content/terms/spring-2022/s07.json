@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s07",
+  "concept_ids": [
+    "convolution"
+  ],
+  "source_guides": [
+    {
+      "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/06-ConvolutionalNeuralNetworks.pdf",
+      "sha256": "4ea3dddf6176cd454ce352f019545fb96216ba821585fb3e688c3783d6bc7347",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 4,
+          "topic_fa": "جلد و مرور تاریخی ترم"
+        },
+        {
+          "start": 5,
+          "end": 6,
+          "topic_fa": "ساختار مکانی داده"
+        },
+        {
+          "start": 7,
+          "end": 18,
+          "topic_fa": "الهام زیستی و Neocognitron"
+        },
+        {
+          "start": 19,
+          "end": 24,
+          "topic_fa": "اتصال محلی در برابر اتصال کامل"
+        },
+        {
+          "start": 25,
+          "end": 45,
+          "topic_fa": "همبستگی، محاسبه نقشه و شمارش پارامتر"
+        },
+        {
+          "start": 46,
+          "end": 54,
+          "topic_fa": "تفسیر فیلتر و نمونه‌های تصویری"
+        },
+        {
+          "start": 55,
+          "end": 66,
+          "topic_fa": "چندکانالی، عمق، padding و stride"
+        },
+        {
+          "start": 67,
+          "end": 74,
+          "topic_fa": "pooling، میانگین و حدود مقاومت به انتقال"
+        },
+        {
+          "start": 75,
+          "end": 76,
+          "topic_fa": "پایان جلسه"
+        }
+      ]
+    }
+  ],
+  "differences_fa": [
+    "بهار۷۶صفحه است؛ حساب ضرب نمونه۳×۳ در۳۱–۴۰ و مثال منحنی در۴۸–۵۱ دارد. همه۹خروجی نقشه درست‌اند اما سطر۳۱ دو جمله صفر اضافی دارد.",
+    "نوبل۱۹۸۱ است؛ ادعای فیلترهای کاملاً ثابت Neocognitron در۴۴ اصلاح می‌شود؛ S-cell در مقاله اصلی یادگیری بدون معلم دارد.",
+    "در۴۹ باید50×30 نوشته شود تا با۶۶۰۰ سازگار باشد. pooling در این مثال stride۲ دارد ولی مفهوم آن به پنجره بدون همپوشانی محدود نیست."
+  ],
+  "additional_exercises": [
+    {
+      "id": "conv-params",
+      "prompt_fa": "لایه‌ای با چهار فیلتر۳×۳ روی ورودی دوکانالی، برای هر فیلتر یک بایاس دارد. چند پارامتر می‌آموزد؟",
+      "hints_fa": [
+        "هر فیلتر تمام کانال‌های ورودی را می‌بیند."
+      ],
+      "solution_fa": "۴×(۳×۳×۲+۱)=۷۶ پارامتر؛ اندازه مکانی تصویر شمار پارامتر را تغییر نمی‌دهد.",
+      "source_kind": "original",
+      "answer": {
+        "kind": "number",
+        "value": 76,
+        "tolerance": 0
+      }
+    }
+  ],
+  "review_file": "data/reviews/spring-2022/s07.json"
+}

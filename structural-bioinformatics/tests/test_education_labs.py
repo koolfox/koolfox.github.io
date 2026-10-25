@@ -1,15 +1,12 @@
 """Independent invariants for the small general teaching exercises."""
 
-import importlib.util
 import math
+import runpy
 from pathlib import Path
+from types import SimpleNamespace
 
 PROJECT = Path(__file__).resolve().parents[1]
-spec = importlib.util.spec_from_file_location(
-    "learning_lab", PROJECT / "assets/course/learning_lab.py"
-)
-lab = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(lab)
+lab = SimpleNamespace(**runpy.run_path(str(PROJECT / "assets/course/learning_lab.py")))
 
 
 def test_geometry_control_preserves_shape_and_matches_curated_input():

@@ -10,7 +10,7 @@ A novice MSc student, classmates and readers learning structural bioinformatics.
 
 ## Two parallel paths
 
-The user's 2026-10-25 clarification defines exactly two primary navigation choices: general education and research. `course.html` is titled سرفصل آموزشی. Its nine chapter headings and ordering follow the Sharif 40553 syllabus. General lessons teach structural bioinformatics independently; molecular docking belongs to this area. Self-checks and mathematical examples do not rely on adalimumab, TOP2A or named project papers.
+The user's 2026-10-25 clarification defines exactly two primary navigation choices: general education and research. `course.html` is titled سرفصل آموزشی. Its nine chapter headings and ordering follow the Sharif 40553 syllabus. General lessons teach structural bioinformatics independently; molecular docking belongs to this area. The continuous textbook and its chapter links stay in education, including legacy document URLs. The research glossary is not injected into general reading. Self-checks and mathematical examples do not rely on adalimumab, TOP2A or named project papers.
 
 `research.html` applies the learning to the adalimumab/TOP2A narrative review. Project datasets, molecular viewers, case exercises, paper reviews, library and presentations are research descendants with their own usable URLs. Their secondary navigation is not a set of primary peers to the course. `education-research-map.json` describes the optional application of each chapter and its manuscript output. No global chapter context hides tools or changes the course.
 

@@ -150,4 +150,32 @@ test('general lessons do not need research metadata and docking belongs to educa
  await page.goto(`${root}docking.html`);
  await expect(page.locator('#section-nav [aria-current=page]')).toHaveText('سرفصل آموزشی');
  await expect(page.locator('#research-nav')).toHaveCount(0);
+ await expect(page.locator('#docking-validation')).not.toContainText('TOP2A');
+ await expect(page.locator('#docking-validation')).not.toContainText('آدالیموماب');
+});
+
+
+test('the continuous general textbook stays in education through links, history and reload',async({page})=>{
+ await page.goto(`${root}course.html?topic=8`);
+ await page.getByRole('link',{name:'متن پیوستهٔ درسنامه',exact:true}).click();
+ await expect(page).toHaveURL(/course\.html\?document=course-sessions\.fa\.md/);
+ await expect(page.locator('#course-topics')).toBeHidden();
+ await expect(page.locator('#markdown-content')).toContainText('اتم‌های متناظر');
+ await expect(page.locator('#section-nav [aria-current=page]')).toHaveText('سرفصل آموزشی');
+ await expect(page.locator('#document-select option')).toHaveCount(1);
+ await expect(page.locator('#markdown-content a.term-link')).toHaveCount(0);
+ await page.locator('#chapter-select').selectOption('chapter-2');
+ await expect(page).toHaveURL(/chapter=chapter-2/);
+ await page.reload();
+ await expect(page.locator('#chapter-select')).toHaveValue('chapter-2');
+ await page.locator('#chapter-select').selectOption('chapter-3');
+ await page.goBack();
+ await expect(page.locator('#chapter-select')).toHaveValue('chapter-2');
+ await expect(page.locator('#course-topics')).toBeHidden();
+ await page.getByRole('link',{name:'بازگشت به مباحث درس',exact:true}).click();
+ await expect(page.locator('#lesson')).toContainText('توالی');
+ await expect(page.locator('#course-reading')).toBeHidden();
+ await page.goto(`${root}index.html?document=course-sessions.fa.md&chapter=chapter-2#reading`);
+ await expect(page).toHaveURL(/course\.html\?document=course-sessions\.fa\.md/);
+ await expect(page.locator('#chapter-select')).toHaveValue('chapter-2');
 });

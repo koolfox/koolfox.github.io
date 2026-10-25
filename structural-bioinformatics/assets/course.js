@@ -13,6 +13,7 @@ function storageNote() {if($('#storage-note'))$('#storage-note').textContent=sto
 function saveQuizzes() {try{localStorage.setItem('tnf-course-quizzes-v1',JSON.stringify(quizRecords));}catch{storageAvailable=false;}storageNote();}
 function link(text,href) {const a=document.createElement('a');a.textContent=text;a.href=href;return a;}
 async function render(focus=false) {
+ if(!exercise&&new URLSearchParams(location.search).has("document"))return;
  const ticket=++revision;quizReady=false;
  $('#status').textContent='در حال دریافت متن…';$('#retry').hidden=true;
  try {
@@ -124,4 +125,4 @@ document.addEventListener('click',event=>{
 });
 addEventListener('popstate',()=>render(true));
 if(matchMedia('(max-width:850px)').matches)$('#contents').open=false;
-void render();
+if(exercise||!new URLSearchParams(location.search).has('document'))void render();

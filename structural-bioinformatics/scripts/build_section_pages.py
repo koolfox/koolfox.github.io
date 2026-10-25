@@ -17,6 +17,10 @@ def render_pages(project=PROJECT):
     def fragment(name):
         return (project / f"templates/sections/{name}.html").read_text()
 
+    def reader(section):
+        source = section["documents"][0]["file"]
+        return fragment("reader").replace("research-questions.fa.md", source)
+
     def link(label, href, extra=""):
         return f'<a href="{html.escape(href, quote=True)}" {extra}>{html.escape(label)}</a>'
 
@@ -150,7 +154,18 @@ def render_pages(project=PROJECT):
                         "<li>" + html.escape(topic) + "</li>" for topic in block["topics"]
                     )
                     outline.append("</ul>")
-                body = "".join(outline) + "</details>" + body
+                body = (
+                    docnav
+                    + '<div id="course-topics">'
+                    + "".join(outline)
+                    + "</details>"
+                    + body
+                    + "</div>"
+                    + '<div id="course-reading" hidden>'
+                    + link("بازگشت به مباحث درس", "course.html")
+                    + reader(section)
+                    + "</div>"
+                )
             if ident == "exercises":
                 body += (
                     """<section>
@@ -174,7 +189,7 @@ def render_pages(project=PROJECT):
                 + fragment("sequences")
                 + fragment("biology")
                 + docnav
-                + fragment("reader")
+                + reader(section)
             )
             scripts = ["app.js", "codon-lesson.js"]
         elif ident == "datasets":
@@ -189,14 +204,14 @@ def render_pages(project=PROJECT):
                     "اختیاری برای مرحلهٔ بعد: منابع پیشرفته و یادداشت‌های قبلی",
                     "جست‌وجو در فهرست منابع داده",
                 )
-                + fragment("reader")
+                + reader(section)
             )
             scripts = ["app.js", "rnaseq-groups.js"]
         elif ident == "papers":
-            body = docnav + fragment("papers") + fragment("reader")
+            body = docnav + fragment("papers") + reader(section)
             scripts = ["app.js"]
         elif ident == "docking":
-            body = docnav + fragment("docking") + fragment("reader")
+            body = docnav + fragment("docking") + reader(section)
             scripts = ["docking-validation.js"]
         elif ident == "research":
             body = (
@@ -209,7 +224,7 @@ def render_pages(project=PROJECT):
 کنید.</p>
 </section>"""
                 + docnav
-                + fragment("reader")
+                + reader(section)
             )
             parallel = json.loads(
                 (project / "data/metadata/education-research-map.json").read_text()
@@ -260,7 +275,7 @@ def render_pages(project=PROJECT):
 </p>
 <div id="library-catalog">
 </div>
-</section>""" + fragment("reader")
+</section>""" + reader(section)
         else:
             items = []
             for number, block in enumerate(syllabus["blocks"], 1):
@@ -283,7 +298,7 @@ def render_pages(project=PROJECT):
                 + "".join(items)
                 + fragment("speaker-panel")
                 + docnav
-                + fragment("reader")
+                + reader(section)
             )
         pages[section["page"]] = shell(
             ident, section["title"], section["description"], body, scripts

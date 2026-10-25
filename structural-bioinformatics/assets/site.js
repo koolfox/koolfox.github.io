@@ -10,7 +10,12 @@ try {
   sections=(await response.json()).sections;
   configureDocumentRoutes(sections);
   const section=sections.find(s=>s.id===current);
-  if($('reading')) {
+  const courseReading=current==='course'&&new URLSearchParams(location.search).has('document');
+  if(current==='course') {
+    $('course-topics').hidden=courseReading;
+    $('course-reading').hidden=!courseReading;
+  }
+  if($('reading')&&(current!=='course'||courseReading)) {
     reader=createMarkdownReader();
     const params=new URLSearchParams(location.search);
     const requested=params.get('document');

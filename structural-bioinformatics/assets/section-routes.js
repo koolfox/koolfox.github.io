@@ -1,5 +1,5 @@
 export function documentSection(filename, sections) {
-  return sections.find(section => !['library','course','exercises'].includes(section.id) && section.documents.some(doc => doc.file === filename)) || sections.find(section => section.id === 'library');
+  return sections.find(section => !['library','exercises'].includes(section.id) && section.documents.some(doc => doc.file === filename)) || sections.find(section => section.id === 'library');
 }
 export function documentAddress(filename, sections, chapter = 'all') {
   const owner = documentSection(filename, sections);

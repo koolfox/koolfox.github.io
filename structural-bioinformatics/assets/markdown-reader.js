@@ -12,7 +12,7 @@ export const DOCUMENTS = [
   ["survey-protocol.fa.md", "پرسش و پروتکل مرور انتقادی", "ارائه و روش پژوهش"],
   ["survey-draft.fa.md", "پیش‌نویس مرور انتقادی", "ارائه و روش پژوهش"],
   ["course-guide.fa.md", "راهنمای بخش‌های پروژه", "شروع از پایه"],
-  ["course-sessions.fa.md", "درس‌نامهٔ نه فصل با مباحث و تمرین", "شروع از پایه"],
+  ["course-sessions.fa.md", "درسنامهٔ عمومی بیوانفورماتیک ساختاری", "شروع از پایه"],
   ["rnaseq-research-plan.fa.md", "مسیر پژوهش RNA-seq در روماتوئید", "آموزش و پژوهش"],
   ["comprehensive-review.fa.md", "گزارش بازبینی، گزارش نهایی بازبینی", "آموزش و پژوهش"],
   ["learning-path.fa.md", "مسیر یادگیری از پایه و ترتیب مطالعه", "شروع از پایه"],
@@ -278,11 +278,11 @@ function prepareContent(container, sourceURL) {
     const region = node("div", undefined, "table-scroll");
     region.tabIndex = 0;
     region.setAttribute("role", "region");
-    region.setAttribute("aria-label", "جدول متن تحقیق؛ در نمایش کوچک می‌توانید افقی حرکت کنید");
+    region.setAttribute("aria-label", "جدول متن؛ در نمایش کوچک می‌توانید افقی حرکت کنید");
     table.before(region);
     region.append(table);
   }
-  if (!sourceURL.pathname.endsWith('/glossary.fa.md')) linkGlossaryTerms(container);
+  if (!['/glossary.fa.md','/course-sessions.fa.md','/docking-protocol.fa.md'].some(path => sourceURL.pathname.endsWith(path))) linkGlossaryTerms(container);
   isolateScientificText(container);
 }
 

@@ -8,9 +8,9 @@ evaluation, which seals the run against further training.
 """
 
 import copy
+import itertools
 import math
 import random
-
 
 FEATURES = ("x1", "x2", "x1_squared", "x2_squared", "x1_x2", "sin_x1", "sin_x2")
 DATASETS = ("linear", "xor", "circles", "spirals")
@@ -95,7 +95,7 @@ class DenseNetwork:
         self.params = []
         self.weight_indices = set()
         rng = random.Random(seed)
-        for layer, (fan_in, fan_out) in enumerate(zip(sizes, sizes[1:])):
+        for layer, (fan_in, fan_out) in enumerate(itertools.pairwise(sizes)):
             indices = []
             # He uniform for hidden ReLU, Xavier uniform otherwise.
             bound = (
@@ -231,21 +231,21 @@ class NetworkExperiment:
             or any(name not in FEATURES for name in feature_names)
         ):
             raise ValueError("Choose distinct supported input features")
-        self.config = dict(
-            dataset=dataset,
-            size=size,
-            noise=noise,
-            hidden=list(hidden),
-            activation=activation,
-            feature_names=list(feature_names),
-            optimizer=optimizer,
-            learning_rate=learning_rate,
-            batch_size=batch_size,
-            regularization=regularization,
-            regularization_rate=regularization_rate,
-            seed=seed,
-            max_epochs=max_epochs,
-        )
+        self.config = {
+            "dataset": dataset,
+            "size": size,
+            "noise": noise,
+            "hidden": list(hidden),
+            "activation": activation,
+            "feature_names": list(feature_names),
+            "optimizer": optimizer,
+            "learning_rate": learning_rate,
+            "batch_size": batch_size,
+            "regularization": regularization,
+            "regularization_rate": regularization_rate,
+            "seed": seed,
+            "max_epochs": max_epochs,
+        }
         self.splits = split_data(make_data(dataset, size, noise, seed), seed + 1)
         self.network = DenseNetwork(
             [len(feature_names), *hidden, 1], activation, seed + 2

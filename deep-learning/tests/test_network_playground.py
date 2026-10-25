@@ -51,7 +51,7 @@ class NetworkPlaygroundTests(unittest.TestCase):
         first = core.NetworkExperiment(hidden=(2,), seed=19)
         second = core.NetworkExperiment(hidden=(8, 8), seed=19)
         self.assertEqual(first.splits, second.splits)
-        groups = [set(row["id"] for row in rows) for rows in first.splits.values()]
+        groups = [{row["id"] for row in rows} for rows in first.splits.values()]
         self.assertEqual([len(x) for x in groups], [120, 40, 40])
         self.assertFalse(
             groups[0] & groups[1] or groups[0] & groups[2] or groups[1] & groups[2]

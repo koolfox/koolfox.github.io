@@ -1016,6 +1016,9 @@ Kd نوع مرجع را ۱ نانومولار و جهش‌یافته را ۱۰ �
 - [پایهٔ شیمی و ساختمان پروتئین](https://www.ncbi.nlm.nih.gov/books/NBK26830/)
 - [راهنمای آموزشی داده‌های ساختاری، RCSB PDB-101](https://pdb101.rcsb.org/learn/guide-to-understanding-pdb-data/introduction)
 
+- [Assay Guidance Manual؛ تحلیل سینتیک اتصال](https://www.ncbi.nlm.nih.gov/books/NBK569501/): فرض مدل یک‌مرحله‌ای و تفسیر ثابت‌های سرعت.
+- [Quantification of biases in predictions of protein–protein binding affinity changes upon mutations](https://academic.oup.com/bib/article/25/1/bbad491/7513597): تعریف تغییر انرژی آزاد اتصال و ضرورت بررسی سوگیری در پیش‌بینی اثر جهش.
+
 ## فصل 6. شبیه‌سازی دینامیک مولکولی
 
 ### مکانیک مولکولی و میدان نیرو

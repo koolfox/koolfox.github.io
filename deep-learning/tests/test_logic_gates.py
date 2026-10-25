@@ -119,11 +119,21 @@ class NetworkTests(unittest.TestCase):
                     continue
                 net = logic.Network(run["architecture"])
                 net.weights, net.biases = run["final"]["weights"], run["final"]["biases"]
-                self.assertEqual(logic.metrics(net, logic.GATES[gate])["probabilities"], run["final"]["probabilities"])
+                actual = logic.metrics(net, logic.GATES[gate])["probabilities"]
+                expected = run["final"]["probabilities"]
+                self.assertEqual(len(actual), len(expected))
+                # libm/interpreter differences can change the last few bits.
+                # Keep numerical parity strict without requiring bit identity.
+                for observed, recorded in zip(actual, expected):
+                    self.assertTrue(math.isclose(observed, recorded, rel_tol=1e-12, abs_tol=1e-15))
                 surface = run["final"]["decision_surface"]
                 for yi, y in enumerate(surface["y"]):
                     for xi, x in enumerate(surface["x"]):
-                        self.assertEqual(net.predict([x, y]), surface["probabilities"][yi][xi])
+                        self.assertTrue(
+                            math.isclose(net.predict([x, y]), surface["probabilities"][yi][xi],
+                                         rel_tol=1e-12, abs_tol=1e-15),
+                            f"{gate}/{name} at ({x}, {y}) differs from the recorded run",
+                        )
 
 
 if __name__ == "__main__":

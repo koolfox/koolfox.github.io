@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const route = "/karpathy/";
+const route = "/deep-learning/karpathy/";
 
 async function ready(page) {
     await page.goto(route);

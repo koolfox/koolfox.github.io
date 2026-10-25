@@ -2,6 +2,8 @@
 
 import argparse
 import shutil
+import subprocess
+import sys
 from pathlib import Path
 
 
@@ -29,12 +31,40 @@ def build_site(repository: Path, output: Path):
     learning = repository / "deep-learning"
     learning_target = output / "deep-learning"
     learning_target.mkdir()
-    for name in ("index.html", "README.md"):
+    for name in ("index.html", "README.md", "replay.html"):
         shutil.copyfile(learning / name, learning_target / name)
     shutil.copytree(learning / "assets", learning_target / "assets")
     (learning_target / "python").mkdir()
-    for name in ("logic_gates.py", "README.md"):
+    for name in ("logic_gates.py", "live_training.py", "README.md"):
         shutil.copyfile(learning / "python" / name, learning_target / "python" / name)
+    subprocess.run(
+        [
+            sys.executable,
+            str(learning / "scripts/build_course.py"),
+            "--output",
+            str(learning_target),
+        ],
+        check=True,
+        stdout=subprocess.DEVNULL,
+    )
+    runtime = learning / "results/shinylive"
+    if not (runtime / "neuron-xor/index.html").exists():
+        raise ValueError(
+            "Export live laboratories first: uv run --project deep-learning/playgrounds "
+            "python deep-learning/scripts/export_playgrounds.py "
+            "--output deep-learning/results/shinylive"
+        )
+    shutil.copytree(runtime, learning_target / "runtime")
+    # Keep the original Karpathy engine intact, with one course entry point.
+    shutil.copytree(karpathy_target, learning_target / "karpathy")
+    (karpathy_target / "index.html").write_text(
+        '<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8">'
+        '<meta http-equiv="refresh" content="0;url=/deep-learning/karpathy/">'
+        '<link rel="canonical" href="/deep-learning/karpathy/"><title>درس مکمل کارپتی</title>'
+        '</head><body><a href="/deep-learning/karpathy/">ادامه در درس یادگیری ژرف</a>'
+        "</body></html>",
+        encoding="utf-8",
+    )
     project = repository / "structural-bioinformatics"
     target = output / "structural-bioinformatics"
     target.mkdir()

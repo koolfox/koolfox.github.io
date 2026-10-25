@@ -65,3 +65,10 @@ Absent and never fabricated: Persian transcripts of the lectures, the owner's ow
 ## Accessibility & Inclusion
 
 The page is fully usable with a keyboard: the expression input, the variable fields and the run button are ordinary focusable controls, and the run button is reachable from the expression field with Enter. Focus is visible as a three-pixel blue ring. Motion — the graph assembling and the gradient wave — is skipped entirely when the visitor's system asks for reduced motion, leaving the finished result on screen. The graph's numbers are also written in text, so the animation is never the only carrier of the result.
+
+## Course integration (October 2026)
+
+The public entry is now `/deep-learning/karpathy/`, as a separately attributed
+supplement to the Danna Gurari semester paths. `/karpathy/` remains a compatibility
+redirect. The autograd engine, upstream numerical checks and existing progress
+namespace are unchanged.

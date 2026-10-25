@@ -25,6 +25,10 @@ jobs:
       - uses: astral-sh/setup-uv@v10.3.0
         with:
           version: '0.11.2'
+      - name: Export browser Python laboratories
+        run: |
+          uv sync --project deep-learning/playgrounds --frozen
+          uv run --project deep-learning/playgrounds python deep-learning/scripts/export_playgrounds.py --output deep-learning/results/shinylive
       - name: Check scientific code and curated data
         run: |
           uv sync --project structural-bioinformatics --frozen --python 3.13
@@ -32,7 +36,9 @@ jobs:
           uv run --project structural-bioinformatics ruff check structural-bioinformatics scripts/serve_local.py
           uv run --project structural-bioinformatics ruff format --check structural-bioinformatics scripts/serve_local.py
       - name: Check deep learning teaching models
-        run: python3 -m unittest discover -s deep-learning/tests -v
+        run: |
+          python3 -m unittest discover -s deep-learning/tests -v
+          python3 deep-learning/scripts/course_content.py --examples
       - name: Assemble public website files
         run: python3 scripts/build_pages.py --output dist/pages
       - uses: actions/setup-node@v7.1.0

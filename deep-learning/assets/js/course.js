@@ -1,126 +1,6 @@
 import { predictCheckpoint } from './engine.js';
 const $ = id => document.getElementById(id);
-const storageKey = 'koolfox.deep-learning.progress.v1';
-const chapters = [
-{
-    id:1,title:'مقدمه و نقشه درس',source:'01-IntroductionFA.pptx',count:'۴۴ اسلاید',status:'محتوای موجود',topics:'آشنایی با شبکه عصبی و مسیر یادگیری عمیق.',pages:'ارائه مقدمه فارسی؛ دکتر نگار مجمع'
-},
-{
-    id:2,title:'نورون مصنوعی و پرسپترون',source:'02-Artificial Neurons.pdf',count:'۶۵ صفحه',status:'تمرین فعلی',topics:'ورودی، وزن، بایاس و خروجی نورون؛ یادگیری نمونه‌به‌نمونه با اصلاح وزن و بایاس.',pages:'قانون به‌روزرسانی: ص ۴۲–۴۵؛ مثال رای اکثریت سه ورودی: ص ۴۷–۶۱'
-},
-{
-    id:3,title:'شبکه پیش‌خور و لایه پنهان',source:'03-FeedforwardNN.pdf',count:'۷۴ صفحه',status:'شروع در کلاس',topics:'محدودیت جداکننده خطی، ترکیب نورون‌ها و نقش فعال‌سازی غیرخطی.',pages:'XOR: ص ۸–۱۴؛ فعال‌سازی غیرخطی: ص ۳۶–۵۵؛ طبقه‌بندی و رگرسیون: ص ۵۷–۷۱'
-},
-{
-    id:4,title:'گرادیان کاهشی و پس‌انتشار',source:'04-GradientDescent.pdf',count:'۸۲ صفحه',status:'برای ادامه درس',topics:'تابع خطا، گرادیان و انتقال مشتق‌ها از خروجی به لایه‌های قبلی.',pages:'خطا: ص ۵–۱۴؛ گرادیان: ص ۱۶–۲۸؛ پس‌انتشار: ص ۳۰–۷۳'
-},
-{
-    id:5,title:'آموزش و ارزیابی شبکه',source:'05-NNTraining.pdf',count:'۵۳ صفحه',status:'برای ادامه درس',topics:'ظرفیت مدل، اعتبارسنجی و انتخاب روش بهینه‌سازی؛ فراتر از کم شدن خطای آموزش.',pages:'ظرفیت: ص ۱۱–۲۱؛ اعتبارسنجی: ص ۲۳–۳۹؛ بهینه‌سازها: ص ۴۱–۵۰'
-},
-{
-    id:6,title:'شبکه‌های عصبی کانولوشنی',source:'06-Convolutional_unlocked.pdf',count:'۷۶ صفحه',status:'برای ادامه درس',topics:'داده‌های مکانی، فیلتر و نقشه ویژگی، اتصال محلی و اشتراک وزن، فعال‌سازی غیرخطی، گام حرکت، حاشیه‌گذاری و تجمیع.',pages:'داده مکانی: ص ۵؛ تاریخچه: ص ۷–۱۷؛ کانولوشن و فیلتر: ص ۱۹–۵۴؛ فعال‌سازی و لایه‌های متوالی: ص ۵۵–۶۲؛ گام و حاشیه: ص ۶۳–۶۶؛ تجمیع: ص ۶۸–۷۴'
-},
-{
-    id:8,title:'منظم‌سازی',source:'08-Regularization.pdf',count:'۵۲ صفحه',status:'برای ادامه درس',topics:'کنترل بیش‌برازش با جریمه وزن‌ها، توقف زودهنگام، افزایش داده و حذف تصادفی واحدها.',pages:'L1/L2: ص ۵–۱۶؛ توقف زودهنگام: ص ۱۸–۱۹؛ افزایش داده: ص ۲۱–۲۴؛ Dropout: ص ۲۶–۴۰؛ Batch normalization: ص ۴۲–۵۰'
-}
-];
 const fmt = n => Number(n).toLocaleString('fa-IR');
-for (const ch of chapters) {
-    const article=document.createElement('article');
-    article.className='chapter';
-    const header=document.createElement('header'),label=document.createElement('label'),input=document.createElement('input');
-    input.type='checkbox';
-    input.dataset.check=`chapter-${ch.id}`;
-    const h=document.createElement('h3');
-    h.textContent=`فصل ${fmt(ch.id)} · ${ch.title}`;
-    label.append(input,h);
-    const badge=document.createElement('span');
-    badge.className='pill';
-    badge.textContent=ch.status;
-    header.append(label,badge);
-    const topic=document.createElement('p');
-    topic.textContent=ch.topics;
-    const ref=document.createElement('p');
-    ref.className='reference';
-    ref.textContent=`${ch.count} · ${ch.pages}`;
-    const source=document.createElement('bdi');
-    source.dir='ltr';
-    source.textContent=ch.source;
-    ref.append(document.createElement('br'),source);
-    article.append(header,topic,ref);
-    if(ch.id===1) $('curriculum').replaceChildren();
-    $('curriculum').append(article);
-}
-$('source-notes').textContent='۷ فایل؛ مجموع ۴۴۶ صفحه و اسلاید. فایل فصل ۷ در مجموعه موجود نیست. اسلایدهای انگلیسی: Danna Gurari، دانشگاه کلرادو بولدر، بهار ۲۰۲۲. شماره فصل، فایل و بازه صفحه در مسیر مطالعه آمده‌اند.';
-const checkboxes=[...document.querySelectorAll('[data-check]')],allowed=new Set(checkboxes.map(x=>x.dataset.check));
-let progress={
-    version:1,completed:[]
-};
-function validateProgress(data){
-    if(!data||data.version!==1||!Array.isArray(data.completed)||data.completed.length>allowed.size||data.completed.some(x=>typeof x!=='string'||!allowed.has(x)))throw new Error('invalid progress');
-    return{
-        version:1,completed:[...new Set(data.completed)]
-    };
-}
-function renderProgress(){
-    for(const c of checkboxes)c.checked=progress.completed.includes(c.dataset.check);
-    $('progress-meter').max=allowed.size;
-    $('progress-meter').value=progress.completed.length;
-    $('progress-count').textContent=`${fmt(progress.completed.length)} از ${fmt(allowed.size)} مورد مطالعه و تمرین ثبت شده است`
-}
-function saveProgress(){
-    try{
-        localStorage.setItem(storageKey,JSON.stringify(progress));
-        $('storage-status').textContent='در همین مرورگر ذخیره شد.'
-    } catch{
-        $('storage-status').textContent='ذخیره مرورگر در دسترس نیست؛ پیشرفت فعلی را با فایل پشتیبان نگه دار.'
-    }
-    renderProgress()
-}
-try{
-    const raw=localStorage.getItem(storageKey);
-    if(raw)progress=validateProgress(JSON.parse(raw))
-} catch{
-    $('storage-status').textContent='داده ذخیره‌شده قابل خواندن نیست. فهرست خالی نمایش داده شده؛ می‌توانی نسخه پشتیبان معتبر را بازیابی کنی.'
-}
-renderProgress();
-for(const c of checkboxes)c.addEventListener('change',()=>{
-    progress.completed=checkboxes.filter(x=>x.checked).map(x=>x.dataset.check);
-    saveProgress()
-});
-$('clear-progress').addEventListener('click',()=>{
-    if(!window.confirm('پیشرفت همین مرورگر پاک شود؟ این کار جایگاه حسام در کلاس را تغییر نمی‌دهد.'))return;
-    progress={
-        version:1,completed:[]
-    };
-    saveProgress()
-});
-$('export-progress').addEventListener('click',()=>{
-    const url=URL.createObjectURL(new Blob([JSON.stringify(progress,null,2)],{
-        type:'application/json'
-    }));
-    const a=document.createElement('a');
-    a.href=url;
-    a.download='deep-learning-progress.json';
-    a.click();
-    setTimeout(()=>URL.revokeObjectURL(url),1000);
-    $('storage-status').textContent='فایل پشتیبان آماده دریافت شد.'
-});
-$('import-progress').addEventListener('change',async e=>{
-    const file=e.target.files[0];
-    if(!file)return;
-    try{
-        if(file.size>30000)throw new Error('oversize');
-        const next=validateProgress(JSON.parse(await file.text()));
-        if(!window.confirm('پیشرفت فعلی با محتوای این فایل جایگزین شود؟'))return;
-        progress=next;
-        saveProgress()
-    } catch{
-        $('storage-status').textContent='فایل معتبر نیست؛ پیشرفت قبلی تغییر نکرد. یک فایل پشتیبان همین صفحه انتخاب کن.'
-    } finally{
-        e.target.value=''
-    }
-});
 let dataset,gate='XOR',model='perceptron',frameIndex=0,timer=null;
 const modelNames={
     perceptron:'پرسپترون آستانه‌ای · فصل ۲',linear:'یک نورون سیگموید · پل آموزشی',mlp:'شبکه چندلایه · پل فصل ۳ و ۴'
@@ -372,7 +252,7 @@ async function loadLab(){
     } catch(error){
         stop();
         $('lab-error').hidden=false;
-        $('lab-error').textContent='فایل اجرای آموزش بارگذاری نشد یا معتبر نیست. صفحه را از طریق وب‌سرور محلی باز کن و دوباره بارگذاری کن. مسیر درس و پیشرفت شخصی همچنان قابل استفاده‌اند.';
+        $('lab-error').textContent='فایل اجرای آموزش بارگذاری نشد یا معتبر نیست. صفحه را از طریق وب‌سرور محلی باز کن و دوباره بارگذاری کن. کد پایتون همچنان قابل دریافت است.';
         for(const id of ['gate','model','play','step','reset','finish','frame'])$(id).disabled=true;
         console.error('Training trace unavailable',error)
     }

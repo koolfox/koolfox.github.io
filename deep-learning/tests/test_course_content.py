@@ -10,10 +10,16 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 import course_content
 import review_ledger
+from build_course import prose
 from source_catalog import TERMS
 
 
 class CourseContentTests(unittest.TestCase):
+    def test_vector_notation_stays_one_ltr_run_and_html_is_escaped(self):
+        rendered = prose("اگر x=(3, −1), w=(0.5, 2) و بایاس صفر باشد")
+        self.assertIn('<bdi dir="ltr">x=(3, −1), w=(0.5, 2)</bdi>', rendered)
+        self.assertNotIn('<script>', prose('اگر <script> باشد'))
+
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()
         self.addCleanup(self.temporary.cleanup)

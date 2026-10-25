@@ -39,12 +39,34 @@ be a clearly attributed supplementary laboratory beneath this course, never
 part of Danna's own syllabus. Preserve old URLs and browser progress without
 converting old completion marks into completion of the new semesters.
 
-**Delivery state:** source inventories and the rebuild contract are development
-artifacts. The site below is still the earlier shipped implementation. Full
-slide-by-slide review, complete Persian lessons, new routes and live Python
-laboratories are pending; inventory/extraction must not be described as course
-completion. See `data/metadata/rebuild-contract.json` and the research report in
-`reports/` for the execution plan and current evidence.
+**Delivery state:** the five generated semester routes, source-linked Persian
+companions, exercises, browser progress and first live Python laboratory are
+implemented and undergoing incremental publication acceptance. Reviews and lesson
+coverage are computed from their evidence records. The full 8,232-page review,
+remaining companions, topic laboratories and heavy reproducible experiments are
+unfinished; inventory/extraction is never described as course completion. See
+`data/metadata/rebuild-contract.json` and `reports/` for the execution plan.
+
+## Current implementation milestone
+
+The approved course architecture is now implemented as a generated static hub,
+five semester calendars, 163 original calendar rows, per-term prerequisites and
+project guides. Original Persian concept lessons are linked to independently
+reviewed semester-specific page ranges and corrections. Readiness is computed;
+unreviewed or missing companions remain visibly in preparation.
+
+The neuron/XOR laboratory executes live Python in Shinylive, with bounded training,
+seed/reset controls, weights, predictions and measured loss. The recorded trainer
+is a separate supplemental replay. Karpathy is an explicitly separate supplemental
+course under `/deep-learning/karpathy/`, retaining its unchanged upstream-checked
+engine and compatibility with the earlier URL. The portfolio has one deep-learning
+entry. Browser progress is private and scoped to semester/session.
+
+This milestone does not complete the 8,232-page goal: remaining source reviews,
+independent lessons, topic laboratories, heavy reproducible labs and acceptance
+still need their own evidence. Publication is only claimed after a successful
+Pages deployment and a live check. The historical baseline below describes the
+retired surface, not current course authority.
 
 ## Earlier shipped implementation (migration baseline)
 

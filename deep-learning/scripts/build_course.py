@@ -27,13 +27,14 @@ def e(value):
 
 def prose(value):
     """Isolate Latin/math runs inside Persian paragraphs."""
-    pattern = (
-        r"[A-Za-z0-9α-ωΑ-Ω∂∇φσΣ][A-Za-z0-9α-ωΑ-Ω∂∇φσΣ₀-₉⁰-⁹_+−=<>≤≥×*/().\[\]{}:^%\-]*"
-    )
+    pattern = r"[A-Za-z0-9۰-۹٠-٩α-ωΑ-Ω∂∇φσΣ±−+\-][A-Za-z0-9۰-۹٠-٩α-ωΑ-Ω∂∇φσΣ₀-₉⁰-⁹_+−=<>≤≥×*/().,،٫\[\]{}:^% \t\-]*"
     pieces, end = [], 0
     for match in re.finditer(pattern, str(value)):
         pieces.append(e(str(value)[end : match.start()]))
-        pieces.append(f'<bdi dir="ltr">{e(match.group())}</bdi>')
+        token = match.group().rstrip()
+        pieces.append(
+            f'<bdi dir="ltr">{e(token)}</bdi>' + e(match.group()[len(token) :])
+        )
         end = match.end()
     pieces.append(e(str(value)[end:]))
     return "".join(pieces)
@@ -102,8 +103,8 @@ def hub(course):
         ready = sum(r["companion_ready"] for r in term["schedule"])
         rows.append(f'''<li class="term-row"><div><h2>{link(term_url(term), term["title_fa"])}</h2>
 <p>{e(TERM_SUMMARIES[term["id"]])}</p><p class="meta">{count} جلسه دارای اسلاید · {ready} درسنامه آماده
-<span data-term-progress="{e(term["id"])}"></span></p></div>{link(term_url(term), "ورود به مسیر ←", class_="row-action")}</li>''')
-    body = f"""<section class="course-intro"><p class="eyebrow">شبکه‌های عصبی و یادگیری ژرف</p>
+<span data-term-progress="{e(term["id"])}"></span></p></div>{link(term_url(term), "ورود به مسیر ", class_="row-action")}</li>''')
+    body = f"""<section class="course-intro">
 <h1>از یک نورون تا مدل‌های پایه</h1><p class="lead">درس را به فارسی بخوان، نتیجه را پیش‌بینی کن و با اجرای پایتون امتحانش کن.
 هر ترم دانا گوراری، مسیر مستقل خودش را دارد؛ اصل اسلایدها هم کنار هر جلسه در دسترس است.</p>
 <div class="intro-actions">{link(term_url(course["terms"][0]), "شروع مسیر بهار ۲۰۲۶", class_="button primary")}
@@ -134,9 +135,9 @@ def term_page(term):
 <p class="meta"><bdi>{e(row["date_label"])}</bdi>{f" · {source_count} صفحه" if source_count else ""}</p>
 <h2>{link(session_url(term, row), row["title_fa"])}</h2><p>{e(row.get("overview_fa", ""))}</p>
 <p class="session-state">{e(status)}<span data-completion-label></span></p></div></li>''')
-    body = f"""<div class="term-heading"><p class="eyebrow">مسیر مستقل یک ترم</p><h1>{e(term["title_fa"])}</h1>
+    body = f"""<div class="term-heading"><h1>{e(term["title_fa"])}</h1>
 <p class="lead">{e(TERM_SUMMARIES[term["id"]])}</p><div class="inline-links">
-{link(term["course_url"], "برنامه رسمی این ترم ↗", True)}{link(term["syllabus_url"], "سیلابس اصلی ↗", True)}
+{link(term["course_url"], "برنامه رسمی این ترم ", True)}{link(term["syllabus_url"], "سیلابس اصلی ", True)}
 {link(term_url(term) + "foundations/", "مرور پیش‌نیازها")}{link(term_url(term) + "project/", "پروژه پایانی")}</div></div>
 <ol class="session-list">{"".join(items)}</ol>{progress_tools()}"""
     return page(
@@ -148,9 +149,9 @@ def term_page(term):
 
 
 def source_panel(term, row, concepts):
-    content = '<h2>کنار درس فارسی</h2><p class="meta">اصل اسلاید، بدون تغییر</p>'
+    content = '<h2>کنار درس فارسی</h2><p>درسنامه فارسی، تألیف مستقل با ارجاع به منابع همین جلسه است.</p><p class="meta">اصل اسلاید، بدون تغییر</p>'
     for source in row["slides"]:
-        content += f'''<div class="source-document">{link(source["url"], f"اسلاید اصلی · {source['page_count']} صفحه ↗", True, class_="source-link")}
+        content += f'''<div class="source-document">{link(source["url"], f"اسلاید اصلی · {source['page_count']} صفحه ", True, class_="source-link")}
 <button type="button" class="quiet" data-show-source="{e(source["url"])}">نمایش در همین صفحه</button></div>'''
     if not row["slides"]:
         content += "<p>در برنامه عمومی این ردیف، اسلایدی پیوند نشده است.</p>"
@@ -173,7 +174,7 @@ def source_panel(term, row, concepts):
                 f"<li>{link('#' + identity + '-exercises', 'تمرین‌های این بحث')}</li>"
             )
         content += "</ol></nav></details>"
-    content += f'<p class="meta">شماره‌ها ترتیب صفحه‌های PDF هستند.</p>{link(term_url(term), "همه جلسه‌های این ترم ←")}'
+    content += f'<p class="meta">شماره‌ها ترتیب صفحه‌های PDF هستند.</p>{link(term_url(term), "همه جلسه‌های این ترم ")}'
     return f'<aside class="source-panel" aria-label="منابع و راهنمای اسلاید">{content}</aside>'
 
 
@@ -193,13 +194,13 @@ def exercise_html(exercise, prefix):
         control = f'<label for="{identity}-answer">استدلال خودت را بنویس</label><textarea id="{identity}-answer" name="answer" rows="3"></textarea>'
     button = "بررسی پاسخ" if answer["kind"] != "manual" else "ذخیره استدلال"
     hints = "".join(
-        f"<details><summary>راهنمایی {i + 1}</summary><p>{e(hint)}</p></details>"
+        f"<details><summary>راهنمایی {i + 1}</summary><p>{prose(hint)}</p></details>"
         for i, hint in enumerate(exercise.get("hints_fa", []))
     )
     criteria = (
         listing(answer.get("criteria_fa", [])) if answer["kind"] == "manual" else ""
     )
-    return f'''<article class="exercise" id="{identity}"><p class="eyebrow">تمرین تألیفی</p><h3>{prose(exercise["prompt_fa"])}</h3>
+    return f'''<article class="exercise" id="{identity}"><h3>تمرین تألیفی: {prose(exercise["prompt_fa"])}</h3>
 <form data-exercise="{identity}" data-answer="{config}">{control}<button type="submit">{button}</button>
 <p class="feedback" role="status"></p></form>{hints}
 <details class="solution"><summary>پاسخ و روش حل</summary><p>{prose(exercise["solution_fa"])}</p>{criteria}</details></article>'''
@@ -213,10 +214,10 @@ def concept_html(concept):
     for section in concept["sections"]:
         content += f'<section id="{identity}-{e(section["id"])}"><h3>{e(section["title_fa"])}</h3>{paragraphs(section["paragraphs_fa"])}'
         for formula in section.get("formulas", []):
-            content += f'<figure class="formula"><div dir="ltr">{e(formula["expression"])}</div><figcaption>{e(formula["explanation_fa"])}</figcaption></figure>'
+            content += f'<figure class="formula"><div dir="ltr">{e(formula["expression"])}</div><figcaption>{prose(formula["explanation_fa"])}</figcaption></figure>'
         content += "</section>"
     for example in concept.get("worked_examples", []):
-        content += f'<section class="worked-example"><p class="eyebrow">مثال حل‌شده</p><h3>{e(example["title_fa"])}</h3><p>{prose(example["question_fa"])}</p>{listing(example["steps_fa"], True)}<p class="example-answer">{prose(example["answer_fa"])}</p></section>'
+        content += f'<section class="worked-example"><h3>مثال حل‌شده: {e(example["title_fa"])}</h3><p>{prose(example["question_fa"])}</p>{listing(example["steps_fa"], True)}<p class="example-answer">{prose(example["answer_fa"])}</p></section>'
     content += (
         f'<section class="exercises" id="{identity}-exercises"><h3>خودت حل کن</h3>'
     )
@@ -262,9 +263,9 @@ def findings_html(row):
             if finding["category"] == "verified_error"
             else "توضیح تکمیلی"
         )
-        content += f"<details><summary>{category} · صفحه {e(label)}</summary><p>{e(description)}</p><ul>"
+        content += f"<details><summary>{category} · صفحه {e(label)}</summary><p>{prose(description)}</p><ul>"
         content += "".join(
-            f"<li>{link(url, f'شاهد {i + 1} ↗', True)}</li>"
+            f"<li>{link(url, f'شاهد {i + 1} ', True)}</li>"
             for i, url in enumerate(finding.get("evidence_urls", []))
         )
         content += "</ul></details>"
@@ -274,7 +275,7 @@ def findings_html(row):
 def session_page(term, row, concepts):
     mapping = row["mapping"]
     ready = row["companion_ready"]
-    intro = f"""<header class="lesson-heading"><p class="eyebrow">{e(term["title_fa"])} · جلسه {row["order"]}</p>
+    intro = f"""<header class="lesson-heading">
 <h1>{e(row["title_fa"])}</h1><p class="lead">{e(row.get("overview_fa", ""))}</p></header>"""
     content = intro
     if not ready:
@@ -288,7 +289,6 @@ def session_page(term, row, concepts):
     if mapping and mapping.get("differences_fa"):
         content += f'<details class="term-differences" open><summary>این جلسه در همین ترم</summary>{listing(mapping["differences_fa"])}</details>'
     if ready:
-        content += '<p class="companion-label">درسنامه فارسی مستقل · با ارجاع به منابع همین جلسه</p>'
         content += "".join(concept_html(concepts[c]) for c in mapping["concept_ids"])
         content += "".join(
             exercise_html(x, row["id"]) for x in mapping.get("additional_exercises", [])
@@ -301,7 +301,7 @@ def session_page(term, row, concepts):
         for lab in labs:
             if lab in LABS:
                 title, description = LABS[lab]
-                content += f'<section class="lab-invitation"><p class="eyebrow">حالا آزمایش کن</p><h2>{e(title)}</h2><p>{e(description)}</p>{link(f"{BASE}/playgrounds/{lab}/", "باز کردن آزمایشگاه ←", class_="button primary")}</section>'
+                content += f'<section class="lab-invitation"><h2>آزمایش: {e(title)}</h2><p>{prose(description)}</p>{link(f"{BASE}/playgrounds/{lab}/", "باز کردن آزمایشگاه ", class_="button primary")}</section>'
     content += findings_html(row)
     if row.get("readings"):
         content += "<details><summary>مطالعه‌های معرفی‌شده در برنامه رسمی</summary><ul>"
@@ -319,14 +319,14 @@ def session_page(term, row, concepts):
     if position:
         previous = term["schedule"][position - 1]
         links.append(
-            link(session_url(term, previous), "→ جلسه قبل: " + previous["title_fa"])
+            link(session_url(term, previous), " جلسه قبل: " + previous["title_fa"])
         )
     if position + 1 < len(term["schedule"]):
         following = term["schedule"][position + 1]
         links.append(
             link(
                 session_url(term, following),
-                "جلسه بعد: " + following["title_fa"] + " ←",
+                "جلسه بعد: " + following["title_fa"] + " ",
             )
         )
     content += (
@@ -338,15 +338,18 @@ def session_page(term, row, concepts):
     return page(
         row["title_fa"],
         body,
-        [(term_url(term), term["title_fa"])],
+        [
+            (term_url(term), term["title_fa"]),
+            (session_url(term, row), f"جلسه {row['order']}"),
+        ],
         {"term": term["id"], "session": row["id"], "ready": ready},
     )
 
 
 def project_page(term):
     project = term.get("project", {})
-    body = f'<article class="standalone"><p class="eyebrow">{e(term["title_fa"])}</p><h1>از یادگیری تا یک پروژه قابل دفاع</h1>'
-    body += f"<p>{e(project.get('summary_fa', ''))}</p>{link(project.get('source_url', term['course_url']), 'توضیح پروژه در منبع رسمی ↗', True)}"
+    body = '<article class="standalone"><h1>از یادگیری تا یک پروژه قابل دفاع</h1>'
+    body += f"<p>{e(project.get('summary_fa', ''))}</p>{link(project.get('source_url', term['course_url']), 'توضیح پروژه در منبع رسمی ', True)}"
     body += "<h2>پیشنهاد مستقل برای مسیر خودآموز</h2><p>این مراحل، تکلیف رسمی استاد نیستند. یک پرسش کوچک انتخاب کن که بتوانی داده، خط مبنا و نتیجه‌اش را بازتولید کنی.</p>"
     steps = [
         "پرسش: ورودی، خروجی و یک معیار موفقیت اندازه‌پذیر تعریف کن. کاربرد موردنظر و خطر اشتباه را بنویس.",
@@ -358,18 +361,18 @@ def project_page(term):
     ]
     body += listing(steps, True)
     body += "<h2>چک پایان پروژه</h2><p>آیا فرد دیگری با داده مجاز و دستورهای تو می‌تواند نتیجه اصلی را بسازد؟ آیا بهبود نسبت به خط مبنا روشن است؟ آیا محدودیت یا نتیجه منفی را هم گزارش کرده‌ای؟</p>"
-    body += f"{link(term_url(term), 'بازگشت به مسیر ترم ←')}</article>"
+    body += f"{link(term_url(term), 'بازگشت به مسیر ترم ')}</article>"
     return page("پروژه پایانی", body, [(term_url(term), term["title_fa"])])
 
 
 def lab_page(lab):
     title, description = LABS[lab]
-    body = f"""<article class="standalone"><p class="eyebrow">آزمایشگاه پایتون در مرورگر</p><h1>{e(title)}</h1><p class="lead">{e(description)}</p>
+    body = f"""<article class="standalone"><h1>{e(title)}</h1><p class="lead">{prose(description)}</p>
 <h2>پیش از اجرا، حدس بزن</h2><p>آیا یک خط می‌تواند دو نقطهٔ مثبت XOR را از دو نقطهٔ منفی جدا کند؟ اگر تعداد دوره‌ها را زیاد کنیم چه اتفاقی می‌افتد؟</p>
 <ol><li>با مدل پرسپترون و جدول XOR شروع کن و خروجی چهار ورودی را ثبت کن.</li>
 <li>با همان بذر، مدل را به شبکه دارای لایه پنهان تغییر بده؛ تغییر مرز تصمیم و زیان را دنبال کن.</li>
 <li>آزمایش را از ابتدا اجرا کن؛ سپس فقط نرخ یادگیری را تغییر بده. تفاوت را توضیح بده.</li></ol>
-{link(f"{BASE}/runtime/{lab}/", "اجرای آزمایشگاه زنده ←", class_="button primary")}
+{link(f"{BASE}/runtime/{lab}/", "اجرای آزمایشگاه زنده ", class_="button primary")}
 <p class="meta">بار اول محیط پایتون دریافت می‌شود و ممکن است کمی زمان ببرد. مرورگر باید JavaScript و WebAssembly را پشتیبانی کند.</p>
 <h2>اگر محیط اجرا باز نشد</h2><p>منطق آزمایش و آموزش در فایل‌های پایتون هم در دسترس است. نتیجه‌های آماده، جای اجرای زنده معرفی نمی‌شوند.</p>
 <div class="inline-links">{link(f"{BASE}/python/live_training.py", "کد اجرای مرحله‌ای")}{link(f"{BASE}/python/logic_gates.py", "کد مدل و گرادیان")}</div>
@@ -398,9 +401,9 @@ def build(output, root=ROOT):
         pages[f"{prefix}/project/index.html"] = project_page(term)
         if "math-python-foundations" in course["concepts"]:
             body = (
-                '<article class="standalone"><p class="eyebrow">پیش‌نیاز مستقل مسیر خودآموز</p><h1>ریاضی و پایتون برای شروع</h1>'
+                '<article class="standalone"><h1>ریاضی و پایتون برای شروع</h1><p>پیش‌نیاز مستقل مسیر خودآموز؛ این بخش، جلسه‌ای از تقویم رسمی استاد نیست.</p>'
                 + concept_html(course["concepts"]["math-python-foundations"])
-                + link(term_url(term), "بازگشت به جلسه‌های ترم ←")
+                + link(term_url(term), "بازگشت به جلسه‌های ترم ")
                 + "</article>"
             )
             pages[f"{prefix}/foundations/index.html"] = page(
@@ -419,7 +422,7 @@ def build(output, root=ROOT):
     )
     pages["playgrounds/index.html"] = page(
         "آزمایشگاه‌ها",
-        f'<section class="standalone"><h1>از پیش‌بینی تا آزمایش</h1><p>آزمایش‌های کوچک برای فهم رفتار شبکه؛ آموزش زنده پایتون در مرورگر.</p><ul class="lab-list">{cards}</ul></section>',
+        f'<section class="standalone"><h1>از پیش‌بینی تا آزمایش</h1><p>آزمایش‌های کوچک برای فهم رفتار شبکه؛ آموزش زنده پایتون در مرورگر.</p><ul class="lab-list">{cards}</ul><h2>تمرین‌های مکمل</h2><p>{link(BASE + "/karpathy/", "کارپتی و آزمایشگاه گرادیان ")} · دوره‌ای مستقل از کارپتی، برای تمرین سازوکار مشتق خودکار.</p><p>{link(BASE + "/replay.html", "بازپخش اجرای ذخیره‌شده پایتون ")} · برای بررسی وزن‌های یک اجرای مشخص، بدون راه‌اندازی محیط پایتون.</p></section>',
     )
     for lab in LABS:
         pages[f"playgrounds/{lab}/index.html"] = lab_page(lab)

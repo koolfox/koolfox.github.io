@@ -1,0 +1,1583 @@
+{
+  "schema_version": 1,
+  "term": {
+    "id": "spring-2026",
+    "title_fa": "بهار ۲۰۲۶",
+    "title_en": "Spring 2026",
+    "course_url": "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/",
+    "retrieved_at_utc": "2026-10-25T08:45:06.770396+00:00",
+    "source_html_sha256": "f3287ef8d20299c6a25c6129b2bff24958901c2b9d14ee50e20b029d2649b072",
+    "syllabus_url": "https://dannagurari.colorado.edu/wp-content/uploads/2025/12/2026-NNandDL-Syllabus.pdf",
+    "syllabus": {
+      "url": "https://dannagurari.colorado.edu/wp-content/uploads/2025/12/2026-NNandDL-Syllabus.pdf",
+      "retrieved_at_utc": "2026-10-25T08:45:04.871956+00:00",
+      "final_url": "https://dannagurari.colorado.edu/wp-content/uploads/2025/12/2026-NNandDL-Syllabus.pdf",
+      "retrieval_tool": "curl with TLS verification",
+      "sha256": "00f77d3791739b9f5b8fc67e3f98121e660230c9c7f412fcd2ee0efd3d521e6b",
+      "byte_count": 84614,
+      "download_status": "ok",
+      "page_count": 9,
+      "text_pages": 9,
+      "review_status": "text_reviewed",
+      "notes_fa": "متن هر ۹ صفحه سیلابس خوانده شد؛ بازبینی بصری تمام صفحات انجام نشد."
+    },
+    "schedule": [
+      {
+        "id": "s01",
+        "order": 1,
+        "date_label": "Thur, Jan 8",
+        "title_en": "Course Introduction",
+        "slides": [
+          {
+            "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/01-Introduction.pdf",
+            "retrieved_at_utc": "2026-10-25T08:44:45.533623+00:00",
+            "final_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/01-Introduction.pdf",
+            "retrieval_tool": "curl with TLS verification",
+            "sha256": "33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593",
+            "byte_count": 4473041,
+            "download_status": "ok",
+            "page_count": 87,
+            "text_pages": 86,
+            "review_status": "partial",
+            "notes_fa": "متن همه صفحات استخراج شد؛ عنوان‌ها و بخش‌بندی‌ها و نمونه‌هایی از متن بررسی شدند. این وضعیت به معنی بازبینی علمی یا بصری همه اسلایدها نیست.",
+            "text_extraction_status": "complete",
+            "sparse_text_pages": [
+              5,
+              8,
+              9,
+              10,
+              18,
+              19,
+              20,
+              25,
+              87
+            ],
+            "text_sha256": "43185923c5a6fe2dee37fdcabfdcf5718d0e71f4dd339546cb5cda31ad8e5fa0",
+            "page_numbering": "1-based PDF page order",
+            "local_copy_published": false,
+            "visual_pages_reviewed": []
+          }
+        ],
+        "readings": [],
+        "readings_text": "",
+        "assignment_labels": [],
+        "assignment_access": "none",
+        "review_notes": [],
+        "content_status": "original_outline",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "آشنایی با درس و کاربردهای یادگیری ژرف",
+        "topic_tags": [
+          "introduction",
+          "history",
+          "evaluation"
+        ],
+        "overview_fa": "برای شروع، مسئله، داده، معماری و روش ارزیابی را از هم جدا می‌کنیم. مثال‌های کاربردی انگیزه یادگیری‌اند؛ موفقیت یک نمایش کوتاه به معنی قابل اعتماد بودن محصول در همه موقعیت‌ها نیست.",
+        "objectives_fa": [
+          "چهار جزء مسئله، داده، مدل و ارزیابی را در یک مثال مشخص کن.",
+          "تفاوت خطای آموزش با عملکرد روی داده تازه را توضیح بده."
+        ],
+        "kind": "lecture"
+      },
+      {
+        "id": "s02",
+        "order": 2,
+        "date_label": "Tue, Jan 13",
+        "title_en": "Artificial Neurons",
+        "slides": [
+          {
+            "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/02-Artificial-Neurons.pdf",
+            "retrieved_at_utc": "2026-10-25T08:44:45.533801+00:00",
+            "final_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/02-Artificial-Neurons.pdf",
+            "retrieval_tool": "curl with TLS verification",
+            "sha256": "fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477",
+            "byte_count": 2594609,
+            "download_status": "ok",
+            "page_count": 51,
+            "text_pages": 50,
+            "review_status": "partial",
+            "notes_fa": "متن همه صفحات استخراج شد؛ عنوان‌ها و بخش‌بندی‌ها و نمونه‌هایی از متن بررسی شدند. این وضعیت به معنی بازبینی علمی یا بصری همه اسلایدها نیست.",
+            "text_extraction_status": "complete",
+            "sparse_text_pages": [
+              51
+            ],
+            "text_sha256": "49a4e85bacd50020ba6ade9464580694440749900988bdae7ae7febe1eb97ca0",
+            "page_numbering": "1-based PDF page order",
+            "local_copy_published": false,
+            "visual_pages_reviewed": [
+              27
+            ]
+          }
+        ],
+        "readings": [],
+        "readings_text": "Ch. 2.1-2.5.2 and 4.1-4.2 of Kamath book",
+        "assignment_labels": [],
+        "assignment_access": "none",
+        "review_notes": [],
+        "content_status": "original_outline",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "نورون مصنوعی و محدودیت پرسپترون",
+        "topic_tags": [
+          "perceptron",
+          "logic-gates",
+          "pytorch"
+        ],
+        "overview_fa": "یک نورون ساده ورودی‌ها را با وزن و بایاس ترکیب می‌کند. با محاسبه چند نمونه می‌توان دید اصلاح وزن‌ها چه چیزی را تغییر می‌دهد و چرا بعضی مسائل، مانند XOR، با مرز خطی حل نمی‌شوند.",
+        "objectives_fa": [
+          "خروجی و یک به‌روزرسانی پرسپترون را با دست حساب کن.",
+          "برای XOR دلیل هندسی ناتوانی یک جداکننده خطی را بیان کن."
+        ],
+        "kind": "lecture"
+      },
+      {
+        "id": "s03",
+        "order": 3,
+        "date_label": "Thur, Jan 15",
+        "title_en": "Fully Connected Neural Networks",
+        "slides": [
+          {
+            "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/03-Fully-Connected-NN.pdf",
+            "retrieved_at_utc": "2026-10-25T08:44:45.533955+00:00",
+            "final_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/03-Fully-Connected-NN.pdf",
+            "retrieval_tool": "curl with TLS verification",
+            "sha256": "92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0",
+            "byte_count": 2310761,
+            "download_status": "ok",
+            "page_count": 111,
+            "text_pages": 110,
+            "review_status": "partial",
+            "notes_fa": "متن همه صفحات استخراج شد؛ عنوان‌ها و بخش‌بندی‌ها و نمونه‌هایی از متن بررسی شدند. این وضعیت به معنی بازبینی علمی یا بصری همه اسلایدها نیست.",
+            "text_extraction_status": "complete",
+            "sparse_text_pages": [
+              111
+            ],
+            "text_sha256": "c9caa546d4bb5dac8a64a60be9cac7d54f2bb3a7d04ba73aa8093549038663f5",
+            "page_numbering": "1-based PDF page order",
+            "local_copy_published": false,
+            "visual_pages_reviewed": []
+          }
+        ],
+        "readings": [
+          {
+            "title": "Ch. 1",
+            "url": "http://neuralnetworksanddeeplearning.com/chap1.html"
+          },
+          {
+            "title": "Ch. 2",
+            "url": "http://neuralnetworksanddeeplearning.com/chap2.html"
+          }
+        ],
+        "readings_text": "Ch. 4.1-4.3 of Kamath book; Ch. 1 and Ch. 2 of Nielsen book",
+        "assignment_labels": [],
+        "assignment_access": "none",
+        "review_notes": [],
+        "content_status": "original_outline",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "شبکه کاملا متصل و پس‌انتشار",
+        "topic_tags": [
+          "mlp",
+          "backpropagation",
+          "computational-graph",
+          "pytorch"
+        ],
+        "overview_fa": "ترکیب لایه‌ها ظرفیت مدل را افزایش می‌دهد، اما برای یادگیری باید سهم هر پارامتر در خطا مشخص شود. گراف محاسباتی و قاعده زنجیره‌ای، ارتباط میان اجرای رو به جلو و محاسبه گرادیان را روشن می‌کنند.",
+        "objectives_fa": [
+          "تعداد پارامترهای یک شبکه کوچک را حساب کن.",
+          "گرادیان یک گراف کوتاه را محاسبه و با تغییر عددی تابع مقایسه کن."
+        ],
+        "kind": "lecture"
+      },
+      {
+        "id": "s04",
+        "order": 4,
+        "date_label": "Tue, Jan 20",
+        "title_en": "Recurrent Neural Networks",
+        "slides": [
+          {
+            "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf",
+            "retrieved_at_utc": "2026-10-25T08:44:45.547107+00:00",
+            "final_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/04-Recurrent-Neural-Networks.pdf",
+            "retrieval_tool": "curl with TLS verification",
+            "sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+            "byte_count": 2863380,
+            "download_status": "ok",
+            "page_count": 61,
+            "text_pages": 60,
+            "review_status": "partial",
+            "notes_fa": "متن همه صفحات استخراج شد؛ عنوان‌ها و بخش‌بندی‌ها و نمونه‌هایی از متن بررسی شدند. این وضعیت به معنی بازبینی علمی یا بصری همه اسلایدها نیست.",
+            "text_extraction_status": "complete",
+            "sparse_text_pages": [
+              61
+            ],
+            "text_sha256": "993bec74ae0727029aad3890d8ccdbcc65b76312d56e09455427b9c95870e386",
+            "page_numbering": "1-based PDF page order",
+            "local_copy_published": false,
+            "visual_pages_reviewed": []
+          }
+        ],
+        "readings": [],
+        "readings_text": "Ch. 7.1-7.3 of Kamath book",
+        "assignment_labels": [],
+        "assignment_access": "none",
+        "review_notes": [],
+        "content_status": "original_outline",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "شبکه بازگشتی و حافظه در دنباله‌ها",
+        "topic_tags": [
+          "rnn",
+          "lstm",
+          "sequence",
+          "pytorch"
+        ],
+        "overview_fa": "داده ترتیبی با یک مجموعه بی‌ترتیب تفاوت دارد. حالت پنهان خلاصه‌ای وابسته به گذشته می‌سازد؛ سازوکارهای دروازه‌ای تعیین می‌کنند چه اطلاعاتی نگه داشته یا فراموش شود.",
+        "objectives_fa": [
+          "حالت پنهان یک RNN کوچک را برای چند گام محاسبه کن.",
+          "نقش دروازه‌ها را با یک مسئله حافظه توضیح بده."
+        ],
+        "kind": "lecture"
+      },
+      {
+        "id": "s05",
+        "order": 5,
+        "date_label": "Thur, Jan 22",
+        "title_en": "Convolutional Neural Networks",
+        "slides": [
+          {
+            "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/05-Convolutional-Neural-Networks.pdf",
+            "retrieved_at_utc": "2026-10-25T08:44:48.765542+00:00",
+            "final_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/05-Convolutional-Neural-Networks.pdf",
+            "retrieval_tool": "curl with TLS verification",
+            "sha256": "f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7",
+            "byte_count": 3717694,
+            "download_status": "ok",
+            "page_count": 76,
+            "text_pages": 75,
+            "review_status": "partial",
+            "notes_fa": "متن همه صفحات استخراج شد؛ عنوان‌ها و بخش‌بندی‌ها و نمونه‌هایی از متن بررسی شدند. این وضعیت به معنی بازبینی علمی یا بصری همه اسلایدها نیست.",
+            "text_extraction_status": "complete",
+            "sparse_text_pages": [
+              76
+            ],
+            "text_sha256": "a9064b16c9f221bf6f15bd2eef1dc902e71a442e39de1dcb7ee8bc294b10f514",
+            "page_numbering": "1-based PDF page order",
+            "local_copy_published": false,
+            "visual_pages_reviewed": [
+              49
+            ]
+          }
+        ],
+        "readings": [],
+        "readings_text": "Ch. 6.1-6.3 of Kamath book",
+        "assignment_labels": [
+          "Lab Assignment 1"
+        ],
+        "assignment_access": "canvas_only",
+        "review_notes": [
+          {
+            "id": "spring-2026-cnn-p49",
+            "status": "verified_clarification",
+            "kind": "scope_of_claim",
+            "page": 49,
+            "claim_fa": "مثال اسلاید ناوردایی نسبت به یک جابه‌جایی خاص در پنجره تجمیع را نشان می‌دهد.",
+            "correction_fa": "تجمیع محلی با گام بزرگ‌تر از یک، ناوردایی کامل در برابر هر انتقال را تضمین نمی‌کند؛ جابه‌جایی از مرز پنجره می‌تواند خروجی را تغییر دهد. مثال خاص اسلاید درست است، اما گزاره کلی به این قید نیاز دارد.",
+            "evidence_urls": [
+              "https://arxiv.org/abs/1904.11486"
+            ],
+            "verification": "Visual inspection of slide 49; constructive counterexample maxpool([0,1,0,0], kernel=2,stride=2)=[1,0], one-position right shift produces [0,1].",
+            "source_unchanged": true,
+            "classification": "nuance",
+            "page_number_basis": "1-based PDF page; no different printed slide number visible on inspected page"
+          },
+          {
+            "id": "spring-2026-cnn-not-errors",
+            "status": "verified_correct",
+            "kind": "false_positive_avoided",
+            "pages": [
+              26,
+              38
+            ],
+            "note_fa": "اسلاید ۲۶ خود صریحا عمل را cross-correlation می‌نامد و اسلاید ۳۸ هم‌وردایی را از ناوردایی جدا می‌کند؛ این دو مورد خطا محسوب نشدند.",
+            "classification": "verified_correct"
+          }
+        ],
+        "content_status": "original_outline",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "شبکه کانولوشنی و ویژگی‌های مکانی",
+        "topic_tags": [
+          "cnn",
+          "cross-correlation",
+          "pooling",
+          "lenet",
+          "pytorch"
+        ],
+        "overview_fa": "اشتراک وزن و اتصال محلی راهی برای استفاده از ساختار تصویر است. باید تفاوت جابه‌جا شدن نقشه ویژگی با ثابت ماندن خروجی را دقیق دید؛ تجمیع محلی مصونیت کامل در برابر هر جابه‌جایی ایجاد نمی‌کند.",
+        "objectives_fa": [
+          "خروجی یک فیلتر و یک پنجره تجمیع را با دست حساب کن.",
+          "هم‌وردایی و ناوردایی نسبت به انتقال را از هم جدا کن."
+        ],
+        "kind": "lecture"
+      },
+      {
+        "id": "s06",
+        "order": 6,
+        "date_label": "Tue, Jan 27",
+        "title_en": "Making Shallow Learning Work: Achieving Convergence and Generalization",
+        "slides": [
+          {
+            "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/06-Shallow-Learning.pdf",
+            "retrieved_at_utc": "2026-10-25T08:44:48.908950+00:00",
+            "final_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/06-Shallow-Learning.pdf",
+            "retrieval_tool": "curl with TLS verification",
+            "sha256": "7bd61705af1c530c6af3f7d1fa8c27be24635466812ba5d935e1155189218170",
+            "byte_count": 2331677,
+            "download_status": "ok",
+            "page_count": 62,
+            "text_pages": 61,
+            "review_status": "partial",
+            "notes_fa": "متن همه صفحات استخراج شد؛ عنوان‌ها و بخش‌بندی‌ها و نمونه‌هایی از متن بررسی شدند. این وضعیت به معنی بازبینی علمی یا بصری همه اسلایدها نیست.",
+            "text_extraction_status": "complete",
+            "sparse_text_pages": [
+              62
+            ],
+            "text_sha256": "96809da6c1db4fcfebd359eb6f0c90c5273779702509ffe491934f67155d8b1d",
+            "page_numbering": "1-based PDF page order",
+            "local_copy_published": false,
+            "visual_pages_reviewed": []
+          }
+        ],
+        "readings": [
+          {
+            "title": "Ch. 3",
+            "url": "http://neuralnetworksanddeeplearning.com/chap3.html"
+          },
+          {
+            "title": "Ch. 4",
+            "url": "http://neuralnetworksanddeeplearning.com/chap4.html"
+          }
+        ],
+        "readings_text": "Ch. 3 and Ch. 4 of Nielsen book",
+        "assignment_labels": [],
+        "assignment_access": "none",
+        "review_notes": [],
+        "content_status": "original_outline",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "همگرایی و تعمیم در شبکه‌های کم‌عمق",
+        "topic_tags": [
+          "optimization",
+          "generalization",
+          "regularization"
+        ],
+        "overview_fa": "کم شدن خطای آموزش به‌تنهایی کافی نیست. انتخاب گام به‌روزرسانی، ظرفیت مدل و شیوه اعتبارسنجی باید هم یادگیری پایدار ایجاد کند و هم از سازگاری بیش از اندازه با نمونه‌های آموزشی جلوگیری کند.",
+        "objectives_fa": [
+          "اثر نرخ یادگیری را در یک مسئله کوچک مقایسه کن.",
+          "کم‌برازش و بیش‌برازش را با منحنی آموزش و اعتبارسنجی تشخیص بده."
+        ],
+        "kind": "lecture"
+      },
+      {
+        "id": "s07",
+        "order": 7,
+        "date_label": "Thur, Jan 29",
+        "title_en": "Birth of \"Deep Learning\"",
+        "slides": [
+          {
+            "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/07-Deep-Learning-Birth.pdf",
+            "retrieved_at_utc": "2026-10-25T08:44:49.277620+00:00",
+            "final_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/07-Deep-Learning-Birth.pdf",
+            "retrieval_tool": "curl with TLS verification",
+            "sha256": "ac4446d8edc7398cf4e6c6601b30c6d842c6e1d9a656eb243d841a982ee75d1a",
+            "byte_count": 3985534,
+            "download_status": "ok",
+            "page_count": 67,
+            "text_pages": 66,
+            "review_status": "partial",
+            "notes_fa": "متن همه صفحات استخراج شد؛ عنوان‌ها و بخش‌بندی‌ها و نمونه‌هایی از متن بررسی شدند. این وضعیت به معنی بازبینی علمی یا بصری همه اسلایدها نیست.",
+            "text_extraction_status": "complete",
+            "sparse_text_pages": [
+              36,
+              37,
+              67
+            ],
+            "text_sha256": "f59841e88166cc8a845dca515072a441ef856c67124b8b7e3766ff1140f71c96",
+            "page_numbering": "1-based PDF page order",
+            "local_copy_published": false,
+            "visual_pages_reviewed": []
+          }
+        ],
+        "readings": [
+          {
+            "title": "Ch. 5",
+            "url": "http://neuralnetworksanddeeplearning.com/chap5.html"
+          },
+          {
+            "title": "AlexNet",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf"
+          }
+        ],
+        "readings_text": "Ch. 5 of Nielsen book; AlexNet",
+        "assignment_labels": [
+          "Problem Set 1"
+        ],
+        "assignment_access": "canvas_only",
+        "review_notes": [],
+        "content_status": "original_outline",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "پیدایش یادگیری ژرف و AlexNet",
+        "topic_tags": [
+          "alexnet",
+          "deep-learning-history",
+          "dropout",
+          "pytorch"
+        ],
+        "overview_fa": "رسیدن به شبکه‌های عمیق حاصل ترکیب ایده معماری، داده و توان محاسباتی بود. AlexNet نمونه‌ای برای بررسی این ترکیب است؛ باید نتیجه یک بنچمارک تاریخی را در شرایط داده و محاسبات همان آزمایش تفسیر کرد.",
+        "objectives_fa": [
+          "اجزای اصلی AlexNet و نقش آن‌ها را تشخیص بده.",
+          "نقش داده و سخت‌افزار را از اثر صرف افزایش عمق جدا کن."
+        ],
+        "kind": "lecture"
+      },
+      {
+        "id": "s08",
+        "order": 8,
+        "date_label": "Tue, Feb 3",
+        "title_en": "The Quest for Depth: Achieving Convergence and Residual Learning",
+        "slides": [
+          {
+            "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/08-Quest-for-Depth.pdf",
+            "retrieved_at_utc": "2026-10-25T08:44:49.791468+00:00",
+            "final_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/08-Quest-for-Depth.pdf",
+            "retrieval_tool": "curl with TLS verification",
+            "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
+            "byte_count": 1830438,
+            "download_status": "ok",
+            "page_count": 46,
+            "text_pages": 44,
+            "review_status": "partial",
+            "notes_fa": "متن همه صفحات استخراج شد؛ عنوان‌ها و بخش‌بندی‌ها و نمونه‌هایی از متن بررسی شدند. این وضعیت به معنی بازبینی علمی یا بصری همه اسلایدها نیست.",
+            "text_extraction_status": "complete",
+            "sparse_text_pages": [
+              10,
+              14,
+              28,
+              46
+            ],
+            "text_sha256": "198e57513390d1e55809255e028edcbd812b0d4f95725ab2b02e55304d93459c",
+            "page_numbering": "1-based PDF page order",
+            "local_copy_published": false,
+            "visual_pages_reviewed": []
+          }
+        ],
+        "readings": [
+          {
+            "title": "Batch Normalization",
+            "url": "https://arxiv.org/pdf/1502.03167"
+          },
+          {
+            "title": "ResNet",
+            "url": "https://arxiv.org/pdf/1512.03385"
+          }
+        ],
+        "readings_text": "Batch Normalization , ResNet",
+        "assignment_labels": [],
+        "assignment_access": "none",
+        "review_notes": [],
+        "content_status": "original_outline",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "آموزش شبکه عمیق و اتصال باقیمانده",
+        "topic_tags": [
+          "resnet",
+          "initialization",
+          "batch-normalization",
+          "adam"
+        ],
+        "overview_fa": "اضافه کردن لایه همیشه عملکرد را بهتر نمی‌کند. مقداردهی اولیه، مقیاس فعال‌سازی‌ها و مسیر عبور گرادیان بر آموزش اثر دارند؛ اتصال میان‌بر امکان یادگیری تغییر نسبت به ورودی را فراهم می‌کند.",
+        "objectives_fa": [
+          "خروجی یک بلوک باقیمانده را محاسبه کن.",
+          "اثر مقداردهی اولیه را بر اندازه فعال‌سازی و گرادیان بررسی کن."
+        ],
+        "kind": "lecture"
+      },
+      {
+        "id": "s09",
+        "order": 9,
+        "date_label": "Thur, Feb 5",
+        "title_en": "Foundation for Progress: Large Labeled Datasets and Hardware Acceleration",
+        "slides": [
+          {
+            "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf",
+            "retrieved_at_utc": "2026-10-25T08:44:51.847884+00:00",
+            "final_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf",
+            "retrieval_tool": "curl with TLS verification",
+            "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
+            "byte_count": 4793369,
+            "download_status": "ok",
+            "page_count": 71,
+            "text_pages": 70,
+            "review_status": "partial",
+            "notes_fa": "متن همه صفحات استخراج شد؛ عنوان‌ها و بخش‌بندی‌ها و نمونه‌هایی از متن بررسی شدند. این وضعیت به معنی بازبینی علمی یا بصری همه اسلایدها نیست.",
+            "text_extraction_status": "complete",
+            "sparse_text_pages": [
+              9,
+              71
+            ],
+            "text_sha256": "b3498243f5ba05a14700e16eaa4738330a150eddd14179bd20a1b59798aee6b8",
+            "page_numbering": "1-based PDF page order",
+            "local_copy_published": false,
+            "visual_pages_reviewed": []
+          }
+        ],
+        "readings": [],
+        "readings_text": "",
+        "assignment_labels": [],
+        "assignment_access": "none",
+        "review_notes": [],
+        "content_status": "original_outline",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "داده برچسب‌دار و شتاب‌دهی سخت‌افزاری",
+        "topic_tags": [
+          "datasets",
+          "gpu",
+          "data-quality"
+        ],
+        "overview_fa": "حجم داده بدون کیفیت برچسب و تقسیم درست تضمین‌کننده پیشرفت نیست. از طرف دیگر زمان آموزش به نوع عملیات، انتقال داده و سخت‌افزار بستگی دارد؛ عدد سرعت باید با شرایط اندازه‌گیری همراه باشد.",
+        "objectives_fa": [
+          "یک طرح تقسیم داده بدون نشت اطلاعات پیشنهاد بده.",
+          "میان افزایش سرعت محاسبه و بهبود کیفیت مدل تفاوت بگذار."
+        ],
+        "kind": "lecture"
+      },
+      {
+        "id": "s10",
+        "order": 10,
+        "date_label": "Tue, Feb 10",
+        "title_en": "From Image Classification to Dense Prediction",
+        "slides": [
+          {
+            "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/10-Dense-Prediction.pdf",
+            "retrieved_at_utc": "2026-10-25T08:44:51.932248+00:00",
+            "final_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/10-Dense-Prediction.pdf",
+            "retrieval_tool": "curl with TLS verification",
+            "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
+            "byte_count": 3416294,
+            "download_status": "ok",
+            "page_count": 71,
+            "text_pages": 70,
+            "review_status": "partial",
+            "notes_fa": "متن همه صفحات استخراج شد؛ عنوان‌ها و بخش‌بندی‌ها و نمونه‌هایی از متن بررسی شدند. این وضعیت به معنی بازبینی علمی یا بصری همه اسلایدها نیست.",
+            "text_extraction_status": "complete",
+            "sparse_text_pages": [
+              71
+            ],
+            "text_sha256": "d01a9039223fd7cb2ba1e22230eb9ecfb7275ffae1ec7284e88f214add0dd8d3",
+            "page_numbering": "1-based PDF page order",
+            "local_copy_published": false,
+            "visual_pages_reviewed": []
+          }
+        ],
+        "readings": [
+          {
+            "title": "Fully Convolutional Networks",
+            "url": "https://arxiv.org/pdf/1411.4038"
+          }
+        ],
+        "readings_text": "Ch. 10.1-10.2 of Kamath book; Fully Convolutional Networks",
+        "assignment_labels": [],
+        "assignment_access": "none",
+        "review_notes": [],
+        "content_status": "original_outline",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "از طبقه‌بندی تصویر تا پیش‌بینی مکانی",
+        "topic_tags": [
+          "segmentation",
+          "dense-prediction",
+          "fcn",
+          "transfer-learning"
+        ],
+        "overview_fa": "وقتی پاسخ برای هر ناحیه یا پیکسل لازم است، یک برچسب برای کل تصویر کافی نیست. بازسازی وضوح مکانی و استفاده از ویژگی‌های از پیش آموخته‌شده، مسائل متفاوتی در طراحی و ارزیابی ایجاد می‌کنند.",
+        "objectives_fa": [
+          "تفاوت خروجی طبقه‌بندی و قطعه‌بندی را مشخص کن.",
+          "اثر کاهش وضوح نقشه ویژگی بر مکان‌یابی را توضیح بده."
+        ],
+        "kind": "lecture"
+      },
+      {
+        "id": "s11",
+        "order": 11,
+        "date_label": "Thur, Feb 12",
+        "title_en": "The Rise of Multimodal Learning: Vision and Language Meet",
+        "slides": [
+          {
+            "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/11-Multimodal-Vision-And-Language.pdf",
+            "retrieved_at_utc": "2026-10-25T08:44:52.648525+00:00",
+            "final_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/11-Multimodal-Vision-And-Language.pdf",
+            "retrieval_tool": "curl with TLS verification",
+            "sha256": "1a830b8863b5802c424e6499aa57c3f8cbdd741d608c3c1e347d7fad8b817727",
+            "byte_count": 3468457,
+            "download_status": "ok",
+            "page_count": 54,
+            "text_pages": 53,
+            "review_status": "partial",
+            "notes_fa": "متن همه صفحات استخراج شد؛ عنوان‌ها و بخش‌بندی‌ها و نمونه‌هایی از متن بررسی شدند. این وضعیت به معنی بازبینی علمی یا بصری همه اسلایدها نیست.",
+            "text_extraction_status": "complete",
+            "sparse_text_pages": [
+              45,
+              54
+            ],
+            "text_sha256": "a073658100740464443542297347e073cbe266caf8f58a2a3ee3a440e598c411",
+            "page_numbering": "1-based PDF page order",
+            "local_copy_published": false,
+            "visual_pages_reviewed": []
+          }
+        ],
+        "readings": [
+          {
+            "title": "Visual Question Answering",
+            "url": "https://arxiv.org/pdf/1505.00468"
+          }
+        ],
+        "readings_text": "Visual Question Answering",
+        "assignment_labels": [
+          "Lab Assignment 2"
+        ],
+        "assignment_access": "canvas_only",
+        "review_notes": [],
+        "content_status": "original_outline",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "یادگیری چندوجهی: تصویر و زبان",
+        "topic_tags": [
+          "multimodal",
+          "captioning",
+          "vqa",
+          "embeddings"
+        ],
+        "overview_fa": "مدل چندوجهی باید میان بازنمایی تصویر و کلمات ارتباط برقرار کند. توصیف تصویر و پاسخ به پرسش بصری نمونه‌هایی‌اند که در آن‌ها داده، پاسخ قابل قبول و شیوه ارزیابی با طبقه‌بندی ساده تفاوت دارند.",
+        "objectives_fa": [
+          "ورودی و خروجی captioning و VQA را مقایسه کن.",
+          "یک مثال از پاسخ زبانی درست ولی فاقد اتکا به تصویر پیدا کن."
+        ],
+        "kind": "lecture"
+      },
+      {
+        "id": "s12",
+        "order": 12,
+        "date_label": "Tue, Feb 17",
+        "title_en": "Attention: Teaching Models Where to Look",
+        "slides": [
+          {
+            "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/12-Attention.pdf",
+            "retrieved_at_utc": "2026-10-25T08:44:52.824541+00:00",
+            "final_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/12-Attention.pdf",
+            "retrieval_tool": "curl with TLS verification",
+            "sha256": "0bb7c2b97ad00b01e8c2f5642256d8af0e35da627ca25828862f1109f7396aca",
+            "byte_count": 2151073,
+            "download_status": "ok",
+            "page_count": 66,
+            "text_pages": 64,
+            "review_status": "partial",
+            "notes_fa": "متن همه صفحات استخراج شد؛ عنوان‌ها و بخش‌بندی‌ها و نمونه‌هایی از متن بررسی شدند. این وضعیت به معنی بازبینی علمی یا بصری همه اسلایدها نیست.",
+            "text_extraction_status": "complete",
+            "sparse_text_pages": [
+              11,
+              58,
+              66
+            ],
+            "text_sha256": "d1c103e92447609397f77805c65a94bf1893d9054cfac7e0eaba5f453c0b71ec",
+            "page_numbering": "1-based PDF page order",
+            "local_copy_published": false,
+            "visual_pages_reviewed": []
+          }
+        ],
+        "readings": [],
+        "readings_text": "Ch. 7.5.1-7.5.2 of Kamath book",
+        "assignment_labels": [],
+        "assignment_access": "none",
+        "review_notes": [],
+        "content_status": "original_outline",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "توجه در دنباله‌ها، تصویر و گفتار",
+        "topic_tags": [
+          "attention",
+          "seq2seq",
+          "speech"
+        ],
+        "overview_fa": "فشرده کردن تمام ورودی در یک بردار ثابت می‌تواند اطلاعات لازم را از بین ببرد. توجه به مدل اجازه می‌دهد برای هر گام خروجی ترکیب متفاوتی از بخش‌های ورودی را استفاده کند.",
+        "objectives_fa": [
+          "وزن‌های توجه یک مثال کوچک را محاسبه کن.",
+          "تفاوت بردار ثابت زمینه با زمینه وابسته به گام خروجی را توضیح بده."
+        ],
+        "kind": "lecture"
+      },
+      {
+        "id": "s13",
+        "order": 13,
+        "date_label": "Thur, Feb 19",
+        "title_en": "Transformer Basics: \"Attention is All You Need\"",
+        "slides": [
+          {
+            "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/13-Transformer-Basics.pdf",
+            "retrieved_at_utc": "2026-10-25T08:44:55.657833+00:00",
+            "final_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/13-Transformer-Basics.pdf",
+            "retrieval_tool": "curl with TLS verification",
+            "sha256": "a475a840420824879aa29003895f15cfec4c16e35654ff5a289617d8d17b35de",
+            "byte_count": 2470370,
+            "download_status": "ok",
+            "page_count": 58,
+            "text_pages": 57,
+            "review_status": "partial",
+            "notes_fa": "متن همه صفحات استخراج شد؛ عنوان‌ها و بخش‌بندی‌ها و نمونه‌هایی از متن بررسی شدند. این وضعیت به معنی بازبینی علمی یا بصری همه اسلایدها نیست.",
+            "text_extraction_status": "complete",
+            "sparse_text_pages": [
+              9,
+              58
+            ],
+            "text_sha256": "9ff6a10b86f0ff8f9593b8ab4b242f17df0fb77c151806adf2fce1baa22912a4",
+            "page_numbering": "1-based PDF page order",
+            "local_copy_published": false,
+            "visual_pages_reviewed": []
+          }
+        ],
+        "readings": [
+          {
+            "title": "Original Transformer",
+            "url": "https://arxiv.org/pdf/1706.03762"
+          }
+        ],
+        "readings_text": "Original Transformer",
+        "assignment_labels": [
+          "Problem Set 2"
+        ],
+        "assignment_access": "canvas_only",
+        "review_notes": [],
+        "content_status": "original_outline",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "مبانی ترنسفورمر و خودتوجهی",
+        "topic_tags": [
+          "transformer",
+          "self-attention",
+          "positional-encoding"
+        ],
+        "overview_fa": "در خودتوجهی هر عضو دنباله با اعضای دیگر مقایسه می‌شود. بازنمایی جایگاه و محدود کردن دسترسی به آینده ضروری است تا معماری بتواند ترتیب و نوع مسئله را درست بازتاب دهد.",
+        "objectives_fa": [
+          "ابعاد Q، K و V و خروجی توجه را دنبال کن.",
+          "اثر ماسک علّی را در یک دنباله کوتاه نشان بده."
+        ],
+        "kind": "lecture"
+      },
+      {
+        "id": "s14",
+        "order": 14,
+        "date_label": "Tue, Feb 24",
+        "title_en": "Pioneering Transformers: Pretraining + Fine-Tuning",
+        "slides": [
+          {
+            "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/14-Pioneering-Transformers.pdf",
+            "retrieved_at_utc": "2026-10-25T08:44:55.722691+00:00",
+            "final_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/14-Pioneering-Transformers.pdf",
+            "retrieval_tool": "curl with TLS verification",
+            "sha256": "65bdebcbbe5ecca3e9dfa4ecbaaf5a78e79a4d10ce00c8a007801d062cefeda6",
+            "byte_count": 4064685,
+            "download_status": "ok",
+            "page_count": 62,
+            "text_pages": 61,
+            "review_status": "partial",
+            "notes_fa": "متن همه صفحات استخراج شد؛ عنوان‌ها و بخش‌بندی‌ها و نمونه‌هایی از متن بررسی شدند. این وضعیت به معنی بازبینی علمی یا بصری همه اسلایدها نیست.",
+            "text_extraction_status": "complete",
+            "sparse_text_pages": [
+              33,
+              40,
+              46,
+              62
+            ],
+            "text_sha256": "e76c93d9273f2c2e18f8bd53e41cec2607b94e16e022c1050902b49ca6156bb2",
+            "page_numbering": "1-based PDF page order",
+            "local_copy_published": false,
+            "visual_pages_reviewed": []
+          }
+        ],
+        "readings": [
+          {
+            "title": "GPT",
+            "url": "https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf"
+          },
+          {
+            "title": "BERT",
+            "url": "https://aclanthology.org/N19-1423.pdf"
+          }
+        ],
+        "readings_text": "GPT ; BERT",
+        "assignment_labels": [],
+        "assignment_access": "none",
+        "review_notes": [],
+        "content_status": "original_outline",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "ترنسفورمرهای پیشگام و انتقال یادگیری",
+        "topic_tags": [
+          "gpt",
+          "bert",
+          "vit",
+          "pretraining",
+          "fine-tuning"
+        ],
+        "overview_fa": "هدف پیش‌آموزش تعیین می‌کند مدل چه نوع اطلاعاتی را در دسترس داشته باشد و چگونه از آن استفاده کند. انتقال به وظیفه جدید را باید با داده، هزینه آموزش و روش ارزیابی مشخص سنجید.",
+        "objectives_fa": [
+          "پیش‌آموزش خودرگرسیو و پوشاندن توکن را مقایسه کن.",
+          "طرح انتقال یک مدل از پیش‌آموزش‌دیده به یک وظیفه کوچک را بنویس."
+        ],
+        "kind": "lecture"
+      },
+      {
+        "id": "s15",
+        "order": 15,
+        "date_label": "Thur, Feb 26",
+        "title_en": "No Class (Reading Day)",
+        "slides": [],
+        "readings": [],
+        "readings_text": "",
+        "assignment_labels": [
+          "Problem Set 3"
+        ],
+        "assignment_access": "canvas_only",
+        "review_notes": [],
+        "content_status": "source_link_only",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "روز مطالعه؛ بدون کلاس",
+        "kind": "break",
+        "topic_tags": [],
+        "objectives_fa": [],
+        "overview_fa": "این ردیف برای حفظ تقویم و ترتیب رسمی ترم نگه داشته شده است؛ جلسه آموزشی دارای اسلاید نیست."
+      },
+      {
+        "id": "s16",
+        "order": 16,
+        "date_label": "Tue, Mar 3",
+        "title_en": "The Power of Scale: Internet-Scraped Training Data and Zero-Shot Learning",
+        "slides": [
+          {
+            "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/15-Scaling.pdf",
+            "retrieved_at_utc": "2026-10-25T08:44:55.870458+00:00",
+            "final_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/15-Scaling.pdf",
+            "retrieval_tool": "curl with TLS verification",
+            "sha256": "8436fe7f45d440d6dc2f48656ad28215ba5e47686e78ab3d762790d076b31c5c",
+            "byte_count": 4766879,
+            "download_status": "ok",
+            "page_count": 47,
+            "text_pages": 46,
+            "review_status": "partial",
+            "notes_fa": "متن همه صفحات استخراج شد؛ عنوان‌ها و بخش‌بندی‌ها و نمونه‌هایی از متن بررسی شدند. این وضعیت به معنی بازبینی علمی یا بصری همه اسلایدها نیست.",
+            "text_extraction_status": "complete",
+            "sparse_text_pages": [
+              47
+            ],
+            "text_sha256": "8083b820b4943781b9c43cb758b513cbda8f399938147303ba529a3d90fc8fe5",
+            "page_numbering": "1-based PDF page order",
+            "local_copy_published": false,
+            "visual_pages_reviewed": []
+          }
+        ],
+        "readings": [
+          {
+            "title": "GPT-2",
+            "url": "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf"
+          },
+          {
+            "title": "CLIP",
+            "url": "https://arxiv.org/pdf/2103.00020"
+          }
+        ],
+        "readings_text": "GPT-2 ; CLIP",
+        "assignment_labels": [],
+        "assignment_access": "none",
+        "review_notes": [],
+        "content_status": "original_outline",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "مقیاس، داده اینترنتی و یادگیری بدون نمونه",
+        "topic_tags": [
+          "scaling-laws",
+          "gpt2",
+          "clip",
+          "zero-shot"
+        ],
+        "overview_fa": "افزایش داده، پارامتر و محاسبات می‌تواند روندهای تجربی منظم ایجاد کند، اما این روندها قانون تضمینی برای هر مسئله نیستند. ارزیابی بدون نمونه نیازمند بررسی آلودگی داده و تعریف دقیق وظیفه است.",
+        "objectives_fa": [
+          "بودجه داده و محاسبه را در دو طرح آموزش مقایسه کن.",
+          "تفاوت zero-shot و few-shot را با یک نمونه توضیح بده."
+        ],
+        "kind": "lecture"
+      },
+      {
+        "id": "s17",
+        "order": 17,
+        "date_label": "Thur, Mar 5",
+        "title_en": "Birth of \"Foundation Models\": Learning from Prompts and Reasoning",
+        "slides": [
+          {
+            "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/16-Foundation-Models-And-Prompts.pdf",
+            "retrieved_at_utc": "2026-10-25T08:44:56.154221+00:00",
+            "final_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/16-Foundation-Models-And-Prompts.pdf",
+            "retrieval_tool": "curl with TLS verification",
+            "sha256": "2d5239140b0caa9129ef14c90a184250a8b464dc403161f87836428875549df5",
+            "byte_count": 6023874,
+            "download_status": "ok",
+            "page_count": 51,
+            "text_pages": 50,
+            "review_status": "partial",
+            "notes_fa": "متن همه صفحات استخراج شد؛ عنوان‌ها و بخش‌بندی‌ها و نمونه‌هایی از متن بررسی شدند. این وضعیت به معنی بازبینی علمی یا بصری همه اسلایدها نیست.",
+            "text_extraction_status": "complete",
+            "sparse_text_pages": [
+              29,
+              51
+            ],
+            "text_sha256": "ec44d00b3a41506d403fecd25b509e45e9368d2079d11416784f6feb24339aef",
+            "page_numbering": "1-based PDF page order",
+            "local_copy_published": false,
+            "visual_pages_reviewed": []
+          }
+        ],
+        "readings": [
+          {
+            "title": "A Systematic Survey of Prompting Methods in Natural Language Processing",
+            "url": "https://arxiv.org/pdf/2107.13586"
+          }
+        ],
+        "readings_text": "A Systematic Survey of Prompting Methods in Natural Language Processing",
+        "assignment_labels": [],
+        "assignment_access": "none",
+        "review_notes": [],
+        "content_status": "original_outline",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "مدل پایه، پرامپت و استدلال",
+        "topic_tags": [
+          "foundation-models",
+          "prompting",
+          "reasoning"
+        ],
+        "overview_fa": "پرامپت روش استفاده از مدل را تغییر می‌دهد و لزوما وزن‌ها را به‌روزرسانی نمی‌کند. برای بررسی استدلال باید پاسخ نهایی، فرایند تولید و شواهد صحت را از هم جدا نگه داشت.",
+        "objectives_fa": [
+          "پرامپت‌نویسی را از تنظیم پارامترها متمایز کن.",
+          "برای مقایسه دو روش پرامپت یک ارزیابی تکرارپذیر طراحی کن."
+        ],
+        "kind": "lecture"
+      },
+      {
+        "id": "s18",
+        "order": 18,
+        "date_label": "Tue, Mar 10",
+        "title_en": "Post-Training for Foundation Models",
+        "slides": [
+          {
+            "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/17-Post-Training-Foundation-Models.pdf",
+            "retrieved_at_utc": "2026-10-25T08:44:58.909538+00:00",
+            "final_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/17-Post-Training-Foundation-Models.pdf",
+            "retrieval_tool": "curl with TLS verification",
+            "sha256": "b6b2cb5e1740f6dd3534e0f35ddd4a88e7c2607560cb628e1f742eed1c9d6585",
+            "byte_count": 4369956,
+            "download_status": "ok",
+            "page_count": 64,
+            "text_pages": 63,
+            "review_status": "partial",
+            "notes_fa": "متن همه صفحات استخراج شد؛ عنوان‌ها و بخش‌بندی‌ها و نمونه‌هایی از متن بررسی شدند. این وضعیت به معنی بازبینی علمی یا بصری همه اسلایدها نیست.",
+            "text_extraction_status": "complete",
+            "sparse_text_pages": [
+              55,
+              64
+            ],
+            "text_sha256": "067491d9ecd7c399c553f28adf13be693208662e43d75aec6bcba0cf12116b6f",
+            "page_numbering": "1-based PDF page order",
+            "local_copy_published": false,
+            "visual_pages_reviewed": [
+              60
+            ]
+          }
+        ],
+        "readings": [
+          {
+            "title": "Parameter-Efficient Transfer Learning",
+            "url": "https://arxiv.org/abs/2110.04366"
+          },
+          {
+            "title": "Instruction Tuning & RLHF",
+            "url": "https://arxiv.org/pdf/2203.02155"
+          }
+        ],
+        "readings_text": "Parameter-Efficient Transfer Learning ; Instruction Tuning & RLHF",
+        "assignment_labels": [],
+        "assignment_access": "none",
+        "review_notes": [
+          {
+            "id": "spring-2026-r1-p60",
+            "status": "verified_correction",
+            "kind": "model_history_and_training",
+            "page": 60,
+            "claim_fa": "اسلاید R1 را با سال ۲۰۲۶ و توصیف کلی RLHF و گونه‌های LoRA معرفی می‌کند.",
+            "correction_fa": "معرفی اولیه R1 و نسخه نخست مقاله مربوط به ژانویه ۲۰۲۵ است؛ مقاله در ژانویه ۲۰۲۶ نیز بازنگری شده است. R1-Zero بدون SFT اولیه آزمایش شد، در حالی که مسیر R1 دو مرحله SFT و دو مرحله RL دارد. گونه‌های کوچک رسمی، مدل‌های dense تقطیرشده بر پایه Qwen و Llama هستند؛ نسبت دادن همه این گونه‌ها به LoRA از منبع اصلی پشتیبانی نمی‌شود.",
+            "evidence_urls": [
+              "https://arxiv.org/abs/2501.12948",
+              "https://github.com/deepseek-ai/DeepSeek-R1"
+            ],
+            "verification": "Visual inspection of slide 60 and primary paper submission history plus official repository model summary.",
+            "source_unchanged": true,
+            "classification": "verified_error_with_version_date_nuance",
+            "page_number_basis": "1-based PDF page; no different printed slide number visible on inspected page"
+          }
+        ],
+        "content_status": "original_outline",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "پس‌آموزش مدل‌های پایه",
+        "topic_tags": [
+          "peft",
+          "lora",
+          "instruction-tuning",
+          "rlhf",
+          "reinforcement-learning"
+        ],
+        "overview_fa": "پس‌آموزش مجموعه‌ای از روش‌ها برای تغییر رفتار مدل پس از پیش‌آموزش است. تنظیم کم‌پارامتر، یادگیری از دستور و بهینه‌سازی ترجیح‌ها هدف‌ها و داده‌های متفاوتی دارند و نباید یک روش واحد فرض شوند.",
+        "objectives_fa": [
+          "تفاوت LoRA، instruction tuning و RLHF را بیان کن.",
+          "میان R1-Zero، R1 و مدل‌های تقطیرشده آن تمایز بگذار."
+        ],
+        "kind": "lecture"
+      },
+      {
+        "id": "s19",
+        "order": 19,
+        "date_label": "Thur, Mar 12",
+        "title_en": "Practical Development Challenges (Q&A with TAs)",
+        "slides": [],
+        "readings": [],
+        "readings_text": "",
+        "assignment_labels": [
+          "Lab Assignment 3"
+        ],
+        "assignment_access": "canvas_only",
+        "review_notes": [],
+        "content_status": "source_link_only",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "پرسش‌وپاسخ درباره چالش‌های پیاده‌سازی",
+        "kind": "lecture",
+        "topic_tags": [],
+        "objectives_fa": [],
+        "overview_fa": "در برنامه رسمی ثبت شده است؛ اسلاید عمومی برای این جلسه پیوند نشده و محتوای ارائه بررسی نشده است."
+      },
+      {
+        "id": "s20",
+        "order": 20,
+        "date_label": "Tue, Mar 17",
+        "title_en": "No Class (Spring Break)",
+        "slides": [],
+        "readings": [],
+        "readings_text": "",
+        "assignment_labels": [],
+        "assignment_access": "none",
+        "review_notes": [],
+        "content_status": "source_link_only",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "تعطیلات بهاری",
+        "kind": "break",
+        "topic_tags": [],
+        "objectives_fa": [],
+        "overview_fa": "این ردیف برای حفظ تقویم و ترتیب رسمی ترم نگه داشته شده است؛ جلسه آموزشی دارای اسلاید نیست."
+      },
+      {
+        "id": "s21",
+        "order": 21,
+        "date_label": "Thur, Mar 19",
+        "title_en": "No Class (Spring Break)",
+        "slides": [],
+        "readings": [],
+        "readings_text": "",
+        "assignment_labels": [],
+        "assignment_access": "none",
+        "review_notes": [],
+        "content_status": "source_link_only",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "تعطیلات بهاری",
+        "kind": "break",
+        "topic_tags": [],
+        "objectives_fa": [],
+        "overview_fa": "این ردیف برای حفظ تقویم و ترتیب رسمی ترم نگه داشته شده است؛ جلسه آموزشی دارای اسلاید نیست."
+      },
+      {
+        "id": "s22",
+        "order": 22,
+        "date_label": "Tue, Mar 24",
+        "title_en": "The Growing Footprint of Data Centers: Impacts on Society and Paths Forward ( Eric Hersh ; Principal Water Resources Engineer at Stantec)",
+        "slides": [],
+        "readings": [],
+        "readings_text": "",
+        "assignment_labels": [],
+        "assignment_access": "none",
+        "review_notes": [],
+        "content_status": "source_link_only",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "اثر مراکز داده بر جامعه و مسیرهای پیش رو",
+        "kind": "guest",
+        "topic_tags": [],
+        "objectives_fa": [],
+        "overview_fa": "در برنامه رسمی ثبت شده است؛ اسلاید عمومی برای این جلسه پیوند نشده و محتوای ارائه بررسی نشده است."
+      },
+      {
+        "id": "s23",
+        "order": 23,
+        "date_label": "Thur, Mar 26",
+        "title_en": "Sustainable NN & DL: Frontier Intelligence With Less Compute",
+        "slides": [
+          {
+            "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/20-Sustainable-NN-and-DL.pdf",
+            "retrieved_at_utc": "2026-10-25T08:44:59.865489+00:00",
+            "final_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/20-Sustainable-NN-and-DL.pdf",
+            "retrieval_tool": "curl with TLS verification",
+            "sha256": "7df036e4818ec92852c2ade2ca95a95c427eaaa46e25b1553e8b9971cb1ffd9f",
+            "byte_count": 6164796,
+            "download_status": "ok",
+            "page_count": 71,
+            "text_pages": 70,
+            "review_status": "partial",
+            "notes_fa": "متن همه صفحات استخراج شد؛ عنوان‌ها و بخش‌بندی‌ها و نمونه‌هایی از متن بررسی شدند. این وضعیت به معنی بازبینی علمی یا بصری همه اسلایدها نیست.",
+            "text_extraction_status": "complete",
+            "sparse_text_pages": [
+              20,
+              71
+            ],
+            "text_sha256": "e3a43003b25bdd1ff67de35b526ad47139e304c758b413a50cc31c5446e3b738",
+            "page_numbering": "1-based PDF page order",
+            "local_copy_published": false,
+            "visual_pages_reviewed": []
+          }
+        ],
+        "readings": [],
+        "readings_text": "",
+        "assignment_labels": [],
+        "assignment_access": "none",
+        "review_notes": [],
+        "content_status": "original_outline",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "یادگیری ژرف پایدار و کاهش هزینه محاسبات",
+        "topic_tags": [
+          "efficiency",
+          "distillation",
+          "moe",
+          "kv-cache",
+          "mla"
+        ],
+        "overview_fa": "کاهش هزینه تنها کوچک کردن مدل نیست. کم‌دقت‌سازی، تقطیر، انتخاب بخش فعال شبکه و مدیریت حافظه هر کدام هزینه متفاوتی را هدف می‌گیرند و باید افت یا حفظ کیفیت آن‌ها اندازه‌گیری شود.",
+        "objectives_fa": [
+          "پارامتر کل، پارامتر فعال و حافظه را جداگانه گزارش کن.",
+          "یک آزمایش مقایسه هزینه و کیفیت برای تقطیر یا کم‌دقت‌سازی طراحی کن."
+        ],
+        "kind": "lecture"
+      },
+      {
+        "id": "s24",
+        "order": 24,
+        "date_label": "Tue, Mar 31",
+        "title_en": "Responsible NN & DL: Model Behavior Risks and Mitigating Factors",
+        "slides": [
+          {
+            "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/21-Responsible-NN-and-DL.pdf",
+            "retrieved_at_utc": "2026-10-25T08:45:00.212171+00:00",
+            "final_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/21-Responsible-NN-and-DL.pdf",
+            "retrieval_tool": "curl with TLS verification",
+            "sha256": "b75d180b537431afa7bfa6b041e85efea5d74053e2db8620e788f1fde2a88ff2",
+            "byte_count": 10314983,
+            "download_status": "ok",
+            "page_count": 62,
+            "text_pages": 60,
+            "review_status": "partial",
+            "notes_fa": "متن همه صفحات استخراج شد؛ عنوان‌ها و بخش‌بندی‌ها و نمونه‌هایی از متن بررسی شدند. این وضعیت به معنی بازبینی علمی یا بصری همه اسلایدها نیست.",
+            "text_extraction_status": "complete",
+            "sparse_text_pages": [
+              29,
+              48,
+              52,
+              59,
+              62
+            ],
+            "text_sha256": "1f5948392e72d638944d5f10919356e2c158dc8abf6ca9c2a042b04307e3e5ee",
+            "page_numbering": "1-based PDF page order",
+            "local_copy_published": false,
+            "visual_pages_reviewed": [
+              27
+            ]
+          }
+        ],
+        "readings": [],
+        "readings_text": "",
+        "assignment_labels": [],
+        "assignment_access": "none",
+        "review_notes": [
+          {
+            "id": "spring-2026-bias-citation-p27",
+            "status": "verified_correction",
+            "kind": "bibliographic_year",
+            "page": 27,
+            "claim_fa": "سال مقاله Navigli و همکاران در ارجاع اسلاید ۲۰۱۶ درج شده است.",
+            "correction_fa": "این مقاله در سال ۲۰۲۳ در Journal of Data and Information Quality، جلد ۱۵، شماره ۲ منتشر شده است؛ DOI: 10.1145/3597307.",
+            "evidence_urls": [
+              "https://www.research.ed.ac.uk/en/publications/biases-in-large-language-models-origins-inventory-and-discussion/",
+              "https://iris.uniroma1.it/handle/11573/1696393"
+            ],
+            "verification": "Visual inspection of slide 27 and author institutional publication records.",
+            "source_unchanged": true,
+            "classification": "verified_error",
+            "page_number_basis": "1-based PDF page; no different printed slide number visible on inspected page"
+          }
+        ],
+        "content_status": "original_outline",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "رفتار مسئولانه مدل و کاهش خطر",
+        "topic_tags": [
+          "responsible-ai",
+          "bias",
+          "hallucination",
+          "evaluation"
+        ],
+        "overview_fa": "ارزیابی مسئولانه از بررسی دقت متوسط فراتر می‌رود. باید خطاهای اطلاعاتی، نابرابری عملکرد، نشت اطلاعات و شرایط استفاده بررسی شوند؛ وجود یک محافظ به معنی حذف کامل خطا نیست.",
+        "objectives_fa": [
+          "برای یک کاربرد محدود، گروه‌های خطا و معیارهای ارزیابی را تعیین کن.",
+          "بین اصلاح داده، اصلاح مدل و کنترل خروجی تفاوت بگذار."
+        ],
+        "kind": "lecture"
+      },
+      {
+        "id": "s25",
+        "order": 25,
+        "date_label": "Thur, Apr 2",
+        "title_en": "The Acceptability Game: Judging Ethics of NN Uses and Development Choices",
+        "slides": [],
+        "readings": [],
+        "readings_text": "",
+        "assignment_labels": [
+          "Final Project Outline"
+        ],
+        "assignment_access": "public",
+        "review_notes": [],
+        "content_status": "source_link_only",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "بازی پذیرش: داوری اخلاقی درباره کاربرد و توسعه شبکه عصبی",
+        "kind": "lecture",
+        "topic_tags": [],
+        "objectives_fa": [],
+        "overview_fa": "در برنامه رسمی ثبت شده است؛ اسلاید عمومی برای این جلسه پیوند نشده و محتوای ارائه بررسی نشده است."
+      },
+      {
+        "id": "s26",
+        "order": 26,
+        "date_label": "Tue, Apr 7",
+        "title_en": "The Cutting Edge and Future for Neural Networks and Deep Learning",
+        "slides": [
+          {
+            "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/23-CuttingEdgeAndFuture-NN-and-DL.pdf",
+            "retrieved_at_utc": "2026-10-25T08:45:01.161889+00:00",
+            "final_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/23-CuttingEdgeAndFuture-NN-and-DL.pdf",
+            "retrieval_tool": "curl with TLS verification",
+            "sha256": "9c350e1099ae90719148e43a9d489d82fdcb0464cf9034c0f6a9cefab0f04cbf",
+            "byte_count": 2673717,
+            "download_status": "ok",
+            "page_count": 38,
+            "text_pages": 37,
+            "review_status": "partial",
+            "notes_fa": "متن همه صفحات استخراج شد؛ عنوان‌ها و بخش‌بندی‌ها و نمونه‌هایی از متن بررسی شدند. این وضعیت به معنی بازبینی علمی یا بصری همه اسلایدها نیست.",
+            "text_extraction_status": "complete",
+            "sparse_text_pages": [
+              38
+            ],
+            "text_sha256": "e7c59d66854ca86639c9b34f525d88fa7714e9e5e5f24b89478a37d7b4f57331",
+            "page_numbering": "1-based PDF page order",
+            "local_copy_published": false,
+            "visual_pages_reviewed": []
+          }
+        ],
+        "readings": [],
+        "readings_text": "",
+        "assignment_labels": [],
+        "assignment_access": "none",
+        "review_notes": [],
+        "content_status": "original_outline",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "مرز پژوهش و آینده یادگیری ژرف",
+        "topic_tags": [
+          "agents",
+          "world-models",
+          "interpretability",
+          "data-centric-ai"
+        ],
+        "overview_fa": "پژوهش‌های مرزی با پرسش‌های باز همراه‌اند. در بحث عامل‌ها، مدل جهان و تفسیرپذیری باید نتیجه اندازه‌گیری‌شده را از پیش‌بینی آینده یا دیدگاه شخصی جدا کرد.",
+        "objectives_fa": [
+          "یک ادعای آینده‌نگر را به پرسشی قابل آزمایش تبدیل کن.",
+          "محدودیت یک بنچمارک را برای کاربرد واقعی مشخص کن."
+        ],
+        "kind": "lecture"
+      },
+      {
+        "id": "s27",
+        "order": 27,
+        "date_label": "Thur, Apr 9",
+        "title_en": "Deep Learning in Industry ( Suyog Jain ; Chief Technology Officer of a Startup)",
+        "slides": [],
+        "readings": [],
+        "readings_text": "JOIN IN ZOOM VIA CANVAS; NOT IN PERSON",
+        "assignment_labels": [],
+        "assignment_access": "none",
+        "review_notes": [],
+        "content_status": "source_link_only",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "یادگیری ژرف در صنعت؛ Suyog Jain",
+        "kind": "guest",
+        "topic_tags": [],
+        "objectives_fa": [],
+        "overview_fa": "در برنامه رسمی ثبت شده است؛ اسلاید عمومی برای این جلسه پیوند نشده و محتوای ارائه بررسی نشده است."
+      },
+      {
+        "id": "s28",
+        "order": 28,
+        "date_label": "Tue, Apr 14",
+        "title_en": "Efficient ML: From Lightweight Architectures to Compiler-Level Optimizations for AI Workloads ( Simran Barnwal ; SW Engineer at Meta)",
+        "slides": [],
+        "readings": [],
+        "readings_text": "JOIN IN ZOOM VIA CANVAS; NOT IN PERSON",
+        "assignment_labels": [],
+        "assignment_access": "none",
+        "review_notes": [],
+        "content_status": "source_link_only",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "یادگیری ماشین کارآمد؛ Simran Barnwal",
+        "kind": "guest",
+        "topic_tags": [],
+        "objectives_fa": [],
+        "overview_fa": "در برنامه رسمی ثبت شده است؛ اسلاید عمومی برای این جلسه پیوند نشده و محتوای ارائه بررسی نشده است."
+      },
+      {
+        "id": "s29",
+        "order": 29,
+        "date_label": "Thur, Apr 16",
+        "title_en": "Deep Learning in Industry ( Mehrnoosh Sameki ; Generative AI Evaluation and Governance Product Lead at Microsoft)",
+        "slides": [],
+        "readings": [],
+        "readings_text": "JOIN IN ZOOM VIA CANVAS; NOT IN PERSON",
+        "assignment_labels": [
+          "Final Project Presentation"
+        ],
+        "assignment_access": "public",
+        "review_notes": [],
+        "content_status": "source_link_only",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "یادگیری ژرف در صنعت؛ Mehrnoosh Sameki",
+        "kind": "guest",
+        "topic_tags": [],
+        "objectives_fa": [],
+        "overview_fa": "در برنامه رسمی ثبت شده است؛ اسلاید عمومی برای این جلسه پیوند نشده و محتوای ارائه بررسی نشده است."
+      },
+      {
+        "id": "s30",
+        "order": 30,
+        "date_label": "Tue, Apr 21",
+        "title_en": "Final Project Presentations",
+        "slides": [],
+        "readings": [],
+        "readings_text": "JOIN VIA GATHER; NOT IN PERSON",
+        "assignment_labels": [
+          "Peer Evaluations (due TODAY)"
+        ],
+        "assignment_access": "public",
+        "review_notes": [],
+        "content_status": "source_link_only",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "ارائه پروژه‌های پایانی",
+        "kind": "project",
+        "topic_tags": [],
+        "objectives_fa": [],
+        "overview_fa": "این ردیف برای حفظ تقویم و ترتیب رسمی ترم نگه داشته شده است؛ جلسه آموزشی دارای اسلاید نیست."
+      },
+      {
+        "id": "s31",
+        "order": 31,
+        "date_label": "Thur, Apr 23",
+        "title_en": "Course Summary",
+        "slides": [
+          {
+            "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/28-Course-Summary.pdf",
+            "retrieved_at_utc": "2026-10-25T08:45:02.100600+00:00",
+            "final_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/28-Course-Summary.pdf",
+            "retrieval_tool": "curl with TLS verification",
+            "sha256": "447b6796f437ba722b2c07cbbc71fd194bc8576ad071bd1b1cdcf2ea78b8f592",
+            "byte_count": 1446351,
+            "download_status": "ok",
+            "page_count": 27,
+            "text_pages": 26,
+            "review_status": "partial",
+            "notes_fa": "متن همه صفحات استخراج شد؛ عنوان‌ها و بخش‌بندی‌ها و نمونه‌هایی از متن بررسی شدند. این وضعیت به معنی بازبینی علمی یا بصری همه اسلایدها نیست.",
+            "text_extraction_status": "complete",
+            "sparse_text_pages": [
+              23,
+              27
+            ],
+            "text_sha256": "80cd5dfaecee9725777b70ae9f2cb2cf449adf395a5563199b0c5436443447ef",
+            "page_numbering": "1-based PDF page order",
+            "local_copy_published": false,
+            "visual_pages_reviewed": []
+          }
+        ],
+        "readings": [],
+        "readings_text": "",
+        "assignment_labels": [],
+        "assignment_access": "none",
+        "review_notes": [],
+        "content_status": "original_outline",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "مرور درس و ادامه مسیر",
+        "topic_tags": [
+          "reflection",
+          "project",
+          "learning-plan"
+        ],
+        "overview_fa": "در پایان، دانشجو باید بتواند انتخاب معماری، روش آموزش و ارزیابی را برای یک مسئله توجیه کند. مرور پروژه و خطاهای آن مبنای انتخاب گام بعدی یادگیری است.",
+        "objectives_fa": [
+          "برای یک مسئله تازه طرح مدل و ارزیابی بنویس.",
+          "آنچه هنوز نمی‌دانی را با آزمایش بعدی پیوند بده."
+        ],
+        "kind": "lecture"
+      },
+      {
+        "id": "s32",
+        "order": 32,
+        "date_label": "Wed, Apr 29",
+        "title_en": "No Class (Final Exam Week)",
+        "slides": [],
+        "readings": [],
+        "readings_text": "",
+        "assignment_labels": [
+          "Final Project Report (due TODAY)"
+        ],
+        "assignment_access": "public",
+        "review_notes": [],
+        "content_status": "source_link_only",
+        "objectives_origin": "independently_authored_suggested_learning_outcomes",
+        "title_fa": "هفته آزمون نهایی؛ بدون کلاس",
+        "kind": "exam",
+        "topic_tags": [],
+        "objectives_fa": [],
+        "overview_fa": "این ردیف برای حفظ تقویم و ترتیب رسمی ترم نگه داشته شده است؛ جلسه آموزشی دارای اسلاید نیست."
+      }
+    ],
+    "reading_access_note_fa": "کتاب Nielsen و مقاله‌ها به منبع اصلی پیوند می‌خورند. صفحه درس، دسترسی رایگان کتاب Kamath را مشروط به شبکه یا VPN دانشگاه می‌داند؛ عمومی بودن نشانی به معنی دسترسی آزاد همگان یا مجوز بازنشر نیست.",
+    "license": {
+      "status": "no_explicit_slide_reuse_license_found",
+      "evidence_urls": [
+        "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/",
+        "https://dannagurari.colorado.edu/wp-content/uploads/2025/12/2026-NNandDL-Syllabus.pdf"
+      ],
+      "notes_fa": "در صفحه رسمی، متن استخراج‌شده اسلایدها و سیلابس، مجوز صریح ترجمه یا بازنشر اسلایدها یافت نشد. صفحه ۹ سیلابس اشتراک ضبط کلاس را برای خارج کلاس منع می‌کند؛ این بند مجوز اسلاید نیست. بنا بر تصمیم کاربر، اصل اسلاید فقط از نشانی رسمی باز می‌شود و درسنامه فارسی مستقل نوشته می‌شود.",
+      "user_reuse_permission": "none_confirmed_by_user",
+      "publication_mode": "official_source_links_and_independently_authored_persian_lessons",
+      "recordings": "restricted_to_enrolled_class_students"
+    },
+    "project": {
+      "summary_fa": "پروژه مستقل در حوزه شبکه عصبی با طرح اولیه، ارائه و ارزیابی همتایان تعریف شده است؛ صفحه عمومی برای بخش تحصیلات تکمیلی گزارش نهایی جداگانه می‌خواهد. شرایط نمره‌دهی تاریخی دوره به پیشرفت خودآموز منتقل نمی‌شود.",
+      "source_url": "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/",
+      "course_grade_weight_percent": 30,
+      "milestones": [
+        {
+          "id": "outline",
+          "title_fa": "طرح اولیه",
+          "schedule_row": "s25",
+          "schedule_date_label": "Thur, Apr 2",
+          "requirements_summary_fa": "طرح ۳ تا ۴ صفحه، بدون منابع، شامل پرسش، پیشینه، روش و ارزیابی پیشنهادی.",
+          "weight_percent": {
+            "CSCI5922": 20,
+            "CSCI4922": 40
+          }
+        },
+        {
+          "id": "presentation",
+          "title_fa": "ارائه پروژه",
+          "schedule_row": "s29",
+          "schedule_date_label": "Thur, Apr 16",
+          "requirements_summary_fa": "پوستر PDF و پیوند ویدئوی ۴ دقیقه‌ای.",
+          "weight_percent": {
+            "CSCI5922": 20,
+            "CSCI4922": 40
+          }
+        },
+        {
+          "id": "peer-evaluation",
+          "title_fa": "ارزیابی همتایان",
+          "schedule_row": "s30",
+          "schedule_date_label": "Tue, Apr 21",
+          "weight_percent": {
+            "CSCI5922": 10,
+            "CSCI4922": 20
+          }
+        },
+        {
+          "id": "report",
+          "title_fa": "گزارش نهایی تحصیلات تکمیلی",
+          "schedule_row": "s32",
+          "schedule_date_label": "Wed, Apr 29",
+          "requirements_summary_fa": "حداقل ۷ صفحه بدون منابع؛ ویژه CSCI 5922 در صفحه عمومی.",
+          "weight_percent": {
+            "CSCI5922": 50,
+            "CSCI4922": 0
+          }
+        }
+      ],
+      "date_interpretation_fa": "تاریخ‌ها تاریخ ردیف برنامه هستند؛ موعد دقیق همه تکالیف از آن‌ها استنتاج نشده، زیرا سرستون موعد معمول جمعه پس از جلسه را ذکر می‌کند.",
+      "source_discrepancies": [
+        {
+          "kind": "administrative_not_scientific",
+          "sources": [
+            "https://dannagurari.colorado.edu/wp-content/uploads/2025/12/2026-NNandDL-Syllabus.pdf#page=4",
+            "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+          ],
+          "note_fa": "سیلابس صفحه ۴ از گزارش طولانی‌تر تحصیلات تکمیلی حرف می‌زند، اما صفحه پروژه گزارش نهایی را فقط برای 5922 و وزن آن را برای 4922 صفر اعلام می‌کند. مرجع عملی مسیر خودآموز صفحه پروژه است و تفاوت اسناد باید آشکار بماند."
+        }
+      ]
+    },
+    "coverage": {
+      "schedule_rows": 32,
+      "lecture_pdf_count": 21,
+      "lecture_pdf_pages": 1303,
+      "syllabus_pages": 9,
+      "successful_slide_downloads": 21,
+      "failed_slide_downloads": 0,
+      "text_extraction": "all 1303 lecture pages plus 9 syllabus pages",
+      "content_review": "all deck agendas and sampled content; not full slide-by-slide scientific review",
+      "visual_review": [
+        {
+          "file": "02-Artificial-Neurons.pdf",
+          "pages": [
+            27
+          ]
+        },
+        {
+          "file": "05-Convolutional-Neural-Networks.pdf",
+          "pages": [
+            49
+          ]
+        },
+        {
+          "file": "17-Post-Training-Foundation-Models.pdf",
+          "pages": [
+            60
+          ]
+        },
+        {
+          "file": "21-Responsible-NN-and-DL.pdf",
+          "pages": [
+            27
+          ]
+        }
+      ],
+      "visual_reviewed_slide_pages": 4,
+      "full_visual_review_complete": false,
+      "full_scientific_review_complete": false,
+      "full_translation_complete": false,
+      "persian_content": "independent short outlines and suggested objectives only",
+      "official_assignment_documents_public": false,
+      "problem_set_count": 3,
+      "lab_assignment_count": 3,
+      "recordings_public": false,
+      "missing_materials": "No public lecture slides linked for practical Q&A, ethics game, four guest lectures, project-presentation session; recordings and lab/problem-set descriptions remain in Canvas.",
+      "extraction_tool": "PyMuPDF 2.0",
+      "download_tool": "curl with TLS verification"
+    }
+  }
+}

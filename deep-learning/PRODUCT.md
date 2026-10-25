@@ -2,6 +2,49 @@
 
 <!-- impeccable:product-schema 1 -->
 
+## Approved rebuild direction — 2026-10-25
+
+The source authority for the replacement course is Danna Gurari's official
+University of Colorado Boulder course archive:
+<https://dannagurari.colorado.edu/courses/>. The owner requested five independent
+learning paths: Spring 2026, Spring 2025, Spring 2024, Fall 2022 and Spring 2022.
+The previously supplied local slides no longer define the target curriculum.
+
+The owner confirmed there is no permission to translate/re-publish entire slide
+decks and chose official slide links with independently authored Persian lessons.
+Do not modify or publicly mirror the original slides. Every correction belongs
+in a separate annotation identifying semester, PDF page, reason, evidence and
+whether it is a verified error, historical update, clarification or open question.
+
+The replacement lives under `deep-learning/`: term-specific sequence, lessons,
+original exercises, Shiny/Shinylive laboratories, provenance and correction notes.
+A shared concept or laboratory may be reused, but semester ordering, page
+references, assignments and learner progress must stay distinct. Canvas-only
+homework is unavailable; original practice must never be presented as official
+homework. Historical deadlines are context, not current submission dates.
+
+Preserve the established Arad/RTL visual system. Each lesson should connect an
+objective, the original source, a clear Persian explanation, a worked example,
+practice, a suitable laboratory and reflection. Small public laboratories should
+execute actual Python updates through Shinylive; heavy training should use an
+explicitly separate reproducible notebook/project. Never label replay as live
+training or four-row Boolean fitting as held-out generalization.
+
+Migration replaces the old curriculum and entry flow. Reuse useful tested
+numerical engines where they fit the official material. Karpathy/autograd may
+be a clearly attributed supplementary laboratory beneath this course, never
+part of Danna's own syllabus. Preserve old URLs and browser progress without
+converting old completion marks into completion of the new semesters.
+
+**Delivery state:** source inventories and the rebuild contract are development
+artifacts. The site below is still the earlier shipped implementation. Full
+slide-by-slide review, complete Persian lessons, new routes and live Python
+laboratories are pending; inventory/extraction must not be described as course
+completion. See `data/metadata/rebuild-contract.json` and the research report in
+`reports/` for the execution plan and current evidence.
+
+## Earlier shipped implementation (migration baseline)
+
 ## Platform
 
 web

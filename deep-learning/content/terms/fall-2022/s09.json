@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "term_id": "fall-2022",
+  "session_id": "s09",
+  "concept_ids": [
+    "regularization"
+  ],
+  "source_guides": [
+    {
+      "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/08-Regularization.pdf",
+      "sha256": "126c23873750374a7dd0acd9e871c320b08bbcac4ba859da582e4daa228a84b5",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 7,
+          "topic_fa": "زمینه تاریخی و تعریف منظم‌سازی"
+        },
+        {
+          "start": 8,
+          "end": 18,
+          "topic_fa": "ظرفیت،جریمه،α و هندسه L1/L2"
+        },
+        {
+          "start": 19,
+          "end": 21,
+          "topic_fa": "توقف با validation"
+        },
+        {
+          "start": 22,
+          "end": 26,
+          "topic_fa": "افزایش داده و حفظ برچسب"
+        },
+        {
+          "start": 27,
+          "end": 33,
+          "topic_fa": "ensemble و bootstrap"
+        },
+        {
+          "start": 34,
+          "end": 41,
+          "topic_fa": "dropout و مقیاس آموزش/استنتاج"
+        },
+        {
+          "start": 42,
+          "end": 45,
+          "topic_fa": "مقیاس ویژگی و conditioning"
+        },
+        {
+          "start": 46,
+          "end": 51,
+          "topic_fa": "BN و تفاوت آموزش/استنتاج"
+        },
+        {
+          "start": 52,
+          "end": 54,
+          "topic_fa": "جمع‌بندی و تصویر پایان"
+        },
+        {
+          "start": 55,
+          "end": 55,
+          "topic_fa": "مقایسه محورهای BN/LN/IN/GN"
+        }
+      ]
+    }
+  ],
+  "differences_fa": [
+    "نسخه پاییز۵۵صفحه دارد؛۱۴ و۱۵ توضیح α و ارجاع مشتق جریمه را اضافه کرده‌اند و جای تمثیل کمربند با بحث وزن بزرگ عوض شده است.",
+    "early stopping در۲۰/۲۱ و dropout در۳۶ همان اصلاح‌های علمی را نیاز دارند؛ نمونه۸ در۳۲ یعنی تشخیص رقم۸، نه تعداد مدل‌ها.",
+    "ترتیب BN فرق دارد:۴۸ فرمول آموزش و۴۹ پرسش پارامترهاست. نویز در جمله افزوده۵۰ مربوط به آمار mini-batch آموزش است، نه تزریق نویز در inference ثابت.",
+    "صفحه۵۵ بعد از تصویر پایان،شکل مقایسه محورهای BN/LN/IN/GN دارد و در نسخه بهار نیست؛این صفحه نیز در پوشش آمده است."
+  ],
+  "additional_exercises": [
+    {
+      "id": "l2-gradient",
+      "prompt_fa": "اگر جریمه R=αw² باα=۰٫۱ وw=۳ باشد، مشتق جریمه نسبت بهw چقدر است؟",
+      "hints_fa": [
+        "ضریب۲ را فراموش نکنید."
+      ],
+      "solution_fa": "۲αw=۲×۰٫۱×۳=۰٫۶. این فقط سهم جریمه است و باید با مشتق زیان داده جمع شود.",
+      "source_kind": "original",
+      "answer": {
+        "kind": "number",
+        "value": 0.6,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "id": "bn-test-noise",
+      "prompt_fa": "در inference استاندارد BN با آمار ثابت و سایر عملیات قطعی، آیا عوض‌شدن همراهان تصویر در batch خروجی آن را تغییر می‌دهد؟ توضیح دهید.",
+      "hints_fa": [
+        "میانگین و واریانس از کجا می‌آیند؟"
+      ],
+      "solution_fa": "خیر؛ آمار ذخیره‌شده آموزش و γ/β ثابت استفاده می‌شود. استفاده از آمار batch جدید یعنی رفتار training یا پروتکل سازگاری دیگری،که با inference استاندارد یکی نیست.",
+      "source_kind": "original",
+      "answer": {
+        "kind": "manual",
+        "criteria_fa": [
+          "اشاره به آمار ذخیره‌شده و پارامترهای ثابت",
+          "تمایز training از inference و شرط سایر عملیات قطعی"
+        ]
+      }
+    }
+  ],
+  "review_file": "data/reviews/fall-2022/s09.json"
+}

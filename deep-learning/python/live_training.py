@@ -28,14 +28,14 @@ class TrainingRun:
             raise ValueError("Seed must be a nonnegative 32-bit integer")
         if not isinstance(max_epochs, int) or not 1 <= max_epochs <= 10000:
             raise ValueError("Epoch budget must be between 1 and 10000")
-        self.config = dict(
-            gate=gate,
-            model=model,
-            hidden=hidden,
-            learning_rate=learning_rate,
-            seed=seed,
-            max_epochs=max_epochs,
-        )
+        self.config = {
+            "gate": gate,
+            "model": model,
+            "hidden": hidden,
+            "learning_rate": learning_rate,
+            "seed": seed,
+            "max_epochs": max_epochs,
+        }
         self.targets = GATES[gate][:]
         self.epoch = 0
         self.network = None

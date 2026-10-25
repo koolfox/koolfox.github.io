@@ -35,7 +35,12 @@ def build_site(repository: Path, output: Path):
         shutil.copyfile(learning / name, learning_target / name)
     shutil.copytree(learning / "assets", learning_target / "assets")
     (learning_target / "python").mkdir()
-    for name in ("logic_gates.py", "live_training.py", "README.md"):
+    for name in (
+        "logic_gates.py",
+        "live_training.py",
+        "network_playground.py",
+        "README.md",
+    ):
         shutil.copyfile(learning / "python" / name, learning_target / "python" / name)
     subprocess.run(
         [
@@ -48,7 +53,10 @@ def build_site(repository: Path, output: Path):
         stdout=subprocess.DEVNULL,
     )
     runtime = learning / "results/shinylive"
-    if not (runtime / "neuron-xor/index.html").exists():
+    if any(
+        not (runtime / lab / "index.html").exists()
+        for lab in ("neuron-xor", "network-playground")
+    ):
         raise ValueError(
             "Export live laboratories first: uv run --project deep-learning/playgrounds "
             "python deep-learning/scripts/export_playgrounds.py "

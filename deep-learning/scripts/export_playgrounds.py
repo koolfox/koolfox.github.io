@@ -7,15 +7,28 @@ import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-LABS = ("neuron-xor",)
+LABS = ("neuron-xor", "network-playground")
 
 
 def stage(lab, destination):
     if lab not in LABS:
         raise ValueError(f"Unknown laboratory: {lab}")
-    shutil.copytree(ROOT / "playgrounds" / lab, destination)
-    for filename in ("logic_gates.py", "live_training.py"):
+    shutil.copytree(
+        ROOT / "playgrounds" / lab,
+        destination,
+        ignore=shutil.ignore_patterns("__pycache__", "*.pyc"),
+    )
+    modules = (
+        ("logic_gates.py", "live_training.py")
+        if lab == "neuron-xor"
+        else ("network_playground.py",)
+    )
+    for filename in modules:
         shutil.copyfile(ROOT / "python" / filename, destination / filename)
+    if lab != "neuron-xor":
+        shutil.copyfile(
+            ROOT / "playgrounds/neuron-xor/www/lab.css", destination / "www/lab.css"
+        )
     shutil.copyfile(
         ROOT.parent / "assets/fonts/arad.woff2", destination / "www/arad.woff2"
     )

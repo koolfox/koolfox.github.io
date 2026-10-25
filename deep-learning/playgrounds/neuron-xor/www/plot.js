@@ -70,7 +70,10 @@
       c.fillStyle=muted;c.font='13px system-ui';c.fillText(n>8?`${n} units (8 shown)`:`${n} units`,pos(l,0)[0],H-20);
     });
   }
-  function draw(state){window.dannaLab={state,forward:(inputs)=>forward(state,inputs)};surface(state);loss(state);network(state)}
+  function draw(state){
+    if(!state){delete window.dannaLab;for(const id of ['decision','loss-chart','network'])context(id);return;}
+    window.dannaLab={state,forward:(inputs)=>forward(state,inputs)};surface(state);loss(state);network(state);
+  }
   function setup(){
     if(!window.Shiny){setTimeout(setup,50);return;}
     window.Shiny.addCustomMessageHandler('danna_training',draw);

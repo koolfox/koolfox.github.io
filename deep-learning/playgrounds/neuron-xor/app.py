@@ -248,8 +248,7 @@ def server(input, output, session):
     async def send_plot():
         input.plot_ready()
         state = snapshot()
-        if state:
-            await session.send_custom_message("danna_training", state)
+        await session.send_custom_message("danna_training", state)
 
     @render.text
     def status():

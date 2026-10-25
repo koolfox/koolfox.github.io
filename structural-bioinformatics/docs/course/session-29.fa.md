@@ -35,7 +35,7 @@ python3 structural-bioinformatics/assets/course/learning_lab.py graph --cutoff 4
 python3 structural-bioinformatics/assets/course/learning_lab.py graph --cutoff 5
 ```
 
-![یک هندسهٔ ثابت با سه یال در آستانه ۴٫۱ و پنج یال در آستانه ۵](../../assets/course/figures/contact-network.svg)
+[![یک هندسهٔ ثابت با سه یال در آستانه ۴٫۱ و پنج یال در آستانه ۵](../../assets/course/figures/contact-network.svg)](../../assets/course/figures/contact-network.svg)
 
 مختصات چهار گره در دو پنل یکسان است. فقط آستانهٔ تعریف یال تغییر کرده و یال‌های A–D و C–D اضافه شده‌اند. کنار هر گره تعداد همسایه‌ها نوشته شده است. این شبکهٔ ساختگی نشان می‌دهد که بخشی از نتیجه به انتخاب مدل بستگی دارد؛ یک شبکهٔ آزمایشی پروتئین نیست.
 

@@ -68,6 +68,14 @@
 .restored-course .reading{padding:0;max-width:none}
 .restored-course pre{white-space:pre-wrap}}
 .restored-course article img{max-width:100%;height:auto;display:block;margin:24px auto;background:white}
+.restored-course #lesson-outline{border-block:1px solid var(--line);padding:16px 0;margin:20px 0 32px;font-size:.9rem}
+.restored-course #lesson-outline p{font-weight:650;margin-bottom:8px}
+.restored-course #lesson-outline ul{margin:0;padding-inline-start:20px;columns:2;column-gap:24px}
+.restored-course #lesson-outline li{break-inside:avoid}
+.restored-course #lesson-outline a{display:inline-block;padding:8px 0;min-height:44px}
+.restored-course #lesson h2{scroll-margin-top:24px}
+@media(max-width:600px){.restored-course #lesson-outline ul{columns:1}}
+@media print{.restored-course #lesson-outline{display:none}}
 .restored-course aside nav>details{border-bottom:1px solid var(--line);padding:6px 0}
 .restored-course aside nav>details>summary{font-weight:650;line-height:1.8}
 .restored-course aside nav>details a{margin-inline-start:12px}

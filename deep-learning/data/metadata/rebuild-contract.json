@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "decision_date": "2026-10-25",
+  "authority_url": "https://dannagurari.colorado.edu/courses/",
+  "source_strategy": "official_slide_links_with_original_persian_companions",
+  "permission": {
+    "full_slide_translation_and_republication": false,
+    "user_selected_original_slides_and_independent_lessons": true,
+    "preserve_original_bytes": true
+  },
+  "planned_routes": {
+    "hub": "/deep-learning/",
+    "term": "/deep-learning/terms/{term_id}/",
+    "session": "/deep-learning/terms/{term_id}/{session_id}/",
+    "playgrounds": "/deep-learning/playgrounds/",
+    "supplementary_autograd": "/deep-learning/supplements/autograd/",
+    "source_register": "/deep-learning/sources/",
+    "corrections": "/deep-learning/corrections/"
+  },
+  "terms": ["spring-2026", "spring-2025", "spring-2024", "fall-2022", "spring-2022"],
+  "session_sections": [
+    "prerequisites", "learning_objectives", "official_slides", "original_persian_lesson",
+    "worked_example", "glossary", "original_exercises", "playground_or_practical_lab",
+    "reflection", "references_and_corrections"
+  ],
+  "separate_evidence_states": [
+    "discovered", "downloaded", "text_extracted", "text_reviewed", "visual_reviewed",
+    "scientific_reviewed", "persian_authored", "exercise_verified", "browser_verified", "published"
+  ],
+  "migration_rules": {
+    "replace_uploaded_slide_curriculum": true,
+    "retain_history_and_useful_tested_engines": true,
+    "old_progress_is_not_new_semester_completion": true,
+    "karpathy_is_supplementary_not_danna_curriculum": true,
+    "preserve_old_urls_with_compatibility_routes": true,
+    "unrelated_coursework_unchanged": true
+  },
+  "exercise_policy": {
+    "canvas_material_is_unavailable_without_authorized_access": true,
+    "original_exercises_are_labeled_original": true,
+    "historical_due_dates_are_not_current_deadlines": true,
+    "solutions_are_separate_and_revealable": true
+  },
+  "playground_plan": {
+    "framework": "Shiny for Python (Core)",
+    "public_execution": "Shinylive/Pyodide in browser for supported small labs",
+    "numerical_core": "pure Python and NumPy, independent of UI",
+    "training": "actual incremental updates with pause, step, reset and reproducible seed",
+    "heavy_workloads": "separately runnable notebook or Python project, labeled resource requirements",
+    "first_vertical_slice": "artificial neuron, perceptron, XOR and multilayer network",
+    "status": "planned_not_implemented"
+  },
+  "correction_policy": {
+    "source_files_modified": false,
+    "require_original_url_and_pdf_page": true,
+    "require_reason_and_primary_evidence_or_reproducible_calculation": true,
+    "categories": ["verified_error", "historical_update", "clarification", "candidate_needs_review"],
+    "do_not_present_candidates_as_confirmed": true
+  },
+  "release_policy": {
+    "incremental_tested_pages_releases": true,
+    "download_is_not_review": true,
+    "inventory_is_not_a_complete_course": true,
+    "claim_live_only_after_deployment_and_url_verification": true
+  }
+}

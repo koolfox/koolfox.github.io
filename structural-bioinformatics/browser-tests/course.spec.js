@@ -2,6 +2,26 @@ import { test, expect } from '@playwright/test';
 const root='/structural-bioinformatics/';
 const sections=['course','research','library','papers','structures','datasets','docking','exercises','presentations'];
 
+test('long lessons have usable section links, deep links and history without redundant requests',async({page})=>{
+ let fetches=0;page.on('request',r=>{if(r.url().includes('/docs/course/session-08.fa.md'))fetches++;});
+ await page.goto(`${root}course.html?topic=8`);
+ const practice=page.locator('#lesson-outline a').filter({hasText:'کار عملی'});
+ await expect(practice).toHaveCount(1);
+ await page.evaluate(()=>{document.querySelector('#lesson').dataset.preserved='yes';});
+ await practice.click();
+ const anchor=new URL(page.url()).hash;
+ await expect(page.locator(anchor)).toBeInViewport();
+ await expect(page.locator('#lesson')).toHaveAttribute('data-preserved','yes');
+ expect(fetches).toBe(1);
+ await page.reload();await expect(page.locator(anchor)).toBeInViewport();
+ const headingCount=await page.locator('#lesson h2').count();
+ await expect(page.locator('#lesson-outline a')).toHaveCount(headingCount);
+ await page.locator('#next').click();await expect(page).toHaveURL(/topic=9$/);
+ await page.goBack();await expect(page.locator(anchor)).toBeInViewport();
+ await expect(page.locator('#lesson img')).toHaveJSProperty('complete',true);
+ expect(await page.locator('#lesson img').evaluate(img=>img.naturalWidth)).toBeGreaterThan(0);
+});
+
 test('the directory links to two primary paths with independently usable research resources',async({page,request})=>{
  await page.goto(root);
  await expect(page.locator('#section-nav a')).toHaveCount(2);

@@ -1,5 +1,5 @@
 # Teaching protocol, not a reported executed VMD result.
-# vmd -dispdev text -e vmd-geometry.tcl -args /absolute/path/3wd5.pdb
+# vmd -dispdev text -e vmd-geometry.tcl -args /absolute/path/1ubq-protein.pdb
 if {[llength $argv] != 1} { error "Pass one absolute PDB path after -args" }
 set path [lindex $argv 0]
 if {![file exists $path]} { error "PDB file not found: $path" }

@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2025",
+  "session_id": "s03",
+  "concept_ids": [
+    "feedforward-network"
+  ],
+  "source_guides": [
+    {
+      "url": "https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/03-Feedforward_NN.pdf",
+      "sha256": "3db19014c99dc0a286e9f8e29f8cd1b84e3e2f439c5a2c25183e18c9e3027a79",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 6,
+          "topic_fa": "مرور و انگیزه تاریخی"
+        },
+        {
+          "start": 7,
+          "end": 13,
+          "topic_fa": "XOR و مرز خطی"
+        },
+        {
+          "start": 14,
+          "end": 34,
+          "topic_fa": "لایه پنهان، پارامترها و فعال‌سازی"
+        },
+        {
+          "start": 35,
+          "end": 48,
+          "topic_fa": "محاسبه XOR با ReLU"
+        },
+        {
+          "start": 49,
+          "end": 67,
+          "topic_fa": "خروجی رگرسیون، دودویی، چندبرچسبی و چندکلاسه"
+        },
+        {
+          "start": 68,
+          "end": 76,
+          "topic_fa": "MSE و cross-entropy"
+        },
+        {
+          "start": 77,
+          "end": 79,
+          "topic_fa": "جمع‌بندی و اشاره به برنامه‌نویسی"
+        }
+      ]
+    }
+  ],
+  "differences_fa": [
+    "در این نسخه معماری شمارش ۳→۴→۴→۱ و مجموع پارامتر ۴۱ است.",
+    "مثال XOR با ReLU و وزن خروجی −۲ ساخته شده است؛ جدول ۰/۱ را با شبکه دارای خروجی ±۱ اشتباه نگیرید.",
+    "PDF شامل ۷۹ صفحه است و پویانمایی‌های مرحله‌ای XOR هر کدام صفحه مستقل‌اند.",
+    "عنوان ۲۰۲۵ است اما URL چاپ‌شده صفحه اول به ۲۰۲۴ اشاره می‌کند.",
+    "کد بخش Programming tutorial در این PDF موجود نیست."
+  ],
+  "additional_exercises": [
+    {
+      "id": "parameters-transfer-2025",
+      "prompt_fa": "اگر شبکه کاملاً متصل ۳→۴→۴→۱ را به ۳→۵→۴→۱ تغییر دهیم، با یک بایاس برای هر واحد غیرورودی چند پارامتر داریم؟",
+      "hints_fa": [
+        "وزن و بایاس هر لایه را جدا بشمارید."
+      ],
+      "solution_fa": "۱۵+۲۰+۴=۳۹ وزن و ۵+۴+۱=۱۰ بایاس، در مجموع ۴۹ پارامتر.",
+      "source_kind": "original",
+      "answer": {
+        "kind": "number",
+        "value": 49,
+        "tolerance": 0
+      }
+    }
+  ],
+  "review_file": "data/reviews/spring-2025/s03.json"
+}

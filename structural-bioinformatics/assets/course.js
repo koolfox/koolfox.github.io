@@ -4,6 +4,7 @@ const $=selector=>document.querySelector(selector);
 const exercise=document.body.dataset.section==='exercises';
 const page=exercise?'exercises.html':'course.html';
 let course,thread,quizBank,active,activeQuiz,quizReady=false,revision=0;
+let renderedTopicURL=null;
 let storageAvailable=true;
 function stored(key) { try {const value=JSON.parse(localStorage.getItem(key)||'{}');return value&&typeof value==='object'&&!Array.isArray(value)?value:{};}catch{storageAvailable=false;return {};}}
 const progressKey=exercise?'tnf-course-progress-v1':'structural-education-progress-v1';
@@ -12,9 +13,27 @@ async function getJSON(path) {const response=await fetch(path,{signal:AbortSigna
 function storageNote() {if($('#storage-note'))$('#storage-note').textContent=storageAvailable?'یادداشت و پاسخ در همین مرورگر ذخیره می‌شوند.':'مرورگر اجازهٔ ذخیره نداد؛ یادداشت خود را پیش از خروج نگه دارید.';}
 function saveQuizzes() {try{localStorage.setItem('tnf-course-quizzes-v1',JSON.stringify(quizRecords));}catch{storageAvailable=false;}storageNote();}
 function link(text,href) {const a=document.createElement('a');a.textContent=text;a.href=href;return a;}
+function lessonOutline(n) {
+ const outline=$('#lesson-outline'),headings=[...$('#lesson').querySelectorAll('h2')];
+ outline.replaceChildren();outline.hidden=headings.length<2;
+ if(outline.hidden)return;
+ const title=document.createElement('p');title.textContent='در این مبحث';
+ const list=document.createElement('ul');
+ headings.forEach((heading,index)=>{
+  heading.id=`lesson-${n}-section-${index+1}`;heading.tabIndex=-1;
+  const item=document.createElement('li');item.append(link(heading.textContent,`#${heading.id}`));list.append(item);
+ });
+ outline.append(title,list);
+}
+function scrollToSection() {
+ let id;try{id=decodeURIComponent(location.hash.slice(1));}catch{return false;}
+ const target=id&&document.getElementById(id);
+ if(!target||!$('#lesson').contains(target))return false;
+ target.scrollIntoView({block:'start'});return true;
+}
 async function render(focus=false) {
  if(!exercise&&new URLSearchParams(location.search).has("document"))return;
- const ticket=++revision;quizReady=false;
+ const ticket=++revision;quizReady=false;renderedTopicURL=null;$('#lesson-outline').hidden=true;
  $('#status').textContent='در حال دریافت متن…';$('#retry').hidden=true;
  try {
   if(!course)course=await getJSON('data/metadata/learning-course.json');
@@ -24,7 +43,7 @@ async function render(focus=false) {
   const invalid=!Number.isInteger(n)||n<1||n>course.sessions.length;if(invalid)n=1;
   active=course.sessions[n-1];const blocks=[...new Set(course.sessions.map(t=>t.block))];
   const step=exercise?thread.steps.find(s=>s.topic===n):{unit:blocks.indexOf(active.block)+1};
-  history.replaceState(null,'',`${page}?topic=${n}`);
+  history.replaceState(null,'',`${page}?topic=${n}${location.hash}`);
   $('#session-title').textContent=active.title;document.title=active.title+' | '+(exercise?'تمرین‌ها':'درسنامه');
   $('#position').textContent=`فصل ${step.unit.toLocaleString('fa-IR')} · مبحث ${n.toLocaleString('fa-IR')}`;
   $('#prerequisites').replaceChildren(document.createTextNode(n===1?'مفاهیم از پایه توضیح داده می‌شوند.':'پیشنهاد پیش‌نیاز: '));
@@ -36,6 +55,7 @@ async function render(focus=false) {
   const body=source.split('\n').slice(1).join('\n');if(!body.trim())throw Error('missing text');
   if(window.markdownit)$('#lesson').innerHTML=window.markdownit({html:false,linkify:false}).render(body);else $('#lesson').textContent=body;
   $('#lesson').querySelectorAll('a[href],img[src]').forEach(node=>{const attr=node.tagName==='IMG'?'src':'href';const url=new URL(node.getAttribute(attr),new URL(exercise?active.exercise_path:active.path,location.href));if(['http:','https:'].includes(url.protocol))node.setAttribute(attr,url.href);else node.removeAttribute(attr);});
+  lessonOutline(n);
   if(exercise)$('#topic-links').replaceChildren(link('مفهوم عمومی این مبحث',`course.html?topic=${n}`),link('ارائهٔ این پژوهش',`presentations.html?topic=${n}`));
   else $('#topic-links').replaceChildren(link('کاربرد این آموخته در پژوهش',`research.html?unit=${step.unit}#learning-application-${step.unit}`));
   if(!exercise&&step.unit===8)$('#topic-links').append(link('کارگاه آموزشی داکینگ','docking.html'));
@@ -43,7 +63,9 @@ async function render(focus=false) {
   if(exercise) {await Promise.all([renderQuiz(n,ticket),renderDatasetWorkflow($('#dataset-workflow'),step.unit).catch(()=>{$('#dataset-workflow').textContent='دستورکار داده دریافت نشد؛ صفحه را دوباره بارگذاری کنید.';})]);}
   else $('#progress').value=['new','read','practiced','skipped'].includes(progress[n])?progress[n]:'new';
   if(ticket!==revision)return;
-  $('#status').textContent=invalid?'شمارهٔ مبحث معتبر نبود؛ مبحث اول نمایش داده شد.':'';storageNote();if(focus)$('#session-title').scrollIntoView({block:'start'});
+  $('#status').textContent=invalid?'شمارهٔ مبحث معتبر نبود؛ مبحث اول نمایش داده شد.':'';storageNote();
+  renderedTopicURL=location.pathname+location.search;
+  if(!scrollToSection()&&focus)$('#session-title').scrollIntoView({block:'start'});
  }catch {$('#status').textContent='متن دریافت نشد؛ دوباره تلاش کنید یا از فهرست فصل‌ها مبحث دیگری را باز کنید.';$('#retry').hidden=false;}
 }
 function recordFor(n) {
@@ -121,8 +143,12 @@ $('#retry').addEventListener('click',()=>render());
 document.addEventListener('click',event=>{
  const a=event.target.closest('a[href]');if(event.defaultPrevented||!a||event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;
  const url=new URL(a.href);if(url.origin!==location.origin||url.pathname!==location.pathname||!url.searchParams.has('topic'))return;
+ if(url.search===location.search&&url.hash)return;
  event.preventDefault();history.pushState(null,'',url);void render(true);
 });
-addEventListener('popstate',()=>render(true));
+addEventListener('popstate',()=>{
+ if(renderedTopicURL===location.pathname+location.search){scrollToSection();return;}
+ void render(true);
+});
 if(matchMedia('(max-width:850px)').matches)$('#contents').open=false;
 if(exercise||!new URLSearchParams(location.search).has('document'))void render();

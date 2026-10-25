@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "term_id": "fall-2022",
+  "session_id": "s08",
+  "concept_ids": [
+    "image-classification"
+  ],
+  "source_guides": [
+    {
+      "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Lectures/07-CV_and_ImageClassification.pdf",
+      "sha256": "ee42d65eea7740566bb42071d75c677e1b6e1980952c3f18e1cdac658a40d3b9",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 4,
+          "topic_fa": "جلد،مرورترم و مسیرجلسه"
+        },
+        {
+          "start": 5,
+          "end": 20,
+          "topic_fa": "کاربردها و تغییرات دیداری"
+        },
+        {
+          "start": 21,
+          "end": 28,
+          "topic_fa": "داده مشترک و مسابقه"
+        },
+        {
+          "start": 29,
+          "end": 43,
+          "topic_fa": "LeNet،اشتراک وزن و تحلیل خطا"
+        },
+        {
+          "start": 44,
+          "end": 51,
+          "topic_fa": "ILSVRC و مقایسه نتایج"
+        },
+        {
+          "start": 52,
+          "end": 68,
+          "topic_fa": "گرادیان،ReLU،بایاس وAlexNet"
+        },
+        {
+          "start": 69,
+          "end": 77,
+          "topic_fa": "خطاهای تصویری و معماریVGG"
+        },
+        {
+          "start": 78,
+          "end": 91,
+          "topic_fa": "ResNet و محدودیت معیار انسانی"
+        },
+        {
+          "start": 92,
+          "end": 94,
+          "topic_fa": "استقبال تاریخی و نمایندگی جغرافیایی"
+        },
+        {
+          "start": 95,
+          "end": 97,
+          "topic_fa": "جمع‌بندی و عنوانtutorial"
+        }
+      ]
+    }
+  ],
+  "differences_fa": [
+    "نسخه پاییز۹۷صفحه است؛۳۹ شکل اتصال‌های هم‌وزن،۴۲ تحلیل۸۲خطایLeNet و۶۹ تحلیل۸نمونهAlexNet را اضافه می‌کند. واژهmislabeled در۴۲ بایدmisclassified خوانده شود.",
+    "صفحه۶۰ نقش بایاسReLU را می‌افزاید. فعال‌سازی تنک با نورون مرده دائمی یکی نیست؛ عبارتmax(0,1) برای مشتق در۵۹ همچنان غلط است.",
+    "دوصفحه مقداردهیXavier/ویولن بهار حذف شده‌اند؛ آن بحث را به پاییز نسبت نمی‌دهیم. صفحه۸۹ در مقایسه انسان،پروتکل۱۵۰۰تصویری را صریح‌تر کرده است.",
+    "خطای میانگین گرادیان۳۶–۳۹،عوامل وزن در۵۵،poolingهایAlexNet در۷۱/۷۲/۷۵ و انتساب نقشه۹۴ بهZhao2017 در راهنما اصلاح شده‌اند.",
+    "در۹۳ تعدادجست‌وجو۲۴٫۳میلیون و تاریخ۱۳سپتامبر۲۰۲۲ آمده؛ عدد تاریخی است. پایان فقط عنوانtutorial دارد و کد غایب ساخته نشده است."
+  ],
+  "additional_exercises": [
+    {
+      "id": "relu-bias-shift",
+      "prompt_fa": "برایu=−۰٫۴،خروجیmax(0,u+b) باb=۰٫۷ چه می‌شود؟",
+      "hints_fa": [
+        "ابتدا بایاس را جمع کنید."
+      ],
+      "solution_fa": "u+b=۰٫۳پس خروجی۰٫۳ است؛ بدون بایاس خروجی صفر بود.",
+      "source_kind": "original",
+      "answer": {
+        "kind": "number",
+        "value": 0.3,
+        "tolerance": 1e-09
+      }
+    }
+  ],
+  "review_file": "data/reviews/fall-2022/s08.json"
+}

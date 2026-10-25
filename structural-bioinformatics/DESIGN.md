@@ -326,3 +326,7 @@ Retain the established six-tab research workspace from 20 October: basics/learni
 ## Independent sections, 2026-10-25
 
 The user's latest direction supersedes the previous embedded workspace navigation. Preserve Arad, RTL, scientific figures and established colors. Use a quiet directory of descriptive rows on the homepage and normal page links for nine independent sections. Chapter navigation lives only in the course and topic selection in exercises/presentations. No global chapter context, tab switching or lesson/research/presentation phase controls. Resources open within the appropriate page, not an implicit course owner. Keep technical detail in the relevant tool or document rather than homepage navigation copy.
+
+## General education and parallel research, 2026-10-25 clarification
+
+The latest user clarification supersedes the nine-peer navigation. Use exactly two primary links: سرفصل آموزشی and پژوهش. Place the general docking workshop within education. Place project resources in research secondary navigation. Preserve Arad, colors and direct resource URLs. The course has independent prose and self-checks, with one optional link to its application in this study. Research chapter applications explain the concrete work and manuscript contribution; they never rewrite the public syllabus.

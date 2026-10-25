@@ -6,7 +6,8 @@ const page=exercise?'exercises.html':'course.html';
 let course,thread,quizBank,active,activeQuiz,quizReady=false,revision=0;
 let storageAvailable=true;
 function stored(key) { try {const value=JSON.parse(localStorage.getItem(key)||'{}');return value&&typeof value==='object'&&!Array.isArray(value)?value:{};}catch{storageAvailable=false;return {};}}
-let quizRecords=stored('tnf-course-quizzes-v1'), progress=stored('tnf-course-progress-v1');
+const progressKey=exercise?'tnf-course-progress-v1':'structural-education-progress-v1';
+let quizRecords=stored('tnf-course-quizzes-v1'), progress=stored(progressKey);
 async function getJSON(path) {const response=await fetch(path,{signal:AbortSignal.timeout(15000)});if(!response.ok)throw Error(path);return response.json();}
 function storageNote() {if($('#storage-note'))$('#storage-note').textContent=storageAvailable?'یادداشت و پاسخ در همین مرورگر ذخیره می‌شوند.':'مرورگر اجازهٔ ذخیره نداد؛ یادداشت خود را پیش از خروج نگه دارید.';}
 function saveQuizzes() {try{localStorage.setItem('tnf-course-quizzes-v1',JSON.stringify(quizRecords));}catch{storageAvailable=false;}storageNote();}
@@ -15,23 +16,28 @@ async function render(focus=false) {
  const ticket=++revision;quizReady=false;
  $('#status').textContent='در حال دریافت متن…';$('#retry').hidden=true;
  try {
-  if(!course||!thread)[course,thread]=await Promise.all([getJSON('data/metadata/learning-course.json'),getJSON('data/metadata/research-thread.json')]);
+  if(!course)course=await getJSON('data/metadata/learning-course.json');
+  if(exercise&&!thread)thread=await getJSON('data/metadata/research-thread.json');
   if(ticket!==revision)return;
   let n=Number(new URLSearchParams(location.search).get('topic')||1);
   const invalid=!Number.isInteger(n)||n<1||n>course.sessions.length;if(invalid)n=1;
-  active=course.sessions[n-1];const step=thread.steps.find(s=>s.topic===n);
+  active=course.sessions[n-1];const blocks=[...new Set(course.sessions.map(t=>t.block))];
+  const step=exercise?thread.steps.find(s=>s.topic===n):{unit:blocks.indexOf(active.block)+1};
   history.replaceState(null,'',`${page}?topic=${n}`);
   $('#session-title').textContent=active.title;document.title=active.title+' | '+(exercise?'تمرین‌ها':'درسنامه');
   $('#position').textContent=`فصل ${step.unit.toLocaleString('fa-IR')} · مبحث ${n.toLocaleString('fa-IR')}`;
   $('#prerequisites').replaceChildren(document.createTextNode(n===1?'مفاهیم از پایه توضیح داده می‌شوند.':'پیشنهاد پیش‌نیاز: '));
   active.prerequisites.forEach(id=>$('#prerequisites').append(link(course.sessions[id-1].title,`course.html?topic=${id}`)));
   document.querySelectorAll('#sessions a[data-topic]').forEach(a=>{const selected=Number(a.dataset.topic)===n;if(selected){a.setAttribute('aria-current','page');a.closest('details').open=true;}else a.removeAttribute('aria-current');});
-  const terms=$('#topic-terms');terms.replaceChildren();for(const term of step.terms){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=term.term;dd.textContent=term.meaning;terms.append(dt,dd);}$('#topic-example').textContent=step.example;
+  $('#foundations').hidden=!exercise;
+  if(exercise){const terms=$('#topic-terms');terms.replaceChildren();for(const term of step.terms){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=term.term;dd.textContent=term.meaning;terms.append(dt,dd);}$('#topic-example').textContent=step.example;}
   const response=await fetch(exercise?active.exercise_path:active.path,{signal:AbortSignal.timeout(15000)});if(!response.ok)throw Error('lesson');const source=await response.text();if(ticket!==revision)return;
   const body=source.split('\n').slice(1).join('\n');if(!body.trim())throw Error('missing text');
   if(window.markdownit)$('#lesson').innerHTML=window.markdownit({html:false,linkify:false}).render(body);else $('#lesson').textContent=body;
   $('#lesson').querySelectorAll('a[href],img[src]').forEach(node=>{const attr=node.tagName==='IMG'?'src':'href';const url=new URL(node.getAttribute(attr),new URL(exercise?active.exercise_path:active.path,location.href));if(['http:','https:'].includes(url.protocol))node.setAttribute(attr,url.href);else node.removeAttribute(attr);});
-  $('#topic-links').replaceChildren(link(exercise?'خواندن درس این مبحث':'تمرین و خودآزمایی این مبحث',`${exercise?'course':'exercises'}.html?topic=${n}`),link('اسلاید و یادداشت ارائه',`presentations.html?topic=${n}`));
+  if(exercise)$('#topic-links').replaceChildren(link('مفهوم عمومی این مبحث',`course.html?topic=${n}`),link('ارائهٔ این پژوهش',`presentations.html?topic=${n}`));
+  else $('#topic-links').replaceChildren(link('کاربرد این آموخته در پژوهش',`research.html?unit=${step.unit}#learning-application-${step.unit}`));
+  if(!exercise&&step.unit===8)$('#topic-links').append(link('کارگاه آموزشی داکینگ','docking.html'));
   for(const [id,target] of [['previous',n-1],['next',n+1]]) {const a=$('#'+id);a.hidden=target<1||target>course.sessions.length;if(!a.hidden)a.href=`${page}?topic=${target}`;}
   if(exercise) {await Promise.all([renderQuiz(n,ticket),renderDatasetWorkflow($('#dataset-workflow'),step.unit).catch(()=>{$('#dataset-workflow').textContent='دستورکار داده دریافت نشد؛ صفحه را دوباره بارگذاری کنید.';})]);}
   else $('#progress').value=['new','read','practiced','skipped'].includes(progress[n])?progress[n]:'new';
@@ -109,7 +115,7 @@ $("#clear-answer").addEventListener("click",() => {
 });
 $("#quiz-retry").addEventListener("click",()=>renderQuiz(active.session,revision));
 
-} else $('#progress').addEventListener('change',()=>{progress[active.session]=$('#progress').value;try{localStorage.setItem('tnf-course-progress-v1',JSON.stringify(progress));}catch{storageAvailable=false;}storageNote();});
+} else $('#progress').addEventListener('change',()=>{progress[active.session]=$('#progress').value;try{localStorage.setItem(progressKey,JSON.stringify(progress));}catch{storageAvailable=false;}storageNote();});
 $('#retry').addEventListener('click',()=>render());
 document.addEventListener('click',event=>{
  const a=event.target.closest('a[href]');if(event.defaultPrevented||!a||event.button!==0||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;

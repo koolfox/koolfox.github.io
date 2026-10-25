@@ -1,6 +1,6 @@
 # Structural bioinformatics project sections
 
-The homepage directs readers to nine independent pages: course, research, library, paper reviews, structural visualization, datasets, docking, exercises and presentations. This is the user's 2026-10-25 direction. The prior single-page workspace, six-tab navigation and global course ownership are superseded.
+The homepage exposes two primary paths: general education (سرفصل آموزشی), following the nine official Sharif chapters, and research (پژوهش). Docking teaching belongs to education. The project dataset, molecular viewers, paper reviews, applied exercises, library and presentations are research destinations in a secondary navigation. General lessons stand alone; optional chapter links lead to specific research applications. This supersedes the previous nine-peer-page navigation.
 
 Retain Arad, Persian RTL, neutral backgrounds and blue links. Use native page navigation with the current section marked. Each page explains what belongs there and exposes its own content. Chapter navigation is local to the course, exercise selection and presentation catalog. A scientific tool or library text does not require selecting a chapter.
 

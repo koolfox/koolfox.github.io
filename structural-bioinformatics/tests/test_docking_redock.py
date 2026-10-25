@@ -44,7 +44,7 @@ def test_the_protocol_names_the_gate_that_failed():
     assert checks["site_reproduced"]["passed"] is True
     assert checks["score_separates_sites"]["passed"] is False
     assert "امتیاز، جایگاه را تشخیص نداد" in text
-    assert "هیچ‌چیز در این سند دربارهٔ آدالیموماب" in text
+    assert "نتایج این تمرین به سامانهٔ CRP و فسفوکولین و همین تنظیم‌ها مربوط‌اند" in text
 
 
 def test_the_weekly_plan_status_follows_the_record():

@@ -41,15 +41,23 @@ try {
     };
     $('library-search').addEventListener('input',render);render();
   }
+  if(current==='research') {
+    const unit=Number(new URLSearchParams(location.search).get('unit'));
+    const application=$('learning-application-'+unit);
+    if(application){application.open=true;application.scrollIntoView({block:'start'});}
+  }
   if(current==='research'&&new URLSearchParams(location.search).has('topic')) {
     const n=Number(new URLSearchParams(location.search).get('topic'));
     const course=await fetch('data/metadata/learning-course.json').then(r=>r.json());
     const topic=course.sessions.find(t=>t.session===n);
     if(topic) {
-      const response=await fetch(topic.research_path);if(!response.ok)throw Error('research note');
+      const response=await fetch(new URLSearchParams(location.search).get('context')==='lesson'?topic.case_lesson_path:topic.research_path);if(!response.ok)throw Error('research note');
       const text=(await response.text()).split('\n').slice(1).join('\n');
       $('research-topic-title').textContent=topic.title;
       $('research-topic-body').innerHTML=window.markdownit({html:false}).render(text);
+      const caseLink=textNode('a',new URLSearchParams(location.search).get('context')==='lesson'?'یادداشت پژوهشی این مبحث':'مثال کاربردی این مطالعه');
+      caseLink.href=`research.html?topic=${n}${new URLSearchParams(location.search).get('context')==='lesson'?'':'&context=lesson'}#research-topic-note`;
+      $('research-topic-body').append(caseLink);
       $('research-topic-note').hidden=false;
       $('research-topic-note').scrollIntoView({block:'start'});
     }

@@ -2,18 +2,20 @@ import { test, expect } from '@playwright/test';
 const root='/structural-bioinformatics/';
 const sections=['course','research','library','papers','structures','datasets','docking','exercises','presentations'];
 
-test('the directory links to nine actual independent pages without a course gate',async({page,request})=>{
+test('the directory links to two primary paths with independently usable research resources',async({page,request})=>{
  await page.goto(root);
- await expect(page.locator('#section-nav a')).toHaveCount(9);
- await expect(page.locator('.section-directory article')).toHaveCount(9);
+ await expect(page.locator('#section-nav a')).toHaveCount(2);
+ await expect(page.locator('.section-directory article')).toHaveCount(2);
  await expect(page.locator('#lesson,#quiz-form,#molecular-stage,#chapter-context,[role=tab]')).toHaveCount(0);
  for(const section of sections) {
   const response=await request.get(`${root}${section}.html`);expect(response.ok()).toBe(true);
   expect(await response.text()).toContain(`data-section="${section}"`);
  }
- await page.getByRole('navigation',{name:'بخش‌های پروژه'}).getByRole('link',{name:'دیتاست‌ها',exact:true}).click();
+ await page.getByRole('navigation',{name:'مسیرهای اصلی'}).getByRole('link',{name:'پژوهش',exact:true}).click();
+ await page.locator('#research-nav').getByRole('link',{name:'دیتاست‌ها',exact:true}).click();
  await expect(page).toHaveURL(/datasets\.html/);
- await expect(page.locator('#section-nav [aria-current=page]')).toHaveText('دیتاست‌ها');
+ await expect(page.locator('#section-nav [aria-current=page]')).toHaveText('پژوهش');
+ await expect(page.locator('#research-nav [aria-current=page]')).toHaveText('دیتاست‌ها');
  await expect(page.locator('#sessions,#parts,#chapter-context')).toHaveCount(0);
 });
 
@@ -25,11 +27,11 @@ test('the course shows only lessons with nine chapters and thirty topic links',a
  await expect(page.locator('#parts,#quiz-form,#research-outcome,#dataset-workflow')).toHaveCount(0);
  await expect(page.locator('#lesson')).not.toContainText('کار این فصل در مقاله');
  await page.locator('#next').click();
- await expect(page.locator('#session-title')).toContainText('SASA');
+ await expect(page.locator('#session-title')).toContainText('شعاع');
  await page.goBack();await expect(page.locator('#session-title')).toContainText('RMSD');
- await page.locator('#topic-links').getByRole('link',{name:'تمرین و خودآزمایی این مبحث'}).click();
- await expect(page).toHaveURL(/exercises\.html\?topic=8/);
- await expect(page.locator('#lesson')).toContainText('--shift 10');
+ await page.locator('#topic-links').getByRole('link',{name:'کاربرد این آموخته در پژوهش'}).click();
+ await expect(page).toHaveURL(/research\.html\?unit=3/);
+ await expect(page.locator('#learning-application-3')).toHaveAttribute('open','');
 });
 
 test('separate lesson, exercise, research and speaker files remain accessible',async({request})=>{
@@ -134,4 +136,18 @@ test('all sections stay readable on mobile with native keyboard navigation',asyn
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   await page.locator('#section-nav a').first().focus();await expect(page.locator('#section-nav a').first()).toBeFocused();
  }
+});
+
+test('general lessons do not need research metadata and docking belongs to education',async({page})=>{
+ const requests=[];page.on('request',r=>requests.push(r.url()));
+ await page.route('**/data/metadata/research-thread.json',r=>r.abort());
+ await page.goto(`${root}course.html?topic=18`);
+ await expect(page.locator('#lesson')).toContainText('برهم‌کنش');
+ await expect(page.locator('#lesson')).not.toContainText('Hu');
+ expect(requests.some(url=>url.endsWith('/research-thread.json'))).toBe(false);
+ await expect(page.locator('#section-nav a')).toHaveCount(2);
+ await expect(page.locator('#section-nav [aria-current=page]')).toHaveText('سرفصل آموزشی');
+ await page.goto(`${root}docking.html`);
+ await expect(page.locator('#section-nav [aria-current=page]')).toHaveText('سرفصل آموزشی');
+ await expect(page.locator('#research-nav')).toHaveCount(0);
 });

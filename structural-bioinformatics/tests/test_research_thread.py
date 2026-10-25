@@ -15,7 +15,8 @@ def test_every_topic_has_a_concrete_research_step_and_valid_evidence_paths():
     course = read("learning-course.json")
     mapping = read("course-map.json")
     thread = read("research-thread.json")
-    assert thread["question"] == course["question"]
+    assert thread["question"] != course["question"]
+    assert course["research_question_file"] == "data/metadata/research-thread.json"
     assert [s["topic"] for s in thread["steps"]] == [t["session"] for t in course["sessions"]]
     sources = {s["id"] for s in read("review-sources.json")["sources"]}
     for step in thread["steps"]:
@@ -28,7 +29,7 @@ def test_every_topic_has_a_concrete_research_step_and_valid_evidence_paths():
         assert set(step["source_ids"]) <= sources
         for path in step["source_paths"]:
             assert (PROJECT / path).is_file()
-        lesson = (PROJECT / f"docs/course/session-{step['topic']:02}.fa.md").read_text()
+        lesson = (PROJECT / course["sessions"][step["topic"] - 1]["case_lesson_path"]).read_text()
         assert step["teaching_point"] in lesson
         assert len(step["terms"]) >= 3 and len(step["actions"]) >= 3
         assert all(

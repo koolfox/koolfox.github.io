@@ -13,6 +13,10 @@ PROJECT = Path(__file__).resolve().parents[1]
 PLAN = json.loads((PROJECT / "data/metadata/archive/weekly-plan.json").read_text())
 SYLLABUS = json.loads((PROJECT / "data/metadata/course-syllabus.json").read_text())
 DECK = (PROJECT / "docs/class-presentation.fa.md").read_text()
+HISTORICAL = json.loads(
+    (PROJECT / "data/metadata/archive/syllabus-project-annotations.json").read_text()
+)
+WEEKS = {b["id"]: b["weeks"] for b in HISTORICAL["blocks"]}
 
 # Terms each syllabus topic has to meet in the slides that are recorded for it,
 # keyed by a keyword that identifies the topic in the syllabus record.
@@ -62,7 +66,6 @@ def slide_text(slide):
 
 
 def test_every_syllabus_topic_has_keyword_anchors_in_its_assigned_slides():
-    blocks = {block["id"]: block for block in SYLLABUS["blocks"]}
     topics = {topic for block in SYLLABUS["blocks"] for topic in block["topics"]}
     assert len(topics) == len(TOPIC_TERMS)
     for week in PLAN["weeks"]:
@@ -79,7 +82,7 @@ def test_every_syllabus_topic_has_keyword_anchors_in_its_assigned_slides():
             combined = "\n".join(slide_text(slide) for slide in taught)
             for term in terms_for(entry["topic"]):
                 assert term in combined, (entry["topic"], taught, term)
-            assert blocks[entry["block"]]["weeks"] == [week["week"]]
+            assert WEEKS[entry["block"]] == [week["week"]]
 
 
 def test_the_deck_order_follows_the_syllabus_blocks():
@@ -93,11 +96,11 @@ def test_the_deck_order_follows_the_syllabus_blocks():
     for week, block in zip(weeks, SYLLABUS["blocks"], strict=False):
         if block["id"] == "docking":
             continue
-        assert block["weeks"] == [week["week"]], (block["id"], week["week"])
+        assert WEEKS[block["id"]] == [week["week"]], (block["id"], week["week"])
 
 
 def test_the_number_of_slides_matches_the_plan():
     chapters = [line for line in DECK.splitlines() if line.startswith("## ")]
     slides = len(chapters) + 1
-    assert SYLLABUS["slide_deck"]["slides"] == slides
+    assert HISTORICAL["slide_deck"]["slides"] == slides
     assert slides == 39

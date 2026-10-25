@@ -6,22 +6,22 @@ web
 
 ## Readers
 
-A novice MSc student, classmates and readers seeking a particular scientific resource. Keep Persian RTL and Arad. Explain biological and technical terms before relying on them.
+A novice MSc student, classmates and readers learning structural bioinformatics. Persian RTL and Arad. Explain terms, methods and assumptions without requiring knowledge of the project.
 
-## Information architecture
+## Two parallel paths
 
-The user requested independent sections on 2026-10-25. `index.html` is a directory, not a combined application or course gate. Nine public pages provide lesson/syllabus, research, library, paper reviews, structures, datasets, docking, exercises and presentations. `site-sections.json` defines their navigation and document collections; `build_section_pages.py` builds them from source fragments.
+The user's 2026-10-25 clarification defines exactly two primary navigation choices: general education and research. `course.html` is titled سرفصل آموزشی. Its nine chapter headings and ordering follow the Sharif 40553 syllabus. General lessons teach structural bioinformatics independently; molecular docking belongs to this area. Self-checks and mathematical examples do not rely on adalimumab, TOP2A or named project papers.
 
-The course has nine syllabus chapters and thirty topics. Lesson, exercise, research-note and speaker-note source files are separate. Topic and chapter links are recommendations, never a global context that relocates tools or narrows access. The research question belongs on the research page. Numerical viewers belong on their own pages. The library searches all registered documents; focused pages offer their relevant documents. Presentation exports retain the reviewed slide bank.
+`research.html` applies the learning to the adalimumab/TOP2A narrative review. Project datasets, molecular viewers, case exercises, paper reviews, library and presentations are research descendants with their own usable URLs. Their secondary navigation is not a set of primary peers to the course. `education-research-map.json` describes the optional application of each chapter and its manuscript output. No global chapter context hides tools or changes the course.
 
-## Persistence and compatibility
+## Content
 
-Existing quiz attempts and notes remain in the same localStorage keys. No accounts or server submission. Old index query and fragment links resolve to the appropriate independent page. There is no hidden legacy all-in-one workspace.
+General lesson sources live in `docs/course/`. Previous project-specific lesson explanations are preserved under `docs/research-notes/lesson-context/`. Exercise, research and speaker notes remain separate. `education-content-provenance.json` records references and source hashes. The research slide bank remains an audited source for project presentations, not the general syllabus itself.
 
-## Evidence
+## State and evidence
 
-Preserve provenance and distinguish geometry, RNA abundance, enzyme activity and clinical outcomes. The current review is a focused narrative draft; screening and inferential RNA analysis are incomplete. Moving content creates no new scientific result. Keep publisher full text and raw patient records out of publication.
+General education progress has a separate localStorage key. Existing research quiz attempts and notes are preserved. No accounts, uploads or proficiency locks. Preserve coordinate provenance, raw-data exclusions and the distinction between geometry, RNA, enzyme activity and clinical effects. The survey is a focused narrative draft; no new biological execution or completed systematic review is implied.
 
 ## Acceptance
 
-All sections are directly reachable, independently usable, keyboard accessible and readable on mobile. Test scientific controls, storage, deep links, errors and the exact Pages artifact. Verify deployment and actual live routes before announcing publication.
+Two clear primary choices, complete public chapter coverage, optional forward/reverse learning applications, and direct usable research resources. Check scientific controls, saved notes, failure recovery, mobile layout and publication. Verify the deployed routes before claiming a live update.

@@ -28,15 +28,36 @@ def render_pages(project=PROJECT):
             "datasets": "tab-methods",
             "library": "tab-reading",
         }
+        current = next((section for section in sections if section["id"] == ident), None)
+        area = current["area"] if current else None
         nav = "".join(
             link(
-                section["title"],
+                entry["title"],
+                entry["page"],
+                ('aria-current="page"' if area == entry["id"] else ""),
+            )
+            for entry in config["areas"]
+        )
+        children = [section for section in sections if section["area"] == area]
+        subnav = (
+            '<nav id="research-nav" aria-label="بخش‌های پژوهش">'
+            if area == "research"
+            else '<nav id="education-nav" aria-label="بخش‌های آموزش">'
+        )
+        subnav += "".join(
+            link(
+                "درسنامه"
+                if section["id"] == "course"
+                else section["title"]
+                if section["id"] != "research"
+                else "موضوع مطالعه",
                 section["page"],
                 f'id="{ids.get(section["id"], "nav-" + section["id"])}"'
                 + (' aria-current="page"' if section["id"] == ident else ""),
             )
-            for section in sections
+            for section in children
         )
+        subnav = subnav + "</nav>" if children else ""
         modules = "\n".join(
             f'<script type="module" src="assets/{name}?v=20261025-sections"></script>'
             for name in ["site.js", *scripts]
@@ -47,6 +68,7 @@ def render_pages(project=PROJECT):
             "section": ident,
             "scripts": modules,
             "nav": nav,
+            "subnav": subnav,
             "body": body,
         }
         template = (project / "templates/page.html").read_text()
@@ -81,14 +103,15 @@ def render_pages(project=PROJECT):
 <h2>{link(s["title"], s["page"])}</h2>
 <p>{html.escape(s["description"])}</p>
 </article>"""
-            for s in sections
+            for s in config["areas"]
         )
         + "</section>"
     )
     pages["index.html"] = shell(
         "home",
         "بیوانفورماتیک ساختاری",
-        "بخش مورد نیازتان را انتخاب کنید. درس، پژوهش، منابع و ابزارها هرکدام فضای مستقل دارند.",
+        "آموزش عمومی درس را مطالعه کنید؛ کاربرد آموخته‌ها در مطالعهٔ آدالیموماب و TOP2A "
+        "در مسیر پژوهش دنبال می‌شود.",
         home,
         ["legacy-routes.js"],
     )
@@ -188,7 +211,31 @@ def render_pages(project=PROJECT):
                 + docnav
                 + fragment("reader")
             )
-            body = body.replace("</section>", "</section>" + fragment("evidence"), 1)
+            parallel = json.loads(
+                (project / "data/metadata/education-research-map.json").read_text()
+            )
+            application = [
+                '<section id="learning-applications"><h2>کاربرد آموخته‌ها در این مطالعه</h2>'
+            ]
+            for row in parallel["chapters"]:
+                application.append(f'<details id="learning-application-{row["unit"]}">')
+                application.append("<summary>" + html.escape(row["chapter"]) + "</summary>")
+                application.append("<p>" + html.escape(row["application"]) + "</p>")
+                application.append(
+                    "<p><strong>حاصل کار برای مرور:</strong> " + html.escape(row["output"]) + "</p>"
+                )
+                application.append(
+                    link("بازگشت به آموزش این مبحث", f"course.html?topic={row['exercise_topic']}")
+                )
+                application.append(
+                    link("تمرین پژوهشی", f"exercises.html?topic={row['exercise_topic']}")
+                )
+                for doc in row["reading"]:
+                    application.append(link(doc["title"], "docs/" + doc["file"]))
+                application.append("</details>")
+            application.append("</section>")
+            body = body.replace("</section>", "</section>" + "".join(application), 1)
+            body += fragment("evidence")
             notes = ["<section><h2>یادداشت‌های پژوهشیِ مباحث</h2>"]
             for block in syllabus["blocks"]:
                 notes.append("<details><summary>" + html.escape(block["title"]) + "</summary>")

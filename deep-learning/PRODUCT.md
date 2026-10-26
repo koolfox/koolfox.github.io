@@ -75,6 +75,12 @@ synthetic single-channel image. Every output cell exposes its actual nine Python
 products and bias. Stride, zero padding, kernel flipping, ReLU and unpadded
 max/average pooling can be compared. It does not train a filter or classify images.
 
+The separate CNN/MNIST project trains an original small CNN and a linear baseline
+with locked PyTorch and verified original IDX data. It is downloadable as an
+explicit source-only ZIP for native execution. Validation selects the checkpoint;
+the official test is evaluated only afterwards. Recorded full-run measurements
+are source-hash checked and visibly distinguished from fresh browser execution.
+
 This milestone does not complete the 8,232-page goal: remaining source reviews,
 independent lessons, topic laboratories, heavy reproducible labs and acceptance
 still need their own evidence. Publication is only claimed after a successful

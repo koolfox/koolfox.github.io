@@ -4,7 +4,46 @@ import argparse
 import shutil
 import subprocess
 import sys
+import zipfile
 from pathlib import Path
+
+
+def package_mnist_project(learning: Path, target: Path):
+    destination = target / "labs/cnn-mnist"
+    destination.mkdir(parents=True)
+    filenames = (
+        "README.md",
+        "train.py",
+        "mnist_data.py",
+        "verify_smoke.py",
+        "pyproject.toml",
+        "uv.lock",
+        "data-sources.json",
+    )
+    for name in filenames:
+        shutil.copyfile(learning / "labs/cnn-mnist" / name, destination / name)
+    shutil.copyfile(
+        learning / "data/processed/mnist-reference.json",
+        destination / "reference-results.json",
+    )
+    import hashlib
+    import json
+
+    manifest = {
+        name: hashlib.sha256((destination / name).read_bytes()).hexdigest()
+        for name in (*filenames, "reference-results.json")
+    }
+    (destination / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
+    with zipfile.ZipFile(
+        destination / "project.zip", "w", compression=zipfile.ZIP_DEFLATED
+    ) as archive:
+        for name in (*filenames, "reference-results.json", "manifest.json"):
+            info = zipfile.ZipInfo(
+                f"deep-learning/labs/cnn-mnist/{name}", date_time=(2026, 1, 1, 0, 0, 0)
+            )
+            info.compress_type = zipfile.ZIP_DEFLATED
+            info.external_attr = 0o644 << 16
+            archive.writestr(info, (destination / name).read_bytes())
 
 
 def build_site(repository: Path, output: Path):
@@ -64,6 +103,7 @@ def build_site(repository: Path, output: Path):
             "--output deep-learning/results/shinylive"
         )
     shutil.copytree(runtime, learning_target / "runtime")
+    package_mnist_project(learning, learning_target)
     # Keep the original Karpathy engine intact, with one course entry point.
     shutil.copytree(karpathy_target, learning_target / "karpathy")
     (karpathy_target / "index.html").write_text(

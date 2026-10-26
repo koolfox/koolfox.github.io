@@ -39,6 +39,7 @@ def build_site(repository: Path, output: Path):
         "logic_gates.py",
         "live_training.py",
         "network_playground.py",
+        "convolution_lab.py",
         "README.md",
     ):
         shutil.copyfile(learning / "python" / name, learning_target / "python" / name)
@@ -55,7 +56,7 @@ def build_site(repository: Path, output: Path):
     runtime = learning / "results/shinylive"
     if any(
         not (runtime / lab / "index.html").exists()
-        for lab in ("neuron-xor", "network-playground")
+        for lab in ("neuron-xor", "network-playground", "convolution")
     ):
         raise ValueError(
             "Export live laboratories first: uv run --project deep-learning/playgrounds "

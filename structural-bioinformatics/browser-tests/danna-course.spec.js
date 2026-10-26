@@ -151,3 +151,48 @@ test('network playground reproduces Python training and seals final test evaluat
   await frame.waitForFunction(()=>!window.dannaNetwork);
   expect(errors).toEqual([]);
 });
+
+test('convolution laboratory exposes actual Python products pooling and bounded selection',async({page})=>{
+  test.setTimeout(150000);page.setDefaultTimeout(15000);const errors=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.goto('/deep-learning/runtime/convolution/');
+  await page.waitForFunction(()=>[...document.querySelectorAll('iframe')].some(f=>f.contentWindow?.dannaConvolution),{},{timeout:90000});
+  const frame=page.frames().find(f=>f!==page.mainFrame());
+  const codeDir=fileURLToPath(new URL('../../deep-learning/python/',import.meta.url));
+  async function comparePython(){
+    const actual=await frame.evaluate(()=>window.dannaConvolution);
+    const expected=JSON.parse(execFileSync('python3',['-c','import json,sys;sys.path.insert(0,sys.argv[1]);from convolution_lab import correlate,pattern,pool;c=json.loads(sys.argv[2]);r=correlate([pattern(c["pattern"])],[c["kernel"]],c["bias"],c["stride"],c["padding"],c["flip"]);a=[[max(0,v) if c["relu"] else v for v in row] for row in r["output"]];p=pool(a,mode=c["pooling"]) if c["pooling"]!="none" else None;print(json.dumps({"raw":r,"activated":a,"pooled":p}))',codeDir,JSON.stringify(actual.config)],{encoding:'utf8'}));
+    expect(actual.raw).toEqual(expected.raw);expect(actual.activated).toEqual(expected.activated);expect(actual.pooled).toEqual(expected.pooled);
+    return actual;
+  }
+  expect((await comparePython()).raw.output_shape).toEqual([1,6,6]);
+  await frame.getByRole('button',{name:'خانهٔ بعدی',exact:true}).click();
+  await frame.waitForFunction(()=>window.dannaConvolution.selected[1]===1);
+  await frame.locator('#pattern').selectOption('diagonal');await frame.locator('#filter').selectOption('horizontal');
+  await frame.waitForFunction(()=>window.dannaConvolution.config.kernel.flat().join(',')==='-1,-1,-1,0,0,0,1,1,1');
+  await frame.locator('#flip').check();await frame.locator('#padding').selectOption('1');await frame.locator('#stride').selectOption('2');
+  await frame.locator('#relu').check();await frame.locator('#pooling').selectOption('max');
+  await frame.waitForFunction(()=>{const c=window.dannaConvolution.config;return c.flip&&c.relu&&c.padding===1&&c.stride===2&&c.pooling==='max'});
+  expect((await comparePython()).pooled.output).toHaveLength(2);
+  await frame.locator('button[data-output-row="1"][data-output-column="2"]').click();
+  await frame.waitForFunction(()=>window.dannaConvolution.selected.join(',')==='1,2');
+  await expect(frame.locator('#cell_row')).toHaveValue('2');await expect(frame.locator('#cell_column')).toHaveValue('3');
+  await frame.locator('#pooling').selectOption('average');await frame.waitForFunction(()=>window.dannaConvolution.config.pooling==='average');
+  const state=await comparePython();
+  const downloadPromise=page.waitForEvent('download');await frame.getByRole('link',{name:'دریافت محاسبه و تنظیمات',exact:true}).click();
+  const download=await downloadPromise;expect(JSON.parse(readFileSync(await download.path(),'utf8'))).toEqual(state);
+  await frame.locator('#cell_row').fill('4');await frame.locator('#cell_row').press('Tab');await frame.waitForFunction(()=>window.dannaConvolution.selected[0]===3);
+  await frame.locator('#padding').selectOption('0');await frame.locator('#stride').selectOption('3');
+  await frame.waitForFunction(()=>window.dannaConvolution.raw.output_shape[1]===2&&window.dannaConvolution.selected.join(',')==='1,1');
+  await expect(frame.locator('#cell_row')).toHaveValue('2');await expect(frame.locator('#cell_column')).toHaveValue('2');
+  await frame.getByText('ویرایش ۹ وزن فیلتر',{exact:true}).click();
+  await frame.locator('#w00').fill('');await frame.locator('#w00').press('Tab');
+  await expect(frame.locator('#status')).toContainText('تنظیمات معتبر نیست');await frame.waitForFunction(()=>!window.dannaConvolution);
+  await expect(frame.locator('#output_matrix td')).toHaveCount(0);
+  await frame.locator('#w00').fill('-1');await frame.locator('#w00').press('Tab');await frame.waitForFunction(()=>window.dannaConvolution);
+  await page.setViewportSize({width:390,height:844});
+  await frame.locator('#padding').selectOption('2');await frame.locator('#stride').selectOption('1');
+  await frame.waitForFunction(()=>window.dannaConvolution.raw.output_shape[1]===10);
+  expect(await frame.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
+  await frame.locator('#output_matrix').scrollIntoViewIfNeeded();await page.screenshot({path:test.info().outputPath('convolution-mobile-results.png')});
+  expect(errors).toEqual([]);
+});

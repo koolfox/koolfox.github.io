@@ -7,7 +7,7 @@ import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-LABS = ("neuron-xor", "network-playground")
+LABS = ("neuron-xor", "network-playground", "convolution")
 
 
 def stage(lab, destination):
@@ -18,11 +18,11 @@ def stage(lab, destination):
         destination,
         ignore=shutil.ignore_patterns("__pycache__", "*.pyc"),
     )
-    modules = (
-        ("logic_gates.py", "live_training.py")
-        if lab == "neuron-xor"
-        else ("network_playground.py",)
-    )
+    modules = {
+        "neuron-xor": ("logic_gates.py", "live_training.py"),
+        "network-playground": ("network_playground.py",),
+        "convolution": ("convolution_lab.py",),
+    }[lab]
     for filename in modules:
         shutil.copyfile(ROOT / "python" / filename, destination / filename)
     if lab != "neuron-xor":

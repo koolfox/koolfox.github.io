@@ -1,4 +1,8 @@
-# Logic gates: actual Python training
+# Numerical core for the live neuron/XOR laboratory
+
+`logic_gates.py` supplies the network, truth tables and metrics used by
+`live_training.py` and the Shiny application in `../playgrounds/neuron-xor/`.
+The former recorded replay interface and its public dataset have been retired.
 
 Requires Python 3.10+ and its standard library. No packages, internet, GPU, paid
 service, or account are needed.
@@ -6,11 +10,10 @@ service, or account are needed.
 From the repository root:
 
 ```sh
-python3 deep-learning/python/logic_gates.py --output deep-learning/assets/data/gates.json
 python3 -m unittest discover -s deep-learning/tests -v
 ```
 
-For a small, separate experiment, without replacing the reference export:
+For an optional standalone training experiment and local JSON export:
 
 ```sh
 python3 deep-learning/python/logic_gates.py --gate XOR --epochs 6000 --lr 1 --seed 7 --hidden 4 --output /tmp/xor.json
@@ -20,7 +23,7 @@ python3 deep-learning/python/logic_gates.py --gate XOR --epochs 6000 --lr 1 --se
 separate models. `--epochs`, `--lr`, `--seed`, `--hidden`, and `--grid-size`
 control the actual Python run; hidden width only affects the MLP.
 
-## Chapter 2: perceptron
+## Threshold perceptron
 
 The `perceptron` model follows the sample-wise learning rule:
 
@@ -42,13 +45,13 @@ There is no early stopping, letting the histories show unsuccessful cycling.
 `train_majority()` provides a separate three-input majority example using the
 same update rule, starting from zero weights and bias.
 
-## Chapters 3–4 extension: sigmoid models
+## Sigmoid models
 
 `linear` is a **single sigmoid neuron**, trained by full-batch gradient descent
-on mean binary cross-entropy. It is a differentiable baseline, not the chapter
-2 perceptron rule. `mlp` has the architecture 2–4–1 by default and sigmoid
-activations at both layers, trained by explicit backpropagation (chapter 4). This is an
-additional learning experiment, **not** the lecture's preset 2–2–1 ReLU example.
+on mean binary cross-entropy. It is a differentiable baseline, distinct from
+the threshold perceptron rule. `mlp` has the architecture 2–4–1 by default and
+sigmoid activations at both layers, trained by explicit backpropagation. This
+is an original experiment, not a reproduction of a particular lecture example.
 
 Initialization uses a seeded local RNG and Xavier-uniform weights; biases
 start at zero. Output BCE uses the stable logit expression. Its output delta
@@ -62,10 +65,10 @@ tables. Linear sigmoid XOR/XNOR converge toward probability 0.5, with BCE near
 ln(2); their displayed accuracy at this threshold can depend on tiny floating
 point differences and is not evidence of a meaningful classifier.
 
-## Data and visualization contract
+## Optional local export
 
-`../assets/data/gates.json` is generated from actual training, not a manually
-assembled demonstration. Metadata records the source SHA-256 and Python
+The CLI exports actual training results to the requested local path. This file
+is not a website dependency. Metadata records the source SHA-256 and Python
 version. Repeating the same command with the same source/interpreter produces
 identical JSON. No generated timestamp changes the output unnecessarily.
 
@@ -83,13 +86,13 @@ identical JSON. No generated timestamp changes the output unnecessarily.
 The four Boolean inputs are the complete domain and training set; accuracy is
 training-domain accuracy, **not** held-out generalization. Surface values
 between Boolean corners illustrate learned interpolation, not ground-truth
-gate behavior. Browser exploratory runs, if provided by the UI, should be
-labeled separately from these Python exports.
+gate behavior. The live laboratory trains its own model in browser Python;
+it does not load these optional exports.
 
 ## Tests
 
 Offline tests verify all six truth tables, stable sigmoid/BCE, finite-difference
 weight and bias gradients (including two hidden layers), deterministic seeds,
 MLP convergence, perceptron separability and exact update equation, majority,
-XOR baseline limits, zero-epoch behavior, checkpoint copies, invalid parameters,
-and exported prediction/decision-surface reconstruction from saved weights.
+XOR baseline limits, zero-epoch behavior, checkpoint copies and invalid parameters.
+`test_live_training.py` also checks live updates against this numerical core.

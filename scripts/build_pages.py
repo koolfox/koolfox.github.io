@@ -31,7 +31,7 @@ def build_site(repository: Path, output: Path):
     learning = repository / "deep-learning"
     learning_target = output / "deep-learning"
     learning_target.mkdir()
-    for name in ("index.html", "README.md", "replay.html"):
+    for name in ("index.html", "README.md"):
         shutil.copyfile(learning / name, learning_target / name)
     shutil.copytree(learning / "assets", learning_target / "assets")
     (learning_target / "python").mkdir()

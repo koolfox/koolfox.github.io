@@ -99,6 +99,7 @@ def test_custom_output_works_without_reference_and_prints_are_bounded():
     )
     assert result["ok"] and result["reference"] is None
     assert len(result["stdout"]) == 20000
+    assert result["stdout_truncated"] is True
     assert result["result"]["metrics"] == {"my_metric": 7}
 
 
@@ -115,3 +116,23 @@ def test_custom_output_works_without_reference_and_prints_are_bounded():
 def test_invalid_numerical_views_are_rejected(value):
     with pytest.raises((TypeError, ValueError)):
         execution.validate_result(value)
+
+
+def test_download_input_matches_curated_coordinates():
+    import json
+
+    data = json.loads((ASSETS / "code-inputs.json").read_text())
+    assert data == INPUTS
+
+
+def test_vendored_editor_and_loader_match_recorded_sources():
+    import hashlib
+    import json
+
+    record = json.loads((PROJECT / "data/metadata/code-editor-vendor.json").read_text())
+    for entry in record["files"]:
+        assert hashlib.sha256((PROJECT / entry["path"]).read_bytes()).hexdigest() == entry["sha256"]
+    assert (
+        hashlib.sha256((PROJECT / "editor-tools/editor.mjs").read_bytes()).hexdigest()
+        == record["source_sha256"]
+    )

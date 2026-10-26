@@ -10,8 +10,14 @@ import traceback
 
 
 class BoundedOutput(io.StringIO):
+    def __init__(self):
+        super().__init__()
+        self.truncated = False
+
     def write(self, text):
         remaining = max(0, 20000 - self.tell())
+        if len(text) > remaining:
+            self.truncated = True
         super().write(text[:remaining])
         return len(text)
 
@@ -64,6 +70,8 @@ def validate_result(value):
         for series in plot.get("series", []):
             if not isinstance(series, dict) or not isinstance(series.get("points"), list):
                 raise ValueError("Each series needs a points list")
+            if series.get("kind", "line") not in {"line", "bar", "scatter"}:
+                raise ValueError("Plot kind must be line, bar or scatter")
             for point in series["points"]:
                 if (
                     not isinstance(point, list)
@@ -132,5 +140,10 @@ def execute(source, inputs, reference):
             "line": getattr(error, "lineno", None) or (frames[-1].lineno if frames else None),
             "traceback": "".join(traceback.format_exception(error))[-16000:],
         }
-    response.update(stdout=stdout.getvalue(), stderr=stderr.getvalue())
+    response.update(
+        stdout=stdout.getvalue(),
+        stderr=stderr.getvalue(),
+        stdout_truncated=stdout.truncated,
+        stderr_truncated=stderr.truncated,
+    )
     return response

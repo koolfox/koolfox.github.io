@@ -189,15 +189,15 @@ CHALLENGES = {
         "را نرمال کن و جمع آن‌ها را بررسی کن."
     ),
     "minimization": (
-        "تابع را به (x²−1)² و مشتق را به 4x(x²−1) تغییر بده. با start=2 و "
-        "rate=0.05 اثر مقدار اولیه را بررسی کن."
+        "تابع را به `(x**2 - 1)**2` و مشتق را به `4*x*(x**2 - 1)` تغییر بده. با `start=2` و "
+        "`rate=0.05` اثر مقدار اولیه را بررسی کن."
     ),
     "sampling": (
         "تعداد نمونه‌ها را بیشتر کن و میانگین بلوک‌های چند طول را مقایسه "
         "کن؛ از روی تعداد نمونه به‌تنهایی استقلال را نتیجه نگیر."
     ),
     "graph": (
-        "در چهار نقطه، شرط <= را به < تبدیل کن و cutoff=5 بگذار. سپس در "
+        "در چهار نقطه، شرط `<=` را به `<` تبدیل کن و `cutoff=5` بگذار. سپس در "
         "پروتئین، درجه را با و بدون حذف نزدیک‌های توالی مقایسه کن."
     ),
 }
@@ -254,4 +254,21 @@ if __name__ == "__main__":
     }
     Path(__file__).with_name("code-recipes.json").write_text(
         json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
+    )
+
+    import runpy
+
+    engine = runpy.run_path(str(Path(__file__).with_name("interactive_lab.py")))
+    labels, points = engine["reference"](Path(__file__).parent / "gromacs/1ubq-protein.pdb")
+    Path(__file__).with_name("code-inputs.json").write_text(
+        json.dumps(
+            {
+                "labels": labels,
+                "points": points.tolist(),
+                "source_sha256": engine["REFERENCE_SHA256"],
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+        + "\n"
     )

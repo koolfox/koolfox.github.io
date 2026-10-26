@@ -61,7 +61,7 @@
         "تعداد تکرار الگوریتم"
       ]
     ],
-    "challenge": "تابع را به (x²−1)² و مشتق را به 4x(x²−1) تغییر بده. با start=2 و rate=0.05 اثر مقدار اولیه را بررسی کن."
+    "challenge": "تابع را به `(x**2 - 1)**2` و مشتق را به `4*x*(x**2 - 1)` تغییر بده. با `start=2` و `rate=0.05` اثر مقدار اولیه را بررسی کن."
   },
   "sampling": {
     "body": "import math\nimport random\n\nrng = random.Random(parameters[\"seed\"])\nrho, noise = parameters[\"correlation\"], parameters[\"noise\"]\nresidual = rng.gauss(0, noise)\nvalues = []\nfor i in range(200):\n    if i:\n        residual = rho * residual + rng.gauss(0, noise * math.sqrt(1 - rho**2))\n    values.append(1 + (parameters[\"shift\"] if i >= 100 else 0) + residual)\nblock = parameters[\"block\"]\nmeans = [sum(values[i:i+block]) / block for i in range(0, len(values), block)]\nresult = {\n    \"metrics\": {\"mean\": sum(values) / len(values), \"min_block_mean\": min(means),\n                \"max_block_mean\": max(means)},\n    \"plot\": {\"xlabel\": \"Sample index\", \"ylabel\": \"Synthetic value\",\n             \"series\": [{\"name\": \"Samples\", \"points\": [[i+1, v] for i, v in enumerate(values)]}]},\n    \"table\": {\"columns\": [\"Block\", \"Mean\"], \"rows\": [[i+1, v] for i, v in enumerate(means)]}\n}\nprint(\"Consecutive blocks:\", means)\n",
@@ -118,6 +118,6 @@
         "برچسب گره انتخاب‌شده؛ node در کنترل‌ها"
       ]
     ],
-    "challenge": "در چهار نقطه، شرط <= را به < تبدیل کن و cutoff=5 بگذار. سپس در پروتئین، درجه را با و بدون حذف نزدیک‌های توالی مقایسه کن."
+    "challenge": "در چهار نقطه، شرط `<=` را به `<` تبدیل کن و `cutoff=5` بگذار. سپس در پروتئین، درجه را با و بدون حذف نزدیک‌های توالی مقایسه کن."
   }
 }

@@ -1,6 +1,7 @@
 """Stage the tested course engine and export it as a static browser Python app."""
 
 import argparse
+import json
 import shutil
 import subprocess
 import tempfile
@@ -34,6 +35,10 @@ def export(output):
         source = Path(temporary) / "concepts"
         stage(source)
         subprocess.run([executable, "export", str(source), str(output / "concepts")], check=True)
+    runtime_lock = json.loads((output / "concepts/shinylive/pyodide/pyodide-lock.json").read_text())
+    vendor = json.loads((PROJECT / "data/metadata/code-editor-vendor.json").read_text())
+    if runtime_lock["info"]["version"] != vendor["pyodide_loader_version"]:
+        raise ValueError("The code worker loader must match the exported Pyodide runtime")
     index = output / "concepts/index.html"
     shell = (PROJECT / "playgrounds/runtime-help.html").read_text()
     index.write_text(

@@ -29,6 +29,8 @@ jobs:
         run: |
           uv sync --project deep-learning/playgrounds --frozen
           uv run --project deep-learning/playgrounds python deep-learning/scripts/export_playgrounds.py --output deep-learning/results/shinylive
+          uv sync --project structural-bioinformatics/playgrounds --frozen
+          uv run --project structural-bioinformatics/playgrounds python structural-bioinformatics/scripts/export_course_lab.py --output structural-bioinformatics/results/shinylive
       - name: Check scientific code and curated data
         run: |
           uv sync --project structural-bioinformatics --frozen --python 3.13

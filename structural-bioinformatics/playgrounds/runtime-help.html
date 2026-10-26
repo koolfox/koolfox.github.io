@@ -1,0 +1,21 @@
+<style>
+@font-face{font-family:Arad;src:url('../../../assets/fonts/arad.woff2') format('woff2');font-display:swap}
+#runtime-loading{font:16px/1.9 Arad,system-ui,sans-serif;direction:rtl;color:#172339;background:#f5f5f7;padding:20px 24px;border-bottom:1px solid #dce2eb}
+#runtime-loading p{margin:0 0 8px}#runtime-loading a{color:#245dc4;display:inline-block;min-height:44px;padding:8px 0;text-underline-offset:4px}
+</style>
+<section id="runtime-loading" aria-label="بارگذاری آزمایشگاه" lang="fa" dir="rtl">
+<p id="runtime-message" role="status">محیط Python در حال دریافت و آماده‌شدن است. پس از نخستین محاسبه، آزمایشگاه نمایش داده می‌شود.</p>
+<a id="runtime-back" href="/structural-bioinformatics/course.html">بازگشت به درس و دستورکار محلی</a>
+<noscript><p>برای اجرای این آزمایشگاه، JavaScript باید فعال باشد.</p></noscript>
+</section>
+<script>
+(() => {
+ const topic=Number(new URLSearchParams(location.search).get('topic'));
+ if(Number.isInteger(topic)&&topic>=1&&topic<=30)document.getElementById('runtime-back').href=`/structural-bioinformatics/course.html?topic=${topic}#interactive-lab`;
+ addEventListener('message',event=>{
+  const frame=document.querySelector('#root iframe');
+  if(frame&&event.source===frame.contentWindow&&event.data?.type==='structural-lab-ready')document.getElementById('runtime-loading').hidden=true;
+ });
+ addEventListener('unhandledrejection',()=>{document.getElementById('runtime-message').textContent='دریافت یا اجرای محیط به مشکل برخورد. صفحه را دوباره بارگذاری کن؛ برای ادامهٔ مطالعه، لینک بازگشت به درس در دسترس است.';});
+})();
+</script>

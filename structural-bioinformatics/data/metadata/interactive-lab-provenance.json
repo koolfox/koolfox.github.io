@@ -1,0 +1,70 @@
+{
+  "created_at_utc": "2026-10-26T07:28:33.543809+00:00",
+  "scope": "General course laboratory; native and browser Python share the inspected numerical source. Coordinate modifications, sequences and time series are teaching inputs.",
+  "pattern_reference": "https://github.com/koolfox/koolfox.github.io/tree/c8f91b6/deep-learning/playgrounds",
+  "input_source": "data/metadata/md-teaching-input.json",
+  "artifacts": [
+    {
+      "path": "assets/course/interactive_lab.py",
+      "sha256": "ce5747086816bf0f1029b7a72c6c205fc12a95ef1050807e1c4a421b5fc6f2b1"
+    },
+    {
+      "path": "assets/course/gromacs/1ubq-protein.pdb",
+      "sha256": "f1899546f581eaba2c618f012097644e1ab2aa281c47c13cbb3747147ca17fc3"
+    },
+    {
+      "path": "playgrounds/concepts/app.py",
+      "sha256": "ea12567c845f94601de4a430131eed6efcb9b3a76056e44fb689fe0c8106d1ba"
+    },
+    {
+      "path": "playgrounds/concepts/www/plot.js",
+      "sha256": "4a1ef86df92378bc93d8792fb9c69e86557c800888eba56165647bb04488803b"
+    },
+    {
+      "path": "playgrounds/concepts/www/lab.css",
+      "sha256": "f2fc3471f4161c3d743beb109d4b65176d91bd26e6cf4a0124c4e35a8ac352fa"
+    },
+    {
+      "path": "playgrounds/runtime-help.html",
+      "sha256": "58d240c236858a025763e98c835d85c8eb9a654fe68000907871ebcbc6734680"
+    },
+    {
+      "path": "playgrounds/uv.lock",
+      "sha256": "77b10340e6807e6ac2f4c61870df98efad6021ecc5ded4e4f7d128e7fea6a8e4"
+    },
+    {
+      "path": "data/processed/interactive-lab-controls.json",
+      "sha256": "8204d6c6deae93b75b655228c8b513f2b16638c454310fce43f4fc1ff39093d9"
+    }
+  ],
+  "browser_runtime_observed": {
+    "python": "3.12.7",
+    "numpy": "2.0.2",
+    "shiny": "1.8.0",
+    "shinylive_exporter": "0.8.12",
+    "shinylive_assets": "0.10.15"
+  },
+  "numerical_acceptance": "Six live browser computations compared with native control outputs at 8 decimal places, plus proper-rotation, translation, deformation, threshold and invalid-input controls.",
+  "source_access": "Response fingerprints record retrieval, not independent peer review of the full course.",
+  "sources": [
+    {
+      "url": "https://shiny.posit.co/py/get-started/shinylive.html",
+      "attempted_at_utc": "2026-10-26T07:28:31.918654+00:00",
+      "status": 200,
+      "response_sha256": "6bc50ab7679eb4d0aed58491d6248f08f4f6dea1011fa54c1175de1848155cb7",
+      "resolved_url": "https://shiny.posit.co/py/get-started/shinylive.html"
+    },
+    {
+      "url": "https://numpy.org/doc/stable/reference/generated/numpy.linalg.svd.html",
+      "attempted_at_utc": "2026-10-26T07:28:31.918935+00:00",
+      "access_error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://www.ks.uiuc.edu/Research/vmd/current/ug/node138.html",
+      "attempted_at_utc": "2026-10-26T07:28:31.919010+00:00",
+      "status": 200,
+      "response_sha256": "39dae0da4ca2ca32e551429659562a77194456cff110ad7dc73561e1118d456c",
+      "resolved_url": "https://www.ks.uiuc.edu/Research/vmd/current/ug/node138.html"
+    }
+  ]
+}

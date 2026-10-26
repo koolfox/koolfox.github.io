@@ -12,6 +12,18 @@
 
 ## اجرا و بازسازی
 
+### آزمایشگاه تعاملی
+
+در مبحث‌های مرتبط، بخش «آزمایش تعاملی» به اجرای همان مفهوم در مرورگر می‌رسد. شش آزمایش در دسترس است: جهت رشتهٔ DNA و مکمل معکوس؛ هم‌ترازی و RMSD؛ احتمال دو حالت؛ کمینه‌سازی؛ میانگین بلوک‌های یک سری؛ و شبکهٔ تماس. انتخاب آزمایش آزاد است و لینک بازگشت، مبحث آغازین را حفظ می‌کند.
+
+محاسبه با Python در Shinylive انجام می‌شود. فایل `assets/course/interactive_lab.py` همان موتور آزمون‌شدهٔ اجرای محلی است؛ JavaScript خروجی آن را رسم می‌کند. برای هر آزمایش می‌توان پیش‌بینی و برداشت را در مرورگر ذخیره کرد و نتیجه، تنظیمات، نسخهٔ محیط و یادداشت‌ها را به صورت JSON دریافت کرد. پاک‌کردن داده‌های مرورگر یادداشت‌ها را حذف می‌کند؛ امکان دریافت فایل در صورت مسدودبودن ذخیرهٔ محلی هم کار می‌کند.
+
+هم‌ترازی Kabsch با وزن برابر روی ۷۶ اتم Cα از ورودی انتخاب‌شدهٔ 1UBQ انجام می‌شود. انتقال و چرخش و تغییر مختصات A:21 ساختهٔ کاربرند. در شبکه، هم ورودی چهارگره‌ای ساختگی و هم همان مختصات واقعی قابل انتخاب‌اند. انرژی و نمونه‌برداری مدل‌های آموزشی‌اند؛ این آزمایشگاه مسیر MD، داکینگ تازه یا ساختار پیش‌بینی‌شده تولید نمی‌کند.
+
+نسخهٔ عمومی ابتدا محیط Python را دریافت می‌کند. در زمان بارگذاری یا شکست دریافت، لینک بازگشت به درس باقی می‌ماند. جدول عددها، نتیجهٔ قابل دریافت و کد محلی برای بررسی روش در دسترس‌اند. منشأ و نسخه‌های مشاهده‌شده در `data/metadata/interactive-lab-provenance.json` و کنترل‌های اجرای مستقل در `data/processed/interactive-lab-controls.json` ثبت شده‌اند.
+
+### فرمان‌های بازسازی
+
 درس‌ها اکنون توضیح مفاهیم، مثال حل‌شده، فعالیت عملی و پاسخ تشریحی خودآزمایی دارند. خواندن متن، اجرای فعالیت و توضیح نتیجه به دیگری سه کار جدا هستند؛ زمان پیشنهادی مبحث اول برای مجموع این فعالیت‌هاست و اندازه‌گیری زمان یادگیری دانشجو نیست. فهرست داخلی هر مبحث به تمرین و پاسخ همان متن می‌رسد. شکل‌های محاسباتی با کلیک در اندازهٔ اصلی باز می‌شوند.
 
 تمرین‌های کوچک عمومی با Python 3.10 یا جدیدتر و بدون بستهٔ اضافی اجرا می‌شوند:
@@ -27,6 +39,10 @@ python3 structural-bioinformatics/assets/course/learning_lab.py graph --cutoff 5
 
 ```sh
 uv sync --project structural-bioinformatics --frozen
+uv sync --project structural-bioinformatics/playgrounds --frozen
+uv run --project structural-bioinformatics/playgrounds python structural-bioinformatics/scripts/export_course_lab.py --output structural-bioinformatics/results/shinylive
+uv sync --project deep-learning/playgrounds --frozen
+uv run --project deep-learning/playgrounds python deep-learning/scripts/export_playgrounds.py --output deep-learning/results/shinylive
 uv run --project structural-bioinformatics python structural-bioinformatics/scripts/build_education_figures.py
 uv run --project structural-bioinformatics python structural-bioinformatics/scripts/build_education_metadata.py
 uv run --project structural-bioinformatics python structural-bioinformatics/scripts/build_course_sessions.py
@@ -34,7 +50,8 @@ uv run --project structural-bioinformatics python structural-bioinformatics/scri
 uv run --project structural-bioinformatics python structural-bioinformatics/scripts/build_chapter_presentation.py
 uv run --project structural-bioinformatics pytest -q structural-bioinformatics/tests
 uv run --project structural-bioinformatics ruff check structural-bioinformatics
-python3 -m http.server 8875 --bind 127.0.0.1
+python3 scripts/build_pages.py --output dist/pages
+python3 -m http.server 8875 --bind 127.0.0.1 --directory dist/pages
 ```
 
 بررسی مرورگر:
@@ -42,6 +59,15 @@ python3 -m http.server 8875 --bind 127.0.0.1
 ```sh
 RESEARCH_BASE_URL=http://127.0.0.1:8875 npm --prefix structural-bioinformatics/browser-tests test
 ```
+
+پوشهٔ خروجیِ export و ساخت سایت باید خالی باشد. پس از تغییر موتور، کنترل‌های عددی را با `build_course_lab_controls.py` دوباره بسازید؛ سپس export و بررسی مرورگر را تکرار کنید. برای پیش‌نمایش بومی Shiny می‌توان ابتدا بستهٔ مستقل ساخت:
+
+```sh
+uv run --project structural-bioinformatics/playgrounds python structural-bioinformatics/scripts/export_course_lab.py --stage-only --output structural-bioinformatics/results/course-lab-source
+uv run --project structural-bioinformatics/playgrounds shiny run structural-bioinformatics/results/course-lab-source/app.py --host 127.0.0.1 --port 8879
+```
+
+در این پیش‌نمایش، Python روی رایانهٔ میزبان Shiny اجرا می‌شود؛ آزمون‌های `structural-lab.spec.js` نسخهٔ صادرشدهٔ مرورگری را جدا اجرا و با شش نتیجهٔ Python بومی مقایسه می‌کنند. این دو اجرا می‌توانند نسخه‌های متفاوت Python و NumPy داشته باشند؛ نسخهٔ واقعی در فایل نتیجه ثبت می‌شود.
 
 نصب و اجرای محاسبات در [دفتر کار نرم‌افزار](docs/software-workbook.fa.md) توضیح داده شده است. فایل ورودی یا دستورکار MD و VMD، گزارش اجرای موفق نیست. وضعیت واقعی هر تحلیل کنار نتیجه حفظ می‌شود.
 

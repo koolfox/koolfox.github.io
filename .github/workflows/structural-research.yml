@@ -33,6 +33,8 @@ jobs:
         run: |
           uv sync --project deep-learning/playgrounds --frozen
           uv run --project deep-learning/playgrounds python deep-learning/scripts/export_playgrounds.py --output deep-learning/results/shinylive
+          uv sync --project structural-bioinformatics/playgrounds --frozen
+          uv run --project structural-bioinformatics/playgrounds python structural-bioinformatics/scripts/export_course_lab.py --output structural-bioinformatics/results/shinylive
       - run: uv run --project structural-bioinformatics pytest -q
       - run: uv run --project structural-bioinformatics ruff check structural-bioinformatics scripts/serve_local.py
       - run: uv run --project structural-bioinformatics ruff format --check structural-bioinformatics scripts/serve_local.py
@@ -48,6 +50,8 @@ jobs:
         run: |
           uv sync --project deep-learning/playgrounds --frozen
           uv run --project deep-learning/playgrounds python deep-learning/scripts/export_playgrounds.py --output deep-learning/results/shinylive
+          uv sync --project structural-bioinformatics/playgrounds --frozen
+          uv run --project structural-bioinformatics/playgrounds python structural-bioinformatics/scripts/export_course_lab.py --output structural-bioinformatics/results/shinylive
           python3 scripts/build_pages.py --output dist/pages
       - uses: actions/setup-node@v7.1.0
         with:

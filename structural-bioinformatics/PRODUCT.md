@@ -25,3 +25,11 @@ General education progress has a separate localStorage key. Existing research qu
 ## Acceptance
 
 Two clear primary choices, complete public chapter coverage, optional forward/reverse learning applications, and direct usable research resources. Check scientific controls, saved notes, failure recovery, mobile layout and publication. Verify the deployed routes before claiming a live update.
+
+## Interactive course experiments
+
+Relevant general lessons expose a visible laboratory section and a direct return to that topic. A single Shiny/Shinylive laboratory runs six inspected Python calculations: DNA orientation, equal-weight C-alpha geometry with Kabsch fitting, two-state populations, gradient descent, synthetic correlated sampling and contact graphs. The same engine executes natively and in browser Python; JavaScript renders its payload. Preserve this distinction when adding controls or figures.
+
+Use the curated 1UBQ input and its byte hash for geometry and the optional protein graph. Label artificial coordinate edits, input sequences, free-energy examples and series. Do not present these as a new molecular simulation, predicted structure or drug result. Keep x/y coordinate plots at equal aspect and preserve readable plot labels at mobile widths.
+
+Prediction/reflection notes are private, separate for each experiment and downloadable with parameters and numerical outputs. Storage failure retains download and input failure clears stale results. A static loading message retains a route back to the lesson before Python is available. Generated runtime files live under ignored results and are exported into the publication artifact; CI checks that same artifact and compares six live Python computations with native controls.

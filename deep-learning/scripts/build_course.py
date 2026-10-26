@@ -8,6 +8,7 @@ from html import escape
 from pathlib import Path
 
 from course_content import load_course
+from mnist_reference import load_reference
 from source_catalog import ROOT
 
 BASE = "/deep-learning"
@@ -20,6 +21,10 @@ LABS = {
     "convolution": (
         "فیلتر، گام و تجمیع",
         "پنجرهٔ ورودی، ضرب‌های هر خانه و تفاوت cross-correlation با convolution",
+    ),
+    "cnn-mnist": (
+        "آموزش CNN روی MNIST",
+        "پروژهٔ مستقل پایتون برای اجرای بیرون مرورگر، همراه کد، منبع داده و گزارش واقعی",
     ),
 }
 TERM_SUMMARIES = {
@@ -375,8 +380,48 @@ def project_page(term):
     return page("پروژه پایانی", body, [(term_url(term), term["title_fa"])])
 
 
-def lab_page(lab):
+def mnist_page(root):
+    reference = load_reference(root)
+    rows = []
+    for run in reference["runs"]:
+        chosen = next(h for h in run["history"] if h["epoch"] == run["selected_epoch"])
+        kind = run["config"]["model"]
+        label = "CNN تألیفی" if kind == "cnn" else "مدل خطی"
+        rows.append(f'''<tr data-mnist-model="{e(kind)}"><th scope="row">{e(label)}</th>
+<td><bdi>{run["parameter_count"]}</bdi></td><td><bdi>{chosen["train"]["accuracy"]:.2%}</bdi></td>
+<td><bdi>{chosen["validation"]["accuracy"]:.2%}</bdi></td><td data-mnist-field="test-accuracy"><bdi>{run["test"]["accuracy"]:.2%}</bdi></td>
+<td><bdi>{run["selected_epoch"]}</bdi></td></tr>''')
+    parts = reference["runs"][0]["partitions"]
+    body = f"""<article class="standalone"><h1>از فیلتر دستی تا شبکه‌ای که یاد می‌گیرد</h1>
+<p class="lead">یک CNN کوچک را روی رقم‌های دست‌نویس آموزش بده و با مدل خطی مقایسه کن. این پروژهٔ پایتون روی رایانه اجرا می‌شود.</p>
+<h2>پیش از اجرا، پیش‌بینی کن</h2><p>فیلتر مکانی چه اطلاعاتی را نگه می‌دارد که مدل خطی به‌سادگی نمی‌سازد؟ پیش‌بینی کن کدام رقم‌ها بیشتر با هم اشتباه می‌شوند.</p>
+{link(BASE + "/labs/cnn-mnist/project.zip", "دریافت پروژهٔ پایتون (ZIP)", class_="button primary", download="")}
+<p class="meta">Python 3.12، PyTorch 2.13 و محیط قفل‌شده. مسیر تأییدشده CPU است؛ نصب وابستگی‌ها و دریافت داده در رایانه انجام می‌شود.</p>
+<h2>یک اجرای کوچک، سپس آزمایش کامل</h2><ol><li>پروژه را از ZIP خارج کن و در پوشه‌ای که deep-learning قرار دارد، دستورهای زیر را اجرا کن.</li>
+<li>ابتدا smoke را برای بررسی نصب و اجرای کد انجام بده؛ دقت آن معیار آموزش کامل نیست.</li>
+<li>پنج دورهٔ کامل را با CNN و مدل خطی، با تقسیم یکسان، اجرا کن. ماتریس خطا و recall هر رقم را بررسی کن.</li></ol>
+<pre class="run-command" dir="ltr">uv sync --project deep-learning/labs/cnn-mnist --frozen --python 3.12
+uv run --project deep-learning/labs/cnn-mnist python deep-learning/labs/cnn-mnist/train.py --smoke --download --output deep-learning/results/smoke
+uv run --project deep-learning/labs/cnn-mnist python deep-learning/labs/cnn-mnist/train.py --output deep-learning/results/cnn</pre>
+<p>هر خروجی را در پوشه‌ای تازه یا خالی ذخیره کن. راهنمای داخل پروژه، دستور اجرای مدل خطی و مقایسهٔ دو اجرای مستقل را دارد.</p>
+<h2>مدل را با چه داده‌ای انتخاب می‌کنیم؟</h2><p>در اجرای مرجع، <bdi>{parts["training"]["count"]}</bdi> تصویر برای آموزش و <bdi>{parts["validation"]["count"]}</bdi> تصویر برای اعتبارسنجی استفاده شد. تقسیم، طبقه‌بندی‌شده و در سطح تصویر است؛ جدایی نویسندگان در اعتبارسنجی ادعا نمی‌شود.</p>
+<p>کمترین cross entropy اعتبارسنجی، checkpoint را انتخاب می‌کند. سپس <bdi>{parts["official_test"]["count"]}</bdi> تصویرِ آزمون رسمی یک‌بار ارزیابی می‌شوند. تغییر تنظیمات پس از دیدن آزمون، ارزیابی مستقل تازه‌ای نمی‌سازد.</p>
+<details class="reference-results"><summary>نتیجهٔ دو اجرای ثبت‌شدهٔ مجموعه</summary>
+<p>پنج دوره، بذر ۷، Adam با نرخ <bdi>0.001</bdi> و دستهٔ ۱۲۸؛ مدل‌ها تقسیم یکسان دارند. این عددها از گزارش اجرای پایتون می‌آیند و نتیجهٔ اجرای تازه در مرورگر نیستند.</p>
+<p class="meta">در نمایش کوچک، جدول را افقی حرکت بده.</p>
+<div class="reference-scroll" tabindex="0" role="region" aria-label="مقایسهٔ نتیجهٔ دو مدل روی MNIST"><table class="reference-table"><thead><tr><th scope="col">مدل</th><th scope="col">پارامتر</th><th scope="col">دقت آموزش</th><th scope="col">دقت اعتبارسنجی</th><th scope="col">دقت آزمون</th><th scope="col">دورهٔ منتخب</th></tr></thead><tbody>{"".join(rows)}</tbody></table></div>
+<p>دورهٔ منتخب، کمترین زیان اعتبارسنجی را دارد؛ لزوماً بیشترین دقت اعتبارسنجی یا آخرین دوره نیست. نتیجهٔ یک بذر و این پروتکل، برتری عمومیِ معماری را اثبات نمی‌کند.</p>
+{link(BASE + "/labs/cnn-mnist/reference-results.json", "گزارش کامل، ماتریس خطا و هش‌ها", download="")}</details>
+<h2>نتیجه را توضیح بده</h2><ol><li>تعداد وزن و بایاس هر لایه را مستقل حساب کن و با گزارش مقایسه کن.</li><li>از ماتریس خطا، recall رقم‌های ۳ و ۸ را دوباره حساب کن؛ دقت کلی چه چیزی را پنهان می‌کند؟</li><li>پیش از بازکردن نتیجهٔ آزمون، یک طرح برای انتخاب نرخ یادگیری از روی اعتبارسنجی بنویس.</li></ol>
+{paragraphs(reference["limits_fa"])}
+<div class="inline-links">{link(BASE + "/labs/cnn-mnist/README.md", "راهنمای کامل اجرا")}{link(BASE + "/playgrounds/convolution/", "بررسی دستی کانولوشن")}</div></article>"""
+    return page("آموزش CNN روی MNIST", body, [(BASE + "/playgrounds/", "آزمایشگاه‌ها")])
+
+
+def lab_page(lab, root=ROOT):
     title, description = LABS[lab]
+    if lab == "cnn-mnist":
+        return mnist_page(root)
     if lab == "convolution":
         body = f"""<article class="standalone"><h1>{e(title)}</h1><p class="lead">{prose(description)}</p>
 <h2>پیش از اجرا، حدس بزن</h2><p>یک فیلتر ۳ × ۳ روی تصویر ۸ × ۸، بدون حاشیه و با گام ۱، چند خانهٔ خروجی می‌سازد؟ برای هر خانه چند ضرب لازم است؟</p>
@@ -452,10 +497,10 @@ def build(output, root=ROOT):
     )
     pages["playgrounds/index.html"] = page(
         "آزمایشگاه‌ها",
-        f'<section class="standalone"><h1>از پیش‌بینی تا آزمایش</h1><p>آزمایش‌های کوچک برای فهم رفتار شبکه؛ آموزش زنده پایتون در مرورگر.</p><ul class="lab-list">{cards}</ul><h2>تمرین‌های مکمل</h2><p>{link(BASE + "/karpathy/", "کارپتی و آزمایشگاه گرادیان ")} · دوره‌ای مستقل از کارپتی، برای تمرین سازوکار مشتق خودکار.</p></section>',
+        f'<section class="standalone"><h1>از پیش‌بینی تا آزمایش</h1><p>آزمایش‌های زندهٔ مرورگر و پروژه‌های مستقل پایتون؛ روش اجرای هرکدام در صفحهٔ خودش مشخص است.</p><ul class="lab-list">{cards}</ul><h2>تمرین‌های مکمل</h2><p>{link(BASE + "/karpathy/", "کارپتی و آزمایشگاه گرادیان ")} · دوره‌ای مستقل از کارپتی، برای تمرین سازوکار مشتق خودکار.</p></section>',
     )
     for lab in LABS:
-        pages[f"playgrounds/{lab}/index.html"] = lab_page(lab)
+        pages[f"playgrounds/{lab}/index.html"] = lab_page(lab, root)
     for name, html in pages.items():
         path = output / name
         path.parent.mkdir(parents=True, exist_ok=True)

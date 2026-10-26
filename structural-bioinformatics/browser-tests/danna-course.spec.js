@@ -196,3 +196,33 @@ test('convolution laboratory exposes actual Python products pooling and bounded 
   await frame.locator('#output_matrix').scrollIntoViewIfNeeded();await page.screenshot({path:test.info().outputPath('convolution-mobile-results.png')});
   expect(errors).toEqual([]);
 });
+
+test('native MNIST project delivers measured results and a bounded reproducible source archive',async({page,request})=>{
+  await page.goto('/deep-learning/playgrounds/cnn-mnist/');
+  await expect(page.getByRole('heading',{level:1})).toHaveText('از فیلتر دستی تا شبکه‌ای که یاد می‌گیرد');
+  await expect(page.locator('.lead')).toContainText('روی رایانه اجرا می‌شود');
+  await page.locator('.reference-results summary').click();
+  const reportResponse=await request.get('/deep-learning/labs/cnn-mnist/reference-results.json');expect(reportResponse.ok()).toBeTruthy();
+  const reference=await reportResponse.json();
+  for(const run of reference.runs){
+    const row=page.locator(`[data-mnist-model="${run.config.model}"]`);
+    await expect(row.locator('[data-mnist-field="test-accuracy"]')).toHaveText((100*run.test.accuracy).toFixed(2)+'%');
+  }
+  const zipResponse=await request.get('/deep-learning/labs/cnn-mnist/project.zip');expect(zipResponse.ok()).toBeTruthy();
+  const archive=await zipResponse.body();
+  const checked=JSON.parse(execFileSync('python3',['-c','import base64,hashlib,io,json,sys,zipfile;z=zipfile.ZipFile(io.BytesIO(base64.b64decode(sys.argv[1])));prefix="deep-learning/labs/cnn-mnist/";m=json.loads(z.read(prefix+"manifest.json"));assert set(z.namelist())=={prefix+n for n in m}|{prefix+"manifest.json"};assert all(hashlib.sha256(z.read(prefix+n)).hexdigest()==h for n,h in m.items());print(json.dumps({"files":list(m),"report":json.loads(z.read(prefix+"reference-results.json"))}))',archive.toString('base64')],{encoding:'utf8'}));
+  expect(checked.files).toHaveLength(8);expect(checked.files).toContain('uv.lock');expect(checked.files).toContain('train.py');
+  expect(checked.files.some(n=>/\.gz$|\.pt$|\.venv|__pycache__/.test(n))).toBeFalsy();
+  expect(checked.report).toEqual(reference);
+  const links=await page.locator('a[href]').evaluateAll(nodes=>nodes.map(a=>a.href));
+  for(const href of new Set(links))if(new URL(href).origin===new URL(page.url()).origin)expect((await request.get(href)).ok(),href).toBeTruthy();
+  await page.screenshot({path:test.info().outputPath('mnist-desktop.png'),fullPage:true});
+  await page.setViewportSize({width:390,height:844});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
+  await expect(page.locator('.reference-scroll')).toHaveAttribute('tabindex','0');
+  await page.locator('.reference-scroll').evaluate(el=>el.scrollLeft=-el.scrollWidth);
+  const headingBox=await page.locator('.reference-table thead th').first().boundingBox();
+  const rowBox=await page.locator('.reference-table tbody th').first().boundingBox();
+  const regionBox=await page.locator('.reference-scroll').boundingBox();
+  expect(headingBox.x).toBeCloseTo(rowBox.x,1);expect(headingBox.x+headingBox.width).toBeLessThanOrEqual(regionBox.x+regionBox.width+1);
+  await page.screenshot({path:test.info().outputPath('mnist-mobile.png'),fullPage:true});
+});

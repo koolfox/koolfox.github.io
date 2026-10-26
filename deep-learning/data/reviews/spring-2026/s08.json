@@ -2,9 +2,36 @@
   "schema_version": 1,
   "term_id": "spring-2026",
   "session_id": "s08",
-  "reviewer": null,
-  "reviewed_at_utc": null,
-  "method": null,
+  "reviewer": "Codex source researcher: spring-2026",
+  "reviewed_at_utc": "2026-10-26T07:11:56.380525+00:00",
+  "method": {
+    "text": "All46 PDF pages read in bounded batches; page28 has no extractable text and its image was read. Extraction alone was not marked review.",
+    "visual": "All46 pages viewed in8 PDFium contact sheets, plus16 formula/diagram zooms; PDFium rendering sometimes clips text, cross-checked against contact sheets and extracted text.",
+    "zoom_pages": [
+      6,
+      12,
+      13,
+      18,
+      19,
+      20,
+      22,
+      23,
+      26,
+      31,
+      34,
+      36,
+      39,
+      40,
+      41,
+      42
+    ],
+    "primary_coverage": "ResNet PDF text1–7 and images5–6; He text1,3,4; BN text3–7; Adam text2–3; VGG text2–3. Human benchmark table9 PDF31 verified by collaborating term researcher. No claim to full primary-paper audit.",
+    "scope": "Historical use-frequency chart and optimizer trajectory are context only; ImageNet training and all historical claims not re-executed. Source originals remain unchanged and evidence images stay local.",
+    "reproduction": "PyMuPDF for text, pypdfium2 5.14.0 for images; hash-addressed PDF cache. Authoring/check script /tmp/danna-full-review/author_s08_2026.py.",
+    "additional_crops": [
+      "/tmp/danna-full-review/spring-2026/s08/p018-grid.jpg"
+    ]
+  },
   "sources": [
     {
       "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/08-Quest-for-Depth.pdf",
@@ -16,509 +43,859 @@
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 1,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "نشان CC BY-NC-SA دیده شد؛ نسخه و پیوند مجوز در صفحه اول مشخص نیست.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-001-006.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/08-Quest-for-Depth.pdf#page=1"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 2,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "یادآوری تاریخی Canvas؛ تکلیف اصلی از این صفحه بازسازی نمی‌شود.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-001-006.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/08-Quest-for-Depth.pdf#page=2"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 3,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "نقشه راه جلسه و کارگاه.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-001-006.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/08-Quest-for-Depth.pdf#page=3"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 4,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "نقشه راه روش‌های افزایش عمق.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-001-006.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/08-Quest-for-Depth.pdf#page=4"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 5,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "نمودار تاریخی top-5؛ تغییر داده، ensemble و پروتکل ارزیابی هم‌زمان‌اند و اثر خالص عمق را جدا نمی‌کنند.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-001-006.jpg",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 6,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "سه کرنل۳×۳ با stride۱ و dilation۱ میدان۷×۷ می‌سازند؛ با عرض ثابتC و بدون بایاس،۲۷C² در برابر۴۹C² وزن دارند. سه غیرخطی با یک لایه بزرگ تابع یکسانی نمی‌سازند و برتری همگانی نتیجه نمی‌شود.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/p006.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1409.1556"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 7,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "نمودار درصد استفاده از شبکه‌ها یک تصویر تاریخی از منبع ثانویه است؛ شمارش مقاله‌های آن مستقلاً بازشماری نشده و مبنای نتیجه کمی درس نیست.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-007-012.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/08-Quest-for-Depth.pdf#page=7"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 8,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "نقشه راه همگرایی.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-007-012.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/08-Quest-for-Depth.pdf#page=8"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 9,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "منحنی یادگیری سرنخ تشخیصی است؛ یک شکل به‌تنهایی علت را تعیین نمی‌کند. خطای آموزش و ارزیابی باید جدا شوند.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-007-012.jpg",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 10,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "معرفی مقاله He در ICCV۲۰۱۵؛ تاریخ از اصل مقاله تطبیق شد.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-007-012.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/08-Quest-for-Depth.pdf#page=10"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 11,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "شکل sigmoid وtanh دیده شد؛ مرکزشدن خروجی همه فعال‌سازی‌ها یکسان نیست و به‌تنهایی پایداری آموزش را تضمین نمی‌کند.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-007-012.jpg",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_iccv_2015/papers/He_Delving_Deep_into_ICCV_2015_paper.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 12,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "مشتق sigmoid وtanh منفی نیست؛ عبارت شیب‌های مثبت/منفی برابر نادرست است. در فرض تقارن پیش‌فعال‌سازی، ReLU نصف ممان دوم را عبور می‌دهد، نه به‌طور کلی نصف واریانس را. برای Gaussian باواریانسσ²، واریانس خروجی(۱/۲−۱/(۲π))σ² است.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/p012.jpg",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_iccv_2015/papers/He_Delving_Deep_into_ICCV_2015_paper.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 13,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "انحراف معیارsqrt(2/fan_in) با استدلال He تحت استقلال/تقارن تقریبی سازگار است؛ حفظ مقیاس تقریبی در شروع، تضمین تمام روند آموزش نیست.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/p013.jpg",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_iccv_2015/papers/He_Delving_Deep_into_ICCV_2015_paper.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 14,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "عنوان مقاله Batch Normalization و ICML۲۰۱۵ با منبع اصلی تطبیق شد.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-013-018.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/08-Quest-for-Depth.pdf#page=14"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 15,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "استانداردسازی تغییر مقیاس مختصات است؛ شکل شهودی تضمین افزایش سرعت برای هر تابع نیست و همبستگی ویژگی‌ها را حذف نمی‌کند.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-013-018.jpg",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 16,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "BN مقیاس فعال‌سازی‌ها را تنظیم می‌کند؛ روایت internal covariate shift انگیزه مقاله است، نه اثبات اینکه تنها سازوکار موفقیت است.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-013-018.jpg",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 17,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "برای هر محل BN آمار و پارامتر جدا لازم است؛ تصویر شماتیک لایه‌ها را جایگزین معماری دقیق نمی‌کنیم.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-013-018.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/08-Quest-for-Depth.pdf#page=17"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 18,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "شبکه جدول شماتیک سه ردیف نمونه و چهار ستون ویژگی نشان می‌دهد؛ BN لایه کاملاً متصل آمار هر ستون را روی نمونه‌ها می‌گیرد، نه آمار تمام جدول را یکجا.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/p018-grid.jpg",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 19,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "فرمول کامل مخرجsqrt(v+ε) دارد. استانداردسازی توزیع را Gaussian نمی‌کند و باε>0 واریانس دقیقاً۱ نیست. در CNN آمار هر کانال روی محورهای نمونه و مکان جمع می‌شود.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/p019.jpg",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 20,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "γ وβ برای هر ویژگی آموختنی‌اند؛ بازگرداندن ورودی برای آمار ثابت ممکن است، نه الزاماً برای همه batchها با یکγ ثابت. بایاس affine بلافاصله پیش از BN در مرکزکردن حذف می‌شود؛ بایاس همه لایه‌ها زائد نیست.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/p020.jpg",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 21,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "مشتق BN وابستگی میانگین و واریانس به همه نمونه‌های batch را نیز شامل می‌شود؛ε از تقسیم بر صفر جلوگیری می‌کند.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-019-024.jpg",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 22,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "شکل میانگین متحرکσ را به عنوانVar در کادر ارزیابی استفاده می‌کند؛ میانگین انحراف معیار با واریانس یا ریشه میانگین واریانس برابر نیست. BN آمار میانگین و واریانس نگه می‌دارد؛ کالیبراسیون پس از آموزش یک روش است، نه تنها روش.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/p022.jpg",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 23,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "BN برای هر ویژگی یکγ ویکβ دارد، نه فقط دو پارامتر برای کل لایه. برچسبβ1,γ2 در شکل یک اندیس ناسازگار دارد؛ میانگین/واریانس جاری پارامتر گرادیانی نیستند.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/p023.jpg",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 24,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "قرارگیری BN پیش/پس از فعال‌سازی دو محاسبه متفاوت است؛ نمودار دو امکان را نشان می‌دهد و قابل تعویض بی‌اثر نیستند.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-019-024.jpg",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 25,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "سه لایه۱۰۰نورونی sigmoid وbatch۶۰ با مقاله تطبیق شد؛ نمودار، دقت آزمون برحسب گام آموزش است، نه loss آموزش.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-025-030.jpg",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 26,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "پنج منحنی شامل یک Inception پایه و چهار نسخه BN است؛ عبارت پنج نسخه BN نادرست است. batch۳۲ وSGDباmomentum مطابق مقاله‌اند.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/p026.jpg",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 27,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "۲٫۱میلیون در برابر۳۱میلیون گام حدود۶٫۸٪ است؛ چند تنظیم همراه BN عوض شده و نسبت گام با نسبت زمان دیواری یکی نیست.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-025-030.jpg",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 28,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "صفحه فقط تصویر عنوان مقاله Adam دارد؛ متن استخراج‌شده تهی بود و تصویر خوانده شد.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-025-030.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/08-Quest-for-Depth.pdf#page=28"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 29,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "Adam ممان‌های گرادیان را برای مقیاس‌دهی هر مختصات به کار می‌گیرد؛ اندازه گام لزوماً یکنواخت کاهشی نیست و همگرایی عمومی تضمین نمی‌شود.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-025-030.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1412.6980"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 30,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "مسیرهای تصویری بهینه‌سازها نمایش زمینه‌ای‌اند؛ آزمایش در این مرور اجرا نشده و برتری همگانی Adam از آن نتیجه نمی‌گیریم.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-025-030.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/08-Quest-for-Depth.pdf#page=30"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 31,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "ε ثابت پایداری عددی است، نه نویز تصادفی. α سقف بی‌قید اندازه گام نیست؛ باβ1=.9،β2=.999 و۱۰۰۰گرادیان صفر سپس۱، نسبت گام بهα≈۲٫۵۱۵ است. مخرج ریشه ممان دوم خام است، نه انحراف معیار؛ نامSNR تمثیلی است.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/p031.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1412.6980"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 32,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "مانع تاریخی۳۰–۴۰لایه حد بنیادی شبکه‌ها نیست.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-031-036.jpg",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 33,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "نقشه راه ResNet.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-031-036.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/08-Quest-for-Depth.pdf#page=33"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 34,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "در نمودار CIFAR شبکه۵۶لایه خطای آموزش بالاتری از۲۰لایه دارد؛ این را صرفاً بیش‌برازش توضیح نمی‌دهد. گزارش گرادیان سالم مربوط به شبکه‌های آزموده‌شده مقاله است، نه تضمین عمومی BN.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/p034.jpg",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 35,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "وجود نگاشت همانی نیازمند ابعاد و معماری سازگار است؛ وجود راه‌حل خوب در فضای تابع تضمین پیدا شدنش توسط بهینه‌ساز نیست.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-031-036.jpg",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 36,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "ResNet نخستین عبور از۵٫۱٪نبود؛ PReLU-net۴٫۹۴٪ وBN-Inception۴٫۸۲٪ پیش‌تر گزارش شده‌اند.۳٫۵۷٪ نتیجه ensemble شش مدل است، نه یک۱۵۲لایه. ارزیابی انسانی محدود به پروتکل annotator A1 و۱۵۰۰تصویر بود، نه توان کلی بینایی انسان.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/p036.jpg",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf",
+        "https://openaccess.thecvf.com/content_iccv_2015/papers/He_Delving_Deep_into_ICCV_2015_paper.pdf",
+        "https://proceedings.mlr.press/v37/ioffe15.pdf",
+        "https://arxiv.org/pdf/1409.0575"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 37,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "مقاله کنفرانس CVPR۲۰۱۶ است؛ مسابقه وپیش‌چاپ۲۰۱۵ را با سال انتشار کنفرانس جدا می‌کنیم.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-037-042.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/08-Quest-for-Depth.pdf#page=37"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 38,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "اگر هدفH(x) نزدیکx باشد، شاخه F=H−x می‌تواند کوچک شود؛ صفرشدن تابع شاخه الزاماً صفرشدن همه وزن‌ها نیست. ReLU پس ازجمع همانی دقیق را برای ورودی منفی ازبین می‌برد.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-037-042.jpg",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 39,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "میانبر همانی با ابعاد سازگار پارامتر ندارد؛ projection قابل یادگیری پارامتر دارد. جمع هزینه محاسبات دارد حتی اگر وزن تازه‌ای اضافه نکند.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/p039.jpg",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 40,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "ژاکوبین جمعI+J_F است؛ وجود مشتق۱در یک مسیر، مشتق کل را۱نمی‌کند و ReLU پس ازجمع می‌تواند آن راصفر کند. residual نام تابعH−x است؛ MSEنمایش شهودی است و آزمایش طبقه‌بندی ازcross-entropy استفاده می‌کند.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/p040.jpg",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 41,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "تصویر معماری کاملResNet-34 است، نه۳۴لایه انتخابی از۱۵۲. معماری۳۴ از بلوک‌های دولایه و۱۵۲ ازbottleneck سه‌لایه با تعداد بلوک متفاوت استفاده می‌کند.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/p041.jpg",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 42,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "weight decay مدلAlexNet برابر۰٫۰۰۰۵است، نه۰٫۰۰۵. تنظیماتResNet batch۲۵۶،He،SGDباmomentum.9،LR.1 وdecay.0001 بااصل تطبیق شد. حذفdropout دراصل پیروی ازBN ذکر شده؛ Adam تنظیم این آزمایش اصلی نبود.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/p042.jpg",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf",
+        "https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 43,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "عمق بیشتر همیشه بهتر نیست؛ درآزمایشCIFAR مقاله،۱۲۰۲لایه خطای۷٫۹۳٪ و۱۱۰لایه بهترین۶٫۴۳٪ دارد. طراحی و تعمیم همچنان مهم‌اند.",
+      "concept_ids": [
+        "residual-networks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-043-046.jpg",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 44,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "خلاصه نقشه راه.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-043-046.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/08-Quest-for-Depth.pdf#page=44"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 45,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "اعلان کارگاه برنامه‌نویسی؛ کد اجرایی دراین PDF نیست.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-043-046.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/08-Quest-for-Depth.pdf#page=45"
+      ]
     },
     {
       "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
       "page": 46,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "صفحه پایانی تصویری؛ ادعای علمی ندارد.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s08/sheet-043-046.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/08-Quest-for-Depth.pdf#page=46"
+      ]
     }
   ],
-  "findings": []
+  "findings": [
+    {
+      "page": 6,
+      "category": "nuance",
+      "explanation_fa": "سه کرنل۳×۳ با stride۱ و dilation۱ میدان۷×۷ می‌سازند؛ با عرض ثابتC و بدون بایاس،۲۷C² در برابر۴۹C² وزن دارند. سه غیرخطی با یک لایه بزرگ تابع یکسانی نمی‌سازند و برتری همگانی نتیجه نمی‌شود.",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1409.1556"
+      ],
+      "resolution": "درس مستقل و راهنمای همین ترم توضیح اصلاحی دارند؛ PDF اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 12,
+      "category": "verified_error",
+      "explanation_fa": "مشتق sigmoid وtanh منفی نیست؛ عبارت شیب‌های مثبت/منفی برابر نادرست است. در فرض تقارن پیش‌فعال‌سازی، ReLU نصف ممان دوم را عبور می‌دهد، نه به‌طور کلی نصف واریانس را. برای Gaussian باواریانسσ²، واریانس خروجی(۱/۲−۱/(۲π))σ² است.",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_iccv_2015/papers/He_Delving_Deep_into_ICCV_2015_paper.pdf"
+      ],
+      "resolution": "درس مستقل و راهنمای همین ترم توضیح اصلاحی دارند؛ PDF اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 13,
+      "category": "nuance",
+      "explanation_fa": "انحراف معیارsqrt(2/fan_in) با استدلال He تحت استقلال/تقارن تقریبی سازگار است؛ حفظ مقیاس تقریبی در شروع، تضمین تمام روند آموزش نیست.",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_iccv_2015/papers/He_Delving_Deep_into_ICCV_2015_paper.pdf"
+      ],
+      "resolution": "درس مستقل و راهنمای همین ترم توضیح اصلاحی دارند؛ PDF اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 19,
+      "category": "nuance",
+      "explanation_fa": "فرمول کامل مخرجsqrt(v+ε) دارد. استانداردسازی توزیع را Gaussian نمی‌کند و باε>0 واریانس دقیقاً۱ نیست. در CNN آمار هر کانال روی محورهای نمونه و مکان جمع می‌شود.",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf"
+      ],
+      "resolution": "درس مستقل و راهنمای همین ترم توضیح اصلاحی دارند؛ PDF اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 20,
+      "category": "nuance",
+      "explanation_fa": "γ وβ برای هر ویژگی آموختنی‌اند؛ بازگرداندن ورودی برای آمار ثابت ممکن است، نه الزاماً برای همه batchها با یکγ ثابت. بایاس affine بلافاصله پیش از BN در مرکزکردن حذف می‌شود؛ بایاس همه لایه‌ها زائد نیست.",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf"
+      ],
+      "resolution": "درس مستقل و راهنمای همین ترم توضیح اصلاحی دارند؛ PDF اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 22,
+      "category": "verified_error",
+      "explanation_fa": "شکل میانگین متحرکσ را به عنوانVar در کادر ارزیابی استفاده می‌کند؛ میانگین انحراف معیار با واریانس یا ریشه میانگین واریانس برابر نیست. BN آمار میانگین و واریانس نگه می‌دارد؛ کالیبراسیون پس از آموزش یک روش است، نه تنها روش.",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf"
+      ],
+      "resolution": "درس مستقل و راهنمای همین ترم توضیح اصلاحی دارند؛ PDF اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 23,
+      "category": "nuance",
+      "explanation_fa": "BN برای هر ویژگی یکγ ویکβ دارد، نه فقط دو پارامتر برای کل لایه. برچسبβ1,γ2 در شکل یک اندیس ناسازگار دارد؛ میانگین/واریانس جاری پارامتر گرادیانی نیستند.",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf"
+      ],
+      "resolution": "درس مستقل و راهنمای همین ترم توضیح اصلاحی دارند؛ PDF اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 24,
+      "category": "nuance",
+      "explanation_fa": "قرارگیری BN پیش/پس از فعال‌سازی دو محاسبه متفاوت است؛ نمودار دو امکان را نشان می‌دهد و قابل تعویض بی‌اثر نیستند.",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf"
+      ],
+      "resolution": "درس مستقل و راهنمای همین ترم توضیح اصلاحی دارند؛ PDF اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 25,
+      "category": "nuance",
+      "explanation_fa": "سه لایه۱۰۰نورونی sigmoid وbatch۶۰ با مقاله تطبیق شد؛ نمودار، دقت آزمون برحسب گام آموزش است، نه loss آموزش.",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf"
+      ],
+      "resolution": "درس مستقل و راهنمای همین ترم توضیح اصلاحی دارند؛ PDF اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 26,
+      "category": "verified_error",
+      "explanation_fa": "پنج منحنی شامل یک Inception پایه و چهار نسخه BN است؛ عبارت پنج نسخه BN نادرست است. batch۳۲ وSGDباmomentum مطابق مقاله‌اند.",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf"
+      ],
+      "resolution": "درس مستقل و راهنمای همین ترم توضیح اصلاحی دارند؛ PDF اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 27,
+      "category": "nuance",
+      "explanation_fa": "۲٫۱میلیون در برابر۳۱میلیون گام حدود۶٫۸٪ است؛ چند تنظیم همراه BN عوض شده و نسبت گام با نسبت زمان دیواری یکی نیست.",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf"
+      ],
+      "resolution": "درس مستقل و راهنمای همین ترم توضیح اصلاحی دارند؛ PDF اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 31,
+      "category": "verified_error",
+      "explanation_fa": "ε ثابت پایداری عددی است، نه نویز تصادفی. α سقف بی‌قید اندازه گام نیست؛ باβ1=.9،β2=.999 و۱۰۰۰گرادیان صفر سپس۱، نسبت گام بهα≈۲٫۵۱۵ است. مخرج ریشه ممان دوم خام است، نه انحراف معیار؛ نامSNR تمثیلی است.",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1412.6980"
+      ],
+      "resolution": "درس مستقل و راهنمای همین ترم توضیح اصلاحی دارند؛ PDF اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 34,
+      "category": "nuance",
+      "explanation_fa": "در نمودار CIFAR شبکه۵۶لایه خطای آموزش بالاتری از۲۰لایه دارد؛ این را صرفاً بیش‌برازش توضیح نمی‌دهد. گزارش گرادیان سالم مربوط به شبکه‌های آزموده‌شده مقاله است، نه تضمین عمومی BN.",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf"
+      ],
+      "resolution": "درس مستقل و راهنمای همین ترم توضیح اصلاحی دارند؛ PDF اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 36,
+      "category": "verified_error",
+      "explanation_fa": "ResNet نخستین عبور از۵٫۱٪نبود؛ PReLU-net۴٫۹۴٪ وBN-Inception۴٫۸۲٪ پیش‌تر گزارش شده‌اند.۳٫۵۷٪ نتیجه ensemble شش مدل است، نه یک۱۵۲لایه. ارزیابی انسانی محدود به پروتکل annotator A1 و۱۵۰۰تصویر بود، نه توان کلی بینایی انسان.",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf",
+        "https://openaccess.thecvf.com/content_iccv_2015/papers/He_Delving_Deep_into_ICCV_2015_paper.pdf",
+        "https://proceedings.mlr.press/v37/ioffe15.pdf",
+        "https://arxiv.org/pdf/1409.0575"
+      ],
+      "resolution": "درس مستقل و راهنمای همین ترم توضیح اصلاحی دارند؛ PDF اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 38,
+      "category": "nuance",
+      "explanation_fa": "اگر هدفH(x) نزدیکx باشد، شاخه F=H−x می‌تواند کوچک شود؛ صفرشدن تابع شاخه الزاماً صفرشدن همه وزن‌ها نیست. ReLU پس ازجمع همانی دقیق را برای ورودی منفی ازبین می‌برد.",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf"
+      ],
+      "resolution": "درس مستقل و راهنمای همین ترم توضیح اصلاحی دارند؛ PDF اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 39,
+      "category": "nuance",
+      "explanation_fa": "میانبر همانی با ابعاد سازگار پارامتر ندارد؛ projection قابل یادگیری پارامتر دارد. جمع هزینه محاسبات دارد حتی اگر وزن تازه‌ای اضافه نکند.",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf"
+      ],
+      "resolution": "درس مستقل و راهنمای همین ترم توضیح اصلاحی دارند؛ PDF اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 40,
+      "category": "nuance",
+      "explanation_fa": "ژاکوبین جمعI+J_F است؛ وجود مشتق۱در یک مسیر، مشتق کل را۱نمی‌کند و ReLU پس ازجمع می‌تواند آن راصفر کند. residual نام تابعH−x است؛ MSEنمایش شهودی است و آزمایش طبقه‌بندی ازcross-entropy استفاده می‌کند.",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf"
+      ],
+      "resolution": "درس مستقل و راهنمای همین ترم توضیح اصلاحی دارند؛ PDF اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 41,
+      "category": "verified_error",
+      "explanation_fa": "تصویر معماری کاملResNet-34 است، نه۳۴لایه انتخابی از۱۵۲. معماری۳۴ از بلوک‌های دولایه و۱۵۲ ازbottleneck سه‌لایه با تعداد بلوک متفاوت استفاده می‌کند.",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf"
+      ],
+      "resolution": "درس مستقل و راهنمای همین ترم توضیح اصلاحی دارند؛ PDF اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 42,
+      "category": "verified_error",
+      "explanation_fa": "weight decay مدلAlexNet برابر۰٫۰۰۰۵است، نه۰٫۰۰۵. تنظیماتResNet batch۲۵۶،He،SGDباmomentum.9،LR.1 وdecay.0001 بااصل تطبیق شد. حذفdropout دراصل پیروی ازBN ذکر شده؛ Adam تنظیم این آزمایش اصلی نبود.",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf",
+        "https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf"
+      ],
+      "resolution": "درس مستقل و راهنمای همین ترم توضیح اصلاحی دارند؛ PDF اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 43,
+      "category": "nuance",
+      "explanation_fa": "عمق بیشتر همیشه بهتر نیست؛ درآزمایشCIFAR مقاله،۱۲۰۲لایه خطای۷٫۹۳٪ و۱۱۰لایه بهترین۶٫۴۳٪ دارد. طراحی و تعمیم همچنان مهم‌اند.",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf"
+      ],
+      "resolution": "درس مستقل و راهنمای همین ترم توضیح اصلاحی دارند؛ PDF اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 1,
+      "category": "license_evidence",
+      "explanation_fa": "نشان CC BY-NC-SA دیده شد؛ نسخه و پیوند مجوز در صفحه اول مشخص نیست.",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/08-Quest-for-Depth.pdf#page=1"
+      ],
+      "resolution": "مجوز نسخه‌نامشخص و حقوق تصاویرثالث تفکیک شد؛ مدل انتشار همچنان درس فارسی مستقل وپیوند اصل است."
+    }
+  ]
 }

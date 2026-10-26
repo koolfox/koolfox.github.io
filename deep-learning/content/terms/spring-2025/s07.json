@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2025",
+  "session_id": "s07",
+  "concept_ids": [
+    "convolution",
+    "gradient-training",
+    "image-classification"
+  ],
+  "source_guides": [
+    {
+      "url": "https://home.cs.colorado.edu/~DrG/Courses/2025-Spring-DL/07-ConvolutionalNeuralNetworks.pdf",
+      "sha256": "4142a4ebdeacd07e5e125653ef571d26e2fe0319ae400cb31c3213357f38f4cc",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 4,
+          "topic_fa": "زمینه و برنامهٔ کلاس"
+        },
+        {
+          "start": 5,
+          "end": 17,
+          "topic_fa": "الهام زیستی و Neocognitron"
+        },
+        {
+          "start": 18,
+          "end": 43,
+          "topic_fa": "اتصال محلی، محاسبهٔ فیلتر و اشتراک وزن"
+        },
+        {
+          "start": 44,
+          "end": 61,
+          "topic_fa": "یادگیری فیلتر و کانال و پشتهٔ لایه‌ها"
+        },
+        {
+          "start": 62,
+          "end": 66,
+          "topic_fa": "اندازه، padding و stride"
+        },
+        {
+          "start": 67,
+          "end": 75,
+          "topic_fa": "max/average pooling"
+        },
+        {
+          "start": 76,
+          "end": 83,
+          "topic_fa": "MNIST و معماری تاریخی LeNet"
+        },
+        {
+          "start": 84,
+          "end": 89,
+          "topic_fa": "آموزش با وزن مشترک و تفسیر نتایج"
+        },
+        {
+          "start": 90,
+          "end": 91,
+          "topic_fa": "جمع‌بندی"
+        }
+      ]
+    }
+  ],
+  "differences_fa": [
+    "این deck مبانی CNN را در۹۱صفحه عرضه می‌کند و برخلاف بخش‌های صرفاً معرفی، مثال۳×۳را طی۱۰صفحه گام‌به‌گام دنبال می‌کند.",
+    "ورودی مثال پشته32×32×3 است؛۶فیلتر5×5×3 و سپس۱۰فیلتر5×5×6 به نقشه‌های28×28×6 و24×24×10 می‌رسند.",
+    "بخش LeNet دارای ورودی32×32، C1با۶نقشه، S2، C3با۱۶نقشه، S4، C5با۱۲۰، F6با۸۴ و۱۰خروجی تاریخیGaussian است؛ آن را نسخهٔReLU/softmax معرفی نمی‌کنیم.",
+    "اصلاح‌های همراه شامل نوبل۱۹۸۱، یادگیری Neocognitron، گسترش۹ضرب، عامل۳۰در مثال۶۶۰۰، poolingهم‌پوشان و جمع گرادیان وزن مشترک است."
+  ],
+  "additional_exercises": [],
+  "review_file": "data/reviews/spring-2025/s07.json"
+}

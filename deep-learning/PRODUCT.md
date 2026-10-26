@@ -40,7 +40,7 @@ part of Danna's own syllabus. Preserve old URLs and browser progress without
 converting old completion marks into completion of the new semesters.
 
 **Delivery state:** the five generated semester routes, source-linked Persian
-companions, exercises, browser progress and first live Python laboratory are
+companions, exercises, browser progress and live Python laboratories are
 implemented and undergoing incremental publication acceptance. Reviews and lesson
 coverage are computed from their evidence records. The full 8,232-page review,
 remaining companions, topic laboratories and heavy reproducible experiments are
@@ -61,6 +61,14 @@ is a separate supplemental replay. Karpathy is an explicitly separate supplement
 course under `/deep-learning/karpathy/`, retaining its unchanged upstream-checked
 engine and compatibility with the earlier URL. The portfolio has one deep-learning
 entry. Browser progress is private and scoped to semester/session.
+
+The network playground adds four synthetic classification datasets, selectable
+features, zero to three hidden layers, tanh/ReLU/sigmoid, SGD/momentum/Adam and
+weight-only L1/L2 penalties. Independent seeded streams keep data and split fixed
+when architecture changes. Train and validation BCE remain separate from the
+penalized objective. Final test evaluation seals that run against further training;
+reusing the same test after tuning is explicitly not independent evaluation.
+This lab is not a CNN, dropout, augmentation or batch-normalization simulator.
 
 This milestone does not complete the 8,232-page goal: remaining source reviews,
 independent lessons, topic laboratories, heavy reproducible labs and acceptance

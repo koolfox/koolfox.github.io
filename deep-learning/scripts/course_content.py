@@ -33,7 +33,7 @@ def check_exercise(exercise):
         index = answer["correct_index"]
         require(isinstance(index, int) and 0 <= index < len(options), "Invalid choice")
     elif kind == "manual":
-        require(bool(answer["criteria_fa"]), "Reasoning exercise needs criteria")
+        require(bool(answer.get("criteria_fa")), "Reasoning exercise needs criteria")
     else:
         raise ValueError(f"Unsupported answer kind: {kind}")
 
@@ -94,6 +94,12 @@ def load_course(root=ROOT, execute=False):
                     f"{mapping_path}: identity mismatch",
                 )
                 sources = {s["sha256"]: s for s in row.get("slides", [])}
+                guide_ids = [guide["sha256"] for guide in mapping["source_guides"]]
+                require(
+                    len(guide_ids) == len(set(guide_ids))
+                    and set(guide_ids) == set(sources),
+                    f"{mapping_path}: every source needs exactly one page guide",
+                )
                 for guide in mapping["source_guides"]:
                     source = sources.get(guide["sha256"])
                     require(source and guide["url"] == source["url"], "Wrong source")

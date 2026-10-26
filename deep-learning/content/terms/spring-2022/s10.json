@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s10",
+  "concept_ids": [
+    "regularization"
+  ],
+  "source_guides": [
+    {
+      "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/08-Regularization.pdf",
+      "sha256": "3e223b8a2dfca08958b8d4fbd5d184b85abdc205f99e94876bd51340b028be52",
+      "ranges": [
+        {
+          "start": 1,
+          "end": 7,
+          "topic_fa": "زمینه تاریخی و تعریف منظم‌سازی"
+        },
+        {
+          "start": 8,
+          "end": 16,
+          "topic_fa": "ظرفیت،جریمه وزن و هندسه L1/L2"
+        },
+        {
+          "start": 17,
+          "end": 19,
+          "topic_fa": "توقف با validation"
+        },
+        {
+          "start": 20,
+          "end": 24,
+          "topic_fa": "افزایش داده و حفظ برچسب"
+        },
+        {
+          "start": 25,
+          "end": 31,
+          "topic_fa": "ensemble و bootstrap"
+        },
+        {
+          "start": 32,
+          "end": 40,
+          "topic_fa": "dropout و مقیاس آموزش/استنتاج"
+        },
+        {
+          "start": 41,
+          "end": 44,
+          "topic_fa": "مقیاس ویژگی و conditioning"
+        },
+        {
+          "start": 45,
+          "end": 50,
+          "topic_fa": "Batch normalization و آمار آموزش/آزمون"
+        },
+        {
+          "start": 51,
+          "end": 52,
+          "topic_fa": "جمع‌بندی و تصویر پایانی"
+        }
+      ]
+    }
+  ],
+  "differences_fa": [
+    "این نسخه۵۲صفحه دارد؛ فصل BN پس از بحث conditioning می‌آید و پرسش پارامترهای آن بدون پهنای لایه‌ها جواب عددی یکتا ندارد.",
+    "در۱۸ انتخاب epoch باید با validation انجام شود؛ در۱۹ توقف زودهنگام نیز ابرپارامتر دارد. جریمهΣw² مربع نرم L2 است.",
+    "در۲۷ فرمول مجموع احتمال شش یا بیشتر خطا درست است ولی عنوان PMF دقیق نیست؛ در۳۴ ضریب dropout احتمال نگه‌داشتن است.",
+    "در۴۷ اندیس γ و در۴۸/۴۹ واریانس متحرک و ε اصلاح توضیحی دارند؛ نمودار اصلی دست‌نخورده می‌ماند. مقیاس خروجی BN با γ/β تنظیم می‌شود و لزوماً استاندارد نمی‌ماند."
+  ],
+  "additional_exercises": [
+    {
+      "id": "bn-parameter-count",
+      "prompt_fa": "دو BN با scale و center فعال برای بردارهای۲۰ و۳۰ویژگی چند پارامتر آموزش‌پذیر دارند؟ آمار متحرک را نشمارید.",
+      "hints_fa": [
+        "برای هر ویژگی یک γ و یک β داریم."
+      ],
+      "solution_fa": "۲×۲۰+۲×۳۰=۱۰۰. میانگین و واریانس متحرک وضعیت مدل‌اند و با گرادیان آموزش داده نمی‌شوند.",
+      "source_kind": "original",
+      "answer": {
+        "kind": "number",
+        "value": 100,
+        "tolerance": 0
+      }
+    },
+    {
+      "id": "early-stop-protocol",
+      "prompt_fa": "چرا انتخاب epoch کم‌خطا روی test و سپس گزارش همان خطا ارزیابی مستقل نیست؟",
+      "hints_fa": [
+        "انتخاب epoch نوعی انتخاب مدل است."
+      ],
+      "solution_fa": "اطلاعات test وارد انتخاب مدل شده است. انتخاب را با validation انجام می‌دهیم و test را برای یک ارزیابی نهایی مستقل نگه می‌داریم. معیار پاسخ: تشخیص نشت انتخاب و معرفی سه نقش train/validation/test.",
+      "source_kind": "original",
+      "answer": {
+        "kind": "manual",
+        "criteria_fa": [
+          "بیان ورود اطلاعات test به انتخاب epoch",
+          "استفاده از validation برای انتخاب و حفظ test برای ارزیابی نهایی"
+        ]
+      }
+    }
+  ],
+  "review_file": "data/reviews/spring-2022/s10.json"
+}

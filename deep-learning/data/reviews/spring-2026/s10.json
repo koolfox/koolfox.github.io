@@ -2,9 +2,37 @@
   "schema_version": 1,
   "term_id": "spring-2026",
   "session_id": "s10",
-  "reviewer": null,
-  "reviewed_at_utc": null,
-  "method": null,
+  "reviewer": "Codex source researcher: spring-2026",
+  "reviewed_at_utc": "2026-10-26T07:54:39.447432+00:00",
+  "method": {
+    "text": "All 71 pages read in bounded batches; page 71 is image-only. Text extraction was read, not merely generated.",
+    "visual": "All 71 pages viewed in 12 PDFium contact sheets and 19 technical zooms; source PDF unchanged. PDFium occasional title clipping cross-checked with extracted text and sheet.",
+    "zoom_pages": [
+      13,
+      20,
+      22,
+      23,
+      25,
+      27,
+      29,
+      30,
+      36,
+      38,
+      44,
+      46,
+      51,
+      56,
+      64,
+      65,
+      66,
+      67,
+      68
+    ],
+    "primary_coverage": "Mask R-CNN text pp1–4 and inference paragraph p5; images pp3–4. FCN text pp3–5 and image p5. Faster R-CNN text pp3–5. Jain/Grauman text pp3–5 and user-study/timing excerpts pp7–8. Official Torchvision RoIPool floor/ceil kernel and RoIAlign sampling/averaging implementation read; COCO evaluation parameters and Panoptic abstract read. These primary papers are not claimed fully audited.",
+    "numerical_checks": "Source transpose outputs pp22–23, pool bins and corrected output pp36/54–57, division p51 and bilinear p64–67 recomputed using Python; five original companion examples executed.",
+    "limitations": "Application images are illustrations, not independently verified deployment evidence. Canvas lab and programming tutorial outside the PDF were not executed. No detection/segmentation model training or benchmark reproduced.",
+    "reproduction": "Local render_2026_remaining.py, get_dense_sources.py, author_instance_segmentation.py and author_s10_2026.py under /tmp/danna-full-review; SHA-addressed source cache and PyMuPDF/PDFium5.14.0. Evidence images stay outside the repository."
+  },
   "sources": [
     {
       "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/10-Dense-Prediction.pdf",
@@ -16,784 +44,1142 @@
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 1,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "عنوان و نشان CC BY-NC-SA دیده شد؛ نسخه و پیوند مجوز در annotation صفحه موجود نیست.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-001-006.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/10-Dense-Prediction.pdf#page=1"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 2,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "اعلان آزمایشگاه دوم و موعد جمعه مربوط به Canvas همین دوره است؛ تمرین عمومی قابل دسترسی از این صفحه به دست نمی‌آید.",
       "concept_ids": [],
-      "visual_evidence": null,
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-001-006.jpg",
       "evidence_urls": []
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 3,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "نقشهٔ پنج‌بخشی جلسه از انگیزه تا آموزش برنامه‌نویسی دیده شد؛ این صفحه محتوای کد ندارد.",
       "concept_ids": [],
-      "visual_evidence": null,
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-001-006.jpg",
       "evidence_urls": []
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 4,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "بخش انگیزه در فهرست برجسته شده است؛ محتوای علمی مستقلی اضافه نمی‌کند.",
       "concept_ids": [],
-      "visual_evidence": null,
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-001-006.jpg",
       "evidence_urls": []
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 5,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "سه نوع خروجی در تصویر گوسفندها مقایسه شد. نمونه‌ای هویت هر شیء را جدا می‌کند؛ معادل بخش‌بندی کامل پان‌اپتیک نیست.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-001-006.jpg",
       "evidence_urls": []
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 6,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "شکل خروجی تک‌برچسب تصویر در برابر جعبه‌ها و برچسب‌های پیکسلی دیده شد؛ احتمال‌های نمایشی نتیجهٔ آزمایش گزارش‌شده نیستند.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-001-006.jpg",
       "evidence_urls": []
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 7,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "حساسیت به مکان شیء هدف یادگیری است؛ نظارت متراکم استفاده از همبستگی کاذب زمینه را ناممکن نمی‌کند.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-007-012.jpg",
       "evidence_urls": []
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 8,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "نمونه‌های کاربرد تصویر پزشکی، رانندگی و موارد دیگر انگیزشی‌اند؛ دقت یا اثربخشی عملی در این صفحه اثبات نشده است.",
       "concept_ids": [],
-      "visual_evidence": null,
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-007-012.jpg",
       "evidence_urls": []
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 9,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "پنجرهٔ لغزان در مقیاس‌ها و مکان‌های متعدد دیده شد. این ایده منحصر به پیش از شبکهٔ عصبی نیست؛ اشتراک محاسبات CNN هزینهٔ تکرار را کاهش می‌دهد.",
+      "concept_ids": [
+        "object-detection"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-007-012.jpg",
       "evidence_urls": []
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 10,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "نمودار سه روش، تاریخ Mask R-CNN را ۲۰۱۵ نوشته است؛ معرفی آن ۲۰۱۷ است. تاریخ FCN و Faster R-CNN در نمودار ۲۰۱۵ درست است.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-007-012.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/abs/1703.06870"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 11,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "فهرست وارد بخش تغییر خروجی شبکه می‌شود؛ صفحهٔ راهنماست.",
       "concept_ids": [],
-      "visual_evidence": null,
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-007-012.jpg",
       "evidence_urls": []
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 12,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "تأکید بر FCN در نمودار مقایسه؛ خطای تاریخ Mask R-CNN در همین نمودار تکرار شده است.",
+      "concept_ids": [
+        "segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-007-012.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/abs/1703.06870"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 13,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "نمای پنج کانال one-hot برای برچسب پیکسل‌ها و جمع cross-entropy بررسی شد. این شکل توزیع واقعی confidence نیست؛ مشارکت پیکسل‌ها در جمع گرادیان به معنی استقلال آماری آن‌ها نیست.",
+      "concept_ids": [
+        "segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/zoom-013.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1411.4038"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 14,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "برچسب صفر به صورت background/unknown آمده است؛ پس‌زمینهٔ معتبر را باید از پیکسل مبهم یا ignore جدا کرد. FCN اصلی پیکسل‌های مبهم را از زیان حذف می‌کند.",
+      "concept_ids": [
+        "segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-013-018.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1411.4038"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 15,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "طرح encoder–decoder و بازیابی اندازهٔ خروجی دیده شد؛ ابعاد درون شبکه لزوماً ثابت نیست و upsampling بازیابی تضمینی تمام جزئیات نیست.",
+      "concept_ids": [
+        "segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-013-018.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1411.4038"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 16,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "شکل AlexNetمانند با سر ۲۱کانالهٔ FCN دیده شد؛ کانال‌های انتهایی کلاس‌ها هستند، نه ۲۱ تصویر مستقل.",
+      "concept_ids": [
+        "segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-013-018.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1411.4038"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 17,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "تبدیل لایهٔ کاملاً متصل به کانولوشن وابستگی به طول بردار ورودی ثابت را برطرف می‌کند؛ تعداد وزن‌ها همچنان ثابت است و می‌توان وزن‌های قبلی را reshape کرد.",
+      "concept_ids": [
+        "segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-013-018.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1411.4038"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 18,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "گسترش میدان پذیرش در لایه‌های پیاپی دیده شد. کاهش وضوح از گام/زیرنمونه‌گیری می‌آید، نه صرفاً از افزایش میدان پذیرش.",
+      "concept_ids": [
+        "segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-013-018.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1411.4038"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 19,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "نمای خروجی ۲۱کاناله با ۲۰ کلاس VOC به‌اضافهٔ پس‌زمینه در مقالهٔ FCN تطبیق داده شد؛ این عدد عمومی همهٔ دیتاست‌ها نیست.",
+      "concept_ids": [
+        "segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-019-024.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1411.4038"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 20,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "سه روش nearest-neighbor، درج صفر و max-unpooling با اندیس‌ها بزرگ‌نمایی شد. unpooling مقدارهای از‌دست‌رفتهٔ pooling را برنمی‌گرداند؛ بین دو عمل در شکل بقیهٔ شبکه قرار دارد.",
+      "concept_ids": [
+        "segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/zoom-020.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1411.4038"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 21,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "نام تاریخی fractional-stride/deconvolution توضیح‌پذیر است، اما عملگر transpose معکوس عمومی کانولوشن نیست. فیلتر upsampling می‌تواند ثابت یا آموختنی باشد.",
+      "concept_ids": [
+        "segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-019-024.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1411.4038"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 22,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "مثال transpose با stride=1 بزرگ‌نمایی و با جمع سهم چهار ورودی بازحساب شد؛ خروجی [[0,0,1],[0,4,6],[4,12,9]] درست است. صفرهای واسط را با پارامتر padding کتابخانه یکی نگیرید.",
+      "concept_ids": [
+        "segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/zoom-022.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1411.4038"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 23,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "مثال stride=2 بازحساب شد؛ خروجی ۴در۴ [[0,0,0,1],[0,0,2,3],[0,2,0,3],[4,6,6,9]] درست است.",
+      "concept_ids": [
+        "segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/zoom-023.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1411.4038"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 24,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "نمودار مقایسه اکنون Faster R-CNN را برجسته می‌کند؛ سال نادرست Mask R-CNN دوباره دیده شد.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-019-024.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/abs/1703.06870"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 25,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "شکل اصلاح مرکز و نمایی‌کردن اندازهٔ جعبه بزرگ‌نمایی شد. چهار offset برای هر جعبه داریم؛ تعداد کل خروجی به کلاس‌محور بودن سر بستگی دارد. آموزش کران ریاضی بر offset تحمیل نمی‌کند.",
+      "concept_ids": [
+        "object-detection"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/zoom-025.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1506.01497"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 26,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "کادر سبز RPN را نشان می‌دهد. objectness دودویی و offsetهای RPN را از softmax چندکلاسهٔ سر ناحیه جدا می‌کنیم؛ RPN خود روی نقشهٔ ویژگی پنجرهٔ مشترک می‌لغزاند.",
+      "concept_ids": [
+        "object-detection"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-025-030.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1506.01497"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 27,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "فرمول قطعه‌ای و نمودار smooth L1 بررسی شد؛ عنوان L1 خالص دقیق نیست. زیان جعبه برای نمونهٔ مثبت فعال است و وزن‌دهی/نرمال‌سازی در زیان RPN اهمیت دارد.",
+      "concept_ids": [
+        "object-detection"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/zoom-027.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1506.01497"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 28,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "تأکید بر خروجی نمونه‌ای در نمودار؛ تاریخ ۲۰۱۵ برای Mask R-CNN نادرست است.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-025-030.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/abs/1703.06870"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 29,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "سه شاخهٔ کلاس، جعبه و ماسک دیده شد. sigmoidهای ماسک مستقل از softmax کلاس‌اند؛ آستانهٔ۰٫۵ به استنتاج مربوط است و در آموزش باید از هدف کلاس واقعی استفاده شود.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/zoom-029.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1703.06870",
+        "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/ops/roi_align.py"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 30,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "جمع سه زیان سر RoI و میانگین BCE روی ماسک کلاس هدف بررسی شد. ماسک برای RoI مثبت تعریف می‌شود؛ زیان‌های RPN جداگانه در آموزش کل وجود دارند.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/zoom-030.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1703.06870",
+        "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/ops/roi_align.py"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 31,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "خلاصهٔ خروجی‌های سه وظیفه دیده شد؛ خطای تاریخ Mask R-CNN تکرار شده است.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-031-036.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/abs/1703.06870"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 32,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "فهرست به پشتیبانی از ابعاد ورودی متغیر منتقل می‌شود.",
       "concept_ids": [],
-      "visual_evidence": null,
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-031-036.jpg",
       "evidence_urls": []
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 33,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "نمودار FCN برای ابعاد متغیر برجسته است؛ تاریخ Mask R-CNN در حاشیه همچنان غلط است.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-031-036.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/abs/1703.06870"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 34,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "کانولوشن و بالا‌نمونه‌گیری خروجی متناسب با ورودی تولید می‌کنند؛ حداقل اندازه، padding/cropping و حافظه قید عملی‌اند، نه پذیرش هر عدد دلخواه بدون شرط.",
+      "concept_ids": [
+        "segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-031-036.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1411.4038"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 35,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "نمودار Faster R-CNN برای ناحیه‌های متغیر برجسته است؛ خطای سال Mask R-CNN دوباره ثبت شد.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-031-036.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/abs/1703.06870"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 36,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "مثال ۴در۶ به۳در۳ بزرگ‌نمایی شد. گردکردن ۴/۳ به۱ برای تمام خانه‌ها پیاده‌سازی عمومی RoI pooling نیست؛ floor/ceil مرز هر خانه می‌تواند هم‌پوشانی ایجاد کند.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/zoom-036.jpg",
+      "evidence_urls": [
+        "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/csrc/ops/cpu/roi_pool_kernel.cpp"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 37,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "فهرست وارد انتقال یادگیری و دقت فضایی می‌شود.",
       "concept_ids": [],
-      "visual_evidence": null,
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-037-042.jpg",
       "evidence_urls": []
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 38,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "عددهای ۷ثانیه جعبه و۵۴ثانیه چندضلعی در مطالعهٔ۱۰۱کاربر با مقالهٔ Jain و Grauman تطبیق یافت؛ هزینهٔ عمومی برچسب‌گذاری یا هر رابط نیست. مطالعه زمان میانهٔ پاسخ‌های هر تصویر و هزینهٔ متوسط روش را به‌کار می‌برد.",
+      "concept_ids": [
+        "transfer-learning"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/zoom-038.jpg",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_iccv_2013/papers/Jain_Predicting_Sufficient_Annotation_2013_ICCV_paper.pdf"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 39,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "شکل جداسازی ویژگی و پیش‌بینی دیده شد؛ backbone پیش‌آموخته نیاز داده را کاهش می‌دهد، ولی کفایت دادهٔ کم در هر دامنه را تضمین نمی‌کند.",
+      "concept_ids": [
+        "transfer-learning"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-037-042.jpg",
       "evidence_urls": []
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 40,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "تعویض لایه‌های پایانی و بازآموزی به‌عنوان نمونهٔ انتقال دیده شد؛ عددهای تصاویر/کلاس‌ها شماتیک‌اند.",
+      "concept_ids": [
+        "transfer-learning"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-037-042.jpg",
       "evidence_urls": []
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 41,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "سه تصمیم انتخاب شبکه، لایه‌های منتقل‌شده و freeze/fine-tune بررسی شد؛ ویژگی‌های low/mid/high توصیف شهودی‌اند نه تقسیم سخت تمام نورون‌ها.",
+      "concept_ids": [
+        "transfer-learning"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-037-042.jpg",
       "evidence_urls": []
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 42,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "مقالهٔ FCN واقعاً AlexNet، VGG و GoogLeNet را بررسی کرده است؛ طرح نشان‌داده‌شده AlexNetمانند است.",
+      "concept_ids": [
+        "segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-037-042.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1411.4038"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 43,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "مقالهٔ Faster R-CNN دو backbone از نوع ZF و VGG16 دارد؛ محل conv مشترک در تصویر درست مشخص شده است.",
+      "concept_ids": [
+        "object-detection"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-043-048.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1506.01497"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 44,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "FPN به‌اشتباه سومین classifier ImageNet هم‌ردیف ResNet/ResNeXt نامیده شده است؛ مقاله ResNet/ResNeXt و ساخت ویژگی هرم چندمقیاسی بر آن‌ها را تفکیک می‌کند.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/zoom-044.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1703.06870",
+        "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/ops/roi_align.py"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 45,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "مقایسهٔ بصری ماسک درشت با مرز واقعی و نمونه‌های خروجی Mask R-CNN مشاهده شد؛ تصاویر نمونه به‌تنهایی شاخص دقت کلی نیستند.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-043-048.jpg",
       "evidence_urls": []
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 46,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "skipهای pool4 و pool3 و ادغام پیش‌بینی ریز/درشت بزرگ‌نمایی و با FCN تطبیق داده شد؛ ۱۶ و۸ گام خروجی پیش از upsampling نهایی‌اند، نه تعداد لایه‌ها.",
+      "concept_ids": [
+        "segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/zoom-046.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1411.4038"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 47,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "مقایسهٔ خروجی FCN-32s،16s،8s با مرجع دیده شد؛ بهبود مرز در همین نمونه روشن است، اما مرز کاملاً دقیق تضمین نشده است.",
+      "concept_ids": [
+        "segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-043-048.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1411.4038"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 48,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "جای RoIAlign در شاخهٔ نمونه‌ای مشخص است؛ کار آن هم‌راستایی ویژگی با ناحیه است، نه خود تشخیص کلاس.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-043-048.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1703.06870",
+        "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/ops/roi_align.py"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 49,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "نخستین منبع misalignment یعنی گردکردن ناحیه روی نقشهٔ کوچک‌تر دیده شد؛ مرحلهٔ quantization از pooling بعدی جداست.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-049-054.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1703.06870",
+        "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/ops/roi_align.py"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 50,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "مسئلهٔ نگاشت جعبهٔ۲۰۰در۱۴۵ با offset تصویری نمایش داده شد. برای بازسازی مثال، قرارداد ترتیب x/y را باید از صفحهٔ بعد کنترل کرد.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-049-054.jpg",
       "evidence_urls": []
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 51,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "دو تساوی مختصات غلط است:192/32=6 نه9.25 و145/32=4.53125 نه6. برای سازگاری با شکل‌های بعدی x باید296 و y باید192 باشد؛ عرض6.25 و ارتفاع4.53125 درست‌اند.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/zoom-051.jpg",
       "evidence_urls": []
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 52,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "نمای ناحیهٔ اصلی و گرد‌شده مشاهده شد؛ افزودن/حذف نوارهای فضایی در این مثال رخ می‌دهد. گردکردن همیشه floor نیست و به پیاده‌سازی بستگی دارد.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-049-054.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1703.06870",
+        "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/ops/roi_align.py"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 53,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "دومین منبع گردکردن، مرز خانه‌های pooling است؛ تصویر محل عمل را در شبکه نشان می‌دهد.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-049-054.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1703.06870",
+        "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/ops/roi_align.py"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 54,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "تبدیل۴در۶ به۳در۳ با خانهٔ ثابت۱در۲ معرفی شده؛ این ساده‌سازی با floor/ceil استاندارد سازگار نیست و ردیف آخر نباید صرفاً حذف شود.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-049-054.jpg",
+      "evidence_urls": [
+        "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/csrc/ops/cpu/roi_pool_kernel.cpp"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 55,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "اعداد سه ردیف نخست برای بیشینه‌گیری دوبه‌دو دیده شد؛ ردیف چهارم در شکل خالی گذاشته شده، ولی پیاده‌سازی مرجع آن را پوشش می‌دهد.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-055-060.jpg",
+      "evidence_urls": [
+        "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/csrc/ops/cpu/roi_pool_kernel.cpp"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 56,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "نوار فیروزه‌ای حذف کامل ردیف چهارم را به RoI pooling نسبت می‌دهد؛ در پیاده‌سازی مرجع بازه‌های سطری [0,2)،[1,3)،[2,4) آن را پوشش می‌دهند. مشکل واقعی quantization و تجمیع است.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/zoom-056.jpg",
+      "evidence_urls": [
+        "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/csrc/ops/cpu/roi_pool_kernel.cpp"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 57,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "تعمیم حذف نوار به همهٔ کانال‌ها در تصویر دیده شد؛ همان خطای مدل ساده‌شدهٔ صفحه۵۶ است. نمونهٔ بازحساب‌شده خروجی[[1,.6,.9],[1,.7,.9],[.9,1,.5]] می‌دهد.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-055-060.jpg",
+      "evidence_urls": [
+        "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/csrc/ops/cpu/roi_pool_kernel.cpp"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 58,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "خلاصهٔ ناحیهٔ افزوده/حذف‌شده مشاهده شد؛ حکم فقط برای هندسه و شیوهٔ گردکردن مثال معتبر است و حذف حتمی ردیف آخر عمومی نیست.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-055-060.jpg",
+      "evidence_urls": [
+        "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/csrc/ops/cpu/roi_pool_kernel.cpp"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 59,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "RoIAlign با مرز اعشاری۶٫۲۵در۴٫۵۳ نشان داده شد؛ quantization فضایی مرزها حذف می‌شود، نه همهٔ تقریب‌های عددی یا اتلاف اطلاعات.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-055-060.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1703.06870",
+        "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/ops/roi_align.py"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 60,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "تقسیم ناحیه به۹خانه با اندازهٔ تقریبی۲٫۰۸در۱٫۵۱ درست است؛ مقدار دقیق ارتفاع از145/32 محاسبه می‌شود.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-055-060.jpg",
       "evidence_urls": []
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 61,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "چهار نمونه در خانه و تبدیل به یک خروجی دیده شد؛ انتخاب sampling_ratio از اندازهٔ خروجی مستقل است.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-061-066.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1703.06870",
+        "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/ops/roi_align.py"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 62,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "بیشینهٔ عددهای نمایش‌داده‌شده۰٫۵۱ است. مقاله max یا average را بررسی می‌کند ولی Torchvision roi_align میانگین می‌گیرد.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-061-066.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1703.06870",
+        "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/ops/roi_align.py"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 63,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "چهار همسایه برای یک نقطهٔ درون‌یابی نشان داده شد؛ عملیات برای هر کانال جدا انجام می‌شود و وزن‌ها از مختصات می‌آیند.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-061-066.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1703.06870",
+        "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/ops/roi_align.py"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 64,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "فرمول bilinear بزرگ‌نمایی شد؛ با مختصات گرد‌شدهٔ(9.94,6.50) عدد۰٫۱۴۴ به دست می‌آید. نمونه‌های یک‌سوم/دوسوم شکل با مرکز زیرخانه‌های Torchvision یک‌چهارم/سه‌چهارم متفاوت‌اند؛ قرارداد باید ذکر شود.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/zoom-064.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1703.06870",
+        "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/ops/roi_align.py"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 65,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "درون‌یابی نقطهٔ(10.64,6.50) بازحساب شد؛۰٫۲۱۴ به۰٫۲۱ گرد می‌شود. در این مختصات وزن همسایه‌های ردیف پایین صفر است.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/zoom-065.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1703.06870",
+        "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/ops/roi_align.py"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 66,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "درون‌یابی نقطهٔ(9.94,7.01) با چهار همسایه بازحساب شد؛۰٫۵۱۳۲۴ به۰٫۵۱ گرد می‌شود.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/zoom-066.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1703.06870",
+        "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/ops/roi_align.py"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 67,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "checked",
+      "note_fa": "درون‌یابی نقطهٔ(10.64,7.01) بازحساب شد؛۰٫۴۲۶۱۶ به۰٫۴۳ گرد می‌شود؛ ترتیب گوشه‌ها و هر دو وزن کنترل شد.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/zoom-067.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1703.06870",
+        "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/ops/roi_align.py"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 68,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "ادعای «فقط RoI pooling اطلاعات را از دست می‌دهد» بیش‌ازحد کلی و نادرست است؛ RoIAlign نیز نمونه‌برداری و تجمیع محدود دارد، فقط خطای گردکردن مکانی را برطرف می‌کند.",
+      "concept_ids": [
+        "instance-segmentation"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/zoom-068.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1703.06870",
+        "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/ops/roi_align.py"
+      ]
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 69,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "فهرست به آموزش برنامه‌نویسی اشاره دارد؛ در این PDF کد یا نتیجهٔ اجرای تمرین وجود ندارد.",
       "concept_ids": [],
-      "visual_evidence": null,
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-067-071.jpg",
       "evidence_urls": []
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 70,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "اسلاید تکراری فهرست در پایان دیده شد؛ آموزش برنامه‌نویسی بیرونی از این صفحه قابل ممیزی نیست.",
       "concept_ids": [],
-      "visual_evidence": null,
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-067-071.jpg",
       "evidence_urls": []
     },
     {
       "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "page": 71,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "اسلاید پایانی فقط تصویر The End است و متن قابل استخراج ندارد؛ تصویر دیده شد.",
       "concept_ids": [],
-      "visual_evidence": null,
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s10/sheet-067-071.jpg",
       "evidence_urls": []
     }
   ],
-  "findings": []
+  "findings": [
+    {
+      "page": 1,
+      "category": "license_evidence",
+      "explanation_fa": "نشان BY-NC-SA روی جلد دیده شد. نسخه مشخص نشده و get_links صفحه اول خالی است؛ این مشاهده مجوز تمام شکل‌های شخص ثالث را اثبات نمی‌کند.",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/10-Dense-Prediction.pdf#page=1"
+      ],
+      "resolution": "در درس مستقل یا تفاوت‌های راهنمای همین ترم توضیح داده شد؛ PDF اصلی بدون تغییر باقی می‌ماند."
+    },
+    {
+      "page": 10,
+      "category": "verified_error",
+      "explanation_fa": "سال Mask R-CNN در صفحات۱۰،۱۲،۲۴،۲۸،۳۱،۳۳،۳۵ به‌اشتباه۲۰۱۵ است؛ نخستین ارسال مقاله۲۰مارس۲۰۱۷ و انتشارICCV۲۰۱۷ است.",
+      "evidence_urls": [
+        "https://arxiv.org/abs/1703.06870"
+      ],
+      "resolution": "در درس مستقل یا تفاوت‌های راهنمای همین ترم توضیح داده شد؛ PDF اصلی بدون تغییر باقی می‌ماند."
+    },
+    {
+      "page": 14,
+      "category": "verified_error",
+      "explanation_fa": "background و unknown/ignore یک مفهوم نیستند؛ FCN کلاس پس‌زمینه را پیش‌بینی می‌کند ولی پیکسل مبهم را از زیان حذف می‌کند.",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1411.4038#page=5"
+      ],
+      "resolution": "در درس مستقل یا تفاوت‌های راهنمای همین ترم توضیح داده شد؛ PDF اصلی بدون تغییر باقی می‌ماند."
+    },
+    {
+      "page": 17,
+      "category": "nuance",
+      "explanation_fa": "FC به convolution مشکل ابعاد ثابت ورودی را حل می‌کند، نه نیاز به تعداد ثابت وزن؛ تعداد پارامترهای لایهٔ کانولوشن نیز ثابت است.",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1411.4038#page=3"
+      ],
+      "resolution": "در درس مستقل یا تفاوت‌های راهنمای همین ترم توضیح داده شد؛ PDF اصلی بدون تغییر باقی می‌ماند."
+    },
+    {
+      "page": 25,
+      "category": "nuance",
+      "explanation_fa": "پارامترهای جعبه offsets نرمال‌شده و log-scale هستند؛ آموزش به‌تنهایی کران قطعی مقدار خروجی ایجاد نمی‌کند. RPN با سر کلاس ناحیه فرق دارد.",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1506.01497#page=5"
+      ],
+      "resolution": "در درس مستقل یا تفاوت‌های راهنمای همین ترم توضیح داده شد؛ PDF اصلی بدون تغییر باقی می‌ماند."
+    },
+    {
+      "page": 27,
+      "category": "verified_error",
+      "explanation_fa": "تابع رسم‌شده smooth L1 است؛ عنوان L1 خالص دقیق نیست. رگرسیون فقط برای نمونهٔ مثبت و با نرمال‌سازی/وزن مربوط اعمال می‌شود.",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1506.01497#page=5"
+      ],
+      "resolution": "در درس مستقل یا تفاوت‌های راهنمای همین ترم توضیح داده شد؛ PDF اصلی بدون تغییر باقی می‌ماند."
+    },
+    {
+      "page": 30,
+      "category": "nuance",
+      "explanation_fa": "Lmask فقط برای RoI مثبت و کانال کلاس واقعی فعال است؛ آستانه‌گذاری و انتخاب کانال پیش‌بینی‌شده به استنتاج تعلق دارد.",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1703.06870#page=3",
+        "https://arxiv.org/pdf/1703.06870#page=4"
+      ],
+      "resolution": "در درس مستقل یا تفاوت‌های راهنمای همین ترم توضیح داده شد؛ PDF اصلی بدون تغییر باقی می‌ماند."
+    },
+    {
+      "page": 36,
+      "category": "verified_error",
+      "explanation_fa": "در صفحات۳۶ و۵۴–۵۸ حذف کامل ردیف آخر با floor(4/3)=1 مدل درستی از RoI pooling مرجع نیست. مرزهای floor/ceil سه خانه [0,2)،[1,3)،[2,4) هستند و سطر آخر پوشش دارد.",
+      "evidence_urls": [
+        "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/csrc/ops/cpu/roi_pool_kernel.cpp"
+      ],
+      "resolution": "در درس مستقل یا تفاوت‌های راهنمای همین ترم توضیح داده شد؛ PDF اصلی بدون تغییر باقی می‌ماند."
+    },
+    {
+      "page": 38,
+      "category": "nuance",
+      "explanation_fa": "زمان‌های۷ و۵۴ثانیه به مطالعهٔ۱۰۱کاربر و ابزارهای جعبه/چندضلعی خاص مربوط‌اند؛ هزینهٔ ثابت هر مسئله نیستند.",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_iccv_2013/papers/Jain_Predicting_Sufficient_Annotation_2013_ICCV_paper.pdf#page=7",
+        "https://openaccess.thecvf.com/content_iccv_2013/papers/Jain_Predicting_Sufficient_Annotation_2013_ICCV_paper.pdf#page=8"
+      ],
+      "resolution": "در درس مستقل یا تفاوت‌های راهنمای همین ترم توضیح داده شد؛ PDF اصلی بدون تغییر باقی می‌ماند."
+    },
+    {
+      "page": 44,
+      "category": "verified_error",
+      "explanation_fa": "Feature Pyramid Network سومین classifier مستقل ImageNet نیست؛ روش ساخت ویژگی چندمقیاسی از backbone مانند ResNet است. مقاله backbone و head را صریح تفکیک می‌کند.",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1703.06870#page=4"
+      ],
+      "resolution": "در درس مستقل یا تفاوت‌های راهنمای همین ترم توضیح داده شد؛ PDF اصلی بدون تغییر باقی می‌ماند."
+    },
+    {
+      "page": 51,
+      "category": "verified_error",
+      "explanation_fa": "دو تقسیم چاپی ناسازگارند:192/32=6 و145/32=4.53125. برای همان نقطهٔ(9.25,6) در صفحات بعد، مختصات اصلی باید(296,192) باشد؛ این بخش از بازسازی شکل است نه تغییر پنهان منبع.",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/10-Dense-Prediction.pdf#page=51"
+      ],
+      "resolution": "در درس مستقل یا تفاوت‌های راهنمای همین ترم توضیح داده شد؛ PDF اصلی بدون تغییر باقی می‌ماند."
+    },
+    {
+      "page": 64,
+      "category": "implementation_nuance",
+      "explanation_fa": "اعداد۰٫۱۴،۰٫۲۱،۰٫۵۱،۰٫۴۳ با مختصات گرد‌شدهٔ شکل بازحساب و تأیید شدند. نمونه‌گیری یک‌سوم/دوسوم شکل با نقاط یک‌چهارم/سه‌چهارم sampling_ratio=2 در Torchvision یکسان نیست؛ max شکل نیز با میانگین این پیاده‌سازی متفاوت است.",
+      "evidence_urls": [
+        "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/ops/roi_align.py",
+        "https://arxiv.org/pdf/1703.06870#page=4"
+      ],
+      "resolution": "در درس مستقل یا تفاوت‌های راهنمای همین ترم توضیح داده شد؛ PDF اصلی بدون تغییر باقی می‌ماند."
+    },
+    {
+      "page": 68,
+      "category": "verified_error",
+      "explanation_fa": "RoIAlign همهٔ اطلاعات تصویر را حفظ نمی‌کند؛ فقط quantization فضایی مرزها حذف می‌شود. نمونه‌برداری، تجمیع و اتلاف قبلی backbone باقی می‌مانند.",
+      "evidence_urls": [
+        "https://raw.githubusercontent.com/pytorch/vision/main/torchvision/ops/roi_align.py",
+        "https://arxiv.org/pdf/1703.06870#page=3"
+      ],
+      "resolution": "در درس مستقل یا تفاوت‌های راهنمای همین ترم توضیح داده شد؛ PDF اصلی بدون تغییر باقی می‌ماند."
+    }
+  ]
 }

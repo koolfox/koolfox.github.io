@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Train Boolean gates with a real, dependency-free neural network.
 
-Run: python3 logic_gates.py --output ../assets/data/gates.json
+Run: python3 logic_gates.py --gate XOR --output /tmp/xor.json
 A linear sigmoid neuron cannot represent XOR/XNOR; the hidden-layer MLP can.
 Chapter 2 perceptrons use sample-wise updates and misclassification loss.
 The sigmoid/MLP extension uses full-batch gradient descent and stable mean

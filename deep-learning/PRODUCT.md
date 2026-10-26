@@ -36,8 +36,10 @@ training or four-row Boolean fitting as held-out generalization.
 Migration replaces the old curriculum and entry flow. Reuse useful tested
 numerical engines where they fit the official material. Karpathy/autograd may
 be a clearly attributed supplementary laboratory beneath this course, never
-part of Danna's own syllabus. Preserve old URLs and browser progress without
-converting old completion marks into completion of the new semesters.
+part of Danna's own syllabus. Preserve browser progress without converting old
+completion marks into completion of the new semesters. The obsolete recorded
+replay page and its links are removed at the owner's request; the live
+laboratories replace it.
 
 **Delivery state:** the five generated semester routes, source-linked Persian
 companions, exercises, browser progress and live Python laboratories are
@@ -56,10 +58,10 @@ reviewed semester-specific page ranges and corrections. Readiness is computed;
 unreviewed or missing companions remain visibly in preparation.
 
 The neuron/XOR laboratory executes live Python in Shinylive, with bounded training,
-seed/reset controls, weights, predictions and measured loss. The recorded trainer
-is a separate supplemental replay. Karpathy is an explicitly separate supplemental
-course under `/deep-learning/karpathy/`, retaining its unchanged upstream-checked
-engine and compatibility with the earlier URL. The portfolio has one deep-learning
+seed/reset controls, weights, predictions and measured loss. Karpathy is an
+explicitly separate supplemental course under `/deep-learning/karpathy/`, retaining
+its unchanged upstream-checked engine and compatibility with the earlier URL.
+The portfolio has one deep-learning
 entry. Browser progress is private and scoped to semester/session.
 
 The network playground adds four synthetic classification datasets, selectable

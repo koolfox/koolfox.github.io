@@ -1,6 +1,5 @@
 """Offline numerical tests. Run: python3 -m unittest discover -s deep-learning/tests -v"""
 import importlib.util
-import json
 import math
 from pathlib import Path
 import unittest
@@ -107,33 +106,6 @@ class NetworkTests(unittest.TestCase):
                        {"hidden": 0}, {"grid_size": 1}, {"gate": "invalid"}):
             with self.assertRaises(ValueError):
                 logic.train(**kwargs)
-
-    def test_exported_data_matches_parameters_and_predictions(self):
-        data = json.loads((ROOT / "assets/data/gates.json").read_text())
-        self.assertEqual(data["truth_table_inputs"], logic.INPUTS)
-        for gate, record in data["gates"].items():
-            self.assertEqual(record["targets"], logic.GATES[gate])
-            for name, run in record["models"].items():
-                self.assertEqual(run["history"][-1]["epoch"], run["config"]["epochs"])
-                if name == "perceptron":
-                    continue
-                net = logic.Network(run["architecture"])
-                net.weights, net.biases = run["final"]["weights"], run["final"]["biases"]
-                actual = logic.metrics(net, logic.GATES[gate])["probabilities"]
-                expected = run["final"]["probabilities"]
-                self.assertEqual(len(actual), len(expected))
-                # libm/interpreter differences can change the last few bits.
-                # Keep numerical parity strict without requiring bit identity.
-                for observed, recorded in zip(actual, expected):
-                    self.assertTrue(math.isclose(observed, recorded, rel_tol=1e-12, abs_tol=1e-15))
-                surface = run["final"]["decision_surface"]
-                for yi, y in enumerate(surface["y"]):
-                    for xi, x in enumerate(surface["x"]):
-                        self.assertTrue(
-                            math.isclose(net.predict([x, y]), surface["probabilities"][yi][xi],
-                                         rel_tol=1e-12, abs_tol=1e-15),
-                            f"{gate}/{name} at ({x}, {y}) differs from the recorded run",
-                        )
 
 
 if __name__ == "__main__":

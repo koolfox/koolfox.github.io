@@ -2,9 +2,38 @@
   "schema_version": 1,
   "term_id": "spring-2026",
   "session_id": "s09",
-  "reviewer": null,
-  "reviewed_at_utc": null,
-  "method": null,
+  "reviewer": "Codex source researcher: spring-2026",
+  "reviewed_at_utc": "2026-10-26T07:35:18.385514+00:00",
+  "method": {
+    "text": "All71 pages read in3 bounded batches; image-only page71 has no extracted text.",
+    "visual": "All71 pages viewed in12 PDFium sheets;21 additional zooms inspected. PDFium text clipping cross-checked with contact sheets and extracted text.",
+    "zoom_pages": [
+      13,
+      18,
+      31,
+      34,
+      35,
+      37,
+      39,
+      40,
+      41,
+      42,
+      51,
+      52,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      63,
+      67
+    ],
+    "primary_coverage": "QLoRA textPDF2–5; DiLoCo3–4 plus image3; ZeRO2–4; DeepCompression1,6 plus image6. ImageNet2009 and Raina2009 abstracts. Official DDP allreduce section, PyTorch fusion/checkpoint section, NVIDIA precision guide, manufacturer specifications. TPU dates supplied by collaborating researcher from Google primary announcements. Primary papers not claimed fully audited.",
+    "limitations": "Embedded video not played; old quote provenance, all chart points, transistor physics chronology, vendor prices and opaque BF16 plot not fully independently audited. They are historical/context illustrations, not validated quantitative lesson claims. All source pages read; unresolved provenance explicitly preserved in findings. No hardware timing or distributed training run.",
+    "reproduction": "render_2026_remaining.py + get_s09_primary.py + author_s09_2026.py under /tmp/danna-full-review; SHA-addressed cache, PyMuPDF text and pypdfium2 5.14.0 images. Evidence remains local."
+  },
   "sources": [
     {
       "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf",
@@ -16,784 +45,1294 @@
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 1,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "نشان CC BY-NC-SA دیده شد؛ نسخه مجوز و پیوند annotation در صفحه اول مشخص نیست.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-001-006.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=1"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 2,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "یادآوری تاریخی جلسه و موعد Canvas؛ متن تکلیف اصلی در این PDF نیست.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-001-006.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=2"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 3,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "نقشه راه داده، سخت‌افزار و نرم‌افزار.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-001-006.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=3"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 4,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "آغاز روایت زمینه تاریخی.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-001-006.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=4"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 5,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "نقل‌های تاریخی درباره زمان آموزش و توان تقریب دیده و خوانده شد؛ این دو نقل قول و زمان‌های دستگاه‌های قدیمی مستقلاً بازاجرا/ممیزی نشده و مبنای نتیجه کمی درس نیستند. توان نمایش، تضمین یادگیری از داده محدود نیست.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-001-006.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=5"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 6,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "مصاحبه دیدگاه گذشته‌نگر است؛ «یک میلیون برابر» اندازه‌گیری قابل تعمیم نیست. عنوان Google Brain روزآمد نیست؛ صفحه رسمی Hinton همکاری Google را ۲۰۱۳–۲۰۲۳ ذکر می‌کند.",
+      "concept_ids": [
+        "data-benchmarks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-001-006.jpg",
+      "evidence_urls": [
+        "https://www.cs.toronto.edu/~hinton/"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 7,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "نقشه راه داده برچسب‌دار.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-007-012.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=7"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 8,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "نمودار top-5 تاریخی، نتیجه تک‌مدل و ensemble را مخلوط می‌کند؛ سهم داده را از تغییر معماری/محاسبه جدا نمی‌سنجد.۳٫۶ تقریب ensembleResNet است، نه یک ۱۵۲ لایه.",
+      "concept_ids": [
+        "data-benchmarks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-007-012.jpg",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 9,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "تصویر عنوان مقاله ImageNet۲۰۰۹ با اصل مقاله تطبیق شد.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-007-012.jpg",
+      "evidence_urls": [
+        "https://www.image-net.org/static_files/papers/imagenet_cvpr09.pdf"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 10,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "تمثیل جدایی مدل و داده دیده شد؛ تقسیم تاریخ به موج‌ها روایت آموزشی است، نه رده‌بندی استاندارد ثابت.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-007-012.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=10"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 11,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "داده آزمون و معیار کافی نیستند؛ وظیفه،پروتکل،تقسیم‌ها و قواعد مقایسه نیز باید مشخص باشند. برچسب آزمون ممکن است نزد برگزارکننده پنهان بماند؛ «چالش تازه» شرط منطقی همه benchmark ها نیست.",
+      "concept_ids": [
+        "data-benchmarks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-007-012.jpg",
+      "evidence_urls": [
+        "https://www.image-net.org/challenges/LSVRC/2012/2012-downloads.php"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 12,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "تشبیه آزمون مدرسه خوانده شد؛ داده آموزش و آزمون باید در کاربرد واقعی جدا بمانند.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-007-012.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=12"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 13,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "۳٫۲ میلیون تصویر نسخه ۲۰۰۹ با چکیده مقاله اصلی تطبیق شد؛ آن را با ILSVRC۱۰۰۰ کلاسه یکی نمی‌گیریم. MNIST۷۰ هزار ۲۸×۲۸ است؛ تاریخ ۱۹۹۴ و جزئیات دستگاه Roberts دراین مرور مستقل احراز نشده و صرفاً زمینه تاریخی‌اند.",
+      "concept_ids": [
+        "data-benchmarks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/p013.jpg",
+      "evidence_urls": [
+        "https://www.image-net.org/static_files/papers/imagenet_cvpr09.pdf"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 14,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "پوستر ویدئو و زمان پیشنهادی مشاهده شد؛ ویدئو پخش و کامل ممیزی نشده است.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-013-018.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=14"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 15,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "نمونه‌های SUN/COCO/VQA/MOT دیده شد؛ هرکدام وظیفه/معیار متفاوت دارند. ادعای برتری شبکه‌ها درهمه اینوظایف ازاین مونتاژ به‌تنهایی ثابت نمی‌شود.",
+      "concept_ids": [
+        "data-benchmarks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-013-018.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=15"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 16,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "ادعای بیش از ۲۰benchmark و تصویر صفحه انتشارات زمینه معرفی گروه است؛ فهرست کامل و شمارش آن ممیزی نشده است.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-013-018.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=16"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 17,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "داده اینترنت،حافظه/ذخیره‌سازی ونیروی برچسب‌گذاری مکمل‌اند؛ در دسترس بودن تصویر به‌تنهایی مجوز استفاده یا کیفیت برچسب را ثابت نمی‌کند.",
+      "concept_ids": [
+        "data-benchmarks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-013-018.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=17"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 18,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "میز/صندلی،فیل کارتونی،پنجره/بال هواپیما و نمودار گیاه دیده شد. پرسش شیء یکتا مبهم است؛ دستورالعمل باید چندشیئی،تصویرسازی و اجزای شیء را مشخص کند.",
+      "concept_ids": [
+        "data-benchmarks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/p018.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=18"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 19,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "چرخه کیفیت پیش/پس ازکار دیده شد؛ کنترل با نمونه پاسخ‌معلوم ممکن است هنگام کار درج شود. رأی اکثریت تضمین حقیقت نیست و خطای مشترک برچسب‌گذاران را حذف نمی‌کند.",
+      "concept_ids": [
+        "data-benchmarks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-019-024.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=19"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 20,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "چهار شیوه مشارکت مطرح‌اند؛ انتخاب به تخصص،انگیزه،زمان و سیاست داده وابسته است.",
+      "concept_ids": [
+        "data-benchmarks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-019-024.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=20"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 21,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "نمونه CAPTCHA تاریخی است؛ همه سؤال‌های امنیتی داده آموزشی تولید نمی‌کنند و مجوز/کاربرد هر سامانه جداست.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-019-024.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=21"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 22,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "نمونه بازی‌های برچسب‌گذاری دیده شد؛ ادعای فعال‌بودن سرویس‌ها یا کیفیت امروز ازتصویر نتیجه نمی‌شود.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-019-024.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=22"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 23,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "نمونه علم شهروندی دیده شد؛ داوطلبانه بودن جای کنترل کیفیت و نمایندگی نمونه را نمی‌گیرد.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-019-024.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=23"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 24,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "لوگوهای شرکت‌ها تصویر تاریخی‌اند؛ وضعیت امروز،قیمت و توصیه خرید ازاین صفحه استخراج نمی‌شود.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-019-024.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=24"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 25,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "تصویر تاریخی Mechanical Turk؛ تعداد HIT های تصویر و ظاهر رابط ادعای وضعیت روز نیست.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-025-030.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=25"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 26,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "انتخاب برچسب‌گذار باید باوظیفه و تخصص سازگار باشد؛ هیچ گزینه برایهمه مسائل بهترین نیست.",
+      "concept_ids": [
+        "data-benchmarks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-025-030.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=26"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 27,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "تصاویر میزبان چالش‌ها دیده شد؛ هر dataset دراین پلتفرم‌ها لزوماً سرورارزیابی مستقل ندارد.",
+      "concept_ids": [
+        "data-benchmarks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-025-030.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=27"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 28,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "جست‌وجوی dataset با سرور محاسبه معیار فرق دارد؛ نسخه،مجوز و پروتکل باید ازمنبع مجموعه خوانده شود.",
+      "concept_ids": [
+        "data-benchmarks"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-025-030.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=28"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 29,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "جایزه و نقل تاریخی ImageNet دیده شد؛ نقل کامل بازنشر نمی‌شود و این رویداد مبنای علمی معیارها نیست.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-025-030.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=29"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 30,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "نقشه راه سخت‌افزار.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-025-030.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=30"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 31,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "۱۳۰GB عدد وابسته بهنسخه/فشرده‌سازی است. داده هنگام آموزش ازدیسک خوانده می‌شود، نه اینکه الزاماً به دیسک stream شود.۲–۴GB حدود ۱٫۵–۳٫۱٪از ۱۳۰ است؛۱۳۰/۱۶۰≈۸۱٫۲۵٪ و ۱۳۰/۵۰۰=۲۶٪.۴۰GBRAM/۱TB شرط عمومی شروع آموزش نیست؛batch/model تعیین‌کننده‌اند.",
+      "concept_ids": [
+        "data-and-compute"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/p031.jpg",
+      "evidence_urls": [
+        "https://docs.pytorch.org/tutorials/recipes/recipes/tuning_guide.html"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 32,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "عنوان و ادعای تا ۷۰ برابر درچکیده Raina۲۰۰۹ تأیید شد؛ مربوط به پیاده‌سازی DBN و CPU دو‌هسته‌ای همان آزمایش است، نه سرعت همه GPU ها درهمه کارها.",
+      "concept_ids": [
+        "data-and-compute"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-031-036.jpg",
+      "evidence_urls": [
+        "https://ai.stanford.edu/~ang/papers/icml09-LargeScaleUnsupervisedDeepLearningGPU.pdf"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 33,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "تصویر قطعات CPU/GPU و رایانه چندکارت دیده شد؛ تعداد GPU به‌تنهایی سرعت را تعیین نمی‌کند.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-031-036.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=33"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 34,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "شکل تمایز throughput/latency را ساده می‌کند؛ هسته CPU و GPU واحدهای هم‌ارز نیستند. دسترسی آسان‌تر cache توضیح عمومی برتری GPU نیست؛ موازی‌سازی،پهنای‌باند،دسترسی منظم و هزینه انتقال مهم‌اند.",
+      "concept_ids": [
+        "data-and-compute"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/p034.jpg",
+      "evidence_urls": [
+        "https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 35,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "MI300 محصول AMD است نه Intel. ENIAC را بدونقید نوع ماشین «نخستین ماشین» نمی‌نامیم. قانون Moore پیش‌بینی تاریخی تراکم/شمار قطعات است،نه تضمین دوبرابرشدن سرعت؛ اعداد چگالی ایننمودار مستقلاً تطبیق نشده‌اند.",
+      "concept_ids": [
+        "data-and-compute"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/p035.jpg",
+      "evidence_urls": [
+        "https://www.amd.com/en/products/accelerators/instinct/mi300/mi300x.html"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 36,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "روند شش‌ماهه درباره نمونه‌ای ازمدل‌های منتخب تاریخی است،نه قانون همه AI؛ بازه و روش انتخاب/برآورد باید همراه عدد باشد. نمودار بازبرازش نشده است.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-031-036.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=36"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 37,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "TPU یکشتاب‌دهنده تخصصی است؛ هسته‌های رسم‌شده باهسته CPU هم‌ارز نیستند. منبع Google،CloudTPUbeta در ۱۲ فوریه ۲۰۱۸ را تأیید می‌کند؛ استفاده داخلی/معرفی عمومی و Cloud تاریخ‌های جدا دارند.",
+      "concept_ids": [
+        "data-and-compute"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/p037.jpg",
+      "evidence_urls": [
+        "https://cloud.google.com/blog/products/gcp/cloud-tpu-machine-learning-accelerators-now-available-in-beta"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 38,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "طیف انعطاف/بازده تمثیلی است؛ سریع‌تر و کم‌مصرف‌تر بودن برای هر workload تضمین نمی‌شود.",
+      "concept_ids": [
+        "data-and-compute"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-037-042.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=38"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 39,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "NPU نام کل تراشه چندمنظوره نیست؛ M1 یک SoC شامل CPU،GPU و NeuralEngine است. تصویر M1 برای ۲۰۲۰ است؛ وجود NeuralEngine اپل از ۲۰۱۷ به معنی عرضه M1 در ۲۰۱۷ نیست.",
+      "concept_ids": [
+        "data-and-compute"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/p039.jpg",
+      "evidence_urls": [
+        "https://www.apple.com/newsroom/2020/11/apple-unleashes-m1/"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 40,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "شکل planar/FinFET/GAA خوانده شد؛ تاریخ تولید و هزینه کارخانه دراین ممیزی مستقل بررسی نشده‌اند. مدل ساده نشتی و عدد ۹۰nm توضیح جامع فیزیک نیمه‌رسانا نیست و به‌عنوان قاعده عددی درس استفاده نمی‌شود.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/p040.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=40"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 41,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "اعداد WSE-3 شامل ۴ تریلیون ترانزیستور،۹۰۰ هزار هسته و ۴۴GBSRAM بااعلام رسمی سازنده تطبیق شد؛ همه اجزای یک سامانه روی این تراشه نیستند. قیمت ۲–۳ میلیون شایعه اسلاید است و تأییدشده تلقی نمی‌شود؛ «بهترین جهان» معیار مشخصی ندارد.",
+      "concept_ids": [
+        "data-and-compute"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/p041.jpg",
+      "evidence_urls": [
+        "https://www.cerebras.ai/press-release/cerebras-announces-third-generation-wafer-scale-engine"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 42,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "اعلام رسمی Blackwell در ۱۸ مارس ۲۰۲۴ بود؛ سال معرفی را باعرضه مدل‌ها مخلوط نمی‌کنیم.۲۰۸ میلیارد مربوط بهیک GPU دو die است و GB200 دو GPU و CPU دارد. انرژی ۵٫۲MWh درسال بهتوان میانگین≈۵۹۴W نیاز دارد؛ بدونمدل/بار/زمانفعال،مقایسه خانوار و قیمت قابل تعمیم نیست.",
+      "concept_ids": [
+        "data-and-compute"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/p042.jpg",
+      "evidence_urls": [
+        "https://nvidianews.nvidia.com/news/nvidia-blackwell-platform-arrives-to-power-a-new-era-of-computing"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 43,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "نمودار هزینه مدل‌های منتخب تاریخی است؛ هزینه تخمینی با صورتحساب اجرای ما یکی نیست و تمام نقاط مستقلاً ممیزی نشده‌اند.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-043-048.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=43"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 44,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "حساب مثال ۲۰ دلار×۲۴×۲۸=۱۳۴۴۰ دلار درست است؛ قیمتخرید/اجاره امروز تأیید نشده و هزینه برق،ذخیره،شبکه و بیکاری را باید جدا سنجید.",
+      "concept_ids": [
+        "data-and-compute"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-043-048.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=44"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 45,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "اعتبارابری و حامیان مربوط بهدانشجویان ثبت‌نام‌شده همان ترم است؛ برای کاربران مجموعه فارسی وعده اعتبار ساخته نمی‌شود.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-043-048.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=45"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 46,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "نقشه راه نرم‌افزار.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-043-048.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=46"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 47,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "جدول زمانی و وابستگی سازمانی تصویر تاریخی‌اند؛ سال مقاله یاانتشارنسخه با آغاز پروژه یکی نیست. فهرست، رتبه‌بندی یا وضعیت پشتیبانی امروز کتابخانه‌ها نیست.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-043-048.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=47"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 48,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "PyTorch انتخاب کارگاه این دوره است؛ کدکارگاه دراینصفحه نیست.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-043-048.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=48"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 49,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "سه محور کاهش دقت،fusion و توزیع،گلوگاه‌های متفاوت را هدف می‌گیرند.",
+      "concept_ids": [
+        "efficient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-049-054.jpg",
+      "evidence_urls": [
+        "https://docs.pytorch.org/tutorials/recipes/recipes/tuning_guide.html",
+        "https://docs.nvidia.com/deeplearning/performance/mixed-precision-training/index.html",
+        "https://docs.pytorch.org/docs/2.14/notes/ddp.html"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 50,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "آغاز کاهش دقت؛ مقدار حافظه ذخیره و نوع محاسبه باید جدا شوند.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-049-054.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=50"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 51,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "FP32 دارای ۲^۳۲ الگوی بیت است،نه همینتعداد عددحقیقی متناهی متمایز. INT8 کامل[-128,127]است؛[-127,127]زیرمجموعه متقارن معتبر دربرخی کوانتیزرهاست. تعدادبیت بدوننوع/مقیاس،دامنه واقعی را تعیین نمی‌کند.",
+      "concept_ids": [
+        "efficient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/p051.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/2305.14314",
+        "https://docs.nvidia.com/deeplearning/performance/mixed-precision-training/index.html"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 52,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "کدها ۲ بیتی و table چهارمقداری FP32 است؛ برای ۰٫۲ دو مقدار ۰ و ۰٫۴ هم‌فاصله‌اند و قاعده tie لازم است. با tie بهاندیسکمتر،اندیس‌ها[1,3,2;1,0,1;3,2,1]می‌شوند.۱۸ بیتکد+۱۲۸ بیتجدول=۱۴۶ بیت،نه صرف ۱۸ بیت.",
+      "concept_ids": [
+        "efficient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/p052.jpg",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1510.00149"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 53,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "BN خروجی را به[-1,1]محدود نمی‌کند؛ شکل tanh/Glorot در epoch۰ نیز آزمایش BN نیست. مثال ۹ صفر ویک ۱۰،خروجی استانداردشده نزدیک ۳ دارد؛γوβهم مرکز/مقیاس را عوض می‌کنند.",
+      "concept_ids": [
+        "efficient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-049-054.jpg",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 54,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "۱۶ کد NF4 با bin های نامساوی با INT4 یا FP4 یکسان نیست. بازه[-1,1]کدبوک ازمقیاس‌دهی کوانتیزر می‌آید،نه BN. QLoRA وزنپایه ثابت NF4 و محاسبه معمولاًBF16/آداپترآموختنی دارد؛آموزشهمهوزن‌هاازصفردر ۴ بیت نیست.",
+      "concept_ids": [
+        "efficient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/p054.jpg",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf",
+        "https://arxiv.org/pdf/2305.14314"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 55,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "ادعای بازه BN همان خطایص ۵۳ است. نمودار BF16/FP32 خوانده شد،اماارجاع«Dietke,CVPR25»برای شناسایی کامل منبع/پروتکل کافی نبود؛ ازآن حکم کلی بدتربودن BF16 ساخته نمی‌شود.",
+      "concept_ids": [
+        "efficient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/p055.jpg",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 56,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "جدول با DeepCompression تطبیق شد:VGG-16 درمقاله ۵۵۲MB است نه ۵۱۲؛معیارمرجع top-5 جدول ۱ برابر ۱۱٫۳۲٪است نه ۱۰٫۴٪. نرخ ۴۹ برابرشامل pruning،quantization و Huffman است؛۳–۴ برابرسرعت لایه‌ای،شتاب تضمینی کلآموزش نیست. ادعای BN بازهمنادرست است.",
+      "concept_ids": [
+        "efficient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/p056.jpg",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf",
+        "https://arxiv.org/pdf/1510.00149"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 57,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "اعداد denseA100 بااصل تطبیق شد؛نسبت peakTF32/FP32=۸ و FP16/FP32=۱۶ است. INT8 واحد TOPS دارد؛ایننسبت‌هاشتاب end-to-end یاکیفیتبرابرراثابت نمی‌کنند. ستاره مربوط به sparsity است.",
+      "concept_ids": [
+        "efficient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/p057.jpg",
+      "evidence_urls": [
+        "https://www.nvidia.com/en-us/data-center/a100/"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 58,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "نمودار FP32/TF32/FP16/BF16 دامنهتوانودقتکسررا جدا می‌کند؛TF32 قالب محاسبه TensorCore باورودیذخیره FP32 است،نهالزاماًنوعتانسورذخیره ۱۹ بیتی. بیتکمترهمیشهسرعتکلراافزایشنمی‌دهد.",
+      "concept_ids": [
+        "efficient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/p058.jpg",
+      "evidence_urls": [
+        "https://docs.nvidia.com/deeplearning/performance/mixed-precision-training/index.html",
+        "https://www.nvidia.com/en-us/data-center/a100/"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 59,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "درمشخصات H200 اعداد TensorCore باپاورقی sparsity هستند؛نبایدبا A100dense مقایسهشوند. منبعفعلی FP16/BF16 را ۱۹۷۹TFLOPSsparse ذکرمی‌کند. برای INT8 کمیتعملیاتصحیح TOPS است،حتیاگرجدولسازندهبرچسب TFLOPS دارد. استفادهآموزشبه kernel/دقت/روشوابسته‌است.",
+      "concept_ids": [
+        "efficient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/p059.jpg",
+      "evidence_urls": [
+        "https://www.nvidia.com/en-us/data-center/h200/",
+        "https://www.nvidia.com/en-us/data-center/a100/"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 60,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "تبدیل INT8 شامل scale،round و clip است؛«outlier»اینجامقدارخارجازبازهانتخابیاست،نههرنمونهآماریعجیب. کالیبراسیونراازآزموننهاییمستقلنگه‌می‌داریم.",
+      "concept_ids": [
+        "efficient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/p060.jpg",
+      "evidence_urls": [
+        "https://developer.nvidia.com/blog/achieving-fp32-accuracy-for-int8-inference-using-quantization-aware-training-with-tensorrt/"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 61,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "نقشهراه fusion.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-061-066.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=61"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 62,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "تمثیلرفت‌وآمد ۲ مرحله‌ایخواندهشد؛درمحاسبههدفکاهشذخیره/خواندنمیانیو launch است،نهحذفمعناییعملیات.",
+      "concept_ids": [
+        "efficient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-061-066.jpg",
+      "evidence_urls": [
+        "https://docs.pytorch.org/tutorials/recipes/recipes/tuning_guide.html"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 63,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "اصطلاحشکل LocalRegisterMemory است،نه LoadRegister. ثبات،cache و externalmemory دامنه/ظرفیتمتفاوتدارند؛fusion نمی‌تواندهمهترافیکخارجیراصفرکند و فشارثباتممکناستافزایشیابد.",
+      "concept_ids": [
+        "efficient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/p063.jpg",
+      "evidence_urls": [
+        "https://docs.pytorch.org/tutorials/recipes/recipes/tuning_guide.html"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 64,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "نمودار memorywall تاریخیاست؛نرخسه‌برابر/دو‌سالوقید halfas much قانونعمومیهمهپردازنده‌هاوحافظه‌هانیست. نتیجهقابل‌استفادهنیازبهسنجشگلوگاهحافظهاست.",
+      "concept_ids": [
+        "efficient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-061-066.jpg",
+      "evidence_urls": [
+        "https://docs.pytorch.org/tutorials/recipes/recipes/tuning_guide.html"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 65,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "نقشهراهتوزیعمحاسبه.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-061-066.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=65"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 66,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "شکل thread هاکد/داده/فایلرا مشترک و stack/register را جدا نشانمی‌دهد؛thread سیستمعامل با GPU یا فرایندتوزیع‌شدهیکی نیست.",
+      "concept_ids": [
+        "efficient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-061-066.jpg",
+      "evidence_urls": [
+        "https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/4_Threads.html"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 67,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "verified_error",
+      "note_fa": "DDP با all-reduce گرادیان‌هاهمگاممی‌شود،نه checkpoint. DiLoCo باچندگاممحلی وبهینه‌سازبیرونی کارمی‌کند؛مقاله ۸worker دارد و ۱۰۰ هزار GPU اثباتاینمقالهنیست. ZeRO مراحل ۱/۲/۳ به‌ترتیبحالتبهینه‌ساز،گرادیانووزنراقسمتمی‌کند؛همهمراحلهمهچیزرا shard نمی‌کنند وارتباطباقیاست.",
+      "concept_ids": [
+        "efficient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/p067.jpg",
+      "evidence_urls": [
+        "https://docs.pytorch.org/docs/2.14/notes/ddp.html",
+        "https://arxiv.org/pdf/2311.08105",
+        "https://arxiv.org/pdf/1910.02054"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 68,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
-      "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "clarification",
+      "note_fa": "سهراه کاهش هزینه جمع‌بندی شده‌اند؛هرکدامنیازبهآزمونصحت/کیفیت/زماندارد.",
+      "concept_ids": [
+        "efficient-training"
+      ],
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-067-071.jpg",
+      "evidence_urls": [
+        "https://docs.nvidia.com/deeplearning/performance/mixed-precision-training/index.html",
+        "https://docs.pytorch.org/tutorials/recipes/recipes/tuning_guide.html",
+        "https://docs.pytorch.org/docs/2.14/notes/ddp.html"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 69,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "مرورنقشهراه.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-067-071.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=69"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 70,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "اعلانکارگاه؛کداجراییدراین PDF نیست.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-067-071.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=70"
+      ]
     },
     {
       "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
       "page": 71,
-      "text_reviewed": false,
-      "visual_reviewed": false,
-      "scientific_status": "pending",
-      "note_fa": "",
+      "text_reviewed": true,
+      "visual_reviewed": true,
+      "scientific_status": "context_only",
+      "note_fa": "صفحهپایانیفقطتصویر؛متنقابلاستخراجنداردوادعایعلمیندارد.",
       "concept_ids": [],
-      "visual_evidence": null,
-      "evidence_urls": []
+      "visual_evidence": "/tmp/danna-full-review/spring-2026/s09/sheet-067-071.jpg",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=71"
+      ]
     }
   ],
-  "findings": []
+  "findings": [
+    {
+      "page": 6,
+      "category": "historical_update",
+      "explanation_fa": "مصاحبه دیدگاه گذشته‌نگر است؛ «یک میلیون برابر» اندازه‌گیری قابل تعمیم نیست. عنوان Google Brain روزآمد نیست؛ صفحه رسمی Hinton همکاری Google را ۲۰۱۳–۲۰۲۳ ذکر می‌کند.",
+      "evidence_urls": [
+        "https://www.cs.toronto.edu/~hinton/"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 8,
+      "category": "nuance",
+      "explanation_fa": "نمودار top-5 تاریخی، نتیجه تک‌مدل و ensemble را مخلوط می‌کند؛ سهم داده را از تغییر معماری/محاسبه جدا نمی‌سنجد.۳٫۶ تقریب ensembleResNet است، نه یک ۱۵۲ لایه.",
+      "evidence_urls": [
+        "https://openaccess.thecvf.com/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 11,
+      "category": "nuance",
+      "explanation_fa": "داده آزمون و معیار کافی نیستند؛ وظیفه،پروتکل،تقسیم‌ها و قواعد مقایسه نیز باید مشخص باشند. برچسب آزمون ممکن است نزد برگزارکننده پنهان بماند؛ «چالش تازه» شرط منطقی همه benchmark ها نیست.",
+      "evidence_urls": [
+        "https://www.image-net.org/challenges/LSVRC/2012/2012-downloads.php"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 13,
+      "category": "nuance",
+      "explanation_fa": "۳٫۲ میلیون تصویر نسخه ۲۰۰۹ با چکیده مقاله اصلی تطبیق شد؛ آن را با ILSVRC۱۰۰۰ کلاسه یکی نمی‌گیریم. MNIST۷۰ هزار ۲۸×۲۸ است؛ تاریخ ۱۹۹۴ و جزئیات دستگاه Roberts دراین مرور مستقل احراز نشده و صرفاً زمینه تاریخی‌اند.",
+      "evidence_urls": [
+        "https://www.image-net.org/static_files/papers/imagenet_cvpr09.pdf"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 18,
+      "category": "nuance",
+      "explanation_fa": "میز/صندلی،فیل کارتونی،پنجره/بال هواپیما و نمودار گیاه دیده شد. پرسش شیء یکتا مبهم است؛ دستورالعمل باید چندشیئی،تصویرسازی و اجزای شیء را مشخص کند.",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=18"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 19,
+      "category": "nuance",
+      "explanation_fa": "چرخه کیفیت پیش/پس ازکار دیده شد؛ کنترل با نمونه پاسخ‌معلوم ممکن است هنگام کار درج شود. رأی اکثریت تضمین حقیقت نیست و خطای مشترک برچسب‌گذاران را حذف نمی‌کند.",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=19"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 31,
+      "category": "nuance",
+      "explanation_fa": "۱۳۰GB عدد وابسته بهنسخه/فشرده‌سازی است. داده هنگام آموزش ازدیسک خوانده می‌شود، نه اینکه الزاماً به دیسک stream شود.۲–۴GB حدود ۱٫۵–۳٫۱٪از ۱۳۰ است؛۱۳۰/۱۶۰≈۸۱٫۲۵٪ و ۱۳۰/۵۰۰=۲۶٪.۴۰GBRAM/۱TB شرط عمومی شروع آموزش نیست؛batch/model تعیین‌کننده‌اند.",
+      "evidence_urls": [
+        "https://docs.pytorch.org/tutorials/recipes/recipes/tuning_guide.html"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 32,
+      "category": "nuance",
+      "explanation_fa": "عنوان و ادعای تا ۷۰ برابر درچکیده Raina۲۰۰۹ تأیید شد؛ مربوط به پیاده‌سازی DBN و CPU دو‌هسته‌ای همان آزمایش است، نه سرعت همه GPU ها درهمه کارها.",
+      "evidence_urls": [
+        "https://ai.stanford.edu/~ang/papers/icml09-LargeScaleUnsupervisedDeepLearningGPU.pdf"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 34,
+      "category": "nuance",
+      "explanation_fa": "شکل تمایز throughput/latency را ساده می‌کند؛ هسته CPU و GPU واحدهای هم‌ارز نیستند. دسترسی آسان‌تر cache توضیح عمومی برتری GPU نیست؛ موازی‌سازی،پهنای‌باند،دسترسی منظم و هزینه انتقال مهم‌اند.",
+      "evidence_urls": [
+        "https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 35,
+      "category": "verified_error",
+      "explanation_fa": "MI300 محصول AMD است نه Intel. ENIAC را بدونقید نوع ماشین «نخستین ماشین» نمی‌نامیم. قانون Moore پیش‌بینی تاریخی تراکم/شمار قطعات است،نه تضمین دوبرابرشدن سرعت؛ اعداد چگالی ایننمودار مستقلاً تطبیق نشده‌اند.",
+      "evidence_urls": [
+        "https://www.amd.com/en/products/accelerators/instinct/mi300/mi300x.html"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 37,
+      "category": "nuance",
+      "explanation_fa": "TPU یکشتاب‌دهنده تخصصی است؛ هسته‌های رسم‌شده باهسته CPU هم‌ارز نیستند. منبع Google،CloudTPUbeta در ۱۲ فوریه ۲۰۱۸ را تأیید می‌کند؛ استفاده داخلی/معرفی عمومی و Cloud تاریخ‌های جدا دارند.",
+      "evidence_urls": [
+        "https://cloud.google.com/blog/products/gcp/cloud-tpu-machine-learning-accelerators-now-available-in-beta"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 39,
+      "category": "verified_error",
+      "explanation_fa": "NPU نام کل تراشه چندمنظوره نیست؛ M1 یک SoC شامل CPU،GPU و NeuralEngine است. تصویر M1 برای ۲۰۲۰ است؛ وجود NeuralEngine اپل از ۲۰۱۷ به معنی عرضه M1 در ۲۰۱۷ نیست.",
+      "evidence_urls": [
+        "https://www.apple.com/newsroom/2020/11/apple-unleashes-m1/"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 41,
+      "category": "nuance",
+      "explanation_fa": "اعداد WSE-3 شامل ۴ تریلیون ترانزیستور،۹۰۰ هزار هسته و ۴۴GBSRAM بااعلام رسمی سازنده تطبیق شد؛ همه اجزای یک سامانه روی این تراشه نیستند. قیمت ۲–۳ میلیون شایعه اسلاید است و تأییدشده تلقی نمی‌شود؛ «بهترین جهان» معیار مشخصی ندارد.",
+      "evidence_urls": [
+        "https://www.cerebras.ai/press-release/cerebras-announces-third-generation-wafer-scale-engine"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 42,
+      "category": "historical_update",
+      "explanation_fa": "اعلام رسمی Blackwell در ۱۸ مارس ۲۰۲۴ بود؛ سال معرفی را باعرضه مدل‌ها مخلوط نمی‌کنیم.۲۰۸ میلیارد مربوط بهیک GPU دو die است و GB200 دو GPU و CPU دارد. انرژی ۵٫۲MWh درسال بهتوان میانگین≈۵۹۴W نیاز دارد؛ بدونمدل/بار/زمانفعال،مقایسه خانوار و قیمت قابل تعمیم نیست.",
+      "evidence_urls": [
+        "https://nvidianews.nvidia.com/news/nvidia-blackwell-platform-arrives-to-power-a-new-era-of-computing"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 44,
+      "category": "nuance",
+      "explanation_fa": "حساب مثال ۲۰ دلار×۲۴×۲۸=۱۳۴۴۰ دلار درست است؛ قیمتخرید/اجاره امروز تأیید نشده و هزینه برق،ذخیره،شبکه و بیکاری را باید جدا سنجید.",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=44"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 51,
+      "category": "nuance",
+      "explanation_fa": "FP32 دارای ۲^۳۲ الگوی بیت است،نه همینتعداد عددحقیقی متناهی متمایز. INT8 کامل[-128,127]است؛[-127,127]زیرمجموعه متقارن معتبر دربرخی کوانتیزرهاست. تعدادبیت بدوننوع/مقیاس،دامنه واقعی را تعیین نمی‌کند.",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/2305.14314",
+        "https://docs.nvidia.com/deeplearning/performance/mixed-precision-training/index.html"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 52,
+      "category": "nuance",
+      "explanation_fa": "کدها ۲ بیتی و table چهارمقداری FP32 است؛ برای ۰٫۲ دو مقدار ۰ و ۰٫۴ هم‌فاصله‌اند و قاعده tie لازم است. با tie بهاندیسکمتر،اندیس‌ها[1,3,2;1,0,1;3,2,1]می‌شوند.۱۸ بیتکد+۱۲۸ بیتجدول=۱۴۶ بیت،نه صرف ۱۸ بیت.",
+      "evidence_urls": [
+        "https://arxiv.org/pdf/1510.00149"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 53,
+      "category": "verified_error",
+      "explanation_fa": "BN خروجی را به[-1,1]محدود نمی‌کند؛ شکل tanh/Glorot در epoch۰ نیز آزمایش BN نیست. مثال ۹ صفر ویک ۱۰،خروجی استانداردشده نزدیک ۳ دارد؛γوβهم مرکز/مقیاس را عوض می‌کنند.",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 54,
+      "category": "verified_error",
+      "explanation_fa": "۱۶ کد NF4 با bin های نامساوی با INT4 یا FP4 یکسان نیست. بازه[-1,1]کدبوک ازمقیاس‌دهی کوانتیزر می‌آید،نه BN. QLoRA وزنپایه ثابت NF4 و محاسبه معمولاًBF16/آداپترآموختنی دارد؛آموزشهمهوزن‌هاازصفردر ۴ بیت نیست.",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf",
+        "https://arxiv.org/pdf/2305.14314"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 55,
+      "category": "verified_error",
+      "explanation_fa": "ادعای بازه BN همان خطایص ۵۳ است. نمودار BF16/FP32 خوانده شد،اماارجاع«Dietke,CVPR25»برای شناسایی کامل منبع/پروتکل کافی نبود؛ ازآن حکم کلی بدتربودن BF16 ساخته نمی‌شود.",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 56,
+      "category": "verified_error",
+      "explanation_fa": "جدول با DeepCompression تطبیق شد:VGG-16 درمقاله ۵۵۲MB است نه ۵۱۲؛معیارمرجع top-5 جدول ۱ برابر ۱۱٫۳۲٪است نه ۱۰٫۴٪. نرخ ۴۹ برابرشامل pruning،quantization و Huffman است؛۳–۴ برابرسرعت لایه‌ای،شتاب تضمینی کلآموزش نیست. ادعای BN بازهمنادرست است.",
+      "evidence_urls": [
+        "https://proceedings.mlr.press/v37/ioffe15.pdf",
+        "https://arxiv.org/pdf/1510.00149"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 57,
+      "category": "nuance",
+      "explanation_fa": "اعداد denseA100 بااصل تطبیق شد؛نسبت peakTF32/FP32=۸ و FP16/FP32=۱۶ است. INT8 واحد TOPS دارد؛ایننسبت‌هاشتاب end-to-end یاکیفیتبرابرراثابت نمی‌کنند. ستاره مربوط به sparsity است.",
+      "evidence_urls": [
+        "https://www.nvidia.com/en-us/data-center/a100/"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 58,
+      "category": "nuance",
+      "explanation_fa": "نمودار FP32/TF32/FP16/BF16 دامنهتوانودقتکسررا جدا می‌کند؛TF32 قالب محاسبه TensorCore باورودیذخیره FP32 است،نهالزاماًنوعتانسورذخیره ۱۹ بیتی. بیتکمترهمیشهسرعتکلراافزایشنمی‌دهد.",
+      "evidence_urls": [
+        "https://docs.nvidia.com/deeplearning/performance/mixed-precision-training/index.html",
+        "https://www.nvidia.com/en-us/data-center/a100/"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 59,
+      "category": "nuance",
+      "explanation_fa": "درمشخصات H200 اعداد TensorCore باپاورقی sparsity هستند؛نبایدبا A100dense مقایسهشوند. منبعفعلی FP16/BF16 را ۱۹۷۹TFLOPSsparse ذکرمی‌کند. برای INT8 کمیتعملیاتصحیح TOPS است،حتیاگرجدولسازندهبرچسب TFLOPS دارد. استفادهآموزشبه kernel/دقت/روشوابسته‌است.",
+      "evidence_urls": [
+        "https://www.nvidia.com/en-us/data-center/h200/",
+        "https://www.nvidia.com/en-us/data-center/a100/"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 60,
+      "category": "nuance",
+      "explanation_fa": "تبدیل INT8 شامل scale،round و clip است؛«outlier»اینجامقدارخارجازبازهانتخابیاست،نههرنمونهآماریعجیب. کالیبراسیونراازآزموننهاییمستقلنگه‌می‌داریم.",
+      "evidence_urls": [
+        "https://developer.nvidia.com/blog/achieving-fp32-accuracy-for-int8-inference-using-quantization-aware-training-with-tensorrt/"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 63,
+      "category": "verified_error",
+      "explanation_fa": "اصطلاحشکل LocalRegisterMemory است،نه LoadRegister. ثبات،cache و externalmemory دامنه/ظرفیتمتفاوتدارند؛fusion نمی‌تواندهمهترافیکخارجیراصفرکند و فشارثباتممکناستافزایشیابد.",
+      "evidence_urls": [
+        "https://docs.pytorch.org/tutorials/recipes/recipes/tuning_guide.html"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 64,
+      "category": "nuance",
+      "explanation_fa": "نمودار memorywall تاریخیاست؛نرخسه‌برابر/دو‌سالوقید halfas much قانونعمومیهمهپردازنده‌هاوحافظه‌هانیست. نتیجهقابل‌استفادهنیازبهسنجشگلوگاهحافظهاست.",
+      "evidence_urls": [
+        "https://docs.pytorch.org/tutorials/recipes/recipes/tuning_guide.html"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 67,
+      "category": "verified_error",
+      "explanation_fa": "DDP با all-reduce گرادیان‌هاهمگاممی‌شود،نه checkpoint. DiLoCo باچندگاممحلی وبهینه‌سازبیرونی کارمی‌کند؛مقاله ۸worker دارد و ۱۰۰ هزار GPU اثباتاینمقالهنیست. ZeRO مراحل ۱/۲/۳ به‌ترتیبحالتبهینه‌ساز،گرادیانووزنراقسمتمی‌کند؛همهمراحلهمهچیزرا shard نمی‌کنند وارتباطباقیاست.",
+      "evidence_urls": [
+        "https://docs.pytorch.org/docs/2.14/notes/ddp.html",
+        "https://arxiv.org/pdf/2311.08105",
+        "https://arxiv.org/pdf/1910.02054"
+      ],
+      "resolution": "در درس مستقل و راهنمای همین ترم توضیح داده شد؛ منبع اصلی تغییر نمی‌کند."
+    },
+    {
+      "page": 55,
+      "category": "provenance_gap",
+      "explanation_fa": "منبع وپروتکل کامل نمودار FSDP BF16/FP32 با ارجاع ناقص اسلاید احراز نشد؛ خود نمودار خوانده شد، اما نتیجه کمی یا حکم کلی آن در درس استفاده نشده است. خطای مستقل BN با فرمول و مثال عددی بررسی شد.",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=55",
+        "https://proceedings.mlr.press/v37/ioffe15.pdf"
+      ],
+      "resolution": "نمودار صرفاً زمینه‌ای؛ عدم قطعیت منبع پنهان یاcheckedنشده است."
+    },
+    {
+      "page": 1,
+      "category": "license_evidence",
+      "explanation_fa": "نشان CC BY-NC-SA دیده شد؛ نسخه مجوز و پیوند annotation در صفحه اول مشخص نیست.",
+      "evidence_urls": [
+        "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf#page=1"
+      ],
+      "resolution": "درس مستقل وپیونداصل،بدونانتشارPDFیاشواهدتصویری."
+    }
+  ]
 }

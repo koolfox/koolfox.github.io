@@ -219,5 +219,10 @@ test('native MNIST project delivers measured results and a bounded reproducible 
   await page.screenshot({path:test.info().outputPath('mnist-desktop.png'),fullPage:true});
   await page.setViewportSize({width:390,height:844});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
   await expect(page.locator('.reference-scroll')).toHaveAttribute('tabindex','0');
+  await page.locator('.reference-scroll').evaluate(el=>el.scrollLeft=-el.scrollWidth);
+  const headingBox=await page.locator('.reference-table thead th').first().boundingBox();
+  const rowBox=await page.locator('.reference-table tbody th').first().boundingBox();
+  const regionBox=await page.locator('.reference-scroll').boundingBox();
+  expect(headingBox.x).toBeCloseTo(rowBox.x,1);expect(headingBox.x+headingBox.width).toBeLessThanOrEqual(regionBox.x+regionBox.width+1);
   await page.screenshot({path:test.info().outputPath('mnist-mobile.png'),fullPage:true});
 });

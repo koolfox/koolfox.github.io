@@ -1,5 +1,7 @@
 """Scientific controls for the same engine executed in browser Python."""
 
+import hashlib
+import json
 import math
 import runpy
 from pathlib import Path
@@ -66,6 +68,19 @@ def test_graph_matches_known_distances_and_records_real_input():
     assert len(protein["points"]) == 76
     assert protein["source_sha256"] == lab.REFERENCE_SHA256
     assert all(abs(i - j) > 2 for i, j, _ in protein["edges"])
+
+
+def test_staging_and_browser_controls_use_the_reviewed_engine(tmp_path):
+    exporter = runpy.run_path(str(PROJECT / "scripts/export_course_lab.py"))
+    target = tmp_path / "staged"
+    exporter["stage"](target)
+    engine = PROJECT / "assets/course/interactive_lab.py"
+    controls = json.loads((PROJECT / "data/processed/interactive-lab-controls.json").read_text())
+    assert (target / "interactive_lab.py").read_bytes() == engine.read_bytes()
+    assert (target / "1ubq-protein.pdb").read_bytes() == PDB.read_bytes()
+    assert controls["engine_sha256"] == hashlib.sha256(engine.read_bytes()).hexdigest()
+    assert controls["input_sha256"] == lab.REFERENCE_SHA256
+    assert not list(target.rglob("__pycache__"))
 
 
 @pytest.mark.parametrize("bad", [float("nan"), float("inf"), -999, 999])

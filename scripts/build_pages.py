@@ -93,6 +93,15 @@ def build_site(repository: Path, output: Path):
         if (project / name).exists():
             shutil.copyfile(project / name, target / name)
     shutil.copyfile(project / "README.md", target / "README.md")
+    course_runtime = project / "results/shinylive"
+    if not (course_runtime / "concepts/index.html").exists():
+        raise ValueError(
+            "Export the structural course lab first: uv run --project "
+            "structural-bioinformatics/playgrounds python "
+            "structural-bioinformatics/scripts/export_course_lab.py "
+            "--output structural-bioinformatics/results/shinylive"
+        )
+    shutil.copytree(course_runtime, target / "runtime")
     for directory in ("assets", "docs"):
         shutil.copytree(project / directory, target / directory)
     for directory in ("metadata", "processed"):

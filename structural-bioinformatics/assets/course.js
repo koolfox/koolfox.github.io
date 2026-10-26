@@ -1,5 +1,6 @@
 import { gradeQuiz, restoredRecord } from "./course-quiz.js";
 import { renderDatasetWorkflow } from "./dataset-workflow.js";
+import { appendCourseLab } from "./course-lab.js";
 const $=selector=>document.querySelector(selector);
 const exercise=document.body.dataset.section==='exercises';
 const page=exercise?'exercises.html':'course.html';
@@ -55,6 +56,7 @@ async function render(focus=false) {
   const body=source.split('\n').slice(1).join('\n');if(!body.trim())throw Error('missing text');
   if(window.markdownit)$('#lesson').innerHTML=window.markdownit({html:false,linkify:false}).render(body);else $('#lesson').textContent=body;
   $('#lesson').querySelectorAll('a[href],img[src]').forEach(node=>{const attr=node.tagName==='IMG'?'src':'href';const url=new URL(node.getAttribute(attr),new URL(exercise?active.exercise_path:active.path,location.href));if(['http:','https:'].includes(url.protocol))node.setAttribute(attr,url.href);else node.removeAttribute(attr);});
+  if(!exercise)appendCourseLab($('#lesson'),active);
   lessonOutline(n);
   if(exercise)$('#topic-links').replaceChildren(link('مفهوم عمومی این مبحث',`course.html?topic=${n}`),link('ارائهٔ این پژوهش',`presentations.html?topic=${n}`));
   else $('#topic-links').replaceChildren(link('کاربرد این آموخته در پژوهش',`research.html?unit=${step.unit}#learning-application-${step.unit}`));

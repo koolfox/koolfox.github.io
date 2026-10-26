@@ -497,7 +497,7 @@ def build(output, root=ROOT):
     )
     pages["playgrounds/index.html"] = page(
         "آزمایشگاه‌ها",
-        f'<section class="standalone"><h1>از پیش‌بینی تا آزمایش</h1><p>آزمایش‌های زندهٔ مرورگر و پروژه‌های مستقل پایتون؛ روش اجرای هرکدام در صفحهٔ خودش مشخص است.</p><ul class="lab-list">{cards}</ul><h2>تمرین‌های مکمل</h2><p>{link(BASE + "/karpathy/", "کارپتی و آزمایشگاه گرادیان ")} · دوره‌ای مستقل از کارپتی، برای تمرین سازوکار مشتق خودکار.</p><p>{link(BASE + "/replay.html", "بازپخش اجرای ذخیره‌شده پایتون ")} · برای بررسی وزن‌های یک اجرای مشخص، بدون راه‌اندازی محیط پایتون.</p></section>',
+        f'<section class="standalone"><h1>از پیش‌بینی تا آزمایش</h1><p>آزمایش‌های زندهٔ مرورگر و پروژه‌های مستقل پایتون؛ روش اجرای هرکدام در صفحهٔ خودش مشخص است.</p><ul class="lab-list">{cards}</ul><h2>تمرین‌های مکمل</h2><p>{link(BASE + "/karpathy/", "کارپتی و آزمایشگاه گرادیان ")} · دوره‌ای مستقل از کارپتی، برای تمرین سازوکار مشتق خودکار.</p></section>',
     )
     for lab in LABS:
         pages[f"playgrounds/{lab}/index.html"] = lab_page(lab, root)

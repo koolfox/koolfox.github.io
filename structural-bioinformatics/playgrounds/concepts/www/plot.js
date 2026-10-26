@@ -51,6 +51,7 @@
   function dot(c,p,color,r=5){c.fillStyle=color;c.beginPath();c.arc(...p,r,0,Math.PI*2);c.fill();}
   function draw(s){
     restore(s.mode);state=s;window.structuralLabState=s;hitTargets=[];
+    dispatchEvent(new CustomEvent('structural-experiment',{detail:s}));
     window.parent.postMessage({type:'structural-lab-ready'},'*');
     note('download').disabled=Boolean(s.error);
     const {canvas,c,W,H}=graphCanvas();
@@ -100,6 +101,7 @@
       if(target&&target.d<22)window.Shiny.setInputValue('picked_node',target.label,{priority:'event'});
     });
     new ResizeObserver(()=>{if(state&&Math.abs(note('experiment-plot').clientWidth-plotWidth)>1)draw(state);}).observe(note('experiment-plot'));
+    import(new URL('/structural-bioinformatics/assets/course/workbench/workbench.js',location.href)).then(module=>module.setupCodeWorkbench()).catch(()=>{note('code-status').textContent='محیط ویرایش کد دریافت نشد؛ صفحه را دوباره بارگذاری کن.';});
     window.Shiny.initializedPromise.then(()=>{
       let search=location.search;
       try{if(!search)search=window.parent.location.search;}catch{}

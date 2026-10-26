@@ -1,0 +1,123 @@
+{
+  "sequence": {
+    "body": "complement = parameters[\"dna\"].upper().translate(str.maketrans(\"ACGT\", \"TGCA\"))\ndna = parameters[\"dna\"].upper()\nif not dna or set(dna) - set(\"ACGT\"):\n    raise ValueError(\"Use unambiguous DNA bases A/C/G/T\")\ncounts = {base: dna.count(base) for base in \"ACGT\"}\nresult = {\n    \"metrics\": {\"length\": len(dna), \"gc_percent\": 100 * (counts[\"G\"] + counts[\"C\"]) / len(dna)},\n    \"plot\": {\"xlabel\": \"Base index: A, C, G, T\", \"ylabel\": \"Count\", \"series\": [\n        {\"name\": \"Counts\", \"points\": [[i, counts[b]] for i, b in enumerate(\"ACGT\")], \"kind\": \"bar\"}\n    ]},\n    \"table\": {\"columns\": [\"Strand\", \"Sequence\"], \"rows\": [\n        [\"DNA 5'-3'\", dna], [\"Complement 3'-5'\", complement],\n        [\"Reverse complement 5'-3'\", complement[::-1]], [\"Coding-strand RNA\", dna.replace(\"T\", \"U\")]\n    ]}\n}\nprint(\"Reverse complement:\", complement[::-1])\n",
+    "parameters": [
+      [
+        "dna",
+        "str; 5′→3′",
+        "توالی فرضی رشتهٔ کدکننده"
+      ]
+    ],
+    "challenge": "یک پنجرهٔ لغزان برای درصد GC بساز و توضیح بده چرا GC به‌تنهایی بیان یا ساختار RNA را تعیین نمی‌کند."
+  },
+  "geometry": {
+    "body": "import numpy as np\n\nfixed = np.array(inputs[\"points\"], dtype=float)\ncenter = fixed.mean(axis=0)\na = np.deg2rad(parameters[\"angle\"])\nc, s = np.cos(a), np.sin(a)\nrotation = np.array([[c, s, 0], [-s, c, 0], [0, 0, 1]])\nmoving = (fixed - center) @ rotation + center + [parameters[\"shift\"], 0, 0]\nmoving[20, 0] += parameters[\"deformation\"]  # author residue A:21\n\n# Kabsch: preserve handedness; do not fit a mirror image.\nmc = moving.mean(axis=0)\nu, singular_values, vt = np.linalg.svd((moving - mc).T @ (fixed - center))\ncorrection = np.diag([1.0, 1.0, np.linalg.det(u @ vt)])\nfitted = (moving - mc) @ (u @ correction @ vt) + center\n\ndef rmsd(a, b):\n    return float(np.sqrt(np.mean(np.sum((a - b)**2, axis=1))))\n\ndef rg(points):\n    return float(np.sqrt(np.mean(np.sum((points - points.mean(axis=0))**2, axis=1))))\n\nresult = {\n    \"metrics\": {\"raw_rmsd_A\": rmsd(moving, fixed), \"fitted_rmsd_A\": rmsd(fitted, fixed),\n                \"reference_rg_A\": rg(fixed), \"moving_rg_A\": rg(moving)},\n    \"plot\": {\"xlabel\": \"x (angstrom)\", \"ylabel\": \"y (angstrom)\", \"equal_aspect\": True,\n             \"series\": [{\"name\": \"Reference\", \"points\": fixed[:, :2].tolist()},\n                        {\"name\": \"Fitted\", \"points\": fitted[:, :2].tolist()}]}\n}\nprint(\"C-alpha atoms:\", len(fixed), \"source SHA256:\", inputs[\"source_sha256\"])\n",
+    "parameters": [
+      [
+        "shift",
+        "float; Å",
+        "انتقال در راستای x"
+      ],
+      [
+        "angle",
+        "float; degree",
+        "چرخش صلب حول z"
+      ],
+      [
+        "deformation",
+        "float; Å",
+        "تغییر مختصات اتم A:21"
+      ]
+    ],
+    "challenge": "هم‌ترازی را با ۳۰ اتم اول انجام بده ولی RMSD را روی تمام ۷۶ اتم بسنج؛ انتخاب اتم‌های برازش و ارزیابی چه اثری دارد؟"
+  },
+  "energy": {
+    "body": "import math\n\ndelta = parameters[\"delta\"]  # (G_B - G_A) / kBT, dimensionless\nratio = math.exp(-delta)\np_b = ratio / (1 + ratio)\ncurve = [[x / 20, 1 / (1 + math.exp(x / 20))] for x in range(-120, 121)]\nresult = {\n    \"metrics\": {\"probability_b\": p_b, \"ratio_b_to_a\": ratio},\n    \"plot\": {\"xlabel\": \"(G_B - G_A) / kBT\", \"ylabel\": \"Probability of B\",\n             \"series\": [{\"name\": \"Two-state model\", \"points\": curve}]}\n}\nprint(\"P(A) + P(B) =\", (1 - p_b) + p_b)\n",
+    "parameters": [
+      [
+        "delta",
+        "float; ΔG/kBT",
+        "اختلاف انرژی آزاد B منهای A"
+      ]
+    ],
+    "challenge": "مدل را به سه حالت با انرژی آزاد بی‌بُعد مشخص گسترش بده؛ احتمال‌ها را نرمال کن و جمع آن‌ها را بررسی کن."
+  },
+  "minimization": {
+    "body": "def energy(x):\n    return x**2\n\ndef gradient(x):\n    return 2 * x\n\nx = parameters[\"start\"]\npositions, energies = [x], [energy(x)]\nfor step in range(parameters[\"steps\"]):\n    x = x - parameters[\"rate\"] * gradient(x)\n    positions.append(x)\n    energies.append(energy(x))\n\nresult = {\n    \"metrics\": {\"final_x\": x, \"final_energy\": energies[-1]},\n    \"plot\": {\"xlabel\": \"Optimization step (not time)\", \"ylabel\": \"x\",\n             \"series\": [{\"name\": \"Position\", \"points\": [[i, v] for i, v in enumerate(positions)]}]},\n    \"table\": {\"columns\": [\"Step\", \"x\", \"U\"],\n              \"rows\": [[i, v, energies[i]] for i, v in enumerate(positions)]}\n}\nprint(\"Energy change:\", energies[-1] - energies[0])\n",
+    "parameters": [
+      [
+        "start",
+        "float",
+        "مقدار آغازین x"
+      ],
+      [
+        "rate",
+        "float",
+        "اندازهٔ گام"
+      ],
+      [
+        "steps",
+        "int",
+        "تعداد تکرار الگوریتم"
+      ]
+    ],
+    "challenge": "تابع را به `(x**2 - 1)**2` و مشتق را به `4*x*(x**2 - 1)` تغییر بده. با `start=2` و `rate=0.05` اثر مقدار اولیه را بررسی کن."
+  },
+  "sampling": {
+    "body": "import math\nimport random\n\nrng = random.Random(parameters[\"seed\"])\nrho, noise = parameters[\"correlation\"], parameters[\"noise\"]\nresidual = rng.gauss(0, noise)\nvalues = []\nfor i in range(200):\n    if i:\n        residual = rho * residual + rng.gauss(0, noise * math.sqrt(1 - rho**2))\n    values.append(1 + (parameters[\"shift\"] if i >= 100 else 0) + residual)\nblock = parameters[\"block\"]\nmeans = [sum(values[i:i+block]) / block for i in range(0, len(values), block)]\nresult = {\n    \"metrics\": {\"mean\": sum(values) / len(values), \"min_block_mean\": min(means),\n                \"max_block_mean\": max(means)},\n    \"plot\": {\"xlabel\": \"Sample index\", \"ylabel\": \"Synthetic value\",\n             \"series\": [{\"name\": \"Samples\", \"points\": [[i+1, v] for i, v in enumerate(values)]}]},\n    \"table\": {\"columns\": [\"Block\", \"Mean\"], \"rows\": [[i+1, v] for i, v in enumerate(means)]}\n}\nprint(\"Consecutive blocks:\", means)\n",
+    "parameters": [
+      [
+        "shift",
+        "float",
+        "افزایش میانگین نیمهٔ دوم؛ mean_shift در کنترل‌ها"
+      ],
+      [
+        "noise",
+        "float",
+        "انحراف معیار نویز"
+      ],
+      [
+        "correlation",
+        "float; ρ",
+        "ضریب AR(1)"
+      ],
+      [
+        "seed",
+        "int",
+        "بذر مولد"
+      ],
+      [
+        "block",
+        "int",
+        "تعداد نمونه در هر بلوک"
+      ]
+    ],
+    "challenge": "تعداد نمونه‌ها را بیشتر کن و میانگین بلوک‌های چند طول را مقایسه کن؛ از روی تعداد نمونه به‌تنهایی استقلال را نتیجه نگیر."
+  },
+  "graph": {
+    "body": "import numpy as np\n\nif parameters[\"dataset\"] == \"toy\":\n    points = np.array([[0,0,0], [4,0,0], [8,0,0], [4,3,0]], dtype=float)\n    labels = list(\"ABCD\")\nelse:\n    points = np.array(inputs[\"points\"], dtype=float)\n    labels = inputs[\"labels\"]\n\nedges = []\nfor i in range(len(points)):\n    for j in range(i + 1, len(points)):\n        if parameters[\"dataset\"] == \"protein\" and j - i <= parameters[\"exclude\"]:\n            continue\n        distance = float(np.linalg.norm(points[i] - points[j]))\n        if distance <= parameters[\"cutoff\"]:\n            edges.append((i, j, distance))\ndegrees = [sum(i in e[:2] for e in edges) for i in range(len(points))]\nselected = labels.index(parameters[\"selected\"])\nneighbors = [[labels[j if i == selected else i], d] for i, j, d in edges if selected in (i,j)]\nresult = {\n    \"metrics\": {\"node_count\": len(points), \"edge_count\": len(edges),\n                \"selected_degree\": len(neighbors)},\n    \"plot\": {\"xlabel\": \"Node index\", \"ylabel\": \"Degree\",\n             \"series\": [{\"name\": \"Degree\", \"points\": [[i, d] for i, d in enumerate(degrees)],\n                         \"kind\": \"scatter\"}]},\n    \"table\": {\"columns\": [\"Neighbor\", \"Distance (angstrom)\"], \"rows\": neighbors}\n}\nprint(\"Edges:\", len(edges), \"maximum degree:\", max(degrees))\n",
+    "parameters": [
+      [
+        "dataset",
+        "str: toy/protein",
+        "ورودی چهارگره‌ای یا Cαهای 1UBQ"
+      ],
+      [
+        "cutoff",
+        "float; Å",
+        "آستانهٔ فاصلهٔ سه‌بعدی"
+      ],
+      [
+        "exclude",
+        "int",
+        "حذف نزدیک‌های توالی در ورودی پروتئین"
+      ],
+      [
+        "selected",
+        "str",
+        "برچسب گره انتخاب‌شده؛ node در کنترل‌ها"
+      ]
+    ],
+    "challenge": "در چهار نقطه، شرط `<=` را به `<` تبدیل کن و `cutoff=5` بگذار. سپس در پروتئین، درجه را با و بدون حذف نزدیک‌های توالی مقایسه کن."
+  }
+}

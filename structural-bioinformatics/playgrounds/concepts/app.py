@@ -140,6 +140,7 @@ app_ui = ui.page_fluid(
             ),
             ui.h1("آزمایشگاه مفاهیم ساختاری"),
             ui.p("پیش‌بینی کن، یک پارامتر را تغییر بده و نتیجهٔ محاسبه را توضیح بده."),
+            ui.tags.a("ویرایش و اجرای کد Python", href="#code-workbench"),
         ),
         ui.input_select("experiment", "انتخاب آزمایش", MODES, selected="geometry"),
         ui.output_ui("brief"),
@@ -219,6 +220,152 @@ app_ui = ui.page_fluid(
         ),
         ui.output_ui("plot_caption"),
         ui.tags.details(ui.tags.summary("جدول عددهای محاسبه‌شده"), ui.output_ui("data_table")),
+        ui.tags.section(
+            ui.h2("کد Python و مقایسهٔ محاسبات"),
+            ui.p(
+                "پارامترها و خودِ روش را در کد تغییر بده. اجرای کد دکمهٔ جدا دارد؛ "
+                "تغییر کنترل‌های بالای صفحه، پیش‌نویس تو را بازنویسی نمی‌کند."
+            ),
+            ui.tags.details(
+                ui.tags.summary("اگر تازه با Python آشنا شده‌ام، کد را چطور بخوانم؟"),
+                ui.p(
+                    "از بالای کد شروع کن: ",
+                    ui.tags.code("parameters", dir="ltr"),
+                    " یک فرهنگ داده است؛ هر نام را به یک مقدار وصل می‌کند. مثلاً ",
+                    ui.tags.code('parameters["rate"]', dir="ltr"),
+                    " یعنی مقدار پارامتر نرخ را بخوان. در جدول، ",
+                    ui.tags.code("int", dir="ltr"),
+                    " عدد صحیح، ",
+                    ui.tags.code("float", dir="ltr"),
+                    " عدد با ممیز شناور و ",
+                    ui.tags.code("str", dir="ltr"),
+                    " متن است. مقدار متن را داخل علامت نقل‌قول بنویس.",
+                ),
+                ui.p(
+                    ui.tags.code("def", dir="ltr"),
+                    " یک تابع، یعنی مجموعه‌ای از دستورها با نام مشخص، تعریف می‌کند؛ ",
+                    ui.tags.code("return", dir="ltr"),
+                    " مقدار خروجی آن را برمی‌گرداند. تورفتگی ابتدای خط‌ها نشان می‌دهد "
+                    "کدام دستورها متعلق به تابع یا حلقه‌اند. ",
+                    ui.tags.code("for", dir="ltr"),
+                    " دستورهای داخل حلقه را تکرار می‌کند و ",
+                    ui.tags.code("**", dir="ltr"),
+                    " علامت توان است؛ مثلاً ",
+                    ui.tags.code("x**2", dir="ltr"),
+                    " یعنی مربع x.",
+                ),
+                ui.p(
+                    ui.tags.code("inputs", dir="ltr"),
+                    " داده‌های ورودی را نگه می‌دارد؛ ",
+                    ui.tags.code("result", dir="ltr"),
+                    " خروجی محاسبه را به نمودار و جدول می‌رساند. با ",
+                    ui.tags.code("print(...) ", dir="ltr"),
+                    " می‌توانی یک مقدار میانی را در کنسول ببینی. ابتدا نمونه را اجرا کن، "
+                    "بعد فقط یک عدد یا یک خط را عوض کن و پیش از اجرا نتیجه را پیش‌بینی کن.",
+                ),
+                ui.p(
+                    "مقایسه بر اساس نام شاخص‌هاست؛ اگر معنی یا واحد یک شاخص را عوض کردی، "
+                    "نام آن را هم عوض کن تا دو کمیت متفاوت با هم مقایسه نشوند. "
+                    "عددهای ممیز شناور دقت محدود دارند؛ نمایش رقم‌های بیشتر "
+                    "به‌تنهایی به معنی دقت فیزیکی بیشتر نیست.",
+                ),
+                ui.p(
+                    "برای ادامه: ",
+                    ui.tags.a(
+                        "آموزش رسمی Python",
+                        href="https://docs.python.org/3.12/tutorial/",
+                    ),
+                    " و ",
+                    ui.tags.a(
+                        "توضیح دقت عددهای ممیز شناور",
+                        href="https://docs.python.org/3.12/tutorial/floatingpoint.html",
+                    ),
+                    ".",
+                ),
+            ),
+            ui.tags.details(
+                ui.tags.summary("نام، نوع و مقدار دقیق پارامترها"),
+                ui.p("برای دیدن همهٔ ستون‌ها، جدول را افقی جابه‌جا کن.", class_="code-scroll-hint"),
+                ui.div(id="code-parameters", class_="code-table-scroll", tabindex="0"),
+                open=True,
+            ),
+            ui.p(id="code-challenge", class_="task"),
+            ui.div(
+                ui.tags.button(
+                    "گرفتن پارامترهای فعلی", id="code-sync", type="button", disabled=True
+                ),
+                ui.tags.button(
+                    "بازگرداندن نمونهٔ مرجع", id="code-reset", type="button", disabled=True
+                ),
+                class_="actions",
+            ),
+            ui.p(
+                "کد نتیجه را در result می‌گذارد؛ inputs شامل points، labels و هش "
+                "ورودی 1UBQ است. NumPy و کتابخانهٔ استاندارد Python آماده‌اند.",
+                class_="caption",
+            ),
+            ui.div(id="code-editor"),
+            ui.tags.textarea(
+                id="python-source",
+                rows="18",
+                dir="ltr",
+                spellcheck="false",
+                aria_label="کد Python قابل ویرایش",
+            ),
+            ui.p(
+                "اجرای کد: Ctrl+Enter یا ⌘+Enter. Tab از ویرایشگر خارج می‌شود.",
+                id="code-editor-help",
+                class_="caption",
+            ),
+            ui.p(id="code-save-status", role="status", class_="caption"),
+            ui.div(
+                ui.tags.button(
+                    "اجرای کد", id="code-run", type="button", class_="code-primary", disabled=True
+                ),
+                ui.tags.button("توقف اجرا", id="code-stop", type="button", disabled=True),
+                ui.tags.button(
+                    "دریافت کد Python", id="code-download-source", type="button", disabled=True
+                ),
+                ui.tags.button(
+                    "دریافت پروندهٔ اجرای کد",
+                    id="code-download-result",
+                    type="button",
+                    disabled=True,
+                ),
+                class_="actions",
+            ),
+            ui.p("در حال دریافت نمونهٔ کد…", id="code-status", role="status"),
+            ui.tags.details(
+                ui.tags.summary("سه اجرای اخیر این آزمایش"),
+                ui.tags.label("اجرای ذخیره‌شده", for_="code-history"),
+                ui.tags.select(id="code-history", disabled=True),
+                ui.tags.button(
+                    "بارگذاری کد این اجرا", id="code-history-load", type="button", disabled=True
+                ),
+            ),
+            ui.tags.section(
+                ui.h3("خروجی کد شما"),
+                ui.p("مقایسهٔ زیر اختلاف عددی با مرجع را نشان می‌دهد.", class_="caption"),
+                ui.p("برای دیدن همهٔ ستون‌ها، جدول را افقی جابه‌جا کن.", class_="code-scroll-hint"),
+                ui.div(id="code-comparison", class_="code-table-scroll", tabindex="0"),
+                ui.tags.canvas(
+                    id="code-plot",
+                    width="840",
+                    height="400",
+                    role="img",
+                    aria_label="نمودار خروجی کد شما",
+                ),
+                ui.div(id="code-legend"),
+                ui.div(id="code-table", class_="code-table-scroll", tabindex="0"),
+                ui.h3("کنسول Python"),
+                ui.tags.pre(id="code-output", dir="ltr", tabindex="0"),
+                ui.tags.pre(id="code-error", dir="ltr", tabindex="0", role="status"),
+                id="code-result-area",
+                hidden=True,
+            ),
+            id="code-workbench",
+            class_="code-workbench",
+        ),
         ui.tags.section(
             ui.h2("توضیح خودت را ثبت کن"),
             ui.tags.label("پیش‌بینی من پیش از تغییر پارامتر", for_="prediction"),

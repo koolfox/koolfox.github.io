@@ -1,0 +1,106 @@
+{
+  "created_at_utc": "2026-10-26T09:14:45.988226+00:00",
+  "scope": "Editable student code, executed in fresh browser Workers with independently computed reference metrics; no server execution of student source.",
+  "input_record": "data/metadata/md-teaching-input.json",
+  "input_sha256": "f1899546f581eaba2c618f012097644e1ab2aa281c47c13cbb3747147ca17fc3",
+  "runtime": {
+    "pyodide": "0.27.7",
+    "python": "3.12.7",
+    "numpy": "2.0.2",
+    "loader_match": "enforced during export"
+  },
+  "artifacts": [
+    {
+      "path": "assets/course/code_recipes.py",
+      "sha256": "6f2cd71434c73c376bca73e4e4ab84517f14b6252371c3c5ff93e55bb94b170c"
+    },
+    {
+      "path": "assets/course/code_execution.py",
+      "sha256": "628d700881400aff7b554314c6cdfe539b63367cccf3fa63fc62bf608af75f88"
+    },
+    {
+      "path": "assets/course/code-recipes.json",
+      "sha256": "7c1a4ec6074a5c600083c8ed1456324feed3464561d97d23ab2ffb79dc61041f"
+    },
+    {
+      "path": "assets/course/code-inputs.json",
+      "sha256": "2cf446f7592815a7d9e04f2176405c7cce9099907265a07ae1fcf6ee08fb2e84"
+    },
+    {
+      "path": "assets/course/workbench/worker.mjs",
+      "sha256": "150c01acc2d1bf44123b2c3d125238de73a0fd6c8e336555b1d26bded8075059"
+    },
+    {
+      "path": "assets/course/workbench/workbench.js",
+      "sha256": "e0a6fab38053cff2b33aa73663ddf934d135dd785b43f63183248efce3b04ff2"
+    },
+    {
+      "path": "assets/course/workbench/view.js",
+      "sha256": "22776e7abde4470a9eac7a4088e79354d3b7da7e6b205b9da7f77d01bd3de6a8"
+    },
+    {
+      "path": "data/metadata/code-editor-vendor.json",
+      "sha256": "7209271a85f124c7abd3f45cb86b0e07abe87d2cbc72410737dcf374e3ee9d1f"
+    },
+    {
+      "path": "editor-tools/editor.mjs",
+      "sha256": "3e3b1653a740ea10b263be663f0585ebc3e480a4fb167efaa5e44a6758a26623"
+    },
+    {
+      "path": "editor-tools/package-lock.json",
+      "sha256": "2019026cdee80ec018c461cd972aafa738cb47de9e255c8518e7e105968f3ce2"
+    },
+    {
+      "path": "playgrounds/concepts/app.py",
+      "sha256": "0e60774cab6eb485b3e977183ac1db82e269913530ac0f4b74fd51a70da9b817"
+    },
+    {
+      "path": "playgrounds/concepts/www/lab.css",
+      "sha256": "515a664c95aaa53f851d73a1fd8beeabda7a4af35998001cd61b1fd608b8c2a9"
+    },
+    {
+      "path": "playgrounds/concepts/www/plot.js",
+      "sha256": "eba39f66725726e00ca92f443fd33bd004fe474dd63bfdd8399e6dd28655ca67"
+    },
+    {
+      "path": "scripts/export_course_lab.py",
+      "sha256": "be33c60010d7b39df001718df9b0c43b0ddccdcc35f1e092e096f678a12c7f9c"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://pyodide.org/en/0.27.7/usage/webworker.html",
+      "role": "Version-matched browser Worker API, reviewed during this implementation"
+    },
+    {
+      "url": "https://github.com/codemirror/lang-python",
+      "role": "Python editor package and upstream documentation; exact distributions in vendor record"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/pyodide/pyodide/0.27.7/LICENSE",
+      "role": "Unmodified MPL-2.0 license copied alongside vendored distribution"
+    },
+    {
+      "url": "https://docs.python.org/3.12/tutorial/",
+      "role": "Optional inline primer for dictionaries, types, functions and loops; floating-point limits linked separately in the interface",
+      "reviewed_at_utc": "2026-10-26T09:22:11.901074+00:00"
+    }
+  ],
+  "verification": {
+    "python_tests": 143,
+    "editable_browser_tests": 5,
+    "existing_lab_browser_tests": 5,
+    "checks": [
+      "six editable recipes reproduce independent references",
+      "algorithm changes produce different results",
+      "full-precision parameter synchronization preserves algorithm edits",
+      "stdout and line diagnostics",
+      "manual termination and execution timeout",
+      "per-mode drafts, reload, recent runs and JSON export",
+      "downloaded Python executes natively",
+      "rich-editor and storage failure fallback",
+      "desktop/mobile inspection"
+    ]
+  },
+  "last_revised_at_utc": "2026-10-26T09:22:11.901074+00:00"
+}

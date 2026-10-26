@@ -7,13 +7,13 @@ from pathlib import Path
 
 from shiny import App, reactive, render, ui
 
-try:
-    from live_training import TrainingRun
-except ModuleNotFoundError:
-    sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "python"))
-    from live_training import TrainingRun
-
 HERE = Path(__file__).parent
+engine_path = HERE.parents[1] / "python"
+if engine_path.is_dir():
+    sys.path.insert(0, str(engine_path))
+
+from experiment import CONFIG, create_run, train_epochs
+
 MODELS = {
     "perceptron": "پرسپترون آستانه‌ای",
     "linear": "نورون سیگموید",
@@ -42,20 +42,35 @@ app_ui = ui.page_fluid(
                     "gate",
                     "جدول درستی",
                     {x: x for x in ("AND", "OR", "NAND", "NOR", "XOR", "XNOR")},
-                    selected="XOR",
+                    selected=CONFIG["gate"],
                 ),
-                ui.input_select("model", "مدل", MODELS, selected="mlp"),
+                ui.input_select("model", "مدل", MODELS, selected=CONFIG["model"]),
                 ui.input_numeric(
-                    "hidden", "نورون‌های لایه پنهان", 4, min=1, max=32, step=1
+                    "hidden",
+                    "نورون‌های لایه پنهان",
+                    CONFIG["hidden"],
+                    min=1,
+                    max=32,
+                    step=1,
                 ),
                 ui.input_numeric(
-                    "learning_rate", "نرخ یادگیری", 1, min=0.001, max=4, step=0.1
+                    "learning_rate",
+                    "نرخ یادگیری",
+                    CONFIG["learning_rate"],
+                    min=0.001,
+                    max=4,
+                    step=0.1,
                 ),
                 ui.input_numeric(
-                    "seed", "بذر تصادفی", 7, min=0, max=4294967295, step=1
+                    "seed", "بذر تصادفی", CONFIG["seed"], min=0, max=4294967295, step=1
                 ),
                 ui.input_numeric(
-                    "max_epochs", "سقف دوره آموزش", 6000, min=1, max=10000, step=100
+                    "max_epochs",
+                    "سقف دوره آموزش",
+                    CONFIG["max_epochs"],
+                    min=1,
+                    max=10000,
+                    step=100,
                 ),
                 class_="controls",
             ),
@@ -156,7 +171,7 @@ def server(input, output, session):
             for value in (input.hidden(), input.seed(), input.max_epochs()):
                 if value is None or int(value) != value:
                     raise ValueError("تعدادها و بذر باید عدد صحیح باشند")
-            state = TrainingRun(
+            state = create_run(
                 gate=input.gate(),
                 model=input.model(),
                 hidden=int(input.hidden()),
@@ -193,7 +208,7 @@ def server(input, output, session):
     def step():
         running.set(False)
         if run.get() is not None:
-            run.get().step(1)
+            train_epochs(run.get(), 1)
             changed()
             message.set("یک دوره کامل روی چهار ورودی انجام شد.")
 
@@ -202,7 +217,7 @@ def server(input, output, session):
     def reset():
         running.set(False)
         if run.get() is not None:
-            run.set(TrainingRun(**run.get().config))
+            run.set(create_run(**run.get().config))
             changed()
             message.set("همان تنظیمات و بذر، از وزن‌های آغازین بازسازی شدند.")
 
@@ -215,7 +230,7 @@ def server(input, output, session):
             if state is None:
                 running.set(False)
                 return
-            state.step(40)
+            train_epochs(state, 40)
             changed()
             if state.epoch >= state.config["max_epochs"]:
                 running.set(False)

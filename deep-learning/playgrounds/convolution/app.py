@@ -7,13 +7,13 @@ from pathlib import Path
 
 from shiny import App, reactive, render, ui
 
-try:
-    from convolution_lab import correlate, pattern, pool
-except ModuleNotFoundError:
-    sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "python"))
-    from convolution_lab import correlate, pattern, pool
-
 HERE = Path(__file__).parent
+engine_path = HERE.parents[1] / "python"
+if engine_path.is_dir():
+    sys.path.insert(0, str(engine_path))
+
+from experiment import CONFIG, calculate
+
 FILTERS = {
     "vertical": [[-1, 0, 1], [-1, 0, 1], [-1, 0, 1]],
     "horizontal": [[-1, -1, -1], [0, 0, 0], [1, 1, 1]],
@@ -100,23 +100,36 @@ app_ui = ui.page_fluid(
                     "checker": "شطرنجی",
                     "square": "مربع مرکزی",
                 },
+                selected=CONFIG["pattern"],
             ),
             ui.input_select(
                 "filter",
                 "فیلتر آغازین",
                 {
+                    "custom": "هستهٔ تعریف‌شده در کد",
                     "vertical": "اختلاف چپ و راست",
                     "horizontal": "اختلاف بالا و پایین",
                     "average": "میانگین ۹ خانه",
                     "identity": "کپی خانهٔ مرکزی",
                     "laplacian": "لاپلاسین",
                 },
+                selected="custom",
             ),
-            ui.input_select("stride", "گام فیلتر", {"1": "۱", "2": "۲", "3": "۳"}),
             ui.input_select(
-                "padding", "حاشیهٔ صفر در هر طرف", {"0": "۰", "1": "۱", "2": "۲"}
+                "stride",
+                "گام فیلتر",
+                {"1": "۱", "2": "۲", "3": "۳"},
+                selected=str(CONFIG["stride"]),
             ),
-            ui.input_numeric("bias", "بایاس", 0, min=-10, max=10, step=0.1),
+            ui.input_select(
+                "padding",
+                "حاشیهٔ صفر در هر طرف",
+                {"0": "۰", "1": "۱", "2": "۲"},
+                selected=str(CONFIG["padding"]),
+            ),
+            ui.input_numeric(
+                "bias", "بایاس", CONFIG["bias"], min=-10, max=10, step=0.1
+            ),
             ui.input_select(
                 "pooling",
                 "تجمیع پس از فعال‌سازی",
@@ -125,13 +138,16 @@ app_ui = ui.page_fluid(
                     "max": "بیشینهٔ ۲ × ۲، گام ۲",
                     "average": "میانگین ۲ × ۲، گام ۲",
                 },
+                selected=CONFIG["pooling"],
             ),
             class_="controls configuration",
         ),
         ui.tags.div(
-            ui.input_checkbox("relu", "ReLU پس از فیلتر: منفی‌ها صفر شوند", False),
             ui.input_checkbox(
-                "flip", "چرخاندن ۱۸۰ درجهٔ هسته برای convolution ریاضی", False
+                "relu", "ReLU پس از فیلتر: منفی‌ها صفر شوند", CONFIG["relu"]
+            ),
+            ui.input_checkbox(
+                "flip", "چرخاندن ۱۸۰ درجهٔ هسته برای convolution ریاضی", CONFIG["flip"]
             ),
             class_="operation-options",
         ),
@@ -146,7 +162,7 @@ app_ui = ui.page_fluid(
                     ui.input_numeric(
                         f"w{r}{c}",
                         f"w[{r + 1},{c + 1}]",
-                        FILTERS["vertical"][r][c],
+                        CONFIG["kernel"][r][c],
                         min=-10,
                         max=10,
                         step=0.1,
@@ -261,6 +277,8 @@ def server(input, output, session):
     @reactive.effect
     @reactive.event(input.filter)
     def choose_filter():
+        if input.filter() == "custom":
+            return
         for r, row in enumerate(FILTERS[input.filter()]):
             for c, value in enumerate(row):
                 ui.update_numeric(f"w{r}{c}", value=value)
@@ -282,15 +300,21 @@ def server(input, output, session):
             stride, padding = int(input.stride()), int(input.padding())
             if stride not in (1, 2, 3) or padding not in (0, 1, 2):
                 raise ValueError("Unsupported stride or padding")
-            image = pattern(input.pattern())
-            raw = correlate([image], [kernel], bias, stride, padding, input.flip())
-            activated = [
-                [max(0, v) if input.relu() else v for v in row] for row in raw["output"]
-            ]
             mode = input.pooling()
             if mode not in ("none", "max", "average"):
                 raise ValueError("Unsupported pooling")
-            pooled = pool(activated, mode=mode) if mode != "none" else None
+            config = {
+                "pattern": input.pattern(),
+                "kernel": kernel,
+                "bias": bias,
+                "stride": stride,
+                "padding": padding,
+                "flip": input.flip(),
+                "relu": input.relu(),
+                "pooling": mode,
+            }
+            result = calculate(config)
+            activated = result["activated"]
             selected = [
                 min(int(indices[0]) - 1, len(activated) - 1),
                 min(int(indices[1]) - 1, len(activated[0]) - 1),
@@ -298,20 +322,8 @@ def server(input, output, session):
             return {
                 "schema_version": 1,
                 "execution": "live_python_operations",
-                "config": {
-                    "pattern": input.pattern(),
-                    "kernel": kernel,
-                    "bias": bias,
-                    "stride": stride,
-                    "padding": padding,
-                    "flip": input.flip(),
-                    "relu": input.relu(),
-                    "pooling": mode,
-                },
-                "image": image,
-                "raw": raw,
-                "activated": activated,
-                "pooled": pooled,
+                "config": config,
+                **result,
                 "selected": selected,
             }
         except (ValueError, TypeError, OverflowError):

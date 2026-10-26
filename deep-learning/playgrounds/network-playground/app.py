@@ -7,13 +7,14 @@ from pathlib import Path
 
 from shiny import App, reactive, render, ui
 
-try:
-    from network_playground import NetworkExperiment
-except ModuleNotFoundError:
-    sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "python"))
-    from network_playground import NetworkExperiment
-
 HERE = Path(__file__).parent
+engine_path = HERE.parents[1] / "python"
+if engine_path.is_dir():
+    sys.path.insert(0, str(engine_path))
+
+from experiment import CONFIG, create_run, train_epochs
+
+WIDTHS = (CONFIG["hidden"] + [4, 4, 4])[:3]
 FEATURE_LABELS = {
     "x1": "x₁",
     "x2": "x₂",
@@ -51,29 +52,38 @@ app_ui = ui.page_fluid(
                     "linear": "دو سوی یک خط",
                     "spirals": "دو مارپیچ",
                 },
+                selected=CONFIG["dataset"],
             ),
-            ui.input_numeric("layers", "تعداد لایه‌های پنهان", 2, min=0, max=3, step=1),
+            ui.input_numeric(
+                "layers",
+                "تعداد لایه‌های پنهان",
+                len(CONFIG["hidden"]),
+                min=0,
+                max=3,
+                step=1,
+            ),
             ui.input_select(
                 "activation",
                 "تابع فعال‌سازی پنهان",
                 {"tanh": "tanh", "relu": "ReLU", "sigmoid": "sigmoid"},
+                selected=CONFIG["activation"],
             ),
             ui.panel_conditional(
                 "input.layers >= 1",
                 ui.input_numeric(
-                    "width1", "نورون‌های لایه اول", 4, min=1, max=8, step=1
+                    "width1", "نورون‌های لایه اول", WIDTHS[0], min=1, max=8, step=1
                 ),
             ),
             ui.panel_conditional(
                 "input.layers >= 2",
                 ui.input_numeric(
-                    "width2", "نورون‌های لایه دوم", 4, min=1, max=8, step=1
+                    "width2", "نورون‌های لایه دوم", WIDTHS[1], min=1, max=8, step=1
                 ),
             ),
             ui.panel_conditional(
                 "input.layers >= 3",
                 ui.input_numeric(
-                    "width3", "نورون‌های لایه سوم", 4, min=1, max=8, step=1
+                    "width3", "نورون‌های لایه سوم", WIDTHS[2], min=1, max=8, step=1
                 ),
             ),
             class_="controls configuration",
@@ -83,7 +93,7 @@ app_ui = ui.page_fluid(
                 "features",
                 "ویژگی‌های ورودی",
                 FEATURE_LABELS,
-                selected=["x1", "x2"],
+                selected=CONFIG["feature_names"],
                 inline=True,
             ),
             class_="feature-options",
@@ -93,40 +103,62 @@ app_ui = ui.page_fluid(
             ui.tags.summary("تنظیمات داده و روش یادگیری"),
             ui.tags.div(
                 ui.input_numeric(
-                    "size", "تعداد کل نمونه‌ها", 200, min=40, max=400, step=20
+                    "size", "تعداد کل نمونه‌ها", CONFIG["size"], min=40, max=400, step=20
                 ),
                 ui.input_numeric(
-                    "noise", "انحراف معیار نویز ورودی", 0.05, min=0, max=0.5, step=0.05
+                    "noise",
+                    "انحراف معیار نویز ورودی",
+                    CONFIG["noise"],
+                    min=0,
+                    max=0.5,
+                    step=0.05,
                 ),
                 ui.input_numeric(
-                    "seed", "بذر تصادفی", 7, min=0, max=4294967295, step=1
+                    "seed", "بذر تصادفی", CONFIG["seed"], min=0, max=4294967295, step=1
                 ),
                 ui.input_select(
                     "optimizer",
                     "روش به‌روزرسانی",
                     {"adam": "Adam", "sgd": "SGD", "momentum": "SGD با مومنتوم ۰٫۹"},
+                    selected=CONFIG["optimizer"],
                 ),
                 ui.input_numeric(
-                    "learning_rate", "نرخ یادگیری", 0.03, min=0.00001, max=1, step=0.01
+                    "learning_rate",
+                    "نرخ یادگیری",
+                    CONFIG["learning_rate"],
+                    min=0.00001,
+                    max=1,
+                    step=0.01,
                 ),
                 ui.input_numeric(
-                    "batch_size", "اندازه دسته", 20, min=1, max=400, step=1
+                    "batch_size",
+                    "اندازه دسته",
+                    CONFIG["batch_size"],
+                    min=1,
+                    max=400,
+                    step=1,
                 ),
                 ui.input_select(
                     "regularization",
                     "جریمه وزن‌ها",
                     {"none": "بدون جریمه", "l2": "L2", "l1": "L1"},
+                    selected=CONFIG["regularization"],
                 ),
                 ui.input_numeric(
                     "regularization_rate",
                     "ضریب جریمه λ",
-                    0.001,
+                    CONFIG["regularization_rate"],
                     min=0,
                     max=1,
                     step=0.001,
                 ),
                 ui.input_numeric(
-                    "max_epochs", "سقف دوره آموزش", 1000, min=1, max=3000, step=100
+                    "max_epochs",
+                    "سقف دوره آموزش",
+                    CONFIG["max_epochs"],
+                    min=1,
+                    max=3000,
+                    step=100,
                 ),
                 class_="controls",
             ),
@@ -299,7 +331,7 @@ def server(input, output, session):
             ]
             if any(v is None or int(v) != v for v in counts) or not 0 <= counts[0] <= 3:
                 raise ValueError("تعدادها باید صحیح و در بازهٔ مشخص باشند")
-            state = NetworkExperiment(
+            state = create_run(
                 dataset=input.dataset(),
                 hidden=[int(v) for v in counts[1 : 1 + int(counts[0])]],
                 activation=input.activation(),
@@ -331,7 +363,7 @@ def server(input, output, session):
             message.set("برای آموزش، اجرای معتبر و باز لازم است.")
             return False
         try:
-            state.step()
+            train_epochs(state)
         except ArithmeticError:
             run.set(None)
             running.set(False)
@@ -368,7 +400,7 @@ def server(input, output, session):
     def reset():
         running.set(False)
         if run.get():
-            run.set(NetworkExperiment(**run.get().config))
+            run.set(create_run(**run.get().config))
             changed()
             message.set("وزن‌ها، ترتیب دسته‌ها و داده‌ها با همان بذر بازسازی شدند.")
 

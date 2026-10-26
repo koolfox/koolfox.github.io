@@ -1,0 +1,42 @@
+name: Reproducible MNIST laboratory
+
+on:
+  pull_request:
+    paths:
+      - deep-learning/labs/cnn-mnist/**
+      - deep-learning/tests/test_mnist_data.py
+      - .github/workflows/mnist-lab.yml
+  push:
+    branches: [main]
+    paths:
+      - deep-learning/labs/cnn-mnist/**
+      - deep-learning/tests/test_mnist_data.py
+      - .github/workflows/mnist-lab.yml
+
+permissions:
+  contents: read
+
+jobs:
+  cpu-execution:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: astral-sh/setup-uv@v10.3.0
+        with:
+          version: '0.11.2'
+      - name: Install the locked CPU environment
+        run: uv sync --project deep-learning/labs/cnn-mnist --frozen --python 3.12
+      - name: Check real data training and independent reproducibility
+        run: |
+          uv run --project deep-learning/labs/cnn-mnist python deep-learning/labs/cnn-mnist/train.py --smoke --download --output deep-learning/results/mnist-smoke-1
+          uv run --project deep-learning/labs/cnn-mnist python deep-learning/labs/cnn-mnist/train.py --smoke --output deep-learning/results/mnist-smoke-2
+          python3 deep-learning/labs/cnn-mnist/verify_smoke.py deep-learning/results/mnist-smoke-1/report.json deep-learning/results/mnist-smoke-2/report.json
+      - name: Preserve numerical execution evidence
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: mnist-execution-${{ github.sha }}
+          path: deep-learning/results/mnist-smoke-*/report.json
+          if-no-files-found: ignore
+          retention-days: 14

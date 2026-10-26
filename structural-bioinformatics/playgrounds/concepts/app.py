@@ -261,7 +261,11 @@ app_ui = ui.page_fluid(
                 )
             ),
         ),
-        ui.tags.footer("Python در مرورگر اجرا می‌شود؛ اجرای نخست به دریافت محیط محاسبه نیاز دارد."),
+        ui.tags.footer(
+            "Python در مرورگر اجرا می‌شود؛ اجرای نخست به دریافت محیط محاسبه نیاز دارد."
+            if sys.platform == "emscripten"
+            else "Python در این پیش‌نمایش روی سرور محلی Shiny اجرا می‌شود."
+        ),
         class_="lab-shell",
         dir="rtl",
         lang="fa",

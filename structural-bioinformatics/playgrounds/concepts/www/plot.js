@@ -51,6 +51,7 @@
   function dot(c,p,color,r=5){c.fillStyle=color;c.beginPath();c.arc(...p,r,0,Math.PI*2);c.fill();}
   function draw(s){
     restore(s.mode);state=s;window.structuralLabState=s;hitTargets=[];
+    window.parent.postMessage({type:'structural-lab-ready'},'*');
     note('download').disabled=Boolean(s.error);
     const {canvas,c,W,H}=graphCanvas();
     if(s.error){c.fillStyle=muted;c.textAlign='center';c.fillText('Correct the input to calculate a new result.',W/2,H/2);return;}

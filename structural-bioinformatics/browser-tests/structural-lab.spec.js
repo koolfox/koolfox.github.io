@@ -8,6 +8,7 @@ async function ready(page,mode='geometry',topic=8){
  await expect(page.locator('iframe')).toHaveCount(1,{timeout:90000});
  const frame=page.frames().find(f=>f!==page.mainFrame());
  await frame.waitForFunction(mode=>window.structuralLabState?.mode===mode&&!window.structuralLabState.error,mode,{timeout:90000});
+ await expect(page.locator('#runtime-loading')).toBeHidden();
  return frame;
 }
 async function choose(frame,mode){
@@ -104,4 +105,14 @@ test('mobile laboratory has usable controls and storage failure keeps download a
   expect(await frame.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  }
  await frame.locator('#node').focus();await expect(frame.locator('#node')).toBeFocused();
+});
+
+
+test('a blocked Python runtime retains a visible route back to the lesson',async({page})=>{
+ await page.route('**/*.wasm',r=>r.abort());
+ await page.goto(`${root}runtime/concepts/?experiment=geometry&topic=8`);
+ await expect(page.locator('#runtime-loading')).toBeVisible();
+ await expect(page.locator('#runtime-back')).toHaveAttribute('href',/course\.html\?topic=8#interactive-lab/);
+ await page.locator('#runtime-back').click();
+ await expect(page.locator('#lesson')).toContainText('RMSD');
 });

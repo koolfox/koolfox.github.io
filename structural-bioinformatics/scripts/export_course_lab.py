@@ -34,6 +34,13 @@ def export(output):
         source = Path(temporary) / "concepts"
         stage(source)
         subprocess.run([executable, "export", str(source), str(output / "concepts")], check=True)
+    index = output / "concepts/index.html"
+    shell = (PROJECT / "playgrounds/runtime-help.html").read_text()
+    index.write_text(
+        index.read_text()
+        .replace("<body>", "<body>" + shell)
+        .replace("<title>Shiny App</title>", "<title>آزمایشگاه مفاهیم ساختاری</title>")
+    )
 
 
 if __name__ == "__main__":

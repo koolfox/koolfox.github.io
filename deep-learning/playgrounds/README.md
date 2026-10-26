@@ -36,6 +36,14 @@ Arad font, then includes only the runtime packages required by the application.
 Generated runtime files stay outside Git; Pages builds them from the locked tools.
 The second application is `/deep-learning/results/shinylive/network-playground/`.
 Both exports use the existing laboratory stylesheet and local Arad font.
+The convolution application is `/deep-learning/results/shinylive/convolution/`.
+It computes a single chosen filter, kernel flipping, zero padding, stride, ReLU
+and unpadded pooling. Every output cell retains its input coordinates, coefficient
+and product; selected inputs and zero padding are marked in the table. Displayed
+numbers use three significant digits; downloaded values retain full precision.
+This laboratory operates on one channel and one manually edited 3×3 filter.
+It does not train a CNN. The independent numerical module also supports summed
+input channels, with a separate test ensuring that the bias is added only once.
 
 For native Shiny development, stage the same inputs first:
 
@@ -62,6 +70,12 @@ The browser check compares weights, train/validation loss and canvas predictions
 with native Python after 13 epochs; it also verifies final-test sealing, JSON
 download, reset, invalid input and mobile overflow. This is small synthetic-model
 evidence, not a claim of performance on real-world data.
+
+The convolution browser check compares every output, product and pooling window
+with native Python, exercises mathematical kernel flipping, verifies click and
+numeric selection bounds, checks a real experiment download, clears invalid
+results, and checks mobile overflow with padding two. Shiny converts custom
+array inputs to tuples; the cell-selection handler explicitly accepts them.
 
 References: [Shinylive](https://shiny.posit.co/py/get-started/shinylive.html),
 [reactive scheduling](https://shiny.posit.co/py/api/core/reactive.invalidate_later.html),

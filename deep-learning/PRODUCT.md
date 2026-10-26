@@ -70,6 +70,11 @@ penalized objective. Final test evaluation seals that run against further traini
 reusing the same test after tuning is explicitly not independent evaluation.
 This lab is not a CNN, dropout, augmentation or batch-normalization simulator.
 
+The convolution operation lab computes a manually chosen 3×3 filter over a small
+synthetic single-channel image. Every output cell exposes its actual nine Python
+products and bias. Stride, zero padding, kernel flipping, ReLU and unpadded
+max/average pooling can be compared. It does not train a filter or classify images.
+
 This milestone does not complete the 8,232-page goal: remaining source reviews,
 independent lessons, topic laboratories, heavy reproducible labs and acceptance
 still need their own evidence. Publication is only claimed after a successful

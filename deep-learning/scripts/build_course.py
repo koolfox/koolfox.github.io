@@ -11,6 +11,7 @@ from course_content import load_course
 from mnist_reference import load_reference
 from source_catalog import ROOT
 from workshops import load_workshops
+from local_slides import load_slides
 
 BASE = "/deep-learning"
 LABS = {
@@ -194,15 +195,26 @@ def term_page(term):
         )
         if row.get("workshop"):
             status += " · کارگاه با کد و پرسش‌وپاسخ آماده"
+        if row.get("local_slides"):
+            status += " · اسلاید فارسی محلی"
         items.append(f'''<li class="session-row" data-session-key="{term["id"]}/{row["id"]}">
 <span class="session-number" aria-label="درس {lesson_number}">{lesson_number:02d}</span><div>
 <p class="meta"><bdi>{e(row["date_label"])}</bdi>{f" · {source_count} صفحه" if source_count else ""}</p>
 <h2>{link(session_url(term, row), row["title_fa"])}</h2><p>{e(row.get("overview_fa", ""))}</p>
 <p class="session-state">{e(status)}<span data-completion-label></span></p></div></li>''')
+    bundle = (
+        link(
+            BASE + "/slides/spring-2022.zip",
+            "دریافت اسلایدهای فارسی و کارگاه‌ها",
+            download="",
+        )
+        if any(r.get("local_slides") for r in term["schedule"])
+        else ""
+    )
     body = f"""<div class="term-heading"><h1>{e(term["title_fa"])}</h1>
 <p class="lead">{e(TERM_SUMMARIES[term["id"]])}</p><div class="inline-links">
 {link(term["course_url"], "برنامه رسمی این ترم ", True)}{link(term["syllabus_url"], "سیلابس اصلی ", True)}
-{link(term_url(term) + "foundations/", "مرور پیش‌نیازها")}{link(term_url(term) + "project/", "پروژه پایانی")}</div></div>
+{link(term_url(term) + "foundations/", "مرور پیش‌نیازها")}{link(term_url(term) + "project/", "پروژه پایانی")}{bundle}</div></div>
 <p class="meta calendar-context">فقط جلسه‌های دارای اسلاید، گام آموزشی‌اند. تعطیلی‌ها و مهمان‌ها یادداشت تقویم کلاس اصلی‌اند و برنامهٔ دانشگاه شما را تعیین نمی‌کنند.</p>
 <ol class="session-list">{"".join(items)}</ol>{progress_tools()}"""
     return page(
@@ -214,22 +226,43 @@ def term_page(term):
 
 
 def source_panel(term, row, concepts):
-    content = '<h2>کنار درس فارسی</h2><p>درسنامه فارسی، تألیف مستقل با ارجاع به منابع همین جلسه است.</p><p class="meta">اصل اسلاید، بدون تغییر</p>'
+    original = "<p>منبع اصلی مباحث: دانا گوراری، دانشگاه کلرادو بولدر. فایل اصلی تغییر نکرده است.</p>"
     for source in row["slides"]:
-        content += f'''<div class="source-document">{link(source["url"], f"اسلاید اصلی · {source['page_count']} صفحه ", True, class_="source-link")}
-<button type="button" class="quiet" data-show-source="{e(source["url"])}">نمایش در همین صفحه</button></div>'''
-    if not row["slides"]:
-        content += "<p>در برنامه عمومی این ردیف، اسلایدی پیوند نشده است.</p>"
+        preview = (
+            ""
+            if row.get("local_slides")
+            else f'<button type="button" class="quiet" data-show-source="{e(source["url"])}">نمایش در همین صفحه</button>'
+        )
+        original += f'<div class="source-document">{link(source["url"], f"اسلاید مرجع · {source["page_count"]} صفحه", True, class_="source-link")}{preview}</div>'
     mapping = row["mapping"]
     if mapping:
-        content += (
+        original += (
             '<details><summary>راهنمای صفحه‌های منبع</summary><ol class="page-guide">'
         )
         for guide in mapping["source_guides"]:
             for part in guide["ranges"]:
                 label = f"{part['start']}–{part['end']} · {part['topic_fa']}"
-                content += f"<li>{link(guide['url'] + '#page=' + str(part['start']), label, True)}</li>"
-        content += "</ol></details>"
+                original += f"<li>{link(guide['url'] + '#page=' + str(part['start']), label, True)}</li>"
+        original += "</ol></details>"
+    if row.get("local_slides"):
+        url = session_url(term, row) + "slides/"
+        count = len(row["workshop"]["questions"]) + 6
+        content = f'<h2>اسلاید آموزشی فارسی</h2><p>تألیف مستقل مجموعه؛ همراه با کارگاه و پرسش‌وپاسخ.</p><p class="meta">{prose(str(count))} اسلاید محلی برای این جلسه</p>'
+        content += f'<div class="source-document">{link(url, "باز کردن اسلایدهای فارسی", class_="local-slide-link")}'
+        content += f'<button type="button" class="quiet" data-show-source="{e(url)}" data-source-kind="local" data-preview-target="local-slide-view">نمایش اسلاید فارسی در همین صفحه</button></div>'
+        content += link(
+            BASE + "/slides/spring-2022.zip",
+            "دریافت بستهٔ اسلایدها و تمرین‌ها",
+            class_="bundle-link",
+            download="",
+        )
+        content += (
+            '<details class="original-source"><summary>منابع و اسلایدهای اصلی برای تطبیق</summary>'
+            + original
+            + "</details>"
+        )
+    else:
+        content = "<h2>کنار درس فارسی</h2>" + original
     if row["companion_ready"]:
         content += '<details class="lesson-outline" open><summary>بخش‌های درس فارسی</summary><nav aria-label="بخش‌های درس"><ol class="page-guide">'
         for identity in mapping["concept_ids"]:
@@ -245,7 +278,7 @@ def source_panel(term, row, concepts):
         content += link("#questions", "پرسش و پاسخ")
         content += link("#source-activities", "پرسش‌ها و فعالیت‌های داخل اسلاید")
         content += "</nav>"
-    content += f'<p class="meta">شماره‌ها ترتیب صفحه‌های PDF هستند.</p>{link(term_url(term), "همه جلسه‌های این ترم ")}'
+    content += f'<p class="meta">شماره‌های منابع اصلی، ترتیب صفحه‌های PDF هستند.</p>{link(term_url(term), "همه جلسه‌های این ترم ")}'
     return f'<aside class="source-panel" aria-label="منابع و راهنمای اسلاید">{content}</aside>'
 
 
@@ -343,7 +376,7 @@ def findings_html(row):
     return content + "</section>"
 
 
-def workshop_html(term, row):
+def workshop_html(term, row, include_sources=True, include_questions=True):
     unit = row.get("workshop")
     if not unit:
         return ""
@@ -365,18 +398,18 @@ def workshop_html(term, row):
         link(unit["source_url"] + f"#page={n}", str(n), True)
         for n in unit["question_pages"]
     )
-    source = '<section id="source-activities" class="source-activities"><h2>پرسش‌ها و فعالیت‌های داخل اسلاید</h2>'
+    source = '<details id="source-activities" class="source-activities"><summary>تطبیق با پرسش‌ها و فعالیت‌های منبع اصلی</summary>'
     if activity_links:
         source += f"<p>{activity_links}</p><p>اصل شکل‌ها و صورت فعالیت را در این صفحه‌ها ببین؛ بحث مرتبط را در پاسخ تشریحی پایین ثبت کن.</p>"
     source += f'<details><summary>صفحه‌های دارای پرسش یا محاسبهٔ پرسشی در منبع</summary><p class="source-question-links">{question_links}</p><p class="meta">شماره‌ها صفحهٔ PDF هستند؛ برخی صفحه‌ها مراحل متوالی یک پرسش‌اند. این فهرست جای متن اصلی و بررسی کامل علمی آن را نمی‌گیرد.</p></details>'
     if unit["programming_tutorial_pages"]:
         source += '<p class="meta">اسلاید به آموزش برنامه‌نویسی کلاس اصلی اشاره می‌کند. کد و ویدئوی بستهٔ Canvas در دسترس عمومی این مجموعه نیست؛ کارگاه زیر مستقل تألیف شده است.</p>'
-    source += "</section>"
+    source += "</details>"
     references = " · ".join(
         link(r["url"], r["title_fa"], True) for r in unit.get("references", [])
     )
     return (
-        source
+        (source if include_sources else "")
         + f'''<section class="lesson-workshop" id="workshop" data-workshop="{e(term["id"])}/{e(row["id"])}">
 <h2>کارگاه آموزشی دیپ لرنینگ: {e(unit["title_fa"])}</h2>
 <p>{prose(unit["prediction_fa"])}</p>{listing(unit["steps_fa"], True)}
@@ -394,9 +427,87 @@ def workshop_html(term, row):
 <details class="workshop-reference"><summary>نتیجهٔ مرجع کد اولیه، برای مقایسه پس از تلاش</summary><pre dir="ltr">{e(json.dumps(unit["reference"], ensure_ascii=False, indent=2))}</pre><p class="meta">این نتیجه با اجرای مستقل کد اولیه در Python {e(unit["reference_python"])} ثبت و در بررسی ساخت دوباره کنترل می‌شود. نتیجهٔ کد ویرایش‌شدهٔ شما ممکن است متفاوت باشد؛ یکسانی عددها به‌تنهایی اعتبار علمی روش را ثابت نمی‌کند.</p></details>
 <p class="meta">{e(unit["limits_fa"])}</p>
 {f'<p class="meta">منبع تکمیلی محاسبه: {references}</p>' if references else ""}
-<script type="application/json" data-workshop-config>{config}</script></section>
-<section id="questions" class="workshop-questions"><h2>پرسش و پاسخ این جلسه</h2><p>ابتدا پاسخ بده؛ پاسخ نمونه و روش حل زیر هر سؤال باز می‌شود. پاسخ عددی و گزینه‌ای بررسی خودکار دارد؛ استدلال با معیارهای پاسخ نمونه مقایسه می‌شود.</p>{questions}</section>'''
+<script type="application/json" data-workshop-config>{config}</script></section>'''
+        + (
+            f'<section id="questions" class="workshop-questions"><h2>پرسش و پاسخ این جلسه</h2><p>ابتدا پاسخ بده؛ پاسخ نمونه و روش حل زیر هر سؤال باز می‌شود. پاسخ عددی و گزینه‌ای بررسی خودکار دارد؛ استدلال با معیارهای پاسخ نمونه مقایسه می‌شود.</p>{questions}</section>'
+            if include_questions
+            else ""
+        )
     )
+
+
+def slides_page(term, row, identity, teaching):
+    unit = row["workshop"]
+    slides = []
+
+    def add(title, body, kind=""):
+        number = len(slides) + 1
+        slides.append(f'''<section class="dl-slide {kind}" id="slide-{number}" data-slide-title="{e(title)}">
+<header class="slide-identity"><div><p>کارگاه آموزشی دیپ لرنینگ</p><p>{e(term["title_fa"])} · اسلاید آموزشی مستقل</p></div><img class="deck-logo" src="{BASE}/assets/course-mark.svg" alt="نشان درس یادگیری ژرف" width="68" height="68"></header>
+<div class="slide-content"><h1>{prose(title)}</h1>{body}</div>
+<footer class="slide-footer"><p>تألیف مستقل فارسی · {e(identity["author_fa"])} · MIT</p><p><bdi dir="ltr">{number} / DECK_TOTAL_COUNT</bdi></p></footer></section>''')
+
+    add(
+        row["title_fa"],
+        f'<p class="cover-topic">{prose(teaching["intro_fa"])}</p><div class="cover-people"><p>ارائه‌دهنده: {e(identity["author_fa"])}</p><p>استاد راهنمای درس: {e(identity["supervisor_fa"])}</p></div>',
+        "slide-cover",
+    )
+    add(
+        "مسئله و هدف‌های این جلسه",
+        f'<div class="slide-copy">{paragraphs([row.get("overview_fa", "")])}{listing(row.get("objectives_fa", []))}</div>',
+    )
+    ideas = "".join(
+        f"<li data-deck-point>{prose(point)}</li>" for point in teaching["ideas_fa"]
+    )
+    add(
+        "مفهوم و سازوکار",
+        f'<div class="slide-copy slide-steps"><ol>{ideas}</ol><button type="button" data-deck-step>نکتهٔ بعدی</button></div>',
+    )
+    preview = {
+        k: v for k, v in unit["reference"].items() if not isinstance(v, (list, dict))
+    }
+    if not preview:
+        preview = {
+            k: v[:8]
+            for k, v in list(unit["reference"].items())[:2]
+            if isinstance(v, list)
+        }
+    add(
+        "رابطه و محاسبهٔ نمونه",
+        f'<div class="slide-formula"><div class="slide-copy"><figure class="formula"><div dir="ltr">{e(teaching["formula"])}</div></figure><p>{prose(teaching["formula_explanation_fa"])}</p></div><div><p class="meta">بخشی از خروجی ثبت‌شدهٔ کد اولیه</p><pre dir="ltr">{e(json.dumps(preview, ensure_ascii=False, indent=2))}</pre></div></div>',
+    )
+    add(
+        unit["title_fa"],
+        '<div class="deck-workbench">'
+        + workshop_html(term, row, False, False)
+        + '</div><pre class="slide-print-code">'
+        + e(unit["code"])
+        + "</pre>",
+    )
+    for i, question in enumerate(unit["questions"], 1):
+        add(f"پرسش و پاسخ · {i}", exercise_html(question, "deck-" + row["id"]))
+    source = link(
+        unit["source_url"] + "#page=" + str(unit["source_page"]),
+        "اسلاید اصلی دانا گوراری، صفحهٔ " + str(unit["source_page"]),
+        True,
+    )
+    refs = " · ".join(
+        link(r["url"], r["title_fa"], True) for r in unit.get("references", [])
+    )
+    add(
+        "جمع‌بندی و منابع",
+        f'<div class="slide-copy"><p>{prose(teaching["pitfall_fa"])}</p></div><div class="deck-notes"><p>این اسلایدها و تمرین‌ها تألیف مستقل مجموعه‌اند؛ ترجمهٔ کامل یا روگرفت اسلایدهای استاد نیستند.</p><p>منبع اصلی مباحث: دانا گوراری، دانشگاه کلرادو بولدر. {source}</p>{f"<p>{refs}</p>" if refs else ""}<p>{link(BASE + "/LICENSE", "مجوز MIT محتوای تألیفی")} · {link(BASE + "/THIRD_PARTY_NOTICES.md", "مجوز اجزای دیگر")}</p></div>',
+    )
+    context = json.dumps(
+        {"term": term["id"], "session": row["id"]}, ensure_ascii=False
+    ).replace("<", "\\u003c")
+    return f'''<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>کارگاه آموزشی دیپ لرنینگ · {e(row["title_fa"])}</title><link rel="stylesheet" href="{BASE}/assets/course.css"><link rel="stylesheet" href="{BASE}/assets/slides.css">
+<script src="{BASE}/assets/course.js" defer></script><script src="{BASE}/assets/workshops.js" defer></script><script src="{BASE}/assets/slides.js" defer></script></head>
+<body class="deck-page"><a class="skip" href="#main">رفتن به اسلاید</a><header class="deck-toolbar">{link(session_url(term, row), "بازگشت به درس", data_deck_back="true", target="_top")}<div>{link(BASE + "/slides/spring-2022.zip", "دریافت بستهٔ اسلایدها", download="")}<button type="button" data-deck-print disabled>چاپ / ذخیرهٔ PDF</button><button type="button" data-deck-fullscreen>تمام‌صفحه</button></div></header>
+<main id="main" aria-label="اسلایدهای آموزشی فارسی">{"".join(slides).replace("DECK_TOTAL_COUNT", str(len(slides)))}</main><p class="deck-status" data-deck-status role="status"></p>
+<footer class="deck-controls" aria-label="پیمایش اسلاید"><button type="button" data-deck-prev disabled>قبلی</button><select data-deck-select aria-label="انتخاب اسلاید" disabled></select><span data-deck-progress aria-live="polite"></span><button type="button" class="primary" data-deck-next disabled>بعدی</button></footer>
+<script id="course-context" type="application/json">{context}</script><noscript><p>همهٔ اسلایدها بدون پیمایش تعاملی قابل خواندن‌اند؛ برای کارگاه و بررسی خودکار پاسخ‌ها JavaScript را فعال کن.</p></noscript></body></html>'''
 
 
 def session_page(term, row, concepts):
@@ -406,13 +517,21 @@ def session_page(term, row, concepts):
 <h1>{e(row["title_fa"])}</h1><p class="lead">{e(row.get("overview_fa", ""))}</p></header>"""
     content = intro
     if row.get("workshop"):
+        slide_action = (
+            link(session_url(term, row) + "slides/", "اسلایدهای فارسی")
+            if row.get("local_slides")
+            else ""
+        )
         content += (
             '<nav class="inline-links lesson-actions" aria-label="بخش‌های تعاملی جلسه">'
+            + slide_action
             + link("#workshop", "کارگاه با کد")
             + link("#questions", "پرسش و پاسخ")
             + link("#source-activities", "تمرین‌های داخل اسلاید")
             + "</nav>"
         )
+    if row.get("local_slides"):
+        content += '<div id="local-slide-view" class="local-slide-view"></div>'
     if not ready:
         note = (
             (
@@ -603,8 +722,14 @@ def build(output, root=ROOT):
     pages = {"index.html": hub(course), "sources/index.html": sources_page(course)}
     for term in course["terms"]:
         workshops = load_workshops(term["id"], root)
+        slide_identity, slide_units = load_slides(term["id"], root)
         for row in term["schedule"]:
             row["workshop"] = workshops.get(row["id"])
+            row["local_slides"] = slide_units.get(row["id"])
+            if row["local_slides"]:
+                pages[f"terms/{term['id']}/{row['id']}/slides/index.html"] = (
+                    slides_page(term, row, slide_identity, row["local_slides"])
+                )
         for identity, unit in workshops.items():
             destination = output / f"workshops/{term['id']}/{identity}.py"
             destination.parent.mkdir(parents=True, exist_ok=True)
@@ -645,7 +770,15 @@ def build(output, root=ROOT):
         path.write_text(html, encoding="utf-8")
     assets = output / "assets"
     assets.mkdir(exist_ok=True)
-    for name in ("course.css", "course.js", "workshops.js", "workshop-worker.mjs"):
+    for name in (
+        "course.css",
+        "course.js",
+        "workshops.js",
+        "workshop-worker.mjs",
+        "slides.css",
+        "slides.js",
+        "course-mark.svg",
+    ):
         if (root / "assets" / name).resolve() != (assets / name).resolve():
             shutil.copyfile(root / "assets" / name, assets / name)
     for name in ("pyodide.mjs", "pyodide-LICENSE.json"):
@@ -654,6 +787,11 @@ def build(output, root=ROOT):
         target.parent.mkdir(exist_ok=True)
         if source.resolve() != target.resolve():
             shutil.copyfile(source, target)
+    for name in ("LICENSE", "THIRD_PARTY_NOTICES.md"):
+        shutil.copyfile(root / name, output / name)
+    from package_slides import package_slides
+
+    package_slides(output, root)
     return len(pages)
 
 

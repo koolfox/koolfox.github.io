@@ -98,6 +98,38 @@ still need their own evidence. Publication is only claimed after a successful
 Pages deployment and a live check. The historical baseline below describes the
 retired surface, not current course authority.
 
+## Workshop and local presentation refinement — 2026-10-28
+
+Keep the approved blue/light/Arad/RTL direction. Titles of the exported Shiny
+shells and embedded apps are «کارگاه آموزشی دیپ لرنینگ». Lesson links to a shared
+laboratory require a documented matching topic; do not add generic laboratory
+invitations. Hidden architecture controls are visible and validated only when the
+chosen model actually uses them. The numerical model remains independent of UI.
+
+Both neural labs bring the actual layer graph ahead of the decision/loss plots.
+An explicit forward-pass button reveals activations derived from current Python
+weights, one layer at a time. This is calculation order, not physical signal speed
+or training progress. No autoplay loop. Reduced motion reveals all values at once;
+state changes and page hiding cancel a sequence. All activations remain available
+in a numerical table, including units omitted from a bounded visual graph.
+
+Spring 2022 now has 23 locally served, independently authored Persian HTML decks
+(207 slides), with an original course mark and supervisor «خانم دکتر نگار مجمع».
+Each deck contains the topic, objectives, mechanism, formula/example, an editable
+Python workshop, three questions with feedback/solutions, and limitations/sources.
+The primary slide viewer is same-origin; Colorado PDFs are optional citations.
+These decks are not a full translation of the source PDFs and do not certify
+unfinished source reviews. Other semesters have no newly authored decks yet.
+
+Navigation, fullscreen and print/save-PDF follow the existing structural-course
+presentation's interaction pattern; no sibling code, branding, or runtime is
+imported. A deterministic ZIP includes the 23 decks, their sources, own assets,
+Arad and the four pinned Python core files needed for the standard-library
+workshops. It is served from its extracted root with a local HTTP server.
+External sources/full lessons remain online links. No original PDFs enter the ZIP.
+Own code, mark and independently authored teaching content are MIT; upstream
+slides, fonts and runtimes retain their own notices and licenses.
+
 ## Earlier shipped implementation (migration baseline)
 
 ## Platform

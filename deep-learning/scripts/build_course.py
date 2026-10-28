@@ -10,6 +10,7 @@ from pathlib import Path
 from course_content import load_course
 from mnist_reference import load_reference
 from source_catalog import ROOT
+from workshops import load_workshops
 
 BASE = "/deep-learning"
 LABS = {
@@ -80,6 +81,11 @@ def session_url(term, row):
     return f"{term_url(term)}{row['id']}/"
 
 
+def teaching_sessions(term):
+    """Only public slide sessions are steps in the self-study path."""
+    return [row for row in term["schedule"] if row["slides"]]
+
+
 def page(title, body, crumbs=(), data=None):
     trail = link(f"{BASE}/", "یادگیری ژرف")
     for url, label in crumbs:
@@ -91,7 +97,8 @@ def page(title, body, crumbs=(), data=None):
 <title>{e(title)} · یادگیری ژرف</title>
 <meta name="description" content="درسنامه مستقل فارسی، مسیر پنج ترم دانا گوراری، تمرین و آزمایشگاه پایتون">
 <link rel="stylesheet" href="{BASE}/assets/course.css">
-<script src="{BASE}/assets/course.js" defer></script></head><body>
+<script src="{BASE}/assets/course.js" defer></script>
+<script src="{BASE}/assets/workshops.js" defer></script></head><body>
 <a class="skip" href="#main">رفتن به محتوای درس</a>
 <header class="site-header"><div class="header-inner">{link("/", "حسام شینی", class_="brand")}
 <nav aria-label="مسیر صفحه">{trail}</nav>{link(f"{BASE}/playgrounds/", "آزمایشگاه‌ها", class_="lab-nav")}</div></header>
@@ -119,10 +126,11 @@ def hub(course):
         rows.append(f'''<li class="term-row"><div><h2>{link(term_url(term), term["title_fa"])}</h2>
 <p>{e(TERM_SUMMARIES[term["id"]])}</p><p class="meta">{count} جلسه دارای اسلاید · {ready} درسنامه آماده
 <span data-term-progress="{e(term["id"])}"></span></p></div>{link(term_url(term), "ورود به مسیر ", class_="row-action")}</li>''')
+    first = next(t for t in course["terms"] if t["id"] == "spring-2022")
     body = f"""<section class="course-intro">
 <h1>از یک نورون تا مدل‌های پایه</h1><p class="lead">درس را به فارسی بخوان، نتیجه را پیش‌بینی کن و با اجرای پایتون امتحانش کن.
 هر ترم دانا گوراری، مسیر مستقل خودش را دارد؛ اصل اسلایدها هم کنار هر جلسه در دسترس است.</p>
-<div class="intro-actions">{link(term_url(course["terms"][0]), "شروع مسیر بهار ۲۰۲۶", class_="button primary")}
+<div class="intro-actions">{link(term_url(first), "شروع مسیر بهار ۲۰۲۲", class_="button primary")}
 {link(f"{BASE}/playgrounds/neuron-xor/", "آزمایش یک نورون", class_="text-link")}</div></section>
 <section aria-labelledby="terms-title"><div class="section-heading"><h2 id="terms-title">یک ترم را دنبال کن</h2>
 <p>ترتیب جلسه‌ها از برنامه رسمی همان دوره می‌آید.</p></div><ol class="term-list">{"".join(rows)}</ol></section>
@@ -134,7 +142,15 @@ def hub(course):
 
 def term_page(term):
     items = []
+    lesson_number = 0
     for row in term["schedule"]:
+        if not row["slides"]:
+            items.append(
+                f'<li class="calendar-note" data-calendar-note="{e(row["id"])}">'
+                f"<bdi>{e(row['date_label'])}</bdi> · {e(row['title_fa'])}</li>"
+            )
+            continue
+        lesson_number += 1
         source_count = sum(s.get("page_count", 0) for s in row["slides"])
         status = (
             "درسنامه و تمرین آماده"
@@ -145,8 +161,10 @@ def term_page(term):
                 else "رویداد برنامه رسمی"
             )
         )
+        if row.get("workshop"):
+            status += " · کارگاه با کد و پرسش‌وپاسخ آماده"
         items.append(f'''<li class="session-row" data-session-key="{term["id"]}/{row["id"]}">
-<span class="session-number" aria-label="جلسه {row["order"]}">{row["order"]:02d}</span><div>
+<span class="session-number" aria-label="درس {lesson_number}">{lesson_number:02d}</span><div>
 <p class="meta"><bdi>{e(row["date_label"])}</bdi>{f" · {source_count} صفحه" if source_count else ""}</p>
 <h2>{link(session_url(term, row), row["title_fa"])}</h2><p>{e(row.get("overview_fa", ""))}</p>
 <p class="session-state">{e(status)}<span data-completion-label></span></p></div></li>''')
@@ -154,6 +172,7 @@ def term_page(term):
 <p class="lead">{e(TERM_SUMMARIES[term["id"]])}</p><div class="inline-links">
 {link(term["course_url"], "برنامه رسمی این ترم ", True)}{link(term["syllabus_url"], "سیلابس اصلی ", True)}
 {link(term_url(term) + "foundations/", "مرور پیش‌نیازها")}{link(term_url(term) + "project/", "پروژه پایانی")}</div></div>
+<p class="meta calendar-context">فقط جلسه‌های دارای اسلاید، گام آموزشی‌اند. تعطیلی‌ها و مهمان‌ها یادداشت تقویم کلاس اصلی‌اند و برنامهٔ دانشگاه شما را تعیین نمی‌کنند.</p>
 <ol class="session-list">{"".join(items)}</ol>{progress_tools()}"""
     return page(
         term["title_fa"],
@@ -189,6 +208,12 @@ def source_panel(term, row, concepts):
                 f"<li>{link('#' + identity + '-exercises', 'تمرین‌های این بحث')}</li>"
             )
         content += "</ol></nav></details>"
+    if row.get("workshop"):
+        content += '<nav class="activity-nav" aria-label="تمرین جلسه">'
+        content += link("#workshop", "کارگاه با کد قابل‌ویرایش")
+        content += link("#questions", "پرسش و پاسخ")
+        content += link("#source-activities", "پرسش‌ها و فعالیت‌های داخل اسلاید")
+        content += "</nav>"
     content += f'<p class="meta">شماره‌ها ترتیب صفحه‌های PDF هستند.</p>{link(term_url(term), "همه جلسه‌های این ترم ")}'
     return f'<aside class="source-panel" aria-label="منابع و راهنمای اسلاید">{content}</aside>'
 
@@ -287,15 +312,83 @@ def findings_html(row):
     return content + "</section>"
 
 
+def workshop_html(term, row):
+    unit = row.get("workshop")
+    if not unit:
+        return ""
+    config = json.dumps(
+        {
+            k: unit[k]
+            for k in ("code", "reference", "starter_sha256", "reference_python")
+        },
+        ensure_ascii=False,
+    ).replace("<", "\\u003c")
+    questions = "".join(
+        exercise_html(q, "workshop-" + row["id"]) for q in unit["questions"]
+    )
+    activity_links = " · ".join(
+        link(unit["source_url"] + f"#page={n}", f"فعالیت کلاسی · صفحهٔ {n}", True)
+        for n in unit["class_activity_pages"]
+    )
+    question_links = " ".join(
+        link(unit["source_url"] + f"#page={n}", str(n), True)
+        for n in unit["question_pages"]
+    )
+    source = '<section id="source-activities" class="source-activities"><h2>پرسش‌ها و فعالیت‌های داخل اسلاید</h2>'
+    if activity_links:
+        source += f"<p>{activity_links}</p><p>اصل شکل‌ها و صورت فعالیت را در این صفحه‌ها ببین؛ بحث مرتبط را در پاسخ تشریحی پایین ثبت کن.</p>"
+    source += f'<details><summary>صفحه‌های دارای پرسش یا محاسبهٔ پرسشی در منبع</summary><p class="source-question-links">{question_links}</p><p class="meta">شماره‌ها صفحهٔ PDF هستند؛ برخی صفحه‌ها مراحل متوالی یک پرسش‌اند. این فهرست جای متن اصلی و بررسی کامل علمی آن را نمی‌گیرد.</p></details>'
+    if unit["programming_tutorial_pages"]:
+        source += '<p class="meta">اسلاید به آموزش برنامه‌نویسی کلاس اصلی اشاره می‌کند. کد و ویدئوی بستهٔ Canvas در دسترس عمومی این مجموعه نیست؛ کارگاه زیر مستقل تألیف شده است.</p>'
+    source += "</section>"
+    references = " · ".join(
+        link(r["url"], r["title_fa"], True) for r in unit.get("references", [])
+    )
+    return (
+        source
+        + f'''<section class="lesson-workshop" id="workshop" data-workshop="{e(term["id"])}/{e(row["id"])}">
+<h2>کارگاه: {e(unit["title_fa"])}</h2>
+<p>{prose(unit["prediction_fa"])}</p>{listing(unit["steps_fa"], True)}
+<p class="meta">کد و تمرین تألیفی دربارهٔ بحث {link(unit["source_url"] + "#page=" + str(unit["source_page"]), "صفحهٔ " + str(unit["source_page"]), True)}؛ اجرا با پایتون واقعی در مرورگر انجام می‌شود.</p>
+<div class="workshop-grid"><div class="workshop-editor"><label for="workshop-code">کد آزمایش · همهٔ فرمول‌ها قابل‌ویرایش‌اند</label>
+<textarea id="workshop-code" data-workshop-code dir="ltr" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="python-help">{e(unit["code"])}</textarea>
+<div class="workshop-actions"><button type="button" class="primary" data-workshop-run>اجرای پایتون</button><button type="button" data-workshop-stop disabled>توقف اجرا</button>
+<button type="button" data-workshop-reset>کد اولیه</button><button type="button" data-workshop-download>دریافت کد</button></div></div>
+<div class="workshop-result"><h3>خروجی کد شما</h3><p data-workshop-status role="status" aria-live="polite">پیش‌بینی‌ات را بنویس و سپس کد را اجرا کن؛ اجرای خودکار انجام نمی‌شود.</p>
+<div data-workshop-result></div><pre data-workshop-console dir="ltr" hidden></pre>
+<button type="button" data-workshop-record disabled>دریافت کد و نتیجه</button></div></div>
+<details id="python-help"><summary>راهنمای خواندن و تغییر کد</summary><p>متغیرهای بالای کد ورودی‌اند؛ تابع‌ها روش محاسبه‌اند. <bdi dir="ltr"><code>int</code></bdi> عدد صحیح، <bdi dir="ltr"><code>float</code></bdi> عدد اعشاری و <bdi dir="ltr"><code>str</code></bdi> متن است. فهرست داخل <bdi dir="ltr"><code>[]</code></bdi> چند مقدار را کنار هم نگه می‌دارد؛ اندیس‌ها از صفر شروع می‌شوند.</p>
+<p><bdi dir="ltr"><code>def</code></bdi> تابع می‌سازد، <bdi dir="ltr"><code>return</code></bdi> خروجی آن را برمی‌گرداند و <bdi dir="ltr"><code>for</code></bdi> محاسبه را تکرار می‌کند. تورفتگی ابتدای خط بخشی از دستور پایتون است. خروجی نهایی باید در یک دیکشنری با نام <bdi dir="ltr"><code>result</code></bdi> قرار بگیرد. عدد اعشاری رایانه تقریبی است؛ تفاوت بسیار کوچک الزاماً خطای الگوریتم نیست.</p>
+<p>اجرای نخست محیط پایتون را دریافت می‌کند. هر اجرا از ابتدا آغاز می‌شود؛ کد طولانی را می‌توان متوقف کرد و زمان محاسبه به پنج ثانیه محدود است. متن درس و پاسخ‌ها بدون بارگیری محیط پایتون هم قابل استفاده‌اند.</p></details>
+<details class="workshop-reference"><summary>نتیجهٔ مرجع کد اولیه، برای مقایسه پس از تلاش</summary><pre dir="ltr">{e(json.dumps(unit["reference"], ensure_ascii=False, indent=2))}</pre><p class="meta">این نتیجه با اجرای مستقل کد اولیه در Python {e(unit["reference_python"])} ثبت و در بررسی ساخت دوباره کنترل می‌شود. نتیجهٔ کد ویرایش‌شدهٔ شما ممکن است متفاوت باشد؛ یکسانی عددها به‌تنهایی اعتبار علمی روش را ثابت نمی‌کند.</p></details>
+<p class="meta">{e(unit["limits_fa"])}</p>
+{f'<p class="meta">منبع تکمیلی محاسبه: {references}</p>' if references else ""}
+<script type="application/json" data-workshop-config>{config}</script></section>
+<section id="questions" class="workshop-questions"><h2>پرسش و پاسخ این جلسه</h2><p>ابتدا پاسخ بده؛ پاسخ نمونه و روش حل زیر هر سؤال باز می‌شود. پاسخ عددی و گزینه‌ای بررسی خودکار دارد؛ استدلال با معیارهای پاسخ نمونه مقایسه می‌شود.</p>{questions}</section>'''
+    )
+
+
 def session_page(term, row, concepts):
     mapping = row["mapping"]
     ready = row["companion_ready"]
     intro = f"""<header class="lesson-heading">
 <h1>{e(row["title_fa"])}</h1><p class="lead">{e(row.get("overview_fa", ""))}</p></header>"""
     content = intro
+    if row.get("workshop"):
+        content += (
+            '<nav class="inline-links lesson-actions" aria-label="بخش‌های تعاملی جلسه">'
+            + link("#workshop", "کارگاه با کد")
+            + link("#questions", "پرسش و پاسخ")
+            + link("#source-activities", "تمرین‌های داخل اسلاید")
+            + "</nav>"
+        )
     if not ready:
         note = (
-            "درسنامه و تمرین این جلسه در حال آماده‌سازی است. اصل اسلاید و برنامه رسمی در دسترس‌اند."
+            (
+                "درسنامهٔ کامل این جلسه در حال آماده‌سازی است. کارگاه و پرسش‌وپاسخ مستقل پایین صفحه قابل استفاده‌اند؛ اصل اسلاید هم در دسترس است."
+                if row.get("workshop")
+                else "درسنامه و تمرین این جلسه در حال آماده‌سازی است. اصل اسلاید و برنامه رسمی در دسترس‌اند."
+            )
             if row["slides"]
             else "این ردیف از تقویم رسمی ترم است. اسلاید عمومی برای آن پیوند نشده؛ محتوایی به استاد نسبت داده نمی‌شود."
         )
@@ -317,6 +410,7 @@ def session_page(term, row, concepts):
             if lab in LABS:
                 title, description = LABS[lab]
                 content += f'<section class="lab-invitation"><h2>آزمایش: {e(title)}</h2><p>{prose(description)}</p>{link(f"{BASE}/playgrounds/{lab}/", "باز کردن آزمایشگاه ", class_="button primary")}</section>'
+    content += workshop_html(term, row)
     content += findings_html(row)
     if row.get("readings"):
         content += "<details><summary>مطالعه‌های معرفی‌شده در برنامه رسمی</summary><ul>"
@@ -329,15 +423,16 @@ def session_page(term, row, concepts):
         content += f"<details><summary>تکلیف‌های تاریخی کلاس اصلی</summary>{listing(row['assignment_labels'])}<p>متن تکلیف‌های بستهٔ Canvas در اختیار این مجموعه نیست. تمرین‌های بالا مستقل‌اند.</p></details>"
     if ready:
         content += '<div class="completion"><button type="button" data-toggle-complete aria-pressed="false">این جلسه را خواندم و تمرین کردم</button><p role="status" data-completion-message></p></div>'
-    position = term["schedule"].index(row)
+    lessons = teaching_sessions(term)
+    position = lessons.index(row)
     links = []
     if position:
-        previous = term["schedule"][position - 1]
+        previous = lessons[position - 1]
         links.append(
             link(session_url(term, previous), " جلسه قبل: " + previous["title_fa"])
         )
-    if position + 1 < len(term["schedule"]):
-        following = term["schedule"][position + 1]
+    if position + 1 < len(lessons):
+        following = lessons[position + 1]
         links.append(
             link(
                 session_url(term, following),
@@ -471,6 +566,13 @@ def build(output, root=ROOT):
     output.mkdir(parents=True, exist_ok=True)
     pages = {"index.html": hub(course), "sources/index.html": sources_page(course)}
     for term in course["terms"]:
+        workshops = load_workshops(term["id"], root)
+        for row in term["schedule"]:
+            row["workshop"] = workshops.get(row["id"])
+        for identity, unit in workshops.items():
+            destination = output / f"workshops/{term['id']}/{identity}.py"
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            destination.write_text(unit["code"], encoding="utf-8")
         prefix = f"terms/{term['id']}"
         pages[f"{prefix}/index.html"] = term_page(term)
         pages[f"{prefix}/project/index.html"] = project_page(term)
@@ -487,7 +589,7 @@ def build(output, root=ROOT):
                 [(term_url(term), term["title_fa"])],
                 {"term": term["id"], "session": "s00"},
             )
-        for row in term["schedule"]:
+        for row in teaching_sessions(term):
             pages[f"{prefix}/{row['id']}/index.html"] = session_page(
                 term, row, course["concepts"]
             )
@@ -507,9 +609,15 @@ def build(output, root=ROOT):
         path.write_text(html, encoding="utf-8")
     assets = output / "assets"
     assets.mkdir(exist_ok=True)
-    for name in ("course.css", "course.js"):
+    for name in ("course.css", "course.js", "workshops.js", "workshop-worker.mjs"):
         if (root / "assets" / name).resolve() != (assets / name).resolve():
             shutil.copyfile(root / "assets" / name, assets / name)
+    for name in ("pyodide.mjs", "pyodide-LICENSE.json"):
+        source = root / "assets/vendor" / name
+        target = assets / "vendor" / name
+        target.parent.mkdir(exist_ok=True)
+        if source.resolve() != target.resolve():
+            shutil.copyfile(source, target)
     return len(pages)
 
 

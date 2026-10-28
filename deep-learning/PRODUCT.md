@@ -114,7 +114,7 @@ state changes and page hiding cancel a sequence. All activations remain availabl
 in a numerical table, including units omitted from a bounded visual graph.
 
 Spring 2022 now has 23 locally served, independently authored Persian HTML decks
-(207 slides), with an original course mark and supervisor «خانم دکتر نگار مجمع».
+(207 slides), with the same university logo as the structural-course presentation and instructor «دکتر نگار مجمع».
 Each deck contains the topic, objectives, mechanism, formula/example, an editable
 Python workshop, three questions with feedback/solutions, and limitations/sources.
 The primary slide viewer is same-origin; Colorado PDFs are optional citations.
@@ -122,12 +122,13 @@ These decks are not a full translation of the source PDFs and do not certify
 unfinished source reviews. Other semesters have no newly authored decks yet.
 
 Navigation, fullscreen and print/save-PDF follow the existing structural-course
-presentation's interaction pattern; no sibling code, branding, or runtime is
-imported. A deterministic ZIP includes the 23 decks, their sources, own assets,
+presentation's interaction pattern; no sibling application code or runtime is imported. The owner explicitly
+requested reusing the university logo; an identical local copy and its provenance
+are included, so the deck has no cross-project runtime dependency. A deterministic ZIP includes the 23 decks, their sources, own assets,
 Arad and the four pinned Python core files needed for the standard-library
 workshops. It is served from its extracted root with a local HTTP server.
 External sources/full lessons remain online links. No original PDFs enter the ZIP.
-Own code, mark and independently authored teaching content are MIT; upstream
+Own code and independently authored teaching content are MIT; upstream
 slides, fonts and runtimes retain their own notices and licenses.
 
 ## Earlier shipped implementation (migration baseline)

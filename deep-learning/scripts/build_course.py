@@ -135,7 +135,7 @@ def page(title, body, crumbs=(), data=None):
 <nav aria-label="مسیر صفحه">{trail}</nav>{link(f"{BASE}/playgrounds/", "آزمایشگاه‌ها", class_="lab-nav")}</div></header>
 <main id="main" class="page-shell">{body}</main>
 <footer class="site-footer"><p>درس‌های اصلی: دانا گوراری، دانشگاه کلرادو بولدر · درسنامه و تمرین فارسی: تألیف مستقل این مجموعه.</p>
-<p>استاد راهنمای درس: خانم دکتر نگار مجمع</p>
+<p>استاد: دکتر نگار مجمع</p>
 <p>تاریخ‌ها و تکالیف رسمی، سوابق همان ترم‌اند. این مسیر خودآموز وابسته به ثبت‌نام دانشگاه نیست.</p>
 {link("https://dannagurari.colorado.edu/courses/", "فهرست رسمی درس‌ها", True)}
 <span aria-hidden="true"> · </span>{link(f"{BASE}/sources/", "منابع و وضعیت بررسی")}</footer>
@@ -443,13 +443,13 @@ def slides_page(term, row, identity, teaching):
     def add(title, body, kind=""):
         number = len(slides) + 1
         slides.append(f'''<section class="dl-slide {kind}" id="slide-{number}" data-slide-title="{e(title)}">
-<header class="slide-identity"><div><p>کارگاه آموزشی دیپ لرنینگ</p><p>{e(term["title_fa"])} · اسلاید آموزشی مستقل</p></div><img class="deck-logo" src="{BASE}/assets/course-mark.svg" alt="نشان درس یادگیری ژرف" width="68" height="68"></header>
+<header class="slide-identity"><div><p>کارگاه آموزشی دیپ لرنینگ</p><p>{e(term["title_fa"])} · اسلاید آموزشی مستقل</p></div><img class="deck-logo" src="{BASE}/assets/university-logo.png" alt="نشان مؤسسه آموزش عالی نقش جهان" width="100" height="104"></header>
 <div class="slide-content"><h1>{prose(title)}</h1>{body}</div>
 <footer class="slide-footer"><p>تألیف مستقل فارسی · {e(identity["author_fa"])} · MIT</p><p><bdi dir="ltr">{number} / DECK_TOTAL_COUNT</bdi></p></footer></section>''')
 
     add(
         row["title_fa"],
-        f'<p class="cover-topic">{prose(teaching["intro_fa"])}</p><div class="cover-people"><p>ارائه‌دهنده: {e(identity["author_fa"])}</p><p>استاد راهنمای درس: {e(identity["supervisor_fa"])}</p></div>',
+        f'<p class="cover-topic">{prose(teaching["intro_fa"])}</p><div class="cover-people"><p>ارائه‌دهنده: {e(identity["author_fa"])}</p><p>استاد: {e(identity["supervisor_fa"])}</p></div>',
         "slide-cover",
     )
     add(
@@ -777,7 +777,8 @@ def build(output, root=ROOT):
         "workshop-worker.mjs",
         "slides.css",
         "slides.js",
-        "course-mark.svg",
+        "university-logo.png",
+        "university-logo.source.json",
     ):
         if (root / "assets" / name).resolve() != (assets / name).resolve():
             shutil.copyfile(root / "assets" / name, assets / name)

@@ -19,7 +19,7 @@ class LocalSlidesTests(unittest.TestCase):
     def test_every_teaching_session_has_an_independent_narrative(self):
         identity, units = load_slides("spring-2022")
         self.assertEqual(len(units), 23)
-        self.assertEqual(identity["supervisor_fa"], "خانم دکتر نگار مجمع")
+        self.assertEqual(identity["supervisor_fa"], "دکتر نگار مجمع")
         self.assertEqual(identity["license"], "MIT")
         self.assertNotIn("s03", units)
         self.assertEqual(load_slides("spring-2026"), ({}, {}))

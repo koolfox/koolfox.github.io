@@ -19,7 +19,9 @@ test('all 23 local decks have their own cover, editor and questions without exte
     await expect(page.locator('html')).toHaveAttribute('data-deck-ready','true');
     await expect(page.locator('.dl-slide')).toHaveCount(9);
     await expect(page.locator('.dl-slide:visible')).toHaveAttribute('id','slide-1');
-    await expect(page.locator('.cover-people')).toContainText('خانم دکتر نگار مجمع');
+    await expect(page.locator('.cover-people')).toContainText('استاد: دکتر نگار مجمع');
+    await expect(page.locator('#slide-1 .deck-logo')).toHaveAttribute('src','/deep-learning/assets/university-logo.png');
+    expect(await page.locator('#slide-1 .deck-logo').evaluate(img=>img.complete && img.naturalWidth===100 && img.naturalHeight===104)).toBeTruthy();
     await expect(page.locator('[data-deck-select] option')).toHaveCount(9);
     await page.locator('[data-deck-select]').selectOption('4');
     await expect(page.locator('[data-workshop-code]')).toBeVisible();

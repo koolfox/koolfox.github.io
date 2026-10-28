@@ -15,7 +15,8 @@ ASSETS = (
     "workshop-worker.mjs",
     "slides.css",
     "slides.js",
-    "course-mark.svg",
+    "university-logo.png",
+    "university-logo.source.json",
     "vendor/pyodide.mjs",
     "vendor/pyodide-LICENSE.json",
 )
@@ -81,7 +82,7 @@ def package_slides(output, root=ROOT):
             "deep-learning/runtime/neuron-xor/shinylive/pyodide/" + name, runtime / name
         )
     files["index.html"] = (
-        """<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>اسلایدهای فارسی دیپ لرنینگ · بهار ۲۰۲۲</title><link rel="stylesheet" href="/deep-learning/assets/course.css"><main class="standalone"><h1>کارگاه آموزشی دیپ لرنینگ</h1><p>استاد راهنمای درس: """
+        """<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>اسلایدهای فارسی دیپ لرنینگ · بهار ۲۰۲۲</title><link rel="stylesheet" href="/deep-learning/assets/course.css"><main class="standalone"><h1>کارگاه آموزشی دیپ لرنینگ</h1><p>استاد: """
         + escape(identity["supervisor_fa"])
         + """</p><p>۲۳ ارائهٔ مستقل فارسی با کارگاه پایتون و پرسش‌وپاسخ. پس از بازکردن ZIP، در همین پوشه فرمان <code dir="ltr">python3 -m http.server 8871</code> را اجرا و <a href="http://localhost:8871">localhost:8871</a> را باز کن. اجرای کارگاه به اینترنت نیاز ندارد؛ پیوند منابع اصلی و درس کامل، اینترنتی است.</p><ol>"""
         + "".join(links)

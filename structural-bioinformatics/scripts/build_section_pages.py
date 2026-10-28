@@ -62,8 +62,9 @@ def render_pages(project=PROJECT):
             for section in children
         )
         subnav = subnav + "</nav>" if children else ""
+        revision = "20261028-reading" if ident == "course" else "20261025-sections"
         modules = "\n".join(
-            f'<script type="module" src="assets/{name}?v=20261025-sections"></script>'
+            f'<script type="module" src="assets/{name}?v={revision}"></script>'
             for name in ["site.js", *scripts]
         )
         values = {

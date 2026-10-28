@@ -31,10 +31,12 @@ jobs:
           uv run --project deep-learning/playgrounds python deep-learning/scripts/export_playgrounds.py --output deep-learning/results/shinylive
           uv sync --project structural-bioinformatics/playgrounds --frozen
           uv run --project structural-bioinformatics/playgrounds python structural-bioinformatics/scripts/export_course_lab.py --output structural-bioinformatics/results/shinylive
+      - name: Check publication boundaries
+        run: python3 -m unittest discover -s scripts/tests -v
       - name: Check scientific code and curated data
         run: |
           uv sync --project structural-bioinformatics --frozen --python 3.13
-          uv run --project structural-bioinformatics pytest -q
+          uv run --project structural-bioinformatics pytest -q structural-bioinformatics/tests
           uv run --project structural-bioinformatics ruff check structural-bioinformatics scripts/serve_local.py
           uv run --project structural-bioinformatics ruff format --check structural-bioinformatics scripts/serve_local.py
       - name: Check deep learning teaching models
@@ -49,19 +51,31 @@ jobs:
         with:
           node-version: '24'
           cache: npm
-          cache-dependency-path: structural-bioinformatics/browser-tests/package-lock.json
-      - run: npm ci --prefix structural-bioinformatics/browser-tests
+          cache-dependency-path: |
+            structural-bioinformatics/browser-tests/package-lock.json
+            deep-learning/browser-tests/package-lock.json
+            karpathy/browser-tests/package-lock.json
+      - name: Install each project browser suite independently
+        run: |
+          npm ci --prefix structural-bioinformatics/browser-tests
+          npm ci --prefix deep-learning/browser-tests
+          npm ci --prefix karpathy/browser-tests
       - run: npx --prefix structural-bioinformatics/browser-tests playwright install --with-deps chromium
       - name: Check the exact website artifact before publication
         run: |
           python3 -m http.server 8000 --bind 127.0.0.1 --directory dist/pages > /tmp/research-http.log 2>&1 &
           npm --prefix structural-bioinformatics/browser-tests test
+          npm --prefix deep-learning/browser-tests test
+          npm --prefix karpathy/browser-tests test
       - name: Preserve browser QA screenshots and traces
         if: always()
         uses: actions/upload-artifact@v7.0.2
         with:
           name: browser-qa-${{ github.sha }}
-          path: structural-bioinformatics/browser-tests/test-results
+          path: |
+            structural-bioinformatics/browser-tests/test-results
+            deep-learning/browser-tests/test-results
+            karpathy/browser-tests/test-results
           if-no-files-found: ignore
           retention-days: 7
       - uses: actions/configure-pages@v6.0.0

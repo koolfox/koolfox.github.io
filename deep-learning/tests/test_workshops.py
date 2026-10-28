@@ -1,12 +1,15 @@
 """Independent numerical identities and source/coverage boundaries for workshops."""
 
+import json
 import math
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from workshops import load_workshops
+from export_playgrounds import validate_workshop_runtime
 
 
 class WorkshopTests(unittest.TestCase):
@@ -29,6 +32,17 @@ class WorkshopTests(unittest.TestCase):
         self.assertEqual(
             sum(len(u["class_activity_pages"]) for u in self.units.values()), 11
         )
+
+    def test_export_rejects_an_incompatible_workshop_runtime(self):
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory)
+            lock = output / "neuron-xor/shinylive/pyodide/pyodide-lock.json"
+            lock.parent.mkdir(parents=True)
+            lock.write_text(json.dumps({"info": {"version": "0.27.7"}}))
+            validate_workshop_runtime(output)
+            lock.write_text(json.dumps({"info": {"version": "0.28.0"}}))
+            with self.assertRaisesRegex(ValueError, "version must match"):
+                validate_workshop_runtime(output)
 
     def test_perceptron_correct_label_gives_zero_update(self):
         self.assertEqual(self.run_code("s02")["weights"], [-0.4, -0.8])

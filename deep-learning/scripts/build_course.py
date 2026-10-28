@@ -612,10 +612,12 @@ def build(output, root=ROOT):
     for name in ("course.css", "course.js", "workshops.js", "workshop-worker.mjs"):
         if (root / "assets" / name).resolve() != (assets / name).resolve():
             shutil.copyfile(root / "assets" / name, assets / name)
-    if (root / "assets/vendor").exists() and (root / "assets/vendor").resolve() != (
-        assets / "vendor"
-    ).resolve():
-        shutil.copytree(root / "assets/vendor", assets / "vendor", dirs_exist_ok=True)
+    for name in ("pyodide.mjs", "pyodide-LICENSE.json"):
+        source = root / "assets/vendor" / name
+        target = assets / "vendor" / name
+        target.parent.mkdir(exist_ok=True)
+        if source.resolve() != target.resolve():
+            shutil.copyfile(source, target)
     return len(pages)
 
 

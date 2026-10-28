@@ -3,6 +3,7 @@
 import importlib.util
 import json
 import math
+import subprocess
 from pathlib import Path
 
 PROJECT = Path(__file__).resolve().parents[1]
@@ -75,9 +76,10 @@ def test_pdf_spot_check_agrees_with_the_recorded_table():
 
 
 def test_no_publisher_pdf_is_committed():
-    found = {
-        path.relative_to(PROJECT).as_posix()
-        for path in PROJECT.rglob("*.pdf")
-        if not {"node_modules", ".venv", "dist"} & set(path.parts)
-    }
+    tracked = subprocess.run(
+        ["git", "-C", str(PROJECT), "ls-files", "-z", "--", "*.pdf"],
+        check=True,
+        capture_output=True,
+    )
+    found = {path.decode() for path in tracked.stdout.split(b"\0") if path}
     assert found <= ALLOWED_PDFS

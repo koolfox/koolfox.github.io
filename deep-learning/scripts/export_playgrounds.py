@@ -1,6 +1,8 @@
 """Stage shared Python source and export browser-executed Shiny laboratories."""
 
 import argparse
+import hashlib
+import json
 import shutil
 import subprocess
 import tempfile
@@ -8,6 +10,22 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 LABS = ("neuron-xor", "network-playground", "convolution")
+
+
+def validate_workshop_runtime(output):
+    loader = json.loads((ROOT / "assets/vendor/pyodide-LICENSE.json").read_text())
+    digest = hashlib.sha256(
+        (ROOT / "assets/vendor/pyodide.mjs").read_bytes()
+    ).hexdigest()
+    if digest != loader["loader_sha256"]:
+        raise ValueError("Workshop loader hash differs from the pinned source")
+    lock = json.loads(
+        (output / "neuron-xor/shinylive/pyodide/pyodide-lock.json").read_text()
+    )
+    if lock["info"]["version"] != loader["version"]:
+        raise ValueError(
+            "Workshop loader version must match the exported Python runtime"
+        )
 
 
 def stage(lab, destination):
@@ -48,6 +66,7 @@ def export(output):
             subprocess.run(
                 [executable, "export", str(source), str(output / lab)], check=True
             )
+    validate_workshop_runtime(output)
     return output
 
 

@@ -2,7 +2,7 @@ import { defineConfig } from "@playwright/test";
 
 export default defineConfig({
     testDir: ".",
-    testMatch: ["research.spec.js", "karpathy.spec.js", "course.spec.js", "deep-learning.spec.js", "danna-course.spec.js", "structural-lab.spec.js", "code-workbench.spec.js", "lesson-workshops.spec.js"],
+    testMatch: ["isolation.spec.js", "research.spec.js", "course.spec.js", "structural-lab.spec.js", "code-workbench.spec.js"],
     fullyParallel: true,
     reporter: "list",
     use: {

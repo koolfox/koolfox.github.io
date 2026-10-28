@@ -6,12 +6,13 @@ import { readFileSync } from 'node:fs';
 const lesson='/deep-learning/terms/spring-2026/s02/';
 const terms={'spring-2026':32,'spring-2025':33,'spring-2024':32,'fall-2022':33,'spring-2022':33};
 
-test('five independent calendars preserve all 163 rows and official sources',async({page,request})=>{
+test('five calendars retain historical notes while only slide lessons are linked',async({page,request})=>{
   await page.goto('/deep-learning/');
   await expect(page.locator('.term-row')).toHaveCount(5);
   for(const [term,count] of Object.entries(terms)){
     await page.goto(`/deep-learning/terms/${term}/`);
-    await expect(page.locator('.session-row')).toHaveCount(count);
+    await expect(page.locator('.session-row, .calendar-note')).toHaveCount(count);
+    await expect(page.locator('.calendar-note a, .calendar-note button, .calendar-note [data-session-key]')).toHaveCount(0);
     const first=page.locator('.session-row h2 a').first();await first.click();
     await expect(page.locator('.source-link')).toHaveAttribute('href',/colorado.edu/);
     await expect(page.locator('.concept')).not.toHaveCount(0);

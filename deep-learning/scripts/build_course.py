@@ -80,6 +80,11 @@ def session_url(term, row):
     return f"{term_url(term)}{row['id']}/"
 
 
+def teaching_sessions(term):
+    """Only public slide sessions are steps in the self-study path."""
+    return [row for row in term["schedule"] if row["slides"]]
+
+
 def page(title, body, crumbs=(), data=None):
     trail = link(f"{BASE}/", "یادگیری ژرف")
     for url, label in crumbs:
@@ -119,10 +124,11 @@ def hub(course):
         rows.append(f'''<li class="term-row"><div><h2>{link(term_url(term), term["title_fa"])}</h2>
 <p>{e(TERM_SUMMARIES[term["id"]])}</p><p class="meta">{count} جلسه دارای اسلاید · {ready} درسنامه آماده
 <span data-term-progress="{e(term["id"])}"></span></p></div>{link(term_url(term), "ورود به مسیر ", class_="row-action")}</li>''')
+    first = next(t for t in course["terms"] if t["id"] == "spring-2022")
     body = f"""<section class="course-intro">
 <h1>از یک نورون تا مدل‌های پایه</h1><p class="lead">درس را به فارسی بخوان، نتیجه را پیش‌بینی کن و با اجرای پایتون امتحانش کن.
 هر ترم دانا گوراری، مسیر مستقل خودش را دارد؛ اصل اسلایدها هم کنار هر جلسه در دسترس است.</p>
-<div class="intro-actions">{link(term_url(course["terms"][0]), "شروع مسیر بهار ۲۰۲۶", class_="button primary")}
+<div class="intro-actions">{link(term_url(first), "شروع مسیر بهار ۲۰۲۲", class_="button primary")}
 {link(f"{BASE}/playgrounds/neuron-xor/", "آزمایش یک نورون", class_="text-link")}</div></section>
 <section aria-labelledby="terms-title"><div class="section-heading"><h2 id="terms-title">یک ترم را دنبال کن</h2>
 <p>ترتیب جلسه‌ها از برنامه رسمی همان دوره می‌آید.</p></div><ol class="term-list">{"".join(rows)}</ol></section>
@@ -134,7 +140,15 @@ def hub(course):
 
 def term_page(term):
     items = []
+    lesson_number = 0
     for row in term["schedule"]:
+        if not row["slides"]:
+            items.append(
+                f'<li class="calendar-note" data-calendar-note="{e(row["id"])}">'
+                f'<bdi>{e(row["date_label"])}</bdi> · {e(row["title_fa"])}</li>'
+            )
+            continue
+        lesson_number += 1
         source_count = sum(s.get("page_count", 0) for s in row["slides"])
         status = (
             "درسنامه و تمرین آماده"
@@ -146,7 +160,7 @@ def term_page(term):
             )
         )
         items.append(f'''<li class="session-row" data-session-key="{term["id"]}/{row["id"]}">
-<span class="session-number" aria-label="جلسه {row["order"]}">{row["order"]:02d}</span><div>
+<span class="session-number" aria-label="درس {lesson_number}">{lesson_number:02d}</span><div>
 <p class="meta"><bdi>{e(row["date_label"])}</bdi>{f" · {source_count} صفحه" if source_count else ""}</p>
 <h2>{link(session_url(term, row), row["title_fa"])}</h2><p>{e(row.get("overview_fa", ""))}</p>
 <p class="session-state">{e(status)}<span data-completion-label></span></p></div></li>''')
@@ -154,6 +168,7 @@ def term_page(term):
 <p class="lead">{e(TERM_SUMMARIES[term["id"]])}</p><div class="inline-links">
 {link(term["course_url"], "برنامه رسمی این ترم ", True)}{link(term["syllabus_url"], "سیلابس اصلی ", True)}
 {link(term_url(term) + "foundations/", "مرور پیش‌نیازها")}{link(term_url(term) + "project/", "پروژه پایانی")}</div></div>
+<p class="meta calendar-context">فقط جلسه‌های دارای اسلاید، گام آموزشی‌اند. تعطیلی‌ها و مهمان‌ها یادداشت تقویم کلاس اصلی‌اند و برنامهٔ دانشگاه شما را تعیین نمی‌کنند.</p>
 <ol class="session-list">{"".join(items)}</ol>{progress_tools()}"""
     return page(
         term["title_fa"],
@@ -329,15 +344,16 @@ def session_page(term, row, concepts):
         content += f"<details><summary>تکلیف‌های تاریخی کلاس اصلی</summary>{listing(row['assignment_labels'])}<p>متن تکلیف‌های بستهٔ Canvas در اختیار این مجموعه نیست. تمرین‌های بالا مستقل‌اند.</p></details>"
     if ready:
         content += '<div class="completion"><button type="button" data-toggle-complete aria-pressed="false">این جلسه را خواندم و تمرین کردم</button><p role="status" data-completion-message></p></div>'
-    position = term["schedule"].index(row)
+    lessons = teaching_sessions(term)
+    position = lessons.index(row)
     links = []
     if position:
-        previous = term["schedule"][position - 1]
+        previous = lessons[position - 1]
         links.append(
             link(session_url(term, previous), " جلسه قبل: " + previous["title_fa"])
         )
-    if position + 1 < len(term["schedule"]):
-        following = term["schedule"][position + 1]
+    if position + 1 < len(lessons):
+        following = lessons[position + 1]
         links.append(
             link(
                 session_url(term, following),
@@ -487,7 +503,7 @@ def build(output, root=ROOT):
                 [(term_url(term), term["title_fa"])],
                 {"term": term["id"], "session": "s00"},
             )
-        for row in term["schedule"]:
+        for row in teaching_sessions(term):
             pages[f"{prefix}/{row['id']}/index.html"] = session_page(
                 term, row, course["concepts"]
             )

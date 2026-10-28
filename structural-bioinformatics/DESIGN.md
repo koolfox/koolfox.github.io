@@ -330,3 +330,11 @@ The user's latest direction supersedes the previous embedded workspace navigatio
 ## General education and parallel research, 2026-10-25 clarification
 
 The latest user clarification supersedes the nine-peer navigation. Use exactly two primary links: سرفصل آموزشی and پژوهش. Place the general docking workshop within education. Place project resources in research secondary navigation. Preserve Arad, colors and direct resource URLs. The course has independent prose and self-checks, with one optional link to its application in this study. Research chapter applications explain the concrete work and manuscript contribution; they never rewrite the public syllabus.
+
+## Course reading refinement, 2026-10-28
+
+The course surface uses Read mode and preserves its scientific sources. The selected topic is the visible primary heading; the generic course description and syllabus live in the reference disclosure. The chapter catalogue and current section map share one quiet navigation column. The full-text book link remains directly visible. Existing laboratory sections follow their examples while original section ids remain stable.
+
+Course prose uses 19px on desktop, 18px on phones and a 2.05 line height, within 68ch. Explicit reading preferences use 21px or 23px. Compact navigation uses 0.85–0.96rem, with 44px controls; topic headings use clamp(1.5rem, 2.5vw, 2rem). These reading roles intentionally extend the research type scale. Inline scientific code remains isolated LTR. White paper, Arad and existing blue actions remain authoritative.
+
+Native answer disclosures, code copy/selection feedback and figure enlargement support the existing content. Figure frames use the portfolio's 10px item radius; dialogs use 12px. Print retains answers and original figures. No decorative motion or automatically inferred learning progress is introduced.

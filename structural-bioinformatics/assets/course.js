@@ -1,12 +1,14 @@
 import { gradeQuiz, restoredRecord } from "./course-quiz.js";
 import { renderDatasetWorkflow } from "./dataset-workflow.js";
 import { appendCourseLab } from "./course-lab.js";
+import { enhanceCourseReading } from "./course-reader.js";
 const $=selector=>document.querySelector(selector);
 const exercise=document.body.dataset.section==='exercises';
 const page=exercise?'exercises.html':'course.html';
 let course,thread,quizBank,active,activeQuiz,quizReady=false,revision=0;
 let renderedTopicURL=null;
 let storageAvailable=true;
+let courseReader=null;
 function stored(key) { try {const value=JSON.parse(localStorage.getItem(key)||'{}');return value&&typeof value==='object'&&!Array.isArray(value)?value:{};}catch{storageAvailable=false;return {};}}
 const progressKey=exercise?'tnf-course-progress-v1':'structural-education-progress-v1';
 let quizRecords=stored('tnf-course-quizzes-v1'), progress=stored(progressKey);
@@ -34,6 +36,8 @@ function scrollToSection() {
 }
 async function render(focus=false) {
  if(!exercise&&new URLSearchParams(location.search).has("document"))return;
+ courseReader?.destroy();courseReader=null;
+ if(!exercise){$('#lesson').hidden=true;$('#lesson').setAttribute('aria-busy','true');$('#progress').disabled=true;}
  const ticket=++revision;quizReady=false;renderedTopicURL=null;$('#lesson-outline').hidden=true;
  $('#status').textContent='در حال دریافت متن…';$('#retry').hidden=true;
  try {
@@ -58,6 +62,7 @@ async function render(focus=false) {
   $('#lesson').querySelectorAll('a[href],img[src]').forEach(node=>{const attr=node.tagName==='IMG'?'src':'href';const url=new URL(node.getAttribute(attr),new URL(exercise?active.exercise_path:active.path,location.href));if(['http:','https:'].includes(url.protocol))node.setAttribute(attr,url.href);else node.removeAttribute(attr);});
   if(!exercise)appendCourseLab($('#lesson'),active);
   lessonOutline(n);
+  if(!exercise)courseReader=enhanceCourseReading($('#lesson'),active);
   if(exercise)$('#topic-links').replaceChildren(link('مفهوم عمومی این مبحث',`course.html?topic=${n}`),link('ارائهٔ این پژوهش',`presentations.html?topic=${n}`));
   else $('#topic-links').replaceChildren(link('کاربرد این آموخته در پژوهش',`research.html?unit=${step.unit}#learning-application-${step.unit}`));
   if(!exercise&&step.unit===8)$('#topic-links').append(link('کارگاه آموزشی داکینگ','docking.html'));
@@ -67,8 +72,9 @@ async function render(focus=false) {
   if(ticket!==revision)return;
   $('#status').textContent=invalid?'شمارهٔ مبحث معتبر نبود؛ مبحث اول نمایش داده شد.':'';storageNote();
   renderedTopicURL=location.pathname+location.search;
+  if(!exercise){$('#lesson').hidden=false;$('#lesson').setAttribute('aria-busy','false');$('#progress').disabled=false;}
   if(!scrollToSection()&&focus)$('#session-title').scrollIntoView({block:'start'});
- }catch {$('#status').textContent='متن دریافت نشد؛ دوباره تلاش کنید یا از فهرست فصل‌ها مبحث دیگری را باز کنید.';$('#retry').hidden=false;}
+ }catch {$('#lesson').setAttribute('aria-busy','false');$('#status').textContent='متن دریافت نشد؛ دوباره تلاش کنید یا از فهرست فصل‌ها مبحث دیگری را باز کنید.';$('#retry').hidden=false;}
 }
 function recordFor(n) {
   return quizRecords[n] = restoredRecord(quizRecords[n],activeQuiz);

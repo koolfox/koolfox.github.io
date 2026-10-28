@@ -108,3 +108,9 @@ uv run --project structural-bioinformatics/playgrounds shiny run structural-bioi
 پرسش مرور، ارتباط آدالیموماب با تغییر بیان TOP2A در سلول‌های ایمنیِ فعال‌شده است. [پرسش](docs/research-questions.fa.md)، [روش مرور](docs/survey-protocol.fa.md) و [پیش‌نویس](docs/survey-draft.fa.md) در بخش پژوهش قرار دارند. جست‌وجو و غربالگری کامل نشده و بازتحلیل RNA توصیفی است. تماس هندسی، فراوانی RNA، فعالیت آنزیم و پاسخ بیمار اندازه‌گیری‌های متفاوت‌اند.
 
 منابع، UTC، SHA-256 و پارامترها در `data/metadata/` و خروجی‌های کوچک در `data/processed/` هستند. PDF ناشر و دادهٔ فردی تازه منتشر نمی‌شوند. پاسخ‌های آزمون و یادداشت‌ها با همان کلیدهای قبلی در مرورگر ذخیره می‌شوند؛ پاک‌کردن داده‌های مرورگر آن‌ها را حذف می‌کند. فایل‌های اصلی اسلایدها و دفترهای تحلیل نیز حفظ شده‌اند.
+
+### Reading the general lessons
+
+`course.html?topic=N` uses the original lesson source with a compact chapter catalogue, active section links and a directly accessible continuous textbook. Reader text size and explicitly opened section bookmarks are stored under `structural-reading-preferences-v1`, separately from study progress and research notes. Existing figures enlarge in place, code can be copied, and answer explanations open on request and print in full. The existing lab follows its existing example when available; original section URLs are preserved.
+
+The reading refinement does not rewrite lesson Markdown or change the syllabus. `course-reader.spec.js` compares the rendered text of all thirty topics with those sources, alongside navigation, saved-state, fallback, clipboard, figure-focus, print and mobile controls.

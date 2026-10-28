@@ -62,8 +62,9 @@ def render_pages(project=PROJECT):
             for section in children
         )
         subnav = subnav + "</nav>" if children else ""
+        revision = "20261028-reading" if ident == "course" else "20261025-sections"
         modules = "\n".join(
-            f'<script type="module" src="assets/{name}?v=20261025-sections"></script>'
+            f'<script type="module" src="assets/{name}?v={revision}"></script>'
             for name in ["site.js", *scripts]
         )
         values = {
@@ -76,6 +77,16 @@ def render_pages(project=PROJECT):
             "body": body,
         }
         template = (project / "templates/page.html").read_text()
+        if ident == "course":
+            template = template.replace(
+                '<header class="page-heading"><h1>@@title@@</h1>',
+                '<header class="page-heading"><p class="course-label">@@title@@</p>',
+            )
+            template = template.replace(
+                '<link rel="stylesheet" href="assets/sections.css">',
+                '<link rel="stylesheet" href="assets/sections.css">\n'
+                '<link rel="stylesheet" href="assets/course-reading.css">',
+            )
         for key, value in values.items():
             template = template.replace("@@" + key + "@@", value)
         return template.rstrip()
@@ -142,6 +153,11 @@ def render_pages(project=PROJECT):
             article += fragment("topic-navigation")
             body = '<div class="restored-course">' + contents(section["page"]) + article + "</div>"
             if ident == "course":
+                body = body.replace('<details id="contents" open>', '<details id="contents">')
+                body = body.replace(
+                    '<h2 id="session-title">در حال دریافت مبحث…</h2>',
+                    '<h1 id="session-title">در حال دریافت مبحث…</h1>',
+                )
                 outline = [
                     '<details id="syllabus-outline"><summary>سرفصل کامل و منبع درس</summary>'
                 ]

@@ -168,7 +168,7 @@ export function enhanceCourseReading(article, topic) {
     if (frame) return;
     frame = requestAnimationFrame(() => { frame = 0; highlight(); });
   }, {passive: true, signal});
-  highlight();
+  frame = requestAnimationFrame(() => { frame = 0; highlight(); });
 
   for (const pre of article.querySelectorAll('pre')) {
     const wrapper = element('div', null, 'reader-code');
@@ -189,6 +189,12 @@ export function enhanceCourseReading(article, topic) {
         button.textContent = 'کد انتخاب شد؛ آن را کپی کن';
       }
     }, {signal});
+  }
+  for (const table of article.querySelectorAll('table')) {
+    const scroll = element('div', null, 'reader-table-scroll');
+    scroll.tabIndex = 0; scroll.setAttribute('role', 'region');
+    scroll.setAttribute('aria-label', 'جدول قابل پیمایش');
+    table.before(scroll); scroll.append(table);
   }
 
   let dialog = null, figureOpener = null;

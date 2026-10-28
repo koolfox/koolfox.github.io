@@ -53,29 +53,9 @@
     }
     c.setLineDash([]);
   }
-  function network(state){
-    const pair=context('network');if(!pair)return;const[c,W,H]=pair;
-    const sizes=[state.config.feature_names.length,...state.weights.map(l=>l.length)];
-    const pos=(l,i)=>[80+l*(W-160)/(sizes.length-1),H/2+(i-(sizes[l]-1)/2)*43];
-    const max=Math.max(.01,...state.weights.flat(2).map(Math.abs));
-    for(let l=0;l<state.weights.length;l++)for(let j=0;j<sizes[l+1];j++)for(let k=0;k<sizes[l];k++){
-      const weight=state.weights[l][j][k],a=pos(l,k),b=pos(l+1,j);
-      c.strokeStyle=weight>=0?blue:muted;c.lineWidth=.5+3*Math.abs(weight)/max;c.setLineDash(weight<0?[5,4]:[]);
-      c.beginPath();c.moveTo(...a);c.lineTo(...b);c.stroke();
-    }
-    c.setLineDash([]);
-    sizes.forEach((n,l)=>{
-      for(let i=0;i<n;i++){
-        const[x,y]=pos(l,i);c.fillStyle='#fff';c.strokeStyle=blue;c.lineWidth=1.5;
-        c.beginPath();c.arc(x,y,17,0,Math.PI*2);c.fill();c.stroke();c.fillStyle=ink;c.textAlign='center';c.textBaseline='middle';
-        c.fillText(l===0?labels[state.config.feature_names[i]]:String(i+1),x,y);
-      }
-      c.fillStyle=muted;c.font='13px system-ui';c.fillText(l===0?'features':l===sizes.length-1?'sigmoid':state.config.activation,pos(l,0)[0],H-20);
-    });
-  }
   function draw(state){
-    if(!state){delete window.dannaNetwork;for(const id of ['decision','loss-chart','network'])context(id);return;}
-    window.dannaNetwork={state,forward:point=>forward(state,point)};surface(state);loss(state);network(state);
+    if(!state){window.deepLearningTopology?.update(null,null);delete window.dannaNetwork;for(const id of ['decision','loss-chart','network'])context(id);return;}
+    window.dannaNetwork={state,forward:point=>forward(state,point)};surface(state);loss(state);window.deepLearningTopology?.update(state,{points:state.points.map(p=>p.x),features:point=>{const[x,y]=point,f={x1:x,x2:y,x1_squared:x*x,x2_squared:y*y,x1_x2:x*y,sin_x1:Math.sin(Math.PI*x),sin_x2:Math.sin(Math.PI*y)};return state.config.feature_names.map(n=>f[n]);},hidden:state.config.activation,output:'sigmoid'});
   }
   function setup(){
     if(!window.Shiny){setTimeout(setup,50);return;}

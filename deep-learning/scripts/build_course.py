@@ -35,6 +35,36 @@ TERM_SUMMARIES = {
     "fall-2022": "مبانی شبکه‌ها، گفت‌وگوی تصویری، بازیابی عصبی، تقطیر و یادگیری تقویتی.",
     "spring-2022": "مبانی تا شبکه‌های بینایی و زبان؛ پروژه‌های چندوجهی، فشرده‌سازی و گفتار.",
 }
+LAB_GOALS = {
+    "artificial-neuron": (
+        "neuron-xor",
+        "پیش‌بینی و به‌روزرسانی پرسپترون را با نورون سیگموید مقایسه کن.",
+    ),
+    "feedforward-network": (
+        "neuron-xor",
+        "اثر لایهٔ پنهان را روی همان چهار ورودی XOR بررسی کن.",
+    ),
+    "gradient-training": (
+        "network-playground",
+        "با داده و بذر ثابت، اثر نرخ یادگیری و به‌روزرسانی وزن‌ها را بسنج.",
+    ),
+    "optimization": (
+        "network-playground",
+        "SGD، مومنتوم و Adam را با تنظیمات ثبت‌شده مقایسه کن.",
+    ),
+    "regularization": (
+        "network-playground",
+        "فقط جریمهٔ L1 یا L2 را تغییر بده و خطای اعتبارسنجی را مقایسه کن.",
+    ),
+    "regularization-techniques": (
+        "network-playground",
+        "این آزمایش فقط جریمهٔ وزن L1 و L2 دارد؛ برای همین بخش از درس استفاده کن.",
+    ),
+    "convolution": (
+        "convolution",
+        "ضرب‌های فیلتر، گام، حاشیه و pooling را روی تصویر کوچک دنبال کن.",
+    ),
+}
 
 
 def e(value):
@@ -104,6 +134,7 @@ def page(title, body, crumbs=(), data=None):
 <nav aria-label="مسیر صفحه">{trail}</nav>{link(f"{BASE}/playgrounds/", "آزمایشگاه‌ها", class_="lab-nav")}</div></header>
 <main id="main" class="page-shell">{body}</main>
 <footer class="site-footer"><p>درس‌های اصلی: دانا گوراری، دانشگاه کلرادو بولدر · درسنامه و تمرین فارسی: تألیف مستقل این مجموعه.</p>
+<p>استاد راهنمای درس: خانم دکتر نگار مجمع</p>
 <p>تاریخ‌ها و تکالیف رسمی، سوابق همان ترم‌اند. این مسیر خودآموز وابسته به ثبت‌نام دانشگاه نیست.</p>
 {link("https://dannagurari.colorado.edu/courses/", "فهرست رسمی درس‌ها", True)}
 <span aria-hidden="true"> · </span>{link(f"{BASE}/sources/", "منابع و وضعیت بررسی")}</footer>
@@ -347,7 +378,7 @@ def workshop_html(term, row):
     return (
         source
         + f'''<section class="lesson-workshop" id="workshop" data-workshop="{e(term["id"])}/{e(row["id"])}">
-<h2>کارگاه: {e(unit["title_fa"])}</h2>
+<h2>کارگاه آموزشی دیپ لرنینگ: {e(unit["title_fa"])}</h2>
 <p>{prose(unit["prediction_fa"])}</p>{listing(unit["steps_fa"], True)}
 <p class="meta">کد و تمرین تألیفی دربارهٔ بحث {link(unit["source_url"] + "#page=" + str(unit["source_page"]), "صفحهٔ " + str(unit["source_page"]), True)}؛ اجرا با پایتون واقعی در مرورگر انجام می‌شود.</p>
 <div class="workshop-grid"><div class="workshop-editor"><label for="workshop-code">کد آزمایش · همهٔ فرمول‌ها قابل‌ویرایش‌اند</label>
@@ -401,15 +432,20 @@ def session_page(term, row, concepts):
         content += "".join(
             exercise_html(x, row["id"]) for x in mapping.get("additional_exercises", [])
         )
-        labs = dict.fromkeys(
-            lab
-            for c in mapping["concept_ids"]
-            for lab in concepts[c].get("lab_ids", [])
-        )
-        for lab in labs:
-            if lab in LABS:
-                title, description = LABS[lab]
-                content += f'<section class="lab-invitation"><h2>آزمایش: {e(title)}</h2><p>{prose(description)}</p>{link(f"{BASE}/playgrounds/{lab}/", "باز کردن آزمایشگاه ", class_="button primary")}</section>'
+        if row.get("workshop"):
+            related = row["workshop"].get("related_labs", [])
+        else:
+            related = [
+                dict(id=LAB_GOALS[c][0], goal_fa=LAB_GOALS[c][1])
+                for c in mapping["concept_ids"]
+                if c in LAB_GOALS
+            ]
+        if related:
+            entries = "".join(
+                f"<li>{prose(item['goal_fa'])} {link(BASE + '/playgrounds/' + item['id'] + '/', LABS[item['id']][0])}</li>"
+                for item in related
+            )
+            content += f'<details class="related-labs"><summary>تمرین تکمیلی همین موضوع</summary><ul>{entries}</ul></details>'
     content += workshop_html(term, row)
     content += findings_html(row)
     if row.get("readings"):

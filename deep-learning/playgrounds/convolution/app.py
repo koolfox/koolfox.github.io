@@ -269,7 +269,7 @@ app_ui = ui.page_fluid(
         dir="rtl",
         lang="fa",
     ),
-    title="آزمایشگاه کانولوشن",
+    title="کارگاه آموزشی دیپ لرنینگ",
 )
 
 

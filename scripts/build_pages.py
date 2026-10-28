@@ -1,6 +1,8 @@
 """Assemble only intended public website files for GitHub Pages; no scientific downloads."""
 
 import argparse
+import hashlib
+import json
 import shutil
 import subprocess
 import sys
@@ -26,9 +28,6 @@ def package_mnist_project(learning: Path, target: Path):
         learning / "data/processed/mnist-reference.json",
         destination / "reference-results.json",
     )
-    import hashlib
-    import json
-
     manifest = {
         name: hashlib.sha256((destination / name).read_bytes()).hexdigest()
         for name in (*filenames, "reference-results.json")
@@ -103,6 +102,21 @@ def build_site(repository: Path, output: Path):
             "--output deep-learning/results/shinylive"
         )
     shutil.copytree(runtime, learning_target / "runtime")
+    loader = json.loads((learning / "assets/vendor/pyodide-LICENSE.json").read_text())
+    if (
+        hashlib.sha256(
+            (learning / "assets/vendor/pyodide.mjs").read_bytes()
+        ).hexdigest()
+        != loader["loader_sha256"]
+    ):
+        raise ValueError("Workshop loader hash differs from the pinned source")
+    runtime_lock = json.loads(
+        (runtime / "neuron-xor/shinylive/pyodide/pyodide-lock.json").read_text()
+    )
+    if runtime_lock["info"]["version"] != loader["version"]:
+        raise ValueError(
+            "Workshop loader version must match the exported Python runtime"
+        )
     package_mnist_project(learning, learning_target)
     # Keep the original Karpathy engine intact, with one course entry point.
     shutil.copytree(karpathy_target, learning_target / "karpathy")

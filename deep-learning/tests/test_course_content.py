@@ -129,19 +129,21 @@ class CourseContentTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "every source needs exactly one"):
             course_content.load_course(self.root)
 
-    def test_calendar_notes_have_no_lesson_link_or_progress_and_navigation_skips_them(self):
+    def test_calendar_notes_have_no_lesson_link_or_progress_and_navigation_skips_them(
+        self,
+    ):
         course = course_content.load_course()
         term = next(t for t in course["terms"] if t["id"] == "spring-2022")
         lessons = teaching_sessions(term)
         self.assertEqual(len(lessons), 23)
         calendar = term_page(term)
         self.assertEqual(calendar.count('class="calendar-note"'), 10)
-        self.assertNotIn('/spring-2022/s03/', calendar)
+        self.assertNotIn("/spring-2022/s03/", calendar)
         self.assertNotIn('data-session-key="spring-2022/s29"', calendar)
         lesson = session_page(term, lessons[1], course["concepts"])
         pagination = lesson.split('class="lesson-pagination"')[1]
-        self.assertIn('/spring-2022/s04/', pagination)
-        self.assertNotIn('/spring-2022/s03/', pagination)
+        self.assertIn("/spring-2022/s04/", pagination)
+        self.assertNotIn("/spring-2022/s03/", pagination)
 
 
 if __name__ == "__main__":

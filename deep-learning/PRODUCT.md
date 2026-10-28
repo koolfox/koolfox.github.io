@@ -51,6 +51,21 @@ unfinished; inventory/extraction is never described as course completion. See
 
 ## Current implementation milestone
 
+The active completion scope is Spring 2022. All 23 public slide sessions now
+have an independent editable Python workshop and three original questions
+(numeric, multiple choice and reasoning), with source page references. Eleven
+explicit classroom activity pages are retained as links to the unchanged
+originals, alongside an index of teaching-question pages. Canvas-only tutorial
+files remain unavailable and are not reconstructed or attributed to the teacher.
+These workshops do not mark unfinished full source reviews or companions ready.
+
+Calendar rows without public slides are compact, unlinked historical notes,
+excluded from lesson numbering and previous/next navigation. This rendering
+rule applies to all five existing calendars; curriculum expansion beyond
+Spring 2022 remains deferred. Source calendar metadata and progress keys stay
+unchanged. Workshops run only after an explicit click in a fresh Pyodide Worker,
+with stop/timeout, errors, code/result downloads and native Python references.
+
 The approved course architecture is now implemented as a generated static hub,
 five semester calendars, 163 original calendar rows, per-term prerequisites and
 project guides. Original Persian concept lessons are linked to independently

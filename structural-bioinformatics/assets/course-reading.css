@@ -1,0 +1,51 @@
+/* The lesson is the primary surface. Scientific source text stays unchanged. */
+body[data-section="course"] { background:#fff; --reading-ink:#172339; --reading-muted:#536179; --reading-line:#dce2eb; }
+body[data-section="course"] ::selection { background:#dce7fb; color:#172339; }
+body[data-section="course"] .site-header { padding-block:10px; min-height:54px; }
+body[data-section="course"] #section-nav { border-top:0; padding:0; }
+body[data-section="course"] #section-nav a { flex:initial; padding:10px 26px; font-size:.96rem; }
+body[data-section="course"] #education-nav { padding-block:0; font-size:.86rem; }
+body[data-section="course"] .page-heading { padding-block:16px 12px; }
+body[data-section="course"] .page-heading h1 { display:inline; font-size:1.1rem; margin:0; }
+body[data-section="course"] .page-heading p { display:inline; font-size:.87rem; margin-inline-start:16px; }
+body[data-section="course"] .section-documents { padding:0; margin:0; border:0; font-size:.86rem; }
+body[data-section="course"] #syllabus-outline { font-size:.86rem; }
+body[data-section="course"] .restored-course { grid-template-columns:250px minmax(0,1fr); margin:0; font-size:18px; }
+body[data-section="course"] .restored-course aside { padding:24px 0 32px 24px; background:#f9fafc; }
+body[data-section="course"] .restored-course .reading { padding:24px 40px 64px; color:var(--reading-ink); }
+body[data-section="course"] #session-title { font-size:clamp(1.5rem,2.5vw,2rem); line-height:1.65; margin:0 0 12px; text-wrap:balance; }
+body[data-section="course"] #position { margin-bottom:10px; }
+body[data-section="course"] #prerequisites { line-height:1.8; margin-bottom:20px; }
+body[data-section="course"] #prerequisites a+a { margin-inline-start:10px; }
+body[data-section="course"] #lesson { max-width:68ch; font-size:var(--lesson-font,19px); line-height:2.05; }
+body[data-section="course"] #lesson p { line-height:inherit; margin-block:0 1.2em; }
+body[data-section="course"] #lesson h2 { font-size:1.4em; line-height:1.65; margin-block:2.25em .75em; text-wrap:balance; }
+body[data-section="course"] #lesson h3 { font-size:1.12em; line-height:1.8; margin-block:1.6em .6em; }
+body[data-section="course"] #lesson li { margin-block:.6em; }
+body[data-section="course"] #lesson code { direction:ltr; unicode-bidi:isolate; display:inline-block; font-size:.84em; background:#f0f3f8; padding:0 .28em; border-radius:4px; }
+body[data-section="course"] #lesson pre { padding:20px; line-height:1.9; scrollbar-color:#8d9bb1 #eef0f2; }
+body[data-section="course"] #lesson pre code { display:block; background:transparent; padding:0; font-size:14px; }
+body[data-section="course"] #lesson img { background:#fff; margin-block:30px 16px; }
+body[data-section="course"] #lesson table { font-size:.88em; margin-block:24px; }
+body[data-section="course"] #lesson td,body[data-section="course"] #lesson th { padding:12px 14px; line-height:1.9; }
+body[data-section="course"] #lesson-outline { font-size:.86rem; }
+body[data-section="course"] #lesson-outline a { line-height:1.8; }
+body[data-section="course"] .next-steps { max-width:68ch; }
+@media(max-width:850px) {
+ body[data-section="course"] .site-header { gap:2px; padding-block:10px; flex-direction:row; align-items:center; }
+ body[data-section="course"] .site-header>a:last-child { font-size:.76rem; }
+ body[data-section="course"] #section-nav a { padding:8px 18px; }
+ body[data-section="course"] .page-heading { padding-block:12px; }
+ body[data-section="course"] .page-heading p { display:block; margin:6px 0 0; line-height:1.9; }
+ body[data-section="course"] .restored-course { display:block; }
+ body[data-section="course"] .restored-course aside { padding:0; background:transparent; }
+ body[data-section="course"] .restored-course .reading { padding:22px 0 44px; }
+ body[data-section="course"] #lesson { font-size:var(--lesson-font,18px); }
+ body[data-section="course"] #lesson h2 { font-size:1.3em; }
+ body[data-section="course"] #lesson pre { padding:16px; }
+}
+@media print {
+ body[data-section="course"] .page-heading,body[data-section="course"] .section-documents,body[data-section="course"] #syllabus-outline { display:none; }
+ body[data-section="course"] .restored-course .reading { padding:0; }
+ body[data-section="course"] #lesson { max-width:none; font-size:12pt; }
+}

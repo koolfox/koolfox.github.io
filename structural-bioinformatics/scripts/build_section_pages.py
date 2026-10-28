@@ -76,6 +76,12 @@ def render_pages(project=PROJECT):
             "body": body,
         }
         template = (project / "templates/page.html").read_text()
+        if ident == "course":
+            template = template.replace(
+                '<link rel="stylesheet" href="assets/sections.css">',
+                '<link rel="stylesheet" href="assets/sections.css">\n'
+                '<link rel="stylesheet" href="assets/course-reading.css">',
+            )
         for key, value in values.items():
             template = template.replace("@@" + key + "@@", value)
         return template.rstrip()

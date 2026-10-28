@@ -43,6 +43,14 @@ def stage(lab, destination):
     }[lab]
     for filename in modules:
         shutil.copyfile(ROOT / "python" / filename, destination / filename)
+    if lab in {"neuron-xor", "network-playground"}:
+        shutil.copyfile(
+            ROOT / "playgrounds/shared/topology_ui.py", destination / "topology_ui.py"
+        )
+        for filename in ("topology.js", "topology.css"):
+            shutil.copyfile(
+                ROOT / "playgrounds/shared" / filename, destination / "www" / filename
+            )
     if lab != "neuron-xor":
         shutil.copyfile(
             ROOT / "playgrounds/neuron-xor/www/lab.css", destination / "www/lab.css"
@@ -63,8 +71,18 @@ def export(output):
         for lab in LABS:
             source = Path(temporary) / lab
             stage(lab, source)
+            for module in source.glob("*.py"):
+                compile(module.read_text(), str(module), "exec")
             subprocess.run(
                 [executable, "export", str(source), str(output / lab)], check=True
+            )
+            index = output / lab / "index.html"
+            index.write_text(
+                index.read_text().replace(
+                    "<title>Shiny App</title>",
+                    "<title>کارگاه آموزشی دیپ لرنینگ</title>",
+                ),
+                encoding="utf-8",
             )
     validate_workshop_runtime(output)
     return output

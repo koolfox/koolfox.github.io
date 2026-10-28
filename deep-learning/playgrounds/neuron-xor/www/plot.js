@@ -50,36 +50,15 @@
     state.history.forEach((p,i)=>{const x=left+p.epoch/end*w,y=top+h-p.loss/max*h;i?c.lineTo(x,y):c.moveTo(x,y)});c.stroke();
     const last=state.history.at(-1);c.beginPath();c.arc(left+last.epoch/end*w,top+h-last.loss/max*h,3,0,Math.PI*2);c.fillStyle=blue;c.fill();
   }
-  function network(state){
-    const pair=context('network');if(!pair)return;const[c,W,H]=pair;
-    const sizes=[2,...state.weights.map(layer=>layer.length)];
-    const visible=sizes.map(n=>Math.min(n,8));
-    const pos=(l,i)=>[70+l*(W-140)/(sizes.length-1),H/2+(i-(visible[l]-1)/2)*40];
-    const maximum=Math.max(.01,...state.weights.flat(2).map(Math.abs));
-    for(let l=0;l<state.weights.length;l++)for(let j=0;j<visible[l+1];j++)for(let k=0;k<visible[l];k++){
-      const w=state.weights[l][j][k],a=pos(l,k),b=pos(l+1,j);
-      c.strokeStyle=w>=0?blue:muted;c.lineWidth=.5+3*Math.abs(w)/maximum;c.setLineDash(w<0?[5,4]:[]);
-      c.beginPath();c.moveTo(...a);c.lineTo(...b);c.stroke();
-    }
-    c.setLineDash([]);
-    sizes.forEach((n,l)=>{
-      for(let i=0;i<visible[l];i++){
-        const[x,y]=pos(l,i);c.fillStyle='#fff';c.strokeStyle=blue;c.lineWidth=1.5;
-        c.beginPath();c.arc(x,y,16,0,Math.PI*2);c.fill();c.stroke();c.fillStyle=ink;c.textAlign='center';c.textBaseline='middle';c.fillText(String(i+1),x,y);
-      }
-      c.fillStyle=muted;c.font='13px system-ui';c.fillText(n>8?`${n} units (8 shown)`:`${n} units`,pos(l,0)[0],H-20);
-    });
-  }
   function draw(state){
-    if(!state){delete window.dannaLab;for(const id of ['decision','loss-chart','network'])context(id);return;}
-    window.dannaLab={state,forward:(inputs)=>forward(state,inputs)};surface(state);loss(state);network(state);
+    if(!state){window.deepLearningTopology?.update(null,null);delete window.dannaLab;for(const id of ['decision','loss-chart','network'])context(id);return;}
+    window.dannaLab={state,forward:(inputs)=>forward(state,inputs)};surface(state);loss(state);window.deepLearningTopology?.update(state,{points:state.inputs,features:p=>p,hidden:'sigmoid',output:state.activation});
   }
   function setup(){
     if(!window.Shiny){setTimeout(setup,50);return;}
     window.Shiny.addCustomMessageHandler('danna_training',draw);
     window.Shiny.initializedPromise.then(()=>window.Shiny.setInputValue('plot_ready',Date.now(),{priority:'event'}));
     document.addEventListener('visibilitychange',()=>window.Shiny.setInputValue('tab_hidden',document.hidden,{priority:'event'}));
-    document.querySelector('details')?.addEventListener('toggle',()=>{if(window.dannaLab)network(window.dannaLab.state)});
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup,{once:true});
   else setup();

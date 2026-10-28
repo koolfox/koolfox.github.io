@@ -14,6 +14,11 @@ if engine_path.is_dir():
 
 from experiment import CONFIG, create_run, train_epochs
 
+shared_path = HERE.parent / "shared"
+if shared_path.is_dir():
+    sys.path.insert(0, str(shared_path))
+from topology_ui import topology_panel
+
 MODELS = {
     "perceptron": "پرسپترون آستانه‌ای",
     "linear": "نورون سیگموید",
@@ -24,6 +29,8 @@ app_ui = ui.page_fluid(
     ui.tags.head(
         ui.tags.meta(name="viewport", content="width=device-width, initial-scale=1"),
         ui.tags.link(rel="stylesheet", href="lab.css"),
+        ui.tags.link(rel="stylesheet", href="topology.css"),
+        ui.tags.script(src="topology.js", defer=True),
         ui.tags.script(src="plot.js", defer=True),
     ),
     ui.tags.main(
@@ -35,6 +42,11 @@ app_ui = ui.page_fluid(
             ui.p(
                 "یک مدل انتخاب کن، خروجی را حدس بزن و تغییر مرز تصمیم را هنگام یادگیری ببین."
             ),
+            ui.tags.a(
+                "دیدن لایه‌ها و عبور ورودی",
+                href="#network-structure",
+                class_="topology-jump",
+            ),
         ),
         ui.tags.div(
             ui.tags.div(
@@ -45,13 +57,16 @@ app_ui = ui.page_fluid(
                     selected=CONFIG["gate"],
                 ),
                 ui.input_select("model", "مدل", MODELS, selected=CONFIG["model"]),
-                ui.input_numeric(
-                    "hidden",
-                    "نورون‌های لایه پنهان",
-                    CONFIG["hidden"],
-                    min=1,
-                    max=32,
-                    step=1,
+                ui.panel_conditional(
+                    "input.model === 'mlp'",
+                    ui.input_numeric(
+                        "hidden",
+                        "نورون‌های لایه پنهان",
+                        CONFIG["hidden"],
+                        min=1,
+                        max=32,
+                        step=1,
+                    ),
                 ),
                 ui.input_numeric(
                     "learning_rate",
@@ -92,6 +107,7 @@ app_ui = ui.page_fluid(
             ui.output_text("status", inline=True), role="status", class_="run-status"
         ),
         ui.output_ui("readout"),
+        topology_panel(),
         ui.tags.div(
             ui.tags.section(
                 ui.h2("مرز تصمیم"),
@@ -122,15 +138,7 @@ app_ui = ui.page_fluid(
             class_="lab-grid",
         ),
         ui.tags.details(
-            ui.tags.summary("داخل شبکه: اتصال‌ها و مقدار دقیق وزن‌ها"),
-            ui.tags.canvas(
-                id="network",
-                width="960",
-                height="420",
-                role="img",
-                aria_label="اتصال‌های شبکه؛ خط چین وزن منفی است",
-            ),
-            ui.output_code("parameters"),
+            ui.tags.summary("مقدار دقیق وزن‌ها و بایاس‌ها"), ui.output_code("parameters")
         ),
         ui.tags.section(
             ui.h2("نتیجه را توضیح بده"),
@@ -149,7 +157,7 @@ app_ui = ui.page_fluid(
         dir="rtl",
         lang="fa",
     ),
-    title="آزمایشگاه نورون و XOR",
+    title="کارگاه آموزشی دیپ لرنینگ",
 )
 
 
@@ -168,13 +176,15 @@ def server(input, output, session):
     def configure():
         running.set(False)
         try:
-            for value in (input.hidden(), input.seed(), input.max_epochs()):
+            model = input.model()
+            hidden = input.hidden() if model == "mlp" else 1
+            for value in (hidden, input.seed(), input.max_epochs()):
                 if value is None or int(value) != value:
                     raise ValueError("تعدادها و بذر باید عدد صحیح باشند")
             state = create_run(
                 gate=input.gate(),
-                model=input.model(),
-                hidden=int(input.hidden()),
+                model=model,
+                hidden=int(hidden),
                 learning_rate=float(input.learning_rate()),
                 seed=int(input.seed()),
                 max_epochs=int(input.max_epochs()),

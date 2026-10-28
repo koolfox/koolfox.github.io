@@ -14,6 +14,11 @@ if engine_path.is_dir():
 
 from experiment import CONFIG, create_run, train_epochs
 
+shared_path = HERE.parent / "shared"
+if shared_path.is_dir():
+    sys.path.insert(0, str(shared_path))
+from topology_ui import topology_panel
+
 WIDTHS = (CONFIG["hidden"] + [4, 4, 4])[:3]
 FEATURE_LABELS = {
     "x1": "x₁",
@@ -30,6 +35,8 @@ app_ui = ui.page_fluid(
         ui.tags.meta(name="viewport", content="width=device-width, initial-scale=1"),
         ui.tags.link(rel="stylesheet", href="lab.css"),
         ui.tags.link(rel="stylesheet", href="network.css"),
+        ui.tags.link(rel="stylesheet", href="topology.css"),
+        ui.tags.script(src="topology.js", defer=True),
         ui.tags.script(src="plot.js", defer=True),
     ),
     ui.tags.main(
@@ -40,6 +47,11 @@ app_ui = ui.page_fluid(
             ui.h1("شبکه چگونه مرز تصمیم را یاد می‌گیرد؟"),
             ui.p(
                 "داده، ویژگی و معماری را انتخاب کن. پیش از آموزش حدس بزن کدام تغییر، خطای داده‌های ندیده را کم می‌کند."
+            ),
+            ui.tags.a(
+                "دیدن لایه‌ها و عبور ورودی",
+                href="#network-structure",
+                class_="topology-jump",
             ),
         ),
         ui.tags.div(
@@ -62,11 +74,14 @@ app_ui = ui.page_fluid(
                 max=3,
                 step=1,
             ),
-            ui.input_select(
-                "activation",
-                "تابع فعال‌سازی پنهان",
-                {"tanh": "tanh", "relu": "ReLU", "sigmoid": "sigmoid"},
-                selected=CONFIG["activation"],
+            ui.panel_conditional(
+                "input.layers >= 1",
+                ui.input_select(
+                    "activation",
+                    "تابع فعال‌سازی پنهان",
+                    {"tanh": "tanh", "relu": "ReLU", "sigmoid": "sigmoid"},
+                    selected=CONFIG["activation"],
+                ),
             ),
             ui.panel_conditional(
                 "input.layers >= 1",
@@ -144,13 +159,16 @@ app_ui = ui.page_fluid(
                     {"none": "بدون جریمه", "l2": "L2", "l1": "L1"},
                     selected=CONFIG["regularization"],
                 ),
-                ui.input_numeric(
-                    "regularization_rate",
-                    "ضریب جریمه λ",
-                    CONFIG["regularization_rate"],
-                    min=0,
-                    max=1,
-                    step=0.001,
+                ui.panel_conditional(
+                    "input.regularization !== 'none'",
+                    ui.input_numeric(
+                        "regularization_rate",
+                        "ضریب جریمه λ",
+                        CONFIG["regularization_rate"],
+                        min=0,
+                        max=1,
+                        step=0.001,
+                    ),
                 ),
                 ui.input_numeric(
                     "max_epochs",
@@ -183,6 +201,7 @@ app_ui = ui.page_fluid(
             ui.output_text("status", inline=True), role="status", class_="run-status"
         ),
         ui.output_ui("readout"),
+        topology_panel(),
         ui.tags.div(
             ui.tags.section(
                 ui.h2("مرز تصمیم و نمونه‌ها"),
@@ -215,33 +234,8 @@ app_ui = ui.page_fluid(
             ),
             class_="lab-grid",
         ),
-        ui.tags.section(
-            ui.h2("داخل شبکه"),
-            ui.p(
-                "برای دیدن همهٔ لایه‌ها، نمودار را به طرفین حرکت بده.",
-                class_="caption network-scroll-hint",
-            ),
-            ui.tags.div(
-                ui.tags.canvas(
-                    id="network",
-                    width="960",
-                    height="430",
-                    role="img",
-                    aria_label="لایه‌ها و وزن‌ها؛ اتصال منفی خط‌چین است",
-                ),
-                class_="network-scroll",
-                tabindex="0",
-                role="region",
-                aria_label="نمودار شبکه؛ روی صفحه کوچک به طرفین حرکت بده",
-            ),
-            ui.p(
-                "ضخامت اتصال با قدر مطلق وزن متناسب است؛ وزن منفی با خط‌چین مشخص می‌شود. مقیاس ضخامت در هر تصویر دوباره تنظیم می‌شود.",
-                class_="caption",
-            ),
-            ui.tags.details(
-                ui.tags.summary("مقدار دقیق وزن‌ها و بایاس‌ها"),
-                ui.output_code("parameters"),
-            ),
+        ui.tags.details(
+            ui.tags.summary("مقدار دقیق وزن‌ها و بایاس‌ها"), ui.output_code("parameters")
         ),
         ui.tags.section(
             ui.h2("ارزیابی نهایی"),
@@ -298,7 +292,7 @@ app_ui = ui.page_fluid(
         dir="rtl",
         lang="fa",
     ),
-    title="آزمایشگاه شبکه و تعمیم",
+    title="کارگاه آموزشی دیپ لرنینگ",
 )
 
 
@@ -319,22 +313,26 @@ def server(input, output, session):
     def configure():
         running.set(False)
         try:
+            layers = input.layers()
+            if layers is None or int(layers) != layers or not 0 <= layers <= 3:
+                raise ValueError("تعداد لایه‌های پنهان باید صحیح و بین صفر و سه باشد")
+            widths = [
+                control()
+                for control in (input.width1, input.width2, input.width3)[: int(layers)]
+            ]
             counts = [
-                input.layers(),
-                input.width1(),
-                input.width2(),
-                input.width3(),
+                *widths,
                 input.size(),
                 input.seed(),
                 input.batch_size(),
                 input.max_epochs(),
             ]
-            if any(v is None or int(v) != v for v in counts) or not 0 <= counts[0] <= 3:
+            if any(v is None or int(v) != v for v in counts):
                 raise ValueError("تعدادها باید صحیح و در بازهٔ مشخص باشند")
             state = create_run(
                 dataset=input.dataset(),
-                hidden=[int(v) for v in counts[1 : 1 + int(counts[0])]],
-                activation=input.activation(),
+                hidden=[int(v) for v in widths],
+                activation=input.activation() if layers else "tanh",
                 feature_names=list(input.features()),
                 size=int(input.size()),
                 noise=float(input.noise()),
@@ -343,7 +341,9 @@ def server(input, output, session):
                 learning_rate=float(input.learning_rate()),
                 batch_size=int(input.batch_size()),
                 regularization=input.regularization(),
-                regularization_rate=float(input.regularization_rate()),
+                regularization_rate=float(input.regularization_rate())
+                if input.regularization() != "none"
+                else 0.0,
                 max_epochs=int(input.max_epochs()),
             )
         except (ValueError, TypeError, OverflowError):

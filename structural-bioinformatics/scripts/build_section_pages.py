@@ -78,6 +78,10 @@ def render_pages(project=PROJECT):
         template = (project / "templates/page.html").read_text()
         if ident == "course":
             template = template.replace(
+                '<header class="page-heading"><h1>@@title@@</h1>',
+                '<header class="page-heading"><p class="course-label">@@title@@</p>',
+            )
+            template = template.replace(
                 '<link rel="stylesheet" href="assets/sections.css">',
                 '<link rel="stylesheet" href="assets/sections.css">\n'
                 '<link rel="stylesheet" href="assets/course-reading.css">',
@@ -148,6 +152,11 @@ def render_pages(project=PROJECT):
             article += fragment("topic-navigation")
             body = '<div class="restored-course">' + contents(section["page"]) + article + "</div>"
             if ident == "course":
+                body = body.replace('<details id="contents" open>', '<details id="contents">')
+                body = body.replace(
+                    '<h2 id="session-title">در حال دریافت مبحث…</h2>',
+                    '<h1 id="session-title">در حال دریافت مبحث…</h1>',
+                )
                 outline = [
                     '<details id="syllabus-outline"><summary>سرفصل کامل و منبع درس</summary>'
                 ]

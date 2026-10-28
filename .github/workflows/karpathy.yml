@@ -1,0 +1,41 @@
+name: Karpathy checks
+
+on:
+  pull_request:
+    paths:
+      - karpathy/**
+      - scripts/build_pages.py
+      - .github/workflows/karpathy.yml
+  push:
+    branches: [main]
+    paths:
+      - karpathy/**
+      - scripts/build_pages.py
+      - .github/workflows/karpathy.yml
+
+permissions:
+  contents: read
+
+jobs:
+  project-checks:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          sparse-checkout: |
+            karpathy
+            scripts
+            assets
+      - name: Assemble only this project
+        run: python3 scripts/build_pages.py --project karpathy --output dist/pages
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: karpathy/browser-tests/package-lock.json
+      - run: npm ci --prefix karpathy/browser-tests
+      - run: npx --prefix karpathy/browser-tests playwright install --with-deps chromium
+      - name: Check independent public component
+        run: |
+          python3 -m http.server 8000 --bind 127.0.0.1 --directory dist/pages > /tmp/karpathy-http.log 2>&1 &
+          npm --prefix karpathy/browser-tests test

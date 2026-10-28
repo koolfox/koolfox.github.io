@@ -78,9 +78,9 @@ uv run --project structural-bioinformatics python structural-bioinformatics/scri
 uv run --project structural-bioinformatics python structural-bioinformatics/scripts/build_course_sessions.py
 uv run --project structural-bioinformatics python structural-bioinformatics/scripts/build_section_pages.py
 uv run --project structural-bioinformatics python structural-bioinformatics/scripts/build_chapter_presentation.py
-uv run --project structural-bioinformatics pytest -q structural-bioinformatics/tests
+uv run --project structural-bioinformatics pytest -q structural-bioinformatics/tests structural-bioinformatics/tests
 uv run --project structural-bioinformatics ruff check structural-bioinformatics
-python3 scripts/build_pages.py --output dist/pages
+python3 scripts/build_pages.py --project structural-bioinformatics --output dist/pages
 python3 -m http.server 8875 --bind 127.0.0.1 --directory dist/pages
 ```
 

@@ -1,0 +1,51 @@
+name: Deep learning checks
+
+on:
+  pull_request:
+    paths:
+      - deep-learning/**
+      - scripts/build_pages.py
+      - .github/workflows/deep-learning.yml
+  push:
+    branches: [main]
+    paths:
+      - deep-learning/**
+      - scripts/build_pages.py
+      - .github/workflows/deep-learning.yml
+
+permissions:
+  contents: read
+
+jobs:
+  project-checks:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          sparse-checkout: |
+            deep-learning
+            scripts
+            assets
+      - name: Check native teaching models
+        run: |
+          python3 -m unittest discover -s deep-learning/tests -v
+          python3 deep-learning/scripts/course_content.py --examples
+          python3 deep-learning/scripts/mnist_reference.py
+      - uses: astral-sh/setup-uv@v10.3.0
+        with:
+          version: '0.11.2'
+      - name: Export only deep learning laboratories
+        run: uv run --frozen --project deep-learning/playgrounds python deep-learning/scripts/export_playgrounds.py --output deep-learning/results/shinylive
+      - name: Assemble only this project
+        run: python3 scripts/build_pages.py --project deep-learning --output dist/pages
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: deep-learning/browser-tests/package-lock.json
+      - run: npm ci --prefix deep-learning/browser-tests
+      - run: npx --prefix deep-learning/browser-tests playwright install --with-deps chromium
+      - name: Check independent public component
+        run: |
+          python3 -m http.server 8000 --bind 127.0.0.1 --directory dist/pages > /tmp/deep-learning-http.log 2>&1 &
+          npm --prefix deep-learning/browser-tests test

@@ -1,0 +1,25 @@
+name: Project boundary checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  project-boundaries:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+      - name: Reject mixed project pull requests
+        if: github.event_name == 'pull_request'
+        env:
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PR_BRANCH: ${{ github.head_ref }}
+        run: python3 scripts/project_scope.py --base "$PR_BASE" --branch "$PR_BRANCH"
+      - name: Check publication isolation and workspace boundaries
+        run: python3 -m unittest discover -s scripts/tests -v

@@ -34,7 +34,11 @@ def main():
         parser.error("Port must be between 0 and 65535")
     repository = Path(__file__).resolve().parents[1]
     with tempfile.TemporaryDirectory(prefix="research-preview-") as temporary:
-        site = build_site(repository, Path(temporary) / "pages")
+        site = build_site(
+            repository,
+            Path(temporary) / "pages",
+            projects=("structural-bioinformatics",),
+        )
         handler = functools.partial(PreviewHandler, directory=str(site))
         ports = [0] if args.port == 0 else range(args.port, min(args.port + 10, 65536))
         server = None

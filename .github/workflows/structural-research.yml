@@ -25,17 +25,20 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7.0.1
+        with:
+          sparse-checkout: |
+            structural-bioinformatics
+            scripts
+            assets
       - uses: astral-sh/setup-uv@v10.3.0
         with:
           version: '0.11.2'
       - run: uv sync --project structural-bioinformatics --frozen --python 3.13
-      - name: Export laboratories required by complete-artifact checks
+      - name: Export only structural course laboratories
         run: |
-          uv sync --project deep-learning/playgrounds --frozen
-          uv run --project deep-learning/playgrounds python deep-learning/scripts/export_playgrounds.py --output deep-learning/results/shinylive
           uv sync --project structural-bioinformatics/playgrounds --frozen
           uv run --project structural-bioinformatics/playgrounds python structural-bioinformatics/scripts/export_course_lab.py --output structural-bioinformatics/results/shinylive
-      - run: uv run --project structural-bioinformatics pytest -q
+      - run: uv run --project structural-bioinformatics pytest -q structural-bioinformatics/tests
       - run: uv run --project structural-bioinformatics ruff check structural-bioinformatics scripts/serve_local.py
       - run: uv run --project structural-bioinformatics ruff format --check structural-bioinformatics scripts/serve_local.py
 
@@ -43,16 +46,19 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7.0.1
+        with:
+          sparse-checkout: |
+            structural-bioinformatics
+            scripts
+            assets
       - uses: astral-sh/setup-uv@v10.3.0
         with:
           version: '0.11.2'
-      - name: Assemble the same complete artifact used by Pages
+      - name: Assemble only the structural publication component
         run: |
-          uv sync --project deep-learning/playgrounds --frozen
-          uv run --project deep-learning/playgrounds python deep-learning/scripts/export_playgrounds.py --output deep-learning/results/shinylive
           uv sync --project structural-bioinformatics/playgrounds --frozen
           uv run --project structural-bioinformatics/playgrounds python structural-bioinformatics/scripts/export_course_lab.py --output structural-bioinformatics/results/shinylive
-          python3 scripts/build_pages.py --output dist/pages
+          python3 scripts/build_pages.py --project structural-bioinformatics --output dist/pages
       - uses: actions/setup-node@v7.1.0
         with:
           node-version: '24'

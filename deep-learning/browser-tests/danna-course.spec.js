@@ -66,8 +66,11 @@ test('blocked storage keeps local reading and exercise feedback usable',async({p
   await expect(form.locator('.feedback')).toHaveAttribute('data-state','correct');
 });
 
-test('the old Karpathy URL reaches the unchanged supplementary workbench',async({page})=>{
-  await page.goto('/karpathy/');await expect(page).toHaveURL(/\/deep-learning\/karpathy\//);
+test('the historical supplementary URL redirects without bundling sibling code',async({request})=>{
+  const redirect=await request.get('/deep-learning/karpathy/');
+  expect(redirect.ok()).toBe(true);
+  expect(await redirect.text()).toContain('href="/karpathy/"');
+  expect((await request.get('/deep-learning/karpathy/assets/js/engine.js')).status()).toBe(404);
 });
 
 test('original source is linked immediately and embedded only on request',async({page})=>{
@@ -97,7 +100,7 @@ test('exported Shinylive trains Python and canvas predictions match actual weigh
   await frame.waitForFunction(()=>window.dannaLab.state.epoch===1);
   await frame.getByRole('button',{name:'شروع / ادامه',exact:true}).click();
   await frame.waitForFunction(()=>window.dannaLab.state.epoch===137);
-  const codeDir=fileURLToPath(new URL('../../deep-learning/python/',import.meta.url));
+  const codeDir=fileURLToPath(new URL('../python/',import.meta.url));
   const expected=JSON.parse(execFileSync('python3',['-c','import json,sys;sys.path.insert(0,sys.argv[1]);from live_training import TrainingRun;s=TrainingRun(max_epochs=137);s.step(137);print(json.dumps(s.snapshot()))',codeDir],{encoding:'utf8'}));
   const actual=await frame.evaluate(()=>window.dannaLab.state);
   actual.weights.flat(2).forEach((value,i)=>expect(value).toBeCloseTo(expected.weights.flat(2)[i],12));
@@ -122,7 +125,7 @@ test('network playground reproduces Python training and seals final test evaluat
   await frame.waitForFunction(()=>window.dannaNetwork.state.config.max_epochs===13);
   await frame.getByRole('button',{name:'شروع / ادامه',exact:true}).click();
   await frame.waitForFunction(()=>window.dannaNetwork.state.epoch===13);
-  const codeDir=fileURLToPath(new URL('../../deep-learning/python/',import.meta.url));
+  const codeDir=fileURLToPath(new URL('../python/',import.meta.url));
   const expected=JSON.parse(execFileSync('python3',['-c','import json,sys;sys.path.insert(0,sys.argv[1]);from network_playground import NetworkExperiment,features;r=NetworkExperiment(max_epochs=13);r.step(13);s=r.snapshot();s["predictions"]=[r.network.forward(features(p["x"],r.config["feature_names"]))[0][-1][0] for p in s["points"]];s["final_test"]=r.finalize();print(json.dumps(s))',codeDir],{encoding:'utf8'}));
   const actual=await frame.evaluate(()=>window.dannaNetwork.state);
   actual.weights.flat(2).forEach((value,i)=>expect(value).toBeCloseTo(expected.weights.flat(2)[i],11));
@@ -157,7 +160,7 @@ test('convolution laboratory exposes actual Python products pooling and bounded 
   await page.goto('/deep-learning/runtime/convolution/');
   await page.waitForFunction(()=>[...document.querySelectorAll('iframe')].some(f=>f.contentWindow?.dannaConvolution),{},{timeout:90000});
   const frame=page.frames().find(f=>f!==page.mainFrame());
-  const codeDir=fileURLToPath(new URL('../../deep-learning/python/',import.meta.url));
+  const codeDir=fileURLToPath(new URL('../python/',import.meta.url));
   async function comparePython(){
     const actual=await frame.evaluate(()=>window.dannaConvolution);
     const expected=JSON.parse(execFileSync('python3',['-c','import json,sys;sys.path.insert(0,sys.argv[1]);from convolution_lab import correlate,pattern,pool;c=json.loads(sys.argv[2]);r=correlate([pattern(c["pattern"])],[c["kernel"]],c["bias"],c["stride"],c["padding"],c["flip"]);a=[[max(0,v) if c["relu"] else v for v in row] for row in r["output"]];p=pool(a,mode=c["pooling"]) if c["pooling"]!="none" else None;print(json.dumps({"raw":r,"activated":a,"pooled":p}))',codeDir,JSON.stringify(actual.config)],{encoding:'utf8'}));

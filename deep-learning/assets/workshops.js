@@ -97,5 +97,6 @@
     section.querySelector('[data-workshop-download]').addEventListener('click', () => download(section.dataset.workshop.replace('/','-')+'.py', editor.value, 'text/x-python'));
     recordButton.addEventListener('click', () => { if (record) download('workshop-result.json', JSON.stringify(record,null,2), 'application/json'); });
     window.addEventListener('pagehide',finish);
+    document.addEventListener('deck:change',()=>{if(worker && section.closest('.dl-slide')?.hidden)fail('با تغییر اسلاید، اجرای پایتون متوقف شد؛ می‌توانی پس از بازگشت دوباره اجرا کنی.');});
   });
 })();

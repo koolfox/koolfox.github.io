@@ -78,11 +78,16 @@
     input.value='';
   }));
   document.querySelectorAll('[data-show-source]').forEach(button=>button.addEventListener('click',()=>{
-    let frame=button.parentElement.querySelector('iframe');
-    if(frame){frame.remove();button.textContent='نمایش در همین صفحه';button.setAttribute('aria-expanded','false');return;}
-    const source=button.dataset.showSource;if(!/^https?:\/\//.test(source))return;
-    frame=document.createElement('iframe');frame.src=source;frame.title='اسلاید اصلی از وب‌سایت دانشگاه';frame.className='source-preview';frame.loading='lazy';frame.referrerPolicy='no-referrer';
-    button.parentElement.append(frame);button.textContent='بستن نمایش اسلاید';button.setAttribute('aria-expanded','true');
+    const local=button.dataset.sourceKind==='local';
+    const container=button.dataset.previewTarget?document.getElementById(button.dataset.previewTarget):button.parentElement;
+    if(!container)return;
+    let frame=container.querySelector('iframe');
+    if(frame){frame.remove();button.textContent=local?'نمایش اسلاید فارسی در همین صفحه':'نمایش در همین صفحه';button.setAttribute('aria-expanded','false');return;}
+    const source=button.dataset.showSource;
+    if(local?!/^\/deep-learning\/terms\/spring-2022\/s\d{2}\/slides\/$/.test(source):!/^https?:\/\//.test(source))return;
+    frame=document.createElement('iframe');frame.src=source;frame.title=local?'اسلایدهای آموزشی فارسی همین جلسه':'اسلاید اصلی از وب‌سایت دانشگاه';frame.className=local?'local-slide-preview':'source-preview';frame.loading='lazy';frame.referrerPolicy='no-referrer';frame.allowFullscreen=true;
+    container.append(frame);button.textContent='بستن نمایش اسلاید';button.setAttribute('aria-expanded','true');
+    if(local)container.scrollIntoView({block:'start',behavior:'instant'});
   }));
   if(matchMedia('(max-width:700px)').matches)document.querySelectorAll('.source-panel details').forEach(el=>el.removeAttribute('open')); 
   window.addEventListener('storage',event=>{if(event.key===KEY){try{progress=event.newValue?validRecord(JSON.parse(event.newValue)):blank();drawProgress();}catch(error){warn();}}});

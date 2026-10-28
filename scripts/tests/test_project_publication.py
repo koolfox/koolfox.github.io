@@ -113,6 +113,16 @@ class PublicationIsolationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Forbidden public path"):
             self.build()
 
+    def test_runtime_parent_cannot_redirect_into_another_workspace(self):
+        results = self.root / "structural-bioinformatics/results"
+        foreign = Path(self.temporary.name) / "foreign-results"
+        results.rename(foreign)
+        results.symlink_to(foreign, target_is_directory=True)
+        with self.assertRaisesRegex(
+            ValueError, "Forbidden generated publication input"
+        ):
+            self.build()
+
     def test_ordinary_course_build_has_no_lab_dependency(self):
         self.put("optimization/index.html", "optimization")
         self.track()

@@ -64,6 +64,8 @@ class PublicFiles:
 
 def copy_runtime(source, destination):
     """Explicit generated output, inspected before copying; not a source-tree escape."""
+    if any(parent.is_symlink() for parent in source.parents):
+        raise ValueError(f"Forbidden generated publication input: {source}")
     for path in (source, *source.rglob("*")):
         if path.is_symlink() or path.name in FORBIDDEN or path.name.startswith(".env"):
             raise ValueError(f"Forbidden generated publication input: {path}")

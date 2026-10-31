@@ -1,0 +1,2373 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s05",
+  "source_sha256": "f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "8b164107255622992616ea16711f18e111c483b75c23b15742895f2563ef9b0d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "شبکه‌های عصبی کانولوشنی (Convolutional Neural Networks؛ CNNs)"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)؛ دانشگاه کلرادو بولدر (University of Colorado Boulder)؛ بهار 2026"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "a425071cd8ba09ee16114db96fd45c9c4f8c57fc0c1fd1cd594e4dfce778c365",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "مرور\n• سخنرانی گذشته:\n• محدودیت شبکه‌های عصبی پیش‌خور (Feedforward): پشتیبانی از دادهٔ دنباله‌ای (Sequential Data).\n• بینش اصلی: شبکه‌های عصبی بازگشتی (Recurrent Neural Networks؛ RNNs).\n• دستاورد: RNNهای دروازه‌دار (Gated RNNs) برای تصمیم‌گیری پویا دربارهٔ آنچه باید به خاطر سپرد.\n• آموزش برنامه‌نویسی: شبکه‌های عصبی بازگشتی در PyTorch.\n• تکلیف‌ها (Canvas): موعد تکلیف آزمایشگاهی 1 جمعه (فردا) است؛ موعد مجموعه‌مسئلهٔ 1 در یک هفتهٔ آینده است.\n• پرسشی دارید؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "666b30d38aa77ec692a8809766da2c7d0819f8609d3e596ccf462466c4c7df2c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• مسئله: جابه‌جایی ورودی باعث شکست شبکه‌های تمام‌متصل (Fully Connected) می‌شود.\n• ایده: شبکه‌های عصبی کانولوشنی (Convolutional Neural Networks؛ CNNs) برای ناوردایی نسبت به انتقال (Translation Invariance) طراحی شده‌اند.\n• پیاده‌سازی: آموزش سرتاسری CNNها با نزول گرادیان (Gradient Descent).\n• موفقیت در دنیای واقعی: LeNet-5 برای خواندن چک.\n• آموزش برنامه‌نویسی: شبکه‌های عصبی کانولوشنی در PyTorch."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "666b30d38aa77ec692a8809766da2c7d0819f8609d3e596ccf462466c4c7df2c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• مسئله: جابه‌جایی ورودی باعث شکست شبکه‌های تمام‌متصل (Fully Connected) می‌شود.\n• ایده: شبکه‌های عصبی کانولوشنی (Convolutional Neural Networks؛ CNNs) برای ناوردایی نسبت به انتقال (Translation Invariance) طراحی شده‌اند.\n• پیاده‌سازی: آموزش سرتاسری CNNها با نزول گرادیان (Gradient Descent).\n• موفقیت در دنیای واقعی: LeNet-5 برای خواندن چک.\n• آموزش برنامه‌نویسی: شبکه‌های عصبی کانولوشنی در PyTorch."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "f35a98f5c3c9fc8ed5a48e49d69cabbf596426a115cc4a373e593d9c908b38e8",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            10,
+            11,
+            13
+          ],
+          "kind": "text",
+          "fa": "زمینه: مهارت‌های تحلیل دیداری جانوران\n• چه عددی در تصویر نشان داده شده است؟\n• ورودی فقط انتقال یافته است.\n• پژوهش دههٔ 1960 که برندهٔ نوبل 1981 شد، توضیح می‌دهد چگونه این کار را چنین بی‌زحمت انجام می‌دهیم!\n3؛ 3؛ 3؛ 3.\nدیوید هوبل و تورستن ویزل (David Hubel and Torsten Wiesel)، عصب‌فیزیولوژیست‌ها.\nناحیهٔ V1 از سامانهٔ پردازش دیداری مغز را مطالعه کردند."
+        },
+        {
+          "source_lines": [
+            8,
+            9,
+            12
+          ],
+          "kind": "reference",
+          "fa": "https://braintour.harvard.edu/archiv\nes/portfolio-items/hubel-and-wiesel\nhttps://neuwritesd.files.wordpress.com/2015/10/visual_stream_small.png"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input; retina; LGN; V1; V2; V3; LOC",
+          "fa": "ورودی؛ شبکیه؛ LGN؛ V1؛ V2؛ V3؛ LOC",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "781f14ef69e01b46b6c1e8120a11a47c628a6c1a40df30439ff331155f7677f0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            10
+          ],
+          "kind": "text",
+          "fa": "زمینه: مهارت‌های تحلیل دیداری جانوران\n• چه عددی در تصویر نشان داده شده است؟\n• ورودی فقط انتقال یافته است.\n• پژوهش دههٔ 1960 که برندهٔ نوبل 1981 شد، توضیح می‌دهد چگونه این کار را چنین بی‌زحمت انجام می‌دهیم!\n3؛ 3؛ 3؛ 3.\nآرایش آزمایش:"
+        },
+        {
+          "source_lines": [
+            8,
+            9
+          ],
+          "kind": "reference",
+          "fa": "https://www.esantus.com/blog/2019/1/31/convol\nutional-neural-networks-a-quick-guide-for￾newbies"
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "reference",
+          "fa": "https://www.cns.nyu.edu/~david/courses\n/perception/lecturenotes/V1/lgn-V1.html"
+        },
+        {
+          "source_lines": [
+            13,
+            14
+          ],
+          "kind": "text",
+          "fa": "یافتهٔ 1: سلول‌های ساده برای جهت‌گیری‌های محرک نور در مکان‌های مشخص شلیک می‌کنند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Electrical signal from brain; Recording electrode; Visual area of brain; Stimulus",
+          "fa": "سیگنال الکتریکی از مغز؛ الکترود ثبت؛ ناحیهٔ دیداری مغز؛ محرک",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "1db08da2466e4949c4ef9f51bb66a1090e5a592398e0d87356e836f21346b589",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            10
+          ],
+          "kind": "text",
+          "fa": "زمینه: مهارت‌های تحلیل دیداری جانوران\n• چه عددی در تصویر نشان داده شده است؟\n• ورودی فقط انتقال یافته است.\n• پژوهش دههٔ 1960 که برندهٔ نوبل 1981 شد، توضیح می‌دهد چگونه این کار را چنین بی‌زحمت انجام می‌دهیم!\n3؛ 3؛ 3؛ 3.\nآرایش آزمایش:"
+        },
+        {
+          "source_lines": [
+            8,
+            9
+          ],
+          "kind": "reference",
+          "fa": "https://www.esantus.com/blog/2019/1/31/convol\nutional-neural-networks-a-quick-guide-for￾newbies"
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "reference",
+          "fa": "https://www.cns.nyu.edu/~david/courses\n/perception/lecturenotes/V1/lgn-V1.html"
+        },
+        {
+          "source_lines": [
+            13,
+            14,
+            15
+          ],
+          "kind": "text",
+          "fa": "یافتهٔ 2: سلول‌های پیچیده پاسخ سلول‌های ساده را تجمیع می‌کنند و در مکان‌های متعدد شلیک می‌کنند؛ یعنی انتقال را تحمل می‌کنند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Electrical signal from brain; Recording electrode; Visual area of brain; Stimulus",
+          "fa": "سیگنال الکتریکی از مغز؛ الکترود ثبت؛ ناحیهٔ دیداری مغز؛ محرک",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "e7abb0bb16c1b7b50dcd599dfccea0a3e10caf961f0bdce7995a5e45d1d74194",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            10
+          ],
+          "kind": "text",
+          "fa": "زمینه: مهارت‌های تحلیل دیداری جانوران\n• چه عددی در تصویر نشان داده شده است؟\n• ورودی فقط انتقال یافته است.\n• پژوهش دههٔ 1960 که برندهٔ نوبل 1981 شد، توضیح می‌دهد چگونه این کار را چنین بی‌زحمت انجام می‌دهیم!\n3؛ 3؛ 3؛ 3.\nآرایش آزمایش:"
+        },
+        {
+          "source_lines": [
+            8,
+            9
+          ],
+          "kind": "reference",
+          "fa": "https://www.esantus.com/blog/2019/1/31/convol\nutional-neural-networks-a-quick-guide-for￾newbies"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "reference",
+          "fa": "https://www.youtube.com/watch?v=OGxVfKJqX5E&ab_channel=RyanAbbott"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Electrical signal from brain; Recording electrode; Visual area of brain; Stimulus",
+          "fa": "سیگنال الکتریکی از مغز؛ الکترود ثبت؛ ناحیهٔ دیداری مغز؛ محرک",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "718f97086e49e6b621ed3be173fe60d9bba909b54c2d60e566bb8ea5f82b543b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "زمینه: مهارت‌های تحلیل دیداری جانوران\n• چه عددی در تصویر نشان داده شده است؟\n• ورودی فقط انتقال یافته است.\n• پژوهش دههٔ 1960 که برندهٔ نوبل 1981 شد، توضیح می‌دهد چگونه این کار را چنین بی‌زحمت انجام می‌دهیم!\n3؛ 3؛ 3؛ 3.\nجمع‌بندی: سلول‌ها با سازمان‌یافتن به‌صورت سلسله‌مراتبی از آشکارسازهای ویژگی (Feature Detectors)، ناوردایی نسبت به انتقال (Translation Invariance) را ممکن می‌کنند."
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "reference",
+          "fa": "https://bruceoutdoors.files.wordpress.com/2017/08/hubel.jpg"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "hyper-complex cells; complex cells; simple cells; high level; mid level; low level",
+          "fa": "سلول‌های فوق‌پیچیده؛ سلول‌های پیچیده؛ سلول‌های ساده؛ سطح بالا؛ سطح میانی؛ سطح پایین",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "e668330f831023bb82d46ddff5dc59e97a8d598bc0a5851f50d5a14183f3fe2a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "kind": "text",
+          "fa": "زمینه: مهارت‌های تحلیل دیداری جانوران\n• چه عددی در تصویر نشان داده شده است؟\n• ورودی فقط انتقال یافته است.\n• یک شبکهٔ عصبی تمام‌متصلِ پیش‌خور (Fully Connected Feedforward) چه می‌بیند؟ مثال ساده‌شده.\n3؛ 3؛ 3؛ 3.\n1 1\n0 0\n0 0\n1 1\nورودی انتقال یافته؛ (ورودی تخت‌شده؛ Flattened).\n1 1 0 0 0 0 1 1\nدو ورودی کاملاً متفاوت‌اند! ترفندهایی لازم است: افزایش دادهٔ آموزش (Data Augmentation) یا پیش‌پردازش ورودی."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "666b30d38aa77ec692a8809766da2c7d0819f8609d3e596ccf462466c4c7df2c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• مسئله: جابه‌جایی ورودی باعث شکست شبکه‌های تمام‌متصل (Fully Connected) می‌شود.\n• ایده: شبکه‌های عصبی کانولوشنی (Convolutional Neural Networks؛ CNNs) برای ناوردایی نسبت به انتقال (Translation Invariance) طراحی شده‌اند.\n• پیاده‌سازی: آموزش سرتاسری CNNها با نزول گرادیان (Gradient Descent).\n• موفقیت در دنیای واقعی: LeNet-5 برای خواندن چک.\n• آموزش برنامه‌نویسی: شبکه‌های عصبی کانولوشنی در PyTorch."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "3d99f670398c1a0f9ed12771d91566a12263813a514135482e042d7e8b03ad2a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "هدف: شبکه‌های عصبی ناوردا نسبت به انتقال (Translation Invariant)\nفوکوشیما کونیهیکو (Fukushima Kunihiko)، 1936-اکنون.\n«… بررسی می‌کنیم چگونه مدلی از شبکهٔ عصبی بسازیم تا توانایی بازشناسی الگو مانند انسان به آن بدهیم… شبکه ساختاری مشابه مدل سلسله‌مراتبی دستگاه عصبی دیداریِ پیشنهادی هوبل و ویزل پیدا می‌کند.»"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://personalpage.flsi.or.j\np/fukushima/index-e.html"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Neocognitron: A self-organizing neural network model for a mechanism of pattern recognition unaffected by shift in position; Published: April 1980; Volume 36, pages 193–202, (1980)",
+          "fa": "نئوکوگنیترون (Neocognitron): مدل شبکهٔ عصبی خودسامان‌ده برای سازوکار بازشناسی الگویی که از جابه‌جایی مکان اثر نمی‌پذیرد؛ انتشار: آوریل 1980؛ جلد 36، صفحه‌های 193–202، (1980)",
+          "verified": true
+        },
+        {
+          "en": "Self-organization of a neural network which gives position-invariant response; Author: Kunihiko Fukushima; IJCAI’79: Proceedings of the 6th international joint conference on Artificial intelligence - Volume 1; Pages 291–293; Published: 20 August 1979",
+          "fa": "خودسامان‌دهی شبکهٔ عصبی‌ای با پاسخ ناوردا نسبت به مکان؛ نویسنده: Kunihiko Fukushima؛ IJCAI’79: مجموعه‌مقالات ششمین همایش بین‌المللی مشترک هوش مصنوعی، جلد 1؛ صفحه‌های 291–293؛ انتشار: 20 اوت 1979",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "13778adbedf81479d82dd88108d934830d62f647a587f7d36c92766a6471324e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "رویکرد: شبکه‌های عصبی کانولوشنی (Convolutional Neural Networks)\n• معماری از پیش طوری کدنویسی شده که الگوها را در مکان‌های فضایی مختلف یکسان بداند.\n• این سوگیری استقرایی (Inductive Bias)، شبکه را از نیاز به یادگیری ناوردایی نسبت به انتقال (Translation Invariance) رها می‌کند؛ نیازی که در غیر این صورت برای شبکهٔ تمام‌متصل پیش‌خور (Fully Connected Feedforward) وجود دارد.\nطراحی زیستی: تناوب سلول‌های ساده و پیچیده.\nFukushima, 1980"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "visual area; association area; retina; LGB; simple; complex; lower-order hypercomplex; higher-order hypercomplex; ?; grandmother cell?",
+          "fa": "ناحیهٔ دیداری؛ ناحیهٔ تداعی؛ شبکیه؛ LGB؛ ساده؛ پیچیده؛ فوق‌پیچیدهٔ مرتبهٔ پایین‌تر؛ فوق‌پیچیدهٔ مرتبهٔ بالاتر؛ ؟؛ سلول مادربزرگ؟",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "ce65cad796ef778d3a1fb8318782093bbfb61a4739f3d1c216e37e409f058a95",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "رویکرد: شبکه‌های عصبی کانولوشنی (Convolutional Neural Networks)\n• معماری از پیش طوری کدنویسی شده که الگوها را در مکان‌های فضایی مختلف یکسان بداند.\n• این سوگیری استقرایی (Inductive Bias)، شبکه را از نیاز به یادگیری ناوردایی نسبت به انتقال (Translation Invariance) رها می‌کند؛ نیازی که در غیر این صورت برای شبکهٔ تمام‌متصل پیش‌خور (Fully Connected Feedforward) وجود دارد.\nFukushima, 1980\nطراحی معماری: تناوب سلول‌های ساده و پیچیده."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "218de1606529ad3e8d1f1bc3d3e2e64bda2c6fce42cb7a8f9e8ea11c3741e52b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "رویکرد: شبکه‌های عصبی کانولوشنی (Convolutional Neural Networks)\n• معماری از پیش طوری کدنویسی شده که الگوها را در مکان‌های فضایی مختلف یکسان بداند.\n• این سوگیری استقرایی (Inductive Bias)، شبکه را از نیاز به یادگیری ناوردایی نسبت به انتقال (Translation Invariance) رها می‌کند؛ نیازی که در غیر این صورت برای شبکهٔ تمام‌متصل پیش‌خور (Fully Connected Feedforward) وجود دارد.\nFukushima, 1980\nسلول‌های موازی در مکان‌های مختلف برای یک الگوی یکسان شلیک می‌کنند؛ مثلاً خطی جهت‌دار.\nطراحی معماری: تناوب سلول‌های ساده و پیچیده."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "2ff011eaf2adc363ed336978b004adc09f21372a59bca191dcec2c73dc9e2dff",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "kind": "text",
+          "fa": "رویکرد: شبکه‌های عصبی کانولوشنی (Convolutional Neural Networks)\n• معماری از پیش طوری کدنویسی شده که الگوها را در مکان‌های فضایی مختلف یکسان بداند.\n• این سوگیری استقرایی (Inductive Bias)، شبکه را از نیاز به یادگیری ناوردایی نسبت به انتقال (Translation Invariance) رها می‌کند؛ نیازی که در غیر این صورت برای شبکهٔ تمام‌متصل پیش‌خور (Fully Connected Feedforward) وجود دارد.\nFukushima, 1980\nسلول هنگامی شلیک می‌کند که دست‌کم یک بخش از ناحیه، الگو را داشته باشد (ناوردایی نسبت به انتقال)؛ مثلاً آیا هیچ سطری هست که همهٔ مقدارهایش 1 باشند؟\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\n? ? ? ? ?\nطراحی معماری: تناوب سلول‌های ساده و پیچیده."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "597ef07910b308050583b06338fff57ff568dc1d7a30c9375e84f72b1eee8c9a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "رویکرد: شبکه‌های عصبی کانولوشنی (Convolutional Neural Networks)\n• معماری از پیش طوری کدنویسی شده که الگوها را در مکان‌های فضایی مختلف یکسان بداند.\n• این سوگیری استقرایی (Inductive Bias)، شبکه را از نیاز به یادگیری ناوردایی نسبت به انتقال (Translation Invariance) رها می‌کند؛ نیازی که در غیر این صورت برای شبکهٔ تمام‌متصل پیش‌خور (Fully Connected Feedforward) وجود دارد.\nFukushima, 1980\nمرحله‌های بعدی:\n- ناحیه‌های بزرگ‌تری را می‌بینند؛ بنابراین به جابه‌جایی مکان الگو حساسیت کمتری دارند.\n- با ترکیب الگوهای قبلی، از الگوهای پیچیده‌تر پشتیبانی می‌کنند.\nطراحی معماری: تناوب سلول‌های ساده و پیچیده."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "a7890e6fa0ae769c8c9a26c7e5ab54923b767e4b0460de3058156848d3c773e2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "مثال توضیحی از رویکرد CNN\nFukushima, 1980\nورودی چه نشان می‌دهد؟\nخروجی چه نشان می‌دهد؟\nمعماری: تناوب سلول‌های ساده و پیچیده."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "d6132ec938b3e68d2abd8f968291b1acb842c7701af2d72003acc6510e9cbce0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "مثال توضیحی از رویکرد CNN\nFukushima, 1980\nنورون‌های ساده در همهٔ مکان‌های ورودی که K الگوی موردنظر را نشان می‌دهند، شلیک می‌کنند.\nالگوی هدف برای k=1 چیست؟ k=2؟ k=3؟ …"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "S-layer; S-plane; S-column",
+          "fa": "لایهٔ S؛ صفحهٔ S؛ ستون S",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "7308e64f251373a23d77ed62f1933ff798e745532e17b83df83b7682c2915f56",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "مثال توضیحی از رویکرد CNN\nFukushima, 1980\nنورون‌های پیچیده هنگامی شلیک می‌کنند که دست‌کم یک بخش از ناحیهٔ هدفِ ورودی، الگوی موردنظر را داشته باشد.\nآیا برای k=1 شلیک می‌کند؟ k=2؟ k=3؟ …"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "7a536322fc55e75450801d8cc24e594feaab9978fa55acecaea631d5a17a2313",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "مثال توضیحی از رویکرد CNN\nFukushima, 1980\nنورون‌های ساده در همهٔ مکان‌های ورودی که K الگوی موردنظر را نشان می‌دهند، شلیک می‌کنند.\nدر این مثال، الگوی هدف چیست؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "11395c323a1596b4b0fd497fb43b399146914c96898357c85ba82bbe8b00d8e7",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "مثال توضیحی از رویکرد CNN\nFukushima, 1980\nاین فرایند تناوبی میان سلول‌های ساده و پیچیده، تا آخرین لایه ادامه دارد!"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "c1ce961521853cffea4a5c0a4fa447200fd7f602cef6eb1558ad00c235e5977c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "CNN: لایهٔ کانولوشن (Convolutional Layer) به‌عنوان سلول «ساده»\n• هدف: شلیک برای همهٔ مکان‌های ورودی که الگوی موردنظر را نشان می‌دهند.\nبرای مثال، چگونه ممکن است والدو (Waldo) را در تصویر پیدا کنید؟\nالگوی هدف؛ تصویر ورودی."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "3a1ddb29148237045e6ccde4418cfb077dd138c28eeb48818afce7bbdd9e7787",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "CNN: لایهٔ کانولوشن (Convolutional Layer) به‌عنوان سلول «ساده»\n• هدف: شلیک برای همهٔ مکان‌های ورودی که الگوی موردنظر را نشان می‌دهند.\n• رویکرد: فیلتر (Filter) را روی ماتریس بلغزانید تا پاسخ‌های بزرگِ ضرب ماتریسی را پیدا کنید.\nماتریس؛ نتیجهٔ فیلترشده."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://people.eecs.berkeley.edu/~jrs/189/lec/cnn.pdf"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "3a1ddb29148237045e6ccde4418cfb077dd138c28eeb48818afce7bbdd9e7787",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "CNN: لایهٔ کانولوشن (Convolutional Layer) به‌عنوان سلول «ساده»\n• هدف: شلیک برای همهٔ مکان‌های ورودی که الگوی موردنظر را نشان می‌دهند.\n• رویکرد: فیلتر (Filter) را روی ماتریس بلغزانید تا پاسخ‌های بزرگِ ضرب ماتریسی را پیدا کنید.\nماتریس؛ نتیجهٔ فیلترشده."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://people.eecs.berkeley.edu/~jrs/189/lec/cnn.pdf"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "a675b5fa6248745411523abccc8e55d5a92e58becf39a7fd0f32362e3bbf3034",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "CNN: لایهٔ کانولوشن (Convolutional Layer) به‌عنوان سلول «ساده»\n• هدف: شلیک برای همهٔ مکان‌های ورودی که الگوی موردنظر را نشان می‌دهند.\n• رویکرد: فیلتر (Filter) را روی ماتریس بلغزانید تا پاسخ‌های بزرگِ ضرب ماتریسی را پیدا کنید.\nماتریس؛ نتیجهٔ فیلترشده. توجه:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://people.eecs.berkeley.edu/~jrs/189/lec/cnn.pdf"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "توجه: از نظر فنی، این عمل «همبستگی متقابل» (Cross Correlation) است، به‌جای «کانولوشن» (Convolution)."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "86093944cd0d0f1382f128953d4f21d6b5e4be722ac83454d02c59e6eb738703",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            13
+          ],
+          "kind": "text",
+          "fa": "CNN: لایهٔ کانولوشن (Convolutional Layer) به‌عنوان سلول «ساده»\n• هدف: شلیک برای همهٔ مکان‌های ورودی که الگوی موردنظر را نشان می‌دهند.\n• رویکرد: فیلتر (Filter) را روی ماتریس بلغزانید تا پاسخ‌های بزرگِ ضرب ماتریسی را پیدا کنید.\nبرای مثال،\nفیلتر (Filter)؛ ورودی؛ نقشهٔ ویژگی (Feature Map)."
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "literal",
+          "fa": "1 0 1\n0 1 0\n1 0 1\n1 1 1 0 0\n0 1 1 1 0\n0 0 1 1 1\n0 0 1 1 0\n0 1 1 0 0"
+        },
+        {
+          "source_lines": [
+            14,
+            15,
+            16
+          ],
+          "kind": "text",
+          "fa": "?\nدنبال چه الگویی هستیم؟"
+        },
+        {
+          "source_lines": [
+            17,
+            18
+          ],
+          "kind": "math",
+          "fa": "پاسخ = 1*1 + 1*0 + 1*1 + 0*0 + 1*1 + 1*0 + 0*1 + 0*1 + 0*0 + 0*0 + 1*1\nپاسخ = 4",
+          "latex": "\\mathrm{Response}=1\\cdot1+1\\cdot0+1\\cdot1+0\\cdot0+1\\cdot1+1\\cdot0+0\\cdot1+0\\cdot1+0\\cdot0+0\\cdot0+1\\cdot1=4"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "96f254df9fb6aed925265152feddcad92610a5a263c99d6578147bfdb355a054",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            13
+          ],
+          "kind": "text",
+          "fa": "CNN: لایهٔ کانولوشن (Convolutional Layer) به‌عنوان سلول «ساده»\n• هدف: شلیک برای همهٔ مکان‌های ورودی که الگوی موردنظر را نشان می‌دهند.\n• رویکرد: فیلتر (Filter) را روی ماتریس بلغزانید تا پاسخ‌های بزرگِ ضرب ماتریسی را پیدا کنید.\nبرای مثال،\nفیلتر (Filter)؛ ورودی؛ نقشهٔ ویژگی (Feature Map)."
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "literal",
+          "fa": "1 0 1\n0 1 0\n1 0 1\n1 1 1 0 0\n0 1 1 1 0\n0 0 1 1 1\n0 0 1 1 0\n0 1 1 0 0"
+        },
+        {
+          "source_lines": [
+            14,
+            15
+          ],
+          "kind": "text",
+          "fa": "دنبال چه الگویی هستیم؟"
+        },
+        {
+          "source_lines": [
+            16
+          ],
+          "kind": "literal",
+          "fa": "4"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "f99b3bbc274d9be1b619b276b0a277565ac9cabb3ed0fc2337bed3b484ce92bc",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            13
+          ],
+          "kind": "text",
+          "fa": "CNN: لایهٔ کانولوشن (Convolutional Layer) به‌عنوان سلول «ساده»\n• هدف: شلیک برای همهٔ مکان‌های ورودی که الگوی موردنظر را نشان می‌دهند.\n• رویکرد: فیلتر (Filter) را روی ماتریس بلغزانید تا پاسخ‌های بزرگِ ضرب ماتریسی را پیدا کنید.\nبرای مثال،\nفیلتر (Filter)؛ ورودی؛ نقشهٔ ویژگی (Feature Map)."
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "literal",
+          "fa": "1 0 1\n0 1 0\n1 0 1\n1 1 1 0 0\n0 1 1 1 0\n0 0 1 1 1\n0 0 1 1 0\n0 1 1 0 0"
+        },
+        {
+          "source_lines": [
+            14
+          ],
+          "kind": "literal",
+          "fa": "4 ?"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "4f89a8aaceb62d86d58d2c4a8f1e1eb32d5dbf7b3d8648fd45ca8721af50a75e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            13
+          ],
+          "kind": "text",
+          "fa": "CNN: لایهٔ کانولوشن (Convolutional Layer) به‌عنوان سلول «ساده»\n• هدف: شلیک برای همهٔ مکان‌های ورودی که الگوی موردنظر را نشان می‌دهند.\n• رویکرد: فیلتر (Filter) را روی ماتریس بلغزانید تا پاسخ‌های بزرگِ ضرب ماتریسی را پیدا کنید.\nبرای مثال،\nفیلتر (Filter)؛ ورودی؛ نقشهٔ ویژگی (Feature Map)."
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "literal",
+          "fa": "1 0 1\n0 1 0\n1 0 1\n1 1 1 0 0\n0 1 1 1 0\n0 0 1 1 1\n0 0 1 1 0\n0 1 1 0 0"
+        },
+        {
+          "source_lines": [
+            14
+          ],
+          "kind": "literal",
+          "fa": "4 3 ?"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "3a2f6d79f2d434b8fc6fdfb00b75a6b4c48768c7ac32fa6797582899162808de",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            13
+          ],
+          "kind": "text",
+          "fa": "CNN: لایهٔ کانولوشن (Convolutional Layer) به‌عنوان سلول «ساده»\n• هدف: شلیک برای همهٔ مکان‌های ورودی که الگوی موردنظر را نشان می‌دهند.\n• رویکرد: فیلتر (Filter) را روی ماتریس بلغزانید تا پاسخ‌های بزرگِ ضرب ماتریسی را پیدا کنید.\nبرای مثال،\nفیلتر (Filter)؛ ورودی؛ نقشهٔ ویژگی (Feature Map)."
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "literal",
+          "fa": "1 0 1\n0 1 0\n1 0 1\n1 1 1 0 0\n0 1 1 1 0\n0 0 1 1 1\n0 0 1 1 0\n0 1 1 0 0"
+        },
+        {
+          "source_lines": [
+            14,
+            15
+          ],
+          "kind": "literal",
+          "fa": "4 3 4\n?"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "790d7c1defecba9091c7f164ca9a55d555703fddf677da31025502d069674cc4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            13
+          ],
+          "kind": "text",
+          "fa": "CNN: لایهٔ کانولوشن (Convolutional Layer) به‌عنوان سلول «ساده»\n• هدف: شلیک برای همهٔ مکان‌های ورودی که الگوی موردنظر را نشان می‌دهند.\n• رویکرد: فیلتر (Filter) را روی ماتریس بلغزانید تا پاسخ‌های بزرگِ ضرب ماتریسی را پیدا کنید.\nبرای مثال،\nفیلتر (Filter)؛ ورودی؛ نقشهٔ ویژگی (Feature Map)."
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "literal",
+          "fa": "1 0 1\n0 1 0\n1 0 1\n1 1 1 0 0\n0 1 1 1 0\n0 0 1 1 1\n0 0 1 1 0\n0 1 1 0 0"
+        },
+        {
+          "source_lines": [
+            14,
+            15
+          ],
+          "kind": "literal",
+          "fa": "4 3 4\n2 ?"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "591a52d77c8034e0911e249daaea0f8d17b6bb599fd560f0797d0f3e0c285b94",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            13
+          ],
+          "kind": "text",
+          "fa": "CNN: لایهٔ کانولوشن (Convolutional Layer) به‌عنوان سلول «ساده»\n• هدف: شلیک برای همهٔ مکان‌های ورودی که الگوی موردنظر را نشان می‌دهند.\n• رویکرد: فیلتر (Filter) را روی ماتریس بلغزانید تا پاسخ‌های بزرگِ ضرب ماتریسی را پیدا کنید.\nبرای مثال،\nفیلتر (Filter)؛ ورودی؛ نقشهٔ ویژگی (Feature Map)."
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "literal",
+          "fa": "1 0 1\n0 1 0\n1 0 1\n1 1 1 0 0\n0 1 1 1 0\n0 0 1 1 1\n0 0 1 1 0\n0 1 1 0 0"
+        },
+        {
+          "source_lines": [
+            14,
+            15
+          ],
+          "kind": "literal",
+          "fa": "4 3 4\n2 4 ?"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "cdbb7988811e5c31bf82e1f6422e88bb13a27c756ead5a5db343bb0ef02df1b0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            13
+          ],
+          "kind": "text",
+          "fa": "CNN: لایهٔ کانولوشن (Convolutional Layer) به‌عنوان سلول «ساده»\n• هدف: شلیک برای همهٔ مکان‌های ورودی که الگوی موردنظر را نشان می‌دهند.\n• رویکرد: فیلتر (Filter) را روی ماتریس بلغزانید تا پاسخ‌های بزرگِ ضرب ماتریسی را پیدا کنید.\nبرای مثال،\nفیلتر (Filter)؛ ورودی؛ نقشهٔ ویژگی (Feature Map)."
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "literal",
+          "fa": "1 0 1\n0 1 0\n1 0 1\n1 1 1 0 0\n0 1 1 1 0\n0 0 1 1 1\n0 0 1 1 0\n0 1 1 0 0"
+        },
+        {
+          "source_lines": [
+            14,
+            15,
+            16
+          ],
+          "kind": "literal",
+          "fa": "4 3 4\n2 4 3\n?"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "52841b2d89d1e0c16c4c26d2aed9020319d749210909852af9d691800bb273bb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            13
+          ],
+          "kind": "text",
+          "fa": "CNN: لایهٔ کانولوشن (Convolutional Layer) به‌عنوان سلول «ساده»\n• هدف: شلیک برای همهٔ مکان‌های ورودی که الگوی موردنظر را نشان می‌دهند.\n• رویکرد: فیلتر (Filter) را روی ماتریس بلغزانید تا پاسخ‌های بزرگِ ضرب ماتریسی را پیدا کنید.\nبرای مثال،\nفیلتر (Filter)؛ ورودی؛ نقشهٔ ویژگی (Feature Map)."
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "literal",
+          "fa": "1 0 1\n0 1 0\n1 0 1\n1 1 1 0 0\n0 1 1 1 0\n0 0 1 1 1\n0 0 1 1 0\n0 1 1 0 0"
+        },
+        {
+          "source_lines": [
+            14,
+            15,
+            16
+          ],
+          "kind": "literal",
+          "fa": "4 3 4\n2 4 3\n2 ?"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "f8ca0fcf853b151de6ace9f96cc62c9d69e335640574077a184811a42459f47c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            13
+          ],
+          "kind": "text",
+          "fa": "CNN: لایهٔ کانولوشن (Convolutional Layer) به‌عنوان سلول «ساده»\n• هدف: شلیک برای همهٔ مکان‌های ورودی که الگوی موردنظر را نشان می‌دهند.\n• رویکرد: فیلتر (Filter) را روی ماتریس بلغزانید تا پاسخ‌های بزرگِ ضرب ماتریسی را پیدا کنید.\nبرای مثال،\nفیلتر (Filter)؛ ورودی؛ نقشهٔ ویژگی (Feature Map)."
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "literal",
+          "fa": "1 0 1\n0 1 0\n1 0 1\n1 1 1 0 0\n0 1 1 1 0\n0 0 1 1 1\n0 0 1 1 0\n0 1 1 0 0"
+        },
+        {
+          "source_lines": [
+            14,
+            15,
+            16
+          ],
+          "kind": "literal",
+          "fa": "4 3 4\n2 4 3\n2 3 ?"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "8c3ff0749941d7c49e2a033a2faca0b748f9a6ad9701df0c20bea2cbdc797ec9",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            13
+          ],
+          "kind": "text",
+          "fa": "CNN: لایهٔ کانولوشن (Convolutional Layer) به‌عنوان سلول «ساده»\n• هدف: شلیک برای همهٔ مکان‌های ورودی که الگوی موردنظر را نشان می‌دهند.\n• رویکرد: فیلتر (Filter) را روی ماتریس بلغزانید تا پاسخ‌های بزرگِ ضرب ماتریسی را پیدا کنید.\nبرای مثال،\nفیلتر (Filter)؛ ورودی؛ نقشهٔ ویژگی (Feature Map)."
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "literal",
+          "fa": "1 0 1\n0 1 0\n1 0 1\n1 1 1 0 0\n0 1 1 1 0\n0 0 1 1 1\n0 0 1 1 0\n0 1 1 0 0"
+        },
+        {
+          "source_lines": [
+            14,
+            15,
+            16
+          ],
+          "kind": "literal",
+          "fa": "4 3 4\n2 4 3\n2 3 4"
+        },
+        {
+          "source_lines": [
+            17,
+            18,
+            19
+          ],
+          "kind": "text",
+          "fa": "الگو در کجا:\n- وجود دارد؟\n- وجود ندارد؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "dca46fb995c07cc89d36ebf1af84b783f60bd95cf9f740ae38182b426250ea7e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "CNN: لایهٔ کانولوشن (Convolutional Layer) به‌عنوان سلول «ساده»\n• هدف: شلیک برای همهٔ مکان‌های ورودی که الگوی موردنظر را نشان می‌دهند.\n• رویکرد: فیلتر (Filter) را روی ماتریس بلغزانید تا پاسخ‌های بزرگِ ضرب ماتریسی را پیدا کنید.\n• تابعی را با همسایگی‌های محلیِ ماتریس محاسبه کنید.\n• فیلتر مشخص می‌کند تابع چگونه مقدارهای همسایه‌ها را ترکیب کند.\n• هدف آموزش: یادگیری مقدارهای فیلتر (الگوهای هدف).\n• عمل هم‌وردا (Equivariant): انتقال ورودی، نقشهٔ ویژگی را نیز به همان شکل انتقال می‌دهد، زیرا همان فیلتر اعمال می‌شود! یعنی هنوز ناوردایی نسبت به انتقال نداریم."
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "https://www.mdpi.com/2076-3417/10/9/3161"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "I(x); T[I]; f[I]; f[T[I]]=T[f[I]]",
+          "fa": "I(x)؛ T[I]؛ f[I]؛ f[T[I]]=T[f[I]]",
+          "verified": true,
+          "latex": "f[T[I]]=T[f[I]]"
+        }
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "ed5a02b908f9bbf93cf61bf18b998ce514afbef19d8200595612f4a73cf17e03",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            3
+          ],
+          "kind": "text",
+          "fa": "انواع فراوان فیلترها (Filters): چه می‌کنند؟\nفیلتر؛ نقشهٔ ویژگی (Feature Map)."
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://adeshpande3.github.io/A-Beginner%27s-Guide￾To-Understanding-Convolutional-Neural-Networks/\nhttps://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Identity; Edge detection; Sharpen; Box blur (normalized)",
+          "fa": "همانی؛ آشکارسازی لبه؛ تیزسازی؛ تاری جعبه‌ای (نرمال‌شده)",
+          "verified": true
+        },
+        {
+          "en": "Identity: [0 0 0; 0 1 0; 0 0 0]; Edge detection: [1 0 −1; 0 0 0; −1 0 1]; Sharpen: [0 −1 0; −1 5 −1; 0 −1 0]; Box blur: (1/9)[1 1 1; 1 1 1; 1 1 1]",
+          "fa": "همانی: [0 0 0; 0 1 0; 0 0 0]؛ لبه‌یابی: [1 0 −1; 0 0 0; −1 0 1]؛ تیزسازی: [0 −1 0; −1 5 −1; 0 −1 0]؛ تاری جعبه‌ای: (1/9)[1 1 1; 1 1 1; 1 1 1]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "f933f44d413f9e1e2268537b1cbb8f481396916beae1353b48250bb57e711b72",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "انواع فراوان فیلترها (Filters): چه می‌کنند؟\nنمایش: http://beej.us/blog/data/convolution-image-processing/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Filter: Sharpen; Image: Bell; Divisor: 9; The Matrix; [0 −3 0; −3 21 −3; 0 −3 0]",
+          "fa": "فیلتر: تیزسازی؛ تصویر: زنگ؛ مقسوم‌علیه: 9؛ ماتریس؛ [0 −3 0; −3 21 −3; 0 −3 0]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "251c99ab2cd44a32244cf344081e9e3059aeaf0dabf06ab79f132bff7beee917",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "تفسیر کانولوشن (Convolution) درون شبکهٔ عصبی (NN)\nورودی؛ فیلتر؛ نقشهٔ ویژگی (Feature Map)."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://www.jefkine.com/general/2016/09/05/backpropagation-in-convolutional-neural-networks/"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "780bda5e890d663eddb901d99a49ca468e37eaa728657624da7f8428353f1a15",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "kind": "text",
+          "fa": "لایه‌های کانولوشنی (Convolutional) در برابر تمام‌متصل (Fully Connected)\n• تعداد وزن‌های مدل:\n• برای این لایهٔ کانولوشنی چند وزن باید یاد گرفته شود؟\n• 4؛ مقدارهای قرمز، آبی، زرد و سبز.\n• اگر به‌جای آن لایهٔ تمام‌متصل استفاده شود، چند وزن لازم است؟\n• 36؛ 9 گرهٔ فیروزه‌ای × 4 گرهٔ ارغوانی.\n• تعداد ورودی‌های نورون‌ها:\n• در لایهٔ کانولوشنی چند ورودی به هر نورون می‌رود؟\n• 4\n• اگر به‌جای آن لایهٔ تمام‌متصل استفاده شود، چند ورودی به هر نورون می‌رود؟\n• 9"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://www.jefkine.com/general/2016/09/05/backpropagation-in-convolutional-neural-networks/"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "0df77321705824fd65241a1bb8e35baee50c6fd4d0ed8d2c4c6778c11849661c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "لایهٔ کانولوشن (Convolutional Layer): پیاده‌سازی کامل\nورودی؛ * =؛ فیلتر؛ سیگموید (Sigmoid)؛ + b.\nنقشه‌های ویژگی (Feature Maps) همراه جملهٔ بایاس (Bias) از تابع فعال‌سازی (Activation Function) می‌گذرند تا نقشه‌های فعال‌سازی (Activation Maps) ساخته شوند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "9904a2b5880e7af0ed488bf66e20b8362ff6d038b1ef507cc944f22d0fd2ff3c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "لایهٔ کانولوشن (Convolutional Layer): پیاده‌سازی کامل\nورودی؛ *؛ =؛ فیلتر؛ سیگموید (Sigmoid) + b؛ = سیگموید + b.\nمی‌توان چند فیلتر داشت، هرکدام با اندازهٔ دلخواه و جملهٔ بایاس (Bias) خودش؛ همهٔ مقدارهای آن‌ها طی آموزش شبکهٔ عصبی (NN) یاد گرفته می‌شوند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "e372fb51286c6803aee84a9515c506ec159e0efb4660f4aa574c3bb78997e20c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "لایهٔ کانولوشن (Convolutional Layer): اثر ورودی\nورودی؛ *؛ =؛ فیلتر؛ سیگموید (Sigmoid) + b؛ = سیگموید + b.\nچگونه تعداد متفاوت کانال‌های ورودی (Input Channels) را مدیریت کنیم؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "638daa30ae3bd8787283983fb08b08c2b518b1f8dbb303324007f240013020bb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            3
+          ],
+          "kind": "text",
+          "fa": "لایهٔ کانولوشن (Convolutional Layer): اثر ورودی\nورودی تک‌کاناله: تصویر خاکستری 8 بیتی.\nورودی سه‌کاناله: تصویر RGB."
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://ai.stanford.edu/~syye\nung/cvweb/tutorial1.html\nhttps://www.geeksforgeeks.org/matlab-rgb-image-representation/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Blue component Image Plane; Green component image Plane; Red component image Plane; Pixel_A [255,0,255]; Pixel_B = [127,255,0]",
+          "fa": "صفحهٔ تصویرِ مؤلفهٔ آبی؛ صفحهٔ تصویرِ مؤلفهٔ سبز؛ صفحهٔ تصویرِ مؤلفهٔ قرمز؛ Pixel_A [255,0,255]؛ Pixel_B = [127,255,0]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "7dace07ff37e579f456cd70cd80ba56c45d536a9708d10c0b52e68d0608d2b6f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "لایهٔ کانولوشن (Convolutional Layer): اثر ورودی\nتعداد کانال‌های فیلتر باید با ورودی برابر باشد؛ هرکدام «کرنل» (Kernel) نامیده می‌شود.\n- در این مثال چند فیلتر هست؟\n- در این مثال چند کرنل هست؟\n- در این مثال چند نقشهٔ ویژگی (Feature Map) ساخته می‌شود؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://indoml.com/2018/03/07/student-notes-convolutional-neural-networks-cnn-introduction/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input; Filter; Result; Parameters; Size: f=3; #channels: n_c=3",
+          "fa": "ورودی؛ فیلتر؛ نتیجه؛ پارامترها؛ اندازه: f=3؛ تعداد کانال‌ها: n_c=3",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "b2bea7b35e8b44b1513535459ac0eb48d2bd65b2d251e2e63b46ab526b191c4a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "CNN: لایهٔ تجمیع (Pooling Layer) به‌عنوان سلول «پیچیده»\n• هدف: شلیک هنگامی که دست‌کم بخشی از ناحیه، الگوی موردنظر را نشان می‌دهد.\n• رویکرد: پاسخ‌های کانولوشنی یک همسایگی را تجمیع می‌کند.\nبرای مثال، تجمیع بیشینه (Max Pooling): بیشینهٔ ورودیِ تقسیم‌شده را خروجی می‌دهد.\n• خروجی‌ها از نظر دیداری چگونه مقایسه می‌شوند؟\n? ?\n? ?"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "reference",
+          "fa": "http://cs231n.github.io/conv\nolutional-networks/#pool"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "pool; downsampling; 224x224x64; 112x112x64",
+          "fa": "تجمیع؛ کاهش نمونه‌برداری؛ 224x224x64؛ 112x112x64",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "d21fe764db739bc690ada9a61e12f4227e04a07aea5a91db6db797f2f3222ff6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "CNN: لایهٔ تجمیع (Pooling Layer) به‌عنوان سلول «پیچیده»\n• هدف: شلیک هنگامی که دست‌کم بخشی از ناحیه، الگوی موردنظر را نشان می‌دهد.\n• رویکرد: پاسخ‌های کانولوشنی یک همسایگی را تجمیع می‌کند.\n• ناوردایی نسبت به انتقال (Translation Invariance) را رمزگذاری می‌کند: انتقال ورودی همچنان همان خروجی را می‌دهد؛ برای مثال،"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://divsoni2012.medium.com/translation-invariance-in-convolutional-neural-networks-61d9b6fa03df"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input image of letter ‘C’; Input image of letter ‘C’ shifted down; Conv Filter of size:(4,4); Output of Conv layer; Output of Max Pooling layer",
+          "fa": "تصویر ورودی حرف «C»؛ تصویر ورودی حرف «C» که به پایین منتقل شده؛ فیلتر کانولوشن با اندازهٔ (4,4)؛ خروجی لایهٔ کانولوشن؛ خروجی لایهٔ تجمیع بیشینه",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "8fe1e3ac1c7454fff956dc085beb09ca7474ecc91fbfe7693b1be29299dd9320",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            2
+          ],
+          "kind": "text",
+          "fa": "لایهٔ تجمیع (Pooling Layer): اثر ورودی\nتجمیع به‌طور جداگانه بر هر کانال ورودی اعمال می‌شود."
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://indoml.com/2018/03/07/student-notes-convolutional-neural-networks-cnn-introduction/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input; Max Pool; f=2; s=2; 6x6x3; 3x3x3",
+          "fa": "ورودی؛ تجمیع بیشینه؛ f=2؛ s=2؛ 6x6x3؛ 3x3x3",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "c6b727416e7f9e5ee84c8c758e26ddfd72db3f807c7c43041f54540ed2a04880",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "CNN: روی‌هم‌چیدن لایه‌های کانولوشن (Convolutional) و تجمیع (Pooling)\nFukushima, 1980\nلایه‌های عمیق‌تر، الگوها را در ناحیه‌های بزرگ‌ترِ فضای ورودی شناسایی می‌کنند و سرانجام ناوردایی بیشتری نسبت به انتقال (Translation Invariance) فراهم می‌شود."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://www.deeplearningbook.org/contents/convnets.html"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "6dfec0f9e03b29cd358f547424c734e4f9e9cd9b6a83b4a5767e7af7003e4de7",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "آزمایش‌ها: نئوکوگنیترون (Neocognitron) کونیهیکو کار کرد!\n(ورودی‌ها)؛ (خروجی‌ها).\nدر برابر جابه‌جایی ورودی، اعوجاج شکل/اندازه و نویز مقاوم است!"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "8279d72c325cd717ecd34f956503501a3f5836092e68fe069347ce67f278f1cb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "عناصر طراحی دیگر (1 از 2)\nچرا ابعاد با هر لایهٔ کانولوشن (Convolutional Layer) کوچک می‌شوند؟\nاطلاعات پیرامون مرز ورودی از دست می‌رود!"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "http://cs231n.stanford.edu/slides/2019/cs231n_2019_lecture05.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CONV, ReLU; e.g. 6 5x5x3 filters; e.g. 10 5x5x6 filters; 32;28;24;3;6;10",
+          "fa": "کانولوشن (CONV)، ReLU؛ مثلاً 6 فیلتر 5x5x3؛ مثلاً 10 فیلتر 5x5x6؛ 32؛28؛24؛3؛6؛10",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "a98b359288544fd124ef13139dd4302cfd4331dcbbc0d59610380ecef0c8c23a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "عناصر طراحی دیگر (1 از 2): حاشیه‌گذاری (Padding)\n• ایده: ابعاد خروجی را با حاشیه‌گذاری ورودی کنترل کنید.\n• اگر فیلتر 5x5 استفاده شود، چند لایه به مرز اضافه می‌شود تا ابعاد اولیه حفظ شود؟\n• ملاحظهٔ اصلی: آیا مرز اطلاعاتی/ارزشمند است؟\n3؛ 3."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://software.intel.com/en-us/node/586159"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "e14e14e2ac5ddff0d10fab34c57e6867b09e71a42c4146eb81997a8d813eb2ee",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            4
+          ],
+          "kind": "text",
+          "fa": "عناصر طراحی دیگر (2 از 2)\nبرای لایهٔ کانولوشن (Convolutional Layer) با یک کرنل (Kernel) 3x3 روی تصویر RGB با ابعاد 1280 x 720، چند ضرب لازم است؟ فرض کنید حاشیه‌گذاری تا ابعاد اولیه انجام شده است.\nاز نظر محاسباتی پرهزینه است!"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "math",
+          "fa": "(3x3) x (1280 x 720) x 3 = 24,883,200",
+          "latex": "(3\\times3)\\times(1280\\times720)\\times3=24{,}883{,}200"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://people.eecs.berkeley.edu/~jrs/189/lec/cnn.pdf"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "d30cffbc1e282872d51d6d3eb08efa9b3ef79583005efbb13af3f1835d182367",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "عناصر طراحی دیگر (2 از 2): گام (Stride)\n• ایده: تعداد گام‌های فضایی را کاهش دهید.\n• مثلاً 2x2.\n• ملاحظهٔ اصلی: کاهش نمونه‌برداری (Downsampling) چه اثری بر بازشناسی دارد؟\nورودی؛ فیلتر؛ نقشهٔ ویژگی (Feature Map).\n4 4\n2 4\n3 3"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "http://deeplearning.net/software/theano/tutorial/conv_arithmetic.html"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "473472ae22a471a42aa5c41ba60f63b2889446d71221a11ab9dc7dc0eb12bdf8",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "جمع‌بندی: شبکه‌های تمام‌متصل (Fully Connected) در برابر CNNها\nبا یادگیری آشکارسازهای ویژگی مشابه در مکان‌های فضایی متعدد و دریافت دادهٔ آموزش فراوان، می‌توان ناوردایی نسبت به انتقال (Translation Invariance) را یاد گرفت.\nFukushima, 1980\nCNNها با افزودن سوگیری‌های استقرایی (Inductive Biases) معماری، از افزونگی یادگیری جلوگیری می‌کنند: وزن‌های مشترکِ وابسته به میدان‌های پذیرش محلی (Local Receptive Fields)، آشکارسازهای ویژگی قابل استفادهٔ مجدد را ممکن می‌کنند؛ تجمیع فضایی (Spatial Pooling) نیز ناوردایی را می‌سازد."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "666b30d38aa77ec692a8809766da2c7d0819f8609d3e596ccf462466c4c7df2c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• مسئله: جابه‌جایی ورودی باعث شکست شبکه‌های تمام‌متصل (Fully Connected) می‌شود.\n• ایده: شبکه‌های عصبی کانولوشنی (Convolutional Neural Networks؛ CNNs) برای ناوردایی نسبت به انتقال (Translation Invariance) طراحی شده‌اند.\n• پیاده‌سازی: آموزش سرتاسری CNNها با نزول گرادیان (Gradient Descent).\n• موفقیت در دنیای واقعی: LeNet-5 برای خواندن چک.\n• آموزش برنامه‌نویسی: شبکه‌های عصبی کانولوشنی در PyTorch."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "deb49d1be3782a0f2fe9860017ef7109821533e35dd7e0757824ac18732bb977",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "هدف: یادگیری نظارت‌شدهٔ (Supervised Learning) پارامترهای CNN\nNeural computation, 1989\nیان لوکان (Yann LeCun)، 1960-اکنون؛ برندهٔ جایزهٔ تورینگ 2018 برای مشارکت در یادگیری عمیق (Deep Learning)؛ استاد، دانشمند ارشد هوش مصنوعی (Meta)."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Backpropagation Applied to Handwritten Zip Code Recognition; Y. LeCun; B. Boser; J. S. Denker; D. Henderson; R. E. Howard; W. Hubbard; L. D. Jackel; AT&T Bell Laboratories, Holmdel, NJ 07733 USA",
+          "fa": "کاربرد پس‌انتشار (Backpropagation) در بازشناسی کد پستی دست‌نویس؛ Y. LeCun؛ B. Boser؛ J. S. Denker؛ D. Henderson؛ R. E. Howard؛ W. Hubbard؛ L. D. Jackel؛ آزمایشگاه‌های بل AT&T، هولمدل، نیوجرسی 07733، آمریکا",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "62d77b6db650f29fab1eb08c85e667dac35fc64847463670b71cfa319d0bfd2b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "آموزش CNN: یادگیری مبتنی بر گرادیان (Gradient Based Learning)\n• تا برآورده‌شدن معیار توقف تکرار کنید:\n1. دادهٔ آموزش را در شبکه به جلو منتشر کنید تا خروجی پیش‌بینی شود.\n2. خطای پیش‌بینی‌ها را با تابع زیان (Loss Function) اندازه بگیرید.\n3. گرادیان‌های تابع زیان را حساب کنید تا مشخص شود هر پارامتر مدل چگونه در خطا نقش داشته است؛ اشتراک وزن (Weight Sharing) با جمع‌کردن مشتق‌های جزئی همهٔ اتصال‌هایی که پارامتر یکسانی دارند لحاظ می‌شود.\n4. هر پارامتر را با گرادیان‌های محاسبه‌شده به‌روزرسانی کنید."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "67f768219e48a783e3ca760c364a8dd28ea02013ee2468eda7843e0395379c79",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "آموزش CNN: اشتراک وزن (Weight Sharing)\nورودی؛ فیلتر؛ نقشهٔ ویژگی (Feature Map).\nمقدار مشتق‌های جزئی همهٔ اتصال‌هایی که پارامتر یکسانی دارند، جمع می‌شود."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://www.jefkine.com/general/2016/09/05/backpropagation-in-convolutional-neural-networks/"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "d939f6b63b5a74b901f6ca192d495b3b062e83aa572c7c779e5fb0f2622c2553",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "آموزش CNN: یادگیری مبتنی بر گرادیان (Gradient Based Learning)\n• تا برآورده‌شدن معیار توقف تکرار کنید:\n1. دادهٔ آموزش را در شبکه به جلو منتشر کنید تا خروجی پیش‌بینی شود.\n2. خطای پیش‌بینی‌ها را با تابع زیان (Loss Function) اندازه بگیرید.\n3. گرادیان‌های تابع زیان را حساب کنید تا مشخص شود هر پارامتر مدل چگونه در خطا نقش داشته است؛ اشتراک وزن (Weight Sharing) با جمع‌کردن مشتق‌های جزئی همهٔ اتصال‌هایی که پارامتر یکسانی دارند لحاظ می‌شود.\n4. هر پارامتر را با گرادیان‌های محاسبه‌شده به‌روزرسانی کنید.\nچگونه با راهبردهای زیرنمونه‌برداری (Subsampling)، یعنی لایه‌های تجمیع (Pooling) و گام (Stride)، برخورد کنیم؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "5a25640253ad7de3170f0e92e3367cdce3cd40cc32ce549113a77fc7ace5950d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "راهبردهای زیرنمونه‌برداری (Subsampling): تجمیع (Pooling) و گام (Stride)\n• رویکرد: فقط ورودی‌هایی که در خروجی نقش دارند مسئول شناخته می‌شوند و گرادیان برای به‌روزرسانی پارامتر می‌گیرند؛ همهٔ مسیرهای دیگر گرادیان 0 می‌گیرند.\n• مثلاً تجمیع بیشینه (Max Pooling): گرادیان فقط به ورودیِ دارای مقدار بیشینه جریان می‌یابد و مسیرهای دیگر گرادیان 0 می‌گیرند. چون یادگیری‌ای رخ نمی‌دهد، گرادیان فقط به لایهٔ قبلی عبور داده می‌شود.\n6."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "666b30d38aa77ec692a8809766da2c7d0819f8609d3e596ccf462466c4c7df2c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• مسئله: جابه‌جایی ورودی باعث شکست شبکه‌های تمام‌متصل (Fully Connected) می‌شود.\n• ایده: شبکه‌های عصبی کانولوشنی (Convolutional Neural Networks؛ CNNs) برای ناوردایی نسبت به انتقال (Translation Invariance) طراحی شده‌اند.\n• پیاده‌سازی: آموزش سرتاسری CNNها با نزول گرادیان (Gradient Descent).\n• موفقیت در دنیای واقعی: LeNet-5 برای خواندن چک.\n• آموزش برنامه‌نویسی: شبکه‌های عصبی کانولوشنی در PyTorch."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "79a4e503858e23d7629544274527c9eeffd0229b1db2e07f0474f0ce03d0f06b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "دستاورد: موفقیت در کاربرد دنیای واقعی\nProceedings of the IEEE, 1998\nیان لوکان (Yann LeCun)، 1960-اکنون؛ برندهٔ جایزهٔ تورینگ 2018 برای مشارکت در یادگیری عمیق (Deep Learning)؛ استاد، دانشمند ارشد هوش مصنوعی (Meta).\nیوشوا بنجیو (Yoshua Bengio)، 1964-اکنون؛ برندهٔ جایزهٔ تورینگ 2018 برای مشارکت در یادگیری عمیق؛ استاد، رئیس مشترک LawZero."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Gradient-Based Learning Applied to Document Recognition; Yann LeCun; Léon Bottou; Yoshua Bengio; Patrick Haffner",
+          "fa": "کاربرد یادگیری مبتنی بر گرادیان در بازشناسی سند؛ Yann LeCun؛ Léon Bottou؛ Yoshua Bengio؛ Patrick Haffner",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "be27edd94ec0b9c40bd8e3a0811d9d2a40caf4273facf5b16fad79d42d5d7650",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "دستاورد: موفقیت در کاربرد دنیای واقعی\n«در چندین بانک سراسر ایالات متحده، ماهانه میلیون‌ها چک می‌خواند.»\nProceedings of the IEEE, 1998"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Gradient-Based Learning Applied to Document Recognition; Yann LeCun; Léon Bottou; Yoshua Bengio; Patrick Haffner",
+          "fa": "کاربرد یادگیری مبتنی بر گرادیان در بازشناسی سند؛ Yann LeCun؛ Léon Bottou؛ Yoshua Bengio؛ Patrick Haffner",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "661efe6eb99c60d2540cef55a2eb85e9b345d3bf9102b5c3fe03182087b77d8e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "LeNet-5: معماری؛ مانند نئوکوگنیترون (Neocognitron)، لایه‌های کانولوشن (Convolutional) و تجمیع (Pooling) به‌صورت متناوب دارد.\nشبکهٔ عصبی چندلایه؛ تابع فعال‌سازی (Activation Function)، tanh است.\nچند مقدار را می‌تواند پیش‌بینی کند؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "LeCun et al. Gradient-based learning applied to document recognition. 1998"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "INPUT 32x32; C1: feature maps 6@28x28; S2: f. maps 6@14x14; C3: f. maps 16@10x10; S4: f. maps 16@5x5; C5: layer 120; F6: layer 84; OUTPUT 10; Convolutions; Subsampling; Full connection; Gaussian connections",
+          "fa": "ورودی 32x32؛ C1: نقشه‌های ویژگی 6@28x28؛ S2: نقشه‌های ویژگی 6@14x14؛ C3: نقشه‌های ویژگی 16@10x10؛ S4: نقشه‌های ویژگی 16@5x5؛ C5: لایهٔ 120؛ F6: لایهٔ 84؛ خروجی 10؛ کانولوشن‌ها؛ زیرنمونه‌برداری؛ اتصال کامل؛ اتصال‌های گاوسی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "9d79b648542fb6d1647656e2cd1c09d68d1f37d1a9d335b3cc90080bf7725eb4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "LeNet-5: معماری؛ مانند نئوکوگنیترون (Neocognitron)، لایه‌های کانولوشن (Convolutional) و تجمیع (Pooling) به‌صورت متناوب دارد.\nبین ورودی و لایهٔ پنهان (Hidden Layer) 1 چند فیلتر هست؟ اندازه‌هایشان چیست؟\nبین دو لایه چند پارامتر هست؟ — 6 x 5 x 5 + 6 = 156\nLeCun et al. Gradient-based learning applied to document recognition. 1998"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "INPUT 32x32; C1: feature maps 6@28x28; S2: f. maps 6@14x14; C3: f. maps 16@10x10; S4: f. maps 16@5x5; C5: layer 120; F6: layer 84; OUTPUT 10; Convolutions; Subsampling; Full connection; Gaussian connections",
+          "fa": "ورودی 32x32؛ C1: نقشه‌های ویژگی 6@28x28؛ S2: نقشه‌های ویژگی 6@14x14؛ C3: نقشه‌های ویژگی 16@10x10؛ S4: نقشه‌های ویژگی 16@5x5؛ C5: لایهٔ 120؛ F6: لایهٔ 84؛ خروجی 10؛ کانولوشن‌ها؛ زیرنمونه‌برداری؛ اتصال کامل؛ اتصال‌های گاوسی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "99069e8ef992315273e975fa9379cdd56b9bcc9fc6f1ad21c9f6cc937e1d4cce",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "LeNet-5: معماری؛ مانند نئوکوگنیترون (Neocognitron)، لایه‌های کانولوشن (Convolutional) و تجمیع (Pooling) به‌صورت متناوب دارد.\nدر این لایهٔ تجمیع (Pooling) از چه اندازهٔ همسایگی استفاده می‌شود؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "LeCun et al. Gradient-based learning applied to document recognition. 1998"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "INPUT 32x32; C1: feature maps 6@28x28; S2: f. maps 6@14x14; C3: f. maps 16@10x10; S4: f. maps 16@5x5; C5: layer 120; F6: layer 84; OUTPUT 10; Convolutions; Subsampling; Full connection; Gaussian connections",
+          "fa": "ورودی 32x32؛ C1: نقشه‌های ویژگی 6@28x28؛ S2: نقشه‌های ویژگی 6@14x14؛ C3: نقشه‌های ویژگی 16@10x10؛ S4: نقشه‌های ویژگی 16@5x5؛ C5: لایهٔ 120؛ F6: لایهٔ 84؛ خروجی 10؛ کانولوشن‌ها؛ زیرنمونه‌برداری؛ اتصال کامل؛ اتصال‌های گاوسی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "a245e1f78ecb0e38df2ace79c5ea118b9f94e4def8a20471307e9e97ed1392d1",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "مجموعه‌دادهٔ توسعهٔ مدل: MNIST\n• وظیفه: طبقه‌بندی رقم به‌عنوان 0، 1، … یا 9.\n• منبع: تصاویر گردآوری‌شده توسط NIST از مجموع 500 کارمند ادارهٔ سرشماری و دانش‌آموز دبیرستانی.\n• مجموعه‌داده: 60,000 نمونهٔ آموزش و 10,000 نمونهٔ آزمون، پیش‌پردازش‌شده برای قرارگرفتن در مرکز و داشتن ابعاد یکسان؛ نویسندگان در دو مجموعه متفاوت بودند.\n• معیار ارزیابی: دقت (Accuracy)، یعنی درصد درست."
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "reference",
+          "fa": "https://commons.wikimedia.org/w/index.php?curid=64810040"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 71,
+      "source_text_sha256": "e6deb73627a334bdc6b72f943170ba686622c0d9761e953844751e4c3f024c61",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "تحلیل LeNet-5\nچند دور (Epoch) لازم است تا آموزش همگرا شود؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "LeCun et al. Gradient-based learning applied to document recognition. 1998"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Error Rate (%); Test; Training; Training set Iterations",
+          "fa": "نرخ خطا (%)؛ آزمون؛ آموزش؛ تکرارهای مجموعهٔ آموزش",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 72,
+      "source_text_sha256": "82421ec9d8bd9e6dd0fca948068b22b202204ae3d000788ee481889d2db40d5b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "تحلیل LeNet-5\nهمهٔ 82 نمونهٔ بدبرچسب‌خورده (پاسخ درست در چپ و پاسخ پیش‌بینی‌شده در راست).\nچرا ممکن است خطا رخ دهد؟\n- ابهام\n- بازنمایی ناکافی در دادهٔ آموزش"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "LeCun et al. Gradient-based learning applied to document recognition. 1998"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 73,
+      "source_text_sha256": "aa7a2aa1c07a2d798e7f25b031544bb406c0d6829274382feb52cdef53f69219",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "تحلیل LeNet-5\nخانوادهٔ LeNet با گزینه‌های موجود دیگر رقابت می‌کرد؛ از جمله روش‌های مبتنی بر حافظه (Memory Based)، مثل K-NN، روش‌های دارای ویژگی‌های دست‌ساز (Hand-crafted Features) و شبکه‌های عصبی تمام‌متصل (Fully Connected)!\nپیاده‌سازی‌های LeNet با ظرفیت بالاتر، بهتر عمل می‌کنند!"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "LeCun et al. Gradient-based learning applied to document recognition. 1998"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "K-NN Euclidean; [deslant] K-NN Euclidean; 40 PCA + quadratic; RBF; [16x16] Tangent Distance; SVM poly 4; RS-SVM poly 5; [dist] V-SVM poly 9; LeNet-1; LeNet-4; LeNet-4 / Local; LeNet-4 / K-NN; LeNet-5; [dist] LeNet-5; [dist] Boosted LeNet-4",
+          "fa": "K-NN با فاصلهٔ اقلیدسی؛ [رفع کجی] K-NN اقلیدسی؛ 40 مؤلفهٔ PCA + تابع درجهٔ دو؛ RBF؛ [16x16] فاصلهٔ مماسی؛ SVM چندجمله‌ای 4؛ RS-SVM چندجمله‌ای 5؛ [dist] V-SVM چندجمله‌ای 9؛ LeNet-1؛ LeNet-4؛ LeNet-4 / Local؛ LeNet-4 / K-NN؛ LeNet-5؛ [dist] LeNet-5؛ [dist] Boosted LeNet-4",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 74,
+      "source_text_sha256": "666b30d38aa77ec692a8809766da2c7d0819f8609d3e596ccf462466c4c7df2c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• مسئله: جابه‌جایی ورودی باعث شکست شبکه‌های تمام‌متصل (Fully Connected) می‌شود.\n• ایده: شبکه‌های عصبی کانولوشنی (Convolutional Neural Networks؛ CNNs) برای ناوردایی نسبت به انتقال (Translation Invariance) طراحی شده‌اند.\n• پیاده‌سازی: آموزش سرتاسری CNNها با نزول گرادیان (Gradient Descent).\n• موفقیت در دنیای واقعی: LeNet-5 برای خواندن چک.\n• آموزش برنامه‌نویسی: شبکه‌های عصبی کانولوشنی در PyTorch."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 75,
+      "source_text_sha256": "666b30d38aa77ec692a8809766da2c7d0819f8609d3e596ccf462466c4c7df2c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• مسئله: جابه‌جایی ورودی باعث شکست شبکه‌های تمام‌متصل (Fully Connected) می‌شود.\n• ایده: شبکه‌های عصبی کانولوشنی (Convolutional Neural Networks؛ CNNs) برای ناوردایی نسبت به انتقال (Translation Invariance) طراحی شده‌اند.\n• پیاده‌سازی: آموزش سرتاسری CNNها با نزول گرادیان (Gradient Descent).\n• موفقیت در دنیای واقعی: LeNet-5 برای خواندن چک.\n• آموزش برنامه‌نویسی: شبکه‌های عصبی کانولوشنی در PyTorch."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 76,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ]
+    }
+  ]
+}

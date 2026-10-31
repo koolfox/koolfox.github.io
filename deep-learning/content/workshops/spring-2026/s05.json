@@ -1,0 +1,122 @@
+{
+  "session_id": "s05",
+  "source_sha256": "f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7",
+  "source_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/05-Convolutional-Neural-Networks.pdf",
+  "source_page_count": 76,
+  "title_fa": "یک فیلتر مشترک را روی چند پنجره بلغزان",
+  "prediction_fa": "اگر وزن پایین راست فیلتر تغییر کند، فقط یک خروجی تغییر می‌کند یا چند خروجی؟",
+  "steps_fa": [
+    "چهار خروجی را با ضرب و جمع خانه‌های متناظر، پیش از اجرا حساب کن.",
+    "وزن پایین راست kernel را -1 کن و تغییر همهٔ خروجی‌ها را مقایسه کن.",
+    "stride را 2 کن؛ اندازهٔ نقشهٔ ویژگی را پیش‌بینی و سپس بررسی کن."
+  ],
+  "source_page": 42,
+  "starter_sha256": "4ca61c62e950c2887e3b4aa0178f9e63fa299792aeaac31e1a504c0007cc75cf",
+  "reference": {
+    "feature_map": [
+      [
+        2,
+        5
+      ],
+      [
+        0,
+        2
+      ]
+    ],
+    "weight_count": 4
+  },
+  "questions": [
+    {
+      "id": "calculate",
+      "source_kind": "original",
+      "prompt_fa": "در نسخهٔ اولیه، خروجی پنجرهٔ بالاچپ چند است؟",
+      "solution_fa": "1×1 + 2×0 + 0×0 + 1×1 = 2.",
+      "answer": {
+        "kind": "number",
+        "value": 2,
+        "tolerance": 0
+      },
+      "source_page": 27
+    },
+    {
+      "id": "interpret",
+      "source_kind": "original",
+      "prompt_fa": "در نسخهٔ اولیه چند وزن مستقل یادگرفتنی در فیلتر وجود دارد؟ بایاس را در نظر نگیر.",
+      "solution_fa": "فیلتر 2×2 چهار خانه دارد و در همهٔ مکان‌ها دوباره استفاده می‌شود.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "4",
+          "9",
+          "36"
+        ],
+        "correct_index": 0
+      },
+      "source_page": 42
+    },
+    {
+      "id": "explain",
+      "source_kind": "original",
+      "prompt_fa": "چرا تغییر یک وزن kernel می‌تواند چند مقدار نقشهٔ ویژگی را تغییر دهد؟",
+      "solution_fa": "هر وزن مشترک در همهٔ پنجره‌های خروجی استفاده می‌شود؛ مقدار تغییر به ورودی متناظر همان پنجره بستگی دارد.",
+      "answer": {
+        "kind": "manual",
+        "criteria_fa": [
+          "اشتراک وزن",
+          "مثال دو پنجره",
+          "وابستگی به مقدار ورودی"
+        ]
+      },
+      "source_page": 42
+    }
+  ],
+  "question_pages": [
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    16,
+    18,
+    19,
+    20,
+    21,
+    23,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    39,
+    40,
+    42,
+    45,
+    47,
+    48,
+    53,
+    54,
+    55,
+    56,
+    62,
+    67,
+    68,
+    69,
+    71,
+    72
+  ],
+  "class_activity_pages": [],
+  "programming_tutorial_pages": [
+    74
+  ],
+  "reference_python": "3.14.3",
+  "limits_fa": "کد و داده‌های کوچک، تألیف مستقل برای بررسی همین سازوکارند؛ بازتولید آزمایش مقاله یا تکلیف رسمی Canvas نیستند. نتیجه فقط به محاسبات و پارامترهای همین کد مربوط است.",
+  "source_retrieved_at_utc": "2026-10-25T08:44:48.765542+00:00",
+  "related_labs": []
+}

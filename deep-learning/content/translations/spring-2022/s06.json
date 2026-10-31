@@ -1,0 +1,1666 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s06",
+  "source_sha256": "099a958894ff28acf01814ec6955f59d1d513ae4d836581d19eeb0b781dd2902",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "504bb9c11af2149a17b3f29e9e3421ab104bf0eed1407a5f974b063a67f78419",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "آموزش شبکهٔ عصبی (Neural Network Training)\nدانا گوراری (Danna Gurari)\nدانشگاه کلرادو بولدر (University of Colorado Boulder)\nبهار 2022\nhttps://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "64a336814be441ba967bec2dd7ab15845843c5fef6c9e32396cefb8ddd5a72da",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "مرور\n• جلسهٔ گذشته:\n• تابع هدف (Objective Function): چه چیزی یاد بگیریم\n• نزول گرادیان (Gradient Descent): چگونه یاد بگیریم\n• آموزش شبکهٔ عصبی: بهینه‌سازی (Optimization)\n• نزول گرادیان برای توابع فعال‌سازی (Activation Functions) مختلف\n• تکالیف (Canvas):\n• نمره‌های مجموعه‌مسئلهٔ 1 اعلام شده‌اند.\n• مهلت تکلیف آزمایشگاهی 1 دوشنبه است.\n• پرسشی دارید؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "0268d35a727fe96ea1da6d9d36c0a7be376efec4602c328df49054ebc820e4ef",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• قضیهٔ تقریب همگانی (Universal Approximation Theorem)\n• انتخاب ظرفیت مدل (Model Capacity): پرهیز از بیش‌برازش (Overfitting) و کم‌برازش (Underfitting)\n• انتخاب ابرپارامترهای مدل (Hyperparameters)\n• یادگیری کارآمد: روش‌های بهینه‌سازی (Optimization Methods)\n• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "0268d35a727fe96ea1da6d9d36c0a7be376efec4602c328df49054ebc820e4ef",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• قضیهٔ تقریب همگانی (Universal Approximation Theorem)\n• انتخاب ظرفیت مدل (Model Capacity): پرهیز از بیش‌برازش (Overfitting) و کم‌برازش (Underfitting)\n• انتخاب ابرپارامترهای مدل (Hyperparameters)\n• یادگیری کارآمد: روش‌های بهینه‌سازی (Optimization Methods)\n• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "849fa8e6dc9503bdb4b8716ee223f8ad66277d2cafe6742c7902ea2ddd38096c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "kind": "text",
+          "fa": "زمینهٔ تاریخی: تقریب‌زن همگانی (Universal Approximator)؛ نخستین ماشین برنامه‌پذیر\n2012\nیادگیری ماشین (Machine Learning)\nآزمون تورینگ (Turing Test)\n1945\nهوش مصنوعی (AI)\n1956\n1950 1959\nشبکه‌های عصبی با راهبرد یادگیری مؤثر\n1986\nموج 3: اوج‌گیری «یادگیری عمیق» (Deep Learning)\n1957 پرسپترون (Perceptron)\n1847 1989 نزول گرادیان (Gradient Descent)\nنخستین مقالهٔ تقریب همگانی شبکهٔ عصبی (NN)\nHornik, Stinchcombe and White. Multilayer feedforward networks are universal approximators. Neural Networks, 1989"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "f6d44fc1b2980b876918baaacdd9de9ed91763687c1f1eb1036366a8dc2fc2a4",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "«قضیهٔ تقریب همگانی (Universal Approximation Theorem) یعنی صرف‌نظر از اینکه سعی داریم چه تابعی را یاد بگیریم، می‌دانیم که یک MLP [پرسپترون چندلایه؛ Multilayer Perceptron] بزرگ قادر خواهد بود این تابع را بازنمایی کند.»\n- فصل 6.4.1 کتاب Deep Learning اثر Goodfellow"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "9f010029027f66cae879140e5aefdbd152584c695ee88ef7604f6b2832717be3",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21
+          ],
+          "kind": "text",
+          "fa": "زمینهٔ تاریخی: چالش؛ نخستین ماشین برنامه‌پذیر\n2012\nیادگیری ماشین (Machine Learning)\nآزمون تورینگ (Turing Test)\n1945\nهوش مصنوعی (AI)\n1956\n1950 1959\nشبکه‌های عصبی با راهبرد یادگیری مؤثر\n1986\nموج 3: اوج‌گیری «یادگیری عمیق» (Deep Learning)\n1957 پرسپترون (Perceptron)\n1847 نزول گرادیان (Gradient Descent)\nمقالهٔ تقریب همگانی (Universal Approximation)\nHornik, Stinchcombe and White. Multilayer feedforward networks are universal approximators. Neural Networks, 1989\n1996\nقضیهٔ ناهار رایگان وجود ندارد (No Free Lunch Theorem)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "93f2ef8f7c706aae185fffb344691478c31c3ce87ae666085c77694bd29b2c9b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "«قضیهٔ ناهار رایگان وجود ندارد (No Free Lunch Theorem)... هیچ الگوریتم یادگیری ماشین به‌صورت همگانی از هیچ الگوریتم دیگری بهتر نیست.»\n- فصل 5.2.1 کتاب Deep Learning اثر Goodfellow"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "6f3e767e8962c72a037c8cdba300f8930c222a48f6e5d87106f20052c554b07e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "هدف یادگیری عمیق (Deep Learning)\nاز آنجا که شبکه‌های عصبی در نظریه می‌توانند هر تابعی را بازنمایی کنند، چگونه مدل‌هایی را یاد بگیریم که برای داده‌های تولیدشده در مسائل دنیای واقعی خوب عمل کنند..."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "0268d35a727fe96ea1da6d9d36c0a7be376efec4602c328df49054ebc820e4ef",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• قضیهٔ تقریب همگانی (Universal Approximation Theorem)\n• انتخاب ظرفیت مدل (Model Capacity): پرهیز از بیش‌برازش (Overfitting) و کم‌برازش (Underfitting)\n• انتخاب ابرپارامترهای مدل (Hyperparameters)\n• یادگیری کارآمد: روش‌های بهینه‌سازی (Optimization Methods)\n• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "14ea06611a96c8ec35467246e1797587ffedadd7d97574b96c00f74e3a47a547",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "• رویکرد طبقه‌بندی مبتنی بر مدل (Model-based Classification): x را از o جدا کنید.\nمنبع شکل: https://medium.com/greyatom/what-is-underfitting-and￾overfitting-in-machine-learning-and-how-to-deal-with-it-6803a989c76\nیادآوری: تمرین کلاسی جلسهٔ 1\nداوطلب کلاسی:\n1) یک خط راست رسم کنید (معادلهٔ خطی).\n2) یک سهمی رسم کنید (معادلهٔ درجهٔ دوم).\n3) هر منحنی‌ای می‌خواهید رسم کنید.\nمدل‌هایی با ظرفیت بازنمایی (Representational Capacity) فزاینده"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "f8a09db6499d5643bc9c966ef8dda30d928beb035e4396fa3d4cb71ec4b22ddc",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "ظرفیت مدل (Model Capacity)\nمنبع شکل: https://towardsdatascience.com/underfitting-and￾overfitting-in-machine-learning-and-how-to-deal-with-it-6fe4a8a49dbf\nکدام مدل را برای جداکردن x از o انتخاب می‌کنید؟\n(a) (b) (c)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "429ce11728fa05d07a05724dc57980b9ceb2d6ef62af56e40f73ff3b93387ec8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "ظرفیت مدل (Model Capacity)\nمنبع شکل: https://towardsdatascience.com/underfitting-and￾overfitting-in-machine-learning-and-how-to-deal-with-it-6fe4a8a49dbf\n(a) (b) (c)\nکم‌برازش (Underfits): برای توضیح داده‌ها بیش از حد ساده است.\nبیش‌برازش (Overfits): برای تعمیم (Generalization) به مجموعهٔ آزمون بیش از حد پیچیده است."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "0967e936181c0d733e12184d0d156bc8640d12685d30aa2dd98892ef9740023e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "ظرفیت مدل (Model Capacity)\nمنبع شکل: https://towardsdatascience.com/underfitting-and￾overfitting-in-machine-learning-and-how-to-deal-with-it-6fe4a8a49dbf\n(a) (b) (c)\nکم‌برازش (Underfits): برای توضیح داده‌ها بیش از حد ساده است.\nبیش‌برازش (Overfits): برای تعمیم (Generalization) به مجموعهٔ آزمون بیش از حد پیچیده است.\nچالشی اصلی برای شبکه‌های عصبی (Neural Networks)، زیرا پارامترهای زیادی دارند."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "b98435ebf791585222d1cf0863e8bb4d5be4df68ddf1d361ef641ef52350eeaf",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "ظرفیت مدل (Model Capacity): بیش‌برازش (Overfitting)\nمنبع شکل: https://towardsdatascience.com/underfitting-and￾overfitting-in-machine-learning-and-how-to-deal-with-it-6fe4a8a49dbf\n• مدل‌هایی که بیش‌برازش دارند چه چیزی یاد می‌گیرند؟\n• چگونگی مدل‌کردن نویز (Noise)!\n• چه چیزی ممکن است در یک مجموعه‌داده نویز ایجاد کند؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "a19b208347f24d8316c96dd828160c23ef6f163263e46b84ad4b047bd51c4685",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "kind": "text",
+          "fa": "ظرفیت مدل (Model Capacity): بیش‌برازش (Overfitting)\n• برای تشخیص بیش‌برازش، خطا/زیان (Error/Loss) مدل‌های آزموده‌شده روی داده‌های آموزش و داده‌های آزمون را تحلیل کنید.\n• با افزایش تعداد گام‌های آموزش، چه بر سر خطای داده‌های آموزش می‌آید؟\n• خطا کاهش می‌یابد.\n• با افزایش تعداد گام‌های آموزش، چه بر سر خطای داده‌های آزمون می‌آید؟\n• خطا کاهش می‌یابد و سپس افزایش پیدا می‌کند.\n• چرا خطای آموزش کاهش می‌یابد و خطای آزمون افزایش پیدا می‌کند؟\n• مدل‌کردن نویز داده‌های آموزش (یعنی «بیش‌برازش») خطای آموزش را به بهای ازدست‌دادن دانشی که به داده‌های آزمون مشاهده‌نشده تعمیم می‌یابد کاهش می‌دهد.\nمنبع تصویر: https://chatbotslife.com/regularization-in-deep-learning-f649a45d6e0"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Error",
+          "fa": "خطا (Error)",
+          "verified": true
+        },
+        {
+          "en": "Testing Error",
+          "fa": "خطای آزمون (Testing Error)",
+          "verified": true
+        },
+        {
+          "en": "Training Error",
+          "fa": "خطای آموزش (Training Error)",
+          "verified": true
+        },
+        {
+          "en": "Training steps",
+          "fa": "گام‌های آموزش (Training Steps)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "7119925474045dc719cc38bd531f50999e3a4089bbd3da649f054ea77092561c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "ظرفیت مدل (Model Capacity): چگونه از بیش‌برازش (Overfitting) جلوگیری کنیم؟\nمنبع تصویر: https://chatbotslife.com/regularization-in-deep-learning-f649a45d6e0\nیک راه‌حل:\nاز این مدل استفاده کنید.\nتوقف زودهنگام (Early Stopping)؛ افزودن داده‌های آموزش\nروش‌های بسیار بیشتری در این درس بررسی خواهند شد..."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Error",
+          "fa": "خطا (Error)",
+          "verified": true
+        },
+        {
+          "en": "Testing Error",
+          "fa": "خطای آزمون (Testing Error)",
+          "verified": true
+        },
+        {
+          "en": "Training Error",
+          "fa": "خطای آموزش (Training Error)",
+          "verified": true
+        },
+        {
+          "en": "Training steps",
+          "fa": "گام‌های آموزش (Training Steps)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "429ce11728fa05d07a05724dc57980b9ceb2d6ef62af56e40f73ff3b93387ec8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "ظرفیت مدل (Model Capacity)\nمنبع شکل: https://towardsdatascience.com/underfitting-and￾overfitting-in-machine-learning-and-how-to-deal-with-it-6fe4a8a49dbf\n(a) (b) (c)\nکم‌برازش (Underfits): برای توضیح داده‌ها بیش از حد ساده است.\nبیش‌برازش (Overfits): برای تعمیم (Generalization) به مجموعهٔ آزمون بیش از حد پیچیده است."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "c90edc58c5f4f32971dc0a157a078fd2d937a160987b8ab4159ef4d858e5a17d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "ظرفیت مدل (Model Capacity): کم‌برازش (Underfitting)\n• برای تشخیص بیش‌برازش (Overfitting)، خطا/زیان (Error/Loss) مدل‌های آزموده‌شده روی داده‌های آموزش (و در صورت تمایل داده‌های آزمون) را تحلیل کنید.\n• با افزایش تعداد گام‌های آموزش، چه بر سر خطای داده‌های آموزش می‌آید؟\n• خطا بالا باقی می‌ماند.\n• با افزایش تعداد گام‌های آموزش، چه بر سر خطای داده‌های آزمون می‌آید؟\n• خطا بالا باقی می‌ماند.\nخطای آموزش (Training Error)\nخطای آزمون (Test Error)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Error",
+          "fa": "خطا (Error)",
+          "verified": true
+        },
+        {
+          "en": "Training steps",
+          "fa": "گام‌های آموزش (Training Steps)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "7a9598f14172224e642f36ff2aebd46df194ccd5507cb270145cc1e6fff71cf3",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "ظرفیت مدل (Model Capacity): چگونه از کم‌برازش (Underfitting) جلوگیری کنیم؟\nپیچیدگی بازنمایی را افزایش دهید؛ مثلاً تعداد لایه‌ها و/یا واحدهای شبکهٔ عصبی را بیشتر کنید."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "145225199af7fc069cc778e6d317b841593468531305526e5f9fc6dc6a9426e7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "هدف: مدلی با ظرفیتی یاد بگیرید که نه خیلی کوچک و نه خیلی بزرگ باشد، تا هنگام پیش‌بینی روی داده‌های آزمونِ پیش‌تر دیده‌نشده، خوب تعمیم (Generalization) یابد."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "0268d35a727fe96ea1da6d9d36c0a7be376efec4602c328df49054ebc820e4ef",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• قضیهٔ تقریب همگانی (Universal Approximation Theorem)\n• انتخاب ظرفیت مدل (Model Capacity): پرهیز از بیش‌برازش (Overfitting) و کم‌برازش (Underfitting)\n• انتخاب ابرپارامترهای مدل (Hyperparameters)\n• یادگیری کارآمد: روش‌های بهینه‌سازی (Optimization Methods)\n• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "81baf7c2cec76d1421119681218c6d5b5a8481280f1ac7d6ef8163eb40c6f8e7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "یادآوری: هدف ما طراحی مدل‌هایی است که به نمونه‌های تازه و پیش‌تر دیده‌نشده (داده‌های آزمون؛ Test Data) خوب تعمیم (Generalization) یابند.\nداده‌های آموزش (Training Data)؛ داده‌های آزمون\nمثال:\nبرچسب: پُرمو (Hairy)؛ پُرمو؛ بدون مو (Not Hairy)؛ پُرمو\nچالش اصلی: چگونه بدون مشاهدهٔ مکرر داده‌های آزمون (که به بیش‌برازش؛ Overfitting منجر می‌شود) مدل را انتخاب کنیم؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "d5732edf99dcd1cabe1c99e4497b3417fabf13f019457b19e56007cb2f4d664d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "تصمیم‌های طراحی مدل\nچالش اصلی: چگونه بدون مشاهدهٔ مکرر داده‌های آزمون (که به بیش‌برازش؛ Overfitting منجر می‌شود) مدل را انتخاب کنیم؟\nپارامترهای مدل (Model Parameters؛ یاد گرفته می‌شوند)\n• وزن‌ها (Weights)\n• بایاس‌ها (Biases)\nابرپارامترهای مدل (Model Hyperparameters؛ انتخاب می‌شوند)؛ مثلاً:\n• تعداد لایه‌ها\n• تعداد واحدها در هر لایه\n• تابع فعال‌سازی (Activation Function)\n• اندازهٔ دسته (Batch Size)\n• نرخ یادگیری (Learning Rate)\n• ..."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "fb92dfebebfe796d32e77a315121512b5d86cfe4eb3245501b44699b180ee773",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "تنظیم ابرپارامترها (Hyperparameter Tuning): مجموعهٔ آموزش را تقسیم کنید تا بتوان از آن برای آزمودن ابرپارامترهای مختلف استفاده کرد.\nبرای نتایج آماری قوی:\nمجموعه‌دادهٔ آموزش کوچک: اعتبارسنجی متقاطع (Cross Validation)؛ در غیر این صورت: تقسیم آموزش/اعتبارسنجی (Train/Validation Split)\nhttps://kevinzakka.github.io/2016/07/13/k-nearest-neighbor/\nhttps://github.com/amueller/introduction_to_ml_with_python/blob/master/05-model-evaluation-and-improvement.ipynb"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Fold 1; Fold 2; Fold 3; Fold 4; Fold 5",
+          "fa": "بخش (Fold) 1؛ بخش 2؛ بخش 3؛ بخش 4؛ بخش 5",
+          "verified": true
+        },
+        {
+          "en": "Split 1; Split 2; Split 3; Split 4; Split 5",
+          "fa": "تقسیم (Split) 1؛ تقسیم 2؛ تقسیم 3؛ تقسیم 4؛ تقسیم 5",
+          "verified": true
+        },
+        {
+          "en": "Finding Parameters",
+          "fa": "یافتن پارامترها (Finding Parameters)",
+          "verified": true
+        },
+        {
+          "en": "Final evaluation",
+          "fa": "ارزیابی نهایی (Final Evaluation)",
+          "verified": true
+        },
+        {
+          "en": "Test data",
+          "fa": "داده‌های آزمون (Test Data)",
+          "verified": true
+        },
+        {
+          "en": "training set",
+          "fa": "مجموعهٔ آموزش (Training Set)",
+          "verified": true
+        },
+        {
+          "en": "validation set",
+          "fa": "مجموعهٔ اعتبارسنجی (Validation Set)",
+          "verified": true
+        },
+        {
+          "en": "test set",
+          "fa": "مجموعهٔ آزمون (Test Set)",
+          "verified": true
+        },
+        {
+          "en": "Model fitting",
+          "fa": "برازش مدل (Model Fitting)",
+          "verified": true
+        },
+        {
+          "en": "Parameter selection",
+          "fa": "انتخاب پارامتر (Parameter Selection)",
+          "verified": true
+        },
+        {
+          "en": "Evaluation",
+          "fa": "ارزیابی (Evaluation)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "09145634d35f121338533ab1a8100a5820ceb603d599636c1e84c9793852d059",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "اعتبارسنجی متقاطع (Cross-Validation): اثر تقسیم مجموعه‌داده را محدود کنید\nhttps://kevinzakka.github.io/2016/07/13/k-nearest-neighbor/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Fold 1; Fold 2; Fold 3; Fold 4; Fold 5",
+          "fa": "بخش (Fold) 1؛ بخش 2؛ بخش 3؛ بخش 4؛ بخش 5",
+          "verified": true
+        },
+        {
+          "en": "Split 1; Split 2; Split 3; Split 4; Split 5",
+          "fa": "تقسیم (Split) 1؛ تقسیم 2؛ تقسیم 3؛ تقسیم 4؛ تقسیم 5",
+          "verified": true
+        },
+        {
+          "en": "Finding Parameters",
+          "fa": "یافتن پارامترها (Finding Parameters)",
+          "verified": true
+        },
+        {
+          "en": "Final evaluation",
+          "fa": "ارزیابی نهایی (Final Evaluation)",
+          "verified": true
+        },
+        {
+          "en": "Test data",
+          "fa": "داده‌های آزمون (Test Data)",
+          "verified": true
+        },
+        {
+          "en": "All Data",
+          "fa": "همهٔ داده‌ها (All Data)",
+          "verified": true
+        },
+        {
+          "en": "Training data",
+          "fa": "داده‌های آموزش (Training Data)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "c7979580571a9eb3ec4b1fde6975eae75b216252561ba60ec0f5febfb153737e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "اعتبارسنجی متقاطع (Cross-Validation): اثر تقسیم مجموعه‌داده را محدود کنید\nپُرمو (Hairy)؛ پُرمو؛ بدون مو (Not Hairy)\nورودی (Input):\nبرچسب (Label): بدون مو (Not Hairy)\n1/3 1/3 1/3\nمثلاً اعتبارسنجی متقاطع 3 بخشی (3-fold Cross-validation) روی داده‌های آموزش"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "0fb22783419f988c1cf164b1c3423ad7244a8bbdebaae7beb0e1015cbbc96ec2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "kind": "text",
+          "fa": "اعتبارسنجی متقاطع (Cross-Validation): اثر تقسیم مجموعه‌داده را محدود کنید\nپُرمو (Hairy)؛ پُرمو؛ بدون مو (Not Hairy)\nورودی (Input):\nبرچسب (Label):\nداده‌های آزمون (Testing Data)\nبخش (Fold) 2:\n- آموزش روی k-1 بخش\n- آزمون روی k بخش ?\n? ? بدون مو (Not Hairy)\nورودی (Input):\nبرچسب (Label):\nداده‌های آزمون (Testing Data)\nبخش (Fold) 3:\n- آموزش روی k-1 بخش\n- آزمون روی k بخش بدون مو (Not Hairy)\nپُرمو (Hairy)؛ پُرمو؛ ؟\nورودی (Input):\nبرچسب (Label): بدون مو (Not Hairy)\nداده‌های آزمون (Testing Data)\nبخش (Fold) 1:\n- آموزش روی k-1 بخش\n- آزمون روی k بخش\nمثلاً اعتبارسنجی متقاطع 3 بخشی (3-fold Cross-validation) روی داده‌های آموزش"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "4038c3c97d6a5dfbc574278ff6f6bc089f29d1353480007a0627f3e326462564",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "اعتبارسنجی متقاطع (Cross-Validation): اثر تقسیم مجموعه‌داده را محدود کنید\nداده‌های آزمون (Testing Data)\n?\nداده‌های آزمون (Testing Data)\n? ?\nداده‌های آزمون (Testing Data)\nعملکرد مدل (Model Performance): ؟ عملکرد در تمام بخش‌های داده‌های «آزمون»\nمثلاً اعتبارسنجی متقاطع 3 بخشی (3-fold Cross-validation) روی داده‌های آموزش"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "1268df0cb1d20ec0cdd2872e99cf01d70d6d916cbe9574d96f8cb4b319e738b0",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "اعتبارسنجی متقاطع (Cross-Validation): اثر تقسیم مجموعه‌داده را محدود کنید\nپُرمو (Hairy)؛ پُرمو؛ بدون مو (Not Hairy)\nورودی (Input):\nبرچسب (Label): بدون مو (Not Hairy)\nداده‌ها را به چند بخش تقسیم کنیم؟\n1/5 1/5 1/5 1/5 1/5\nمثلاً اعتبارسنجی متقاطع 5 بخشی (5-fold Cross-validation) روی داده‌های آموزش"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "c32d5bcc59845c25055c11e7c080dea13eb20a89d02f20beaf5dae5e93b0dfd2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "اعتبارسنجی متقاطع (Cross-Validation): اثر تقسیم مجموعه‌داده را محدود کنید\nپُرمو (Hairy)؛ پُرمو؛ بدون مو (Not Hairy)\nورودی (Input):\nبرچسب (Label): بدون مو (Not Hairy)\nچند تکرارِ آموزش و آزمون انجام دهیم؟\nتکرار 1: داده‌های آزمون تکرار 2: داده‌های آزمون تکرار 3: داده‌های آزمون تکرار 4: داده‌های آزمون تکرار 5: داده‌های آزمون\nمثلاً اعتبارسنجی متقاطع 5 بخشی (5-fold Cross-validation) روی داده‌های آموزش"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "51c8035a14f082d704eb631a0257ca7f6fd3e6b82a2a7c49f6d905998144ec3a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "اعتبارسنجی متقاطع (Cross-Validation): اثر تقسیم مجموعه‌داده را محدود کنید\nپُرمو (Hairy)؛ پُرمو؛ بدون مو (Not Hairy)\nورودی (Input):\nبرچسب (Label): بدون مو (Not Hairy)\nداده‌ها را به چند بخش تقسیم کنیم؟\n1/10 1/10 1/10 1/10 1/10 1/10 1/10 1/10 1/10 1/10\nمثلاً اعتبارسنجی متقاطع 10 بخشی (10-fold Cross-validation) روی داده‌های آموزش"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "157ed69b651d9106be0858f2dca4e490fff02a5b84743d0e3acbc6cc167c402b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "اعتبارسنجی متقاطع (Cross-Validation): اثر تقسیم مجموعه‌داده را محدود کنید\nپُرمو (Hairy)؛ پُرمو؛ بدون مو (Not Hairy)\nورودی (Input):\nبرچسب (Label): بدون مو (Not Hairy)\nتکرار 1 تکرار 2 تکرار 3 تکرار 4 تکرار 5 تکرار 6 تکرار 7 تکرار 8 تکرار 9 تکرار 10\nچند تکرارِ آموزش و آزمون انجام دهیم؟\nمثلاً اعتبارسنجی متقاطع 10 بخشی (10-fold Cross-validation) روی داده‌های آموزش"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "cd29b218373a65ab9322e2efc64e7ed7d0da03152301c7a27daafc32ff4cd543",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "اعتبارسنجی متقاطع (Cross-Validation): اثر تقسیم مجموعه‌داده را محدود کنید\nپُرمو (Hairy)؛ پُرمو؛ بدون مو (Not Hairy)\nورودی (Input):\nبرچسب (Label): بدون مو (Not Hairy)\nاستفاده از مقدارهای بزرگ‌تر برای «k» چه مزایا و معایبی دارد؟\nمثلاً اعتبارسنجی متقاطع k بخشی (k-fold Cross-validation) روی داده‌های آموزش"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "8d02b5de82d0d091204df17b26df8c6edf7a1c721d465d78bbb255b153802071",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "اعتبارسنجی متقاطع (Cross-Validation): اثر تقسیم مجموعه‌داده را محدود کنید\nhttps://kevinzakka.github.io/2016/07/13/k-nearest-neighbor/\nمعمولاً ابرپارامترهایی (Hyperparameters) را انتخاب کنید که در مجموعِ همهٔ بخش‌ها بهترین نتایج را به همراه دارند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Fold 1; Fold 2; Fold 3; Fold 4; Fold 5",
+          "fa": "بخش (Fold) 1؛ بخش 2؛ بخش 3؛ بخش 4؛ بخش 5",
+          "verified": true
+        },
+        {
+          "en": "Split 1; Split 2; Split 3; Split 4; Split 5",
+          "fa": "تقسیم (Split) 1؛ تقسیم 2؛ تقسیم 3؛ تقسیم 4؛ تقسیم 5",
+          "verified": true
+        },
+        {
+          "en": "Finding Parameters",
+          "fa": "یافتن پارامترها (Finding Parameters)",
+          "verified": true
+        },
+        {
+          "en": "Final evaluation",
+          "fa": "ارزیابی نهایی (Final Evaluation)",
+          "verified": true
+        },
+        {
+          "en": "Test data",
+          "fa": "داده‌های آزمون (Test Data)",
+          "verified": true
+        },
+        {
+          "en": "All Data",
+          "fa": "همهٔ داده‌ها (All Data)",
+          "verified": true
+        },
+        {
+          "en": "Training data",
+          "fa": "داده‌های آموزش (Training Data)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "fb92dfebebfe796d32e77a315121512b5d86cfe4eb3245501b44699b180ee773",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "تنظیم ابرپارامترها (Hyperparameter Tuning): مجموعهٔ آموزش را تقسیم کنید تا بتوان از آن برای آزمودن ابرپارامترهای مختلف استفاده کرد.\nبرای نتایج آماری قوی:\nمجموعه‌دادهٔ آموزش کوچک: اعتبارسنجی متقاطع (Cross Validation)؛ در غیر این صورت: تقسیم آموزش/اعتبارسنجی (Train/Validation Split)\nhttps://kevinzakka.github.io/2016/07/13/k-nearest-neighbor/\nhttps://github.com/amueller/introduction_to_ml_with_python/blob/master/05-model-evaluation-and-improvement.ipynb"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Fold 1; Fold 2; Fold 3; Fold 4; Fold 5",
+          "fa": "بخش (Fold) 1؛ بخش 2؛ بخش 3؛ بخش 4؛ بخش 5",
+          "verified": true
+        },
+        {
+          "en": "Split 1; Split 2; Split 3; Split 4; Split 5",
+          "fa": "تقسیم (Split) 1؛ تقسیم 2؛ تقسیم 3؛ تقسیم 4؛ تقسیم 5",
+          "verified": true
+        },
+        {
+          "en": "Finding Parameters",
+          "fa": "یافتن پارامترها (Finding Parameters)",
+          "verified": true
+        },
+        {
+          "en": "Final evaluation",
+          "fa": "ارزیابی نهایی (Final Evaluation)",
+          "verified": true
+        },
+        {
+          "en": "Test data",
+          "fa": "داده‌های آزمون (Test Data)",
+          "verified": true
+        },
+        {
+          "en": "training set",
+          "fa": "مجموعهٔ آموزش (Training Set)",
+          "verified": true
+        },
+        {
+          "en": "validation set",
+          "fa": "مجموعهٔ اعتبارسنجی (Validation Set)",
+          "verified": true
+        },
+        {
+          "en": "test set",
+          "fa": "مجموعهٔ آزمون (Test Set)",
+          "verified": true
+        },
+        {
+          "en": "Model fitting",
+          "fa": "برازش مدل (Model Fitting)",
+          "verified": true
+        },
+        {
+          "en": "Parameter selection",
+          "fa": "انتخاب پارامتر (Parameter Selection)",
+          "verified": true
+        },
+        {
+          "en": "Evaluation",
+          "fa": "ارزیابی (Evaluation)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "02be7c4a2e99c1825036aa45240bf640b79db83d8ef635ee46b90ee0d63e25e2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "تقسیم اعتبارسنجی (Validation Split)\n• داده‌های آموزش را به مجموعه‌داده‌های «آموزش» (Train) و «اعتبارسنجی» (Validation) تقسیم کنید.\n• انتخاب ابرپارامتر (Hyperparameter Selection): مدل‌های آموزش‌دیده با مقدارهای مختلف ابرپارامتر را روی مجموعهٔ اعتبارسنجی بیازمایید تا بهترین مورد را پیدا کنید.\n• مدل نهایی: با ابرپارامترهایی که از آزمون مجموعهٔ اعتبارسنجی انتخاب شده‌اند، با استفاده از داده‌های هر دو بخش آموزش و اعتبارسنجی دوباره آموزش دهید.\nhttps://github.com/amueller/introduction_to_ml_with_python/blob/master/05-model-evaluation-and-improvement.ipynb"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "training set",
+          "fa": "مجموعهٔ آموزش (Training Set)",
+          "verified": true
+        },
+        {
+          "en": "validation set",
+          "fa": "مجموعهٔ اعتبارسنجی (Validation Set)",
+          "verified": true
+        },
+        {
+          "en": "test set",
+          "fa": "مجموعهٔ آزمون (Test Set)",
+          "verified": true
+        },
+        {
+          "en": "Model fitting",
+          "fa": "برازش مدل (Model Fitting)",
+          "verified": true
+        },
+        {
+          "en": "Parameter selection",
+          "fa": "انتخاب پارامتر (Parameter Selection)",
+          "verified": true
+        },
+        {
+          "en": "Evaluation",
+          "fa": "ارزیابی (Evaluation)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "fb92dfebebfe796d32e77a315121512b5d86cfe4eb3245501b44699b180ee773",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "تنظیم ابرپارامترها (Hyperparameter Tuning): مجموعهٔ آموزش را تقسیم کنید تا بتوان از آن برای آزمودن ابرپارامترهای مختلف استفاده کرد.\nبرای نتایج آماری قوی:\nمجموعه‌دادهٔ آموزش کوچک: اعتبارسنجی متقاطع (Cross Validation)؛ در غیر این صورت: تقسیم آموزش/اعتبارسنجی (Train/Validation Split)\nhttps://kevinzakka.github.io/2016/07/13/k-nearest-neighbor/\nhttps://github.com/amueller/introduction_to_ml_with_python/blob/master/05-model-evaluation-and-improvement.ipynb"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Fold 1; Fold 2; Fold 3; Fold 4; Fold 5",
+          "fa": "بخش (Fold) 1؛ بخش 2؛ بخش 3؛ بخش 4؛ بخش 5",
+          "verified": true
+        },
+        {
+          "en": "Split 1; Split 2; Split 3; Split 4; Split 5",
+          "fa": "تقسیم (Split) 1؛ تقسیم 2؛ تقسیم 3؛ تقسیم 4؛ تقسیم 5",
+          "verified": true
+        },
+        {
+          "en": "Finding Parameters",
+          "fa": "یافتن پارامترها (Finding Parameters)",
+          "verified": true
+        },
+        {
+          "en": "Final evaluation",
+          "fa": "ارزیابی نهایی (Final Evaluation)",
+          "verified": true
+        },
+        {
+          "en": "Test data",
+          "fa": "داده‌های آزمون (Test Data)",
+          "verified": true
+        },
+        {
+          "en": "training set",
+          "fa": "مجموعهٔ آموزش (Training Set)",
+          "verified": true
+        },
+        {
+          "en": "validation set",
+          "fa": "مجموعهٔ اعتبارسنجی (Validation Set)",
+          "verified": true
+        },
+        {
+          "en": "test set",
+          "fa": "مجموعهٔ آزمون (Test Set)",
+          "verified": true
+        },
+        {
+          "en": "Model fitting",
+          "fa": "برازش مدل (Model Fitting)",
+          "verified": true
+        },
+        {
+          "en": "Parameter selection",
+          "fa": "انتخاب پارامتر (Parameter Selection)",
+          "verified": true
+        },
+        {
+          "en": "Evaluation",
+          "fa": "ارزیابی (Evaluation)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "fddf7e892c9aba9116777bd68c37c471fccb8b82d317a5d0170043ff2c5aee95",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "تقسیم‌های طبقه‌بندی‌شدهٔ مجموعه‌داده (Stratified Dataset Splits)\n• فراوانی هر دسته را در هر بخش مجموعه‌داده حفظ کنید؛ مثلاً،\nhttps://github.com/amueller/introduction_to_ml_with_python/blob/master/05-model-evaluation-and-improvement.ipynb"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Standard cross-validation with sorted class labels",
+          "fa": "اعتبارسنجی متقاطع استاندارد (Standard Cross-validation) با برچسب‌های کلاس مرتب‌شده",
+          "verified": true
+        },
+        {
+          "en": "Stratified Cross-validation",
+          "fa": "اعتبارسنجی متقاطع طبقه‌بندی‌شده (Stratified Cross-validation)",
+          "verified": true
+        },
+        {
+          "en": "Class label",
+          "fa": "برچسب کلاس (Class Label)",
+          "verified": true
+        },
+        {
+          "en": "Class 0; Class 1; Class 2",
+          "fa": "کلاس (Class) 0؛ کلاس 1؛ کلاس 2",
+          "verified": true
+        },
+        {
+          "en": "Data points",
+          "fa": "نقاط داده (Data Points)",
+          "verified": true
+        },
+        {
+          "en": "CV iterations",
+          "fa": "تکرارهای اعتبارسنجی متقاطع (CV Iterations)",
+          "verified": true
+        },
+        {
+          "en": "Training data",
+          "fa": "داده‌های آموزش (Training Data)",
+          "verified": true
+        },
+        {
+          "en": "Test data",
+          "fa": "داده‌های آزمون (Test Data)",
+          "verified": true
+        },
+        {
+          "en": "Split 1; Split 2; Split 3",
+          "fa": "تقسیم (Split) 1؛ تقسیم 2؛ تقسیم 3",
+          "verified": true
+        },
+        {
+          "en": "Fold 1; Fold 2; Fold 3",
+          "fa": "بخش (Fold) 1؛ بخش 2؛ بخش 3",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "0268d35a727fe96ea1da6d9d36c0a7be376efec4602c328df49054ebc820e4ef",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• قضیهٔ تقریب همگانی (Universal Approximation Theorem)\n• انتخاب ظرفیت مدل (Model Capacity): پرهیز از بیش‌برازش (Overfitting) و کم‌برازش (Underfitting)\n• انتخاب ابرپارامترهای مدل (Hyperparameters)\n• یادگیری کارآمد: روش‌های بهینه‌سازی (Optimization Methods)\n• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "957a10c09cf5907bb3776663b9456e9f5b495c57143fd8dacd2a0d0c6e39b0b1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "چالش: سریع‌تر آموزش دهید!!!\nبا کلان‌داده (Big Data) و این تعداد زیاد پارامتر، آموزش الگوریتم ممکن است ساعت‌ها، روزها، هفته‌ها، ماه‌ها یا بیشتر طول بکشد..."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "641ca1f5ec3d7d3be78ba5a6ab675f7d92cd9197513dd23fecc04c1622784cde",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "kind": "text",
+          "fa": "یادآوری: شبکه‌های عصبی (Neural Networks) چگونه یاد می‌گیرند\n• تا برآورده‌شدن معیار توقف تکرار کنید:\n1. گذر رو به جلو (Forward Pass): داده‌های آموزش را از مدل عبور دهید تا پیش‌بینی انجام شود.\n2. نارضایتی از نتایج مدل روی داده‌های آموزش را کمّی کنید.\n3. گذر رو به عقب (Backward Pass): با استفاده از خروجی پیش‌بینی‌شده، گرادیان‌ها را در جهت عقب محاسبه کنید تا سهم تقصیر هر پارامتر مدل مشخص شود.\n4. هر پارامتر را با استفاده از گرادیان‌های محاسبه‌شده به‌روز کنید.\nشکل از: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul,\nJeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(a) Forward pass",
+          "fa": "(a) گذر رو به جلو (Forward Pass)",
+          "verified": true
+        },
+        {
+          "en": "(b) Backward pass",
+          "fa": "(b) گذر رو به عقب (Backward Pass)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "6c5b55c37ded39efb9b405e3c661bd6baa22ee242d8de2d8677fb873e29aeda6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "آموزش سریع‌تر: چگونه با استفاده از گرادیان (Gradient) به‌روز کنیم؟\n• نمایش در http://cs231n.github.io/neural-networks-3/#update"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "SGD",
+          "fa": "نزول گرادیان تصادفی (SGD)",
+          "verified": true
+        },
+        {
+          "en": "Momentum",
+          "fa": "مومنتوم (Momentum)",
+          "verified": true
+        },
+        {
+          "en": "NAG",
+          "fa": "NAG",
+          "verified": true
+        },
+        {
+          "en": "Adagrad; Adadelta; Rmsprop",
+          "fa": "Adagrad؛ Adadelta؛ Rmsprop",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "29f5b15634b8be81f530501663998a705ea787706bd46d090844bb47a3450692",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "آموزش سریع‌تر: چگونه با استفاده از گرادیان (Gradient) به‌روز کنیم؟\n• رویکرد ساده (Vanilla Approach):\nشکل از: https://rasbt.github.io/mlxtend/user_guide/general_concepts/gradient-optimization/\nناکارآمد است، زیرا با کوچک‌ترشدن گرادیان، گام‌ها کوچک‌تر می‌شوند.\nhttp://cs231n.github.io/neural-networks-3/#update\nپارامترها (Parameters)؛ گرادیان"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x += - learning_rate * dx",
+          "fa": "x += - learning_rate * dx",
+          "verified": true
+        },
+        {
+          "en": "Initial weight",
+          "fa": "وزن اولیه (Initial Weight)",
+          "verified": true
+        },
+        {
+          "en": "Global cost minimum",
+          "fa": "کمینهٔ سراسری هزینه (Global Cost Minimum)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "ad9706d4df57c2799271960b5a9ea43661cf3fa02be0906f48d784623dd55cfa",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "آموزش سریع‌تر: چگونه با استفاده از گرادیان (Gradient) به‌روز کنیم؟\n• بهینه‌سازی مومنتوم (Momentum Optimization):\n• تشبیه: توپی را به پایین تپه بغلتانید تا تکانه بگیرد.\nشکل از: https://medium.com/ai-society/hello-gradient-descent-ef74434bdfa5"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "31199a7cd86220b3c19a2e3e973edf54a69d70c506d50eee3aa0f817077ab993",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "kind": "text",
+          "fa": "آموزش سریع‌تر: چگونه با استفاده از گرادیان (Gradient) به‌روز کنیم؟\n• بهینه‌سازی مومنتوم (Momentum Optimization):\n• تشبیه: توپی را به پایین تپه بغلتانید تا تکانه بگیرد.\n• مزایا و معایب چیست؟\n• می‌تواند از کمینه‌های محلی (Local Minima) عبور کند. ☺\n• ممکن است از نقطهٔ بهینه عبور کند و در اطراف آن نوسان کند. ☹\n• یک ابرپارامتر (Hyperparameter) دیگر برای تنظیم: mu ☹\nhttp://cs231n.github.io/neural-networks-3/#update\nمانند اصطکاک؛ مقدارها از 0 تا 1 هستند و مقدار بزرگ‌تر به معنای اصطکاک بیشتر است.\nگرادیان برای سرعت استفاده نمی‌شود، بلکه برای شتاب به کار می‌رود.\nبردار سرعت (Velocity Vector)، جهت انباشتهٔ گرادیان‌های پیشین را ثبت می‌کند؛ با 0 مقداردهی اولیه می‌شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "v = mu * v - learning_rate * dx # integrate velocity",
+          "fa": "v = mu * v - learning_rate * dx # انتگرال‌گیری سرعت",
+          "verified": true
+        },
+        {
+          "en": "x += v # integrate position",
+          "fa": "x += v # انتگرال‌گیری موقعیت",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "f4cdb440d579aac1bb170f6706de1e8f000e0a13126c26e8ef0edc427aace7af",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "آموزش سریع‌تر: چگونه با استفاده از گرادیان (Gradient) به‌روز کنیم؟\n• کاهش پله‌ای (Step Decay):\n• هر چند دوره (Epochs)، نرخ یادگیری (Learning Rate) را با ضریبی کاهش دهید.\n• کاهش نمایی (Exponential Decay)\n• کاهش 1/t\n• نرخ یادگیری را برای هر پارامتر سازگار کنید.\n• مثلاً AdaGrad، RMSprop و Adam (یعنی مومنتوم تطبیقی؛ Adaptive Momentum ـ در عمل بسیار رایج است)\nhttp://cs231n.github.io/neural-networks-3/#update"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "9350700da43f853041b5cccc646abe9076d2118c28f1f2e8067bc413e9a6b6eb",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "پایش زیان/خطا (Loss/Error) هنگام آموزش\n• هنگام آموزش باید چه بر سر مقدار تابع زیان (Loss Function) بیاید؟\nhttps://cs231n.github.io/neural-networks-3/#update"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "loss",
+          "fa": "زیان (Loss)",
+          "verified": true
+        },
+        {
+          "en": "very high learning rate",
+          "fa": "نرخ یادگیری بسیار زیاد (Very High Learning Rate)",
+          "verified": true
+        },
+        {
+          "en": "low learning rate",
+          "fa": "نرخ یادگیری کم (Low Learning Rate)",
+          "verified": true
+        },
+        {
+          "en": "high learning rate",
+          "fa": "نرخ یادگیری زیاد (High Learning Rate)",
+          "verified": true
+        },
+        {
+          "en": "good learning rate",
+          "fa": "نرخ یادگیری مناسب (Good Learning Rate)",
+          "verified": true
+        },
+        {
+          "en": "epoch",
+          "fa": "دوره (Epoch)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "218d09f62ebb193269b62780ed6e5bcbe1d8ceecda0b52f4e863b4e0afadb900",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "پایش زیان/خطا (Loss/Error): باید کاهش یابد\nو در این مسیر خوش بگذرانید: https://lossfunctions.tumblr.com/"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "b48978c24a9c0df1627bcfc4852001a8d4a0a1b0e4c32d036e65d80fbbbd2fc2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "بحث: با توجه به این منحنی‌های زیان (Loss Curves)، فکر می‌کنید چه اتفاقی در یادگیری می‌افتد؟\n(a) (b) (c)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "train",
+          "fa": "آموزش (Train)",
+          "verified": true
+        },
+        {
+          "en": "val",
+          "fa": "اعتبارسنجی (Validation)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "0268d35a727fe96ea1da6d9d36c0a7be376efec4602c328df49054ebc820e4ef",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• قضیهٔ تقریب همگانی (Universal Approximation Theorem)\n• انتخاب ظرفیت مدل (Model Capacity): پرهیز از بیش‌برازش (Overfitting) و کم‌برازش (Underfitting)\n• انتخاب ابرپارامترهای مدل (Hyperparameters)\n• یادگیری کارآمد: روش‌های بهینه‌سازی (Optimization Methods)\n• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "0268d35a727fe96ea1da6d9d36c0a7be376efec4602c328df49054ebc820e4ef",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• قضیهٔ تقریب همگانی (Universal Approximation Theorem)\n• انتخاب ظرفیت مدل (Model Capacity): پرهیز از بیش‌برازش (Overfitting) و کم‌برازش (Underfitting)\n• انتخاب ابرپارامترهای مدل (Hyperparameters)\n• یادگیری کارآمد: روش‌های بهینه‌سازی (Optimization Methods)\n• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    }
+  ]
+}

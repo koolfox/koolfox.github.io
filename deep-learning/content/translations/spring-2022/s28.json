@@ -1,0 +1,2581 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s28",
+  "source_sha256": "733cbf23dcf43897da2b66529ccd984df1aacfdb71d1b104f811f7ecfcb47352",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "ad2d2a06a0a9950f6f26fcff33f15b50ffae9c47f65e5e730825aa00c95ac70f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "یادگیری عمیق (Deep Learning) برای پردازش گفتار (Speech Processing)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "دانشگاه کلرادو بولدر (University of Colorado Boulder)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "بهار ۲۰۲۲ (Spring 2022)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "57e4a3dbb3a2f68623f8f8c206ade087914c34a97cac730b2d8dcdf52a2360be",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• هفتهٔ قبل:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری کارآمد: یادگیری برنامه‌درسی (Curriculum learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری کارآمد: یادگیری فعال (Active learning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری تقویتی (Reinforcement learning)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• تکلیف‌ها (Canvas):"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• موعد تحویل طرح کلی پروژهٔ نهایی جمعه است"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• موعد تحویل ویدئوی پروژهٔ نهایی دو هفتهٔ دیگر است"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• پرسشی دارید؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "1955fa9179b50a0a816d0456a09cf21001919863ad461490c0c97f9fce28ad36",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• مسئله (Problem)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردها (Applications)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی بازشناسی گفتار (Speech recognition)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• مدل‌های بازشناسی گفتار (Speech recognition)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش ساخت ویدئو"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "1955fa9179b50a0a816d0456a09cf21001919863ad461490c0c97f9fce28ad36",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• مسئله (Problem)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردها (Applications)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی بازشناسی گفتار (Speech recognition)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• مدل‌های بازشناسی گفتار (Speech recognition)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش ساخت ویدئو"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "fbaac387224d9183a0caadba4d495e898e785cac80c8f402e6dd76ccb1347a5b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تعریف مسئله (Problem Definition)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "ورودی: زبان گفتاری (Spoken language)؛ خروجی: متن ماشین‌خوان (Machine readable text)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Raw Speech Signal",
+          "fa": "سیگنال خام گفتار (Raw Speech Signal)",
+          "verified": true
+        },
+        {
+          "en": "Do you understand me; Transcription",
+          "fa": "Do you understand me (آیا مرا می‌فهمید؟)؛ پیاده‌سازی متنی (Transcription)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "0b791af4411a0043f5249e75dd4a366cbba594e227283958c5d1341f8929ae84",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گفتار (Speech) چیست؟"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "موج‌های تراکمی (Compression waves) که با راندن هوا از شش‌ها و تعدیل آن با زبان، دندان‌ها و لب‌ها ایجاد می‌شوند"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Raw Speech Signal",
+          "fa": "سیگنال خام گفتار (Raw Speech Signal)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "2ded2ab4322cf7f985d32308d82b059c13cac4560cce1f71fee822f9d350b970",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چرا پردازش گفتار (Speech Processing) چالش‌برانگیز است؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "ورودی می‌تواند متنوع باشد؛ از جمله دارای لهجه‌ها، بلندی صدا، سرعت و آهنگ‌های متفاوت"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "داده‌های زمانی (Temporal data) باید به واژه‌های مجزا بخش‌بندی (Segmented) شوند"
+        },
+        {
+          "source_lines": [
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "فناوری می‌تواند آرتیفکت‌های (Artifacts) بسیاری ایجاد کند؛ از جمله کیفیت متغیر، پژواک و نویز پس‌زمینه (Background noise)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Raw Speech Signal",
+          "fa": "سیگنال خام گفتار (Raw Speech Signal)",
+          "verified": true
+        },
+        {
+          "en": "Do you understand me; Transcription",
+          "fa": "Do you understand me (آیا مرا می‌فهمید؟)؛ پیاده‌سازی متنی (Transcription)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "48e1aa2ecd36b6a851b94bdbdb230a9f15928704b31f75d42b43abff348c2a20",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• مسئله (Problem)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردها (Applications)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• بازنمایی گفتار (Speech representation)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• مدل‌ها و ارزیابی بازشناسی گفتار (Speech recognition)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش ساخت ویدئو"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "6739042ea1cb6f3e86b5187bee56ce980ab430666c3116ea3c5f495ef0560a71",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تایپ صوتی (Voice Typing) در دستگاه‌های همراه"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "bc72db211f391a90cf53041445a9fde5e9cd31a1ab5a47971d6d5243971e751b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تایپ صوتی (Voice Typing) برای برنامه‌های بهره‌وری (Productivity Applications)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "نمایش از زمان 2:00: https://www.youtube.com/watch?v=5UK4vLzU9co&t=76s"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "dictation.io; Type with your voice. No setup required",
+          "fa": "dictation.io؛ با صدایتان تایپ کنید. به راه‌اندازی نیاز نیست",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "60e8660c71edd1f55370373ed2b7b03c2ec738fc31ad48d45e895dc53869740a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "دستیار مجازی (Virtual Assistant)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "برای مثال، Echo آمازون با Alexa؛ برای مثال، Google Home؛ برای مثال، Baidu DuerOS"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://dueros.baidu.com/en/html/dueros/index.html"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "ca6e57d6f8531514c974964a58b642d7236607035353b07b915f2601f3919730",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "دستیار مجازی (Virtual Assistant)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://dueros.baidu.com/en/html/dueros/index.html"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Entertainment Video: Music, movie, television shows, variety show, short clip, audio book, and broadcasting, etc.",
+          "fa": "ویدئوی سرگرمی (Entertainment Video): موسیقی، فیلم، برنامه‌های تلویزیونی، برنامه‌های متنوع، کلیپ کوتاه، کتاب صوتی و پخش رسانه‌ای و غیره.",
+          "verified": true
+        },
+        {
+          "en": "Information Inquiry: Cnsultation, weather, stocks, flight, sports (NBA), FAQ, cookbook, images, etc.",
+          "fa": "درخواست اطلاعات (Information Inquiry): مشاوره (در اصل: Cnsultation)، هوا، سهام، پرواز، ورزش (NBA)، پرسش‌های متداول (FAQ)، کتاب آشپزی، تصاویر و غیره.",
+          "verified": true
+        },
+        {
+          "en": "Lifestyle Services: Food, movie, take-out, hotel, shopping, taxi, cleaning service, travel, relaxation, and other O2O services.",
+          "fa": "خدمات سبک زندگی (Lifestyle Services): غذا، فیلم، غذای بیرون‌بر، هتل، خرید، تاکسی، خدمات نظافت، سفر، استراحت و سایر خدمات آنلاین‌به‌آفلاین (O2O).",
+          "verified": true
+        },
+        {
+          "en": "Travel Conditions: Map, route, road condition, traffic restriction, endorsement, and surrounding environment query, etc.",
+          "fa": "شرایط سفر (Travel Conditions): نقشه، مسیر، وضعیت جاده، محدودیت ترافیک، تأیید (Endorsement) و پرس‌وجو دربارهٔ محیط پیرامون و غیره.",
+          "verified": true
+        },
+        {
+          "en": "Utility Tools: Ranslation, time, calculation, exchange rate, and unit conversion, etc.",
+          "fa": "ابزارهای کاربردی (Utility Tools): ترجمه (در اصل: Ranslation)، زمان، محاسبه، نرخ ارز و تبدیل واحد و غیره.",
+          "verified": true
+        },
+        {
+          "en": "Personal Assistant: Schedule management, alarm clock, reminder, memo and notepad, etc.",
+          "fa": "دستیار شخصی (Personal Assistant): مدیریت برنامهٔ زمانی، ساعت زنگ‌دار، یادآور، یادداشت و دفتر یادداشت و غیره.",
+          "verified": true
+        },
+        {
+          "en": "Learning: Encyclopedia, story, nursery rhyme, idiom, parenting, poetry and library, etc.",
+          "fa": "یادگیری (Learning): دانشنامه، داستان، شعر کودکانه، اصطلاح، فرزندپروری، شعر و کتابخانه و غیره.",
+          "verified": true
+        },
+        {
+          "en": "Chat and Relax: Chat, joke, poetry, idioms, and games, etc.",
+          "fa": "گپ و استراحت (Chat and Relax): گپ، لطیفه، شعر، اصطلاح‌ها و بازی‌ها و غیره.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "b11de60e0a838abef915bffa77759f52b00651a8a339220a83bb0b78927cf2e3",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پیاده‌سازی متنی صوت (Audio Transcription؛ برای مثال، برای تحلیل و آسیب‌های شنوایی موقعیتی/دائمی)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.gmrtranscription.com/blog/podcast-transcription"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "e3fb0e32e234d08d9c6e62de059100a1591281ef59e7a21eac1953fe0ed673ed",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "زیرنویس‌گذاری ویدئو/فیلم (Video/Movie Captioning؛ برای مثال، برای ترجمه و آسیب‌های شنوایی موقعیتی/دائمی)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.techsmith.com/blog/add-captions-subtitles-video/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "[Dogs barking] CMPRSA is the Lansing region's",
+          "fa": "[Dogs barking] CMPRSA is the Lansing region's (‌[پارس سگ‌ها] CMPRSA متعلق به منطقهٔ لنسینگ است…)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "e47f69249a80fcde8df16bcdcc59bae76b517860479693f9b394b943025bf1e6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "تشخیص هیجان گفتار (Speech Emotion Recognition؛ برای مثال، برای میزهای پشتیبانی و مذاکره‌کنندگان)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "43282900412796e968ebfa64cbb117a401a4506f59f73ea52b88915224b70f29",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شناسایی گوینده (Speaker Identification؛ برای مثال، برای امنیت)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "PHONEXIA; PRODUCTS; USE CASES; PARTNERS; SERVICES",
+          "fa": "PHONEXIA؛ محصولات؛ موارد کاربرد؛ شریک‌ها؛ خدمات",
+          "verified": true
+        },
+        {
+          "en": "Phonexia Speaker Identification (SID) technology uses the power of voice biometrics to recognize a speaker automatically and with high accuracy based on their voice. Its latest generation, called Deep Embeddings™, uses deep neural networks for even greater performance.",
+          "fa": "فناوری شناسایی گویندهٔ Phonexia (Speaker Identification; SID) از توان زیست‌سنجی صدا (Voice biometrics) برای شناسایی خودکار و بسیار دقیق گوینده بر اساس صدای او استفاده می‌کند. جدیدترین نسل آن، با نام Deep Embeddings™، از شبکه‌های عصبی عمیق برای عملکرد بهتر استفاده می‌کند.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "698f56c69aaba2cdeed52e9335ca792a994aa4020ec11272996f7d9e26d29d6b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شناسایی زبان (Language Identification)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "translated LABS; Research and Publications; Contact us; Visit Translated",
+          "fa": "translated LABS؛ پژوهش و انتشارات؛ تماس با ما؛ بازدید از Translated",
+          "verified": true
+        },
+        {
+          "en": "Automatic language identifier; Insert any text or pick a random example; Bonjour!",
+          "fa": "شناسایی‌کنندهٔ خودکار زبان (Automatic language identifier)؛ متنی وارد کنید یا یک نمونهٔ تصادفی انتخاب کنید؛ Bonjour! (سلام!)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "859ca1be1685cc1b4d4ee1cd02b1ce2ca19fecab242c1e0af4beff518d129dc2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "بهسازی گفتار (Speech Enhancement)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ABOUT; FAQ; DOWNLOAD; FAKIN’ THE FUNK?; BUY; FORUM; CONTACT",
+          "fa": "درباره؛ پرسش‌های متداول؛ دریافت؛ FAKIN’ THE FUNK?؛ خرید؛ انجمن؛ تماس",
+          "verified": true
+        },
+        {
+          "en": "Fakin’ The Funk? is a tool that helps you to detect the true quality of your audio files in one batch.",
+          "fa": "Fakin’ The Funk? ابزاری است که کمک می‌کند کیفیت واقعی فایل‌های صوتی خود را به‌صورت یک دسته تشخیص دهید.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "09d5dbf791a316a326abce7199b6d121d5991a909f39bf867f3cd50205a57ead",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پردازش گفتار (Speech processing) چه کاربردهای بالقوهٔ دیگری دارد؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "1955fa9179b50a0a816d0456a09cf21001919863ad461490c0c97f9fce28ad36",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• مسئله (Problem)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردها (Applications)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی بازشناسی گفتار (Speech recognition)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• مدل‌های بازشناسی گفتار (Speech recognition)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش ساخت ویدئو"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "a7b0917b05f07a6d7b9104e7c1311b7dfa48c5f1daa6dba7883c9ea70f94f230",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "طیف وظیفه‌ها (Spectrum of Tasks)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "فرمان‌ها (Commands؛ کوتاه با واژگان محدود)"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "گفتار پیوسته (Discourse؛ طولانی با واژگان گسترده)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "7573a8cd7ca9b0c11b1d2952c96c8bd5124b8848147a35497270290a09fe403d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نرخ خطای واژه (Word Error Rate; WER)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• فاصلهٔ ویرایشی (Edit distance) میان پیش‌بینی و هدف را به‌شکل زیر نشان می‌دهد:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• چه چیزی عملکرد بهتر را نشان می‌دهد: مقادیر بزرگ‌تر یا کوچک‌تر؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "جایگزینی‌ها (Substitutions) + درج‌ها (Insertions) + حذف‌ها (Deletions)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "تعداد واژه‌های گفته‌شده (Number of Words Spoken)"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "واژه جایگزین شده است (برای مثال، “goose” به‌صورت “choose” پیاده شده است)"
+        },
+        {
+          "source_lines": [
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "واژه اضافه شده است (برای مثال، “caboose” به‌صورت “the goose” پیاده شده است)"
+        },
+        {
+          "source_lines": [
+            13,
+            14,
+            15,
+            16
+          ],
+          "kind": "text",
+          "fa": "واژه حذف شده است (برای مثال، “it is a fun” به‌صورت “it is fun” پیاده شده است)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "4b76ac1a6cc88f1aab1d9e02d08f2067aa2e3df5a1bb2c6d0d03a6aaebdeaf3b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نرخ خطای واژه (Word Error Rate): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• درست (Correct): The sun makes it look like uh a warm, day to go outside to adventure."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• پیش‌بینی‌شده (Predicted): The son makes it to bike with a swarm to go outside to Denver today."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تعداد واژه‌های گفته‌شده؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "• 15"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• نرخ خطای واژه (WER)؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "جایگزینی‌ها (Substitutions) + درج‌ها (Insertions) + حذف‌ها (Deletions)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "تعداد واژه‌های گفته‌شده (Number of Words Spoken)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "2a18e4cf1823f4ed470c731cd6fa67d62442e3d3a1f4c9fa42f366507ea28dbf",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نرخ خطای واژه (Word Error Rate): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• درست (Correct): The sun makes it look like uh a warm, day to go outside to adventure."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• پیش‌بینی‌شده (Predicted): The son makes it to bike with a swarm to go outside to Denver today."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تعداد واژه‌های گفته‌شده؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "• 15"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• نرخ خطای واژه (WER)؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "math",
+          "fa": "6 + 1 + 1"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "math",
+          "fa": "15"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "math",
+          "fa": "= 0.53"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "808664d7a8e27b678174d2ac3bf998d4596152d33b5ee0b709c863235125dbf9",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نرخ خطای واژه (Word Error Rate): مثال مقایسه‌ای"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://www.rev.com/blog/resources/what-is-wer-what-does-word-error-rate-mean"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "% Word Error Rate (WER); Rev.ai 14.22%; Speechmatics V2 14.70%; Google Video 15.82%; Microsoft 16.51%; Amazon 18.42%",
+          "fa": "درصد نرخ خطای واژه (Word Error Rate; WER)؛ Rev.ai: 14.22%؛ Speechmatics V2: 14.70%؛ Google Video: 15.82%؛ Microsoft: 16.51%؛ Amazon: 18.42%",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "af02a2f9fa34b6eaf6283dc10bec0d430ca1cce79832982042f322b8f479a705",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "نرخ خطای واژه (Word Error Rate): به‌عنوان معیار ارزیابی (Evaluation Metric) چه محدودیت‌هایی دارد؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• نشان نمی‌دهد چرا خطاها رخ می‌دهند"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• نویز پس‌زمینه (Background noise؛ برای مثال، موسیقی، صحبت دیگران)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• زبان تخصصی (یعنی واژه‌هایی که تخصص در یک حوزه را منعکس می‌کنند)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• تلفظ‌ها/لهجهٔ گوینده"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• نشان نمی‌دهد که آیا پیاده‌سازی متنی (Transcription) موارد زیر را به‌درستی ثبت می‌کند:"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• بزرگی و کوچکی حروف (Capitalization)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• نشانه‌گذاری (Punctuation)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "• اعداد"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "bullet",
+          "fa": "• بندها (Paragraphs)"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "bullet",
+          "fa": "• ممکن است کیفیت را ضعیف نشان دهد، درحالی‌که انسان‌ها می‌توانند محتوا را بفهمند"
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "bullet",
+          "fa": "• به همهٔ خطاهای واژه وزن یکسانی می‌دهد"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "1955fa9179b50a0a816d0456a09cf21001919863ad461490c0c97f9fce28ad36",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• مسئله (Problem)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردها (Applications)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی بازشناسی گفتار (Speech recognition)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• مدل‌های بازشناسی گفتار (Speech recognition)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش ساخت ویدئو"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "659d81021554a6fb852c504fce7e82b1b12a2edf0ed2980c06f69c6095f6b103",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "روش‌های پرکاربرد (Popular Methods)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• طبقه‌بندی زمانی پیوندگرا (Connectionist Temporal Classification; CTC)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• DeepSpeech"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "• DeepSpeech 2"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "• Listen, Attend, and Spell"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "870245e9addcd51242dbb060701b834f2edd32b045e3cb1f1a835afe8ae4c117",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "روش‌های پرکاربرد (Popular Methods)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "DeepSpeech؛ DeepSpeech2؛ Listen, Attend, and Spell"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CTC; Fully Connected; LSTM; Spectrogram",
+          "fa": "طبقه‌بندی زمانی پیوندگرا (CTC)؛ تمام‌متصل (Fully Connected)؛ LSTM؛ طیف‌نگاره (Spectrogram)",
+          "verified": true
+        },
+        {
+          "en": "Uni or Bi-directional RNN; 1 or 2D Convolution",
+          "fa": "شبکهٔ عصبی بازگشتی یک‌سویه یا دوسویه (Uni or Bi-directional RNN)؛ کانولوشن یک‌بعدی یا دوبعدی (1 or 2D Convolution)",
+          "verified": true
+        },
+        {
+          "en": "Attention Decoder; Encoder; Log-Mel filter bank features",
+          "fa": "رمزگشای توجه (Attention Decoder)؛ رمزگذار (Encoder)؛ ویژگی‌های بانک فیلتر لگاریتمی مل (Log-Mel filter bank features)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "e86f45fefac3024996f943e79032c46acb7d45c490d0499d41d0f81515c842f6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "literal",
+          "fa": "DeepSpeech"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "رمزگذار (Encoder):"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "رمزگشا (Decoder):"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CTC; Fully Connected; LSTM; Spectrogram",
+          "fa": "طبقه‌بندی زمانی پیوندگرا (CTC)؛ تمام‌متصل (Fully Connected)؛ LSTM؛ طیف‌نگاره (Spectrogram)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "f2afadd70cdc66439de46f99ffbb3a9fc3644a90af1e2cdb4b185a46b36002bb",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "literal",
+          "fa": "DeepSpeech"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "ورودی (Input):"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CTC; Fully Connected; LSTM; Spectrogram",
+          "fa": "طبقه‌بندی زمانی پیوندگرا (CTC)؛ تمام‌متصل (Fully Connected)؛ LSTM؛ طیف‌نگاره (Spectrogram)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "fbd799e6449f159d05b53cb9de3489984b4788ceed44d6b1b43ab4a7d3b29ca3",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "طیف‌نگاره (Spectrogram): بازنمایی بصری صوت"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "رنگ: دامنهٔ فرکانس (Amplitude of frequency) در یک نقطهٔ زمانی مشخص"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "با لغزاندن یک پنجرهٔ کوتاه (Short window) روی سیگنال صوتی و اعمال تبدیل فوریه (Fourier transform) به هر پنجره ایجاد می‌شود"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Frequency [Hz]; Time [sec]",
+          "fa": "فرکانس [هرتز] (Frequency [Hz])؛ زمان [ثانیه] (Time [sec])",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "0cd3aea085e2a0ceb7b7a5af39b6b80b4c2b3252bc2b4a1102b5a9ec4fb39da6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پیش‌زمینه: تحلیل فرکانسی (Frequency Analysis) قطعهٔ صوتی"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://dev.to/trekhleb/playing-with-discrete-fourier-transform-algorithm-in-javascript-53n5"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "تبدیل فوریه (Fourier transform): سیگنال را به‌صورت مجموع سینوس‌ها و کسینوس‌ها نمایش می‌دهد (حوزهٔ فرکانس (Frequency-domain)):"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "time; frequency",
+          "fa": "زمان (Time)؛ فرکانس (Frequency)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "11bfb317f8168a09f96df06b46da58f640636ead9c82d5e3ab1d5b7668b7361f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "literal",
+          "fa": "DeepSpeech"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "خروجی: دنبالهٔ نویسه‌ها (Character sequence) که یک لایهٔ سافت‌مکس (Softmax) پیش‌بینی می‌کند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CTC; Fully Connected; LSTM; Spectrogram",
+          "fa": "طبقه‌بندی زمانی پیوندگرا (CTC)؛ تمام‌متصل (Fully Connected)؛ LSTM؛ طیف‌نگاره (Spectrogram)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "3ea6177a484448dc258c51d4d683c57c195d65e4855d735bfb3e8f56a7b31f36",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "طبقه‌بندی زمانی پیوندگرا (CTC): بازنمایی ورودی–خروجی (Input-Output Representation)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Frequency [Hz]; Time [sec]",
+          "fa": "فرکانس [هرتز] (Frequency [Hz])؛ زمان [ثانیه] (Time [sec])",
+          "verified": true
+        },
+        {
+          "en": "D A V I D",
+          "fa": "D A V I D (نام David)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "c68505310a5941c3c0fb0d9166364c7efc844021af08fc76a6cc3a55f7fc40e2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "طبقه‌بندی زمانی پیوندگرا (CTC): بازنمایی ورودی–خروجی (Input-Output Representation)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "ایدهٔ اصلی: توکن تهی (Blank token) بازه‌های سکوت و تکرار حروف را پشتیبانی می‌کند (برای مثال، “hello” در مقایسه با “helo”)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://distill.pub/2017/ctc/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "First, merge repeat characters. Then, remove any ε tokens. The remaining characters are the output.",
+          "fa": "ابتدا نویسه‌های تکراری را ادغام کنید. سپس همهٔ توکن‌های ε را حذف کنید. نویسه‌های باقی‌مانده، خروجی هستند.",
+          "verified": true
+        },
+        {
+          "en": "h h e ε ε l l l ε l l o → h e ε l ε l o → h e l l o → hello",
+          "fa": "h h e ε ε l l l ε l l o → h e ε l ε l o → h e l l o → hello (سلام)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "b2c7ca91347b8b72424da4dc3ce58302a7e9ebf49a2edb125d9bc7798c2ce555",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "طبقه‌بندی زمانی پیوندگرا (CTC): بازنمایی ورودی–خروجی (Input-Output Representation)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "ایدهٔ اصلی: توکن تهی (Blank token) بازه‌های سکوت و تکرار حروف را پشتیبانی می‌کند (برای مثال، “hello” در مقایسه با “helo”)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "تشخیص یک واژهٔ یکسان را هنگام تلفظ متفاوت آن پشتیبانی می‌کند!"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://distill.pub/2017/ctc/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ε c c ε a t; c c a a t t; c a ε ε ε t",
+          "fa": "ε c c ε a t؛ c c a a t t؛ c a ε ε ε t (سه هم‌ترازی برای cat: گربه)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "220eedd3240408797c21d72abe89ac238b4c9354931151b7541b1b7fe473410a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "literal",
+          "fa": "DeepSpeech"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "نخستین لایهٔ پنهان (Hidden layer) بافت (Context) پیرامون ورودی را می‌بیند:"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CTC; Fully Connected; LSTM; Spectrogram",
+          "fa": "طبقه‌بندی زمانی پیوندگرا (CTC)؛ تمام‌متصل (Fully Connected)؛ LSTM؛ طیف‌نگاره (Spectrogram)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "a776248d8a6a992a18607ce15f3d3abbfb4031fe377b7fc71cfaaa98a4c6e613",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "literal",
+          "fa": "DeepSpeech"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "3 لایهٔ تمام‌متصل (Fully-connected layers) و سپس LSTM دوسویه (Bidirectional):"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "LSTM دوسویه (Bi-directional) چگونه مفید است؟"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "LSTM دوسویه (Bi-directional) چگونه محدودکننده است؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CTC; Fully Connected; LSTM; Spectrogram",
+          "fa": "طبقه‌بندی زمانی پیوندگرا (CTC)؛ تمام‌متصل (Fully Connected)؛ LSTM؛ طیف‌نگاره (Spectrogram)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "37556c4cc5adc9cda4e714144e612024f366a705f7fe2ccb7c714fd827d6d4a8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "DeepSpeech: تابع بهینه‌سازی (Optimization Function؛ طبقه‌بندی زمانی پیوندگرا (CTC))"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "تابع زیان طبقه‌بندی زمانی پیوندگرا (CTC loss function) امکان یادگیری هم‌ترازی خروجی (Output alignment) را بدون داشتن برچسب برای هر ورودی فراهم می‌کند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Frequency [Hz]; Time [sec]",
+          "fa": "فرکانس [هرتز] (Frequency [Hz])؛ زمان [ثانیه] (Time [sec])",
+          "verified": true
+        },
+        {
+          "en": "D A V I D",
+          "fa": "D A V I D (نام David)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "4944a78948e1eafa72bfcf481afbb6d374fafb363c55355e16afefaf28be0e32",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "DeepSpeech: تابع بهینه‌سازی (Optimization Function؛ طبقه‌بندی زمانی پیوندگرا (CTC))"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/intuitively-understanding-connectionist-temporal-classification-3797e43a86c"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "محتمل‌ترین مورد از میان همهٔ هم‌ترازی‌های (Alignments) ممکن یاد گرفته می‌شود؛ برای مثال، 2 گام زمانی با 2 نویسهٔ بالقوه و یک توکن تهی (Blank token؛ “-”)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• احتمال “a” مجموع همهٔ بازنمایی‌های “a” است"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• احتمال “aa”؟"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "literal",
+          "fa": "• 0.4 x 0.4 = 0.16"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• احتمال “a-”؟"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "literal",
+          "fa": "• 0.4 x 0.6 = 0.24"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "bullet",
+          "fa": "• احتمال “-a”؟"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "literal",
+          "fa": "• 0.6 x 0.4 = 0.24"
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "bullet",
+          "fa": "• مجموع: 0.16 + 0.24 + 0.24 = 0.64"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "t; s; a; b; –; p=1; p=0",
+          "fa": "t؛ s؛ a؛ b؛ –؛ p=1؛ p=0",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "5bdab1982fb4affa36f4dc99844f43efb3b03878202f813ea649b29ac84826f0",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "DeepSpeech: تابع بهینه‌سازی (Optimization Function؛ طبقه‌بندی زمانی پیوندگرا (CTC))"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/intuitively-understanding-connectionist-temporal-classification-3797e43a86c"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "محتمل‌ترین مورد از میان همهٔ هم‌ترازی‌های (Alignments) ممکن یاد گرفته می‌شود؛ برای مثال، 2 گام زمانی با 2 نویسهٔ بالقوه و یک توکن تهی (Blank token؛ “-”)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• احتمال “a”: 0.64"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• احتمال “” مجموع همهٔ بازنمایی‌های “” است"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• احتمال “--”؟"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "literal",
+          "fa": "• 0.6 x 0.6 = 0.36"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "t; s; a; b; –; p=1; p=0",
+          "fa": "t؛ s؛ a؛ b؛ –؛ p=1؛ p=0",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "577eb84b265d202feab62d2b6f42211b3fe985b509bb007a9818433a5fb473ca",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "DeepSpeech: تابع بهینه‌سازی (Optimization Function؛ طبقه‌بندی زمانی پیوندگرا (CTC))"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/intuitively-understanding-connectionist-temporal-classification-3797e43a86c"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "محتمل‌ترین مورد از میان همهٔ هم‌ترازی‌های (Alignments) ممکن یاد گرفته می‌شود؛ برای مثال، 2 گام زمانی با 2 نویسهٔ بالقوه و یک توکن تهی (Blank token؛ “-”)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• احتمال “a”: 0.64"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• احتمال “”: 0.36"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• و به همین ترتیب برای همهٔ هم‌ترازی‌های (Alignments) ممکن…"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "t; s; a; b; –; p=1; p=0",
+          "fa": "t؛ s؛ a؛ b؛ –؛ p=1؛ p=0",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "3460264c8189eb73377b61dc30b43dd28fc63851551cbba77141ddc92c18949a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "DeepSpeech: تابع بهینه‌سازی (Optimization Function؛ طبقه‌بندی زمانی پیوندگرا (CTC))"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/intuitively-understanding-connectionist-temporal-classification-3797e43a86c"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "محتمل‌ترین مورد از میان همهٔ هم‌ترازی‌های (Alignments) ممکن یاد گرفته می‌شود؛ برای مثال، 2 گام زمانی با 2 نویسهٔ بالقوه و یک توکن تهی (Blank token؛ “-”) با «رمزگشایی بهترین مسیر» (Best path decoding)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "t; s; a; b; –; p=1; p=0",
+          "fa": "t؛ s؛ a؛ b؛ –؛ p=1؛ p=0",
+          "verified": true
+        },
+        {
+          "en": "t₀ t₁ t₂ t₃ t₄; ab",
+          "fa": "t₀ t₁ t₂ t₃ t₄؛ ab",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "5a86dc22ec919fecb6d3b3236ac5960fcc257a8ee9ff7b821233791aabc34c69",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "DeepSpeech: تابع بهینه‌سازی (Optimization Function؛ طبقه‌بندی زمانی پیوندگرا (CTC))"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "طبقه‌بندی زمانی پیوندگرا (CTC) برای تسریع محاسبه از برنامه‌نویسی پویا (Dynamic programming) استفاده می‌کند و مشتق‌پذیر (Differentiable) است"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Frequency [Hz]; Time [sec]",
+          "fa": "فرکانس [هرتز] (Frequency [Hz])؛ زمان [ثانیه] (Time [sec])",
+          "verified": true
+        },
+        {
+          "en": "D A V I D",
+          "fa": "D A V I D (نام David)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "39dfacfc55db02094a3553a9419b7a5d2428366400f4a3efa7fbc4eda92e52fc",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "DeepSpeech: آموزش (ایده‌های اصلی)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• 5000 ساعت از 9600 گوینده"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• منظم‌سازی (Regularization)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• حذف تصادفی (Dropout)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• افزایش داده (Data augmentation): فایل صوتی 5 میلی‌ثانیه به جلو و عقب جابه‌جا می‌شود"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• نتایج با افزودن یک مدل زبانی (Language model) بهبود می‌یابد"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "870245e9addcd51242dbb060701b834f2edd32b045e3cb1f1a835afe8ae4c117",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "روش‌های پرکاربرد (Popular Methods)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "DeepSpeech؛ DeepSpeech2؛ Listen, Attend, and Spell"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CTC; Fully Connected; LSTM; Spectrogram",
+          "fa": "طبقه‌بندی زمانی پیوندگرا (CTC)؛ تمام‌متصل (Fully Connected)؛ LSTM؛ طیف‌نگاره (Spectrogram)",
+          "verified": true
+        },
+        {
+          "en": "Uni or Bi-directional RNN; 1 or 2D Convolution",
+          "fa": "شبکهٔ عصبی بازگشتی یک‌سویه یا دوسویه (Uni or Bi-directional RNN)؛ کانولوشن یک‌بعدی یا دوبعدی (1 or 2D Convolution)",
+          "verified": true
+        },
+        {
+          "en": "Attention Decoder; Encoder; Log-Mel filter bank features",
+          "fa": "رمزگشای توجه (Attention Decoder)؛ رمزگذار (Encoder)؛ ویژگی‌های بانک فیلتر لگاریتمی مل (Log-Mel filter bank features)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "b48a43f18f83ffa49572e75cc94480b41875d80772ccfc0f2191b49e1ee0d480",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "literal",
+          "fa": "DeepSpeech2"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "گسترشی از DeepSpeech که با معماری عمیق‌تر، به افزایش سرعت 7برابری و بهبود نسبی 43.4% در نرخ خطای واژه (WER) می‌رسد"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "خروجی مشابه: (دو معماری برای انگلیسی و ماندارین)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "ورودی یکسان:"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CTC; Fully Connected; LSTM; Spectrogram",
+          "fa": "طبقه‌بندی زمانی پیوندگرا (CTC)؛ تمام‌متصل (Fully Connected)؛ LSTM؛ طیف‌نگاره (Spectrogram)",
+          "verified": true
+        },
+        {
+          "en": "Uni or Bi-directional RNN; 1 or 2D Convolution",
+          "fa": "شبکهٔ عصبی بازگشتی یک‌سویه یا دوسویه (Uni or Bi-directional RNN)؛ کانولوشن یک‌بعدی یا دوبعدی (1 or 2D Convolution)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "c6885dc45155b8181781645943e11ed3559268ecfe3f41ffd6d023b3b895c48b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "literal",
+          "fa": "DeepSpeech2"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "تفاوت پروتکل آموزش (Training protocol) با DeepSpeech:"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• دادهٔ آموزشی بیشتر (11,940 ساعت برای انگلیسی و 9,400 ساعت برای ماندارین)"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری برنامه‌درسی (Curriculum learning): در دورهٔ اول (First epoch) بر اساس طول گفته‌ها (Utterances) آموزش می‌دهد و ابتدا موارد کوتاه‌تر را می‌آورد (نرخ خطای واژه (WER) را بیش از 1 واحد بهبود می‌دهد)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CTC; Fully Connected; LSTM; Spectrogram",
+          "fa": "طبقه‌بندی زمانی پیوندگرا (CTC)؛ تمام‌متصل (Fully Connected)؛ LSTM؛ طیف‌نگاره (Spectrogram)",
+          "verified": true
+        },
+        {
+          "en": "Uni or Bi-directional RNN; 1 or 2D Convolution",
+          "fa": "شبکهٔ عصبی بازگشتی یک‌سویه یا دوسویه (Uni or Bi-directional RNN)؛ کانولوشن یک‌بعدی یا دوبعدی (1 or 2D Convolution)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "870245e9addcd51242dbb060701b834f2edd32b045e3cb1f1a835afe8ae4c117",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "روش‌های پرکاربرد (Popular Methods)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "DeepSpeech؛ DeepSpeech2؛ Listen, Attend, and Spell"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CTC; Fully Connected; LSTM; Spectrogram",
+          "fa": "طبقه‌بندی زمانی پیوندگرا (CTC)؛ تمام‌متصل (Fully Connected)؛ LSTM؛ طیف‌نگاره (Spectrogram)",
+          "verified": true
+        },
+        {
+          "en": "Uni or Bi-directional RNN; 1 or 2D Convolution",
+          "fa": "شبکهٔ عصبی بازگشتی یک‌سویه یا دوسویه (Uni or Bi-directional RNN)؛ کانولوشن یک‌بعدی یا دوبعدی (1 or 2D Convolution)",
+          "verified": true
+        },
+        {
+          "en": "Attention Decoder; Encoder; Log-Mel filter bank features",
+          "fa": "رمزگشای توجه (Attention Decoder)؛ رمزگذار (Encoder)؛ ویژگی‌های بانک فیلتر لگاریتمی مل (Log-Mel filter bank features)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "8f24926899bd402b983144fc33f277e6b4e220c9695bc12ce233b3409aa87863",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "Listen, Attend, and Spell (گوش کن، توجه کن و هجی کن)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "مقالهٔ اصلی یادگیری دنباله‌به‌دنباله با توجه (Sequence to sequence learning with attention) را تقلید می‌کند؛ در آن، رمزگشا (Decoder) یاد می‌گیرد در بازنمایی رمزگذاری‌شده به چه چیزی توجه کند"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "ساختار هرمی (Pyramid structure) تعداد گام‌های زمانی ورودی را کاهش می‌دهد"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Attention Decoder; Encoder; Log-Mel filter bank features",
+          "fa": "رمزگشای توجه (Attention Decoder)؛ رمزگذار (Encoder)؛ ویژگی‌های بانک فیلتر لگاریتمی مل (Log-Mel filter bank features)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "d743361493bbf0813e2872afd4a9dc6cbe7538a722c41ceab425bc736f0c55ed",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "Listen, Attend, and Spell (گوش کن، توجه کن و هجی کن)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "ورودی: بازنمایی صوتیِ دست‌طراحی‌شده (Hand-crafted audio representation) که از طیف‌نگاره (Spectrogram) پیچیده‌تر است"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Attention Decoder; Encoder; Log-Mel filter bank features",
+          "fa": "رمزگشای توجه (Attention Decoder)؛ رمزگذار (Encoder)؛ ویژگی‌های بانک فیلتر لگاریتمی مل (Log-Mel filter bank features)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "5699e5a230080f02da4be3f72d27ebba9eaab6e677ce7b1175a0d1707f2794f2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نتیجه (Result)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Chan et al. Listen, Attend and Spell. ICASSP 2016."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "توجه (Attention) امکان نمایش بصری هم‌ترازی (Alignment) میان سیگنال صوتی و نویسه‌ها را فراهم می‌کند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Audio; Hypothesis; Time; <space>",
+          "fa": "صوت (Audio)؛ فرضیه (Hypothesis)؛ زمان (Time)؛ <space> (فاصله)",
+          "verified": true
+        },
+        {
+          "en": "h o w <space> m u c h <space> w o u l d <space> a <space> w o o d c h u c k <space> c h u c k </S>",
+          "fa": "h o w <space> m u c h <space> w o u l d <space> a <space> w o o d c h u c k <space> c h u c k </S> (چقدر یک موش‌خرمای جنگلی می‌توانست پرتاب کند؛ توکن‌های ورودی انگلیسی عیناً حفظ شده‌اند)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "870245e9addcd51242dbb060701b834f2edd32b045e3cb1f1a835afe8ae4c117",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "روش‌های پرکاربرد (Popular Methods)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "DeepSpeech؛ DeepSpeech2؛ Listen, Attend, and Spell"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CTC; Fully Connected; LSTM; Spectrogram",
+          "fa": "طبقه‌بندی زمانی پیوندگرا (CTC)؛ تمام‌متصل (Fully Connected)؛ LSTM؛ طیف‌نگاره (Spectrogram)",
+          "verified": true
+        },
+        {
+          "en": "Uni or Bi-directional RNN; 1 or 2D Convolution",
+          "fa": "شبکهٔ عصبی بازگشتی یک‌سویه یا دوسویه (Uni or Bi-directional RNN)؛ کانولوشن یک‌بعدی یا دوبعدی (1 or 2D Convolution)",
+          "verified": true
+        },
+        {
+          "en": "Attention Decoder; Encoder; Log-Mel filter bank features",
+          "fa": "رمزگشای توجه (Attention Decoder)؛ رمزگذار (Encoder)؛ ویژگی‌های بانک فیلتر لگاریتمی مل (Log-Mel filter bank features)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "1955fa9179b50a0a816d0456a09cf21001919863ad461490c0c97f9fce28ad36",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• مسئله (Problem)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردها (Applications)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی بازشناسی گفتار (Speech recognition)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• مدل‌های بازشناسی گفتار (Speech recognition)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش ساخت ویدئو"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "1955fa9179b50a0a816d0456a09cf21001919863ad461490c0c97f9fce28ad36",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• مسئله (Problem)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردها (Applications)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی بازشناسی گفتار (Speech recognition)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• مدل‌های بازشناسی گفتار (Speech recognition)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش ساخت ویدئو"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    }
+  ]
+}

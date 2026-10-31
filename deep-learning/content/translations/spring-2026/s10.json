@@ -1,0 +1,3888 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s10",
+  "source_sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "366ff5b006f34ac0bfb8dcedb6b83d7d3a8e1516de5ac9046dd96ccf71dc5e0f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "از طبقه‌بندی تصویر (Image Classification) تا پیش‌بینی متراکم (Dense Prediction)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "دانشگاه کلرادو بولدر (University of Colorado Boulder)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "بهار ۲۰۲۶"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CC BY NC SA",
+          "fa": "CC BY NC SA (نسبت‌دهی، غیرتجاری، اشتراک‌همسان)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "6fae5ac9d4a96ed32bb8e2a48aac659602d32b510f7732b5dfe227e1787c545d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "جلسهٔ قبل:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "در جست‌وجوی دادهٔ بیشتر و ماشین‌های سریع‌تر"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "تغییر پارادایم: بازنمایی‌های آموخته‌شده (Learned Representations) با مجموعه‌داده‌های بزرگِ برچسب‌دار شکوفا می‌شوند."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "یک اتفاق خوش‌یمن: گرادیان‌کاهشی (Gradient Descent) با سخت‌افزار بازی روبه‌رو می‌شود."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "نقطهٔ عطف: پلتفرم‌های متن‌باز (Open-Source Platforms) مشارکت گسترده را شتاب می‌دهند."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "تکالیف (Canvas)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "نمره‌های مجموعه‌مسئلهٔ ۱ روز جمعه منتشر شد."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "مهلت تحویل تکلیف آزمایشگاهی ۲، جمعه است."
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "bullet",
+          "fa": "برای روشن‌شدن پرسش‌های رایج، صفحهٔ تکلیف را در Canvas مرور کنید."
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "bullet",
+          "fa": "پرسشی دارید؟"
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "bullet",
+          "fa": "علاوه بر پرسیدن از من، لطفاً پرسش‌هایتان را در Piazza بنویسید و/یا در ساعت‌های ملاقات شرکت کنید."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "698a05a4b59ffa90101b80aa6e0fa108c0fd8be5e3e64b92ec023325505c7365",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "انگیزه: وقتی بینایی علاوه بر «چه چیزی؟»، «کجا؟» را هم می‌پرسد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "بازطراحی شبکه‌های عصبی برای پیش‌بینی متراکم (Dense Prediction)، به‌جای صرفاً طبقه‌بندی (Classification)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "رهاکردن شبکه‌های پیش‌بینی متراکم از اندازه‌های ثابت ورودی"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "بینش‌های کلیدی: ویژگی‌های پیش‌آموزش‌دیده (Pretrained Features) و ترفندهای طراحی برای افزایش دقت مکانی (Spatial Precision)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "698a05a4b59ffa90101b80aa6e0fa108c0fd8be5e3e64b92ec023325505c7365",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "انگیزه: وقتی بینایی علاوه بر «چه چیزی؟»، «کجا؟» را هم می‌پرسد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "بازطراحی شبکه‌های عصبی برای پیش‌بینی متراکم (Dense Prediction)، به‌جای صرفاً طبقه‌بندی (Classification)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "رهاکردن شبکه‌های پیش‌بینی متراکم از اندازه‌های ثابت ورودی"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "بینش‌های کلیدی: ویژگی‌های پیش‌آموزش‌دیده (Pretrained Features) و ترفندهای طراحی برای افزایش دقت مکانی (Spatial Precision)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "08a3368efce5b1f1825c90b45e3359b07639561557f2995b8f8f0f7427c767d6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "توجه: نمونه‌های متعلق به یک دسته از هم جدا نمی‌شوند."
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "بخش‌بندی معنایی (Semantic Segmentation) و تشخیص شیء (Object Detection) را یکپارچه می‌کند."
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "همهٔ پیکسل‌های متعلق به دسته‌های ازپیش‌تعیین‌شده را مکان‌یابی کنید."
+        },
+        {
+          "source_lines": [
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "همهٔ نمونه‌های متعلق به دسته‌های ازپیش‌تعیین‌شده را با مستطیل‌ها، یعنی جعبه‌های محاطی (Bounding Boxes)، مکان‌یابی کنید."
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "heading",
+          "fa": "وظایف پیش‌بینی متراکم (Dense Prediction Tasks)"
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "reference",
+          "fa": "https://ai-pool.com/d/could-you-explain-me-how-instance-segmentation-works"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Semantic Segmentation; Object Detection; Instance Segmentation",
+          "fa": "بخش‌بندی معنایی (Semantic Segmentation)؛ تشخیص شیء (Object Detection)؛ بخش‌بندی نمونه‌ای (Instance Segmentation)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "c235ab15c90665f5558b074fff9801aa0be79fab2e1017c59fc4f9cc8d3afb58",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "بازشناسی شیء (Object Recognition) در برابر پیش‌بینی متراکم (Dense Prediction)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://ai-pool.com/d/could-you-explain-me-how-instance-segmentation-works"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "پیش‌بینی متراکم چه تفاوتی با بازشناسی شیء دارد؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Image Recognition; Semantic Segmentation; Object Detection; Instance Segmentation",
+          "fa": "بازشناسی تصویر (Image Recognition)؛ بخش‌بندی معنایی (Semantic Segmentation)؛ تشخیص شیء (Object Detection)؛ بخش‌بندی نمونه‌ای (Instance Segmentation)",
+          "verified": true
+        },
+        {
+          "en": "P 0.6 sheep; P 0.3 dog; P 0.1 cat; P 0.0 horse",
+          "fa": "P 0.6 sheep (گوسفند)؛ P 0.3 dog (سگ)؛ P 0.1 cat (گربه)؛ P 0.0 horse (اسب)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "7e793ca78672513e4412ec6d1b67d99559bf500b4e10fea0588966c9ef1249e2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "بازشناسی شیء (Object Recognition) در برابر پیش‌بینی متراکم (Dense Prediction)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "حالت‌های شکستِ پیش‌بینی متراکم چه تفاوتی با حالت‌های شکستِ بازشناسی شیء دارند؟ برای مثال،"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "باید ظاهر اشیا را بیاموزد، نه صرفاً بافت تصویر (Image Context) را؛ برای مثال، یک سوگیری (Bias) رایج این است که اگر منظره‌ای شبیه ساوانا ببیند، «giraffe» (زرافه) را پیش‌بینی کند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "5b8470c7d987178f30b884d3bf03db8ea2099cb08fc598a9cd6376a7747d2378",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "کاربردهای انگیزه‌بخش فراوان؛ برای مثال،"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.starnow.co.uk/ahmedmohammed1/photos/4650871/before-and-after-rotoscopinggreen-screening"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "روتوسکوپی (Rotoscoping)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Bell et al; SIGGRAPH; 2013"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "بازسازی دکور (Remodeling)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "https://pathology.jhu.edu/brain-tumor/grading-classification"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "تشخیص بیماری (Disease Diagnosis)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "https://www.inc.com/kevin-j-ryan/self-driving-cars-powered-by-people-playing-games-mighty-ai.html",
+          "visible_en": "https://www.inc.com/kevin-j-ryan/self-driving-cars-powered-by-people-playing-games-mighty-ai.html",
+          "verified": true,
+          "reason_fa": "در نشانی نمایانِ پایین تصویر، پس از cars خط‌تیرهٔ شکست سطر دیده می‌شود؛ نویسهٔ نامعتبر لایهٔ استخراج در این محل جزو متن قابل مشاهدهٔ URL نیست."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "خودروهای خودران (Self-driving Cars)"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "بازشناسی خودکار پلاک خودرو (Automatic License Plate Recognition)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "IMAGE CAPTURE; LICENSE PLATE DETECTION & CAPTURE; AllGoVision; see. sense. secure.; KA 51 N 3201",
+          "fa": "ثبت تصویر (Image Capture)؛ تشخیص و ثبت پلاک خودرو (License Plate Detection & Capture)؛ AllGoVision؛ دیدن، حس‌کردن، ایمن‌کردن؛ KA 51 N 3201",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "fcf77553e763c4151b2830616921e159b67b6254a349851359a18699b34c18c8",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "روش رایج پیش از شبکه‌های عصبی (NN): پنجرهٔ لغزان ناکارآمد (Sliding Window)، تکرارشده برای هر اندازه یا مقیاس"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "انسان؟ (Person?)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://yourboulder.com/boulder-neighborhood-downtown/"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "انسان؟ (Person?)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "انسان؟ (Person?)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "انسان؟ (Person?)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "انسان؟ (Person?)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "انسان؟ (Person?)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "انسان؟ (Person?)"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "انسان؟ (Person?)"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "text",
+          "fa": "انسان؟ (Person?)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "8e594b1aea628a3637c63333478122b8de03a158dbcfccdfc8336d3349fc38b2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "text",
+          "fa": "FCN در سال ۲۰۱۵"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "heading",
+          "fa": "شبکه‌های عصبی پیشگام برای پیش‌بینی متراکم (Dense Prediction)، که همگی به بهترین عملکرد روز (State-of-the-Art) دست یافتند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://ai-pool.com/d/could-you-explain-me-how-instance-segmentation-works"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "Faster R-CNN در سال ۲۰۱۵"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "Mask R-CNN در سال ۲۰۱۵"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Semantic Segmentation; Object Detection; Instance Segmentation",
+          "fa": "بخش‌بندی معنایی (Semantic Segmentation)؛ تشخیص شیء (Object Detection)؛ بخش‌بندی نمونه‌ای (Instance Segmentation)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "698a05a4b59ffa90101b80aa6e0fa108c0fd8be5e3e64b92ec023325505c7365",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "انگیزه: وقتی بینایی علاوه بر «چه چیزی؟»، «کجا؟» را هم می‌پرسد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "بازطراحی شبکه‌های عصبی برای پیش‌بینی متراکم (Dense Prediction)، به‌جای صرفاً طبقه‌بندی (Classification)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "رهاکردن شبکه‌های پیش‌بینی متراکم از اندازه‌های ثابت ورودی"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "بینش‌های کلیدی: ویژگی‌های پیش‌آموزش‌دیده (Pretrained Features) و ترفندهای طراحی برای افزایش دقت مکانی (Spatial Precision)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "1cacb5d018d1f7e311d1555b13600394944f2fe2dbbb7bb5baa3d5f29f3960a4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "text",
+          "fa": "FCN در سال ۲۰۱۵"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "heading",
+          "fa": "راه‌های تغییر خروجی‌های شبکه‌ها (Networks’ Outputs)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://ai-pool.com/d/could-you-explain-me-how-instance-segmentation-works"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "Faster R-CNN در سال ۲۰۱۵"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "Mask R-CNN در سال ۲۰۱۵"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Semantic Segmentation; Object Detection; Instance Segmentation",
+          "fa": "بخش‌بندی معنایی (Semantic Segmentation)؛ تشخیص شیء (Object Detection)؛ بخش‌بندی نمونه‌ای (Instance Segmentation)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "a62a59fd0ce9e6405f2f7c8f6a5bca6cf11a3312052d4d009d27dc003d79df24",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایدهٔ کلیدی (۱ از ۲): لایهٔ خروجی با طبقه‌بندیِ هر پیکسل (Per-Pixel Classification)"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "معماری: سافت‌مکس (Softmax) برای تک‌تک پیکسل‌ها یک توزیع احتمال روی همهٔ دسته‌ها تولید می‌کند."
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "bullet",
+          "fa": "در این مثال، دستهٔ کدام است:"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "پیکسل بالای سمت چپ؟"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "پیکسل پایین سمت راست؟"
+        },
+        {
+          "source_lines": [
+            9,
+            10,
+            11
+          ],
+          "kind": "bullet",
+          "fa": "آموزش: زیان آنتروپی متقاطع (Cross-Entropy Loss) را برای تک‌تک پیکسل‌ها جمع می‌کند؛ برای یادگیری مانند یک مینی‌دسته (Mini-Batch) عمل می‌کند."
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "reference",
+          "fa": "https://www.jeremyjordan.me/semantic-segmentation/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Person; Purse; Plants/Grass; Sidewalk; Building/Structures; height; width; class; 0; 1",
+          "fa": "شخص (Person)؛ کیف‌دستی (Purse)؛ گیاهان / چمن (Plants/Grass)؛ پیاده‌رو (Sidewalk)؛ ساختمان / سازه‌ها (Building/Structures)؛ ارتفاع (Height)؛ عرض (Width)؛ دسته (Class)؛ ۰؛ ۱",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "f48d6e7ad55ffba6eebe94ceb1027692707108e90e597bb92fc3015b396efd5b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایدهٔ کلیدی (۱ از ۲): لایهٔ خروجی با طبقه‌بندیِ هر پیکسل (Per-Pixel Classification)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.jeremyjordan.me/semantic-segmentation/"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "چرا این دسته را در نظر می‌گیریم؟"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7
+          ],
+          "kind": "bullet",
+          "fa": "معماری: سافت‌مکس (Softmax) برای تک‌تک پیکسل‌ها یک توزیع احتمال روی همهٔ دسته‌ها تولید می‌کند."
+        },
+        {
+          "source_lines": [
+            8,
+            9
+          ],
+          "kind": "bullet",
+          "fa": "در این مثال، چند دسته را می‌توان پیش‌بینی کرد؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "0: Background/Unknown; 1: Person; 2: Purse; 3: Plants/Grass; 4: Sidewalk; 5: Building/Structures",
+          "fa": "۰: پس‌زمینه / ناشناخته (Background/Unknown)؛ ۱: شخص (Person)؛ ۲: کیف‌دستی (Purse)؛ ۳: گیاهان / چمن (Plants/Grass)؛ ۴: پیاده‌رو (Sidewalk)؛ ۵: ساختمان / سازه‌ها (Building/Structures)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "b059a1eecb688fea11da32c752d0b9abeabdb4f9054a8e7100e0e1b633f3d397",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایدهٔ کلیدی (۲ از ۲): تبدیل تصویر (Image Translation) با معماری رمزگذار–رمزگشا (Encoder-Decoder)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "وضوح تصویر چگونه حفظ می‌شود؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "f853838727b3caf883a3a224da12384551e9f5cd1d146b22beae1d9c990b999a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایدهٔ کلیدی (۲ از ۲): تبدیل تصویر (Image Translation) با معماری رمزگذار–رمزگشا (Encoder-Decoder)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "نقشهٔ ویژگی (Feature Map) رمزگشایی می‌شود (افزایش نمونه‌برداری، Upsampling) تا بخش‌بندیِ با وضوح کامل به دست آید."
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "تصویر رمزگذاری می‌شود (کاهش نمونه‌برداری، Downsampling) تا نقشهٔ ویژگیِ کم‌وضوح‌تری به دست آید."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "96; 256; 384; 384; 256; 4096; 4096; 21; 21; prediction; segmentation g.t.",
+          "fa": "۹۶؛ ۲۵۶؛ ۳۸۴؛ ۳۸۴؛ ۲۵۶؛ ۴۰۹۶؛ ۴۰۹۶؛ ۲۱؛ ۲۱؛ پیش‌بینی (Prediction)؛ واقعیت مبنای بخش‌بندی (Segmentation G.T.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "c48d4a23630daf04aef90dcbba44a5d59689698aa02b97542cf76112d947a5fb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایدهٔ کلیدی (۲ از ۲): تبدیل تصویر (Image Translation) با معماری رمزگذار–رمزگشا (Encoder-Decoder)"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "لایه‌های کاملاً متصل (Fully Connected) که تعداد ثابتی وزن لازم دارند، با لایه‌های کانولوشنی (Convolutional Layers) جایگزین می‌شوند تا برای نواحی درشت تصویر، به‌ازای هر دسته یک برش / نقشهٔ گرمایی (Slice/Heatmap) خروجی دهند."
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "reference",
+          "fa": "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "“tabby cat”; convolutionalization; tabby cat heatmap",
+          "fa": "«tabby cat» (گربهٔ راه‌راه)؛ کانولوشنی‌کردن (Convolutionalization)؛ نقشهٔ گرماییِ «tabby cat» (گربهٔ راه‌راه)",
+          "verified": true
+        },
+        {
+          "en": "96; 256; 384; 384; 256; 4096; 4096; 1000",
+          "fa": "۹۶؛ ۲۵۶؛ ۳۸۴؛ ۳۸۴؛ ۲۵۶؛ ۴۰۹۶؛ ۴۰۹۶؛ ۱۰۰۰",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "8a1f22dae5fdabb5ea445f2c76282744af6055db8a5e5df7dfc9a5ca126a01b6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایدهٔ کلیدی (۲ از ۲): تبدیل تصویر (Image Translation) با معماری رمزگذار–رمزگشا (Encoder-Decoder)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "چرا این، طبقه‌بندی نواحی درشت (Coarse Region Classification) است؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "به یاد بیاورید که کانولوشن‌های انباشته (Stacked Convolutions)، الگوها را روی نواحی هرچه بزرگ‌تری از فضای ورودی، مثلاً پیکسل‌ها، می‌آموزند."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://www.deeplearningbook.org/contents/convnets.html"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "g₁; g₂; g₃; g₄; g₅; h₁; h₂; h₃; h₄; h₅; x₁; x₂; x₃; x₄; x₅",
+          "fa": "g₁؛ g₂؛ g₃؛ g₄؛ g₅؛ h₁؛ h₂؛ h₃؛ h₄؛ h₅؛ x₁؛ x₂؛ x₃؛ x₄؛ x₅",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "e9bafc4f5404ce23223f20b99398a0f2af7226ccceeca7bbd7d35aeafb1b350e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایدهٔ کلیدی (۲ از ۲): تبدیل تصویر (Image Translation) با معماری رمزگذار–رمزگشا (Encoder-Decoder)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "در این معماری چند دسته را می‌توان پیش‌بینی کرد؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "96; 256; 384; 384; 256; 4096; 4096; 21; 21; pixelwise prediction; segmentation g.t.",
+          "fa": "۹۶؛ ۲۵۶؛ ۳۸۴؛ ۳۸۴؛ ۲۵۶؛ ۴۰۹۶؛ ۴۰۹۶؛ ۲۱؛ ۲۱؛ پیش‌بینی پیکسل‌به‌پیکسل (Pixelwise Prediction)؛ واقعیت مبنای بخش‌بندی (Segmentation G.T.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "5c5a8dee256e7b119625cd1f45b9a5e91a638fa52df7338f75fbd447ba16f277",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture11.pdf"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "heading",
+          "fa": "ایدهٔ کلیدی (۲ از ۲): تبدیل تصویر (Image Translation) با معماری رمزگذار–رمزگشا (Encoder-Decoder)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "گزینه‌های فراوانی برای افزایش نمونه‌برداری (Upsampling) وجود دارد؛ برای مثال،"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Nearest Neighbor; “Bed of Nails”; Input: 2 x 2; Output: 4 x 4",
+          "fa": "نزدیک‌ترین همسایه (Nearest Neighbor)؛ «بستر میخ‌ها» (Bed of Nails)؛ ورودی: ۲×۲؛ خروجی: ۴×۴",
+          "verified": true
+        },
+        {
+          "en": "Nearest Neighbor: [1 2; 3 4] → [1 1 2 2; 1 1 2 2; 3 3 4 4; 3 3 4 4]",
+          "fa": "[1 2; 3 4] → [1 1 2 2; 1 1 2 2; 3 3 4 4; 3 3 4 4]",
+          "verified": true,
+          "latex": "\\begin{bmatrix}1&2\\\\3&4\\end{bmatrix}\\to\\begin{bmatrix}1&1&2&2\\\\1&1&2&2\\\\3&3&4&4\\\\3&3&4&4\\end{bmatrix}"
+        },
+        {
+          "en": "“Bed of Nails”: [1 2; 3 4] → [1 0 2 0; 0 0 0 0; 3 0 4 0; 0 0 0 0]",
+          "fa": "[1 2; 3 4] → [1 0 2 0; 0 0 0 0; 3 0 4 0; 0 0 0 0]",
+          "verified": true,
+          "latex": "\\begin{bmatrix}1&2\\\\3&4\\end{bmatrix}\\to\\begin{bmatrix}1&0&2&0\\\\0&0&0&0\\\\3&0&4&0\\\\0&0&0&0\\end{bmatrix}"
+        },
+        {
+          "en": "Max Pooling; Remember which element was max!; Rest of the network; Max Unpooling; Use positions from pooling layer; Input: 4 x 4; Output: 2 x 2; Input: 2 x 2; Output: 4 x 4",
+          "fa": "تجمیع بیشینه (Max Pooling)؛ به خاطر بسپارید کدام عنصر بیشینه بود!؛ بقیهٔ شبکه؛ واگشایی تجمیع بیشینه (Max Unpooling)؛ از جایگاه‌های لایهٔ تجمیع استفاده کنید؛ ورودی: ۴×۴؛ خروجی: ۲×۲؛ ورودی: ۲×۲؛ خروجی: ۴×۴",
+          "verified": true
+        },
+        {
+          "en": "Max Pooling: [1 2 6 3; 3 5 2 1; 1 2 2 1; 7 3 4 8] → [5 6; 7 8]",
+          "fa": "[1 2 6 3; 3 5 2 1; 1 2 2 1; 7 3 4 8] → [5 6; 7 8]",
+          "verified": true,
+          "latex": "\\begin{bmatrix}1&2&6&3\\\\3&5&2&1\\\\1&2&2&1\\\\7&3&4&8\\end{bmatrix}\\to\\begin{bmatrix}5&6\\\\7&8\\end{bmatrix}"
+        },
+        {
+          "en": "Max Unpooling: [1 2; 3 4] → [0 0 2 0; 0 1 0 0; 0 0 0 0; 3 0 0 4]",
+          "fa": "[1 2; 3 4] → [0 0 2 0; 0 1 0 0; 0 0 0 0; 3 0 0 4]",
+          "verified": true,
+          "latex": "\\begin{bmatrix}1&2\\\\3&4\\end{bmatrix}\\to\\begin{bmatrix}0&0&2&0\\\\0&1&0&0\\\\0&0&0&0\\\\3&0&0&4\\end{bmatrix}"
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "64226ad9bc661a5e503b6062e6c7907392599dcdb4bd191ce9063c05b36a426a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایدهٔ کلیدی (۲ از ۲): تبدیل تصویر (Image Translation) با معماری رمزگذار–رمزگشا (Encoder-Decoder)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "گزینه‌های فراوانی برای افزایش نمونه‌برداری (Upsampling) وجود دارد؛ برای مثال، لایهٔ کانولوشن ترانهاده (Transposed Convolutional Layer) که فیلترهایی را می‌آموزد تا ورودی را با گام‌هایی با اندازهٔ «کسری» افزایش نمونه‌برداری دهند."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "به آن «لایهٔ کانولوشن کسری» (Fractional Convolutional Layer)، «کانولوشن پس‌رو» (Backward Convolution) و به‌اشتباه «لایهٔ کانولوشن‌زدایی» (Deconvolution Layer) هم گفته می‌شود."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://www.machinecurve.com/index.php/2019/09/29/understanding-transposed-convolutions/#the-goal-reconstructing-the-original-input"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "2x2 output; ?; 2x2 kernel; 3x3 image",
+          "fa": "خروجی ۲×۲؛ ؟؛ هستهٔ ۲×۲ (Kernel)؛ تصویر ۳×۳",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "217ceb50a767fee2672d4d1f7754f02794a4340a63dd0849e45c3af596252626",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایدهٔ کلیدی (۲ از ۲): تبدیل تصویر (Image Translation) با معماری رمزگذار–رمزگشا (Encoder-Decoder)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "گزینه‌های فراوانی برای افزایش نمونه‌برداری (Upsampling) وجود دارد؛ برای مثال، لایهٔ کانولوشن ترانهاده (Transposed Convolutional Layer) که فیلترهایی را می‌آموزد تا ورودی را با گام‌هایی با اندازهٔ «کسری» افزایش نمونه‌برداری دهند."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://d2l.ai/chapter_computer-vision/transposed-conv.html"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "برای مقادیر میانی از حاشیه‌گذاری (Padding) استفاده می‌شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input; Kernel; Transposed Conv; Output",
+          "fa": "ورودی (Input)؛ هسته (Kernel)؛ کانولوشن ترانهاده (Transposed Conv)؛ خروجی (Output)",
+          "verified": true
+        },
+        {
+          "en": "Input: [0 1; 2 3]; Kernel: [0 1; 2 3]",
+          "fa": "ورودی: [0 1; 2 3]؛ هسته: [0 1; 2 3]",
+          "verified": true
+        },
+        {
+          "en": "[0 0 ; 0 0 ;   ] + [ 0 1;  2 3;   ] + [   ; 0 2 ; 4 6 ] + [   ;  0 3;  6 9] = [0 0 1; 0 4 6; 4 12 9]",
+          "fa": "[0 0 ; 0 0 ;   ] + [ 0 1;  2 3;   ] + [   ; 0 2 ; 4 6 ] + [   ;  0 3;  6 9] = [0 0 1; 0 4 6; 4 12 9]",
+          "verified": true,
+          "latex": "\\begin{bmatrix}0&0&\\\\0&0&\\\\&&\\end{bmatrix}+\\begin{bmatrix}&0&1\\\\&2&3\\\\&&\\end{bmatrix}+\\begin{bmatrix}&&\\\\0&2&\\\\4&6&\\end{bmatrix}+\\begin{bmatrix}&&\\\\&0&3\\\\&6&9\\end{bmatrix}=\\begin{bmatrix}0&0&1\\\\0&4&6\\\\4&12&9\\end{bmatrix}"
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "4a732eb26d4c35c92e7b098d6f6f41d72b40df3095054f9059c720a6c6c824d0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایدهٔ کلیدی (۲ از ۲): تبدیل تصویر (Image Translation) با معماری رمزگذار–رمزگشا (Encoder-Decoder)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "گزینه‌های فراوانی برای افزایش نمونه‌برداری (Upsampling) وجود دارد؛ برای مثال، لایهٔ کانولوشن ترانهاده (Transposed Convolutional Layer) که فیلترهایی را می‌آموزد تا ورودی را با گام‌هایی با اندازهٔ «کسری» افزایش نمونه‌برداری دهند."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "برای محاسبهٔ مقادیر میانی از گام (Stride) استفاده می‌شود."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://d2l.ai/chapter_computer-vision/transposed-conv.html"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input; Kernel; Transposed Conv (stride 2); Output",
+          "fa": "ورودی (Input)؛ هسته (Kernel)؛ کانولوشن ترانهاده (Transposed Conv)، با گام ۲؛ خروجی (Output)",
+          "verified": true
+        },
+        {
+          "en": "Input: [0 1; 2 3]; Kernel: [0 1; 2 3]",
+          "fa": "ورودی: [0 1; 2 3]؛ هسته: [0 1; 2 3]",
+          "verified": true
+        },
+        {
+          "en": "[0 0  ; 0 0  ;    ;    ] + [  0 1;   2 3;    ;    ] + [    ;    ; 0 2  ; 4 6  ] + [    ;    ;   0 3;   6 9] = [0 0 0 1; 0 0 2 3; 0 2 0 3; 4 6 6 9]",
+          "fa": "[0 0  ; 0 0  ;    ;    ] + [  0 1;   2 3;    ;    ] + [    ;    ; 0 2  ; 4 6  ] + [    ;    ;   0 3;   6 9] = [0 0 0 1; 0 0 2 3; 0 2 0 3; 4 6 6 9]",
+          "verified": true,
+          "latex": "\\begin{bmatrix}0&0&&\\\\0&0&&\\\\&&&\\\\&&&\\end{bmatrix}+\\begin{bmatrix}&&0&1\\\\&&2&3\\\\&&&\\\\&&&\\end{bmatrix}+\\begin{bmatrix}&&&\\\\&&&\\\\0&2&&\\\\4&6&&\\end{bmatrix}+\\begin{bmatrix}&&&\\\\&&&\\\\&&0&3\\\\&&6&9\\end{bmatrix}=\\begin{bmatrix}0&0&0&1\\\\0&0&2&3\\\\0&2&0&3\\\\4&6&6&9\\end{bmatrix}"
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "1cacb5d018d1f7e311d1555b13600394944f2fe2dbbb7bb5baa3d5f29f3960a4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "text",
+          "fa": "FCN در سال ۲۰۱۵"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "heading",
+          "fa": "راه‌های تغییر خروجی‌های شبکه‌ها (Networks’ Outputs)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://ai-pool.com/d/could-you-explain-me-how-instance-segmentation-works"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "Faster R-CNN در سال ۲۰۱۵"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "Mask R-CNN در سال ۲۰۱۵"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Semantic Segmentation; Object Detection; Instance Segmentation",
+          "fa": "بخش‌بندی معنایی (Semantic Segmentation)؛ تشخیص شیء (Object Detection)؛ بخش‌بندی نمونه‌ای (Instance Segmentation)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "1cf04525971d309a004ab4652d994375a66c5e95c3b34a8b62005f558f98d6f1",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "۱. رگرسیون جعبهٔ محاطی (Bounding Box Regression): اصلاحات لازم برای هر «ناحیهٔ پیشنهادی» شیء (Region Proposal)، یعنی (p_x, p_y, p_h, p_w)، را شناسایی می‌کند تا با جابه‌جایی مرکز آن به‌اندازهٔ (d_x, d_y) و تغییر مقیاس عرض (d_w) و ارتفاع (d_h)، به مکان درست برسد."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "چند نورون در لایهٔ خروجی وجود دارد؟"
+        },
+        {
+          "source_lines": [
+            10,
+            11
+          ],
+          "kind": "bullet",
+          "fa": "با آنکه مقادیر پیش‌بینی‌شده نامحدودند، آموزش آن‌ها را به بازه‌ای کوچک محدود می‌کند."
+        },
+        {
+          "source_lines": [
+            12,
+            13
+          ],
+          "kind": "text",
+          "fa": "۲. طبقه‌بندی (Classification): به هر ناحیهٔ پیشنهادی یک دسته نسبت می‌دهد؛ از لایه‌ای کاملاً متصل (Fully Connected) استفاده می‌کند که امتیازهای دسته‌ها را پس از سافت‌مکس (Softmax) خروجی می‌دهد."
+        },
+        {
+          "source_lines": [
+            14
+          ],
+          "kind": "heading",
+          "fa": "معماری: دو وظیفه را به‌صورت موازی انجام می‌دهد."
+        },
+        {
+          "source_lines": [
+            15
+          ],
+          "kind": "reference",
+          "fa": "https://lilianweng.github.io/lil-log/2017/12/31/object-recognition-for-dummies-part-3.html#bounding-box-regression"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x; y; (p_x,p_y); p_w; p_h; p_w e^{d_w(p)}; p_h e^{d_h(p)}; p_w d_x(p); p_h d_y(p)",
+          "fa": "x؛ y؛ (p_x,p_y)؛ p_w؛ p_h؛ p_w e^{d_w(p)}؛ p_h e^{d_h(p)}؛ p_w d_x(p)؛ p_h d_y(p)",
+          "verified": true,
+          "latex": "x,\\;y,\\;(p_x,p_y),\\;p_w,\\;p_h,\\;p_w e^{d_w(p)},\\;p_h e^{d_h(p)},\\;p_w d_x(p),\\;p_h d_y(p)"
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "eba735924e391093172bdd9c5f4abec75b44760a70fe32c08466d1516c343b6b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "۱. رگرسیون جعبهٔ محاطی (Bounding Box Regression): اصلاحات لازم برای هر «ناحیهٔ پیشنهادی» شیء (Region Proposal)، یعنی (p_x, p_y, p_h, p_w)، را شناسایی می‌کند تا با جابه‌جایی مرکز آن به‌اندازهٔ (d_x, d_y) و تغییر مقیاس عرض (d_w) و ارتفاع (d_h)، به مکان درست برسد."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "heading",
+          "fa": "معماری: دو وظیفه را به‌صورت موازی انجام می‌دهد."
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "reference",
+          "fa": "Ren et al. Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks. Neurips 2015."
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "ایده: به‌جای لغزاندن پنجره روی سراسر تصویر، تعداد قابل مدیریتی از نواحی شبیه «شیء» را پیش‌بینی می‌کند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "image; conv layers; feature maps; Region Proposal Network; proposals; RoI pooling; classifier",
+          "fa": "تصویر (Image)؛ لایه‌های کانولوشنی (Conv Layers)؛ نقشه‌های ویژگی (Feature Maps)؛ شبکهٔ پیشنهاد ناحیه (Region Proposal Network)؛ پیشنهادها؛ تجمیع ناحیهٔ مورد علاقه (RoI Pooling)؛ طبقه‌بند (Classifier)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "9518862a420b68001b7e293ea35a0980f6f2b5c463c5075943e3cc562d835829",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تابع هدف (Objective Function): زیان چندوظیفه‌ای (Multi-task Loss)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "زیان‌های طبقه‌بندی (Classification) و مکان‌یابی (Localization) را جمع کنید؛ برای شبکهٔ پیشنهاد ناحیه (Region Proposal Network) نیز استفاده می‌شود:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "دستهٔ پیش‌بینی‌شده (امتیازهای سافت‌مکس، Softmax)"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "اصلاحات مکانی پیش‌بینی‌شده: (d_x, d_y, d_w, d_h)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "زیان آنتروپی متقاطع (Cross-Entropy Loss)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "دستهٔ واقعی (رمزگذاری تک‌فعال، One-Hot Encoding)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "زیان L1 (L1 Loss)"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "+ مجموع"
+        },
+        {
+          "source_lines": [
+            11,
+            12,
+            13,
+            14
+          ],
+          "kind": "text",
+          "fa": "اصلاحات مکانی واقعی: (d_x, d_y, d_w, d_h)"
+        },
+        {
+          "source_lines": [
+            15
+          ],
+          "kind": "reference",
+          "fa": "https://lilianweng.github.io/lil-log/2017/12/31/object-recognition-for-dummies-part-3.html#bounding-box-regression"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "L_box(t^u,v) = sum over i in {x,y,w,h} L_1^smooth(t_i^u - v_i)",
+          "fa": "L_box(t^u,v) = Σ L_1^smooth(t_i^u - v_i)",
+          "verified": true,
+          "latex": "\\mathcal{L}_{\\mathrm{box}}(t^u,v)=\\sum_{i\\in\\{x,y,w,h\\}}L_1^{\\mathrm{smooth}}(t_i^u-v_i)"
+        },
+        {
+          "en": "L_1^smooth(x) = {0.5x² if |x| < 1; |x| - 0.5 otherwise}",
+          "fa": "L_1^smooth(x): اگر |x| < 1، برابر 0.5x²؛ در غیر این صورت |x| - 0.5",
+          "verified": true,
+          "latex": "L_1^{\\mathrm{smooth}}(x)=\\begin{cases}0.5x^2&\\text{if }|x|<1\\\\|x|-0.5&\\text{otherwise}\\end{cases}"
+        },
+        {
+          "en": "x; -4; -2; 0; 2; 4; 1; 2; 3; 4; 5",
+          "fa": "x؛ ‎-۴؛ ‎-۲؛ ۰؛ ۲؛ ۴؛ ۱؛ ۲؛ ۳؛ ۴؛ ۵",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "1cacb5d018d1f7e311d1555b13600394944f2fe2dbbb7bb5baa3d5f29f3960a4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "text",
+          "fa": "FCN در سال ۲۰۱۵"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "heading",
+          "fa": "راه‌های تغییر خروجی‌های شبکه‌ها (Networks’ Outputs)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://ai-pool.com/d/could-you-explain-me-how-instance-segmentation-works"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "Faster R-CNN در سال ۲۰۱۵"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "Mask R-CNN در سال ۲۰۱۵"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Semantic Segmentation; Object Detection; Instance Segmentation",
+          "fa": "بخش‌بندی معنایی (Semantic Segmentation)؛ تشخیص شیء (Object Detection)؛ بخش‌بندی نمونه‌ای (Instance Segmentation)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "93c6015f7422216decbf094b08228174fd48331bf37ce1fecc50dab2410fbb11",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری: سه وظیفه را انجام می‌دهد."
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "He et al. Mask R-CNN. ICCV 2017"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "Faster R-CNN: تشخیص شیء (Object Detection)، با پیش‌بینی مقادیر رگرسیون و برچسب دسته برای هر ناحیهٔ مورد علاقه (ROI)."
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "شبکهٔ تمام‌کانولوشنی (Fully Convolutional Network): بخش‌بندی (Segmentation)، با پیش‌بینی K ماسک بخش‌بندی دودویی به اندازهٔ m×m برای هر ROI؛ یعنی برای هر یک از K دسته، بر هر پیکسل سیگموید (Sigmoid) اعمال می‌کند و سپس با آستانهٔ ۰٫۵ آن را به پیش‌زمینه یا پس‌زمینه طبقه‌بندی می‌کند."
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "از میان K ماسک پیش‌بینی‌شده، فقط ماسکِ دستهٔ پیش‌بینی‌شده استفاده می‌شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "RoIAlign; conv; conv; class; box",
+          "fa": "هم‌ترازی ناحیهٔ مورد علاقه (RoIAlign)؛ کانولوشن (Conv)؛ کانولوشن؛ دسته (Class)؛ جعبه (Box)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "b5e2f74ba9c13c5c561414d1460caec3adb56ce83205dccb5f458559510f86e7",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تابع هدف (Objective Function): زیان چندوظیفه‌ای (Multi-task Loss)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/multi-task-learning-with-pytorch-and-fastai-6d10dc7ce855"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "همانند Faster R-CNN"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "برای هر ماسک پیش‌بینی‌شدهٔ دستهٔ هدفِ هر ROI، میانگین زیان آنتروپی متقاطع دودویی (Binary Cross-Entropy Loss) روی همهٔ پیکسل‌ها محاسبه می‌شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Shared Layers; Task 1; Task 2; Task 3",
+          "fa": "لایه‌های مشترک (Shared Layers)؛ وظیفهٔ ۱؛ وظیفهٔ ۲؛ وظیفهٔ ۳",
+          "verified": true
+        },
+        {
+          "en": "L = L_class + L_box + L_mask",
+          "fa": "L = L_class + L_box + L_mask",
+          "verified": true,
+          "latex": "L=L_{\\mathrm{class}}+L_{\\mathrm{box}}+L_{\\mathrm{mask}}"
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "7e8be42e50684b93838172f26e13a6e7e9672cb63cdb510912200de3a18a71a3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "text",
+          "fa": "FCN در سال ۲۰۱۵"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "heading",
+          "fa": "جمع‌بندی: وظایف گوناگون، خروجی‌های شبکه و هدف‌های یادگیری متفاوتی دارند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://ai-pool.com/d/could-you-explain-me-how-instance-segmentation-works"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "Faster R-CNN در سال ۲۰۱۵"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "Mask R-CNN در سال ۲۰۱۵"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Semantic Segmentation; Object Detection; Instance Segmentation",
+          "fa": "بخش‌بندی معنایی (Semantic Segmentation)؛ تشخیص شیء (Object Detection)؛ بخش‌بندی نمونه‌ای (Instance Segmentation)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "698a05a4b59ffa90101b80aa6e0fa108c0fd8be5e3e64b92ec023325505c7365",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "انگیزه: وقتی بینایی علاوه بر «چه چیزی؟»، «کجا؟» را هم می‌پرسد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "بازطراحی شبکه‌های عصبی برای پیش‌بینی متراکم (Dense Prediction)، به‌جای صرفاً طبقه‌بندی (Classification)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "رهاکردن شبکه‌های پیش‌بینی متراکم از اندازه‌های ثابت ورودی"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "بینش‌های کلیدی: ویژگی‌های پیش‌آموزش‌دیده (Pretrained Features) و ترفندهای طراحی برای افزایش دقت مکانی (Spatial Precision)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "42c59248f12ff6a9b66d53627420c4f5e09058379834a2269e54f18ad68629be",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "text",
+          "fa": "FCN در سال ۲۰۱۵"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "heading",
+          "fa": "راه‌های پشتیبانی از ابعاد دلخواهِ ورودی (Arbitrary Input Dimensions)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://ai-pool.com/d/could-you-explain-me-how-instance-segmentation-works"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "Faster R-CNN در سال ۲۰۱۵"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "Mask R-CNN در سال ۲۰۱۵"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Semantic Segmentation; Object Detection; Instance Segmentation",
+          "fa": "بخش‌بندی معنایی (Semantic Segmentation)؛ تشخیص شیء (Object Detection)؛ بخش‌بندی نمونه‌ای (Instance Segmentation)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "cf53a381d65d594cc077e63b1fe517af5e69e26d178b40ec51c9f46d57a9dfd4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری: همهٔ لایه‌ها کانولوشنی (Convolutional) هستند."
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "لایه‌های کانولوشن ترانهاده (Transposed Convolutional Layers)، ویژگی‌های رمزگذاری‌شده را به‌طور متناسب به وضوح اصلی بازمی‌گردانند."
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "لایه‌های کانولوشنی می‌توانند فیلترها را روی ورودی با هر اندازه‌ای اعمال کنند."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "96; 256; 384; 384; 256; 4096; 4096; 21; 21; prediction; segmentation g.t.",
+          "fa": "۹۶؛ ۲۵۶؛ ۳۸۴؛ ۳۸۴؛ ۲۵۶؛ ۴۰۹۶؛ ۴۰۹۶؛ ۲۱؛ ۲۱؛ پیش‌بینی (Prediction)؛ واقعیت مبنای بخش‌بندی (Segmentation G.T.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "42c59248f12ff6a9b66d53627420c4f5e09058379834a2269e54f18ad68629be",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "text",
+          "fa": "FCN در سال ۲۰۱۵"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "heading",
+          "fa": "راه‌های پشتیبانی از ابعاد دلخواهِ ورودی (Arbitrary Input Dimensions)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://ai-pool.com/d/could-you-explain-me-how-instance-segmentation-works"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "Faster R-CNN در سال ۲۰۱۵"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "Mask R-CNN در سال ۲۰۱۵"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Semantic Segmentation; Object Detection; Instance Segmentation",
+          "fa": "بخش‌بندی معنایی (Semantic Segmentation)؛ تشخیص شیء (Object Detection)؛ بخش‌بندی نمونه‌ای (Instance Segmentation)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "8d5554cda3163f1511fe4f8ff5ec994c95d8b09027f75a975b59b63675066365",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تجمیع ناحیهٔ مورد علاقه (ROI Pooling): کوانتیزه‌سازی (Quantization) + تجمیع (Pooling)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Ren et al. Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks. Neurips 2015."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "ورودی با هر اندازه‌ای را به اندازهٔ هدف تجمیع می‌کند؛ برای مثال [6, 4] → [3, 3]."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "کدام عدد صحیح گسسته، ۶ ستون را به ۳ ستون تبدیل می‌کند؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "math",
+          "fa": "6/3 = 2",
+          "latex": "\\frac{6}{3}=2"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "کدام عدد صحیح گسسته، ۴ سطر را به ۳ سطر تبدیل می‌کند؟"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "math",
+          "fa": "4/3 = 1.3 → 1",
+          "latex": "\\frac{4}{3}=1.3\\to1"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "image; conv layers; feature maps; Region Proposal Network; proposals; RoI pooling; classifier",
+          "fa": "تصویر (Image)؛ لایه‌های کانولوشنی (Conv Layers)؛ نقشه‌های ویژگی (Feature Maps)؛ شبکهٔ پیشنهاد ناحیه (Region Proposal Network)؛ پیشنهادها؛ تجمیع ناحیهٔ مورد علاقه (RoI Pooling)؛ طبقه‌بند (Classifier)",
+          "verified": true
+        },
+        {
+          "en": "4x6 RoI; 3x3 RoI Pooling",
+          "fa": "ناحیهٔ مورد علاقهٔ ۴×۶ (RoI)؛ تجمیع ناحیهٔ مورد علاقهٔ ۳×۳ (RoI Pooling)",
+          "verified": true
+        },
+        {
+          "en": "0.1 0.2 0.3 0.4 0.5 0.6; 1 0.7 0.2 0.6 0.1 0.9; 0.9 0.8 0.7 0.3 0.5 0.2",
+          "fa": "0.1 0.2 0.3 0.4 0.5 0.6; 1 0.7 0.2 0.6 0.1 0.9; 0.9 0.8 0.7 0.3 0.5 0.2",
+          "verified": true,
+          "latex": "\\begin{bmatrix}0.1&0.2&0.3&0.4&0.5&0.6\\\\1&0.7&0.2&0.6&0.1&0.9\\\\0.9&0.8&0.7&0.3&0.5&0.2\\\\&&&&&\\end{bmatrix}"
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "698a05a4b59ffa90101b80aa6e0fa108c0fd8be5e3e64b92ec023325505c7365",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "انگیزه: وقتی بینایی علاوه بر «چه چیزی؟»، «کجا؟» را هم می‌پرسد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "بازطراحی شبکه‌های عصبی برای پیش‌بینی متراکم (Dense Prediction)، به‌جای صرفاً طبقه‌بندی (Classification)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "رهاکردن شبکه‌های پیش‌بینی متراکم از اندازه‌های ثابت ورودی"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "بینش‌های کلیدی: ویژگی‌های پیش‌آموزش‌دیده (Pretrained Features) و ترفندهای طراحی برای افزایش دقت مکانی (Spatial Precision)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "3f68b6a40ed4a8d098506aa08c034c066c62c87e3f589d4a617e706d328da03e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "چالش کلیدی (۱ از ۲): آموزش مدل‌های با ظرفیت بالا (Large Capacity Models)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "گردآوری مجموعه‌داده‌های برچسب‌گذاری‌شده در مقیاس بزرگ بسیار دشوار است."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "فکر می‌کنید ترسیم هر یک چقدر زمان ببرد:"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "یک جعبهٔ محاطی (Bounding Box)؟ (a) بین ۵ تا ۱۵ ثانیه، (b) بین ۱۶ تا ۴۵ ثانیه، (c) بین ۴۶ تا ۷۵ ثانیه"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "یک بخش‌بندی (Segmentation)؟"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "زمان میانگین برای ۱۰۱ برچسب‌گذار:"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "Jain and Grauman. Predicting Sufficient Annotation Strength for Interactive Foreground Segmentation. ICCV 2013"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "۷ ثانیه برای هر جعبهٔ محاطی؛ ۵۴ ثانیه برای هر بخش‌بندی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "96c548ea9e8fd34e2822a18154bfad723b5e02281ddfb595b6a5cc2d8b26d3f4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ایدهٔ کلیدی: یادگیری انتقالی (Transfer Learning)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://www.datacamp.com/community/tutorials/neural-network-models-r"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "چگونه ویژگی‌های توصیف‌کنندهٔ داده را استخراج کنیم؛ چگونه پیش‌بینی کنیم."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "از یک شبکهٔ پایهٔ پیش‌آموزش‌دیده (Pretrained Backbone) استفاده کنید تا نیاز به مجموعه‌دادهٔ آموزشی در مقیاس بزرگ دور زده شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input Layer; Hidden Layers; Output Layer",
+          "fa": "لایهٔ ورودی (Input Layer)؛ لایه‌های پنهان (Hidden Layers)؛ لایهٔ خروجی (Output Layer)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "801bf12864d6f63144fca912fd35b74832d7aed509b7e096ab3df91892027610",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ایدهٔ کلیدی: یادگیری انتقالی (Transfer Learning)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "از شبکهٔ پیش‌آموزش‌دیده (Pretrained Network) به‌عنوان نقطهٔ شروعِ آموزش برای مجموعه‌داده و/یا وظیفه‌ای دیگر استفاده کنید؛ برای مثال،"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://www.mathworks.com/help/deeplearning/ug/transfer-learning-using-alexnet.html"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Load pretrained network; Early layers that learned low-level features (edges, blobs, colors); Last layers that learned task specific features",
+          "fa": "شبکهٔ پیش‌آموزش‌دیده را بارگذاری کنید؛ لایه‌های ابتدایی که ویژگی‌های سطح پایین (Low-Level Features)، مانند لبه‌ها، لکه‌ها و رنگ‌ها را آموخته‌اند؛ لایه‌های انتهایی که ویژگی‌های ویژهٔ وظیفه را آموخته‌اند.",
+          "verified": true
+        },
+        {
+          "en": "1 million images; 1000s classes; Replace final layers; New layers to learn features specific to your data set; Fewer classes; Learn faster",
+          "fa": "یک میلیون تصویر؛ هزاران دسته؛ لایه‌های نهایی را جایگزین کنید؛ لایه‌های جدید برای یادگیری ویژگی‌های ویژهٔ مجموعه‌دادهٔ شما؛ دسته‌های کمتر؛ یادگیری سریع‌تر",
+          "verified": true
+        },
+        {
+          "en": "Train network; Training images; Training options; 100s of images; 10s of classes",
+          "fa": "شبکه را آموزش دهید؛ تصاویر آموزشی؛ گزینه‌های آموزش؛ صدها تصویر؛ ده‌ها دسته",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "4e499e57be628247bbdb529209753b2ef14a3a813aebb32dd4c747a61c08604a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ایدهٔ کلیدی: یادگیری انتقالی (Transfer Learning)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "ویژگی‌های سطح پایین (Low-Level Features)"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "ویژگی‌های سطح میانی (Mid-Level Features)"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "ویژگی‌های سطح بالا (High-Level Features)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "پرسش‌های تعیین‌کننده:"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "۱. کدام شبکهٔ پیش‌آموزش‌دیده؟"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "۲. کدام لایه‌ها از شبکه؟"
+        },
+        {
+          "source_lines": [
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "۳. ثابت نگه‌داشتن در برابر آموزشِ لایه‌های منتقل‌شده؛ حالت دوم «تنظیم دقیق» (Fine-Tuning) نام دارد."
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "reference",
+          "fa": "Deep Learning, Ian Goodfellow, Yoshua Bengio, and Aaron Courville"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CAR; PERSON; ANIMAL; Output (object identity)",
+          "fa": "«CAR» (خودرو)؛ «PERSON» (شخص)؛ «ANIMAL» (حیوان)؛ خروجی: هویت شیء (Object Identity)",
+          "verified": true
+        },
+        {
+          "en": "3rd hidden layer (object parts); 2nd hidden layer (corners and contours); 1st hidden layer (edges); Visible layer (input pixels)",
+          "fa": "لایهٔ پنهان سوم: اجزای شیء؛ لایهٔ پنهان دوم: گوشه‌ها و خطوط پیرامونی؛ لایهٔ پنهان اول: لبه‌ها؛ لایهٔ آشکار: پیکسل‌های ورودی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "196d7477da5da42671a2af6eb78b523d72862cbaa1a3f881e997008ae3a2d703",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکهٔ پایهٔ FCN (Backbone) برای بخش‌بندی معنایی (Semantic Segmentation)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "آیا این معماری را می‌شناسید؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "با سه طبقه‌بندِ ImageNet ارزیابی شده است: AlexNet، VGG و GoogLeNet."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "96; 256; 384; 384; 256; 4096; 4096; 21; 21; pixelwise prediction; segmentation g.t.",
+          "fa": "۹۶؛ ۲۵۶؛ ۳۸۴؛ ۳۸۴؛ ۲۵۶؛ ۴۰۹۶؛ ۴۰۹۶؛ ۲۱؛ ۲۱؛ پیش‌بینی پیکسل‌به‌پیکسل (Pixelwise Prediction)؛ واقعیت مبنای بخش‌بندی (Segmentation G.T.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "d0d97ac3180540de0a606d4ccd260223b6a1d045c2af370784e3adc9c3afca1f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکهٔ پایهٔ Faster R-CNN (Backbone) برای تشخیص شیء (Object Detection)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "با دو طبقه‌بندِ ImageNet ارزیابی شده است: مدل Zeiler و Fergus و VGG-16."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Ren et al. Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks. Neurips 2015."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "image; conv layers; feature maps; Region Proposal Network; proposals; RoI pooling; classifier",
+          "fa": "تصویر (Image)؛ لایه‌های کانولوشنی (Conv Layers)؛ نقشه‌های ویژگی (Feature Maps)؛ شبکهٔ پیشنهاد ناحیه (Region Proposal Network)؛ پیشنهادها؛ تجمیع ناحیهٔ مورد علاقه (RoI Pooling)؛ طبقه‌بند (Classifier)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "5dd42b47e87ace8b0614b83e1536863c1be087ed5b3b969e1fd68035e39c52e6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکهٔ پایهٔ Mask R-CNN (Backbone) برای بخش‌بندی نمونه‌ای (Instance Segmentation)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "He et al. Mask R-CNN. ICCV 2017"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "سه طبقه‌بندِ ImageNet در ماژول Faster R-CNN جای داده و ارزیابی شدند: ResNet، ResNeXt و شبکهٔ هرم ویژگی (Feature Pyramid Network)."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "RoIAlign; conv; conv; class; box",
+          "fa": "هم‌ترازی ناحیهٔ مورد علاقه (RoIAlign)؛ کانولوشن (Conv)؛ کانولوشن؛ دسته (Class)؛ جعبه (Box)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "99e1b3f836f0fb59c5654b620a4c427c7def6abc15bc2fbfc5aa4c072271d61a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "چالش کلیدی (۲ از ۲): فراتر رفتن از دقت درشت‌مقیاس در بخش‌بندی (Segmentation)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "reference",
+          "fa": "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "نتایج FCN"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "He et al. Mask R-CNN. ICCV 2017"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "نتایج Mask R-CNN: جعبهٔ محاطی (BB) در برابر بخش‌بندی"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Ground truth target; Predicted segmentation",
+          "fa": "هدفِ واقعیت مبنا (Ground Truth Target)؛ بخش‌بندی پیش‌بینی‌شده (Predicted Segmentation)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "f0141d5d689166fb6b003e540888f89e141dc409846827d2d2a4ba8443118482",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "FCN: افزودن اتصال‌های میان‌بر (Skip Connections) برای ادغام ویژگی‌های درشت با ویژگی‌های ریزدانه‌تر (Finer-Grained Features)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "FCN16: ویژگی‌های سطح پایین‌تر و ریزدانه‌تر را با ویژگی‌های درشت‌تر ادغام می‌کند."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "FCN8: ویژگی‌های سطح باز هم پایین‌تر و ریزدانه‌تر را با ویژگی‌های درشت‌تر ادغام می‌کند.",
+          "visible_en": "FCN8: Fuses even lower-level, more fine-grained features with coarser features",
+          "verified": true,
+          "reason_fa": "در نوشتهٔ نمایانِ پایین صفحه، fine-grained با خط‌تیره و شکست سطر چاپ شده است؛ نویسهٔ نامعتبر میان دو جزء در لایهٔ استخراج، جزو متن قابل مشاهده نیست."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "image; conv1; pool1; conv2; pool2; conv3; pool3; conv4; pool4; conv5; pool5; conv6-7",
+          "fa": "تصویر (Image)؛ conv1؛ pool1؛ conv2؛ pool2؛ conv3؛ pool3؛ conv4؛ pool4؛ conv5؛ pool5؛ conv6-7",
+          "verified": true
+        },
+        {
+          "en": "32x upsampled prediction (FCN-32s); pool4; 2x conv7; 16x upsampled prediction (FCN-16s); pool3; 2x pool4; 4x conv7; 8x upsampled prediction (FCN-8s)",
+          "fa": "پیش‌بینی با افزایش نمونه‌برداری ۳۲برابری (FCN-32s)؛ pool4؛ conv7 با مقیاس ۲برابر؛ پیش‌بینی با افزایش نمونه‌برداری ۱۶برابری (FCN-16s)؛ pool3؛ pool4 با مقیاس ۲برابر؛ conv7 با مقیاس ۴برابر؛ پیش‌بینی با افزایش نمونه‌برداری ۸برابری (FCN-8s)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "4fbaf50f80af5902893e9da69b090f0a0bddee0fbdd13fa428b26e7b816feb9f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "FCN: افزودن اتصال‌های میان‌بر (Skip Connections) برای ادغام ویژگی‌های درشت با ویژگی‌های ریزدانه‌تر (Finer-Grained Features)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Ground truth target; FCN-32s; FCN-16s; FCN-8s",
+          "fa": "هدفِ واقعیت مبنا (Ground Truth Target)؛ FCN-32s؛ FCN-16s؛ FCN-8s",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "c4410b038d277f611107c8940f55c14cb9d490bf1e9f3fe7feb86d1b62e90208",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "Mask R-CNN: جایگزینی ROI-Pool با هم‌ترازی ناحیهٔ مورد علاقه (ROI-Align)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "He et al. Mask R-CNN. ICCV 2017"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "RoIAlign; conv; conv; class; box",
+          "fa": "هم‌ترازی ناحیهٔ مورد علاقه (RoIAlign)؛ کانولوشن (Conv)؛ کانولوشن؛ دسته (Class)؛ جعبه (Box)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "7db5722b49a94d9492d60b2968fcdbdff11bc54541b3fe65a85dd6d5e1bb4a05",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محدودیتِ تجمیع ناحیهٔ مورد علاقه (ROI-Pool)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Ren Shaoqing Ren et al. Neurips 2015"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "مسئلهٔ ۱: کوانتیزه‌کردن (Quantizing) ناحیه‌های مورد علاقه (ROIs) در نقشهٔ ویژگیِ کوچک‌شده (Downsized Feature Map)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "image; conv layers; feature maps; Region Proposal Network; proposals; RoI pooling; classifier",
+          "fa": "تصویر (Image)؛ لایه‌های کانولوشنی (Conv Layers)؛ نقشه‌های ویژگی (Feature Maps)؛ شبکهٔ پیشنهاد ناحیه (Region Proposal Network)؛ پیشنهادها؛ تجمیع ناحیهٔ مورد علاقه (RoI Pooling)؛ طبقه‌بند (Classifier)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "3d7494a6c8894aca057ddb65282b2d46e768d4e92773fe5f1b3505f863da2c18",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محدودیتِ تجمیع ناحیهٔ مورد علاقه (ROI-Pool)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "192×296"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "عرض: ؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "ارتفاع: ؟"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "X گوشهٔ بالای چپ: ؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "Y گوشهٔ بالای چپ: ؟"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "مقادیر ناحیهٔ تصویر اصلی در نقشهٔ ویژگی با نمونه‌برداری کاهش‌یافته (Downsampled Feature Map) چه هستند؟"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "یک سی‌ودومِ اندازهٔ اصلی"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "200; 145; VGG16",
+          "fa": "۲۰۰؛ ۱۴۵؛ VGG16",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "59973536620ac9f92f0aaaa542897fdac7758d8fd88369b71ba150b249cc6c25",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محدودیتِ تجمیع ناحیهٔ مورد علاقه (ROI-Pool)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "192×296"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "مقادیر ناحیهٔ تصویر اصلی در نقشهٔ ویژگی با نمونه‌برداری کاهش‌یافته (Downsampled Feature Map) چه هستند؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "عرض: 200/32 = 6.25"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "ارتفاع: 145/32 = ~4.53"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "X گوشهٔ بالای چپ: 192/32 = 9.25"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "Y گوشهٔ بالای چپ: 145/32 = 6"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "یک سی‌ودومِ اندازهٔ اصلی"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "200; 145; VGG16",
+          "fa": "۲۰۰؛ ۱۴۵؛ VGG16",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "bac0932c7a4596d5128075700c96725e2c1f1094d496911c9edff4987eaaffd6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محدودیتِ تجمیع ناحیهٔ مورد علاقه (ROI-Pool)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "ناحیهٔ اصلی روی نقشهٔ ویژگی (Feature Map)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "نسخهٔ کوانتیزه‌شده (Quantized): مقادیر برای تطابق با شبکهٔ خانه‌ها، به پایین گرد می‌شوند و به مجموعه‌ای گسسته از اعداد صحیح می‌رسند."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "اطلاعات اصلیِ حفظ‌شده"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "اطلاعات افزوده‌شده"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "اطلاعات ازدست‌رفته"
+        },
+        {
+          "source_lines": [
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "کوانتیزه‌سازی (Quantization) اطلاعات مورداستفاده از تصویر اصلی را تغییر می‌دهد؛ مقداری اطلاعات مربوط به شیء را از دست می‌دهد و بافت اضافیِ تصویر (Image Context) را اضافه می‌کند. به یاد بیاورید که تصویر اصلی چندین مرتبهٔ بزرگی از نقشهٔ ویژگی بزرگ‌تر است!"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "reference",
+          "fa": "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(9.25, 6); (6.25) 200/32 = 6; (4.53) 145/32 = 4",
+          "fa": "(9.25, 6)؛ (6.25) 200/32 = 6؛ (4.53) 145/32 = 4",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "e9986ffa2aa180aaf6136d9b9733632b940043a1f3abe0eba478fbb037eae61b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محدودیتِ تجمیع ناحیهٔ مورد علاقه (ROI-Pool)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "مسئلهٔ ۲: کوانتیزه‌سازی (Quantization) هنگام تجمیع ناحیه‌های مورد علاقه (ROIs) با اندازه‌های گوناگون، برای رسیدن به اندازهٔ هدفِ مورد نیازِ لایهٔ کاملاً متصل (Fully Connected)."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Ren Shaoqing Ren et al. Neurips 2015"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "image; conv layers; feature maps; Region Proposal Network; proposals; RoI pooling; classifier",
+          "fa": "تصویر (Image)؛ لایه‌های کانولوشنی (Conv Layers)؛ نقشه‌های ویژگی (Feature Maps)؛ شبکهٔ پیشنهاد ناحیه (Region Proposal Network)؛ پیشنهادها؛ تجمیع ناحیهٔ مورد علاقه (RoI Pooling)؛ طبقه‌بند (Classifier)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "2f2fc8cb046a9696675608cd348d280d88c60e438ad79f689e6782d9ea0531f3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محدودیتِ تجمیع ناحیهٔ مورد علاقه (ROI-Pool)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "برای مثال، ناحیهٔ کوانتیزه‌شدهٔ ۴×۶ را به یک ویژگیِ ۳×۳ تبدیل کنید."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "روش کوانتیزه‌شده (Quantized Approach): اعداد صحیح گسسته‌ای را برای تجمیع (Pooling) تعیین کنید تا اندازهٔ هدف حاصل شود."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "برای مثال، 4/3 = 1.3 → 1 و 6/3 = 2"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(9.25, 6); (6.25) 200/32 = 6; (4.53) 145/32 = 4",
+          "fa": "(9.25, 6)؛ (6.25) 200/32 = 6؛ (4.53) 145/32 = 4",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "ae98ffab92524e8d4e47bf7e87c6c444c8b9e493b22791331c75c2d006465955",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محدودیتِ تجمیع ناحیهٔ مورد علاقه (ROI-Pool)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "برای مثال، ناحیهٔ کوانتیزه‌شدهٔ ۴×۶ را به یک ویژگیِ ۳×۳ تبدیل کنید."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "روش کوانتیزه‌شده (Quantized Approach): اعداد صحیح گسسته‌ای را برای تجمیع (Pooling) تعیین کنید تا اندازهٔ هدف حاصل شود."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "برای مثال، یک بردار ۱×۲ با استفاده از تجمیع بیشینه (Max Pooling)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(9.25, 6); (6.25) 200/32 = 6; (4.53) 145/32 = 4",
+          "fa": "(9.25, 6)؛ (6.25) 200/32 = 6؛ (4.53) 145/32 = 4",
+          "verified": true
+        },
+        {
+          "en": "0.1 0.2 0.3 0.4 0.5 0.6; 1 0.7 0.2 0.6 0.1 0.9; 0.9 0.8 0.7 0.3 0.5 0.2",
+          "fa": "0.1 0.2 0.3 0.4 0.5 0.6; 1 0.7 0.2 0.6 0.1 0.9; 0.9 0.8 0.7 0.3 0.5 0.2",
+          "verified": true,
+          "latex": "\\begin{bmatrix}0.1&0.2&0.3&0.4&0.5&0.6\\\\1&0.7&0.2&0.6&0.1&0.9\\\\0.9&0.8&0.7&0.3&0.5&0.2\\\\&&&&&\\end{bmatrix}"
+        }
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "6cfe3dae08afca760ecbce1524f1efb6474eaeccde2458e6dd3fe172c31c19ff",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محدودیتِ تجمیع ناحیهٔ مورد علاقه (ROI-Pool)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "برای مثال، ناحیهٔ کوانتیزه‌شدهٔ ۴×۶ را به یک ویژگیِ ۳×۳ تبدیل کنید."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "روش کوانتیزه‌شده (Quantized Approach): اعداد صحیح گسسته‌ای را برای تجمیع (Pooling) تعیین کنید تا اندازهٔ هدف حاصل شود."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "برای مثال، یک بردار ۱×۲ با استفاده از تجمیع بیشینه (Max Pooling)"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "باز هم کوانتیزه‌سازی (Quantization)، اطلاعات مربوط به شیء را از تصویر اصلی کنار می‌گذارد. به یاد بیاورید که تصویر اصلی چندین مرتبهٔ بزرگی از نقشهٔ ویژگی بزرگ‌تر است!"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "reference",
+          "fa": "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(9.25, 6); (6.25) 200/32 = 6; (4.53) 145/32 = 4",
+          "fa": "(9.25, 6)؛ (6.25) 200/32 = 6؛ (4.53) 145/32 = 4",
+          "verified": true
+        },
+        {
+          "en": "[0.1 0.2 0.3 0.4 0.5 0.6; 1 0.7 0.2 0.6 0.1 0.9; 0.9 0.8 0.7 0.3 0.5 0.2; 0.2 0.5 1 0.7 0.1 0.1]",
+          "fa": "[0.1 0.2 0.3 0.4 0.5 0.6; 1 0.7 0.2 0.6 0.1 0.9; 0.9 0.8 0.7 0.3 0.5 0.2; 0.2 0.5 1 0.7 0.1 0.1]",
+          "verified": true,
+          "latex": "\\begin{bmatrix}0.1&0.2&0.3&0.4&0.5&0.6\\\\1&0.7&0.2&0.6&0.1&0.9\\\\0.9&0.8&0.7&0.3&0.5&0.2\\\\0.2&0.5&1&0.7&0.1&0.1\\end{bmatrix}"
+        }
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "c396ee952529b112e34aae205444cb33e27190ef78664f9d3b2314772f16a33b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محدودیتِ تجمیع ناحیهٔ مورد علاقه (ROI-Pool)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "برای مثال، ناحیهٔ کوانتیزه‌شدهٔ ۴×۶ را به یک ویژگیِ ۳×۳ تبدیل کنید."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "روش کوانتیزه‌شده (Quantized Approach): اعداد صحیح گسسته‌ای را برای تجمیع (Pooling) تعیین کنید تا اندازهٔ هدف حاصل شود."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "برای مثال، یک بردار ۱×۲ با استفاده از تجمیع بیشینه (Max Pooling)"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "برای تک‌تک ناحیه‌های پیشنهادی (Region Proposals)، اطلاعات در همهٔ کانال‌ها از دست می‌رود؛ هر ناحیه برای پیش‌بینی یک دسته و یک جعبهٔ محاطی (Bounding Box) به کار می‌رود!"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "reference",
+          "fa": "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(9.25, 6); (6.25) 200/32 = 6; (4.53) 145/32 = 4",
+          "fa": "(9.25, 6)؛ (6.25) 200/32 = 6؛ (4.53) 145/32 = 4",
+          "verified": true
+        },
+        {
+          "en": "0.2 0.4 0.6; 1 0.6 0.9; 0.9 0.7 0.5",
+          "fa": "0.2 0.4 0.6; 1 0.6 0.9; 0.9 0.7 0.5",
+          "verified": true,
+          "latex": "\\begin{bmatrix}0.2&0.4&0.6\\\\1&0.6&0.9\\\\0.9&0.7&0.5\\end{bmatrix}"
+        }
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "13faf70f1f00c75266b8663bf7b2738092dd1915120b32b5f9e9dc142db9eb74",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "جمع‌بندی محدودیت‌های تجمیع ناحیهٔ مورد علاقه (ROI-Pool)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "ناحیهٔ اصلی روی نقشهٔ ویژگی (Feature Map)"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "کوانتیزه‌سازی (Quantization) اطلاعات مورداستفاده از تصویر اصلی را تغییر می‌دهد؛ مقداری اطلاعات مربوط به شیء را از دست می‌دهد و بافت اضافیِ تصویر (Image Context) را اضافه می‌کند. به یاد بیاورید که تصویر اصلی چندین مرتبهٔ بزرگی از نقشهٔ ویژگی بزرگ‌تر است!"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(9.25, 6); (6.25) 200/32 = 6; (4.53) 145/32 = 4",
+          "fa": "(9.25, 6)؛ (6.25) 200/32 = 6؛ (4.53) 145/32 = 4",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "d090721539b787f598914a3f882737f2b28e8482b806eb116b8c23ad90cfeb34",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "هم‌ترازی ناحیهٔ مورد علاقه (ROIAlign): تجمیع (Pooling) بدون کوانتیزه‌سازی (Quantization)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "6.25; 4.53",
+          "fa": "۶٫۲۵؛ ۴٫۵۳",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "5d28e708f78576da1f4c2e4b6a0c212935b4740220bc40d98fb247d3b252ed2f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "هم‌ترازی ناحیهٔ مورد علاقه (ROIAlign): تجمیع (Pooling) بدون کوانتیزه‌سازی (Quantization)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "ناحیه را به ۹ جعبهٔ هم‌اندازه تقسیم کنید؛ اندازهٔ هر جعبه چقدر است؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "math",
+          "fa": "6.25/3 × 4.53/3 = 2.08 × 1.51",
+          "latex": "\\frac{6.25}{3}\\times\\frac{4.53}{3}=2.08\\times1.51"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "6.25; 4.53",
+          "fa": "۶٫۲۵؛ ۴٫۵۳",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "1476f789d72c167eba151e709c44de855dacb4f73ec3a0676a31256f2292d164",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "هم‌ترازی ناحیهٔ مورد علاقه (ROIAlign): تجمیع (Pooling) بدون کوانتیزه‌سازی (Quantization)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "تجمیع را روی مقادیر نمونه‌برداری‌شدهٔ هر جعبه انجام دهید."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "6.25; 4.53",
+          "fa": "۶٫۲۵؛ ۴٫۵۳",
+          "verified": true
+        },
+        {
+          "en": "3x3 RoIAlign; 0.14; 0.21; 0.51; 0.43",
+          "fa": "RoIAlign با اندازهٔ ۳×۳؛ ۰٫۱۴؛ ۰٫۲۱؛ ۰٫۵۱؛ ۰٫۴۳",
+          "verified": true
+        },
+        {
+          "en": "[0.1 0.2 0.3 0.4 0.5 0.6 0.8; 1 0.7 0.2 0.6 0.1 0.9 0.4; 0.9 0.8 0.7 0.3 0.5 0.2 0.5; 0.2 0.5 1 0.7 0.1 0.1 0.8; 0.6 0.3 0.1 0.8 0.5 0.4 0.3]",
+          "fa": "[0.1 0.2 0.3 0.4 0.5 0.6 0.8; 1 0.7 0.2 0.6 0.1 0.9 0.4; 0.9 0.8 0.7 0.3 0.5 0.2 0.5; 0.2 0.5 1 0.7 0.1 0.1 0.8; 0.6 0.3 0.1 0.8 0.5 0.4 0.3]",
+          "verified": true,
+          "latex": "\\begin{bmatrix}0.1&0.2&0.3&0.4&0.5&0.6&0.8\\\\1&0.7&0.2&0.6&0.1&0.9&0.4\\\\0.9&0.8&0.7&0.3&0.5&0.2&0.5\\\\0.2&0.5&1&0.7&0.1&0.1&0.8\\\\0.6&0.3&0.1&0.8&0.5&0.4&0.3\\end{bmatrix}"
+        }
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "397339b565adcfcb93fb1d33f36d16a29295576da506c4e33337bfbfe674127b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "هم‌ترازی ناحیهٔ مورد علاقه (ROIAlign): تجمیع (Pooling) بدون کوانتیزه‌سازی (Quantization)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "تجمیع را روی مقادیر نمونه‌برداری‌شدهٔ هر جعبه انجام دهید."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "math",
+          "fa": "max(0.14, 0.21, 0.51, 0.43) = ?",
+          "latex": "\\max(0.14,0.21,0.51,0.43)=?"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "چهار مقدار نمونه را چگونه پیدا کنیم؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "?"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "6.25; 4.53",
+          "fa": "۶٫۲۵؛ ۴٫۵۳",
+          "verified": true
+        },
+        {
+          "en": "[0.1 0.2 0.3 0.4 0.5 0.6 0.8; 1 0.7 0.2 0.6 0.1 0.9 0.4; 0.9 0.8 0.7 0.3 0.5 0.2 0.5; 0.2 0.5 1 0.7 0.1 0.1 0.8; 0.6 0.3 0.1 0.8 0.5 0.4 0.3]",
+          "fa": "[0.1 0.2 0.3 0.4 0.5 0.6 0.8; 1 0.7 0.2 0.6 0.1 0.9 0.4; 0.9 0.8 0.7 0.3 0.5 0.2 0.5; 0.2 0.5 1 0.7 0.1 0.1 0.8; 0.6 0.3 0.1 0.8 0.5 0.4 0.3]",
+          "verified": true,
+          "latex": "\\begin{bmatrix}0.1&0.2&0.3&0.4&0.5&0.6&0.8\\\\1&0.7&0.2&0.6&0.1&0.9&0.4\\\\0.9&0.8&0.7&0.3&0.5&0.2&0.5\\\\0.2&0.5&1&0.7&0.1&0.1&0.8\\\\0.6&0.3&0.1&0.8&0.5&0.4&0.3\\end{bmatrix}"
+        }
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "04aa3c396afce49288c6c7e34d14c529b2c3055bbe9cc876e35f988a9089398c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "هم‌ترازی ناحیهٔ مورد علاقه (ROIAlign): تجمیع (Pooling) بدون کوانتیزه‌سازی (Quantization)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "مقدار هر نمونه را با درون‌یابی (Interpolation) میان ۴ نقطه محاسبه کنید."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "6.25; 4.53",
+          "fa": "۶٫۲۵؛ ۴٫۵۳",
+          "verified": true
+        },
+        {
+          "en": "[0.1 0.2 0.3 0.4 0.5 0.6 0.8; 1 0.7 0.2 0.6 0.1 0.9 0.4; 0.9 0.8 0.7 0.3 0.5 0.2 0.5; 0.2 0.5 1 0.7 0.1 0.1 0.8; 0.6 0.3 0.1 0.8 0.5 0.4 0.3]",
+          "fa": "[0.1 0.2 0.3 0.4 0.5 0.6 0.8; 1 0.7 0.2 0.6 0.1 0.9 0.4; 0.9 0.8 0.7 0.3 0.5 0.2 0.5; 0.2 0.5 1 0.7 0.1 0.1 0.8; 0.6 0.3 0.1 0.8 0.5 0.4 0.3]",
+          "verified": true,
+          "latex": "\\begin{bmatrix}0.1&0.2&0.3&0.4&0.5&0.6&0.8\\\\1&0.7&0.2&0.6&0.1&0.9&0.4\\\\0.9&0.8&0.7&0.3&0.5&0.2&0.5\\\\0.2&0.5&1&0.7&0.1&0.1&0.8\\\\0.6&0.3&0.1&0.8&0.5&0.4&0.3\\end{bmatrix}"
+        },
+        {
+          "en": "(9.50,6.50); (9.94,6.50); (10.50,6.50); (9.50,7.50); (10.50,7.50)",
+          "fa": "(9.50,6.50)؛ (9.94,6.50)؛ (10.50,6.50)؛ (9.50,7.50)؛ (10.50,7.50)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "379fea7814d7357c50930c4a12ccb37c26e51714b3cd4ac29df56db93c9ad2bb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "هم‌ترازی ناحیهٔ مورد علاقه (ROIAlign): تجمیع (Pooling) بدون کوانتیزه‌سازی (Quantization)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "مقدار هر نمونه را با درون‌یابی (Interpolation) میان ۴ نقطه محاسبه کنید:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "۱. جایگاه نمونه را مشخص کنید."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "۲. چهار نقطه را برای درون‌یابی مشخص کنید؛ در هر جهت از مرکز نزدیک‌ترین خانهٔ همسایه استفاده کنید."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "۳. مقدار را با درون‌یابی دوخطی (Bilinear Interpolation) محاسبه کنید: برابر ۰٫۱۴."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "math",
+          "fa": "X = X_box + (width/3) * 1 = 9.25 + (2.08/3) = 9.94",
+          "latex": "X=X_{\\mathrm{box}}+(\\mathrm{width}/3)\\ast1=9.25+(2.08/3)=9.94"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "math",
+          "fa": "Y = Y_box + (height/3) * 1 = 6 + (1.51/3) = 6.50",
+          "latex": "Y=Y_{\\mathrm{box}}+(\\mathrm{height}/3)\\ast1=6+(1.51/3)=6.50"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "y; 0.1; 0.2; 1; 0.7; (9.50,6.50); (9.94,6.50); (10.50,6.50); (9.50,7.50); (10.50,7.50)",
+          "fa": "y؛ 0.1؛ 0.2؛ 1؛ 0.7؛ (9.50,6.50)؛ (9.94,6.50)؛ (10.50,6.50)؛ (9.50,7.50)؛ (10.50,7.50)",
+          "verified": true
+        },
+        {
+          "en": "P ≈ (y₂−y)/(y₂−y₁) ((x₂−x)/(x₂−x₁) Q₁₁ + (x−x₁)/(x₂−x₁) Q₂₁) + (y−y₁)/(y₂−y₁) ((x₂−x)/(x₂−x₁) Q₁₂ + (x−x₁)/(x₂−x₁) Q₂₂)",
+          "fa": "P ≈ (y₂−y)/(y₂−y₁) ((x₂−x)/(x₂−x₁) Q₁₁ + (x−x₁)/(x₂−x₁) Q₂₁) + (y−y₁)/(y₂−y₁) ((x₂−x)/(x₂−x₁) Q₁₂ + (x−x₁)/(x₂−x₁) Q₂₂)",
+          "verified": true,
+          "latex": "P\\approx\\frac{y_2-y}{y_2-y_1}\\left(\\frac{x_2-x}{x_2-x_1}Q_{11}+\\frac{x-x_1}{x_2-x_1}Q_{21}\\right)+\\frac{y-y_1}{y_2-y_1}\\left(\\frac{x_2-x}{x_2-x_1}Q_{12}+\\frac{x-x_1}{x_2-x_1}Q_{22}\\right)"
+        },
+        {
+          "en": "≈ (7.5−6.5)/(7.5−6.5) ((10.5−9.94)/(10.5−9.5) 0.1 + (9.94−9.5)/(10.5−9.5) 0.2) + (6.5−6.5)/(7.5−6.5) ((10.5−9.94)/(10.5−9.5) 1 + (9.94−9.5)/(10.5−9.5) 0.7)",
+          "fa": "≈ (7.5−6.5)/(7.5−6.5) ((10.5−9.94)/(10.5−9.5) 0.1 + (9.94−9.5)/(10.5−9.5) 0.2) + (6.5−6.5)/(7.5−6.5) ((10.5−9.94)/(10.5−9.5) 1 + (9.94−9.5)/(10.5−9.5) 0.7)",
+          "verified": true,
+          "latex": "\\approx\\frac{7.5-6.5}{7.5-6.5}\\left(\\frac{10.5-9.94}{10.5-9.5}0.1+\\frac{9.94-9.5}{10.5-9.5}0.2\\right)+\\frac{6.5-6.5}{7.5-6.5}\\left(\\frac{10.5-9.94}{10.5-9.5}1+\\frac{9.94-9.5}{10.5-9.5}0.7\\right)"
+        }
+      ]
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "df3e0267840f0b3d32a00272ecc2531da2673c7788e9a25780bba0f9d94ed65b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "هم‌ترازی ناحیهٔ مورد علاقه (ROIAlign): تجمیع (Pooling) بدون کوانتیزه‌سازی (Quantization)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "مقدار هر نمونه را با درون‌یابی (Interpolation) میان ۴ نقطه محاسبه کنید:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "۱. جایگاه نمونه را مشخص کنید."
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "۲. چهار نقطه را برای درون‌یابی مشخص کنید؛ در هر جهت از مرکز نزدیک‌ترین خانهٔ همسایه استفاده کنید."
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "۳. مقدار را با درون‌یابی دوخطی (Bilinear Interpolation) محاسبه کنید: برابر ۰٫۲۱."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "reference",
+          "fa": "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "0.1; 0.14; 0.2; 0.3; 1; 0.7; 0.2; (10.50,6.50); (10.64,6.50); (11.50,6.50); (10.50,7.50); (11.50,7.50)",
+          "fa": "0.1؛ 0.14؛ 0.2؛ 0.3؛ 1؛ 0.7؛ 0.2؛ (10.50,6.50)؛ (10.64,6.50)؛ (11.50,6.50)؛ (10.50,7.50)؛ (11.50,7.50)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "c2e8b4f6b115c96f87e097a2487c79eb3ff641cd3f289ed973665d5a37d93f6f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "هم‌ترازی ناحیهٔ مورد علاقه (ROIAlign): تجمیع (Pooling) بدون کوانتیزه‌سازی (Quantization)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "مقدار هر نمونه را با درون‌یابی (Interpolation) میان ۴ نقطه محاسبه کنید:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "۱. جایگاه نمونه را مشخص کنید."
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "۲. چهار نقطه را برای درون‌یابی مشخص کنید؛ در هر جهت از مرکز نزدیک‌ترین خانهٔ همسایه استفاده کنید."
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "۳. مقدار را با درون‌یابی دوخطی (Bilinear Interpolation) محاسبه کنید: برابر ۰٫۵۱."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "reference",
+          "fa": "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "0.1; 0.14; 0.2; 0.21; 1; 0.7; (9.50,6.50); (10.50,6.50); (9.94,7.01); (9.50,7.50); (10.50,7.50)",
+          "fa": "0.1؛ 0.14؛ 0.2؛ 0.21؛ 1؛ 0.7؛ (9.50,6.50)؛ (10.50,6.50)؛ (9.94,7.01)؛ (9.50,7.50)؛ (10.50,7.50)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "243fbe28dfde378ac3e2a8dd75fc18c1533a204128ab65551e593669d36bcb97",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "هم‌ترازی ناحیهٔ مورد علاقه (ROIAlign): تجمیع (Pooling) بدون کوانتیزه‌سازی (Quantization)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "مقدار هر نمونه را با درون‌یابی (Interpolation) میان ۴ نقطه محاسبه کنید:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "۱. جایگاه نمونه را مشخص کنید."
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "۲. چهار نقطه را برای درون‌یابی مشخص کنید؛ در هر جهت از مرکز نزدیک‌ترین خانهٔ همسایه استفاده کنید."
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "۳. مقدار را با درون‌یابی دوخطی (Bilinear Interpolation) محاسبه کنید: برابر ۰٫۴۳."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "reference",
+          "fa": "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "0.1; 0.14; 0.2; 0.21; 0.3; 0.51; 1; 0.7; 0.2; (10.50,6.50); (11.50,6.50); (10.64,7.01); (10.50,7.50); (11.50,7.50)",
+          "fa": "0.1؛ 0.14؛ 0.2؛ 0.21؛ 0.3؛ 0.51؛ 1؛ 0.7؛ 0.2؛ (10.50,6.50)؛ (11.50,6.50)؛ (10.64,7.01)؛ (10.50,7.50)؛ (11.50,7.50)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "3facd743e25abf6a02c3cf8110e334de38052b4d7affa5ac980f28e859baacb8",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "هم‌ترازی ناحیهٔ مورد علاقه (ROIAlign) در برابر تجمیع ناحیهٔ مورد علاقه (ROI Pooling)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "ناحیهٔ اصلی روی نقشهٔ ویژگی (Feature Map)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "هر دو روش بافت اضافیِ تصویر (Image Context) را اضافه می‌کنند."
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "تنها ROI Pooling است که اطلاعات مربوط به شیء را از تصویر اصلی از دست می‌دهد."
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "reference",
+          "fa": "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(9.25, 6); 200/32 = 6.25; 145/32 = 4.53; (6.25) 200/32 = 6; (4.53) 145/32 = 4",
+          "fa": "(9.25, 6)؛ 200/32 = 6.25؛ 145/32 = 4.53؛ (6.25) 200/32 = 6؛ (4.53) 145/32 = 4",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "698a05a4b59ffa90101b80aa6e0fa108c0fd8be5e3e64b92ec023325505c7365",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "انگیزه: وقتی بینایی علاوه بر «چه چیزی؟»، «کجا؟» را هم می‌پرسد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "بازطراحی شبکه‌های عصبی برای پیش‌بینی متراکم (Dense Prediction)، به‌جای صرفاً طبقه‌بندی (Classification)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "رهاکردن شبکه‌های پیش‌بینی متراکم از اندازه‌های ثابت ورودی"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "بینش‌های کلیدی: ویژگی‌های پیش‌آموزش‌دیده (Pretrained Features) و ترفندهای طراحی برای افزایش دقت مکانی (Spatial Precision)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "698a05a4b59ffa90101b80aa6e0fa108c0fd8be5e3e64b92ec023325505c7365",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "انگیزه: وقتی بینایی علاوه بر «چه چیزی؟»، «کجا؟» را هم می‌پرسد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "بازطراحی شبکه‌های عصبی برای پیش‌بینی متراکم (Dense Prediction)، به‌جای صرفاً طبقه‌بندی (Classification)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "رهاکردن شبکه‌های پیش‌بینی متراکم از اندازه‌های ثابت ورودی"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "بینش‌های کلیدی: ویژگی‌های پیش‌آموزش‌دیده (Pretrained Features) و ترفندهای طراحی برای افزایش دقت مکانی (Spatial Precision)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 71,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ]
+    }
+  ]
+}

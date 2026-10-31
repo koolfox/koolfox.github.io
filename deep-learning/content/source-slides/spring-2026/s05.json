@@ -1,0 +1,1152 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s05",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/05-Convolutional-Neural-Networks.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2026/s05.pdf",
+    "sha256": "f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7",
+    "page_count": 76,
+    "license_notice": "CC BY-NC-SA; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "8b164107255622992616ea16711f18e111c483b75c23b15742895f2563ef9b0d",
+      "lines": [
+        "Convolutional Neural",
+        "Networks (CNNs)",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2026",
+        "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "a425071cd8ba09ee16114db96fd45c9c4f8c57fc0c1fd1cd594e4dfce778c365",
+      "lines": [
+        "Review",
+        "• Last lecture:",
+        "• Limitation of feedforward neural networks: supporting sequential data",
+        "• Key insight: recurrent neural networks (RNNs)",
+        "• Breakthrough: gated RNNs for dynamically deciding what to remember",
+        "• Programming tutorial: recurrent neural networks in PyTorch",
+        "• Assignments (Canvas):",
+        "• Lab assignment 1 due Friday (tomorrow)",
+        "• Problem set 1 due in a week",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "666b30d38aa77ec692a8809766da2c7d0819f8609d3e596ccf462466c4c7df2c",
+      "lines": [
+        "Today’s Topics",
+        "• Issue: input shifts cause fully connected networks to fail",
+        "• Idea: convolutional neural networks (CNNs) designed for translation invariance",
+        "• Implementation: training CNNs end-to-end with gradient descent",
+        "• Real-world success: LeNet-5 for check reading",
+        "• Programming tutorial: convolutional neural networks in PyTorch"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "666b30d38aa77ec692a8809766da2c7d0819f8609d3e596ccf462466c4c7df2c",
+      "lines": [
+        "Today’s Topics",
+        "• Issue: input shifts cause fully connected networks to fail",
+        "• Idea: convolutional neural networks (CNNs) designed for translation invariance",
+        "• Implementation: training CNNs end-to-end with gradient descent",
+        "• Real-world success: LeNet-5 for check reading",
+        "• Programming tutorial: convolutional neural networks in PyTorch"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "f35a98f5c3c9fc8ed5a48e49d69cabbf596426a115cc4a373e593d9c908b38e8",
+      "lines": [
+        "Context: Visual Analysis Skills of Animals",
+        "• What number is shown in the image?",
+        "• Input is just translated",
+        "• 1981 Nobel prize winning work from 1960s explains how we do this so effortlessly!",
+        "3",
+        "3",
+        "3",
+        "3",
+        "https://braintour.harvard.edu/archiv",
+        "es/portfolio-items/hubel-and-wiesel",
+        "David Hubel and Torsten Wiesel",
+        "(Neurophysiologists)",
+        "https://neuwritesd.files.wordpress.com/2015/10/visual_stream_small.png",
+        "Studied V1 region of a brain’s visual processing system"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "781f14ef69e01b46b6c1e8120a11a47c628a6c1a40df30439ff331155f7677f0",
+      "lines": [
+        "Context: Visual Analysis Skills of Animals",
+        "• What number is shown in the image?",
+        "• Input is just translated",
+        "• 1981 Nobel prize winning work from 1960s explains how we do this so effortlessly!",
+        "3",
+        "3",
+        "3",
+        "3",
+        "https://www.esantus.com/blog/2019/1/31/convol",
+        "utional-neural-networks-a-quick-guide-for￾newbies",
+        "Set-up:",
+        "https://www.cns.nyu.edu/~david/courses",
+        "/perception/lecturenotes/V1/lgn-V1.html",
+        "Finding 1: simple cells fire for light",
+        "stimuli orientations at specific locations"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "1db08da2466e4949c4ef9f51bb66a1090e5a592398e0d87356e836f21346b589",
+      "lines": [
+        "Context: Visual Analysis Skills of Animals",
+        "• What number is shown in the image?",
+        "• Input is just translated",
+        "• 1981 Nobel prize winning work from 1960s explains how we do this so effortlessly!",
+        "3",
+        "3",
+        "3",
+        "3",
+        "https://www.esantus.com/blog/2019/1/31/convol",
+        "utional-neural-networks-a-quick-guide-for￾newbies",
+        "Set-up:",
+        "https://www.cns.nyu.edu/~david/courses",
+        "/perception/lecturenotes/V1/lgn-V1.html",
+        "Finding 2: complex cells aggregate simple",
+        "cells’ responses, firing at many locations",
+        "(i.e., tolerate translation)"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "e7abb0bb16c1b7b50dcd599dfccea0a3e10caf961f0bdce7995a5e45d1d74194",
+      "lines": [
+        "Context: Visual Analysis Skills of Animals",
+        "• What number is shown in the image?",
+        "• Input is just translated",
+        "• 1981 Nobel prize winning work from 1960s explains how we do this so effortlessly!",
+        "3",
+        "3",
+        "3",
+        "3",
+        "https://www.esantus.com/blog/2019/1/31/convol",
+        "utional-neural-networks-a-quick-guide-for￾newbies",
+        "Set-up:",
+        "https://www.youtube.com/watch?v=OGxVfKJqX5E&ab_channel=RyanAbbott"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "718f97086e49e6b621ed3be173fe60d9bba909b54c2d60e566bb8ea5f82b543b",
+      "lines": [
+        "Context: Visual Analysis Skills of Animals",
+        "• What number is shown in the image?",
+        "• Input is just translated",
+        "• 1981 Nobel prize winning work from 1960s explains how we do this so effortlessly!",
+        "3",
+        "3",
+        "3",
+        "3",
+        "Summary: cells organized as a hierarchy of",
+        "feature detectors enable translation invariance",
+        "https://bruceoutdoors.files.wordpress.com/2017/08/hubel.jpg"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "e668330f831023bb82d46ddff5dc59e97a8d598bc0a5851f50d5a14183f3fe2a",
+      "lines": [
+        "Context: Visual Analysis Skills of Animals",
+        "• What number is shown in the image?",
+        "• Input is just translated",
+        "• What does a fully connected feedforward neural network see (simplified example)?",
+        "3",
+        "3",
+        "3",
+        "3",
+        "1 1",
+        "0 0",
+        "0 0",
+        "1 1",
+        "Input translated",
+        "(Input flattened)",
+        "1 1 0 0 0 0 1 1",
+        "The two inputs are totally different! Tricks/hacks needed: training data",
+        "augmentation or input pre-processing"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "666b30d38aa77ec692a8809766da2c7d0819f8609d3e596ccf462466c4c7df2c",
+      "lines": [
+        "Today’s Topics",
+        "• Issue: input shifts cause fully connected networks to fail",
+        "• Idea: convolutional neural networks (CNNs) designed for translation invariance",
+        "• Implementation: training CNNs end-to-end with gradient descent",
+        "• Real-world success: LeNet-5 for check reading",
+        "• Programming tutorial: convolutional neural networks in PyTorch"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "3d99f670398c1a0f9ed12771d91566a12263813a514135482e042d7e8b03ad2a",
+      "lines": [
+        "Goal: Translation Invariant Neural Networks",
+        "http://personalpage.flsi.or.j",
+        "p/fukushima/index-e.html",
+        "Fukushima Kunihiko",
+        "1936 - Present",
+        "“…we discuss how to synthesize a neural network model in order to endow it an ability",
+        "of pattern recognition like a human being… the network acquires a similar structure to",
+        "the hierarchy model of the visual nervous system proposed by Hubel and Wiesel.”"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "13778adbedf81479d82dd88108d934830d62f647a587f7d36c92766a6471324e",
+      "lines": [
+        "Approach: Convolutional Neural Networks",
+        "• Architecture is hard-coded to treat patterns as the same across spatial locations",
+        "• This inductive bias relieves the network from needing to learn translation invariance, which",
+        "is otherwise necessary for a fully connected feedforward network",
+        "Biological design: alternating simple and complex cells",
+        "Fukushima, 1980"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "ce65cad796ef778d3a1fb8318782093bbfb61a4739f3d1c216e37e409f058a95",
+      "lines": [
+        "Approach: Convolutional Neural Networks",
+        "• Architecture is hard-coded to treat patterns as the same across spatial locations",
+        "• This inductive bias relieves the network from needing to learn translation invariance, which",
+        "is otherwise necessary for a fully connected feedforward network",
+        "Fukushima, 1980",
+        "Architectural design: alternating simple and complex cells"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "218de1606529ad3e8d1f1bc3d3e2e64bda2c6fce42cb7a8f9e8ea11c3741e52b",
+      "lines": [
+        "Approach: Convolutional Neural Networks",
+        "• Architecture is hard-coded to treat patterns as the same across spatial locations",
+        "• This inductive bias relieves the network from needing to learn translation invariance, which",
+        "is otherwise necessary for a fully connected feedforward network",
+        "Fukushima, 1980",
+        "Parallel cells at different",
+        "locations fire for the same",
+        "pattern; e.g., oriented line",
+        "Architectural design: alternating simple and complex cells"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "2ff011eaf2adc363ed336978b004adc09f21372a59bca191dcec2c73dc9e2dff",
+      "lines": [
+        "Approach: Convolutional Neural Networks",
+        "• Architecture is hard-coded to treat patterns as the same across spatial locations",
+        "• This inductive bias relieves the network from needing to learn translation invariance, which",
+        "is otherwise necessary for a fully connected feedforward network",
+        "Fukushima, 1980",
+        "Cell fires when at least one",
+        "part of region has pattern",
+        "(translation invariance);",
+        "e.g., is any row all 1s?",
+        "? ? ? ? ?",
+        "? ? ? ? ?",
+        "? ? ? ? ?",
+        "? ? ? ? ?",
+        "? ? ? ? ?",
+        "Architectural design: alternating simple and complex cells"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "597ef07910b308050583b06338fff57ff568dc1d7a30c9375e84f72b1eee8c9a",
+      "lines": [
+        "Approach: Convolutional Neural Networks",
+        "• Architecture is hard-coded to treat patterns as the same across spatial locations",
+        "• This inductive bias relieves the network from needing to learn translation invariance, which",
+        "is otherwise necessary for a fully connected feedforward network",
+        "Fukushima, 1980",
+        "Later stages:",
+        "- See larger regions, so",
+        "are less sensitive to",
+        "pattern position shifts",
+        "- Support more",
+        "complicated patterns,",
+        "by combing earlier ones",
+        "Architectural design: alternating simple and complex cells"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "a7890e6fa0ae769c8c9a26c7e5ab54923b767e4b0460de3058156848d3c773e2",
+      "lines": [
+        "Illustrative Example of CNN Approach",
+        "Fukushima, 1980",
+        "What does the",
+        "input show?",
+        "What does the",
+        "output show?",
+        "Architecture: alternating",
+        "simple and complex cells"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "d6132ec938b3e68d2abd8f968291b1acb842c7701af2d72003acc6510e9cbce0",
+      "lines": [
+        "Illustrative Example of CNN Approach",
+        "Fukushima, 1980",
+        "Simple neurons fire for all input locations",
+        "showing K patterns of interest.",
+        "What is target pattern for k=1? k=2? k=3? …"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "7308e64f251373a23d77ed62f1933ff798e745532e17b83df83b7682c2915f56",
+      "lines": [
+        "Illustrative Example of CNN Approach",
+        "Fukushima, 1980",
+        "Complex neurons fire when at least one part",
+        "of input target region has pattern of interest",
+        "Does it fire for k=1? k=2? k=3? …"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "7a536322fc55e75450801d8cc24e594feaab9978fa55acecaea631d5a17a2313",
+      "lines": [
+        "Illustrative Example of CNN Approach",
+        "Fukushima, 1980",
+        "Simple neurons fire for all input locations",
+        "showing K patterns of interest.",
+        "What is target pattern in this example?"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "11395c323a1596b4b0fd497fb43b399146914c96898357c85ba82bbe8b00d8e7",
+      "lines": [
+        "Illustrative Example of CNN Approach",
+        "Fukushima, 1980",
+        "This alternating process continues between",
+        "simple and complex cells through the last layer!"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "c1ce961521853cffea4a5c0a4fa447200fd7f602cef6eb1558ad00c235e5977c",
+      "lines": [
+        "CNN: Convolutional Layer as a “Simple” Cell",
+        "• Objective: fire for all input locations showing a pattern of interest;",
+        "e.g., how might you find Waldo in the image?",
+        "Target",
+        "Pattern:",
+        "Input",
+        "Image:"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "3a1ddb29148237045e6ccde4418cfb077dd138c28eeb48818afce7bbdd9e7787",
+      "lines": [
+        "CNN: Convolutional Layer as a “Simple” Cell",
+        "• Objective: fire for all input locations showing a pattern of interest",
+        "• Approach: slide filter over matrix to find large matrix multiplication responses",
+        "https://people.eecs.berkeley.edu/~jrs/189/lec/cnn.pdf",
+        "Matrix:",
+        "Filtered",
+        "Result:"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "3a1ddb29148237045e6ccde4418cfb077dd138c28eeb48818afce7bbdd9e7787",
+      "lines": [
+        "CNN: Convolutional Layer as a “Simple” Cell",
+        "• Objective: fire for all input locations showing a pattern of interest",
+        "• Approach: slide filter over matrix to find large matrix multiplication responses",
+        "https://people.eecs.berkeley.edu/~jrs/189/lec/cnn.pdf",
+        "Matrix:",
+        "Filtered",
+        "Result:"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "a675b5fa6248745411523abccc8e55d5a92e58becf39a7fd0f32362e3bbf3034",
+      "lines": [
+        "CNN: Convolutional Layer as a “Simple” Cell",
+        "• Objective: fire for all input locations showing a pattern of interest",
+        "• Approach: slide filter over matrix to find large matrix multiplication responses",
+        "https://people.eecs.berkeley.edu/~jrs/189/lec/cnn.pdf",
+        "Matrix:",
+        "Filtered",
+        "Result: Note: technically, this",
+        "operation is “cross correlation”",
+        "rather than “convolution”"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "86093944cd0d0f1382f128953d4f21d6b5e4be722ac83454d02c59e6eb738703",
+      "lines": [
+        "CNN: Convolutional Layer as a “Simple” Cell",
+        "• Objective: fire for all input locations showing a pattern of interest",
+        "• Approach: slide filter over matrix to find large matrix multiplication responses;",
+        "e.g.,",
+        "Filter",
+        "1 0 1",
+        "0 1 0",
+        "1 0 1",
+        "1 1 1 0 0",
+        "0 1 1 1 0",
+        "0 0 1 1 1",
+        "0 0 1 1 0",
+        "0 1 1 0 0",
+        "Input Feature Map",
+        "?",
+        "What is the pattern",
+        "we are looking for?",
+        "Response = 1*1 + 1*0 + 1*1 + 0*0 + 1*1 + 1*0 + 0*1 + 0*1 + 0*0 + 0*0 + 1*1",
+        "Response = 4"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "96f254df9fb6aed925265152feddcad92610a5a263c99d6578147bfdb355a054",
+      "lines": [
+        "CNN: Convolutional Layer as a “Simple” Cell",
+        "• Objective: fire for all input locations showing a pattern of interest",
+        "• Approach: slide filter over matrix to find large matrix multiplication responses;",
+        "e.g.,",
+        "Filter",
+        "1 0 1",
+        "0 1 0",
+        "1 0 1",
+        "1 1 1 0 0",
+        "0 1 1 1 0",
+        "0 0 1 1 1",
+        "0 0 1 1 0",
+        "0 1 1 0 0",
+        "Input Feature Map",
+        "What is the pattern",
+        "we are looking for?",
+        "4"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "f99b3bbc274d9be1b619b276b0a277565ac9cabb3ed0fc2337bed3b484ce92bc",
+      "lines": [
+        "CNN: Convolutional Layer as a “Simple” Cell",
+        "• Objective: fire for all input locations showing a pattern of interest",
+        "• Approach: slide filter over matrix to find large matrix multiplication responses;",
+        "e.g.,",
+        "Filter",
+        "1 0 1",
+        "0 1 0",
+        "1 0 1",
+        "1 1 1 0 0",
+        "0 1 1 1 0",
+        "0 0 1 1 1",
+        "0 0 1 1 0",
+        "0 1 1 0 0",
+        "Input Feature Map",
+        "4 ?"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "4f89a8aaceb62d86d58d2c4a8f1e1eb32d5dbf7b3d8648fd45ca8721af50a75e",
+      "lines": [
+        "CNN: Convolutional Layer as a “Simple” Cell",
+        "• Objective: fire for all input locations showing a pattern of interest",
+        "• Approach: slide filter over matrix to find large matrix multiplication responses;",
+        "e.g.,",
+        "Filter",
+        "1 0 1",
+        "0 1 0",
+        "1 0 1",
+        "1 1 1 0 0",
+        "0 1 1 1 0",
+        "0 0 1 1 1",
+        "0 0 1 1 0",
+        "0 1 1 0 0",
+        "Input Feature Map",
+        "4 3 ?"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "3a2f6d79f2d434b8fc6fdfb00b75a6b4c48768c7ac32fa6797582899162808de",
+      "lines": [
+        "CNN: Convolutional Layer as a “Simple” Cell",
+        "• Objective: fire for all input locations showing a pattern of interest",
+        "• Approach: slide filter over matrix to find large matrix multiplication responses;",
+        "e.g.,",
+        "Filter",
+        "1 0 1",
+        "0 1 0",
+        "1 0 1",
+        "1 1 1 0 0",
+        "0 1 1 1 0",
+        "0 0 1 1 1",
+        "0 0 1 1 0",
+        "0 1 1 0 0",
+        "Input Feature Map",
+        "4 3 4",
+        "?"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "790d7c1defecba9091c7f164ca9a55d555703fddf677da31025502d069674cc4",
+      "lines": [
+        "CNN: Convolutional Layer as a “Simple” Cell",
+        "• Objective: fire for all input locations showing a pattern of interest",
+        "• Approach: slide filter over matrix to find large matrix multiplication responses;",
+        "e.g.,",
+        "Filter",
+        "1 0 1",
+        "0 1 0",
+        "1 0 1",
+        "1 1 1 0 0",
+        "0 1 1 1 0",
+        "0 0 1 1 1",
+        "0 0 1 1 0",
+        "0 1 1 0 0",
+        "Input Feature Map",
+        "4 3 4",
+        "2 ?"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "591a52d77c8034e0911e249daaea0f8d17b6bb599fd560f0797d0f3e0c285b94",
+      "lines": [
+        "CNN: Convolutional Layer as a “Simple” Cell",
+        "• Objective: fire for all input locations showing a pattern of interest",
+        "• Approach: slide filter over matrix to find large matrix multiplication responses;",
+        "e.g.,",
+        "Filter",
+        "1 0 1",
+        "0 1 0",
+        "1 0 1",
+        "1 1 1 0 0",
+        "0 1 1 1 0",
+        "0 0 1 1 1",
+        "0 0 1 1 0",
+        "0 1 1 0 0",
+        "Input Feature Map",
+        "4 3 4",
+        "2 4 ?"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "cdbb7988811e5c31bf82e1f6422e88bb13a27c756ead5a5db343bb0ef02df1b0",
+      "lines": [
+        "CNN: Convolutional Layer as a “Simple” Cell",
+        "• Objective: fire for all input locations showing a pattern of interest",
+        "• Approach: slide filter over matrix to find large matrix multiplication responses;",
+        "e.g.,",
+        "Filter",
+        "1 0 1",
+        "0 1 0",
+        "1 0 1",
+        "1 1 1 0 0",
+        "0 1 1 1 0",
+        "0 0 1 1 1",
+        "0 0 1 1 0",
+        "0 1 1 0 0",
+        "Input Feature Map",
+        "4 3 4",
+        "2 4 3",
+        "?"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "52841b2d89d1e0c16c4c26d2aed9020319d749210909852af9d691800bb273bb",
+      "lines": [
+        "CNN: Convolutional Layer as a “Simple” Cell",
+        "• Objective: fire for all input locations showing a pattern of interest",
+        "• Approach: slide filter over matrix to find large matrix multiplication responses;",
+        "e.g.,",
+        "Filter",
+        "1 0 1",
+        "0 1 0",
+        "1 0 1",
+        "1 1 1 0 0",
+        "0 1 1 1 0",
+        "0 0 1 1 1",
+        "0 0 1 1 0",
+        "0 1 1 0 0",
+        "Input Feature Map",
+        "4 3 4",
+        "2 4 3",
+        "2 ?"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "f8ca0fcf853b151de6ace9f96cc62c9d69e335640574077a184811a42459f47c",
+      "lines": [
+        "CNN: Convolutional Layer as a “Simple” Cell",
+        "• Objective: fire for all input locations showing a pattern of interest",
+        "• Approach: slide filter over matrix to find large matrix multiplication responses;",
+        "e.g.,",
+        "Filter",
+        "1 0 1",
+        "0 1 0",
+        "1 0 1",
+        "1 1 1 0 0",
+        "0 1 1 1 0",
+        "0 0 1 1 1",
+        "0 0 1 1 0",
+        "0 1 1 0 0",
+        "Input Feature Map",
+        "4 3 4",
+        "2 4 3",
+        "2 3 ?"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "8c3ff0749941d7c49e2a033a2faca0b748f9a6ad9701df0c20bea2cbdc797ec9",
+      "lines": [
+        "CNN: Convolutional Layer as a “Simple” Cell",
+        "• Objective: fire for all input locations showing a pattern of interest",
+        "• Approach: slide filter over matrix to find large matrix multiplication responses;",
+        "e.g.,",
+        "Filter",
+        "1 0 1",
+        "0 1 0",
+        "1 0 1",
+        "1 1 1 0 0",
+        "0 1 1 1 0",
+        "0 0 1 1 1",
+        "0 0 1 1 0",
+        "0 1 1 0 0",
+        "Input Feature Map",
+        "4 3 4",
+        "2 4 3",
+        "2 3 4",
+        "Where is the pattern:",
+        "- present?",
+        "- absent?"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "dca46fb995c07cc89d36ebf1af84b783f60bd95cf9f740ae38182b426250ea7e",
+      "lines": [
+        "CNN: Convolutional Layer as a “Simple” Cell",
+        "• Objective: fire for all input locations showing a pattern of interest",
+        "• Approach: slide filter over matrix to find large matrix multiplication responses;",
+        "• Compute a function with local neighborhoods in the matrix",
+        "• The filter specifies the function for how to combine neighbors’ values",
+        "• Training goal: learn filter’s values (target patterns)",
+        "• Equivariant operation: shifting the input shifts the feature map in the same way,",
+        "since the same filter gets applied! (i.e., no translation invariance yet)",
+        "https://www.mdpi.com/2076-3417/10/9/3161"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "ed5a02b908f9bbf93cf61bf18b998ce514afbef19d8200595612f4a73cf17e03",
+      "lines": [
+        "Many Types of Filters: What Do They Do?",
+        "https://adeshpande3.github.io/A-Beginner%27s-Guide￾To-Understanding-Convolutional-Neural-Networks/",
+        "https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/",
+        "Filter Feature Map"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "f933f44d413f9e1e2268537b1cbb8f481396916beae1353b48250bb57e711b72",
+      "lines": [
+        "Many Types of Filters: What Do They Do?",
+        "Demo: http://beej.us/blog/data/convolution-image-processing/"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "251c99ab2cd44a32244cf344081e9e3059aeaf0dabf06ab79f132bff7beee917",
+      "lines": [
+        "Convolution Interpreted within a NN",
+        "Input Filter",
+        "Feature",
+        "Map",
+        "https://www.jefkine.com/general/2016/09/05/backpropagation-in-convolutional-neural-networks/"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "780bda5e890d663eddb901d99a49ca468e37eaa728657624da7f8428353f1a15",
+      "lines": [
+        "Convolutional vs Fully Connected Layers",
+        "https://www.jefkine.com/general/2016/09/05/backpropagation-in-convolutional-neural-networks/",
+        "• Number of model weights",
+        "• How many weights must be learned for this convolutional layer?",
+        "• 4 (red, blue, yellow, and green values)",
+        "• How many weights would need to be learned if instead using a",
+        "fully connected layer?",
+        "• 36 (9 turquoise nodes x 4 magenta nodes)",
+        "• Number of inputs to neurons",
+        "• How many inputs go to each neuron in the convolutional layer?",
+        "• 4",
+        "• How many inputs would go to each neuron if instead using a",
+        "fully connected layer?",
+        "• 9"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "0df77321705824fd65241a1bb8e35baee50c6fd4d0ed8d2c4c6778c11849661c",
+      "lines": [
+        "Convolutional Layer: Full Implementation",
+        "INPUT",
+        "* =",
+        "FILTER",
+        "sigmoid + b",
+        "Feature maps are passed, with a",
+        "bias term, through an activation",
+        "function to create activation maps"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "9904a2b5880e7af0ed488bf66e20b8362ff6d038b1ef507cc944f22d0fd2ff3c",
+      "lines": [
+        "Convolutional Layer: Full Implementation",
+        "INPUT",
+        "*",
+        "=",
+        "FILTER",
+        "sigmoid + b",
+        "= sigmoid + b",
+        "Can have multiple filters, each of any size with its own bias term;",
+        "all their values are learned during NN training"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "e372fb51286c6803aee84a9515c506ec159e0efb4660f4aa574c3bb78997e20c",
+      "lines": [
+        "Convolutional Layer: Influence of Input",
+        "INPUT",
+        "*",
+        "=",
+        "FILTER",
+        "sigmoid + b",
+        "= sigmoid + b",
+        "How to handle different",
+        "numbers of input channels?"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "638daa30ae3bd8787283983fb08b08c2b518b1f8dbb303324007f240013020bb",
+      "lines": [
+        "Convolutional Layer: Influence of Input",
+        "https://ai.stanford.edu/~syye",
+        "ung/cvweb/tutorial1.html",
+        "One Channel Input (8-bit greyscale image) Three Channel Input (RGB image)",
+        "https://www.geeksforgeeks.org/matlab-rgb-image-representation/"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "7dace07ff37e579f456cd70cd80ba56c45d536a9708d10c0b52e68d0608d2b6f",
+      "lines": [
+        "Convolutional Layer: Influence of Input",
+        "https://indoml.com/2018/03/07/student-notes-convolutional-neural-networks-cnn-introduction/",
+        "Number of channels in a filter must match that of the input, with each called a “kernel”",
+        "- how many filters are in this example?",
+        "- how many kernels are in this example?",
+        "- how many feature maps are created in this example?"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "b2bea7b35e8b44b1513535459ac0eb48d2bd65b2d251e2e63b46ab526b191c4a",
+      "lines": [
+        "CNN: Pooling Layer as a “Complex” Cell",
+        "• Objective: fire when at least one part of a region shows a pattern of interest",
+        "• Approach: aggregates convolutional responses from a neighborhood;",
+        "e.g., max pooling: outputs maximum value for partitioned input",
+        "• How do the outputs compare visually:",
+        "http://cs231n.github.io/conv",
+        "olutional-networks/#pool",
+        "? ?",
+        "? ?"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "d21fe764db739bc690ada9a61e12f4227e04a07aea5a91db6db797f2f3222ff6",
+      "lines": [
+        "CNN: Pooling Layer as a “Complex” Cell",
+        "• Objective: fire when at least one part of a region shows a pattern of interest",
+        "• Approach: aggregates convolutional responses from a neighborhood",
+        "• Encodes translation invariance: shifting the input still results in the same output;",
+        "e.g.,",
+        "https://divsoni2012.medium.com/translation-invariance-in-convolutional-neural-networks-61d9b6fa03df"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "8fe1e3ac1c7454fff956dc085beb09ca7474ecc91fbfe7693b1be29299dd9320",
+      "lines": [
+        "Pooling Layer: Influence of Input",
+        "https://indoml.com/2018/03/07/student-notes-convolutional-neural-networks-cnn-introduction/",
+        "Pooling is applied to each input channel separately"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "c6b727416e7f9e5ee84c8c758e26ddfd72db3f807c7c43041f54540ed2a04880",
+      "lines": [
+        "CNN: Stacking Convolutional and Pooling Layers",
+        "Fukushima, 1980",
+        "Deeper layers identify patterns in larger",
+        "regions of the input space, ultimately",
+        "leading to greater translation invariance!",
+        "https://www.deeplearningbook.org/contents/convnets.html"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "6dfec0f9e03b29cd358f547424c734e4f9e9cd9b6a83b4a5767e7af7003e4de7",
+      "lines": [
+        "Experiments: Kunihiko’s Neocognitron Worked!",
+        "(inputs) (outputs)",
+        "Robust to inputs shifts, shape/size distortions, and noise!"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "8279d72c325cd717ecd34f956503501a3f5836092e68fe069347ce67f278f1cb",
+      "lines": [
+        "Additional Design Elements (1 of 2)",
+        "Why do the dimensions shrink with each convolutional layer?",
+        "Information is lost around boundary of the input!",
+        "http://cs231n.stanford.edu/slides/2019/cs231n_2019_lecture05.pdf"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "a98b359288544fd124ef13139dd4302cfd4331dcbbc0d59610380ecef0c8c23a",
+      "lines": [
+        "Additional Design Elements (1 of 2): Padding",
+        "• Idea: control output dimensions by padding the input",
+        "• If using a 5x5 filter, how many layers are added to the boundary to retain original dimensions?",
+        "• Key considerations: is the boundary informative/valuable?",
+        "https://software.intel.com/en-us/node/586159",
+        "3",
+        "3"
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "e14e14e2ac5ddff0d10fab34c57e6867b09e71a42c4146eb81997a8d813eb2ee",
+      "lines": [
+        "Additional Design Elements (2 of 2)",
+        "How many multiplications are needed for a convolutional layer with one 3x3 kernel",
+        "on an RGB image of dimension 1280 x 720? (assume padding to original dimensions)",
+        "(3x3) x (1280 x 720) x 3 = 24,883,200",
+        "Computationally expensive!",
+        "https://people.eecs.berkeley.edu/~jrs/189/lec/cnn.pdf"
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "d30cffbc1e282872d51d6d3eb08efa9b3ef79583005efbb13af3f1835d182367",
+      "lines": [
+        "Additional Design Elements (2 of 2): Stride",
+        "• Idea: reduce how many steps are taken spatially",
+        "• e.g., 2x2",
+        "• Key considerations: how would downsampling impact recognition?",
+        "http://deeplearning.net/software/theano/tutorial/conv_arithmetic.html",
+        "Input Filter Feature Map",
+        "4 4",
+        "2 4",
+        "3 3"
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "473472ae22a471a42aa5c41ba60f63b2889446d71221a11ab9dc7dc0eb12bdf8",
+      "lines": [
+        "Summary: Fully Connected Networks vs CNNs",
+        "Can learn translation invariance by learning",
+        "similar feature detectors at many spatial",
+        "locations (when given lots of training data)",
+        "Fukushima, 1980",
+        "CNNs avoid learning redundancy by introducing architectural",
+        "inductive biases—shared weights tied to local receptive fields enable",
+        "reusable feature detectors while spatial pooling builds invariance"
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "666b30d38aa77ec692a8809766da2c7d0819f8609d3e596ccf462466c4c7df2c",
+      "lines": [
+        "Today’s Topics",
+        "• Issue: input shifts cause fully connected networks to fail",
+        "• Idea: convolutional neural networks (CNNs) designed for translation invariance",
+        "• Implementation: training CNNs end-to-end with gradient descent",
+        "• Real-world success: LeNet-5 for check reading",
+        "• Programming tutorial: convolutional neural networks in PyTorch"
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "deb49d1be3782a0f2fe9860017ef7109821533e35dd7e0757824ac18732bb977",
+      "lines": [
+        "Goal: Supervised Learning of CNN Parameters",
+        "Neural computation, 1989",
+        "Yann LeCun",
+        "1960 – Present",
+        "2018 Turing Award winner for",
+        "contributions to deep learning",
+        "Professor, Chief AI Scientist (Meta)"
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "62d77b6db650f29fab1eb08c85e667dac35fc64847463670b71cfa319d0bfd2b",
+      "lines": [
+        "• Repeat until stopping criterion met:",
+        "1. Propagate training data through network to predict output",
+        "2. Measure error of predictions using a loss function",
+        "3. Calculate gradients of the loss function to determine how",
+        "each model parameter contributed to the error; weight",
+        "sharing accounted for by summing partial derivative values",
+        "for all connections that share the same parameter",
+        "4. Update each parameter using calculated gradients",
+        "CNN Training: Gradient Based Learning"
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "67f768219e48a783e3ca760c364a8dd28ea02013ee2468eda7843e0395379c79",
+      "lines": [
+        "CNN Training: Weight Sharing",
+        "Input Filter",
+        "Feature",
+        "Map",
+        "https://www.jefkine.com/general/2016/09/05/backpropagation-in-convolutional-neural-networks/",
+        "Partial derivative values for all",
+        "connections that share the",
+        "same parameter get summed"
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "d939f6b63b5a74b901f6ca192d495b3b062e83aa572c7c779e5fb0f2622c2553",
+      "lines": [
+        "• Repeat until stopping criterion met:",
+        "1. Propagate training data through network to predict output",
+        "2. Measure error of predictions using a loss function",
+        "3. Calculate gradients of the loss function to determine how",
+        "each model parameter contributed to the error; weight",
+        "sharing accounted for by summing partial derivative values",
+        "for all connections that share the same parameter",
+        "4. Update each parameter using calculated gradients",
+        "CNN Training: Gradient Based Learning",
+        "How to handle",
+        "subsampling strategies",
+        "(pooling layers, stride)?"
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "5a25640253ad7de3170f0e92e3367cdce3cd40cc32ce549113a77fc7ace5950d",
+      "lines": [
+        "Subsampling Strategies: Pooling and Stride",
+        "• Approach: only inputs that contribute to an output are blamed and so receive",
+        "gradients for parameter updating; all other paths get 0 gradient",
+        "• e.g., max pooling: gradient flows only to the input that was the max with other paths getting",
+        "0 gradient; since no learning happens, the gradient just passes through to the earlier layer",
+        "6"
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "666b30d38aa77ec692a8809766da2c7d0819f8609d3e596ccf462466c4c7df2c",
+      "lines": [
+        "Today’s Topics",
+        "• Issue: input shifts cause fully connected networks to fail",
+        "• Idea: convolutional neural networks (CNNs) designed for translation invariance",
+        "• Implementation: training CNNs end-to-end with gradient descent",
+        "• Real-world success: LeNet-5 for check reading",
+        "• Programming tutorial: convolutional neural networks in PyTorch"
+      ]
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "79a4e503858e23d7629544274527c9eeffd0229b1db2e07f0474f0ce03d0f06b",
+      "lines": [
+        "Breakthrough: Success in Real-World Application",
+        "Proceedings of the IEEE, 1998",
+        "Yann LeCun",
+        "1960 – Present",
+        "2018 Turing Award winner for deep learning contributions",
+        "Professor, Chief AI Scientist (Meta)",
+        "Yoshua Bengio",
+        "1964 – Present",
+        "2018 Turing Award winner for deep learning contributions",
+        "Professor, Co-President of LawZero"
+      ]
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "be27edd94ec0b9c40bd8e3a0811d9d2a40caf4273facf5b16fad79d42d5d7650",
+      "lines": [
+        "Breakthrough: Success in Real-World Application",
+        "“It is reading millions of checks per month in",
+        "several banks across the United States.”",
+        "Proceedings of the IEEE, 1998"
+      ]
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "661efe6eb99c60d2540cef55a2eb85e9b345d3bf9102b5c3fe03182087b77d8e",
+      "lines": [
+        "LeNet-5: Architecture (like Neocognitron, has",
+        "alternating convolutional layers and pooling layers)",
+        "Multi-layer neural network",
+        "the activation function is tanh",
+        "How many values",
+        "can it predict?",
+        "LeCun et al. Gradient-based learning applied to document recognition. 1998"
+      ]
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "9d79b648542fb6d1647656e2cd1c09d68d1f37d1a9d335b3cc90080bf7725eb4",
+      "lines": [
+        "LeNet-5: Architecture (like Neocognitron, has",
+        "alternating convolutional layers and pooling layers)",
+        "How many filters are between the input and hidden layer 1?",
+        "What are their sizes?",
+        "How many parameters are between the two layers? – 6 x 5 x 5 + 6 = 156 LeCun et al. Gradient-based learning applied to document recognition. 1998"
+      ]
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "99069e8ef992315273e975fa9379cdd56b9bcc9fc6f1ad21c9f6cc937e1d4cce",
+      "lines": [
+        "LeNet-5: Architecture (like Neocognitron, has",
+        "alternating convolutional layers and pooling layers)",
+        "What neighborhood size is used for this pooling layer?",
+        "LeCun et al. Gradient-based learning applied to document recognition. 1998"
+      ]
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "a245e1f78ecb0e38df2ace79c5ea118b9f94e4def8a20471307e9e97ed1392d1",
+      "lines": [
+        "Dataset for Model Development: MNIST",
+        "• Task classify digit as 0, 1, …, or 9",
+        "• Source: images collected by NIST from",
+        "a total of 500 Census Bureau",
+        "employees and high school students",
+        "• Dataset: 60,000 training and 10,000",
+        "test examples, pre-processed to be",
+        "centered and same dimension; writers",
+        "were different in the two sets",
+        "• Evaluation metric: accuracy (% correct)",
+        "https://commons.wikimedia.org/w/index.php?curid=64810040"
+      ]
+    },
+    {
+      "number": 71,
+      "source_text_sha256": "e6deb73627a334bdc6b72f943170ba686622c0d9761e953844751e4c3f024c61",
+      "lines": [
+        "LeNet-5 Analysis",
+        "How many epochs are needed",
+        "for training to converge?",
+        "LeCun et al. Gradient-based learning applied to document recognition. 1998"
+      ]
+    },
+    {
+      "number": 72,
+      "source_text_sha256": "82421ec9d8bd9e6dd0fca948068b22b202204ae3d000788ee481889d2db40d5b",
+      "lines": [
+        "LeNet-5 Analysis",
+        "All 82 mislabeled examples",
+        "(correct answer on left,",
+        "predicted answer on right):",
+        "Why might mistakes occur?",
+        "- Ambiguity",
+        "- Insufficient representation in",
+        "the training data",
+        "LeCun et al. Gradient-based learning applied to document recognition. 1998"
+      ]
+    },
+    {
+      "number": 73,
+      "source_text_sha256": "aa7a2aa1c07a2d798e7f25b031544bb406c0d6829274382feb52cdef53f69219",
+      "lines": [
+        "LeNet-5 Analysis",
+        "LeCun et al. Gradient-based learning applied to document recognition. 1998",
+        "The LeNet family was competitive",
+        "with other available options,",
+        "including those that are memory",
+        "based (e.g., K-NN), use hand￾crafted features, and use fully",
+        "connected neural networks!",
+        "Higher capacity implementations of",
+        "LeNet perform better!"
+      ]
+    },
+    {
+      "number": 74,
+      "source_text_sha256": "666b30d38aa77ec692a8809766da2c7d0819f8609d3e596ccf462466c4c7df2c",
+      "lines": [
+        "Today’s Topics",
+        "• Issue: input shifts cause fully connected networks to fail",
+        "• Idea: convolutional neural networks (CNNs) designed for translation invariance",
+        "• Implementation: training CNNs end-to-end with gradient descent",
+        "• Real-world success: LeNet-5 for check reading",
+        "• Programming tutorial: convolutional neural networks in PyTorch"
+      ]
+    },
+    {
+      "number": 75,
+      "source_text_sha256": "666b30d38aa77ec692a8809766da2c7d0819f8609d3e596ccf462466c4c7df2c",
+      "lines": [
+        "Today’s Topics",
+        "• Issue: input shifts cause fully connected networks to fail",
+        "• Idea: convolutional neural networks (CNNs) designed for translation invariance",
+        "• Implementation: training CNNs end-to-end with gradient descent",
+        "• Real-world success: LeNet-5 for check reading",
+        "• Programming tutorial: convolutional neural networks in PyTorch"
+      ]
+    },
+    {
+      "number": 76,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

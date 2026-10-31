@@ -1,0 +1,4068 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s09",
+  "source_sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "c4e7a3993594a096a635e6b21c6ada580d793f145dfbd6674c307678c7595a82",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "heading",
+          "fa": "بنیاد پیشرفت: مجموعه‌داده‌های بزرگِ برچسب‌دار (Large Labeled Datasets) و شتاب‌دهی سخت‌افزاری (Hardware Acceleration)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "دانشگاه کلرادو بولدر (University of Colorado Boulder)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "بهار ۲۰۲۶"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CC BY NC SA",
+          "fa": "CC BY NC SA (نسبت‌دهی، غیرتجاری، اشتراک‌همسان)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "d5c187881f707d197c3966cf38dbee0850962df042c181199e7bb73bb24b4a3f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "جلسهٔ قبل:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "در جست‌وجوی شبکه‌های عصبی عمیق‌تر (Deeper Neural Networks): چرا شکست می‌خورند؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "همگرایی (Convergence) دشوار است: مقداردهی اولیهٔ He، نرمال‌سازی دسته‌ای (Batch Normalization)، بهینه‌سازی Adam"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "به چیز بیشتری نیاز است: یادگیری باقیمانده (Residual Learning) با اتصال‌های میان‌بر (Skip Connections)، یعنی ResNet"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "تکالیف (Canvas)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "مهلت تحویل تکلیف آزمایشگاهی ۱، یک هفتهٔ دیگر است."
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "برای روشن‌شدن پرسش‌های رایج، صفحهٔ تکلیف را در Canvas مرور کنید."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "پرسشی دارید؟"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "bullet",
+          "fa": "علاوه بر پرسیدن از من، لطفاً پرسش‌هایتان را در Piazza بنویسید و/یا در ساعت‌های ملاقات شرکت کنید."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "b6d7e5dcd902c0ff98b5fa6553a129627092243d612c0799979d7c0e335d044b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "در جست‌وجوی دادهٔ بیشتر و ماشین‌های سریع‌تر"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "تغییر پارادایم: بازنمایی‌های آموخته‌شده (Learned Representations) با مجموعه‌داده‌های بزرگِ برچسب‌دار شکوفا می‌شوند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "یک اتفاق خوش‌یمن: گرادیان‌کاهشی (Gradient Descent) با سخت‌افزار بازی روبه‌رو می‌شود."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "نقطهٔ عطف: پلتفرم‌های متن‌باز (Open-Source Platforms) مشارکت گسترده را شتاب می‌دهند."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "b6d7e5dcd902c0ff98b5fa6553a129627092243d612c0799979d7c0e335d044b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "در جست‌وجوی دادهٔ بیشتر و ماشین‌های سریع‌تر"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "تغییر پارادایم: بازنمایی‌های آموخته‌شده (Learned Representations) با مجموعه‌داده‌های بزرگِ برچسب‌دار شکوفا می‌شوند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "یک اتفاق خوش‌یمن: گرادیان‌کاهشی (Gradient Descent) با سخت‌افزار بازی روبه‌رو می‌شود."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "نقطهٔ عطف: پلتفرم‌های متن‌باز (Open-Source Platforms) مشارکت گسترده را شتاب می‌دهند."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "75b0661c4f5f29e34f446826964512298a89c6ab72dde08f8a998013d7aae044",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "زمینه: اذعان‌های اولیه به گلوگاه‌های داده و محاسبات (Data and Compute Bottlenecks)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "2007"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "مقالهٔ LeCun و Bengio"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "«ربع قرن گذشته الگوریتم‌های یادگیری انعطاف‌پذیرِ ناپارامتری (Non-Parametric) را به ما داده است که می‌توانند هر نگاشت پیوستهٔ ورودی به خروجی را بیاموزند، به شرط آنکه منابع محاسباتی و دادهٔ آموزشی کافی وجود داشته باشد.»"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "مقالهٔ پس‌انتشار (Backpropagation) در شبکهٔ عصبی کانولوشنی (CNN)، یعنی LeNet-v1"
+        },
+        {
+          "source_lines": [
+            9,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "«چون زمان آموزش بسیار زیاد بود (۱۸ روز روی یک مینی‌ابررایانهٔ Alliant)… زمان آموزش ما روی یک ایستگاه کاری Sun «فقط» ۳ روز بود.»"
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "literal",
+          "fa": "1989"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "9f6271ffd8d557e58daf4254217f2a1d8415f8214408668cd2c57ff725764a90",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "۲۰۲۵: تأملاتی در نگاه به گذشته"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "«در سال ۱۹۸۶ نشان دادیم که الگوریتم پس‌انتشار (Backpropagation) می‌تواند معناهای واژه‌ها را در یک مثال آزمایشی بسیار ساده یاد بگیرد. بسیار خوش‌بین بودیم. فکر می‌کردیم فهمیده‌ایم چگونه سیستم‌ها را وادار کنیم لایه‌هایی از ویژگی‌ها را بیاموزند، چگونه آن‌ها را وادار کنیم بینایی را بیاموزند و اینکه خواهیم توانست آن‌ها را وادار کنیم زبان را بیاموزند. باور داشتیم مسئله را حل کرده‌ایم و همه‌چیز عالی خواهد شد…"
+        },
+        {
+          "source_lines": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "kind": "text",
+          "fa": "این در دههٔ ۱۹۸۰ و اوایل دههٔ ۱۹۹۰ بود. بااین‌حال، این روش به مقیاس تشخیص اشیای واقعی در تصاویر واقعی نمی‌رسید؛ مثلاً تشخیص یک پرنده، چه مرغ دریایی از دور باشد و چه شترمرغی از نزدیک… آن زمان نمی‌دانستیم مشکل چیست. مشکل عمدتاً این بود که داده یا توان محاسباتی کافی نداشتیم… در واقع، آنچه واقعاً نیاز داشتیم یک میلیون برابر داده و یک میلیون برابر محاسبات بود؛ سپس این روش بسیار خوب کار کرد.»"
+        },
+        {
+          "source_lines": [
+            16
+          ],
+          "kind": "text",
+          "fa": "۱۹۴۷ تا اکنون"
+        },
+        {
+          "source_lines": [
+            17
+          ],
+          "kind": "text",
+          "fa": "استاد؛ Google Brain"
+        },
+        {
+          "source_lines": [
+            18
+          ],
+          "kind": "text",
+          "fa": "برندهٔ جایزهٔ نوبل ۲۰۲۴"
+        },
+        {
+          "source_lines": [
+            19
+          ],
+          "kind": "reference",
+          "fa": "https://www.persuasion.community/p/geoffrey-hinton"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "b6d7e5dcd902c0ff98b5fa6553a129627092243d612c0799979d7c0e335d044b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "در جست‌وجوی دادهٔ بیشتر و ماشین‌های سریع‌تر"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "تغییر پارادایم: بازنمایی‌های آموخته‌شده (Learned Representations) با مجموعه‌داده‌های بزرگِ برچسب‌دار شکوفا می‌شوند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "یک اتفاق خوش‌یمن: گرادیان‌کاهشی (Gradient Descent) با سخت‌افزار بازی روبه‌رو می‌شود."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "نقطهٔ عطف: پلتفرم‌های متن‌باز (Open-Source Platforms) مشارکت گسترده را شتاب می‌دهند."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "6fa30eaadd3d02c1e4f2fb028cb5d181acc5d7eb976a6420fb98df7a3854edd5",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "یادآوری: بازنمایی‌های آموخته‌شده (Learned Representations) در چالش ImageNet از مهندسی ویژگی (Feature Engineering) پیش افتادند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "حجم زیاد نظارتِ ImageNet برای سلطهٔ شبکه‌های عصبی حیاتی بود."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "ImageNet، خطای پنج انتخاب برتر (Top 5 Error)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://www.edge-ai-vision.com/2018/07/deep-learning-in-five-and-a-half-minutes/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "2011 (XRCE): 26,0; 2012 (AlexNet): 16,4; 2013 (ZF): 11,7; 2014 (VGG): 7,3; 2014 (GoogLeNet): 6,7; Human: 5,0; 2015 (ResNet): 3,6",
+          "fa": "۲۰۱۱ (XRCE): ۲۶٫۰؛ ۲۰۱۲ (AlexNet): ۱۶٫۴؛ ۲۰۱۳ (ZF): ۱۱٫۷؛ ۲۰۱۴ (VGG): ۷٫۳؛ ۲۰۱۴ (GoogLeNet): ۶٫۷؛ انسان (Human): ۵٫۰؛ ۲۰۱۵ (ResNet): ۳٫۶",
+          "verified": true
+        },
+        {
+          "en": "0,0; 5,0; 10,0; 15,0; 20,0; 25,0",
+          "fa": "۰٫۰؛ ۵٫۰؛ ۱۰٫۰؛ ۱۵٫۰؛ ۲۰٫۰؛ ۲۵٫۰",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "bda667d94f61a34eaed38858f0cde293a4dc9ea0951b9fe501ef6e8b70d5607a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "(CVPR, 2009)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ImageNet: A Large-Scale Hierarchical Image Database",
+          "fa": "ImageNet: یک پایگاه‌دادهٔ تصویری سلسله‌مراتبی در مقیاس بزرگ (Large-Scale Hierarchical Image Database)",
+          "verified": true
+        },
+        {
+          "en": "Jia Deng, Wei Dong, Richard Socher, Li-Jia Li, Kai Li and Li Fei-Fei",
+          "fa": "جیا دنگ (Jia Deng)، وی دونگ (Wei Dong)، ریچارد سوچر (Richard Socher)، لی‌جیا لی (Li-Jia Li)، کای لی (Kai Li) و لی فی‌فی (Li Fei-Fei)",
+          "verified": true
+        },
+        {
+          "en": "Dept. of Computer Science, Princeton University, USA",
+          "fa": "گروه علوم کامپیوتر، دانشگاه پرینستون، ایالات متحدهٔ آمریکا",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "1ecbe5da7b6162de21cddf7615428f77d6384963d526249fbd8ee6f1c5851950",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "زمینهٔ ImageNet"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "مدل (Model)، مجموعه‌داده (Dataset)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "مدل (Model)، مجموعه‌داده (Dataset)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "مدل (Model)، مجموعه‌داده (Dataset)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "مدل (Model)، مجموعه‌داده (Dataset)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "مجموعه‌داده (Dataset)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "مدل‌ها (Models)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "موج اول هوش مصنوعی (AI): تولیدشده توسط مؤلف"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "در مقیاس بسیار کوچک، به‌علت محدودیت بسیار زیاد سخت‌افزار (HW)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "موج‌های دوم و سوم هوش مصنوعی: معیارسنجی‌های استاندارد (Standardized Benchmarks)"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "مقیاس بزرگ‌تر با تنوع بیشتر"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "DIVORCE",
+          "fa": "طلاق (DIVORCE)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "8666b0167abecb5d4fa268ed46081e4e6212f151a91c38809ec65dd706935327",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "زمینهٔ ImageNet"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "اجزای ضروری هر معیارسنجی (Benchmark):"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "۱. نمونه‌های آزمون که نتایج هدف را در بر دارند."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "۲. معیاری (Metric) برای سنجش شباهت میان پیش‌بینی هر مدل و نتیجهٔ هدف."
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "۳. چالش‌های جدید برای پرداختنِ جامعهٔ پژوهشی به آن‌ها، که تحلیل مجموعه‌داده و معیارسنجی مدل‌ها شواهدشان را فراهم می‌کنند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "2344892ec715cfe84b793fa4f1dbf3937446c234991403359d9c78544d046f7f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "زمینهٔ ImageNet"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "مشابه آزمون‌ها، که ممکن است درس‌های مدرسه نیز همراهشان باشند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Shutterstock"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "5b8777ed905f0c8877c7c37c571c7629592d533f6fadad7aa2045ac93a49f083",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "زمینهٔ ImageNet"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "1945 1963"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Deng et al. 2009"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "MNIST"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "۷۰٬۰۰۰ تصویر ۲۸×۲۸"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "1994"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "literal",
+          "fa": "ImageNet"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "literal",
+          "fa": "2009"
+        },
+        {
+          "source_lines": [
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "۴ تصویر ۲۵۶×۲۵۶ را می‌شد در حافظه ذخیره کرد؛ اسکن‌کردن هر تصویر در رایانه حدود ۳ دقیقه طول می‌کشید."
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "۳٬۲۰۰٬۰۰۰ تصویر با وضوح‌های متفاوت (برای مثال ۶۴۰×۴۸۰)"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "reference",
+          "fa": "Roberts. Machine perception of three-dimensional solids. 1963"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "5abd9a6b367ff1c24405bdf9fc27b80271b065a70f43b58e4774f9f1182a1efe",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ImageNet: بسیار بزرگ‌تر، با تنوع بیشتر"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "از پیشگام این حوزه، فی‌فی لی (Fei-Fei Li)، دربارهٔ ریسکی بشنوید که در ابتدای دوران استادیاری خود برای ایجاد ImageNet پذیرفت:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "ویدئو (۵:۴۴ تا ۱۰:۱۰): https://youtu.be/40riCqvRoMs?feature=shared&t=343"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "bf9f4b8eb18c930899378e444aa495d51855d34b96caef5d29b4f5e48149c40c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تغییر پارادایم پس از ImageNet: تقلید"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "موجی از مجموعه‌داده‌های بزرگِ برچسب‌دار جدید (Large Labeled Datasets) برای وظایف گوناگون پدید آمد؛ به‌دنبال آن، شبکه‌های عصبی در هر وظیفه از بهترین روش‌های مهندسی ویژگی (Feature-Engineered SOTA) پیش افتادند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://3dvision.princeton.edu/projects/2010/SUN/"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "طبقه‌بندی نوع صحنه (Scene Type Classification)، ۲۰۱۰؛ مکان‌یابی شیء (Object Localization)، ۲۰۱۴"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://cocodataset.org/#home"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "https://visualqa.org/"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "پاسخ‌گویی به پرسش تصویری (Visual Question Answering)، ۲۰۱۵؛ ردیابی چند شیء (Multi-Object Tracking)، ۲۰۱۵"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "https://motchallenge.net/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "SUN; Dataset examples",
+          "fa": "SUN؛ نمونه‌های مجموعه‌داده (Dataset Examples)",
+          "verified": true
+        },
+        {
+          "en": "Who is wearing glasses? man; woman",
+          "fa": "«Who is wearing glasses?» (چه کسی عینک زده است؟)؛ «man» (مرد)؛ «woman» (زن)",
+          "verified": true
+        },
+        {
+          "en": "Where is the child sitting? fridge; arms",
+          "fa": "«Where is the child sitting?» (کودک کجا نشسته است؟)؛ «fridge» (یخچال)؛ «arms» (آغوش)",
+          "verified": true
+        },
+        {
+          "en": "Is the umbrella upside down? yes; no",
+          "fa": "«Is the umbrella upside down?» (آیا چتر وارونه است؟)؛ «yes» (بله)؛ «no» (خیر)",
+          "verified": true
+        },
+        {
+          "en": "How many children are in the bed? 2; 1",
+          "fa": "«How many children are in the bed?» (چند کودک در تخت هستند؟)؛ ۲؛ ۱",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "c8d0c1967cd8f5571dc936ef7ac51ff08e223f094644ff54616a063371d1f046",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تغییر پارادایم پس از ImageNet: تقلید"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "این شامل گروه پژوهشی من هم می‌شود که بیش از ۲۰ معیارسنجی عمومی (Public Benchmarks) ایجاد کرده است."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Danna Gurari; Home; About; Research Group",
+          "fa": "دانا گوراری؛ خانه؛ درباره؛ گروه پژوهشی",
+          "verified": true
+        },
+        {
+          "en": "Publications; Filter by Key Contribution; Dataset; Filter by Task; Any; Sort by Date; Sort by",
+          "fa": "انتشارات؛ فیلتر بر پایهٔ دستاورد اصلی؛ مجموعه‌داده (Dataset)؛ فیلتر بر پایهٔ وظیفه؛ هر مورد؛ مرتب‌سازی بر پایهٔ تاریخ؛ مرتب‌سازی بر پایهٔ",
+          "verified": true
+        },
+        {
+          "en": "Hierarchical Instance Tracking to Balance Privacy Preservation with Accessible Information",
+          "fa": "ردیابی سلسله‌مراتبی نمونه‌ها (Hierarchical Instance Tracking) برای برقراری توازن میان حفظ حریم خصوصی و اطلاعات دسترس‌پذیر",
+          "verified": true
+        },
+        {
+          "en": "Neelima Prasad, Jarek Reynolds, Neal Karsanbhai, Tansuree Sharma, Lotus Zhang, Abigale Stangl, Yang Wang, Leah Findlater, and Danna Gurari. IEEE Winter Conference on Applications in Computer Vision (WACV), March 2026.",
+          "fa": "Neelima Prasad, Jarek Reynolds, Neal Karsanbhai, Tansuree Sharma, Lotus Zhang, Abigale Stangl, Yang Wang, Leah Findlater, and Danna Gurari. کنفرانس زمستانی IEEE دربارهٔ کاربردهای بینایی کامپیوتر (WACV)، مارس ۲۰۲۶.",
+          "verified": true
+        },
+        {
+          "en": "Paper",
+          "fa": "مقاله (Paper)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "6891727582f1a9c1e1dbb9c0b52c4fe8d348b3275c61cedde5c7db04db78ef1c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "اجزای کلیدی برای امکان‌پذیرشدن مجموعه‌داده‌های بزرگِ برچسب‌دار (Big Labeled Datasets)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "۱. افزایش حجم داده‌های منتشرشده در اینترنت (Internet)؛ برای مثال،"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "۲. ظرفیت سخت‌افزاری (Hardware Capacity) بیشتر؛ حافظهٔ RAM (برای مثال گیگابایت‌ها، GB) و فضای ذخیره‌سازی (برای مثال ترابایت‌ها، TB)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "۳. پلتفرم‌های برچسب‌گذاری داده (Data Annotation) که نیروی کار برخط را بنا به تقاضا فراهم می‌کنند."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "AltaVista"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "verified": true,
+          "reason_fa": "این سه سطر متن جایگزین لوگوی Picsearch در لایهٔ استخراج هستند؛ در تصویر واقعی صفحه فقط نام picsearch دیده می‌شود و این شعار زیر آن چاپ نشده است."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Ask Images; picsearch; Google Image Search; flickr; Cydral Image & Site Search; altavista",
+          "fa": "Ask Images؛ picsearch؛ جست‌وجوی تصویر Google؛ flickr؛ جست‌وجوی تصویر و وب‌سایت Cydral؛ altavista",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "17d0d46d331a15f579e9cb7fec3b7b0a640a1684efb134ffc04c58352ac3f27a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برچسب‌گذاری داده (Data Annotation): امتحان کنید!"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "چه شیئی در تصویر وجود دارد؟ (یعنی وظیفهٔ بازشناسی شیء، Object Recognition)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "shoot system; root system",
+          "fa": "دستگاه اندام هوایی (Shoot System)؛ دستگاه ریشه‌ای (Root System)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "85efa090b7669171e184a5315e10f8ce3442b1a686ce16a05c1caecc431a19d3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "Chittilappilly et al. A Survey of General-Purpose Crowdsourcing Techniques. IEEE TKDE 2016."
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "heading",
+          "fa": "پیش از انجام وظیفه (Pre-Task)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "دستورالعمل‌ها"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "مشوق‌ها"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "معیارهای صلاحیت مورد نیاز"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آموزش / آزمون‌های احراز صلاحیت"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "heading",
+          "fa": "برچسب‌گذاری داده (Data Annotation): چگونه برچسب‌های باکیفیت جمع‌آوری کنیم؟"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "heading",
+          "fa": "پس از انجام وظیفه (Post-Task)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "وظایف تلهٔ کنترل کیفیت (Honey Pot Tasks)"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "bullet",
+          "fa": "تجمیع پاسخ‌های تکراری"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "bullet",
+          "fa": "بازبینی دستی"
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "bullet",
+          "fa": "بازبینی خودکار"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Initializing; Task Designing; Task Breakdown; Incentive Design; Finding Crowd; Implementation; Task Assigning; Finalizing; Quality Control; Aggregation",
+          "fa": "آغاز کار (Initializing)؛ طراحی وظیفه؛ شکستن وظیفه به بخش‌ها؛ طراحی مشوق؛ یافتن جمعیت مشارکت‌کننده؛ اجرا؛ واگذاری وظیفه؛ نهایی‌سازی؛ کنترل کیفیت؛ تجمیع",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "9454c28e9afade6d48c04e96777c32877b4a4cd0e92a0ad2814dee2725b97ff7",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برچسب‌گذاری داده (Data Annotation): چگونه برچسب‌گذاران را جذب کنیم؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "پرسش‌های امنیتی"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "بازی‌وارسازی (Gamification)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "علم شهروندی (Citizen Science)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "پرداخت دستمزد"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "9454c28e9afade6d48c04e96777c32877b4a4cd0e92a0ad2814dee2725b97ff7",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برچسب‌گذاری داده (Data Annotation): چگونه برچسب‌گذاران را جذب کنیم؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "پرسش‌های امنیتی"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "بازی‌وارسازی (Gamification)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "علم شهروندی (Citizen Science)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "پرداخت دستمزد"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Select all squares with cars; VERIFY",
+          "fa": "همهٔ مربع‌های دارای خودرو را انتخاب کنید؛ تأیید (VERIFY)",
+          "verified": true
+        },
+        {
+          "en": "reCAPTCHA; stop spam. read books.",
+          "fa": "reCAPTCHA؛ هرزنامه را متوقف کنید. کتاب بخوانید.",
+          "verified": true
+        },
+        {
+          "en": "230; 196; 13; 50",
+          "fa": "۲۳۰؛ ۱۹۶؛ ۱۳؛ ۵۰",
+          "verified": true
+        }
+      ],
+      "image_text_limits": [
+        {
+          "reason_fa": "واژه‌های عمداً دگرگون‌شده در نمونه‌های reCAPTCHA حتی در تصویر نهفتهٔ اصلی با اندازهٔ ۴۸۸×۴۰۰ پیکسل خوانش قطعی ندارند؛ شکل اصلی آن‌ها بدون تغییر در PDF حفظ شده است.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "8af9e76f694cc381b2f40d57cc20ee4caa50f80cadaf8b2734b093360543533b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برچسب‌گذاری داده (Data Annotation): چگونه برچسب‌گذاران را جذب کنیم؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "پرسش‌های امنیتی"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "بازی‌وارسازی (Gamification)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "علم شهروندی (Citizen Science)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "پرداخت دستمزد"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "reference",
+          "fa": "[von Ahn & Dabbish; 2004]"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "anisha; @akeshavan_",
+          "fa": "anisha؛ @akeshavan_",
+          "verified": true
+        },
+        {
+          "en": "Are you at work but feel like playing Tinder? Why not play braindr (braindr.us) instead, and help neuroscientists rate the quality of brain images? Swipe left to fail bad quality images! Built with @vuejs and @Firebase #citizenscience",
+          "fa": "سر کار هستید اما دوست دارید Tinder بازی کنید؟ چرا به‌جای آن braindr (braindr.us) بازی نکنید و به عصب‌پژوهان کمک نکنید کیفیت تصاویر مغز را ارزیابی کنند؟ برای ردکردن تصاویر بی‌کیفیت، به چپ بکشید! ساخته‌شده با @vuejs و @Firebase، #citizenscience (علم شهروندی)",
+          "verified": true
+        },
+        {
+          "en": "Play; Upload; Fail; Fail or Pass; Pass; GIF",
+          "fa": "بازی (Play)؛ بارگذاری (Upload)؛ رد (Fail)؛ رد یا قبول؛ قبول (Pass)؛ GIF",
+          "verified": true
+        },
+        {
+          "en": "3:44 PM - 7 Feb 2018; 395 Retweets; 587 Likes; 20; 395; 587",
+          "fa": "۳:۴۴ بعدازظهر، ۷ فوریهٔ ۲۰۱۸؛ ۳۹۵ بازنشر؛ ۵۸۷ پسند؛ ۲۰؛ ۳۹۵؛ ۵۸۷",
+          "verified": true
+        },
+        {
+          "en": "The ESP Game - Netscape 6; 0:11 Time Left; The ESP Game; 2100 score",
+          "fa": "بازی ESP ـ Netscape 6؛ زمان باقی‌مانده: ۰:۱۱؛ بازی ESP؛ امتیاز: ۲۱۰۰",
+          "verified": true
+        },
+        {
+          "en": "Taboo Words; MAN; BEARD; Your Guesses; HAT; Type your next guess:; Pass",
+          "fa": "واژه‌های ممنوع (Taboo Words)؛ «MAN» (مرد)؛ «BEARD» (ریش)؛ حدس‌های شما؛ «HAT» (کلاه)؛ حدس بعدی‌تان را بنویسید؛ ردکردن (Pass)",
+          "verified": true
+        },
+        {
+          "en": "© 2002-2003 Carnegie Mellon University, all rights reserved. Patent Pending.",
+          "fa": "© ۲۰۰۲–۲۰۰۳ دانشگاه کارنگی ملون؛ همهٔ حقوق محفوظ است. در انتظار ثبت اختراع.",
+          "verified": true
+        },
+        {
+          "en": "Eyewire; SHARE; A GAME TO MAP THE BRAIN; PLAY NOW",
+          "fa": "Eyewire؛ اشتراک‌گذاری؛ بازی‌ای برای نقشه‌برداری از مغز؛ اکنون بازی کنید",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "9454c28e9afade6d48c04e96777c32877b4a4cd0e92a0ad2814dee2725b97ff7",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برچسب‌گذاری داده (Data Annotation): چگونه برچسب‌گذاران را جذب کنیم؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "پرسش‌های امنیتی"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "بازی‌وارسازی (Gamification)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "علم شهروندی (Citizen Science)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "پرداخت دستمزد"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ZOONIVERSE; REAL SCIENCE ONLINE; THE MILKY WAY PROJECT; planethunters.org; GALAXY ZOO HUBBLE; SOLAR STORMWATCH; MOON ZOO",
+          "fa": "ZOONIVERSE؛ علم واقعی به‌صورت برخط؛ پروژهٔ راه شیری (THE MILKY WAY PROJECT)؛ planethunters.org؛ GALAXY ZOO HUBBLE؛ پایش توفان‌های خورشیدی (SOLAR STORMWATCH)؛ MOON ZOO",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "9454c28e9afade6d48c04e96777c32877b4a4cd0e92a0ad2814dee2725b97ff7",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برچسب‌گذاری داده (Data Annotation): چگونه برچسب‌گذاران را جذب کنیم؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "پرسش‌های امنیتی"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "بازی‌وارسازی (Gamification)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "علم شهروندی (Citizen Science)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "پرداخت دستمزد"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "BASIC AI; figure eight; an appen company; deepen; BAOBAB ZEN Annotation; scale; appen; iMerit; FORESIGHT.AI; amazon mechanical turk; cloudfactory; Labelbox; Playment; CrowdFlower; ALEGION; DAIVERGENT; SUPER ANNOTATE; clickworker; DATATANG; speech ocean; 海天瑞声; samasource",
+          "fa": "BASIC AI؛ figure eight، از شرکت‌های appen؛ deepen؛ BAOBAB ZEN Annotation؛ scale؛ appen؛ iMerit؛ FORESIGHT.AI؛ amazon mechanical turk؛ cloudfactory؛ Labelbox؛ Playment؛ CrowdFlower؛ ALEGION؛ DAIVERGENT؛ SUPER ANNOTATE؛ clickworker؛ DATATANG؛ speech ocean؛ 海天瑞声؛ samasource",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "9454c28e9afade6d48c04e96777c32877b4a4cd0e92a0ad2814dee2725b97ff7",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برچسب‌گذاری داده (Data Annotation): چگونه برچسب‌گذاران را جذب کنیم؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "پرسش‌های امنیتی"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "بازی‌وارسازی (Gamification)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "علم شهروندی (Citizen Science)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "پرداخت دستمزد"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "amazon mechanical turk; Artificial Artificial Intelligence; beta; Mehrnoosh; Account Settings; Sign Out; Help",
+          "fa": "amazon mechanical turk؛ هوش مصنوعیِ مصنوعی (Artificial Artificial Intelligence)؛ نسخهٔ بتا؛ Mehrnoosh؛ تنظیمات حساب؛ خروج؛ راهنما",
+          "verified": true
+        },
+        {
+          "en": "Your Account; HITs; Qualifications; Introduction; Dashboard; Status; Earnings; Account Settings",
+          "fa": "حساب شما؛ وظایف HIT؛ صلاحیت‌ها؛ معرفی؛ پیشخوان؛ وضعیت؛ درآمد؛ تنظیمات حساب",
+          "verified": true
+        },
+        {
+          "en": "Mechanical Turk is a marketplace for work. We give businesses and developers access to an on-demand, scalable workforce. Workers select from thousands of tasks and work whenever it’s convenient. 400,794 HITs available. View them now.",
+          "fa": "Mechanical Turk یک بازار کار است. ما دسترسی کسب‌وکارها و توسعه‌دهندگان به نیروی کاری مقیاس‌پذیر و درخواستی را فراهم می‌کنیم. کارکنان از میان هزاران وظیفه انتخاب می‌کنند و هر زمان که برایشان مناسب باشد کار می‌کنند. ۴۰۰٬۷۹۴ وظیفهٔ HIT در دسترس است. اکنون آن‌ها را ببینید.",
+          "verified": true
+        },
+        {
+          "en": "Make Money by working on HITs. HITs - Human Intelligence Tasks - are individual tasks that you work on. Find HITs now.",
+          "fa": "با کارکردن روی HITها درآمد کسب کنید. HITها، یعنی وظایف هوش انسانی (Human Intelligence Tasks)، وظایف منفردی هستند که روی آن‌ها کار می‌کنید. اکنون HIT پیدا کنید.",
+          "verified": true
+        },
+        {
+          "en": "As a Mechanical Turk Worker you: Can work from home; Choose your own work hours; Get paid for doing good work.",
+          "fa": "به‌عنوان نیروی کار Mechanical Turk می‌توانید از خانه کار کنید؛ ساعت‌های کاری خودتان را انتخاب کنید؛ برای انجام کار خوب دستمزد بگیرید.",
+          "verified": true
+        },
+        {
+          "en": "Find an interesting task; Work; Earn money; Find HITs Now; or learn more about being a Worker",
+          "fa": "یک وظیفهٔ جالب پیدا کنید؛ کار کنید؛ پول درآورید؛ اکنون HIT پیدا کنید؛ یا دربارهٔ نیروی کار بودن بیشتر بدانید.",
+          "verified": true
+        },
+        {
+          "en": "Get Results from Mechanical Turk Workers. Ask workers to complete HITs - Human Intelligence Tasks - and get results using Mechanical Turk. Get Started.",
+          "fa": "از کارکنان Mechanical Turk نتیجه بگیرید. از کارکنان بخواهید HITها، یعنی وظایف هوش انسانی، را کامل کنند و با استفاده از Mechanical Turk نتیجه بگیرید. شروع کنید.",
+          "verified": true
+        },
+        {
+          "en": "As a Mechanical Turk Requester you: Have access to a global, on-demand, 24 x 7 workforce; Get thousands of HITs completed in minutes; Pay only when you’re satisfied with the results.",
+          "fa": "به‌عنوان درخواست‌کننده در Mechanical Turk: به نیروی کاری جهانی، درخواستی و شبانه‌روزی در هفت روز هفته دسترسی دارید؛ هزاران HIT را در چند دقیقه تکمیل‌شده دریافت می‌کنید؛ تنها هنگامی پرداخت می‌کنید که از نتایج راضی باشید.",
+          "verified": true
+        },
+        {
+          "en": "Fund your account; Load your tasks; Get results; Get Started",
+          "fa": "حسابتان را تأمین مالی کنید؛ وظایفتان را بارگذاری کنید؛ نتیجه بگیرید؛ شروع کنید.",
+          "verified": true
+        },
+        {
+          "en": "FAQ; Contact Us; Careers at Mechanical Turk; Developers; Press; Policies; Blog; Service Health Dashboard; ©2005-2015 Amazon.com, Inc. or its Affiliates; An amazon.com company",
+          "fa": "پرسش‌های رایج؛ تماس با ما؛ فرصت‌های شغلی در Mechanical Turk؛ توسعه‌دهندگان؛ مطبوعات؛ خط‌مشی‌ها؛ وبلاگ؛ پیشخوان سلامت خدمت؛ ©۲۰۰۵–۲۰۱۵ Amazon.com, Inc. یا شرکت‌های وابستهٔ آن؛ یک شرکت amazon.com",
+          "verified": true
+        }
+      ],
+      "image_text_limits": [
+        {
+          "reason_fa": "واژه‌های ریزِ ابرواژهٔ تزئینی داخل دایرهٔ آبی «Find an interesting task» در تصویر نهفتهٔ اصلی ۱۴۳۴×۶۳۸ پیکسل، بخشی بریده و روی‌هم‌افتاده‌اند و به‌طور کامل خواندنی نیستند؛ متن اصلی رابط و دستورها جداگانه ترجمه شده‌اند.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "b0974eea78781312335b716d7aa152d193a1fa8aec3b78d4daf987958cf29d40",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چه زمانی از کدام برچسب‌گذاران (Annotators) استفاده می‌کنید؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "پرسش‌های امنیتی"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "بازی‌وارسازی (Gamification)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "علم شهروندی (Citizen Science)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "پرداخت دستمزد"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "55d775460844d120b0b235dbe4f870678bb0fc31a07688a017e98577181e86d0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "چگونه چالش‌های مجموعه‌داده (Dataset Challenges) را پیدا کنیم؟ (چالش‌هایی که سرورهای ارزیابی، Evaluation Servers، دارند)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "All Challenges; Documentation; Discuss; Sign Up; Host Challenge; 400+",
+          "fa": "همهٔ چالش‌ها؛ مستندات؛ گفت‌وگو؛ ثبت‌نام؛ میزبانی چالش؛ بیش از ۴۰۰",
+          "verified": true
+        },
+        {
+          "en": "kaggle; Competitions; Datasets; Models; Code; Discussions; Courses",
+          "fa": "kaggle؛ رقابت‌ها؛ مجموعه‌داده‌ها؛ مدل‌ها؛ کد؛ گفت‌وگوها؛ دوره‌ها",
+          "verified": true
+        },
+        {
+          "en": "Hugging Face; Search models, datasets,; Models; Datasets; Spaces; Docs; Pricing",
+          "fa": "Hugging Face؛ جست‌وجوی مدل‌ها، مجموعه‌داده‌ها، …؛ مدل‌ها؛ مجموعه‌داده‌ها؛ فضاها؛ مستندات؛ قیمت‌گذاری",
+          "verified": true
+        },
+        {
+          "en": "AIcrowd; Search...; Crowdsourcing AI to Solve Real-World Problems",
+          "fa": "AIcrowd؛ جست‌وجو…؛ جمع‌سپاری هوش مصنوعی (Crowdsourcing AI) برای حل مسائل دنیای واقعی",
+          "verified": true
+        },
+        {
+          "en": "AIcrowd enables data science experts and enthusiasts to collaboratively solve real-world problems, through challenges.",
+          "fa": "AIcrowd به متخصصان و علاقه‌مندان علم داده امکان می‌دهد از طریق چالش‌ها، مسائل دنیای واقعی را به‌صورت مشارکتی حل کنند.",
+          "verified": true
+        },
+        {
+          "en": "Our Challenges; Host a Challenge; 320+ Completed Challenges; 235k+ Community Members; $1.1 Million+ Awarded in Prizes",
+          "fa": "چالش‌های ما؛ میزبانی یک چالش؛ بیش از ۳۲۰ چالش تکمیل‌شده؛ بیش از ۲۳۵ هزار عضو جامعه؛ بیش از ۱٫۱ میلیون دلار جایزهٔ اهداشده",
+          "verified": true
+        },
+        {
+          "en": "EvalAI is an open sourc…; artificial intelligence (A…; Level up…; & ML co…; Join over 21M+ mach…; Discover a huge repo…; data & code for your…",
+          "fa": "EvalAI یک … متن‌باز است؛ هوش مصنوعی …؛ سطح خود را بالا ببرید…؛ و یادگیری ماشین (ML) …؛ به بیش از ۲۱ میلیون … بپیوندید؛ مخزنی بزرگ … کشف کنید؛ داده و کد برای … شما",
+          "verified": true
+        },
+        {
+          "en": "The AI comm…; building th…; The platform where the machi…; collaborates on models, datas…",
+          "fa": "جامعهٔ هوش مصنوعی …؛ در حال ساخت …؛ پلتفرمی که در آن …؛ روی مدل‌ها و داده‌ها … همکاری می‌کند.",
+          "verified": true
+        }
+      ],
+      "image_text_limits": [
+        {
+          "reason_fa": "نماهای EvalAI، Kaggle و Hugging Face در خود اسلاید روی هم قرار گرفته‌اند؛ بخشی از تیترها و سطرهای معرفی پشت تصویر بعدی پوشیده است. تنها متن‌های کاملِ نمایان و کنترل‌های خواندنی رونویسی و ترجمه شده‌اند؛ متن زیر قاب‌ها از تصاویر نهفته بازیابی و به درس افزوده نشده است.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "2f8f0bdd71c8c8af6fba40ba685f7b88dab932678111c3d9c2b235629962e605",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "چگونه چالش‌های مجموعه‌داده (Dataset Challenges) را پیدا کنیم؟ (بدون سرورهای ارزیابی، Evaluation Servers)؛ برای مثال،"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Google; Dataset Search; Search for Datasets",
+          "fa": "Google؛ جست‌وجوی مجموعه‌داده (Dataset Search)؛ مجموعه‌داده‌ها را جست‌وجو کنید.",
+          "verified": true
+        },
+        {
+          "en": "Try coronavirus covid-19 or water quality site:canada.ca. Learn more about Dataset Search.",
+          "fa": "عبارت «coronavirus covid-19» (کروناویروس کووید-۱۹) یا «water quality site:canada.ca» (کیفیت آب با محدودکردن جست‌وجو به canada.ca) را امتحان کنید. دربارهٔ Dataset Search بیشتر بدانید.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "661a3daf728414a2de9f9d2441c56c357491ca371e3f9a0d4f77632d133e9875",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "بزرگداشت اثرگذاری ImageNet پس از ۱۰ سال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://syncedreview.com/2019/06/18/cvpr-2019-attracts-9k-attendees-best-papers-announced-imagenet-honoured-10-years-later/",
+          "visible_en": "https://syncedreview.com/2019/06/18/cvpr-2019-attracts-9k-attendees-best-papers-announced-imagenet-honoured-10-years-later/",
+          "verified": true,
+          "reason_fa": "در نشانی نمایانِ پایین تصویر، پس از attendees خط‌تیرهٔ شکست سطر دیده می‌شود؛ نویسهٔ نامعتبرِ لایهٔ استخراج در این محل، متن قابل مشاهدهٔ نشانی نیست."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "«در سال ۲۰۰۹، ImageNet رایج‌ترین کار نبود؛ اما همهٔ ما که این پروژه را انجام دادیم باور داشتیم که تأثیر بزرگی خواهد داشت، پس تلاش زیادی صرف آن کردیم. یکی از درس‌هایی که برای من دارد این است که لازم نیست محبوب‌ترین کارها را انجام دهید؛ کاری را انجام دهید که باور دارید اثرگذار خواهد بود.»"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "— نویسندهٔ اول، جیا دنگ (Jia Deng)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "PAMI Longuet-Higgins Prize; Retrospective Most Impactful Paper from CVPR 2009",
+          "fa": "جایزهٔ Longuet-Higginsِ PAMI؛ اثرگذارترین مقالهٔ CVPR 2009 در نگاه به گذشته",
+          "verified": true
+        },
+        {
+          "en": "ImageNet: A large-scale hierarchical image database; Jia Deng, Wei Dong, Richard Socher, Li-Jia Li, Kai Li, and Li Fei-Fei",
+          "fa": "ImageNet: یک پایگاه‌دادهٔ تصویری سلسله‌مراتبی در مقیاس بزرگ؛ Jia Deng، Wei Dong، Richard Socher، Li-Jia Li، Kai Li و Li Fei-Fei",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "b6d7e5dcd902c0ff98b5fa6553a129627092243d612c0799979d7c0e335d044b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "در جست‌وجوی دادهٔ بیشتر و ماشین‌های سریع‌تر"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "تغییر پارادایم: بازنمایی‌های آموخته‌شده (Learned Representations) با مجموعه‌داده‌های بزرگِ برچسب‌دار شکوفا می‌شوند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "یک اتفاق خوش‌یمن: گرادیان‌کاهشی (Gradient Descent) با سخت‌افزار بازی روبه‌رو می‌شود."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "نقطهٔ عطف: پلتفرم‌های متن‌باز (Open-Source Platforms) مشارکت گسترده را شتاب می‌دهند."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "57f28ff5c992e366c65459cad50c30c6b5e6a5009a834170fb660b9bc8b35658",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ImageNet: نیازمند نوع تازه‌ای از سخت‌افزار (Hardware)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "اندازهٔ بزرگ و دردسرساز ImageNet: حدود ۱۳۰ گیگابایت (GB)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "سخت‌افزار معمولِ سال ۲۰۱۰ به این معنا بود که یادگیری عمیق (Deep Learning) باید از ماشین‌های محلی فاصله می‌گرفت."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "حافظهٔ RAM: بین ۲ تا ۴ گیگابایت (کمتر از ۵٪ ImageNet را نگه می‌داشت)."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "پیامد: باید داده را به‌صورت جریانی به دیسک منتقل کرد؛ بنابراین گلوگاه به ورودی/خروجی دیسک (Disk I/O) منتقل می‌شود."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "فضای ذخیره‌سازی: ۱۶۰ تا ۵۰۰ گیگابایت (۲۶٪ تا ۸۱٪ آن را ImageNet مصرف می‌کرد)."
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "bullet",
+          "fa": "پیامد: دشواری ذخیره‌سازی محلی، حرکت به‌سوی دیسک‌های سخت خارجی و سرورهای سازمانی را عادی کرد."
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "bullet",
+          "fa": "بازده محاسباتی: ماشین‌های پژوهشی پیشرفته دو پردازندهٔ مرکزی چهارهسته‌ای (CPU) داشتند؛ پژوهشگران عمدتاً از CPU استفاده می‌کردند؛ رایانش ابری (Cloud Computing) با CPU در حال ظهور بود."
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "bullet",
+          "fa": "پیامد: آموزش روی ImageNet با CPUها به‌قدری کند بود که عملاً صرفه نداشت."
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "bullet",
+          "fa": "آیا آموزش شبکه‌های عصبی عمیق با رایانهٔ شما منطقی است؟"
+        },
+        {
+          "source_lines": [
+            13
+          ],
+          "kind": "bullet",
+          "fa": "آیا رایانهٔ شما کمتر از ۴۰ گیگابایت RAM دارد؟"
+        },
+        {
+          "source_lines": [
+            14
+          ],
+          "kind": "bullet",
+          "fa": "آیا رایانهٔ شما کمتر از ۱ ترابایت (TB) دارد؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "75b303c15607d1974b0937994a7f9028dccc009da91134e5e53198fd5b0cc81c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "(ICML, 2009)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "«استدلال می‌کنیم که پردازنده‌های گرافیکی امروزی (Graphics Processors) از نظر توان محاسباتی بسیار فراتر از پردازنده‌های مرکزی چندهسته‌ای (Multicore CPUs) هستند و ظرفیت آن را دارند که کاربردپذیری روش‌های یادگیری عمیق بدون نظارت (Deep Unsupervised Learning) را متحول کنند. اصولی کلی برای موازی‌سازی انبوهِ وظایف یادگیری بدون نظارت با پردازنده‌های گرافیکی ارائه می‌کنیم… پیاده‌سازی ما از یادگیری شبکهٔ باور عمیق (DBN) برای مدل‌های بزرگ، تا ۷۰ برابر سریع‌تر از پیاده‌سازی روی CPU دوهسته‌ای است. برای مثال، می‌توانیم زمان لازم برای یادگیری یک DBN چهارلایه با ۱۰۰ میلیون پارامتر آزاد را از چند هفته به حدود یک روز کاهش دهیم.»"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "heading",
+          "fa": "بینش کلیدی:"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Large-scale Deep Unsupervised Learning using Graphics Processors",
+          "fa": "یادگیری عمیق بدون نظارت در مقیاس بزرگ با استفاده از پردازنده‌های گرافیکی (Large-scale Deep Unsupervised Learning using Graphics Processors)",
+          "verified": true
+        },
+        {
+          "en": "Rajat Raina; Anand Madhavan; Andrew Y. Ng; RAJATR@CS.STANFORD.EDU; MANAND@STANFORD.EDU; ANG@CS.STANFORD.EDU",
+          "fa": "Rajat Raina؛ Anand Madhavan؛ Andrew Y. Ng؛ RAJATR@CS.STANFORD.EDU؛ MANAND@STANFORD.EDU؛ ANG@CS.STANFORD.EDU",
+          "verified": true
+        },
+        {
+          "en": "Computer Science Department, Stanford University, Stanford CA 94305 USA",
+          "fa": "گروه علوم کامپیوتر، دانشگاه استنفورد، استنفورد، کالیفرنیا ۹۴۳۰۵، ایالات متحدهٔ آمریکا",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "fc1cc0f029d074eb313cf2178de4a124103237f06148c00039c595e87c18e1ca",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "بینش کلیدی: به‌کارگیری GPUها برای هدفی دیگر"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "http://cs231n.stanford.edu/slides/2018/cs231n_2018_lecture08.pdf"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "واحدهای پردازش گرافیکی (Graphics Processing Units یا GPUs)"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "واحد پردازش مرکزی (Central Processing Unit یا CPU)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "This image is licensed under CC-BY 2.0; This image is in the public domain",
+          "fa": "این تصویر با مجوز CC-BY 2.0 منتشر شده است؛ این تصویر در مالکیت عمومی (Public Domain) است.",
+          "verified": true
+        },
+        {
+          "en": "GEFORCE GTX; GTX 1070; EVGA",
+          "fa": "GEFORCE GTX؛ GTX 1070؛ EVGA",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "c1bbaf49d27e0e79021d48741c38cb49617b48153dfa90f3cf9caf8b91780ff6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "بینش کلیدی: به‌کارگیری GPUها برای هدفی دیگر"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Source: Tsung Tai Yeh, National Yang Ming Chiao Tung University; The Economist ; September 21, 2024"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "تفاوت‌های اصلی معماری میان CPUها و GPUها چیست و چه پیامدهایی دارند؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "تعداد بسیار بیشتر هسته‌های پردازش موازی (Parallel Processing Cores)، اجرای بار کاری را شتاب می‌دهد."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "دسترسی آسان‌تر به حافظهٔ نهان (Cache Memory)، ذخیره و بازیابی نتایج محاسباتی میانی را سریع‌تر می‌کند."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "کنترل ساده‌شده، به‌جای مدیریت همه‌چیز، بر زمان‌بندی عملیات موازی تمرکز می‌کند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CPU; GPU; On chip; Off chip; Control; Core; Cache memory; Memory",
+          "fa": "CPU؛ GPU؛ روی تراشه (On Chip)؛ بیرون تراشه (Off Chip)؛ کنترل؛ هسته؛ حافظهٔ نهان؛ حافظه",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "332d3e35c4793f228adda99ece26d545df055c4ce3d2a3d853e3cfe6e5c56576",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "زمینهٔ تاریخی"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "نخستین «تراشهٔ» سیلیکونی: اجزای سیلیکونی که روی یک «مدار مجتمع» (Integrated Circuit یا IC) به یکدیگر سیم‌کشی شده بودند."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "literal",
+          "fa": "1959"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "reference",
+          "fa": "https://epoch.ai/blog/compute-trends; https://en.wikipedia.org/wiki/Invention_of_the_integrated_circuit"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "literal",
+          "fa": "2010"
+        },
+        {
+          "source_lines": [
+            9,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "محاسبات لازم برای آموزش مدل‌های هوش مصنوعی (AI)، از آهنگ پیشرفت قانون مور (Moore’s Law) فراتر رفت."
+        },
+        {
+          "source_lines": [
+            12,
+            13
+          ],
+          "kind": "text",
+          "fa": "تعویض لامپ‌های خلأِ ENIAC"
+        },
+        {
+          "source_lines": [
+            14
+          ],
+          "kind": "literal",
+          "fa": "1945"
+        },
+        {
+          "source_lines": [
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "kind": "text",
+          "fa": "نخستین ماشین: به اندازهٔ یک اتاق بود، زیرا اجزایش بر لامپ‌های خلأ بزرگ تکیه داشتند."
+        },
+        {
+          "source_lines": [
+            20
+          ],
+          "kind": "literal",
+          "fa": "1965"
+        },
+        {
+          "source_lines": [
+            21,
+            22
+          ],
+          "kind": "text",
+          "fa": "قانون مور مطرح شد: تعداد ترانزیستورهای روی مدار مجتمع هر ۲ سال (در ابتدا هر ۱ سال) دو برابر می‌شود."
+        },
+        {
+          "source_lines": [
+            23,
+            24
+          ],
+          "kind": "text",
+          "fa": "ترانزیستورها روشن و خاموش می‌شوند تا صفرها و یک‌های نمایش دودویی را تولید کنند."
+        },
+        {
+          "source_lines": [
+            25,
+            26,
+            27
+          ],
+          "kind": "text",
+          "fa": "برای مثال، ۲۰۰ ترانزیستور در هر میلی‌متر مربع در سال ۱۹۷۱، در برابر ۱۵۰ میلیون در هر میلی‌متر مربع در سال ۲۰۲۳ برای MI300 اینتل."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "541fcb12b484df05f3cf683de3b16c5fdfc9a9d1cd5296fe8aeda2a1d37c3ae8",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "تقاضا برای سخت‌افزار بهتر (HW)"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "تا سال ۲۰۱۲، میزان محاسبات لازم برای آموزش مدل‌های هوش مصنوعی (AI) هر ۶ ماه دو برابر می‌شد!"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Notable AI Models; Training compute (FLOP); 444 Results; Publication date; Deep Learning Era",
+          "fa": "مدل‌های شاخص هوش مصنوعی؛ محاسبات آموزش (FLOP)؛ ۴۴۴ نتیجه؛ تاریخ انتشار؛ دوران یادگیری عمیق (Deep Learning Era)",
+          "verified": true
+        },
+        {
+          "en": "Perceptron Mark I; Pandemonium (morse); MLN-ASR; Handwritten Digit Recognition System; RankNet; Neural LM; SB-LM; QRNN; ISS; SNM-skip; S4; AlphaGo Master; GPT-4",
+          "fa": "Perceptron Mark I؛ Pandemonium (morse)؛ MLN-ASR؛ سامانهٔ بازشناسی رقم دست‌نویس (Handwritten Digit Recognition System)؛ RankNet؛ مدل زبانی عصبی (Neural LM)؛ SB-LM؛ QRNN؛ ISS؛ SNM-skip؛ S4؛ AlphaGo Master؛ GPT-4",
+          "verified": true
+        },
+        {
+          "en": "1.5 x/year; 4.5 x/year",
+          "fa": "۱٫۵ برابر در سال؛ ۴٫۵ برابر در سال",
+          "verified": true
+        },
+        {
+          "en": "1e4; 1e8; 1e12; 1e16; 1e20; 1e24; 1955; 1965; 1975; 1985; 1995; 2005; 2015; 2025; 1950; 2026",
+          "fa": "1e4؛ 1e8؛ 1e12؛ 1e16؛ 1e20؛ 1e24؛ ۱۹۵۵؛ ۱۹۶۵؛ ۱۹۷۵؛ ۱۹۸۵؛ ۱۹۹۵؛ ۲۰۰۵؛ ۲۰۱۵؛ ۲۰۲۵؛ ۱۹۵۰؛ ۲۰۲۶",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "84414c3cb737d2738ca21308eb91c127eb978a1336663f22c30822dc64a3a00a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ظهور سخت‌افزار تخصصی (Specialized HW) برای یادگیری عمیق (Deep Learning)؛ برای مثال،"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Source: Tsung Tai Yeh, National Yang Ming Chiao Tung University; The Economist ; September 21, 2024"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "گوگل آن را در سال ۲۰۱۵ برای استفادهٔ داخلی و در سال ۲۰۱۸ برای استفادهٔ عمومی معرفی کرد."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "TPUها چه تفاوتی با GPUها دارند و پیامدهای آن چیست؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CPU; GPU; TPU; On chip; Off chip; Control; Core; Cache memory; Memory",
+          "fa": "CPU؛ GPU؛ TPU؛ روی تراشه (On Chip)؛ بیرون تراشه (Off Chip)؛ کنترل؛ هسته؛ حافظهٔ نهان (Cache Memory)؛ حافظه",
+          "verified": true
+        },
+        {
+          "en": "Has a few “cores” or processing units designed to run many different types of applications",
+          "fa": "چند «هسته» یا واحد پردازشی دارد که برای اجرای انواع گوناگون برنامه‌ها طراحی شده‌اند.",
+          "verified": true
+        },
+        {
+          "en": "Thousands of cores allow GPUs to perform repetitive calculations in parallel",
+          "fa": "هزاران هسته به GPUها امکان می‌دهند محاسبات تکراری را به‌صورت موازی انجام دهند.",
+          "verified": true
+        },
+        {
+          "en": "Has thousands of cores specially designed for the operations needed to solve neural networks",
+          "fa": "هزاران هسته دارد که به‌طور خاص برای عملیات مورد نیازِ حل شبکه‌های عصبی طراحی شده‌اند.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "5c48cf28d7ec836e456cfac2d3849ca0f204f8a49e5a808e3e44c0fc74ee4ba7",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ظهور سخت‌افزار تخصصی (Specialized HW) برای یادگیری عمیق (Deep Learning)؛ برای مثال،"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Source: Tsung Tai Yeh, National Yang Ming Chiao Tung University; The Economist ; September 21, 2024"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "انعطاف‌پذیری (Flexibility)؛ بازده (Efficiency)، یعنی سریع‌تر و کم‌مصرف‌تر از نظر انرژی"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CPU; GPU; TPU; On chip; Off chip; Control; Core; Cache memory; Memory",
+          "fa": "CPU؛ GPU؛ TPU؛ روی تراشه (On Chip)؛ بیرون تراشه (Off Chip)؛ کنترل؛ هسته؛ حافظهٔ نهان (Cache Memory)؛ حافظه",
+          "verified": true
+        },
+        {
+          "en": "Has a few “cores” or processing units designed to run many different types of applications",
+          "fa": "چند «هسته» یا واحد پردازشی دارد که برای اجرای انواع گوناگون برنامه‌ها طراحی شده‌اند.",
+          "verified": true
+        },
+        {
+          "en": "Thousands of cores allow GPUs to perform repetitive calculations in parallel",
+          "fa": "هزاران هسته به GPUها امکان می‌دهند محاسبات تکراری را به‌صورت موازی انجام دهند.",
+          "verified": true
+        },
+        {
+          "en": "Has thousands of cores specially designed for the operations needed to solve neural networks",
+          "fa": "هزاران هسته دارد که به‌طور خاص برای عملیات مورد نیازِ حل شبکه‌های عصبی طراحی شده‌اند.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "01d943e7940dcef38f84fed2663aad0c6469c7f206259b9c4edc4a966eb2f08f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ظهور سخت‌افزار تخصصی (Specialized HW) برای یادگیری عمیق (Deep Learning)؛ برای مثال،"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://apple.fandom.com/wiki/Neural_Engine?file=Apple_M1_simplified_schematic.jpg"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "راه دیگر این است که یک تراشه همهٔ کارها را انجام دهد (برای مثال «واحد پردازش عصبی»، Neural Processing Unit یا NPU)."
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "اپل در سال ۲۰۱۷ بلوکی اختصاصی برای عملیات شبکهٔ عصبی (NN) به تراشه‌های خود افزود تا کاربران دستگاه‌هایش، مانند تلفن‌ها، iPadها و لپ‌تاپ‌ها، از آن بهره ببرند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "M1; 8-core CPU; 8-core GPU; Secure Enclave; 16-core Neural Engine",
+          "fa": "M1؛ پردازندهٔ مرکزی ۸‌هسته‌ای (CPU)؛ پردازندهٔ گرافیکی ۸‌هسته‌ای (GPU)؛ محفظهٔ امن (Secure Enclave)؛ موتور عصبی ۱۶‌هسته‌ای (Neural Engine)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "3199c1a65a35b367ca1d34daeac5ef056eb0af816d83d48fd0c897d12a7523e3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ظهور سخت‌افزار تخصصی (Specialized HW) برای یادگیری عمیق (Deep Learning)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "شرکت‌های بسیاری برای پرداختن به چالش‌های کلیدی بعدی نوآوری می‌کنند:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "جا دادن ترانزیستورهای بیشتر روی یک تراشه، در عین به‌حداقل‌رساندن مصرف انرژی و گرمای تلف‌شده."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "کارخانه‌های ارزان‌تر برای ساخت تراشه؛ برای مثال، ۲۰ میلیارد دلار برای کارخانه‌ای که TSMC قرار است در آریزونا بسازد."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "The Economist; September 21, 2024"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "مسئله: در ترانزیستورهای کوچک (برای مثال ۹۰ نانومتر)، حتی وقتی خاموش‌اند، بر اثر پدیده‌های کوانتومی جریان نشت می‌کند."
+        },
+        {
+          "source_lines": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "اینتل در سال ۲۰۱۱ آن را معرفی کرد؛ کانال‌هایی که از سه سمت در گیت‌ها (Gates) قرار می‌گرفتند، کنترل بهتری بر جریان ایجاد کردند و در نتیجه نشت کمتر شد."
+        },
+        {
+          "source_lines": [
+            12,
+            13,
+            14
+          ],
+          "kind": "text",
+          "fa": "سامسونگ در سال ۲۰۲۲ آن را معرفی کرد؛ گیت‌ها کانال‌ها را از همهٔ سمت‌ها احاطه کردند تا کنترل بهتری بر جریان ایجاد شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Planar transistor, pre-2011; Gate controls the current; Channel where current flows",
+          "fa": "ترانزیستور مسطح (Planar Transistor)، پیش از ۲۰۱۱؛ گیت جریان را کنترل می‌کند؛ کانالی که جریان در آن حرکت می‌کند.",
+          "verified": true
+        },
+        {
+          "en": "FinFET, 2011; Oxide; Silicon",
+          "fa": "FinFET، ۲۰۱۱؛ اکسید (Oxide)؛ سیلیکون (Silicon)",
+          "verified": true
+        },
+        {
+          "en": "Gate-all-around, 2022; The gate envelops the channel on four sides, granting even better control",
+          "fa": "گیتِ همه‌جانبه (Gate-all-around)، ۲۰۲۲؛ گیت کانال را از چهار سمت در بر می‌گیرد و کنترل باز هم بهتری فراهم می‌کند.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "1d0c744d0f0a12ac43216d2423f2b9b72121674e700246f69d6603fc51761cc4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پیشرفته‌ترین تک‌تراشهٔ جهان (State-of-the-Art)!"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://cerebras.ai/product-chip/"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "Cerebras WSE-3:"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "bullet",
+          "fa": "تقریباً به اندازهٔ یک بشقاب غذاست؛ بنابراین همهٔ اجزا می‌توانند روی یک تراشه قرار بگیرند."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "۹۰۰٬۰۰۰ هسته"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "۴ تریلیون ترانزیستور"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "۴۴ گیگابایت حافظهٔ روی تراشه (On-Chip Memory)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "گفته می‌شود قیمت آن ۲ تا ۳ میلیون دلار است."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "e490a26d9cf5ead453d0609f093996355d9caf5b4af2b913f219905af489537f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "Blackwell: بهترین تراشهٔ Nvidia، عرضه‌شده در سال ۲۰۲۵"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "۲۰۸ میلیارد ترانزیستور روی ۲ قطعهٔ سیلیکونی متصل (Dies)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "bullet",
+          "fa": "هر قطعه با ۴ بلوک حافظه احاطه شده است؛ در مجموع ۱۹۲ گیگابایت."
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "bullet",
+          "fa": "در طول یک سال، حدود نیمی از انرژی یک خانوار متوسط آمریکایی را مصرف می‌کند (۵٫۲ مگاوات‌ساعت، MWhrs)."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "https://nvidianews.nvidia.com/news/nvidia-blackwell-platform-arrives-to-power-a-new-era-of-computing"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "فکر می‌کنید قیمت یک Blackwell برابر کدام است: (A) چهار هزار دلار، (B) چهل هزار دلار یا (C) چهارصد هزار دلار؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_limits": [
+        {
+          "reason_fa": "ریزنوشت‌های حک‌شده روی اجزای برد در عکس نهفتهٔ ۳۱۶×۴۶۷ پیکسل، حتی در اندازهٔ اصلی برای رونویسی قطعی کافی نیستند؛ مشخصات آموزشی چاپ‌شده در کنار عکس کامل ترجمه شده‌اند.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "48439121a14eb779b88dfdf2bcd8cdedfef6697b31512fda5793b068a51706f0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "هزینهٔ محاسباتی آموزش مدل‌ها از ابتدا (From Scratch)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "نمایش تعاملی: https://epoch.ai/data/notable-ai-models#explore-the-data"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "برای مثال، ۱۰۰۰ دلار"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Notable AI Models; Training compute cost (2023 USD); 154 Results; Publication date; Deep Learning Era",
+          "fa": "مدل‌های شاخص هوش مصنوعی؛ هزینهٔ محاسبات آموزش به دلار آمریکا با ارزش سال ۲۰۲۳ (Training Compute Cost)؛ ۱۵۴ نتیجه؛ تاریخ انتشار؛ دوران یادگیری عمیق (Deep Learning Era)",
+          "verified": true
+        },
+        {
+          "en": "GPT-4; GPT-3.5; DeepSeek-V3; GPT-3 175B (davinci); Gopher (280B); LLaMA-65B; GNMT; RoBERTa Large; iGPT-XL; PLUG; UL2; Llama 2-7B; Xception; MnasNet-A3; T0-XXL; Ankh_large; QT-Opt; T5-3B; LUKE; BASIC-L; ESM1b; AR-LDM; DeepSpeech2 (English); ProxylessNAS; BIDAF; ATLAS; MedBERT; VALL-E",
+          "fa": "GPT-4؛ GPT-3.5؛ DeepSeek-V3؛ GPT-3 175B (davinci)؛ Gopher (280B)؛ LLaMA-65B؛ GNMT؛ RoBERTa Large؛ iGPT-XL؛ PLUG؛ UL2؛ Llama 2-7B؛ Xception؛ MnasNet-A3؛ T0-XXL؛ Ankh_large؛ QT-Opt؛ T5-3B؛ LUKE؛ BASIC-L؛ ESM1b؛ AR-LDM؛ DeepSpeech2 (انگلیسی، English)؛ ProxylessNAS؛ BIDAF؛ ATLAS؛ MedBERT؛ VALL-E",
+          "verified": true
+        },
+        {
+          "en": "1.8 x/year; 1e1; 1e2; 1e3; 1e4; 1e5; 1e6; 1e7; 2016; 2017; 2018; 2019; 2020; 2021; 2022; 2023; 2024; 2025; 2015",
+          "fa": "۱٫۸ برابر در سال؛ 1e1؛ 1e2؛ 1e3؛ 1e4؛ 1e5؛ 1e6؛ 1e7؛ ۲۰۱۶؛ ۲۰۱۷؛ ۲۰۱۸؛ ۲۰۱۹؛ ۲۰۲۰؛ ۲۰۲۱؛ ۲۰۲۲؛ ۲۰۲۳؛ ۲۰۲۴؛ ۲۰۲۵؛ ۲۰۱۵",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "960fcf89cdbcd6566c47aea567d06b928a02b461d24b7e7f9e68a1a5537a3189",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چگونه از GPUها استفاده کنیم؟ اجاره در برابر خرید"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "سخت‌افزار (Hardware)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "برای مثال Nvidia، AMD، Intel، Groq، Cerebras، Alphabet و Microsoft"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "رایانش ابری (Cloud Computing)، برای GPUها از حدود سال ۲۰۱۲"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "برای مثال Alphabet، Amazon، Microsoft، CoreWeave، Lambda، Crusoe Energy و Nebius"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "توسعهٔ محلی مدل (Local Model Development)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "برای مثال، شما ☺"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "برای مثال در سال ۲۰۲۶، خرید Blackwell انویدیا حدود ۴۰ هزار دلار است، در برابر اجاره با حدود ۲۰ دلار در ساعت (حدود ۱۳٬۴۴۰ دلار برای ۴ هفته استفادهٔ شبانه‌روزی در هفت روز هفته)."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "665e7f4d12e196cc6f3381cb811427e85a31607514d520f601695e3dc3dcaeb6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تبریک!"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "با شرکت در این کلاس، اعتبار ابری (Cloud Credits) هدیه می‌گیرید که ارزش آن بیش از این مقدار است:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "با سپاس از:"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "100; ONE HUNDRED DOLLARS; THE UNITED STATES OF AMERICA; Jetstream2; Google",
+          "fa": "۱۰۰؛ صد دلار؛ ایالات متحدهٔ آمریکا؛ Jetstream2؛ Google",
+          "verified": true
+        },
+        {
+          "en": "FEDERAL RESERVE NOTE; THIS NOTE IS LEGAL TENDER FOR ALL DEBTS, PUBLIC AND PRIVATE; Treasurer of the United States; Secretary of the Treasury; SERIES 2006 A; FRANKLIN; KB46279860I; B2; G₂",
+          "fa": "اسکناس فدرال رزرو؛ این اسکناس وجه رایج قانونی برای همهٔ بدهی‌های عمومی و خصوصی است؛ خزانه‌دار ایالات متحده؛ وزیر خزانه‌داری؛ سری ۲۰۰۶ A؛ فرانکلین؛ KB46279860I؛ B2؛ G₂",
+          "verified": true
+        }
+      ],
+      "image_text_limits": [
+        {
+          "reason_fa": "امضاهای دست‌نویس و حروف بسیار ریز داخل مُهرهای تزئینی اسکناس در تصویر اصلیِ ۷۳۹×۲۷۵ پیکسل خوانش کامل و قطعی ندارند؛ ارزش اسکناس و نوشته‌های خواندنی آن رونویسی شده و خود تصویر بدون تغییر باقی مانده است.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "b6d7e5dcd902c0ff98b5fa6553a129627092243d612c0799979d7c0e335d044b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "در جست‌وجوی دادهٔ بیشتر و ماشین‌های سریع‌تر"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "تغییر پارادایم: بازنمایی‌های آموخته‌شده (Learned Representations) با مجموعه‌داده‌های بزرگِ برچسب‌دار شکوفا می‌شوند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "یک اتفاق خوش‌یمن: گرادیان‌کاهشی (Gradient Descent) با سخت‌افزار بازی روبه‌رو می‌شود."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "نقطهٔ عطف: پلتفرم‌های متن‌باز (Open-Source Platforms) مشارکت گسترده را شتاب می‌دهند."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "e99d25999b43800f501747df4e9af9e105c05bdf1e972683a2096b4ba68e4872",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ظهور پلتفرم‌های متن‌بازِ «یادگیری عمیق» (Deep Learning Open Source Platforms)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "2011 2012 2014 2015"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "(Paszke et al.)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "2013"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "(Bastien et al.) (Jia et al.) (Abadi et al.)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "2016 2017"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "(Collobert et al.)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "گزینه‌های رایج امروز"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "torch; theano; Caffe; Keras; TensorFlow; PYTORCH; Université de Montréal; Idiap RESEARCH INSTITUTE; Berkeley UNIVERSITY OF CALIFORNIA; Google; f",
+          "fa": "torch؛ theano؛ Caffe؛ Keras؛ TensorFlow؛ PYTORCH؛ دانشگاه مونترآل؛ مؤسسهٔ پژوهشی Idiap؛ برکلی، دانشگاه کالیفرنیا؛ Google؛ f",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "ab1dd1adf494696cf7c657cea10386b6c3867f654f21f5a09ae8729b5d3d52a4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ظهور پلتفرم‌های متن‌بازِ «یادگیری عمیق» (Deep Learning Open Source Platforms)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "2011 2012 2014 2015"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "(Paszke et al.)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "2013"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "(Bastien et al.) (Jia et al.) (Abadi et al.)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "2016 2017"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "(Collobert et al.)"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "تمرکز درس برای آموزش‌های برنامه‌نویسی"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "torch; theano; Caffe; Keras; TensorFlow; PYTORCH; Université de Montréal; Idiap RESEARCH INSTITUTE; Berkeley UNIVERSITY OF CALIFORNIA; Google; f",
+          "fa": "torch؛ theano؛ Caffe؛ Keras؛ TensorFlow؛ PYTORCH؛ دانشگاه مونترآل؛ مؤسسهٔ پژوهشی Idiap؛ برکلی، دانشگاه کالیفرنیا؛ Google؛ f",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "18c18e144a7c0358001a3e861e8fff8765d0e73d0182f8b29effd4737b5a6dc0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ویژگی‌های پلتفرم که آموزش سریع‌تر و پربازده‌تر با GPU را ممکن می‌کنند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "کوانتیزه‌سازی (Quantization): کاهش دقت عددی"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "ادغام عملگرها (Operator Fusion): کاهش خواندن و نوشتن حافظه"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "بهینه‌سازی توزیع‌شده (Distributed Optimization): موازی‌سازی محاسبات"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "18c18e144a7c0358001a3e861e8fff8765d0e73d0182f8b29effd4737b5a6dc0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ویژگی‌های پلتفرم که آموزش سریع‌تر و پربازده‌تر با GPU را ممکن می‌کنند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "کوانتیزه‌سازی (Quantization): کاهش دقت عددی"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "ادغام عملگرها (Operator Fusion): کاهش خواندن و نوشتن حافظه"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "بهینه‌سازی توزیع‌شده (Distributed Optimization): موازی‌سازی محاسبات"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "be27550f7f336996db4e894cf8ba82da8ce43e839586a24fc4fa34ef92696fb8",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "کوانتیزه‌سازی (Quantization): کاهش دقت عددی"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "نوع‌های دادهٔ گوناگون چه دقت و چه بازه‌هایی فراهم می‌کنند؟"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "bullet",
+          "fa": "۳۲ بیت: برای مثال، حدود ±3.4×10³⁸ با 2³²، یعنی حدود ۴ میلیارد مقدار (نوع پیش‌فرض PyTorch)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "۸ بیت: [-127, 127]"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "۴ بیت: [-8, 7]"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "https://medium.com/@dillipprasad60/qlora-explained-a-deep-dive-into-parametric-efficient-fine-tuning-in-large-language-models-llms-c1a4794b1766"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "IEEE 754 single-precision 32-bit float; sign; exponent (8 bit); fraction (23 bit); float32",
+          "fa": "عدد ممیزشناور ۳۲‌بیتی تک‌دقتِ IEEE 754؛ علامت (Sign)؛ نما (Exponent)، ۸ بیت؛ بخش کسری (Fraction)، ۲۳ بیت؛ float32",
+          "verified": true
+        },
+        {
+          "en": "bfloat16; sign; exponent (8 bit); fraction (7 bit); 31; 30; 23; 22; 0; 15; 14; 7; 6; 0",
+          "fa": "bfloat16؛ علامت؛ نما، ۸ بیت؛ بخش کسری، ۷ بیت؛ ۳۱؛ ۳۰؛ ۲۳؛ ۲۲؛ ۰؛ ۱۵؛ ۱۴؛ ۷؛ ۶؛ ۰",
+          "verified": true
+        },
+        {
+          "en": "float32: 0 01111100 01000000000000000000000; bfloat16: 0 01111100 0100000",
+          "fa": "float32: 0 01111100 01000000000000000000000؛ bfloat16: 0 01111100 0100000",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "667c6e0ec066bf41df0df14f4d9523a5d3d00618dc69cd08b7cc91f7e2edbc9f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "کوانتیزه‌سازی (Quantization): کاهش دقت عددی"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "برای مثال،"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "در این مثال از چند بیت استفاده شده است؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "برای هر یک از ۹ مقدار کوانتیزه‌شده، باید کدام مقدارِ بازه (Bin Value) را به کار برد؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://xailient.com/blog/4-popular-model-compression-techniques-explained/"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7
+          ],
+          "kind": "math",
+          "fa": "0.2 1 0.3; 0.1 -0.6 -0.07; 1.2 0.4 0",
+          "latex": "\\begin{bmatrix}0.2&1&0.3\\\\0.1&-0.6&-0.07\\\\1.2&0.4&0\\end{bmatrix}"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "quantization; 32 bit; index; [in bits]; value",
+          "fa": "کوانتیزه‌سازی (Quantization)؛ ۳۲ بیت؛ اندیس (Index)؛ [بر حسب بیت]؛ مقدار",
+          "verified": true
+        },
+        {
+          "en": "0 [00] -0.6; 1 [01] 0; 2 [10] 0.4; 3 [11] 1.1",
+          "fa": "۰ [00] ‎-0.6؛ ۱ [01] ۰؛ ۲ [10] 0.4؛ ۳ [11] 1.1",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "dfe0d170b8e83bed700182a376813d354e816992dd27193a13a13907dc9929fa",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "کوانتیزه‌سازی (Quantization) هنگام آموزش"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "برای آموزش به چه میزان دقت عددی نیاز است؟"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "برای مثال، به یاد بیاورید که نرمال‌سازی دسته‌ای (Batch Normalization) باعث می‌شود مقادیر حول صفر متمرکز شوند و تقریباً در بازهٔ ‎-1 تا 1 قرار بگیرند."
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/hyper-parameters-in-action-part-ii-weight-initializers-35aee1a28404"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Activation: tanh - Initializer: Glorot Normal - Epoch 0",
+          "fa": "تابع فعال‌سازی (Activation): tanh؛ مقداردهی اولیه (Initializer): Glorot Normal؛ دوره (Epoch): ۰",
+          "verified": true
+        },
+        {
+          "en": "Z-values; Weights; Activations; Gradients; Layers; h1; h2; h3; h4; h5",
+          "fa": "مقادیر Z؛ وزن‌ها (Weights)؛ فعال‌سازی‌ها (Activations)؛ گرادیان‌ها (Gradients)؛ لایه‌ها (Layers)؛ h1؛ h2؛ h3؛ h4؛ h5",
+          "verified": true
+        },
+        {
+          "en": "Z-values: -1.5 -1.0 -0.5 0.0 0.5 1.0 1.5; Weights: -0.3 -0.2 -0.1 0.0 0.1 0.2; Activations: -0.5 0.0 0.5; Gradients: -0.01 0.00 0.01 0.02",
+          "fa": "مقادیر Z: ‎-1.5، ‎-1.0، ‎-0.5، 0.0، 0.5، 1.0، 1.5؛ وزن‌ها: ‎-0.3، ‎-0.2، ‎-0.1، 0.0، 0.1، 0.2؛ فعال‌سازی‌ها: ‎-0.5، 0.0، 0.5؛ گرادیان‌ها: ‎-0.01، 0.00، 0.01، 0.02",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "553ba6661d0baf82e05ded0288473cf355814ef5d969ccaede147505aa0b41a5",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "کوانتیزه‌سازی (Quantization) هنگام آموزش"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "برای آموزش به چه میزان دقت عددی نیاز است؟"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "برای مثال، به یاد بیاورید که نرمال‌سازی دسته‌ای (Batch Normalization) باعث می‌شود مقادیر حول صفر متمرکز شوند و تقریباً در بازهٔ ‎-1 تا 1 قرار بگیرند."
+        },
+        {
+          "source_lines": [
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "برای مثال، ۴ بیت یعنی نگاشت مقادیر به ۱۶ بازهٔ ممیزشناور (Floating Point Bins)، یعنی 2⁴ مقدار ممکن."
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "reference",
+          "fa": "https://medium.com/@dillipprasad60/qlora-explained-a-deep-dive-into-parametric-efficient-fine-tuning-in-large-language-models-llms-c1a4794b1766"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Normal distributions; Mean = 0; Standard deviations = 1; Normalisation",
+          "fa": "توزیع‌های نرمال (Normal Distributions)؛ میانگین = ۰؛ انحراف معیار = ۱؛ نرمال‌سازی (Normalisation)",
+          "verified": true
+        },
+        {
+          "en": "[-1., -0.7, -0.53, -0.39, -0.28, -0.18, -0.09, 0., 0.08, 0.16, 0.25, 0.34, 0.44, 0.56, 0.72, 1.]",
+          "fa": "[-1., -0.7, -0.53, -0.39, -0.28, -0.18, -0.09, 0., 0.08, 0.16, 0.25, 0.34, 0.44, 0.56, 0.72, 1.]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "8e8d7f8fd507b5c94f9649cbf5360ebd1c43ba36d4fa0b31da0e7ea707a3ad45",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "کوانتیزه‌سازی (Quantization) هنگام آموزش"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "برای آموزش به چه میزان دقت عددی نیاز است؟"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "برای مثال، به یاد بیاورید که نرمال‌سازی دسته‌ای (Batch Normalization) باعث می‌شود مقادیر حول صفر متمرکز شوند و تقریباً در بازهٔ ‎-1 تا 1 قرار بگیرند."
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "[Dietke, CVPR25]"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "استفاده از بیت‌های کمتر چه خطرهایی دارد؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Training Loss; Step; FSDP bfloat16; FSDP float32",
+          "fa": "زیان آموزش (Training Loss)؛ گام (Step)؛ FSDP bfloat16؛ FSDP float32",
+          "verified": true
+        },
+        {
+          "en": "1.5; 2.0; 2.5; 3.0; 0; 5000; 10000; 15000; 20000",
+          "fa": "۱٫۵؛ ۲٫۰؛ ۲٫۵؛ ۳٫۰؛ ۰؛ ۵۰۰۰؛ ۱۰۰۰۰؛ ۱۵۰۰۰؛ ۲۰۰۰۰",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "ef2792b73c95fe57e48ac2d318403e12adbae0e22f913e71976d4a7e66bc6255",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "کوانتیزه‌سازی (Quantization) هنگام آموزش"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "استفاده از بیت‌های کمتر چه خطرها و مزایایی دارد (برای مثال، هنگامی که همراه با هرس، Pruning، انجام شود)؟"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "برای آموزش به چه میزان دقت عددی نیاز است؟"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "برای مثال، به یاد بیاورید که نرمال‌سازی دسته‌ای (Batch Normalization) باعث می‌شود مقادیر حول صفر متمرکز شوند و تقریباً در بازهٔ ‎-1 تا 1 قرار بگیرند."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "reference",
+          "fa": "https://xailient.com/blog/4-popular-model-compression-techniques-explained/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Actual No. Of Parameters/size; Actual Top-5 Error Rate (%); Method Type; Para./size after compression; Compression Achieved; Top-5 Error Rate (%) after Compression; Speedup Achieved",
+          "fa": "تعداد واقعی پارامترها / اندازه؛ نرخ واقعی خطای پنج انتخاب برتر (Top-5 Error Rate) بر حسب درصد؛ نوع روش؛ تعداد پارامترها / اندازه پس از فشرده‌سازی؛ فشرده‌سازی حاصل‌شده؛ نرخ خطای پنج انتخاب برتر پس از فشرده‌سازی، درصد؛ افزایش سرعت حاصل‌شده",
+          "verified": true
+        },
+        {
+          "en": "AlexNet; 61M/240 MB; 19.7; Pruning; 6.7M; 9x; 19.67; 3x",
+          "fa": "AlexNet؛ ۶۱ میلیون / ۲۴۰ مگابایت؛ ۱۹٫۷؛ هرس (Pruning)؛ ۶٫۷ میلیون؛ ۹ برابر؛ ۱۹٫۶۷؛ ۳ برابر",
+          "verified": true
+        },
+        {
+          "en": "Pruning and quantization; 6.9 MB; 35x; 19.7; 3x",
+          "fa": "هرس و کوانتیزه‌سازی (Pruning and Quantization)؛ ۶٫۹ مگابایت؛ ۳۵ برابر؛ ۱۹٫۷؛ ۳ برابر",
+          "verified": true
+        },
+        {
+          "en": "VGG16; 138M/512 MB; 10.4; Pruning; 10.3M; 13x; 10.88; 5x",
+          "fa": "VGG16؛ ۱۳۸ میلیون / ۵۱۲ مگابایت؛ ۱۰٫۴؛ هرس؛ ۱۰٫۳ میلیون؛ ۱۳ برابر؛ ۱۰٫۸۸؛ ۵ برابر",
+          "verified": true
+        },
+        {
+          "en": "Pruning and quantization; 11.3 MB; 49x; 10.91; 3x to 4x",
+          "fa": "هرس و کوانتیزه‌سازی؛ ۱۱٫۳ مگابایت؛ ۴۹ برابر؛ ۱۰٫۹۱؛ ۳ تا ۴ برابر",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "6e9976c2f192bc2375f9c6a76522b4b46b68c30354e146cd1a74a6e8b900637b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گزینه‌های کوانتیزه‌سازی (Quantization)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://www.nvidia.com/en-us/data-center/a100/"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "برای مثال،"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "بیشتر از پیش‌فرض"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "بیشتر از پیش‌فرض"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "پیش‌فرض؛ افزایش سرعت چقدر است؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "بدون تنکی (Sparsity) ستاره‌دار"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "A100 80GB PCIe; A100 80GB SXM",
+          "fa": "A100 80GB PCIe؛ A100 80GB SXM",
+          "verified": true
+        },
+        {
+          "en": "FP64: 9.7 TFLOPS; FP64 Tensor Core: 19.5 TFLOPS; FP32: 19.5 TFLOPS",
+          "fa": "FP64: 9.7 TFLOPS؛ هستهٔ تنسوری FP64 (Tensor Core): 19.5 TFLOPS؛ FP32: 19.5 TFLOPS",
+          "verified": true
+        },
+        {
+          "en": "Tensor Float 32 (TF32): 156 TFLOPS | 312 TFLOPS*; BFLOAT16 Tensor Core: 312 TFLOPS | 624 TFLOPS*; FP16 Tensor Core: 312 TFLOPS | 624 TFLOPS*; INT8 Tensor Core: 624 TOPS | 1248 TOPS*",
+          "fa": "Tensor Float 32 (TF32): 156 TFLOPS | 312 TFLOPS*؛ هستهٔ تنسوری BFLOAT16: 312 TFLOPS | 624 TFLOPS*؛ هستهٔ تنسوری FP16: 312 TFLOPS | 624 TFLOPS*؛ هستهٔ تنسوری INT8: 624 TOPS | 1248 TOPS*",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "60eab9e00dad6ba9fda0fbdfc1c6e80bbf7ba0592ed2d1c019c072770cee5b42",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گزینه‌های کوانتیزه‌سازی (Quantization)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "کاهش بیشترِ دقت عددی، افزایش سرعت بیشتری به همراه دارد!"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://images.nvidia.com/aem-dam/en-zz/Solutions/data-center/nvidia-ampere-architecture-whitepaper.pdf"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "برای مثال،"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "FP64; FP64 Tensor Core; FP32; Tensor Float 32 (TF32); BFLOAT16 Tensor Core; FP16 Tensor Core; INT8 Tensor Core",
+          "fa": "FP64؛ هستهٔ تنسوری FP64 (Tensor Core)؛ FP32؛ Tensor Float 32 (TF32)؛ هستهٔ تنسوری BFLOAT16؛ هستهٔ تنسوری FP16؛ هستهٔ تنسوری INT8",
+          "verified": true
+        },
+        {
+          "en": "Range; exponent; Precision; mantissa; sign; FP32: s e8 m23; TF32: s e8 m10; FP16: s e5 m10; BF16: s e8 m7",
+          "fa": "بازه (Range)؛ نما (Exponent)؛ دقت (Precision)؛ مانتیسا (Mantissa)؛ علامت (Sign)؛ FP32: s e8 m23؛ TF32: s e8 m10؛ FP16: s e5 m10؛ BF16: s e8 m7",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "586f5b8239ecd57b4a06ecfeb8df61322490555d330d1d221b40e76cccd13194",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گزینه‌های کوانتیزه‌سازی (Quantization): مقایسهٔ A100 و H200"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://www.fibermall.com/blog/why-gpu-require-hbm.htm; https://www.nvidia.com/en-us/data-center/a100/"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "برای آموزش استفاده شود؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "NVIDIA H200 Tensor Core GPU; Form Factor; H200 SXM¹; A100 80GB PCIe",
+          "fa": "GPU هستهٔ تنسوری NVIDIA H200؛ شکل ساخت (Form Factor)؛ H200 SXM¹؛ A100 80GB PCIe",
+          "verified": true
+        },
+        {
+          "en": "FP64: 34 TFLOPS / 9.7 TFLOPS; FP64 Tensor Core: 67 TFLOPS / 19.5 TFLOPS; FP32: 67 TFLOPS / 19.5 TFLOPS",
+          "fa": "FP64: 34 TFLOPS / 9.7 TFLOPS؛ هستهٔ تنسوری FP64: 67 TFLOPS / 19.5 TFLOPS؛ FP32: 67 TFLOPS / 19.5 TFLOPS",
+          "verified": true
+        },
+        {
+          "en": "TF32 Tensor Core: 989 TFLOPS² / 156 TFLOPS | 312 TFLOPS*; BFLOAT16 Tensor Core: 1,979 TFLOPS² / 312 TFLOPS | 624 TFLOPS*; FP16 Tensor Core: 1,979 TFLOPS² / 312 TFLOPS | 624 TFLOPS*; INT8 Tensor Core: 3,958 TFLOPS² / 624 TOPS | 1248 TOPS*",
+          "fa": "هستهٔ تنسوری TF32: 989 TFLOPS² / 156 TFLOPS | 312 TFLOPS*؛ هستهٔ تنسوری BFLOAT16: 1,979 TFLOPS² / 312 TFLOPS | 624 TFLOPS*؛ هستهٔ تنسوری FP16: 1,979 TFLOPS² / 312 TFLOPS | 624 TFLOPS*؛ هستهٔ تنسوری INT8: 3,958 TFLOPS² / 624 TOPS | 1248 TOPS*",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "3936f639dab32540b0b3e4890891a1ea5e9716deb3537b55bc0d74bd0db26388",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "کوانتیزه‌سازی (Quantization) هنگام استنتاج (Inference)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://developer.nvidia.com/blog/achieving-fp32-accuracy-for-int8-inference-using-quantization-aware-training-with-tensorrt/"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "برای مثال، با ۸ بیت به بازهٔ [-128, 127] مقیاس کنید."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "مقادیر پرت (Outliers) برابر کمینه و بیشینه قرار داده می‌شوند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Floating point x_f; Signed Int8 x_q; Rounding; Outlier Clipping; -amax; amax; s_w; s_w; -128; 1; 1; 127",
+          "fa": "ممیزشناور (Floating Point)، x_f؛ عدد صحیح ۸‌بیتی علامت‌دار (Signed Int8)، x_q؛ گردکردن (Rounding)؛ برش مقادیر پرت (Outlier Clipping)؛ ‎-amax؛ amax؛ s_w؛ s_w؛ ‎-128؛ ۱؛ ۱؛ ۱۲۷",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "18c18e144a7c0358001a3e861e8fff8765d0e73d0182f8b29effd4737b5a6dc0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ویژگی‌های پلتفرم که آموزش سریع‌تر و پربازده‌تر با GPU را ممکن می‌کنند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "کوانتیزه‌سازی (Quantization): کاهش دقت عددی"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "ادغام عملگرها (Operator Fusion): کاهش خواندن و نوشتن حافظه"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "بهینه‌سازی توزیع‌شده (Distributed Optimization): موازی‌سازی محاسبات"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "a54099301e1c5ba7cc223568d68b9b91b851d3696e0691c41634eb26f6a160b4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ایده: ادغام وظایف (Fuse Tasks) برای کاهش سربار (Overhead)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "برای مثال، به مدرسه بروید و سپس خواربار بخرید."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://quadric.io/2023/09/13/how-to-unlock-the-power-of-operator-fusion-to-accelerate-ai/"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "برای مثال، به مدرسه بروید، به خانه برگردید و خواربار بخرید."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Not Fused; Fused; OFFICE; GROCERY; 1; 2; 3; 4",
+          "fa": "ادغام‌نشده (Not Fused)؛ ادغام‌شده (Fused)؛ دفتر کار (OFFICE)؛ خواربارفروشی (GROCERY)؛ ۱؛ ۲؛ ۳؛ ۴",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "1060363a32493fc7d81bc0dfe86bb201d00c1c1cab6af3f29f694ea58d628f1a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "روش: ادغام وظایف (Fuse Tasks) برای کاهش سربار (Overhead)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "با تعیین اینکه کدام عملیات ادغام شوند، از جابه‌جایی رفت‌وبرگشتی داده به حافظهٔ خارجی (External Memory) پرهیز کنید تا اطلاعات مرتبط در حافظهٔ محدودِ نزدیک GPU باقی بماند."
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "bullet",
+          "fa": "چه زمانی حافظهٔ نهان L2 (L2 Cache) را به حافظهٔ بارگذاری ثبات (Load Register Memory) ترجیح می‌دهید؟"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "reference",
+          "fa": "https://quadric.io/2023/09/13/how-to-unlock-the-power-of-operator-fusion-to-accelerate-ai/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "External Memory; L2 Cache; Local Register Memory; Shader Core 0; Shader Core 1; Shader Core 25; Arm Mali-G720 GPU On-Device Memory",
+          "fa": "حافظهٔ خارجی (External Memory)؛ حافظهٔ نهان L2؛ حافظهٔ ثبات محلی (Local Register Memory)؛ هستهٔ سایه‌زن ۰ (Shader Core 0)؛ هستهٔ سایه‌زن ۱؛ هستهٔ سایه‌زن ۲۵؛ حافظهٔ روی دستگاهِ GPU مدل Arm Mali-G720",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "c3d64b6b5f3efa7274b0e8bf3853b0699b5c61487f4b32d2c0a0c89278155e99",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "روش: ادغام وظایف (Fuse Tasks) برای کاهش سربار (Overhead)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "با توجه به روندهای سخت‌افزار (HW)، این موضوع به‌ویژه مهم است: عملکرد پردازنده (که هر دو سال سه برابر می‌شود) از سرعت دسترسی به حافظه (با حدود نصف این میزان رشد) پیش می‌افتد."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "(Economist, Sep 21, 2024) https://quadric.io/2023/09/13/how-to-unlock-the-power-of-operator-fusion-to-accelerate-ai/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "External Memory; L2 Cache; Local Register Memory; Shader Core 0; Shader Core 1; Shader Core 25; Arm Mali-G720 GPU On-Device Memory",
+          "fa": "حافظهٔ خارجی (External Memory)؛ حافظهٔ نهان L2؛ حافظهٔ ثبات محلی (Local Register Memory)؛ هستهٔ سایه‌زن ۰ (Shader Core 0)؛ هستهٔ سایه‌زن ۱؛ هستهٔ سایه‌زن ۲۵؛ حافظهٔ روی دستگاهِ GPU مدل Arm Mali-G720",
+          "verified": true
+        },
+        {
+          "en": "Hitting the memory wall; Increase from first datapoint, log scale; Processor performance; Memory access speed",
+          "fa": "برخورد با دیوار حافظه (Memory Wall)؛ افزایش نسبت به نخستین نقطهٔ داده در مقیاس لگاریتمی؛ عملکرد پردازنده؛ سرعت دسترسی به حافظه",
+          "verified": true
+        },
+        {
+          "en": "1m times; 100,000x; 10,000x; 1,000x; 100x; 10x; 1x; 1997; 2005; 10; 15; 20; 23; Source: Amir Gholami et al., University of California",
+          "fa": "یک میلیون برابر؛ ۱۰۰٬۰۰۰ برابر؛ ۱۰٬۰۰۰ برابر؛ ۱٬۰۰۰ برابر؛ ۱۰۰ برابر؛ ۱۰ برابر؛ ۱ برابر؛ ۱۹۹۷؛ ۲۰۰۵؛ ۱۰؛ ۱۵؛ ۲۰؛ ۲۳؛ منبع: Amir Gholami و همکاران، دانشگاه کالیفرنیا",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "18c18e144a7c0358001a3e861e8fff8765d0e73d0182f8b29effd4737b5a6dc0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ویژگی‌های پلتفرم که آموزش سریع‌تر و پربازده‌تر با GPU را ممکن می‌کنند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "کوانتیزه‌سازی (Quantization): کاهش دقت عددی"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "ادغام عملگرها (Operator Fusion): کاهش خواندن و نوشتن حافظه"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "بهینه‌سازی توزیع‌شده (Distributed Optimization): موازی‌سازی محاسبات"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "f7aed02fad62d60afb7495eb66d0232ed6b22d8cb5dbd816230668b6b6a7b296",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یادآوری برنامه‌نویسی چندریسمانی (Multi-Thread Programming)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/4_Threads.html"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "code; data; files; registers; stack; thread; single-threaded process; multithreaded process",
+          "fa": "کد (Code)؛ داده (Data)؛ فایل‌ها (Files)؛ ثبات‌ها (Registers)؛ پشته (Stack)؛ ریسمان (Thread)؛ فرایند تک‌ریسمانی (Single-Threaded Process)؛ فرایند چندریسمانی (Multithreaded Process)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "63e8d312af1eba6042e36e924ee00db9acd9454d6570cd8bf5bbd989e53cb233",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "توزیع محاسبات شبکهٔ عصبی (Neural Network) میان چند دستگاه، مانند GPUها و CPUها"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "پرسش‌های کلیدی:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "چه وظایفی را به هر دستگاه واگذار کنیم؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "چه ارتباطی را میان دستگاه‌ها برقرار کنیم و چگونه این کار را انجام دهیم؟"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "روش‌های رایج:"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8
+          ],
+          "kind": "bullet",
+          "fa": "موازی‌سازی دادهٔ توزیع‌شده (Distributed Data Parallel یا DDP): هر «ماشین» یک نسخه از مدل را نگه می‌دارد تا گذر پیش‌رو و پس‌رو (Forward and Backward Passes) را روی زیرمجموعه‌های متفاوت داده انجام دهد؛ ارتباط میان ماشین‌ها، یعنی ثبت نقاط وارسی (Check-Pointing)، برای تعیین میانگین گرادیان‌ها در ماشین‌های مختلف برقرار می‌شود."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "اگر ۴ GPU داشتید، انتظار داشتید تقریباً چقدر افزایش سرعت داشته باشید؟"
+        },
+        {
+          "source_lines": [
+            10,
+            11,
+            12
+          ],
+          "kind": "bullet",
+          "fa": "آموزش توزیع‌شده با ارتباط کمتر (Distributed Lower-Communication Training یا DiLoCo): آموزش را در چند «جزیره» از یک خوشهٔ عظیم، مانند ۱۰۰٬۰۰۰ GPU، توزیع می‌کند؛ در هر جزیره به‌طور منظم نقطهٔ وارسی ثبت می‌شود و میان جزیره‌ها کمتر. این امکان را می‌دهد که دستگاه‌ها از منابع مختلف، مانند مکان‌ها، شرکت‌ها و کشورها، باشند."
+        },
+        {
+          "source_lines": [
+            13,
+            14,
+            15
+          ],
+          "kind": "bullet",
+          "fa": "بهینه‌ساز بدون افزونگی (Zero Redundancy Optimizer یا ZeRO): بدون تغییر کد از موازی‌سازی پشتیبانی می‌کند؛ حالت‌های آموزش مدل، مانند وزن‌ها و گرادیان‌ها، را میان دستگاه‌ها تقسیم می‌کند و آموزش مدل‌های بسیار بزرگ، برای مثال با تریلیون‌ها پارامتر، را ممکن می‌سازد."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "c7e5208f04e6525c269846290885bc5bab58bc60c32f198d932df8f4bfeae41b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "جمع‌بندی: ویژگی‌های پلتفرم که آموزش سریع‌تر و پربازده‌تر با GPU را ممکن می‌کنند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "کوانتیزه‌سازی (Quantization): کاهش دقت عددی"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "ادغام عملگرها (Operator Fusion): کاهش خواندن و نوشتن حافظه"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "بهینه‌سازی توزیع‌شده (Distributed Optimization): موازی‌سازی محاسبات"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "b6d7e5dcd902c0ff98b5fa6553a129627092243d612c0799979d7c0e335d044b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "در جست‌وجوی دادهٔ بیشتر و ماشین‌های سریع‌تر"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "تغییر پارادایم: بازنمایی‌های آموخته‌شده (Learned Representations) با مجموعه‌داده‌های بزرگِ برچسب‌دار شکوفا می‌شوند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "یک اتفاق خوش‌یمن: گرادیان‌کاهشی (Gradient Descent) با سخت‌افزار بازی روبه‌رو می‌شود."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "نقطهٔ عطف: پلتفرم‌های متن‌باز (Open-Source Platforms) مشارکت گسترده را شتاب می‌دهند."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "b6d7e5dcd902c0ff98b5fa6553a129627092243d612c0799979d7c0e335d044b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "در جست‌وجوی دادهٔ بیشتر و ماشین‌های سریع‌تر"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "تغییر پارادایم: بازنمایی‌های آموخته‌شده (Learned Representations) با مجموعه‌داده‌های بزرگِ برچسب‌دار شکوفا می‌شوند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "یک اتفاق خوش‌یمن: گرادیان‌کاهشی (Gradient Descent) با سخت‌افزار بازی روبه‌رو می‌شود."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "نقطهٔ عطف: پلتفرم‌های متن‌باز (Open-Source Platforms) مشارکت گسترده را شتاب می‌دهند."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 71,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ]
+    }
+  ]
+}

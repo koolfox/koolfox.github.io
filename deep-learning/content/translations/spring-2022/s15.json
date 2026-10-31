@@ -1,0 +1,3321 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s15",
+  "source_sha256": "a00fc9844979115f394429ea50afed4cd6ba75d0a47e2391c85c33ad4bc5000b",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "22489c0caca8562816effaaa091086833c675f40b68254b2393ee094c5533dde",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مقدمه‌ای بر توجه (Attention)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "دانشگاه کلرادو بولدر (University of Colorado Boulder)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "بهار ۲۰۲۲ (Spring 2022)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CC BY",
+          "fa": "CC BY — انتساب",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "5d23fb70928665c403b0c3bf048740320365b3bcdd19b62e7e031780adcaf551",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• هفتهٔ پیش:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مقدمه‌ای بر پردازش زبان طبیعی (Natural language processing)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• بازنمایی متن (Text representation)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• تعبیه‌های عصبی واژه (Neural word embeddings)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• تکلیف‌ها (Canvas):"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• مهلت تحویل تکلیف آزمایشگاه ۳، هفتهٔ آینده است."
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• پرسشی دارید؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "6fe08316a3ecca939a9a4ed1c1fd4a3c6a26bcd319ce097bec7eb3960dc7c964",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• انگیزه: ترجمهٔ ماشینی عصبی برای جمله‌های بلند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• رمزگشا (Decoder): توجه (Attention)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• رمزگذار (Encoder)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی عملکرد"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "6fe08316a3ecca939a9a4ed1c1fd4a3c6a26bcd319ce097bec7eb3960dc7c964",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• انگیزه: ترجمهٔ ماشینی عصبی برای جمله‌های بلند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• رمزگشا (Decoder): توجه (Attention)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• رمزگذار (Encoder)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی عملکرد"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "5ad527769abc7158d9b7b8ef280cc1a453734752bcc6413e3ee0c7851aea281e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "وظیفه: ترجمهٔ ماشینی (Machine Translation)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "DETECT LANGUAGE; ENGLISH; SPANISH; FRENCH; GERMAN; He loved to eat; Er liebte es zu essen",
+          "fa": "تشخیص زبان؛ انگلیسی؛ اسپانیایی؛ فرانسوی؛ آلمانی؛ He loved to eat / Er liebte es zu essen (او عاشق غذا خوردن بود.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "0008f6ef4e433f8fbe0d63f2c3b1758dba12c7b53cc492b453e7930b4147cb7a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکرد پیشگام شبکهٔ عصبی"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "ورودی در یک بردار با اندازهٔ ثابت رمزگذاری می‌شود."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "بردار به یک ترجمه رمزگشایی می‌شود."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "منبع تصویر: https://smerity.com/articles/2016/google_nmt_arch.html"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "seq2seq: Sutskever et al. Sequence to Sequence Learning with Neural Networks. Neurips 2014."
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "پیش‌بینی‌ها با توکن <EOS> متوقف می‌شوند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; Embed; S; Decoder; Softmax; NULL; He loved to eat .; Er liebte zu essen .",
+          "fa": "رمزگذار (Encoder)؛ تعبیه (Embed)؛ S؛ رمزگشا (Decoder)؛ سافت‌مکس (Softmax)؛ NULL؛ He loved to eat . / Er liebte zu essen . (او عاشق غذا خوردن بود؛ جمله‌ها و توکن‌های اصلی حفظ شده‌اند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "c0321490a02987178260591f9089f877bb476b74018de8858eaa08ee7183483b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکرد پیشگام شبکهٔ عصبی"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "بردار رمزگذاری‌شده با طول ثابت باید همهٔ اطلاعات ورودیِ لازم برای ترجمه را خلاصه کند."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "منبع تصویر: https://smerity.com/articles/2016/google_nmt_arch.html"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "Sutskever et al. Sequence to Sequence Learning with Neural Networks. Neurips 2014."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; Embed; S; Decoder; Softmax; NULL; He loved to eat .; Er liebte zu essen .",
+          "fa": "رمزگذار (Encoder)؛ تعبیه (Embed)؛ S؛ رمزگشا (Decoder)؛ سافت‌مکس (Softmax)؛ NULL؛ He loved to eat . / Er liebte zu essen . (او عاشق غذا خوردن بود؛ جمله‌ها و توکن‌های اصلی حفظ شده‌اند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "e69d47242b146c4dbed3ec1cb00978b2d0786ac5c8c38b91d505fa56e94d4cbd",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تحلیل دو مدل"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Cho et al. On the Properties of Neural Machine Translation: Encoder–Decoder Approaches. SSST 2014."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "با افزایش تعداد واژه‌های هر جمله، چه روندی در عملکرد برای ورودی‌ها (Source؛ منبع) و خروجی‌ها (Reference؛ مرجع) مشاهده می‌شود؟"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "(امتیازهای بزرگ‌تر بهترند.)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "BLEU score; Sentence length; Source text; Reference text; Both",
+          "fa": "امتیاز BLEU؛ طول جمله؛ متن منبع؛ متن مرجع؛ هر دو",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "0e10009f06c5ae92c9319f0ebdbf27fcb6b648c407e39eaadc5ccfe4ea0533ed",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تحلیل دو مدل"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Cho et al. On the Properties of Neural Machine Translation: Encoder–Decoder Approaches. SSST 2014."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "عملکرد برای جمله‌های بلندتر افت می‌کند!"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "(امتیازهای بزرگ‌تر بهترند.)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "BLEU score; Sentence length; Source text; Reference text; Both",
+          "fa": "امتیاز BLEU؛ طول جمله؛ متن منبع؛ متن مرجع؛ هر دو",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "44d21e183ebb9c74a0cc306f88804e9c411a2b5630b28fd1d9fae005ab1da0bc",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "مسئله: با افزایش طول جمله، عملکرد افت می‌کند."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "فرضیه: بردار با طول ثابت، ظرفیت کافی برای ثبت همهٔ اطلاعات مرتبطِ جمله‌های بلند را ندارد."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "منبع تصویر: https://smerity.com/articles/2016/google_nmt_arch.html"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "Cho et al. On the Properties of Neural Machine Translation: Encoder–Decoder Approaches. SSST 2014."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; Embed; S; Decoder; Softmax; NULL; He loved to eat .; Er liebte zu essen .",
+          "fa": "رمزگذار (Encoder)؛ تعبیه (Embed)؛ S؛ رمزگشا (Decoder)؛ سافت‌مکس (Softmax)؛ NULL؛ He loved to eat . / Er liebte zu essen . (او عاشق غذا خوردن بود؛ جمله‌ها و توکن‌های اصلی حفظ شده‌اند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "7c9911ff3f469b99b92ba62441553305adda391afb70fff76324f8e9a2d748ce",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایده برای حفظ عملکرد در جمله‌های بلند: توجه (Attention)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "منبع تصویر: https://smerity.com/articles/2016/google_nmt_arch.html"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "از رمزگذار نخواهید ورودی را خلاصه کند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; Embed; S; Decoder; Softmax; NULL; He loved to eat .; Er liebte zu essen .",
+          "fa": "رمزگذار (Encoder)؛ تعبیه (Embed)؛ S؛ رمزگشا (Decoder)؛ سافت‌مکس (Softmax)؛ NULL؛ He loved to eat . / Er liebte zu essen . (او عاشق غذا خوردن بود؛ جمله‌ها و توکن‌های اصلی حفظ شده‌اند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "2b0898513509cc929bc2a31611cd4aefff54469f63521b8fadc62778453a47a0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایده برای حفظ عملکرد در جمله‌های بلند: توجه (Attention)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "منبع تصویر: https://smerity.com/articles/2016/google_nmt_arch.html"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "در عوض، رمزگذار همهٔ حالت‌های پنهان (Hidden States) ورودی را به رمزگشا بدهد تا تصمیم بگیرد در هر گام زمانی از کدام‌یک برای پیش‌بینی استفاده کند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; Embed; S; Decoder; Softmax; NULL; He loved to eat .; Er liebte zu essen .",
+          "fa": "رمزگذار (Encoder)؛ تعبیه (Embed)؛ S؛ رمزگشا (Decoder)؛ سافت‌مکس (Softmax)؛ NULL؛ He loved to eat . / Er liebte zu essen . (او عاشق غذا خوردن بود؛ جمله‌ها و توکن‌های اصلی حفظ شده‌اند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "5f278a7c2c2740b3ca8c39c9c2b85ac0806677dc7449ae298e675018782172e3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایده برای حفظ عملکرد در جمله‌های بلند: توجه (Attention)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "رمزگشا تصمیم می‌گیرد در هر گام زمانی کدام ورودی‌ها برای پیش‌بینی لازم‌اند؛ مثلاً «توجه سخت» (Hard attention) بر یک ورودی تمرکز می‌کند."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "ورودی (Input)؛ هدف (Target)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "t = 1؛ t = 2؛ t = 3؛ t = 4"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "توجه: اگرچه در این مثال ترتیب واژه‌ها در ورودی و هدف با هم تطابق دارد، ممکن است متفاوت باشد."
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "reference",
+          "fa": "https://deeplearning.cs.cmu.edu/F21/document/slides/lec18.attention.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "He loved to eat; Er liebte zu essen",
+          "fa": "He loved to eat؛ Er liebte zu essen (او عاشق غذا خوردن بود؛ توکن‌های دو زبان مطابق اصل حفظ شده‌اند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "d818f3be6a4718f88b0b1ba262dd1e17fc51e9035a61323c5dbf8bcd3d146829",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایده برای حفظ عملکرد در جمله‌های بلند: توجه (Attention)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "رمزگشا تصمیم می‌گیرد در هر گام زمانی کدام ورودی‌ها برای پیش‌بینی لازم‌اند؛ مثلاً «توجه سخت» (Hard attention) بر یک ورودی تمرکز می‌کند."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://deeplearning.cs.cmu.edu/F21/document/slides/lec18.attention.pdf"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "ورودی (Input)؛ هدف (Target)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "t = 1؛ t = 2؛ t = 3؛ t = 4"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "محدودیت‌ها: یک واژهٔ هدف به اطلاعات یک واژهٔ ورودی متکی است و «توجه سخت» مشتق‌پذیر نیست."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "He loved to eat; Er liebte zu essen",
+          "fa": "He loved to eat؛ Er liebte zu essen (او عاشق غذا خوردن بود؛ توکن‌های دو زبان مطابق اصل حفظ شده‌اند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "c1128999e55280e4c554fb1431f4156c2d5ef100a29803f5d54870ea2a1b8555",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایده برای حفظ عملکرد در جمله‌های بلند: توجه (Attention)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "ورودی (Input)؛ هدف (Target)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "t = 1"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "رمزگشا تصمیم می‌گیرد در هر گام زمانی کدام ورودی‌ها برای پیش‌بینی لازم‌اند؛ مثلاً «توجه نرم» (Soft attention) از ترکیبی وزن‌دار از ورودی استفاده می‌کند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "He loved to eat; Er liebte zu essen",
+          "fa": "He loved to eat؛ Er liebte zu essen (او عاشق غذا خوردن بود؛ توکن‌های دو زبان مطابق اصل حفظ شده‌اند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "e897b0196a8c63e89cc5150e37b5f91a0e8c7bbd81edb11c0a693919b2dba987",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایده برای حفظ عملکرد در جمله‌های بلند: توجه (Attention)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "ورودی (Input)؛ هدف (Target)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "t = 1"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "رمزگشا تصمیم می‌گیرد در هر گام زمانی کدام ورودی‌ها برای پیش‌بینی لازم‌اند؛ مثلاً «توجه نرم» (Soft attention) از ترکیبی وزن‌دار از ورودی استفاده می‌کند."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "t = 2"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "He loved to eat; Er liebte zu essen",
+          "fa": "He loved to eat؛ Er liebte zu essen (او عاشق غذا خوردن بود؛ توکن‌های دو زبان مطابق اصل حفظ شده‌اند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "a1d3c245763cbd8664bd299d7cda07315807c96804a5d68ddcce11a0f96d6b3b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایده برای حفظ عملکرد در جمله‌های بلند: توجه (Attention)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "ورودی (Input)؛ هدف (Target)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "t = 1"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "رمزگشا تصمیم می‌گیرد در هر گام زمانی کدام ورودی‌ها برای پیش‌بینی لازم‌اند؛ مثلاً «توجه نرم» (Soft attention) از ترکیبی وزن‌دار از ورودی استفاده می‌کند."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "t = 2؛ t = 3"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "He loved to eat; Er liebte zu essen",
+          "fa": "He loved to eat؛ Er liebte zu essen (او عاشق غذا خوردن بود؛ توکن‌های دو زبان مطابق اصل حفظ شده‌اند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "b8dae37285605ac33f32883afb1883786e020f37ea47d84cb45bc59c21c74f7e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایده برای حفظ عملکرد در جمله‌های بلند: توجه (Attention)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "ورودی (Input)؛ هدف (Target)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "t = 1"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "رمزگشا تصمیم می‌گیرد در هر گام زمانی کدام ورودی‌ها برای پیش‌بینی لازم‌اند؛ مثلاً «توجه نرم» (Soft attention) از ترکیبی وزن‌دار از ورودی استفاده می‌کند."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "t = 2؛ t = 3؛ t = 4"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "He loved to eat; Er liebte zu essen",
+          "fa": "He loved to eat؛ Er liebte zu essen (او عاشق غذا خوردن بود؛ توکن‌های دو زبان مطابق اصل حفظ شده‌اند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "8c2132b2f1fe08a1d3df1ea81efe0028316ec148fa33eb38ca36e5be3bcfa750",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "توجه «نرم» (Soft Attention): چالش"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "ورودی (Input)؛ هدف (Target)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "t = 1"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "رمزگشا تصمیم می‌گیرد در هر گام زمانی کدام ورودی‌ها برای پیش‌بینی لازم‌اند؛ مثلاً «توجه نرم» (Soft attention) از ترکیبی وزن‌دار از ورودی استفاده می‌کند."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "t = 2؛ t = 3؛ t = 4"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "وزن‌های هر ورودی چگونه باید انتخاب شوند؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "He loved to eat; Er liebte zu essen",
+          "fa": "He loved to eat؛ Er liebte zu essen (او عاشق غذا خوردن بود؛ توکن‌های دو زبان مطابق اصل حفظ شده‌اند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "b77b7a2d5a19fb6d97696b1aa0844975139777a9001ab1f716f6e923c7e2731c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "توجه «نرم» (Soft Attention): چالش"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "ورودی (Input)؛ هدف (Target)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "t = 1"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "رمزگشا تصمیم می‌گیرد در هر گام زمانی کدام ورودی‌ها برای پیش‌بینی لازم‌اند؛ مثلاً «توجه نرم» (Soft attention) از ترکیبی وزن‌دار از ورودی استفاده می‌کند."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "t = 2؛ t = 3؛ t = 4"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "می‌توان برچسب‌های دستی گردآوری کرد و سپس در تابع زیان گنجاند که وزن‌های پیش‌بینی‌شده باید با وزن‌های حقیقت مبنا مطابق باشند… اما این رویکرد عملی نیست."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "He loved to eat; Er liebte zu essen",
+          "fa": "He loved to eat؛ Er liebte zu essen (او عاشق غذا خوردن بود؛ توکن‌های دو زبان مطابق اصل حفظ شده‌اند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "7bf0d2b0670b9a3639918280db57518b7fc50cd51341b68a3e9b684201088332",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "توجه «نرم» (Soft Attention): چالش"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "ورودی (Input)؛ هدف (Target)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "t = 1"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "رمزگشا تصمیم می‌گیرد در هر گام زمانی کدام ورودی‌ها برای پیش‌بینی لازم‌اند؛ مثلاً «توجه نرم» (Soft attention) از ترکیبی وزن‌دار از ورودی استفاده می‌کند."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "t = 2؛ t = 3؛ t = 4"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "در عوض، بگذارید مدل چگونگی وزن دادن به هر ورودی را یاد بگیرد!"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "He loved to eat; Er liebte zu essen",
+          "fa": "He loved to eat؛ Er liebte zu essen (او عاشق غذا خوردن بود؛ توکن‌های دو زبان مطابق اصل حفظ شده‌اند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "a1bc848e61bfff82db64bc07c640376ff27fac2d80666e928a0bf4fb6efd276f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "راه‌حل"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "bullet",
+          "fa": "۲. در هر گام زمانی رمزگشا، وزن‌های توجه محاسبه می‌شوند که میزان ارتباط هر ورودی با پیش‌بینی را تعیین می‌کنند."
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8
+          ],
+          "kind": "bullet",
+          "fa": "۳. در هر گام زمانی رمزگشا، براساس مجموع وزن‌دار ورودی‌ها پیش‌بینی انجام می‌شود."
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "bullet",
+          "fa": "۱. رمزگذار برای هر ورودی یک حالت پنهان (Hidden State) تولید می‌کند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; BiGRU; encoder hidden state; Decoder; GRU; decoder hidden state; score; softmax; alignment vector; multiplication; addition; context vector; concat; Attention layer",
+          "fa": "رمزگذار؛ GRU دوسویه (BiGRU)؛ حالت پنهان رمزگذار؛ رمزگشا؛ GRU؛ حالت پنهان رمزگشا؛ امتیاز؛ سافت‌مکس؛ بردار هم‌ترازی؛ ضرب؛ جمع؛ بردار بافت؛ الحاق (Concat)؛ لایهٔ توجه",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "6fe08316a3ecca939a9a4ed1c1fd4a3c6a26bcd319ce097bec7eb3960dc7c964",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• انگیزه: ترجمهٔ ماشینی عصبی برای جمله‌های بلند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• رمزگشا (Decoder): توجه (Attention)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• رمزگذار (Encoder)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی عملکرد"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "8f4a3b6d0065e2d02aba9da0a8af23e62a94391e215dd58349a2a203c34cb07c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "راه‌حل"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "bullet",
+          "fa": "۲. در هر گام زمانی رمزگشا، وزن‌های توجه محاسبه می‌شوند که میزان ارتباط هر ورودی با پیش‌بینی را تعیین می‌کنند."
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8
+          ],
+          "kind": "bullet",
+          "fa": "۳. در هر گام زمانی رمزگشا، براساس مجموع وزن‌دار ورودی‌ها پیش‌بینی انجام می‌شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; BiGRU; encoder hidden state; Decoder; GRU; decoder hidden state; score; softmax; alignment vector; multiplication; addition; context vector; concat; Attention layer",
+          "fa": "رمزگذار؛ GRU دوسویه (BiGRU)؛ حالت پنهان رمزگذار؛ رمزگشا؛ GRU؛ حالت پنهان رمزگشا؛ امتیاز؛ سافت‌مکس؛ بردار هم‌ترازی؛ ضرب؛ جمع؛ بردار بافت؛ الحاق (Concat)؛ لایهٔ توجه",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "75ca7556885ff5ece6542ab704c720e3209b73a2db019c959b437d93e24edd3b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "heading",
+          "fa": "اندازه‌گیری تأثیر هر ورودی بر پیش‌بینی"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "در این مثال چند ورودی وجود دارد؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; BiGRU; encoder hidden state; Decoder; GRU; decoder hidden state; score; softmax; alignment vector; multiplication; addition; context vector; concat; Attention layer",
+          "fa": "رمزگذار؛ GRU دوسویه (BiGRU)؛ حالت پنهان رمزگذار؛ رمزگشا؛ GRU؛ حالت پنهان رمزگشا؛ امتیاز؛ سافت‌مکس؛ بردار هم‌ترازی؛ ضرب؛ جمع؛ بردار بافت؛ الحاق (Concat)؛ لایهٔ توجه",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "38d47bc9ef7129246669f66968d11a100f0741ebcabc36afdec4bc7b88c6a3b6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "heading",
+          "fa": "اندازه‌گیری تأثیر هر ورودی بر پیش‌بینی"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "در هر گام زمانی رمزگشا، شباهت میان حالت پنهان رمزگشا و حالت پنهان هر ورودی محاسبه می‌شود تا امتیاز هر ورودی در آن گام زمانی تعیین شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; BiGRU; encoder hidden state; Decoder; GRU; decoder hidden state; score; softmax; alignment vector; multiplication; addition; context vector; concat; Attention layer",
+          "fa": "رمزگذار؛ GRU دوسویه (BiGRU)؛ حالت پنهان رمزگذار؛ رمزگشا؛ GRU؛ حالت پنهان رمزگشا؛ امتیاز؛ سافت‌مکس؛ بردار هم‌ترازی؛ ضرب؛ جمع؛ بردار بافت؛ الحاق (Concat)؛ لایهٔ توجه",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "38d47bc9ef7129246669f66968d11a100f0741ebcabc36afdec4bc7b88c6a3b6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "heading",
+          "fa": "اندازه‌گیری تأثیر هر ورودی بر پیش‌بینی"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "در هر گام زمانی رمزگشا، شباهت میان حالت پنهان رمزگشا و حالت پنهان هر ورودی محاسبه می‌شود تا امتیاز هر ورودی در آن گام زمانی تعیین شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; BiGRU; encoder hidden state; Decoder; GRU; decoder hidden state; score; softmax; alignment vector; multiplication; addition; context vector; concat; Attention layer",
+          "fa": "رمزگذار؛ GRU دوسویه (BiGRU)؛ حالت پنهان رمزگذار؛ رمزگشا؛ GRU؛ حالت پنهان رمزگشا؛ امتیاز؛ سافت‌مکس؛ بردار هم‌ترازی؛ ضرب؛ جمع؛ بردار بافت؛ الحاق (Concat)؛ لایهٔ توجه",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "38d47bc9ef7129246669f66968d11a100f0741ebcabc36afdec4bc7b88c6a3b6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "heading",
+          "fa": "اندازه‌گیری تأثیر هر ورودی بر پیش‌بینی"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "در هر گام زمانی رمزگشا، شباهت میان حالت پنهان رمزگشا و حالت پنهان هر ورودی محاسبه می‌شود تا امتیاز هر ورودی در آن گام زمانی تعیین شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; BiGRU; encoder hidden state; Decoder; GRU; decoder hidden state; score; softmax; alignment vector; multiplication; addition; context vector; concat; Attention layer",
+          "fa": "رمزگذار؛ GRU دوسویه (BiGRU)؛ حالت پنهان رمزگذار؛ رمزگشا؛ GRU؛ حالت پنهان رمزگشا؛ امتیاز؛ سافت‌مکس؛ بردار هم‌ترازی؛ ضرب؛ جمع؛ بردار بافت؛ الحاق (Concat)؛ لایهٔ توجه",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "38d47bc9ef7129246669f66968d11a100f0741ebcabc36afdec4bc7b88c6a3b6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "heading",
+          "fa": "اندازه‌گیری تأثیر هر ورودی بر پیش‌بینی"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "در هر گام زمانی رمزگشا، شباهت میان حالت پنهان رمزگشا و حالت پنهان هر ورودی محاسبه می‌شود تا امتیاز هر ورودی در آن گام زمانی تعیین شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; BiGRU; encoder hidden state; Decoder; GRU; decoder hidden state; score; softmax; alignment vector; multiplication; addition; context vector; concat; Attention layer",
+          "fa": "رمزگذار؛ GRU دوسویه (BiGRU)؛ حالت پنهان رمزگذار؛ رمزگشا؛ GRU؛ حالت پنهان رمزگشا؛ امتیاز؛ سافت‌مکس؛ بردار هم‌ترازی؛ ضرب؛ جمع؛ بردار بافت؛ الحاق (Concat)؛ لایهٔ توجه",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "320913dff8345e7bc8fcb9752286f4220f409af8c7a332df58c16602e89b8f67",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "heading",
+          "fa": "اندازه‌گیری تأثیر هر ورودی بر پیش‌بینی"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "چگونه شباهت میان حالت‌های پنهان رمزگشا و ورودی را اندازه بگیریم؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; BiGRU; encoder hidden state; Decoder; GRU; decoder hidden state; score; softmax; alignment vector; multiplication; addition; context vector; concat; Attention layer",
+          "fa": "رمزگذار؛ GRU دوسویه (BiGRU)؛ حالت پنهان رمزگذار؛ رمزگشا؛ GRU؛ حالت پنهان رمزگشا؛ امتیاز؛ سافت‌مکس؛ بردار هم‌ترازی؛ ضرب؛ جمع؛ بردار بافت؛ الحاق (Concat)؛ لایهٔ توجه",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "2005190e1260e42c3d18944705ef6d99277f57be3e8f01eb0cf3cfb64cea093e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "معیار شباهت برای حالت‌های پنهان (Hidden States) رمزگشا و رمزگذار"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Attention; score(hₜ,sₖ); How relevant is source token k for target step t?; scalar out; Attention function; in; Encoder state for token k: sₖ; Decoder state at step t: hₜ",
+          "fa": "توجه؛ score(hₜ,sₖ)؛ توکن منبع k چقدر برای گام هدف t مرتبط است؟؛ خروجی اسکالر؛ تابع توجه؛ ورودی؛ حالت رمزگذار برای توکن k: sₖ؛ حالت رمزگشا در گام t: hₜ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "d0fd1cfe7024f6635727d4095dee26a192cf3dd87bb64897b31202470944424f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "معیار شباهت برای حالت‌های پنهان (Hidden States) رمزگشا و رمزگذار"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• گزینه‌های متعدد (تابع باید مشتق‌پذیر باشد)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Dot-product; Bilinear; Multi-Layer Perceptron",
+          "fa": "ضرب داخلی (Dot-product)؛ دوخطی (Bilinear)؛ پرسپترون چندلایه (Multi-Layer Perceptron)",
+          "verified": true
+        },
+        {
+          "en": "score(hₜ,sₖ)=hₜᵀsₖ; score(hₜ,sₖ)=hₜᵀWsₖ; score(hₜ,sₖ)=w₂ᵀ·tanh(W₁[hₜ,sₖ])",
+          "fa": "score(hₜ,sₖ)=hₜᵀsₖ؛ score(hₜ,sₖ)=hₜᵀWsₖ؛ score(hₜ,sₖ)=w₂ᵀ·tanh(W₁[hₜ,sₖ])",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "e81eab1df51324b9752c95ffff7ab39b90552bac0eb83afe9b36bf62d6afff2d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "معیار شباهت برای حالت‌های پنهان (Hidden States) رمزگشا و رمزگذار"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• گزینه‌های متعدد (تابع باید مشتق‌پذیر باشد)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "هنگام استفاده از ضرب داخلی (Dot-product)، کدام پارامترهای مدل باید آموخته شوند؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Dot-product; Bilinear; Multi-Layer Perceptron",
+          "fa": "ضرب داخلی (Dot-product)؛ دوخطی (Bilinear)؛ پرسپترون چندلایه (Multi-Layer Perceptron)",
+          "verified": true
+        },
+        {
+          "en": "score(hₜ,sₖ)=hₜᵀsₖ; score(hₜ,sₖ)=hₜᵀWsₖ; score(hₜ,sₖ)=w₂ᵀ·tanh(W₁[hₜ,sₖ])",
+          "fa": "score(hₜ,sₖ)=hₜᵀsₖ؛ score(hₜ,sₖ)=hₜᵀWsₖ؛ score(hₜ,sₖ)=w₂ᵀ·tanh(W₁[hₜ,sₖ])",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "f86ddce2b7c61d2718a1ebc5a76b59ab282e4a7fd16f2cd048756135a11dd341",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "معیار شباهت برای حالت‌های پنهان (Hidden States) رمزگشا و رمزگذار"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• گزینه‌های متعدد (تابع باید مشتق‌پذیر باشد)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "هنگام استفاده از تابع دوخطی (Bilinear)، کدام پارامترهای مدل باید آموخته شوند؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Dot-product; Bilinear; Multi-Layer Perceptron",
+          "fa": "ضرب داخلی (Dot-product)؛ دوخطی (Bilinear)؛ پرسپترون چندلایه (Multi-Layer Perceptron)",
+          "verified": true
+        },
+        {
+          "en": "score(hₜ,sₖ)=hₜᵀsₖ; score(hₜ,sₖ)=hₜᵀWsₖ; score(hₜ,sₖ)=w₂ᵀ·tanh(W₁[hₜ,sₖ])",
+          "fa": "score(hₜ,sₖ)=hₜᵀsₖ؛ score(hₜ,sₖ)=hₜᵀWsₖ؛ score(hₜ,sₖ)=w₂ᵀ·tanh(W₁[hₜ,sₖ])",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "5827ba24dd55f0e0926aaec6b4c91529dbdf9c26fa56c745985f3e1efa0de87d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "معیار شباهت برای حالت‌های پنهان (Hidden States) رمزگشا و رمزگذار"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• گزینه‌های متعدد (تابع باید مشتق‌پذیر باشد)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "هنگام استفاده از پرسپترون چندلایه (Multi-layer perceptron)، کدام پارامترهای مدل باید آموخته شوند؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Dot-product; Bilinear; Multi-Layer Perceptron",
+          "fa": "ضرب داخلی (Dot-product)؛ دوخطی (Bilinear)؛ پرسپترون چندلایه (Multi-Layer Perceptron)",
+          "verified": true
+        },
+        {
+          "en": "score(hₜ,sₖ)=hₜᵀsₖ; score(hₜ,sₖ)=hₜᵀWsₖ; score(hₜ,sₖ)=w₂ᵀ·tanh(W₁[hₜ,sₖ])",
+          "fa": "score(hₜ,sₖ)=hₜᵀsₖ؛ score(hₜ,sₖ)=hₜᵀWsₖ؛ score(hₜ,sₖ)=w₂ᵀ·tanh(W₁[hₜ,sₖ])",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "423c2ab268eec4ce133d5cb1e4a704aaf87377e14c083fffc9f8461659352121",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "معیار شباهت برای حالت‌های پنهان (Hidden States) رمزگشا و رمزگذار"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• گزینه‌های متعدد (تابع باید مشتق‌پذیر باشد)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "پارامترهای مدلی که باید آموخته شوند"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "(بدون پارامتر)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Dot-product; Bilinear; Multi-Layer Perceptron",
+          "fa": "ضرب داخلی (Dot-product)؛ دوخطی (Bilinear)؛ پرسپترون چندلایه (Multi-Layer Perceptron)",
+          "verified": true
+        },
+        {
+          "en": "score(hₜ,sₖ)=hₜᵀsₖ; score(hₜ,sₖ)=hₜᵀWsₖ; score(hₜ,sₖ)=w₂ᵀ·tanh(W₁[hₜ,sₖ])",
+          "fa": "score(hₜ,sₖ)=hₜᵀsₖ؛ score(hₜ,sₖ)=hₜᵀWsₖ؛ score(hₜ,sₖ)=w₂ᵀ·tanh(W₁[hₜ,sₖ])",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "77f56a2e05202fe4c9593dc3bba16c0425d23d713e26e7b806f4b6c2746eee79",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "heading",
+          "fa": "اندازه‌گیری تأثیر هر ورودی بر پیش‌بینی"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "پس از محاسبهٔ امتیاز شباهت هر ورودی، سافت‌مکس (Softmax) را اعمال کنید تا مجموع وزن‌های همهٔ ورودی‌ها برابر ۱ شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; BiGRU; encoder hidden state; Decoder; GRU; decoder hidden state; score; softmax; alignment vector; multiplication; addition; context vector; concat; Attention layer",
+          "fa": "رمزگذار؛ GRU دوسویه (BiGRU)؛ حالت پنهان رمزگذار؛ رمزگشا؛ GRU؛ حالت پنهان رمزگشا؛ امتیاز؛ سافت‌مکس؛ بردار هم‌ترازی؛ ضرب؛ جمع؛ بردار بافت؛ الحاق (Concat)؛ لایهٔ توجه",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "712c48f3702e242548020dc8f874c6e6cc9f2b2ea0e49d20492361773c860545",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "heading",
+          "fa": "اندازه‌گیری تأثیر هر ورودی بر پیش‌بینی"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "اکنون وزن‌های توجه (Attention weights) را داریم!"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; BiGRU; encoder hidden state; Decoder; GRU; decoder hidden state; score; softmax; alignment vector; multiplication; addition; context vector; concat; Attention layer",
+          "fa": "رمزگذار؛ GRU دوسویه (BiGRU)؛ حالت پنهان رمزگذار؛ رمزگشا؛ GRU؛ حالت پنهان رمزگشا؛ امتیاز؛ سافت‌مکس؛ بردار هم‌ترازی؛ ضرب؛ جمع؛ بردار بافت؛ الحاق (Concat)؛ لایهٔ توجه",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "4692e6a0185bfb39bc30597a439c3458d6759176a02af34f9753d3dd34845f4a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "heading",
+          "fa": "اندازه‌گیری تأثیر هر ورودی بر پیش‌بینی"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "به‌طور شهودی:"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "هدف (Target)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "t = 4"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "ورودی (Input)"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "مدل می‌تواند در هر گام زمانی به هر ورودی وزن بدهد!"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "He loved to eat; Er liebte zu essen",
+          "fa": "He loved to eat؛ Er liebte zu essen (او عاشق غذا خوردن بود؛ توکن‌های دو زبان مطابق اصل حفظ شده‌اند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "8f4a3b6d0065e2d02aba9da0a8af23e62a94391e215dd58349a2a203c34cb07c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "راه‌حل"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "bullet",
+          "fa": "۲. در هر گام زمانی رمزگشا، وزن‌های توجه محاسبه می‌شوند که میزان ارتباط هر ورودی با پیش‌بینی را تعیین می‌کنند."
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8
+          ],
+          "kind": "bullet",
+          "fa": "۳. در هر گام زمانی رمزگشا، براساس مجموع وزن‌دار ورودی‌ها پیش‌بینی انجام می‌شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; BiGRU; encoder hidden state; Decoder; GRU; decoder hidden state; score; softmax; alignment vector; multiplication; addition; context vector; concat; Attention layer",
+          "fa": "رمزگذار؛ GRU دوسویه (BiGRU)؛ حالت پنهان رمزگذار؛ رمزگشا؛ GRU؛ حالت پنهان رمزگشا؛ امتیاز؛ سافت‌مکس؛ بردار هم‌ترازی؛ ضرب؛ جمع؛ بردار بافت؛ الحاق (Concat)؛ لایهٔ توجه",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "ed0adf06f3aa41eec1667220895158e3d6b257f40bff2fc1138f7cd160614829",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پیش‌بینی واژه"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "در گام زمانی t، برای هر n ورودی یک مجموع وزن‌دار محاسبه می‌کنیم:"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "برای وزن‌های توجه بزرگ، تأثیر ورودی‌ها تقویت می‌شود و در غیر این صورت کاهش می‌یابد."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; BiGRU; encoder hidden state; Decoder; GRU; decoder hidden state; score; softmax; alignment vector; multiplication; addition; context vector; concat; Attention layer",
+          "fa": "رمزگذار؛ GRU دوسویه (BiGRU)؛ حالت پنهان رمزگذار؛ رمزگشا؛ GRU؛ حالت پنهان رمزگشا؛ امتیاز؛ سافت‌مکس؛ بردار هم‌ترازی؛ ضرب؛ جمع؛ بردار بافت؛ الحاق (Concat)؛ لایهٔ توجه",
+          "verified": true
+        },
+        {
+          "en": "cₜ = ∑ᵢ₌₁ⁿ αₜ,ᵢhᵢ",
+          "fa": "cₜ = ∑ᵢ₌₁ⁿ αₜ,ᵢhᵢ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "8130184488ec11231beee7e01e9a88ac80be7ad3981bffbf7d3e664c0ae86e33",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پیش‌بینی واژه"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "پیش‌بینی نهایی نه‌فقط با استفاده از واژهٔ ورودی و حالت پنهان قبلی، بلکه اکنون با بردار بافت (Context vector) نیز انجام می‌شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; BiGRU; encoder hidden state; Decoder; GRU; decoder hidden state; score; softmax; alignment vector; multiplication; addition; context vector; concat; Attention layer",
+          "fa": "رمزگذار؛ GRU دوسویه (BiGRU)؛ حالت پنهان رمزگذار؛ رمزگشا؛ GRU؛ حالت پنهان رمزگشا؛ امتیاز؛ سافت‌مکس؛ بردار هم‌ترازی؛ ضرب؛ جمع؛ بردار بافت؛ الحاق (Concat)؛ لایهٔ توجه",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "1e9787df8dbf6c175f17260c4e52d9b7c8726a56916455c9733a9ecb52786155",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پیش‌بینی واژه"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "گزینه‌های متعددی برای چگونگی ترکیب واژهٔ ورودی، حالت پنهان قبلی و بردار بافت وجود دارد."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; BiGRU; encoder hidden state; Decoder; GRU; decoder hidden state; score; softmax; alignment vector; multiplication; addition; context vector; concat; Attention layer",
+          "fa": "رمزگذار؛ GRU دوسویه (BiGRU)؛ حالت پنهان رمزگذار؛ رمزگشا؛ GRU؛ حالت پنهان رمزگشا؛ امتیاز؛ سافت‌مکس؛ بردار هم‌ترازی؛ ضرب؛ جمع؛ بردار بافت؛ الحاق (Concat)؛ لایهٔ توجه",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "da93f4765e71fa74a504528d32ec272b8b433a6bab232bfe9d40c38db76f509b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "راه‌حل"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "در هر گام زمانی رمزگشا، چه چیزی ثابت می‌ماند؟ — حالت پنهان ورودی"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "در هر گام زمانی رمزگشا، چه چیزی تغییر می‌کند؟ — حالت پنهان رمزگشا — و در نتیجه وزن‌های توجه و بردار بافت"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; BiGRU; encoder hidden state; Decoder; GRU; decoder hidden state; score; softmax; alignment vector; multiplication; addition; context vector; concat; Attention layer",
+          "fa": "رمزگذار؛ GRU دوسویه (BiGRU)؛ حالت پنهان رمزگذار؛ رمزگشا؛ GRU؛ حالت پنهان رمزگشا؛ امتیاز؛ سافت‌مکس؛ بردار هم‌ترازی؛ ضرب؛ جمع؛ بردار بافت؛ الحاق (Concat)؛ لایهٔ توجه",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "feb3b4df8485f7ba9d1e95846d0e34b76c5998a479082cf23b1aaa26ba50c4ad",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "جمع‌بندی: توجه (Attention؛ محاسبات در هر گام رمزگشا)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "رمزگشا با «توجه نرم» (Soft attention) تصمیم می‌گیرد در هر گام زمانی کدام ورودی‌ها برای پیش‌بینی لازم‌اند؛ نتیجه، ترکیبی وزن‌دار از ورودی است."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Attention input; all encoder states; one decoder state; Attention scores; How relevant is source token k for target step t?; Attention weights; attention weight for source token k at decoder step t; Attention output; source context for decoder step t; (softmax); (weighted sum)",
+          "fa": "ورودی توجه؛ همهٔ حالت‌های رمزگذار؛ یک حالت رمزگشا؛ امتیازهای توجه؛ توکن منبع k چقدر برای گام هدف t مرتبط است؟؛ وزن‌های توجه؛ وزن توجه برای توکن منبع k در گام رمزگشای t؛ خروجی توجه؛ بافت منبع برای گام رمزگشای t؛ (سافت‌مکس)؛ (مجموع وزن‌دار)",
+          "verified": true
+        },
+        {
+          "en": "s₁,s₂,…,sₘ; hₜ; score(hₜ,sₖ), k=1…m; aₖ⁽ᵗ⁾=exp(score(hₜ,sₖ))/∑ᵢ₌₁ᵐexp(score(hₜ,sᵢ)), k=1…m; c⁽ᵗ⁾=a₁⁽ᵗ⁾s₁+a₂⁽ᵗ⁾s₂+…+aₘ⁽ᵗ⁾sₘ=∑ₖ₌₁ᵐaₖ⁽ᵗ⁾sₖ",
+          "fa": "s₁,s₂,…,sₘ؛ hₜ؛ score(hₜ,sₖ), k=1…m؛ aₖ⁽ᵗ⁾=exp(score(hₜ,sₖ))/∑ᵢ₌₁ᵐexp(score(hₜ,sᵢ)), k=1…m؛ c⁽ᵗ⁾=a₁⁽ᵗ⁾s₁+a₂⁽ᵗ⁾s₂+…+aₘ⁽ᵗ⁾sₘ=∑ₖ₌₁ᵐaₖ⁽ᵗ⁾sₖ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "93b4777389cb3bf2b4805107580e9de3c20b4ac741934b95f9cafefcb8a2b022",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "جمع‌بندی: توجه (Attention؛ محاسبات در هر گام رمزگشا)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "همهٔ بخش‌ها مشتق‌پذیرند؛ یعنی آموزش سرتاسری (End-to-end) ممکن است."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Attention input; all encoder states; one decoder state; Attention scores; How relevant is source token k for target step t?; Attention weights; attention weight for source token k at decoder step t; Attention output; source context for decoder step t; (softmax); (weighted sum)",
+          "fa": "ورودی توجه؛ همهٔ حالت‌های رمزگذار؛ یک حالت رمزگشا؛ امتیازهای توجه؛ توکن منبع k چقدر برای گام هدف t مرتبط است؟؛ وزن‌های توجه؛ وزن توجه برای توکن منبع k در گام رمزگشای t؛ خروجی توجه؛ بافت منبع برای گام رمزگشای t؛ (سافت‌مکس)؛ (مجموع وزن‌دار)",
+          "verified": true
+        },
+        {
+          "en": "s₁,s₂,…,sₘ; hₜ; score(hₜ,sₖ), k=1…m; aₖ⁽ᵗ⁾=exp(score(hₜ,sₖ))/∑ᵢ₌₁ᵐexp(score(hₜ,sᵢ)), k=1…m; c⁽ᵗ⁾=a₁⁽ᵗ⁾s₁+a₂⁽ᵗ⁾s₂+…+aₘ⁽ᵗ⁾sₘ=∑ₖ₌₁ᵐaₖ⁽ᵗ⁾sₖ",
+          "fa": "s₁,s₂,…,sₘ؛ hₜ؛ score(hₜ,sₖ), k=1…m؛ aₖ⁽ᵗ⁾=exp(score(hₜ,sₖ))/∑ᵢ₌₁ᵐexp(score(hₜ,sᵢ)), k=1…m؛ c⁽ᵗ⁾=a₁⁽ᵗ⁾s₁+a₂⁽ᵗ⁾s₂+…+aₘ⁽ᵗ⁾sₘ=∑ₖ₌₁ᵐaₖ⁽ᵗ⁾sₖ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "6fe08316a3ecca939a9a4ed1c1fd4a3c6a26bcd319ce097bec7eb3960dc7c964",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• انگیزه: ترجمهٔ ماشینی عصبی برای جمله‌های بلند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• رمزگشا (Decoder): توجه (Attention)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• رمزگذار (Encoder)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی عملکرد"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "33ec933e533ee65fc76fb016b9c6cfb1e4e62d4014cfc7398cb2e1a1879a0ecc",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گزینه‌های رایج برای رمزگذاری ورودی"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• شبکهٔ عصبی بازگشتی دوسویه (Bi-directional RNN)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های عصبی بازگشتی انباشته (Stacked RNNs)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "33ec933e533ee65fc76fb016b9c6cfb1e4e62d4014cfc7398cb2e1a1879a0ecc",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گزینه‌های رایج برای رمزگذاری ورودی"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• شبکهٔ عصبی بازگشتی دوسویه (Bi-directional RNN)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های عصبی بازگشتی انباشته (Stacked RNNs)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "6a5bfdaa810fed4698a2c82d2b37b5cc07790c07df16e9f8caf93d368b8b22ee",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گزینه‌های متعدد برای چگونگی رمزگذاری ورودی"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/understanding-bidirectional-rnn-in-pytorch-5bd25a5dd66"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• دو شبکهٔ بازگشتی که ورودی به‌ترتیب در جهت پیش‌رو و پس‌رو به آن‌ها داده می‌شود و سپس حالت‌های پنهان (معمولاً) به هم چسبانده می‌شوند تا یک حالت پنهان بسازند."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "مزایای شبکهٔ بازگشتی دوسویه در مقایسه با یک شبکهٔ بازگشتی منفرد چیست؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x₀; x₁; x₂; xₗ; y₀; y₁; y₂; yₗ; A; A′; s₀; sₗ; s′ₗ; s′₀",
+          "fa": "x₀؛ x₁؛ x₂؛ xₗ؛ y₀؛ y₁؛ y₂؛ yₗ؛ A؛ A′؛ s₀؛ sₗ؛ s′ₗ؛ s′₀",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "f57174f41070426010ed57915e6b054be4d869487a087673f438d755f53d7d0a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گزینه‌های متعدد برای چگونگی رمزگذاری ورودی"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/understanding-bidirectional-rnn-in-pytorch-5bd25a5dd66"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• دو شبکهٔ بازگشتی که ورودی به‌ترتیب در جهت پیش‌رو و پس‌رو به آن‌ها داده می‌شود و سپس حالت‌های پنهان (معمولاً) به هم چسبانده می‌شوند تا یک حالت پنهان بسازند."
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "می‌تواند از اطلاعات گذشته و آینده برای پیش‌بینی استفاده کند؛ مثلاً برای «Teddy is a …?» (تدی یک … است؟) تعیین کند که Teddy به «bear» (خرس) اشاره دارد یا به روزولت، رئیس‌جمهور پیشین ایالات متحده."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x₀; x₁; x₂; xₗ; y₀; y₁; y₂; yₗ; A; A′; s₀; sₗ; s′ₗ; s′₀",
+          "fa": "x₀؛ x₁؛ x₂؛ xₗ؛ y₀؛ y₁؛ y₂؛ yₗ؛ A؛ A′؛ s₀؛ sₗ؛ s′ₗ؛ s′₀",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "1adc3f0fbb6dd466cd4939f7df43ebe9c1fe1e10b446e5d8bf92b63b2fe88662",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گزینه‌های متعدد برای چگونگی رمزگذاری ورودی"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/understanding-bidirectional-rnn-in-pytorch-5bd25a5dd66"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• دو شبکهٔ بازگشتی که ورودی به‌ترتیب در جهت پیش‌رو و پس‌رو به آن‌ها داده می‌شود و سپس حالت‌های پنهان (معمولاً) به هم چسبانده می‌شوند تا یک حالت پنهان بسازند."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "معایب شبکهٔ بازگشتی دوسویه در مقایسه با یک شبکهٔ بازگشتی منفرد چیست؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x₀; x₁; x₂; xₗ; y₀; y₁; y₂; yₗ; A; A′; s₀; sₗ; s′ₗ; s′₀",
+          "fa": "x₀؛ x₁؛ x₂؛ xₗ؛ y₀؛ y₁؛ y₂؛ yₗ؛ A؛ A′؛ s₀؛ sₗ؛ s′ₗ؛ s′₀",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "43dfcdcca728a42a217bf1fe89ed57c39307ae34e8f6e06409a84f3644d6e135",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گزینه‌های متعدد برای چگونگی رمزگذاری ورودی"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/understanding-bidirectional-rnn-in-pytorch-5bd25a5dd66"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• دو شبکهٔ بازگشتی که ورودی به‌ترتیب در جهت پیش‌رو و پس‌رو به آن‌ها داده می‌شود و سپس حالت‌های پنهان (معمولاً) به هم چسبانده می‌شوند تا یک حالت پنهان بسازند."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "برای پیش‌بینی باید کل دنباله مشاهده شود (مثلاً برای پیش‌بینی متن نامناسب است)."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x₀; x₁; x₂; xₗ; y₀; y₁; y₂; yₗ; A; A′; s₀; sₗ; s′ₗ; s′₀",
+          "fa": "x₀؛ x₁؛ x₂؛ xₗ؛ y₀؛ y₁؛ y₂؛ yₗ؛ A؛ A′؛ s₀؛ sₗ؛ s′ₗ؛ s′₀",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "3ab6fdb1f97e4d88c97db5ba7ab78351656556670f887e6d6d79f66288de0845",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "heading",
+          "fa": "ترجمهٔ ماشینی عصبی بهدانائو (Bahdanau)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Bahdanau et al. Neural Machine Translation by Jointly Learning to Align and Translate. ICLR 2015"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "شبکهٔ عصبی بازگشتی دوسویه (Bi-directional RNN)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; BiGRU; encoder hidden state; Decoder; GRU; decoder hidden state; score; softmax; alignment vector; multiplication; addition; context vector; concat; Attention layer",
+          "fa": "رمزگذار؛ GRU دوسویه (BiGRU)؛ حالت پنهان رمزگذار؛ رمزگشا؛ GRU؛ حالت پنهان رمزگشا؛ امتیاز؛ سافت‌مکس؛ بردار هم‌ترازی؛ ضرب؛ جمع؛ بردار بافت؛ الحاق (Concat)؛ لایهٔ توجه",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "33ec933e533ee65fc76fb016b9c6cfb1e4e62d4014cfc7398cb2e1a1879a0ecc",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گزینه‌های رایج برای رمزگذاری ورودی"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• شبکهٔ عصبی بازگشتی دوسویه (Bi-directional RNN)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های عصبی بازگشتی انباشته (Stacked RNNs)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "b9ae6f1909c1554ee0652b38a4ec391e8a1062fabd991c6939612ba942e0439b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ترجمهٔ ماشینی عصبی لونگ (Luong)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "۲ لایه"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3#df28"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Luong et al. Effective Approaches to Attention-based Neural Machine Translation. EMNLP 2015"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "addition; context vector; multiplication; alignment vector; softmax; score; decoder hidden state; encoder hidden state; Encoder; LSTM 1; LSTM 2; passed to decoder",
+          "fa": "جمع؛ بردار بافت؛ ضرب؛ بردار هم‌ترازی؛ سافت‌مکس؛ امتیاز؛ حالت پنهان رمزگشا؛ حالت پنهان رمزگذار؛ رمزگذار؛ LSTM ۱؛ LSTM ۲؛ منتقل‌شده به رمزگشا",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "33ec933e533ee65fc76fb016b9c6cfb1e4e62d4014cfc7398cb2e1a1879a0ecc",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گزینه‌های رایج برای رمزگذاری ورودی"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• شبکهٔ عصبی بازگشتی دوسویه (Bi-directional RNN)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های عصبی بازگشتی انباشته (Stacked RNNs)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "39dc6ba455bcfbbdbd0ba6fef3bb7d3aa5c3b7e55f8df312ad3d9a4f18b918d9",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ترجمهٔ ماشینی عصبی گوگل (Google)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "Wu et al. Google’s Neural Machine Translation System: Bridging the Gap between Human and Machine Translation. arXiv 2016."
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "۸ لایه که لایهٔ نخست آن دوسویه است."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3#df28"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; LSTM; LSTM 2; LSTM 3; LSTM 6; LSTM 8; encoder hidden state; decoder hidden state; score; softmax; multiplication; addition; context vector; concat; Attention layer",
+          "fa": "رمزگذار؛ LSTM؛ LSTM ۲؛ LSTM ۳؛ LSTM ۶؛ LSTM ۸؛ حالت پنهان رمزگذار؛ حالت پنهان رمزگشا؛ امتیاز؛ سافت‌مکس؛ ضرب؛ جمع؛ بردار بافت؛ الحاق؛ لایهٔ توجه",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "33ec933e533ee65fc76fb016b9c6cfb1e4e62d4014cfc7398cb2e1a1879a0ecc",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گزینه‌های رایج برای رمزگذاری ورودی"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• شبکهٔ عصبی بازگشتی دوسویه (Bi-directional RNN)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های عصبی بازگشتی انباشته (Stacked RNNs)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "6fe08316a3ecca939a9a4ed1c1fd4a3c6a26bcd319ce097bec7eb3960dc7c964",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• انگیزه: ترجمهٔ ماشینی عصبی برای جمله‌های بلند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• رمزگشا (Decoder): توجه (Attention)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• رمزگذار (Encoder)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی عملکرد"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "13b4b1d01e6fe6110a4455d1fdf6734795c30982a28f4d9eee6f4859f0da4d3d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تحلیل مدل‌های توجه (Attention)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Bahdanau et al. Neural Machine Translation by Jointly Learning to Align and Translate. ICLR 2015"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "(امتیازهای بزرگ‌تر بهترند.)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "با افزایش تعداد واژه‌های جملهٔ ورودی، چه روندی در عملکرد مشاهده می‌شود؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "BLEU score; Sentence length; RNNsearch-50; RNNsearch-30; RNNenc-50; RNNenc-30",
+          "fa": "امتیاز BLEU؛ طول جمله؛ RNNsearch-50؛ RNNsearch-30؛ RNNenc-50؛ RNNenc-30",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "b0e02d75452494b770cb26232951c892d5e327e1fdea582a57030a07ca3744c6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تحلیل مدل‌های توجه (Attention)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "عملکرد دیگر برای جمله‌های بلندتر افت نمی‌کند!"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Bahdanau et al. Neural Machine Translation by Jointly Learning to Align and Translate. ICLR 2015"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "(امتیازهای بزرگ‌تر بهترند.)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "BLEU score; Sentence length; RNNsearch-50; RNNsearch-30; RNNenc-50; RNNenc-30",
+          "fa": "امتیاز BLEU؛ طول جمله؛ RNNsearch-50؛ RNNsearch-30؛ RNNenc-50؛ RNNenc-30",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "5923a90336aaa3970a993c1e0e5db139a725bc2778ba1d661729263fdc1f0221",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نمایش توجه (Attention)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "مقادیر از ۰ تا ۱ هستند و پیکسل‌های سفیدتر، وزن‌های توجه بزرگ‌تر را نشان می‌دهند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Bahdanau et al. Neural Machine Translation by Jointly Learning to Align and Translate. ICLR 2015"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "جملهٔ ورودی"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "جملهٔ خروجی"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "جملهٔ ورودی"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "جملهٔ خروجی"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "The agreement on the European Economic Area was signed in August 1992 . <end>; L’ accord sur la zone économique européenne a été signé en août 1992 . <end>",
+          "fa": "The agreement on the European Economic Area was signed in August 1992 . <end>؛ L’ accord sur la zone économique européenne a été signé en août 1992 . <end> (توافق‌نامهٔ منطقهٔ اقتصادی اروپا در اوت ۱۹۹۲ امضا شد. توکن <end> پایان را نشان می‌دهد.)",
+          "verified": true
+        },
+        {
+          "en": "“ This will change my future with my family , ” the man said . <end>; Cela va changer mon avenir avec ma famille , a dit l’ homme . <end>",
+          "fa": "“ This will change my future with my family , ” the man said . <end>؛ Cela va changer mon avenir avec ma famille , a dit l’ homme . <end> («این، آینده‌ام با خانواده‌ام را تغییر خواهد داد»، مرد گفت. توکن‌ها و ترتیب دو جمله مطابق نمونهٔ اصلی‌اند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "d6fa812eebf7099b10dfb99da234553c4d4a17b8bc9bda3299524312cd1f1556",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نمایش توجه (Attention)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "از این مثال‌ها چه نکته‌هایی می‌توان دریافت؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Bahdanau et al. Neural Machine Translation by Jointly Learning to Align and Translate. ICLR 2015"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "جملهٔ ورودی"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "جملهٔ خروجی"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "جملهٔ ورودی"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "جملهٔ خروجی"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "The agreement on the European Economic Area was signed in August 1992 . <end>; L’ accord sur la zone économique européenne a été signé en août 1992 . <end>",
+          "fa": "The agreement on the European Economic Area was signed in August 1992 . <end>؛ L’ accord sur la zone économique européenne a été signé en août 1992 . <end> (توافق‌نامهٔ منطقهٔ اقتصادی اروپا در اوت ۱۹۹۲ امضا شد. توکن <end> پایان را نشان می‌دهد.)",
+          "verified": true
+        },
+        {
+          "en": "“ This will change my future with my family , ” the man said . <end>; Cela va changer mon avenir avec ma famille , a dit l’ homme . <end>",
+          "fa": "“ This will change my future with my family , ” the man said . <end>؛ Cela va changer mon avenir avec ma famille , a dit l’ homme . <end> («این، آینده‌ام با خانواده‌ام را تغییر خواهد داد»، مرد گفت. توکن‌ها و ترتیب دو جمله مطابق نمونهٔ اصلی‌اند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "1d7812acf7d0b64b1769f22401248aa5372e58966b3bcf89e918f92a92118280",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نمایش توجه (Attention)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Bahdanau et al. Neural Machine Translation by Jointly Learning to Align and Translate. ICLR 2015"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "جملهٔ ورودی"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "جملهٔ خروجی"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "جملهٔ ورودی"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "جملهٔ خروجی"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "اگرچه هم‌ترازی خطی میان جمله‌های ورودی و خروجی رایج است، استثناهایی وجود دارد (مثلاً ترتیب صفت‌ها و اسم‌ها ممکن است متفاوت باشد)."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "The agreement on the European Economic Area was signed in August 1992 . <end>; L’ accord sur la zone économique européenne a été signé en août 1992 . <end>",
+          "fa": "The agreement on the European Economic Area was signed in August 1992 . <end>؛ L’ accord sur la zone économique européenne a été signé en août 1992 . <end> (توافق‌نامهٔ منطقهٔ اقتصادی اروپا در اوت ۱۹۹۲ امضا شد. توکن <end> پایان را نشان می‌دهد.)",
+          "verified": true
+        },
+        {
+          "en": "“ This will change my future with my family , ” the man said . <end>; Cela va changer mon avenir avec ma famille , a dit l’ homme . <end>",
+          "fa": "“ This will change my future with my family , ” the man said . <end>؛ Cela va changer mon avenir avec ma famille , a dit l’ homme . <end> («این، آینده‌ام با خانواده‌ام را تغییر خواهد داد»، مرد گفت. توکن‌ها و ترتیب دو جمله مطابق نمونهٔ اصلی‌اند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "7969a27a98b468245487cdf33f2ada193ebf6f202bd19a96ed822ec046190041",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نمایش توجه (Attention)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Bahdanau et al. Neural Machine Translation by Jointly Learning to Align and Translate. ICLR 2015"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "جملهٔ ورودی"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "جملهٔ خروجی"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "جملهٔ ورودی"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "جملهٔ خروجی"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "واژه‌های خروجی اغلب از بیش از یک واژهٔ ورودی اطلاعات می‌گیرند؛ مثلاً «man» (مرد) نشان می‌دهد «the» باید به l’ ترجمه شود، به‌جای le، la یا les."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "The agreement on the European Economic Area was signed in August 1992 . <end>; L’ accord sur la zone économique européenne a été signé en août 1992 . <end>",
+          "fa": "The agreement on the European Economic Area was signed in August 1992 . <end>؛ L’ accord sur la zone économique européenne a été signé en août 1992 . <end> (توافق‌نامهٔ منطقهٔ اقتصادی اروپا در اوت ۱۹۹۲ امضا شد. توکن <end> پایان را نشان می‌دهد.)",
+          "verified": true
+        },
+        {
+          "en": "“ This will change my future with my family , ” the man said . <end>; Cela va changer mon avenir avec ma famille , a dit l’ homme . <end>",
+          "fa": "“ This will change my future with my family , ” the man said . <end>؛ Cela va changer mon avenir avec ma famille , a dit l’ homme . <end> («این، آینده‌ام با خانواده‌ام را تغییر خواهد داد»، مرد گفت. توکن‌ها و ترتیب دو جمله مطابق نمونهٔ اصلی‌اند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "a3decbf58e251b39c8c98656e77e853f2a74ce236db03c7f9cd584f9da79afa4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نمایش توجه (Attention)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Bahdanau et al. Neural Machine Translation by Jointly Learning to Align and Translate. ICLR 2015"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "جملهٔ ورودی"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "جملهٔ خروجی"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "جملهٔ ورودی"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "جملهٔ خروجی"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "به‌طور طبیعی طول‌های متفاوت ورودی و خروجی را پردازش می‌کند (مثلاً ۱ واژهٔ خروجی اضافی در هر دو مثال)."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "The agreement on the European Economic Area was signed in August 1992 . <end>; L’ accord sur la zone économique européenne a été signé en août 1992 . <end>",
+          "fa": "The agreement on the European Economic Area was signed in August 1992 . <end>؛ L’ accord sur la zone économique européenne a été signé en août 1992 . <end> (توافق‌نامهٔ منطقهٔ اقتصادی اروپا در اوت ۱۹۹۲ امضا شد. توکن <end> پایان را نشان می‌دهد.)",
+          "verified": true
+        },
+        {
+          "en": "“ This will change my future with my family , ” the man said . <end>; Cela va changer mon avenir avec ma famille , a dit l’ homme . <end>",
+          "fa": "“ This will change my future with my family , ” the man said . <end>؛ Cela va changer mon avenir avec ma famille , a dit l’ homme . <end> («این، آینده‌ام با خانواده‌ام را تغییر خواهد داد»، مرد گفت. توکن‌ها و ترتیب دو جمله مطابق نمونهٔ اصلی‌اند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "6fe08316a3ecca939a9a4ed1c1fd4a3c6a26bcd319ce097bec7eb3960dc7c964",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• انگیزه: ترجمهٔ ماشینی عصبی برای جمله‌های بلند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• رمزگشا (Decoder): توجه (Attention)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• رمزگذار (Encoder)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی عملکرد"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "6fe08316a3ecca939a9a4ed1c1fd4a3c6a26bcd319ce097bec7eb3960dc7c964",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• انگیزه: ترجمهٔ ماشینی عصبی برای جمله‌های بلند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• رمزگشا (Decoder): توجه (Attention)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• رمزگذار (Encoder)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی عملکرد"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ]
+    }
+  ]
+}

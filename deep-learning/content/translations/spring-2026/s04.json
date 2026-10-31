@@ -1,0 +1,2115 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s04",
+  "source_sha256": "4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "63d01824a8df3538efa44d7f1f5f51556ac56d610e5bd0de32470f6c535e30f5",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "شبکه‌های عصبی بازگشتی (Recurrent Neural Networks): دستاورد حافظه"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)؛ دانشگاه کلرادو بولدر (University of Colorado Boulder)؛ بهار 2026"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "8611e0e0ce4fdd5e231bf198538073ee93da99da61d59cf90c61f2cc30d5f819",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "مرور\n• سخنرانی گذشته:\n• چشم‌انداز: شبکه‌های چندلایه قدرت بازنمایی (Representational Power) کافی فراهم می‌کنند.\n• دستاورد: گرادیان‌ها (Gradients) شبکه‌های چندلایه را آموزش‌پذیر می‌کنند.\n• انتزاع ماشین: شبکه‌های عصبی به‌صورت گراف‌های محاسباتی (Computational Graphs).\n• آموزش برنامه‌نویسی: توسعهٔ شبکه‌های عصبی در PyTorch.\n• تکلیف‌ها (Canvas): موعد تکلیف آزمایشگاهی 1 جمعه است.\n• پرسشی دارید؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "c35a993287a515e411449c7b8b31a0adcea96a5641d87102f686216e24af03b0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• محدودیت شبکه‌های عصبی پیش‌خور (Feedforward): پشتیبانی از دادهٔ دنباله‌ای (Sequential Data)\n• بینش اصلی: شبکه‌های عصبی بازگشتی (Recurrent Neural Networks؛ RNNs)\n• دستاورد: RNNهای دروازه‌دار (Gated RNNs) برای تصمیم‌گیری پویا دربارهٔ آنچه باید به خاطر سپرد\n• آموزش برنامه‌نویسی: شبکه‌های عصبی بازگشتی در PyTorch"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "c35a993287a515e411449c7b8b31a0adcea96a5641d87102f686216e24af03b0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• محدودیت شبکه‌های عصبی پیش‌خور (Feedforward): پشتیبانی از دادهٔ دنباله‌ای (Sequential Data)\n• بینش اصلی: شبکه‌های عصبی بازگشتی (Recurrent Neural Networks؛ RNNs)\n• دستاورد: RNNهای دروازه‌دار (Gated RNNs) برای تصمیم‌گیری پویا دربارهٔ آنچه باید به خاطر سپرد\n• آموزش برنامه‌نویسی: شبکه‌های عصبی بازگشتی در PyTorch"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "ffde915cb30792050f0491fde5cb0aef0e04686b383174b6b8f9c7f7071d1afa",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "مثال توضیحی: مسئلهٔ زوجیت (Parity)\n• با دریافت یک دنباله، پاسخ دهید تعداد 1ها زوج است یا فرد.\n• امتحان کنیم…"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "3386702c731ad98f8b816ce00160f295c2713499941019417261d4020201dbbb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "مثال توضیحی: مسئلهٔ زوجیت (Parity)\n• با دریافت یک دنباله، پاسخ دهید تعداد 1ها زوج است یا فرد.\n• امتحان کنیم…\n• مهارت لازم: حافظه برای دانستن زوج یا فرد بودن شمار فعلی، هنگام رسیدن هر توپ تازه.\n، ، ، ، ، ، …"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "1, 0, 1, 1, 0, 0, …",
+          "fa": "1, 0, 1, 1, 0, 0, …",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "6e99def376ea4f393f4b9e30d6260f35808a7a1a336623a1254f23154d96d983",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "مثال توضیحی: مسئلهٔ زوجیت (Parity)\nچرا شبکه‌های پیش‌خور (Feedforward) برای این مسئلهٔ دنباله‌ای مناسب نیستند؟\n- حافظه ندارند؛ پس از هر گذر رو به جلو دچار فراموشی می‌شوند.\n- اندازهٔ ورودی ثابت است؛ از طول‌های دلخواه دنباله پشتیبانی نمی‌کنند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "f59288a393682d132c08d2cc0e0d0221c6c5c9f487962c56f1fbf4548bdd2ca4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "خلأ حیاتی شبکه‌های عصبی: پشتیبانی از مسئله‌های دنباله‌ای دنیای واقعی\nبازار سهام؛ پردازش صوت؛ پیش‌بینی آب‌وهوا؛ تحلیل متن."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "EXTENDED FORECAST; THU FRI SAT SUN MON TUE WED; MOSTLY SUNNY; PATCHY AM FOG; AM CLOUDS P. SUNNY",
+          "fa": "پیش‌بینی چندروزه؛ پنج‌شنبه، جمعه، شنبه، یکشنبه، دوشنبه، سه‌شنبه، چهارشنبه؛ عمدتاً آفتابی؛ مه پراکندهٔ صبحگاهی؛ ابر صبحگاهی، تاحدی آفتابی",
+          "verified": true
+        },
+        {
+          "en": "What’s most interesting to me about The Last Jedi is Luke’s return as the mentor rather than the student, grappling with his failure in this new role, and later aspiring to be the wise and patient teacher. December 26, 2017 | Rating: 3/4 | Full Review... Leah Pickett; Chicago Reader; Top Critic",
+          "fa": "آنچه دربارهٔ The Last Jedi برایم از همه جالب‌تر است، بازگشت لوک در نقش مربی به‌جای شاگرد است؛ او با شکست خود در این نقش تازه دست‌وپنجه نرم می‌کند و بعد می‌خواهد آموزگاری خردمند و صبور باشد. 26 دسامبر 2017؛ امتیاز 3/4؛ نقد کامل… Leah Pickett؛ Chicago Reader؛ منتقد برتر",
+          "verified": true
+        },
+        {
+          "en": "Dow Jones Industrial Average; Amplitude; Time (samples)",
+          "fa": "میانگین صنعتی داوجونز؛ دامنه؛ زمان (نمونه‌ها)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "410c138d3bae03bbf04cea0268a0aad126b7765878a047dd5b13214742fdeae4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "kind": "text",
+          "fa": "خلأ حیاتی شبکه‌های عصبی: سه نوع مسئلهٔ دنباله‌ای دنیای واقعی\nیک‌به‌چند (One-to-Many): ورودی با اندازهٔ ثابت؛ خروجی دنباله؛ برای مثال توصیف تصویر (Image Captioning).\nچندبه‌چند (Many-to-Many): ورودی دنباله؛ خروجی دنباله؛ برای مثال ترجمهٔ زبان.\nچندبه‌یک (Many-to-One): ورودی دنباله؛ خروجی با اندازهٔ ثابت؛ برای مثال تحلیل احساس (Sentiment Analysis).\nدماسنجی دیجیتال روی میز چوبی قرار دارد و 38.5 درجهٔ سلسیوس را نشان می‌دهد.\nمثبت؟ منفی؟ خنثی؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Fanatics will love it; for the rest of us, it’s a tolerably good time. December 15, 2017 | Rating: B | Full Review... Peter Rainer; Christian Science Monitor; Top Critic",
+          "fa": "هواداران دوآتشه عاشقش خواهند شد؛ برای بقیهٔ ما، تفریحی به‌قدر قابل‌تحمل خوب است. 15 دسامبر 2017؛ امتیاز B؛ نقد کامل… Peter Rainer؛ Christian Science Monitor؛ منتقد برتر",
+          "verified": true
+        },
+        {
+          "en": "Today is fun.; Chinese (Traditional); 今天很有趣。; Jīntiān hěn yǒuqù.",
+          "fa": "Today is fun. (امروز سرگرم‌کننده است.)؛ چینی (سنتی)؛ 今天很有趣。؛ Jīntiān hěn yǒuqù.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "c35a993287a515e411449c7b8b31a0adcea96a5641d87102f686216e24af03b0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• محدودیت شبکه‌های عصبی پیش‌خور (Feedforward): پشتیبانی از دادهٔ دنباله‌ای (Sequential Data)\n• بینش اصلی: شبکه‌های عصبی بازگشتی (Recurrent Neural Networks؛ RNNs)\n• دستاورد: RNNهای دروازه‌دار (Gated RNNs) برای تصمیم‌گیری پویا دربارهٔ آنچه باید به خاطر سپرد\n• آموزش برنامه‌نویسی: شبکه‌های عصبی بازگشتی در PyTorch"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "5858cd7d5cdaa9c344a3c7883001961c4abed3c9aefd0f631d1389d58913418f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "زمینه: ظهور اتصال‌های «بازگشتی» (Recurrent Connections)\n• اتصال‌های بازگشتی: رویکردی برای ذخیرهٔ اطلاعات و استفادهٔ بعدی از آن؛ یعنی حافظه.\n• 1962: در کتاب روزنبلات دربارهٔ پرسپترون‌ها (Perceptrons) بررسی شد.\n• 1982: جان هاپفیلد (John Hopfield)، برندهٔ نوبل 2024، نتیجه‌های آزمایشی امیدبخش نشان داد.\n• 1986: روش یادگیری تعمیم‌پذیر (پس‌انتشار؛ Backpropagation) در مقالهٔ روملهارت (Rumelhart) معرفی شد."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "A set of corresponding weights; Fig. 5 Asynchronous iterative net that is run for three iterations and the equivalent layered net. Each time-step in the recurrent net corresponds to a layer in the layered net. The learning procedure for layered nets can be mapped into a learning procedure for iterative nets.",
+          "fa": "مجموعه‌ای از وزن‌های متناظر؛ شکل 5: شبکهٔ تکرارشوندهٔ ناهمگام که برای سه تکرار اجرا می‌شود و شبکهٔ لایه‌ایِ معادل آن. هر گام زمانی در شبکهٔ بازگشتی متناظر با یک لایه در شبکهٔ لایه‌ای است. روش یادگیریِ شبکه‌های لایه‌ای را می‌توان به روشی برای شبکه‌های تکرارشونده نگاشت.",
+          "verified": true
+        },
+        {
+          "en": "Two complications arise in performing this mapping: first, in a layered net the output levels of the units in the intermediate layers during the forward pass are required for performing the backward pass (see equations (5) and (6)). So in an iterative net it is necessary to store the history of output states of each unit.",
+          "fa": "در این نگاشت دو پیچیدگی پیش می‌آید: نخست، در شبکهٔ لایه‌ای، برای اجرای گذر رو به عقب به سطح خروجی واحدهای لایه‌های میانی هنگام گذر رو به جلو نیاز داریم (معادله‌های (5) و (6) را ببینید). پس در شبکهٔ تکرارشونده باید تاریخچهٔ حالت خروجی هر واحد ذخیره شود.",
+          "verified": true
+        },
+        {
+          "en": "Second, for a layered net to be equivalent to an iterative net, corresponding weights between different layers must have the same value. To preserve this property, we average ∂E/∂w for all the weights in each set of corresponding weights and then change each weight in the set by an amount proportional to this average gradient. With these two provisos, the learning procedure can be applied directly to iterative nets. These nets can then either learn to perform iterative searches or learn sequential structures.",
+          "fa": "دوم، برای معادل‌بودن شبکهٔ لایه‌ای با شبکهٔ تکرارشونده، وزن‌های متناظر در لایه‌های مختلف باید یک مقدار داشته باشند. برای حفظ این ویژگی، ∂E/∂w را برای همهٔ وزن‌های هر مجموعهٔ متناظر میانگین می‌گیریم و سپس هر وزنِ مجموعه را به‌اندازه‌ای متناسب با این میانگین گرادیان تغییر می‌دهیم. با این دو شرط، روش یادگیری را می‌توان مستقیماً به شبکه‌های تکرارشونده اعمال کرد. این شبکه‌ها سپس می‌توانند جست‌وجوهای تکراری یا ساختارهای دنباله‌ای را یاد بگیرند.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "e9d8b7a8bf6c31d8c782e49b48b13ceb8b497293093571a07da18a6b360b7f9f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "شبکه‌های عصبی بازگشتی (Recurrent Neural Networks؛ RNNs)\nشبکهٔ پیش‌خور (Feedforward Network): هر لایه از لایهٔ قبلی ورودی می‌گیرد.\nشبکهٔ بازگشتی: هر لایه از لایهٔ قبلی و خروجی گام زمانی قبلی ورودی می‌گیرد؛ یعنی اتصال‌های دارای تأخیر زمانی.\n• ایدهٔ اصلی: افزودن حالت پنهان (Hidden State) برای ذخیرهٔ اطلاعات گذشته؛ یعنی حافظه.\n"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "o; s; x; U; V; W",
+          "fa": "o؛ s؛ x؛ U؛ V؛ W",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "aaecda53dc8046c4b654f3082dfc3eab7a002066129d774e815a216b12801df9",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "kind": "text",
+          "fa": "شبکه‌های عصبی بازگشتی (Recurrent Neural Networks؛ RNNs)\nبازگشتی: همان تابع در زمان قبلی اعمال می‌شود.\nحالت تازه؛ حالت قبلی؛ ورودی در گام زمانی؛ پارامترهای مدل.\nشبکهٔ بازگشتی: هر لایه از لایهٔ قبلی و خروجی گام زمانی قبلی ورودی می‌گیرد؛ یعنی اتصال‌های دارای تأخیر زمانی.\n• ایدهٔ اصلی: افزودن حالت پنهان (Hidden State) برای ذخیرهٔ اطلاعات گذشته؛ یعنی حافظه.\n"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "math",
+          "fa": "sₜ = fₘ(sₜ₋₁, xₜ)",
+          "latex": "s_t=f_m(s_{t-1},x_t)"
+        },
+        {
+          "source_lines": [
+            20
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "58ed64d51139f7f36e374a9ef97ce219384ee3d246aaad2a30c502ed0b65a74e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "RNN: گام زمانی 1\n• ایدهٔ اصلی: افزودن حالت پنهان (Hidden State) برای ذخیرهٔ اطلاعات گذشته؛ یعنی حافظه.\n"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "o; s; x; U; V; W",
+          "fa": "o؛ s؛ x؛ U؛ V؛ W",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "58ed64d51139f7f36e374a9ef97ce219384ee3d246aaad2a30c502ed0b65a74e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "RNN: گام زمانی 1\n• ایدهٔ اصلی: افزودن حالت پنهان (Hidden State) برای ذخیرهٔ اطلاعات گذشته؛ یعنی حافظه.\n"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "o; s; x; U; V; W",
+          "fa": "o؛ s؛ x؛ U؛ V؛ W",
+          "verified": true
+        },
+        {
+          "en": "Unfold",
+          "fa": "بازکردن (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "5605488fd9bd2cd7352a205b14ac64ecf37b6827dec615023844f0810851e872",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "RNN: گام زمانی 2\n• ایدهٔ اصلی: افزودن حالت پنهان (Hidden State) برای ذخیرهٔ اطلاعات گذشته؛ یعنی حافظه.\n"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "o; s; x; U; V; W",
+          "fa": "o؛ s؛ x؛ U؛ V؛ W",
+          "verified": true
+        },
+        {
+          "en": "Unfold",
+          "fa": "بازکردن (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "fee7296cda17c18dad9d011f8d618bb93efdef9d6da66d27b0366268a2eb1b56",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "RNN: گام زمانی 3\n• ایدهٔ اصلی: افزودن حالت پنهان (Hidden State) برای ذخیرهٔ اطلاعات گذشته؛ یعنی حافظه.\n"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "o; s; x; U; V; W",
+          "fa": "o؛ s؛ x؛ U؛ V؛ W",
+          "verified": true
+        },
+        {
+          "en": "Unfold",
+          "fa": "بازکردن (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "7ccb2c073dac7f3c5493e44b60c022b14a57b0d8a9a693ada38e147e8fe5cd1b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "RNN: و به همین ترتیب…\n…\n• ایدهٔ اصلی: افزودن حالت پنهان (Hidden State) برای ذخیرهٔ اطلاعات گذشته؛ یعنی حافظه.\n"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "بازکردن (Unfolding) اجازه می‌دهد معادلهٔ بازگشتی به‌صورت گراف محاسباتی جهت‌دارِ بدون دور (Directed Acyclic Graph) نمایش داده شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "o; s; x; U; V; W",
+          "fa": "o؛ s؛ x؛ U؛ V؛ W",
+          "verified": true
+        },
+        {
+          "en": "Unfold",
+          "fa": "بازکردن (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "a001823222275e73cf0a5b3ccab0df575dc507fde195f7bffcee0a23d5b103ae",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            3
+          ],
+          "kind": "text",
+          "fa": "RNN: پشتیبانی از دنبالهٔ دلخواه\n…\n• از نظر نظری با بازکردن گام‌های زمانی بیشتر یا کمتر، می‌توان هر اندازهٔ ورودی را پردازش کرد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "o; s; x; U; V; W",
+          "fa": "o؛ s؛ x؛ U؛ V؛ W",
+          "verified": true
+        },
+        {
+          "en": "Unfold",
+          "fa": "بازکردن (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "4455d89ddc5a7631938d69d35dcb803fde488ea095877b8c86025b2d143e9887",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "RNN: پارامترهای مدل و ورودی‌ها\nفرمول بازگشت در هر گام زمانی اعمال می‌شود:\nحالت تازه؛ حالت قبلی؛ ورودی در گام زمانی؛ پارامترهای مدل."
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "math",
+          "fa": "sₜ = fₘ(sₜ₋₁, xₜ)",
+          "latex": "s_t=f_m(s_{t-1},x_t)"
+        },
+        {
+          "source_lines": [
+            13
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "0627decd1b300c238a7a1a9dedeaa81545ee43f6af0bfcd04985a2a6bda596ee",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "RNN: پارامترهای مدل و ورودی‌ها\nفرمول بازگشت در هر گام زمانی اعمال می‌شود:\nحالت تازه؛ حالت قبلی؛ ورودی در گام زمانی؛ پارامترهای مدل."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "math",
+          "fa": "sₜ = fₘ(sₜ₋₁, xₜ)",
+          "latex": "s_t=f_m(s_{t-1},x_t)"
+        },
+        {
+          "source_lines": [
+            13
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "ecee341c50e3187c81d84c5269117461f339617db4dd8fecbf0510c4bea2c67d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "RNN: پارامترهای مدل و ورودی‌ها\n• RNN پس از بازشدن، شبکه‌ای پیش‌خور (Feedforward) و عمیق با وزن‌های مشترک است!\n…"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "o; s; x; U; V; W",
+          "fa": "o؛ s؛ x؛ U؛ V؛ W",
+          "verified": true
+        },
+        {
+          "en": "Unfold",
+          "fa": "بازکردن (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "f411a58014188bf6197229cbfd37912ad6ae94a88e9226571565ffa434a34e4f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            3
+          ],
+          "kind": "text",
+          "fa": "RNN: پارامترهای مدل و ورودی‌ها\n…\n• اگر همهٔ لایه‌ها پارامترهای یکسان (U, V, W) دارند، چه چیزی بین لایه‌ها متفاوت است؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "o; s; x; U; V; W",
+          "fa": "o؛ s؛ x؛ U؛ V؛ W",
+          "verified": true
+        },
+        {
+          "en": "Unfold",
+          "fa": "بازکردن (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "8e4ae230d6a1eae89defb6b041d9c3860127b7f38380d1d360d577098648f14d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            3
+          ],
+          "kind": "text",
+          "fa": "RNN: پشتیبانی از حافظه\n…\n• ورودی‌های گذشته را برای مدتی به یاد می‌سپارد که وزن‌های مدل و دادهٔ ورودی تعیین می‌کنند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "o; s; x; U; V; W",
+          "fa": "o؛ s؛ x؛ U؛ V؛ W",
+          "verified": true
+        },
+        {
+          "en": "Unfold",
+          "fa": "بازکردن (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "8e4ae230d6a1eae89defb6b041d9c3860127b7f38380d1d360d577098648f14d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            3
+          ],
+          "kind": "text",
+          "fa": "RNN: پشتیبانی از حافظه\n…\n• ورودی‌های گذشته را برای مدتی به یاد می‌سپارد که وزن‌های مدل و دادهٔ ورودی تعیین می‌کنند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "o; s; x; U; V; W",
+          "fa": "o؛ s؛ x؛ U؛ V؛ W",
+          "verified": true
+        },
+        {
+          "en": "Unfold",
+          "fa": "بازکردن (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "9d5930cab1aa34127bf92484723905d0ccaab9703e996e0f2c2410b807039b63",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "مثال 1: پیش‌بینی زوجیت (Parity)\n• RNNها معمولاً برای نورون‌های پنهان از تابع فعال‌سازی (Activation Function) tanh استفاده می‌کنند.\n• سیگموید (Sigmoid) و tanh هرکدام چه بازه‌ای از مقدارهای فعال‌سازی را می‌توانند بازنمایی کنند؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://dustinstansbury.github.io/theclevermachine/derivation-common-neural-network-activation-functions"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Activation Functions; Derivatives; g_linear(z); g_sigmoid(z); g_tanh(z); g′_linear(z); g′_sigmoid(z); g′_tanh(z)",
+          "fa": "تابع‌های فعال‌سازی؛ مشتق‌ها؛ g_linear(z)؛ g_sigmoid(z)؛ g_tanh(z)؛ g′_linear(z)؛ g′_sigmoid(z)؛ g′_tanh(z)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "9bacaf5cc01a0ab665ecd3f39ec648b9e51f59ee7d020ea0027cad7fe7ba59de",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            14,
+            15,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34
+          ],
+          "kind": "text",
+          "fa": "مثال 1: پیش‌بینی زوجیت (Parity)\n-1 (ورودی 1)؛ u=3؛ s0 = +1 (زوج).\n• حالت حافظه (sₜ) باید چگونه تغییر کند تا زوج‌بودن (+1) یا فردبودن (-1) تعداد 1ها در دنباله را نشان دهد؟\n• ورودی «1» به‌صورت «-1» و ورودی «0» به‌صورت +1 رمزگذاری می‌شود.\ns1 = −1 (فرد)؛ u=3؛ +1 (ورودی 0).\nu=3؛ -1 (ورودی 1)؛ s2 = −1 (فرد)؛ s3 = 1 (زوج).\nu=3؛ -1 (ورودی 1)؛ s4 = −1 (فرد).\nنوآوری: شبکهٔ عصبی حافظه دارد!"
+        },
+        {
+          "source_lines": [
+            12,
+            13
+          ],
+          "kind": "reference",
+          "fa": "https://dustinstansbury.github.io/theclevermachine/deri\nvation-common-neural-network-activation-functions"
+        },
+        {
+          "source_lines": [
+            10,
+            11
+          ],
+          "kind": "math",
+          "fa": "sₜ = tanh(u ⋅ xₜ ⋅ sₜ₋₁)",
+          "latex": "s_t=\\tanh(u\\cdot x_t\\cdot s_{t-1})"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "math",
+          "fa": "s1 = tanh 3 ⋅ −1 ⋅ 1 ≈ −1",
+          "latex": "s_1=\\tanh(3\\cdot-1\\cdot1)\\approx-1"
+        },
+        {
+          "source_lines": [
+            16
+          ],
+          "kind": "math",
+          "fa": "s2 = tanh 3 ⋅ 1 ⋅ −1 ≈ −1",
+          "latex": "s_2=\\tanh(3\\cdot1\\cdot-1)\\approx-1"
+        },
+        {
+          "source_lines": [
+            17
+          ],
+          "kind": "math",
+          "fa": "s3 = tanh 3 ⋅ −1 ⋅ −1 ≈ 1",
+          "latex": "s_3=\\tanh(3\\cdot-1\\cdot-1)\\approx1"
+        },
+        {
+          "source_lines": [
+            28
+          ],
+          "kind": "math",
+          "fa": "s4 = tanh 3 ⋅ −1 ⋅ 1 ≈ −1",
+          "latex": "s_4=\\tanh(3\\cdot-1\\cdot1)\\approx-1"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Activation Functions; Derivatives; g_linear(z); g_sigmoid(z); g_tanh(z); g′_linear(z); g′_sigmoid(z); g′_tanh(z)",
+          "fa": "تابع‌های فعال‌سازی؛ مشتق‌ها؛ g_linear(z)؛ g_sigmoid(z)؛ g_tanh(z)؛ g′_linear(z)؛ g′_sigmoid(z)؛ g′_tanh(z)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "7d982bfcd5fd0660621c2fa65887a8919b0358403fe7968ffb4b34d6c5e00e95",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "مثال 2: پیش‌بینی نویسهٔ بعدی دنباله\n• هدف: پیش‌بینی نویسهٔ بعدی متن؛ یعنی تکمیل خودکار متن.\n• سه جزء تازه:\nبازنمایی تک‌داغ (One-hot) برای ورودی؛ tanh به‌عنوان تابع فعال‌سازی (Activation Function)؛ سافت‌مکس (Softmax) در لایهٔ خروجی."
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Unfold",
+          "fa": "بازکردن (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "1bbc60eddf13c88486e7b3d480159ae1658e706268de78e911076cf4b77e7eea",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "مثال 2: پیش‌بینی نویسهٔ بعدی دنباله\n• بازنمایی برداری تک‌داغ (One-hot): تبدیل متن به قالب عددی؛ برای مثال،\n1. توکن‌سازی (Tokenize) دادهٔ آموزش: “hello” -> “h”, “e”, “l”, “l”, “o”.\n2. یادگیری واژگان با شناسایی همهٔ توکن‌های یکتا: {h, e, l, o}.\n3. رمزگذاری داده به‌شکل بردار؛ مثلاً رمزگذاری تک‌داغ.\n• برای مثال، برای دنبالهٔ ورودی “hello”، ورودی در کدام گام زمانی چیست؟\n• 1؟\n• 2؟\n• 3؟\n• 4؟\n• و به همین ترتیب…"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "h=[1,0,0,0]; e=[0,1,0,0]; l=[0,0,1,0]; l=[0,0,1,0]",
+          "fa": "h=[1,0,0,0]؛ e=[0,1,0,0]؛ l=[0,0,1,0]؛ l=[0,0,1,0]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "dd468b0092ae98495015dfb7b4d3943f8f7139f83ed682535bf60d0e52b1eeef",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "مثال 2: پیش‌بینی نویسهٔ بعدی دنباله\n• سافت‌مکس (Softmax) در لایهٔ خروجی: چرا صرفاً نورون‌های سیگموید (Sigmoid) را به خروجی اضافه نکنیم؟ برای مثال،\n- مدل با پیش‌بینی مستقل برای هر کلاس، می‌تواند چند کلاس را پیش‌بینی کند، به‌جای انتخاب دقیقاً یکی از گزینه‌های چندگانهٔ کلاس.\n: “h”؛ “e”؛ “l”؛ “o”."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/multi-label-image-classification-with-neural-network-keras-ddc1ab1afede"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "σ(x) = 1/(1+e⁻ˣ)",
+          "fa": "تابع سیگموید",
+          "verified": true,
+          "latex": "\\sigma(x)=\\frac1{1+e^{-x}}"
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "00d515369ed702b464c2d34553e588b3a4d43e70ba29b7d69bdf3d5158a6d105",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "kind": "text",
+          "fa": "مثال 2: پیش‌بینی نویسهٔ بعدی دنباله\n• سافت‌مکس (Softmax) در لایهٔ خروجی: توزیع احتمالی تولید می‌کند که مجموعش 1 است؛ برای مثال،\nگرهٔ دارای بیشترین احتمال، کلاس انتخاب‌شده است.\n“h”: 0.05؛ “e”: 0.1؛ “l”: 0.2؛ “o”: 0.65.\nچه چیزی پیش‌بینی می‌شود؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/multi-label-image-classification-with-neural-network-keras-ddc1ab1afede"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "b48f61ab2558d865529208c7e1ee5d4996d5ca8003b6bc0662f02d262c991f2e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "kind": "text",
+          "fa": "مثال 2: پیش‌بینی نویسهٔ بعدی دنباله\n• سافت‌مکس (Softmax) در لایهٔ خروجی: توزیع احتمالی تولید می‌کند که مجموعش 1 است؛ برای مثال،\nامتیاز ورودی را مثبت می‌کند و هم‌زمان ترتیب آن را در میان همهٔ امتیازها حفظ می‌کند.\nاحتمال همهٔ کلاس‌ها را نرمال می‌کند تا مجموعشان 1 شود؛ مدل در این مثال از میان چند کلاس (K) پیش‌بینی می‌کند؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/multi-label-image-classification-with-neural-network-keras-ddc1ab1afede"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "math",
+          "fa": "pᵢ = eˢⁱ / Σⱼ₌₁ᴷ eˢʲ",
+          "latex": "p_i=\\frac{e^{s_i}}{\\sum_{j=1}^K e^{s_j}}"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "8fa9d4e5929d7ccaf78c63cb132865bf1e4652c4482e532cb9d830cd423e9f52",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "text",
+          "fa": "+ بایاس (Bias) )"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "مثال 2: پیش‌بینی نویسهٔ بعدی دنباله\nمقداردهی اولیه به 0؛ مقداردهی اولیه به مقدار تصادفی 0.567001.\nتعداد سطرها انتخاب طراحی است؛ چرا برای ماتریس وزن به‌جای 1 سطر، سه سطر استفاده کنیم؟\n- پارامترهای بیشتر می‌توانند تابع پیچیده‌تری را بازنمایی کنند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "hₜ = tanh(Wₕₕhₜ₋₁ + Wₓₕxₜ + bias)",
+          "fa": "به‌روزرسانی حالت پنهان با tanh و بایاس",
+          "verified": true,
+          "latex": "h_t=\\tanh(W_{hh}h_{t-1}+W_{xh}x_t+\\mathrm{bias})"
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "ce4f7d7474bfda053d75d4100fda623dd10a39760c797a4662270e5762652777",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "text",
+          "fa": "+ بایاس (Bias) )"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "مثال 2: پیش‌بینی نویسهٔ بعدی دنباله\nمقداردهی اولیه به 0؛ مقداردهی اولیه به مقدار تصادفی 0.567001.\nورودی در گام زمانی بعد."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "hₜ = tanh(Wₕₕhₜ₋₁ + Wₓₕxₜ + bias)",
+          "fa": "به‌روزرسانی حالت پنهان با tanh و بایاس",
+          "verified": true,
+          "latex": "h_t=\\tanh(W_{hh}h_{t-1}+W_{xh}x_t+\\mathrm{bias})"
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "0f85273a22defe53ca50c9de8b873fab373185ccbeb1661e8895eee37cfdd408",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "text",
+          "fa": "+ بایاس (Bias) )"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "مثال 2: پیش‌بینی نویسهٔ بعدی دنباله\nمقداردهی اولیه به مقدار تصادفی 0.427043. یادآوری: مقداردهی اولیه به مقدار تصادفی 0.567001.\nخروجی در گام زمانی قبل."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "hₜ = tanh(Wₕₕhₜ₋₁ + Wₓₕxₜ + bias)",
+          "fa": "به‌روزرسانی حالت پنهان با tanh و بایاس",
+          "verified": true,
+          "latex": "h_t=\\tanh(W_{hh}h_{t-1}+W_{xh}x_t+\\mathrm{bias})"
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "1fc9bb5b31167061761a0f704cd78f000ff7871b715987edad1bb71d55bc17dc",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "kind": "text",
+          "fa": "مثال 2: پیش‌بینی نویسهٔ بعدی دنباله\nاعمال سافت‌مکس (Softmax) برای محاسبهٔ احتمال حرف‌ها:"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "(برای این مثال بایاس (Bias) را 0 فرض کنید.)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "yₜ = Wₕᵧhₜ",
+          "fa": "خروجی با ضرب ماتریس وزن در حالت پنهان",
+          "verified": true,
+          "latex": "y_t=W_{hy}h_t"
+        },
+        {
+          "en": "0.419748; 0.194682; 0.162429; 0.223141",
+          "fa": "0.419748؛ 0.194682؛ 0.162429؛ 0.223141",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "eb0be28e9cdc0b33ef5dabd8734de68430d4533216833b659a21f535570a8864",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            6
+          ],
+          "kind": "text",
+          "fa": "مثال 2: پیش‌بینی نویسهٔ بعدی دنباله\nاعمال سافت‌مکس (Softmax) برای محاسبهٔ احتمال حرف‌ها:"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "کدام حرف از واژگان {h, e, l, o} ما پیش‌بینی می‌شود؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "0.419748; 0.194682; 0.162429; 0.223141",
+          "fa": "0.419748؛ 0.194682؛ 0.162429؛ 0.223141",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "3b03884cb8f26ded9d19c5874b72d7a869402b57b999219fad5c810ffbe5267b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "مثال 2: پیش‌بینی نویسهٔ بعدی دنباله\nپیش‌بینی قبلی را به‌عنوان ورودی گام زمانی بعد بدهید.\n…\nچه زمانی پیش‌بینی دنباله را متوقف کنیم؟ برای مثال،\n- ابتدا طول را پیش‌بینی کنیم تا تصمیم بگیریم.\n- نماد خروجی ویژه‌ای را پیش‌بینی کنیم."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "3b46f7af0c6aeaffd78c64f1ded81ca6631c965366fd08d3b50f218d195d2deb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "گونه‌های RNN: طول متغیر ورودی/خروجی\nپرسش‌های بحث گروهی:\n1. برای طبقه‌بندی متن کدام گونه یا گونه‌ها را استفاده می‌کنید و چرا؟\n2. چه زمانی و چرا گونهٔ نخست «چندبه‌چند» را به‌جای گونهٔ دوم انتخاب می‌کنید؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "http://cs231n.stanford.edu/slides/2016/winter1516_lecture10.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "one to one; one to many; many to one; many to many; many to many",
+          "fa": "یک‌به‌یک؛ یک‌به‌چند؛ چندبه‌یک؛ چندبه‌چند؛ چندبه‌چند",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "652dd588a0207a30da560ebf6fb724f94fdc4c8cb505c3675e3360b21aefa17b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "گونه‌های RNN: می‌توان تعداد لایه‌های پنهان (Hidden Layers) و تعداد گره‌های هر لایه را متفاوت انتخاب کرد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://cs231n.stanford.edu/slides/2016/winter1516_lecture10.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "depth; time",
+          "fa": "عمق؛ زمان",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "f5d069d5fbf417904854f0ba16af8c06005c1d5a2df7bbe81d52254e32f16b01",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "آموزش RNN: پس‌انتشار در زمان (Backpropagation Through Time)\n• تا برآورده‌شدن معیار توقف تکرار کنید:\n1. دادهٔ آموزش را در شبکهٔ بازشده به جلو منتشر کنید تا خروجی پیش‌بینی شود.\n2. خطای پیش‌بینی‌ها را با تابع زیان (Loss Function) اندازه بگیرید.\n3. گرادیان‌های تابع زیان را محاسبه کنید تا مشخص شود هر پارامتر مدل چگونه در خطا نقش داشته است؛ اشتراک وزن با جمع‌کردن گرادیان‌ها در همهٔ گام‌های زمانی لحاظ می‌شود.\n4. هر پارامتر را با گرادیان‌های محاسبه‌شده به‌روزرسانی کنید.\nچگونه از ورودی‌های دنباله‌ای پشتیبانی کنیم؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "f6b19ce219de43934205645e317793cd69e4cee83ee89bbd2fa30d43ce7beb27",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "آموزش RNN: پشتیبانی از طول متغیر ورودی\n• از پیش (1) اندازهٔ پنجره و (2) اندازهٔ گام را تعیین کنید.\n• دنباله‌های بلندتر را تا اندازهٔ پنجرهٔ L برش دهید.\n• دنباله‌های کوتاه‌تر را با صفر پر کنید."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://onlinelibrary.wiley.com/doi/10.1155/2022/5596676"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Dataset; Instance 1; Instance 2; Instance 3; Instance N-L; Input; Output",
+          "fa": "مجموعه‌داده؛ نمونهٔ 1؛ نمونهٔ 2؛ نمونهٔ 3؛ نمونهٔ N-L؛ ورودی؛ خروجی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "fba713664fb38064ef0c40cf3f2df1415a8b79c09042950c22d1f2aa07f33553",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "آموزش RNN: پس‌انتشار در زمان (Backpropagation Through Time)\n• تا برآورده‌شدن معیار توقف تکرار کنید:\n1. دادهٔ آموزش را در شبکهٔ بازشده به جلو منتشر کنید تا خروجی پیش‌بینی شود.\n2. خطای پیش‌بینی‌ها را با تابع زیان (Loss Function) اندازه بگیرید.\n3. گرادیان‌های تابع زیان را محاسبه کنید تا مشخص شود هر پارامتر مدل چگونه در خطا نقش داشته است؛ اشتراک وزن با جمع‌کردن گرادیان‌ها در همهٔ گام‌های زمانی لحاظ می‌شود.\n4. هر پارامتر را با گرادیان‌های محاسبه‌شده به‌روزرسانی کنید.\nوقتی دنباله پیش‌بینی می‌شود، چگونه رسیدگی کنیم؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "d76c7367a57fde21aa8f039871c97d1eeee7397f1bbe020208bef2b98aedfd1e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "آموزش RNN: چگونه با «N-به‌چند» (N-to-Many) برخورد کنیم؟\nهمهٔ زیان‌ها (Losses) را تجمیع کنید."
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Goodfellow, Bengio, and Courville, Deep Learning."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Unfold",
+          "fa": "بازکردن (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "f1645e75a8358b064d9d06826ad6c66a60fbbf202fd4abc9da4adf0033dc11ff",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "آموزش RNN: پس‌انتشار در زمان (Backpropagation Through Time)\n• تا برآورده‌شدن معیار توقف تکرار کنید:\n1. دادهٔ آموزش را در شبکهٔ بازشده به جلو منتشر کنید تا خروجی پیش‌بینی شود.\n2. خطای پیش‌بینی‌ها را با تابع زیان (Loss Function) اندازه بگیرید.\n3. گرادیان‌های تابع زیان را محاسبه کنید تا مشخص شود هر پارامتر مدل چگونه در خطا نقش داشته است؛ اشتراک وزن با جمع‌کردن گرادیان‌ها در همهٔ گام‌های زمانی لحاظ می‌شود.\n4. هر پارامتر را با گرادیان‌های محاسبه‌شده به‌روزرسانی کنید.\nبرای طبقه‌بندی چندکلاسه (Multi-class Classification)، مثلاً پیش‌بینی نویسه، تابع زیان چه باید باشد؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "1dbeeff27313648aa4c8fc2c709d2dde451d290640282403ca00fa11af6dd05d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "kind": "text",
+          "fa": "یادگیری طبقه‌بندی چندکلاسه (Multi-Class Classification)\n“h”: 0.05؛ “e”: 0.1؛ “l”: 0.2؛ “o”: 0.65.\nهدف: پارامترهایی از مدل که توزیع کلاس واقعی را به‌شکل بردار تک‌داغ (One-hot) پیش‌بینی کنند؛ یعنی یک 1 و بقیه 0 باشند."
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/multi-label-image-classification-with-neural-network-keras-ddc1ab1afede"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "8a995a60a5373c0b7a1971029e924ffba5fbe2802e54ff4ce5c55142d72b928b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "text",
+          "fa": "پیشینهٔ عالی: https://web.stanford.edu/~jurafsky/slp3/5.pdf"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "تعداد کلاس‌ها؛ توزیع احتمال کلاس واقعی؛ توزیع احتمال کلاس پیش‌بینی‌شده.\nبه یاد آورید که مقدار واقعی برای یک کلاس 1 و در غیر این صورت 0 است.\nبه لگاریتم احتمال پیش‌بینی‌شده برای کلاس درست ساده می‌شود؛ یعنی زیان منفی لگاریتم درست‌نمایی (Negative Log Likelihood Loss).\nیادگیری طبقه‌بندی چندکلاسه: تابع زیان آنتروپی متقاطع (Cross Entropy Loss).\nجزئیات پیاده‌سازی: برای بهبود رفتار گرادیان در یادگیری، از لگاریتم طبیعی (ln) به‌جای مبنای 10 استفاده می‌شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "L_CE(ŷ,y) = −Σₖ₌₁ᴷ yₖ log ŷₖ",
+          "fa": "زیان آنتروپی متقاطع",
+          "verified": true,
+          "latex": "L_{\\mathrm{CE}}(\\hat y,y)=-\\sum_{k=1}^{K}y_k\\log\\hat y_k"
+        },
+        {
+          "en": "= −log ŷₖ, (where k is the correct class)",
+          "fa": "= −log ŷₖ؛ که k کلاس درست است.",
+          "verified": true,
+          "latex": "=-\\log\\hat y_k\\qquad(k\\text{ is the correct class})"
+        }
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "6176f3222e881d36bdfcfe70fdec5ab9bc5d1d9fd411c67369a1f8b29703f5cd",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "هنگام تغییر پارامترهای مدل در آموزش، می‌خواهیم این زیان را افزایش دهیم یا کاهش؟\nبازهٔ مقدارهای ممکن چیست؟\n• کمینه: 0 (-ln 1)؛ یعنی پیش‌بینی درست.\n• بیشینه: بی‌نهایت (-ln 0)؛ یعنی پیش‌بینی نادرست.\nپیش‌بینی‌های نادرستِ مطمئن‌تر، به خطای بیشتر می‌انجامند.\nیادگیری طبقه‌بندی چندکلاسه: تابع زیان آنتروپی متقاطع (Cross Entropy Loss)."
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "https://ljvmiranda921.github.io/notebook/2017/08/13/softmax-and-the-negative-log-likelihood/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Range of negative log-likelihood; −log ŷₖ; ŷₖ",
+          "fa": "بازهٔ منفی لگاریتم درست‌نمایی؛ −log ŷₖ؛ ŷₖ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "4fdce9f31e171ff862fe6de311c88311a1109a35381e640cc1eb664f148741ad",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "آموزش RNN: این روش اغلب شکست می‌خورد ☹؛ چرا؟\n• تا برآورده‌شدن معیار توقف تکرار کنید:\n1. دادهٔ آموزش را در شبکهٔ بازشده به جلو منتشر کنید تا خروجی پیش‌بینی شود.\n2. خطای پیش‌بینی‌ها را با تابع زیان (Loss Function) اندازه بگیرید.\n3. گرادیان‌های تابع زیان را محاسبه کنید تا مشخص شود هر پارامتر مدل چگونه در خطا نقش داشته است؛ اشتراک وزن با جمع‌کردن گرادیان‌ها در همهٔ گام‌های زمانی لحاظ می‌شود.\n4. هر پارامتر را با گرادیان‌های محاسبه‌شده به‌روزرسانی کنید.\n"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "c35a993287a515e411449c7b8b31a0adcea96a5641d87102f686216e24af03b0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• محدودیت شبکه‌های عصبی پیش‌خور (Feedforward): پشتیبانی از دادهٔ دنباله‌ای (Sequential Data)\n• بینش اصلی: شبکه‌های عصبی بازگشتی (Recurrent Neural Networks؛ RNNs)\n• دستاورد: RNNهای دروازه‌دار (Gated RNNs) برای تصمیم‌گیری پویا دربارهٔ آنچه باید به خاطر سپرد\n• آموزش برنامه‌نویسی: شبکه‌های عصبی بازگشتی در PyTorch"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "7c48fc0319dc86b9c82dea38dba41d70c07f0e6e941262498f1f7b86259201ed",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://dustinstansbury.github.io/theclevermachine/der\nivation-common-neural-network-activation-functions"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "مشاهدهٔ اصلی: مشتق اغلب کمتر از 1 است.\nچرا این یک مشکل است؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Activation Functions; Derivatives; g_linear(z); g_sigmoid(z); g_tanh(z); g′_linear(z); g′_sigmoid(z); g′_tanh(z)",
+          "fa": "تابع‌های فعال‌سازی؛ مشتق‌ها؛ g_linear(z)؛ g_sigmoid(z)؛ g_tanh(z)؛ g′_linear(z)؛ g′_sigmoid(z)؛ g′_tanh(z)",
+          "verified": true
+        },
+        {
+          "en": "IEEE TRANSACTIONS ON NEURAL NETWORKS, VOL. 5, NO. 2, MARCH 1994; 157; Learning Long-Term Dependencies with Gradient Descent is Difficult; Yoshua Bengio, Patrice Simard, and Paolo Frasconi, Student Member, IEEE",
+          "fa": "IEEE TRANSACTIONS ON NEURAL NETWORKS، جلد 5، شمارهٔ 2، مارس 1994؛ 157؛ یادگیری وابستگی‌های بلندمدت با نزول گرادیان دشوار است؛ Yoshua Bengio، Patrice Simard و Paolo Frasconi، عضو دانشجویی IEEE",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "43baa7f794793ecf04301f18d2fca9262c86b502783df9117a443b78ea176110",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "پس‌انتشار (Backpropagation) در مثالی کوچک (بازشده):\nمشتق خطا نسبت به وزن w1؛ قاعدهٔ زنجیره‌ای (Chain Rule) را به یاد آورید.\nبرای مثال، با تابع فعال‌سازی سیگموید (Sigmoid): 0.25 * 0.25 * 0.25 * 0.25 = 0.004.\nنگرانی: سیگنال یادگیری در پس‌انتشار (Backpropagation) به‌صورت نمایی افت می‌کند؛ در نتیجه رویدادهای گذشتهٔ «دور» عملاً نادیده گرفته می‌شوند. فقط رویدادهای اخیر، گرادیان‌هایی به‌اندازهٔ کافی بزرگ برای یادگیری دارند!"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://ayearofai.com/rohan-4-the-vanishing-gradient-problem-ec68f76ffb9b"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "input; hidden 1; hidden 2; output; act(); J; error",
+          "fa": "ورودی؛ پنهان 1؛ پنهان 2؛ خروجی؛ act()؛ J؛ خطا",
+          "verified": true
+        },
+        {
+          "en": "∂error/∂w1 = (∂error/∂output)(∂output/∂hidden2)(∂hidden2/∂hidden1)(∂hidden1/∂w1)",
+          "fa": "قاعدهٔ زنجیره‌ای برای مشتق خطا",
+          "verified": true,
+          "latex": "\\frac{\\partial\\mathrm{error}}{\\partial w_1}=\\frac{\\partial\\mathrm{error}}{\\partial\\mathrm{output}}\\frac{\\partial\\mathrm{output}}{\\partial\\mathrm{hidden2}}\\frac{\\partial\\mathrm{hidden2}}{\\partial\\mathrm{hidden1}}\\frac{\\partial\\mathrm{hidden1}}{\\partial w_1}"
+        },
+        {
+          "en": "IEEE TRANSACTIONS ON NEURAL NETWORKS, VOL. 5, NO. 2, MARCH 1994; 157; Learning Long-Term Dependencies with Gradient Descent is Difficult; Yoshua Bengio, Patrice Simard, and Paolo Frasconi, Student Member, IEEE",
+          "fa": "IEEE TRANSACTIONS ON NEURAL NETWORKS، جلد 5، شمارهٔ 2، مارس 1994؛ 157؛ یادگیری وابستگی‌های بلندمدت با نزول گرادیان دشوار است؛ Yoshua Bengio، Patrice Simard و Paolo Frasconi، عضو دانشجویی IEEE",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "fee2965e1f874f5609c73f9fe1dc34e7ff21039d0f23526e1969199cca977131",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "تمثیل محوشدن گرادیان‌ها (Vanishing Gradients): برف‌روبی به‌صورت محلی کار می‌کند و جاهایی که مدت‌ها پیش پاک شده‌اند، دوباره زیر برف رفته‌اند.\nنگرانی: سیگنال یادگیری در پس‌انتشار (Backpropagation) به‌صورت نمایی افت می‌کند؛ در نتیجه رویدادهای گذشتهٔ «دور» عملاً نادیده گرفته می‌شوند. فقط رویدادهای اخیر، گرادیان‌هایی به‌اندازهٔ کافی بزرگ برای یادگیری دارند!"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://www.timesunion.com/news/article/albany-saratoga-snow-totals-16826908.php"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "IEEE TRANSACTIONS ON NEURAL NETWORKS, VOL. 5, NO. 2, MARCH 1994; 157; Learning Long-Term Dependencies with Gradient Descent is Difficult; Yoshua Bengio, Patrice Simard, and Paolo Frasconi, Student Member, IEEE",
+          "fa": "IEEE TRANSACTIONS ON NEURAL NETWORKS، جلد 5، شمارهٔ 2، مارس 1994؛ 157؛ یادگیری وابستگی‌های بلندمدت با نزول گرادیان دشوار است؛ Yoshua Bengio، Patrice Simard و Paolo Frasconi، عضو دانشجویی IEEE",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "61f5f434f391e004fed09cc5c282511c123de4e73b7921eefe013b30d418f61d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "text",
+          "fa": "ایده: تغییرات معماری‌ای ایجاد کنید که از محوشدن گرادیان‌ها (Vanishing Gradients) جلوگیری کنند!"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "LONG SHORT-TERM MEMORY; NEURAL COMPUTATION 9(8):1735–1780, 1997; Sepp Hochreiter; Fakultät für Informatik; Technische Universität München; 80290 München, Germany; hochreit@informatik.tu-muenchen.de; http://www7.informatik.tu-muenchen.de/~hochreit; Jürgen Schmidhuber; IDSIA; Corso Elvezia 36; 6900 Lugano, Switzerland; juergen@idsia.ch; http://www.idsia.ch/~juergen",
+          "fa": "حافظهٔ بلند کوتاه‌مدت (Long Short-Term Memory)؛ NEURAL COMPUTATION 9(8):1735–1780, 1997؛ Sepp Hochreiter؛ دانشکدهٔ انفورماتیک؛ دانشگاه فنی مونیخ؛ 80290 مونیخ، آلمان؛ hochreit@informatik.tu-muenchen.de؛ http://www7.informatik.tu-muenchen.de/~hochreit؛ Jürgen Schmidhuber؛ IDSIA؛ Corso Elvezia 36؛ 6900 لوگانو، سوئیس؛ juergen@idsia.ch؛ http://www.idsia.ch/~juergen",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "6bda73a2802b1b64c71d142c9476486ad3134b694f2530283f3ded2929f3e41b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "kind": "text",
+          "fa": "LSTMها: به‌طور پویا تصمیم می‌گیرند چه چیزی را به خاطر بسپارند\n• سازوکار: 3 دروازه (Gates) اضافه می‌کند که رفتارشان به ورودی فعلی و حالت پنهان (Hidden State) قبلی وابسته است.\n1. چه اطلاعات تازه‌ای را به خاطر بسپاریم؟\n2. چه اطلاعات قدیمی‌ای را پاک کنیم؟\n3. چه حافظه‌ای را با گام‌های زمانی بعدی به اشتراک بگذاریم؟\n«دروازه» نامیده می‌شود زیرا تابع سیگموید (Sigmoid)، بازبودن (1) و بسته‌بودن (0) را تقلید می‌کند.\nاگر دروازهٔ «ورودی» = 0 باشد؟\n- اطلاعات تازه را کنار می‌گذارد.\nاگر دروازهٔ «ورودی» = 1 باشد؟\n- همهٔ اطلاعات تازه را نگه می‌دارد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://adventuresinmachinelearning.com/recurrent-neural-networks-lstm-tutorial-tensorflow/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "input; input gate; forget gate; output gate; tanh; σ; hₜ₋₁; xₜ; sₜ₋₁; sₜ; hₜ",
+          "fa": "ورودی؛ دروازهٔ ورودی؛ دروازهٔ فراموشی؛ دروازهٔ خروجی؛ tanh؛ σ؛ hₜ₋₁؛ xₜ؛ sₜ₋₁؛ sₜ؛ hₜ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "fe58256f415717435184a8727809426f68031475be569201a2a5945e06c6ff91",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "kind": "text",
+          "fa": "LSTMها: به‌طور پویا تصمیم می‌گیرند چه چیزی را به خاطر بسپارند\n• سازوکار: 3 دروازه (Gates) اضافه می‌کند که رفتارشان به ورودی فعلی و حالت پنهان (Hidden State) قبلی وابسته است.\n1. چه اطلاعات تازه‌ای را به خاطر بسپاریم؟\n2. چه اطلاعات قدیمی‌ای را پاک کنیم؟\n3. چه حافظه‌ای را با گام‌های زمانی بعدی به اشتراک بگذاریم؟\n«دروازه» نامیده می‌شود زیرا تابع سیگموید (Sigmoid)، بازبودن (1) و بسته‌بودن (0) را تقلید می‌کند.\nاگر دروازهٔ «فراموشی» = 0 باشد؟\n- اطلاعات قدیمی را کنار می‌گذارد.\nاگر دروازهٔ «فراموشی» = 1 باشد؟\n- همهٔ اطلاعات قدیمی را نگه می‌دارد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://adventuresinmachinelearning.com/recurrent-neural-networks-lstm-tutorial-tensorflow/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "input; input gate; forget gate; output gate; tanh; σ; hₜ₋₁; xₜ; sₜ₋₁; sₜ; hₜ",
+          "fa": "ورودی؛ دروازهٔ ورودی؛ دروازهٔ فراموشی؛ دروازهٔ خروجی؛ tanh؛ σ؛ hₜ₋₁؛ xₜ؛ sₜ₋₁؛ sₜ؛ hₜ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "4e9b8a7809c17dd2b8e804a4c97bad90d5aa458cca1dd7a0856582e937bdc775",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "LSTMها: به‌طور پویا تصمیم می‌گیرند چه چیزی را به خاطر بسپارند\n• پشتیبانی از حافظهٔ بلندمدت‌تر: ممکن است، زیرا دروازهٔ فراموشی (Forget Gate) یادگیری بلندمدت را ممکن می‌کند.\ng؛ i؛ f.\nجمع اجازه می‌دهد حالت سلول (Cell State) برای مدت‌های طولانی، بدون محوشدن، در زمان به عقب جریان یابد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://adventuresinmachinelearning.com/recurrent-neural-networks-lstm-tutorial-tensorflow/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "sₜ = sₜ₋₁ · f + g · i; ∂sₜ/∂sₜ₋₁ = f",
+          "fa": "به‌روزرسانی حالت سلول و مشتق نسبت به حالت قبل",
+          "verified": true,
+          "latex": "s_t=s_{t-1}\\cdot f+g\\cdot i,\\qquad\\frac{\\partial s_t}{\\partial s_{t-1}}=f"
+        },
+        {
+          "en": "input; input gate; forget gate; output gate; tanh; σ; hₜ₋₁; xₜ; sₜ₋₁; sₜ; hₜ",
+          "fa": "ورودی؛ دروازهٔ ورودی؛ دروازهٔ فراموشی؛ دروازهٔ خروجی؛ tanh؛ σ؛ hₜ₋₁؛ xₜ؛ sₜ₋₁؛ sₜ؛ hₜ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "ff883b721fb5ff47b14381387f73db6f38eafbea5648e3eb224356ceeaa01b6d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "LSTM ساده‌شده: واحد بازگشتی دروازه‌دار (Gated Recurrent Unit؛ GRU)\nLSTM را ساده می‌کند: یک دروازه، (1) ضریب فراموشی و (2) به‌روزرسانی واحدهای پنهان را کنترل می‌کند."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "reference",
+          "fa": "K. Chou et al; Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation; 2014\nhttps://en.wikipedia.org/wiki/Gated_recurrent_unit"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "h[t−1]; x[t]; r[t]; z[t]; h̃[t]; y[t]; h[t]; σ; tanh; 1−",
+          "fa": "h[t−1]؛ x[t]؛ r[t]؛ z[t]؛ h̃[t]؛ y[t]؛ h[t]؛ σ؛ tanh؛ 1−",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "c35a993287a515e411449c7b8b31a0adcea96a5641d87102f686216e24af03b0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• محدودیت شبکه‌های عصبی پیش‌خور (Feedforward): پشتیبانی از دادهٔ دنباله‌ای (Sequential Data)\n• بینش اصلی: شبکه‌های عصبی بازگشتی (Recurrent Neural Networks؛ RNNs)\n• دستاورد: RNNهای دروازه‌دار (Gated RNNs) برای تصمیم‌گیری پویا دربارهٔ آنچه باید به خاطر سپرد\n• آموزش برنامه‌نویسی: شبکه‌های عصبی بازگشتی در PyTorch"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "c35a993287a515e411449c7b8b31a0adcea96a5641d87102f686216e24af03b0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• محدودیت شبکه‌های عصبی پیش‌خور (Feedforward): پشتیبانی از دادهٔ دنباله‌ای (Sequential Data)\n• بینش اصلی: شبکه‌های عصبی بازگشتی (Recurrent Neural Networks؛ RNNs)\n• دستاورد: RNNهای دروازه‌دار (Gated RNNs) برای تصمیم‌گیری پویا دربارهٔ آنچه باید به خاطر سپرد\n• آموزش برنامه‌نویسی: شبکه‌های عصبی بازگشتی در PyTorch"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ]
+    }
+  ]
+}

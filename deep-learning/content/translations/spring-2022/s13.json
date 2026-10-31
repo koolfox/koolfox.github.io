@@ -1,0 +1,3518 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s13",
+  "source_sha256": "8d7e660e7271abaa0c7d4c57e0fc70b593aa0560d0b13b9d37cad081288f50bf",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "8719fb56ef066bce2ee58eedd8681134ebeb6f787377c979a38dcc96d3d1d50a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکه‌های عصبی بازگشتی (Recurrent Neural Networks)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "دانشگاه کلرادو بولدر (University of Colorado Boulder)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "بهار ۲۰۲۲ (Spring 2022)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CC BY",
+          "fa": "CC BY — انتساب",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "e88c04e8de397c1dcedfc22d6097001c586d3131c931710200b555c6d2420f0e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• هفتهٔ پیش:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مسئله‌ها"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردها"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• چالش تشخیص PASCAL VOC: پیشنهادهای ناحیه همراه با ویژگی‌های CNN"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• چالش بخش‌بندی معنایی PASCAL VOC: شبکه‌های تمام‌کانولوشنی (Fully convolutional networks)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• تکلیف‌ها (Canvas):"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• مهلت تحویل مجموعه‌مسئلهٔ ۳، چهارشنبه است."
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• پرسشی دارید؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "431e047458c897ee17bd4f395576e0e7cb2fbf5a865f42b6342916a875526af6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری ماشین برای داده‌های دنباله‌ای"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های عصبی بازگشتی (RNNs)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های عصبی بازگشتی دروازه‌دار (Gated RNNs)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "431e047458c897ee17bd4f395576e0e7cb2fbf5a865f42b6342916a875526af6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری ماشین برای داده‌های دنباله‌ای"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های عصبی بازگشتی (RNNs)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های عصبی بازگشتی دروازه‌دار (Gated RNNs)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "8e4ca083a8b34ec1fad64df58519b4e247c20a86e07290ff163ae589b5a9fe93",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تعریف دنباله (Sequence): داده‌ای با طول دلخواه"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "مثلاً سند؛ مثلاً تصاویر"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "مثلاً داده‌های سری زمانی (Time-Series Data)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "مثلاً جمله‌ها، نمونه‌های صوتی، امواج مغزی، امواج رادیویی، دمای هوا"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "THE SEATTLE PRESS-TIMES, TUESDAY, JUNE 16, 1891; SEATTLE SHIP CANAL; Survey Authorized by Congress Completed; Canal Should be Built and Controlled by Government; Statement to Secretary of War by Chamber of Commerce; ADVANTAGES TO SEATTLE PORTS; Commercial Interests of Northwest Make It Imperative",
+          "fa": "سیاتل پرس‌تایمز، سه‌شنبه ۱۶ ژوئن ۱۸۹۱؛ کانال کشتی‌رانی سیاتل؛ پیمایش مصوب کنگره تکمیل شد؛ کانال باید توسط دولت ساخته و اداره شود؛ بیانیهٔ اتاق بازرگانی به وزیر جنگ؛ مزایای بنادر سیاتل؛ منافع تجاری شمال‌غرب آن را ضروری می‌کند",
+          "verified": true
+        },
+        {
+          "en": "Dow Jones Industrial Average",
+          "fa": "میانگین صنعتی داو جونز (Dow Jones Industrial Average)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "44aca0f0a39769df65d0124f600d4b8fd3f15da200a0fcf51361a88770b7d80b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ویژگی‌های دنباله‌ها چیست؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "مثلاً سند؛ مثلاً تصاویر"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "مثلاً داده‌های سری زمانی (Time-Series Data)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "مثلاً جمله‌ها، نمونه‌های صوتی، امواج مغزی، امواج رادیویی، دمای هوا"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "* عناصر یک دنباله به ترتیب معینی قرار می‌گیرند."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "* عناصر به یکدیگر وابسته‌اند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "THE SEATTLE PRESS-TIMES, TUESDAY, JUNE 16, 1891; SEATTLE SHIP CANAL; Survey Authorized by Congress Completed; Canal Should be Built and Controlled by Government; Statement to Secretary of War by Chamber of Commerce; ADVANTAGES TO SEATTLE PORTS; Commercial Interests of Northwest Make It Imperative",
+          "fa": "سیاتل پرس‌تایمز، سه‌شنبه ۱۶ ژوئن ۱۸۹۱؛ کانال کشتی‌رانی سیاتل؛ پیمایش مصوب کنگره تکمیل شد؛ کانال باید توسط دولت ساخته و اداره شود؛ بیانیهٔ اتاق بازرگانی به وزیر جنگ؛ مزایای بنادر سیاتل؛ منافع تجاری شمال‌غرب آن را ضروری می‌کند",
+          "verified": true
+        },
+        {
+          "en": "Dow Jones Industrial Average",
+          "fa": "میانگین صنعتی داو جونز (Dow Jones Industrial Average)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "6f629761bc93ec89e6b0ad6171ae09730074a1cdba54406d9167407da867d0f4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "منابع دنباله‌ها"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://www.tensorflow.org/tutorials/representation/word2vec"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "* عناصر یک دنباله به ترتیب معینی قرار می‌گیرند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "* عناصر به یکدیگر وابسته‌اند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "AUDIO; IMAGES; TEXT; Audio Spectrogram; Image pixels; Word, context, or document vectors; bird; frog",
+          "fa": "صوت؛ تصاویر؛ متن؛ طیف‌نگارهٔ صوتی (Audio Spectrogram)؛ پیکسل‌های تصویر؛ بردارهای واژه، بافت یا سند؛ پرنده؛ قورباغه",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "29608ab3eba3ed0df5a2f6a7430a74cdd882fa7b433cbd80959259d1abaa08a1",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "کاربردهای دنباله: یک‌به‌چند (One-to-Many)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• ورودی: اندازهٔ ثابت"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• خروجی: دنباله"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• مثلاً تولید شرح تصویر (Image captioning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "شرح‌ها: https://www.microsoft.com/cognitive-services/en-us/computer-vision-api"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Age: 28; Gender: Male; Is Adult Content: False; Categories: people_swimming; Features; Feature Name; Value; Description; Tags; Image Format; Image Dimensions; Clip Art Type; Line Drawing Type; Black & White Image; jpeg; 1100×1135; 0 Non-clipart; 0 Non-LineDrawing; False",
+          "fa": "سن: ۲۸؛ جنسیت: مرد؛ محتوای بزرگسالان: خیر؛ دسته‌ها: people_swimming (افراد در حال شنا)؛ ویژگی‌ها؛ نام ویژگی؛ مقدار؛ توضیح؛ برچسب‌ها؛ قالب تصویر؛ ابعاد تصویر؛ نوع تصویر آماده؛ نوع رسم خطی؛ تصویر سیاه‌وسفید؛ jpeg؛ 1100×1135؛ ۰: غیرتصویر آماده؛ ۰: غیررسم خطی؛ خیر",
+          "verified": true
+        },
+        {
+          "en": "a man swimming in a pool of water; water; sport; swimming; pool; water sport",
+          "fa": "a man swimming in a pool of water (مردی در حال شنا در استخری از آب)؛ water (آب)؛ sport (ورزش)؛ swimming (شنا)؛ pool (استخر)؛ water sport (ورزش آبی)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "94c3edb40a4d186c2ae63159cfca4f8c8b980106863eeb25ec3b20c9a2c7e104",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "کاربردهای دنباله: چندبه‌یک (Many-to-One)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• ورودی: دنباله"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• خروجی: اندازهٔ ثابت"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• مثلاً تحلیل احساسات (Sentiment analysis؛ نفرت؟ علاقه؟ و غیره)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://www.rottentomatoes.com/m/star_wars_the_last_jedi"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CRITIC REVIEWS FOR STAR WARS: THE LAST JEDI; All Critics (371) | Top Critics (51) | Fresh (336) | Rotten (35)",
+          "fa": "نقد منتقدان برای جنگ ستارگان: آخرین جدای؛ همهٔ منتقدان (۳۷۱) | منتقدان برتر (۵۱) | تازه/مثبت (۳۳۶) | فاسد/منفی (۳۵)",
+          "verified": true
+        },
+        {
+          "en": "What’s most interesting to me about The Last Jedi is Luke’s return as the mentor rather than the student, grappling with his failure in this new role, and later aspiring to be the wise and patient teacher.",
+          "fa": "جالب‌ترین نکتهٔ آخرین جدای برای من، بازگشت لوک در نقش مرشد به‌جای شاگرد است؛ او با شکست خود در این نقش جدید دست‌وپنجه نرم می‌کند و بعد آرزو دارد آموزگاری خردمند و صبور باشد.",
+          "verified": true
+        },
+        {
+          "en": "Fanatics will love it; for the rest of us, it’s a tolerably good time.",
+          "fa": "هواداران دوآتشه عاشقش خواهند شد؛ برای بقیهٔ ما، سرگرمیِ قابل‌تحمل و نسبتاً خوبی است.",
+          "verified": true
+        },
+        {
+          "en": "December 26, 2017 | Rating: 3/4 | Full Review…; Leah Pickett; Chicago Reader; Top Critic; December 15, 2017 | Rating: B | Full Review…; Peter Rainer; Christian Science Monitor; Top Critic",
+          "fa": "۲۶ دسامبر ۲۰۱۷ | امتیاز: ۳ از ۴ | نقد کامل…؛ Leah Pickett؛ Chicago Reader؛ منتقد برتر؛ ۱۵ دسامبر ۲۰۱۷ | امتیاز: B | نقد کامل…؛ Peter Rainer؛ Christian Science Monitor؛ منتقد برتر",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "b6822aa4c0f9c26b57be778c572b15a2538d9d1fc6a6a55e2546d2b85062e3ea",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "کاربردهای دنباله: چندبه‌چند (Many-to-Many)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• ورودی: دنباله"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• خروجی: دنباله"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• مثلاً ترجمهٔ زبان"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "English – detected; Chinese (Traditional); Today is fun.; 今天很有趣。; Jīntiān hěn yǒuqù.",
+          "fa": "انگلیسی — شناسایی‌شده؛ چینی (سنتی)؛ Today is fun. / 今天很有趣。 / Jīntiān hěn yǒuqù. (امروز خوش می‌گذرد.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "431e047458c897ee17bd4f395576e0e7cb2fbf5a865f42b6342916a875526af6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری ماشین برای داده‌های دنباله‌ای"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های عصبی بازگشتی (RNNs)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های عصبی بازگشتی دروازه‌دار (Gated RNNs)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "dc885921a76e0d1328201bb1cf3d9fd02bf0b45e0cb82056d74b525921318f3e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "زمینهٔ تاریخی؛ نخستین ماشین برنامه‌پذیر"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "2012"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "آزمون تورینگ (Turing test)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "1945"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "هوش مصنوعی (AI)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "1956"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "literal",
+          "fa": "1950 1959"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "شبکهٔ بازگشتی (RNN): مقالهٔ روملهارت «یادگیری بازنمایی‌ها با پس‌انتشار خطاها» (Learning representations by back-propagating errors)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "literal",
+          "fa": "AlexNet"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "۱۹۵۷، پرسپترون (Perceptron)"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "text",
+          "fa": "۱۸۴۷، گرادیان کاهشی (Gradient descent)"
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "text",
+          "fa": "یادگیری ماشین (Machine learning)"
+        },
+        {
+          "source_lines": [
+            13
+          ],
+          "kind": "literal",
+          "fa": "1986"
+        },
+        {
+          "source_lines": [
+            14
+          ],
+          "kind": "literal",
+          "fa": "1998"
+        },
+        {
+          "source_lines": [
+            15
+          ],
+          "kind": "text",
+          "fa": "پس‌انتشار (Backpropagation) برای شبکه‌های کانولوشنی (CNNs)"
+        },
+        {
+          "source_lines": [
+            16
+          ],
+          "kind": "literal",
+          "fa": "1989"
+        },
+        {
+          "source_lines": [
+            17
+          ],
+          "kind": "text",
+          "fa": "MNIST، LeNet"
+        },
+        {
+          "source_lines": [
+            18
+          ],
+          "kind": "text",
+          "fa": "نئوکگنیترون (Neocognitron)"
+        },
+        {
+          "source_lines": [
+            19
+          ],
+          "kind": "literal",
+          "fa": "1980"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "f5ae56c481389d49bf9a53240044f63188385e14cc98d879aeb8fa1905ab3ed4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یادآوری: شبکه‌های عصبی پیش‌خور (Feedforward Neural Networks)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "هر لایه بدون هیچ حلقه‌ای، ورودی لایهٔ بعدی است."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "مسئله: تعداد زیاد پارامترهای مدل"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "مسئله: اندازهٔ ورودی‌ها/خروجی ثابت است."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "مسئله: چون وزن‌ها مستقل آموخته می‌شوند، حافظه‌ای از گذشته وجود ندارد."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "منبع شکل: http://cs231n.github.io/neural-networks-1/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "input layer; hidden layer 1; hidden layer 2; hidden layer; output layer",
+          "fa": "لایهٔ ورودی؛ لایهٔ پنهان ۱؛ لایهٔ پنهان ۲؛ لایهٔ پنهان؛ لایهٔ خروجی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "4ae75bbf7d91ae024c233d8fa9e048a473374b1dc52948a55be5f76dfbf9ebec",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکه‌های عصبی بازگشتی (Recurrent Neural Networks؛ RNNs)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "شبکهٔ پیش‌خور (Feedforward Network)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "هر لایه بدون هیچ حلقه‌ای، ورودی را از لایهٔ قبلی دریافت می‌کند."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "شبکهٔ بازگشتی (Recurrent Network)"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "هر لایه، ورودی را از لایهٔ قبلی و خروجی گام زمانی قبلی دریافت می‌کند (یعنی اتصال‌هایی با تأخیر زمانی)."
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "bullet",
+          "fa": "• ایدهٔ اصلی: استفاده از حالت پنهان (Hidden State) برای ثبت اطلاعات گذشته"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x; s; o; U; V; W; xₜ₋₁; xₜ; xₜ₊₁; sₜ₋₁; sₜ; sₜ₊₁; oₜ₋₁; oₜ; oₜ₊₁",
+          "fa": "x؛ s؛ o؛ U؛ V؛ W؛ xₜ₋₁؛ xₜ؛ xₜ₊₁؛ sₜ₋₁؛ sₜ؛ sₜ₊₁؛ oₜ₋₁؛ oₜ؛ oₜ₊₁",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "c1b37789be5ae44daad8a1998d605235a5b23445f1feaf0136095ba6552640b2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکه‌های عصبی بازگشتی (Recurrent Neural Networks؛ RNNs)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "شبکهٔ بازگشتی (Recurrent Network)"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "هر لایه، ورودی را از لایهٔ قبلی و خروجی گام زمانی قبلی دریافت می‌کند (یعنی اتصال‌هایی با تأخیر زمانی)."
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• ایدهٔ اصلی: استفاده از حالت پنهان (Hidden State) برای ثبت اطلاعات گذشته"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "بازگشتی (Recurrent): همان تابع روی نتیجهٔ قبلی اعمال می‌شود."
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "sₜ = fₘ(sₜ₋₁, xₜ)"
+        },
+        {
+          "source_lines": [
+            13,
+            14
+          ],
+          "kind": "text",
+          "fa": "حالت جدید"
+        },
+        {
+          "source_lines": [
+            15,
+            16
+          ],
+          "kind": "text",
+          "fa": "حالت قبلی"
+        },
+        {
+          "source_lines": [
+            17,
+            18
+          ],
+          "kind": "text",
+          "fa": "ورودی در گام زمانی"
+        },
+        {
+          "source_lines": [
+            19
+          ],
+          "kind": "text",
+          "fa": "پارامترهای مدل"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x; s; o; U; V; W; xₜ₋₁; xₜ; xₜ₊₁; sₜ₋₁; sₜ; sₜ₊₁; oₜ₋₁; oₜ; oₜ₊₁",
+          "fa": "x؛ s؛ o؛ U؛ V؛ W؛ xₜ₋₁؛ xₜ؛ xₜ₊₁؛ sₜ₋₁؛ sₜ؛ sₜ₊₁؛ oₜ₋₁؛ oₜ؛ oₜ₊₁",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "239b13cfac01354054c2b933136357c6502f864491f9dc78c07c13fc4600e2f9",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکهٔ عصبی بازگشتی (RNN): گام زمانی ۱"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• ایدهٔ اصلی: استفاده از حالت پنهان (Hidden State) برای ثبت اطلاعات گذشته"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x; s; o; U; V; W; xₜ₋₁; xₜ; xₜ₊₁; sₜ₋₁; sₜ; sₜ₊₁; oₜ₋₁; oₜ; oₜ₊₁",
+          "fa": "x؛ s؛ o؛ U؛ V؛ W؛ xₜ₋₁؛ xₜ؛ xₜ₊₁؛ sₜ₋₁؛ sₜ؛ sₜ₊₁؛ oₜ₋₁؛ oₜ؛ oₜ₊₁",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "239b13cfac01354054c2b933136357c6502f864491f9dc78c07c13fc4600e2f9",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکهٔ عصبی بازگشتی (RNN): گام زمانی ۱"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• ایدهٔ اصلی: استفاده از حالت پنهان (Hidden State) برای ثبت اطلاعات گذشته"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x; s; o; U; V; W; xₜ₋₁; xₜ; xₜ₊₁; sₜ₋₁; sₜ; sₜ₊₁; oₜ₋₁; oₜ; oₜ₊₁; Unfold",
+          "fa": "x؛ s؛ o؛ U؛ V؛ W؛ xₜ₋₁؛ xₜ؛ xₜ₊₁؛ sₜ₋₁؛ sₜ؛ sₜ₊₁؛ oₜ₋₁؛ oₜ؛ oₜ₊₁؛ بازگشایی (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "1f5918f7d2540227b8d9ca36df5f6596374f0b50ec45ec5a55d89fb79cc0f322",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکهٔ عصبی بازگشتی (RNN): گام زمانی ۲"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• ایدهٔ اصلی: استفاده از حالت پنهان (Hidden State) برای ثبت اطلاعات گذشته"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x; s; o; U; V; W; xₜ₋₁; xₜ; xₜ₊₁; sₜ₋₁; sₜ; sₜ₊₁; oₜ₋₁; oₜ; oₜ₊₁; Unfold",
+          "fa": "x؛ s؛ o؛ U؛ V؛ W؛ xₜ₋₁؛ xₜ؛ xₜ₊₁؛ sₜ₋₁؛ sₜ؛ sₜ₊₁؛ oₜ₋₁؛ oₜ؛ oₜ₊₁؛ بازگشایی (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "76c0b6fc3088ca162f22f40f242b948eb22989ccfa2f32d19af77e300412ac96",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکهٔ عصبی بازگشتی (RNN): گام زمانی ۳"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• ایدهٔ اصلی: استفاده از حالت پنهان (Hidden State) برای ثبت اطلاعات گذشته"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x; s; o; U; V; W; xₜ₋₁; xₜ; xₜ₊₁; sₜ₋₁; sₜ; sₜ₊₁; oₜ₋₁; oₜ; oₜ₊₁; Unfold",
+          "fa": "x؛ s؛ o؛ U؛ V؛ W؛ xₜ₋₁؛ xₜ؛ xₜ₊₁؛ sₜ₋₁؛ sₜ؛ sₜ₊₁؛ oₜ₋₁؛ oₜ؛ oₜ₊₁؛ بازگشایی (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "a6cc05ff8b75d5a09d34393afa8c6c7bb285a5e25042aefc22151e2d24e1795e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکهٔ عصبی بازگشتی (RNN): و به همین ترتیب…"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• ایدهٔ اصلی: استفاده از حالت پنهان (Hidden State) برای ثبت اطلاعات گذشته"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "…"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x; s; o; U; V; W; xₜ₋₁; xₜ; xₜ₊₁; sₜ₋₁; sₜ; sₜ₊₁; oₜ₋₁; oₜ; oₜ₊₁; Unfold",
+          "fa": "x؛ s؛ o؛ U؛ V؛ W؛ xₜ₋₁؛ xₜ؛ xₜ₊₁؛ sₜ₋₁؛ sₜ؛ sₜ₊₁؛ oₜ₋₁؛ oₜ؛ oₜ₊₁؛ بازگشایی (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "15fd6bc64eedc7310228c3e60b81474d9a6a83d6932056cb4d6cb03a032ee6c6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکهٔ عصبی بازگشتی (RNN): پارامترها و ورودی‌های مدل"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• ایدهٔ اصلی: استفاده از حالت پنهان (Hidden State) برای ثبت اطلاعات گذشته"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "رابطهٔ بازگشت در هر گام زمانی اعمال می‌شود:"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "sₜ = fₘ(sₜ₋₁, xₜ)"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "حالت جدید"
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "حالت قبلی"
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "ورودی در گام زمانی"
+        },
+        {
+          "source_lines": [
+            13
+          ],
+          "kind": "text",
+          "fa": "پارامترهای مدل"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x; s; o; U; V; W; xₜ₋₁; xₜ; xₜ₊₁; sₜ₋₁; sₜ; sₜ₊₁; oₜ₋₁; oₜ; oₜ₊₁; Unfold",
+          "fa": "x؛ s؛ o؛ U؛ V؛ W؛ xₜ₋₁؛ xₜ؛ xₜ₊₁؛ sₜ₋₁؛ sₜ؛ sₜ₊₁؛ oₜ₋₁؛ oₜ؛ oₜ₊₁؛ بازگشایی (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "a1bc6a9a31b91e27ed54517b606a806621f959816b0ac8d1b0e751ad06e23d4b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "رابطهٔ بازگشت در هر گام زمانی اعمال می‌شود:"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "sₜ = fₘ(sₜ₋₁, xₜ)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "شبکهٔ عصبی بازگشتی (RNN): پارامترها و ورودی‌های مدل"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• ایدهٔ اصلی: استفاده از حالت پنهان (Hidden State) برای ثبت اطلاعات گذشته"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "حالت جدید"
+        },
+        {
+          "source_lines": [
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "حالت قبلی"
+        },
+        {
+          "source_lines": [
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "ورودی در گام زمانی"
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "text",
+          "fa": "پارامترهای مدل"
+        },
+        {
+          "source_lines": [
+            13
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x; s; o; U; V; W; xₜ₋₁; xₜ; xₜ₊₁; sₜ₋₁; sₜ; sₜ₊₁; oₜ₋₁; oₜ; oₜ₊₁; Unfold",
+          "fa": "x؛ s؛ o؛ U؛ V؛ W؛ xₜ₋₁؛ xₜ؛ xₜ₊₁؛ sₜ₋₁؛ sₜ؛ sₜ₊₁؛ oₜ₋₁؛ oₜ؛ oₜ₊₁؛ بازگشایی (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "470da37489c2f3b01b5fd2db44e535650b311227a04f4c378b8e645bcabc277f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکهٔ عصبی بازگشتی (RNN): پارامترها و ورودی‌های مدل"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• همهٔ لایه‌ها پارامترهای مدل یکسان و مشترکی دارند (U, V, W)."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• چه چیزی میان لایه‌ها متفاوت است؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "…"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x; s; o; U; V; W; xₜ₋₁; xₜ; xₜ₊₁; sₜ₋₁; sₜ; sₜ₊₁; oₜ₋₁; oₜ; oₜ₊₁; Unfold",
+          "fa": "x؛ s؛ o؛ U؛ V؛ W؛ xₜ₋₁؛ xₜ؛ xₜ₊₁؛ sₜ₋₁؛ sₜ؛ sₜ₊₁؛ oₜ₋₁؛ oₜ؛ oₜ₊₁؛ بازگشایی (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "ecee341c50e3187c81d84c5269117461f339617db4dd8fecbf0510c4bea2c67d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکهٔ عصبی بازگشتی (RNN): پارامترها و ورودی‌های مدل"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• هنگام بازگشایی (Unfolding)، شبکهٔ عصبی بازگشتی یک شبکهٔ پیش‌خور عمیق با وزن‌های مشترک است!"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "…"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x; s; o; U; V; W; xₜ₋₁; xₜ; xₜ₊₁; sₜ₋₁; sₜ; sₜ₊₁; oₜ₋₁; oₜ; oₜ₊₁; Unfold",
+          "fa": "x؛ s؛ o؛ U؛ V؛ W؛ xₜ₋₁؛ xₜ؛ xₜ₊₁؛ sₜ₋₁؛ sₜ؛ sₜ₊₁؛ oₜ₋₁؛ oₜ؛ oₜ₊₁؛ بازگشایی (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "08c3207a459703fe570d666b53f4e97a33c1a89f1b0ceb2de4890c466fdce1f2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مزایای شبکهٔ عصبی بازگشتی (RNN)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "…"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• با استفاده از حالت پنهان قبلی، بر مسئلهٔ یادگیری مستقل وزن‌های هر لایه غلبه می‌کند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• چون وزن‌ها میان لایه‌ها مشترک‌اند، بر مسئلهٔ زیاد بودن پارامترهای مدل غلبه می‌کند."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x; s; o; U; V; W; xₜ₋₁; xₜ; xₜ₊₁; sₜ₋₁; sₜ; sₜ₊₁; oₜ₋₁; oₜ; oₜ₊₁; Unfold",
+          "fa": "x؛ s؛ o؛ U؛ V؛ W؛ xₜ₋₁؛ xₜ؛ xₜ₊₁؛ sₜ₋₁؛ sₜ؛ sₜ₊₁؛ oₜ₋₁؛ oₜ؛ oₜ₊₁؛ بازگشایی (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "a2fa447ac8209a77eb17ce27a1b9b70844ab89be09ac3ab38282f2ab84a94aec",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مزایای شبکهٔ عصبی بازگشتی (RNN)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "…"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• اطلاعات ورودی‌های گذشته را برای مدتی حفظ می‌کند که به وزن‌های مدل و دادهٔ ورودی بستگی دارد، به‌جای مدت ثابتی که از قبل انتخاب شود."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x; s; o; U; V; W; xₜ₋₁; xₜ; xₜ₊₁; sₜ₋₁; sₜ; sₜ₊₁; oₜ₋₁; oₜ; oₜ₊₁; Unfold",
+          "fa": "x؛ s؛ o؛ U؛ V؛ W؛ xₜ₋₁؛ xₜ؛ xₜ₊₁؛ sₜ₋₁؛ sₜ؛ sₜ₊₁؛ oₜ₋₁؛ oₜ؛ oₜ₊₁؛ بازگشایی (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "a2fa447ac8209a77eb17ce27a1b9b70844ab89be09ac3ab38282f2ab84a94aec",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مزایای شبکهٔ عصبی بازگشتی (RNN)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "…"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• اطلاعات ورودی‌های گذشته را برای مدتی حفظ می‌کند که به وزن‌های مدل و دادهٔ ورودی بستگی دارد، به‌جای مدت ثابتی که از قبل انتخاب شود."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x; s; o; U; V; W; xₜ₋₁; xₜ; xₜ₊₁; sₜ₋₁; sₜ; sₜ₊₁; oₜ₋₁; oₜ; oₜ₊₁; Unfold",
+          "fa": "x؛ s؛ o؛ U؛ V؛ W؛ xₜ₋₁؛ xₜ؛ xₜ₊₁؛ sₜ₋₁؛ sₜ؛ sₜ₊₁؛ oₜ₋₁؛ oₜ؛ oₜ₊₁؛ بازگشایی (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "a9007221e3beb57c6bbf935b59ef43ff0d98a332092b260a0d7807cff04e7d43",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مزایای شبکهٔ عصبی بازگشتی (RNN)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "…"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• از نظر نظری، می‌تواند با بازگشایی گام‌های زمانی کمتر/بیشتر، ورودی با هر اندازه‌ای را پردازش کند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x; s; o; U; V; W; xₜ₋₁; xₜ; xₜ₊₁; sₜ₋₁; sₜ; sₜ₊₁; oₜ₋₁; oₜ; oₜ₊₁; Unfold",
+          "fa": "x؛ s؛ o؛ U؛ V؛ W؛ xₜ₋₁؛ xₜ؛ xₜ₊₁؛ sₜ₋₁؛ sₜ؛ sₜ₊₁؛ oₜ₋₁؛ oₜ؛ oₜ₊₁؛ بازگشایی (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "de2cb3f31e9e2a42bf9ff487c4ca4008084c53a4b805e24967841121af497046",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال شبکهٔ عصبی بازگشتی (RNN): پیش‌بینی دنبالهٔ نویسه‌ها"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• هدف: پیش‌بینی نویسهٔ بعدی در متن"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• دادهٔ آموزشی: دنباله‌ای از نویسه‌ها با بازنمایی بردارهای تک‌فعال (One-hot vectors)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "c9b7abfb69afd7f81d2ed48dbabcb31ce7e1221fccd08ebce1f5c3638497d412",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "http://karpathy.github.io/2015/05/21/rnn-effectiveness/"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "ورودی آموزشی؛ خروجی پیش‌بینی‌شده"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "مثال شبکهٔ عصبی بازگشتی (RNN): پیش‌بینی دنبالهٔ نویسه‌ها؛ مثلاً برای نوشتن یک صفحهٔ ویکی‌پدیا"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "DNA; Wikipedia",
+          "fa": "DNA (دی‌ان‌ای)؛ ویکی‌پدیا",
+          "verified": true
+        },
+        {
+          "en": "Naturalism and decision for the majority of Arab countries’ capitalide was grounded by the Irish language by [[John Clair]], [[An Imperial Japanese Revolt]], associated with Guangzham’s sovereignty. His generals were the powerful ruler of the Portugal in the [[Protestant Immineners]], which could be said to be directly in Cantonese Communication, which followed a ceremony and set inspired prison, training. The emperor travelled back to [[Antioch, Perth, October 25|21]] to note, the Kingdom of Costa Rica, unsuccessful fashioned the [[Thrales]], [[Cynth’s Dajoard]], known in western [[Scotland]], near Italy to the conquest of India with the conflict.",
+          "fa": "طبیعت‌گرایی و تصمیم برای اکثریت «capitalide» کشورهای عرب با زبان ایرلندی توسط [[John Clair]]، [[An Imperial Japanese Revolt]]، مرتبط با حاکمیت Guangzham بنیاد گذاشته شد. ژنرال‌های او حاکم قدرتمند پرتغال در [[Protestant Immineners]] بودند، که می‌شد گفت مستقیماً در ارتباطات کانتونی است، که مراسمی را دنبال کرد و زندان الهام‌گرفته‌ای را برپا کرد، آموزش. امپراتور برای اشاره به [[Antioch, Perth, October 25|21]] بازگشت، پادشاهی کاستاریکا، به‌طور ناموفق [[Thrales]]، [[Cynth’s Dajoard]] را شکل داد، شناخته‌شده در غرب [[Scotland]]، نزدیک ایتالیا برای فتح هند با تعارض. (ناپیوستگی‌های متن تولیدشدهٔ اصلی حفظ شده‌اند.)",
+          "verified": true
+        },
+        {
+          "en": "Copyright was the succession of independence in the slop of Syrian influence that was a famous German movement based on a more popular servicious, non-doctrinal and sexual power post. Many governments recognize the military housing of the [[Civil Liberalization and Infantry Resolution 265 National Party in Hungary]], that is sympathetic to be to the [[Punjab Resolution]] (PJS) [http://www.humah.yahoo.com/guardian.cfm/7754800786d17551963s89.htm Official economics Adjoint for the Nazism, Montgomery was swear to advance to the resources for those Socialism’s rule, was starting to signing a major tripad of aid exile.]]",
+          "fa": "حق تکثیر، جانشینی استقلال در شیب نفوذ سوری بود که جنبش مشهور آلمانی‌ای بر پایهٔ جایگاه قدرت خدمت‌وارِ محبوب‌تر، غیرآیینی و جنسی بود. دولت‌های بسیاری مسکن نظامی [[Civil Liberalization and Infantry Resolution 265 National Party in Hungary]] را به رسمیت می‌شناسند که همدلانه است با [[Punjab Resolution]] (PJS) [http://www.humah.yahoo.com/guardian.cfm/7754800786d17551963s89.htm معاون رسمی اقتصاد برای نازیسم، Montgomery سوگند بود که به منابع حکومت آن سوسیالیسم پیش برود، داشت شروع به امضای یک «tripad» عمده از تبعید کمک می‌کرد.]] (متن تولیدشدهٔ اصلی نارساست.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "bdb18c39883313fc7d14f2899b211ec1ec24f666feb7e90d5bf56a0b4fdfd02d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "https://github.com/martin-gorner/tensorflow-rnn-shakespeare"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "ورودی آموزشی (همهٔ آثار شکسپیر)؛ خروجی پیش‌بینی‌شده"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://karpathy.github.io/2015/05/21/rnn-effectiveness/"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "مثال شبکهٔ عصبی بازگشتی (RNN): پیش‌بینی دنبالهٔ نویسه‌ها؛ مثلاً برای نوشتن به سبک شکسپیر"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "THE TEMPEST; Actus primus, Scena prima.",
+          "fa": "توفان؛ پردهٔ نخست، صحنهٔ نخست",
+          "verified": true
+        },
+        {
+          "en": "PANDARUS: Alas, I think he shall be come approached and the day When little srain would be attain’d into being never fed, And who is but a chain and subjects of his death, I should not sleep.",
+          "fa": "پانداروس: افسوس، گمان می‌کنم او خواهد آمد نزدیک‌شده و روز، هنگامی که اندکی «srain» به بودنِ هرگز تغذیه‌نشده دست می‌یافت، و که جز زنجیری و رعایای مرگ او نیست، من نباید بخوابم. (نارسایی متن تولیدشده حفظ شده است.)",
+          "verified": true
+        },
+        {
+          "en": "Second Senator: They are away this miseries, produced upon my soul, Breaking and strongly should be buried, when I perish The earth and thoughts of many states.",
+          "fa": "سناتور دوم: آنان دورند این بدبختی‌ها، پدیدآمده بر جان من، شکستن و به‌نیرومندی باید دفن شوند، هنگامی که من نابود می‌شوم، زمین و افکار دولت‌های بسیار.",
+          "verified": true
+        },
+        {
+          "en": "DUKE VINCENTIO: Well, your wit is in the care of side and that.",
+          "fa": "دوک وینسنتیو: خوب، هوش تو در مراقبت از سویه و آن است.",
+          "verified": true
+        },
+        {
+          "en": "Second Lord: They would be ruled after this chamber, and my fair nues begun out of the fact, to be conveyed, Whose noble souls I’ll have the heart of the wars.",
+          "fa": "ارباب دوم: آنان پس از این اتاق فرمان خواهند برد، و «nues» زیبای من از واقعیت آغاز شد، تا منتقل شود، که جان‌های نجیبشان را خواهم داشت قلب جنگ‌ها.",
+          "verified": true
+        },
+        {
+          "en": "Clown: Come, sir, I will make did behold your worship. VIOLA: I’ll drink it.",
+          "fa": "دلقک: بیا، آقا، من خواهم ساخت کرد دیدن جناب‌عالی‌ات. ویولا: آن را خواهم نوشید.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "1b5b8f1c164d1402653dcb8b600d48254d2564c527047c34b408df14894e0a0f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "مثال شبکهٔ عصبی بازگشتی (RNN): پیش‌بینی دنبالهٔ نویسه‌ها؛ مثلاً برای نوشتن کد"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://github.com/martin-gorner/tensorflow-rnn-shakespeare"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "ورودی آموزشی (کد C در GitHub)؛ خروجی پیش‌بینی‌شده"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "http://karpathy.github.io/2015/05/21/rnn-effectiveness/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Bad block management; Heavily based on MD badblocks code from Neil Brown; Copyright (c) 2015, Intel Corporation.",
+          "fa": "مدیریت بلوک خراب؛ به‌میزان زیادی مبتنی بر کد MD badblocks از Neil Brown؛ حق تکثیر (c) ۲۰۱۵، شرکت اینتل.",
+          "verified": true
+        },
+        {
+          "en": "This program is free software; you can redistribute it and/or modify it under the terms and conditions of the GNU General Public License, version 2, as published by the Free Software Foundation. This program is distributed in the hope it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.",
+          "fa": "این برنامه نرم‌افزار آزاد است؛ می‌توانید آن را تحت شرایط مجوز عمومی همگانی گنو، نسخهٔ ۲، منتشرشده توسط بنیاد نرم‌افزار آزاد بازتوزیع و/یا اصلاح کنید. این برنامه به امید مفید بودن توزیع می‌شود، اما بدون هیچ ضمانتی؛ حتی بدون ضمانت ضمنی قابلیت فروش یا مناسب بودن برای منظوری خاص. برای جزئیات بیشتر مجوز عمومی همگانی گنو را ببینید.",
+          "verified": true
+        },
+        {
+          "en": "Increment the size file of the new incorrect UI_FILTER group information of the size generatively.; The kernel blank will coeld it to userspace.",
+          "fa": "اندازهٔ فایلِ اطلاعات گروه نادرست جدید UI_FILTER را از اندازه به‌صورت مولد افزایش دهید.؛ جای خالی هسته آن را به فضای کاربر «coeld» خواهد کرد. (توضیحات نارسای کد تولیدشدهٔ اصلی حفظ شده‌اند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "c7d287040a0e6d3207c3607ff3877fdff4be053e69d1513ba36cf29db6b7dae9",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "https://hjweide.github.io/char-rnn"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "ورودی آموزشی؛ خروجی پیش‌بینی‌شده"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "پیام‌های فیسبوک از…"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "مثال شبکهٔ عصبی بازگشتی (RNN): پیش‌بینی دنبالهٔ نویسه‌ها؛ مثلاً برای نوشتن پیام‌های فیسبوک"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Hendrik J. Weideman; Ph.D. candidate at Rensselaer Polytechnic Institute",
+          "fa": "Hendrik J. Weideman؛ دانشجوی دکتری در مؤسسهٔ پلی‌تکنیک رنسلیر",
+          "verified": true
+        },
+        {
+          "en": "1. The meaning of life is to find them? Oh, I don’t know if I would be able to publish a paper on that be climbing today, but it will definitely know what that makes sense. I’m sure they wanted to socialis that I am bringing or",
+          "fa": "۱. معنای زندگی پیدا کردن آن‌هاست؟ اوه، نمی‌دانم آیا می‌توانم مقاله‌ای دربارهٔ آن منتشر کنم که امروز بالا می‌رود، اما قطعاً خواهد دانست چه چیزی معنا دارد. مطمئنم آن‌ها می‌خواستند «socialis» کنند که من می‌آورم یا",
+          "verified": true
+        },
+        {
+          "en": "2. What a cruel twist of fate, that we should be persuate that 😂 And cook :D I will think that’s mean I think I need to go to the phoebe? That’s awesome though Haha, sorry, I don’t know if it was more time to clas for it’s badass though I jus",
+          "fa": "۲. چه چرخش بی‌رحمانهٔ سرنوشتی، که باید «persuate» باشیم که 😂 و آشپزی :D فکر خواهم کرد یعنی فکر می‌کنم لازم است به «phoebe» بروم؟ بااین‌حال عالی است. هاها، ببخشید، نمی‌دانم آیا زمان بیشتری برای «clas» بود چون خیلی خفن است بااین‌حال من فقط",
+          "verified": true
+        },
+        {
+          "en": "3. The fact of the matter is just the world to invite your stuff? I don’t know how to right it wouldn’t be as offrriving for anything, so that would be awesome, thanks :) I have no idea… She would get to worry about it :P And I",
+          "fa": "۳. واقعیت مطلب فقط جهان است برای دعوت وسایلت؟ نمی‌دانم چطور درستش کنم برای هیچ‌چیز به همان اندازه «offrriving» نمی‌بود، پس عالی می‌شد، ممنون :) هیچ نظری ندارم… او نگرانش می‌شد :P و من",
+          "verified": true
+        },
+        {
+          "en": "4. At the very least, you should remember that as a house of a perfect problems 😂 Yeah :D I wonder how perfect for this trank though So it’s probably follower before the bathers will be fine and haven’t want to make it worse Thanks for one of",
+          "fa": "۴. دست‌کم باید آن را به‌عنوان خانه‌ای از مشکلات کامل به یاد بیاوری 😂 بله :D تعجب می‌کنم چقدر برای این «trank» کامل است بااین‌حال پس احتمالاً دنبال‌کننده است پیش از آنکه حمام‌کنندگان خوب شوند و نخواسته‌اند بدترش کنند ممنون برای یکی از",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "3fe0c4ba46d9f78457220370e5c228b274e1efbabf02f7d206f95dbab29c701e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "• هدف: پیش‌بینی نویسهٔ بعدی در متن"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• پیش‌بینی: دنبالهٔ آموزشی نویسه‌های کدگذاری‌شده به‌صورت تک‌فعال (One-hot) را وارد کنید؛ مثلاً «hello» (سلام)."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• برای سادگی، واژگان زیر (یعنی مجموعهٔ نویسه‌ها) را فرض کنید: {h, e, l, o}"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ورودی ما در گام زمانی ۱ چیست؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• ورودی ما در گام زمانی ۲ چیست؟"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• ورودی ما در گام زمانی ۳ چیست؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• ورودی ما در گام زمانی ۴ چیست؟"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• و به همین ترتیب…"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "مثال: پیش‌بینی دنبالهٔ نویسه‌ها"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "reference",
+          "fa": "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "h: [1 0 0 0]ᵀ; e: [0 1 0 0]ᵀ; l: [0 0 1 0]ᵀ; l: [0 0 1 0]ᵀ",
+          "fa": "h: [1 0 0 0]ᵀ؛ e: [0 1 0 0]ᵀ؛ l: [0 0 1 0]ᵀ؛ l: [0 0 1 0]ᵀ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "b73e92d405ca2b9647d9df51dc6ed40d46a2da00e1ef127133ba957f5ff9140e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "سیگموید (Sigmoid)؛ تانژانت هذلولوی (Tanh)؛ واحد خطی یکسوشده (ReLU)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "توابع فعال‌سازی (Activation functions) را به یاد بیاورید: از tanh به‌عنوان تابع فعال‌سازی استفاده کنید."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "مثال: پیش‌بینی دنبالهٔ نویسه‌ها"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "σ(z)=1/(1+exp(−z)); tanh(z)=(exp(z)−exp(−z))/(exp(z)+exp(−z)); ReLU(z)=max(0,z)",
+          "fa": "σ(z)=1/(1+exp(−z))؛ tanh(z)=(exp(z)−exp(−z))/(exp(z)+exp(−z))؛ ReLU(z)=max(0,z)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "b5cb7cd4de4cce65d2e4d1b4587a609d725a21d4e2d6478d6a62d90d239d651c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "+ بایاس (Bias) )"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "مثال: پیش‌بینی دنبالهٔ نویسه‌ها"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "چرا برای ماتریس وزن از سه سطر به‌جای ۱ سطر استفاده می‌کنیم؟"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "— پارامترهای مدل بیشتری فراهم می‌کند و بنابراین می‌تواند تابع پیچیده‌تری تولید کند؛ تعداد سطرها ابرپارامتری است که توسعه‌دهنده تنظیم می‌کند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "hₜ = tanh(Wₕₕhₜ₋₁ + Wₓₕxₜ + bias); Wxh; hₜ₋₁; xₜ₋₁; f",
+          "fa": "hₜ = tanh(Wₕₕhₜ₋₁ + Wₓₕxₜ + بایاس)؛ Wxh؛ hₜ₋₁؛ xₜ₋₁؛ f",
+          "verified": true
+        },
+        {
+          "en": "wxh = [0.287027 0.84606 0.572392 0.486813; 0.902874 0.871522 0.691079 0.18998; 0.537524 0.09224 0.558159 0.491528]",
+          "fa": "wxh = [0.287027 0.84606 0.572392 0.486813; 0.902874 0.871522 0.691079 0.18998; 0.537524 0.09224 0.558159 0.491528]",
+          "verified": true
+        },
+        {
+          "en": "[1 0 0 0]ᵀ → [0.287027 0.902874 0.537524]ᵀ",
+          "fa": "[1 0 0 0]ᵀ → [0.287027 0.902874 0.537524]ᵀ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "1cd47819c4838bf035658391524648861553e95460926e86cc15f092aee1c415",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "+ بایاس (Bias) )"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "ورودی در گام زمانی بعدی"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "مقداردهی اولیه با ۰"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "مقداردهی اولیه با مقدار تصادفی: 0.567001"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "مثال: پیش‌بینی دنبالهٔ نویسه‌ها"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "hₜ = tanh(Wₕₕhₜ₋₁ + Wₓₕxₜ + bias); Wxh; hₜ₋₁; xₜ₋₁; f",
+          "fa": "hₜ = tanh(Wₕₕhₜ₋₁ + Wₓₕxₜ + بایاس)؛ Wxh؛ hₜ₋₁؛ xₜ₋₁؛ f",
+          "verified": true
+        },
+        {
+          "en": "wxh = [0.287027 0.84606 0.572392 0.486813; 0.902874 0.871522 0.691079 0.18998; 0.537524 0.09224 0.558159 0.491528]",
+          "fa": "wxh = [0.287027 0.84606 0.572392 0.486813; 0.902874 0.871522 0.691079 0.18998; 0.537524 0.09224 0.558159 0.491528]",
+          "verified": true
+        },
+        {
+          "en": "Hₜ = TANH([0.287027359 0.902874425 0.537523791]ᵀ + [0.567001 0.567001 0.567001]ᵀ) = [0.693168 0.899554 0.802118]ᵀ",
+          "fa": "Hₜ = TANH([0.287027359 0.902874425 0.537523791]ᵀ + [0.567001 0.567001 0.567001]ᵀ) = [0.693168 0.899554 0.802118]ᵀ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "42363c5cfa0749735cf1839b13cfbc4c4d81c31bd222aaeed3908c4f04a27541",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "+ بایاس (Bias) )"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "خروجی در گام زمانی قبلی"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "مقداردهی اولیه با مقدار تصادفی: 0.427043؛ مقداردهی اولیه‌شده با مقدار تصادفی: 0.567001"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "مثال: پیش‌بینی دنبالهٔ نویسه‌ها"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "hₜ = tanh(Wₕₕhₜ₋₁ + Wₓₕxₜ + bias); Wxh; hₜ₋₁; xₜ₋₁; f",
+          "fa": "hₜ = tanh(Wₕₕhₜ₋₁ + Wₓₕxₜ + بایاس)؛ Wxh؛ hₜ₋₁؛ xₜ₋₁؛ f",
+          "verified": true
+        },
+        {
+          "en": "wxh = [0.287027 0.84606 0.572392 0.486813; 0.902874 0.871522 0.691079 0.18998; 0.537524 0.09224 0.558159 0.491528]",
+          "fa": "wxh = [0.287027 0.84606 0.572392 0.486813; 0.902874 0.871522 0.691079 0.18998; 0.537524 0.09224 0.558159 0.491528]",
+          "verified": true
+        },
+        {
+          "en": "[0 1 0 0]ᵀ → [0.84606 0.871522 0.09224]ᵀ; TANH{0.427043 × [0.693168 0.899554 0.802118]ᵀ + [0.84606 0.871522 0.09224]ᵀ + [0.567001 0.567001 0.567001]ᵀ} = [0.93653372 0.94910403 0.76234056]ᵀ",
+          "fa": "[0 1 0 0]ᵀ → [0.84606 0.871522 0.09224]ᵀ؛ TANH{0.427043 × [0.693168 0.899554 0.802118]ᵀ + [0.84606 0.871522 0.09224]ᵀ + [0.567001 0.567001 0.567001]ᵀ} = [0.93653372 0.94910403 0.76234056]ᵀ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "71c63655ff95ddd1916c8bfb2251224eff83962a911592141993a34ad93746db",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: پیش‌بینی برای گام زمانی ۲"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "اعمال سافت‌مکس (Softmax) برای محاسبهٔ احتمال حروف:"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "yₜ = Wₕᵧhₜ; why = [0.37168 0.974829459 0.830034886; 0.39141 0.282585823 0.659835709; 0.64985 0.09821557 0.334287084; 0.91266 0.32581642 0.144630018]; Ht = [0.936534 0.949104 0.762341]ᵀ; yt = [1.90607732 1.13779113 0.95666016 1.27422602]ᵀ",
+          "fa": "yₜ = Wₕᵧhₜ؛ why = [0.37168 0.974829459 0.830034886; 0.39141 0.282585823 0.659835709; 0.64985 0.09821557 0.334287084; 0.91266 0.32581642 0.144630018]؛ Ht = [0.936534 0.949104 0.762341]ᵀ؛ yt = [1.90607732 1.13779113 0.95666016 1.27422602]ᵀ",
+          "verified": true
+        },
+        {
+          "en": "[0.419748 0.194682 0.162429 0.223141]ᵀ",
+          "fa": "[0.419748 0.194682 0.162429 0.223141]ᵀ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "2fbd039678b4c6afcda06f4d4c09c404bdeea655f63ea0c8eb8f0161f2399888",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: پیش‌بینی برای گام زمانی ۲"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "اعمال سافت‌مکس (Softmax) برای محاسبهٔ احتمال حروف:"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "با توجه به اینکه واژگان ما {h, e, l, o} است، چه حرفی پیش‌بینی می‌شود؟"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "reference",
+          "fa": "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "[0.419748 0.194682 0.162429 0.223141]ᵀ",
+          "fa": "[0.419748 0.194682 0.162429 0.223141]ᵀ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "3884b94b8d6786fedf193ffa2b8874128163191d990bc9ff0d54c00cc746fe3a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکرد آموزش"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• تا برآورده شدن معیار توقف، تکرار کنید:"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "۱. گذر پیش‌رو (Forward pass): برای پیش‌بینی، دادهٔ آموزشی را در شبکهٔ بازگشایی‌شده منتشر کنید."
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7
+          ],
+          "kind": "bullet",
+          "fa": "۲. میزان نارضایتی از نتایج مدل روی داده‌های آموزشی را کمّی کنید."
+        },
+        {
+          "source_lines": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "kind": "bullet",
+          "fa": "۳. گذر پس‌رو (Backward pass): با استفاده از خروجی پیش‌بینی‌شده، گرادیان‌ها را به عقب محاسبه کنید تا سهم تقصیر هر پارامتر مدل مشخص شود؛ اشتراک وزن‌ها با جمع کردن گرادیان‌های همهٔ گام‌های زمانی در نظر گرفته می‌شود."
+        },
+        {
+          "source_lines": [
+            15,
+            16
+          ],
+          "kind": "bullet",
+          "fa": "۴. هر پارامتر را با استفاده از گرادیان‌های محاسبه‌شده به‌روزرسانی کنید."
+        },
+        {
+          "source_lines": [
+            17,
+            18
+          ],
+          "kind": "text",
+          "fa": "شکل از: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul, Jeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(a) Forward pass; (b) Backward pass; x₁; x₂; w₁; w₂; w₃; w₄; w₅; w₆; y₁; y₂; y₃; E(y₃,t); ∂E/∂w₁; ∂E/∂w₂; ∂E/∂w₃; ∂E/∂w₄; ∂E/∂w₅; ∂E/∂w₆; ∂E/∂y₁; ∂E/∂y₂; ∂E/∂y₃; ∂E/∂E",
+          "fa": "(a) گذر پیش‌رو؛ (b) گذر پس‌رو؛ x₁؛ x₂؛ w₁؛ w₂؛ w₃؛ w₄؛ w₅؛ w₆؛ y₁؛ y₂؛ y₃؛ E(y₃,t)؛ ∂E/∂w₁؛ ∂E/∂w₂؛ ∂E/∂w₃؛ ∂E/∂w₄؛ ∂E/∂w₅؛ ∂E/∂w₆؛ ∂E/∂y₁؛ ∂E/∂y₂؛ ∂E/∂y₃؛ ∂E/∂E",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "a2bf56284944084e167d74aca3fc59cee8b6a6a6ff16c9cc722ba4f77e35296b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکرد آموزش"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• تا برآورده شدن معیار توقف، تکرار کنید:"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "۱. گذر پیش‌رو (Forward pass): برای پیش‌بینی، دادهٔ آموزشی را در شبکهٔ بازگشایی‌شده منتشر کنید."
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7
+          ],
+          "kind": "bullet",
+          "fa": "۲. میزان نارضایتی از نتایج مدل روی داده‌های آموزشی را کمّی کنید."
+        },
+        {
+          "source_lines": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "kind": "bullet",
+          "fa": "۳. گذر پس‌رو (Backward pass): با استفاده از خروجی پیش‌بینی‌شده، گرادیان‌ها را به عقب محاسبه کنید تا سهم تقصیر هر پارامتر مدل مشخص شود؛ اشتراک وزن‌ها با جمع کردن گرادیان‌های همهٔ گام‌های زمانی در نظر گرفته می‌شود."
+        },
+        {
+          "source_lines": [
+            15,
+            16
+          ],
+          "kind": "bullet",
+          "fa": "۴. هر پارامتر را با استفاده از گرادیان‌های محاسبه‌شده به‌روزرسانی کنید."
+        },
+        {
+          "source_lines": [
+            17,
+            18
+          ],
+          "kind": "text",
+          "fa": "شکل از: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul, Jeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018"
+        },
+        {
+          "source_lines": [
+            19,
+            20
+          ],
+          "kind": "text",
+          "fa": "برای استخراج روابط پس‌انتشار در زمان (Back-propagation through time؛ BPTT)، به خواندنی‌های تعیین‌شده مراجعه کنید."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "cc1df1f0a3c4a234f9e09a49a3e823a3a028add010d752ea69f8f3459615ccb4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture10.pdf"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "رویکرد آموزش؛ مثلاً زیان چندبه‌چند (Many-to-Many Loss)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Loss",
+          "fa": "زیان (Loss)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "dd84b35a219974925fe8a707a105e11286eb857a7fe347f93e4375606bcdbb49",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "مثال: پیش‌بینی دنبالهٔ نویسه‌ها در زمان آزمون"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "پیش‌بینی قبلی را … به‌عنوان ورودی گام زمانی بعدی وارد کنید."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "dd84b35a219974925fe8a707a105e11286eb857a7fe347f93e4375606bcdbb49",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "مثال: پیش‌بینی دنبالهٔ نویسه‌ها در زمان آزمون"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "پیش‌بینی قبلی را … به‌عنوان ورودی گام زمانی بعدی وارد کنید."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "d8e0756d0ebcff10c84f432f46e3c15fa94bef5e5ffb6481514dae05b02f5f3b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گونه‌های شبکهٔ عصبی بازگشتی (RNN): تعداد متفاوت لایه‌های پنهان"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "شواهد تجربی نشان می‌دهند مدل‌های عمیق‌تر می‌توانند عملکرد بهتری داشته باشند:"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "- Graves et al.; Speech Recognition with Deep Recurrent Neural Networks; 2013."
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "- Pascanu et al.; How to Construct Deep Recurrent Neural Networks; 2014."
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "reference",
+          "fa": "http://cs231n.stanford.edu/slides/2016/winter1516_lecture10.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "depth; time",
+          "fa": "عمق؛ زمان",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "c3e1f083e465f9cad5d7b0762d9fe6ce3a633b8caff283307e8d963b78ba66e4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گونه‌های شبکهٔ عصبی بازگشتی (RNN): طول‌های متغیر ورودی/خروجی"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "برای دسته‌بندی متن از کدام گونه استفاده می‌کنید؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://cs231n.stanford.edu/slides/2016/winter1516_lecture10.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "one to one; one to many; many to one; many to many",
+          "fa": "یک‌به‌یک؛ یک‌به‌چند؛ چندبه‌یک؛ چندبه‌چند",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "45046944826a42167c1b150ce30d603ac0a3de44acd2f4f309431ec48230d82c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گونه‌های شبکهٔ عصبی بازگشتی (RNN): طول‌های متغیر ورودی/خروجی"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "چرا گونهٔ اول «چندبه‌چند» را به گونهٔ دوم ترجیح می‌دهید؟"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "— پیش از پیش‌بینی به بافت کامل نیاز داریم؛ مثلاً گفت‌وگوی متنی."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "http://cs231n.stanford.edu/slides/2016/winter1516_lecture10.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "one to one; one to many; many to one; many to many",
+          "fa": "یک‌به‌یک؛ یک‌به‌چند؛ چندبه‌یک؛ چندبه‌چند",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "727b32b59cd05eb19b862b51409a2c092c13b96db3c8471d20c4821ea16e567c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گونه‌های شبکهٔ عصبی بازگشتی (RNN): طول‌های متغیر ورودی/خروجی"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "چرا گونهٔ دوم «چندبه‌چند» را به گونهٔ اول ترجیح می‌دهید؟"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "— برای پیش‌بینی به بافت کامل نیاز نیست؛ مثلاً بازشناسی موجودیت نام‌دار (Named entity recognition)."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "https://en.wikipedia.org/wiki/Named-entity_recognition"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "reference",
+          "fa": "http://cs231n.stanford.edu/slides/2016/winter1516_lecture10.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "one to one; one to many; many to one; many to many",
+          "fa": "یک‌به‌یک؛ یک‌به‌چند؛ چندبه‌یک؛ چندبه‌چند",
+          "verified": true
+        },
+        {
+          "en": "[Jim]Person bought 300 shares of [Acme Corp.]Organization in [2006]Time.",
+          "fa": "[Jim]Person bought 300 shares of [Acme Corp.]Organization in [2006]Time. (جیم [شخص] در سال ۲۰۰۶ [زمان]، ۳۰۰ سهم از شرکت Acme Corp. [سازمان] خرید.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "431e047458c897ee17bd4f395576e0e7cb2fbf5a865f42b6342916a875526af6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری ماشین برای داده‌های دنباله‌ای"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های عصبی بازگشتی (RNNs)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های عصبی بازگشتی دروازه‌دار (Gated RNNs)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "bcfc26521ba535f40d7ddc531a0594b57442c16a1a67a2011efb55c24f4fdb1f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "زمینهٔ تاریخی؛ نخستین ماشین برنامه‌پذیر"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "2012"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "آزمون تورینگ (Turing test)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "1945"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "هوش مصنوعی (AI)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "1956"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "literal",
+          "fa": "1950 1959"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "شبکهٔ بازگشتی (RNN): مقالهٔ روملهارت «یادگیری بازنمایی‌ها با پس‌انتشار خطاها» (Learning representations by back-propagating errors)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "literal",
+          "fa": "AlexNet"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "۱۹۵۷، پرسپترون (Perceptron)"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "text",
+          "fa": "۱۸۴۷، گرادیان کاهشی (Gradient descent)"
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "text",
+          "fa": "یادگیری ماشین (Machine learning)"
+        },
+        {
+          "source_lines": [
+            13
+          ],
+          "kind": "literal",
+          "fa": "1986"
+        },
+        {
+          "source_lines": [
+            14
+          ],
+          "kind": "literal",
+          "fa": "1997"
+        },
+        {
+          "source_lines": [
+            15
+          ],
+          "kind": "text",
+          "fa": "پس‌انتشار (Backpropagation) برای شبکه‌های کانولوشنی (CNNs)"
+        },
+        {
+          "source_lines": [
+            16
+          ],
+          "kind": "literal",
+          "fa": "1989"
+        },
+        {
+          "source_lines": [
+            17
+          ],
+          "kind": "text",
+          "fa": "LeNet"
+        },
+        {
+          "source_lines": [
+            18
+          ],
+          "kind": "text",
+          "fa": "نئوکگنیترون (Neocognitron)"
+        },
+        {
+          "source_lines": [
+            19
+          ],
+          "kind": "literal",
+          "fa": "1980"
+        },
+        {
+          "source_lines": [
+            20
+          ],
+          "kind": "literal",
+          "fa": "LSTM"
+        },
+        {
+          "source_lines": [
+            21
+          ],
+          "kind": "literal",
+          "fa": "2014"
+        },
+        {
+          "source_lines": [
+            22
+          ],
+          "kind": "literal",
+          "fa": "GRU"
+        },
+        {
+          "source_lines": [
+            23
+          ],
+          "kind": "literal",
+          "fa": "1998"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "255073431ba2cd9fcc6de8b9f56747e163209019886b3f36ff66b0a1903611c3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "انگیزه: مسئلهٔ محوشدن گرادیان‌ها (Vanishing Gradients) را به یاد بیاورید."
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "کوچک‌ترین گرادیان‌ها در ابتدایی‌ترین لایه‌ها، آموزش آن‌ها را از همه کندتر می‌کنند؛ بااین‌حال لایه‌های بعدی برای انجام کاری مفید به همان لایه‌های قبلی وابسته‌اند؛ در نتیجه، شبکه‌های عصبی با مسئلهٔ «ورودی بی‌کیفیت، خروجی بی‌کیفیت» روبه‌رو می‌شوند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/batch-normalization-the-greatest-breakthrough-in-deep-learning-77e64909d81d"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Backpropagation Signal in Neural Networks (gradually diminishes)",
+          "fa": "سیگنال پس‌انتشار در شبکه‌های عصبی (به‌تدریج کاهش می‌یابد)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "60d8d01400da30377065e5770b90dfb080471063f7ff3ef4bbfa123ff49d2f2b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "انگیزه: مسئلهٔ محوشدن گرادیان‌ها (Vanishing Gradients) را به یاد بیاورید."
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "سیگموید (Sigmoid)؛ تانژانت هذلولوی (Tanh)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "در بازهٔ ۰ تا ۱ است و معمولاً کمتر از ۱:"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "علت اصلی، توابع فعال‌سازی و مشتق‌های آن‌هاست:"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "Masi et al. Journal of the Mechanics and Physics of Solids. 2021"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "A(z); A′(z); 1/(1+e⁻ᶻ); e⁻ᶻ/(1+e⁻ᶻ)²; tanh(z); cosh⁻²(z)",
+          "fa": "A(z)؛ A′(z)؛ 1/(1+e⁻ᶻ)؛ e⁻ᶻ/(1+e⁻ᶻ)²؛ tanh(z)؛ cosh⁻²(z)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "29c0f3976986c1d1a0987b8b2507a2f26892263aa4895f552c705c689d2f1205",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چالش شبکهٔ عصبی بازگشتی (RNN): یادگیری وابستگی‌های بلندمدت (Long-Term Dependencies)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• مثلاً در زبان: «In 2004, I started college» (در سال ۲۰۰۴ دانشگاه را شروع کردم) در برابر «I started college in 2004» (دانشگاه را در سال ۲۰۰۴ شروع کردم)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• برای مثال،"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• محوشدن گرادیان: حاصل‌ضرب اعداد کوچک‌تر از ۱ به سمت صفر کوچک می‌شود."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Outputs; Hidden Layer; Inputs; Time; 1; 2; 3; 4; 5; 6; 7; ∂E/∂W = ∂E/∂y₃ · ∂y₃/∂h₃ · ∂h₃/∂y₂ · ∂y₂/∂h₁",
+          "fa": "خروجی‌ها؛ لایهٔ پنهان؛ ورودی‌ها؛ زمان؛ 1؛ 2؛ 3؛ 4؛ 5؛ 6؛ 7؛ ∂E/∂W = ∂E/∂y₃ · ∂y₃/∂h₃ · ∂h₃/∂y₂ · ∂y₂/∂h₁",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "a2b60365cf52078f31ab19afe3df113239d7bef0b901d6097ea5fb39d0fc3d9d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چالش شبکهٔ عصبی بازگشتی (RNN): یادگیری وابستگی‌های بلندمدت (Long-Term Dependencies)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "تشبیه: حافظهٔ گذشته در RNN کاهش می‌یابد، شبیه به اینکه با دورتر شدن خودروی برف‌روب در جاده، مسیر شروع به ناپدید شدن می‌کند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "تصویر: https://www.timesunion.com/news/article/albany-saratoga-snow-totals-16826908.php"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "c068c5fc05b5695497ebaa676e0d6f1f2bc43e221605441cb3256c6b25f74bfc",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "راهکارهای مقابله با محوشدن گرادیان (Vanishing Gradient) چیست؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• بسیاری از راهکارهایی که بررسی کردیم برای RNNها نیز قابل استفاده‌اند؛ مثلاً،"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• توابع فعال‌سازی ReLU"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• مقداردهی اولیهٔ هوشمندانهٔ وزن‌ها"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• اتصال‌های میان‌بُر (Skip connections)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• راه‌حل رایج برای RNN: دروازه‌ها (Gates)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "933e6703c7343886713df93ca6e3c6ad963e2fe82e9bee2da91a3541126b1b4d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گونهٔ رایج شمارهٔ ۱ شبکهٔ بازگشتی: حافظهٔ بلندمدت کوتاه‌مدت (LSTM)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "هم حالت پنهان (Hidden State) قبلی و هم حالت سلول (Cell state)، به گام‌های زمانی بعدی منتقل می‌شوند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://adventuresinmachinelearning.com/recurrent-neural-networks-lstm-tutorial-tensorflow/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "hₜ₋₁; xₜ; input; input gate; forget gate; output gate; tanh; σ; sₜ₋₁; sₜ; hₜ; ×; +",
+          "fa": "hₜ₋₁؛ xₜ؛ ورودی؛ دروازهٔ ورودی؛ دروازهٔ فراموشی؛ دروازهٔ خروجی؛ tanh؛ σ؛ sₜ₋₁؛ sₜ؛ hₜ؛ ×؛ +",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "40ad16ef9b1e75f382913d74ee429fda39bd10e4c0bdf7fb5a5a6d045dcb335c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گونهٔ رایج شمارهٔ ۱ شبکهٔ بازگشتی: حافظهٔ بلندمدت کوتاه‌مدت (LSTM)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "حالت سلول (Cell state): می‌تواند حافظهٔ گذشته را برای مدتی طولانی حفظ کند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://adventuresinmachinelearning.com/recurrent-neural-networks-lstm-tutorial-tensorflow/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "hₜ₋₁; xₜ; input; input gate; forget gate; output gate; tanh; σ; sₜ₋₁; sₜ; hₜ; ×; +",
+          "fa": "hₜ₋₁؛ xₜ؛ ورودی؛ دروازهٔ ورودی؛ دروازهٔ فراموشی؛ دروازهٔ خروجی؛ tanh؛ σ؛ sₜ₋₁؛ sₜ؛ hₜ؛ ×؛ +",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "d2e411e37a083d1b6fa420709061ba101bfb8f22009592d865339e260a24940b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گونهٔ رایج شمارهٔ ۱ شبکهٔ بازگشتی: حافظهٔ بلندمدت کوتاه‌مدت (LSTM)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "حالت سلول (Cell state): می‌تواند براساس دروازهٔ فراموشی (Forget gate)، حافظهٔ گذشته را برای مدتی طولانی حفظ کند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://adventuresinmachinelearning.com/recurrent-neural-networks-lstm-tutorial-tensorflow/"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "g؛ i؛ f"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "عمل جمع به حالت سلول اجازه می‌دهد در طول زمان برای مدت‌های طولانی به عقب جریان یابد."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "hₜ₋₁; xₜ; input; input gate; forget gate; output gate; tanh; σ; sₜ₋₁; sₜ; hₜ; ×; +",
+          "fa": "hₜ₋₁؛ xₜ؛ ورودی؛ دروازهٔ ورودی؛ دروازهٔ فراموشی؛ دروازهٔ خروجی؛ tanh؛ σ؛ sₜ₋₁؛ sₜ؛ hₜ؛ ×؛ +",
+          "verified": true
+        },
+        {
+          "en": "sₜ = sₜ₋₁ ∘ f + g ∘ i; ∂sₜ/∂sₜ₋₁ = f",
+          "fa": "sₜ = sₜ₋₁ ∘ f + g ∘ i؛ ∂sₜ/∂sₜ₋₁ = f",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "1e7d7bd1dd6c3fbc209b6e032d662b1272084bae493da465df184a2650ecf5eb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گونهٔ رایج شمارهٔ ۱ شبکهٔ بازگشتی: حافظهٔ بلندمدت کوتاه‌مدت (LSTM)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "حالت سلول (Cell state): می‌تواند براساس دروازهٔ فراموشی (Forget gate)، حافظهٔ گذشته را برای مدتی طولانی حفظ کند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://adventuresinmachinelearning.com/recurrent-neural-networks-lstm-tutorial-tensorflow/"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "g؛ i؛ f"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "بازهٔ دروازهٔ فراموشی: ۰ تا ۱"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• اگر ۰ باشد چه رخ می‌دهد؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• گذشته کنار گذاشته می‌شود."
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• اگر ۱ باشد چه رخ می‌دهد؟"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• گذشته حفظ می‌شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "hₜ₋₁; xₜ; input; input gate; forget gate; output gate; tanh; σ; sₜ₋₁; sₜ; hₜ; ×; +",
+          "fa": "hₜ₋₁؛ xₜ؛ ورودی؛ دروازهٔ ورودی؛ دروازهٔ فراموشی؛ دروازهٔ خروجی؛ tanh؛ σ؛ sₜ₋₁؛ sₜ؛ hₜ؛ ×؛ +",
+          "verified": true
+        },
+        {
+          "en": "sₜ = sₜ₋₁ ∘ f + g ∘ i; ∂sₜ/∂sₜ₋₁ = f",
+          "fa": "sₜ = sₜ₋₁ ∘ f + g ∘ i؛ ∂sₜ/∂sₜ₋₁ = f",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "37b56676357a2e2de94ff21009526c131f49b1402a5e6045274b85031532162f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گونهٔ رایج شمارهٔ ۱ شبکهٔ بازگشتی: حافظهٔ بلندمدت کوتاه‌مدت (LSTM)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "حالت سلول (Cell state): می‌تواند براساس دروازهٔ فراموشی (Forget gate)، حافظهٔ گذشته را برای مدتی طولانی حفظ کند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://adventuresinmachinelearning.com/recurrent-neural-networks-lstm-tutorial-tensorflow/"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "دروازه نامیده می‌شود، چون تابع سیگموید حالت باز (۱) و بسته (۰) را تقلید می‌کند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "hₜ₋₁; xₜ; input; input gate; forget gate; output gate; tanh; σ; sₜ₋₁; sₜ; hₜ; ×; +",
+          "fa": "hₜ₋₁؛ xₜ؛ ورودی؛ دروازهٔ ورودی؛ دروازهٔ فراموشی؛ دروازهٔ خروجی؛ tanh؛ σ؛ sₜ₋₁؛ sₜ؛ hₜ؛ ×؛ +",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "54e9ba0c096ecbe4231b20387f215ba0f6a186e7670918335f0124035b152800",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گونهٔ رایج شمارهٔ ۱ شبکهٔ بازگشتی: واحد بازگشتی دروازه‌دار (Gated Recurrent Unit)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• LSTM را با ادغام این موارد ساده می‌کند: (۱) حالت سلول و حالت پنهان، و (۲) دروازه‌های فراموشی و ورودی."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "K. Chou et al; Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation; 2014"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://en.wikipedia.org/wiki/Gated_recurrent_unit"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "h[t−1]; x[t]; r[t]; z[t]; h̃[t]; ŷ[t]; h[t]; 1−; σ; tanh; ×; +",
+          "fa": "h[t−1]؛ x[t]؛ r[t]؛ z[t]؛ h̃[t]؛ ŷ[t]؛ h[t]؛ 1−؛ σ؛ tanh؛ ×؛ +",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "431e047458c897ee17bd4f395576e0e7cb2fbf5a865f42b6342916a875526af6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری ماشین برای داده‌های دنباله‌ای"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های عصبی بازگشتی (RNNs)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های عصبی بازگشتی دروازه‌دار (Gated RNNs)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "431e047458c897ee17bd4f395576e0e7cb2fbf5a865f42b6342916a875526af6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری ماشین برای داده‌های دنباله‌ای"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های عصبی بازگشتی (RNNs)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های عصبی بازگشتی دروازه‌دار (Gated RNNs)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3322 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s11",
+  "source_sha256": "a5080a680ecfe892830a1c2603f566d2d2deb2beed7b660b6ac94bd92c497981",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "81637d74c3d6b62385b82d7cf15f3fa8f09571d44984efc9ec45faa0f729f235",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ویژگی‌های ازپیش‌آموختهٔ شبکهٔ عصبی کانولوشنی (CNN) و تنظیم دقیق (Fine-Tuning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "دانشگاه کلرادو بولدر (University of Colorado Boulder)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "بهار ۲۰۲۲ (Spring 2022)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CC BY",
+          "fa": "CC BY — انتساب",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "7902bc4e22dbb55ac23afbe901698477db232d2e81d7a45e04e044d58014f420",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• جلسهٔ پیش:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• منظم‌سازی (Regularization)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• جریمهٔ نرم پارامتر (Parameter norm penalty)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• توقف زودهنگام (Early stopping)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• افزون‌سازی مجموعه‌داده (Dataset augmentation)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• حذف تصادفی (Dropout)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• نرمال‌سازی دسته‌ای (Batch Normalization)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• تکلیف‌ها (Canvas)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "• مهلت تحویل تکلیف آزمایشگاه ۲، چهارشنبه است."
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "bullet",
+          "fa": "• پرسشی دارید؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "c6e4f0c51f3ed6bcdcaecf9821ad2f1276e88640b111b2af86f7fa5f332b996c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری بازنمایی (Representation learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• ویژگی‌های ازپیش‌آموخته (Pretrained features)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تنظیم دقیق (Fine-tuning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش شبکه‌های عصبی: سخت‌افزار و نرم‌افزار"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "c6e4f0c51f3ed6bcdcaecf9821ad2f1276e88640b111b2af86f7fa5f332b996c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری بازنمایی (Representation learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• ویژگی‌های ازپیش‌آموخته (Pretrained features)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تنظیم دقیق (Fine-tuning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش شبکه‌های عصبی: سخت‌افزار و نرم‌افزار"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "80b7b75b31a8809777a967e10ce13f86372f63546da360d6265167cfb4d876a7",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "یادآوری: انگیزهٔ استفاده از شبکه‌های عصبی (NNs) در مقایسه با سایر رویکردهای یادگیری ماشین (ML)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "استخراج ویژگی (Feature Extraction)؛ پیش‌بینی (Prediction)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "مثلاً آیا شخصی حضور دارد؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "بله"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "ورودی (INPUT)؛ خروجی (OUTPUT)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "بله"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "استخراج ویژگی (Feature Extraction)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "رویکرد شبکهٔ عصبی: یادگیری بازنمایی (Representation Learning)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "پیش‌بینی (Prediction)"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "رویکردهای دیگر یادگیری ماشین: ویژگی‌های طراحی‌شده به‌صورت دستی (Hand-crafted features)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "7377c35e3be5e4f2239906ead349d183d67e72e2ad8809361b0b79fd27620f77",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکه‌های عصبی چه چیزی یاد می‌گیرند؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "منبع شکل: https://www.datacamp.com/community/tutorials/neural-network-models-r"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "چگونگی استخراج ویژگی‌هایی که داده را توصیف می‌کنند؛ چگونگی پیش‌بینی"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "هدف: تولید بازنمایی کارآمدی که یادگیری مسئلهٔ پایین‌دستی (Downstream task) را ساده کند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input Layer; Hidden Layers; Output Layer",
+          "fa": "لایهٔ ورودی؛ لایه‌های پنهان؛ لایهٔ خروجی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "e7b7afa1cf2eeaec0c212f492001b80bdf0cffe21ba3a12b1b834d1a9f24af0f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چگونه تصاویر را به‌طور کارآمد توصیف/بازنمایی کنیم؟"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "مثلاً برای یک تصویر داده‌شده پیش‌بینی کنید که کدام است: کامیون قرمز، خودروی قرمز، پرندهٔ قرمز، کامیون سبز، خودروی سبز، پرندهٔ سبز، کامیون آبی، خودروی آبی، و پرندهٔ آبی."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "مثلاً تصویر جدید"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "کامیون قرمز"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "خودروی قرمز"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "پرندهٔ قرمز"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "کامیون سبز"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "خودروی سبز"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "پرندهٔ سبز"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "کامیون آبی"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "text",
+          "fa": "خودروی آبی"
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "text",
+          "fa": "پرندهٔ آبی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "7d5f6f1b49278c730eb4a38e4f48839ce4f768601f65ae96d7f90d834d979283",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چگونه تصاویر را به‌طور کارآمد توصیف/بازنمایی کنیم؟"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "مثلاً برای یک تصویر داده‌شده پیش‌بینی کنید که کدام است: کامیون قرمز، خودروی قرمز، پرندهٔ قرمز، کامیون سبز، خودروی سبز، پرندهٔ سبز، کامیون آبی، خودروی آبی، و پرندهٔ آبی."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "مثلاً تصویر جدید؛ قرمز (Red)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "سبز (Green)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "آبی (Blue)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "کامیون (Truck)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "خودرو (Car)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "پرنده (Bird)"
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "می‌توان مدل کارآمدتری طراحی کرد که ابتدا رنگ و سپس اشیا را دریافت کند (کارایی بیشتر پارامترها با استفاده از لایه‌های سلسله‌مراتبی ویژگی‌ها)!"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "6a2f1c7e79c97fcb54796d13f9946dc918f841da31c6d6180b27b1121c6500bf",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکه‌های عصبی کانولوشنی (CNNs) چه بازنمایی‌هایی یاد می‌گیرند؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "c13632c3dc33a9c75c75b47547dfacf738de9fd23c5eb4ece980649801a16849",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ترفندهای اصلی برای تفسیر بازنمایی‌ها (Representations)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• فیلترها و نقشه‌های فعال‌سازی (Activation maps) حاصل را نمایش دهید."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• تصاویر مشابه را براساس شباهت ویژگی‌ها بازیابی کنید."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تصاویری را تحلیل کنید که واحدهای یک شبکه را بیش از همه فعال می‌کنند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "c13632c3dc33a9c75c75b47547dfacf738de9fd23c5eb4ece980649801a16849",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ترفندهای اصلی برای تفسیر بازنمایی‌ها (Representations)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• فیلترها و نقشه‌های فعال‌سازی (Activation maps) حاصل را نمایش دهید."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• تصاویر مشابه را براساس شباهت ویژگی‌ها بازیابی کنید."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تصاویری را تحلیل کنید که واحدهای یک شبکه را بیش از همه فعال می‌کنند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "9c9c01619fce7d12b501d0ccbe1a7f37d757327eb7609f300aefaa56743e6962",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "بررسی آنچه آموخته شده است: VGG16"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "منبع شکل (ویرایش‌شده برای اصلاح خطاها): https://medium.com/deep￾learning-g/cnn-architectures-vggnet-e09d7fe79c45"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input; 3×3 conv, 64; Pool; 3×3 conv, 128; 3×3 conv, 256; 3×3 conv, 512; FC 4096; FC 1000; Softmax",
+          "fa": "ورودی؛ کانولوشن ۳×۳، ۶۴؛ تجمیع؛ کانولوشن ۳×۳، ۱۲۸؛ کانولوشن ۳×۳، ۲۵۶؛ کانولوشن ۳×۳، ۵۱۲؛ تمام‌متصل ۴۰۹۶؛ تمام‌متصل ۱۰۰۰؛ سافت‌مکس (Softmax)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "cd5d0ac4b164b9cf12ca016b45295e7f140c84b8ccdcc928a877c1f1ba685542",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "VGG16: فیلترها در ۳ لایهٔ کانولوشنی (Convolutional layers)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "http://cs231n.stanford.edu/slides/2018/cs231n_2018_lecture05.pdf"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "فیلترها از آشکارسازی ویژگی‌های ساده (مثلاً لبه‌ها و رنگ‌ها) به ساختارهای پیچیده تکامل می‌یابند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "VGG-16 Conv1_1; VGG-16 Conv3_2; VGG-16 Conv5_3",
+          "fa": "VGG-16 Conv1_1؛ VGG-16 Conv3_2؛ VGG-16 Conv5_3",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "712583876d0f5ae94dc24acee28acec53b18b9859ab20e2eb498e0b4ba8802e2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "بررسی آنچه آموخته شده است: AlexNet"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "منبع: https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CONV 11×11, stride=4, 96 kernels; Overlapping Max POOL 3×3, stride=2; CONV 5×5, pad=2, 256 kernels; CONV 3×3, pad=1, 384 kernels; CONV 3×3, pad=1, 256 kernels; FC; Softmax",
+          "fa": "کانولوشن ۱۱×۱۱، گام=۴، ۹۶ هسته؛ تجمیع بیشینهٔ هم‌پوشان ۳×۳، گام=۲؛ کانولوشن ۵×۵، حاشیه=۲، ۲۵۶ هسته؛ کانولوشن ۳×۳، حاشیه=۱، ۳۸۴ هسته؛ کانولوشن ۳×۳، حاشیه=۱، ۲۵۶ هسته؛ تمام‌متصل (FC)؛ سافت‌مکس (Softmax)",
+          "verified": true
+        },
+        {
+          "en": "227; 3; 11; 96; 55; 27; 13; 6; 256; 384; 9216; 4096; 1000; (227−11)/4+1=55; (55−3)/2+1=27; (27+2×2−5)/1+1=27; (27−3)/2+1=13; (13+2×1−3)/1+1=13; (13−3)/2+1=6",
+          "fa": "227؛ 3؛ 11؛ 96؛ 55؛ 27؛ 13؛ 6؛ 256؛ 384؛ 9216؛ 4096؛ 1000؛ (227−11)/4+1=55؛ (55−3)/2+1=27؛ (27+2×2−5)/1+1=27؛ (27−3)/2+1=13؛ (13+2×1−3)/1+1=13؛ (13−3)/2+1=6",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "cc574244b3e75cb9b6dea8d5d3dc43898d8f8557f6e4068104c0a8229f8a0503",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "AlexNet: تعداد ۹۶ فیلتر در لایهٔ کانولوشنی ۱"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Krizhevsky, Sutskever, and Hinton. ImageNet Classification with Deep Convolutional Neural Networks. NeurIPS 2012."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "فیلترهایی برای آشکارسازی فرکانس‌ها، جهت‌گیری‌ها و رنگ‌های مختلف!"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "2657b8947559abe585aa95e9bb4c7ac6393112616b282c1f4c323faad3e60acb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "AlexNet: نمونهٔ نقشه‌های فعال‌سازی (Activation maps)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "منبع: https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CONV 11×11, stride=4, 96 kernels; Overlapping Max POOL 3×3, stride=2; CONV 5×5, pad=2, 256 kernels; CONV 3×3, pad=1, 384 kernels; CONV 3×3, pad=1, 256 kernels; FC; Softmax",
+          "fa": "کانولوشن ۱۱×۱۱، گام=۴، ۹۶ هسته؛ تجمیع بیشینهٔ هم‌پوشان ۳×۳، گام=۲؛ کانولوشن ۵×۵، حاشیه=۲، ۲۵۶ هسته؛ کانولوشن ۳×۳، حاشیه=۱، ۳۸۴ هسته؛ کانولوشن ۳×۳، حاشیه=۱، ۲۵۶ هسته؛ تمام‌متصل (FC)؛ سافت‌مکس (Softmax)",
+          "verified": true
+        },
+        {
+          "en": "227; 3; 11; 96; 55; 27; 13; 6; 256; 384; 9216; 4096; 1000; (227−11)/4+1=55; (55−3)/2+1=27; (27+2×2−5)/1+1=27; (27−3)/2+1=13; (13+2×1−3)/1+1=13; (13−3)/2+1=6",
+          "fa": "227؛ 3؛ 11؛ 96؛ 55؛ 27؛ 13؛ 6؛ 256؛ 384؛ 9216؛ 4096؛ 1000؛ (227−11)/4+1=55؛ (55−3)/2+1=27؛ (27+2×2−5)/1+1=27؛ (27−3)/2+1=13؛ (13+2×1−3)/1+1=13؛ (13−3)/2+1=6",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "eca8a076a412732a0ae6fb983a407a297cc82df4f6324bc396a79bc26aeeb896",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "AlexNet: نمونهٔ نقشه‌های فعال‌سازی (Activation maps)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "(به یاد بیاورید که هر نقشه از یک فیلتر حاصل می‌شود.)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Krizhevsky, Sutskever, and Hinton. ImageNet Classification with Deep Convolutional Neural Networks. NeurIPS 2012."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "تصاویر"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "فرکانس‌ها، جهت‌گیری‌ها و رنگ‌ها آشکار می‌شوند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "712583876d0f5ae94dc24acee28acec53b18b9859ab20e2eb498e0b4ba8802e2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "بررسی آنچه آموخته شده است: AlexNet"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "منبع: https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CONV 11×11, stride=4, 96 kernels; Overlapping Max POOL 3×3, stride=2; CONV 5×5, pad=2, 256 kernels; CONV 3×3, pad=1, 384 kernels; CONV 3×3, pad=1, 256 kernels; FC; Softmax",
+          "fa": "کانولوشن ۱۱×۱۱، گام=۴، ۹۶ هسته؛ تجمیع بیشینهٔ هم‌پوشان ۳×۳، گام=۲؛ کانولوشن ۵×۵، حاشیه=۲، ۲۵۶ هسته؛ کانولوشن ۳×۳، حاشیه=۱، ۳۸۴ هسته؛ کانولوشن ۳×۳، حاشیه=۱، ۲۵۶ هسته؛ تمام‌متصل (FC)؛ سافت‌مکس (Softmax)",
+          "verified": true
+        },
+        {
+          "en": "227; 3; 11; 96; 55; 27; 13; 6; 256; 384; 9216; 4096; 1000; (227−11)/4+1=55; (55−3)/2+1=27; (27+2×2−5)/1+1=27; (27−3)/2+1=13; (13+2×1−3)/1+1=13; (13−3)/2+1=6",
+          "fa": "227؛ 3؛ 11؛ 96؛ 55؛ 27؛ 13؛ 6؛ 256؛ 384؛ 9216؛ 4096؛ 1000؛ (227−11)/4+1=55؛ (55−3)/2+1=27؛ (27+2×2−5)/1+1=27؛ (27−3)/2+1=13؛ (13+2×1−3)/1+1=13؛ (13−3)/2+1=6",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "d115e806766edfbf7cfb439efd157f4aa22076a4f502c56b2615606d161f1d09",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "AlexNet: تعداد ۲۵۶ فیلتر در لایهٔ کانولوشنی ۲"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "تفسیر این فیلترهای آموخته‌شده دشوار است."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://cs231n.github.io/understanding-cnn/"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "712583876d0f5ae94dc24acee28acec53b18b9859ab20e2eb498e0b4ba8802e2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "بررسی آنچه آموخته شده است: AlexNet"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "منبع: https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CONV 11×11, stride=4, 96 kernels; Overlapping Max POOL 3×3, stride=2; CONV 5×5, pad=2, 256 kernels; CONV 3×3, pad=1, 384 kernels; CONV 3×3, pad=1, 256 kernels; FC; Softmax",
+          "fa": "کانولوشن ۱۱×۱۱، گام=۴، ۹۶ هسته؛ تجمیع بیشینهٔ هم‌پوشان ۳×۳، گام=۲؛ کانولوشن ۵×۵، حاشیه=۲، ۲۵۶ هسته؛ کانولوشن ۳×۳، حاشیه=۱، ۳۸۴ هسته؛ کانولوشن ۳×۳، حاشیه=۱، ۲۵۶ هسته؛ تمام‌متصل (FC)؛ سافت‌مکس (Softmax)",
+          "verified": true
+        },
+        {
+          "en": "227; 3; 11; 96; 55; 27; 13; 6; 256; 384; 9216; 4096; 1000; (227−11)/4+1=55; (55−3)/2+1=27; (27+2×2−5)/1+1=27; (27−3)/2+1=13; (13+2×1−3)/1+1=13; (13−3)/2+1=6",
+          "fa": "227؛ 3؛ 11؛ 96؛ 55؛ 27؛ 13؛ 6؛ 256؛ 384؛ 9216؛ 4096؛ 1000؛ (227−11)/4+1=55؛ (55−3)/2+1=27؛ (27+2×2−5)/1+1=27؛ (27−3)/2+1=13؛ (13+2×1−3)/1+1=13؛ (13−3)/2+1=6",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "06a75ad131e5edead7bd8e5b671686036e6d9f97adb2397407e6d88d68481926",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "AlexNet: نقشه‌های فعال‌سازی نمونه‌گیری‌شده (Sampled activation maps)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "(به یاد بیاورید که هر نقشه از یک فیلتر حاصل می‌شود.)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Krizhevsky, Sutskever, and Hinton. ImageNet Classification with Deep Convolutional Neural Networks. NeurIPS 2012."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "تصاویر"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "آیا می‌توانید دربارهٔ ویژگی‌هایی که فیلترها استخراج کرده‌اند چیزی استنباط کنید؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "c13632c3dc33a9c75c75b47547dfacf738de9fd23c5eb4ece980649801a16849",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ترفندهای اصلی برای تفسیر بازنمایی‌ها (Representations)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• فیلترها و نقشه‌های فعال‌سازی (Activation maps) حاصل را نمایش دهید."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• تصاویر مشابه را براساس شباهت ویژگی‌ها بازیابی کنید."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تصاویری را تحلیل کنید که واحدهای یک شبکه را بیش از همه فعال می‌کنند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "712583876d0f5ae94dc24acee28acec53b18b9859ab20e2eb498e0b4ba8802e2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "بررسی آنچه آموخته شده است: AlexNet"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "منبع: https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CONV 11×11, stride=4, 96 kernels; Overlapping Max POOL 3×3, stride=2; CONV 5×5, pad=2, 256 kernels; CONV 3×3, pad=1, 384 kernels; CONV 3×3, pad=1, 256 kernels; FC; Softmax",
+          "fa": "کانولوشن ۱۱×۱۱، گام=۴، ۹۶ هسته؛ تجمیع بیشینهٔ هم‌پوشان ۳×۳، گام=۲؛ کانولوشن ۵×۵، حاشیه=۲، ۲۵۶ هسته؛ کانولوشن ۳×۳، حاشیه=۱، ۳۸۴ هسته؛ کانولوشن ۳×۳، حاشیه=۱، ۲۵۶ هسته؛ تمام‌متصل (FC)؛ سافت‌مکس (Softmax)",
+          "verified": true
+        },
+        {
+          "en": "227; 3; 11; 96; 55; 27; 13; 6; 256; 384; 9216; 4096; 1000; (227−11)/4+1=55; (55−3)/2+1=27; (27+2×2−5)/1+1=27; (27−3)/2+1=13; (13+2×1−3)/1+1=13; (13−3)/2+1=6",
+          "fa": "227؛ 3؛ 11؛ 96؛ 55؛ 27؛ 13؛ 6؛ 256؛ 384؛ 9216؛ 4096؛ 1000؛ (227−11)/4+1=55؛ (55−3)/2+1=27؛ (27+2×2−5)/1+1=27؛ (27−3)/2+1=13؛ (13+2×1−3)/1+1=13؛ (13−3)/2+1=6",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "e9c40d1a865db72e1436e7607da16fcacf31dfcd9cc61cf202f1312092e2d5ed",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "AlexNet: بازیابی تصاویری با بردارهای FC7 مشابه"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Krizhevsky, Sutskever, and Hinton. ImageNet Classification with Deep Convolutional Neural Networks. NeurIPS 2012."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "تصاویر آزمون"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "دربارهٔ اینکه ویژگی FC7 چه چیزی را بازنمایی می‌کند، چه استنباطی دارید؟"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "— معنای تصویر، مستقل از روشنایی و حالت قرارگیری شیء"
+        },
+        {
+          "source_lines": [
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "تصاویر آموزشی با کمترین فاصلهٔ اقلیدسی (Euclidean distance) میان فعال‌سازی ویژگی FC7 آن‌ها و فعال‌سازی متناظر تصویر آزمون"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "c13632c3dc33a9c75c75b47547dfacf738de9fd23c5eb4ece980649801a16849",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ترفندهای اصلی برای تفسیر بازنمایی‌ها (Representations)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• فیلترها و نقشه‌های فعال‌سازی (Activation maps) حاصل را نمایش دهید."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• تصاویر مشابه را براساس شباهت ویژگی‌ها بازیابی کنید."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تصاویری را تحلیل کنید که واحدهای یک شبکه را بیش از همه فعال می‌کنند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "ce91682526f48f1c72970895ba269cb5856ccf229417265a0ae2a058bb89ef7d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "AlexNet: تصاویری که برای واحدهای انتخاب‌شدهٔ شبکهٔ عصبی، بیشترین فعال‌سازی را ایجاد می‌کنند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "منبع: https://www.learnopencv.com/wp￾content/uploads/2018/05/AlexNet-1.png"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "تصاویر میانگین از ۱۰۰ تصویری که بیشترین پاسخ را ایجاد می‌کنند (یعنی بالاترین امتیازهای فعال‌سازی را دارند):"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "Bolei Zhou et al. Learning Deep Features for Scene Recognition using Places Database. NIPS 2014."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CONV 11×11, stride=4, 96 kernels; Overlapping Max POOL 3×3, stride=2; CONV 5×5, pad=2, 256 kernels; CONV 3×3, pad=1, 384 kernels; CONV 3×3, pad=1, 256 kernels; FC; Softmax",
+          "fa": "کانولوشن ۱۱×۱۱، گام=۴، ۹۶ هسته؛ تجمیع بیشینهٔ هم‌پوشان ۳×۳، گام=۲؛ کانولوشن ۵×۵، حاشیه=۲، ۲۵۶ هسته؛ کانولوشن ۳×۳، حاشیه=۱، ۳۸۴ هسته؛ کانولوشن ۳×۳، حاشیه=۱، ۲۵۶ هسته؛ تمام‌متصل (FC)؛ سافت‌مکس (Softmax)",
+          "verified": true
+        },
+        {
+          "en": "227; 3; 11; 96; 55; 27; 13; 6; 256; 384; 9216; 4096; 1000; (227−11)/4+1=55; (55−3)/2+1=27; (27+2×2−5)/1+1=27; (27−3)/2+1=13; (13+2×1−3)/1+1=13; (13−3)/2+1=6",
+          "fa": "227؛ 3؛ 11؛ 96؛ 55؛ 27؛ 13؛ 6؛ 256؛ 384؛ 9216؛ 4096؛ 1000؛ (227−11)/4+1=55؛ (55−3)/2+1=27؛ (27+2×2−5)/1+1=27؛ (27−3)/2+1=13؛ (13+2×1−3)/1+1=13؛ (13−3)/2+1=6",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "8d554cc5ccaf00b4e639a9d7fda76cea004202fd83b40e10966535c36537c189",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "AlexNet: تصاویری که برای واحدهای انتخاب‌شدهٔ شبکهٔ عصبی، بیشترین فعال‌سازی را ایجاد می‌کنند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "تصاویر میانگین از ۱۰۰ تصویری که بیشترین پاسخ را ایجاد می‌کنند (یعنی بالاترین امتیازهای فعال‌سازی را دارند):"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "Bolei Zhou et al. Learning Deep Features for Scene Recognition using Places Database. NIPS 2014."
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "به نظر می‌رسد مدل چه نوع ویژگی‌هایی را آشکار می‌کند؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "b2580def3e5cd1bff734289aac6f509a37212ac9fd3d3c1a979a651b340ddbd3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "جمع‌بندی: ترفندهای اصلی برای تفسیر بازنمایی‌ها (Representations)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• فیلترها و نقشه‌های فعال‌سازی (Activation maps) حاصل را نمایش دهید."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• تصاویر مشابه را براساس شباهت ویژگی‌ها بازیابی کنید."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تصاویری را تحلیل کنید که واحدهای یک شبکه را بیش از همه فعال می‌کنند."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• و بسیاری از روش‌های جدیدتر که در این درس پوشش داده نمی‌شوند…"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "8c53ab537fe23aee3cbb1e83457cd4cd8b8f3561ba1608b0eb75e9b60790aab3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "شبکهٔ عصبی کانولوشنی (CNN): بازنمایی‌های رایج"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Deep Learning, Ian Goodfellow, Yoshua Bengio, and Aaron Courville"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "ویژگی‌های سطح پایین (Low-level features)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "ویژگی‌های سطح میانی (Mid-level features)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "ویژگی‌های سطح بالا (High-level features)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CAR; PERSON; ANIMAL; Output (object identity); 3rd hidden layer (object parts); 2nd hidden layer (corners and contours); 1st hidden layer (edges); Visible layer (input pixels)",
+          "fa": "خودرو؛ شخص؛ حیوان؛ خروجی (هویت شیء)؛ لایهٔ پنهان سوم (اجزای شیء)؛ لایهٔ پنهان دوم (گوشه‌ها و خطوط مرزی)؛ لایهٔ پنهان اول (لبه‌ها)؛ لایهٔ آشکار (پیکسل‌های ورودی)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "15618405d031513b90359970157ba74ed306df0a0abc150a1cd71c15439eae86",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ابزارهای برخط برای بررسی شبکه‌های عصبی کانولوشنی (CNNs)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "• https://www.cs.ryerson.ca/~aharley/vis/conv/flat.html"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "• https://cs231n.github.io/understanding-cnn/"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "c6e4f0c51f3ed6bcdcaecf9821ad2f1276e88640b111b2af86f7fa5f332b996c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری بازنمایی (Representation learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• ویژگی‌های ازپیش‌آموخته (Pretrained features)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تنظیم دقیق (Fine-tuning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش شبکه‌های عصبی: سخت‌افزار و نرم‌افزار"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "7d4f4d892b38e8a306fc381b31d0c63c810c6640647e997d4a3377f642534a97",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکهٔ عصبی کانولوشنی (CNN): ویژگی‌های ازپیش‌آموخته (Pretrained features)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Deep Learning, Ian Goodfellow, Yoshua Bengio, and Aaron Courville"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "بازنمایی‌ای از داده که از درون شبکه استخراج می‌شود (به‌جای ورودی یا خروجی پیش‌بینی‌شده)."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CAR; PERSON; ANIMAL; Output (object identity); 3rd hidden layer (object parts); 2nd hidden layer (corners and contours); 1st hidden layer (edges); Visible layer (input pixels)",
+          "fa": "خودرو؛ شخص؛ حیوان؛ خروجی (هویت شیء)؛ لایهٔ پنهان سوم (اجزای شیء)؛ لایهٔ پنهان دوم (گوشه‌ها و خطوط مرزی)؛ لایهٔ پنهان اول (لبه‌ها)؛ لایهٔ آشکار (پیکسل‌های ورودی)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "ae4549e6264f0cefa21ed1e97c0667b550bf373b1c97ec281f670b17e15afd70",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکهٔ عصبی کانولوشنی (CNN): ویژگی‌های ازپیش‌آموخته (Pretrained features)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Deep Learning, Ian Goodfellow, Yoshua Bengio, and Aaron Courville"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "ویژگی‌های سطح پایین (Low-level features)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "ویژگی‌های سطح میانی (Mid-level features)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "ویژگی‌های سطح بالا (High-level features)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CAR; PERSON; ANIMAL; Output (object identity); 3rd hidden layer (object parts); 2nd hidden layer (corners and contours); 1st hidden layer (edges); Visible layer (input pixels)",
+          "fa": "خودرو؛ شخص؛ حیوان؛ خروجی (هویت شیء)؛ لایهٔ پنهان سوم (اجزای شیء)؛ لایهٔ پنهان دوم (گوشه‌ها و خطوط مرزی)؛ لایهٔ پنهان اول (لبه‌ها)؛ لایهٔ آشکار (پیکسل‌های ورودی)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "3a977e2ad83304dac455c7165917cf4ffca5e0f7432276af72da8a6549982cc9",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکهٔ عصبی کانولوشنی (CNN): ویژگی‌های ازپیش‌آموخته (مثلاً AlexNet)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "منبع: https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "بُعد لایهٔ FC6 چقدر است؟"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "بازنمایی‌ای از داده که از درون شبکه استخراج می‌شود (به‌جای ورودی یا خروجی پیش‌بینی‌شده)."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CONV 11×11, stride=4, 96 kernels; Overlapping Max POOL 3×3, stride=2; CONV 5×5, pad=2, 256 kernels; CONV 3×3, pad=1, 384 kernels; CONV 3×3, pad=1, 256 kernels; FC; Softmax",
+          "fa": "کانولوشن ۱۱×۱۱، گام=۴، ۹۶ هسته؛ تجمیع بیشینهٔ هم‌پوشان ۳×۳، گام=۲؛ کانولوشن ۵×۵، حاشیه=۲، ۲۵۶ هسته؛ کانولوشن ۳×۳، حاشیه=۱، ۳۸۴ هسته؛ کانولوشن ۳×۳، حاشیه=۱، ۲۵۶ هسته؛ تمام‌متصل (FC)؛ سافت‌مکس (Softmax)",
+          "verified": true
+        },
+        {
+          "en": "227; 3; 11; 96; 55; 27; 13; 6; 256; 384; 9216; 4096; 1000; (227−11)/4+1=55; (55−3)/2+1=27; (27+2×2−5)/1+1=27; (27−3)/2+1=13; (13+2×1−3)/1+1=13; (13−3)/2+1=6",
+          "fa": "227؛ 3؛ 11؛ 96؛ 55؛ 27؛ 13؛ 6؛ 256؛ 384؛ 9216؛ 4096؛ 1000؛ (227−11)/4+1=55؛ (55−3)/2+1=27؛ (27+2×2−5)/1+1=27؛ (27−3)/2+1=13؛ (13+2×1−3)/1+1=13؛ (13−3)/2+1=6",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "ba785762f780bbb83522300202883c5325bded620859ffebb8b79fbc2ef44181",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکهٔ عصبی کانولوشنی (CNN): ویژگی‌های ازپیش‌آموخته (مثلاً AlexNet)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "منبع: https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "بُعد لایهٔ FC7 چقدر است؟"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "بازنمایی‌ای از داده که از درون شبکه استخراج می‌شود (به‌جای ورودی یا خروجی پیش‌بینی‌شده)."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CONV 11×11, stride=4, 96 kernels; Overlapping Max POOL 3×3, stride=2; CONV 5×5, pad=2, 256 kernels; CONV 3×3, pad=1, 384 kernels; CONV 3×3, pad=1, 256 kernels; FC; Softmax",
+          "fa": "کانولوشن ۱۱×۱۱، گام=۴، ۹۶ هسته؛ تجمیع بیشینهٔ هم‌پوشان ۳×۳، گام=۲؛ کانولوشن ۵×۵، حاشیه=۲، ۲۵۶ هسته؛ کانولوشن ۳×۳، حاشیه=۱، ۳۸۴ هسته؛ کانولوشن ۳×۳، حاشیه=۱، ۲۵۶ هسته؛ تمام‌متصل (FC)؛ سافت‌مکس (Softmax)",
+          "verified": true
+        },
+        {
+          "en": "227; 3; 11; 96; 55; 27; 13; 6; 256; 384; 9216; 4096; 1000; (227−11)/4+1=55; (55−3)/2+1=27; (27+2×2−5)/1+1=27; (27−3)/2+1=13; (13+2×1−3)/1+1=13; (13−3)/2+1=6",
+          "fa": "227؛ 3؛ 11؛ 96؛ 55؛ 27؛ 13؛ 6؛ 256؛ 384؛ 9216؛ 4096؛ 1000؛ (227−11)/4+1=55؛ (55−3)/2+1=27؛ (27+2×2−5)/1+1=27؛ (27−3)/2+1=13؛ (13+2×1−3)/1+1=13؛ (13−3)/2+1=6",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "99e4f0daf38b741def4df7b17b45f06890e13d2058f87acd37499f7f9759b02e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "مقایسهٔ ویژگی‌های ازپیش‌آموختهٔ شبکهٔ عصبی کانولوشنی (CNN) که با AlexNet آموزش‌دیده روی مجموعه‌داده‌های متفاوت استخراج شده‌اند."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌دادهٔ ۱: ImageNet (حدود ۱٫۵ میلیون تصویر از اشیا، گردآوری‌شده از موتورهای جست‌وجو)"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌دادهٔ ۲: Places (حدود ۲٫۵ میلیون تصویر از صحنه‌ها، گردآوری‌شده از موتورهای جست‌وجو)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "Deng et al. ImageNet: A Large-Scale Hierarchical Image Database. CVPR 2009."
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "Zhou et al. Learning Deep Features for Scene Recognition using Places Database. NeurIPS 2014."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "9b98e46dde9faa9c81837fe9c3820773cdb9750b165926c10e4627b585cfe372",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "مقایسهٔ ویژگی‌های ازپیش‌آموختهٔ شبکهٔ عصبی کانولوشنی (CNN) که با AlexNet آموزش‌دیده روی مجموعه‌داده‌های متفاوت استخراج شده‌اند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "منبع: https://www.learnopencv.com/wp￾content/uploads/2018/05/AlexNet-1.png"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌دادهٔ ۱: ImageNet (حدود ۱٫۵ میلیون تصویر از اشیا، گردآوری‌شده از موتورهای جست‌وجو)"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌دادهٔ ۲: Places (حدود ۲٫۵ میلیون تصویر از صحنه‌ها، گردآوری‌شده از موتورهای جست‌وجو)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CONV 11×11, stride=4, 96 kernels; Overlapping Max POOL 3×3, stride=2; CONV 5×5, pad=2, 256 kernels; CONV 3×3, pad=1, 384 kernels; CONV 3×3, pad=1, 256 kernels; FC; Softmax",
+          "fa": "کانولوشن ۱۱×۱۱، گام=۴، ۹۶ هسته؛ تجمیع بیشینهٔ هم‌پوشان ۳×۳، گام=۲؛ کانولوشن ۵×۵، حاشیه=۲، ۲۵۶ هسته؛ کانولوشن ۳×۳، حاشیه=۱، ۳۸۴ هسته؛ کانولوشن ۳×۳، حاشیه=۱، ۲۵۶ هسته؛ تمام‌متصل (FC)؛ سافت‌مکس (Softmax)",
+          "verified": true
+        },
+        {
+          "en": "227; 3; 11; 96; 55; 27; 13; 6; 256; 384; 9216; 4096; 1000; (227−11)/4+1=55; (55−3)/2+1=27; (27+2×2−5)/1+1=27; (27−3)/2+1=13; (13+2×1−3)/1+1=13; (13−3)/2+1=6",
+          "fa": "227؛ 3؛ 11؛ 96؛ 55؛ 27؛ 13؛ 6؛ 256؛ 384؛ 9216؛ 4096؛ 1000؛ (227−11)/4+1=55؛ (55−3)/2+1=27؛ (27+2×2−5)/1+1=27؛ (27−3)/2+1=13؛ (13+2×1−3)/1+1=13؛ (13−3)/2+1=6",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "56163c632ac46aedfe456dcd623bcb775c603bc3b6aab2f14b313a9a25a3985c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "مقایسهٔ ویژگی‌های ازپیش‌آموختهٔ شبکهٔ عصبی کانولوشنی (CNN) که با AlexNet آموزش‌دیده روی مجموعه‌داده‌های متفاوت استخراج شده‌اند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "Bolei Zhou et al. Learning Deep Features for Scene Recognition using Places Database. NIPS 2014."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "آیا فیلترهای آموخته‌شده از مجموعه‌داده‌های متفاوت، شبیه یکدیگر به نظر می‌رسند یا متفاوت‌اند؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ImageNet-CNN; Places-CNN",
+          "fa": "شبکهٔ کانولوشنی ImageNet؛ شبکهٔ کانولوشنی Places",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "9b98e46dde9faa9c81837fe9c3820773cdb9750b165926c10e4627b585cfe372",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "مقایسهٔ ویژگی‌های ازپیش‌آموختهٔ شبکهٔ عصبی کانولوشنی (CNN) که با AlexNet آموزش‌دیده روی مجموعه‌داده‌های متفاوت استخراج شده‌اند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "منبع: https://www.learnopencv.com/wp￾content/uploads/2018/05/AlexNet-1.png"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌دادهٔ ۱: ImageNet (حدود ۱٫۵ میلیون تصویر از اشیا، گردآوری‌شده از موتورهای جست‌وجو)"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌دادهٔ ۲: Places (حدود ۲٫۵ میلیون تصویر از صحنه‌ها، گردآوری‌شده از موتورهای جست‌وجو)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CONV 11×11, stride=4, 96 kernels; Overlapping Max POOL 3×3, stride=2; CONV 5×5, pad=2, 256 kernels; CONV 3×3, pad=1, 384 kernels; CONV 3×3, pad=1, 256 kernels; FC; Softmax",
+          "fa": "کانولوشن ۱۱×۱۱، گام=۴، ۹۶ هسته؛ تجمیع بیشینهٔ هم‌پوشان ۳×۳، گام=۲؛ کانولوشن ۵×۵، حاشیه=۲، ۲۵۶ هسته؛ کانولوشن ۳×۳، حاشیه=۱، ۳۸۴ هسته؛ کانولوشن ۳×۳، حاشیه=۱، ۲۵۶ هسته؛ تمام‌متصل (FC)؛ سافت‌مکس (Softmax)",
+          "verified": true
+        },
+        {
+          "en": "227; 3; 11; 96; 55; 27; 13; 6; 256; 384; 9216; 4096; 1000; (227−11)/4+1=55; (55−3)/2+1=27; (27+2×2−5)/1+1=27; (27−3)/2+1=13; (13+2×1−3)/1+1=13; (13−3)/2+1=6",
+          "fa": "227؛ 3؛ 11؛ 96؛ 55؛ 27؛ 13؛ 6؛ 256؛ 384؛ 9216؛ 4096؛ 1000؛ (227−11)/4+1=55؛ (55−3)/2+1=27؛ (27+2×2−5)/1+1=27؛ (27−3)/2+1=13؛ (13+2×1−3)/1+1=13؛ (13−3)/2+1=6",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "8727a49e4a7621a29965e97617220c7bc25d6a767bbcee20325bc580821377d8",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "مقایسهٔ ویژگی‌های ازپیش‌آموختهٔ شبکهٔ عصبی کانولوشنی (CNN) که با AlexNet آموزش‌دیده روی مجموعه‌داده‌های متفاوت استخراج شده‌اند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "Bolei Zhou et al. Learning Deep Features for Scene Recognition using Places Database. NIPS 2014."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "آیا به نظر می‌رسد فیلترهای مجموعه‌داده‌های متفاوت، آشکارسازی ویژگی‌های مشابه را یاد گرفته‌اند یا ویژگی‌های متفاوت؟"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "نتیجهٔ انتخاب واحدهای مختلف در شبکه‌های عصبی و سپس تولید تصویر میانگین از ۱۰۰ تصویری که بیشترین پاسخ را ایجاد می‌کنند (یعنی بالاترین امتیازهای فعال‌سازی را دارند)."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ImageNet-CNN; Places-CNN",
+          "fa": "شبکهٔ کانولوشنی ImageNet؛ شبکهٔ کانولوشنی Places",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "f6e4d607ec295f6dde605f4b98b34576d9e3cd4f31655e9e81e864a1a9e6b34a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "مقایسهٔ ویژگی‌های ازپیش‌آموختهٔ شبکهٔ عصبی کانولوشنی (CNN) که با AlexNet آموزش‌دیده روی مجموعه‌داده‌های متفاوت استخراج شده‌اند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "Bolei Zhou et al. Learning Deep Features for Scene Recognition using Places Database. NIPS 2014."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "نتیجهٔ انتخاب واحدهای مختلف در شبکه‌های عصبی و سپس تولید تصویر میانگین از ۱۰۰ تصویری که بیشترین پاسخ را ایجاد می‌کنند (یعنی بالاترین امتیازهای فعال‌سازی را دارند)."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "فیلترهای ImageNet-CNN، بیشتر به ساختارهای لکه‌مانند پاسخ می‌دهند تا ساختارهای شبیه منظره."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ImageNet-CNN; Places-CNN",
+          "fa": "شبکهٔ کانولوشنی ImageNet؛ شبکهٔ کانولوشنی Places",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "9b98e46dde9faa9c81837fe9c3820773cdb9750b165926c10e4627b585cfe372",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "مقایسهٔ ویژگی‌های ازپیش‌آموختهٔ شبکهٔ عصبی کانولوشنی (CNN) که با AlexNet آموزش‌دیده روی مجموعه‌داده‌های متفاوت استخراج شده‌اند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "منبع: https://www.learnopencv.com/wp￾content/uploads/2018/05/AlexNet-1.png"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌دادهٔ ۱: ImageNet (حدود ۱٫۵ میلیون تصویر از اشیا، گردآوری‌شده از موتورهای جست‌وجو)"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌دادهٔ ۲: Places (حدود ۲٫۵ میلیون تصویر از صحنه‌ها، گردآوری‌شده از موتورهای جست‌وجو)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CONV 11×11, stride=4, 96 kernels; Overlapping Max POOL 3×3, stride=2; CONV 5×5, pad=2, 256 kernels; CONV 3×3, pad=1, 384 kernels; CONV 3×3, pad=1, 256 kernels; FC; Softmax",
+          "fa": "کانولوشن ۱۱×۱۱، گام=۴، ۹۶ هسته؛ تجمیع بیشینهٔ هم‌پوشان ۳×۳، گام=۲؛ کانولوشن ۵×۵، حاشیه=۲، ۲۵۶ هسته؛ کانولوشن ۳×۳، حاشیه=۱، ۳۸۴ هسته؛ کانولوشن ۳×۳، حاشیه=۱، ۲۵۶ هسته؛ تمام‌متصل (FC)؛ سافت‌مکس (Softmax)",
+          "verified": true
+        },
+        {
+          "en": "227; 3; 11; 96; 55; 27; 13; 6; 256; 384; 9216; 4096; 1000; (227−11)/4+1=55; (55−3)/2+1=27; (27+2×2−5)/1+1=27; (27−3)/2+1=13; (13+2×1−3)/1+1=13; (13−3)/2+1=6",
+          "fa": "227؛ 3؛ 11؛ 96؛ 55؛ 27؛ 13؛ 6؛ 256؛ 384؛ 9216؛ 4096؛ 1000؛ (227−11)/4+1=55؛ (55−3)/2+1=27؛ (27+2×2−5)/1+1=27؛ (27−3)/2+1=13؛ (13+2×1−3)/1+1=13؛ (13−3)/2+1=6",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "f6e4d607ec295f6dde605f4b98b34576d9e3cd4f31655e9e81e864a1a9e6b34a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "مقایسهٔ ویژگی‌های ازپیش‌آموختهٔ شبکهٔ عصبی کانولوشنی (CNN) که با AlexNet آموزش‌دیده روی مجموعه‌داده‌های متفاوت استخراج شده‌اند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "Bolei Zhou et al. Learning Deep Features for Scene Recognition using Places Database. NIPS 2014."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "نتیجهٔ انتخاب واحدهای مختلف در شبکه‌های عصبی و سپس تولید تصویر میانگین از ۱۰۰ تصویری که بیشترین پاسخ را ایجاد می‌کنند (یعنی بالاترین امتیازهای فعال‌سازی را دارند)."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "فیلترهای ImageNet-CNN، بیشتر به ساختارهای لکه‌مانند پاسخ می‌دهند تا ساختارهای شبیه منظره."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ImageNet-CNN; Places-CNN",
+          "fa": "شبکهٔ کانولوشنی ImageNet؛ شبکهٔ کانولوشنی Places",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "9b98e46dde9faa9c81837fe9c3820773cdb9750b165926c10e4627b585cfe372",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "مقایسهٔ ویژگی‌های ازپیش‌آموختهٔ شبکهٔ عصبی کانولوشنی (CNN) که با AlexNet آموزش‌دیده روی مجموعه‌داده‌های متفاوت استخراج شده‌اند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "منبع: https://www.learnopencv.com/wp￾content/uploads/2018/05/AlexNet-1.png"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌دادهٔ ۱: ImageNet (حدود ۱٫۵ میلیون تصویر از اشیا، گردآوری‌شده از موتورهای جست‌وجو)"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌دادهٔ ۲: Places (حدود ۲٫۵ میلیون تصویر از صحنه‌ها، گردآوری‌شده از موتورهای جست‌وجو)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CONV 11×11, stride=4, 96 kernels; Overlapping Max POOL 3×3, stride=2; CONV 5×5, pad=2, 256 kernels; CONV 3×3, pad=1, 384 kernels; CONV 3×3, pad=1, 256 kernels; FC; Softmax",
+          "fa": "کانولوشن ۱۱×۱۱، گام=۴، ۹۶ هسته؛ تجمیع بیشینهٔ هم‌پوشان ۳×۳، گام=۲؛ کانولوشن ۵×۵، حاشیه=۲، ۲۵۶ هسته؛ کانولوشن ۳×۳، حاشیه=۱، ۳۸۴ هسته؛ کانولوشن ۳×۳، حاشیه=۱، ۲۵۶ هسته؛ تمام‌متصل (FC)؛ سافت‌مکس (Softmax)",
+          "verified": true
+        },
+        {
+          "en": "227; 3; 11; 96; 55; 27; 13; 6; 256; 384; 9216; 4096; 1000; (227−11)/4+1=55; (55−3)/2+1=27; (27+2×2−5)/1+1=27; (27−3)/2+1=13; (13+2×1−3)/1+1=13; (13−3)/2+1=6",
+          "fa": "227؛ 3؛ 11؛ 96؛ 55؛ 27؛ 13؛ 6؛ 256؛ 384؛ 9216؛ 4096؛ 1000؛ (227−11)/4+1=55؛ (55−3)/2+1=27؛ (27+2×2−5)/1+1=27؛ (27−3)/2+1=13؛ (13+2×1−3)/1+1=13؛ (13−3)/2+1=6",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "f6e4d607ec295f6dde605f4b98b34576d9e3cd4f31655e9e81e864a1a9e6b34a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "مقایسهٔ ویژگی‌های ازپیش‌آموختهٔ شبکهٔ عصبی کانولوشنی (CNN) که با AlexNet آموزش‌دیده روی مجموعه‌داده‌های متفاوت استخراج شده‌اند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "Bolei Zhou et al. Learning Deep Features for Scene Recognition using Places Database. NIPS 2014."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "نتیجهٔ انتخاب واحدهای مختلف در شبکه‌های عصبی و سپس تولید تصویر میانگین از ۱۰۰ تصویری که بیشترین پاسخ را ایجاد می‌کنند (یعنی بالاترین امتیازهای فعال‌سازی را دارند)."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "فیلترهای ImageNet-CNN، بیشتر به ساختارهای لکه‌مانند پاسخ می‌دهند تا ساختارهای شبیه منظره."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ImageNet-CNN; Places-CNN",
+          "fa": "شبکهٔ کانولوشنی ImageNet؛ شبکهٔ کانولوشنی Places",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "cbf68b74b8aa8b43a2b167828ed06edd3f153af580d01813e782a1c56fba961a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "جمع‌بندی"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• بازنمایی ویژگی‌ها به عوامل متعددی بستگی دارد، از جمله:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "۱. لایه‌ای که برای استخراج ویژگی استفاده می‌شود."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "۲. نوع داده‌ای که برای آموزش مدل استفاده می‌شود."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "c6e4f0c51f3ed6bcdcaecf9821ad2f1276e88640b111b2af86f7fa5f332b996c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری بازنمایی (Representation learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• ویژگی‌های ازپیش‌آموخته (Pretrained features)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تنظیم دقیق (Fine-tuning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش شبکه‌های عصبی: سخت‌افزار و نرم‌افزار"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "485c11823211835af7fc90b262df47eec18513875bb6d3db91eb04fabbdb45df",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکه‌های عصبی چه چیزی یاد می‌گیرند؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "منبع شکل: https://www.datacamp.com/community/tutorials/neural-network-models-r"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "چگونگی استخراج ویژگی‌ها برای توصیف داده؛ چگونگی پیش‌بینی"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "یک شبکهٔ ازپیش‌آموزش‌دیده را می‌توان برای مجموعه‌داده و/یا مسئله‌ای متفاوت، «تنظیم دقیق» (Fine-tuned) کرد."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input Layer; Hidden Layers; Output Layer",
+          "fa": "لایهٔ ورودی؛ لایه‌های پنهان؛ لایهٔ خروجی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "a53b228c4a5d6278b5164c5e0a1778f4c5a014d41db74c4d0ea066abd7be075d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تنظیم دقیق (Fine-Tuning)، موسوم به یادگیری انتقالی (Transfer Learning)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "از شبکهٔ ازپیش‌آموزش‌دیده به‌عنوان نقطهٔ شروع آموزش برای مجموعه‌داده و/یا مسئله‌ای متفاوت استفاده کنید؛"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "برای مثال،"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "منبع تصویر: https://www.mathworks.com/help/deeplearning/ug/transfer-learning-using-alexnet.html"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Load pretrained network; Early layers that learned low-level features (edges, blobs, colors); Last layers that learned task specific features; 1 million images; 1000s classes",
+          "fa": "بارگذاری شبکهٔ ازپیش‌آموزش‌دیده؛ لایه‌های آغازین که ویژگی‌های سطح پایین را آموخته‌اند (لبه‌ها، لکه‌ها، رنگ‌ها)؛ لایه‌های پایانی که ویژگی‌های مخصوص مسئله را آموخته‌اند؛ ۱ میلیون تصویر؛ هزاران دسته",
+          "verified": true
+        },
+        {
+          "en": "Replace final layers; New layers to learn features specific to your data set; Fewer classes; Learn faster",
+          "fa": "جایگزینی لایه‌های پایانی؛ لایه‌های جدید برای یادگیری ویژگی‌های مخصوص مجموعه‌دادهٔ شما؛ دسته‌های کمتر؛ یادگیری سریع‌تر",
+          "verified": true
+        },
+        {
+          "en": "Train network; Training images; Training options; 100s of images; 10s of classes",
+          "fa": "آموزش شبکه؛ تصاویر آموزشی؛ گزینه‌های آموزش؛ صدها تصویر؛ ده‌ها دسته",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "58418fbe41cc8c9ac2a7b17c4d96880fa04aa5c0a8e15a52759040876eeeaf60",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "انتخاب اصلی: لایه‌ها را ثابت (Freeze) نگه داریم یا تنظیم دقیق (Fine-Tune) کنیم؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Deep Learning, Ian Goodfellow, Yoshua Bengio, and Aaron Courville"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "ویژگی‌های سطح پایین (Low-level features)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "ویژگی‌های سطح میانی (Mid-level features)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "ویژگی‌های سطح بالا (High-level features)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CAR; PERSON; ANIMAL; Output (object identity); 3rd hidden layer (object parts); 2nd hidden layer (corners and contours); 1st hidden layer (edges); Visible layer (input pixels)",
+          "fa": "خودرو؛ شخص؛ حیوان؛ خروجی (هویت شیء)؛ لایهٔ پنهان سوم (اجزای شیء)؛ لایهٔ پنهان دوم (گوشه‌ها و خطوط مرزی)؛ لایهٔ پنهان اول (لبه‌ها)؛ لایهٔ آشکار (پیکسل‌های ورودی)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "cd941fd85f5ebabd6db756ab4646fd6a056e2131d17a81ff7ce9a5b51ff0bc70",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گفت‌وگوهای گروهی"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "Zhao et al. Men also like shopping: Reducing gender bias amplification using corpus-level constraints. 2017."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• فرض کنید باید دسته‌بندی بسازید که اقلام رایج در کشورهای دارای درآمد خانوار پایین را بازشناسد."
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "bullet",
+          "fa": "۱. اگر AlexNet ازپیش‌آموزش‌دیده روی ImageNet را تنظیم دقیق می‌کردید، کدام لایه‌ها را حذف و/یا ثابت نگه می‌داشتید؟ چرا؟"
+        },
+        {
+          "source_lines": [
+            7,
+            8,
+            9
+          ],
+          "kind": "bullet",
+          "fa": "۲. اگر مجموعه‌دادهٔ بزرگی از اقلام خانوارهای کم‌درآمد در دسترس بود، AlexNet را از ابتدا آموزش می‌دادید یا مدل ازپیش‌آموزش‌دیدهٔ ImageNet را تنظیم دقیق می‌کردید؟ چرا؟"
+        },
+        {
+          "source_lines": [
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "DeVries et al. Does object recognition work for everyone? CVPR workshops, 2019."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Ground truth: Soap; Nepal, 288 $/month",
+          "fa": "برچسب واقعی: صابون؛ نپال، ۲۸۸ دلار در ماه",
+          "verified": true
+        },
+        {
+          "en": "Azure: food, cheese, bread, cake, sandwich; Clarifai: food, wood, cooking, delicious, healthy; Google: food, dish, cuisine, comfort food, spam; Amazon: food, confectionary, sweets, burger; Watson: food, food product, turmeric, seasoning; Tencent: food, dish, matter, fast food, nutriment",
+          "fa": "Azure: غذا، پنیر، نان، کیک، ساندویچ؛ Clarifai: غذا، چوب، آشپزی، خوشمزه، سالم؛ Google: غذا، خوراک، آشپزی، غذای آرامش‌بخش، گوشت کنسروی اسپم؛ Amazon: غذا، شیرینی‌جات، شیرینی‌ها، برگر؛ Watson: غذا، محصول غذایی، زردچوبه، چاشنی؛ Tencent: غذا، خوراک، ماده، فست‌فود، خوراکی",
+          "verified": true
+        },
+        {
+          "en": "Ground truth: Soap; UK, 1890 $/month",
+          "fa": "برچسب واقعی: صابون؛ بریتانیا، ۱۸۹۰ دلار در ماه",
+          "verified": true
+        },
+        {
+          "en": "Azure: toilet, design, art, sink; Clarifai: people, faucet, healthcare, lavatory, wash closet; Google: product, liquid, water, fluid, bathroom accessory; Amazon: sink, indoors, bottle, sink faucet; Watson: gas tank, storage tank, toiletry, dispenser, soap dispenser; Tencent: lotion, toiletry, soap dispenser, dispenser, after shave",
+          "fa": "Azure: توالت، طراحی، هنر، روشویی؛ Clarifai: افراد، شیر آب، مراقبت بهداشتی، دست‌شویی، توالت؛ Google: محصول، مایع، آب، سیال، وسیلهٔ حمام؛ Amazon: روشویی، فضای داخلی، بطری، شیر روشویی؛ Watson: مخزن گاز، مخزن ذخیره، لوازم بهداشتی، پخش‌کننده، پخش‌کنندهٔ صابون؛ Tencent: لوسیون، لوازم بهداشتی، پخش‌کنندهٔ صابون، پخش‌کننده، افترشیو",
+          "verified": true
+        },
+        {
+          "en": "Ground truth: Spices; Phillipines, 262 $/month",
+          "fa": "برچسب واقعی: ادویه‌ها؛ فیلیپین، ۲۶۲ دلار در ماه",
+          "verified": true
+        },
+        {
+          "en": "Azure: bottle, beer, counter, drink, open; Clarifai: container, food, bottle, drink, stock; Google: product, yellow, drink, bottle, plastic bottle; Amazon: beverage, beer, alcohol, drink, bottle; Watson: food, larder food supply, pantry, condiment, food seasoning; Tencent: condiment, sauce, flavorer, catsup, hot sauce",
+          "fa": "Azure: بطری، آبجو، پیشخوان، نوشیدنی، باز؛ Clarifai: ظرف، غذا، بطری، نوشیدنی، موجودی؛ Google: محصول، زرد، نوشیدنی، بطری، بطری پلاستیکی؛ Amazon: نوشیدنی، آبجو، الکل، نوشیدنی، بطری؛ Watson: غذا، ذخیرهٔ غذای انبار، انباری، چاشنی، ادویهٔ غذا؛ Tencent: چاشنی، سس، طعم‌دهنده، کچاپ، سس تند",
+          "verified": true
+        },
+        {
+          "en": "Ground truth: Spices; USA, 4559 $/month",
+          "fa": "برچسب واقعی: ادویه‌ها؛ ایالات متحده، ۴۵۵۹ دلار در ماه",
+          "verified": true
+        },
+        {
+          "en": "Azure: bottle, wall, counter, food; Clarifai: container, food, can, medicine, stock; Google: seasoning, seasoned salt, ingredient, spice, spice rack; Amazon: shelf, tin, pantry, furniture, aluminium; Watson: tin, food, pantry, paint, can; Tencent: spice rack, chili sauce, condiment, canned food, rack",
+          "fa": "Azure: بطری، دیوار، پیشخوان، غذا؛ Clarifai: ظرف، غذا، قوطی، دارو، موجودی؛ Google: ادویه، نمک طعم‌دار، مادهٔ اولیه، ادویه، جاادویه‌ای؛ Amazon: قفسه، قوطی فلزی، انباری، اثاث، آلومینیوم؛ Watson: قوطی فلزی، غذا، انباری، رنگ، قوطی؛ Tencent: جاادویه‌ای، سس فلفل، چاشنی، غذای کنسروی، قفسه",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "c6e4f0c51f3ed6bcdcaecf9821ad2f1276e88640b111b2af86f7fa5f332b996c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری بازنمایی (Representation learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• ویژگی‌های ازپیش‌آموخته (Pretrained features)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تنظیم دقیق (Fine-tuning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش شبکه‌های عصبی: سخت‌افزار و نرم‌افزار"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "49a596f1c0955acf2e159998e83abf8377573154fb76f1d59dbd8f16581e90b3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "یادآوری: عناصر اصلی موفقیت با شبکه‌های عصبی"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "مشابه داستان عاشقانه‌ای دربارهٔ همراه شدن و رفتن به یک سفر جاده‌ای"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "یک الگوریتم روی یک پردازنده، الگوهایی را از داده می‌آموزد که برای پیش‌بینی استفاده خواهند شد."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "d52a911154b9f6b30f40ff8eb93324cb533e618df8a0bba9efb83907e6081843",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "یادآوری: عناصر اصلی موفقیت با شبکه‌های عصبی"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "مسئلهٔ اصلی: رسیدن به آنجا چقدر طول می‌کشد؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "1204578699fa955dc12affc043f7ca4628b4eae6d5c7c85d96c799924b021e3f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "چالش: آموزش شبکهٔ عصبی به محاسبات زیادی نیاز دارد (مثلاً میلیون‌ها پارامتر مدل)."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• تا برآورده شدن معیار توقف، تکرار کنید:"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "bullet",
+          "fa": "۱. گذر پیش‌رو (Forward pass): داده‌های آموزشی را برای پیش‌بینی در مدل منتشر کنید."
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8
+          ],
+          "kind": "bullet",
+          "fa": "۲. میزان نارضایتی از نتایج مدل روی داده‌های آموزشی را کمّی کنید."
+        },
+        {
+          "source_lines": [
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "kind": "bullet",
+          "fa": "۳. گذر پس‌رو (Backward pass): با استفاده از خروجی پیش‌بینی‌شده، گرادیان‌ها را به عقب محاسبه کنید تا سهم تقصیر هر پارامتر مدل مشخص شود."
+        },
+        {
+          "source_lines": [
+            14,
+            15
+          ],
+          "kind": "bullet",
+          "fa": "۴. هر پارامتر را با استفاده از گرادیان‌های محاسبه‌شده به‌روزرسانی کنید."
+        },
+        {
+          "source_lines": [
+            16,
+            17
+          ],
+          "kind": "text",
+          "fa": "شکل از: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul, Jeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(a) Forward pass; (b) Backward pass; x₁; x₂; w₁; w₂; w₃; w₄; w₅; w₆; y₁; y₂; y₃; E(y₃,t); ∂E/∂w₁; ∂E/∂w₂; ∂E/∂w₃; ∂E/∂w₄; ∂E/∂w₅; ∂E/∂w₆; ∂E/∂y₁; ∂E/∂y₂; ∂E/∂y₃; ∂E/∂E",
+          "fa": "(a) گذر پیش‌رو؛ (b) گذر پس‌رو؛ x₁؛ x₂؛ w₁؛ w₂؛ w₃؛ w₄؛ w₅؛ w₆؛ y₁؛ y₂؛ y₃؛ E(y₃,t)؛ ∂E/∂w₁؛ ∂E/∂w₂؛ ∂E/∂w₃؛ ∂E/∂w₄؛ ∂E/∂w₅؛ ∂E/∂w₆؛ ∂E/∂y₁؛ ∂E/∂y₂؛ ∂E/∂y₃؛ ∂E/∂E",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "200b7c00dcd00e52b783ff9a412f53fb1183f37fecb03d91c80ad3e1a9223963",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ایده: سخت‌افزار بهتر"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "ایده: الگوریتم‌ها را با واحدهای پردازش گرافیکی (GPUs؛ پورشه را تصور کنید) به‌جای واحدهای پردازش مرکزی (CPUs؛ خودروی گلف را تصور کنید) آموزش دهید."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "5e4eafab4df2047e5f7091fa8984a20901f9e7ed4228cb223e2dd0093627d5f9",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نگاه تاریخی"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://ourworldindata.org/technological-progress"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• سخت‌افزار بهتر"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• مثلاً پردازش سریع‌تر — واحدهای پردازش گرافیکی (GPUs)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Computations per second per computer; Harvard Mark II; ENIAC; IBM 704; IBM 1130; DEC PDP-8; Commodore 64; Cray 1 supercomputer; Cray CS6400; Green Destiny; SiCortex SC5832",
+          "fa": "محاسبات در ثانیه به‌ازای هر رایانه؛ Harvard Mark II؛ ENIAC؛ IBM 704؛ IBM 1130؛ DEC PDP-8؛ Commodore 64؛ ابررایانهٔ Cray 1؛ Cray CS6400؛ Green Destiny؛ SiCortex SC5832",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "300fbc8006eec3395e637bef53027ad46cb0a0cf262471d7a5dead169e77e990",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نگاه تاریخی"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://ourworldindata.org/technological-progress"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• سخت‌افزار بهتر"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• مثلاً پردازش سریع‌تر — واحدهای پردازش گرافیکی (GPUs)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• مثلاً فضای ذخیره‌سازی دادهٔ بیشتر"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "The IBM Model 350 disk file with a storage space of 5MB from 1956 and a Micro SD Card",
+          "fa": "واحد دیسک IBM Model 350 با فضای ذخیره‌سازی ۵ مگابایت از سال ۱۹۵۶ و یک کارت Micro SD",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "8e3585a7cb4f845e0e19f04d34f1a81b9bb5d918d3b1e5e2ab46a6d7af01a699",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نگاه تاریخی"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• سخت‌افزار بهتر"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مثلاً پردازش سریع‌تر — واحدهای پردازش گرافیکی (GPUs)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• مثلاً فضای ذخیره‌سازی دادهٔ بیشتر"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "ظرفیت دیسک سخت (Hard Drive Capacity)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://ourworldindata.org/technological-progress"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Capacity (GB); Year",
+          "fa": "ظرفیت (گیگابایت)؛ سال",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "6bd84a78b421eebdc68a92f62be39cbc98a593d8cd9ca71d380d761ec2ab5794",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "سخت‌افزار: واحد پردازش مرکزی (CPU) در برابر واحد پردازش گرافیکی (GPU)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "http://cs231n.stanford.edu/slides/2018/cs231n_2018_lecture08.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Spot the CPU! (central processing unit)",
+          "fa": "واحد پردازش مرکزی (CPU) را پیدا کنید!",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "6bd84a78b421eebdc68a92f62be39cbc98a593d8cd9ca71d380d761ec2ab5794",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "سخت‌افزار: واحد پردازش مرکزی (CPU) در برابر واحد پردازش گرافیکی (GPU)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "http://cs231n.stanford.edu/slides/2018/cs231n_2018_lecture08.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Spot the GPUs! (graphics processing unit)",
+          "fa": "واحدهای پردازش گرافیکی (GPUs) را پیدا کنید!",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "bd5e69a89488982b134cc6144b2e75e30ad53a8c9ef4cccad8ac0f86699bf422",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "سخت‌افزار: واحد پردازش مرکزی (CPU) در برابر واحد پردازش گرافیکی (GPU)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• واحدهای پردازش گرافیکی (Graphical Processing Units): به‌دلیل تعداد بسیار بیشتر هسته‌های پردازشی، بارهای کاری محاسباتی را شتاب می‌دهند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://www.researchgate.net/figure/The-main-difference-between-CPUs￾and-GPUs-is-related-to-the-number-of-available-cores-A_fig7_273383346"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CPU; GPU",
+          "fa": "واحد پردازش مرکزی (CPU)؛ واحد پردازش گرافیکی (GPU)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "bd9608bf2594344beeebdaab999e20ce736406425209c6d91721a0ff3c5b15c9",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "سخت‌افزار: آموزش مدل‌ها با واحدهای پردازش گرافیکی (GPUs)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "http://cs231n.stanford.edu/slides/2018/cs231n_2018_lecture08.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Model is here; Data is here; If you aren’t careful, training can bottleneck on reading data and transferring to GPU! Solutions: Read all data into RAM; Use SSD instead of HDD; Use multiple CPU threads to prefetch data",
+          "fa": "مدل اینجاست؛ داده اینجاست؛ اگر دقت نکنید، خواندن داده و انتقال آن به GPU می‌تواند گلوگاه آموزش شود! راه‌حل‌ها: همهٔ داده‌ها را در RAM بخوانید؛ به‌جای HDD از SSD استفاده کنید؛ از چند رشتهٔ CPU برای پیش‌واکشی داده استفاده کنید.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "c7db85f89d04ab81d684161453f893f7815b1ae849872b41d94c6640569a5f7d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رایانه‌های دارای GPU: اجاره یا خرید؟"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "اجاره از ابر (مثلاً Microsoft Azure):"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "خرید:"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Instance; Core(s); RAM; Temporary storage; GPU; Pay as you go with AHB; ND96asr A100 v4; 96; 900 GiB; 6,500 GiB; 8× A100 (NVLink); $27.197/hour",
+          "fa": "نمونه؛ هسته(ها)؛ RAM؛ فضای ذخیره‌سازی موقت؛ GPU؛ پرداخت به میزان مصرف با AHB؛ ND96asr A100 v4؛ 96؛ 900 GiB؛ 6,500 GiB؛ 8× A100 (NVLink)؛ ۲۷٫۱۹۷ دلار در ساعت",
+          "verified": true
+        },
+        {
+          "en": "Lambda Bare Metal; 4–8× NVIDIA A100 SXM4 GPUs; Install in your Datacenter or Lambda Colo; Customize CPU, RAM, Storage & Network; Delivered in 2–4 weeks; Starting at $89,283.00",
+          "fa": "Lambda Bare Metal؛ تعداد ۴ تا ۸ واحد NVIDIA A100 SXM4 GPU؛ نصب در مرکز دادهٔ شما یا Lambda Colo؛ سفارشی‌سازی CPU، RAM، ذخیره‌سازی و شبکه؛ تحویل در ۲ تا ۴ هفته؛ قیمت از ۸۹٬۲۸۳٫۰۰ دلار",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "f77d7e79ae3621f6011597fb228159b5271ee46fb646eea712306bdb1a2cce07",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ظهور پلتفرم‌های متن‌باز «یادگیری عمیق» (Deep Learning)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://en.wikipedia.org/wiki/Comparison_of_deep_learning_software"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "قابل اجرا روی واحدهای پردازش گرافیکی (GPUs):"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "استفاده از معماری‌های رایج شبکهٔ عصبی را ساده می‌کند:"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "انگیزه:"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "OpenMP support; OpenCL support; CUDA support; Automatic differentiation; Has pretrained models; Recurrent nets; Convolutional nets; RBM/DBNs; Parallel execution (multi node)",
+          "fa": "پشتیبانی OpenMP؛ پشتیبانی OpenCL؛ پشتیبانی CUDA؛ مشتق‌گیری خودکار؛ دارای مدل‌های ازپیش‌آموزش‌دیده؛ شبکه‌های بازگشتی؛ شبکه‌های کانولوشنی؛ RBM/DBNs؛ اجرای موازی (چندگرهی)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "e99d25999b43800f501747df4e9af9e105c05bdf1e972683a2096b4ba68e4872",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ظهور پلتفرم‌های متن‌باز «یادگیری عمیق» (Deep Learning)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "2011 2012 2014 2015"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "(Paszke et al.)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "2013"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "(Bastien et al.) (Jia et al.) (Abadi et al.)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "2016 2017"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "(Collobert et al.)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "گزینه‌های رایج امروز"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "torch; theano; Caffe; Keras; TensorFlow; PYTORCH; Université de Montréal; Idiap; Berkeley; Google; Facebook",
+          "fa": "torch؛ theano؛ Caffe؛ Keras؛ TensorFlow؛ PYTORCH؛ دانشگاه مونترآل؛ Idiap؛ برکلی؛ گوگل؛ فیسبوک",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "f0ca351a03de7300307429f768d74aa72207447d6ee7e5770863bdf256ebf4b2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ظهور پلتفرم‌های متن‌باز «یادگیری عمیق» (Deep Learning)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://en.wikipedia.org/wiki/Comparison_of_deep_learning_software"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "مقایسه‌ای عالی: https://arxiv.org/pdf/1511.06435.pdf"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "مقایسه‌ای عالی:"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://skymind.ai/wiki/comparison￾frameworks-dl4j-tensorflow-pytorch"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Software; Creator; Software license; Open source; Platform; Written in; Interface; OpenMP support; OpenCL support; CUDA support; Automatic differentiation; Has pretrained models; Recurrent nets; Convolutional nets; RBM/DBNs; Parallel execution (multi node); Actively Developed",
+          "fa": "نرم‌افزار؛ سازنده؛ مجوز نرم‌افزار؛ متن‌باز؛ پلتفرم؛ زبان پیاده‌سازی؛ رابط؛ پشتیبانی OpenMP؛ پشتیبانی OpenCL؛ پشتیبانی CUDA؛ مشتق‌گیری خودکار؛ دارای مدل‌های ازپیش‌آموزش‌دیده؛ شبکه‌های بازگشتی؛ شبکه‌های کانولوشنی؛ RBM/DBNs؛ اجرای موازی (چندگرهی)؛ در حال توسعهٔ فعال",
+          "verified": true
+        },
+        {
+          "en": "Yes; No; MIT license; Apache 2.0; BSD; Public Domain; Boost Software License; Proprietary; GNU LGPL; Cross-Platform; Under development; On roadmap; Computational Graph; Only if using Theano as backend; Can use Theano or Tensorflow as backends; Train with Parallel Computing Toolbox and generate CUDA code with GPU Coder; With Parallel Computing Toolbox; Via separately maintained package; Through Lasagne’s model zoo; Third party implementations; Through Twitter’s Autograd; Under Development",
+          "fa": "بله؛ خیر؛ مجوز MIT؛ Apache 2.0؛ BSD؛ مالکیت عمومی؛ مجوز نرم‌افزار Boost؛ اختصاصی؛ GNU LGPL؛ چندسکویی؛ در حال توسعه؛ در نقشهٔ راه؛ گراف محاسباتی؛ فقط با استفاده از Theano به‌عنوان پشتیبان؛ امکان استفاده از Theano یا Tensorflow به‌عنوان پشتیبان؛ آموزش با Parallel Computing Toolbox و تولید کد CUDA با GPU Coder؛ با Parallel Computing Toolbox؛ از طریق بسته‌ای با نگهداری جداگانه؛ از طریق مجموعه‌مدل‌های Lasagne؛ پیاده‌سازی‌های شخص ثالث؛ از طریق Autograd توییتر؛ در حال توسعه",
+          "verified": true
+        },
+        {
+          "en": "roNNie.ai; BigDL; Caffe; Deeplearning4j; Chainer; Darknet; Dlib; DataMelt (DMelt); DyNet; Intel Data Analytics Acceleration Library; Intel Math Kernel Library; Keras; MATLAB + Neural Network Toolbox; Microsoft Cognitive Toolkit; Apache MXNet; Neural Designer; OpenNN; PaddlePaddle; PlaidML; PyTorch; Apache SINGA; TensorFlow; TensorLayer; Theano; Torch; Wolfram Mathematica; Veles",
+          "fa": "roNNie.ai؛ BigDL؛ Caffe؛ Deeplearning4j؛ Chainer؛ Darknet؛ Dlib؛ DataMelt (DMelt)؛ DyNet؛ کتابخانهٔ شتاب‌دهی تحلیل دادهٔ اینتل؛ کتابخانهٔ هستهٔ ریاضی اینتل؛ Keras؛ MATLAB + جعبه‌ابزار شبکهٔ عصبی؛ Microsoft Cognitive Toolkit؛ Apache MXNet؛ Neural Designer؛ OpenNN؛ PaddlePaddle؛ PlaidML؛ PyTorch؛ Apache SINGA؛ TensorFlow؛ TensorLayer؛ Theano؛ Torch؛ Wolfram Mathematica؛ Veles",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "225c50e6bc6dbcaffa8234c9939b0942eeafa3f679fcc3a58f7563ea46bc66dd",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "Microsoft Azure: پلتفرم‌های پشتیبانی‌شده"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://docs.microsoft.com/en-us/azure/machine-learning/data-science-virtual-machine/dsvm-ubuntu-intro"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Caffe: A deep learning framework built for speed, expressivity, and modularity",
+          "fa": "Caffe: چارچوب یادگیری عمیق ساخته‌شده برای سرعت، توان بیان و ماژولار بودن",
+          "verified": true
+        },
+        {
+          "en": "Caffe2: A cross-platform version of Caffe",
+          "fa": "Caffe2: نسخهٔ چندسکویی Caffe",
+          "verified": true
+        },
+        {
+          "en": "Microsoft Cognitive Toolkit: A deep learning software toolkit from Microsoft Research",
+          "fa": "Microsoft Cognitive Toolkit: جعبه‌ابزار نرم‌افزاری یادگیری عمیق از Microsoft Research",
+          "verified": true
+        },
+        {
+          "en": "H2O: An open-source big data platform and graphical user interface",
+          "fa": "H2O: پلتفرم کلان‌داده و رابط کاربری گرافیکی متن‌باز",
+          "verified": true
+        },
+        {
+          "en": "Keras: A high-level neural network API in Python for Theano and TensorFlow",
+          "fa": "Keras: رابط برنامه‌نویسی سطح بالای شبکهٔ عصبی در پایتون برای Theano و TensorFlow",
+          "verified": true
+        },
+        {
+          "en": "MXNet: A flexible, efficient deep learning library with many language bindings",
+          "fa": "MXNet: کتابخانهٔ یادگیری عمیق انعطاف‌پذیر و کارآمد با اتصال به زبان‌های متعدد",
+          "verified": true
+        },
+        {
+          "en": "NVIDIA DIGITS: A graphical system that simplifies common deep learning tasks",
+          "fa": "NVIDIA DIGITS: سامانه‌ای گرافیکی که وظایف رایج یادگیری عمیق را ساده می‌کند.",
+          "verified": true
+        },
+        {
+          "en": "PyTorch: A high-level Python library with support for dynamic networks",
+          "fa": "PyTorch: کتابخانهٔ سطح بالای پایتون با پشتیبانی از شبکه‌های پویا",
+          "verified": true
+        },
+        {
+          "en": "TensorFlow: An open-source library for machine intelligence from Google",
+          "fa": "TensorFlow: کتابخانه‌ای متن‌باز برای هوش ماشینی از گوگل",
+          "verified": true
+        },
+        {
+          "en": "Theano: A Python library for defining, optimizing, and efficiently evaluating mathematical expressions involving multi-dimensional arrays",
+          "fa": "Theano: کتابخانهٔ پایتون برای تعریف، بهینه‌سازی و ارزیابی کارآمد عبارت‌های ریاضی شامل آرایه‌های چندبعدی",
+          "verified": true
+        },
+        {
+          "en": "Torch: A scientific computing framework with wide support for machine learning algorithms",
+          "fa": "Torch: چارچوب محاسبات علمی با پشتیبانی گسترده از الگوریتم‌های یادگیری ماشین",
+          "verified": true
+        },
+        {
+          "en": "CUDA, cuDNN, and the NVIDIA driver; Many sample Jupyter notebooks",
+          "fa": "CUDA، cuDNN و درایور NVIDIA؛ دفترچه‌های نمونهٔ متعدد Jupyter",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "c6e4f0c51f3ed6bcdcaecf9821ad2f1276e88640b111b2af86f7fa5f332b996c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری بازنمایی (Representation learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• ویژگی‌های ازپیش‌آموخته (Pretrained features)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تنظیم دقیق (Fine-tuning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش شبکه‌های عصبی: سخت‌افزار و نرم‌افزار"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "c6e4f0c51f3ed6bcdcaecf9821ad2f1276e88640b111b2af86f7fa5f332b996c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری بازنمایی (Representation learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• ویژگی‌های ازپیش‌آموخته (Pretrained features)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تنظیم دقیق (Fine-tuning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش شبکه‌های عصبی: سخت‌افزار و نرم‌افزار"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 71,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ]
+    }
+  ]
+}

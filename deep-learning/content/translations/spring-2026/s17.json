@@ -1,0 +1,2253 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s17",
+  "source_sha256": "2d5239140b0caa9129ef14c90a184250a8b464dc403161f87836428875549df5",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "6379cfef77a26258a6d15e8d0d46f2ef470874d07ed4f38c524cc479f2f81be8",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پیدایش «مدل‌های بنیادین» (Foundation Models): یادگیری از پرامپت‌ها (Prompts) و استدلال (Reasoning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "دانشگاه کلرادو بولدر (University of Colorado Boulder)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "بهار ۲۰۲۶ (Spring 2026)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CC BY NC SA",
+          "fa": "CC BY-NC-SA (انتساب؛ غیرتجاری؛ اشتراک‌گذاری همسان)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "14b935e7aca84b054c98b570372846fe20f7c634c9b131f0b11bcf383ec34a5c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• جلسهٔ قبل:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• تلاش برای رشد: چاشنی پنهان موفقیت"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• قوانین مقیاس‌بندی (Scaling laws): بهبودهای پیش‌بینی‌پذیر از اندازهٔ مدل، داده و محاسبه"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• تأمین سوخت مقیاس: به‌کارگیری اینترنت به‌عنوان دادهٔ آموزشی"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• کشف: توانایی‌های کم‌نمونه (Few-shot) و بی‌نمونه (Zero-shot) پدیدار می‌شوند"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• تکلیف‌ها (Canvas):"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• موعد تحویل تکلیف آزمایشگاهی 3 یک هفتهٔ دیگر است"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "• پروژه‌های نهایی — یافتن همکار (رویداد مجازی «آشنایی» سریع در دوشنبه)"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "bullet",
+          "fa": "• پرسشی دارید؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "57600f92c33d5d310d8aa8e7ea6a8e9c749f16756a374e140cdaf702cd19e526",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• از متخصص‌ها به عمومی‌ها: پیدایش مدل‌های «بنیادین» (Foundation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• تعمیم به هر وظیفه: هنر پرامپت‌دهی (Prompting)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• آهسته‌تر فکرکردن: استدلال (Reasoning) برای نتایج بهتر"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• فراتر از متن: پرامپت‌دهی (Prompting) در وجه‌های دیگر (Modalities)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• فعالیت پرامپت‌دهی (Prompting)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "57600f92c33d5d310d8aa8e7ea6a8e9c749f16756a374e140cdaf702cd19e526",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• از متخصص‌ها به عمومی‌ها: پیدایش مدل‌های «بنیادین» (Foundation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• تعمیم به هر وظیفه: هنر پرامپت‌دهی (Prompting)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• آهسته‌تر فکرکردن: استدلال (Reasoning) برای نتایج بهتر"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• فراتر از متن: پرامپت‌دهی (Prompting) در وجه‌های دیگر (Modalities)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• فعالیت پرامپت‌دهی (Prompting)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "dba9c5ba688e9879eceee50844a1ec10a1b2574cdb0d6c8202114e27597831be",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "افزایش مقیاس، وضعیت را دگرگون کرد: پس از موفقیت بی‌نمونه (Zero-Shot)، مدل‌های عمومی (Generalist Models) از راه می‌رسند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.esquire.com/lifestyle/a41044437/7-unconventional-uses-for-your-swiss-army-knife/"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "در مقایسه با (VS)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "1. Large Blade; 2. Small Blade; 3. Corkscrew; 4. Can Opener with 5. Small Screwdriver; 6. Bottle Opener with 7. Large Screwdriver, 8. Wire Stripper; 9. Reamer; 10. Key Ring; 11. Scissors; 12. Multi-purpose Hook (Parcel Carrier); 13. Wood Saw",
+          "fa": "1. تیغهٔ بزرگ؛ 2. تیغهٔ کوچک؛ 3. چوب‌پنبه‌کش؛ 4. دربازکن قوطی با 5. پیچ‌گوشتی کوچک؛ 6. دربازکن بطری با 7. پیچ‌گوشتی بزرگ و 8. سیم‌لخت‌کن؛ 9. برقو؛ 10. حلقهٔ کلید؛ 11. قیچی؛ 12. قلاب چندمنظوره (حمل بسته)؛ 13. ارهٔ چوب",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "174865a7ed90fb49231a56fe889e4e2f83f4dbf33ed0f924a98ca42a292d8257",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکرد: آموزش و ارزیابی در مقیاس بزرگ (Large-Scale Training and Evaluation)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "ارزیابی روی مجموعه‌داده‌های محک (Benchmark datasets) برای موارد متعدد: 1. وظیفه‌ها (برای مثال، بازشناسی شیء (Object recognition)، طبقه‌بندی صحنه (Scene classification)) 2. توزیع‌های داده برای یک وظیفهٔ یکسان (برای مثال، ImageNet در مقایسه با داده‌های افراد نابینا)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "Bommasani et al. On the Opportunities and Risks of Foundation Models. arXiv 2021."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Data: Text, Images, Speech, Structured Data, 3D Signals; Training; Foundation Model; Adaptation; Tasks: Question Answering, Sentiment Analysis, Information Extraction, Image Captioning, Object Recognition, Instruction Following",
+          "fa": "داده: متن، تصویرها، گفتار، دادهٔ ساخت‌یافته، سیگنال‌های سه‌بعدی؛ آموزش؛ مدل بنیادین (Foundation Model)؛ سازگارکردن؛ وظیفه‌ها: پرسش‌وپاسخ، تحلیل احساسات، استخراج اطلاعات، شرح تصویر (Image Captioning)، بازشناسی شیء، پیروی از دستور",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "b82729d624c7cb0cfaf2391017b8bc8d75f492bc2704d8f3e4ff2016c0bd71b1",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پارادایم جدید: مدل «بنیادین» (Foundation Model)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Bommasani et al. On the Opportunities and Risks of Foundation Models. arXiv 2021."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "این اصطلاح در 2021 برای بیان تغییر پارادایمی ابداع شد که در آن یک مدل واحد می‌توانست فقط با پرامپت‌دهی (Prompting)، بدون تغییر، از وظیفه‌های پایین‌دستی (Downstream tasks) فراوان پشتیبانی کند!"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Machine Learning; Deep Learning; Foundation Models; Emergence of…: “how”, features, functionalities; Homogenization of…: learning algorithms, architectures, models",
+          "fa": "یادگیری ماشین؛ یادگیری عمیق؛ مدل‌های بنیادین؛ ظهورِ…: «چگونه»، ویژگی‌ها، کارکردها؛ همگن‌شدنِ…: الگوریتم‌های یادگیری، معماری‌ها، مدل‌ها",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "84a83543a5db6b8c9e50070f372c3e432321ccdbf0b2bc747a20f907bc620680",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "heading",
+          "fa": "جهان‌بسته/مجموعه‌بسته (Closed-world/Closed-set): فرض می‌کند همهٔ کلاس‌های هدف هنگام آموزش موجودند"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "واژگان / زبان (Vocabulary / Language)"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "آزمون خارج از دامنه/استحکام (Out-of-domain/robustness testing): محتوای یکسان به‌صورتی متفاوت مشاهده می‌شود"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "طبقه‌بندی مجموعه‌باز/تشخیص خارج از توزیع (Open set classification/out-of-distribution detection): پیش‌بینی اینکه آیا نمونه از توزیع مشاهده‌شده هنگام آموزش آمده است"
+        },
+        {
+          "source_lines": [
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "جهان‌باز/در شرایط واقعی (Open world/In-the-wild) برای وظیفه‌های متفاوت (برای مثال، تشخیص): موفقیت برای همهٔ رده‌ها، چه هنگام آموزش دیده شده باشند و چه نه"
+        },
+        {
+          "source_lines": [
+            13,
+            14
+          ],
+          "kind": "text",
+          "fa": "شگفتی: مدل‌های بنیادین (Foundation Models) بدون تغییر به فراتر از محیط‌های جهان‌بسته (Closed-World) تعمیم یافتند"
+        },
+        {
+          "source_lines": [
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "kind": "text",
+          "fa": "بی‌نمونه و واژگان‌باز (Zero-shot and open vocabulary): تعمیم بدون دادهٔ آموزشی برچسب‌دار برای وظیفهٔ هدف (برای مثال، رده‌های جدید)؛ در حالت دوم، برچسب‌گذاری با ردهٔ جدید (برای وظیفه‌ای متفاوت) مجاز است"
+        },
+        {
+          "source_lines": [
+            21
+          ],
+          "kind": "reference",
+          "fa": "https://arxiv.org/pdf/2210.09263.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "mask-wearing; food; flowers; textures; border collie, running, while shirt; person, sheep, dog; person, dog, standing/sitting; person, dog; Visual Content",
+          "fa": "ماسک‌زدن؛ غذا؛ گل‌ها؛ بافت‌ها؛ بوردر کولی، دویدن، while shirt (عین عبارت نامعمول تصویر)؛ شخص، گوسفند، سگ؛ شخص، سگ، ایستادن/نشستن؛ شخص، سگ؛ محتوای بصری",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "90e58e531760ae03467febab5fd95681f9f993a8fc22560f968e849492bc1b1e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محبوبیت روبه‌رشد پژوهش مبتنی بر پرامپت (Prompt-based Research)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://pretrain.nlpedia.ai/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "#Paper; Date; GPT-2; GPT-3; LAMA; PET; P3; 74; 128",
+          "fa": "تعداد مقاله؛ تاریخ؛ GPT-2؛ GPT-3؛ LAMA؛ PET؛ P3؛ 74؛ 128",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "57600f92c33d5d310d8aa8e7ea6a8e9c749f16756a374e140cdaf702cd19e526",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• از متخصص‌ها به عمومی‌ها: پیدایش مدل‌های «بنیادین» (Foundation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• تعمیم به هر وظیفه: هنر پرامپت‌دهی (Prompting)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• آهسته‌تر فکرکردن: استدلال (Reasoning) برای نتایج بهتر"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• فراتر از متن: پرامپت‌دهی (Prompting) در وجه‌های دیگر (Modalities)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• فعالیت پرامپت‌دهی (Prompting)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "d1cd5d8242dbeb5ca79ae33d2c556776dc30afcc446b634666d9f2551fc178a1",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "(ACM Computing Surveys, 2023)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "«در زمان نگارش این متن در 2021، در میانهٔ دومین دگرگونی بزرگ هستیم؛ فرایند «پیش‌آموزش، تنظیم دقیق» (Pre-train, fine-tune) با فرایندی جایگزین می‌شود که آن را «پیش‌آموزش، پرامپت، و پیش‌بینی» (Pre-train, prompt, and predict) می‌نامیم. در این پارادایم… با کمک پرامپتی متنی، وظیفه‌ها بازصورت‌بندی می‌شوند تا بیشتر شبیه وظیفه‌های حل‌شده هنگام آموزش اولیهٔ مدل زبانی (LM) باشند… اما نکته‌ای هست — این روش نیاز به مهندسی پرامپت (Prompt engineering) را ایجاد می‌کند؛ یافتن مناسب‌ترین پرامپت برای آنکه مدل زبانی بتواند وظیفهٔ موردنظر را حل کند.»"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pre-train, Prompt, and Predict: A Systematic Survey of Prompting Methods in Natural Language Processing",
+          "fa": "پیش‌آموزش، پرامپت و پیش‌بینی: مرور نظام‌مند روش‌های پرامپت‌دهی در پردازش زبان طبیعی",
+          "verified": true
+        },
+        {
+          "en": "Pengfei Liu; Weizhe Yuan; Jinlan Fu; Zhengbao Jiang; Hiroaki Hayashi; Graham Neubig; Carnegie Mellon University; National University of Singapore; pliu3@cs.cmu.edu; weizhey@cs.cmu.edu; jinlanjonna@gmail.com; zhengbaj@cs.cmu.edu; hiroakih@cs.cmu.edu; gneubig@cs.cmu.edu",
+          "fa": "Pengfei Liu؛ Weizhe Yuan؛ Jinlan Fu؛ Zhengbao Jiang؛ Hiroaki Hayashi؛ Graham Neubig؛ دانشگاه کارنگی ملون؛ دانشگاه ملی سنگاپور؛ pliu3@cs.cmu.edu؛ weizhey@cs.cmu.edu؛ jinlanjonna@gmail.com؛ zhengbaj@cs.cmu.edu؛ hiroakih@cs.cmu.edu؛ gneubig@cs.cmu.edu",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "da460d3f090fe4658471162c50664776c38f0c1535c44d890067d6df944d2b34",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "heading",
+          "fa": "«مهندسی پرامپت (Prompt engineering) فرایند ایجاد تابع پرامپت‌دهی fprompt(x) است که مؤثرترین عملکرد را در وظیفهٔ پایین‌دستی (Downstream task) به دست می‌دهد.» — صفحهٔ 11"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Liu et al. arXiv 2023"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "2152cbe5ba890c7ee1e2cc1d20a9368038ab477fc636310707d9fb2d156025b2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "Liu et al. arXiv 2023"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "مهندسی دستی الگو (Manual Template Engineering): «مهندس انسانی یا الگوریتم، بهترین الگو را برای هر وظیفه‌ای جست‌وجو می‌کند که انتظار می‌رود مدل انجام دهد»"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "برای مثال،"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Task; Input ([X]); Template; Answer ([Z]); Sentiment; Topics; Intention; Aspect Sentiment; NLI; NER; Summarization; Translation",
+          "fa": "وظیفه؛ ورودی ([X])؛ الگو؛ پاسخ ([Z])؛ احساسات؛ موضوع‌ها؛ نیت؛ احساسات دربارهٔ جنبه؛ استنتاج زبان طبیعی (NLI)؛ بازشناسی موجودیت نامدار (NER)؛ خلاصه‌سازی؛ ترجمه",
+          "verified": true
+        },
+        {
+          "en": "I love this movie. → [X] The movie is [Z]. → great / fantastic / …; He prompted the LM. → [X] The text is about [Z]. → sports / science / …; What is taxi fare to Denver? → [X] The question is about [Z]. → quantity / city / …; Poor service but good food. → [X] What about service? [Z]. → Bad / Terrible / …",
+          "fa": "عین توکن‌های مثال انگلیسی حفظ شده‌اند. برگردان: «این فیلم را دوست دارم» ← «فیلم [Z] است» ← عالی/فوق‌العاده/…؛ «او به مدل زبانی پرامپت داد» ← «متن دربارهٔ [Z] است» ← ورزش/علم/…؛ «کرایهٔ تاکسی به دنور چقدر است؟» ← «پرسش دربارهٔ [Z] است» ← مقدار/شهر/…؛ «خدمات ضعیف ولی غذای خوب» ← «خدمات چطور؟ [Z]» ← بد/افتضاح/…",
+          "verified": true
+        },
+        {
+          "en": "[X1]: An old man with … [X2]: A man walks … → [X1]? [Z], [X2] → Yes / No / …; [X1]: Mike went to Paris. [X2]: Paris → [X1] [X2] is a [Z] entity. → organization / location / …; Las Vegas police … → [X] TL;DR: [Z] → The victim … / A woman … / …; Je vous aime. → French: [X] English: [Z] → I love you. / I fancy you. / …",
+          "fa": "برگردانِ مثال‌ها با حفظ اصل توکن‌ها در متن انگلیسی: «پیرمردی با…»، «مردی راه می‌رود…» ← «[X1]؟ [Z]، [X2]» ← بله/خیر/…؛ «مایک به پاریس رفت»، «پاریس» ← «[X2] موجودیتی از نوع [Z] است» ← سازمان/مکان/…؛ «پلیس لاس‌وگاس…» ← «خلاصه: [Z]» ← «قربانی…»/«یک زن…»/…؛ «Je vous aime» ← «فرانسوی: [X] انگلیسی: [Z]» ← «دوستت دارم»/«به تو علاقه دارم»/…",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "e0f83692ab240d537db471ad1226b1c1188b4604651048b0eb0883685fae5ca3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "Li and Liang. ACL 2021"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "یادگیری خودکار الگو (Automated Template Learning): - پرامپت‌های پیوسته/نرم (Continuous/soft prompts): تعداد کمی پارامتر اضافی را تنظیم می‌کنند (به‌جای تنظیم دقیق ترنسفورمر ازپیش‌آموزش‌دیده)؛ برای مثال،"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Haviv et al. ACL 2021"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7
+          ],
+          "kind": "bullet",
+          "fa": "- پرامپت‌های گسسته/سخت (Discrete/hard prompts): برای مثال، پرامپت را به عبارتی بازنویسی می‌کند که دقت بالاتری به دست می‌دهد"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Fine-tuning; Transformer (Translation); Transformer (Summarization); Transformer (Table-to-text); Prefix-tuning; Prefix (Translation); Prefix (Summarization); Prefix (Table-to-text); Transformer (Pretrained); Input (table-to-text); Output (table-to-text)",
+          "fa": "تنظیم دقیق (Fine-tuning)؛ ترنسفورمرِ ترجمه؛ ترنسفورمرِ خلاصه‌سازی؛ ترنسفورمرِ جدول‌به‌متن؛ تنظیم پیشوند (Prefix-tuning)؛ پیشوندِ ترجمه؛ پیشوندِ خلاصه‌سازی؛ پیشوندِ جدول‌به‌متن؛ ترنسفورمرِ پیش‌آموزش‌دیده؛ ورودیِ جدول‌به‌متن؛ خروجیِ جدول‌به‌متن",
+          "verified": true
+        },
+        {
+          "en": "name Starbucks type coffee shop [SEP] Starbucks serves coffee",
+          "fa": "مثال با عین توکن‌ها: name Starbucks type coffee shop [SEP] Starbucks serves coffee؛ برگردان: نام Starbucks، نوع کافی‌شاپ [SEP] Starbucks قهوه سرو می‌کند.",
+          "verified": true
+        },
+        {
+          "en": "A: nbc; Predictor (Off-The-Shelf Pretrained BERT); Q: will & grace is originally aired on [MASK].; Nearest Neighbors; BERT Embeddings Vocabulary; Rewriter (Identity Pretrained BERT); Q: will & grace was originally aired on [MASK].",
+          "fa": "A: nbc؛ پیش‌بینی‌کننده (BERT آماده و پیش‌آموزش‌دیده)؛ دو پرامپت با اصل توکن‌ها حفظ شده‌اند: Q: will & grace is originally aired on [MASK]. و Q: will & grace was originally aired on [MASK]. (برگردان: پخش اولیهٔ will & grace از شبکهٔ [MASK] است/بود.)؛ نزدیک‌ترین همسایه‌ها؛ واژگان بردارهای تعبیهٔ BERT؛ بازنویس (BERT پیش‌آموزش‌دیدهٔ همانی)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "4277e701e1e815df2355fae4dae4308db4a80c04b03dafcfbd37034c669e0ad5",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شرکت‌های فراوانی پرامپت‌ها (Prompts) را فروخته‌اند/می‌فروشند/تبلیغ می‌کنند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "PromptBase; Search Prompts; Marketplace; Generate; Hire; Login; Sell; AI Models; ChatGPT; Midjourney; Marketing; Shop; Other; Free Prompt; Free Generator; Search Prompts, @authors or #tags",
+          "fa": "PromptBase؛ جست‌وجوی پرامپت؛ بازار؛ تولید کنید؛ استخدام کنید؛ ورود؛ بفروشید؛ مدل‌های هوش مصنوعی؛ ChatGPT؛ Midjourney؛ بازاریابی؛ فروشگاه؛ سایر؛ پرامپت رایگان؛ تولیدکنندهٔ رایگان؛ جست‌وجوی پرامپت‌ها، @نویسندگان یا #برچسب‌ها",
+          "verified": true
+        },
+        {
+          "en": "Prompt M…; Business; Find Super Prompt, …; Your #1 Prompt …; +10k Prom…; Sell a Prompt; Prompt Attack; Unleash the power of Artificial Intelligence; Your #1 Prompt Marketplace",
+          "fa": "Prompt M…؛ کسب‌وکار؛ پرامپت عالی پیدا کنید…؛ پرامپت شمارهٔ 1 شما…؛ بیش از 10 هزار پرام…؛ پرامپتی بفروشید؛ Prompt Attack؛ قدرت هوش مصنوعی را آزاد کنید؛ بازار پرامپت شمارهٔ 1 شما",
+          "verified": true
+        },
+        {
+          "en": "PromptAttack is a marketplace where you can purchase and sell high-quality prompts that generate optimal stunning results while also reducing your API expenses.; Find a prompt; Sign Up; Register; Jagged Cut Out Punk Posters; Research Paper Summarizer; Studio Quality Product Fruit…; @midrun; @laxman1986; $2.99",
+          "fa": "PromptAttack بازاری است که در آن می‌توانید پرامپت‌های باکیفیت بخرید و بفروشید که نتایج بهینه و خیره‌کننده تولید می‌کنند و در عین حال هزینه‌های API شما را کاهش می‌دهند؛ پرامپتی پیدا کنید؛ ثبت‌نام؛ نام‌نویسی؛ پوسترهای پانک با برش‌های دندانه‌دار؛ خلاصه‌کنندهٔ مقالهٔ پژوهشی؛ میوهٔ محصول با کیفیت استودیویی…؛ @midrun؛ @laxman1986؛ $2.99",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "5f70a2284bb9d63eeca6081ad693cc1e889f8ac4d3289482e2ac7745700c6c0a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "این کار همچنین به الهام‌بخشی برای پیدایش مدل‌های گفت‌وگویی (Conversational Models) کمک کرد؛ برای مثال،"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• نوامبر 2022: ChatGPT از OpenAI"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• فوریهٔ 2023: Gemini از Google (در ابتدا Bard)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• مارس 2023: Claude از Anthropic"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "57600f92c33d5d310d8aa8e7ea6a8e9c749f16756a374e140cdaf702cd19e526",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• از متخصص‌ها به عمومی‌ها: پیدایش مدل‌های «بنیادین» (Foundation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• تعمیم به هر وظیفه: هنر پرامپت‌دهی (Prompting)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• آهسته‌تر فکرکردن: استدلال (Reasoning) برای نتایج بهتر"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• فراتر از متن: پرامپت‌دهی (Prompting) در وجه‌های دیگر (Modalities)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• فعالیت پرامپت‌دهی (Prompting)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "8886431bdaaaca3a5c3e70d19a8ee9288c7c8c4c1eae348f05d170b60d0c2d7f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "درک شهودی (Intuition): چقدر استدلال (Reasoning) می‌کنید؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• حاصل 2 + 2 چیست؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• 4"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• حاصل 24 x 14 چیست؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• فرایند استدلال من:"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "• 24 x 10 = 240",
+          "latex": "24\\times10=240"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "literal",
+          "fa": "• 24 x (14-10) = 24 x 4 = 96",
+          "latex": "24\\times(14-10)=24\\times4=96"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• 240+96 = 336 (پاسخ نهایی!)",
+          "latex": "240+96=336"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• برای تولید پاسخ همین مسیر استدلال (Reasoning path) را دنبال کردید یا مسیری متفاوت؟"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "• انسان‌ها وقتی پیش از پاسخ‌دادن استدلال/فکر می‌کنند، بهتر عمل می‌کنند"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "abcaa314b1a9f3833b1aa0d994ee3bbf4f0baad38fef6593764662050517286f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "یافتهٔ اصلی: مدل‌ها وقتی به استدلال/فکرکردن پیش از پاسخ‌دادن تشویق می‌شوند، بهتر عمل می‌کنند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-reasoning-llms"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "“Regular” LLMs; “Reasoning” LLMs; Question; Large Language Model; “Reasoning” Large Language Model; Answer; Thought process 1; Thought process 2; Thought process n; “reason” before answering",
+          "fa": "مدل‌های زبانی بزرگ «معمولی»؛ مدل‌های زبانی بزرگ «استدلالی»؛ پرسش؛ مدل زبانی بزرگ؛ مدل زبانی بزرگ «استدلالی»؛ پاسخ؛ فرایند فکر 1؛ فرایند فکر 2؛ فرایند فکر n؛ پیش از پاسخ‌دادن «استدلال» کنید",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "9e15da475760fe47e56214551a56d47c1094d106fe247f3e6caf543b18d635d8",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "(مقالهٔ پیشگام، Neurips 2022)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models; Jason Wei; Xuezhi Wang; Dale Schuurmans; Maarten Bosma; Brian Ichter; Fei Xia; Ed H. Chi; Quoc V. Le; Denny Zhou; Google Research, Brain Team",
+          "fa": "پرامپت‌دهی زنجیرهٔ فکر (Chain-of-Thought Prompting) استدلال را در مدل‌های زبانی بزرگ برمی‌انگیزد؛ Jason Wei؛ Xuezhi Wang؛ Dale Schuurmans؛ Maarten Bosma؛ Brian Ichter؛ Fei Xia؛ Ed H. Chi؛ Quoc V. Le؛ Denny Zhou؛ پژوهش گوگل، تیم Brain",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "c2f9580fd4f7e56840aba91cc2b71b9960cb934c0e96014b15db7ffb8c8d36c5",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پرامپت‌دهی زنجیرهٔ فکر (Chain-of-Thought; CoT Prompting)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Wei et al. Chain-of-Thought Prompting Elicits Reasoning in Large Language Models. Neurips 2022."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "مدل را هدایت می‌کند تا گام‌های میانی استدلال (Reasoning steps) را نشان دهد"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Standard Prompting; Chain-of-Thought Prompting; Model Input; Model Output",
+          "fa": "پرامپت‌دهی معمول؛ پرامپت‌دهی زنجیرهٔ فکر؛ ورودی مدل؛ خروجی مدل",
+          "verified": true
+        },
+        {
+          "en": "Q: Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now?",
+          "fa": "پرسش: راجر 5 توپ تنیس دارد. 2 قوطی دیگر توپ تنیس می‌خرد. هر قوطی 3 توپ دارد. اکنون چند توپ دارد؟ اصل انگلیسی ورودی حفظ شده است.",
+          "verified": true
+        },
+        {
+          "en": "A: The answer is 11.; A: Roger started with 5 balls. 2 cans of 3 tennis balls each is 6 tennis balls. 5 + 6 = 11. The answer is 11.",
+          "fa": "پاسخ معمول: پاسخ 11 است. پاسخ زنجیرهٔ فکر: راجر با 5 توپ شروع کرد. 2 قوطی که هرکدام 3 توپ دارند می‌شود 6 توپ. 5 + 6 = 11. پاسخ 11 است. اصل انگلیسی خروجی‌ها حفظ شده است.",
+          "verified": true
+        },
+        {
+          "en": "Q: The cafeteria had 23 apples. If they used 20 to make lunch and bought 6 more, how many apples do they have? A: The answer is 27.",
+          "fa": "پرسش: غذاخوری 23 سیب داشت. اگر برای ناهار 20 سیب مصرف کردند و 6 سیب دیگر خریدند، چند سیب دارند؟ پاسخِ نمایش‌داده‌شده در سمت معمول: «پاسخ 27 است.» (خطای خود مثال با علامت × در تصویر حفظ شده است.)",
+          "verified": true
+        },
+        {
+          "en": "A: The cafeteria had 23 apples originally. They used 20 to make lunch. So they had 23 - 20 = 3. They bought 6 more apples, so they have 3 + 6 = 9. The answer is 9.",
+          "fa": "پاسخ: غذاخوری در ابتدا 23 سیب داشت. برای ناهار 20 سیب مصرف کردند، پس 23 - 20 = 3 داشتند. 6 سیب دیگر خریدند، پس 3 + 6 = 9 دارند. پاسخ 9 است. (عین خروجی انگلیسی در متن اصلی حفظ شده است.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "fff2d9d442e819919e37375980df0a58e513dd4ff22a8159ca38325510fa9915",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پرامپت‌دهی زنجیرهٔ فکر (CoT Prompting): چرا کار می‌کند؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Wang et al. Towards Understanding Chain-of-Thought Prompting: An Empirical Study of What Matters. arXiv 2022."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "به نظر می‌رسد فایدهٔ مثال‌ها آشکارکردن قالب هدف باشد، زیرا عملکرد حتی با مثال‌های نامعتبر نیز بهتر می‌شود"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CoT; Invalid Reasoning",
+          "fa": "زنجیرهٔ فکر (CoT)؛ استدلال نامعتبر (Invalid Reasoning)",
+          "verified": true
+        },
+        {
+          "en": "Originally, Leah had 32 chocolates and her sister had 42. So in total they had 32 + 42 = 74. After eating 35, they had 74 - 35 = 39 pieces left in total. The answer is 39.",
+          "fa": "در ابتدا لیا 32 شکلات داشت و خواهرش 42 شکلات؛ پس در مجموع 32 + 42 = 74 داشتند. پس از خوردن 35 عدد، 74 - 35 = 39 عدد باقی ماند. پاسخ 39 است.",
+          "verified": true
+        },
+        {
+          "en": "Originally, Leah had 32 chocolates and her sister had 42. So her sister had 42 - 32 = 10 chocolates more than Leah has. After eating 35, since 10 + 35 = 45, they had 45 - 6 = 39 pieces left in total. The answer is 39.",
+          "fa": "در ابتدا لیا 32 و خواهرش 42 شکلات داشت؛ پس خواهرش 42 - 32 = 10 شکلات بیشتر داشت. پس از خوردن 35 عدد، چون 10 + 35 = 45 است، در مجموع 45 - 6 = 39 عدد باقی ماند. پاسخ 39 است. این مسیرِ نامعتبر عین مثال منبع حفظ شده است.",
+          "verified": true
+        },
+        {
+          "en": "Julie is reading a 120-page book. Yesterday, she read 12 pages and today, she read 24 pages. So she read a total of 12 + 24 = 36 pages. Now she has 120 - 36 = 84 pages left. Since she wants to read half of the remaining pages, she should read 84 / 2 = 42 pages. The answer is 42.",
+          "fa": "جولی کتابی 120صفحه‌ای می‌خواند. دیروز 12 و امروز 24 صفحه خواند، پس در مجموع 12 + 24 = 36 صفحه خوانده است. اکنون 120 - 36 = 84 صفحه باقی مانده است. چون می‌خواهد نصف باقی‌مانده را بخواند، باید 84 / 2 = 42 صفحه بخواند. پاسخ 42 است.",
+          "verified": true
+        },
+        {
+          "en": "Yesterday, Julie read 12 pages. Today, she read 12 * 2 = 24 pages. So she read a total of 12 + 24 = 36 pages. Now she needs to read 120 - 36 = 84 more pages. She wants to read half of the remaining pages tomorrow, so she needs to read 84 / 2 = 42 pages tomorrow. The answer is 42.",
+          "fa": "دیروز جولی 12 صفحه خواند. امروز 12 * 2 = 24 صفحه خواند. پس در مجموع 12 + 24 = 36 صفحه خواند. اکنون باید 120 - 36 = 84 صفحهٔ دیگر بخواند. می‌خواهد فردا نصف باقی‌مانده را بخواند، پس فردا باید 84 / 2 = 42 صفحه بخواند. پاسخ 42 است. این متن در سطر «استدلال نامعتبر» منبع قرار دارد.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "79c9a84b7cfdd9e46334b79fcf3ffc960de97097f685b01d02feb3b22cd3a7d3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "بهبود پرامپت‌دهی زنجیرهٔ فکر (CoT Prompting): خودسازگاری (Self-Consistency)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Wang et al. Self-consistency Improves Chain of Thought Reasoning in Language Models. ICLR 2023."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "از رایج‌ترین پاسخِ چند مسیر استدلال (Reasoning paths) استفاده کنید"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Chain-of-thought prompting; Prompt; Language model; Greedy decode; Self-consistency; Sample a diverse set of reasoning paths; Marginalize out reasoning paths to aggregate final answers",
+          "fa": "پرامپت‌دهی زنجیرهٔ فکر؛ پرامپت؛ مدل زبانی؛ رمزگشایی حریصانه (Greedy decode)؛ خودسازگاری (Self-consistency)؛ مجموعه‌ای متنوع از مسیرهای استدلال نمونه‌برداری کنید؛ برای تجمیع پاسخ‌های نهایی، مسیرهای استدلال را حاشیه‌گیری کنید",
+          "verified": true
+        },
+        {
+          "en": "Q: If there are 3 cars in the parking lot and 2 more cars arrive, how many cars are in the parking lot? A: There are 3 cars in the parking lot already. 2 more arrive. Now there are 3 + 2 = 5 cars. The answer is 5. … Q: Janet’s ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder for $2 per egg. How much does she make every day? A:",
+          "fa": "پرسش: اگر در پارکینگ 3 خودرو باشد و 2 خودروی دیگر برسند، چند خودرو در پارکینگ است؟ پاسخ: از قبل 3 خودرو است؛ 2 خودروی دیگر می‌رسند؛ اکنون 3 + 2 = 5 خودرو است. پاسخ 5 است. … پرسش: اردک‌های جنت روزانه 16 تخم می‌گذارند. او هر صبح 3 عدد برای صبحانه می‌خورد و هر روز با 4 عدد برای دوستانش مافین می‌پزد. باقی را دانه‌ای $2 می‌فروشد. هر روز چقدر درآمد دارد؟ پاسخ: (اصل توکن‌های ورودی حفظ شده است.)",
+          "verified": true
+        },
+        {
+          "en": "This means she uses 3 + 4 = 7 eggs every day. She sells the remainder for $2 per egg, so in total she sells 7 * $2 = $14 per day. The answer is $14.",
+          "fa": "یعنی روزانه 3 + 4 = 7 تخم مصرف می‌کند. باقی را دانه‌ای $2 می‌فروشد، پس در مجموع روزانه 7 * $2 = $14 می‌فروشد. پاسخ $14 است. (خطای استدلال و پاسخ مطابق اصل حفظ شده است.)",
+          "verified": true
+        },
+        {
+          "en": "She has 16 - 3 - 4 = 9 eggs left. So she makes $2 * 9 = $18 per day. The answer is $18.; This means she she sells the remainder for $2 * (16 - 4 - 3) = $26 per day. The answer is $26.; She eats 3 for breakfast, so she has 16 - 3 = 13 left. Then she bakes muffins, so she has 13 - 4 = 9 eggs left. So she has 9 eggs * $2 = $18. The answer is $18.",
+          "fa": "مسیر 1: 16 - 3 - 4 = 9 تخم باقی دارد، پس روزانه $2 * 9 = $18 درمی‌آورد؛ پاسخ $18 است. مسیر 2: یعنی باقی را روزانه به مبلغ $2 * (16 - 4 - 3) = $26 می‌فروشد؛ پاسخ $26 است. مسیر 3: برای صبحانه 3 تخم می‌خورد، پس 16 - 3 = 13 باقی دارد؛ سپس مافین می‌پزد و 13 - 4 = 9 تخم می‌ماند؛ پس 9 eggs * $2 = $18 دارد؛ پاسخ $18 است. (اشتباه و تکرار she she در مسیر دوم همان متن منبع است.)",
+          "verified": true
+        },
+        {
+          "en": "The answer is $18.",
+          "fa": "پاسخ تجمیع‌شده $18 است.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "aa463d56bcf0530f24e81b9b837bffce4fc3e17f3fcb1317e73bab579fd1225d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "بهبود پرامپت‌دهی زنجیرهٔ فکر (CoT Prompting): خودسازگاری (Self-Consistency)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "با نمونه‌گیری تصادفی توکن بعدی در هر گام زمانی از میان K توکن دارای بیشترین احتمال (از لایهٔ سافت‌مکس (Softmax)) تنوع ایجاد می‌کند"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Wang et al. Self-consistency Improves Chain of Thought Reasoning in Language Models. ICLR 2023."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Language model; Sample a diverse set of reasoning paths",
+          "fa": "مدل زبانی؛ مجموعه‌ای متنوع از مسیرهای استدلال نمونه‌برداری کنید",
+          "verified": true
+        },
+        {
+          "en": "Q: If there are 3 cars in the parking lot and 2 more cars arrive, how many cars are in the parking lot? A: There are 3 cars in the parking lot already. 2 more arrive. Now there are 3 + 2 = 5 cars. The answer is 5. … Q: Janet’s ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder for $2 per egg. How much does she make every day? A:",
+          "fa": "پرسش: اگر در پارکینگ 3 خودرو باشد و 2 خودروی دیگر برسند، چند خودرو در پارکینگ است؟ پاسخ: از قبل 3 خودرو است؛ 2 خودروی دیگر می‌رسند؛ اکنون 3 + 2 = 5 خودرو است. پاسخ 5 است. … پرسش: اردک‌های جنت روزانه 16 تخم می‌گذارند. او هر صبح 3 عدد برای صبحانه می‌خورد و هر روز با 4 عدد برای دوستانش مافین می‌پزد. باقی را دانه‌ای $2 می‌فروشد. هر روز چقدر درآمد دارد؟ پاسخ: (اصل توکن‌های ورودی حفظ شده است.)",
+          "verified": true
+        },
+        {
+          "en": "She has 16 - 3 - 4 = 9 eggs left. So she makes $2 * 9 = $18 per day. The answer is $18.; This means she she sells the remainder for $2 * (16 - 4 - 3) = $26 per day. The answer is $26.; She eats 3 for breakfast, so she has 16 - 3 = 13 left. Then she bakes muffins, so she has 13 - 4 = 9 eggs left. So she has 9 eggs * $2 = $18. The answer is $18.",
+          "fa": "مسیر 1: 16 - 3 - 4 = 9 تخم باقی دارد، پس روزانه $2 * 9 = $18 درمی‌آورد؛ پاسخ $18 است. مسیر 2: یعنی باقی را روزانه به مبلغ $2 * (16 - 4 - 3) = $26 می‌فروشد؛ پاسخ $26 است. مسیر 3: برای صبحانه 3 تخم می‌خورد، پس 16 - 3 = 13 باقی دارد؛ سپس مافین می‌پزد و 13 - 4 = 9 تخم می‌ماند؛ پس 9 eggs * $2 = $18 دارد؛ پاسخ $18 است. (اشتباه و تکرار she she در مسیر دوم همان متن منبع است.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "3d0135c845e2b72bff9cbad2003c5791d096877b7fffef1d15c949a2e387d975",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گونه‌ای از زنجیرهٔ فکر (CoT)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "حتی وقتی فقط از مدل‌ها خواسته می‌شود استدلال (Reason) کنند، بهتر عمل می‌کنند (مثال‌هایی از GPT-3)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "Kojima et al. Large Language Models are Zero-Shot Reasoners. Neurips 2022."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Q: Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now?",
+          "fa": "پرسش: راجر 5 توپ تنیس دارد. 2 قوطی دیگر توپ تنیس می‌خرد. هر قوطی 3 توپ دارد. اکنون چند توپ دارد؟ اصل انگلیسی ورودی حفظ شده است.",
+          "verified": true
+        },
+        {
+          "en": "A: The answer is 11.; A: Roger started with 5 balls. 2 cans of 3 tennis balls each is 6 tennis balls. 5 + 6 = 11. The answer is 11.",
+          "fa": "پاسخ معمول: پاسخ 11 است. پاسخ زنجیرهٔ فکر: راجر با 5 توپ شروع کرد. 2 قوطی که هرکدام 3 توپ دارند می‌شود 6 توپ. 5 + 6 = 11. پاسخ 11 است. اصل انگلیسی خروجی‌ها حفظ شده است.",
+          "verified": true
+        },
+        {
+          "en": "(a) Few-shot; (b) Few-shot-CoT; (c) Zero-shot; (d) Zero-shot-CoT (Ours); Output",
+          "fa": "(الف) کم‌نمونه (Few-shot)؛ (ب) زنجیرهٔ فکرِ کم‌نمونه؛ (ج) بی‌نمونه (Zero-shot)؛ (د) زنجیرهٔ فکرِ بی‌نمونه (روش ما)؛ خروجی",
+          "verified": true
+        },
+        {
+          "en": "Q: A juggler can juggle 16 balls. Half of the balls are golf balls, and half of the golf balls are blue. How many blue golf balls are there? A: The answer (arabic numerals) is; A: Let’s think step by step.",
+          "fa": "پرسش: یک شعبده‌باز می‌تواند 16 توپ را هم‌زمان در هوا نگه دارد. نصف توپ‌ها توپ گلف‌اند و نصف توپ‌های گلف آبی‌اند. چند توپ گلف آبی وجود دارد؟ پرامپت پاسخ بی‌نمونه: «پاسخ (با ارقام عربی) عبارت است از»؛ پرامپت زنجیرهٔ فکر بی‌نمونه: «بیایید گام‌به‌گام فکر کنیم.» اصل انگلیسی ورودی‌ها حفظ شده است.",
+          "verified": true
+        },
+        {
+          "en": "(Output) The answer is 8. ×; (Output) 8 ×; (Output) The juggler can juggle 16 balls. Half of the balls are golf balls. So there are 16 / 2 = 8 golf balls. Half of the golf balls are blue. So there are 8 / 2 = 4 blue golf balls. The answer is 4. ✓; (Output) There are 16 balls in total. Half of the balls are golf balls. That means that there are 8 golf balls. Half of the golf balls are blue. That means that there are 4 blue golf balls. ✓",
+          "fa": "خروجی کم‌نمونه: «پاسخ 8 است» ×؛ خروجی بی‌نمونه: «8» ×؛ خروجی زنجیرهٔ فکرِ کم‌نمونه: شعبده‌باز 16 توپ را در هوا نگه می‌دارد. نصف آن‌ها توپ گلف‌اند، پس 16 / 2 = 8 توپ گلف است. نصف توپ‌های گلف آبی‌اند، پس 8 / 2 = 4 توپ گلف آبی است. پاسخ 4 است ✓؛ خروجی زنجیرهٔ فکر بی‌نمونه: در مجموع 16 توپ است؛ نصف گلف‌اند، یعنی 8 توپ گلف؛ نصف گلف‌ها آبی‌اند، یعنی 4 توپ گلف آبی ✓. عین خروجی انگلیسی برای حفظ مثال ثبت شده است.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "b6feb2eaee4e58ffbabd7fb632df45ea5098dfbdd677cfee038eb006ec2b6855",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "این کار به الهام‌بخشی برای پیدایش مدل‌های «استدلالی» (Reasoning) کمک کرد؛ برای مثال،"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• سپتامبر 2024: مدل 01 از OpenAI، نخستین مدل استدلالی (Reasoning model) جهان"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• نوامبر 2024: QWQ از Alibaba، یا Questions with Qwen (مدل متن‌باز؛ گسترش‌دهندهٔ Llama از Meta)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• دسامبر 2024: Gemini Flash Thinking از Google و 03 از OpenAI"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• ژانویهٔ 2025: R1 از DeepSeek (مدل متن‌باز)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "57600f92c33d5d310d8aa8e7ea6a8e9c749f16756a374e140cdaf702cd19e526",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• از متخصص‌ها به عمومی‌ها: پیدایش مدل‌های «بنیادین» (Foundation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• تعمیم به هر وظیفه: هنر پرامپت‌دهی (Prompting)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• آهسته‌تر فکرکردن: استدلال (Reasoning) برای نتایج بهتر"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• فراتر از متن: پرامپت‌دهی (Prompting) در وجه‌های دیگر (Modalities)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• فعالیت پرامپت‌دهی (Prompting)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "fb53cac040e0cecc6b12bd56f5f84c1165302899e743fa3e827e08158c6756b9",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مشاهدهٔ انگیزه‌بخش"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مدل‌های بنیادین (Foundation models) با پرامپت‌دهی (Prompting) به‌تدریج در وظیفه‌های پردازش زبان طبیعی (NLP) به عملکردی در سطح بهترین روش‌های موجود (State-of-the-art) رسیدند:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• بی‌نمونه (Zero-shot)"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• کم‌نمونه (Few-shot) با مثال‌های «درون‌بافتی» (In-context)؛ یعنی ورودی: [توصیف وظیفه، مثال‌ها، پرامپت]، مانند “Translate English to Spanish. Computer -> Computadora. Vision” (انگلیسی را به اسپانیایی ترجمه کن. رایانه -> رایانه. بینایی)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• ایده: تعمیم این روندها به وجه‌های دیگر (Modalities)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "d98c3903066d08a48d4472a4190d5d1538a66bde54170df0da2c98608ad8fec0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مدل‌های بزرگ بینایی (Large Vision Models; LVMs)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "8b1204300ca879e2f124625fa784f7b717cc6bb023711b489b88b7b18e7dce20",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پرامپت‌دهی بصری (Visual Prompting) به‌صورت ترمیم تصویر (Image Inpainting)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Bar et al. Visual Prompting via Image Inpainting. Neurips 2022."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "طراحی‌شده برای سازگاری با هر وظیفهٔ «ترجمهٔ تصویر به تصویر» (Image-to-image translation)، با استفاده از مدل بدون تغییر (برای مثال، بدون نیاز به تنظیم دقیق (Fine-tuning))؛"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "در این مثال چه چیزی باید پیش‌بینی شود؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x1; y1; xq; xvp; Task Input Example; Task Output Example; Query; Concatenate into single image; Visual prompt image; Inpainting Model f; Output",
+          "fa": "x1؛ y1؛ xq؛ xvp؛ نمونهٔ ورودی وظیفه؛ نمونهٔ خروجی وظیفه؛ پرس‌وجو؛ در یک تصویر به هم بچسبانید؛ تصویر پرامپت بصری؛ مدل درون‌نگاری (Inpainting) با نماد f؛ خروجی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "360834db23de791f70d4bdc047778d48c4c43704b526ce58172a900362a8bd4b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پرامپت‌دهی بصری (Visual Prompting) به‌صورت ترمیم تصویر (Image Inpainting)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Bar et al. Visual Prompting via Image Inpainting. Neurips 2022."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "در این مثال‌ها چه چیزی باید پیش‌بینی شود؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Edge detection; Colorization; Inpainting; Segmentation; Style transfer",
+          "fa": "آشکارسازی لبه؛ رنگی‌سازی؛ درون‌نگاری (Inpainting)؛ بخش‌بندی (Segmentation)؛ انتقال سبک",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "ce44630f3f52c86c36da9e28e8a159f38882ae2feb4b1b06279aa945cf0673aa",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "heading",
+          "fa": "پرامپت‌دهی بصری (Visual Prompting) در 2023 به محک‌های استاندارد بینایی (Vision benchmarks) گسترش یافت:"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "Wang et al. Images Speak in Images: A Generalist Painter for In-Context Visual Learning. CVPR 2023."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Task prompts; Input images; Paintings; Painter",
+          "fa": "پرامپت‌های وظیفه؛ تصویرهای ورودی؛ نقاشی‌ها؛ Painter (نام مدل)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "871fe37f90f0ef613589b0a86e6450d27cceb4441047b8356f512eca8b8c97d9",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "آموزش: مدل‌سازی تصویر ماسک‌شده (Masked Image Modeling)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "یادگیری خودنظارتی (Self-supervised learning) که در آن مدل مقادیر وصله‌های ماسک‌شده (Masked out patches) را پیش‌بینی می‌کند"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Wang et al. Images Speak in Images: A Generalist Painter for In-Context Visual Learning. CVPR 2023."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Image pairs; Two pairs; Masking; Vision Transformers; An image; A GT image; A patch; A masked patch; Lreg",
+          "fa": "جفت‌های تصویر؛ دو جفت؛ ماسک‌گذاری؛ ترنسفورمرهای بینایی (Vision Transformers)؛ یک تصویر؛ یک تصویر حقیقت مبنا (GT)؛ یک قطعه؛ یک قطعهٔ ماسک‌شده؛ Lreg",
+          "verified": true,
+          "latex": "L_{\\mathrm{reg}}"
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "01140dfb432ee4c5d9301a4510d4f2752cf60c4fa5cc1457874f33c93723587f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نتایج تجربی (Experimental Results)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "مدل در تخمین عمق (Depth estimation) روی مجموعه‌دادهٔ NYUv2 به عملکردی در سطح بهترین روش‌های موجود (State-of-the-art) رسید و در چند وظیفهٔ دیگر از سایر مدل‌های عمومی بهتر عمل می‌کند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "(پرامپت استفاده‌شده، جفت‌مثال با بهترین عملکرد برای هر وظیفه از میان همهٔ مثال‌های مجموعه‌دادهٔ آموزشی بود)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Wang et al. Images Speak in Images: A Generalist Painter for In-Context Visual Learning. CVPR 2023."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "791c3a43672a88670328c1ad0bd8e1f5cea0a4988f50d869d345fbcd6c004133",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نتایج کیفی: نتایج درون‌دامنه‌ای (In-Domain Results)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Wang et al. Images Speak in Images: A Generalist Painter for In-Context Visual Learning. CVPR 2023."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Test image; Prediction; Ground truth",
+          "fa": "تصویر آزمون؛ پیش‌بینی؛ حقیقت مبنا (Ground truth)",
+          "verified": true
+        },
+        {
+          "en": "ADE20K-Sem; NYUv2-Depth",
+          "fa": "ADE20K-Sem (بخش‌بندی معنایی)؛ NYUv2-Depth (عمق)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "791c3a43672a88670328c1ad0bd8e1f5cea0a4988f50d869d345fbcd6c004133",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نتایج کیفی: نتایج درون‌دامنه‌ای (In-Domain Results)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Wang et al. Images Speak in Images: A Generalist Painter for In-Context Visual Learning. CVPR 2023."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Test image; Prediction; Ground truth",
+          "fa": "تصویر آزمون؛ پیش‌بینی؛ حقیقت مبنا (Ground truth)",
+          "verified": true
+        },
+        {
+          "en": "COCO-Ins; COCO-Pose",
+          "fa": "COCO-Ins (نمونه‌ها)؛ COCO-Pose (حالت بدن)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "791c3a43672a88670328c1ad0bd8e1f5cea0a4988f50d869d345fbcd6c004133",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نتایج کیفی: نتایج درون‌دامنه‌ای (In-Domain Results)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Wang et al. Images Speak in Images: A Generalist Painter for In-Context Visual Learning. CVPR 2023."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Test image; Prediction; Ground truth",
+          "fa": "تصویر آزمون؛ پیش‌بینی؛ حقیقت مبنا (Ground truth)",
+          "verified": true
+        },
+        {
+          "en": "Denoising; Deraining; Enhancement",
+          "fa": "نویززدایی؛ باران‌زدایی؛ بهسازی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "71b1cb03d8c17f2c9938147f3bc784af979469bb93d8af17ec558ee977cf0f35",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "نتایج کیفی: نتایج واژگان‌باز (Open-Vocabulary Results؛ یعنی رده‌هایی که هنگام آموزش دیده نشده‌اند)"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "مثال‌های درون‌بافتی (In-context)، پرامپت‌ها و پیش‌بینی‌ها را برای تشخیص نقطهٔ کلیدی (Keypoint detection)، قطعه‌بندی شیء (Object segmentation) و قطعه‌بندی نمونه (Instance segmentation) نشان می‌دهد"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "Wang et al. Images Speak in Images: A Generalist Painter for In-Context Visual Learning. CVPR 2023."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "ad72a11b12f2bc1b7b11c8813d149f12683a1a5c6491060454b34955b6c72b88",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "انواع پرامپت (Prompt Types): متنی در مقایسه با بصری"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• چه زمانی پرامپت بصری (Visual prompt) را بر پرامپت متنی (Textual prompt) ترجیح دهیم؟"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• روش بصری برابری بیشتری برای زبان‌های مختلف فراهم می‌کند، زیرا زبان‌های غیرانگلیسی اغلب پشتیبانی ضعیفی دارند، اگر اصلاً پشتیبانی شوند"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• هر دو می‌توانند متناسب با توانایی‌ها و ناتوانی‌های افراد به آن‌ها قدرت بدهند؛ برای مثال، کاربران نابینا و ناشنوا"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "15838fa123beefaa2af129ed9c60b52d1202bce7ada87b14403230cc7e007fc2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "heading",
+          "fa": "مدل‌های بزرگ بینایی–زبان (Large Vision-Language Models; VLMs) و مدل‌های بزرگ چندوجهی (Large Multimodal Models; LMMs) برای فهم و تولید"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "d75f751b641facc9c39f6a50f655b141026cf39f8171ca9f2b1434cb99504fda",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "Wadekar et al. The Evolution of Multimodal Model Architectures. arXiv 2024."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Transformers; ViT; CLIP; VL-T5; S4; Flamingo; Type-A; Type-B; Type-C; Type-D; Figure 1: Development timeline of Multimodal models grouped in four proposed architecture types.",
+          "fa": "ترنسفورمرها (Transformers)؛ ViT؛ CLIP؛ VL-T5؛ S4؛ Flamingo؛ نوع A؛ نوع B؛ نوع C؛ نوع D؛ شکل 1: خط زمانی توسعهٔ مدل‌های چندوجهی، گروه‌بندی‌شده در چهار نوع معماری پیشنهادی.",
+          "verified": true
+        },
+        {
+          "en": "2017; 2020; 2021; April 2022; Jan-Mar 2023; Apr-June 2023; July-Sep 2023; Oct-Dec 2023; 2024; Jan-May 2024",
+          "fa": "2017؛ 2020؛ 2021؛ آوریل 2022؛ ژانویه تا مارس 2023؛ آوریل تا ژوئن 2023؛ ژوئیه تا سپتامبر 2023؛ اکتبر تا دسامبر 2023؛ 2024؛ ژانویه تا مه 2024",
+          "verified": true
+        },
+        {
+          "en": "Otter; Multimodal-GPT; PALI-X; OpenFlamingo; IDEFICS; Dolphins; LLaMA-Adapter; LLaMA-Adapter-V2; CogAgent; mPLUG-Owl2; InternVL; MM-Interleaved; CogCoM; BLIP2; LLaVA; MiniGPT-4; InstructBLIP; GILL; EmbodiedGPT; Next-GPT; Qwen-VL; CoDI-2; ModaVerse; MM1; Idefics2; VL-Mamba; CM3Leon; Unified-IO-2; 4M; TEAL; Unified-IO",
+          "fa": "نام مدل‌های نمودار مطابق اصل: Otter؛ Multimodal-GPT؛ PALI-X؛ OpenFlamingo؛ IDEFICS؛ Dolphins؛ LLaMA-Adapter؛ LLaMA-Adapter-V2؛ CogAgent؛ mPLUG-Owl2؛ InternVL؛ MM-Interleaved؛ CogCoM؛ BLIP2؛ LLaVA؛ MiniGPT-4؛ InstructBLIP؛ GILL؛ EmbodiedGPT؛ Next-GPT؛ Qwen-VL؛ CoDI-2؛ ModaVerse؛ MM1؛ Idefics2؛ VL-Mamba؛ CM3Leon؛ Unified-IO-2؛ 4M؛ TEAL؛ Unified-IO",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "443350fa07c0e8e221d094dd0e900d6dbf29ac0da9207cbe1e40ba250f9c6425",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "(مدل بزرگ چندوجهی (LMM) پیشگام؛ Neurips 2022)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Flamingo: a Visual Language Model for Few-Shot Learning",
+          "fa": "Flamingo: یک مدل زبانی بصری برای یادگیری کم‌نمونه (Few-Shot Learning)",
+          "verified": true
+        },
+        {
+          "en": "Jean-Baptiste Alayrac; Jeff Donahue; Pauline Luc; Antoine Miech; Iain Barr; Yana Hasson; Karel Lenc; Arthur Mensch; Katie Millican; Malcolm Reynolds; Roman Ring; Eliza Rutherford; Serkan Cabi; Tengda Han; Zhitao Gong; Sina Samangooei; Marianne Monteiro; Jacob Menick; Sebastian Borgeaud; Andrew Brock; Aida Nematzadeh; Sahand Sharifzadeh; Mikolaj Binkowski; Ricardo Barreira; Oriol Vinyals; Andrew Zisserman; Karen Simonyan; DeepMind",
+          "fa": "نویسندگان مطابق اصل: Jean-Baptiste Alayrac؛ Jeff Donahue؛ Pauline Luc؛ Antoine Miech؛ Iain Barr؛ Yana Hasson؛ Karel Lenc؛ Arthur Mensch؛ Katie Millican؛ Malcolm Reynolds؛ Roman Ring؛ Eliza Rutherford؛ Serkan Cabi؛ Tengda Han؛ Zhitao Gong؛ Sina Samangooei؛ Marianne Monteiro؛ Jacob Menick؛ Sebastian Borgeaud؛ Andrew Brock؛ Aida Nematzadeh؛ Sahand Sharifzadeh؛ Mikolaj Binkowski؛ Ricardo Barreira؛ Oriol Vinyals؛ Andrew Zisserman؛ Karen Simonyan؛ DeepMind",
+          "verified": true
+        },
+        {
+          "en": "* Equal contributions, ordered alphabetically; † Equal contributions, ordered alphabetically; ‡ Equal senior contributions",
+          "fa": "* مشارکت برابر، مرتب‌شده بر اساس حروف الفبا؛ † مشارکت برابر، مرتب‌شده بر اساس حروف الفبا؛ ‡ مشارکت ارشد برابر",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "b256d339a515e8e8af8f23b4cd1f11653b966b3d53a437116ce231be8476a7c0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چالش اصلی: ورودی درهم‌تنیدهٔ تصویر–متن (Interleaved Image-Text Input)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Alayrac et al. Flamingo: A Visual Language Model for Few-Shot Learning. Neurips 2022."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pretrained and frozen; Trained from scratch; Output: text; Perceiver Resampler; Vision Encoder; n-th LM block; n-th GATED XATTN-DENSE; 1st LM block; 1st GATED XATTN-DENSE; Processed text; Interleaved visual/text data",
+          "fa": "پیش‌آموزش‌دیده و ثابت؛ آموزش‌دیده از ابتدا؛ خروجی: متن؛ بازنمونه‌گیر Perceiver؛ رمزگذار بینایی؛ بلوک nام مدل زبانی؛ بلوک nام GATED XATTN-DENSE (توجه متقاطع دروازه‌دار و چگال)؛ بلوک اول مدل زبانی؛ بلوک اول GATED XATTN-DENSE؛ متن پردازش‌شده؛ داده‌های بصری/متنی درهم‌آمیخته",
+          "verified": true
+        },
+        {
+          "en": "This is a very cute dog. This is; <image> This is a very cute dog.<image> This is; a very serious cat.",
+          "fa": "ورودی با عین توکن‌ها: This is a very cute dog. This is؛ متن پردازش‌شده: <image> This is a very cute dog.<image> This is؛ برگردان: این سگی بسیار بامزه است. این…؛ تکمیل: a very serious cat. (گربه‌ای بسیار جدی).",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "acb32bd4887a1acd89b6cb7879f5b2189980cde3cd76a352eac380bfabf75b79",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "با پرامپت‌های چندوجهی (Multimodal Prompts) در وظیفه‌های فراوان به عملکرد بی‌نمونهٔ (Zero-Shot) قوی رسید؛ برای مثال،"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Alayrac et al. Flamingo: A Visual Language Model for Few-Shot Learning. Neurips 2022."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input Prompt; Completion; Output",
+          "fa": "پرامپت ورودی؛ تکمیل؛ خروجی",
+          "verified": true
+        },
+        {
+          "en": "This is a chinchilla. They are mainly found in Chile.; This is a shiba. They are very popular in Japan.; This is → a flamingo. They are found in the Caribbean and South America.",
+          "fa": "این یک چینچیلا است. بیشتر در شیلی یافت می‌شوند.؛ این یک شیبا است. در ژاپن بسیار محبوب‌اند.؛ این یک… ← فلامینگو است. در کارائیب و آمریکای جنوبی یافت می‌شوند. اصل انگلیسی مثال حفظ شده است.",
+          "verified": true
+        },
+        {
+          "en": "What is the title of this painting? Answer: The Hallucinogenic Toreador.; Where is this painting displayed? Answer: Louvres Museum, Paris.; What is the name of the city where this was painted? Answer: → Arles.",
+          "fa": "عنوان این نقاشی چیست؟ پاسخ: گاوباز توهم‌زا (The Hallucinogenic Toreador).؛ این نقاشی کجا نمایش داده می‌شود؟ پاسخ: موزهٔ لوور، پاریس.؛ نام شهری که این نقاشی در آن کشیده شد چیست؟ پاسخ: ← آرل (Arles).",
+          "verified": true
+        },
+        {
+          "en": "UNDERGROUND → Output: “Underground”; CONGRESS AVE 400 → Output: “Congress”; SOULOMES → Output: “Soulomes”",
+          "fa": "خواندن متن با حفظ دقیق برچسب‌های نمونه: UNDERGROUND ← خروجی «Underground» (مترو)؛ CONGRESS AVE 400 ← خروجی «Congress» (نام خیابان)؛ SOULOMES ← خروجی «Soulomes» (نام مکان).",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "acb32bd4887a1acd89b6cb7879f5b2189980cde3cd76a352eac380bfabf75b79",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "با پرامپت‌های چندوجهی (Multimodal Prompts) در وظیفه‌های فراوان به عملکرد بی‌نمونهٔ (Zero-Shot) قوی رسید؛ برای مثال،"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Alayrac et al. Flamingo: A Visual Language Model for Few-Shot Learning. Neurips 2022."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input Prompt; Completion; Output",
+          "fa": "پرامپت ورودی؛ تکمیل؛ خروجی",
+          "verified": true
+        },
+        {
+          "en": "2 + 1; 2+1=3; 5 + 6; 5+6=11; 3 × 6; 3x6=18",
+          "fa": "ورودی‌ها و خروجی‌های حساب با همان اعداد: 2 + 1؛ 2+1=3؛ 5 + 6؛ 5+6=11؛ 3 × 6؛ 3x6=18",
+          "verified": true,
+          "latex": "2+1=3,\\qquad5+6=11,\\qquad3\\times6=18"
+        },
+        {
+          "en": "Output: A propaganda poster depicting a cat dressed as French emperor Napoleon holding a piece of cheese.; Output: A pink room with a flamingo pool float.; Output: → A portrait of Salvador Dali with a robot head.",
+          "fa": "خروجی: پوستری تبلیغاتی که گربه‌ای با لباس ناپلئون، امپراتور فرانسه، را در حال نگه‌داشتن تکه‌ای پنیر نشان می‌دهد.؛ خروجی: اتاقی صورتی با شناور استخری فلامینگو.؛ خروجی: ← پرتره‌ای از سالوادور دالی با سر رباتی.",
+          "verified": true
+        },
+        {
+          "en": "Les sanglots longs des violons de l’automne blessent mon coeur d’une langueur monotone.; Pour qui sont ces serpents qui sifflent sur vos têtes?; Je suis un cœur qui bat pour vous.",
+          "fa": "متن فرانسوی مثال با عین واژه‌ها حفظ شده است. برگردان: هق‌هق‌های طولانی ویولن‌های پاییز، قلبم را با رخوتی یکنواخت می‌آزارند.؛ این مارها که بالای سرتان سوت می‌کشند برای که‌اند؟؛ من قلبی‌ام که برای شما می‌تپد.",
+          "verified": true
+        }
+      ],
+      "image_text_limits": [
+        {
+          "reason_fa": "در پوستر مصنوعی گربه در لباس ناپلئون، حروف تزئینی قوسیِ بالای پوستر در خود تصویر واژهٔ کامل قابل‌اتکایی تشکیل نمی‌دهند؛ شرح انگلیسی مجاور کامل ترجمه شده و تصویر اصلی حفظ شده است."
+        }
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "d95a57ac06d080256dc97cee0ebb3d47d04d86409b0a445d67d52133758ed042",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نتایج تجربی (Experimental Results)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "بزرگ‌ترین مدل در 6 وظیفه از 16 وظیفه به سطح بهترین روش‌های موجود (State-of-the-art) رسید و از مدل‌های تنظیم‌دقیق‌شده (Fine-tuned models) بهتر عمل کرد"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "روندها برای اندازه‌های متفاوت مدل و تعداد «نمونه‌ها» (Shots) چیست؟"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "Alayrac et al. Flamingo: A Visual Language Model for Few-Shot Learning. Neurips 2022."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Aggregated performance; Number of shots; Flamingo-80B; Flamingo-9B; Flamingo 3B; 60.0%; 70.0%; 80.0%; 90.0%; 100.0%; 0; 4; 8; 16; 32",
+          "fa": "عملکرد تجمیع‌شده؛ تعداد نمونه‌های زمینه (shots)؛ Flamingo-80B؛ Flamingo-9B؛ Flamingo 3B؛ 60.0%؛ 70.0%؛ 80.0%؛ 90.0%؛ 100.0%؛ 0؛ 4؛ 8؛ 16؛ 32",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "2c4aca012988e944cf3f1de6184f5e3abdac73113d6500c255b4713ce290586f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "فهم چندوجهی (Multimodal Understanding) در مقایسه با تولید (Generation)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "برای مثال، روش‌های فراوانی ورودی‌های غیرمتنی را به توصیف‌های متنی قابل‌فهم برای مدل‌های زبانی بزرگ (LLMs)، یعنی پرامپت‌ها، تبدیل می‌کنند یا رمزگذار بینایی (Vision encoder) را تنظیم دقیق می‌کنند تا با یک مدل زبانی بزرگ ازپیش‌آموزش‌دیده و ثابت‌شده (Frozen) هم‌راستا شود"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Zhang et al. MM-LLMs: Recent Advances in MultiModal Large Language Models. arXiv 2024."
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "برای مثال، عمدتاً مبتنی بر مدل‌های انتشار (Diffusion models) هستند که برای بازیابی محتوای اصلی از نویز آموزش می‌بینند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Image; Video; Audio; Text t; Modality Encoder MEx; Input Projector ΘX→T; LLM Backbone; Output Projector ΘT→X; Modality Generator MGX; Multimodal Understanding; Multimodal Generation",
+          "fa": "تصویر؛ ویدئو؛ صدا؛ متن t؛ رمزگذار وجه (Modality Encoder) با نماد MEx؛ نگاشت‌گر ورودی ΘX→T؛ ستون فقرات مدل زبانی بزرگ (LLM Backbone)؛ نگاشت‌گر خروجی ΘT→X؛ مولد وجه MGX؛ درک چندوجهی؛ تولید چندوجهی",
+          "verified": true
+        },
+        {
+          "en": "NFNet-F6; ViT; CLIP ViT; Eva-CLIP ViT; C-Former; HuBERT; BEATs; Unified ImageBind; Linear Projector; MLP; Cross-attention; Q-Former; P-Former; MQ-Former; Tiny Transformer",
+          "fa": "نام‌ها و اجزای معماری: NFNet-F6؛ ViT؛ CLIP ViT؛ Eva-CLIP ViT؛ C-Former؛ HuBERT؛ BEATs؛ ImageBind یکپارچه؛ نگاشت‌گر خطی؛ پرسپترون چندلایه (MLP)؛ توجه متقاطع (Cross-attention)؛ Q-Former؛ P-Former؛ MQ-Former؛ ترنسفورمر کوچک",
+          "verified": true
+        },
+        {
+          "en": "Flan-T5; ChatGLM; UL2; Qwen; Chinchilla; OPT; PaLM; LLaMA; LLaMA-2; Vicuna; Stable Diffusion; Zeroscope; AudioLDM; IX; FX; PX; FT; SX; HX",
+          "fa": "نام مدل‌ها و نمادها مطابق اصل: Flan-T5؛ ChatGLM؛ UL2؛ Qwen؛ Chinchilla؛ OPT؛ PaLM؛ LLaMA؛ LLaMA-2؛ Vicuna؛ Stable Diffusion؛ Zeroscope؛ AudioLDM؛ IX؛ FX؛ PX؛ FT؛ SX؛ HX",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "bb3db11c2fa0d6845b76a3062c7de7ad18abfbbac16a5f87f1a8360f1df4cf8b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مدل‌های بزرگ چندوجهی (LMMs) پیشگام"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• نمونه‌های صنعتی برای بینایی + زبان"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• GPT-4(Vision) از OpenAI"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• Gemini از Google"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• فراتر از مدل‌های بینایی–زبان (VLMs)؛ برای مثال،"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• PandaGPT: متن، تصویر، ویدئو، صوت و حسگرهای عمق (سه‌بعدی)، حرارتی (تابش فروسرخ) یا واحدهای اندازه‌گیری اینرسی (IMU) برای حرکت و موقعیت؛ اشیا را با صدا، شکل سه‌بعدی، دما و حرکت مرتبط می‌کند"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• SpeechGPT: زبان و گفتار"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "• NExT-GPT: متن، تصاویر، ویدئوها و صوت"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "57600f92c33d5d310d8aa8e7ea6a8e9c749f16756a374e140cdaf702cd19e526",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• از متخصص‌ها به عمومی‌ها: پیدایش مدل‌های «بنیادین» (Foundation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• تعمیم به هر وظیفه: هنر پرامپت‌دهی (Prompting)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• آهسته‌تر فکرکردن: استدلال (Reasoning) برای نتایج بهتر"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• فراتر از متن: پرامپت‌دهی (Prompting) در وجه‌های دیگر (Modalities)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• فعالیت پرامپت‌دهی (Prompting)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "57600f92c33d5d310d8aa8e7ea6a8e9c749f16756a374e140cdaf702cd19e526",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• از متخصص‌ها به عمومی‌ها: پیدایش مدل‌های «بنیادین» (Foundation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• تعمیم به هر وظیفه: هنر پرامپت‌دهی (Prompting)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• آهسته‌تر فکرکردن: استدلال (Reasoning) برای نتایج بهتر"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• فراتر از متن: پرامپت‌دهی (Prompting) در وجه‌های دیگر (Modalities)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• فعالیت پرامپت‌دهی (Prompting)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ]
+    }
+  ]
+}

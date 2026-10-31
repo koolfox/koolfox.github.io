@@ -1,0 +1,4410 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s14",
+  "source_sha256": "474c8daa201a381a1972fa9e7b94d9a083fc515f77c006bc3540a766315bcb1f",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "5fe4dbbfd25af3c72c28ecc00dcf4c85c6b42ae56498850cb565192bd0728850",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "مقدمه‌ای بر پردازش زبان طبیعی (NLP) و تعبیه‌های واژه (Word Embeddings)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "دانشگاه کلرادو بولدر (University of Colorado Boulder)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "بهار ۲۰۲۲ (Spring 2022)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CC BY",
+          "fa": "CC BY — انتساب",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "2ebc14820687e5fdccd39572918d7fd2067bf1baba91c270c296e20cd4590ffa",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• هفتهٔ پیش:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری ماشین برای داده‌های دنباله‌ای"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های عصبی بازگشتی (RNNs)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های عصبی بازگشتی دروازه‌دار (Gated RNNs)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• تکلیف‌ها (Canvas):"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• مهلت تحویل مجموعه‌مسئلهٔ ۳، پیش‌تر در امروز بود."
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• مهلت تحویل تکلیف آزمایشگاه ۳، یک‌ونیم هفتهٔ دیگر است."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "• پرسشی دارید؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "fe96119f75ff1e122093ec670ac62e9ec365c2a22324de12f7c1b2e28f7bbb2e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• مقدمه‌ای بر پردازش زبان طبیعی (Natural language processing)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• بازنمایی متن (Text representation)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تعبیه‌های عصبی واژه (Neural word embeddings)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "fe96119f75ff1e122093ec670ac62e9ec365c2a22324de12f7c1b2e28f7bbb2e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• مقدمه‌ای بر پردازش زبان طبیعی (Natural language processing)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• بازنمایی متن (Text representation)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تعبیه‌های عصبی واژه (Neural word embeddings)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "89a657af9222d54ba8479a4c5e707ec78964cef9d7af86d4e545e2eb2d24ed19",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پردازش زبان طبیعی (NLP): رایانه‌هایی که می‌توانند زبان انسان را بفهمند (و بنابراین با آن ارتباط برقرار کنند)."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "5"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "نظرکاوی (Opinion Mining)؛ تشخیص هرزنامه (Spam Detection)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "ترجمهٔ زبان"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "امروز فقط بر داده‌های متنی تمرکز خواهیم کرد."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Most recent customer reviews; Vivek Chopra; Quality product, easy to setup; Fantastic product.; Wanted to enable voice command on an; Published 25 minutes ago",
+          "fa": "جدیدترین نظرهای مشتریان؛ Vivek Chopra؛ محصول باکیفیت، راه‌اندازی آسان؛ محصول فوق‌العاده؛ می‌خواستم فرمان صوتی را روی یک ... فعال کنم؛ منتشرشده ۲۵ دقیقه پیش",
+          "verified": true
+        },
+        {
+          "en": "Gmail; in:spam; Compose; 1–60 of 60; Messages that have been in Spam more than 30 days will be automatically deleted. Delete all spam messages now; Congrats!!; (12) Your request has been granted.; Final Reminder– Hello , Last Hour Hire a Book Ghost Writer at 85% Off for Book Writin…; Dannag, We need your confirmation please…; Month End Offer! Get your Wikipedia page at 85% off",
+          "fa": "Gmail؛ in:spam؛ نوشتن؛ ۱ تا ۶۰ از ۶۰؛ پیام‌هایی که بیش از ۳۰ روز در هرزنامه مانده باشند، خودکار حذف می‌شوند. اکنون همهٔ پیام‌های هرزنامه را حذف کنید؛ تبریک!!؛ (۱۲) درخواست شما پذیرفته شد.؛ یادآوری نهایی — سلام، آخرین فرصت استخدام نویسندهٔ سایهٔ کتاب با ۸۵٪ تخفیف برای نوشتن کتاب…؛ Dannag، لطفاً به تأیید شما نیاز داریم…؛ پیشنهاد پایان ماه! صفحهٔ ویکی‌پدیای خود را با ۸۵٪ تخفیف بگیرید.",
+          "verified": true
+        },
+        {
+          "en": "fun!; kumnandi!",
+          "fa": "fun!؛ kumnandi! (خوش می‌گذرد!)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "27e7675b8f31142997d3561d3a4db19d126a0b317acfd77426810544bc99d54b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چرا پردازش زبان طبیعی (NLP) را همراه با شبکه‌های عصبی بازگشتی (RNNs) بررسی می‌کنیم؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های بازگشتی کارنامهٔ موفقی در مسئله‌های پردازش زبان طبیعی دارند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• بازنمایی دادهٔ متنی (یعنی دادهٔ دنباله‌ای) به‌طور طبیعی با RNNها سازگار است."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "008b464b5e89a91656ee4cff8fa875497d9d99e48de02fcad49ea715e81663b0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "زمینهٔ تاریخی: خاستگاه پردازش زبان طبیعی (NLP)؛ نخستین ماشین برنامه‌پذیر"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "2012"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "یادگیری ماشین (Machine learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "آزمون تورینگ (Turing test)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "1945"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "هوش مصنوعی (AI)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "literal",
+          "fa": "1956"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "literal",
+          "fa": "1950 1959"
+        },
+        {
+          "source_lines": [
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "موج ۳: ظهور «یادگیری عمیق» (Deep learning)"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "پرسپترون (Perceptron)"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "text",
+          "fa": "۱۸۴۷، گرادیان کاهشی (Gradient descent)"
+        },
+        {
+          "source_lines": [
+            12,
+            13
+          ],
+          "kind": "text",
+          "fa": "جامعهٔ پژوهشی عمدتاً پیرامون مسئلهٔ ترجمهٔ زبان‌ها شکل گرفت."
+        },
+        {
+          "source_lines": [
+            14
+          ],
+          "kind": "text",
+          "fa": "Jones. Natural Language Processing: A Historical Review. 1994."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "bf4b1ba3a16718174d623c290b645e8072e377d239e282ed0d100b5812e418ed",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "هوش مصنوعی (Artificial Intelligence؛ ماشین‌هایی که کارهای «هوشمندانه» انجام می‌دهند)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "جایگاه پردازش زبان طبیعی (NLP)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "یادگیری عمیق (Deep Learning)"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "بینایی رایانه‌ای (Computer Vision)"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "پردازش زبان طبیعی (Natural Language Processing)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "a784b481cf6f92fb927cc234260da536b40cd1ff24dbad7d0f99de30251e04cf",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "• دسته‌بندی متن (Text classification)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• ترجمهٔ ماشینی (Machine translation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• پاسخ‌گویی به پرسش (Question answering)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• خلاصه‌سازی خودکار (Automatic summarization)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• و موارد دیگر…"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "چالش اصلی: بازآفرینی درک زبان برای این‌همه وظیفهٔ گوناگون!"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "a784b481cf6f92fb927cc234260da536b40cd1ff24dbad7d0f99de30251e04cf",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "• دسته‌بندی متن (Text classification)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• ترجمهٔ ماشینی (Machine translation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• پاسخ‌گویی به پرسش (Question answering)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• خلاصه‌سازی خودکار (Automatic summarization)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• و موارد دیگر…"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "چالش اصلی: بازآفرینی درک زبان برای این‌همه وظیفهٔ گوناگون!"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Repustate; data in sight; Sentiment Analysis; Technology; Customers; Plans; Languages; Advanced sentiment analysis and semantic search technology; Multilingual analysis for 23 languages. No translation needed; Get data insights from social media, YouTube, TikTok, and more",
+          "fa": "Repustate؛ داده در دیدرس؛ تحلیل احساسات؛ فناوری؛ مشتریان؛ طرح‌ها؛ زبان‌ها؛ فناوری پیشرفتهٔ تحلیل احساسات و جست‌وجوی معنایی؛ تحلیل چندزبانه برای ۲۳ زبان. بدون نیاز به ترجمه؛ از رسانه‌های اجتماعی، یوتیوب، تیک‌تاک و موارد دیگر بینش داده به دست آورید.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "a784b481cf6f92fb927cc234260da536b40cd1ff24dbad7d0f99de30251e04cf",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "• دسته‌بندی متن (Text classification)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• ترجمهٔ ماشینی (Machine translation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• پاسخ‌گویی به پرسش (Question answering)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• خلاصه‌سازی خودکار (Automatic summarization)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• و موارد دیگر…"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "چالش اصلی: بازآفرینی درک زبان برای این‌همه وظیفهٔ گوناگون!"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "FAKESPOT; Get the Analyzer Bar Back – Download the Chrome Extension; Hate returning stuff to Amazon? Get Fakespot; With Fakespot, you’re guaranteed to get the best products from the best sellers at the best price.; Add Fakespot – It’s free; eBay; Amazon; BEST BUY; SEPHORA; Walmart; Apple Airpods Pro; Seller Warning; Seller Approved",
+          "fa": "FAKESPOT؛ نوار تحلیلگر را برگردانید — افزونهٔ کروم را بارگیری کنید؛ از پس فرستادن کالا به آمازون بدتان می‌آید؟ Fakespot را بگیرید؛ با Fakespot تضمین می‌شود بهترین محصولات را از بهترین فروشندگان با بهترین قیمت بگیرید؛ Fakespot را اضافه کنید — رایگان است؛ eBay؛ Amazon؛ BEST BUY؛ SEPHORA؛ Walmart؛ Apple Airpods Pro؛ هشدار فروشنده؛ فروشنده تأییدشده",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "27fb0805cc2353db0581d3f05e9c2f0d374543336b528c06a744bd98911e841f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "• دسته‌بندی متن (Text classification)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• ترجمهٔ ماشینی (Machine translation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• پاسخ‌گویی به پرسش (Question answering)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• خلاصه‌سازی خودکار (Automatic summarization)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• و موارد دیگر…"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "چالش اصلی: بازآفرینی درک زبان برای این‌همه وظیفهٔ گوناگون!"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "مثلاً مترجم مایکروسافت (Microsoft translator)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "https://uncubed.com/daily/best-translation-apps-for-travel-in-2019/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Hé Jean, bienvenue dans la conversation.; C’est formidable de vous rencontrer! Comment allez-vous tous aujourd’hui?; It’s great to meet you! How are you all today?; salut; Je vais bien. Je suis content qu’il fasses beau temps.; Oui, le temps est très agréable aujourd’hui. Enchanté aussi.; Ravi de vous rencontrer!",
+          "fa": "هی ژان، به گفت‌وگو خوش آمدی؛ از دیدارتان بسیار خوشحالم! امروز همگی چطورید؟؛ از دیدارتان خوشحالم! امروز همگی چطورید؟؛ سلام؛ حالم خوب است. خوشحالم هوا خوب است؛ بله، امروز هوا بسیار دلپذیر است. من هم خوشوقتم؛ از دیدارتان خوشحالم!",
+          "verified": true
+        },
+        {
+          "en": "Départs; Arrivées; Bagages; Detect; French",
+          "fa": "خروجی‌ها؛ ورودی‌ها؛ بار و چمدان؛ تشخیص؛ فرانسوی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "0155b0a795cf7f44b3d8329909d627720fb571e9523f2e7cdafc8ea290882166",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "• دسته‌بندی متن (Text classification)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• ترجمهٔ ماشینی (Machine translation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• پاسخ‌گویی به پرسش (Question answering)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• خلاصه‌سازی خودکار (Automatic summarization)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• و موارد دیگر…"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "چالش اصلی: بازآفرینی درک زبان برای این‌همه وظیفهٔ گوناگون!"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "مثلاً مترجم گوگل (Google translate)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "https://uncubed.com/daily/best-translation-apps-for-travel-in-2019/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "lèche vitrine; window shopping; C’est ma boulangerie préférée; this is my favorite bakery; Listening for both languages; Français; English; 水",
+          "fa": "lèche vitrine / window shopping (تماشای ویترین‌ها)؛ C’est ma boulangerie préférée / this is my favorite bakery (این نانوایی محبوب من است)؛ گوش دادن به هر دو زبان؛ فرانسوی؛ انگلیسی؛ 水 (آب)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "898d7ecea9edd47317e466f290ac0ac4a504e4fc5f4ba5e1b39bb0a936cf0e77",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "• دسته‌بندی متن (Text classification)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• ترجمهٔ ماشینی (Machine translation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• پاسخ‌گویی به پرسش (Question answering)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• خلاصه‌سازی خودکار (Automatic summarization)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• و موارد دیگر…"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "چالش اصلی: بازآفرینی درک زبان برای این‌همه وظیفهٔ گوناگون!"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "مثلاً سامانهٔ پاسخ‌گویی به پرسش IBM Watson (و برندهٔ مسابقهٔ Jeopardy)"
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "https://www.nytimes.com/2011/02/17/science/17jeopardy-watson.html"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "$2,000; $5,000; $5,000; Ken; WATSON; BRAD; THINK",
+          "fa": "۲۰۰۰ دلار؛ ۵۰۰۰ دلار؛ ۵۰۰۰ دلار؛ Ken؛ WATSON؛ BRAD؛ فکر کن",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "a784b481cf6f92fb927cc234260da536b40cd1ff24dbad7d0f99de30251e04cf",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "• دسته‌بندی متن (Text classification)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• ترجمهٔ ماشینی (Machine translation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• پاسخ‌گویی به پرسش (Question answering)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• خلاصه‌سازی خودکار (Automatic summarization)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• و موارد دیگر…"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "چالش اصلی: بازآفرینی درک زبان برای این‌همه وظیفهٔ گوناگون!"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "wordtune read; Get a feel for what wordtune read can do!; Whether you are reading a lengthy blog post, analyzing a report or going through a paper, Wordtune helps you digest what’s important. Cut through the word count to find the words that count.; Academic article; Business report; Magazine article; Blog post; News; And more…",
+          "fa": "wordtune read؛ با کارهایی که wordtune read می‌تواند انجام دهد آشنا شوید!؛ چه مطلب وبلاگی طولانی بخوانید، چه گزارشی را تحلیل کنید یا مقاله‌ای را بررسی کنید، Wordtune کمک می‌کند نکته‌های مهم را درک کنید. از انبوه واژه‌ها عبور کنید تا واژه‌های مهم را پیدا کنید؛ مقالهٔ دانشگاهی؛ گزارش تجاری؛ مقالهٔ مجله؛ مطلب وبلاگ؛ اخبار؛ و موارد دیگر…",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "a784b481cf6f92fb927cc234260da536b40cd1ff24dbad7d0f99de30251e04cf",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "• دسته‌بندی متن (Text classification)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• ترجمهٔ ماشینی (Machine translation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• پاسخ‌گویی به پرسش (Question answering)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• خلاصه‌سازی خودکار (Automatic summarization)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• و موارد دیگر…"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "چالش اصلی: بازآفرینی درک زبان برای این‌همه وظیفهٔ گوناگون!"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "7571181fa443ed2f27271f0119d91696cdd172d929604285f3d2eb24dfc2ea5f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "چالش‌های اصلی دیگر: بازآفرینی درک زبان برای این‌همه زبان/فرد گوناگون!"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• به توصیفی قابل‌محاسبه از همهٔ زبان‌های انسان نیاز داریم که هم‌زمان ظرافت‌های افراد را نیز ثبت کند؛ مثلاً بیش از ۷۰۰۰ زبان در سراسر جهان صحبت می‌شود."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://ruder.io/nlp-beyond-english/"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "fe96119f75ff1e122093ec670ac62e9ec365c2a22324de12f7c1b2e28f7bbb2e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• مقدمه‌ای بر پردازش زبان طبیعی (Natural language processing)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• بازنمایی متن (Text representation)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تعبیه‌های عصبی واژه (Neural word embeddings)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "bb9ae4ce5b630f7283a52a266c2e7d97e90af68bbd0c1507c416ca2b47b30202",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ورودی: رشته (String؛ مجموعه‌ای از نویسه‌ها)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• اصطلاح‌های رایج"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• پیکره (Corpus): مجموعه‌داده"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• سند (Document): نمونه"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Most Relevant; Lives in Austin, Texas; Keith C. McCormic: Let the food pantries have it instead of monetizing it.; Like; Reply; 1d; 5 Replies; Caty O’Neil Webb: The promo code isn’t working but I found another one on line GETFIFTY%.; Edited; 2 Replies",
+          "fa": "مرتبط‌ترین؛ ساکن آستین، تگزاس؛ Keith C. McCormic: به‌جای درآمدزایی از آن، بگذارید بانک‌های غذا آن را داشته باشند؛ پسندیدن؛ پاسخ؛ ۱ روز؛ ۵ پاسخ؛ Caty O’Neil Webb: کد تخفیف کار نمی‌کند، اما کد دیگری در اینترنت پیدا کردم GETFIFTY%؛ ویرایش‌شده؛ ۲ پاسخ",
+          "verified": true
+        },
+        {
+          "en": "Machine learning; From Wikipedia, the free encyclopedia; For the journal, see Machine Learning (journal).; “Statistical learning” redirects here. For statistical learning in linguistics, see statistical learning in language…",
+          "fa": "یادگیری ماشین؛ از ویکی‌پدیا، دانشنامهٔ آزاد؛ برای مجله، Machine Learning (journal) را ببینید؛ «یادگیری آماری» به اینجا تغییرمسیر می‌دهد. برای یادگیری آماری در زبان‌شناسی، یادگیری آماری در زبان… را ببینید.",
+          "verified": true
+        },
+        {
+          "en": "Machine learning is a field of computer science that uses statistical techniques to give computer systems the ability to “learn” (e.g., progressively improve performance on a specific task) with data, without being explicitly programmed.[2]",
+          "fa": "یادگیری ماشین حوزه‌ای از علوم رایانه است که از روش‌های آماری استفاده می‌کند تا به سامانه‌های رایانه‌ای توان «یادگیری» با داده را بدهد (مثلاً بهبود تدریجی عملکرد در یک وظیفهٔ مشخص)، بدون آنکه صریحاً برنامه‌نویسی شده باشند.[2]",
+          "verified": true
+        },
+        {
+          "en": "The name machine learning was coined in 1959 by Arthur Samuel.[1] Machine learning explores the study and construction of algorithms that can learn from and make predictions on data[3] – such algorithms overcome following strictly static program instructions by making data-driven predictions or decisions,[4]:2 through building a model from sample inputs. Machine learning is employed in a range of computing tasks where designing and programming explicit algorithms with good performance is difficult or infeasible; example applications include email filtering, detection of network intruders, and computer vision.",
+          "fa": "نام یادگیری ماشین را آرتور ساموئل در ۱۹۵۹ ابداع کرد.[1] یادگیری ماشین، مطالعه و ساخت الگوریتم‌هایی را بررسی می‌کند که می‌توانند از داده یاد بگیرند و روی آن پیش‌بینی کنند.[3] این الگوریتم‌ها با ساخت مدل از ورودی‌های نمونه و انجام پیش‌بینی‌ها یا تصمیم‌های مبتنی بر داده، از پیروی صرف از دستورهای ثابت برنامه فراتر می‌روند.[4]:2 یادگیری ماشین در طیفی از وظایف محاسباتی به کار می‌رود که طراحی و برنامه‌نویسی الگوریتم‌های صریح با عملکرد خوب برای آن‌ها دشوار یا ناممکن است؛ مانند پالایش ایمیل، تشخیص نفوذگران شبکه و بینایی رایانه‌ای.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "15aabac0768f24004d4a90a37c05c888b8f138dc62317876519873debb084350",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ورودی: کدام انواع ویژگی «رشته‌ای» کاربرد دارند؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• دادهٔ مقوله‌ای (Categorical data)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• از یک فهرست ثابت می‌آید (مثلاً سطح تحصیلات)."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• دادهٔ رشته‌ای ساختاریافته (Structured string data)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• مثلاً نشانی‌ها، تاریخ‌ها، شماره‌های تلفن،"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• دادهٔ متنی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "176eb97358233ca7c9c51235a097915b67850f380092dbad2058fc21415469ab",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چگونه متن را برای رایانه توصیف کنیم؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• چالش: طول ورودی اغلب متغیر است."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• راه‌حل: متن را به قالب عددی قابل‌پردازش برای الگوریتم‌های یادگیری عمیق (DL) تبدیل کنید."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Machine learning; From Wikipedia, the free encyclopedia; For the journal, see Machine Learning (journal).; “Statistical learning” redirects here. For statistical learning in linguistics, see statistical learning in language…",
+          "fa": "یادگیری ماشین؛ از ویکی‌پدیا، دانشنامهٔ آزاد؛ برای مجله، Machine Learning (journal) را ببینید؛ «یادگیری آماری» به اینجا تغییرمسیر می‌دهد. برای یادگیری آماری در زبان‌شناسی، یادگیری آماری در زبان… را ببینید.",
+          "verified": true
+        },
+        {
+          "en": "Machine learning is a field of computer science that uses statistical techniques to give computer systems the ability to “learn” (e.g., progressively improve performance on a specific task) with data, without being explicitly programmed.[2]",
+          "fa": "یادگیری ماشین حوزه‌ای از علوم رایانه است که از روش‌های آماری استفاده می‌کند تا به سامانه‌های رایانه‌ای توان «یادگیری» با داده را بدهد (مثلاً بهبود تدریجی عملکرد در یک وظیفهٔ مشخص)، بدون آنکه صریحاً برنامه‌نویسی شده باشند.[2]",
+          "verified": true
+        },
+        {
+          "en": "The name machine learning was coined in 1959 by Arthur Samuel.[1] Machine learning explores the study and construction of algorithms that can learn from and make predictions on data[3] – such algorithms overcome following strictly static program instructions by making data-driven predictions or decisions,[4]:2 through building a model from sample inputs. Machine learning is employed in a range of computing tasks where designing and programming explicit algorithms with good performance is difficult or infeasible; example applications include email filtering, detection of network intruders, and computer vision.",
+          "fa": "نام یادگیری ماشین را آرتور ساموئل در ۱۹۵۹ ابداع کرد.[1] یادگیری ماشین، مطالعه و ساخت الگوریتم‌هایی را بررسی می‌کند که می‌توانند از داده یاد بگیرند و روی آن پیش‌بینی کنند.[3] این الگوریتم‌ها با ساخت مدل از ورودی‌های نمونه و انجام پیش‌بینی‌ها یا تصمیم‌های مبتنی بر داده، از پیروی صرف از دستورهای ثابت برنامه فراتر می‌روند.[4]:2 یادگیری ماشین در طیفی از وظایف محاسباتی به کار می‌رود که طراحی و برنامه‌نویسی الگوریتم‌های صریح با عملکرد خوب برای آن‌ها دشوار یا ناممکن است؛ مانند پالایش ایمیل، تشخیص نفوذگران شبکه و بینایی رایانه‌ای.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "6fb178cb5733f028c393832203972ecf5f6065615994703f602ffa911611053a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "جزئیات پیاده‌سازی — پیش‌پردازش‌های ممکن"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• همهٔ حروف را به حروف کوچک تبدیل کنید."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• ریشه‌یابی (Stemming): از ریشهٔ هر واژه استفاده کنید؛ مثلاً مفرد به جمع، یکسان‌سازی صورت‌های مختلف فعل."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• برای مثال،"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• حذف ایست‌واژه‌ها (Stop word removal): واژه‌های پرتکرار را کنار بگذارید."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://dzone.com/articles/using-lucene-grails"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "https://github.com/topics/stopwords-removal"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "consign; consigned; consigning; consignment; Porter Stem Filter → consign",
+          "fa": "consign (سپردن)؛ consigned (سپرده‌شده)؛ consigning (سپردن)؛ consignment (محموله/سپردن)؛ فیلتر ریشه‌یاب پورتر (Porter Stem Filter) → consign",
+          "verified": true
+        },
+        {
+          "en": "the; of; and; to; was; her; that; they; is; it",
+          "fa": "the (حرف تعریف)؛ of (از)؛ and (و)؛ to (به)؛ was (بود)؛ her (او/مال او)؛ that (آن/که)؛ they (آن‌ها)؛ is (است)؛ it (آن)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "aeb8205e552216805497954bcd096c0203c3dbb3593faa3a92767eac693ce822",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تبدیل متن به بردارها"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "۱. دادهٔ آموزشی را توکن‌سازی (Tokenize) کنید."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "۲. واژگان (Vocabulary) را بیاموزید."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "۳. داده را به‌صورت بردار کدگذاری کنید."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "3410d6d61f6bcbe8405d55169ffa3714d75ca5a7ee5345c41fe7d5b6ee7a052b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تبدیل متن به بردارها"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "۱. دادهٔ آموزشی را توکن‌سازی کنید؛ داده را به دنباله‌ای از توکن‌ها تبدیل کنید (مثلاً داده → «This is tokening»؛ «این توکن‌سازی است»)."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "۲. واژگان (Vocabulary) را بیاموزید."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "۳. داده را به‌صورت بردار کدگذاری کنید."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "دو رویکرد رایج:"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://nlpiation.medium.com/how-to-use-huggingfaces-transformers-pre-trained-tokenizers-e029e8d6d1fa"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Character Level; Word Level",
+          "fa": "سطح نویسه (Character Level)؛ سطح واژه (Word Level)",
+          "verified": true
+        },
+        {
+          "en": "T h i s i s t o k e n i z i n g .; This | is | tokenizing | .",
+          "fa": "T h i s i s t o k e n i z i n g .؛ This | is | tokenizing | . (این | است | توکن‌سازی | .؛ توکن‌های انگلیسی اصلی حفظ شده‌اند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "9196bdb7b6cf0ae751bf0feb35aeba1b5279b586d45b7de648008b1fc21b66b4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تبدیل متن به بردارها"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "۱. دادهٔ آموزشی را توکن‌سازی (Tokenize) کنید."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "۲. با شناسایی همهٔ توکن‌های یکتا در دادهٔ آموزشی، واژگان را بیاموزید."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "۳. داده را به‌صورت بردار کدگذاری کنید."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "دو رویکرد رایج:"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://nlpiation.medium.com/how-to-use-huggingfaces-transformers-pre-trained-tokenizers-e029e8d6d1fa"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "توکن (Token): a b c *** 0 1 *** ! @ ***"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "شاخص (Index): 1 2 3 *** 27 28 *** 119 120 ***"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "توکن (Token): a an at *** bat ball *** zipper zoo *** (واژه‌های نمونهٔ اصلی: حرف تعریف a، حرف تعریف an، در، خفاش/چوب، توپ، زیپ، باغ‌وحش)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "شاخص (Index): 1 2 3 *** 527 528 *** 9,842 9,843 ***"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Character Level; Word Level",
+          "fa": "سطح نویسه (Character Level)؛ سطح واژه (Word Level)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "ed63aa3191508a807f89f1f1eeb85f7c4a21ed5a6391e61d753171471804f24f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "۱. دادهٔ آموزشی را توکن‌سازی (Tokenize) کنید."
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "۲. با شناسایی همهٔ توکن‌های یکتا در دادهٔ آموزشی، واژگان را بیاموزید."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "۳. داده را به‌صورت بردارهای تک‌فعال (One-hot vectors) کدگذاری کنید."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://github.com/DipLernin/Text_Generation"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "کدگذاری‌های تک‌فعال (One-hot encodings)"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "دنبالهٔ ورودی شامل ۴۰ توکنِ بازنمایندهٔ نویسه‌ها یا واژه‌ها"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "تبدیل متن به بردارها"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "recurrent layer; softmax; output; 40; 128; 59; 59",
+          "fa": "لایهٔ بازگشتی؛ سافت‌مکس؛ خروجی؛ 40؛ 128؛ 59؛ 59",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "9a71ffc8b7fcc980f03995a2226e81f102930a1a7d45bb4ae84c7634832e96e4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تبدیل متن به بردارها"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "مزایا و معایب استفاده از توکن‌های واژه به‌جای توکن‌های نویسه چیست؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "— مزایا: طول دنباله‌های ورودی/خروجی کوتاه‌تر است و یادگیری معنا را ساده می‌کند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "— معایب: برای واژه‌های خارج از واژگان، توکن واژهٔ «UNK» لازم است؛ واژگان می‌تواند بزرگ باشد."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://nlpiation.medium.com/how-to-use-huggingfaces-transformers-pre-trained-tokenizers-e029e8d6d1fa"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "توکن (Token): a b c *** 0 1 *** ! @ ***"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "شاخص (Index): 1 2 3 *** 27 28 *** 119 120 ***"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "توکن (Token): a an at *** bat ball *** zipper zoo *** (واژه‌های نمونهٔ اصلی: حرف تعریف a، حرف تعریف an، در، خفاش/چوب، توپ، زیپ، باغ‌وحش)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "شاخص (Index): 1 2 3 *** 527 528 *** 9,842 9,843 ***"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Character Level; Word Level",
+          "fa": "سطح نویسه (Character Level)؛ سطح واژه (Word Level)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "0c615e2c6b22ace4d16e645da64c5600f4973723724efd78278af372be41f4ff",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تبدیل متن به بردارها"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "بازنمایی‌های سطح واژه رایج‌ترند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://nlpiation.medium.com/how-to-use-huggingfaces-transformers-pre-trained-tokenizers-e029e8d6d1fa"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "توکن (Token): a b c *** 0 1 *** ! @ ***"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "شاخص (Index): 1 2 3 *** 27 28 *** 119 120 ***"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "توکن (Token): a an at *** bat ball *** zipper zoo *** (واژه‌های نمونهٔ اصلی: حرف تعریف a، حرف تعریف an، در، خفاش/چوب، توپ، زیپ، باغ‌وحش)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "شاخص (Index): 1 2 3 *** 527 528 *** 9,842 9,843 ***"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Character Level; Word Level",
+          "fa": "سطح نویسه (Character Level)؛ سطح واژه (Word Level)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "16cca34f7f883419939b231d680971b39eb8282aa72d0960472aae1b8d95714e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مشکل‌های کدگذاری تک‌فعال (One-Hot) واژه‌ها چیست؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• نیاز بسیار زیاد به حافظه"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• پرهزینه از نظر محاسباتی"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "بُعد = اندازهٔ واژگان"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "مثلاً زبان انگلیسی حدود ۱۷۰٬۰۰۰ واژه دارد که حدود ۱۰٬۰۰۰ واژهٔ آن رایج‌اند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "8c1735064b4b616ac6890481eefee50989fb576ee04c903e6e13e7560d836300",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محدودیت کدگذاری تک‌فعال (One-Hot) واژه‌ها"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• هیچ درکی از اینکه کدام واژه‌ها مشابه‌اند ندارد؛ بااین‌حال چنین درکی می‌تواند تعمیم را بهبود دهد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مثلاً «walking» (راه‌رفتن)، «running» (دویدن) و «skipping» (لی‌لی‌کردن) همگی برای «He was ____ to school.» (او داشت ____ به مدرسه می‌رفت.) مناسب‌اند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "Walking (راه‌رفتن)؛ Soap (صابون)؛ Fire (آتش)؛ Skipping (لی‌لی‌کردن)"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "فاصلهٔ میان همهٔ واژه‌ها یکسان است!"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "fe96119f75ff1e122093ec670ac62e9ec365c2a22324de12f7c1b2e28f7bbb2e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• مقدمه‌ای بر پردازش زبان طبیعی (Natural language processing)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• بازنمایی متن (Text representation)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تعبیه‌های عصبی واژه (Neural word embeddings)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "77e64a3a5e5349a5cd58695410d3b95edcbcc8adf9939561dfb9774dbd23c3ac",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایده: هر واژه را به‌طور فشرده در فضایی بازنمایی کنید که فاصلهٔ برداری نشان‌دهندهٔ شباهت واژه‌ها باشد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "100k dimensional (one-hot encoded); 300 dimensional continuous representation; 0.23; −0.41; −0.33; 0.01; 0.56",
+          "fa": "۱۰۰هزاربعدی (کدگذاری تک‌فعال)؛ بازنمایی پیوستهٔ ۳۰۰بعدی؛ 0.23؛ −0.41؛ −0.33؛ 0.01؛ 0.56",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "6ba87e99833371bf68dbaaa2311aa1b3825cc3ed5aee6937af236e03796707a9",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "الهام: معناشناسی توزیعی (Distributional Semantics)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "«فرضیهٔ توزیعی (Distributional hypothesis) می‌گوید معنای یک واژه از بافتی به دست می‌آید که در آن به کار می‌رود، و واژه‌های دارای معنای مشابه در بافت‌های مشابه به کار می‌روند.»"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "— خاستگاه: هریس در ۱۹۵۴ و فِرث در ۱۹۵۷"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "9c3378d1c72769c805f96d8ec32ae70bf9ab648eb55b9c7a3c4a73bd449646c5",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "الهام: معناشناسی توزیعی (Distributional Semantics)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "«فرضیهٔ توزیعی (Distributional hypothesis) می‌گوید معنای یک واژه از بافتی به دست می‌آید که در آن به کار می‌رود، و واژه‌های دارای معنای مشابه در بافت‌های مشابه به کار می‌روند.»"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "486df123a3f59f0b3fa91c8ee87c1c30e33bce8f695ad63b48a48dad6fdc5220",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "الهام: معناشناسی توزیعی (Distributional Semantics)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• براساس بافت، معنای berimbau چیست؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• ایده: بافت، فهم معنای یک واژه را آسان‌تر می‌کند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "Background music from a berimbau offers a beautiful escape. (موسیقی پس‌زمینهٔ یک بریمبائو، گریز دل‌انگیزی فراهم می‌کند.)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "Many people danced around the berimbau player. (افراد بسیاری پیرامون نوازندهٔ بریمبائو رقصیدند.)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "I practiced for many years to learn how to play the berimbau. (سال‌های بسیاری تمرین کردم تا نواختن بریمبائو را یاد بگیرم.)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "[اقتباس از اسلایدهای Lena Voita] https://capoeirasongbook.wordpress.com/instruments/berimbau/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "© KMMA; www.africamuseum.be",
+          "fa": "© KMMA؛ www.africamuseum.be",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "9c3378d1c72769c805f96d8ec32ae70bf9ab648eb55b9c7a3c4a73bd449646c5",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "الهام: معناشناسی توزیعی (Distributional Semantics)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "«فرضیهٔ توزیعی (Distributional hypothesis) می‌گوید معنای یک واژه از بافتی به دست می‌آید که در آن به کار می‌رود، و واژه‌های دارای معنای مشابه در بافت‌های مشابه به کار می‌روند.»"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "84612f50f15225d0688dfa869be9cbea0953f7b5381c7f6ae3f8336c7b30f255",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "• چه واژه‌های دیگری می‌توانند در این بافت‌ها قرار بگیرند؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "الهام: معناشناسی توزیعی (Distributional Semantics)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "[اقتباس از اسلایدهای Lena Voita]"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "۱. Background music from a _______ offers a beautiful escape. (موسیقی پس‌زمینهٔ یک _______، گریز دل‌انگیزی فراهم می‌کند.)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "۲. Many people danced around the _______ player. (افراد بسیاری پیرامون نوازندهٔ _______ رقصیدند.)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "۳. I practiced for many years to learn how to play the _______. (سال‌های بسیاری تمرین کردم تا نواختن _______ را یاد بگیرم.)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "literal",
+          "fa": "1 1 1"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "literal",
+          "fa": "0 0 0"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "literal",
+          "fa": "0 0 0"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "literal",
+          "fa": "1 1 1"
+        },
+        {
+          "source_lines": [
+            10,
+            11,
+            12,
+            13
+          ],
+          "kind": "text",
+          "fa": "Berimbau (بریمبائو)؛ Soap (صابون)؛ Fire (آتش)؛ Guitar (گیتار)"
+        },
+        {
+          "source_lines": [
+            14,
+            15
+          ],
+          "kind": "text",
+          "fa": "اگر واژه بتواند در بافت ظاهر شود، ۱؛ در غیر این صورت ۰"
+        },
+        {
+          "source_lines": [
+            16
+          ],
+          "kind": "bullet",
+          "fa": "۱. ۲. ۳. بافت‌ها (Contexts)"
+        },
+        {
+          "source_lines": [
+            17,
+            18,
+            19,
+            20
+          ],
+          "kind": "text",
+          "fa": "فرضیه این است که واژه‌های دارای مقادیر سطری مشابه، معنای مشابه دارند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "9c3378d1c72769c805f96d8ec32ae70bf9ab648eb55b9c7a3c4a73bd449646c5",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "الهام: معناشناسی توزیعی (Distributional Semantics)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "«فرضیهٔ توزیعی (Distributional hypothesis) می‌گوید معنای یک واژه از بافتی به دست می‌آید که در آن به کار می‌رود، و واژه‌های دارای معنای مشابه در بافت‌های مشابه به کار می‌روند.»"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "424fa8b99d77772021bc3cd02233bed6a8798e2db7b1ace7f2523931866dccd0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکرد"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• برای هر واژه با توصیف بافت آن، یک بردار متراکم (با بُعد کمتر) بیاموزید که ذاتاً شباهت‌ها/تفاوت‌های آن با واژه‌های دیگر را بازتاب می‌دهد."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "بریمبائو و گیتار نزدیک‌ترین جفت واژه‌اند؛ Berimbau (بریمبائو)، Soap (صابون)، Fire (آتش)، Guitar (گیتار)"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "فاصلهٔ هر جفت واژه متفاوت است!"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "توجه: روش‌های بسیاری برای اندازه‌گیری فاصله وجود دارد (مثلاً فاصلهٔ کسینوسی (Cosine distance))."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "b1a6c031c44908f115b22851e1563b3356830b307f8ab8bf51dbc3538b9fa53c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکرد"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• برای هر واژه با توصیف بافت آن، یک بردار متراکم (با بُعد کمتر) بیاموزید که ذاتاً شباهت‌ها/تفاوت‌های آن با واژه‌های دیگر را بازتاب می‌دهد."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "واژه‌ها را در فضایی مشترک تعبیه می‌کنیم تا بتوان آن‌ها را با چند ویژگی مقایسه کرد."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "چه ویژگی‌هایی میان این واژه‌ها تمایز ایجاد می‌کنند؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "Berimbau (بریمبائو)؛ Soap (صابون)؛ Fire (آتش)؛ Guitar (گیتار)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "18d9cc37cef65e6dd24d1d4e53590d35d2954c94f5b9a9a62e5a005e69ebeaef",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکرد"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• برای هر واژه با توصیف بافت آن، یک بردار متراکم (با بُعد کمتر) بیاموزید که ذاتاً شباهت‌ها/تفاوت‌های آن با واژه‌های دیگر را بازتاب می‌دهد."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "Berimbau (بریمبائو)؛ Soap (صابون)؛ Fire (آتش)؛ Guitar (گیتار)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "چوبی (Wooden)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "کالا (Commodity)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "پاک‌کننده (Cleaner)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "غذا (Food)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "دما (Temperature)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "پرسروصدا (Noisy)"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "سلاح (Weapon)"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "text",
+          "fa": "ویژگی‌های بالقوه و قابل‌تفسیر"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "aee2b7b11b8fd3abec2207d4dd67c4c90a0994d0d48ae8f7130cc1e8f68791cc",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکرد: یادگیری فضای تعبیهٔ واژه (Word Embedding Space)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• فضای تعبیه، تعداد محدودی واژه را بازنمایی می‌کند که در آموزش تعیین می‌شوند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• تعبیهٔ واژه به‌صورت برداری بازنمایی می‌شود که بافت آن را نشان می‌دهد."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• بُعد همهٔ تعبیه‌های واژه در یک فضای تعبیه یکسان است."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• بُعد مثال نشان‌داده‌شده چقدر است؟"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "…"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "6550e20bf81bc4281da1c3c62eee4405cf8b3aa336c13b75b5e0a151babb1fcc",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکرد: یادگیری فضای تعبیهٔ واژه (Word Embedding Space)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• فضای تعبیه، تعداد محدودی واژه را بازنمایی می‌کند که در آموزش تعریف می‌شوند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• تعبیهٔ واژه به‌صورت برداری بازنمایی می‌شود که بافت آن را نشان می‌دهد."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• بُعد همهٔ تعبیه‌های واژه در یک فضای تعبیه یکسان است."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "?"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "?"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "literal",
+          "fa": "?"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "literal",
+          "fa": "?"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "literal",
+          "fa": "?"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "literal",
+          "fa": "?"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "literal",
+          "fa": "?"
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "در عمل، تفسیر ویژگی‌های متمایزکنندهٔ آموخته‌شده دشوار است."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "95649e283d8771a8e22f029cc69d3844599a9c462e52385c1361a5b0ccbf2f1b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ماتریس تعبیه (Embedding Matrix)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• ماتریس تعبیه، یک واژهٔ ورودی را به برداری متراکم تبدیل می‌کند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "اندازهٔ واژگان"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "Berimbau (بریمبائو)؛ Soap (صابون)؛ Fire (آتش)؛ Guitar (گیتار)؛ …"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "بُعد هدف (مثلاً ۵)"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "کدگذاری تک‌فعال (One hot encoding) تعیین می‌کند کدام تعبیهٔ واژه استفاده شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "0.23; −0.41; −0.33; 0.01; 0.56",
+          "fa": "0.23؛ −0.41؛ −0.33؛ 0.01؛ 0.56",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "9960a495dd58106b6e8a339a9af112301897e77d71b2645fa38fdbd4d0a52827",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ماتریس تعبیه (Embedding Matrix)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• یک واژهٔ ورودی را به برداری متراکم تبدیل می‌کند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "اندازهٔ واژگان"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "Berimbau (بریمبائو)؛ Soap (صابون)؛ Fire (آتش)؛ Guitar (گیتار)؛ …"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "بُعد هدف (مثلاً ۵)"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "وقتی شاخص واژه را بدانیم، می‌توان تعبیهٔ آن را به‌طور کارآمد استخراج کرد."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "0.23; −0.41; −0.33; 0.01; 0.56",
+          "fa": "0.23؛ −0.41؛ −0.33؛ 0.01؛ 0.56",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "1036fb34f049ed78be5d2107726c561d09003e9abebea846b46e0ac90be795fa",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تعبیه‌های رایج واژه (Word Embeddings)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• روش بنجیو (Bengio)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• Word2vec (مدل اسکیپ‌گرام (Skip-gram))"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• و موارد دیگر…"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "1036fb34f049ed78be5d2107726c561d09003e9abebea846b46e0ac90be795fa",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تعبیه‌های رایج واژه (Word Embeddings)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• روش بنجیو (Bengio)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• Word2vec (مدل اسکیپ‌گرام (Skip-gram))"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• و موارد دیگر…"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "aad1c200b68e0921ea43b000b593e777259a5f43e7f354feab97da7690a0048c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایده: تعبیه‌های واژه‌ای بیاموزید که به پیش‌بینی واژه‌های بعدیِ مناسب کمک کنند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "برای مثال،"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "۱. Background music from a _______ (موسیقی پس‌زمینهٔ یک _______)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "۲. Many people danced around the _______ (افراد بسیاری پیرامون _______ رقصیدند.)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "۳. I practiced for many years to learn how to play the _______ (سال‌های بسیاری تمرین کردم تا نواختن _______ را یاد بگیرم.)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "Bengio et al. A Neural Probabilistic Language Model. JMLR 2003."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "ebad420a36f6347d7e70c43cac0d075da06716dce0617feae33a2aca09990c59",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "وظیفه: پیش‌بینی واژهٔ بعدی با داشتن واژه‌های قبلی"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "برای مثال،"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "۱. Background music from a _______ (موسیقی پس‌زمینهٔ یک _______)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "۲. Many people danced around the _______ (افراد بسیاری پیرامون _______ رقصیدند.)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "۳. I practiced for many years to learn how to play the _______ (سال‌های بسیاری تمرین کردم تا نواختن _______ را یاد بگیرم.)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "71ea42c7027ad8d9eea33078dd10d2bf58d2e259fb952b90c27936537a4bee87",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "وظیفه: پیش‌بینی واژهٔ بعدی با داشتن واژه‌های قبلی"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Bengio et al. A Neural Probabilistic Language Model. JMLR 2003."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "مثلاً در آزمایش‌ها، واژگانی با اندازهٔ ۱۷٬۰۰۰ استفاده شد."
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "بُعد لایهٔ خروجی چقدر است؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "i-th output = P(wₜ = i | context); softmax; most computation here; tanh; C(wₜ₋ₙ₊₁); C(wₜ₋₂); C(wₜ₋₁); Table look-up in C; Matrix C; shared parameters across words; index for wₜ₋ₙ₊₁; index for wₜ₋₂; index for wₜ₋₁",
+          "fa": "خروجی iام = P(wₜ = i | بافت)؛ سافت‌مکس؛ بیشترین محاسبات در اینجا؛ tanh؛ C(wₜ₋ₙ₊₁)؛ C(wₜ₋₂)؛ C(wₜ₋₁)؛ جست‌وجوی جدول در C؛ ماتریس C؛ پارامترهای مشترک میان واژه‌ها؛ شاخص wₜ₋ₙ₊₁؛ شاخص wₜ₋₂؛ شاخص wₜ₋₁",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "3cb5c93ffc2090cd140dc0a2b06053de6ac0a2e64841e2945c26b3c7727b8d31",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری (Architecture)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Bengio et al. A Neural Probabilistic Language Model. JMLR 2003."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "ماتریس تعبیه (Embedding matrix):"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "تعبیه‌های واژه (Word embeddings):"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "i-th output = P(wₜ = i | context); softmax; most computation here; tanh; C(wₜ₋ₙ₊₁); C(wₜ₋₂); C(wₜ₋₁); Table look-up in C; Matrix C; shared parameters across words; index for wₜ₋ₙ₊₁; index for wₜ₋₂; index for wₜ₋₁",
+          "fa": "خروجی iام = P(wₜ = i | بافت)؛ سافت‌مکس؛ بیشترین محاسبات در اینجا؛ tanh؛ C(wₜ₋ₙ₊₁)؛ C(wₜ₋₂)؛ C(wₜ₋₁)؛ جست‌وجوی جدول در C؛ ماتریس C؛ پارامترهای مشترک میان واژه‌ها؛ شاخص wₜ₋ₙ₊₁؛ شاخص wₜ₋₂؛ شاخص wₜ₋₁",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "bbfb03de5cded667f19288fc83adb8fbbcbbf13f5be4b45165d9ec528a63c154",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری (Architecture)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Bengio et al. A Neural Probabilistic Language Model. JMLR 2003."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "مثلاً در آزمایش‌ها، واژگانی با اندازهٔ ۱۷٬۰۰۰ همراه با اندازه‌های تعبیهٔ ۳۰، ۶۰ و ۱۰۰ استفاده شد."
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "یک تعبیهٔ واژهٔ ۳۰بعدی را فرض کنید — ابعاد ماتریس تعبیهٔ C چیست؟"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "30 × 17,000 (یعنی ۵۱۰٬۰۰۰ وزن)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "i-th output = P(wₜ = i | context); softmax; most computation here; tanh; C(wₜ₋ₙ₊₁); C(wₜ₋₂); C(wₜ₋₁); Table look-up in C; Matrix C; shared parameters across words; index for wₜ₋ₙ₊₁; index for wₜ₋₂; index for wₜ₋₁",
+          "fa": "خروجی iام = P(wₜ = i | بافت)؛ سافت‌مکس؛ بیشترین محاسبات در اینجا؛ tanh؛ C(wₜ₋ₙ₊₁)؛ C(wₜ₋₂)؛ C(wₜ₋₁)؛ جست‌وجوی جدول در C؛ ماتریس C؛ پارامترهای مشترک میان واژه‌ها؛ شاخص wₜ₋ₙ₊₁؛ شاخص wₜ₋₂؛ شاخص wₜ₋₁",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "f8685924097c05bd2ef2350ea786f7b013254e56f70ebc5c5ae18f5cb56b40d0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری (Architecture)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Bengio et al. A Neural Probabilistic Language Model. JMLR 2003."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "مثلاً در آزمایش‌ها، واژگانی با اندازهٔ ۱۷٬۰۰۰ همراه با اندازه‌های تعبیهٔ ۳۰، ۶۰ و ۱۰۰ استفاده شد."
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "یک تعبیهٔ واژهٔ ۳۰بعدی را فرض کنید — ابعاد هر تعبیهٔ واژه چیست؟"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "1 × 30"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "i-th output = P(wₜ = i | context); softmax; most computation here; tanh; C(wₜ₋ₙ₊₁); C(wₜ₋₂); C(wₜ₋₁); Table look-up in C; Matrix C; shared parameters across words; index for wₜ₋ₙ₊₁; index for wₜ₋₂; index for wₜ₋₁",
+          "fa": "خروجی iام = P(wₜ = i | بافت)؛ سافت‌مکس؛ بیشترین محاسبات در اینجا؛ tanh؛ C(wₜ₋ₙ₊₁)؛ C(wₜ₋₂)؛ C(wₜ₋₁)؛ جست‌وجوی جدول در C؛ ماتریس C؛ پارامترهای مشترک میان واژه‌ها؛ شاخص wₜ₋ₙ₊₁؛ شاخص wₜ₋₂؛ شاخص wₜ₋₁",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "c5266c028d8592b8128e53c3a6cfcb2518e0b17f976810bc497c81ba6e64c166",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری (Architecture)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Bengio et al. A Neural Probabilistic Language Model. JMLR 2003."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "یک لایهٔ فرافکنی (Projection layer) و پس از آن، یک لایهٔ پنهان با غیرخطی‌بودن"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "i-th output = P(wₜ = i | context); softmax; most computation here; tanh; C(wₜ₋ₙ₊₁); C(wₜ₋₂); C(wₜ₋₁); Table look-up in C; Matrix C; shared parameters across words; index for wₜ₋ₙ₊₁; index for wₜ₋₂; index for wₜ₋₁",
+          "fa": "خروجی iام = P(wₜ = i | بافت)؛ سافت‌مکس؛ بیشترین محاسبات در اینجا؛ tanh؛ C(wₜ₋ₙ₊₁)؛ C(wₜ₋₂)؛ C(wₜ₋₁)؛ جست‌وجوی جدول در C؛ ماتریس C؛ پارامترهای مشترک میان واژه‌ها؛ شاخص wₜ₋ₙ₊₁؛ شاخص wₜ₋₂؛ شاخص wₜ₋₁",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "663a59a0afa000adb15f1af6197fa2bf5cb9d2094853658078000a331ad2860a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "آموزش (Training)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Bengio et al. A Neural Probabilistic Language Model. JMLR 2003."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "ورودی: تعداد ۱، ۳، ۵ و ۸ واژهٔ ورودی امتحان شد و ۲ مجموعه‌داده به‌ترتیب با حدود ۱ میلیون و حدود ۳۴ میلیون واژه استفاده شد."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "از پنجرهٔ لغزان (Sliding window) روی دادهٔ ورودی استفاده کنید؛ مثلاً ۳ واژه."
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "Background music from a berimbau offers a beautiful escape… (موسیقی پس‌زمینهٔ یک بریمبائو، گریز دل‌انگیزی فراهم می‌کند…)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "i-th output = P(wₜ = i | context); softmax; most computation here; tanh; C(wₜ₋ₙ₊₁); C(wₜ₋₂); C(wₜ₋₁); Table look-up in C; Matrix C; shared parameters across words; index for wₜ₋ₙ₊₁; index for wₜ₋₂; index for wₜ₋₁",
+          "fa": "خروجی iام = P(wₜ = i | بافت)؛ سافت‌مکس؛ بیشترین محاسبات در اینجا؛ tanh؛ C(wₜ₋ₙ₊₁)؛ C(wₜ₋₂)؛ C(wₜ₋₁)؛ جست‌وجوی جدول در C؛ ماتریس C؛ پارامترهای مشترک میان واژه‌ها؛ شاخص wₜ₋ₙ₊₁؛ شاخص wₜ₋₂؛ شاخص wₜ₋₁",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "663a59a0afa000adb15f1af6197fa2bf5cb9d2094853658078000a331ad2860a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "آموزش (Training)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Bengio et al. A Neural Probabilistic Language Model. JMLR 2003."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "ورودی: تعداد ۱، ۳، ۵ و ۸ واژهٔ ورودی امتحان شد و ۲ مجموعه‌داده به‌ترتیب با حدود ۱ میلیون و حدود ۳۴ میلیون واژه استفاده شد."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "از پنجرهٔ لغزان (Sliding window) روی دادهٔ ورودی استفاده کنید؛ مثلاً ۳ واژه."
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "Background music from a berimbau offers a beautiful escape… (موسیقی پس‌زمینهٔ یک بریمبائو، گریز دل‌انگیزی فراهم می‌کند…)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "i-th output = P(wₜ = i | context); softmax; most computation here; tanh; C(wₜ₋ₙ₊₁); C(wₜ₋₂); C(wₜ₋₁); Table look-up in C; Matrix C; shared parameters across words; index for wₜ₋ₙ₊₁; index for wₜ₋₂; index for wₜ₋₁",
+          "fa": "خروجی iام = P(wₜ = i | بافت)؛ سافت‌مکس؛ بیشترین محاسبات در اینجا؛ tanh؛ C(wₜ₋ₙ₊₁)؛ C(wₜ₋₂)؛ C(wₜ₋₁)؛ جست‌وجوی جدول در C؛ ماتریس C؛ پارامترهای مشترک میان واژه‌ها؛ شاخص wₜ₋ₙ₊₁؛ شاخص wₜ₋₂؛ شاخص wₜ₋₁",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "663a59a0afa000adb15f1af6197fa2bf5cb9d2094853658078000a331ad2860a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "آموزش (Training)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Bengio et al. A Neural Probabilistic Language Model. JMLR 2003."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "ورودی: تعداد ۱، ۳، ۵ و ۸ واژهٔ ورودی امتحان شد و ۲ مجموعه‌داده به‌ترتیب با حدود ۱ میلیون و حدود ۳۴ میلیون واژه استفاده شد."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "از پنجرهٔ لغزان (Sliding window) روی دادهٔ ورودی استفاده کنید؛ مثلاً ۳ واژه."
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "Background music from a berimbau offers a beautiful escape… (موسیقی پس‌زمینهٔ یک بریمبائو، گریز دل‌انگیزی فراهم می‌کند…)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "i-th output = P(wₜ = i | context); softmax; most computation here; tanh; C(wₜ₋ₙ₊₁); C(wₜ₋₂); C(wₜ₋₁); Table look-up in C; Matrix C; shared parameters across words; index for wₜ₋ₙ₊₁; index for wₜ₋₂; index for wₜ₋₁",
+          "fa": "خروجی iام = P(wₜ = i | بافت)؛ سافت‌مکس؛ بیشترین محاسبات در اینجا؛ tanh؛ C(wₜ₋ₙ₊₁)؛ C(wₜ₋₂)؛ C(wₜ₋₁)؛ جست‌وجوی جدول در C؛ ماتریس C؛ پارامترهای مشترک میان واژه‌ها؛ شاخص wₜ₋ₙ₊₁؛ شاخص wₜ₋₂؛ شاخص wₜ₋₁",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "663a59a0afa000adb15f1af6197fa2bf5cb9d2094853658078000a331ad2860a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "آموزش (Training)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Bengio et al. A Neural Probabilistic Language Model. JMLR 2003."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "ورودی: تعداد ۱، ۳، ۵ و ۸ واژهٔ ورودی امتحان شد و ۲ مجموعه‌داده به‌ترتیب با حدود ۱ میلیون و حدود ۳۴ میلیون واژه استفاده شد."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "از پنجرهٔ لغزان (Sliding window) روی دادهٔ ورودی استفاده کنید؛ مثلاً ۳ واژه."
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "Background music from a berimbau offers a beautiful escape… (موسیقی پس‌زمینهٔ یک بریمبائو، گریز دل‌انگیزی فراهم می‌کند…)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "i-th output = P(wₜ = i | context); softmax; most computation here; tanh; C(wₜ₋ₙ₊₁); C(wₜ₋₂); C(wₜ₋₁); Table look-up in C; Matrix C; shared parameters across words; index for wₜ₋ₙ₊₁; index for wₜ₋₂; index for wₜ₋₁",
+          "fa": "خروجی iام = P(wₜ = i | بافت)؛ سافت‌مکس؛ بیشترین محاسبات در اینجا؛ tanh؛ C(wₜ₋ₙ₊₁)؛ C(wₜ₋₂)؛ C(wₜ₋₁)؛ جست‌وجوی جدول در C؛ ماتریس C؛ پارامترهای مشترک میان واژه‌ها؛ شاخص wₜ₋ₙ₊₁؛ شاخص wₜ₋₂؛ شاخص wₜ₋₁",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "2136773b2ff9e7fca3ff868261481c7350b8e349e948e645e926a6f387c1d1aa",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "آموزش (Training)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Bengio et al. A Neural Probabilistic Language Model. JMLR 2003."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "ورودی: تعداد ۱، ۳، ۵ و ۸ واژهٔ ورودی امتحان شد و ۲ مجموعه‌داده به‌ترتیب با حدود ۱ میلیون و حدود ۳۴ میلیون واژه استفاده شد."
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "تابع هزینه (Cost function): زیان آنتروپی متقاطع به‌علاوهٔ منظم‌سازی را کمینه کنید (کاهش وزن L2 (L2 weight decay))."
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "تعبیهٔ واژه به‌صورت تکراری به‌روزرسانی می‌شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "i-th output = P(wₜ = i | context); softmax; most computation here; tanh; C(wₜ₋ₙ₊₁); C(wₜ₋₂); C(wₜ₋₁); Table look-up in C; Matrix C; shared parameters across words; index for wₜ₋ₙ₊₁; index for wₜ₋₂; index for wₜ₋₁",
+          "fa": "خروجی iام = P(wₜ = i | بافت)؛ سافت‌مکس؛ بیشترین محاسبات در اینجا؛ tanh؛ C(wₜ₋ₙ₊₁)؛ C(wₜ₋₂)؛ C(wₜ₋₁)؛ جست‌وجوی جدول در C؛ ماتریس C؛ پارامترهای مشترک میان واژه‌ها؛ شاخص wₜ₋ₙ₊₁؛ شاخص wₜ₋₂؛ شاخص wₜ₋₁",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "2ec0035ea1201d177d074d503218acb7402572f174224a74b49172b08b103129",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "جمع‌بندی: تعبیه‌های واژه‌ای آموخته می‌شوند که پیش‌بینی واژه‌های بعدیِ مناسب را پشتیبانی می‌کنند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "برای مثال،"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "۱. Background music from a _______ (موسیقی پس‌زمینهٔ یک _______)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "۲. Many people danced around the _______ (افراد بسیاری پیرامون _______ رقصیدند.)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "۳. I practiced for many years to learn how to play the _______ (سال‌های بسیاری تمرین کردم تا نواختن _______ را یاد بگیرم.)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "1036fb34f049ed78be5d2107726c561d09003e9abebea846b46e0ac90be795fa",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تعبیه‌های رایج واژه (Word Embeddings)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• روش بنجیو (Bengio)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• Word2vec (مدل اسکیپ‌گرام (Skip-gram))"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• و موارد دیگر…"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "5dd2bf97871c527fcb595557b6dfdfae3f46b3be32d86a7fe902178ce90c05bf",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایده: تعبیه‌های واژه‌ای بیاموزید که بدانند واژه‌های پیرامونیِ مناسب کدام‌اند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "برای مثال،"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "۱. ___ ___ ___ ___ berimbau ___ ___ ___ ___ (بریمبائو)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "۲. ___ berimbau ___ (بریمبائو)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "Mikolov et al. Efficient Estimation of Word Representations in Vector Space. arXiv 2013."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "f9cd3f9d62dd36cd502fdd9dc6f786d8525fb78d5c452109d8aec52dddd63066",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "وظیفه: با داشتن یک واژه، واژه‌ای نزدیک آن را پیش‌بینی کنید."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "برای مثال،"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "۱. ___ ___ ___ ___ berimbau ___ ___ ___ ___ (بریمبائو)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "۲. ___ berimbau ___ (بریمبائو)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "7e7e54eebae2f31a716ff1d3abf99363a741ea8f159b019e2718bd1bbfe18b5e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "وظیفه: با داشتن یک واژه، واژه‌ای نزدیک آن را پیش‌بینی کنید."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/word2vec-skip-gram-model-part-1-intuition-78614e4d6e0b"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input Vector; 10,000 positions; Hidden Layer; Linear Neurons; 300 neurons; Output Layer; Softmax Classifier; 10,000 neurons; Probability that the word at a randomly chosen, nearby position is “abandon”; …“ability”; …“able”; …“zone”",
+          "fa": "بردار ورودی؛ ۱۰٬۰۰۰ جایگاه؛ لایهٔ پنهان؛ نورون‌های خطی؛ ۳۰۰ نورون؛ لایهٔ خروجی؛ دسته‌بند سافت‌مکس؛ ۱۰٬۰۰۰ نورون؛ احتمال اینکه واژه در یک جایگاه نزدیکِ تصادفی «abandon» (رهاکردن) باشد؛ …«ability» (توانایی)؛ …«able» (توانا)؛ …«zone» (ناحیه)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "cf858895a79a805e74177e1cd012b3b508d3b4476d6ba24be8847fd61d68ca55",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری (Architecture)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "ماتریس تعبیه (Embedding matrix)"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "تعبیه‌های واژه (Word embeddings)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/word2vec-skip-gram-model-part-1-intuition-78614e4d6e0b"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input Vector; 10,000 positions; Hidden Layer; Linear Neurons; 300 neurons; Output Layer; Softmax Classifier; 10,000 neurons; Probability that the word at a randomly chosen, nearby position is “abandon”; …“ability”; …“able”; …“zone”",
+          "fa": "بردار ورودی؛ ۱۰٬۰۰۰ جایگاه؛ لایهٔ پنهان؛ نورون‌های خطی؛ ۳۰۰ نورون؛ لایهٔ خروجی؛ دسته‌بند سافت‌مکس؛ ۱۰٬۰۰۰ نورون؛ احتمال اینکه واژه در یک جایگاه نزدیکِ تصادفی «abandon» (رهاکردن) باشد؛ …«ability» (توانایی)؛ …«able» (توانا)؛ …«zone» (ناحیه)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "7748eab097d52d16d47949b40cb58ae0287301ce6d1273ea96ae4c93e963afe2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری (Architecture)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "ماتریس تعبیه (Embedding matrix)"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "مثلاً واژگانی با اندازهٔ ۱۰٬۰۰۰ همراه با اندازهٔ تعبیهٔ ۳۰۰ استفاده می‌شود."
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "ابعاد ماتریس تعبیه چیست؟"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "300 × 10,000 (یعنی ۳٬۰۰۰٬۰۰۰ وزن)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/word2vec-skip-gram-model-part-1-intuition-78614e4d6e0b"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input Vector; 10,000 positions; Hidden Layer; Linear Neurons; 300 neurons; Output Layer; Softmax Classifier; 10,000 neurons; Probability that the word at a randomly chosen, nearby position is “abandon”; …“ability”; …“able”; …“zone”",
+          "fa": "بردار ورودی؛ ۱۰٬۰۰۰ جایگاه؛ لایهٔ پنهان؛ نورون‌های خطی؛ ۳۰۰ نورون؛ لایهٔ خروجی؛ دسته‌بند سافت‌مکس؛ ۱۰٬۰۰۰ نورون؛ احتمال اینکه واژه در یک جایگاه نزدیکِ تصادفی «abandon» (رهاکردن) باشد؛ …«ability» (توانایی)؛ …«able» (توانا)؛ …«zone» (ناحیه)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "9e2996731f5f7ed6a5861a1ce414c40c9628e8382e3e285f432a54b49713ea30",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری (Architecture)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "مثلاً واژگانی با اندازهٔ ۱۰٬۰۰۰ همراه با اندازهٔ تعبیهٔ ۳۰۰ استفاده می‌شود."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "ابعاد هر تعبیهٔ واژه چیست؟"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "1 × 300"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "تعبیه‌های واژه (Word embeddings)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/word2vec-skip-gram-model-part-1-intuition-78614e4d6e0b"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input Vector; 10,000 positions; Hidden Layer; Linear Neurons; 300 neurons; Output Layer; Softmax Classifier; 10,000 neurons; Probability that the word at a randomly chosen, nearby position is “abandon”; …“ability”; …“able”; …“zone”",
+          "fa": "بردار ورودی؛ ۱۰٬۰۰۰ جایگاه؛ لایهٔ پنهان؛ نورون‌های خطی؛ ۳۰۰ نورون؛ لایهٔ خروجی؛ دسته‌بند سافت‌مکس؛ ۱۰٬۰۰۰ نورون؛ احتمال اینکه واژه در یک جایگاه نزدیکِ تصادفی «abandon» (رهاکردن) باشد؛ …«ability» (توانایی)؛ …«able» (توانا)؛ …«zone» (ناحیه)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "4ffb06cce14c280cce63610682e162cf59a9def6d0eedc32d6fc2a8a5007e1aa",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری (Architecture)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "معماری‌ای کم‌عمق‌تر و ساده‌تر از رویکرد بنجیو (یعنی فاقد لایهٔ پنهان غیرخطی)!"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/word2vec-skip-gram-model-part-1-intuition-78614e4d6e0b"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input Vector; 10,000 positions; Hidden Layer; Linear Neurons; 300 neurons; Output Layer; Softmax Classifier; 10,000 neurons; Probability that the word at a randomly chosen, nearby position is “abandon”; …“ability”; …“able”; …“zone”",
+          "fa": "بردار ورودی؛ ۱۰٬۰۰۰ جایگاه؛ لایهٔ پنهان؛ نورون‌های خطی؛ ۳۰۰ نورون؛ لایهٔ خروجی؛ دسته‌بند سافت‌مکس؛ ۱۰٬۰۰۰ نورون؛ احتمال اینکه واژه در یک جایگاه نزدیکِ تصادفی «abandon» (رهاکردن) باشد؛ …«ability» (توانایی)؛ …«able» (توانا)؛ …«zone» (ناحیه)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "3f6617c153db1506923cc18379a41f2c0988359ce436895ad0e8788db549da18",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "آموزش (Training)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/word2vec-skip-gram-model-part-1-intuition-78614e4d6e0b"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "پنجرهٔ لغزان روی دادهٔ ورودی اجرا می‌شود تا از همسایه‌های هر واژهٔ هدف نمونه‌گیری کند (مثلاً با اندازهٔ پنجرهٔ ۲)."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Source Text; Training Samples; The quick brown fox jumps over the lazy dog.",
+          "fa": "متن منبع؛ نمونه‌های آموزشی؛ The quick brown fox jumps over the lazy dog. (روباه قهوه‌ای چابک از روی سگ تنبل می‌پرد.)",
+          "verified": true
+        },
+        {
+          "en": "(the, quick); (the, brown); (quick, the); (quick, brown); (quick, fox); (brown, the); (brown, quick); (brown, fox); (brown, jumps); (fox, quick); (fox, brown); (fox, jumps); (fox, over)",
+          "fa": "(the, quick)؛ (the, brown)؛ (quick, the)؛ (quick, brown)؛ (quick, fox)؛ (brown, the)؛ (brown, quick)؛ (brown, fox)؛ (brown, jumps)؛ (fox, quick)؛ (fox, brown)؛ (fox, jumps)؛ (fox, over). معنی توکن‌ها: the=حرف تعریف، quick=چابک، brown=قهوه‌ای، fox=روباه، jumps=می‌پرد، over=از روی.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "b4fbde3042ba01a991618a4d0f769bc13391eaded646ef1dcdde048535613674",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ترفندهای بیشتر: بازنمایی‌های کارآمدتر"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "۱. لایهٔ خروجی را به سافت‌مکس سلسله‌مراتبی (Hierarchical softmax) تغییر دهید."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.cs.princeton.edu/courses/archive/spring20/cos598C/lectures/lec2-word-embeddings.pdf"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "۲. مسئله را برای انجام نمونه‌گیری منفی (Negative sampling) بازصورت‌بندی کنید."
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "دسته‌بندی دودویی: برای یک واژهٔ داده‌شده پیش‌بینی کنید آیا واژهٔ دیگری در نزدیکی آن است."
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• نمونه‌های مثبت: واژهٔ هدف و واژه‌های همسایهٔ مشاهده‌شده"
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "bullet",
+          "fa": "• نمونه‌های منفی: واژه‌های دیگر که به‌طور تصادفی نمونه‌گیری شده‌اند."
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "reference",
+          "fa": "Mikolov et al. Distributed Representations of Words and Phrases and their Compositionality. Neurips 2013."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "word | count: fat 3; fridge 2; zebra 1; potato 3; and 14; in 7; today 4; kangaroo 2; Huffman tree",
+          "fa": "واژه | تعداد: fat (چاق) ۳؛ fridge (یخچال) ۲؛ zebra (گورخر) ۱؛ potato (سیب‌زمینی) ۳؛ and (و) ۱۴؛ in (در) ۷؛ today (امروز) ۴؛ kangaroo (کانگورو) ۲؛ درخت هافمن (Huffman tree)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 71,
+      "source_text_sha256": "f1375213e7e5b1aa063c88a50b15b14e42d526565851b2c984d32529481fd3c8",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ابرپارامترها (Hyperparameters): چه چیزی خوب کار می‌کند؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• بُعد تعبیهٔ واژه؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• بُعد بین ۱۰۰ و ۱۰۰۰ تنظیم می‌شود."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• اندازهٔ پنجرهٔ بافت (Context window)؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• حدود ۱۰"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "Mikolov et al. Efficient Estimation of Word Representations in Vector Space. arXiv 2013."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 72,
+      "source_text_sha256": "c4b558ee85f3b633fa9857f6b9da9a42873c31982a8686e7d7df75c14d62330b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یافته‌ای بسیار هیجان‌انگیز/شگفت‌آور"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Mikolov et al. Efficient Estimation of Word Representations in Vector Space. arXiv 2013."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• حساب برداری روی تعبیه‌های واژه می‌تواند قیاس‌های بسیاری را حل کند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "(فهرست کامل آزمون: http://download.tensorflow.org/data/questions-words.txt)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• رابطه‌های معنایی (معنای واژه‌ها در یک جمله):"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• Italy + (Paris − France) = Rome (ایتالیا + (پاریس − فرانسه) = رم)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• رابطه‌های نحوی (قواعد واژه‌ها در یک جمله)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• smallest + (big − small) = biggest (کوچک‌ترین + (بزرگ − کوچک) = بزرگ‌ترین)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• think + (read − reading) = thinking (فکر کردن + (خواندن − در حال خواندن) = در حال فکر کردن)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "• mouse + (dollars − dollar) = mice (موش + (دلارها − دلار) = موش‌ها)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 73,
+      "source_text_sha256": "09b7a83dec2cd05b9c8f516e295d5c59e8694c16d36cf53ff356afad49f830c8",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "جمع‌بندی: تعبیه‌های واژه‌ای آموخته می‌شوند که پیش‌بینی واژه‌های پیرامونیِ مناسب را پشتیبانی می‌کنند!"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "برای مثال،"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "۱. ___ ___ ___ ___ berimbau ___ ___ ___ ___ (بریمبائو)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "۲. ___ berimbau ___ (بریمبائو)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 74,
+      "source_text_sha256": "1036fb34f049ed78be5d2107726c561d09003e9abebea846b46e0ac90be795fa",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تعبیه‌های رایج واژه (Word Embeddings)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• روش بنجیو (Bengio)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• Word2vec (مدل اسکیپ‌گرام (Skip-gram))"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• و موارد دیگر…"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 75,
+      "source_text_sha256": "f3ce1582170e3f089a815e47ce0a804902f17ee1cde73f25712504cd47895c04",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گونه‌های یادگیری تعبیهٔ واژه (Word Embeddings)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• بافت سراسری را به‌جای فقط بافت محلیِ واژه‌های قبلی یا پیرامونی ثبت کنید؛ مثلاً،"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• GloVe به معنای بردارهای سراسری (Global Vectors؛ Pennington et al., 2014)"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• این واقعیت را ثبت کنید که یک واژهٔ یکسان می‌تواند در بافت‌های متفاوت، بردارهای واژهٔ متفاوتی داشته باشد؛ مثلاً،"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• Elmo به معنای تعبیه‌های حاصل از مدل‌های زبانی (Embeddings from language models؛ Peters et al., arXiv 2018)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• از چند زبان پشتیبانی کنید؛ مثلاً،"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• Fast-text (Bojanowski et al., 2016)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 76,
+      "source_text_sha256": "1036fb34f049ed78be5d2107726c561d09003e9abebea846b46e0ac90be795fa",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تعبیه‌های رایج واژه (Word Embeddings)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• روش بنجیو (Bengio)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• Word2vec (مدل اسکیپ‌گرام (Skip-gram))"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• و موارد دیگر…"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 77,
+      "source_text_sha256": "909c69e67b01f02af983ab90b93ef59d6fb0700597ee53f0edb47baddbb85e3b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور تصویر کلی"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• واژه‌ها را به بردارهای فشرده تبدیل کنید تا ورودی شبکه‌های عصبی، مثلاً RNNها، باشند."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• جزئیات پیاده‌سازی: ممکن است یادگیری توکن‌های اضافی مانند «UNK» و «EOS» لازم باشد تا به‌ترتیب واژه‌های خارج از واژگان را بازنمایی کنند و پایان رشته را نشان دهند."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• همچنین می‌توان ماتریس‌های تعبیهٔ واژه را برای کاربردهای متفاوت تنظیم دقیق (Fine-tune) کرد."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "one to one; one to many; many to one; many to many",
+          "fa": "یک‌به‌یک؛ یک‌به‌چند؛ چندبه‌یک؛ چندبه‌چند",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 78,
+      "source_text_sha256": "d49437efc004eb97dc5ea527e26b92aaef7ed3091fd1848ddb39c5e8be7ef98c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محدودیت‌ها/چالش‌های تعبیهٔ واژه (Word Embedding)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• تمایز واژه‌های متضاد از مترادف‌ها"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• واژه‌های متضاد در فضای تعبیه نزدیک یکدیگر آموخته می‌شوند، چون معمولاً در بافت‌های مشابه به کار می‌روند: «I hate math» (از ریاضی متنفرم) در برابر «I love math» (عاشق ریاضی‌ام)، یا «Take a right turn» (به راست بپیچ) در برابر «Take a left turn» (به چپ بپیچ)."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• سوگیری جنسیتی (Gender bias):"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Man is to Computer Programmer as Woman is to Homemaker? Debiasing Word Embeddings",
+          "fa": "آیا نسبت مرد به برنامه‌نویس رایانه مانند نسبت زن به خانه‌دار است؟ سوگیری‌زدایی از تعبیه‌های واژه (Debiasing Word Embeddings)",
+          "verified": true
+        },
+        {
+          "en": "Tolga Bolukbasi; Kai-Wei Chang; James Zou; Venkatesh Saligrama; Adam Kalai; Boston University, 8 Saint Mary’s Street, Boston, MA; Microsoft Research New England, 1 Memorial Drive, Cambridge, MA; tolgab@bu.edu; kw@kwchang.net; jamesyzou@gmail.com; srv@bu.edu; adam.kalai@microsoft.com",
+          "fa": "Tolga Bolukbasi؛ Kai-Wei Chang؛ James Zou؛ Venkatesh Saligrama؛ Adam Kalai؛ دانشگاه بوستون، خیابان Saint Mary’s شمارهٔ ۸، بوستون، ماساچوست؛ Microsoft Research New England، Memorial Drive شمارهٔ ۱، کمبریج، ماساچوست؛ tolgab@bu.edu؛ kw@kwchang.net؛ jamesyzou@gmail.com؛ srv@bu.edu؛ adam.kalai@microsoft.com",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 79,
+      "source_text_sha256": "372903fe19ed7d639abaed86f7b26f408ef6095fddcee60aa3c86c4df915e81b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محدودیت‌ها/چالش‌های تعبیهٔ واژه (Word Embedding)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• تمایز واژه‌های متضاد از مترادف‌ها"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• واژه‌های متضاد در فضای تعبیه نزدیک یکدیگر آموخته می‌شوند، چون معمولاً در بافت‌های مشابه به کار می‌روند: «I hate math» (از ریاضی متنفرم) در برابر «I love math» (عاشق ریاضی‌ام)، یا «Take a right turn» (به راست بپیچ) در برابر «Take a left turn» (به چپ بپیچ)."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• سوگیری جنسیتی (Gender bias):"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "Bolukbasi et al. Neurips 2016."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Extreme she | Extreme he\n1. homemaker | 1. maestro\n2. nurse | 2. skipper\n3. receptionist | 3. protege\n4. librarian | 4. philosopher\n5. socialite | 5. captain\n6. hairdresser | 6. architect\n7. nanny | 7. financier\n8. bookkeeper | 8. warrior\n9. stylist | 9. broadcaster\n10. housekeeper | 10. magician",
+          "fa": "افراطی‌ترین she (او، مؤنث) | افراطی‌ترین he (او، مذکر)\n۱. خانه‌دار | ۱. استاد موسیقی\n۲. پرستار | ۲. ناخدا\n۳. مسئول پذیرش | ۳. فرد تحت حمایت\n۴. کتابدار | ۴. فیلسوف\n۵. چهرهٔ محافل اجتماعی | ۵. کاپیتان\n۶. آرایشگر | ۶. معمار\n۷. پرستار کودک | ۷. تأمین‌کنندهٔ مالی\n۸. دفتردار حساب | ۸. جنگجو\n۹. طراح سبک | ۹. گوینده\n۱۰. خدمتکار خانه | ۱۰. شعبده‌باز",
+          "verified": true
+        },
+        {
+          "en": "Gender stereotype she-he analogies: sewing-carpentry; nurse-surgeon; blond-burly; giggle-chuckle; sassy-snappy; volleyball-football; registered nurse-physician; interior designer-architect; feminism-conservatism; vocalist-guitarist; diva-superstar; cupcakes-pizzas; housewife-shopkeeper; softball-baseball; cosmetics-pharmaceuticals; petite-lanky; charming-affable; lovely-brilliant",
+          "fa": "قیاس‌های کلیشهٔ جنسیتی she-he: خیاطی–نجاری؛ پرستار–جراح؛ بور–تنومند؛ ریزخنده–خندهٔ آرام؛ گستاخ–تندوزنده؛ والیبال–فوتبال؛ پرستار رسمی–پزشک؛ طراح داخلی–معمار؛ فمینیسم–محافظه‌کاری؛ خواننده–گیتاریست؛ خوانندهٔ زن مشهور–ابرستاره؛ کیک‌های فنجانی–پیتزاها؛ زن خانه‌دار–مغازه‌دار؛ سافت‌بال–بیسبال؛ لوازم آرایشی–داروها؛ ریزنقش–درازولاغر؛ دلربا–خوش‌برخورد؛ دوست‌داشتنی–درخشان",
+          "verified": true
+        },
+        {
+          "en": "Gender appropriate she-he analogies: queen-king; waitress-waiter; sister-brother; ovarian cancer-prostate cancer; mother-father; convent-monastery",
+          "fa": "قیاس‌های متناسب با جنسیت she-he: ملکه–شاه؛ پیشخدمت زن–پیشخدمت مرد؛ خواهر–برادر؛ سرطان تخمدان–سرطان پروستات؛ مادر–پدر؛ صومعهٔ زنان–صومعهٔ مردان",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 80,
+      "source_text_sha256": "0c02665dfa33fd062d67e723dd4fde2f4d5cbf6f4535db072e1a9792cba09878",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محدودیت‌ها/چالش‌های تعبیهٔ واژه (Word Embedding)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• تمایز واژه‌های متضاد از مترادف‌ها"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• واژه‌های متضاد در فضای تعبیه نزدیک یکدیگر آموخته می‌شوند، چون معمولاً در بافت‌های مشابه به کار می‌روند: «I hate math» (از ریاضی متنفرم) در برابر «I love math» (عاشق ریاضی‌ام)، یا «Take a right turn» (به راست بپیچ) در برابر «Take a left turn» (به چپ بپیچ)."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• سوگیری جنسیتی (Gender bias)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• فکر می‌کنید چه سوگیری‌های زبانی دیگری ممکن است آموخته شوند؟"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "Bolukbasi et al. Neurips 2016."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 81,
+      "source_text_sha256": "fe96119f75ff1e122093ec670ac62e9ec365c2a22324de12f7c1b2e28f7bbb2e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• مقدمه‌ای بر پردازش زبان طبیعی (Natural language processing)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• بازنمایی متن (Text representation)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تعبیه‌های عصبی واژه (Neural word embeddings)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 82,
+      "source_text_sha256": "fe96119f75ff1e122093ec670ac62e9ec365c2a22324de12f7c1b2e28f7bbb2e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• مقدمه‌ای بر پردازش زبان طبیعی (Natural language processing)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• بازنمایی متن (Text representation)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تعبیه‌های عصبی واژه (Neural word embeddings)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 83,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ]
+    }
+  ]
+}

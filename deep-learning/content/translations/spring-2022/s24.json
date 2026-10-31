@@ -1,0 +1,3625 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s24",
+  "source_sha256": "8947bf7ea3167ba4d1d251abf8d0fc7326a79f58966bcee0f45cd721544e8162",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "2093b568933ecc30bbce8e573d5ceb8e209daef6de0b802e4c0e683e97055d8f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "انتقال یادگیری (Transfer Learning): یادگیری خودنظارتی (Self-Supervised Learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "دانشگاه کلرادو بولدر (University of Colorado Boulder)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "بهار ۲۰۲۲ (Spring 2022)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "bf51f6437481e41a3390a237981505f64dfbc6c50771f787b643e3e2671eafb2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• موضوع جلسهٔ قبل:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردهای گفت‌وگوی بصری (Visual Dialog)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌دادهٔ گفت‌وگوی بصری (Visual Dialog)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی گفت‌وگوی بصری (Visual Dialog)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• چالش‌های اصلی سال 2017: رویکردهای پایه (Baseline approaches)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• تکلیف‌ها (Canvas)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• موعد تحویل تکلیف آزمایشگاهی 4 جمعه است"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• موعد تحویل پیشنهاد پروژهٔ نهایی هفتهٔ آینده است"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "• پرسشی دارید؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "2e5c94712fcb9c541bde3e5c7c2268194b5e08fc969f7e4a0ec9ea5cb9c686b2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• تعریف انتقال یادگیری (Transfer learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مروری بر یادگیری خودنظارتی (Self-supervised learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• روش‌های مبتنی بر تولید (Generative-based methods)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های مولد تخاصمی (Generative adversarial networks)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• روش‌های مبتنی بر بافت (Context-based methods)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "2e5c94712fcb9c541bde3e5c7c2268194b5e08fc969f7e4a0ec9ea5cb9c686b2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• تعریف انتقال یادگیری (Transfer learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مروری بر یادگیری خودنظارتی (Self-supervised learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• روش‌های مبتنی بر تولید (Generative-based methods)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های مولد تخاصمی (Generative adversarial networks)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• روش‌های مبتنی بر بافت (Context-based methods)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "ce970281e17c9687d60da7d54b3d7645c1ce0a8b26110e63d56fb2edd1069c17",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "هدف: پرهیز از اتکای همیشگی به مجموعه‌داده‌های برچسب‌دار بزرگ (Large Labeled Datasets)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "Caltech 101 (2004)، Caltech 256 (2006)، PASCAL (2007-12)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "LabelMe (2007)؛ ImageNet (2009)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "MS COCO (2014)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "SUN (2010)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "Places (2014)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "literal",
+          "fa": "BSD (2001)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "reference",
+          "fa": "Visual Genome (2016)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "منبع اسلاید (Slide Credit): http://vision.cs.utexas.edu/slides/mit-ibm-august2018.pdf"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "- پرهزینه"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "bullet",
+          "fa": "- ساخت مجموعه‌داده (Dataset) نسبتاً کند است"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "43c02c739decc403a8f852243789f3b0deb57e5b4914631a14f9001b176320a1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "به‌جای یادگیری راه‌حل از ابتدا برای هر جفت وظیفه/دامنه (Task/Domain)… (مسئله برای B)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://ruder.io/transfer-learning/"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "دادهٔ برچسب‌دار (Labeled Data) ناکافی"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "دادهٔ برچسب‌دار (Labeled Data) کافی"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Task / domain A; Task / domain B; Model A; Model B; Training and evaluation on the same task or domain.",
+          "fa": "وظیفه/دامنهٔ A؛ وظیفه/دامنهٔ B؛ مدل A؛ مدل B؛ آموزش و ارزیابی روی وظیفه یا دامنهٔ یکسان.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "daef4b43af4f21ae58bda7bf387395f9e24bafb2ce6c0de3bd5cafc00134269a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایده: بهبود یادگیری برای شرایطی که هنگام آموزش مشاهده نشده‌اند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://ruder.io/transfer-learning/"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "دادهٔ برچسب‌دار (Labeled Data) ناکافی"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "دادهٔ برچسب‌دار (Labeled Data) کافی"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Source task / domain; Target task / domain; Model; Knowledge; Storing knowledge gained solving one problem and applying it to a different but related problem.",
+          "fa": "وظیفه/دامنهٔ مبدأ (Source)؛ وظیفه/دامنهٔ هدف (Target)؛ مدل؛ دانش؛ ذخیرهٔ دانشی که از حل یک مسئله به دست آمده و استفاده از آن در مسئله‌ای متفاوت اما مرتبط.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "25beee972c4479c4fa9cdd58c1be0c152791946d35e3c8398067f713085c7ac7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "انتقال یادگیری (Transfer Learning) هنگام تغییر نمونه‌گیری داده‌ها (Data Sampling؛ برای مثال، طبقه‌بندی احساس (Sentiment Classification))"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "خبرها (رسمی و طولانی)؛ توییت‌ها (غیررسمی و کوتاه)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://ruder.io/transfer-learning/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "KANYE WEST @kanyewest: You have distracted from my creative process",
+          "fa": "KANYE WEST @kanyewest: حواسم را از فرایند خلاقانه‌ام پرت کرده‌ای",
+          "verified": true
+        },
+        {
+          "en": "I screen grabbed those pants and sent it to my style team #Wizwearscoolpants",
+          "fa": "از آن شلوار اسکرین‌شات گرفتم و آن را برای تیم سبکم فرستادم #Wizwearscoolpants",
+          "verified": true
+        },
+        {
+          "en": "3rd no one I know has ever listened to one of your albums all the way through",
+          "fa": "سوم، هیچ‌کس که می‌شناسم تا به حال یکی از آلبوم‌هایت را از اول تا آخر گوش نداده است",
+          "verified": true
+        },
+        {
+          "en": "maybe I couldn’t be skinny and tall but I’ll settle for being the greatest artist of all time as a consolation",
+          "fa": "شاید نتوانستم لاغر و قدبلند باشم، اما برای دلخوشی به بزرگ‌ترین هنرمند همهٔ دوران بودن رضایت می‌دهم",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": false,
+      "image_review_note_fa": "برخی تیترهای ریز و بریدهٔ روزنامه‌های داخل کلاژ، خوانایی کافی برای پیاده‌سازی قابل‌اتکا ندارند؛ توییت‌های خوانا ترجمه شده‌اند."
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "c0d2d537bf9a7439adbde9e3350ee98894a36c22cd19486b1038034c11822362",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "انتقال یادگیری (Transfer Learning) هنگام تغییر فضای ویژگی (Feature Space؛ برای مثال، طبقه‌بندی احساس (Sentiment Classification) در زبانی متفاوت)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.nytimes.com/wirecutter/blog/lets-talk-about-amazon-reviews/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Cool charger; By Tiffany on March 30, 2015; Verified Purchase",
+          "fa": "شارژر باحال؛ نوشتهٔ Tiffany در 30 مارس 2015؛ خرید تأییدشده (Verified Purchase)",
+          "verified": true
+        },
+        {
+          "en": "Bought this for my Galaxy phone and I have to say, this is a pretty cool USB cord! :) I like the lights in the cord as it puts off a cool glowing effect in my room at night and it makes it much easier to see, thanks for the great product!",
+          "fa": "این را برای گوشی Galaxy خود خریدم و باید بگویم کابل USB خیلی باحالی است! :) چراغ‌های کابل را دوست دارم، چون شب‌ها جلوهٔ درخشان جالبی در اتاقم ایجاد می‌کند و دیدن را بسیار آسان‌تر می‌کند؛ بابت این محصول عالی سپاسگزارم!",
+          "verified": true
+        },
+        {
+          "en": "Definitely buying more.; By Krystal Willingham on March 28, 2015; Verified Purchase",
+          "fa": "قطعاً بیشتر می‌خرم.؛ نوشتهٔ Krystal Willingham در 28 مارس 2015؛ خرید تأییدشده",
+          "verified": true
+        },
+        {
+          "en": "I was impressed with how bright the lights on the cable are. It works amazing and as described. i received earlier than expected so that made me very happy. So far is working like a charm and I can’t wait to buy a few more.",
+          "fa": "روشنایی زیاد چراغ‌های کابل تحت‌تأثیرم قرار داد. عالی و مطابق توصیف کار می‌کند. زودتر از انتظار دریافتش کردم و این خیلی خوشحالم کرد. تا اینجا بی‌نقص کار می‌کند و مشتاقم چند تای دیگر بخرم.",
+          "verified": true
+        },
+        {
+          "en": "Spot It In the Crowd; By Heather-Joan Carls on March 29, 2015; Verified Purchase",
+          "fa": "در میان جمع پیدایش کنید؛ نوشتهٔ Heather-Joan Carls در 29 مارس 2015؛ خرید تأییدشده",
+          "verified": true
+        },
+        {
+          "en": "Such a cool product. I was so happy with how bright the lights on the cable are. It shipped super fast. The light shuts off when the charging is complete, so that’s super helpful. I don’t have to keep checking.",
+          "fa": "چه محصول باحالی. از روشنایی زیاد چراغ‌های کابل خیلی خوشحال شدم. بسیار سریع ارسال شد. چراغ پس از کامل‌شدن شارژ خاموش می‌شود و این خیلی مفید است. لازم نیست مدام بررسی کنم.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "0f74117d2e9150d9c93ff6040a56698e5f2910cac414eac247d903b8c17b2174",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "انتقال یادگیری (Transfer Learning) هنگام تغییر رده‌های هدف (Target Categories؛ برای مثال، اقلام خانهٔ کم‌درآمد در مقایسه با ImageNet)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "reference",
+          "fa": "Zhao et al. Men also like shopping: Reducing gender bias amplification using corpus-level constraints. 2017."
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "reference",
+          "fa": "DeVries et al. Does object recognition work for everyone? CVPR workshops, 2019."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Ground truth: Soap; Nepal, 288 $/month; UK, 1890 $/month",
+          "fa": "مرجع (Ground truth): صابون؛ نپال، 288 دلار در ماه؛ بریتانیا، 1890 دلار در ماه",
+          "verified": true
+        },
+        {
+          "en": "Azure: food, cheese, bread, cake, sandwich; Clarifai: food, wood, cooking, delicious, healthy; Google: food, dish, cuisine, comfort food, spam",
+          "fa": "Azure: غذا، پنیر، نان، کیک، ساندویچ؛ Clarifai: غذا، چوب، آشپزی، خوش‌مزه، سالم؛ Google: غذا، خوراک، آشپزی، غذای آرامش‌بخش، اسپم (Spam)",
+          "verified": true
+        },
+        {
+          "en": "Amazon: food, confectionary, sweets, burger; Watson: food, food product, turmeric, seasoning; Tencent: food, dish, matter, fast food, nutriment",
+          "fa": "Amazon: غذا، شیرینی‌جات، شیرینی، برگر؛ Watson: غذا، محصول غذایی، زردچوبه، چاشنی؛ Tencent: غذا، خوراک، ماده، فست‌فود، خوراکی",
+          "verified": true
+        },
+        {
+          "en": "Azure: toilet, design, art, sink; Clarifai: people, faucet, healthcare, lavatory, wash closet; Google: product, liquid, water, fluid, bathroom accessory",
+          "fa": "Azure: توالت، طراحی، هنر، سینک؛ Clarifai: مردم، شیر آب، مراقبت سلامت، دست‌شویی، توالت؛ Google: محصول، مایع، آب، سیال، لوازم حمام",
+          "verified": true
+        },
+        {
+          "en": "Amazon: sink, indoors, bottle, sink faucet; Watson: gas tank, storage tank, toiletry, dispenser, soap dispenser; Tencent: lotion, toiletry, soap dispenser, dispenser, after shave",
+          "fa": "Amazon: سینک، فضای داخلی، بطری، شیر سینک؛ Watson: مخزن گاز، مخزن ذخیره، لوازم بهداشتی، توزیع‌کننده، جای صابون؛ Tencent: لوسیون، لوازم بهداشتی، جای صابون، توزیع‌کننده، افترشیو",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "a4fda0654b6292ef14e1fa3b09661727a723cb49a0753c0e75bfa6e10d8f2d9e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "انتقال یادگیری (Transfer Learning) هنگام محدودبودن داده‌های موجود (برای مثال، اقلام خانهٔ کم‌درآمد در مقایسه با ImageNet)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "reference",
+          "fa": "Zhao et al. Men also like shopping: Reducing gender bias amplification using corpus-level constraints. 2017."
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "reference",
+          "fa": "DeVries et al. Does object recognition work for everyone? CVPR workshops, 2019."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Ground truth: Soap; Nepal, 288 $/month; UK, 1890 $/month",
+          "fa": "مرجع (Ground truth): صابون؛ نپال، 288 دلار در ماه؛ بریتانیا، 1890 دلار در ماه",
+          "verified": true
+        },
+        {
+          "en": "Azure: food, cheese, bread, cake, sandwich; Clarifai: food, wood, cooking, delicious, healthy; Google: food, dish, cuisine, comfort food, spam",
+          "fa": "Azure: غذا، پنیر، نان، کیک، ساندویچ؛ Clarifai: غذا، چوب، آشپزی، خوش‌مزه، سالم؛ Google: غذا، خوراک، آشپزی، غذای آرامش‌بخش، اسپم (Spam)",
+          "verified": true
+        },
+        {
+          "en": "Amazon: food, confectionary, sweets, burger; Watson: food, food product, turmeric, seasoning; Tencent: food, dish, matter, fast food, nutriment",
+          "fa": "Amazon: غذا، شیرینی‌جات، شیرینی، برگر؛ Watson: غذا، محصول غذایی، زردچوبه، چاشنی؛ Tencent: غذا، خوراک، ماده، فست‌فود، خوراکی",
+          "verified": true
+        },
+        {
+          "en": "Azure: toilet, design, art, sink; Clarifai: people, faucet, healthcare, lavatory, wash closet; Google: product, liquid, water, fluid, bathroom accessory",
+          "fa": "Azure: توالت، طراحی، هنر، سینک؛ Clarifai: مردم، شیر آب، مراقبت سلامت، دست‌شویی، توالت؛ Google: محصول، مایع، آب، سیال، لوازم حمام",
+          "verified": true
+        },
+        {
+          "en": "Amazon: sink, indoors, bottle, sink faucet; Watson: gas tank, storage tank, toiletry, dispenser, soap dispenser; Tencent: lotion, toiletry, soap dispenser, dispenser, after shave",
+          "fa": "Amazon: سینک، فضای داخلی، بطری، شیر سینک؛ Watson: مخزن گاز، مخزن ذخیره، لوازم بهداشتی، توزیع‌کننده، جای صابون؛ Tencent: لوسیون، لوازم بهداشتی، جای صابون، توزیع‌کننده، افترشیو",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "efc00829d1182b6da54ae3393e1a488e1f6f03ee4ee6ed5b21ffc6d91e9cd6fc",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکردهای انتقال یادگیری (Transfer Learning Approaches)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Kamath et al. Deep Learning for NLP and Speech Recognition. 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "تمرکز امروز"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "جلسهٔ بعد"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Labeled data available in source?; No; Yes; Labeled data available in target?",
+          "fa": "آیا در مبدأ دادهٔ برچسب‌دار موجود است؟؛ خیر؛ بله؛ آیا در هدف دادهٔ برچسب‌دار موجود است؟",
+          "verified": true
+        },
+        {
+          "en": "Different tasks and learn together?; Same tasks but different Domain?; Domain Adaptation",
+          "fa": "آیا وظیفه‌ها متفاوت‌اند و با هم یاد گرفته می‌شوند؟؛ آیا وظیفه‌ها یکسان اما دامنه متفاوت است؟؛ سازگارسازی دامنه (Domain Adaptation)",
+          "verified": true
+        },
+        {
+          "en": "Self-Taught Learning; Multi-task Learning; Zero-shot Learning; One-shot Learning; Few-shot Learning",
+          "fa": "یادگیری خودآموخته (Self-Taught Learning)؛ یادگیری چندوظیفه‌ای (Multi-task Learning)؛ یادگیری بی‌نمونه (Zero-shot Learning)؛ یادگیری تک‌نمونه (One-shot Learning)؛ یادگیری کم‌نمونه (Few-shot Learning)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "e68ba5cba4b928aa5c935d2e34c889527f86cb4d297b147a813be70c6473273f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "انتقال یادگیری (Transfer Learning): چالش‌های اصلی"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• چه چیزی منتقل شود؟ یعنی کدام دانش تعمیم می‌یابد (Generalizes)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• چگونه منتقل شود؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• چه زمانی منتقل شود؟ یعنی انتقال دانش می‌تواند به عملکرد آسیب بزند"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Pan and Yang. A Survey on Transfer Learning. 2010."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "2e5c94712fcb9c541bde3e5c7c2268194b5e08fc969f7e4a0ec9ea5cb9c686b2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• تعریف انتقال یادگیری (Transfer learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مروری بر یادگیری خودنظارتی (Self-supervised learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• روش‌های مبتنی بر تولید (Generative-based methods)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های مولد تخاصمی (Generative adversarial networks)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• روش‌های مبتنی بر بافت (Context-based methods)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "06f62bc178f3f03bf6241f6332038f81a65695fbf740a8b5e2294e837f7efa27",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "هدف: ایجاد ویژگی‌های تعمیم‌پذیر (Generalizable Features)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "منبع تصویر: https://www.mathworks.com/help/deeplearning/ug/transfer-learning-using-alexnet.html"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "مشاهدهٔ اصلی: ویژگی‌های یک شبکهٔ ازپیش‌آموزش‌دیده (Pretrained network) می‌توانند برای مجموعه‌داده‌ها/وظیفه‌های دیگر مفید باشند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Load pretrained network; Replace final layers; Train network; Training images; Training options",
+          "fa": "بارگذاری شبکهٔ ازپیش‌آموزش‌دیده؛ جایگزینی لایه‌های پایانی؛ آموزش شبکه؛ تصاویر آموزشی؛ گزینه‌های آموزش",
+          "verified": true
+        },
+        {
+          "en": "Early layers that learned low-level features (edges, blobs, colors); Last layers that learned task specific features; New layers to learn features specific to your data set",
+          "fa": "لایه‌های ابتدایی که ویژگی‌های سطح پایین (Low-level features) را آموخته‌اند (لبه‌ها، لکه‌ها، رنگ‌ها)؛ لایه‌های آخر که ویژگی‌های مختص وظیفه را آموخته‌اند؛ لایه‌های جدید برای یادگیری ویژگی‌های مختص مجموعه‌دادهٔ شما",
+          "verified": true
+        },
+        {
+          "en": "1 million images; 1000s classes; Fewer classes; Learn faster; 100s of images; 10s of classes",
+          "fa": "1 میلیون تصویر؛ هزاران کلاس؛ کلاس‌های کمتر؛ یادگیری سریع‌تر؛ صدها تصویر؛ ده‌ها کلاس",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "034865235be852020d5c75e7444d27c47b0814b0ecec002d3da19346e2c19997",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "درک شهودی (Intuition): انسان‌ها چگونه یاد می‌گیرند؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://pixabay.com/en/toddler-learning-book-child-423227/"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.maxpixel.net/Father-Child-Family-Dad-Baby-Daughter-3046495"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "با نظارت (With Supervision)؛ بدون نظارت (Unsupervised)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "یادگیری از آموزش مستقیم؛ یادگیری از تجربه"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "محدودهٔ بحث امروز"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "3c5bcc58c1119a61c491a489c41934a2d63f0526f944484fb5859905fb583c70",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یادگیری خودنظارتی (Self-Supervised Learning): داده‌ها نظارت را فراهم می‌کنند"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://lovevery.com/community/blog/child-development/the￾surprising-learning-power-of-a-household-mirror/"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "- نسبتاً ارزان"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "- می‌توان داده‌ها را سریع گردآوری کرد"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://www.rockettes.com/blog/how-to-use-the-mirror-in-dance-class/"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "43ed59372a9d563f3e5021b57bde69e4f923860d1856da9f192b9afc7b7c7dba",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یادگیری خودنظارتی (Self-Supervised Learning): داده‌ها نظارت را فراهم می‌کنند"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "منبع تصویر: https://www.mathworks.com/help/deeplearning/ug/transfer-learning-using-alexnet.html"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "رویکرد: ایجاد ویژگی‌هایی که برای مجموعه‌داده‌ها/وظیفه‌های دیگر مفیدند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Load pretrained network; Replace final layers; Train network; Training images; Training options",
+          "fa": "بارگذاری شبکهٔ ازپیش‌آموزش‌دیده؛ جایگزینی لایه‌های پایانی؛ آموزش شبکه؛ تصاویر آموزشی؛ گزینه‌های آموزش",
+          "verified": true
+        },
+        {
+          "en": "Early layers that learned low-level features (edges, blobs, colors); Last layers that learned task specific features; New layers to learn features specific to your data set",
+          "fa": "لایه‌های ابتدایی که ویژگی‌های سطح پایین (Low-level features) را آموخته‌اند (لبه‌ها، لکه‌ها، رنگ‌ها)؛ لایه‌های آخر که ویژگی‌های مختص وظیفه را آموخته‌اند؛ لایه‌های جدید برای یادگیری ویژگی‌های مختص مجموعه‌دادهٔ شما",
+          "verified": true
+        },
+        {
+          "en": "1 million images; 1000s classes; Fewer classes; Learn faster; 100s of images; 10s of classes",
+          "fa": "1 میلیون تصویر؛ هزاران کلاس؛ کلاس‌های کمتر؛ یادگیری سریع‌تر؛ صدها تصویر؛ ده‌ها کلاس",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "41d94940eb5f30594d34dec923ea82b8ed6598668ac8843b2f5f4a6ac645b2ed",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "روش‌های یادگیری خودنظارتی (Self-Supervised Learning) که قبلاً در این درس پوشش داده شده‌اند (بسیاری از روش‌های پردازش زبان طبیعی (NLP))"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "math",
+          "fa": "…"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "پیش‌بینی نویسه (Character prediction) با شبکه‌های عصبی بازگشتی (RNNs)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/word2vec-skip￾gram-model-part-1-intuition-78614e4d6e0b"
+        },
+        {
+          "source_lines": [
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "بازنمایی‌های برداری واژه (Word embeddings؛ برای مثال، word2vec؛ پیش‌بینی واژهٔ نزدیک برای واژهٔ داده‌شده)"
+        },
+        {
+          "source_lines": [
+            10,
+            11
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            12,
+            13,
+            14
+          ],
+          "kind": "text",
+          "fa": "ترنسفورمرها (Transformers؛ برای مثال، BERT و LXMERT با ماسک‌گذاری (Masking))"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Output Layer Softmax Classifier; Hidden Layer Linear Neurons; Input Vector",
+          "fa": "لایهٔ خروجی: طبقه‌بند سافت‌مکس (Softmax Classifier)؛ لایهٔ پنهان: نورون‌های خطی (Linear Neurons)؛ بردار ورودی (Input Vector)",
+          "verified": true
+        },
+        {
+          "en": "Encoder 1; Encoder 2; Encoder 3; Encoder 12; Token embeddings; Segment embeddings; Position embeddings",
+          "fa": "رمزگذار (Encoder) 1؛ رمزگذار 2؛ رمزگذار 3؛ رمزگذار 12؛ بازنمایی‌های برداری توکن (Token embeddings)؛ قطعه (Segment embeddings)؛ موقعیت (Position embeddings)",
+          "verified": true
+        },
+        {
+          "en": "[CLS] Paris is a beautiful [MASK] [SEP] I love Paris [SEP]",
+          "fa": "[CLS] Paris is a beautiful [MASK] [SEP] I love Paris [SEP] (پاریس یک [MASK] زیباست؛ من پاریس را دوست دارم)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": false,
+      "image_review_note_fa": "متن‌های بسیار ریزِ داخل نمودارهای word2vec و ترنسفورمر هنوز به‌طور کامل قابل تأیید نیستند؛ برچسب‌های خوانا ترجمه شده‌اند."
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "c8709a319a15fe1e61c78d42e88654048cb008a94b55dcdbcaaf53d52fb2d020",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "heading",
+          "fa": "در ادامه: روش‌های یادگیری خودنظارتی (Self-supervised learning) بررسی‌شده در بینایی ماشین (Computer vision) برای یادگیری ویژگی‌های بصری تعمیم‌پذیر"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "2e5c94712fcb9c541bde3e5c7c2268194b5e08fc969f7e4a0ec9ea5cb9c686b2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• تعریف انتقال یادگیری (Transfer learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مروری بر یادگیری خودنظارتی (Self-supervised learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• روش‌های مبتنی بر تولید (Generative-based methods)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های مولد تخاصمی (Generative adversarial networks)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• روش‌های مبتنی بر بافت (Context-based methods)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "cfc6137ee3a2bc1ce226d28323d56e4abc68bbe0ae346f48b9d604c21d4d3f8d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "روش‌های مبتنی بر تولید (Generative-based Methods)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• خودرمزگذار (Autoencoder): پیش‌بینی خودِ ورودی"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• رنگی‌سازی (Colorization): تبدیل خاکستری به رنگی"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• پیش‌بینی ویدئو (Video prediction): پیش‌بینی فریم‌های آینده"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "cfc6137ee3a2bc1ce226d28323d56e4abc68bbe0ae346f48b9d604c21d4d3f8d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "روش‌های مبتنی بر تولید (Generative-based Methods)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• خودرمزگذار (Autoencoder): پیش‌بینی خودِ ورودی"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• رنگی‌سازی (Colorization): تبدیل خاکستری به رنگی"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• پیش‌بینی ویدئو (Video prediction): پیش‌بینی فریم‌های آینده"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "7b6314290ce022c32950511f473ea187dc7da8a25a4c23dbbf5f6b7f4f23eb38",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری خودرمزگذار تصویر (Image Autoencoder Architecture)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• کپی‌کردن ورودی به خروجی را یاد بگیرید"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "منبع شکل: https://lazyprogrammer.me/a-tutorial-on-autoencoders/"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "832dff3066b8d9c3253d7580a038ed39a6b438dc1b46dbfa9254ef168fdb9829",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری خودرمزگذار تصویر (Image Autoencoder Architecture)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• از دو بخش تشکیل می‌شود:"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• رمزگذار (Encoder): ورودی‌ها را به یک بازنمایی درونی فشرده می‌کند"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• رمزگشا (Decoder): می‌کوشد ورودی را از بازنمایی درونی بازسازی کند"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "منبع شکل: https://www.datacamp.com/community/tutorials/autoencoder-keras-tutorial"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input; Hidden; Output; Encode; Decode",
+          "fa": "ورودی (Input)؛ پنهان (Hidden)؛ خروجی (Output)؛ رمزگذاری (Encode)؛ رمزگشایی (Decode)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "9412918f091149c9c04b69f875add43552ea96ea834d00890c15ddb9d46447cb",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری خودرمزگذار تصویر (Image Autoencoder Architecture)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• با داشتن این تصویر ورودیِ 620 x 426 (264,120 پیکسل):"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• یک خودرمزگذار (Autoencoder) بی‌نقص چه چیزی پیش‌بینی می‌کند؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• خودِ ورودی را"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• در لایهٔ آخر چند گره (Nodes) وجود دارد؟"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "• 264,120"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "منبع شکل: https://lazyprogrammer.me/a-tutorial-on-autoencoders/"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "22503c959a0ee699c1bc9539af68226fd9ab813dfcb0e7dc0abd6a2924bff0ee",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "خودرمزگذارهای تصویر (Image Autoencoders)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• درک شهودی (Intuition): به‌خاطرسپردن کدام دنبالهٔ عددی آسان‌تر است؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• A: 30, 27, 22, 11, 6, 8, 7, 2"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "• B: 30, 15, 46, 23, 70, 35, 106, 53, 160, 80, 40, 20, 10, 5"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• B: فقط لازم است دو قاعده یاد بگیرید"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• اگر زوج است، بر 2 تقسیم کنید"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• اگر فرد است، در 3 ضرب و 1 اضافه کنید"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "بازنمایی فشرده‌تر (More compact representation)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "منبع شکل: https://lazyprogrammer.me/a-tutorial-on-autoencoders/"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "c9ab968c6ed94d03c5e36d958a5a85216577546d11b8633cc34d20ecd0226ea6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "آموزش خودرمزگذار تصویر (Image Autoencoder Training)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "تا برآورده‌شدن معیار توقف (Stopping criterion) تکرار کنید:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "1. گذر روبه‌جلو (Forward pass): داده‌های آموزشی را برای پیش‌بینی در شبکه منتشر کنید"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "2. گذر روبه‌عقب (Backward pass): با استفاده از خروجی پیش‌بینی‌شده، گرادیان‌های خطا (Error gradients) را به‌سمت عقب محاسبه کنید"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "3. هر وزن را با استفاده از گرادیان‌های محاسبه‌شده به‌روزرسانی کنید"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "1b66451d9ce29d447043b7b7e80d2588e51f5dd3fce9087df73e7fc05efa6804",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ویژگی‌های خودرمزگذار تصویر (Image Autoencoder Features)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• برای مثال، داده‌های آموزشی:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• 1 تصویر گرفته‌شده از 10 میلیون ویدئوی YouTube"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• هر تصویر رنگی و دارای 200x200 پیکسل است"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• فکر می‌کنید چه ویژگی‌هایی یاد گرفته است؟"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "Quoc V. Le et al., Building High-level Features Using Large Scale Unsupervised Learning; ICML 2013."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "83874a58e9ec8826164f3f2be5c0edf1f1625e7a44bf014773fe0eec3b6dec60",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ویژگی‌های خودرمزگذار تصویر (Image Autoencoder Features)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• برای مثال، ویژگی‌های یادگرفته‌شده عبارت‌اند از:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Quoc V. Le et al., Building High-level Features Using Large Scale Unsupervised Learning; ICML 2013."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "چهرهٔ انسان؛ چهرهٔ گربه؛ بدن انسان"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "5256804d69e781e26d204206cabf838efda2add7e26296f2bc86032b2c889ece",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "خودرمزگذار ویدئو (Video Autoencoder)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• شبکهٔ عصبی بازگشتی (RNN) را برای پیش‌بینی دنبالهٔ ورودی آموزش دهید"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Srivastava et al., Unsupervised Learning of Video Representations using LSTMs; ICML 2015."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Learned Representation; copy; W₁; W₂; v₁; v₂; v₃",
+          "fa": "بازنمایی آموخته‌شده (Learned Representation)؛ کپی (Copy)؛ W₁؛ W₂؛ v₁؛ v₂؛ v₃",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "cfc6137ee3a2bc1ce226d28323d56e4abc68bbe0ae346f48b9d604c21d4d3f8d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "روش‌های مبتنی بر تولید (Generative-based Methods)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• خودرمزگذار (Autoencoder): پیش‌بینی خودِ ورودی"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• رنگی‌سازی (Colorization): تبدیل خاکستری به رنگی"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• پیش‌بینی ویدئو (Video prediction): پیش‌بینی فریم‌های آینده"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "1179a0e10eadc27865df379e11f6f7029625d65b4c1e075560129724eb4dd4e0",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رنگی‌سازی (Colorization): نتایج رنگ‌آمیزی باورپذیر"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "R. Zhang, P. Isoa, and A. A. Efros. Colorful Image Colorization. ECCV 2016."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "777ca91627dd9aee04c3d247d1afbbbd527e4de62089d727fd95ff2324255ce7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رنگی‌سازی (Colorization): نتایج رنگ‌آمیزی باورپذیر"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "منابع شکل: https://www.flickr.com/photos/applesnpearsau/12197380673/in/photostream/;"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://commons.wikimedia.org/wiki/File:JACQUES_VILET_-_1982,_Les_Fruits_du_Jardin.jpg"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "37ebb4311e2023ea21a8a8dc99ced3f9cff795d8dbdaacd80599a52bc66d59c5",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری رنگی‌سازی تصویر (Image Colorization Architecture)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "R. Zhang, P. Isoa, and A. A. Efros. Colorful Image Colorization. ECCV 2016."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "ورودی (Input)؛ خروجی (Output)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Lightness L; Color ab; Lab Image; (a,b) probability distribution; à trous / dilated",
+          "fa": "روشنایی (Lightness) L؛ رنگ (Color) ab؛ تصویر Lab؛ توزیع احتمال (Probability distribution) (a,b)؛ حفره‌دار/اتساع‌یافته (à trous / dilated)",
+          "verified": true
+        },
+        {
+          "en": "conv1; conv2; conv3; conv4; conv5; conv6; conv7; conv8",
+          "fa": "conv1؛ conv2؛ conv3؛ conv4؛ conv5؛ conv6؛ conv7؛ conv8 (لایه‌های کانولوشن)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "640525ebebd68e441abe069432b7d6240cd1479ee8ea63704e2bfb32694649c1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری رنگی‌سازی تصویر (Image Colorization Architecture): رنگ CIE Lab"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "L اطلاعات خاکستری (Grayscale) را نشان می‌دهد، درحالی‌که a و b رنگ‌ها را بازنمایی می‌کنند"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "منبع شکل: https://www.researchgate.net/figure/The￾cubical-CIE-Lab-color-space_fig3_23789543"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "White; Yellow; Red; Green; Blue; Black; L=0; L=100",
+          "fa": "سفید؛ زرد؛ قرمز؛ سبز؛ آبی؛ سیاه؛ L=0؛ L=100 (برچسب‌ها مطابق تصویر اصلی حفظ شده‌اند)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": false,
+      "image_review_note_fa": "اعداد بسیار کم‌وضوح روی محورهای a و b تصویر CIE Lab هنوز برای پیاده‌سازی دقیق نیاز به بررسی دارند؛ نام رنگ‌ها و مقادیر L خوانا حفظ شده‌اند."
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "20e206ddc9637dfaadbff00d26c6daa80788676e87fc613ee417f6780486e719",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری رنگی‌سازی تصویر (Image Colorization Architecture)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "R. Zhang, P. Isoa, and A. A. Efros. Colorful Image Colorization. ECCV 2016."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "با ترکیب کانال‌های (Channels) پیش‌بینی‌شدهٔ a و b با کانال L تصویر را ایجاد کنید"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Lightness L; Color ab; Lab Image; (a,b) probability distribution; à trous / dilated",
+          "fa": "روشنایی (Lightness) L؛ رنگ (Color) ab؛ تصویر Lab؛ توزیع احتمال (Probability distribution) (a,b)؛ حفره‌دار/اتساع‌یافته (à trous / dilated)",
+          "verified": true
+        },
+        {
+          "en": "conv1; conv2; conv3; conv4; conv5; conv6; conv7; conv8",
+          "fa": "conv1؛ conv2؛ conv3؛ conv4؛ conv5؛ conv6؛ conv7؛ conv8 (لایه‌های کانولوشن)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "7080b6505399443b2a7236149a8c74699a14a23e4b7a0caf3dfba66946f326a5",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری رنگی‌سازی تصویر (Image Colorization Architecture)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "منبع شکل: http://videolectures.net/eccv2016_zhang_image_colorization/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Grayscale image: L channel; X ∈ ℝ^(H×W×1)",
+          "fa": "تصویر خاکستری (Grayscale image): کانال L؛ X ∈ ℝ^(H×W×1)",
+          "verified": true
+        },
+        {
+          "en": "Color information: ab channels; Ŷ ∈ ℝ^(H×W×2)",
+          "fa": "اطلاعات رنگ (Color information): کانال‌های ab؛ Ŷ ∈ ℝ^(H×W×2)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "7080b6505399443b2a7236149a8c74699a14a23e4b7a0caf3dfba66946f326a5",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری رنگی‌سازی تصویر (Image Colorization Architecture)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "منبع شکل: http://videolectures.net/eccv2016_zhang_image_colorization/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Grayscale image: L channel; X ∈ ℝ^(H×W×1)",
+          "fa": "تصویر خاکستری (Grayscale image): کانال L؛ X ∈ ℝ^(H×W×1)",
+          "verified": true
+        },
+        {
+          "en": "Concatenate (L,ab); (X,Ŷ)",
+          "fa": "به‌هم‌پیوستن (Concatenate) (L,ab)؛ (X,Ŷ)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "7c46ca4acfbece5451f19e1dc5abb44cdb5290f96421c041dd2d696d3c78ee41",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "آموزش رنگی‌سازی تصویر (Image Colorization Training)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "R. Zhang, P. Isoa, and A. A. Efros. Colorful Image Colorization. ECCV 2016."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "برای 1.3 میلیون تصویر ImageNet تا برآورده‌شدن معیار توقف (Stopping criterion) تکرار کنید:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "1. گذر روبه‌جلو (Forward pass): داده‌های آموزشی را برای پیش‌بینی در شبکه منتشر کنید"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "2. گذر روبه‌عقب (Backward pass): با استفاده از خروجی پیش‌بینی‌شده، گرادیان‌های خطا (Error gradients) را به‌سمت عقب محاسبه کنید"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "3. هر وزن را با استفاده از گرادیان‌های محاسبه‌شده به‌روزرسانی کنید"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "2fe3b4036f7f5ff981f3a91f8251d2c1deca8f8e2ad715f9e0e91171e9457596",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ویژگی‌های رنگی‌سازی تصویر (Image Colorization Features)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "این وظیفه مستلزم درک تصویر در سطح پیکسل (Pixel) و معنا (Semantic-level) است"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "منبع شکل: http://richzhang.github.io/colorization/"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "cfc6137ee3a2bc1ce226d28323d56e4abc68bbe0ae346f48b9d604c21d4d3f8d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "روش‌های مبتنی بر تولید (Generative-based Methods)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• خودرمزگذار (Autoencoder): پیش‌بینی خودِ ورودی"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• رنگی‌سازی (Colorization): تبدیل خاکستری به رنگی"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• پیش‌بینی ویدئو (Video prediction): پیش‌بینی فریم‌های آینده"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "7ec06a0c315fdc54bbe7766c1cf4b7aa0d15ef3c0cf575fd8f3cca9767362298",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پیش‌بینی ویدئو (Video Prediction)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• شبکهٔ عصبی بازگشتی (RNN) را برای پیش‌بینی فریم‌های آینده (Future frames) آموزش دهید"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• محدودیت‌ها: شناسایی اشیای جدید و پس‌زمینه هنگام حرکت دوربین"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Srivastava et al., Unsupervised Learning of Video Representations using LSTMs; ICML 2015."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "چه نوع ویژگی‌هایی ممکن است یاد گرفته شوند؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "cfc6137ee3a2bc1ce226d28323d56e4abc68bbe0ae346f48b9d604c21d4d3f8d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "روش‌های مبتنی بر تولید (Generative-based Methods)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• خودرمزگذار (Autoencoder): پیش‌بینی خودِ ورودی"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• رنگی‌سازی (Colorization): تبدیل خاکستری به رنگی"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• پیش‌بینی ویدئو (Video prediction): پیش‌بینی فریم‌های آینده"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "2e5c94712fcb9c541bde3e5c7c2268194b5e08fc969f7e4a0ec9ea5cb9c686b2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• تعریف انتقال یادگیری (Transfer learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مروری بر یادگیری خودنظارتی (Self-supervised learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• روش‌های مبتنی بر تولید (Generative-based methods)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های مولد تخاصمی (Generative adversarial networks)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• روش‌های مبتنی بر بافت (Context-based methods)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "65489aa3263f717c751aa36ea3f7c1ebcdd0bab416544de6b8784ae156a58100",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکه‌های مولد تخاصمی (Generative adversarial networks)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های مولد تخاصمی (Generative adversarial networks; GANs)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• رمزگذار بافت (Context encoder)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "65489aa3263f717c751aa36ea3f7c1ebcdd0bab416544de6b8784ae156a58100",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکه‌های مولد تخاصمی (Generative adversarial networks)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های مولد تخاصمی (Generative adversarial networks; GANs)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• رمزگذار بافت (Context encoder)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "832eff232504921e9ab3a7092f70018c9f8779ca3dcb7a35419ccbdbb23d021e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکهٔ مولد تخاصمی (GAN): معماری پایه"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://machinelearningmastery.com/what-are-generative-adversarial-networks-gans/"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "برای مثال، نویز (Noise) را افزایش نمونه‌برداری (Upsample) دهید تا به تصویری با اندازهٔ مطلوب تبدیل شود"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "طبقه‌بندی کنید کدام نمونه‌ها واقعی‌اند"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "از دو مدل تشکیل می‌شود که با یکدیگر رقابت می‌کنند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Random Input Vector; Generator Model; Generated Example; Real Example; Discriminator Model; Update model; Binary Classification Real/Fake",
+          "fa": "بردار ورودی تصادفی (Random Input Vector)؛ مدل مولد (Generator Model)؛ نمونهٔ تولیدشده؛ نمونهٔ واقعی؛ مدل تمایزدهنده (Discriminator Model)؛ به‌روزرسانی مدل؛ طبقه‌بندی دودویی واقعی/جعلی (Binary Classification Real/Fake)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "4f4b2e53efae7f7af1c3483af0042d81b428cba95649ae613de82294550ff893",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکهٔ مولد تخاصمی (GAN): آموزش"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://machinelearningmastery.com/what-are-generative-adversarial-networks-gans/"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "دو مدل به‌صورت تکراری و جداگانه آموزش داده می‌شوند"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "- تمایزدهنده (Discriminator) را با تصاویر جعلی و واقعی آموزش دهید"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6
+          ],
+          "kind": "bullet",
+          "fa": "- مولد (Generator) را فقط با تصاویر جعلی آموزش دهید و وقتی تمایزدهنده (Discriminator) جعلی‌بودن تصاویر را تشخیص می‌دهد آن را جریمه کنید"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Random Input Vector; Generator Model; Generated Example; Real Example; Discriminator Model; Update model; Binary Classification Real/Fake",
+          "fa": "بردار ورودی تصادفی (Random Input Vector)؛ مدل مولد (Generator Model)؛ نمونهٔ تولیدشده؛ نمونهٔ واقعی؛ مدل تمایزدهنده (Discriminator Model)؛ به‌روزرسانی مدل؛ طبقه‌بندی دودویی واقعی/جعلی (Binary Classification Real/Fake)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "94aae6eefe88b5515d215f48552f2a1fe2c9a9b449b4f72e8750718be6990546",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکهٔ مولد تخاصمی (GAN): تابع زیان تمایزدهنده (Discriminator Loss Function)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "reason_fa": "متن و معادله‌های دیگرِ مقالهٔ جاسازی‌شده، بیرون از ناحیهٔ برش‌خوردهٔ تصویر اسلاید قرار دارند و در رندر اصلی این صفحه دیده نمی‌شوند؛ فقط فرمول GAN قابل‌مشاهده در ترجمه نمایش داده می‌شود.",
+          "verified": true
+        },
+        {
+          "source_lines": [
+            41,
+            42,
+            43,
+            44,
+            45
+          ],
+          "kind": "math",
+          "fa": "J^{(D)}=-\\frac{1}{2}\\mathbb{E}_{x\\sim p_{\\mathrm{data}}}\\log D(x)-\\frac{1}{2}\\mathbb{E}_{z}\\log(1-D(G(z)))",
+          "latex": "J^{(D)}=-\\frac{1}{2}\\mathbb{E}_{x\\sim p_{\\mathrm{data}}}\\log D(x)-\\frac{1}{2}\\mathbb{E}_{z}\\log(1-D(G(z)))"
+        },
+        {
+          "source_lines": [
+            46,
+            47
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "reason_fa": "متن و معادله‌های دیگرِ مقالهٔ جاسازی‌شده، بیرون از ناحیهٔ برش‌خوردهٔ تصویر اسلاید قرار دارند و در رندر اصلی این صفحه دیده نمی‌شوند؛ فقط فرمول GAN قابل‌مشاهده در ترجمه نمایش داده می‌شود.",
+          "verified": true
+        },
+        {
+          "source_lines": [
+            48
+          ],
+          "kind": "reference",
+          "fa": "https://arxiv.org/pdf/1701.00160.pdf"
+        },
+        {
+          "source_lines": [
+            49
+          ],
+          "kind": "text",
+          "fa": "تصویر واقعی (Real image)؛ نویز ورودی (Input noise)"
+        },
+        {
+          "source_lines": [
+            50,
+            51
+          ],
+          "kind": "text",
+          "fa": "تمایزدهنده (Discriminator) برای تصاویر واقعی مقدار 1 را می‌خواهد"
+        },
+        {
+          "source_lines": [
+            52,
+            53
+          ],
+          "kind": "text",
+          "fa": "تمایزدهنده (Discriminator) برای تصاویر جعلی مقدار 0 را می‌خواهد"
+        },
+        {
+          "source_lines": [
+            54
+          ],
+          "kind": "text",
+          "fa": "تمایزدهنده (Discriminator) می‌کوشد خطای طبقه‌بندی (Classification error) را کمینه کند"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "0b996ef352dbc15d0fd6d316e408ba9cd0153d618839b448ac57f94198f5b520",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکهٔ مولد تخاصمی (GAN): تابع زیان مولد (Generator Loss Function)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://arxiv.org/pdf/1701.00160.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "reason_fa": "متن و معادله‌های دیگرِ مقالهٔ جاسازی‌شده، بیرون از ناحیهٔ برش‌خوردهٔ تصویر اسلاید قرار دارند و در رندر اصلی این صفحه دیده نمی‌شوند؛ فقط فرمول GAN قابل‌مشاهده در ترجمه نمایش داده می‌شود.",
+          "verified": true
+        },
+        {
+          "source_lines": [
+            47
+          ],
+          "kind": "math",
+          "fa": "J^{(G)}=-J^{(D)}",
+          "latex": "J^{(G)}=-J^{(D)}"
+        },
+        {
+          "source_lines": [
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "reason_fa": "متن و معادله‌های دیگرِ مقالهٔ جاسازی‌شده، بیرون از ناحیهٔ برش‌خوردهٔ تصویر اسلاید قرار دارند و در رندر اصلی این صفحه دیده نمی‌شوند؛ فقط فرمول GAN قابل‌مشاهده در ترجمه نمایش داده می‌شود.",
+          "verified": true
+        },
+        {
+          "source_lines": [
+            101,
+            102,
+            103
+          ],
+          "kind": "math",
+          "fa": "J^{(G)}=-\\frac{1}{2}\\mathbb{E}_{z}\\log D(G(z))",
+          "latex": "J^{(G)}=-\\frac{1}{2}\\mathbb{E}_{z}\\log D(G(z))"
+        },
+        {
+          "source_lines": [
+            104
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "reason_fa": "متن و معادله‌های دیگرِ مقالهٔ جاسازی‌شده، بیرون از ناحیهٔ برش‌خوردهٔ تصویر اسلاید قرار دارند و در رندر اصلی این صفحه دیده نمی‌شوند؛ فقط فرمول GAN قابل‌مشاهده در ترجمه نمایش داده می‌شود.",
+          "verified": true
+        },
+        {
+          "source_lines": [
+            105,
+            106
+          ],
+          "kind": "text",
+          "fa": "می‌خواهیم تمایزدهنده (Discriminator) به‌اشتباه برای تصاویر جعلی به مقدار 1 برسد"
+        },
+        {
+          "source_lines": [
+            107
+          ],
+          "kind": "text",
+          "fa": "نویز ورودی (Input noise)"
+        },
+        {
+          "source_lines": [
+            108
+          ],
+          "kind": "text",
+          "fa": "مولد (Generator) می‌کوشد خطای طبقه‌بندی (Classification error) را بیشینه کند"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "f099fb61566122bc959634ea75b6bf4926109417f205e9ebbe6dca31c65f6814",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "DGANs: شبکه‌های مولد تخاصمی (GANs) که از لایه‌های کانولوشنی (Convolutional Layers) استفاده می‌کنند"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks. arXiv 2015."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "اتاق‌خواب‌های تولیدشده با مشاهدهٔ بیش از 3 میلیون تصویر اتاق‌خواب"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "f8119de9db774889d3f61bf06c62ecbe0ff17f48cb04acd603fb620477415d79",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "DGANs: شبکه‌های مولد تخاصمی (GANs) که از لایه‌های کانولوشنی (Convolutional Layers) استفاده می‌کنند"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks. arXiv 2015."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "تولید چه اشیایی را یاد می‌گیرد؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "8d575f776fd65fcb9e876868e0197c7492350cb928442f53eca02d7fbb9f8139",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "DGANs: شبکه‌های مولد تخاصمی (GANs) که از لایه‌های کانولوشنی (Convolutional Layers) استفاده می‌کنند"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks. arXiv 2015."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "ممکن است تولید چه اشیایی را یاد نگرفته باشد؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "2e0027e7a55f82aa85a6d761da2930ad2bae9e651e5775e95f93bed307231438",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "DGANs: شبکه‌های مولد تخاصمی (GANs) که از لایه‌های کانولوشنی (Convolutional Layers) استفاده می‌کنند"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks. arXiv 2015."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "چهره‌های تولیدشده با مشاهدهٔ بیش از 3 میلیون تصویر از 10 هزار نفر"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "25dd1dadef3988521a03fedd1a58a5ea04aca0ec12d73474721e5a7d0280fb08",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "DGANs: شبکه‌های مولد تخاصمی (GANs) که از لایه‌های کانولوشنی (Convolutional Layers) استفاده می‌کنند"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks. arXiv 2015."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "چه چیزهایی را ضعیف تولید می‌کند یا اصلاً تولید نمی‌کند؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "65489aa3263f717c751aa36ea3f7c1ebcdd0bab416544de6b8784ae156a58100",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شبکه‌های مولد تخاصمی (Generative adversarial networks)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های مولد تخاصمی (Generative adversarial networks; GANs)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• رمزگذار بافت (Context encoder)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "a45fad4ff00eee2b32e867e9500f245afc2c8625b2ca6d68d2ea67375bc8a141",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "وظیفه: پرکردن حفره (Hole Filling)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• چه چیزی ممکن است در این حفره جای بگیرد؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• موارد بسیاری ممکن است به‌طور باورپذیر در حفره جای بگیرند:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• چالش: برای هر حفره حداکثر 1 ناحیهٔ مرجع (Ground truth region) شناخته‌شده داریم"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "bf86008f7e27c5b5d6007650758824c81ae65fb245a695c76a6d3e95a4a427eb",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری (Architecture)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "منبع شکل: https://medium.com/knowledge-engineering-seminar/context-encoder-image-inpainting-using-gan-ccd6a1ea5fb7"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "تصویر دارای حفره؛ پیروی از معماری AlexNet؛ وصلهٔ حفره (Patch for hole)؛ کانولوشن‌های ترانهاده (Transposed convolutions)؛ بافت رمزگذاری‌شده (Encoded context)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; Decoder; conv; uconv",
+          "fa": "رمزگذار (Encoder)؛ رمزگشا (Decoder)؛ کانولوشن (Conv)؛ کانولوشن معکوس (Uconv)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "e3064d1e763a204f0a2fdf2687605623e10937ab5be2c4600601408dd8825dad",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "آموزش: توابع زیان (Loss Functions) ( )"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "منبع شکل: https://medium.com/knowledge-engineering-seminar/context-encoder-image-inpainting-using-gan-ccd6a1ea5fb7"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; Decoder; conv; uconv",
+          "fa": "رمزگذار (Encoder)؛ رمزگشا (Decoder)؛ کانولوشن (Conv)؛ کانولوشن معکوس (Uconv)",
+          "verified": true
+        },
+        {
+          "en": "L = λ_adv L_adv + λ_rec L_rec",
+          "fa": "L = λ_adv L_adv + λ_rec L_rec",
+          "verified": true,
+          "latex": "\\mathcal L=\\lambda_{adv}\\mathcal L_{adv}+\\lambda_{rec}\\mathcal L_{rec}"
+        },
+        {
+          "en": "Reconstruction Loss (L2); real or fake; Adversarial Discriminator",
+          "fa": "زیان بازسازی (Reconstruction Loss؛ L2)؛ واقعی یا جعلی؛ تمایزدهندهٔ تخاصمی (Adversarial Discriminator)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "22c89804a7a7b36ce9c8e364ad6030fda0de64daeb2ab271640aa02cb7c25ed4",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "آموزش: زیان بازسازی (Reconstruction Loss؛ یعنی رویکرد یادگیری خودنظارتی (Self-Supervised Learning))"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Pathak et al., Context encoders: Feature learning by inpainting; CVPR 2016"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "با محاسبهٔ زیان L2 برای مقایسهٔ محتوای اصلی وصله (P) با محتوای پیش‌بینی‌شدهٔ وصله که مدل هنگام دریافت تصویر دارای حفره می‌سازد (CE(X’))، یاد می‌گیرد با بافت (Context) سازگار شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder Features; Channel-wise Fully Connected; Decoder Features; Encoder; Decoder",
+          "fa": "ویژگی‌های رمزگذار (Encoder Features)؛ اتصال کامل به‌ازای هر کانال (Channel-wise Fully Connected)؛ ویژگی‌های رمزگشا (Decoder Features)؛ رمزگذار؛ رمزگشا",
+          "verified": true
+        },
+        {
+          "en": "L_rec = ‖P − CE(X′)‖₂²",
+          "fa": "L_rec = ‖P − CE(X′)‖₂²",
+          "verified": true,
+          "latex": "\\mathcal L_{rec}=\\|P-CE(X')\\|_2^2"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "d7d3c34c2bca22af1e3335ffdc2df64d00d860b91e420eeafcb59908c756a608",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "آموزش: زیان بازسازی (Reconstruction Loss؛ یعنی رویکرد یادگیری خودنظارتی (Self-Supervised Learning))"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Pathak et al., Context encoders: Feature learning by inpainting; CVPR 2016"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "چرا ممکن است آموزش فقط با این تابع زیان (Loss function) به نتایج تار منجر شود؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "- میان چندین ترمیم (Inpaintings) باورپذیر برای یک حفره میانگین می‌گیرد"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(a) Input context; (c) Context Encoder (L2 loss)",
+          "fa": "(a) بافت ورودی (Input context)؛ (c) رمزگذار بافت (Context Encoder؛ زیان L2)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "41a78c8adc63a384dc1158b3a7419b80914bf1ece9667834f5b2d08a6dfc69ce",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "آموزش: توابع زیان (Loss Functions) ( )"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "منبع شکل: https://medium.com/knowledge-engineering-seminar/context-encoder-image-inpainting-using-gan-ccd6a1ea5fb7"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "راه‌حل، افزودن زیان تخاصمی (Adversarial loss) است:"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; Decoder; conv; uconv",
+          "fa": "رمزگذار (Encoder)؛ رمزگشا (Decoder)؛ کانولوشن (Conv)؛ کانولوشن معکوس (Uconv)",
+          "verified": true
+        },
+        {
+          "en": "L = λ_adv L_adv + λ_rec L_rec",
+          "fa": "L = λ_adv L_adv + λ_rec L_rec",
+          "verified": true,
+          "latex": "\\mathcal L=\\lambda_{adv}\\mathcal L_{adv}+\\lambda_{rec}\\mathcal L_{rec}"
+        },
+        {
+          "en": "Reconstruction Loss (L2); real or fake; Adversarial Discriminator",
+          "fa": "زیان بازسازی (Reconstruction Loss؛ L2)؛ واقعی یا جعلی؛ تمایزدهندهٔ تخاصمی (Adversarial Discriminator)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "777798e3a38b47bf592e1f3c86e9725512a8a99d9b37e8b32cdff4b829d85b61",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "آموزش: مجموعه‌داده‌ها (Datasets)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Pathak et al., Context encoders: Feature learning by inpainting; CVPR 2016"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "آموزش برای سه نوع حفره روی ImageNet انجام شد (همهٔ 1.2 میلیون نمونه و یک زیرمجموعهٔ 100 هزارتایی)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(a) Central region; (b) Random block; (c) Random region",
+          "fa": "(a) ناحیهٔ مرکزی؛ (b) بلوک تصادفی؛ (c) ناحیهٔ تصادفی",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "5fc322ebfbce0bf968d375113e1845aa5bd8871f1d39649b7a1580ddfa04abe4",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نتایج: https://www.cs.cmu.edu/~dpathak/context_encoder/"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Pathak et al., Context encoders: Feature learning by inpainting; CVPR 2016"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "چه نوع ویژگی‌هایی ممکن است یاد گرفته شوند؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "2e5c94712fcb9c541bde3e5c7c2268194b5e08fc969f7e4a0ec9ea5cb9c686b2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• تعریف انتقال یادگیری (Transfer learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مروری بر یادگیری خودنظارتی (Self-supervised learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• روش‌های مبتنی بر تولید (Generative-based methods)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های مولد تخاصمی (Generative adversarial networks)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• روش‌های مبتنی بر بافت (Context-based methods)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "dfdcfb2a16dd4db700d5f6fc32993ad8218c62ab29f0524ae9633a01f6568f4a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "روش‌های مبتنی بر بافت (Context-based Methods)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• بافت مکانی (Spatial context): پیش‌بینی موقعیت نسبی وصله‌های تصویر (Image patches)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• بافت زمانی (Timing context): پیش‌بینی موقعیت نسبی فریم‌های ویدئو"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• بافت شباهت (Similarity context): خوشه‌بندی (Clustering)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "0c08a2e0c74bdc89c58790f0736dfff71c08c34199864da507325f7d2c8a006d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "بافت مکانی (Spatial Context): پیش‌بینی اندیس تصویر برای هر وصله (Patch)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Carl Doersch, Abhinav Gupta, and Alexei A. Efros, Unsupervised Visual Representation Learning by Context Prediction; ICCV 2015."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "چه نوع ویژگی‌هایی ممکن است یاد گرفته شوند؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Example:",
+          "fa": "مثال:",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "1a90e1a682999b39d8e3f64271df891537ea5c9adfea360955a3c43c677f4de7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "بافت زمانی (Timing Context): پیش‌بینی ترتیب فریم‌های ویدئو"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Lee et al., Unsupervised Representation Learning by Sorting Sequences; ICCV 2017."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "چه نوع ویژگی‌هایی ممکن است یاد گرفته شوند؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Shuffled Sequence; Sequence Sorting; Original Video; Ordered Sequence; #30; #36; #39; #42",
+          "fa": "دنبالهٔ درهم‌ریخته؛ مرتب‌سازی دنباله؛ ویدئوی اصلی؛ دنبالهٔ مرتب؛ #30؛ #36؛ #39؛ #42",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "495ba7b908cc847b030c7ddca0252ebb14b8c2d90cde778f6b8268296846df07",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "بافت شباهت (Similarity Context): پیش‌بینی خوشه‌ها (Clusters)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "x2"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "x1"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "A. B. C."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Raschka and Mirjalili; Python Machine Learning"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "شبکه‌های عصبی کانولوشنی (CNNs) برای شناسایی انتساب خوشه (Cluster assignments) یا تشخیص اینکه آیا تصاویر به یک خوشه تعلق دارند آموزش داده می‌شوند"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 71,
+      "source_text_sha256": "3b8d65ea5333eaf36b4b2a74d01bde5246eb19745c732a2ff0d2a3e3cdcf61df",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "خوشه‌بندی (Clustering)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "x2"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "x1"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "A. B. C."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Raschka and Mirjalili; Python Machine Learning"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "گروه‌هایی ایجاد کنید تا موجودیت‌های هر گروه به یکدیگر شبیه و با موجودیت‌های گروه‌های دیگر متفاوت باشند."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 72,
+      "source_text_sha256": "b9b5347496c25f48d8907c66a2e105b0a02696a1121918495ecbe358eaae73aa",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "• چند خوشهٔ داده (Data clusters) ایجاد شود؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• برای بخش‌بندی داده‌ها از چه «الگوریتمی» (Algorithm) استفاده شود؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "خوشه‌بندی (Clustering): پرسش‌های اصلی"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "x2"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "x1"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "A. B. C."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "Raschka and Mirjalili; Python Machine Learning"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 73,
+      "source_text_sha256": "e7c7390f4813eacb291b129d4bc760650db5a9a54d5792b8b87b69109cb3fc9f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "خوشه‌بندی (Clustering): چند خوشه ایجاد شود؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "دو خوشه (Two Clusters)؛ چهار خوشه (Four Clusters)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "شش خوشه (Six Clusters)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "تعداد خوشه‌ها ممکن است مبهم باشد."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "اسلاید اقتباس‌شده از: https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap7_basic_cluster_analysis.pdf"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 74,
+      "source_text_sha256": "f20fd749bad4f48605509d37f8d96cf5f80e60a6858db7945d64816e310f54aa",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "خوشه‌بندی (Clustering)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "x2"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "x1"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "A. B. C."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Raschka and Mirjalili; Python Machine Learning"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "گروه‌هایی ایجاد کنید تا موجودیت‌های هر گروه به یکدیگر شبیه و با موجودیت‌های گروه‌های دیگر متفاوت باشند."
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "چه نوع ویژگی‌هایی ممکن است یاد گرفته شوند؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 75,
+      "source_text_sha256": "bc5d0954d85bdb529b793550810fc279e6edf8713958506a599427202bf3a19d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "روش‌های مبتنی بر بافت (Context-based Methods): چنین روش‌هایی چگونه می‌توانند در حوزهٔ پردازش زبان طبیعی (NLP) استفاده شوند؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• بافت مکانی (Spatial context): پیش‌بینی موقعیت نسبی وصله‌های تصویر (Image patches)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• بافت زمانی (Timing context): پیش‌بینی موقعیت نسبی فریم‌های ویدئو"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• بافت شباهت (Similarity context): خوشه‌بندی (Clustering)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 76,
+      "source_text_sha256": "2e5c94712fcb9c541bde3e5c7c2268194b5e08fc969f7e4a0ec9ea5cb9c686b2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• تعریف انتقال یادگیری (Transfer learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مروری بر یادگیری خودنظارتی (Self-supervised learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• روش‌های مبتنی بر تولید (Generative-based methods)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های مولد تخاصمی (Generative adversarial networks)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• روش‌های مبتنی بر بافت (Context-based methods)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 77,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    }
+  ]
+}

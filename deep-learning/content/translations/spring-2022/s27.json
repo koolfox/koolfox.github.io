@@ -1,0 +1,2011 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s27",
+  "source_sha256": "6f4c445a0094d7c44f8c6bd1e2a4ed11cec29e7f65d0aaec437efc57706a526d",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "4b6de382e174e9ee0fb0b6e782da7f0d4f307f6008dc745cae8297ed209827de",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "یادگیری کارآمد (Efficient Learning) و یادگیری تقویتی عمیق (Deep Reinforcement Learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "دانشگاه کلرادو بولدر (University of Colorado Boulder)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "بهار ۲۰۲۲ (Spring 2022)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "d8abe3532bf251cf2068f71bc00ea9edc443f8b9a3705d2a0a510cd9abf272df",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• هفتهٔ قبل:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• انگیزه (Motivation)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ایدهٔ اصلی: تقطیر دانش (Knowledge distillation)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• تقطیر دانش (Knowledge distillation) برای شبکه‌های عصبی کانولوشنی (CNNs؛ مسائل بینایی)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• تقطیر دانش (Knowledge distillation) برای ترنسفورمرها (Transformers؛ مسائل زبان)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• تکلیف‌ها (Canvas):"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• نمره‌های تکلیف آزمایشگاهی 4 اعلام شده‌اند"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• موعد تحویل طرح کلی پروژهٔ نهایی جمعه است"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "• پرسشی دارید؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "794efc3d28f6cf090bafcaf97bf1df0e123d1a03311012b82496b4071ed3f008",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تحلیل چالش پرسش‌وپاسخ بصری (VQA)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• 88 ارسال معتبر"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• میانگین: 28.65%"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• مدل ساده (Naive model): 35.53%"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• پیش‌بینی‌های «پاسخ‌ناپذیر» (Unanswerable)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• رتبهٔ دوم: 44.93%"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "literal",
+          "fa": "• Cole Sturza"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• رتبهٔ اول: 47.73%"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "literal",
+          "fa": "• Tushar Gautam"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Distribution of Accuracy (bins=10); Frequency; Accuracy",
+          "fa": "توزیع دقت (Distribution of Accuracy؛ bins=10)؛ فراوانی (Frequency)؛ دقت (Accuracy)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "5ab6853b4d3af30dd9dc8b7bf3e1463a633e6d76b8d5ee05a87a68ff0172e67e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری کارآمد: یادگیری برنامه‌درسی (Curriculum learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری کارآمد: یادگیری فعال (Active learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری تقویتی (Reinforcement learning)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "5ab6853b4d3af30dd9dc8b7bf3e1463a633e6d76b8d5ee05a87a68ff0172e67e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری کارآمد: یادگیری برنامه‌درسی (Curriculum learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری کارآمد: یادگیری فعال (Active learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری تقویتی (Reinforcement learning)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "760d8c314913d0f89a8823934fdfb681feb99fbd7b076eb06510ddd3ca2eebd2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چگونه به ماشین‌ها آموزش دهیم تا سریع‌تر یاد بگیرند؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "97a2829571790b0c17f654e1f7547544a942c44e17b4bd10f3f7283d63c47b0b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "درک شهودی (Intuition): چگونه به کودک ریاضی آموزش دهیم؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "ترتیب تصادفی نمونه‌ها (Random Order of Examples)؛ ترتیب معنادار نمونه‌ها (Meaningful Order of Examples)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "Big Book of Math; Dinah Zike"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Table of Contents",
+          "fa": "فهرست مطالب (Table of Contents)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": false,
+      "image_review_note_fa": "فهرست ریزِ تصویر کتاب و برخی نمادهای تزئینی در رندر اصلی به‌اندازه‌ای خوانا نیستند که بتوان همهٔ آن‌ها را با اطمینان پیاده و ترجمه کرد؛ عنوان خوانا ترجمه شده است."
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "84ece5bb591b21155811ba7a3751e0be317a3e0b193de9109200314c6465ff3a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "درک شهودی (Intuition): چگونه به کودک خواندن آموزش دهیم؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "ترتیب تصادفی نمونه‌ها (Random Order of Examples)؛ ترتیب معنادار نمونه‌ها (Meaningful Order of Examples)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+          "fa": "ABCDEFGHIJKLMNOPQRSTUVWXYZ (حروف الفبای انگلیسی)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "8cf985c7f9491837a20064cfaf1121dc3a41721271ebfbb7906a95bf1a0fdc3e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ایده: ماشین‌ها را همان‌گونه آموزش دهیم که به انسان‌ها آموزش می‌دهیم"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "برنامهٔ درسی (Curriculum)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "ابتدا با نمونه‌های ساده‌تر و به‌تدریج، در گذر زمان، با نمونه‌های دشوارتر آموزش دهید"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Jeffrey L. Elman. Learning and development in neural networks: The importance of starting small. Cognition, 1993."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "ef0662fb4fd32ec9af678e34c96dc450e96e8e0d0e19738dec73faa8bf257e75",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "وظیفه‌ها (Tasks)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "1. هر شکل را به‌عنوان مستطیل، بیضی یا مثلث طبقه‌بندی کنید"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "Background music from a _______ (موسیقی پس‌زمینه از یک _______)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "2. واژهٔ بعدی را پیش‌بینی کنید"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Bengio et al., Curriculum Learning, 2009"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "7702c70e33b6db638c01b4b885d5d31129c4f4347df9ad3bce283599fa87e222",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پیش‌بینی شکل: یادگیری برنامه‌درسی (Curriculum Learning)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "1. هر شکل را به‌عنوان مستطیل، بیضی یا مثلث طبقه‌بندی کنید"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "آسان (Basic): تنوع کمتر شکل (مربع‌ها، دایره‌ها و مثلث‌های متساوی‌الاضلاع)؛ 10,000 نمونه"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "دشوار (Geom): تنوع بیشتر شکل (مستطیل‌ها، بیضی‌ها و مثلث‌ها)؛ 10,000 نمونه"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "Bengio et al., Curriculum Learning, 2009"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "معماری: شبکهٔ عصبی 3لایه (3-layer neural network)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "e73e95dbbb3040ab2ba11b3706e338b399a5edfd0092736207b43c41398dc9da",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پیش‌بینی شکل: یادگیری برنامه‌درسی (Curriculum Learning)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "بدون برنامهٔ درسی (No curriculum)؛ خطا (Error)"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "نتایج آموزش روی نمونه‌های «آسان» به‌مدت n دوره (Epochs) و سپس آموزش روی نمونه‌های «دشوار»."
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "مزایای یادگیری برنامه‌درسی (Curriculum learning) چیست؟"
+        },
+        {
+          "source_lines": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "الگوریتم پیش از گذار به نمونه‌های دشوار، چند دوره (Epochs) باید با نمونه‌های آسان آموزش ببیند؟"
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "reference",
+          "fa": "Bengio et al., Curriculum Learning, 2009"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "switch epoch; Error",
+          "fa": "دورهٔ تغییر (Switch epoch)؛ خطا (Error)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "a88c47c78a99be44800ff9c22e7ff4f28bf02cf876cda6f1759a3dd2e13aa4f5",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پیش‌بینی واژهٔ بعدی: یادگیری برنامه‌درسی (Curriculum Learning)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "Background music from a _______ (موسیقی پس‌زمینه از یک _______)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "2. واژهٔ بعدی را پیش‌بینی کنید"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Bengio et al., Curriculum Learning, 2009"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "آسان: 5,000 واژهٔ پربسامدتر"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "دشوار: افزودن 5,000 واژه در هر دوره (Epoch) تا رسیدن به 20,000 واژه"
+        },
+        {
+          "source_lines": [
+            9,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "معماری: اندازهٔ بافت (Context size) برابر 5 تنظیم شده است"
+        },
+        {
+          "source_lines": [
+            12,
+            13,
+            14
+          ],
+          "kind": "text",
+          "fa": "نمونه‌هایی که واژهٔ خارج از واژگان (Vocabulary) داشتند از آموزش حذف شدند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input Window; word to score; context; text; indices; the cat sat on the; s(1) s(2) s(3) s(4) s(5)",
+          "fa": "پنجرهٔ ورودی (Input Window)؛ واژه‌ای که باید امتیاز بگیرد (Word to score)؛ بافت (Context)؛ متن (Text)؛ اندیس‌ها (Indices)؛ the cat sat on the (گربه رویِ … نشست)؛ s(1) s(2) s(3) s(4) s(5)",
+          "verified": true
+        },
+        {
+          "en": "Lookup Table; 250 (concatenation); Linear; Tanh; Linear; Score",
+          "fa": "جدول جست‌وجو (Lookup Table)؛ 250 (به‌هم‌پیوستن (Concatenation))؛ خطی (Linear)؛ Tanh؛ خطی؛ امتیاز (Score)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "616b623ede8ade2ecd0bc33aaf0055db73848c4877359b33a05a440987639c79",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پیش‌بینی واژهٔ بعدی: یادگیری برنامه‌درسی (Curriculum Learning)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Bengio et al., Curriculum Learning, 2009"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "مزایای یادگیری برنامه‌درسی (Curriculum learning) چیست؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "افزایش‌های اندازهٔ واژگان (Vocab size)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "curriculum; no-curriculum; log(rank next word); million updates",
+          "fa": "برنامهٔ درسی (Curriculum)؛ بدون برنامهٔ درسی (No-curriculum)؛ log(رتبهٔ واژهٔ بعدی)؛ میلیون به‌روزرسانی (Million updates)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "0e48e73e262aa3969b2322743f2fd3029b3c437d0d0e1121458dac0872355bc7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "خلاصه: یادگیری برنامه‌درسی (Curriculum Learning) شکلی از انتقال یادگیری (Transfer Learning) است که بهینه‌سازی (Optimization) را تسریع می‌کند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "1. هر شکل را به‌عنوان مستطیل، بیضی یا مثلث طبقه‌بندی کنید"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "Background music from a _______ (موسیقی پس‌زمینه از یک _______)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "2. واژهٔ بعدی را پیش‌بینی کنید"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "Bengio et al., Curriculum Learning, 2009"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "92db645d70aac9cbbfc5d0c7e1816a2f75e0ac13c2e8bfd646f5c6d5bfe887d1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "بحث کلاسی: یادگیری برنامه‌درسی (Curriculum Learning) برای پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "Does this picture look scary? (آیا این تصویر ترسناک به نظر می‌رسد؟)"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "Hi there can you please tell me what flavor this is? (سلام، لطفاً می‌توانید بگویید این چه طعمی است؟)"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "Which side of the room is the toilet on? (توالت کدام سمت اتاق است؟)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "Is my monitor on? (آیا نمایشگر من روشن است؟)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "پرسش‌ها"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "1. برای مرتب‌کردن نمونه‌ها از چه معیارهایی باید استفاده شود؟"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "text",
+          "fa": "2. داده‌های آموزشی را چگونه (و با چه بسامدی) به‌روزرسانی می‌کنید؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "5ab6853b4d3af30dd9dc8b7bf3e1463a633e6d76b8d5ee05a87a68ff0172e67e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری کارآمد: یادگیری برنامه‌درسی (Curriculum learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری کارآمد: یادگیری فعال (Active learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری تقویتی (Reinforcement learning)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "5c78cc46549c12c79157dce48bef53cabe633d6ad0181cc691107f9725e52681",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "heading",
+          "fa": "به‌جای برچسب‌گذاری همهٔ داده‌های موجود، نمونه‌هایی را فعالانه برای برچسب‌گذاری انتخاب کنید که برای یادگیری مؤثرترند"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "952a47909aed9f41c41b8bd58e17df31f5ca8c62abafc9280cb3d4dff2ec17c8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "انواع یادگیری فعال (Active Learning)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "1. مبتنی بر جریان (Stream-Based)؛ 2. مبتنی بر مخزن (Pool-Based)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "در هر بار یک نمونه را در نظر بگیرید"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "منبع تصویر: https://www.cs.utah.edu/~piyush/teaching/10-11-slides.pdf"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "در هر بار نمونه‌های متعددی را در نظر بگیرید"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "labeled training set; learner; label & add to training set; oracle / expert; (x_i,y_i); (x_i,?); x_i",
+          "fa": "مجموعهٔ آموزشی برچسب‌دار (Labeled training set)؛ یادگیرنده (Learner)؛ برچسب‌گذاری و افزودن به مجموعهٔ آموزشی؛ مرجع برچسب‌گذاری/متخصص (Oracle / expert)؛ (x_i,y_i)؛ (x_i,?)؛ x_i",
+          "verified": true
+        },
+        {
+          "en": "observe a new instance; Continuous Data Source; decide to query or ignore",
+          "fa": "مشاهدهٔ یک نمونهٔ جدید؛ منبع پیوستهٔ داده (Continuous Data Source)؛ تصمیم برای درخواست برچسب (Query) یا نادیده‌گرفتن",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "1f36b98a060fddb72876e9efb7161977521a7f2cf26343db8acb7986128afe21",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "انواع یادگیری فعال (Active Learning)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "1. مبتنی بر جریان (Stream-Based)؛ 2. مبتنی بر مخزن (Pool-Based)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "در هر بار یک نمونه را در نظر بگیرید؛ در هر بار نمونه‌های متعددی را در نظر بگیرید"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "منبع تصویر: https://www.cs.utah.edu/~piyush/teaching/10-11-slides.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "labeled training set; learner; label & add to training set; oracle / expert; (x_i,y_i); (x_i,?); x_i",
+          "fa": "مجموعهٔ آموزشی برچسب‌دار (Labeled training set)؛ یادگیرنده (Learner)؛ برچسب‌گذاری و افزودن به مجموعهٔ آموزشی؛ مرجع برچسب‌گذاری/متخصص (Oracle / expert)؛ (x_i,y_i)؛ (x_i,?)؛ x_i",
+          "verified": true
+        },
+        {
+          "en": "Large Pool of Unlabeled Data; query; choose the best out of the sample pool",
+          "fa": "مخزن بزرگ داده‌های بدون برچسب (Large Pool of Unlabeled Data)؛ درخواست برچسب (Query)؛ انتخاب بهترین مورد از مخزن نمونه‌ها",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "20f70e79bb3e0caec403e06a2c5a3ea2cdfa92b02e98dda21e40f7e232bc33cc",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "انواع یادگیری فعال (Active Learning)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "مبتنی بر جریان (Stream-Based)؛ مبتنی بر مخزن (Pool-Based)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "در هر بار یک نمونه را در نظر بگیرید؛ در هر بار نمونه‌های متعددی را در نظر بگیرید"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "منبع تصویر: https://www.cs.utah.edu/~piyush/teaching/10-11-slides.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "labeled training set; learner; label & add to training set; oracle / expert; (x_i,y_i); (x_i,?); x_i",
+          "fa": "مجموعهٔ آموزشی برچسب‌دار (Labeled training set)؛ یادگیرنده (Learner)؛ برچسب‌گذاری و افزودن به مجموعهٔ آموزشی؛ مرجع برچسب‌گذاری/متخصص (Oracle / expert)؛ (x_i,y_i)؛ (x_i,?)؛ x_i",
+          "verified": true
+        },
+        {
+          "en": "observe a new instance; Continuous Data Source; decide to query or ignore",
+          "fa": "مشاهدهٔ یک نمونهٔ جدید؛ منبع پیوستهٔ داده (Continuous Data Source)؛ تصمیم برای درخواست برچسب (Query) یا نادیده‌گرفتن",
+          "verified": true
+        },
+        {
+          "en": "Large Pool of Unlabeled Data; query; choose the best out of the sample pool",
+          "fa": "مخزن بزرگ داده‌های بدون برچسب (Large Pool of Unlabeled Data)؛ درخواست برچسب (Query)؛ انتخاب بهترین مورد از مخزن نمونه‌ها",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "a3ecb6cd755850e392d5d910a0571913b5cb68f745c8fa79236ab39531fd3606",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکرد یادگیری فعال (Active Learning Approach)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "منبع تصویر: https://www.cs.utah.edu/~piyush/teaching/10-11-slides.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Active Learning proceeds in rounds. Each round has a current model (learned using the labeled data seen so far).",
+          "fa": "یادگیری فعال (Active Learning) در دورها پیش می‌رود. هر دور یک مدل جاری دارد (که با داده‌های برچسب‌دارِ دیده‌شده تا آن زمان یاد گرفته شده است).",
+          "verified": true
+        },
+        {
+          "en": "The current model is used to assess informativeness of unlabeled examples ... using one of the query selection strategies.",
+          "fa": "مدل جاری برای سنجش آگاهی‌بخشی (Informativeness) نمونه‌های بدون برچسب استفاده می‌شود؛ با استفاده از یکی از راهبردهای انتخاب درخواست (Query selection strategies).",
+          "verified": true
+        },
+        {
+          "en": "The most informative example(s) is/are selected. The labels are obtained (by the labeling oracle).",
+          "fa": "آگاهی‌بخش‌ترین نمونه(ها) انتخاب می‌شود/می‌شوند. برچسب‌ها به دست می‌آیند (از طریق مرجع برچسب‌گذاری (Labeling oracle)).",
+          "verified": true
+        },
+        {
+          "en": "The (now) labeled example(s) is/are included in the training data. The model is re-trained using the new training data.",
+          "fa": "نمونه(هایی) که اکنون برچسب دارند به داده‌های آموزشی اضافه می‌شود/می‌شوند. مدل با داده‌های آموزشی جدید دوباره آموزش می‌بیند.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "0aab1b431130672d0bcc7fa34e8a6239a8bba6d2bc7ea290f9e56de16bca83ff",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یادگیری فعال (Active Learning) برای شبکه‌های عصبی: وضعیت موجود"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "مبتنی بر مخزن (Pool-Based)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "در هر بار نمونه‌های متعددی را در نظر بگیرید"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "منبع تصویر: https://www.cs.utah.edu/~piyush/teaching/10-11-slides.pdf"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "پس از n دوره (Epochs)، به‌صورت تکراری نمونه‌های آموزشی برچسب‌دار بیشتری اضافه کنید؛ با یادگیری برنامه‌درسی (Curriculum learning) متفاوت است، زیرا باید برای داده‌های اضافه‌شده برچسب گردآوری شود"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "labeled training set; learner; label & add to training set; oracle / expert; (x_i,y_i); (x_i,?); x_i",
+          "fa": "مجموعهٔ آموزشی برچسب‌دار (Labeled training set)؛ یادگیرنده (Learner)؛ برچسب‌گذاری و افزودن به مجموعهٔ آموزشی؛ مرجع برچسب‌گذاری/متخصص (Oracle / expert)؛ (x_i,y_i)؛ (x_i,?)؛ x_i",
+          "verified": true
+        },
+        {
+          "en": "Large Pool of Unlabeled Data; query; choose the best out of the sample pool",
+          "fa": "مخزن بزرگ داده‌های بدون برچسب (Large Pool of Unlabeled Data)؛ درخواست برچسب (Query)؛ انتخاب بهترین مورد از مخزن نمونه‌ها",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "119d6f01f9520cccc46e03eee1153a38e37f4c35d6d5a9911588626da1be9df5",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چالش: چگونه آگاهی‌بخش‌ترین نمونه(ها) (Most informative examples) را برای برچسب‌گذاری انتخاب کنیم؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "ad2fa21af169c0a2d93bb11393d16d95662edd9fa15233bbc380e69858cb05a0",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکرد رایج: نمونه‌گیری عدم‌قطعیت (Uncertainty Sampling)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "یادگیرندهٔ منفعل (Passive Learner؛ انتخاب تصادفی (Random Selection))"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "بازنمایی واقعی (True Representation؛ فرض کنید برچسب‌ها مشخص نیستند)"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "یادگیرندهٔ فعال (Active Learner؛ نمونه‌گیری عدم‌قطعیت (Uncertainty Sampling))"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "http://burrsettles.com/pub/settles.activelearning.pdf"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "برچسب نمونه(هایی) را درخواست کنید که طبقه‌بند (Classifier) دربارهٔ آن‌ها بیشترین عدم‌قطعیت را دارد."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "0c67b12596e963de314dfdf0a55a04536db297f2caea6c39e773d35c384d2d7a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکرد رایج: نمونه‌گیری عدم‌قطعیت (Uncertainty Sampling)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "یادگیرندهٔ منفعل (Passive Learner؛ انتخاب تصادفی (Random Selection))"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "بازنمایی واقعی (True Representation؛ فرض کنید برچسب‌ها مشخص نیستند)"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "یادگیرندهٔ فعال (Active Learner؛ نمونه‌گیری عدم‌قطعیت (Uncertainty Sampling))"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "http://burrsettles.com/pub/settles.activelearning.pdf"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "چرا ممکن است این رویکرد ضعیف باشد؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "33a392460da31e44c4b8f3d6da4fb1794eb9a030722aef06171caf0d53f00c24",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چه رویکردهای بالقوهٔ دیگری برای یادگیری فعال (Active Learning) وجود دارد؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• نمونه‌هایی را انتخاب کنید که انتظار می‌رود:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مهارت مشخصی را برآورده کنند (برای مثال، یادگیری شمارش در پرسش‌وپاسخ بصری (VQA))"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• بیشترین بهبود را در عملکرد مدل ایجاد کنند"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "80aded14e854d4c456804dd3313e47ff44372c7016972b0129cc9e08eef45f78",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "منحنی‌های یادگیری (Learning Curves): یادگیری فعال (Active) در مقایسه با یادگیری منفعل (Passive)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "مزایای روش‌های یادگیری فعال (Active learning) نسبت به یادگیری منفعل (Passive learning) چیست؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "- یادگیری سریع‌تر است"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "bullet",
+          "fa": "- تلاش انسان‌ها برای برچسب‌گذاری (Annotation) را کاهش می‌دهد"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "reference",
+          "fa": "Lin and Parikh. Active Learning for Visual Question Answering: An Empirical Study. 2017"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "VQA v2.0; VQA Accuracy; Training Set Size; Save 19.0% queries; Curiosity-driven; Goal-driven; Entropy; Passive",
+          "fa": "VQA v2.0؛ دقت پرسش‌وپاسخ بصری (VQA Accuracy)؛ اندازهٔ مجموعهٔ آموزشی (Training Set Size)؛ صرفه‌جویی در 19.0% درخواست‌ها؛ مبتنی بر کنجکاوی (Curiosity-driven)؛ هدف‌محور (Goal-driven)؛ آنتروپی (Entropy)؛ منفعل (Passive)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "5ab6853b4d3af30dd9dc8b7bf3e1463a633e6d76b8d5ee05a87a68ff0172e67e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری کارآمد: یادگیری برنامه‌درسی (Curriculum learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری کارآمد: یادگیری فعال (Active learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری تقویتی (Reinforcement learning)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "11da7798110bdf89ff64fdba98095dc805a5ebb29d566b20e4c07f59ab280051",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکردهای یادگیری عمیق (Deep Learning Approaches)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/intro_RL.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "یادگیری عمیق (Deep Learning)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Supervised Learning; Unsupervised Learning; Reinforcement Learning",
+          "fa": "یادگیری نظارت‌شده (Supervised Learning)؛ یادگیری بدون نظارت (Unsupervised Learning)؛ یادگیری تقویتی (Reinforcement Learning)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "0afa4b90cb29f8c7c42c448e3c26433b78a4bcb97114f8ce43ecd63132671790",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مروری بر یادگیری تقویتی (Reinforcement Learning)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "عامل (Agent) در محیط (Environment) عمل‌هایی انجام می‌دهد تا پاداش کل (Total reward) را بیشینه کند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "منبع شکل: https://towardsdatascience.com/applications-of-reinforcement-learning-in-real-world-1a94955bcd12"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Agent; Environment; state S_t; reward R_t; action A_t; R_(t+1); S_(t+1)",
+          "fa": "عامل (Agent)؛ محیط (Environment)؛ حالت (State) S_t؛ پاداش (Reward) R_t؛ عمل (Action) A_t؛ R_(t+1)؛ S_(t+1)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "b52d200cc113b91e076dd1a0dabf8aff592b7eac4d6c75010f9a20a92ae6d598",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "درک شهودی (Intuition): یادگیری راه‌رفتن با آزمون‌وخطا (Trial-and Error)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://en.wikipedia.org/wiki/Crawling_(human)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "ab152ae1d67a2ec9887e33a33743f841b480747727b8cc9ed1427e2ed4d15661",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "کاربردهای یادگیری تقویتی (Reinforcement Learning)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Learning to Walk in 20 Minutes",
+          "fa": "یادگیری راه‌رفتن در 20 دقیقه (Learning to Walk in 20 Minutes)",
+          "verified": true
+        },
+        {
+          "en": "Russ Tedrake; Brain & Cognitive Sciences; Center for Bits and Atoms; Massachusetts Inst. of Technology; Cambridge, MA 02139; russt@csail.mit.edu",
+          "fa": "Russ Tedrake؛ علوم مغز و شناخت؛ مرکز بیت‌ها و اتم‌ها؛ مؤسسهٔ فناوری ماساچوست؛ Cambridge, MA 02139؛ russt@csail.mit.edu",
+          "verified": true
+        },
+        {
+          "en": "Teresa Weirui Zhang; Mechanical Engineering Department; University of California, Berkeley; Berkeley, CA 94270; resa@berkeley.edu",
+          "fa": "Teresa Weirui Zhang؛ گروه مهندسی مکانیک؛ دانشگاه کالیفرنیا، برکلی؛ Berkeley, CA 94270؛ resa@berkeley.edu",
+          "verified": true
+        },
+        {
+          "en": "H. Sebastian Seung; Howard Hughes Medical Institute; Brain & Cognitive Sciences; Massachusetts Inst. of Technology; Cambridge, MA 02139; seung@mit.edu",
+          "fa": "H. Sebastian Seung؛ مؤسسهٔ پزشکی هاوارد هیوز؛ علوم مغز و شناخت؛ مؤسسهٔ فناوری ماساچوست؛ Cambridge, MA 02139؛ seung@mit.edu",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "ab152ae1d67a2ec9887e33a33743f841b480747727b8cc9ed1427e2ed4d15661",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "کاربردهای یادگیری تقویتی (Reinforcement Learning)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Autonomous reinforcement learning on raw visual input data in a real world application",
+          "fa": "یادگیری تقویتی خودمختار (Autonomous reinforcement learning) بر داده‌های ورودی بصری خام در یک کاربرد دنیای واقعی",
+          "verified": true
+        },
+        {
+          "en": "Sascha Lange, Martin Riedmiller; Department of Computer Science; Albert-Ludwigs-Universität Freiburg; D-79110, Freiburg, Germany; Email: [slange,riedmiller]@informatik.uni-freiburg.de",
+          "fa": "Sascha Lange, Martin Riedmiller؛ گروه علوم کامپیوتر؛ دانشگاه آلبرت لودویگ فرایبورگ؛ D-79110, Freiburg, Germany؛ رایانامه: [slange,riedmiller]@informatik.uni-freiburg.de",
+          "verified": true
+        },
+        {
+          "en": "Arne Voigtländer; Shoogee GmbH & Co. KG; Krögerweg 16a; D-48155 Münster, Germany; Email: arne@shoogee.com",
+          "fa": "Arne Voigtländer؛ Shoogee GmbH & Co. KG؛ Krögerweg 16a؛ D-48155 Münster, Germany؛ رایانامه: arne@shoogee.com",
+          "verified": true
+        },
+        {
+          "en": "Fig. 1. The visual slot car racer task. The controller has to autonomously learn to steer the racing car by raw visual input of camera images.",
+          "fa": "شکل 1. وظیفهٔ مسابقهٔ خودرو روی شیار با ورودی بصری (Visual slot car racer). کنترل‌کننده باید به‌طور خودمختار از ورودی بصری خامِ تصاویر دوربین یاد بگیرد خودروی مسابقه را هدایت کند.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "ec12e7c66f4399b4c2f57821bc29fd75aec78221ebebb3c317e0893bc9d57fea",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "کاربردهای یادگیری تقویتی (Reinforcement Learning)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://web.stanford.edu/class/psych209/Readings/MnihEtAlHassibis15NatureControlDeepRL.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://www.tastehit.com/blog/google-deepmind-alphago-how-it-works/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "At human-level or above; Below human-level; DQN; Best linear learner; Google DeepMind; ALPHAGO; Challenge Match",
+          "fa": "در سطح انسان یا بالاتر؛ پایین‌تر از سطح انسان؛ DQN؛ بهترین یادگیرندهٔ خطی (Best linear learner)؛ Google DeepMind؛ ALPHAGO؛ مسابقهٔ چالش (Challenge Match)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "ff9bf6e3c125d91668b04ce12257c92d0a93dbe9b8a83ad0237426ae6cddd3af",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، نمونهٔ یادگیری بازی پونگ (Pong)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "هدف: محاسبهٔ حرکت‌های بهینهٔ «بالا» (Up) و «پایین» (Down) راکت برای بیشینه‌کردن پاداش‌ها (Rewards)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://karpathy.github.io/2016/05/31/rl/"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "afde06abdfb835f91292d2bf99bb86d30dad595b4583d735a495262c58068192",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، نمونهٔ یادگیری بازی پونگ (Pong)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "http://karpathy.github.io/2016/05/31/rl/"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "بازنمایی (Representation): گرافی که گره‌هایش حالت‌های بازی (Game states) و یال‌هایش گذارهای ممکن (Transitions) همراه با پاداش‌اند"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "-1 اگر توپ از دست برود"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "پاداش +1 اگر توپ از حریف بگذرد"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "در غیر این صورت، 0"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "ecde27174ea4a0d4c6c3edc92007a3cb7ed5adb5f0de812e1eb6b830bdfac5e3",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، بازی پونگ (Pong): شبکهٔ سیاست (Policy Network)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "با داشتن حالت بازی (Game state) به‌صورت تصویر، تصمیم بگیرید راکت به بالا یا پایین حرکت کند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://karpathy.github.io/2016/05/31/rl/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "raw pixels; hidden layer; probability of moving UP",
+          "fa": "پیکسل‌های خام (Raw pixels)؛ لایهٔ پنهان (Hidden layer)؛ احتمال حرکت به بالا (Probability of moving UP)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "075464d5ea7c1bdd603eef5aab9d0abd4d7f8204364e7af085a435ab79c8ceaf",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، بازی پونگ (Pong): شبکهٔ سیاست (Policy Network)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "پس از هر حالت بازی که در آن راکت به بالا یا پایین حرکت می‌کند، پاداش (Reward) داده می‌شود"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://karpathy.github.io/2016/05/31/rl/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "raw pixels; hidden layer; probability of moving UP",
+          "fa": "پیکسل‌های خام (Raw pixels)؛ لایهٔ پنهان (Hidden layer)؛ احتمال حرکت به بالا (Probability of moving UP)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "236045fffef4c2f33ee4af690da4fa574921719cfbb44a355834104c8f91a922",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، بازی پونگ (Pong): شبکهٔ سیاست (Policy Network)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "مسئلهٔ تخصیص اعتبار (Credit assignment problem): پاداش ممکن است حاصل عملی خوب در گام‌های بسیار قبل باشد"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://karpathy.github.io/2016/05/31/rl/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "raw pixels; hidden layer; probability of moving UP",
+          "fa": "پیکسل‌های خام (Raw pixels)؛ لایهٔ پنهان (Hidden layer)؛ احتمال حرکت به بالا (Probability of moving UP)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "5875b501f67a2f52fb9cdd2e31ec76e87dbb6e0133b32f4cb4e0aa0fd1c50382",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، بازی پونگ (Pong): پروتکل آموزش (Training Protocol)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "با به‌روزرسانی متناسب گرادیان‌ها (Gradients)، عمل‌هایی را که سرانجام به نتایج خوب منجر می‌شوند تشویق و عمل‌هایی را که سرانجام به نتایج بد منجر می‌شوند تضعیف می‌کند"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "http://karpathy.github.io/2016/05/31/rl/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "UP; DOWN; WIN; LOSE",
+          "fa": "بالا (UP)؛ پایین (DOWN)؛ برد (WIN)؛ باخت (LOSE)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "9739bd13d31a9e3fd14e5353f24d78d93840c81740163ad13b7a9e239697cc63",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، بازی پونگ (Pong): پروتکل آموزش (Training Protocol)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• 100 بازی با 200 تصویر برای هر بازی انجام شد"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• فرض کنید: برد در 12 بازی و باخت در 88 بازی"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• تعداد تصمیم‌های برنده = 200*12 = 2400 تصمیم؛ گرادیان (Gradient) برای تشویق هر عمل بالا/پایین به‌روزرسانی می‌شود"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• تعداد تصمیم‌های بازنده: 200*88 = 17600؛ گرادیان (Gradient) برای تضعیف هر عمل بالا/پایین به‌روزرسانی می‌شود"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "http://karpathy.github.io/2016/05/31/rl/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "UP; DOWN; WIN; LOSE",
+          "fa": "بالا (UP)؛ پایین (DOWN)؛ برد (WIN)؛ باخت (LOSE)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "c5645095fe5e0efe9844f1d17185a6f8f98fd7674f649590e2911aed0807d9f0",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، بازی پونگ (Pong): آموزش‌دیده طی سه شب"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "نمایش: https://www.youtube.com/watch?time_continue=16&v=YOW8m2YGtRg"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "4fa8ac36e54b16886a5d5649ba4dfe3a1a502f473046c97013ed28dbc0f95d49",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، یادگیری مهارت حرکتی (Dexterity)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "نمایش: https://www.youtube.com/watch?v=jwSbzNHGflM"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "3fd81fc51e575ad3da309e10228be7ab80a0384a72ff913bad263c17fe5abf30",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، یادگیری پشت‌وروکردن پنکیک"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "نمایش: https://www.youtube.com/watch?v=W_gxLKSsSIE&list=PL5nBAYUyJTrM48dViibyi68urttMlUv7e"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "61f7b741272a0234fba3a17b9a053fd105e5d31c9c287e7f39a0a5393760467f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، یادگیری راه‌رفتن"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "نمایش: https://www.youtube.com/watch?v=gn4nRCC9TwQ"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "5ab6853b4d3af30dd9dc8b7bf3e1463a633e6d76b8d5ee05a87a68ff0172e67e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری کارآمد: یادگیری برنامه‌درسی (Curriculum learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری کارآمد: یادگیری فعال (Active learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری تقویتی (Reinforcement learning)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    }
+  ]
+}

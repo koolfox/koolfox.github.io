@@ -247,6 +247,8 @@ def source_panel(term, row, concepts):
         )
         preview = f'<button type="button" class="quiet" data-show-source="{e(target)}"{preview_target}>نمایش اصل اسلاید در همین صفحه</button>'
         original += f'<div class="source-document">{link(target, f"اسلاید اصلی دانا · {source['page_count']} صفحه", True, class_="source-link")}{preview}</div>'
+        if target != source["url"]:
+            original += link(source["url"], "نشانی رسمی همین فایل", True, class_="meta")
     mapping = row["mapping"]
     if mapping:
         original += (
@@ -255,7 +257,7 @@ def source_panel(term, row, concepts):
         for guide in mapping["source_guides"]:
             for part in guide["ranges"]:
                 label = f"{part['start']}–{part['end']} · {part['topic_fa']}"
-                original += f"<li>{link(guide['url'] + '#page=' + str(part['start']), label, True)}</li>"
+                original += f"<li>{link(original_slide_url(guide['url']) + '#page=' + str(part['start']), label, True)}</li>"
         original += "</ol></details>"
     if row.get("local_slides"):
         url = session_url(term, row) + "slides/"
@@ -402,11 +404,15 @@ def workshop_html(term, row, include_sources=True, include_questions=True):
         exercise_html(q, "workshop-" + row["id"]) for q in unit["questions"]
     )
     activity_links = " · ".join(
-        link(unit["source_url"] + f"#page={n}", f"فعالیت کلاسی · صفحهٔ {n}", True)
+        link(
+            original_slide_url(unit["source_url"]) + f"#page={n}",
+            f"فعالیت کلاسی · صفحهٔ {n}",
+            True,
+        )
         for n in unit["class_activity_pages"]
     )
     question_links = " ".join(
-        link(unit["source_url"] + f"#page={n}", str(n), True)
+        link(original_slide_url(unit["source_url"]) + f"#page={n}", str(n), True)
         for n in unit["question_pages"]
     )
     source = '<details id="source-activities" class="source-activities"><summary>تطبیق با پرسش‌ها و فعالیت‌های منبع اصلی</summary>'
@@ -424,7 +430,7 @@ def workshop_html(term, row, include_sources=True, include_questions=True):
         + f'''<section class="lesson-workshop" id="workshop" data-workshop="{e(term["id"])}/{e(row["id"])}">
 <h2>کارگاه آموزشی دیپ لرنینگ: {e(unit["title_fa"])}</h2>
 <p>{prose(unit["prediction_fa"])}</p>{listing(unit["steps_fa"], True)}
-<p class="meta">کد و تمرین تألیفی دربارهٔ بحث {link(unit["source_url"] + "#page=" + str(unit["source_page"]), "صفحهٔ " + str(unit["source_page"]), True)}؛ اجرا با پایتون واقعی در مرورگر انجام می‌شود.</p>
+<p class="meta">کد و تمرین تألیفی دربارهٔ بحث {link(original_slide_url(unit["source_url"]) + "#page=" + str(unit["source_page"]), "صفحهٔ " + str(unit["source_page"]), True)}؛ اجرا با پایتون واقعی در مرورگر انجام می‌شود.</p>
 <div class="workshop-grid"><div class="workshop-editor"><label for="workshop-code">کد آزمایش · همهٔ فرمول‌ها قابل‌ویرایش‌اند</label>
 <textarea id="workshop-code" data-workshop-code dir="ltr" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="python-help">{e(unit["code"])}</textarea>
 <div class="workshop-actions"><button type="button" class="primary" data-workshop-run>اجرای پایتون</button><button type="button" data-workshop-stop disabled>توقف اجرا</button>

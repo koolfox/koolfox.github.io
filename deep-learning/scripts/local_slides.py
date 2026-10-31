@@ -174,6 +174,9 @@ def original_slide_files(root=ROOT):
 
 
 def original_slide_url(source, root=ROOT):
+    if isinstance(source, str):
+        local = original_slide_files(root).get(source)
+        return local[1] if local else source
     local = original_slide_files(root).get(source["url"])
     return local[1] if local and local[0] == source["sha256"] else source["url"]
 

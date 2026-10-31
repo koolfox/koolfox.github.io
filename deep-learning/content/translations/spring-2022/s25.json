@@ -1,0 +1,3014 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s25",
+  "source_sha256": "6b4e936c2fc700e27704430e342466f6dbbde9ed07a0e0ec45d6ded95b891acf",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "ddf553432637d98d2f8c070f0be11f32a9bdc1a0eae374f0016ea4badff8182a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "heading",
+          "fa": "انتقال یادگیری (Transfer Learning): یادگیری چندوظیفه‌ای (Multi-Task Learning) و یادگیری کم‌نمونه/بی‌نمونه (Few/Zero Shot Learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "دانشگاه کلرادو بولدر (University of Colorado Boulder)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "بهار ۲۰۲۲ (Spring 2022)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "858d37c1b4c73cbcb74fcdd62b72d8d66699f57c7c0a134a4953d35e92e1ac16",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• موضوع جلسهٔ قبل:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• تعریف انتقال یادگیری (Transfer learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• مروری بر یادگیری خودنظارتی (Self-supervised learning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• روش‌های مبتنی بر تولید (Generative-based methods)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• شبکه‌های مولد تخاصمی (Generative adversarial networks)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• روش‌های مبتنی بر بافت (Context-based methods)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• تکلیف‌ها (Canvas)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• موعد تحویل پیشنهاد پروژهٔ نهایی این هفته است"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "• پرسشی دارید؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "2c2167d539e42a3a9512b496b7ad326795d672f6cc920f2dfd20c92beb6f743a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری چندوظیفه‌ای (Multi-task learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری کم‌نمونه (Few-shot learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری بی‌نمونه (Zero-shot learning)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "2c2167d539e42a3a9512b496b7ad326795d672f6cc920f2dfd20c92beb6f743a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری چندوظیفه‌ای (Multi-task learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری کم‌نمونه (Few-shot learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری بی‌نمونه (Zero-shot learning)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "0422650b7c4e848b3cc8f088c96721199a0e3320c855d720038486af479077fc",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور: رویکردهای انتقال یادگیری (Transfer Learning Approaches)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Kamath et al. Deep Learning for NLP and Speech Recognition. 2019."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Labeled data available in source?; No; Yes; Labeled data available in target?",
+          "fa": "آیا در مبدأ دادهٔ برچسب‌دار موجود است؟؛ خیر؛ بله؛ آیا در هدف دادهٔ برچسب‌دار موجود است؟",
+          "verified": true
+        },
+        {
+          "en": "Different tasks and learn together?; Same tasks but different Domain?; Domain Adaptation",
+          "fa": "آیا وظیفه‌ها متفاوت‌اند و با هم یاد گرفته می‌شوند؟؛ آیا وظیفه‌ها یکسان اما دامنه متفاوت است؟؛ سازگارسازی دامنه (Domain Adaptation)",
+          "verified": true
+        },
+        {
+          "en": "Self-Taught Learning; Multi-task Learning; Zero-shot Learning; One-shot Learning; Few-shot Learning",
+          "fa": "یادگیری خودآموخته (Self-Taught Learning)؛ یادگیری چندوظیفه‌ای (Multi-task Learning)؛ یادگیری بی‌نمونه (Zero-shot Learning)؛ یادگیری تک‌نمونه (One-shot Learning)؛ یادگیری کم‌نمونه (Few-shot Learning)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "ceb2e75a66203f7b6dade0ad38dfe629f70a0a2d9b5b11a5f6e9774e5ef72cab",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکردها (Approaches)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "1. اشتراک‌گذاری سخت پارامترها (Hard parameter sharing)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Kamath et al. Deep Learning for NLP and Speech Recognition. 2019."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "2. اشتراک‌گذاری نرم پارامترها (Soft parameter sharing)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Task A; Task B; Task C; Task specific layers; Shared layers; Constrained layers; Input layer",
+          "fa": "وظیفهٔ A؛ وظیفهٔ B؛ وظیفهٔ C؛ لایه‌های مختص وظیفه (Task specific layers)؛ لایه‌های مشترک (Shared layers)؛ لایه‌های مقید (Constrained layers)؛ لایهٔ ورودی",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "5ed59f0dbe109ebe4565dac97f9ee66de7125db9fc75d9e1b28c2afba976e177",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "Faster R-CNN را به یاد آورید"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Ren Shaoqing Ren et al. “Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks.” Neurips 2015."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "لایه‌های کانولوشنی (Convolutional layers) برای پیشنهاد ناحیه (Region proposal) و تشخیص (Detection) مشترک‌اند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "classifier; RoI pooling; proposals; Region Proposal Network; feature maps; conv layers; image",
+          "fa": "طبقه‌بند (Classifier)؛ تجمیع ناحیهٔ موردعلاقه (RoI pooling)؛ پیشنهادها؛ شبکهٔ پیشنهاد ناحیه (Region Proposal Network)؛ نقشه‌های ویژگی (Feature maps)؛ لایه‌های کانولوشن (Conv layers)؛ تصویر",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "a140a934eac88bb56a886be2f6577ae1098da988132b5f4c51e7d5a10ff11c01",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT را به یاد آورید"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "از معماری یکسان برای چندین وظیفه استفاده می‌شود"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ObjectRel Encoder; Cross-Modality Encoder; Language Encoder; Word Emb; Idx Emb; Mask Feat; RoI Feat; Pos Feat; RoI-Feature Regression; Detected-Label Classification; Masked Cross-Modality LM; Cross-Modality Matching & QA",
+          "fa": "رمزگذار روابط اشیا؛ رمزگذار میان‌وجهی؛ رمزگذار زبان؛ بازنمایی برداری واژه؛ بازنمایی برداری اندیس؛ ویژگی ماسک؛ ویژگی ناحیهٔ موردعلاقه؛ ویژگی موقعیت؛ رگرسیون ویژگی ناحیهٔ موردعلاقه؛ طبقه‌بندی برچسب تشخیص‌داده‌شده؛ مدل زبانی میان‌وجهی ماسک‌شده (Masked Cross-Modality LM)؛ تطبیق میان‌وجهی و پرسش‌وپاسخ",
+          "verified": true
+        },
+        {
+          "en": "Who is eating the carrot? [CLS] who [MASK] eat -ing the [MASK] ? [EOS] → [CLS] who is eat -ing the carrot ? [EOS]",
+          "fa": "Who is eating the carrot? [CLS] who [MASK] eat -ing the [MASK] ? [EOS] → [CLS] who is eat -ing the carrot ? [EOS] (چه کسی هویج را می‌خورد؟ (توکن‌های انگلیسی مثال، مطابق اصل حفظ شده‌اند))",
+          "verified": true
+        },
+        {
+          "en": "{DOG}",
+          "fa": "{DOG} (سگ)",
+          "verified": true
+        },
+        {
+          "en": "Match? {YES} Answer? {RABBIT}",
+          "fa": "Match? {YES} Answer? {RABBIT} (مطابقت دارد؟ {بله} پاسخ؟ {خرگوش})",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "f57abd87cc4ffddb189f506f9a39a68d395deff7567e8f32aa71a82c6783cb51",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکردها (Approaches)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "1. اشتراک‌گذاری سخت پارامترها (Hard parameter sharing)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Kamath et al. Deep Learning for NLP and Speech Recognition. 2019."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "2. اشتراک‌گذاری نرم پارامترها (Soft parameter sharing)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "قیدها (Constraints) شباهت پارامترهای هر وظیفه را الزام می‌کنند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Task A; Task B; Task C; Task specific layers; Shared layers; Constrained layers; Input layer",
+          "fa": "وظیفهٔ A؛ وظیفهٔ B؛ وظیفهٔ C؛ لایه‌های مختص وظیفه (Task specific layers)؛ لایه‌های مشترک (Shared layers)؛ لایه‌های مقید (Constrained layers)؛ لایهٔ ورودی",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "7d15da400f8abf1f743d855ee940ffdbfb572d6e01cca49a79a1db3d1ca091ae",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مزایای کلی اشتراک‌گذاری پارامترها (Parameter Sharing) چیست؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• افزایش داده (Data augmentation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• ویژگی‌های یافت‌شده برای یک وظیفه را برای وظیفهٔ دیگر در دسترس قرار می‌دهد"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• بر ویژگی‌های تعمیم‌پذیر (Generalizable features) مشترک میان وظیفه‌ها تأکید می‌کند"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "2c2167d539e42a3a9512b496b7ad326795d672f6cc920f2dfd20c92beb6f743a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری چندوظیفه‌ای (Multi-task learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری کم‌نمونه (Few-shot learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری بی‌نمونه (Zero-shot learning)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "0422650b7c4e848b3cc8f088c96721199a0e3320c855d720038486af479077fc",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور: رویکردهای انتقال یادگیری (Transfer Learning Approaches)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Kamath et al. Deep Learning for NLP and Speech Recognition. 2019."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Labeled data available in source?; No; Yes; Labeled data available in target?",
+          "fa": "آیا در مبدأ دادهٔ برچسب‌دار موجود است؟؛ خیر؛ بله؛ آیا در هدف دادهٔ برچسب‌دار موجود است؟",
+          "verified": true
+        },
+        {
+          "en": "Different tasks and learn together?; Same tasks but different Domain?; Domain Adaptation",
+          "fa": "آیا وظیفه‌ها متفاوت‌اند و با هم یاد گرفته می‌شوند؟؛ آیا وظیفه‌ها یکسان اما دامنه متفاوت است؟؛ سازگارسازی دامنه (Domain Adaptation)",
+          "verified": true
+        },
+        {
+          "en": "Self-Taught Learning; Multi-task Learning; Zero-shot Learning; One-shot Learning; Few-shot Learning",
+          "fa": "یادگیری خودآموخته (Self-Taught Learning)؛ یادگیری چندوظیفه‌ای (Multi-task Learning)؛ یادگیری بی‌نمونه (Zero-shot Learning)؛ یادگیری تک‌نمونه (One-shot Learning)؛ یادگیری کم‌نمونه (Few-shot Learning)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "519f54b054d9f3de724b977d3f13abf10f417722c96c842907d94912bf210ccf",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "درک شهودی (Intuition): دانش کنونی را تعمیم دهید تا به‌سرعت به رده‌های جدید تعمیم یابید"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.youtube.com/watch?v=9j4iH9TPTd8"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "با داشتن یک نمونه برای هر رده، ردهٔ پرس‌وجو (Query) را شناسایی کنید"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "60d6a99b725bc11378f3c7ff01080af8c1d1a74fed06f1ebacdc91221adbe08d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "صورت‌بندی مسئله (Problem Set-up): یادگیری از نمونه‌های کم"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://daredevilmusicproduction.com/long-tail/"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "اغلب، 1-10 نمونه"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Popularity; Head; Keywords",
+          "fa": "محبوبیت (Popularity)؛ سر (Head)؛ کلیدواژه‌ها (Keywords)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "da2e616981a44a9800d67bd4e44645cd1cb21bf2d9fc335861ac9635b91cee14",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "صورت‌بندی مسئله (Problem Set-up): یادگیری از نمونه‌های کم"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://ruder.io/transfer-learning/"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "دادهٔ برچسب‌دار (Labeled Data) ناکافی"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "دادهٔ برچسب‌دار (Labeled Data) کافی"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری کم‌نمونه (Few shot learning): ارزیابی فقط برای رده‌های دارای نمونه‌های کم"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری کم‌نمونهٔ تعمیم‌یافته (Generalized few shot learning): ارزیابی روی همهٔ رده‌ها"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Source task / domain; Target task / domain; Model; Knowledge; Storing knowledge gained solving one problem and applying it to a different but related problem.",
+          "fa": "وظیفه/دامنهٔ مبدأ (Source)؛ وظیفه/دامنهٔ هدف (Target)؛ مدل؛ دانش؛ ذخیرهٔ دانشی که از حل یک مسئله به دست آمده و استفاده از آن در مسئله‌ای متفاوت اما مرتبط.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "9f3e83aa7df523551a5424b428049594db1f090a6714cfd02edca0f93d217d96",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکردهای پرکاربرد (Popular Approaches)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• رویکرد زمان طراحی (Design-time): تنظیم دقیق (Fine-tuning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• رویکرد زمان اجرا (Run-time): فرایادگیری (Meta learning)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "9f3e83aa7df523551a5424b428049594db1f090a6714cfd02edca0f93d217d96",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکردهای پرکاربرد (Popular Approaches)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• رویکرد زمان طراحی (Design-time): تنظیم دقیق (Fine-tuning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• رویکرد زمان اجرا (Run-time): فرایادگیری (Meta learning)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "8e4edc45794c9d3b0620f0704ec1be8b5e4f46b96db755c6536119c782686968",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تنظیم دقیق (Fine-Tuning) را به یاد آورید"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "منبع تصویر: https://www.mathworks.com/help/deeplearning/ug/transfer-learning-using-alexnet.html"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Load pretrained network; Replace final layers; Train network; Training images; Training options",
+          "fa": "بارگذاری شبکهٔ ازپیش‌آموزش‌دیده؛ جایگزینی لایه‌های پایانی؛ آموزش شبکه؛ تصاویر آموزشی؛ گزینه‌های آموزش",
+          "verified": true
+        },
+        {
+          "en": "Early layers that learned low-level features (edges, blobs, colors); Last layers that learned task specific features; New layers to learn features specific to your data set",
+          "fa": "لایه‌های ابتدایی که ویژگی‌های سطح پایین (Low-level features) را آموخته‌اند (لبه‌ها، لکه‌ها، رنگ‌ها)؛ لایه‌های آخر که ویژگی‌های مختص وظیفه را آموخته‌اند؛ لایه‌های جدید برای یادگیری ویژگی‌های مختص مجموعه‌دادهٔ شما",
+          "verified": true
+        },
+        {
+          "en": "1 million images; 1000s classes; Fewer classes; Learn faster; 100s of images; 10s of classes",
+          "fa": "1 میلیون تصویر؛ هزاران کلاس؛ کلاس‌های کمتر؛ یادگیری سریع‌تر؛ صدها تصویر؛ ده‌ها کلاس",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "9eabdaeb875e73a58f29eeca2cf155b55a0beb55dea65db2d7daf051dd3e025f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، تنظیم دقیق (Fine-Tuning) برای تشخیص شیء (Object Detection)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Ren Shaoqing Ren et al. “Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks.” Neurips 2015."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Wang et al. Frustratingly simple few-shot object detection. arXiv 2020."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "معماری Faster R-CNN: چرا انتظار داریم ویژگی‌های یادگرفته‌شده به مکان‌یابی رده‌های جدید به‌خوبی تعمیم یابند؟"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "ویژگی‌های پیشنهاد ناحیه (Region proposal features) مستقل از کلاس (Class-agnostic) هستند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "classifier; RoI pooling; proposals; Region Proposal Network; feature maps; conv layers; image",
+          "fa": "طبقه‌بند (Classifier)؛ تجمیع ناحیهٔ موردعلاقه (RoI pooling)؛ پیشنهادها؛ شبکهٔ پیشنهاد ناحیه (Region Proposal Network)؛ نقشه‌های ویژگی (Feature maps)؛ لایه‌های کانولوشن (Conv layers)؛ تصویر",
+          "verified": true
+        },
+        {
+          "en": "Stage I: Base training; Backbone; RPN; RoI Pooling; RoI Feat. Extractor; Box Classifier; Box Regressor; Base Images (Abundant)",
+          "fa": "مرحلهٔ I: آموزش پایه (Base training)؛ شبکهٔ پایه (Backbone)؛ شبکهٔ پیشنهاد ناحیه (RPN)؛ تجمیع ناحیهٔ موردعلاقه (RoI Pooling)؛ استخراج‌گر ویژگی ناحیهٔ موردعلاقه؛ طبقه‌بند جعبه؛ رگرسور جعبه؛ تصاویر پایه (فراوان)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "ca81daf038cba4e04b4b54bc324e34eb0d7a7cf05482a2dd2d8c233ff49a2dd6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، تنظیم دقیق (Fine-Tuning) برای تشخیص شیء (Object Detection)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Wang et al. Frustratingly simple few-shot object detection. arXiv 2020."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "برای آموزش از K نمونه (Shots) از هر دو نوع ردهٔ پایه و جدید استفاده می‌شود"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "چرا نمونه‌هایی (Shots) از هر دو نوع ردهٔ پایه و جدید وارد شوند؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Stage I: Base training; Backbone; RPN; RoI Pooling; RoI Feat. Extractor; Box Classifier; Box Regressor; Base Images (Abundant)",
+          "fa": "مرحلهٔ I: آموزش پایه (Base training)؛ شبکهٔ پایه (Backbone)؛ شبکهٔ پیشنهاد ناحیه (RPN)؛ تجمیع ناحیهٔ موردعلاقه (RoI Pooling)؛ استخراج‌گر ویژگی ناحیهٔ موردعلاقه؛ طبقه‌بند جعبه؛ رگرسور جعبه؛ تصاویر پایه (فراوان)",
+          "verified": true
+        },
+        {
+          "en": "Stage II: Few-shot fine-tuning; Fixed Feature Extractor; Base Shots (Few); Novel Shots (Few)",
+          "fa": "مرحلهٔ II: تنظیم دقیق کم‌نمونه (Few-shot fine-tuning)؛ استخراج‌گر ویژگی ثابت (Fixed Feature Extractor)؛ نمونه‌های پایه (کم)؛ نمونه‌های جدید (کم)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "4c2d1f44d5e092b361183d664aa73b57c92eea25e6c3a57bae322b5fc113292e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، تنظیم دقیق (Fine-Tuning) برای تشخیص شیء (Object Detection)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Wang et al. Frustratingly simple few-shot object detection. arXiv 2020."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "امتیازهای میانگین دقت متوسط (mAP) برای آموزش با 1، 2، 3، 5 و 10 نمونه (Shots) برای هر رده"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "با اعتبارسنجی متقابل (Cross validation) روی 3 تقسیم‌بندی از VOC آزمایش شد"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "در رده‌های جدید به‌طور پیوسته 2-20 واحد از روش‌های پایه (Baselines) بهتر عمل می‌کند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Novel Set 1; Novel Set 2; Novel Set 3; Method / Shot; Backbone; Our Impl.; Ours",
+          "fa": "مجموعهٔ جدید 1؛ مجموعهٔ جدید 2؛ مجموعهٔ جدید 3؛ روش/تعداد نمونه (Shot)؛ شبکهٔ پایه (Backbone)؛ پیاده‌سازی ما (Our Impl.؛ نویسندگان مقاله)؛ روش ما (Ours؛ نویسندگان مقاله)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "9e698989601b86c8e65082e37b2f11193150f820c74d0b88ce7ab0080d26a862",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، تنظیم دقیق (Fine-Tuning) برای تشخیص شیء (Object Detection)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Wang et al. Frustratingly simple few-shot object detection. arXiv 2020."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "امتیازهای میانگین دقت متوسط (mAP) برای آموزش با 1، 2، 3، 5 و 10 نمونه (Shots) برای هر رده"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "با اعتبارسنجی متقابل (Cross validation) روی 3 تقسیم‌بندی از VOC آزمایش شد"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "بهبودهای عملکردی مشابهی نیز روی دو مجموعه‌دادهٔ دیگر (COCO و LVIS) مشاهده شد"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Novel Set 1; Novel Set 2; Novel Set 3; Method / Shot; Backbone; Our Impl.; Ours",
+          "fa": "مجموعهٔ جدید 1؛ مجموعهٔ جدید 2؛ مجموعهٔ جدید 3؛ روش/تعداد نمونه (Shot)؛ شبکهٔ پایه (Backbone)؛ پیاده‌سازی ما (Our Impl.؛ نویسندگان مقاله)؛ روش ما (Ours؛ نویسندگان مقاله)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "56744c067eddc966d4dd40403b3a08ab5ebd0c411c463da169f3c194927e3fdb",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تنظیم دقیق (Fine-Tuning)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "محدودیت‌های این رویکرد برای کاربردهای دنیای واقعی چیست؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "- برای افزودن رده‌های جدید باید الگوریتم را دوباره آموزش داد"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "9f3e83aa7df523551a5424b428049594db1f090a6714cfd02edca0f93d217d96",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکردهای پرکاربرد (Popular Approaches)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• رویکرد زمان طراحی (Design-time): تنظیم دقیق (Fine-tuning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• رویکرد زمان اجرا (Run-time): فرایادگیری (Meta learning)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "ec9a1c99f216ce6f4f876d985e911f9e24f1ff80fe2a9b18b0fdf88695c372f7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "فرایادگیرنده (Meta Learner): به‌روزرسانی مدل با مجموعهٔ پشتیبان (Support Set)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Support Examples; Query Image; Few-Shot Segmentation",
+          "fa": "نمونه‌های پشتیبان (Support Examples)؛ تصویر پرس‌وجو (Query Image)؛ قطعه‌بندی کم‌نمونه (Few-Shot Segmentation)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "93ac5be55661fb881c8c2e3538f13d12ef554d7392939222a46ffb2ef1c0c7b5",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پیاده‌سازی: مدل آموزش‌دیده خود را به‌روزرسانی می‌کند تا به رده‌های مجموعهٔ پشتیبان (Support Set) تعمیم یابد"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://lilianweng.github.io/lil-log/2018/11/30/meta-learning.html"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "هدف: یادگیری ویژگی‌هایی هنگام آموزش که مستقل از کلاس (Class-agnostic) باشند و در نتیجه بتوانند به رده‌های جدید آزمون تعمیم یابند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Training; Testing; Train dataset #1: “cat-bird”; Train dataset #2: “flower-bike”; Test dataset: “dog-otter”; cats; birds; flowers; bikes; dogs; otters",
+          "fa": "آموزش (Training)؛ آزمون (Testing)؛ مجموعه‌دادهٔ آموزشی #1: «گربه–پرنده» (cat-bird)؛ مجموعه‌دادهٔ آموزشی #2: «گل–دوچرخه» (flower-bike)؛ مجموعه‌دادهٔ آزمون: «سگ–سمور آبی» (dog-otter)؛ گربه‌ها؛ پرندگان؛ گل‌ها؛ دوچرخه‌ها؛ سگ‌ها؛ سمورهای آبی",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "42fd16fbef83643c89112dbcff19e28a0aa837f273999b0141ca4989fbbe98a4",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پیاده‌سازی: مدل آموزش‌دیده خود را به‌روزرسانی می‌کند تا به رده‌های مجموعهٔ پشتیبان (Support Set) تعمیم یابد"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://lilianweng.github.io/lil-log/2018/11/30/meta-learning.html"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "هنگام آزمون چند نمونه (Shots) مشاهده می‌شود؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Training; Testing; Train dataset #1: “cat-bird”; Train dataset #2: “flower-bike”; Test dataset: “dog-otter”; cats; birds; flowers; bikes; dogs; otters",
+          "fa": "آموزش (Training)؛ آزمون (Testing)؛ مجموعه‌دادهٔ آموزشی #1: «گربه–پرنده» (cat-bird)؛ مجموعه‌دادهٔ آموزشی #2: «گل–دوچرخه» (flower-bike)؛ مجموعه‌دادهٔ آزمون: «سگ–سمور آبی» (dog-otter)؛ گربه‌ها؛ پرندگان؛ گل‌ها؛ دوچرخه‌ها؛ سگ‌ها؛ سمورهای آبی",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "a2003dee48ae9da78d1ae5a1f8852bb8c1e5960ac69c945d678eb4f1058383ad",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پیاده‌سازی: مدل آموزش‌دیده خود را به‌روزرسانی می‌کند تا به رده‌های مجموعهٔ پشتیبان (Support Set) تعمیم یابد"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://lilianweng.github.io/lil-log/2018/11/30/meta-learning.html"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "هنگام آموزش چند «نمونه» (Shots) باید مشاهده شود (باید با زمان آزمون مطابقت داشته باشد)؟"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "رویکرد: از مجموعه‌داده‌های موجود (برای مثال، ImageNet و VOC) نمونه‌ها (Shots) را نمونه‌گیری کنید؛ سپس هنگام آموزش، یک مجموعه‌داده را برای «آموزش» (Training) و دیگری را برای «پشتیبانی» (Support) استفاده کنید"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Training; Testing; Train dataset #1: “cat-bird”; Train dataset #2: “flower-bike”; Test dataset: “dog-otter”; cats; birds; flowers; bikes; dogs; otters",
+          "fa": "آموزش (Training)؛ آزمون (Testing)؛ مجموعه‌دادهٔ آموزشی #1: «گربه–پرنده» (cat-bird)؛ مجموعه‌دادهٔ آموزشی #2: «گل–دوچرخه» (flower-bike)؛ مجموعه‌دادهٔ آزمون: «سگ–سمور آبی» (dog-otter)؛ گربه‌ها؛ پرندگان؛ گل‌ها؛ دوچرخه‌ها؛ سگ‌ها؛ سمورهای آبی",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "ed31ec448df44bd89b558fb338054fc2e9be9e47c33a901da3896ac25ec8fe43",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پیاده‌سازی: مدل آموزش‌دیده خود را به‌روزرسانی می‌کند تا به رده‌های مجموعهٔ پشتیبان (Support Set) تعمیم یابد"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://lilianweng.github.io/lil-log/2018/11/30/meta-learning.html"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "با داشتن رده‌های پشتیبان (Support categories)، تشخیص دهید «پرس‌وجو» (Query) با کدام‌یک مطابقت دارد"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "در این مثال چند گزینهٔ رده وجود دارد؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Training; Testing; Train dataset #1: “cat-bird”; Train dataset #2: “flower-bike”; Test dataset: “dog-otter”; cats; birds; flowers; bikes; dogs; otters",
+          "fa": "آموزش (Training)؛ آزمون (Testing)؛ مجموعه‌دادهٔ آموزشی #1: «گربه–پرنده» (cat-bird)؛ مجموعه‌دادهٔ آموزشی #2: «گل–دوچرخه» (flower-bike)؛ مجموعه‌دادهٔ آزمون: «سگ–سمور آبی» (dog-otter)؛ گربه‌ها؛ پرندگان؛ گل‌ها؛ دوچرخه‌ها؛ سگ‌ها؛ سمورهای آبی",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "df682431b5f9736afe0682430ca3d5c081302751dea9594fcf25208a24243305",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پیاده‌سازی: مدل آموزش‌دیده خود را به‌روزرسانی می‌کند تا به رده‌های مجموعهٔ پشتیبان (Support Set) تعمیم یابد"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://lilianweng.github.io/lil-log/2018/11/30/meta-learning.html"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "به یاد آورید که رده‌های پشتیبان (Support categories) هرگز هنگام آموزش مشاهده نمی‌شوند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Training; Testing; Train dataset #1: “cat-bird”; Train dataset #2: “flower-bike”; Test dataset: “dog-otter”; cats; birds; flowers; bikes; dogs; otters",
+          "fa": "آموزش (Training)؛ آزمون (Testing)؛ مجموعه‌دادهٔ آموزشی #1: «گربه–پرنده» (cat-bird)؛ مجموعه‌دادهٔ آموزشی #2: «گل–دوچرخه» (flower-bike)؛ مجموعه‌دادهٔ آزمون: «سگ–سمور آبی» (dog-otter)؛ گربه‌ها؛ پرندگان؛ گل‌ها؛ دوچرخه‌ها؛ سگ‌ها؛ سمورهای آبی",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "eaa9542bae17f89356c2662b9e959fd9c45a97ffb067a0e0f0ea04c7274030fc",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پیاده‌سازی: مدل آموزش‌دیده خود را به‌روزرسانی می‌کند تا به رده‌های مجموعهٔ پشتیبان (Support Set) تعمیم یابد"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://lilianweng.github.io/lil-log/2018/11/30/meta-learning.html"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "چگونه مدلی را برای انجام این کار آموزش دهیم؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Training; Testing; Train dataset #1: “cat-bird”; Train dataset #2: “flower-bike”; Test dataset: “dog-otter”; cats; birds; flowers; bikes; dogs; otters",
+          "fa": "آموزش (Training)؛ آزمون (Testing)؛ مجموعه‌دادهٔ آموزشی #1: «گربه–پرنده» (cat-bird)؛ مجموعه‌دادهٔ آموزشی #2: «گل–دوچرخه» (flower-bike)؛ مجموعه‌دادهٔ آزمون: «سگ–سمور آبی» (dog-otter)؛ گربه‌ها؛ پرندگان؛ گل‌ها؛ دوچرخه‌ها؛ سگ‌ها؛ سمورهای آبی",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "a99c8b1c6952c4a5b7c90b83bbd2147a0a10c3b41e32895add994ea6129900a4",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پیاده‌سازی: مدل آموزش‌دیده خود را به‌روزرسانی می‌کند تا به رده‌های مجموعهٔ پشتیبان (Support Set) تعمیم یابد"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.youtube.com/watch?v=9j4iH9TPTd8"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Model Based; Adapted from Finn ’17",
+          "fa": "مبتنی بر مدل (Model Based)؛ اقتباس از Finn ’17",
+          "verified": true
+        },
+        {
+          "en": "Metric Based",
+          "fa": "مبتنی بر سنجه (Metric Based)",
+          "verified": true
+        },
+        {
+          "en": "Optimization Based; Learner; Meta-learner R (LSTM)",
+          "fa": "مبتنی بر بهینه‌سازی (Optimization Based)؛ یادگیرنده (Learner)؛ فرایادگیرنده (Meta-learner) R (LSTM)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": false,
+      "image_review_note_fa": "متن‌های خوانای دسته‌بندی روش‌های فرایادگیری ترجمه شده‌اند؛ زیرنویس‌های بسیار ریز معادله و نمودار مبتنی بر بهینه‌سازی هنوز کامل پیاده نشده‌اند."
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "eb437cfa1995d79e57a885d204f1470e6216e0929e3680ba9e13503f645fe4a3",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پیاده‌سازی: مدل آموزش‌دیده خود را به‌روزرسانی می‌کند تا به رده‌های مجموعهٔ پشتیبان (Support Set) تعمیم یابد"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.youtube.com/watch?v=9j4iH9TPTd8"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجو (Query)"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "پشتیبان (Support): داده + برچسب (Label)"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "برای مثال، شبکه‌های عصبی ناوردا نسبت به مجموعه (Set-invariant)، مانند شبکه‌های متکی بر توجه (Attention)، را برای یافتن شباهت یاد بگیرید"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Model Based; Adapted from Finn ’17",
+          "fa": "مبتنی بر مدل (Model Based)؛ اقتباس از Finn ’17",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "707b163e5610f12ae56f9ec885ccabe4f2a9bd83d4b29ba27e44e850e0151ff4",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پیاده‌سازی: مدل آموزش‌دیده خود را به‌روزرسانی می‌کند تا به رده‌های مجموعهٔ پشتیبان (Support Set) تعمیم یابد"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.youtube.com/watch?v=9j4iH9TPTd8"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجو (Query)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "پشتیبان (Support)"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجو (Query) را با هر ردهٔ پشتیبان (Support category) مقایسه کنید؛ برای مثال، برای هر مجموعهٔ پشتیبان یک «نمونهٔ نماینده» (Prototype) بسازید"
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "reference",
+          "fa": "https://lilianweng.github.io/posts/2018-11-30-meta-learning/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Metric Based",
+          "fa": "مبتنی بر سنجه (Metric Based)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "bcfc04d5ad72e43307f9dce6a0593f5a61318576f72de0f0a71b1360c9b82c42",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پیاده‌سازی: مدل آموزش‌دیده خود را به‌روزرسانی می‌کند تا به رده‌های مجموعهٔ پشتیبان (Support Set) تعمیم یابد"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.youtube.com/watch?v=9j4iH9TPTd8"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "تابعی که باید بهینه شود، به مجموعهٔ پشتیبان (Support set) مشروط است؛ برای مثال، دروازهٔ «فراموشی» (Forget gate) در LSTM را تنظیم کنید"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Optimization Based; Learner; Meta-learner R (LSTM)",
+          "fa": "مبتنی بر بهینه‌سازی (Optimization Based)؛ یادگیرنده (Learner)؛ فرایادگیرنده (Meta-learner) R (LSTM)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": false,
+      "image_review_note_fa": "متن‌های خوانای دسته‌بندی روش‌های فرایادگیری ترجمه شده‌اند؛ زیرنویس‌های بسیار ریز معادله و نمودار مبتنی بر بهینه‌سازی هنوز کامل پیاده نشده‌اند."
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "691f8dac6b18a79c528ff891eb2697097a644eae8f82f30216345b8156ae8599",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پیاده‌سازی: مدل آموزش‌دیده خود را به‌روزرسانی می‌کند تا به رده‌های مجموعهٔ پشتیبان (Support Set) تعمیم یابد"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://lilianweng.github.io/lil-log/2018/11/30/meta-learning.html"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "پس از آموزش، مدل را می‌توان در شرایط واقعی (In the wild) برای رده‌های جدید به کار گرفت"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Training; Testing; Train dataset #1: “cat-bird”; Train dataset #2: “flower-bike”; Test dataset: “dog-otter”; cats; birds; flowers; bikes; dogs; otters",
+          "fa": "آموزش (Training)؛ آزمون (Testing)؛ مجموعه‌دادهٔ آموزشی #1: «گربه–پرنده» (cat-bird)؛ مجموعه‌دادهٔ آموزشی #2: «گل–دوچرخه» (flower-bike)؛ مجموعه‌دادهٔ آزمون: «سگ–سمور آبی» (dog-otter)؛ گربه‌ها؛ پرندگان؛ گل‌ها؛ دوچرخه‌ها؛ سگ‌ها؛ سمورهای آبی",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "4a9691fc033e99586e33373936d05c04fd031843b9872bdf69d079a05e7f258e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "فرایادگیرنده (Meta Learner): به‌روزرسانی مدل با مجموعهٔ پشتیبان (Support Set)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "محدودیت‌های این رویکرد برای کاربردهای دنیای واقعی چیست؟"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "- برای پردازش مجموعهٔ پشتیبان (Support set)، علاوه بر مجموعهٔ پرس‌وجو (Query set)، به حافظهٔ زیادی نیاز دارد"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "Bronskill et al. Memory Efficient Meta-Learning with Large Images. Neurips 2021."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "9f3e83aa7df523551a5424b428049594db1f090a6714cfd02edca0f93d217d96",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکردهای پرکاربرد (Popular Approaches)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• رویکرد زمان طراحی (Design-time): تنظیم دقیق (Fine-tuning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• رویکرد زمان اجرا (Run-time): فرایادگیری (Meta learning)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "2c2167d539e42a3a9512b496b7ad326795d672f6cc920f2dfd20c92beb6f743a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری چندوظیفه‌ای (Multi-task learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری کم‌نمونه (Few-shot learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری بی‌نمونه (Zero-shot learning)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "0422650b7c4e848b3cc8f088c96721199a0e3320c855d720038486af479077fc",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور: رویکردهای انتقال یادگیری (Transfer Learning Approaches)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Kamath et al. Deep Learning for NLP and Speech Recognition. 2019."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Labeled data available in source?; No; Yes; Labeled data available in target?",
+          "fa": "آیا در مبدأ دادهٔ برچسب‌دار موجود است؟؛ خیر؛ بله؛ آیا در هدف دادهٔ برچسب‌دار موجود است؟",
+          "verified": true
+        },
+        {
+          "en": "Different tasks and learn together?; Same tasks but different Domain?; Domain Adaptation",
+          "fa": "آیا وظیفه‌ها متفاوت‌اند و با هم یاد گرفته می‌شوند؟؛ آیا وظیفه‌ها یکسان اما دامنه متفاوت است؟؛ سازگارسازی دامنه (Domain Adaptation)",
+          "verified": true
+        },
+        {
+          "en": "Self-Taught Learning; Multi-task Learning; Zero-shot Learning; One-shot Learning; Few-shot Learning",
+          "fa": "یادگیری خودآموخته (Self-Taught Learning)؛ یادگیری چندوظیفه‌ای (Multi-task Learning)؛ یادگیری بی‌نمونه (Zero-shot Learning)؛ یادگیری تک‌نمونه (One-shot Learning)؛ یادگیری کم‌نمونه (Few-shot Learning)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "4ffdce9e7934b6ac3ea48f4eeb11b70e39cf9e63e25ee047a2606baca50d713e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "درک شهودی (Intuition): دانش کنونی را تعمیم دهید تا به‌سرعت به رده‌های جدید تعمیم یابید"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "این چیست؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "فکر می‌کنید برای تشخیص یک نمونهٔ دیگر از این‌ها باید چند نمونه ببینید؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "5abfa1a6a012a82926abf18b6aa4d0bfc51306db97a9172447c191a890be0665",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "درک شهودی (Intuition): دانش کنونی را تعمیم دهید تا به‌سرعت به رده‌های جدید تعمیم یابید"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "اگر می‌دانستید این موجود از ترکیب انسان در بالا و اسب در پایین تشکیل شده است، می‌توانستید 0 نمونه دیده باشید"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "29319703f30aaa19f44a5fed0b27a6e887be2bfa5f67e98678d6beb9cfb3657c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "درک شهودی (Intuition): دانش کنونی را تعمیم دهید تا به‌سرعت به رده‌های جدید تعمیم یابید"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "اگر می‌دانستید گورخر شبیه اسبی با نوارهای سیاه‌وسفید است، می‌توانستید 0 نمونه از گورخر دیده باشید"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "af782ab7d1085da8f90e2e5f65734965b63eb52bd753ec4fe5b61f71253e813c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایدهٔ اصلی: از برچسب‌های کمکی (Auxiliary Labels) یاد بگیرید چگونه وظیفه‌ای متفاوت را با صفر نمونهٔ آموزشی انجام دهید"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "5c9bf785f66be74050931c92005e2e7aa7ba0beadd0fc77eabee5d331915935a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکردهای پرکاربرد (Popular Approaches)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• بازنمایی صفت (Attribute representation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• بازنمایی متن (Text representation): GPT-2 و GPT-3"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• بازنمایی مشترک تصویر–زبان (Joint image-language representation): CLIP"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "5c9bf785f66be74050931c92005e2e7aa7ba0beadd0fc77eabee5d331915935a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکردهای پرکاربرد (Popular Approaches)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• بازنمایی صفت (Attribute representation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• بازنمایی متن (Text representation): GPT-2 و GPT-3"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• بازنمایی مشترک تصویر–زبان (Joint image-language representation): CLIP"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "a59a67d7831779fd318c92dd0969da876a76c2eb65abd230e613e4f0780cc3ed",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "یادگیری فضای بازنمایی برداری مشترک (Common Embedding Space) برای ویژگی‌های تصویر و صفات معنایی (Semantic Attributes)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://learnopencv.com/zero-shot-learning-an-introduction/"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "برچسب‌های صفت کمکی (Auxiliary attribute labels) را یاد می‌گیرد"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Cat image; Feature Extractor; N dim; Projection Network; Compatibility loss module; Loss; Hidden Layer; Output Layer; feature vector; output vector; Cat attribute vector",
+          "fa": "تصویر گربه؛ استخراج‌گر ویژگی (Feature Extractor)؛ Nبُعدی؛ شبکهٔ تصویرسازی (Projection Network)؛ واحد زیان سازگاری (Compatibility loss module)؛ زیان؛ لایهٔ پنهان؛ لایهٔ خروجی؛ بردار ویژگی؛ بردار خروجی؛ بردار صفات گربه",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "5c9bf785f66be74050931c92005e2e7aa7ba0beadd0fc77eabee5d331915935a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکردهای پرکاربرد (Popular Approaches)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• بازنمایی صفت (Attribute representation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• بازنمایی متن (Text representation): GPT-2 و GPT-3"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• بازنمایی مشترک تصویر–زبان (Joint image-language representation): CLIP"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "30f149e4a30abac2577ef0e0c173962ba27c9dcb4138c2226dffd7ac06cd7d82",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یادآوری: رشد اندازهٔ ترنسفورمرها (Transformers)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://medium.com/building-the-metaverse/the-metaverse-and-artificial-intelligence-ai-577343895411"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "BILLIONS OF PARAMETERS; DEEP LEARNING TRANSFORMERS GREW >1,000,000% FROM 2018–2021; GPT-4 (Estimated)",
+          "fa": "میلیارد پارامتر؛ ترنسفورمرهای یادگیری عمیق (Deep Learning Transformers) از 2018 تا 2021 بیش از 1,000,000% رشد کردند؛ GPT-4 (برآوردی)",
+          "verified": true
+        },
+        {
+          "en": "GPT; GPT-2; GPT-3; Google BERT-Large; NVIDIA Megatron LM; Microsoft Turing NLG; Google Brain; Jun-18; Dec-18; Jun-19; Dec-19; Jun-20; Dec-20; Jun-21",
+          "fa": "GPT؛ GPT-2؛ GPT-3؛ Google BERT-Large؛ NVIDIA Megatron LM؛ Microsoft Turing NLG؛ Google Brain؛ ژوئن 2018؛ دسامبر 2018؛ ژوئن 2019؛ دسامبر 2019؛ ژوئن 2020؛ دسامبر 2020؛ ژوئن 2021",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "0c015f4e9c9a34121828e094461183c9979f27e3ab199bd2b2410662b0057ee0",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "GPT-2/3 از همان رمزگشای (Decoder) GPT-1 استفاده می‌کنند که از ترنسفورمر (Transformer) اصلی گرفته شده است، اما با افزایش اندازهٔ بافت (Context size) و تعداد بلوک‌های روی‌هم‌قرارگرفته، پارامترهای بسیار بیشتری دارند (برای مثال، 175 میلیارد)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "معماری همهٔ GPT-nها"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Text Prediction; Layer Norm; Feed Forward; Masked Multi Self Attention; Text & Position Embed; 12×",
+          "fa": "پیش‌بینی متن (Text Prediction)؛ نرمال‌سازی لایه (Layer Norm)؛ پیش‌خور (Feed Forward)؛ خودتوجهی چندگانهٔ ماسک‌شده (Masked Multi Self Attention)؛ بازنمایی برداری متن و موقعیت (Text & Position Embed)؛ 12×",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "ad67997bb1a42592c4e0a82e69efa7e6c7d15f490c712d765338e9ae771ac1ad",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "مقدار بیشتری دادهٔ آموزشی استفاده می‌شود و آموزش برای مدت طولانی‌تری انجام می‌گیرد"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "پیش‌آموزش (Pretraining) GPT-n"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Text Prediction; Layer Norm; Feed Forward; Masked Multi Self Attention; Text & Position Embed; 12×",
+          "fa": "پیش‌بینی متن (Text Prediction)؛ نرمال‌سازی لایه (Layer Norm)؛ پیش‌خور (Feed Forward)؛ خودتوجهی چندگانهٔ ماسک‌شده (Masked Multi Self Attention)؛ بازنمایی برداری متن و موقعیت (Text & Position Embed)؛ 12×",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "fa06b080656e6c1b23fe3c949ecbc362c78d0118403cddc95058b1364315e941",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برای مثال،"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "1. Background music from a _______ (موسیقی پس‌زمینه از یک _______)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "2. Many people danced around the _______ (افراد زیادی دورِ _______ رقصیدند)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "3. I practiced for many years to learn how to play the _______ (سال‌های زیادی تمرین کردم تا یاد بگیرم چگونه _______ بنوازم)"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "وظیفهٔ پیش‌آموزش (Pretraining) برای همهٔ GPT-nها: پیش‌بینی واژهٔ بعدی با داشتن واژه‌های پیشین"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "ff937a1d89f3028f593c3c99bce2871a614ab5237c9c518ce9a10cba21970d61",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "عملکرد بی‌نمونه/کم‌نمونه (Zero/Few-Shot) روی بیش از 24 مجموعه‌داده ارزیابی شد"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "e41e3af9deb2b89203280a3a9c09fba79dfab22c05d0f798e3217e8c126dab62",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، ترجمه (Translation)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Brown et al. Language Models are Few-Shot Learners. Neurips 2020."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Zero-shot; The model predicts the answer given only a natural language description of the task. No gradient updates are performed.",
+          "fa": "بی‌نمونه (Zero-shot)؛ مدل فقط با دریافت توصیف وظیفه به زبان طبیعی پاسخ را پیش‌بینی می‌کند. هیچ به‌روزرسانی گرادیانی انجام نمی‌شود.",
+          "verified": true
+        },
+        {
+          "en": "Translate English to French: cheese =>",
+          "fa": "Translate English to French: cheese => (انگلیسی را به فرانسوی ترجمه کن: پنیر =>)",
+          "verified": true
+        },
+        {
+          "en": "task description; prompt",
+          "fa": "توصیف وظیفه (Task description)؛ ورودی راهنما (Prompt)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "8a087fa52fc59a30bc0356af886efc6daf8b312572ebd86d3ca14841db0220de",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، تولید مقالهٔ خبری (News Article Generation)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Brown et al. Language Models are Few-Shot Learners. Neurips 2020."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "عنوان‌ها و زیرعنوان‌های مقاله برای مقداردهی اولیه (Initialization) ارائه شدند:"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Title: United Methodists Agree to Historic Split; Subtitle: Those who oppose gay marriage will form their own denomination",
+          "fa": "عنوان: متدیست‌های متحد بر سر جدایی تاریخی توافق می‌کنند؛ زیرعنوان: کسانی که با ازدواج همجنس‌ها مخالف‌اند، فرقهٔ خودشان را تشکیل خواهند داد",
+          "verified": true
+        },
+        {
+          "en": "Article: After two days of intense debate, the United Methodist Church has agreed to a historic split - one that is expected to end in the creation of a new denomination, one that will be “theologically and socially conservative,” according to The Washington Post. The majority of delegates attending the church’s annual General Conference in May voted to strengthen a ban on the ordination of LGBTQ clergy and to write new rules that will “discipline” clergy who officiate at same-sex weddings. But those who opposed these measures have a new plan: They say they will form a separate denomination by 2020, calling their church the Christian Methodist denomination.",
+          "fa": "مقاله: پس از دو روز بحث شدید، کلیسای متدیست متحد با جدایی تاریخی توافق کرده است؛ جدایی‌ای که انتظار می‌رود به ایجاد فرقه‌ای جدید منجر شود که به‌گزارش واشینگتن‌پست «از نظر الهیاتی و اجتماعی محافظه‌کار» خواهد بود. اکثریت نمایندگان حاضر در کنفرانس عمومی سالانهٔ کلیسا در ماه مه به تقویت ممنوعیت انتصاب روحانیان LGBTQ و تدوین مقررات جدیدی رأی دادند که روحانیان برگزارکنندهٔ ازدواج همجنس‌ها را «تنبیه» خواهد کرد. اما مخالفان این اقدامات برنامهٔ جدیدی دارند: می‌گویند تا سال 2020 فرقه‌ای جداگانه تشکیل خواهند داد و کلیسایشان را فرقهٔ متدیست مسیحی خواهند نامید.",
+          "verified": true
+        },
+        {
+          "en": "The Post notes that the denomination, which claims 12.5 million members, was in the early 20th century the “largest Protestant denomination in the U.S.,” but that it has been shrinking in recent decades. The new split will be the second in the church’s history. The first occurred in 1968, when roughly 10 percent of the denomination left to form the Evangelical United Brethren Church.",
+          "fa": "پست می‌نویسد این فرقه، که مدعی داشتن 12.5 میلیون عضو است، در اوایل قرن بیستم «بزرگ‌ترین فرقهٔ پروتستان در آمریکا» بود، اما در دهه‌های اخیر کوچک‌تر شده است. جدایی جدید، دومین جدایی در تاریخ کلیسا خواهد بود. نخستین مورد در 1968 رخ داد، زمانی که حدود 10 درصد از اعضای فرقه جدا شدند تا کلیسای برادران متحد انجیلی را تشکیل دهند.",
+          "verified": true
+        },
+        {
+          "en": "The Post notes that the proposed split “comes at a critical time for the church, which has been losing members for years,” which has been “pushed toward the brink of a schism over the role of LGBTQ people in the church.” Gay marriage is not the only issue that has divided the church. In 2016, the denomination was split over ordination of transgender clergy, with the North Pacific regional conference voting to ban them from serving as clergy, and the South Pacific regional conference voting to allow them.",
+          "fa": "پست می‌نویسد جدایی پیشنهادی «در زمانی بحرانی برای کلیسا مطرح می‌شود که سال‌هاست اعضای خود را از دست می‌دهد» و «بر سر نقش افراد LGBTQ در کلیسا به آستانهٔ انشقاق رانده شده است». ازدواج همجنس‌ها تنها موضوعی نیست که کلیسا را تقسیم کرده است. در 2016، فرقه بر سر انتصاب روحانیان تراجنسیتی دچار اختلاف بود؛ کنفرانس منطقه‌ای اقیانوس آرام شمالی به ممنوعیت فعالیت آن‌ها به‌عنوان روحانی رأی داد و کنفرانس منطقه‌ای اقیانوس آرام جنوبی به مجازبودن آن رأی داد.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "582d539183cf3962469a001e5f2152a00fdfade63cccf93279a2cc711c1c9eba",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، تولید مقالهٔ خبری (News Article Generation)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Brown et al. Language Models are Few-Shot Learners. Neurips 2020."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "انسان‌ها فقط برای 52% از مقاله‌های نمایش‌داده‌شده توانستند مقاله‌های تولیدشدهٔ GPT-3 را از مقاله‌های واقعی تشخیص دهند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Title: United Methodists Agree to Historic Split; Subtitle: Those who oppose gay marriage will form their own denomination",
+          "fa": "عنوان: متدیست‌های متحد بر سر جدایی تاریخی توافق می‌کنند؛ زیرعنوان: کسانی که با ازدواج همجنس‌ها مخالف‌اند، فرقهٔ خودشان را تشکیل خواهند داد",
+          "verified": true
+        },
+        {
+          "en": "Article: After two days of intense debate, the United Methodist Church has agreed to a historic split - one that is expected to end in the creation of a new denomination, one that will be “theologically and socially conservative,” according to The Washington Post. The majority of delegates attending the church’s annual General Conference in May voted to strengthen a ban on the ordination of LGBTQ clergy and to write new rules that will “discipline” clergy who officiate at same-sex weddings. But those who opposed these measures have a new plan: They say they will form a separate denomination by 2020, calling their church the Christian Methodist denomination.",
+          "fa": "مقاله: پس از دو روز بحث شدید، کلیسای متدیست متحد با جدایی تاریخی توافق کرده است؛ جدایی‌ای که انتظار می‌رود به ایجاد فرقه‌ای جدید منجر شود که به‌گزارش واشینگتن‌پست «از نظر الهیاتی و اجتماعی محافظه‌کار» خواهد بود. اکثریت نمایندگان حاضر در کنفرانس عمومی سالانهٔ کلیسا در ماه مه به تقویت ممنوعیت انتصاب روحانیان LGBTQ و تدوین مقررات جدیدی رأی دادند که روحانیان برگزارکنندهٔ ازدواج همجنس‌ها را «تنبیه» خواهد کرد. اما مخالفان این اقدامات برنامهٔ جدیدی دارند: می‌گویند تا سال 2020 فرقه‌ای جداگانه تشکیل خواهند داد و کلیسایشان را فرقهٔ متدیست مسیحی خواهند نامید.",
+          "verified": true
+        },
+        {
+          "en": "The Post notes that the denomination, which claims 12.5 million members, was in the early 20th century the “largest Protestant denomination in the U.S.,” but that it has been shrinking in recent decades. The new split will be the second in the church’s history. The first occurred in 1968, when roughly 10 percent of the denomination left to form the Evangelical United Brethren Church.",
+          "fa": "پست می‌نویسد این فرقه، که مدعی داشتن 12.5 میلیون عضو است، در اوایل قرن بیستم «بزرگ‌ترین فرقهٔ پروتستان در آمریکا» بود، اما در دهه‌های اخیر کوچک‌تر شده است. جدایی جدید، دومین جدایی در تاریخ کلیسا خواهد بود. نخستین مورد در 1968 رخ داد، زمانی که حدود 10 درصد از اعضای فرقه جدا شدند تا کلیسای برادران متحد انجیلی را تشکیل دهند.",
+          "verified": true
+        },
+        {
+          "en": "The Post notes that the proposed split “comes at a critical time for the church, which has been losing members for years,” which has been “pushed toward the brink of a schism over the role of LGBTQ people in the church.” Gay marriage is not the only issue that has divided the church. In 2016, the denomination was split over ordination of transgender clergy, with the North Pacific regional conference voting to ban them from serving as clergy, and the South Pacific regional conference voting to allow them.",
+          "fa": "پست می‌نویسد جدایی پیشنهادی «در زمانی بحرانی برای کلیسا مطرح می‌شود که سال‌هاست اعضای خود را از دست می‌دهد» و «بر سر نقش افراد LGBTQ در کلیسا به آستانهٔ انشقاق رانده شده است». ازدواج همجنس‌ها تنها موضوعی نیست که کلیسا را تقسیم کرده است. در 2016، فرقه بر سر انتصاب روحانیان تراجنسیتی دچار اختلاف بود؛ کنفرانس منطقه‌ای اقیانوس آرام شمالی به ممنوعیت فعالیت آن‌ها به‌عنوان روحانی رأی داد و کنفرانس منطقه‌ای اقیانوس آرام جنوبی به مجازبودن آن رأی داد.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "9a19751e4ffa1bc5c73f8ebb225af2781be45571cc379c0dac75e5fd35cb278a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، تولید مقالهٔ خبری (News Article Generation)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Brown et al. Language Models are Few-Shot Learners. Neurips 2020."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "با توجه به توانایی GPT در تولید اطلاعات نادرست (Misinformation) به‌شکلی قانع‌کننده، فکر می‌کنید مدل باید در دسترس عموم قرار گیرد؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Title: United Methodists Agree to Historic Split; Subtitle: Those who oppose gay marriage will form their own denomination",
+          "fa": "عنوان: متدیست‌های متحد بر سر جدایی تاریخی توافق می‌کنند؛ زیرعنوان: کسانی که با ازدواج همجنس‌ها مخالف‌اند، فرقهٔ خودشان را تشکیل خواهند داد",
+          "verified": true
+        },
+        {
+          "en": "Article: After two days of intense debate, the United Methodist Church has agreed to a historic split - one that is expected to end in the creation of a new denomination, one that will be “theologically and socially conservative,” according to The Washington Post. The majority of delegates attending the church’s annual General Conference in May voted to strengthen a ban on the ordination of LGBTQ clergy and to write new rules that will “discipline” clergy who officiate at same-sex weddings. But those who opposed these measures have a new plan: They say they will form a separate denomination by 2020, calling their church the Christian Methodist denomination.",
+          "fa": "مقاله: پس از دو روز بحث شدید، کلیسای متدیست متحد با جدایی تاریخی توافق کرده است؛ جدایی‌ای که انتظار می‌رود به ایجاد فرقه‌ای جدید منجر شود که به‌گزارش واشینگتن‌پست «از نظر الهیاتی و اجتماعی محافظه‌کار» خواهد بود. اکثریت نمایندگان حاضر در کنفرانس عمومی سالانهٔ کلیسا در ماه مه به تقویت ممنوعیت انتصاب روحانیان LGBTQ و تدوین مقررات جدیدی رأی دادند که روحانیان برگزارکنندهٔ ازدواج همجنس‌ها را «تنبیه» خواهد کرد. اما مخالفان این اقدامات برنامهٔ جدیدی دارند: می‌گویند تا سال 2020 فرقه‌ای جداگانه تشکیل خواهند داد و کلیسایشان را فرقهٔ متدیست مسیحی خواهند نامید.",
+          "verified": true
+        },
+        {
+          "en": "The Post notes that the denomination, which claims 12.5 million members, was in the early 20th century the “largest Protestant denomination in the U.S.,” but that it has been shrinking in recent decades. The new split will be the second in the church’s history. The first occurred in 1968, when roughly 10 percent of the denomination left to form the Evangelical United Brethren Church.",
+          "fa": "پست می‌نویسد این فرقه، که مدعی داشتن 12.5 میلیون عضو است، در اوایل قرن بیستم «بزرگ‌ترین فرقهٔ پروتستان در آمریکا» بود، اما در دهه‌های اخیر کوچک‌تر شده است. جدایی جدید، دومین جدایی در تاریخ کلیسا خواهد بود. نخستین مورد در 1968 رخ داد، زمانی که حدود 10 درصد از اعضای فرقه جدا شدند تا کلیسای برادران متحد انجیلی را تشکیل دهند.",
+          "verified": true
+        },
+        {
+          "en": "The Post notes that the proposed split “comes at a critical time for the church, which has been losing members for years,” which has been “pushed toward the brink of a schism over the role of LGBTQ people in the church.” Gay marriage is not the only issue that has divided the church. In 2016, the denomination was split over ordination of transgender clergy, with the North Pacific regional conference voting to ban them from serving as clergy, and the South Pacific regional conference voting to allow them.",
+          "fa": "پست می‌نویسد جدایی پیشنهادی «در زمانی بحرانی برای کلیسا مطرح می‌شود که سال‌هاست اعضای خود را از دست می‌دهد» و «بر سر نقش افراد LGBTQ در کلیسا به آستانهٔ انشقاق رانده شده است». ازدواج همجنس‌ها تنها موضوعی نیست که کلیسا را تقسیم کرده است. در 2016، فرقه بر سر انتصاب روحانیان تراجنسیتی دچار اختلاف بود؛ کنفرانس منطقه‌ای اقیانوس آرام شمالی به ممنوعیت فعالیت آن‌ها به‌عنوان روحانی رأی داد و کنفرانس منطقه‌ای اقیانوس آرام جنوبی به مجازبودن آن رأی داد.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "5c9bf785f66be74050931c92005e2e7aa7ba0beadd0fc77eabee5d331915935a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکردهای پرکاربرد (Popular Approaches)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• بازنمایی صفت (Attribute representation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• بازنمایی متن (Text representation): GPT-2 و GPT-3"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• بازنمایی مشترک تصویر–زبان (Joint image-language representation): CLIP"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "e21f08d872820c98a2a8910a92c5446aea5661bd4fd62666ca9e456f2ea35cb1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پیش‌آموزش تقابلی زبان–تصویر (Contrastive Language-Image Pretraining; CLIP)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "پیش‌آموزش (Pre-training): با 400 میلیون جفت تصویر–متن یافت‌شده در اینترنت (یعنی داده‌های کمکی بدون ساختار) یاد می‌گیرد که یک رمزگذار تصویر (Image encoder) و یک رمزگذار متن (Text encoder) برای محتوای مشابه بازنمایی مشابهی داشته باشند (و در نتیجه برای محتوای بصری مشابه، کدگذاری‌های مشابهی تولید کنند) (برای همهٔ ترکیب‌ها پیش‌بینی می‌کند کدام جفت‌های تصویر–متن با هم مطابقت دارند)"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Learning Transferable Visual Models From Natural Language Supervision. ICML 2021."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Text Encoder; Image Encoder",
+          "fa": "رمزگذار متن (Text Encoder)؛ رمزگذار تصویر (Image Encoder)",
+          "verified": true
+        },
+        {
+          "en": "Pepper the aussie pup",
+          "fa": "Pepper the aussie pup (پپر، توله‌سگ استرالیایی)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "191914cdf80dc374c1563b1bd6d93decacb74593771c606f824708cd61df2319",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پیش‌آموزش تقابلی زبان–تصویر (Contrastive Language-Image Pretraining; CLIP): معماری"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Learning Transferable Visual Models From Natural Language Supervision. ICML 2021."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "با یک ترنسفورمر بصری (Visual transformer; ViT) آزمایش شد"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "با یک ترنسفورمر متنی (Text transformer؛ GPT-2) آزمایش شد"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Text Encoder; Image Encoder",
+          "fa": "رمزگذار متن (Text Encoder)؛ رمزگذار تصویر (Image Encoder)",
+          "verified": true
+        },
+        {
+          "en": "Pepper the aussie pup",
+          "fa": "Pepper the aussie pup (پپر، توله‌سگ استرالیایی)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "dbd13afbd7de8f3ae944ba43df48d24b12a861967576ea900d43e48bc5cc9e18",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "عملکرد بی‌نمونه (Zero-Shot) روی بیش از 30 مجموعه‌داده ارزیابی شد"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "b468cdcf74a5953d2393a53cbf2eb716d68042cd3b26e26f37a583b2ac5ec7aa",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پیش‌آموزش تقابلی زبان–تصویر (Contrastive Language-Image Pretraining; CLIP)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/understanding-zero-shot-learning-making-ml-more-human-4653ac35ccab"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "برای مثال، طبقه‌بندی بی‌نمونه (Zero-shot classification): با رمزگذار ازپیش‌آموزش‌دیده، بازنمایی‌های همهٔ برچسب‌های نامزد (برای مثال، گونه‌های جانوری) را تنظیم کنید؛ سپس بر اساس شباهت کسینوسی (Cosine similarity) به رده‌های نامزد، ردهٔ محتوای تصویر را پیش‌بینی کنید"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Text Encoder; Image Encoder",
+          "fa": "رمزگذار متن (Text Encoder)؛ رمزگذار تصویر (Image Encoder)",
+          "verified": true
+        },
+        {
+          "en": "Penguin; Panda; Spiny lumpsucker; Highest Score: Panda",
+          "fa": "Penguin; Panda; Spiny lumpsucker; Highest Score: Panda (پنگوئن؛ پاندا؛ ماهی مکندهٔ خاردار؛ بالاترین امتیاز: پاندا)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "50c420d7de6c39150d4f9e47cef1622156939450440073fb9b3afad284f8453c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پیش‌آموزش تقابلی زبان–تصویر (Contrastive Language-Image Pretraining; CLIP)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "برای مثال، طبقه‌بندی بی‌نمونه (Zero-shot classification): در 16 مورد از 27 مجموعه‌داده، از طبقه‌بند نظارت‌شدهٔ مبتنی بر ResNet بهتر عمل می‌کند"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Learning Transferable Visual Models From Natural Language Supervision. ICML 2021."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Δ Score (%)",
+          "fa": "تغییر امتیاز (%) (Δ Score)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "79b61450272abbc56b7bb1d29778b5269bb23ddf171c6dff193c91e1ffbc4bb6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پیش‌آموزش تقابلی زبان–تصویر (Contrastive Language-Image Pretraining; CLIP): نتایج کیفی"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Learning Transferable Visual Models From Natural Language Supervision. ICML 2021."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "correct label; correct label(s); correct rank; correct probability",
+          "fa": "برچسب درست؛ برچسب(های) درست؛ رتبهٔ درست؛ احتمال درست",
+          "verified": true
+        },
+        {
+          "en": "guacamole; television studio; correct rank: 1/101; correct probability: 90.15%; correct rank: 1/397; correct probability: 90.22%",
+          "fa": "گواکاموله؛ استودیوی تلویزیون؛ رتبهٔ درست: 1/101؛ احتمال درست: 90.15%؛ رتبهٔ درست: 1/397؛ احتمال درست: 90.22%",
+          "verified": true
+        },
+        {
+          "en": "a photo of guacamole, a type of food.",
+          "fa": "a photo of guacamole, a type of food. (عکسی از گواکاموله، نوعی غذا.)",
+          "verified": true
+        },
+        {
+          "en": "a photo of ceviche, a type of food.",
+          "fa": "a photo of ceviche, a type of food. (عکسی از سویچه، نوعی غذا.)",
+          "verified": true
+        },
+        {
+          "en": "a photo of edamame, a type of food.",
+          "fa": "a photo of edamame, a type of food. (عکسی از ادامامه، نوعی غذا.)",
+          "verified": true
+        },
+        {
+          "en": "a photo of tuna tartare, a type of food.",
+          "fa": "a photo of tuna tartare, a type of food. (عکسی از تارتار ماهی تن، نوعی غذا.)",
+          "verified": true
+        },
+        {
+          "en": "a photo of hummus, a type of food.",
+          "fa": "a photo of hummus, a type of food. (عکسی از حمص، نوعی غذا.)",
+          "verified": true
+        },
+        {
+          "en": "a photo of a television studio.",
+          "fa": "a photo of a television studio. (عکسی از استودیوی تلویزیون.)",
+          "verified": true
+        },
+        {
+          "en": "a photo of a podium indoor.",
+          "fa": "a photo of a podium indoor. (عکسی از جایگاه سخنرانی در فضای داخلی.)",
+          "verified": true
+        },
+        {
+          "en": "a photo of a conference room.",
+          "fa": "a photo of a conference room. (عکسی از اتاق کنفرانس.)",
+          "verified": true
+        },
+        {
+          "en": "a photo of a lecture room.",
+          "fa": "a photo of a lecture room. (عکسی از کلاس سخنرانی.)",
+          "verified": true
+        },
+        {
+          "en": "a photo of a control room.",
+          "fa": "a photo of a control room. (عکسی از اتاق کنترل.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "79b61450272abbc56b7bb1d29778b5269bb23ddf171c6dff193c91e1ffbc4bb6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پیش‌آموزش تقابلی زبان–تصویر (Contrastive Language-Image Pretraining; CLIP): نتایج کیفی"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Learning Transferable Visual Models From Natural Language Supervision. ICML 2021."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "correct label; correct label(s); correct rank; correct probability",
+          "fa": "برچسب درست؛ برچسب(های) درست؛ رتبهٔ درست؛ احتمال درست",
+          "verified": true
+        },
+        {
+          "en": "airplane,person; annual crop land; correct rank: 1/23; correct probability: 88.98%; correct rank: 4/10; correct probability: 12.90%",
+          "fa": "هواپیما، شخص؛ زمین کشت سالانه؛ رتبهٔ درست: 1/23؛ احتمال درست: 88.98%؛ رتبهٔ درست: 4/10؛ احتمال درست: 12.90%",
+          "verified": true
+        },
+        {
+          "en": "a photo of a airplane.",
+          "fa": "a photo of a airplane. (عکسی از یک هواپیما.)",
+          "verified": true
+        },
+        {
+          "en": "a photo of a bird.",
+          "fa": "a photo of a bird. (عکسی از یک پرنده.)",
+          "verified": true
+        },
+        {
+          "en": "a photo of a bear.",
+          "fa": "a photo of a bear. (عکسی از یک خرس.)",
+          "verified": true
+        },
+        {
+          "en": "a photo of a giraffe.",
+          "fa": "a photo of a giraffe. (عکسی از یک زرافه.)",
+          "verified": true
+        },
+        {
+          "en": "a photo of a car.",
+          "fa": "a photo of a car. (عکسی از یک خودرو.)",
+          "verified": true
+        },
+        {
+          "en": "a centered satellite photo of permanent crop land.",
+          "fa": "a centered satellite photo of permanent crop land. (عکس ماهواره‌ای مرکزگذاری‌شده از زمین کشت دائمی.)",
+          "verified": true
+        },
+        {
+          "en": "a centered satellite photo of pasture land.",
+          "fa": "a centered satellite photo of pasture land. (عکس ماهواره‌ای مرکزگذاری‌شده از چراگاه.)",
+          "verified": true
+        },
+        {
+          "en": "a centered satellite photo of highway or road.",
+          "fa": "a centered satellite photo of highway or road. (عکس ماهواره‌ای مرکزگذاری‌شده از بزرگراه یا جاده.)",
+          "verified": true
+        },
+        {
+          "en": "a centered satellite photo of annual crop land.",
+          "fa": "a centered satellite photo of annual crop land. (عکس ماهواره‌ای مرکزگذاری‌شده از زمین کشت سالانه.)",
+          "verified": true
+        },
+        {
+          "en": "a centered satellite photo of brushland or shrubland.",
+          "fa": "a centered satellite photo of brushland or shrubland. (عکس ماهواره‌ای مرکزگذاری‌شده از بوته‌زار یا درختچه‌زار.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "79b61450272abbc56b7bb1d29778b5269bb23ddf171c6dff193c91e1ffbc4bb6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پیش‌آموزش تقابلی زبان–تصویر (Contrastive Language-Image Pretraining; CLIP): نتایج کیفی"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Learning Transferable Visual Models From Natural Language Supervision. ICML 2021."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "correct label; correct label(s); correct rank; correct probability",
+          "fa": "برچسب درست؛ برچسب(های) درست؛ رتبهٔ درست؛ احتمال درست",
+          "verified": true
+        },
+        {
+          "en": "Maine Coon; Boeing 717; correct rank: 1/37; correct probability: 99.99%; correct rank: 2/100; correct probability: 9.91%",
+          "fa": "Maine Coon؛ Boeing 717؛ رتبهٔ درست: 1/37؛ احتمال درست: 99.99%؛ رتبهٔ درست: 2/100؛ احتمال درست: 9.91%",
+          "verified": true
+        },
+        {
+          "en": "a photo of a maine coon, a type of pet.",
+          "fa": "a photo of a maine coon, a type of pet. (عکسی از مین‌کون، نوعی حیوان خانگی.)",
+          "verified": true
+        },
+        {
+          "en": "a photo of a persian, a type of pet.",
+          "fa": "a photo of a persian, a type of pet. (عکسی از پرشین، نوعی حیوان خانگی.)",
+          "verified": true
+        },
+        {
+          "en": "a photo of a ragdoll, a type of pet.",
+          "fa": "a photo of a ragdoll, a type of pet. (عکسی از رگدال، نوعی حیوان خانگی.)",
+          "verified": true
+        },
+        {
+          "en": "a photo of a birman, a type of pet.",
+          "fa": "a photo of a birman, a type of pet. (عکسی از بیرمن، نوعی حیوان خانگی.)",
+          "verified": true
+        },
+        {
+          "en": "a photo of a siamese, a type of pet.",
+          "fa": "a photo of a siamese, a type of pet. (عکسی از سیامی، نوعی حیوان خانگی.)",
+          "verified": true
+        },
+        {
+          "en": "a photo of a mcdonnell douglas md-90, a type of aircraft.",
+          "fa": "a photo of a mcdonnell douglas md-90, a type of aircraft. (عکسی از mcdonnell douglas md-90، نوعی هواپیما.)",
+          "verified": true
+        },
+        {
+          "en": "a photo of a boeing 717, a type of aircraft.",
+          "fa": "a photo of a boeing 717, a type of aircraft. (عکسی از boeing 717، نوعی هواپیما.)",
+          "verified": true
+        },
+        {
+          "en": "a photo of a fokker 100, a type of aircraft.",
+          "fa": "a photo of a fokker 100, a type of aircraft. (عکسی از fokker 100، نوعی هواپیما.)",
+          "verified": true
+        },
+        {
+          "en": "a photo of a mcdonnell douglas dc-9-30, a type of aircraft.",
+          "fa": "a photo of a mcdonnell douglas dc-9-30, a type of aircraft. (عکسی از mcdonnell douglas dc-9-30، نوعی هواپیما.)",
+          "verified": true
+        },
+        {
+          "en": "a photo of a boeing 727-200, a type of aircraft.",
+          "fa": "a photo of a boeing 727-200, a type of aircraft. (عکسی از boeing 727-200، نوعی هواپیما.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "79b61450272abbc56b7bb1d29778b5269bb23ddf171c6dff193c91e1ffbc4bb6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پیش‌آموزش تقابلی زبان–تصویر (Contrastive Language-Image Pretraining; CLIP): نتایج کیفی"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Learning Transferable Visual Models From Natural Language Supervision. ICML 2021."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "correct label; correct label(s); correct rank; correct probability",
+          "fa": "برچسب درست؛ برچسب(های) درست؛ رتبهٔ درست؛ احتمال درست",
+          "verified": true
+        },
+        {
+          "en": "Street View House Numbers (SVHN); 7; 158; correct rank: 1/10; correct probability: 85.32%; correct rank: 83/2000; correct probability: 0.27%",
+          "fa": "شمارهٔ خانه‌های نمای خیابان (Street View House Numbers; SVHN)؛ 7؛ 158؛ رتبهٔ درست: 1/10؛ احتمال درست: 85.32%؛ رتبهٔ درست: 83/2000؛ احتمال درست: 0.27%",
+          "verified": true
+        },
+        {
+          "en": "a photo of the number: \"7\".",
+          "fa": "a photo of the number: \"7\". (عکسی از عدد «7».)",
+          "verified": true
+        },
+        {
+          "en": "a photo of the number: \"2\".",
+          "fa": "a photo of the number: \"2\". (عکسی از عدد «2».)",
+          "verified": true
+        },
+        {
+          "en": "a photo of the number: \"1\".",
+          "fa": "a photo of the number: \"1\". (عکسی از عدد «1».)",
+          "verified": true
+        },
+        {
+          "en": "a photo of the number: \"6\".",
+          "fa": "a photo of the number: \"6\". (عکسی از عدد «6».)",
+          "verified": true
+        },
+        {
+          "en": "a photo of the number: \"4\".",
+          "fa": "a photo of the number: \"4\". (عکسی از عدد «4».)",
+          "verified": true
+        },
+        {
+          "en": "a street sign of the number: \"1157\".",
+          "fa": "a street sign of the number: \"1157\". (تابلوی خیابانی عدد «1157».)",
+          "verified": true
+        },
+        {
+          "en": "a street sign of the number: \"1165\".",
+          "fa": "a street sign of the number: \"1165\". (تابلوی خیابانی عدد «1165».)",
+          "verified": true
+        },
+        {
+          "en": "a street sign of the number: \"1164\".",
+          "fa": "a street sign of the number: \"1164\". (تابلوی خیابانی عدد «1164».)",
+          "verified": true
+        },
+        {
+          "en": "a street sign of the number: \"1155\".",
+          "fa": "a street sign of the number: \"1155\". (تابلوی خیابانی عدد «1155».)",
+          "verified": true
+        },
+        {
+          "en": "a street sign of the number: \"1364\".",
+          "fa": "a street sign of the number: \"1364\". (تابلوی خیابانی عدد «1364».)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "79b61450272abbc56b7bb1d29778b5269bb23ddf171c6dff193c91e1ffbc4bb6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پیش‌آموزش تقابلی زبان–تصویر (Contrastive Language-Image Pretraining; CLIP): نتایج کیفی"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Learning Transferable Visual Models From Natural Language Supervision. ICML 2021."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "correct label; correct label(s); correct rank; correct probability",
+          "fa": "برچسب درست؛ برچسب(های) درست؛ رتبهٔ درست؛ احتمال درست",
+          "verified": true
+        },
+        {
+          "en": "Hateful Memes; German Traffic Sign Recognition Benchmark (GTSRB); correct rank: 1/2; correct probability: 99.20%; correct rank: 1/43; correct probability: 45.75%",
+          "fa": "میم‌های نفرت‌پراکن (Hateful Memes)؛ محک بازشناسی علائم راهنمایی‌ورانندگی آلمان (GTSRB)؛ رتبهٔ درست: 1/2؛ احتمال درست: 99.20%؛ رتبهٔ درست: 1/43؛ احتمال درست: 45.75%",
+          "verified": true
+        },
+        {
+          "en": "coffee isn’t helping; get the jumper cables",
+          "fa": "coffee isn’t helping; get the jumper cables (قهوه کمکی نمی‌کند؛ کابل‌های اتصال باتری را بیاور)",
+          "verified": true
+        },
+        {
+          "en": "a meme; a hatespeech meme; red and white triangle with exclamation mark warning",
+          "fa": "a meme; a hatespeech meme; red and white triangle with exclamation mark warning (یک میم؛ یک میم نفرت‌پراکن؛ مثلث قرمز و سفید با علامت تعجب هشدار)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": false,
+      "image_review_note_fa": "برچسب‌ها، متن میم و امتیازها بازبینی شده‌اند؛ پنج پرامپت بسیار ریز علائم رانندگی در نمودار سمت راست هنوز برای پیاده‌سازی دقیق نیاز به بررسی دارند."
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "5c9bf785f66be74050931c92005e2e7aa7ba0beadd0fc77eabee5d331915935a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکردهای پرکاربرد (Popular Approaches)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• بازنمایی صفت (Attribute representation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• بازنمایی متن (Text representation): GPT-2 و GPT-3"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• بازنمایی مشترک تصویر–زبان (Joint image-language representation): CLIP"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "2c2167d539e42a3a9512b496b7ad326795d672f6cc920f2dfd20c92beb6f743a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری چندوظیفه‌ای (Multi-task learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری کم‌نمونه (Few-shot learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری بی‌نمونه (Zero-shot learning)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 71,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    }
+  ]
+}

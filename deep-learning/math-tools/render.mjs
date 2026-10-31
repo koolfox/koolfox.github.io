@@ -1,4 +1,4 @@
-// Compile the authored LaTeX once. Public pages need no math JavaScript or CDN.
+// Compile independent companion formulas. The source reader also uses local KaTeX.
 import {readFileSync,writeFileSync,mkdirSync,copyFileSync,readdirSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
@@ -20,7 +20,8 @@ writeFileSync(target+'katex.min.css',css.replace(/src:([^;]+);/g,(all,value)=>va
 const fonts=readdirSync(dist+'fonts').filter(n=>n.endsWith('.woff2')).sort();
 for(const name of fonts)copyFileSync(dist+'fonts/'+name,target+'fonts/'+name);
 copyFileSync(dist+'../LICENSE',target+'LICENSE.txt');
-const files=['katex.min.css','LICENSE.txt',...fonts.map(n=>'fonts/'+n)];
+copyFileSync(dist+'katex.mjs',target+'katex.mjs');
+const files=['katex.min.css','katex.mjs','LICENSE.txt',...fonts.map(n=>'fonts/'+n)];
 writeFileSync(target+'files.json',JSON.stringify({version:katex.version,source:'https://registry.npmjs.org/katex/-/katex-'+katex.version+'.tgz',retrieved_at_utc:new Date().toISOString(),css_changes:'Keep WOFF2 font sources only; original CSS SHA-256 '+sha(css),files:files.map(path=>({path,sha256:sha(readFileSync(target+path))}))},null,2)+'\n');
 mkdirSync(base+'content/slides/math',{recursive:true});
 writeFileSync(base+'content/slides/math/spring-2022.json',JSON.stringify({renderer:'KaTeX',version:katex.version,sessions},null,2)+'\n');

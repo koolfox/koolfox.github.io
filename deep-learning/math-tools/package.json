@@ -2,6 +2,13 @@
   "name": "deep-learning-static-math",
   "private": true,
   "type": "module",
-  "scripts": {"render": "node render.mjs"},
-  "dependencies": {"katex": "0.19.1"}
+  "scripts": {
+    "render": "node render.mjs",
+    "vendor": "node vendor_pdfjs.mjs",
+    "check": "node check_source_math.mjs"
+  },
+  "dependencies": {
+    "katex": "0.19.1",
+    "pdfjs-dist": "6.4.299"
+  }
 }

@@ -1,0 +1,3983 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s16",
+  "source_sha256": "d37d1fe806d9520e952069bf16b3c1e4db1994a6eb2f60c98aa6c7ad352b8f56",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "14937f571df385255548c040289a0e95b6c01f4d8fedb9f5304856b5fad8c68b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ترنسفورمرها (Transformers)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "دانشگاه کلرادو بولدر (University of Colorado Boulder)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "بهار ۲۰۲۲ (Spring 2022)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CC BY",
+          "fa": "CC BY — انتساب",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "7d735fbf7b53ee7f7d56b18fbe679f79a385cfdcb3a6aea6958d351a036543ba",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• هفتهٔ پیش:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• انگیزه: ترجمهٔ ماشینی عصبی برای جمله‌های بلند"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• رمزگشا (Decoder): توجه (Attention)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• رمزگذار (Encoder)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی عملکرد"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• تکلیف‌ها (Canvas):"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• نمره‌های مجموعه‌مسئلهٔ ۳ اعلام شده‌اند."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "• مهلت تحویل تکلیف آزمایشگاه ۳، هفتهٔ آینده است."
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "bullet",
+          "fa": "• پرسشی دارید؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "0536b15d529b469a8836fadd805cc5bb2972a9c582c43e9fbdfb41b048328be2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• مرور کلی ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• خودتوجهی (Self-Attention)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• توجه چندسر (Multi-Head Attention)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• اجزای رایج ترنسفورمر"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• ترنسفورمر پیشگام: ترجمهٔ ماشینی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "0536b15d529b469a8836fadd805cc5bb2972a9c582c43e9fbdfb41b048328be2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• مرور کلی ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• خودتوجهی (Self-Attention)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• توجه چندسر (Multi-Head Attention)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• اجزای رایج ترنسفورمر"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• ترنسفورمر پیشگام: ترجمهٔ ماشینی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "ca68a8600477a3be39a9765f8701e4173fa5d201d958b1d9e625ff817dea1ddc",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "هدف: مدل‌سازی داده‌های دنباله‌ای (شبکهٔ عصبی بازگشتی (RNN) را به یاد بیاورید.)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "هر حالت پنهان (Hidden State)، تابعی از حالت پنهان قبلی است."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x; s; o; U; V; W; xₜ₋₁; xₜ; xₜ₊₁; sₜ₋₁; sₜ; sₜ₊₁; oₜ₋₁; oₜ; oₜ₊₁; Unfold",
+          "fa": "x؛ s؛ o؛ U؛ V؛ W؛ xₜ₋₁؛ xₜ؛ xₜ₊₁؛ sₜ₋₁؛ sₜ؛ sₜ₊₁؛ oₜ₋₁؛ oₜ؛ oₜ₊₁؛ بازگشایی (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "5d1a46a969105f7b41e030c90c9c8fefea59a5c4a1b5644ee896a509a0ed1a9a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مسئله: شبکه‌های بازگشتی (RNNs) از محاسبات ترتیبی استفاده می‌کنند."
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "به نظر می‌رسد انتقال اطلاعات از طریق حالت‌های پنهان در گام‌های زمانی متعدد برای RNNها دشوار است، و آموزش/آزمون نیز کند است."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x; s; o; U; V; W; xₜ₋₁; xₜ; xₜ₊₁; sₜ₋₁; sₜ; sₜ₊₁; oₜ₋₁; oₜ; oₜ₊₁; Unfold",
+          "fa": "x؛ s؛ o؛ U؛ V؛ W؛ xₜ₋₁؛ xₜ؛ xₜ₊₁؛ sₜ₋₁؛ sₜ؛ sₜ₊₁؛ oₜ₋₁؛ oₜ؛ oₜ₊₁؛ بازگشایی (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "8b8543b6958c2afd26c0f455f6542ea05132d8f3d13b03d5a1b2ed79ece2e0e1",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ایده: داده‌های دنباله‌ای را بدون بازگشت (Recurrence) مدل‌سازی کنید."
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "حالت‌های پنهان ترتیبی برای ثبت دانشِ سایر ورودی‌ها را با بازنمایی جدید هر ورودی جایگزین کنید که رابطهٔ آن را با همهٔ ورودی‌های دیگر نشان می‌دهد (یعنی خودتوجهی (Self-attention))."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x; s; o; U; V; W; xₜ₋₁; xₜ; xₜ₊₁; sₜ₋₁; sₜ; sₜ₊₁; oₜ₋₁; oₜ; oₜ₊₁; Unfold",
+          "fa": "x؛ s؛ o؛ U؛ V؛ W؛ xₜ₋₁؛ xₜ؛ xₜ₊₁؛ sₜ₋₁؛ sₜ؛ sₜ₊₁؛ oₜ₋₁؛ oₜ؛ oₜ₊₁؛ بازگشایی (Unfold)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "751b9377e667fdefd3d586b83dfd0139f83833d116e1aad71c4d64f5074113bd",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ایدهٔ اصلی ترنسفورمر: خودتوجهی (Self-Attention)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#transformer_intro"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "بازنمایی جدید هر توکن در یک دنباله که رابطهٔ آن را با همهٔ توکن‌ها نشان می‌دهد؛ مثلاً،"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "I arrived at the bank after crossing the river",
+          "fa": "I arrived at the bank after crossing the river (پس از عبور از رودخانه به کرانه رسیدم.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "0d912eef6ea13a23749f0e24af5ca9e57669c8ad0765f9e8274bcde1822b5a93",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ایدهٔ اصلی ترنسفورمر: خودتوجهی (Self-Attention)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#transformer_intro"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "ضخامت پیکان نشان‌دهندهٔ وزن توجه است."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "بازنمایی جدید هر توکن در یک دنباله که رابطهٔ آن را با همهٔ توکن‌ها نشان می‌دهد؛ مثلاً،"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "I arrived at the bank after crossing the river",
+          "fa": "I arrived at the bank after crossing the river (پس از عبور از رودخانه به کرانه رسیدم.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "a60e6ed39af7b69362b3075f585ce45b6e13acf0b30a546ed90134b2c2e42f6f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ایدهٔ اصلی ترنسفورمر: خودتوجهی (Self-Attention)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#transformer_intro"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "امتیاز توجه بزرگ یعنی واژهٔ دیگر، اطلاعات زیادی به بازنمایی جدید آن واژه می‌دهد."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "بازنمایی جدید هر توکن در یک دنباله که رابطهٔ آن را با همهٔ توکن‌ها نشان می‌دهد؛ مثلاً،"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "I arrived at the bank after crossing the river",
+          "fa": "I arrived at the bank after crossing the river (پس از عبور از رودخانه به کرانه رسیدم.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "a09063f2677e4494fadcfee85b18631085ef6ae5b33ae58654790d13287bc504",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "درک شهودی ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#transformer_intro"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "واژهٔ bank در این جمله چه معنایی دارد؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "I arrived at the bank after crossing the …",
+          "fa": "I arrived at the bank after crossing the … (پس از عبور از … به bank رسیدم؛ bank می‌تواند بانک یا کرانه باشد.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "abdae6d40fbbe8ffde9636dbdad6d77b306736d08fff731c3bede100994eae65",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "درک شهودی ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#transformer_intro"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "واژهٔ bank در این جمله چه معنایی دارد؟"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "— بازنمایی جدید واژه، با شناسایی واژه‌های مرتبط دیگر، ابهام معنا را برطرف می‌کند (مثلاً امتیاز توجه بالا با «river» (رودخانه))."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "در برابر"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "I arrived at the bank after crossing the river",
+          "fa": "I arrived at the bank after crossing the river (پس از عبور از رودخانه به کرانه رسیدم.)",
+          "verified": true
+        },
+        {
+          "en": "I arrived at the bank after crossing the street",
+          "fa": "I arrived at the bank after crossing the street (پس از عبور از خیابان به بانک رسیدم.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "efa9a431ccc4068f08c0839ef70ff118dcae6b1e77bb31d360c14be093ab7403",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ترنسفورمر (Transformer) در برابر شبکهٔ بازگشتی (RNN): درک شهودی"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#transformer_intro"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "معنا به واژه‌های ورودی دیگر بستگی دارد."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "I arrived at the bank after crossing the …",
+          "fa": "I arrived at the bank after crossing the … (پس از عبور از … به bank رسیدم؛ bank می‌تواند بانک یا کرانه باشد.)",
+          "verified": true
+        },
+        {
+          "en": "…street? …river?; What does bank mean in this sentence?",
+          "fa": "…street? (خیابان؟) …river? (رودخانه؟)؛ bank در این جمله چه معنایی دارد؟",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "efa9a431ccc4068f08c0839ef70ff118dcae6b1e77bb31d360c14be093ab7403",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ترنسفورمر (Transformer) در برابر شبکهٔ بازگشتی (RNN): درک شهودی"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#transformer_intro"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "معنا به واژه‌های ورودی دیگر بستگی دارد."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "I arrived at the bank after crossing the …",
+          "fa": "I arrived at the bank after crossing the … (پس از عبور از … به bank رسیدم؛ bank می‌تواند بانک یا کرانه باشد.)",
+          "verified": true
+        },
+        {
+          "en": "…street? …river?; What does bank mean in this sentence?",
+          "fa": "…street? (خیابان؟) …river? (رودخانه؟)؛ bank در این جمله چه معنایی دارد؟",
+          "verified": true
+        },
+        {
+          "en": "RNNs: I’ve no idea: let’s wait until I read the end; O(N) steps to process a sentence with length N; Transformer: I don’t need to wait – I see all words at once!; Constant number of steps to process any sentence",
+          "fa": "شبکه‌های بازگشتی: نمی‌دانم؛ صبر کنیم تا انتهایش را بخوانم؛ O(N) گام برای پردازش جمله‌ای با طول N؛ ترنسفورمر: لازم نیست صبر کنم — همهٔ واژه‌ها را یک‌جا می‌بینم!؛ تعداد ثابت گام‌ها برای پردازش هر جمله",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "9a7d5a5ecfc9239c2fab0aeeb80da9e22b59b18f87d3e694492f9ebdcafa07ac",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ترنسفورمر (Transformer): یک تعریف پیشنهادی"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "«هر معماری طراحی‌شده برای پردازش مجموعه‌ای متصل از واحدها—مانند توکن‌های یک دنباله یا پیکسل‌های یک تصویر—که تنها تعامل میان واحدهای آن از طریق خودتوجهی (Self-attention) باشد.»"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "http://peterbloem.nl/blog/transformers"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "0536b15d529b469a8836fadd805cc5bb2972a9c582c43e9fbdfb41b048328be2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• مرور کلی ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• خودتوجهی (Self-Attention)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• توجه چندسر (Multi-Head Attention)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• اجزای رایج ترنسفورمر"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• ترنسفورمر پیشگام: ترجمهٔ ماشینی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "ea60c969bedc618fa04ad3c21014a2c99456d7870bc21f3aafd0901a62a65070",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "خودتوجهی (Self-Attention): نتیجه"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "بازنمایی جدید هر توکن در یک دنباله که رابطهٔ آن را با همهٔ توکن‌ها نشان می‌دهد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/self-attention-5b95ea164f61"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "The cat sat on the; Attention; x₁; x₂; x₃; x₄; x₅; z₁; z₂; z₃; z₄; z₅",
+          "fa": "The cat sat on the (گربه نشست رویِ …)؛ توجه؛ x₁؛ x₂؛ x₃؛ x₄؛ x₅؛ z₁؛ z₂؛ z₃؛ z₄؛ z₅",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "02aa4021b132438b1409f89dc22e971226c2edda25f5617462ff2ffccd657d77",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "خودتوجهی (Self-Attention): نتیجه"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "بازنمایی جدید هر توکن در یک دنباله که رابطهٔ آن را با همهٔ توکن‌ها نشان می‌دهد؛ مثلاً،"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "Rashonda accepted a job in deep learning because she loves the topic (راشوندا شغلی در یادگیری عمیق پذیرفت، چون به این موضوع علاقه دارد.)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "02aa4021b132438b1409f89dc22e971226c2edda25f5617462ff2ffccd657d77",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "خودتوجهی (Self-Attention): نتیجه"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "بازنمایی جدید هر توکن در یک دنباله که رابطهٔ آن را با همهٔ توکن‌ها نشان می‌دهد؛ مثلاً،"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "Rashonda accepted a job in deep learning because she loves the topic (راشوندا شغلی در یادگیری عمیق پذیرفت، چون به این موضوع علاقه دارد.)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "b11217a7fcbd01dd975ff10aaaaa075dd2f656805cb5ecee0fb1a7f1385e6101",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "خودتوجهی (Self-Attention): نتیجه"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "بازنمایی جدید هر توکن در یک دنباله که رابطهٔ آن را با همهٔ توکن‌ها نشان می‌دهد؛ مثلاً،"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "Rashonda accepted a job in deep learning because she loves the topic (راشوندا شغلی در یادگیری عمیق پذیرفت، چون به این موضوع علاقه دارد.)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "و به همین ترتیب برای واژه‌های باقی‌مانده…"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "9fa71ecabad201870a790047c1cab76fd2065f72bd70719ac5beb1c042c03df3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "خودتوجهی (Self-Attention): رفع ابهام از معنای واژه‌ها"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "بازنمایی بهتر «she» (او، مؤنث)، اطلاعاتی دربارهٔ «Rashonda» (راشوندا) رمزگذاری می‌کند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "بازنمایی جدید هر توکن در یک دنباله که رابطهٔ آن را با همهٔ توکن‌ها نشان می‌دهد؛ مثلاً،"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "Rashonda accepted a job in deep learning because she loves the topic (راشوندا شغلی در یادگیری عمیق پذیرفت، چون به این موضوع علاقه دارد.)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "49a5bbc252d929c3fb3d3d65e73fcf49b7f985ed89558af5da6d94b876d26a39",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "خودتوجهی (Self-Attention): رفع ابهام از معنای واژه‌ها"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#transformer_intro"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "بازنمایی بهتر «bank» (بانک/کرانه)، اطلاعاتی دربارهٔ «river» (رودخانه) رمزگذاری می‌کند."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "بازنمایی جدید هر توکن در یک دنباله که رابطهٔ آن را با همهٔ توکن‌ها نشان می‌دهد؛ مثلاً،"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "I arrived at the bank across the river (به کرانهٔ آن‌سوی رودخانه رسیدم.)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "6ba1cfe7f3fdf0ef015fa1472ceb4c8613a2c131d67579c43aea1c7e15d7dde7",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "خودتوجهی (Self-Attention) در برابر توجه عمومی (General Attention)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "ورودی (Input)؛ هدف (Target)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "توجه عمومی (General attention)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "توکن‌های منابع متفاوت را به هم مرتبط می‌کند."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "خودتوجهی (Self-attention)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "توکن‌های یک منبع یکسان را به هم مرتبط می‌کند."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "t=1"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "I arrived at the bank after crossing the river",
+          "fa": "I arrived at the bank after crossing the river (پس از عبور از رودخانه به کرانه رسیدم.)",
+          "verified": true
+        },
+        {
+          "en": "He loved to eat; Er liebte zu essen",
+          "fa": "He loved to eat؛ Er liebte zu essen (او عاشق غذا خوردن بود؛ توکن‌های اصلی حفظ شده‌اند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "41c8be510194b835601a7088750c855b2a61e91b8fa5267b69d4186adc819c1f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): رویکردی مشابه چگونگی محاسبهٔ توجه عمومی"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "تفاوت اصلی ۱: ورودی خودتوجهی"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "تفاوت اصلی ۲: امتیاز توجه در یک مقدار (Value) مشتق‌شده از ورودی ضرب می‌شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Attention input; all encoder states; one decoder state; Attention scores; How relevant is source token k for target step t?; Attention weights; attention weight for source token k at decoder step t; Attention output; source context for decoder step t; (softmax); (weighted sum)",
+          "fa": "ورودی توجه؛ همهٔ حالت‌های رمزگذار؛ یک حالت رمزگشا؛ امتیازهای توجه؛ توکن منبع k چقدر برای گام هدف t مرتبط است؟؛ وزن‌های توجه؛ وزن توجه برای توکن منبع k در گام رمزگشای t؛ خروجی توجه؛ بافت منبع برای گام رمزگشای t؛ (سافت‌مکس)؛ (مجموع وزن‌دار)",
+          "verified": true
+        },
+        {
+          "en": "s₁,s₂,…,sₘ; hₜ; score(hₜ,sₖ), k=1…m; aₖ⁽ᵗ⁾=exp(score(hₜ,sₖ))/∑ᵢ₌₁ᵐexp(score(hₜ,sᵢ)), k=1…m; c⁽ᵗ⁾=a₁⁽ᵗ⁾s₁+a₂⁽ᵗ⁾s₂+…+aₘ⁽ᵗ⁾sₘ=∑ₖ₌₁ᵐaₖ⁽ᵗ⁾sₖ",
+          "fa": "s₁,s₂,…,sₘ؛ hₜ؛ score(hₜ,sₖ), k=1…m؛ aₖ⁽ᵗ⁾=exp(score(hₜ,sₖ))/∑ᵢ₌₁ᵐexp(score(hₜ,sᵢ)), k=1…m؛ c⁽ᵗ⁾=a₁⁽ᵗ⁾s₁+a₂⁽ᵗ⁾s₂+…+aₘ⁽ᵗ⁾sₘ=∑ₖ₌₁ᵐaₖ⁽ᵗ⁾sₖ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "aafaa23fc2f122ed13ecbef3bc75a08f173d89d24e075fbbe069bb6f38442f8a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "reason_fa": "این متن/مقدارِ استخراج‌شده در نسخهٔ رندرشدهٔ همین صفحه زیر پوشش اسلایدِ افشای تدریجی پنهان است و روی صفحه دیده نمی‌شود.",
+          "verified": true
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "بازنمایی جدید هر توکن ورودی برای بازتاب رابطهٔ آن با همهٔ توکن‌ها"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "توکن‌های ورودی (Input tokens)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): مثال"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input 1: [1 0 1 0]; Input 2: [0 2 0 2]; Input 3: [1 1 1 1]",
+          "fa": "ورودی ۱: [1 0 1 0]؛ ورودی ۲: [0 2 0 2]؛ ورودی ۳: [1 1 1 1]",
+          "verified": true
+        },
+        {
+          "en": "[2.0 7.0 1.5]; [2.0 8.0 0.0]; [2.0 7.8 0.3]",
+          "fa": "[2.0 7.0 1.5]؛ [2.0 8.0 0.0]؛ [2.0 7.8 0.3]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "a0692f086cf508e0aeca9c41aaaf75e2b1442e16f9fc0be3cf12ee3de21b2041",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "— در این مثال چند ورودی وجود دارد؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "— بُعد هرکدام چقدر است؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input 1: [1 0 1 0]; Input 2: [0 2 0 2]; Input 3: [1 1 1 1]",
+          "fa": "ورودی ۱: [1 0 1 0]؛ ورودی ۲: [0 2 0 2]؛ ورودی ۳: [1 1 1 1]",
+          "verified": true
+        },
+        {
+          "en": "[2.0 7.0 1.5]; [2.0 8.0 0.0]; [2.0 7.8 0.3]",
+          "fa": "[2.0 7.0 1.5]؛ [2.0 8.0 0.0]؛ [2.0 7.8 0.3]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "e452f7a0b478949406c0de6aa0cf28eb41f33129e0a008522d94a2120e95b3f0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "برای هر ورودی با ضرب در سه ماتریس وزن (آموخته‌شده در آموزش)، سه بردار به دست می‌آید: پرس‌وجو (Query)، کلید (Key) و مقدار (Value)."
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجوی ۱ (Query 1): پرس‌وجوی ۲ (Query 2): پرس‌وجوی ۳ (Query 3):"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "کلید ۱ (Key 1): مقدار ۱ (Value 1): کلید ۲: مقدار ۲: کلید ۳: مقدار ۳:"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input 1: [1 0 1 0]; Input 2: [0 2 0 2]; Input 3: [1 1 1 1]",
+          "fa": "ورودی ۱: [1 0 1 0]؛ ورودی ۲: [0 2 0 2]؛ ورودی ۳: [1 1 1 1]",
+          "verified": true
+        },
+        {
+          "en": "Key 1: [0 1 1]; Value 1: [1 2 3]; Key 2: [4 4 0]; Value 2: [2 8 0]; Key 3: [2 3 1]; Value 3: [2 6 3]",
+          "fa": "کلید ۱: [0 1 1]؛ مقدار ۱: [1 2 3]؛ کلید ۲: [4 4 0]؛ مقدار ۲: [2 8 0]؛ کلید ۳: [2 3 1]؛ مقدار ۳: [2 6 3]",
+          "verified": true
+        },
+        {
+          "en": "Query 1: [1 0 2]; Query 2: [2 2 2]; Query 3: [2 1 3]",
+          "fa": "پرس‌وجوی ۱: [1 0 2]؛ پرس‌وجوی ۲: [2 2 2]؛ پرس‌وجوی ۳: [2 1 3]",
+          "verified": true
+        },
+        {
+          "en": "[2.0 7.0 1.5]; [2.0 8.0 0.0]; [2.0 7.8 0.3]",
+          "fa": "[2.0 7.0 1.5]؛ [2.0 8.0 0.0]؛ [2.0 7.8 0.3]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "382d7e546ff98b73c85333346bd7445abdc681a169829322c7a513c5d543d57b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "مثلاً وزن‌های کلید (Key weights)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "reason_fa": "این متن/مقدارِ استخراج‌شده در نسخهٔ رندرشدهٔ همین صفحه زیر پوشش اسلایدِ افشای تدریجی پنهان است و روی صفحه دیده نمی‌شود.",
+          "verified": true
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "×؛ ×؛ ×"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input 1: [1 0 1 0]; Input 2: [0 2 0 2]; Input 3: [1 1 1 1]",
+          "fa": "ورودی ۱: [1 0 1 0]؛ ورودی ۲: [0 2 0 2]؛ ورودی ۳: [1 1 1 1]",
+          "verified": true
+        },
+        {
+          "en": "[2.0 7.0 1.5]; [2.0 8.0 0.0]; [2.0 7.8 0.3]",
+          "fa": "[2.0 7.0 1.5]؛ [2.0 8.0 0.0]؛ [2.0 7.8 0.3]",
+          "verified": true
+        },
+        {
+          "en": "[0 0 1; 1 1 0; 0 1 0; 1 1 0]",
+          "fa": "[0 0 1; 1 1 0; 0 1 0; 1 1 0]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "2cf73fe6454944e7a97907bfbad27e499925218ae4f15a170af6d9d635393e04",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "مثلاً وزن‌های مقدار (Value weights)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "reason_fa": "این متن/مقدارِ استخراج‌شده در نسخهٔ رندرشدهٔ همین صفحه زیر پوشش اسلایدِ افشای تدریجی پنهان است و روی صفحه دیده نمی‌شود.",
+          "verified": true
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "×؛ ×؛ ×"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input 1: [1 0 1 0]; Input 2: [0 2 0 2]; Input 3: [1 1 1 1]",
+          "fa": "ورودی ۱: [1 0 1 0]؛ ورودی ۲: [0 2 0 2]؛ ورودی ۳: [1 1 1 1]",
+          "verified": true
+        },
+        {
+          "en": "[2.0 7.0 1.5]; [2.0 8.0 0.0]; [2.0 7.8 0.3]",
+          "fa": "[2.0 7.0 1.5]؛ [2.0 8.0 0.0]؛ [2.0 7.8 0.3]",
+          "verified": true
+        },
+        {
+          "en": "[0 2 0; 0 3 0; 1 0 3; 1 1 0]",
+          "fa": "[0 2 0; 0 3 0; 1 0 3; 1 1 0]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "36cbb6b8cae1d8124066abc0f08e53cef8ba8219bd4a8a94aa645d964f1376d9",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "مثلاً وزن‌های پرس‌وجو (Query weights)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "reason_fa": "این متن/مقدارِ استخراج‌شده در نسخهٔ رندرشدهٔ همین صفحه زیر پوشش اسلایدِ افشای تدریجی پنهان است و روی صفحه دیده نمی‌شود.",
+          "verified": true
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجوی ۱ (Query 1): پرس‌وجوی ۲ (Query 2): پرس‌وجوی ۳ (Query 3):"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input 1: [1 0 1 0]; Input 2: [0 2 0 2]; Input 3: [1 1 1 1]",
+          "fa": "ورودی ۱: [1 0 1 0]؛ ورودی ۲: [0 2 0 2]؛ ورودی ۳: [1 1 1 1]",
+          "verified": true
+        },
+        {
+          "en": "Query 1: [1 0 2]; Query 2: [2 2 2]; Query 3: [2 1 3]",
+          "fa": "پرس‌وجوی ۱: [1 0 2]؛ پرس‌وجوی ۲: [2 2 2]؛ پرس‌وجوی ۳: [2 1 3]",
+          "verified": true
+        },
+        {
+          "en": "[2.0 7.0 1.5]; [2.0 8.0 0.0]; [2.0 7.8 0.3]",
+          "fa": "[2.0 7.0 1.5]؛ [2.0 8.0 0.0]؛ [2.0 7.8 0.3]",
+          "verified": true
+        },
+        {
+          "en": "[1 0 1; 1 0 0; 0 0 1; 0 1 1]",
+          "fa": "[1 0 1; 1 0 0; 0 0 1; 0 1 1]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "3b44b66e136270e5792cd31326eb9794d901e7efece5a46ce3902973110270ea",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجوی ۱ (Query 1): پرس‌وجوی ۲ (Query 2): پرس‌وجوی ۳ (Query 3):"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "در این مثال چند ماتریس وزن آموخته می‌شود؟"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "کلید ۱ (Key 1): مقدار ۱ (Value 1): کلید ۲: مقدار ۲: کلید ۳: مقدار ۳:"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input 1: [1 0 1 0]; Input 2: [0 2 0 2]; Input 3: [1 1 1 1]",
+          "fa": "ورودی ۱: [1 0 1 0]؛ ورودی ۲: [0 2 0 2]؛ ورودی ۳: [1 1 1 1]",
+          "verified": true
+        },
+        {
+          "en": "Key 1: [0 1 1]; Value 1: [1 2 3]; Key 2: [4 4 0]; Value 2: [2 8 0]; Key 3: [2 3 1]; Value 3: [2 6 3]",
+          "fa": "کلید ۱: [0 1 1]؛ مقدار ۱: [1 2 3]؛ کلید ۲: [4 4 0]؛ مقدار ۲: [2 8 0]؛ کلید ۳: [2 3 1]؛ مقدار ۳: [2 6 3]",
+          "verified": true
+        },
+        {
+          "en": "Query 1: [1 0 2]; Query 2: [2 2 2]; Query 3: [2 1 3]",
+          "fa": "پرس‌وجوی ۱: [1 0 2]؛ پرس‌وجوی ۲: [2 2 2]؛ پرس‌وجوی ۳: [2 1 3]",
+          "verified": true
+        },
+        {
+          "en": "[2.0 7.0 1.5]; [2.0 8.0 0.0]; [2.0 7.8 0.3]",
+          "fa": "[2.0 7.0 1.5]؛ [2.0 8.0 0.0]؛ [2.0 7.8 0.3]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "8130da4d1868965c0710879f4985e5683a489fff24e02125e843745540fd0f9d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجوی ۱ (Query 1): پرس‌وجوی ۲ (Query 2): پرس‌وجوی ۳ (Query 3):"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "کلید ۱ (Key 1): مقدار ۱ (Value 1): کلید ۲: مقدار ۲: کلید ۳: مقدار ۳:"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "چرا سه ماتریس وزن را یاد می‌گیریم؟"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "برای هر ورودی، ۲ بردار حاصل برای محاسبهٔ وزن‌های توجه استفاده می‌شوند (پرس‌وجو و کلید)، و بردار سوم اطلاعاتی است که برای بازنمایی جدید منتقل می‌شود (مقدار)."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input 1: [1 0 1 0]; Input 2: [0 2 0 2]; Input 3: [1 1 1 1]",
+          "fa": "ورودی ۱: [1 0 1 0]؛ ورودی ۲: [0 2 0 2]؛ ورودی ۳: [1 1 1 1]",
+          "verified": true
+        },
+        {
+          "en": "Key 1: [0 1 1]; Value 1: [1 2 3]; Key 2: [4 4 0]; Value 2: [2 8 0]; Key 3: [2 3 1]; Value 3: [2 6 3]",
+          "fa": "کلید ۱: [0 1 1]؛ مقدار ۱: [1 2 3]؛ کلید ۲: [4 4 0]؛ مقدار ۲: [2 8 0]؛ کلید ۳: [2 3 1]؛ مقدار ۳: [2 6 3]",
+          "verified": true
+        },
+        {
+          "en": "Query 1: [1 0 2]; Query 2: [2 2 2]; Query 3: [2 1 3]",
+          "fa": "پرس‌وجوی ۱: [1 0 2]؛ پرس‌وجوی ۲: [2 2 2]؛ پرس‌وجوی ۳: [2 1 3]",
+          "verified": true
+        },
+        {
+          "en": "[2.0 7.0 1.5]; [2.0 8.0 0.0]; [2.0 7.8 0.3]",
+          "fa": "[2.0 7.0 1.5]؛ [2.0 8.0 0.0]؛ [2.0 7.8 0.3]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "64f666ae451fcba419c89c88301b5bb04b1d2b7a7fb0c3248e37f219b2355562",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "کلید ۱ (Key 1): مقدار ۱ (Value 1): کلید ۲: مقدار ۲: کلید ۳: مقدار ۳:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجوی ۱ (Query 1): پرس‌وجوی ۲ (Query 2): پرس‌وجوی ۳ (Query 3):"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "اکنون بررسی می‌کنیم چگونه بازنمایی جدید نخستین ورودی را پیدا کنیم."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input 1: [1 0 1 0]; Input 2: [0 2 0 2]; Input 3: [1 1 1 1]",
+          "fa": "ورودی ۱: [1 0 1 0]؛ ورودی ۲: [0 2 0 2]؛ ورودی ۳: [1 1 1 1]",
+          "verified": true
+        },
+        {
+          "en": "Key 1: [0 1 1]; Value 1: [1 2 3]; Key 2: [4 4 0]; Value 2: [2 8 0]; Key 3: [2 3 1]; Value 3: [2 6 3]",
+          "fa": "کلید ۱: [0 1 1]؛ مقدار ۱: [1 2 3]؛ کلید ۲: [4 4 0]؛ مقدار ۲: [2 8 0]؛ کلید ۳: [2 3 1]؛ مقدار ۳: [2 6 3]",
+          "verified": true
+        },
+        {
+          "en": "Query 1: [1 0 2]; Query 2: [2 2 2]; Query 3: [2 1 3]",
+          "fa": "پرس‌وجوی ۱: [1 0 2]؛ پرس‌وجوی ۲: [2 2 2]؛ پرس‌وجوی ۳: [2 1 3]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "74e973107976a79771ef080a7c4eb5c455765abc463f162fb0247ed26ff5e730",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "کلید ۱ (Key 1): مقدار ۱ (Value 1): کلید ۲: مقدار ۲: کلید ۳: مقدار ۳:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجوی ۱ (Query 1):"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "1 0 2 0"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "1"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "literal",
+          "fa": "1"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "× = ؟"
+        },
+        {
+          "source_lines": [
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "امتیاز توجه: ضرب داخلی (Dot product) پرس‌وجو در همهٔ کلیدها برای شناسایی توکن‌های مرتبط؛ مثلاً،"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input 1: [1 0 1 0]; Input 2: [0 2 0 2]; Input 3: [1 1 1 1]",
+          "fa": "ورودی ۱: [1 0 1 0]؛ ورودی ۲: [0 2 0 2]؛ ورودی ۳: [1 1 1 1]",
+          "verified": true
+        },
+        {
+          "en": "Key 1: [0 1 1]; Value 1: [1 2 3]; Key 2: [4 4 0]; Value 2: [2 8 0]; Key 3: [2 3 1]; Value 3: [2 6 3]",
+          "fa": "کلید ۱: [0 1 1]؛ مقدار ۱: [1 2 3]؛ کلید ۲: [4 4 0]؛ مقدار ۲: [2 8 0]؛ کلید ۳: [2 3 1]؛ مقدار ۳: [2 6 3]",
+          "verified": true
+        },
+        {
+          "en": "Query 1: [1 0 2]",
+          "fa": "پرس‌وجوی ۱: [1 0 2]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "9014a746f344b9030dd486a40a4575f1c9792853b7168e5aaa13d8624c201e00",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "کلید ۱ (Key 1): مقدار ۱ (Value 1): کلید ۲: مقدار ۲: کلید ۳: مقدار ۳:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجوی ۱ (Query 1):"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "1 0 2 4"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "4"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "literal",
+          "fa": "0"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "× = ؟"
+        },
+        {
+          "source_lines": [
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "امتیاز توجه: ضرب داخلی (Dot product) پرس‌وجو در همهٔ کلیدها برای شناسایی توکن‌های مرتبط؛ مثلاً،"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input 1: [1 0 1 0]; Input 2: [0 2 0 2]; Input 3: [1 1 1 1]",
+          "fa": "ورودی ۱: [1 0 1 0]؛ ورودی ۲: [0 2 0 2]؛ ورودی ۳: [1 1 1 1]",
+          "verified": true
+        },
+        {
+          "en": "Key 1: [0 1 1]; Value 1: [1 2 3]; Key 2: [4 4 0]; Value 2: [2 8 0]; Key 3: [2 3 1]; Value 3: [2 6 3]",
+          "fa": "کلید ۱: [0 1 1]؛ مقدار ۱: [1 2 3]؛ کلید ۲: [4 4 0]؛ مقدار ۲: [2 8 0]؛ کلید ۳: [2 3 1]؛ مقدار ۳: [2 6 3]",
+          "verified": true
+        },
+        {
+          "en": "Query 1: [1 0 2]",
+          "fa": "پرس‌وجوی ۱: [1 0 2]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "e608d24968470e50c2e0a4b54bc90724a8f9346349dda70faae7f9e9a26d330c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "کلید ۱ (Key 1): مقدار ۱ (Value 1): کلید ۲: مقدار ۲: کلید ۳: مقدار ۳:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجوی ۱ (Query 1):"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "1 0 2 2"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "3"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "literal",
+          "fa": "1"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "× = ؟"
+        },
+        {
+          "source_lines": [
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "امتیاز توجه: ضرب داخلی (Dot product) پرس‌وجو در همهٔ کلیدها برای شناسایی توکن‌های مرتبط؛ مثلاً،"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input 1: [1 0 1 0]; Input 2: [0 2 0 2]; Input 3: [1 1 1 1]",
+          "fa": "ورودی ۱: [1 0 1 0]؛ ورودی ۲: [0 2 0 2]؛ ورودی ۳: [1 1 1 1]",
+          "verified": true
+        },
+        {
+          "en": "Key 1: [0 1 1]; Value 1: [1 2 3]; Key 2: [4 4 0]; Value 2: [2 8 0]; Key 3: [2 3 1]; Value 3: [2 6 3]",
+          "fa": "کلید ۱: [0 1 1]؛ مقدار ۱: [1 2 3]؛ کلید ۲: [4 4 0]؛ مقدار ۲: [2 8 0]؛ کلید ۳: [2 3 1]؛ مقدار ۳: [2 6 3]",
+          "verified": true
+        },
+        {
+          "en": "Query 1: [1 0 2]",
+          "fa": "پرس‌وجوی ۱: [1 0 2]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "0fef6f318d3eaf4d8cb9a950215c7407a2923cad90ad902fd534c46400100921",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "کلید ۱ (Key 1): مقدار ۱ (Value 1): کلید ۲: مقدار ۲: کلید ۳: مقدار ۳:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجوی ۱ (Query 1):"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "چرا ضرب داخلی (Dot product)؟ شباهت دو بردار را نشان می‌دهد."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "— تطابق = ۱ (یعنی cos(0))"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "— جهت‌های مخالف = −۱ (یعنی cos(180))"
+        },
+        {
+          "source_lines": [
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "https://towardsdatascience.com/self-attention-5b95ea164f61"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input 1: [1 0 1 0]; Input 2: [0 2 0 2]; Input 3: [1 1 1 1]",
+          "fa": "ورودی ۱: [1 0 1 0]؛ ورودی ۲: [0 2 0 2]؛ ورودی ۳: [1 1 1 1]",
+          "verified": true
+        },
+        {
+          "en": "Key 1: [0 1 1]; Value 1: [1 2 3]; Key 2: [4 4 0]; Value 2: [2 8 0]; Key 3: [2 3 1]; Value 3: [2 6 3]",
+          "fa": "کلید ۱: [0 1 1]؛ مقدار ۱: [1 2 3]؛ کلید ۲: [4 4 0]؛ مقدار ۲: [2 8 0]؛ کلید ۳: [2 3 1]؛ مقدار ۳: [2 6 3]",
+          "verified": true
+        },
+        {
+          "en": "Query 1: [1 0 2]",
+          "fa": "پرس‌وجوی ۱: [1 0 2]",
+          "verified": true
+        },
+        {
+          "en": "[2.0 7.0 1.5]",
+          "fa": "[2.0 7.0 1.5]",
+          "verified": true
+        },
+        {
+          "en": "x₁·x₂ = cosθ |x₁||x₂|; |x| → size / magnitude of the vector x",
+          "fa": "x₁·x₂ = cosθ |x₁||x₂|؛ |x| ← اندازه / بزرگی بردار x",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "1cedf8e8ee663bf980eb60d593859d7ec2c303b0c949df93eafa88a08349eee1",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "کلید ۱ (Key 1): مقدار ۱ (Value 1): کلید ۲: مقدار ۲: کلید ۳: مقدار ۳:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجوی ۱ (Query 1):"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "می‌توان از معیارهای شباهت دیگری به‌جز ضرب داخلی نیز استفاده کرد."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input 1: [1 0 1 0]; Input 2: [0 2 0 2]; Input 3: [1 1 1 1]",
+          "fa": "ورودی ۱: [1 0 1 0]؛ ورودی ۲: [0 2 0 2]؛ ورودی ۳: [1 1 1 1]",
+          "verified": true
+        },
+        {
+          "en": "Key 1: [0 1 1]; Value 1: [1 2 3]; Key 2: [4 4 0]; Value 2: [2 8 0]; Key 3: [2 3 1]; Value 3: [2 6 3]",
+          "fa": "کلید ۱: [0 1 1]؛ مقدار ۱: [1 2 3]؛ کلید ۲: [4 4 0]؛ مقدار ۲: [2 8 0]؛ کلید ۳: [2 3 1]؛ مقدار ۳: [2 6 3]",
+          "verified": true
+        },
+        {
+          "en": "Query 1: [1 0 2]",
+          "fa": "پرس‌وجوی ۱: [1 0 2]",
+          "verified": true
+        },
+        {
+          "en": "[2.0 7.0 1.5]",
+          "fa": "[2.0 7.0 1.5]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "dd0af34dddd9db807784a6a85c3b7a6473ea7c70a96fbb019d3e35ef99606472",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "کلید ۱ (Key 1): مقدار ۱ (Value 1): کلید ۲: مقدار ۲: کلید ۳: مقدار ۳:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجوی ۱ (Query 1):"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "= softmax([2, 4, 4])"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "= [0.0, 0.5, 0.5])"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "وزن‌های توجه: امتیازهای سافت‌مکس (Softmax) برای همهٔ ورودی‌ها جهت کمّی کردن ارتباط هر توکن؛ مثلاً،"
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "ورودی ۱ بیشتر با کدام ورودی(ها) مرتبط است؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input 1: [1 0 1 0]; Input 2: [0 2 0 2]; Input 3: [1 1 1 1]",
+          "fa": "ورودی ۱: [1 0 1 0]؛ ورودی ۲: [0 2 0 2]؛ ورودی ۳: [1 1 1 1]",
+          "verified": true
+        },
+        {
+          "en": "Key 1: [0 1 1]; Value 1: [1 2 3]; Key 2: [4 4 0]; Value 2: [2 8 0]; Key 3: [2 3 1]; Value 3: [2 6 3]",
+          "fa": "کلید ۱: [0 1 1]؛ مقدار ۱: [1 2 3]؛ کلید ۲: [4 4 0]؛ مقدار ۲: [2 8 0]؛ کلید ۳: [2 3 1]؛ مقدار ۳: [2 6 3]",
+          "verified": true
+        },
+        {
+          "en": "Query 1: [1 0 2]",
+          "fa": "پرس‌وجوی ۱: [1 0 2]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "b9e3d9b10ed101fa47fd31c4e8e1c803ffa8fdc338de16cde2a9dd19d81fbb48",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "کلید ۱ (Key 1): مقدار ۱ (Value 1): کلید ۲: مقدار ۲: کلید ۳: مقدار ۳:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجوی ۱ (Query 1):"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "0.0 0.5 0.5"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "بازنمایی جدید توکن ورودی را محاسبه کنید که کل ورودی را بازتاب می‌دهد:"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "۱. وزن‌های توجه × مقدارها (Values)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "reason_fa": "این متن/مقدارِ استخراج‌شده در نسخهٔ رندرشدهٔ همین صفحه زیر پوشش اسلایدِ افشای تدریجی پنهان است و روی صفحه دیده نمی‌شود.",
+          "verified": true
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input 1: [1 0 1 0]; Input 2: [0 2 0 2]; Input 3: [1 1 1 1]",
+          "fa": "ورودی ۱: [1 0 1 0]؛ ورودی ۲: [0 2 0 2]؛ ورودی ۳: [1 1 1 1]",
+          "verified": true
+        },
+        {
+          "en": "Key 1: [0 1 1]; Value 1: [1 2 3]; Key 2: [4 4 0]; Value 2: [2 8 0]; Key 3: [2 3 1]; Value 3: [2 6 3]",
+          "fa": "کلید ۱: [0 1 1]؛ مقدار ۱: [1 2 3]؛ کلید ۲: [4 4 0]؛ مقدار ۲: [2 8 0]؛ کلید ۳: [2 3 1]؛ مقدار ۳: [2 6 3]",
+          "verified": true
+        },
+        {
+          "en": "Query 1: [1 0 2]",
+          "fa": "پرس‌وجوی ۱: [1 0 2]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "b94555af3d14c93e00c44f12fb5e92e966d5394e70756e41c80b6f02ce4de5f6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "کلید ۱ (Key 1): مقدار ۱ (Value 1): کلید ۲: مقدار ۲: کلید ۳: مقدار ۳:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجوی ۱ (Query 1):"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "0.0 0.5 0.5"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "بازنمایی جدید توکن ورودی را محاسبه کنید که کل ورودی را بازتاب می‌دهد:"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "۱. وزن‌های توجه × مقدارها (Values)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "۲. همهٔ بردارهای وزن‌دار را جمع کنید."
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "literal",
+          "fa": "0.0 0.0 0.0 1.0 4.0 0.0 1.0 3.0 1.0"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "literal",
+          "fa": "2.0 7.0 1.5"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input 1: [1 0 1 0]; Input 2: [0 2 0 2]; Input 3: [1 1 1 1]",
+          "fa": "ورودی ۱: [1 0 1 0]؛ ورودی ۲: [0 2 0 2]؛ ورودی ۳: [1 1 1 1]",
+          "verified": true
+        },
+        {
+          "en": "Key 1: [0 1 1]; Value 1: [1 2 3]; Key 2: [4 4 0]; Value 2: [2 8 0]; Key 3: [2 3 1]; Value 3: [2 6 3]",
+          "fa": "کلید ۱: [0 1 1]؛ مقدار ۱: [1 2 3]؛ کلید ۲: [4 4 0]؛ مقدار ۲: [2 8 0]؛ کلید ۳: [2 3 1]؛ مقدار ۳: [2 6 3]",
+          "verified": true
+        },
+        {
+          "en": "Query 1: [1 0 2]",
+          "fa": "پرس‌وجوی ۱: [1 0 2]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "dcde5c98c59b603d6dbc9bedd9c5d105c1751ce6e103b25d20fb31e2634e4471",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "کلید ۱ (Key 1): مقدار ۱ (Value 1): کلید ۲: مقدار ۲: کلید ۳: مقدار ۳:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجوی ۱ (Query 1):"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "وزن‌های توجه، بازنمایی‌های ورودی (مقدارها) را که می‌خواهیم به آن‌ها توجه کنیم تقویت می‌کنند و بقیه را کاهش می‌دهند."
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "literal",
+          "fa": "0.0 0.0 0.0 1.0 4.0 0.0 1.0 3.0 1.0"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "literal",
+          "fa": "2.0 7.0 1.5"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input 1: [1 0 1 0]; Input 2: [0 2 0 2]; Input 3: [1 1 1 1]",
+          "fa": "ورودی ۱: [1 0 1 0]؛ ورودی ۲: [0 2 0 2]؛ ورودی ۳: [1 1 1 1]",
+          "verified": true
+        },
+        {
+          "en": "Key 1: [0 1 1]; Value 1: [1 2 3]; Key 2: [4 4 0]; Value 2: [2 8 0]; Key 3: [2 3 1]; Value 3: [2 6 3]",
+          "fa": "کلید ۱: [0 1 1]؛ مقدار ۱: [1 2 3]؛ کلید ۲: [4 4 0]؛ مقدار ۲: [2 8 0]؛ کلید ۳: [2 3 1]؛ مقدار ۳: [2 6 3]",
+          "verified": true
+        },
+        {
+          "en": "Query 1: [1 0 2]",
+          "fa": "پرس‌وجوی ۱: [1 0 2]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "de981be8293ad4dec17c43ac74380581a193c53810f6fa42bc4b691177d6924d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "کلید ۱ (Key 1): مقدار ۱ (Value 1): کلید ۲: مقدار ۲: کلید ۳: مقدار ۳:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجوی ۱ (Query 1): پرس‌وجوی ۲ (Query 2): پرس‌وجوی ۳ (Query 3):"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "همین فرایند را برای هر توکن ورودی باقی‌مانده تکرار کنید."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input 1: [1 0 1 0]; Input 2: [0 2 0 2]; Input 3: [1 1 1 1]",
+          "fa": "ورودی ۱: [1 0 1 0]؛ ورودی ۲: [0 2 0 2]؛ ورودی ۳: [1 1 1 1]",
+          "verified": true
+        },
+        {
+          "en": "Key 1: [0 1 1]; Value 1: [1 2 3]; Key 2: [4 4 0]; Value 2: [2 8 0]; Key 3: [2 3 1]; Value 3: [2 6 3]",
+          "fa": "کلید ۱: [0 1 1]؛ مقدار ۱: [1 2 3]؛ کلید ۲: [4 4 0]؛ مقدار ۲: [2 8 0]؛ کلید ۳: [2 3 1]؛ مقدار ۳: [2 6 3]",
+          "verified": true
+        },
+        {
+          "en": "Query 1: [1 0 2]; Query 2: [2 2 2]; Query 3: [2 1 3]",
+          "fa": "پرس‌وجوی ۱: [1 0 2]؛ پرس‌وجوی ۲: [2 2 2]؛ پرس‌وجوی ۳: [2 1 3]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "16a8c0b4551aead16328a36c1f770319b4c63142b272e048d97bb6889902c8bb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "کلید ۱ (Key 1): مقدار ۱ (Value 1): کلید ۲: مقدار ۲: کلید ۳: مقدار ۳:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجوی ۲ (Query 2):"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6
+          ],
+          "kind": "bullet",
+          "fa": "۱. وزن‌های توجه را محاسبه کنید — سافت‌مکس را روی ۳ امتیاز حاصل از پرس‌وجو × کلیدها اعمال کنید."
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "reason_fa": "این متن/مقدارِ استخراج‌شده در نسخهٔ رندرشدهٔ همین صفحه زیر پوشش اسلایدِ افشای تدریجی پنهان است و روی صفحه دیده نمی‌شود.",
+          "verified": true
+        },
+        {
+          "source_lines": [
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "ورودی ۲ بیشتر با کدام ورودی(ها) مرتبط است؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input 1: [1 0 1 0]; Input 2: [0 2 0 2]; Input 3: [1 1 1 1]",
+          "fa": "ورودی ۱: [1 0 1 0]؛ ورودی ۲: [0 2 0 2]؛ ورودی ۳: [1 1 1 1]",
+          "verified": true
+        },
+        {
+          "en": "Key 1: [0 1 1]; Value 1: [1 2 3]; Key 2: [4 4 0]; Value 2: [2 8 0]; Key 3: [2 3 1]; Value 3: [2 6 3]",
+          "fa": "کلید ۱: [0 1 1]؛ مقدار ۱: [1 2 3]؛ کلید ۲: [4 4 0]؛ مقدار ۲: [2 8 0]؛ کلید ۳: [2 3 1]؛ مقدار ۳: [2 6 3]",
+          "verified": true
+        },
+        {
+          "en": "Query 2: [2 2 2]",
+          "fa": "پرس‌وجوی ۲: [2 2 2]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "0a959c6e781fe294fb430efed9a8f402d3de4ec19c0aed1aa29c8eb2e1264b73",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "کلید ۱ (Key 1): مقدار ۱ (Value 1): کلید ۲: مقدار ۲: کلید ۳: مقدار ۳:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجوی ۲ (Query 2):"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6
+          ],
+          "kind": "bullet",
+          "fa": "۱. وزن‌های توجه را محاسبه کنید — سافت‌مکس را روی ۳ امتیاز حاصل از پرس‌وجو × کلیدها اعمال کنید."
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "bullet",
+          "fa": "۲. مجموع وزن‌دار مقدارها را با استفاده از امتیازهای توجه محاسبه کنید."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "literal",
+          "fa": "0.0 1.0 0.0"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "reason_fa": "این متن/مقدارِ استخراج‌شده در نسخهٔ رندرشدهٔ همین صفحه زیر پوشش اسلایدِ افشای تدریجی پنهان است و روی صفحه دیده نمی‌شود.",
+          "verified": true
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "reason_fa": "این متن/مقدارِ استخراج‌شده در نسخهٔ رندرشدهٔ همین صفحه زیر پوشش اسلایدِ افشای تدریجی پنهان است و روی صفحه دیده نمی‌شود.",
+          "verified": true
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input 1: [1 0 1 0]; Input 2: [0 2 0 2]; Input 3: [1 1 1 1]",
+          "fa": "ورودی ۱: [1 0 1 0]؛ ورودی ۲: [0 2 0 2]؛ ورودی ۳: [1 1 1 1]",
+          "verified": true
+        },
+        {
+          "en": "Key 1: [0 1 1]; Value 1: [1 2 3]; Key 2: [4 4 0]; Value 2: [2 8 0]; Key 3: [2 3 1]; Value 3: [2 6 3]",
+          "fa": "کلید ۱: [0 1 1]؛ مقدار ۱: [1 2 3]؛ کلید ۲: [4 4 0]؛ مقدار ۲: [2 8 0]؛ کلید ۳: [2 3 1]؛ مقدار ۳: [2 6 3]",
+          "verified": true
+        },
+        {
+          "en": "Query 2: [2 2 2]",
+          "fa": "پرس‌وجوی ۲: [2 2 2]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "de981be8293ad4dec17c43ac74380581a193c53810f6fa42bc4b691177d6924d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "کلید ۱ (Key 1): مقدار ۱ (Value 1): کلید ۲: مقدار ۲: کلید ۳: مقدار ۳:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجوی ۱ (Query 1): پرس‌وجوی ۲ (Query 2): پرس‌وجوی ۳ (Query 3):"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "همین فرایند را برای هر توکن ورودی باقی‌مانده تکرار کنید."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input 1: [1 0 1 0]; Input 2: [0 2 0 2]; Input 3: [1 1 1 1]",
+          "fa": "ورودی ۱: [1 0 1 0]؛ ورودی ۲: [0 2 0 2]؛ ورودی ۳: [1 1 1 1]",
+          "verified": true
+        },
+        {
+          "en": "Key 1: [0 1 1]; Value 1: [1 2 3]; Key 2: [4 4 0]; Value 2: [2 8 0]; Key 3: [2 3 1]; Value 3: [2 6 3]",
+          "fa": "کلید ۱: [0 1 1]؛ مقدار ۱: [1 2 3]؛ کلید ۲: [4 4 0]؛ مقدار ۲: [2 8 0]؛ کلید ۳: [2 3 1]؛ مقدار ۳: [2 6 3]",
+          "verified": true
+        },
+        {
+          "en": "Query 1: [1 0 2]; Query 2: [2 2 2]; Query 3: [2 1 3]",
+          "fa": "پرس‌وجوی ۱: [1 0 2]؛ پرس‌وجوی ۲: [2 2 2]؛ پرس‌وجوی ۳: [2 1 3]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "0b52d2d2750dbc493eb2deb42201c8d3c89092a68ae4b761cae6169592ae3818",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "کلید ۱ (Key 1): مقدار ۱ (Value 1): کلید ۲: مقدار ۲: کلید ۳: مقدار ۳:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجوی ۳ (Query 3):"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6
+          ],
+          "kind": "bullet",
+          "fa": "۱. وزن‌های توجه را محاسبه کنید — سافت‌مکس را روی ۳ امتیاز حاصل از پرس‌وجو × کلیدها اعمال کنید."
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "reason_fa": "این متن/مقدارِ استخراج‌شده در نسخهٔ رندرشدهٔ همین صفحه زیر پوشش اسلایدِ افشای تدریجی پنهان است و روی صفحه دیده نمی‌شود.",
+          "verified": true
+        },
+        {
+          "source_lines": [
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "ورودی ۳ بیشتر با کدام ورودی(ها) مرتبط است؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input 1: [1 0 1 0]; Input 2: [0 2 0 2]; Input 3: [1 1 1 1]",
+          "fa": "ورودی ۱: [1 0 1 0]؛ ورودی ۲: [0 2 0 2]؛ ورودی ۳: [1 1 1 1]",
+          "verified": true
+        },
+        {
+          "en": "Key 1: [0 1 1]; Value 1: [1 2 3]; Key 2: [4 4 0]; Value 2: [2 8 0]; Key 3: [2 3 1]; Value 3: [2 6 3]",
+          "fa": "کلید ۱: [0 1 1]؛ مقدار ۱: [1 2 3]؛ کلید ۲: [4 4 0]؛ مقدار ۲: [2 8 0]؛ کلید ۳: [2 3 1]؛ مقدار ۳: [2 6 3]",
+          "verified": true
+        },
+        {
+          "en": "Query 3: [2 1 3]",
+          "fa": "پرس‌وجوی ۳: [2 1 3]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "41c4a6b6d5142487efa5c5f3d0ed80892f93eafd4d81e79a90ec6cada5011f80",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "کلید ۱ (Key 1): مقدار ۱ (Value 1): کلید ۲: مقدار ۲: کلید ۳: مقدار ۳:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجوی ۲ (Query 2):"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "0.0 0.9 0.1"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "reason_fa": "این متن/مقدارِ استخراج‌شده در نسخهٔ رندرشدهٔ همین صفحه زیر پوشش اسلایدِ افشای تدریجی پنهان است و روی صفحه دیده نمی‌شود.",
+          "verified": true
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "reason_fa": "این متن/مقدارِ استخراج‌شده در نسخهٔ رندرشدهٔ همین صفحه زیر پوشش اسلایدِ افشای تدریجی پنهان است و روی صفحه دیده نمی‌شود.",
+          "verified": true
+        },
+        {
+          "source_lines": [
+            7,
+            8,
+            9
+          ],
+          "kind": "bullet",
+          "fa": "۱. وزن‌های توجه را محاسبه کنید — سافت‌مکس را روی ۳ امتیاز حاصل از پرس‌وجو × کلیدها اعمال کنید."
+        },
+        {
+          "source_lines": [
+            10,
+            11
+          ],
+          "kind": "bullet",
+          "fa": "۲. مجموع وزن‌دار مقدارها را با استفاده از امتیازهای توجه محاسبه کنید."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input 1: [1 0 1 0]; Input 2: [0 2 0 2]; Input 3: [1 1 1 1]",
+          "fa": "ورودی ۱: [1 0 1 0]؛ ورودی ۲: [0 2 0 2]؛ ورودی ۳: [1 1 1 1]",
+          "verified": true
+        },
+        {
+          "en": "Key 1: [0 1 1]; Value 1: [1 2 3]; Key 2: [4 4 0]; Value 2: [2 8 0]; Key 3: [2 3 1]; Value 3: [2 6 3]",
+          "fa": "کلید ۱: [0 1 1]؛ مقدار ۱: [1 2 3]؛ کلید ۲: [4 4 0]؛ مقدار ۲: [2 8 0]؛ کلید ۳: [2 3 1]؛ مقدار ۳: [2 6 3]",
+          "verified": true
+        },
+        {
+          "en": "Query 2: [2 2 2]",
+          "fa": "پرس‌وجوی ۲: [2 2 2]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "5ff20a07f7cb719aea3a9f17dced0da1524afc3a97ea8e3d4028125572f85e64",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محاسبهٔ خودتوجهی (Self-Attention): مثال"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "کلید ۱ (Key 1): مقدار ۱ (Value 1): کلید ۲: مقدار ۲: کلید ۳: مقدار ۳:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجوی ۱ (Query 1): پرس‌وجوی ۲ (Query 2): پرس‌وجوی ۳ (Query 3):"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "2.0 7.0 1.5 2.0 8.0 0.0 2.0 7.8 0.3"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input 1: [1 0 1 0]; Input 2: [0 2 0 2]; Input 3: [1 1 1 1]",
+          "fa": "ورودی ۱: [1 0 1 0]؛ ورودی ۲: [0 2 0 2]؛ ورودی ۳: [1 1 1 1]",
+          "verified": true
+        },
+        {
+          "en": "Key 1: [0 1 1]; Value 1: [1 2 3]; Key 2: [4 4 0]; Value 2: [2 8 0]; Key 3: [2 3 1]; Value 3: [2 6 3]",
+          "fa": "کلید ۱: [0 1 1]؛ مقدار ۱: [1 2 3]؛ کلید ۲: [4 4 0]؛ مقدار ۲: [2 8 0]؛ کلید ۳: [2 3 1]؛ مقدار ۳: [2 6 3]",
+          "verified": true
+        },
+        {
+          "en": "Query 1: [1 0 2]; Query 2: [2 2 2]; Query 3: [2 1 3]",
+          "fa": "پرس‌وجوی ۱: [1 0 2]؛ پرس‌وجوی ۲: [2 2 2]؛ پرس‌وجوی ۳: [2 1 3]",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "82e8d0d2a6bf7e24641acfcaeae61c86e3e91ed4802e1037d8f8364666d579cf",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "http://jalammar.github.io/illustrated-transformer/"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "هر سطر یک توکن ورودی است:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "گام ۱"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "محاسبهٔ کارآمد خودتوجهی (Self-Attention)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "هر سطر یک پرس‌وجو (Query) است."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "هر سطر یک کلید (Key) است."
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "هر سطر یک مقدار (Value) است."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "X × WQ = Q; X × WK = K; X × WV = V",
+          "fa": "X × WQ = Q؛ X × WK = K؛ X × WV = V",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "16ecd64ac97f160de086bad9f3fd7df1934d0328d0963aee268f1aeb7257de02",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "http://jalammar.github.io/illustrated-transformer/"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "گام ۱؛ گام ۲"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "جزئیات پیاده‌سازی: کاهش مقیاس اندازه به حفظ گرادیان‌های لازم برای آموزش کمک می‌کند؛ k بُعد بردار کلید است."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "محاسبهٔ کارآمد خودتوجهی (Self-Attention)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "X × WQ = Q; X × WK = K; X × WV = V",
+          "fa": "X × WQ = Q؛ X × WK = K؛ X × WV = V",
+          "verified": true
+        },
+        {
+          "en": "softmax(QKᵀ/√dₖ)V = Z",
+          "fa": "softmax(QKᵀ/√dₖ)V = Z",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "d39d2a57913a0a8131d2b61c5f45433261ec04b53764418641d9f3f8280884f4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "خودتوجهی (Self-Attention) در برابر RNN: انتشار اطلاعات دربارهٔ ورودی‌های دیگر بدون واحدهای بازگشتی"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://www.wildml.com/2015/09/recurrent-neural￾networks-tutorial-part-1-introduction-to-rnns/ https://towardsdatascience.com/self-attention-5b95ea164f61"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "The cat sat on the; Attention; x₁; x₂; x₃; x₄; x₅; z₁; z₂; z₃; z₄; z₅",
+          "fa": "The cat sat on the (گربه نشست رویِ …)؛ توجه؛ x₁؛ x₂؛ x₃؛ x₄؛ x₅؛ z₁؛ z₂؛ z₃؛ z₄؛ z₅",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "0536b15d529b469a8836fadd805cc5bb2972a9c582c43e9fbdfb41b048328be2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• مرور کلی ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• خودتوجهی (Self-Attention)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• توجه چندسر (Multi-Head Attention)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• اجزای رایج ترنسفورمر"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• ترنسفورمر پیشگام: ترجمهٔ ماشینی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "9d5fe5f6044dd12ac25edfc3f596bc63c93da63238c1cf7f989559c6b1f17ea1",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "توجه چندسر (Multi-Head Attention)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• هدف: هر توکن بتواند به چند شیوه با توکن‌های دیگر مرتبط شود."
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• ایدهٔ اصلی: چند سازوکار خودتوجهی، که هرکدام ماتریس‌های کلید، مقدار و پرس‌وجوی خود را دارند."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "https://sebastianraschka.com/pdf/lecture-notes/stat453ss21/L19_seq2seq_rnn-transformers__slides.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x×W₁ᑫ=Q₁; x×W₂ᑫ=Q₂; x×W₃ᑫ=Q₃; x×W₁ᵏ=K₁; x×W₂ᵏ=K₂; x×W₃ᵏ=K₃; x×W₁ᵛ=V₁; x×W₂ᵛ=V₂; x×W₃ᵛ=V₃",
+          "fa": "x×W₁ᑫ=Q₁؛ x×W₂ᑫ=Q₂؛ x×W₃ᑫ=Q₃؛ x×W₁ᵏ=K₁؛ x×W₂ᵏ=K₂؛ x×W₃ᵏ=K₃؛ x×W₁ᵛ=V₁؛ x×W₂ᵛ=V₂؛ x×W₃ᵛ=V₃",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "c07ae16b19021470fa6a78ff4faa2f7fbc79277720f90b2ff399c8d91280fa92",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "توجه چندسر (Multi-Head Attention)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "http://jalammar.github.io/illustrated-transformer/"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "۱) برای همهٔ سرهای توجه، بردارهای پرس‌وجو، کلید و مقدار بسازید."
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "۲) بازنمایی‌های جدید ورودی را محاسبه کنید."
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "۳) با الحاق zها و ضرب در یک ماتریس وزن، همهٔ بازنمایی‌ها را در یک بازنمایی فشرده کنید."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "X; W₀Q,W₀K,W₀V; Q₀,K₀,V₀; Z₀; W₁Q,W₁K,W₁V; Q₁,K₁,V₁; Z₁; W₇Q,W₇K,W₇V; Q₇,K₇,V₇; Z₇; WO; Z",
+          "fa": "X؛ W₀Q,W₀K,W₀V؛ Q₀,K₀,V₀؛ Z₀؛ W₁Q,W₁K,W₁V؛ Q₁,K₁,V₁؛ Z₁؛ W₇Q,W₇K,W₇V؛ Q₇,K₇,V₇؛ Z₇؛ WO؛ Z",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "3b448f12c401477da8cc8b0d81dd6e9920e12cdc6e8512af647cb8b6ca48fe8d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نمونه‌های توجه چندسر (Multi-Head Attention) آموزش‌دیده"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "http://jalammar.github.io/illustrated-transformer/"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "شکل، دو ستون وزن توجه برای دو سر نخست توجه را نشان می‌دهد — مقادیر تیره‌تر نشان‌دهندهٔ امتیازهای توجه بزرگ‌ترند."
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "در سر نخست توجه، «it» (آن) بیش از همه بر چه چیزی تمرکز می‌کند؟ — The animal (حیوان؛ مثلاً بازنمایی می‌کند «آن» چیست.)"
+        },
+        {
+          "source_lines": [
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "در سر دوم توجه، «it» (آن) بیش از همه بر چه چیزی تمرکز می‌کند؟ — tired (خسته؛ مثلاً بازنمایی می‌کند «آن» چه احساسی دارد.)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Layer: 5; Attention: Input – Input; The_ animal_ didn_ ’_ t_ cross_ the_ street_ because_ it_ was_ too_ tire d_",
+          "fa": "لایه: ۵؛ توجه: ورودی – ورودی؛ The_ animal_ didn_ ’_ t_ cross_ the_ street_ because_ it_ was_ too_ tire d_ (حیوان از خیابان عبور نکرد، چون بسیار خسته بود؛ مرز توکن‌ها مطابق شکل حفظ شده‌اند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "69d2c2b7521e6e69399b3fb5aa4051bf71bf6f17635dc32df58974fd82120938",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نمونه‌های توجه چندسر (Multi-Head Attention) آموزش‌دیده"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "http://jalammar.github.io/illustrated-transformer/"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "شکل، پنج ستون وزن توجه برای پنج سر توجه را نشان می‌دهد — مقادیر تیره‌تر نشان‌دهندهٔ امتیازهای توجه بزرگ‌ترند."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "تفسیر وزن‌های توجه ممکن است دشوار باشد."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Layer: 5; Attention: Input – Input; The_ animal_ didn_ ’_ t_ cross_ the_ street_ because_ it_ was_ too_ tire d_",
+          "fa": "لایه: ۵؛ توجه: ورودی – ورودی؛ The_ animal_ didn_ ’_ t_ cross_ the_ street_ because_ it_ was_ too_ tire d_ (حیوان از خیابان عبور نکرد، چون بسیار خسته بود؛ مرز توکن‌ها مطابق شکل حفظ شده‌اند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "0536b15d529b469a8836fadd805cc5bb2972a9c582c43e9fbdfb41b048328be2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• مرور کلی ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• خودتوجهی (Self-Attention)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• توجه چندسر (Multi-Head Attention)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• اجزای رایج ترنسفورمر"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• ترنسفورمر پیشگام: ترجمهٔ ماشینی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "f2f75a8e18ac5928fe52e65eef8fd2b90bb926fce44e9e85848ff6ae2d32ba26",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "http://peterbloem.nl/blog/transformers"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "بلوک معمول ترنسفورمر (Transformer Block)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "معماری‌ها اغلب چند بلوک ترنسفورمر، مانند بلوک نشان‌داده‌شده در اینجا، را پشت سر هم قرار می‌دهند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "input; transformer block; self attention; layer norm; MLP; output; +",
+          "fa": "ورودی؛ بلوک ترنسفورمر؛ خودتوجهی؛ نرمال‌سازی لایه؛ پرسپترون چندلایه (MLP)؛ خروجی؛ +",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "8693182991d6e238d90b6871023504b878198fb3effcbfb73ef050ea513eb182",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "http://peterbloem.nl/blog/transformers"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "بلوک معمول ترنسفورمر (Transformer Block)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "نرمال‌سازی لایه (Layer normalization) و اتصال‌های باقیمانده (Residual connections)، آموزش را بهبود می‌دهند (یعنی نتایج سریع‌تر و بهتر)."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "input; transformer block; self attention; layer norm; MLP; output; +",
+          "fa": "ورودی؛ بلوک ترنسفورمر؛ خودتوجهی؛ نرمال‌سازی لایه؛ پرسپترون چندلایه (MLP)؛ خروجی؛ +",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "84841d65901834943f226491daad6efeacc81ef39a2b51469b3be62fe4847f2a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "http://peterbloem.nl/blog/transformers"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "بلوک معمول ترنسفورمر (Transformer Block)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "لایهٔ پیش‌خور (Feedforward) برای هر ورودی"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "input; transformer block; self attention; layer norm; MLP; output; +",
+          "fa": "ورودی؛ بلوک ترنسفورمر؛ خودتوجهی؛ نرمال‌سازی لایه؛ پرسپترون چندلایه (MLP)؛ خروجی؛ +",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "4a7eb50103e5a25a6ee07f134fd743ca9d68936694fb2cd482edef3e16672f05",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "http://peterbloem.nl/blog/transformers"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "بلوک معمول ترنسفورمر (Transformer Block)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "غیرخطی‌بودن‌ها در کجای این بلوک وارد می‌شوند؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "input; transformer block; self attention; layer norm; MLP; output; +",
+          "fa": "ورودی؛ بلوک ترنسفورمر؛ خودتوجهی؛ نرمال‌سازی لایه؛ پرسپترون چندلایه (MLP)؛ خروجی؛ +",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "cd93c78d92405410399920c960820dc6f5eb64ecd1177ebc42363e38e014b17e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "http://peterbloem.nl/blog/transformers"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "بلوک معمول ترنسفورمر (Transformer Block)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "غیرخطی‌بودن در سافت‌مکسِ خودتوجهی، توابع فعال‌سازی پرسپترون چندلایه (MLP) و نرمال‌سازی‌های لایه وارد می‌شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "input; transformer block; self attention; layer norm; MLP; output; +",
+          "fa": "ورودی؛ بلوک ترنسفورمر؛ خودتوجهی؛ نرمال‌سازی لایه؛ پرسپترون چندلایه (MLP)؛ خروجی؛ +",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "a6f11cbd43937daa2f504302f40989ffe51dc4857fcee2b6fc10babd2696c8ef",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "http://peterbloem.nl/blog/transformers"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "چالش: ترنسفورمرها به ترتیب توکن‌های ورودی حساس نیستند."
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "ورودی به‌صورت یک مجموعه دیده می‌شود؛ پس جابه‌جایی ترتیب توکن‌های ورودی، همان خروجی‌ها را با همان ترتیب جابه‌جاشده ایجاد می‌کند (یعنی خودتوجهی نسبت به جایگشت هم‌ورداست (Permutation equivariant))."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "input; transformer block; self attention; layer norm; MLP; output; +",
+          "fa": "ورودی؛ بلوک ترنسفورمر؛ خودتوجهی؛ نرمال‌سازی لایه؛ پرسپترون چندلایه (MLP)؛ خروجی؛ +",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "0b3d6fd1331f8c9181a5760b186907bd9d00fdd87dd84b46d64c94bbcf8fbad6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "راه‌حل: موقعیت را به‌عنوان ورودی ترنسفورمر اضافه کنید."
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• گزینه‌ها:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• تعبیه‌های موقعیت (Position embeddings): با آموزش روی دنباله‌هایی از هر طول در طول آموزش ساخته می‌شوند."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• کدگذاری‌های موقعیت (Position encodings): تابعی که موقعیت‌ها را به بردارهایی نگاشت می‌کند و شبکه تفسیر آن‌ها را می‌آموزد (تعمیم به طول‌های مشاهده‌نشده در آموزش را ممکن می‌کند)."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "http://jalammar.github.io/illustrated-transformer/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "EMBEDDING WITH TIME SIGNAL; POSITIONAL ENCODING; EMBEDDINGS; INPUT; Je; suis; étudiant; x₁; x₂; x₃; t₁; t₂; t₃",
+          "fa": "تعبیه همراه با سیگنال زمان؛ کدگذاری موقعیتی؛ تعبیه‌ها؛ ورودی؛ Je (من)؛ suis (هستم)؛ étudiant (دانشجو)؛ x₁؛ x₂؛ x₃؛ t₁؛ t₂؛ t₃",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "0536b15d529b469a8836fadd805cc5bb2972a9c582c43e9fbdfb41b048328be2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• مرور کلی ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• خودتوجهی (Self-Attention)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• توجه چندسر (Multi-Head Attention)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• اجزای رایج ترنسفورمر"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• ترنسفورمر پیشگام: ترجمهٔ ماشینی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "Attention Is All You Need",
+          "fa": "توجه، تمام چیزی است که نیاز دارید (Attention Is All You Need)",
+          "verified": true
+        },
+        {
+          "en": "Ashish Vaswani*; Google Brain; avaswani@google.com; Noam Shazeer*; Google Brain; noam@google.com; Niki Parmar*; Google Research; nikip@google.com; Jakob Uszkoreit*; Google Research; usz@google.com",
+          "fa": "Ashish Vaswani*؛ Google Brain؛ avaswani@google.com؛ Noam Shazeer*؛ Google Brain؛ noam@google.com؛ Niki Parmar*؛ Google Research؛ nikip@google.com؛ Jakob Uszkoreit*؛ Google Research؛ usz@google.com",
+          "verified": true
+        },
+        {
+          "en": "Llion Jones*; Google Research; llion@google.com; Aidan N. Gomez*†; University of Toronto; aidan@cs.toronto.edu; Łukasz Kaiser*; Google Brain; lukaszkaiser@google.com; Illia Polosukhin*‡; illia.polosukhin@gmail.com",
+          "fa": "Llion Jones*؛ Google Research؛ llion@google.com؛ Aidan N. Gomez*†؛ دانشگاه تورنتو؛ aidan@cs.toronto.edu؛ Łukasz Kaiser*؛ Google Brain؛ lukaszkaiser@google.com؛ Illia Polosukhin*‡؛ illia.polosukhin@gmail.com",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "84139025acbd924e65348e0c6b40a89f6cb23d92eba146f1c91143f3c8af0b1e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "کاربرد هدف: ترجمهٔ ماشینی (Machine Translation)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://jalammar.github.io/illustrated-transformer/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "INPUT: Je suis étudiant; ENCODERS; DECODERS; OUTPUT: I am a student",
+          "fa": "ورودی: Je suis étudiant (من دانشجو هستم)؛ رمزگذارها؛ رمزگشاها؛ خروجی: I am a student (من دانشجو هستم)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "902e7379338682071e2349567b50f96354a3698a4f15b265bced3673b885e4be",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری (Architecture)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• جزء اصلی"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• خودتوجهی (Self-Attention) در رمزگذار و رمزگشا"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• اجزای دیگر"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• کدگذاری موقعیتی (Positional encoding)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• نرمال‌سازی لایه (Layer normalization)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• اتصال‌های باقیمانده (Residual connections)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• لایه‌های پیش‌خور (Feed forward)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• Nx = 6 بلوک زنجیروار (رمزگذار و رمزگشا)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "reference",
+          "fa": "Vaswani et al. Attention Is All You Need. Neurips 2017."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Inputs; Input Embedding; Positional Encoding; Multi-Head Attention; Add & Norm; Feed Forward; Nx; Outputs (shifted right); Output Embedding; Masked Multi-Head Attention; Linear; Softmax; Output Probabilities",
+          "fa": "ورودی‌ها؛ تعبیهٔ ورودی؛ کدگذاری موقعیتی؛ توجه چندسر؛ جمع و نرمال‌سازی؛ پیش‌خور؛ Nx؛ خروجی‌ها (یک خانه جابه‌جاشده به راست)؛ تعبیهٔ خروجی؛ توجه چندسر ماسک‌شده؛ خطی؛ سافت‌مکس؛ احتمال‌های خروجی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "0798b70a033f6821d10fcf546d1414c9158e6677df5825ca21e655d9602854bb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری (Architecture)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "رمزگشا روی خروجی رمزگذار، توجه چندسر (Multi-Head Attention) انجام می‌دهد."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Vaswani et al. Attention Is All You Need. Neurips 2017."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Inputs; Input Embedding; Positional Encoding; Multi-Head Attention; Add & Norm; Feed Forward; Nx; Outputs (shifted right); Output Embedding; Masked Multi-Head Attention; Linear; Softmax; Output Probabilities",
+          "fa": "ورودی‌ها؛ تعبیهٔ ورودی؛ کدگذاری موقعیتی؛ توجه چندسر؛ جمع و نرمال‌سازی؛ پیش‌خور؛ Nx؛ خروجی‌ها (یک خانه جابه‌جاشده به راست)؛ تعبیهٔ خروجی؛ توجه چندسر ماسک‌شده؛ خطی؛ سافت‌مکس؛ احتمال‌های خروجی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 71,
+      "source_text_sha256": "2b9af132b55e3bae2ca3e984de0e7ca5c792dad17568a1f5e5fbd84ab6bfcdf3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "جلسهٔ بعد: ترنسفورمرها بدون بار اضافیِ معماری رمزگذار–رمزگشا (Encoder-Decoder)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 72,
+      "source_text_sha256": "0536b15d529b469a8836fadd805cc5bb2972a9c582c43e9fbdfb41b048328be2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• مرور کلی ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• خودتوجهی (Self-Attention)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• توجه چندسر (Multi-Head Attention)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• اجزای رایج ترنسفورمر"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• ترنسفورمر پیشگام: ترجمهٔ ماشینی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 73,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ]
+    }
+  ]
+}

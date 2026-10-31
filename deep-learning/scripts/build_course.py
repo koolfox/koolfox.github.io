@@ -11,7 +11,12 @@ from course_content import load_course
 from mnist_reference import load_reference
 from source_catalog import ROOT
 from workshops import load_workshops
-from local_slides import load_slides
+from local_slides import (
+    bilingual_slide,
+    formula_html,
+    load_slides,
+    original_slide_url,
+)
 
 BASE = "/deep-learning"
 LABS = {
@@ -122,12 +127,18 @@ def page(title, body, crumbs=(), data=None):
     for url, label in crumbs:
         trail += f'<span aria-hidden="true">/</span>{link(url, label)}'
     config = json.dumps(data or {}, ensure_ascii=False).replace("<", "\\u003c")
+    source_style = (
+        f'<link rel="stylesheet" href="{BASE}/assets/source-slides.css">'
+        if data and data.get("term") == "spring-2022"
+        else ""
+    )
     return f'''<!doctype html>
 <html lang="fa" dir="rtl"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{e(title)} · یادگیری ژرف</title>
 <meta name="description" content="درسنامه مستقل فارسی، مسیر پنج ترم دانا گوراری، تمرین و آزمایشگاه پایتون">
 <link rel="stylesheet" href="{BASE}/assets/course.css">
+{source_style}
 <script src="{BASE}/assets/course.js" defer></script>
 <script src="{BASE}/assets/workshops.js" defer></script></head><body>
 <a class="skip" href="#main">رفتن به محتوای درس</a>
@@ -228,12 +239,14 @@ def term_page(term):
 def source_panel(term, row, concepts):
     original = "<p>منبع اصلی مباحث: دانا گوراری، دانشگاه کلرادو بولدر. فایل اصلی تغییر نکرده است.</p>"
     for source in row["slides"]:
-        preview = (
-            ""
-            if row.get("local_slides")
-            else f'<button type="button" class="quiet" data-show-source="{e(source["url"])}">نمایش در همین صفحه</button>'
+        target = original_slide_url(source)
+        preview_target = (
+            ' data-preview-target="original-slide-view"'
+            if target.startswith(BASE + "/assets/danna/")
+            else ""
         )
-        original += f'<div class="source-document">{link(source["url"], f"اسلاید مرجع · {source["page_count"]} صفحه", True, class_="source-link")}{preview}</div>'
+        preview = f'<button type="button" class="quiet" data-show-source="{e(target)}"{preview_target}>نمایش اصل اسلاید در همین صفحه</button>'
+        original += f'<div class="source-document">{link(target, f"اسلاید اصلی دانا · {source['page_count']} صفحه", True, class_="source-link")}{preview}</div>'
     mapping = row["mapping"]
     if mapping:
         original += (
@@ -247,7 +260,9 @@ def source_panel(term, row, concepts):
     if row.get("local_slides"):
         url = session_url(term, row) + "slides/"
         count = len(row["workshop"]["questions"]) + 6
-        content = f'<h2>اسلاید آموزشی فارسی</h2><p>تألیف مستقل مجموعه؛ همراه با کارگاه و پرسش‌وپاسخ.</p><p class="meta">{prose(str(count))} اسلاید محلی برای این جلسه</p>'
+        content = "<h2>اسلایدهای اصلی درس</h2>" + original
+        content += '<details class="persian-companion"><summary>ارائه و کارگاه فارسی همراه</summary>'
+        content += f'<p>تألیف مستقل مجموعه؛ همراه با کارگاه و پرسش‌وپاسخ.</p><p class="meta">{prose(str(count))} اسلاید محلی برای این جلسه</p>'
         content += f'<div class="source-document">{link(url, "باز کردن اسلایدهای فارسی", class_="local-slide-link")}'
         content += f'<button type="button" class="quiet" data-show-source="{e(url)}" data-source-kind="local" data-preview-target="local-slide-view">نمایش اسلاید فارسی در همین صفحه</button></div>'
         content += link(
@@ -256,11 +271,7 @@ def source_panel(term, row, concepts):
             class_="bundle-link",
             download="",
         )
-        content += (
-            '<details class="original-source"><summary>منابع و اسلایدهای اصلی برای تطبیق</summary>'
-            + original
-            + "</details>"
-        )
+        content += "</details>"
     else:
         content = "<h2>کنار درس فارسی</h2>" + original
     if row["companion_ready"]:
@@ -442,19 +453,21 @@ def slides_page(term, row, identity, teaching):
 
     def add(title, body, kind=""):
         number = len(slides) + 1
-        slides.append(f'''<section class="dl-slide {kind}" id="slide-{number}" data-slide-title="{e(title)}">
+        slides.append(
+            bilingual_slide(f'''<section class="dl-slide {kind}" id="slide-{number}" data-slide-title="{e(title)}">
 <header class="slide-identity"><div><p>کارگاه آموزشی دیپ لرنینگ</p><p>{e(term["title_fa"])} · اسلاید آموزشی مستقل</p></div><img class="deck-logo" src="{BASE}/assets/university-logo.png" alt="نشان مؤسسه آموزش عالی نقش جهان" width="100" height="104"></header>
 <div class="slide-content"><h1>{prose(title)}</h1>{body}</div>
 <footer class="slide-footer"><p>تألیف مستقل فارسی · {e(identity["author_fa"])} · MIT</p><p><bdi dir="ltr">{number} / DECK_TOTAL_COUNT</bdi></p></footer></section>''')
+        )
 
     add(
-        row["title_fa"],
-        f'<p class="cover-topic">{prose(teaching["intro_fa"])}</p><div class="cover-people"><p>ارائه‌دهنده: {e(identity["author_fa"])}</p><p>استاد: {e(identity["supervisor_fa"])}</p></div>',
+        teaching["source_title_fa"],
+        f'<p class="cover-topic" dir="ltr">({e(teaching["source_title_en"])})</p><div class="cover-people"><p>ارائه‌دهنده: {e(identity["author_fa"])}</p><p>استاد: {e(identity["supervisor_fa"])}</p><p class="cover-source">منبع درس: دانا گوراری (Danna Gurari)، دانشگاه کلرادو بولدر</p></div>',
         "slide-cover",
     )
     add(
         "مسئله و هدف‌های این جلسه",
-        f'<div class="slide-copy">{paragraphs([row.get("overview_fa", "")])}{listing(row.get("objectives_fa", []))}</div>',
+        f'<div class="slide-copy">{paragraphs([teaching["intro_fa"], row.get("overview_fa", "")])}{listing(row.get("objectives_fa", []))}</div>',
     )
     ideas = "".join(
         f"<li data-deck-point>{prose(point)}</li>" for point in teaching["ideas_fa"]
@@ -474,7 +487,7 @@ def slides_page(term, row, identity, teaching):
         }
     add(
         "رابطه و محاسبهٔ نمونه",
-        f'<div class="slide-formula"><div class="slide-copy"><figure class="formula"><div dir="ltr">{e(teaching["formula"])}</div></figure><p>{prose(teaching["formula_explanation_fa"])}</p></div><div><p class="meta">بخشی از خروجی ثبت‌شدهٔ کد اولیه</p><pre dir="ltr">{e(json.dumps(preview, ensure_ascii=False, indent=2))}</pre></div></div>',
+        f'<div class="slide-formula"><div class="slide-copy"><figure class="formula" data-latex-formula><div dir="ltr">{formula_html(teaching)}</div></figure><p>{prose(teaching["formula_explanation_fa"])}</p></div><div><p class="meta">بخشی از خروجی ثبت‌شدهٔ کد اولیه</p><pre dir="ltr">{e(json.dumps(preview, ensure_ascii=False, indent=2))}</pre></div></div>',
     )
     add(
         unit["title_fa"],
@@ -487,7 +500,7 @@ def slides_page(term, row, identity, teaching):
     for i, question in enumerate(unit["questions"], 1):
         add(f"پرسش و پاسخ · {i}", exercise_html(question, "deck-" + row["id"]))
     source = link(
-        unit["source_url"] + "#page=" + str(unit["source_page"]),
+        original_slide_url(row["slides"][0]) + "#page=" + str(unit["source_page"]),
         "اسلاید اصلی دانا گوراری، صفحهٔ " + str(unit["source_page"]),
         True,
     )
@@ -502,9 +515,9 @@ def slides_page(term, row, identity, teaching):
         {"term": term["id"], "session": row["id"]}, ensure_ascii=False
     ).replace("<", "\\u003c")
     return f'''<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>کارگاه آموزشی دیپ لرنینگ · {e(row["title_fa"])}</title><link rel="stylesheet" href="{BASE}/assets/course.css"><link rel="stylesheet" href="{BASE}/assets/slides.css">
+<title>کارگاه آموزشی دیپ لرنینگ · {e(row["title_fa"])}</title><link rel="stylesheet" href="{BASE}/assets/course.css"><link rel="stylesheet" href="{BASE}/assets/vendor/katex/katex.min.css"><link rel="stylesheet" href="{BASE}/assets/slides.css">
 <script src="{BASE}/assets/course.js" defer></script><script src="{BASE}/assets/workshops.js" defer></script><script src="{BASE}/assets/slides.js" defer></script></head>
-<body class="deck-page"><a class="skip" href="#main">رفتن به اسلاید</a><header class="deck-toolbar">{link(session_url(term, row), "بازگشت به درس", data_deck_back="true", target="_top")}<div>{link(BASE + "/slides/spring-2022.zip", "دریافت بستهٔ اسلایدها", download="")}<button type="button" data-deck-print disabled>چاپ / ذخیرهٔ PDF</button><button type="button" data-deck-fullscreen>تمام‌صفحه</button></div></header>
+<body class="deck-page"><a class="skip" href="#main">رفتن به اسلاید</a><header class="deck-toolbar">{link(session_url(term, row), "بازگشت به درس", data_deck_back="true", target="_top")}<div>{link(original_slide_url(row["slides"][0]), "اصل اسلایدهای دانا", True, class_="deck-original")}{link(BASE + "/slides/spring-2022.zip", "دریافت بستهٔ اسلایدها", download="")}<button type="button" data-deck-print disabled>چاپ / ذخیرهٔ PDF</button><button type="button" data-deck-fullscreen>تمام‌صفحه</button></div></header>
 <main id="main" aria-label="اسلایدهای آموزشی فارسی">{"".join(slides).replace("DECK_TOTAL_COUNT", str(len(slides)))}</main><p class="deck-status" data-deck-status role="status"></p>
 <footer class="deck-controls" aria-label="پیمایش اسلاید"><button type="button" data-deck-prev disabled>قبلی</button><select data-deck-select aria-label="انتخاب اسلاید" disabled></select><span data-deck-progress aria-live="polite"></span><button type="button" class="primary" data-deck-next disabled>بعدی</button></footer>
 <script id="course-context" type="application/json">{context}</script><noscript><p>همهٔ اسلایدها بدون پیمایش تعاملی قابل خواندن‌اند؛ برای کارگاه و بررسی خودکار پاسخ‌ها JavaScript را فعال کن.</p></noscript></body></html>'''
@@ -599,7 +612,14 @@ def session_page(term, row, concepts):
         + "".join(links)
         + "</nav>"
     )
-    body = f'<div class="lesson-layout">{source_panel(term, row, concepts)}<article class="lesson-body">{content}</article></div>'
+    if term["id"] == "spring-2022":
+        content = bilingual_slide(content)
+    original_view = (
+        '<div id="original-slide-view" class="original-slide-view"></div>'
+        if term["id"] == "spring-2022"
+        else ""
+    )
+    body = f'<div class="lesson-layout">{source_panel(term, row, concepts)}<article class="lesson-body">{original_view}{content}</article></div>'
     return page(
         row["title_fa"],
         body,

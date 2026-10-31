@@ -10,12 +10,46 @@ import zipfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from local_slides import load_slides
+from local_slides import (
+    bilingual_slide,
+    formula_html,
+    load_slides,
+    original_slide_files,
+)
 from package_slides import ASSETS, CORE, NOTICES, package_slides, read_regular
 from source_catalog import ROOT
 
 
 class LocalSlidesTests(unittest.TestCase):
+    def test_terms_are_bilingual_without_rewriting_python_or_formula_content(self):
+        html = "<p>پیش‌خور، پیش‌خور و پس‌انتشار</p><textarea>پیش‌خور</textarea><pre>پس‌انتشار</pre><math><mtext>گرادیان</mtext></math>"
+        annotated = bilingual_slide(html)
+        self.assertEqual(annotated.count("(Feedforward)"), 1)
+        self.assertIn("(Backpropagation)", annotated)
+        self.assertIn("<textarea>پیش‌خور</textarea>", annotated)
+        self.assertIn("<pre>پس‌انتشار</pre>", annotated)
+        self.assertIn("<math><mtext>گرادیان</mtext></math>", annotated)
+        self.assertEqual(
+            bilingual_slide("<p>پیش‌خور (Feedforward)</p>").count("Feedforward"), 1
+        )
+        self.assertEqual(
+            bilingual_slide("<p>پیش‌خور (<bdi>Feedforward)</bdi></p>").count(
+                "Feedforward"
+            ),
+            1,
+        )
+
+    def test_every_deck_has_typeset_latex_and_originals_match_reviewed_bytes(self):
+        _, units = load_slides("spring-2022")
+        for unit in units.values():
+            html = formula_html(unit)
+            self.assertIn("<math ", html)
+            self.assertIn("application/x-tex", html)
+            changed = {**unit, "formula_latex": unit["formula_latex"] + "x"}
+            with self.assertRaisesRegex(ValueError, "Stale LaTeX"):
+                formula_html(changed)
+        self.assertEqual(len(original_slide_files()), 23)
+
     def test_every_teaching_session_has_an_independent_narrative(self):
         identity, units = load_slides("spring-2022")
         self.assertEqual(len(units), 23)
@@ -37,6 +71,15 @@ class LocalSlidesTests(unittest.TestCase):
                 shutil.copyfile(
                     ROOT / folder / "spring-2022.json", target / "spring-2022.json"
                 )
+            (root / "content/slides/math").mkdir()
+            shutil.copyfile(
+                ROOT / "content/slides/math/spring-2022.json",
+                root / "content/slides/math/spring-2022.json",
+            )
+            shutil.copyfile(
+                ROOT / "data/metadata/spring-2022-slide-identity.json",
+                root / "data/metadata/spring-2022-slide-identity.json",
+            )
             for name in (*ASSETS, *("vendor/notices/" + n for n in NOTICES)):
                 source = root / "assets" / name
                 source.parent.mkdir(parents=True, exist_ok=True)

@@ -19,6 +19,13 @@ ASSETS = (
     "university-logo.source.json",
     "vendor/pyodide.mjs",
     "vendor/pyodide-LICENSE.json",
+    "vendor/katex/files.json",
+    *(
+        "vendor/katex/" + record["path"]
+        for record in json.loads((ROOT / "assets/vendor/katex/files.json").read_text())[
+            "files"
+        ]
+    ),
 )
 CORE = ("pyodide.asm.js", "pyodide.asm.wasm", "python_stdlib.zip", "pyodide-lock.json")
 NOTICES = ("Arad-OFL.txt", "Python-LICENSE.txt", "sources.json")
@@ -51,6 +58,10 @@ def package_slides(output, root=ROOT):
             'href="/deep-learning/slides/spring-2022.zip"',
             f'href="{PUBLIC}/deep-learning/slides/spring-2022.zip"',
         )
+        text = text.replace(
+            'href="/deep-learning/assets/danna/',
+            f'href="{PUBLIC}/deep-learning/assets/danna/',
+        )
         files[name] = text.encode()
         links.append(
             f'<li><a href="/{name}">{escape(session)} · {escape(sessions[session]["intro_fa"])}</a></li>'
@@ -75,6 +86,14 @@ def package_slides(output, root=ROOT):
             f"deep-learning/content/{folder}/spring-2022.json",
             root / f"content/{folder}/spring-2022.json",
         )
+    add(
+        "deep-learning/content/slides/math/spring-2022.json",
+        root / "content/slides/math/spring-2022.json",
+    )
+    add(
+        "deep-learning/data/metadata/spring-2022-slide-identity.json",
+        root / "data/metadata/spring-2022-slide-identity.json",
+    )
     add("assets/fonts/arad.woff2", root.parent / "assets/fonts/arad.woff2")
     runtime = root / "results/shinylive/neuron-xor/shinylive/pyodide"
     for name in CORE:

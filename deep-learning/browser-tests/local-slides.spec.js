@@ -20,9 +20,13 @@ test('all 23 local decks have their own cover, editor and questions without exte
     await expect(page.locator('.dl-slide')).toHaveCount(9);
     await expect(page.locator('.dl-slide:visible')).toHaveAttribute('id','slide-1');
     await expect(page.locator('.cover-people')).toContainText('استاد: دکتر نگار مجمع');
+    await expect(page.locator('.deck-original')).toHaveAttribute('href',`/deep-learning/assets/danna/spring-2022/${unit.session_id}.pdf`);
     await expect(page.locator('#slide-1 .deck-logo')).toHaveAttribute('src','/deep-learning/assets/university-logo.png');
     expect(await page.locator('#slide-1 .deck-logo').evaluate(img=>img.complete && img.naturalWidth===100 && img.naturalHeight===104)).toBeTruthy();
     await expect(page.locator('[data-deck-select] option')).toHaveCount(9);
+    await page.locator('[data-deck-select]').selectOption('3');
+    await expect(page.locator('[data-latex-formula] math')).toHaveCount(1);
+    expect(await page.locator('[data-latex-formula] .katex-html').evaluate(e=>e.getBoundingClientRect().height)).toBeGreaterThan(20);
     await page.locator('[data-deck-select]').selectOption('4');
     await expect(page.locator('[data-workshop-code]')).toBeVisible();
     await expect(page.locator('[data-workshop-result]')).toBeEmpty();
@@ -34,11 +38,16 @@ test('all 23 local decks have their own cover, editor and questions without exte
   expect(external).toEqual([]);expect(errors).toEqual([]);
 });
 
-test('local slide preview stays on the same origin and original PDFs are optional references',async({page})=>{
+test('original source is primary and the Persian companion remains available on the same origin',async({page})=>{
   await page.route('**/*colorado.edu/**',route=>route.abort());
   await page.goto(lesson('s19'));
   await expect(page.locator('.local-slide-link')).toHaveAttribute('href',deck('s19'));
-  await expect(page.locator('.original-source')).not.toHaveAttribute('open','');
+  await expect(page.locator('.source-panel h2').first()).toHaveText('اسلایدهای اصلی درس');
+  await expect(page.locator('.source-panel .source-link')).toHaveAttribute('href','/deep-learning/assets/danna/spring-2022/s19.pdf');
+  const original=page.locator('[data-show-source="/deep-learning/assets/danna/spring-2022/s19.pdf"]');
+  await original.click();await expect(page.locator('#original-slide-view iframe')).toHaveAttribute('src','/deep-learning/assets/danna/spring-2022/s19.pdf');
+  await original.click();await expect(page.locator('#original-slide-view iframe')).toHaveCount(0);
+  await page.locator('.persian-companion summary').click();
   await expect(page.locator('.local-slide-preview')).toHaveCount(0);
   await page.locator('[data-source-kind=local]').click();
   const frame=page.frameLocator('.local-slide-preview');

@@ -11,6 +11,7 @@
 - فونت Arad Medium، نسخهٔ 2.000، حق نشر ۲۰۲۵ Arad Project Authors: SIL OFL 1.1؛ متن مجوز در `assets/vendor/notices/Arad-OFL.txt` است. SHA-256 فونت مشترک: `2a6cfea5586fd923b4a90bd54dd081a61f632682faffbc05d80ec0182ea0b094`.
 - Pyodide 0.27.7: MPL 2.0؛ متن مجوز، نشانی سورس و هش loader در `assets/vendor/pyodide-LICENSE.json` است. فایل‌های runtime بدون تغییر از خروجی قفل‌شدهٔ Shinylive بسته‌بندی می‌شوند.
 - Python 3.12.7 و کتابخانهٔ استاندارد همراه runtime: مجوزهای PSF و اعلان‌های تاریخی در `assets/vendor/notices/Python-LICENSE.txt` حفظ شده‌اند.
+- KaTeX 0.19.1: MIT؛ متن مجوز در `assets/vendor/katex/LICENSE.txt`، منبع و هش فایل‌های محلی در `assets/vendor/katex/files.json` است. فرمول‌های تألیفی از LaTeX به HTML و MathML تبدیل شده‌اند؛ CSS فقط منابع فونت WOFF2 را نگه می‌دارد. نمایش فرمول‌ها به سرویس بیرونی یا JavaScript ریاضی در مرورگر وابسته نیست.
 - Shiny و Shinylive در آزمایشگاه‌های وب با مجوزهای اصلی توزیع‌های خودشان استفاده می‌شوند؛ نام و نسخهٔ محیط ساخت در `playgrounds/uv.lock` ثبت است. بستهٔ اسلایدها فقط هستهٔ Python لازم برای تمرین‌های استاندارد همین بسته را دارد.
 
 منبع و زمان دریافت متن مجوزهای افزوده‌شده در `assets/vendor/notices/sources.json` ثبت شده است. منابع Pyodide: https://github.com/pyodide/pyodide/tree/0.27.7 و منابع CPython: https://github.com/python/cpython/tree/v3.12.7.

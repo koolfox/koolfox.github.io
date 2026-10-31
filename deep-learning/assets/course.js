@@ -84,8 +84,9 @@
     let frame=container.querySelector('iframe');
     if(frame){frame.remove();button.textContent=local?'نمایش اسلاید فارسی در همین صفحه':'نمایش در همین صفحه';button.setAttribute('aria-expanded','false');return;}
     const source=button.dataset.showSource;
-    if(local?!/^\/deep-learning\/terms\/spring-2022\/s\d{2}\/slides\/$/.test(source):!/^https?:\/\//.test(source))return;
-    frame=document.createElement('iframe');frame.src=source;frame.title=local?'اسلایدهای آموزشی فارسی همین جلسه':'اسلاید اصلی از وب‌سایت دانشگاه';frame.className=local?'local-slide-preview':'source-preview';frame.loading='lazy';frame.referrerPolicy='no-referrer';frame.allowFullscreen=true;
+    const localOriginal=/^\/deep-learning\/assets\/danna\/spring-2022\/s\d{2}\.pdf$/.test(source);
+    if(local?!/^\/deep-learning\/terms\/spring-2022\/s\d{2}\/slides\/$/.test(source):!localOriginal&&!/^https?:\/\//.test(source))return;
+    frame=document.createElement('iframe');frame.src=source;frame.title=local?'اسلایدهای آموزشی فارسی همین جلسه':'اصل اسلایدهای دانا گوراری';frame.className=local?'local-slide-preview':'source-preview';frame.loading='lazy';frame.referrerPolicy='no-referrer';frame.allowFullscreen=true;
     container.append(frame);button.textContent='بستن نمایش اسلاید';button.setAttribute('aria-expanded','true');
     if(local)container.scrollIntoView({block:'start',behavior:'instant'});
   }));

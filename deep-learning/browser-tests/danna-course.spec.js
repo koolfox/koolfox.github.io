@@ -14,7 +14,7 @@ test('five calendars retain historical notes while only slide lessons are linked
     await expect(page.locator('.session-row, .calendar-note')).toHaveCount(count);
     await expect(page.locator('.calendar-note a, .calendar-note button, .calendar-note [data-session-key]')).toHaveCount(0);
     const first=page.locator('.session-row h2 a').first();await first.click();
-    await expect(page.locator('.source-link')).toHaveAttribute('href',/colorado.edu/);
+    await expect(page.locator('.source-link')).toHaveAttribute('href',term==='spring-2022'?'/deep-learning/assets/danna/spring-2022/s01.pdf':/colorado.edu/);
     await expect(page.locator('.concept')).not.toHaveCount(0);
     const links=await page.locator('a[href]').evaluateAll(nodes=>nodes.map(a=>a.href));
     for(const href of new Set(links)){

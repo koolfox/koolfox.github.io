@@ -5,7 +5,7 @@
   "title_fa": "کارگاه آموزشی دیپ لرنینگ",
   "supervisor_fa": "دکتر نگار مجمع",
   "author_fa": "حسام شینی",
-  "source_policy": "Independent Persian teaching slides. Original Danna Gurari PDFs are citations, not mirrored or relicensed.",
+  "source_policy": "Independent Persian companion slides, not full translations. Visually CC BY-marked Spring 2022 originals are hosted byte-for-byte with attribution and all original third-party credits retained.",
   "sessions": [
     {
       "session_id": "s01",
@@ -17,7 +17,10 @@
       ],
       "formula": "accuracy = correct_predictions / number_of_examples",
       "formula_explanation_fa": "در کارگاه، چهار مشاهدهٔ ساختگی داریم. با تغییر آستانه و سپس تغییر خود قاعده، تعداد پاسخ‌های درست را دوباره حساب می‌کنیم.",
-      "pitfall_fa": "دقت روی چهار نمونهٔ همین تمرین، شاهد تعمیم به تصویرهای واقعی نیست. داده و روش انتخاب قاعده باید در گزارش روشن باشند."
+      "pitfall_fa": "دقت روی چهار نمونهٔ همین تمرین، شاهد تعمیم به تصویرهای واقعی نیست. داده و روش انتخاب قاعده باید در گزارش روشن باشند.",
+      "formula_latex": "\\operatorname{accuracy}=\\frac{\\text{correct predictions}}{\\text{number of examples}}",
+      "source_title_en": "Neural Networks and Deep Learning",
+      "source_title_fa": "شبکه‌های عصبی و یادگیری عمیق"
     },
     {
       "session_id": "s02",
@@ -29,7 +32,10 @@
       ],
       "formula": "z = w·x + b\nw ← w + η(y − ŷ)x\nb ← b + η(y − ŷ)",
       "formula_explanation_fa": "در کد اولیه، نرخ 0.2 و اختلاف برچسب برابر -2 است؛ ضریب تغییر وزن -0.4 می‌شود. هر وزن به اندازهٔ همین ضریب در ورودی متناظر تغییر می‌کند.",
-      "pitfall_fa": "در آزمایشگاه زندهٔ گیت‌ها قرارداد برچسب صفر و یک است. مقدارهای دو قرارداد را بدون تبدیل با هم مقایسه نکن؛ پرسپترون هم مسئلهٔ XOR را با یک مرز خطی حل نمی‌کند."
+      "pitfall_fa": "در آزمایشگاه زندهٔ گیت‌ها قرارداد برچسب صفر و یک است. مقدارهای دو قرارداد را بدون تبدیل با هم مقایسه نکن؛ پرسپترون هم مسئلهٔ XOR را با یک مرز خطی حل نمی‌کند.",
+      "formula_latex": "\\begin{aligned}z&=\\mathbf{w}^{\\mathsf T}\\mathbf{x}+b\\\\\\mathbf{w}&\\leftarrow\\mathbf{w}+\\eta(y-\\hat y)\\mathbf{x}\\\\b&\\leftarrow b+\\eta(y-\\hat y)\\end{aligned}",
+      "source_title_en": "Artificial Neurons",
+      "source_title_fa": "نورون‌های مصنوعی"
     },
     {
       "session_id": "s04",
@@ -41,7 +47,10 @@
       ],
       "formula": "h₁ = ReLU(a + b)\nh₂ = ReLU(a + b − 1)\ny = h₁ − 2h₂",
       "formula_explanation_fa": "چهار ورودی دودویی را به ترتیب وارد کن؛ این وزن‌های ثابت خروجی‌های 0، 1، 1 و 0 می‌دهند. با حذف ReLU، خود تابع شبکه تغییر می‌کند.",
-      "pitfall_fa": "این محاسبه وزن‌های ازپیش‌تعیین‌شده دارد؛ نتیجهٔ یادگیری وزن‌ها نیست. برازش چهار نقطه نیز ارزیابی روی دادهٔ کنارگذاشته‌شده به حساب نمی‌آید."
+      "pitfall_fa": "این محاسبه وزن‌های ازپیش‌تعیین‌شده دارد؛ نتیجهٔ یادگیری وزن‌ها نیست. برازش چهار نقطه نیز ارزیابی روی دادهٔ کنارگذاشته‌شده به حساب نمی‌آید.",
+      "formula_latex": "\\begin{aligned}h_1&=\\operatorname{ReLU}(a+b)\\\\h_2&=\\operatorname{ReLU}(a+b-1)\\\\y&=h_1-2h_2\\end{aligned}",
+      "source_title_en": "Feedforward Neural Networks",
+      "source_title_fa": "شبکه‌های عصبی پیش‌خور"
     },
     {
       "session_id": "s05",
@@ -53,7 +62,10 @@
       ],
       "formula": "p = sigmoid(z)\n∂BCE/∂z = p − y\nw ← w − η∇wL",
       "formula_explanation_fa": "برای یک نورون سیگموید، گرادیان نسبت به هر وزن برابر (p−y) در ورودی آن وزن است. کد، مشتق تحلیلی را با اختلاف محدود و زیان پیش و پس از یک گام مقایسه می‌کند.",
-      "pitfall_fa": "گرادیان درست، مناسب‌بودن هر نرخ یادگیری را تضمین نمی‌کند. اختلاف عددی خیلی کوچک یا خیلی بزرگ می‌تواند بررسی اختلاف محدود را خراب کند."
+      "pitfall_fa": "گرادیان درست، مناسب‌بودن هر نرخ یادگیری را تضمین نمی‌کند. اختلاف عددی خیلی کوچک یا خیلی بزرگ می‌تواند بررسی اختلاف محدود را خراب کند.",
+      "formula_latex": "\\begin{aligned}p&=\\sigma(z)\\\\\\frac{\\partial\\operatorname{BCE}}{\\partial z}&=p-y\\\\\\mathbf{w}&\\leftarrow\\mathbf{w}-\\eta\\nabla_{\\mathbf{w}}L\\end{aligned}",
+      "source_title_en": "Gradient Descent and Training Neural Networks",
+      "source_title_fa": "نزول گرادیان و آموزش شبکه‌های عصبی"
     },
     {
       "session_id": "s06",
@@ -65,7 +77,10 @@
       ],
       "formula": "selected_epoch = argmin_epoch validation_loss(epoch)",
       "formula_explanation_fa": "در کد این جلسه، هدف آموزش و اعتبارسنجی عمداً متفاوت ساخته شده‌اند تا اثر انتخاب دوره دیده شود. تاریخچه‌ها از اجرای واقعی همان به‌روزرسانی ساخته می‌شوند.",
-      "pitfall_fa": "این اختلاف هدف، شاهد بیش‌برازش روی یک دیتاست واقعی نیست. پس از دیدن آزمون، تنظیم دوباره با همان آزمون دیگر ارزیابی مستقل تازه‌ای نمی‌سازد."
+      "pitfall_fa": "این اختلاف هدف، شاهد بیش‌برازش روی یک دیتاست واقعی نیست. پس از دیدن آزمون، تنظیم دوباره با همان آزمون دیگر ارزیابی مستقل تازه‌ای نمی‌سازد.",
+      "formula_latex": "t^*=\\underset{t}{\\operatorname{arg\\,min}}\\;L_{\\mathrm{validation}}(t)",
+      "source_title_en": "Neural Network Training",
+      "source_title_fa": "آموزش شبکهٔ عصبی"
     },
     {
       "session_id": "s07",
@@ -77,7 +92,10 @@
       ],
       "formula": "Y[i,j] = bias + Σu,v K[u,v] X[i+u,j+v]\noutput_size = floor((input + 2padding − kernel)/stride) + 1",
       "formula_explanation_fa": "کارگاه از یک پنجرهٔ سه در سه با شدت‌های ساختگی استفاده می‌کند. هستهٔ همانی با بایاس، شدت میانی را جابه‌جا می‌کند؛ هستهٔ میانگین مقدار همسایه‌ها را ترکیب می‌کند.",
-      "pitfall_fa": "در این آزمایش فیلتر دستی است و آموزش یا طبقه‌بندی انجام نمی‌شود. محدودکردن شدت به بازهٔ تصویر نیز فقط وقتی اعمال می‌شود که در کد نوشته شده باشد."
+      "pitfall_fa": "در این آزمایش فیلتر دستی است و آموزش یا طبقه‌بندی انجام نمی‌شود. محدودکردن شدت به بازهٔ تصویر نیز فقط وقتی اعمال می‌شود که در کد نوشته شده باشد.",
+      "formula_latex": "\\begin{aligned}Y_{i,j}&=b+\\sum_{u,v}K_{u,v}X_{i+u,j+v}\\\\n_{\\mathrm{out}}&=\\left\\lfloor\\frac{n_{\\mathrm{in}}+2p-k}{s}\\right\\rfloor+1\\end{aligned}",
+      "source_title_en": "Convolutional Neural Networks",
+      "source_title_fa": "شبکه‌های عصبی کانولوشنی"
     },
     {
       "session_id": "s09",
@@ -89,7 +107,10 @@
       ],
       "formula": "top_k_accuracy = mean(ground_truth ∈ top_k(scores))",
       "formula_explanation_fa": "سه نمونه و چهار کلاسِ ساختگی داریم. در کد اولیه، هر سه برچسب در دو گزینهٔ اول‌اند ولی فقط یک برچسب در رتبهٔ اول است.",
-      "pitfall_fa": "این سه نمونه، بنچمارک ImageNet یا MNIST نیستند. پروژهٔ جداگانهٔ CNN روی MNIST دستور اجرا، داده و نتایج ثبت‌شدهٔ خودش را دارد."
+      "pitfall_fa": "این سه نمونه، بنچمارک ImageNet یا MNIST نیستند. پروژهٔ جداگانهٔ CNN روی MNIST دستور اجرا، داده و نتایج ثبت‌شدهٔ خودش را دارد.",
+      "formula_latex": "\\operatorname{TopKAccuracy}=\\frac{1}{N}\\sum_{i=1}^{N}\\mathbf{1}\\!\\left[y_i\\in\\operatorname{TopK}(\\mathbf{s}_i)\\right]",
+      "source_title_en": "Introduction to Computer Vision and Image Classification",
+      "source_title_fa": "مقدمه‌ای بر بینایی رایانه‌ای و طبقه‌بندی تصویر"
     },
     {
       "session_id": "s10",
@@ -101,7 +122,10 @@
       ],
       "formula": "J(w) = MSE(w) + λw²\n∂J/∂w = ∂MSE/∂w + 2λw",
       "formula_explanation_fa": "در این کد جریمه λw² است. آزمایشگاه شبکه قرارداد λΣw²/2 را به کار می‌برد؛ ضریب را همراه فرمول بخوان تا عامل دو با هم اشتباه نشود.",
-      "pitfall_fa": "برش تصادفی ممکن است شیء یا ویژگی تعیین‌کنندهٔ برچسب را حذف کند. منظم‌سازی بیشتر هم لزوماً خطای اعتبارسنجی را کمتر نمی‌کند."
+      "pitfall_fa": "برش تصادفی ممکن است شیء یا ویژگی تعیین‌کنندهٔ برچسب را حذف کند. منظم‌سازی بیشتر هم لزوماً خطای اعتبارسنجی را کمتر نمی‌کند.",
+      "formula_latex": "\\begin{aligned}J(w)&=\\operatorname{MSE}(w)+\\lambda w^2\\\\\\frac{\\partial J}{\\partial w}&=\\frac{\\partial\\operatorname{MSE}}{\\partial w}+2\\lambda w\\end{aligned}",
+      "source_title_en": "Regularization",
+      "source_title_fa": "منظم‌سازی"
     },
     {
       "session_id": "s11",
@@ -113,7 +137,10 @@
       ],
       "formula": "prediction = head × encoder × input\nfrozen_encoder → encoder_after = encoder_before",
       "formula_explanation_fa": "گرادیان هر دو بخش در مثال کوچک حساب می‌شود، اما وقتی انجماد فعال است فقط head تغییر می‌کند. وجود گرادیان محاسبه‌شده با اجرای به‌روزرسانی یکسان نیست.",
-      "pitfall_fa": "این دو وزن دستی، مدل ازپیش‌آموختهٔ واقعی نیستند. مقایسهٔ روش‌ها باید با دادهٔ مقصد، بودجهٔ مشخص و اعتبارسنجی انجام شود."
+      "pitfall_fa": "این دو وزن دستی، مدل ازپیش‌آموختهٔ واقعی نیستند. مقایسهٔ روش‌ها باید با دادهٔ مقصد، بودجهٔ مشخص و اعتبارسنجی انجام شود.",
+      "formula_latex": "\\begin{aligned}\\text{prediction}&=\\text{head}\\times\\text{encoder}\\times\\text{input}\\\\\\text{frozen encoder}&\\Longrightarrow\\text{encoder}_{\\mathrm{after}}=\\text{encoder}_{\\mathrm{before}}\\end{aligned}",
+      "source_title_en": "Pretrained CNN Features and Fine-Tuning",
+      "source_title_fa": "ویژگی‌های CNN ازپیش‌آموزش‌دیده و تنظیم دقیق"
     },
     {
       "session_id": "s12",
@@ -125,7 +152,10 @@
       ],
       "formula": "IoU(A,B) = area(A∩B) / area(A∪B)",
       "formula_explanation_fa": "دو کادر با مساحت چهار و اشتراک یک، اجتماع هفت و IoU برابر 1/7 دارند. در مثال ماسک، اجتماع و اشتراک مستقیماً از چهار مقدار دودویی حساب می‌شوند.",
-      "pitfall_fa": "برای اجتماع صفر باید قرارداد صریح تعریف شود. بخش‌بندی معنایی هم به‌تنهایی نمونه‌های متفاوتِ یک کلاس را از هم جدا نمی‌کند."
+      "pitfall_fa": "برای اجتماع صفر باید قرارداد صریح تعریف شود. بخش‌بندی معنایی هم به‌تنهایی نمونه‌های متفاوتِ یک کلاس را از هم جدا نمی‌کند.",
+      "formula_latex": "\\operatorname{IoU}(A,B)=\\frac{\\operatorname{area}(A\\cap B)}{\\operatorname{area}(A\\cup B)}",
+      "source_title_en": "Object Detection and Semantic Segmentation",
+      "source_title_fa": "تشخیص شیء و بخش‌بندی معنایی"
     },
     {
       "session_id": "s13",
@@ -137,7 +167,10 @@
       ],
       "formula": "h[t] = tanh(w h[t−1] + u x[t])\n∂h[t]/∂h[0] = Πk w(1−h[k]²)",
       "formula_explanation_fa": "یک RNN اسکالر و دنبالهٔ کوتاه داریم. حالت‌ها و حساسیت به حالت اولیه از همین فرمول محاسبه می‌شوند؛ با w=0 اثر حالت اولیه حذف می‌شود.",
-      "pitfall_fa": "این کد LSTM یا مدل زبان آموزش‌دیده نیست. افزایش w به‌تنهایی بزرگ‌شدن حساسیت را تضمین نمی‌کند، چون tanh می‌تواند اشباع شود."
+      "pitfall_fa": "این کد LSTM یا مدل زبان آموزش‌دیده نیست. افزایش w به‌تنهایی بزرگ‌شدن حساسیت را تضمین نمی‌کند، چون tanh می‌تواند اشباع شود.",
+      "formula_latex": "\\begin{aligned}h_t&=\\tanh(wh_{t-1}+ux_t)\\\\\\frac{\\partial h_t}{\\partial h_0}&=\\prod_{k=1}^{t}w(1-h_k^2)\\end{aligned}",
+      "source_title_en": "Recurrent Neural Networks",
+      "source_title_fa": "شبکه‌های عصبی بازگشتی"
     },
     {
       "session_id": "s14",
@@ -149,7 +182,10 @@
       ],
       "formula": "cosine(a,b) = (a·b) / (||a|| ||b||)",
       "formula_explanation_fa": "سه واژه با سه بردار دوبعدیِ دستی داریم. یک بردار را چندبرابر کن و تفاوت cosine و ضرب داخلی را ببین.",
-      "pitfall_fa": "cosine برای بردار صفر تعریف نشده است. نزدیکی واژه‌ها، تفاوت هم‌معنی و متضاد یا نبود سوگیری را تضمین نمی‌کند."
+      "pitfall_fa": "cosine برای بردار صفر تعریف نشده است. نزدیکی واژه‌ها، تفاوت هم‌معنی و متضاد یا نبود سوگیری را تضمین نمی‌کند.",
+      "formula_latex": "\\operatorname{cosine}(\\mathbf a,\\mathbf b)=\\frac{\\mathbf a^{\\mathsf T}\\mathbf b}{\\lVert\\mathbf a\\rVert\\,\\lVert\\mathbf b\\rVert}",
+      "source_title_en": "Introduction to NLP and Word Embeddings",
+      "source_title_fa": "مقدمه‌ای بر پردازش زبان طبیعی و تعبیه‌های واژه"
     },
     {
       "session_id": "s15",
@@ -161,7 +197,10 @@
       ],
       "formula": "scores[i] = query·key[i] / temperature\nα = softmax(scores)\ncontext = Σi α[i] value[i]",
       "formula_explanation_fa": "در کارگاه دو key و دو value داریم. تغییر query وزن‌ها را جابه‌جا می‌کند؛ تغییر value می‌تواند context را عوض کند بی‌آنکه وزن‌های توجه عوض شوند.",
-      "pitfall_fa": "این مثال سازوکار محاسبه است، نه آموزش یک مترجم. وزن بزرگِ توجه هم به‌تنهایی علت واقعی پیش‌بینی را ثابت نمی‌کند."
+      "pitfall_fa": "این مثال سازوکار محاسبه است، نه آموزش یک مترجم. وزن بزرگِ توجه هم به‌تنهایی علت واقعی پیش‌بینی را ثابت نمی‌کند.",
+      "formula_latex": "\\begin{aligned}s_i&=\\frac{\\mathbf q^{\\mathsf T}\\mathbf k_i}{T}\\\\\\boldsymbol\\alpha&=\\operatorname{softmax}(\\mathbf s)\\\\\\mathbf c&=\\sum_i\\alpha_i\\mathbf v_i\\end{aligned}",
+      "source_title_en": "Introduction to Attention",
+      "source_title_fa": "مقدمه‌ای بر توجه"
     },
     {
       "session_id": "s16",
@@ -173,7 +212,10 @@
       ],
       "formula": "Attention(Q,K,V) = softmax(QKᵀ / √dₖ + mask)V",
       "formula_explanation_fa": "برای query دوم، مقدار توکن سوم با ماسک علّی هرقدر تغییر کند نباید بر context اثر بگذارد. با برداشتن ماسک، همین آزمون باید تفاوت ایجاد کند.",
-      "pitfall_fa": "قرار دادن عدد صفر به‌جای امتیاز ممنوع، ماسک صحیح نیست: exp(0)=1. اگر هیچ جایگاهی مجاز نباشد، نرمال‌سازی معمول softmax تعریف نمی‌شود."
+      "pitfall_fa": "قرار دادن عدد صفر به‌جای امتیاز ممنوع، ماسک صحیح نیست: exp(0)=1. اگر هیچ جایگاهی مجاز نباشد، نرمال‌سازی معمول softmax تعریف نمی‌شود.",
+      "formula_latex": "\\operatorname{Attention}(Q,K,V)=\\operatorname{softmax}\\!\\left(\\frac{QK^{\\mathsf T}}{\\sqrt{d_k}}+M\\right)V",
+      "source_title_en": "Transformers",
+      "source_title_fa": "ترنسفورمرها"
     },
     {
       "session_id": "s17",
@@ -185,7 +227,10 @@
       ],
       "formula": "weighted_pair_count(a,b) = Σwords frequency(word) × occurrences(a,b)",
       "formula_explanation_fa": "کد یک دور شمارش جفت‌های نویسه‌ای را روی واژه‌های کوتاه انجام می‌دهد. زمینهٔ علّی و پوشانده‌شده نیز صرفاً برای دیدن اطلاعات مجاز جدا می‌شوند.",
-      "pitfall_fa": "این کد tokenizer کامل GPT یا اجرای BERT نیست. پیش‌آموزش بزرگ، درستی هر پاسخ یا مناسب‌بودن مدل برای هر کاربرد را تضمین نمی‌کند."
+      "pitfall_fa": "این کد tokenizer کامل GPT یا اجرای BERT نیست. پیش‌آموزش بزرگ، درستی هر پاسخ یا مناسب‌بودن مدل برای هر کاربرد را تضمین نمی‌کند.",
+      "formula_latex": "\\operatorname{PairCount}(a,b)=\\sum_{w\\in\\mathrm{words}}\\operatorname{frequency}(w)\\,\\operatorname{occurrences}(a,b;w)",
+      "source_title_en": "Popular Transformers",
+      "source_title_fa": "ترنسفورمرهای پرکاربرد"
     },
     {
       "session_id": "s18",
@@ -197,7 +242,10 @@
       ],
       "formula": "log P(sequence) = Σt log P(token[t] | previous, image)",
       "formula_explanation_fa": "دو دنبالهٔ ساختگی را با مجموع log-probability مقایسه کن. افزودن نرمال‌سازی طول، قاعدهٔ انتخاب را عوض می‌کند و باید در گزارش نوشته شود.",
-      "pitfall_fa": "این امتیازدهی، تمرین تکمیلی مستقل است و مدل واقعی تصویر یا BLEU را اجرا نمی‌کند. جملهٔ محتمل می‌تواند جزئیاتِ دیده‌نشده بسازد."
+      "pitfall_fa": "این امتیازدهی، تمرین تکمیلی مستقل است و مدل واقعی تصویر یا BLEU را اجرا نمی‌کند. جملهٔ محتمل می‌تواند جزئیاتِ دیده‌نشده بسازد.",
+      "formula_latex": "\\log P(\\mathbf y\\mid I)=\\sum_t\\log P(y_t\\mid\\mathbf y_{<t},I)",
+      "source_title_en": "Image Captioning",
+      "source_title_fa": "شرح تصویر"
     },
     {
       "session_id": "s19",
@@ -209,7 +257,10 @@
       ],
       "formula": "VQA_score = mean_over_left_out min(matches_in_other_9 / 3, 1)",
       "formula_explanation_fa": "وقتی سه نفر از ده نفر یک پاسخ را داده باشند، امتیاز میانگین زیرمجموعه‌ها 0.9 است؛ تقریب سادهٔ کل ده رأی در این حالت عدد دیگری می‌دهد.",
-      "pitfall_fa": "در کد، پاسخ‌ها از قبل یکسان‌سازی شده‌اند. سوگیری فرهنگی و محدودیت تصویر ممکن است پشت یک نمرهٔ کلی پنهان بماند."
+      "pitfall_fa": "در کد، پاسخ‌ها از قبل یکسان‌سازی شده‌اند. سوگیری فرهنگی و محدودیت تصویر ممکن است پشت یک نمرهٔ کلی پنهان بماند.",
+      "formula_latex": "\\operatorname{VQAScore}=\\frac{1}{10}\\sum_{j=1}^{10}\\min\\!\\left(\\frac{m_{-j}}{3},1\\right)",
+      "source_title_en": "Visual Question Answering",
+      "source_title_fa": "پرسش و پاسخ بصری"
     },
     {
       "session_id": "s20",
@@ -221,7 +272,10 @@
       ],
       "formula": "selected_object = argmax_i score(object_i, history)",
       "formula_explanation_fa": "دو شیء با سمت و رنگِ معلوم داریم. قاعدهٔ دستی با استفاده از تاریخچه یکی را انتخاب می‌کند؛ بدون تاریخچه، تساوی امتیاز به انتخاب قراردادی گزینهٔ اول منجر می‌شود.",
-      "pitfall_fa": "این آزمایش قاعدهٔ دستی دارد و نتیجهٔ آموزش VisDial یا GuessWhat?! نیست. تعداد نوبت بیشتر نیز موفقیت بیشتر را تضمین نمی‌کند."
+      "pitfall_fa": "این آزمایش قاعدهٔ دستی دارد و نتیجهٔ آموزش VisDial یا GuessWhat?! نیست. تعداد نوبت بیشتر نیز موفقیت بیشتر را تضمین نمی‌کند.",
+      "formula_latex": "i^*=\\underset{i}{\\operatorname{arg\\,max}}\\;\\operatorname{score}(o_i,\\mathrm{history})",
+      "source_title_en": "Visual Dialog",
+      "source_title_fa": "گفت‌وگوی بصری"
     },
     {
       "session_id": "s24",
@@ -233,7 +287,10 @@
       ],
       "formula": "z = encoder(x)\nx̂ = decoder(z)\nMSE = mean((x − x̂)²)",
       "formula_explanation_fa": "دو بردار دوبعدی را با یک گلوگاه تک‌بعدی بازسازی می‌کنیم. در کد اولیه، یک مؤلفه حفظ و مؤلفهٔ دیگر حذف می‌شود.",
-      "pitfall_fa": "وزن‌های این مثال دستی‌اند و آموزش autoencoder یا GAN اجرا نمی‌شود. بازسازی خوب نیز به‌تنهایی بازنمایی مناسب برای هر وظیفهٔ بعدی را ثابت نمی‌کند."
+      "pitfall_fa": "وزن‌های این مثال دستی‌اند و آموزش autoencoder یا GAN اجرا نمی‌شود. بازسازی خوب نیز به‌تنهایی بازنمایی مناسب برای هر وظیفهٔ بعدی را ثابت نمی‌کند.",
+      "formula_latex": "\\begin{aligned}z&=\\operatorname{encoder}(x)\\\\\\hat x&=\\operatorname{decoder}(z)\\\\\\operatorname{MSE}&=\\frac{1}{N}\\sum_i(x_i-\\hat x_i)^2\\end{aligned}",
+      "source_title_en": "Transfer Learning: Self-Supervised Learning",
+      "source_title_fa": "انتقال یادگیری: یادگیری خودنظارتی"
     },
     {
       "session_id": "s25",
@@ -245,7 +302,10 @@
       ],
       "formula": "prototype[class] = mean(embedding(support[class]))\nprediction = argmin_class distance(query, prototype[class])",
       "formula_explanation_fa": "برای دو کلاس و دو نمونه از هرکدام، میانگین دوبعدی را بساز. با اضافه‌کردن یک نمونهٔ پرت، جابه‌جایی prototype و پیش‌بینی را بررسی کن.",
-      "pitfall_fa": "zero-shot به معنی استفاده‌نشدن از هیچ داده‌ای در عمر مدل نیست. میانگین بازنمایی‌های دستی نیز نتیجهٔ یادگیری یک شبکهٔ متریک نیست."
+      "pitfall_fa": "zero-shot به معنی استفاده‌نشدن از هیچ داده‌ای در عمر مدل نیست. میانگین بازنمایی‌های دستی نیز نتیجهٔ یادگیری یک شبکهٔ متریک نیست.",
+      "formula_latex": "\\begin{aligned}\\boldsymbol\\mu_c&=\\frac{1}{|S_c|}\\sum_{x\\in S_c}\\operatorname{embedding}(x)\\\\\\hat c&=\\underset{c}{\\operatorname{arg\\,min}}\\;\\operatorname{distance}(\\mathbf q,\\boldsymbol\\mu_c)\\end{aligned}",
+      "source_title_en": "Transfer Learning: Multi-Task Learning and Few/Zero Shot Learning",
+      "source_title_fa": "انتقال یادگیری: یادگیری چندوظیفه‌ای و یادگیری کم‌نمونه/بی‌نمونه"
     },
     {
       "session_id": "s26",
@@ -257,7 +317,10 @@
       ],
       "formula": "q = softmax(teacher_logits/T)\np = softmax(student_logits/T)\n∂(T² CE(q,p))/∂student_logits = T(p−q)",
       "formula_explanation_fa": "سه logit دستی برای معلم و سه logit برای دانش‌آموز داریم. تغییر دما، توزیع هدف و اندازهٔ یک گام دانش‌آموز را تغییر می‌دهد.",
-      "pitfall_fa": "معلم و دانش‌آموزِ این مثال شبکهٔ آموزش‌دیده نیستند. برای نتیجه‌گیری دربارهٔ تقطیر، دانش‌آموزِ آموزش‌دیده از صفر با پروتکل مشترک هم لازم است."
+      "pitfall_fa": "معلم و دانش‌آموزِ این مثال شبکهٔ آموزش‌دیده نیستند. برای نتیجه‌گیری دربارهٔ تقطیر، دانش‌آموزِ آموزش‌دیده از صفر با پروتکل مشترک هم لازم است.",
+      "formula_latex": "\\begin{aligned}\\mathbf q&=\\operatorname{softmax}(\\mathbf z_{\\mathrm{teacher}}/T)\\\\\\mathbf p&=\\operatorname{softmax}(\\mathbf z_{\\mathrm{student}}/T)\\\\\\frac{\\partial\\left(T^2\\operatorname{CE}(\\mathbf q,\\mathbf p)\\right)}{\\partial\\mathbf z_{\\mathrm{student}}}&=T(\\mathbf p-\\mathbf q)\\end{aligned}",
+      "source_title_en": "Model Compression",
+      "source_title_fa": "فشرده‌سازی مدل"
     },
     {
       "session_id": "s27",
@@ -269,7 +332,10 @@
       ],
       "formula": "H(p) = −p log(p) − (1−p)log(1−p)\nnonterminal_target = reward + γ max(next_Q)",
       "formula_explanation_fa": "نمونهٔ نزدیک احتمال 0.5 بیشترین آنتروپی برنولی را دارد؛ ترتیب آسان‌به‌سخت در این تمرین از جهت مخالف استفاده می‌کند. هدف بلمن، محاسبهٔ تکمیلی مستقل برای گام غیرپایانی است.",
-      "pitfall_fa": "نامطمئن‌ترین نمونه لزوماً مفیدترین نمونهٔ قابل برچسب‌گذاری نیست. این کد عامل RL را آموزش نمی‌دهد و برای حالت پایانی باید سهم آینده حذف شود."
+      "pitfall_fa": "نامطمئن‌ترین نمونه لزوماً مفیدترین نمونهٔ قابل برچسب‌گذاری نیست. این کد عامل RL را آموزش نمی‌دهد و برای حالت پایانی باید سهم آینده حذف شود.",
+      "formula_latex": "\\begin{aligned}H(p)&=-p\\log p-(1-p)\\log(1-p)\\\\y_{\\mathrm{nonterminal}}&=r+\\gamma\\max_{a\\prime}Q(s\\prime,a\\prime)\\end{aligned}",
+      "source_title_en": "Efficient Learning and Deep Reinforcement Learning",
+      "source_title_fa": "یادگیری کارآمد و یادگیری تقویتی عمیق"
     },
     {
       "session_id": "s28",
@@ -281,7 +347,10 @@
       ],
       "formula": "WER = (substitutions + deletions + insertions) / reference_words\nP(text|input) = Σpaths→text P(path|input)",
       "formula_explanation_fa": "در دو گام با احتمال 0.3 برای a و 0.7 برای blank، مجموع احتمال مسیرهای منتهی به a برابر 0.51 است. مسیر aa به یک a تبدیل می‌شود، نه دو a.",
-      "pitfall_fa": "شمارش همهٔ مسیرها فقط برای مثال خیلی کوتاه مناسب است؛ سامانه‌های واقعی از روش‌های کارآمدتر استفاده می‌کنند. WER یکسان نیز اثر معنایی یکسان خطاها را تضمین نمی‌کند."
+      "pitfall_fa": "شمارش همهٔ مسیرها فقط برای مثال خیلی کوتاه مناسب است؛ سامانه‌های واقعی از روش‌های کارآمدتر استفاده می‌کنند. WER یکسان نیز اثر معنایی یکسان خطاها را تضمین نمی‌کند.",
+      "formula_latex": "\\begin{aligned}\\operatorname{WER}&=\\frac{S+D+I}{N_{\\mathrm{reference}}}\\\\P(y\\mid x)&=\\sum_{\\pi:\\,\\mathcal{B}(\\pi)=y}P(\\pi\\mid x)\\end{aligned}",
+      "source_title_en": "Deep Learning for Speech Processing",
+      "source_title_fa": "یادگیری عمیق برای پردازش گفتار"
     }
   ]
 }

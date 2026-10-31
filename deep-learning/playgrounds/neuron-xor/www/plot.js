@@ -1,16 +1,10 @@
 (() => {
   'use strict';
   const blue = '#2563eb', ink = '#172134', muted = '#566174';
-  function forward(state, values) {
-    let a = values;
-    for (let l = 0; l < state.weights.length; l++) {
-      a = state.weights[l].map((weights,j) => {
-        const z = weights.reduce((sum,w,k) => sum+w*a[k], state.biases[l][j]);
-        return state.activation === 'hard_threshold' ? Number(z >= 0) :
-          z >= 0 ? 1/(1+Math.exp(-z)) : Math.exp(z)/(1+Math.exp(z));
-      });
-    }
-    return a[0];
+  function forward(state,point){
+    const index=state.inputs.findIndex(p=>p.every((v,i)=>v===point[i]));
+    if(index<0)throw Error('This point is not among the Python-evaluated probes');
+    return state.probe_traces[index].activations.at(-1)[0];
   }
   function context(id) {
     const canvas = document.getElementById(id);
@@ -22,9 +16,9 @@
   }
   function surface(state) {
     const pair=context('decision');if(!pair)return;
-    const [c,W,H]=pair, x0=65,y0=32,size=Math.min(W-110,H-90),n=48;
+    const [c,W,H]=pair, x0=65,y0=32,size=Math.min(W-110,H-90),n=state.surface_grid.values.length;
     for(let y=0;y<n;y++)for(let x=0;x<n;x++){
-      const px=-.25+(x+.5)/n*1.5,py=1.25-(y+.5)/n*1.5,p=forward(state,[px,py]);
+      const px=-.25+(x+.5)/n*1.5,py=1.25-(y+.5)/n*1.5,p=state.surface_grid.values[y][x];
       c.fillStyle=`rgb(${Math.round(242-205*p)},${Math.round(245-146*p)},${Math.round(251-16*p)})`;
       c.fillRect(x0+x/n*size,y0+y/n*size,size/n+1,size/n+1);
     }
@@ -52,7 +46,7 @@
   }
   function draw(state){
     if(!state){window.deepLearningTopology?.update(null,null);delete window.dannaLab;for(const id of ['decision','loss-chart','network'])context(id);return;}
-    window.dannaLab={state,forward:(inputs)=>forward(state,inputs)};surface(state);loss(state);window.deepLearningTopology?.update(state,{points:state.inputs,features:p=>p,hidden:'sigmoid',output:state.activation});
+    window.dannaLab={state,forward:(inputs)=>forward(state,inputs)};surface(state);loss(state);window.deepLearningTopology?.update(state,{points:state.inputs,features:p=>p,hidden:'sigmoid',output:state.activation});document.dispatchEvent(new CustomEvent('native-state-updated'));
   }
   function setup(){
     if(!window.Shiny){setTimeout(setup,50);return;}

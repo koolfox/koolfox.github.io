@@ -13,11 +13,13 @@ if engine_path.is_dir():
     sys.path.insert(0, str(engine_path))
 
 from experiment import CONFIG, create_run, train_epochs
+from source_record import source_record
 
 shared_path = HERE.parent / "shared"
 if shared_path.is_dir():
     sys.path.insert(0, str(shared_path))
 from topology_ui import topology_panel
+from native_views import visual_state
 
 WIDTHS = (CONFIG["hidden"] + [4, 4, 4])[:3]
 FEATURE_LABELS = {
@@ -34,6 +36,8 @@ app_ui = ui.page_fluid(
     ui.tags.head(
         ui.tags.meta(name="viewport", content="width=device-width, initial-scale=1"),
         ui.tags.link(rel="stylesheet", href="lab.css"),
+        ui.tags.link(rel="stylesheet", href="workspace.css"),
+        ui.tags.script(src="workspace.js", defer=True),
         ui.tags.link(rel="stylesheet", href="network.css"),
         ui.tags.link(rel="stylesheet", href="topology.css"),
         ui.tags.script(src="topology.js", defer=True),
@@ -447,7 +451,10 @@ def server(input, output, session):
     @reactive.effect
     async def send_plot():
         input.plot_ready()
-        await session.send_custom_message("danna_network", snapshot())
+        state = snapshot()
+        if state:
+            state = visual_state(run.get(), "network-playground")
+        await session.send_custom_message("danna_network", state)
 
     @render.text
     def status():
@@ -524,7 +531,7 @@ def server(input, output, session):
 
     @render.download_button(filename="network-experiment.json")
     def experiment():
-        yield json.dumps(snapshot(), ensure_ascii=False, indent=2)
+        yield json.dumps(source_record(snapshot(), HERE), ensure_ascii=False, indent=2)
 
 
 app = App(app_ui, server, static_assets=HERE / "www")

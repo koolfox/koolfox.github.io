@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-31T07:53:31.436180+00:00",
+  "title": "Design System: Deep Learning Course",
+  "extensions": {
+    "breakpoints": [
+      {
+        "name": "native-two-column",
+        "value": "1180px"
+      },
+      {
+        "name": "host-compact",
+        "value": "1050px"
+      },
+      {
+        "name": "code-switch",
+        "value": "760px"
+      },
+      {
+        "name": "native-settings-switch",
+        "value": "650px"
+      }
+    ],
+    "shadows": [],
+    "motion": [
+      {
+        "name": "forward-reduced-motion",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "Reveal all actual layer values immediately rather than advancing a sequence."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Explicitly execute the edited source.",
+      "html": "<button class=\"ds-primary\" dir=\"rtl\">اجرای کد</button>",
+      "css": ".ds-primary{background:var(--accent,#2563eb);color:white;border:1px solid var(--accent,#2563eb);border-radius:7px;padding:7px 12px;min-height:40px;font:inherit;cursor:pointer}.ds-primary:hover{background:#194fc3}.ds-primary:focus-visible{outline:3px solid #2563eb;outline-offset:2px}"
+    },
+    {
+      "name": "Secondary action",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Capture settings or open source without applying it.",
+      "html": "<button class=\"ds-secondary\" dir=\"rtl\">کد کنار آزمایش</button>",
+      "css": ".ds-secondary{background:#fff;color:#172134;border:1px solid #dce2eb;border-radius:7px;padding:7px 12px;min-height:40px;font:inherit;cursor:pointer}.ds-secondary:hover{border-color:#2563eb;background:#f4f6fa}.ds-secondary:focus-visible{outline:3px solid #2563eb;outline-offset:2px}"
+    },
+    {
+      "name": "Result tabs",
+      "kind": "nav",
+      "description": "Progressively reveal visualization, measured result and guide.",
+      "html": "<nav class=\"ds-tabs\" dir=\"rtl\"><button aria-pressed=\"true\">شبکه و ورودی</button><button aria-pressed=\"false\">مرز، زیان و مقدارها</button></nav>",
+      "css": ".ds-tabs{display:flex;gap:22px;border-bottom:1px solid #dce2eb}.ds-tabs button{background:transparent;color:#526075;font:inherit;font-size:12px;border:0;border-bottom:2px solid transparent;padding:10px 0;min-height:44px;cursor:pointer}.ds-tabs button[aria-pressed=true]{color:#194fc3;border-bottom-color:#2563eb;font-weight:600}.ds-tabs button:hover{color:#194fc3}.ds-tabs button:focus-visible{outline:3px solid #2563eb;outline-offset:2px}"
+    },
+    {
+      "name": "Editable source",
+      "kind": "input",
+      "description": "LTR source with Persian comments and explicit execution.",
+      "html": "<textarea class=\"ds-source\" aria-label=\"کد پایتون\" spellcheck=\"false\"># نرخ یادگیری: اندازهٔ هر تغییر وزن\nlearning_rate = 0.03</textarea>",
+      "css": ".ds-source{width:100%;min-height:120px;box-sizing:border-box;border:1px solid #b8c5d9;border-radius:7px;background:white;color:#172134;padding:12px;direction:ltr;white-space:pre;tab-size:4;font:12px/22px ui-monospace,Arad,monospace}.ds-source:focus-visible{outline:3px solid #2563eb;outline-offset:2px}"
+    },
+    {
+      "name": "Neuron inspector",
+      "kind": "custom",
+      "description": "Selected actual neuron value with directionally isolated math.",
+      "html": "<p class=\"ds-inspector\" dir=\"rtl\">مقدار نورون از پایتون: <bdi dir=\"ltr\">-0.125</bdi></p>",
+      "css": ".ds-inspector{font-size:12px;line-height:1.9;padding:8px 12px;background:#eef3fb;color:#172134;border-radius:7px}.ds-inspector bdi{font:11px ui-monospace,monospace}"
+    }
+  ],
+  "narrative": {
+    "northStar": "کارگاه آموزشی دیپ لرنینگ",
+    "overview": "Preserve the established quiet blue, light surfaces and Persian Arad typography. Keep actual Python, its controls and its measured result together.",
+    "keyCharacteristics": [
+      "Persian RTL",
+      "Actual Python results",
+      "Compact functional panels",
+      "Explicit execution"
+    ],
+    "rules": [
+      {
+        "name": "Numerical consistency",
+        "body": "The executed Python drives grids and traces as well as training.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Preserve the university asset and exact instructor credit.",
+      "Keep settings relevant to the selected model.",
+      "Distinguish drafts from applied source."
+    ],
+    "donts": [
+      "Do not replace the course identity.",
+      "Do not animate a separate mathematical model.",
+      "Do not autoplay the forward sequence."
+    ]
+  }
+}

@@ -134,6 +134,7 @@ test('network playground reproduces Python training and seals final test evaluat
   expect(actual.validation.loss).toBeCloseTo(expected.validation.loss,12);
   const predictions=await frame.evaluate(()=>window.dannaNetwork.state.points.map(p=>window.dannaNetwork.forward(p.x)));
   predictions.forEach((value,i)=>expect(value).toBeCloseTo(expected.predictions[i],11));
+  await frame.getByRole('tab',{name:'راهنما و آزمون',exact:true}).click();
   await frame.getByRole('button',{name:'پایان آموزش و مشاهده آزمون',exact:true}).click();
   await frame.waitForFunction(()=>window.dannaNetwork.state.sealed);
   expect((await frame.evaluate(()=>window.dannaNetwork.state.test)).loss).toBeCloseTo(expected.final_test.loss,12);
@@ -146,10 +147,12 @@ test('network playground reproduces Python training and seals final test evaluat
   expect(saved.sealed).toBeTruthy();expect(saved.epoch).toBe(13);expect(saved.points).toHaveLength(200);
   await page.setViewportSize({width:390,height:844});
   expect(await frame.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
+  await frame.getByRole('tab',{name:'مرز، زیان و مقدارها',exact:true}).click();
   await frame.locator('#decision').scrollIntoViewIfNeeded();
   await page.screenshot({path:test.info().outputPath('network-mobile-results.png')});
   await frame.getByRole('button',{name:'از ابتدا',exact:true}).click();
   await frame.waitForFunction(()=>window.dannaNetwork.state.epoch===0&&!window.dannaNetwork.state.sealed);
+  await frame.getByRole('button',{name:'داده و تنظیمات',exact:true}).click();
   await frame.locator('#layers').fill('1.5');await frame.locator('#layers').press('Tab');
   await expect(frame.locator('#status')).toContainText('تنظیمات معتبر نیست');
   await frame.waitForFunction(()=>!window.dannaNetwork);
@@ -183,7 +186,7 @@ test('convolution laboratory exposes actual Python products pooling and bounded 
   await frame.locator('#pooling').selectOption('average');await frame.waitForFunction(()=>window.dannaConvolution.config.pooling==='average');
   const state=await comparePython();
   const downloadPromise=page.waitForEvent('download');await frame.getByRole('link',{name:'دریافت محاسبه و تنظیمات',exact:true}).click();
-  const download=await downloadPromise;expect(JSON.parse(readFileSync(await download.path(),'utf8'))).toEqual(state);
+  const download=await downloadPromise;const saved=JSON.parse(readFileSync(await download.path(),'utf8'));const {source_files,...savedState}=saved;expect(savedState).toEqual(state);expect(source_files['convolution_lab.py'].content).toContain('def correlate');
   await frame.locator('#cell_row').fill('4');await frame.locator('#cell_row').press('Tab');await frame.waitForFunction(()=>window.dannaConvolution.selected[0]===3);
   await frame.locator('#padding').selectOption('0');await frame.locator('#stride').selectOption('3');
   await frame.waitForFunction(()=>window.dannaConvolution.raw.output_shape[1]===2&&window.dannaConvolution.selected.join(',')==='1,1');
@@ -194,9 +197,11 @@ test('convolution laboratory exposes actual Python products pooling and bounded 
   await expect(frame.locator('#output_matrix td')).toHaveCount(0);
   await frame.locator('#w00').fill('-1');await frame.locator('#w00').press('Tab');await frame.waitForFunction(()=>window.dannaConvolution);
   await page.setViewportSize({width:390,height:844});
+  await frame.getByRole('button',{name:'داده و تنظیمات',exact:true}).click();
   await frame.locator('#padding').selectOption('2');await frame.locator('#stride').selectOption('1');
   await frame.waitForFunction(()=>window.dannaConvolution.raw.output_shape[1]===10);
   expect(await frame.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
+  await frame.getByRole('button',{name:'داده و تنظیمات',exact:true}).click();
   await frame.locator('#output_matrix').scrollIntoViewIfNeeded();await page.screenshot({path:test.info().outputPath('convolution-mobile-results.png')});
   expect(errors).toEqual([]);
 });

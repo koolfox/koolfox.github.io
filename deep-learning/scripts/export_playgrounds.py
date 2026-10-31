@@ -43,9 +43,19 @@ def stage(lab, destination):
     }[lab]
     for filename in modules:
         shutil.copyfile(ROOT / "python" / filename, destination / filename)
+    shutil.copyfile(
+        ROOT / "playgrounds/shared/source_record.py", destination / "source_record.py"
+    )
+    for filename in ("workspace.js", "workspace.css"):
+        shutil.copyfile(
+            ROOT / "playgrounds/shared" / filename, destination / "www" / filename
+        )
     if lab in {"neuron-xor", "network-playground"}:
         shutil.copyfile(
             ROOT / "playgrounds/shared/topology_ui.py", destination / "topology_ui.py"
+        )
+        shutil.copyfile(
+            ROOT / "playgrounds/shared/native_views.py", destination / "native_views.py"
         )
         for filename in ("topology.js", "topology.css"):
             shutil.copyfile(
@@ -76,13 +86,23 @@ def export(output):
             subprocess.run(
                 [executable, "export", str(source), str(output / lab)], check=True
             )
-            index = output / lab / "index.html"
-            index.write_text(
-                index.read_text().replace(
-                    "<title>Shiny App</title>",
-                    "<title>کارگاه آموزشی دیپ لرنینگ</title>",
-                ),
+            shared = ROOT / "playgrounds/shared"
+            title = {
+                "neuron-xor": "نورون و مسئلهٔ XOR",
+                "network-playground": "شبکه و تعمیم",
+                "convolution": "فیلتر و تصویر",
+            }[lab]
+            (output / lab / "index.html").write_text(
+                (shared / "host.html")
+                .read_text()
+                .replace("{{lab}}", lab)
+                .replace("{{title}}", title),
                 encoding="utf-8",
+            )
+            for filename in ("host.js", "host.css"):
+                shutil.copyfile(shared / filename, output / lab / filename)
+            shutil.copyfile(
+                ROOT.parent / "assets/fonts/arad.woff2", output / lab / "arad.woff2"
             )
     validate_workshop_runtime(output)
     return output

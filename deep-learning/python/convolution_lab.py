@@ -53,9 +53,9 @@ def correlate(channels, kernels, bias=0.0, stride=1, padding=0, flip=False):
                     for j in range(kw):
                         y, x = r * stride + i - padding, c * stride + j - padding
                         padded = not (0 <= y < height and 0 <= x < width)
-                        value = 0.0 if padded else source[y][x]
+                        value = 0.0 if padded else source[y][x]  # بیرون تصویر، مقدار حاشیه صفر است
                         ki, kj = (kh - 1 - i, kw - 1 - j) if flip else (i, j)
-                        weight = kernel[ki][kj]
+                        weight = kernel[ki][kj]  # همین وزن هسته در همهٔ پنجره‌ها مشترک است
                         terms.append(
                             {
                                 "channel": channel,
@@ -69,10 +69,10 @@ def correlate(channels, kernels, bias=0.0, stride=1, padding=0, flip=False):
                                 "product": value * weight,
                             }
                         )
-            result = sum(term["product"] for term in terms) + bias
+            result = sum(term["product"] for term in terms) + bias  # مجموع سهم‌های پنجره، سپس بایاس؛ تغییر این خط خروجی واقعی را عوض می‌کند
             if not math.isfinite(result):
                 raise ArithmeticError("Non-finite convolution result")
-            line.append(result)
+            line.append(result)  # یک خانهٔ خروجی ساخته شد
             line_terms.append(terms)
         output.append(line)
         explanations.append(line_terms)

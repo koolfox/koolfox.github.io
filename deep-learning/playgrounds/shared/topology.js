@@ -4,25 +4,16 @@
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   const byId=id=>document.getElementById(id);
   const fa=n=>new Intl.NumberFormat('fa-IR',{useGrouping:false}).format(n);
-  const sigmoid=z=>z>=0?1/(1+Math.exp(-z)):Math.exp(z)/(1+Math.exp(z));
-  const activate=(z,kind)=>kind==='hard_threshold'?Number(z>=0):kind==='tanh'?Math.tanh(z):kind==='relu'?Math.max(0,z):sigmoid(z);
-  function trace(s,input,hidden,output){
-    const activations=[input.slice()],logits=[];
-    s.weights.forEach((layer,l)=>{
-      const z=layer.map((weights,j)=>weights.reduce((sum,w,k)=>sum+w*activations[l][k],s.biases[l][j]));
-      logits.push(z);activations.push(z.map(v=>activate(v,l===s.weights.length-1?output:hidden)));
-    });
-    return {activations,logits};
-  }
   function stop(){clearTimeout(timer);timer=null;}
   function draw(){
     const canvas=byId('network');if(!canvas)return;
+    canvas.width=Math.max(360,Math.round(canvas.parentElement.clientWidth));canvas.height=Math.max(240,Math.min(8,Math.max(2,...(state?.probe_traces?.[0]?.activations||[]).map(a=>a.length)))*36+68);
     const c=canvas.getContext('2d'),W=canvas.width,H=canvas.height;c.clearRect(0,0,W,H);
     if(!state||!options||!options.points.length){current=null;window.deepLearningTopology.current=null;byId('network-trace')?.replaceChildren();return;}
     const index=Math.min(Number(byId('network-probe').value)||0,options.points.length-1);
-    const point=options.points[index];current={...trace(state,options.features(point),options.hidden,options.output),point:point.slice(),index,epoch:state.epoch};
+    const point=options.points[index];current={...state.probe_traces[index],point:point.slice(),index,epoch:state.epoch};
     const sizes=current.activations.map(a=>a.length),shown=sizes.map(n=>Math.min(n,8));
-    const position=(l,i)=>[75+l*(W-150)/(sizes.length-1),H/2+(i-(shown[l]-1)/2)*43];
+    const position=(l,i)=>[44+l*(W-88)/(sizes.length-1),H/2+(i-(shown[l]-1)/2)*Math.min(38,(H-90)/Math.max(1,shown[l]-1))];
     const max=Math.max(.01,...state.weights.flat(2).map(Math.abs));
     c.direction='ltr';c.textAlign='center';c.textBaseline='middle';c.font='13px system-ui';
     for(let l=0;l<state.weights.length;l++)for(let j=0;j<shown[l+1];j++)for(let k=0;k<shown[l];k++){
@@ -38,8 +29,8 @@
       c.fillText(n>8?`${fa(n)} واحد · هشت مورد اول`:`${fa(n)} واحد`,position(l,0)[0],H-30);
       for(let i=0;i<shown[l];i++){
         const[x,y]=position(l,i),active=l<=stage;
-        c.fillStyle=active?'#edf3ff':'#fff';c.strokeStyle=active?'#245bdf':'#aab7c9';c.lineWidth=l===stage?3:1.5;
-        c.beginPath();c.arc(x,y,19,0,Math.PI*2);c.fill();c.stroke();
+        c.fillStyle=active?'#edf3ff':'#fff';c.strokeStyle=active?'#245bdf':'#aab7c9';c.lineWidth=l===stage?3:1.5;if(window.deepLearningTopology.selected?.[0]===l&&window.deepLearningTopology.selected?.[1]===i){c.lineWidth=3;c.strokeStyle='#172134';}
+        c.beginPath();c.arc(x,y,17,0,Math.PI*2);c.fill();c.stroke();
         c.fillStyle='#172134';c.font='11px ui-monospace, monospace';
         c.fillText(active?current.activations[l][i].toFixed(2):'…',x,y);
       }
@@ -54,6 +45,7 @@
     });
     table.append(body);byId('network-trace').replaceChildren(table);
     window.deepLearningTopology.current=current;
+    window.deepLearningTopology.positions=sizes.map((n,l)=>Array.from({length:shown[l]},(_,i)=>position(l,i)));
   }
   function update(next,config){
     stop();state=next;options=config;stage=Infinity;
@@ -73,8 +65,9 @@
   }
   function setup(){
     byId('network-probe')?.addEventListener('change',show);byId('network-forward')?.addEventListener('click',play);byId('network-reveal')?.addEventListener('click',show);
+    new ResizeObserver(()=>{if(state)draw();}).observe(byId('network').parentElement);
     document.addEventListener('visibilitychange',()=>{if(document.hidden){stop();stage=Infinity;draw();}});reduced.addEventListener('change',()=>{if(reduced.matches&&state)show();});
   }
-  window.deepLearningTopology={update,trace,current:null};
+  window.deepLearningTopology={update,current:null,redraw:draw};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup,{once:true});else setup();
 })();

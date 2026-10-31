@@ -3,8 +3,51 @@
 The neuron/XOR laboratory runs real Python training through Shiny. The static
 release uses Shinylive/Pyodide; it does not replay precomputed training frames.
 `TrainingRun` shares the numerical rules of `python/logic_gates.py` and exposes
-bounded, reproducible stepping. The JavaScript canvas only evaluates published
-weights to draw the surface; training and reported metrics remain in Python.
+bounded, reproducible stepping. Python evaluates the decision grid and the
+forward traces used by the JavaScript canvas. Editing the Python forward function
+therefore changes the actual surface and displayed activations, as well as the
+training implementation. The browser does not substitute a second model.
+
+## Code beside the experiment
+
+The three exported labs share a full-height workspace: persistent run controls
+and metrics, a settings column with contextual help, and three result/guide tabs.
+On phones, settings and code replace the result panel instead of stacking below
+it. Larger content scrolls within its panel; the page itself stays in view.
+Existing `/playgrounds/{lab}/` links enter this workspace directly; the detailed
+guide remains at `/playgrounds/{lab}/guide/`.
+
+Open «کد کنار آزمایش» to edit the actual Python sources. The default
+`experiment.py` contains Persian comments explaining configuration, functions
+and execution. Topic shortcuts also open the real forward, gradient and optimizer
+implementations. Opening code pauses active training. Closing the panel keeps
+the draft; it does not resume training automatically.
+
+- «تنظیمات فعلی به کد» copies the current GUI configuration into the marked
+  configuration block, preserving other algorithm edits and comments.
+- «اجرای کد» applies all source drafts and reloads the page into a fresh Python
+  Worker. It starts a new experiment from the initial state, not the old weights.
+- «کد اولیه» restores the selected file only; explicit execution is still needed.
+- The file download contains the selected draft. The native experiment JSON
+  instead contains the **executed** Python files and their SHA-256 under
+  `source_files`, together with the numerical record.
+- «توقف اجرای پایتون» unloads the Worker, including an infinite user loop, and
+  preserves the draft for repair. This differs from pausing the training loop.
+  Syntax errors expose the Python console and leave the editor available.
+
+Drafts and applied sources are separate in tab-scoped `sessionStorage`; they are
+not uploaded or synchronized. Storage failures block an apply/reload rather than
+silently discarding edits. Editing one equation does not automatically rewrite its
+derivative or loss: the code guide explains this responsibility and distinguishes
+the original model labels from a custom implementation.
+
+Neural graphs support node selection by pointer or arrow keys, with actual Python
+activation, incoming weights and bias. Selecting a plotted dataset point changes
+the probe to that real point. The explicit layer animation retains reduced-motion
+support. Convolution keeps input/filter selection together and exposes each actual
+product, activated output and pooling result in its calculation tab.
+
+## Numerical scope
 
 The network playground uses the dependency-free `python/network_playground.py`
 engine. Four balanced synthetic classification datasets, Gaussian input noise,
@@ -54,9 +97,10 @@ uv run --project deep-learning/playgrounds shiny run --host 127.0.0.1 --port 876
 
 Validation covers numerical parity with the recorded Python trainer, stable
 reset/seed, bounded inputs, real browser execution, one-step/play/pause/reset,
-and mobile overflow. The October 25, 2026 browser check reproduced the direct
-Python weights exactly after 137 epochs; canvas predictions differed by at most
-`1.12e-16`. This is local artifact evidence, not deployment evidence.
+and mobile overflow. Workspace acceptance also changes the real optimizer,
+changes Python forward output, captures GUI settings, checks recorded source,
+and recovers from syntax errors and infinite loops. See
+`docs/interactive-workspace-acceptance.md` for the local acceptance boundary.
 
 All four Boolean inputs are training data. Accuracy on them is not an estimate
 of generalization. The two-input experiment is independently authored and is

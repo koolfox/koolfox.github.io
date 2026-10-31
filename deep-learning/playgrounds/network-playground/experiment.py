@@ -1,27 +1,34 @@
-"""Change one factor at a time; keep the seed fixed for comparisons."""
+"""یک تغییر در هر مقایسه: داده و بذر را ثابت نگه دار و اعتبارسنجی را ببین."""
 
-from network_playground import NetworkExperiment
+from network_playground import NetworkExperiment  # شبکه، داده و بهینه‌ساز واقعی پایتون
 
-CONFIG = {
-    "dataset": "circles",
-    "feature_names": ["x1", "x2"],
-    "hidden": [4, 4],
-    "activation": "tanh",
-    "optimizer": "adam",
-    "learning_rate": 0.03,
-    "batch_size": 20,
-    "regularization": "none",
-    "regularization_rate": 0.001,
-    "size": 200,
-    "noise": 0.05,
-    "seed": 7,
-    "max_epochs": 1000,
+# BEGIN CONFIG
+CONFIG = {  # تنظیمات اولیه؛ بعداً کنترل‌ها همین ورودی‌ها را به create_run می‌دهند
+    "dataset": "circles",  # شکل مسئله: حلقه، خط، XOR یا مارپیچ
+    "feature_names": ["x1", "x2"],  # ویژگی خام؛ مربع مختصات بازنمایی را عوض می‌کند
+    "hidden": [4, 4],  # دو لایهٔ پنهان با چهار نورون؛ [] یعنی بدون لایهٔ پنهان
+    "activation": "tanh",  # فقط لایه‌های پنهان؛ خروجی طبقه‌بندی سیگموید است
+    "optimizer": "adam",  # قاعدهٔ گام: sgd، momentum یا adam
+    "learning_rate": 0.03,  # اندازهٔ گام؛ اثرش را با زیان بسنج
+    "batch_size": 20,  # تعداد نمونه‌ها در هر به‌روزرسانی؛ با دوره یکی نیست
+    "regularization": "none",  # none، l1 یا l2؛ فقط وزن‌ها جریمه می‌شوند
+    "regularization_rate": 0.001,  # ضریب جریمه؛ در حالت none اثر ندارد
+    "size": 200,  # تعداد کل نمونه‌ها، پیش از جداسازی سه مجموعه
+    "noise": 0.05,  # انحراف معیار نویز؛ جداسازی مسئله را دشوارتر می‌کند
+    "seed": 7,  # برای مقایسهٔ منصفانه تغییرش نده
+    "max_epochs": 1000,  # سقف دوره‌های آموزش
 }
+# END CONFIG
 
 
-def create_run(**config):
-    return NetworkExperiment(**config)
+def create_run(**config):  # تنظیمات نام‌دار از کنترل‌ها یا CONFIG می‌آیند
+    return NetworkExperiment(**config)  # آزمایش تازه با داده، تقسیم و وزن‌های معلوم
 
 
-def train_epochs(experiment, count=1):
-    experiment.step(count)
+def train_epochs(experiment, count=1):  # count تعداد دوره است، نه تعداد دسته
+    experiment.step(count)  # وزن‌ها با گرادیان واقعی و بهینه‌ساز انتخابی تغییر می‌کنند
+
+# «عبور رو به جلو»: DenseNetwork.forward بازنمایی و احتمال را محاسبه می‌کند.
+# «زیان و گرادیان»: loss_gradient هم مشتق و هم جریمه را می‌سازد؛ این دو را سازگار عوض کن.
+# «گام وزن‌ها»: _update نشان می‌دهد SGD، مومنتوم و Adam چطور از گرادیان استفاده می‌کنند.
+# نتیجهٔ آزمون فقط بعد از نهایی‌کردن اجرا باز می‌شود؛ دیدن آن آموزش این اجرا را می‌بندد.

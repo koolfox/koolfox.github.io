@@ -30,3 +30,24 @@ loading. The signature interaction is a prediction followed by a real Python ste
 whose weights, boundary and measured loss update together.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+
+## Laboratory Operate refinement — 2026-10-31
+
+The user asked for a more coherent, interactive laboratory with commented source
+beside the result and less scrolling, using TensorFlow Playground as an interaction
+reference. Keep the existing visual identity and course routes. Do not copy its
+assets or replace real Python with a separate visual simulation.
+
+The first viewport keeps run controls, metrics, settings and the selected result
+visible. Desktop opens code to the left of the live viewer; narrow screens switch
+between code/results and settings/visuals. Three tabs reveal detail progressively.
+Focused settings explain their effect. The model graph is the primary neural
+view, with selectable values and explicit forward animation. Convolution shows
+the input and filter result before its product/pooling detail.
+
+The operative contract is draft → explicit execution → actual Python result.
+GUI capture, model reset, file reset, training pause and Worker stop must remain
+distinct. Exported records identify the executed source. Numerical parity,
+custom-source execution and recovery are acceptance gates. The finish record is
+`interactive-workspace-acceptance.md`; extracted design rules are in the course's
+`DESIGN.md` and `.impeccable/design.json`. No new raster asset was introduced.

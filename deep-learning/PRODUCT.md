@@ -131,6 +131,26 @@ External sources/full lessons remain online links. No original PDFs enter the ZI
 Own code and independently authored teaching content are MIT; upstream
 slides, fonts and runtimes retain their own notices and licenses.
 
+## Interactive laboratory workspace — 2026-10-31
+
+Refine the existing three laboratories within the approved blue/light/Arad/RTL
+identity. A fixed run/metrics bar, contextual settings and result tabs keep the
+experiment legible with little page scrolling. Desktop opens actual commented
+Python beside the experiment; phones switch between code, settings and results.
+Topic shortcuts lead to configuration, forward, gradients and optimizer code.
+
+Drafts require explicit execution in a fresh Worker. GUI configuration can be
+captured into the marked code block without overwriting algorithm edits. Python
+evaluates neural grids and probe traces, so edited source drives the visible
+results. Experiment downloads carry the executed sources and hashes. Pause,
+Worker stop, syntax-error recovery and draft-vs-applied states stay distinct.
+Node inspection and point selection expose actual values; convolution separates
+the input/filter view from the detailed products and pooled result.
+
+This is a laboratory usability milestone. It adds no semester, source-review
+completion claim or new CNN training capability. Local acceptance is recorded in
+`docs/interactive-workspace-acceptance.md`; deployment is verified separately.
+
 ## Earlier shipped implementation (migration baseline)
 
 ## Platform

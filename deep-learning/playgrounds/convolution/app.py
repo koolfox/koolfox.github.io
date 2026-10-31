@@ -13,6 +13,7 @@ if engine_path.is_dir():
     sys.path.insert(0, str(engine_path))
 
 from experiment import CONFIG, calculate
+from source_record import source_record
 
 FILTERS = {
     "vertical": [[-1, 0, 1], [-1, 0, 1], [-1, 0, 1]],
@@ -76,6 +77,8 @@ app_ui = ui.page_fluid(
     ui.tags.head(
         ui.tags.meta(name="viewport", content="width=device-width, initial-scale=1"),
         ui.tags.link(rel="stylesheet", href="lab.css"),
+        ui.tags.link(rel="stylesheet", href="workspace.css"),
+        ui.tags.script(src="workspace.js", defer=True),
         ui.tags.link(rel="stylesheet", href="convolution.css"),
         ui.tags.script(src="lab.js", defer=True),
     ),
@@ -526,7 +529,7 @@ def server(input, output, session):
 
     @render.download_button(filename="convolution-experiment.json")
     def experiment():
-        yield json.dumps(snapshot(), ensure_ascii=False, indent=2)
+        yield json.dumps(source_record(snapshot(), HERE), ensure_ascii=False, indent=2)
 
 
 app = App(app_ui, server, static_assets=HERE / "www")

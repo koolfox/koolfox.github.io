@@ -1,34 +1,39 @@
-"""Edit the actual kernel and operation order used by the displayed result."""
+"""این کد روی تصویر مصنوعی محاسبه می‌کند؛ آموزش فیلتر انجام نمی‌شود."""
 
-from convolution_lab import correlate, pattern, pool
+from convolution_lab import correlate, pattern, pool  # عملیات واقعی و قابل‌ویرایش
 
-CONFIG = {
-    "pattern": "vertical",
-    "kernel": [[-1, 0, 1], [-1, 0, 1], [-1, 0, 1]],
-    "bias": 0.0,
-    "stride": 1,
-    "padding": 0,
-    "flip": False,
-    "relu": False,
-    "pooling": "none",
+# BEGIN CONFIG
+CONFIG = {  # مقدار اولیهٔ کنترل‌ها؛ با هر تغییر خروجی دوباره محاسبه می‌شود
+    "pattern": "vertical",  # تصویر ۸×۸ با یک لبهٔ عمودی
+    "kernel": [[-1, 0, 1], [-1, 0, 1], [-1, 0, 1]],  # همین ۹ وزن در همهٔ پنجره‌ها مشترک‌اند
+    "bias": 0.0,  # عددی که به مجموع ضرب‌های هر پنجره اضافه می‌شود
+    "stride": 1,  # فاصلهٔ حرکت پنجره؛ گام بیشتر معمولاً خروجی کوچک‌تر می‌دهد
+    "padding": 0,  # تعداد سطر/ستون صفر در هر طرف ورودی
+    "flip": False,  # True هسته را برای convolution ریاضی ۱۸۰ درجه می‌چرخاند
+    "relu": False,  # True مقدارهای منفی را بعد از فیلتر صفر می‌کند
+    "pooling": "none",  # none، max یا average؛ اینجا پنجرهٔ تجمیع ۲×۲ است
 }
+# END CONFIG
 
 
-def calculate(config):
-    image = pattern(config["pattern"])
-    raw = correlate(
-        [image],
-        [config["kernel"]],
-        config["bias"],
-        config["stride"],
-        config["padding"],
-        config["flip"],
+def calculate(config):  # ورودی تابع، تنظیمات فعلی کنترل‌های کنار تصویر است
+    image = pattern(config["pattern"])  # جدول عددهای تصویر را می‌سازیم
+    raw = correlate(  # پنجره حرکت می‌کند و در هر خانه جمع وزن‌دار واقعی حساب می‌شود
+        [image],  # یک کانال ورودی داریم
+        [config["kernel"]],  # یک برش هسته برای همان کانال
+        config["bias"],  # بایاس پس از جمع ضرب‌ها اضافه می‌شود
+        config["stride"],  # گام حرکت روی تصویر
+        config["padding"],  # حاشیهٔ صفر؛ تعداد وزن‌ها را عوض نمی‌کند
+        config["flip"],  # قرارداد چرخاندن هسته
     )
-    activated = [
-        [max(0, value) if config["relu"] else value for value in row]
-        for row in raw["output"]
+    activated = [  # جدول خروجیِ بعد از تابع فعال‌سازی
+        [max(0, value) if config["relu"] else value for value in row]  # ReLU یا عبور بدون تغییر
+        for row in raw["output"]  # for سطرهای خروجیِ پیش از فعال‌سازی را پیمایش می‌کند
     ]
-    pooled = (
+    pooled = (  # تجمیع بعد از فعال‌سازی انجام می‌شود؛ ترتیب عملیات مهم است
         pool(activated, mode=config["pooling"]) if config["pooling"] != "none" else None
     )
-    return {"image": image, "raw": raw, "activated": activated, "pooled": pooled}
+    return {"image": image, "raw": raw, "activated": activated, "pooled": pooled}  # نتیجهٔ همین کد برای نمودارها
+
+# «جمع ضرب‌ها»: در correlate می‌توان خود value * weight و جمع + bias را تغییر داد.
+# «تجمیع»: pool بیشینه یا میانگین هر پنجره را می‌سازد؛ عوض‌کردنش خروجی آخر را تغییر می‌دهد.

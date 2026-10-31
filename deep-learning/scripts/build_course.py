@@ -763,7 +763,14 @@ def build(output, root=ROOT):
         f'<section class="standalone"><h1>از پیش‌بینی تا آزمایش</h1><p>آزمایش‌های زندهٔ مرورگر و پروژه‌های مستقل پایتون؛ روش اجرای هرکدام در صفحهٔ خودش مشخص است.</p><ul class="lab-list">{cards}</ul><h2>تمرین‌های مکمل</h2><p>{link(BASE + "/karpathy/", "کارپتی و آزمایشگاه گرادیان ")} · دوره‌ای مستقل از کارپتی، برای تمرین سازوکار مشتق خودکار.</p></section>',
     )
     for lab in LABS:
-        pages[f"playgrounds/{lab}/index.html"] = lab_page(lab, root)
+        if lab == "cnn-mnist":
+            pages[f"playgrounds/{lab}/index.html"] = lab_page(lab, root)
+        else:
+            target = f"{BASE}/runtime/{lab}/"
+            pages[f"playgrounds/{lab}/index.html"] = (
+                f'<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8"><title>کارگاه آموزشی دیپ لرنینگ</title><script>location.replace("{target}")</script><p><a href="{target}">باز کردن کارگاه آموزشی دیپ لرنینگ</a></p></html>'
+            )
+            pages[f"playgrounds/{lab}/guide/index.html"] = lab_page(lab, root)
     for name, html in pages.items():
         path = output / name
         path.parent.mkdir(parents=True, exist_ok=True)

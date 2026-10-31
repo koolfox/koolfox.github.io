@@ -1,0 +1,1674 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s08",
+  "source_sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "d83da84753dca78218ed8145fd8b587ef3009331ba9fcbeb994d8f97e24990d9",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "heading",
+          "fa": "جست‌وجوی عمق: دستیابی به همگرایی (Convergence) و یادگیری باقیمانده (Residual Learning)"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)؛ دانشگاه کلرادو بولدر (University of Colorado Boulder)؛ بهار 2026"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "91e8d56083579da499db8a65b480a9a867005a557d5eaacd9e42dcb57bb26710",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "مرور\n• جلسهٔ قبل: بی‌توجهی به شبکه‌های عصبی (NN)، دومین زمستان هوش مصنوعی (AI Winter) و عقب‌نشینی به مدل‌های کم‌عمق با ویژگی‌های مهندسی‌شده؛ تداوم امید به شبکه‌های عصبی و جست‌وجوی نامتداول عمق؛ تسلط شبکه‌های عصبی، با انقلابی که AlexNet آغاز کرد و در آن «یادگیری عمیق» (Deep Learning) غالب شد؛ آموزش برنامه‌نویسی AlexNet در PyTorch.\n• تکالیف در Canvas: نمره‌های تکلیف آزمایشگاهی 1 روز جمعه منتشر شدند. مهلت تکلیف آزمایشگاهی 2، یک‌ونیم هفتهٔ دیگر است. برای روشن‌شدن پرسش‌های رایج تکلیف، صفحهٔ تکلیف در Canvas را مرور کنید.\n• پرسشی دارید؟ به‌جز پرسش‌هایی که از من دارید، لطفاً آن‌ها را در Piazza مطرح کنید و/یا به ساعت‌های مراجعه (Office Hours) بیایید."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "bd2e3d07f4f70bf540e87d5dad9317b8d360136e308179fe1f8ef96577559fee",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• جست‌وجوی شبکه‌های عصبی عمیق‌تر: چرا شکست می‌خورند؟\n• همگرایی (Convergence) دشوار است: مقداردهی اولیهٔ هه (He Initialization)، نرمال‌سازی دسته‌ای (Batch Normalization) و بهینه‌سازی Adam.\n• به چیز بیشتری نیاز داریم: یادگیری باقیمانده (Residual Learning) با اتصال‌های میان‌بُر (Skip Connections)، یعنی ResNet.\n• آموزش برنامه‌نویسی."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "bd2e3d07f4f70bf540e87d5dad9317b8d360136e308179fe1f8ef96577559fee",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• جست‌وجوی شبکه‌های عصبی عمیق‌تر: چرا شکست می‌خورند؟\n• همگرایی (Convergence) دشوار است: مقداردهی اولیهٔ هه (He Initialization)، نرمال‌سازی دسته‌ای (Batch Normalization) و بهینه‌سازی Adam.\n• به چیز بیشتری نیاز داریم: یادگیری باقیمانده (Residual Learning) با اتصال‌های میان‌بُر (Skip Connections)، یعنی ResNet.\n• آموزش برنامه‌نویسی."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "09918816585405808c6876e1267bf96c53c16d56faebd4b7a5b2159e0297251a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "زمینه: در سال‌های 2013 و 2014، شبکه‌های کانولوشنی (CNNs) عمیق‌تر به‌عنوان راز دستیابی به بهترین عملکرد روز (State-of-the-Art) پدیدار شدند.\nبرای مثال، پیشرفت مدل‌ها روی ImageNet بر حسب خطای پنج‌تای اول (Top-5 Error): 8 لایه؛ 19 لایه."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.edge-ai-vision.com/2018/07/deep-learning-in-five-and-a-half-minutes/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "2011 (XRCE) 26,0; 2012 (AlexNet) 16,4; 2013 (ZF) 11,7; 2014 (VGG) 7,3; 0,0–25,0",
+          "fa": "2011 (XRCE): 26,0؛ 2012 (AlexNet): 16,4؛ 2013 (ZF): 11,7؛ 2014 (VGG): 7,3؛ درجات محور از 0,0 تا 25,0",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "c2d9a17aaac0f6c01eaf1082e4e6009a451f75afeb7f5fd0c8b08077d319c266",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "برای مثال، ایدهٔ VGG: فیلترهای کانولوشنی (Convolutional Filters) کوچک‌تر\n• فیلتر بزرگ‌تر را با پشته‌ای از فیلترهای کوچک‌تر جایگزین کنید؛ مثلاً به‌جای 7×7 از سه فیلتر 3×3 استفاده کنید.\n• مزیت‌ها: تعداد پارامتر کمتر می‌شود؛ مضربی از 27، یعنی 3 × 3²، در برابر 49، یعنی 7 × 7، پارامتر. طبقه‌بند (Classifier) تمایزدهنده‌تر می‌شود، زیرا یکسوسازی‌های غیرخطی (Non-Linear Rectifications) بیشتری داریم: 3 در برابر 1."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "Simonyan & Zisserman. Very Deep Convolutional Networks for Large-Scale Image Recognition. ICLR 2015."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "c7907820692708e2fd92fb296a902585b746e9c6223bbb557201ccfbccd13f25",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "خوش‌بینی و هیجان جامعهٔ پژوهشی: چه ترفندهایی عمیق‌ترشدن را ممکن می‌کنند؟\nبرای مثال، مشارکت در بینایی کامپیوتر (Computer Vision). سال 2015 با موجی از نوآوری‌های حیاتی که شیوهٔ آموزش شبکه‌های عمیق را تغییر دادند، سالی تعیین‌کننده بود!"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.slideshare.net/xavigiro/saliency-prediction-using-deep-learning-techniques"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Deep-learning paper percentage in vision; CVPR2013; ICCV2013; CVPR2014; CVPR2015; 0, 4, 8, 12, 16",
+          "fa": "درصد مقاله‌های یادگیری عمیق در بینایی (Deep-Learning Paper Percentage in Vision)؛ CVPR2013، ICCV2013، CVPR2014، CVPR2015؛ درجات محور 0، 4، 8، 12، 16",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "bd2e3d07f4f70bf540e87d5dad9317b8d360136e308179fe1f8ef96577559fee",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• جست‌وجوی شبکه‌های عصبی عمیق‌تر: چرا شکست می‌خورند؟\n• همگرایی (Convergence) دشوار است: مقداردهی اولیهٔ هه (He Initialization)، نرمال‌سازی دسته‌ای (Batch Normalization) و بهینه‌سازی Adam.\n• به چیز بیشتری نیاز داریم: یادگیری باقیمانده (Residual Learning) با اتصال‌های میان‌بُر (Skip Connections)، یعنی ResNet.\n• آموزش برنامه‌نویسی."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "d72def609b48ece4229f3551f887acb76570bd13c95dd365c623f6b759a471af",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "عمق، مشکلات یادگیری مؤثر را تشدید کرد.\nیادآوری: هنگام آموزش به یک منحنی زیان (Loss Curve) خوب نیاز داریم."
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://cs231n.github.io/neural-networks-3/#update"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "loss; epoch",
+          "fa": "زیان (Loss)؛ دورهٔ آموزش (Epoch)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "5e232321b410dccd97041330d3e5264909f6e721dcb6763c00f271ccce054a92",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "(2015, ICCV)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification",
+          "fa": "بررسی عمیق یکسوسازها: فراتررفتن از عملکرد در سطح انسان در طبقه‌بندی ImageNet (Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification)",
+          "verified": true
+        },
+        {
+          "en": "Kaiming He; Xiangyu Zhang; Shaoqing Ren; Jian Sun; Microsoft Research",
+          "fa": "کایمینگ هه (Kaiming He)؛ شیانگ‌یو ژانگ (Xiangyu Zhang)؛ شائوچینگ رن (Shaoqing Ren)؛ جیان سون (Jian Sun)؛ پژوهشگاه مایکروسافت (Microsoft Research)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "de0f19bd3f3a7a93dd941725492a7b37d3f5ad001d81dbae5cafe29b593d193a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "یادآوری: وزن‌ها را طوری مقداردهی اولیه کنید که مجموع‌های وزن‌دار (Weighted Sums) مناسب یادگیری ایجاد شوند.\nسیگموید (Sigmoid)؛ تانژانت هذلولوی (Tanh)."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Masi et al. Journal of the Mechanics and Physics of Solids. 2021"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "A(z) = 1/(1+e⁻ᶻ)",
+          "fa": "تابع فعال‌سازی سیگموید (Sigmoid):",
+          "verified": true,
+          "latex": "A(z)=\\frac{1}{1+e^{-z}}"
+        },
+        {
+          "en": "A(z) = tanh(z)",
+          "fa": "تابع فعال‌سازی تانژانت هذلولوی (Tanh):",
+          "verified": true,
+          "latex": "A(z)=\\tanh(z)"
+        },
+        {
+          "en": "A′(z) = e⁻ᶻ/(1+e⁻ᶻ)²",
+          "fa": "مشتق سیگموید (Sigmoid):",
+          "verified": true,
+          "latex": "A^{\\prime}(z)=\\frac{e^{-z}}{(1+e^{-z})^{2}}"
+        },
+        {
+          "en": "A′(z) = cosh⁻²(z)",
+          "fa": "مشتق تانژانت هذلولوی (Tanh):",
+          "verified": true,
+          "latex": "A^{\\prime}(z)=\\cosh^{-2}(z)"
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "35babf9d476f016d1cbe16d3bf105cd6b03aea3a5d2a1e4d50f163806a843e65",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            8,
+            9,
+            10,
+            11,
+            12,
+            14,
+            15,
+            16
+          ],
+          "kind": "text",
+          "fa": "یادآوری: وزن‌ها را طوری مقداردهی اولیه کنید که مجموع‌های وزن‌دار (Weighted Sums) مناسب یادگیری ایجاد شوند.\nروش: از توزیعی با میانگین 0 به‌صورت تصادفی نمونه بگیرید؛ انحراف معیار را تعداد اتصال‌های ورودی هر نورون، یعنی «fan-in»، تعیین می‌کند.\nمقالهٔ «پس‌انتشار کارآمد» (Efficient Backprop) در سال 1998، برای تابع‌های فعال‌سازی متقارن.\nسیگموید (sigmoid)، تانژانت هذلولوی (tanh)، ReLU. میانگین حدود 0 و شیب‌های مثبت و منفی تقریباً برابر، واریانس خروجی را حفظ می‌کنند؛ شیب‌های 0 و 1 تقریباً برابر، واریانس خروجی را نصف می‌کنند.\nمسئله: هر لایه اندازهٔ مجموع را کاهش می‌دهد؛ با انباشته‌شدن لایه‌ها، این کاهش‌ها روی هم اثر می‌گذارند و باعث محوشدن فعال‌سازی‌ها (Activations) و گرادیان‌ها (Gradients) در شبکه‌های «عمیق»، مثلاً حدود 30 لایه، می‌شوند."
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "math",
+          "fa": "√(1.0/m)",
+          "latex": "\\sqrt{\\frac{1.0}{m}}"
+        },
+        {
+          "source_lines": [
+            13
+          ],
+          "kind": "reference",
+          "fa": "Figure source: Masi et al. Journal of the Mechanics and Physics of Solids. 2021"
+        },
+        {
+          "source_lines": [
+            17,
+            18,
+            19,
+            20
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "verified": true,
+          "reason_fa": "این چهار خط نسخهٔ قدیمی و تکراریِ پاراگراف پایین صفحه‌اند و در رندر PDF دیده نمی‌شوند؛ پاراگرافِ قابل مشاهدهٔ مسئله در خطوط 14 تا 16 ثبت و ترجمه شده است."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "A′(z) = e⁻ᶻ/(1+e⁻ᶻ)²",
+          "fa": "مشتق سیگموید (Sigmoid):",
+          "verified": true,
+          "latex": "A^{\\prime}(z)=\\frac{e^{-z}}{(1+e^{-z})^{2}}"
+        },
+        {
+          "en": "A′(z) = cosh⁻²(z)",
+          "fa": "مشتق تانژانت هذلولوی (Tanh):",
+          "verified": true,
+          "latex": "A^{\\prime}(z)=\\cosh^{-2}(z)"
+        },
+        {
+          "en": "A′(z); max(0,1); z; −1, 1; 0.5, 1",
+          "fa": "نمودار مشتق ReLU با برچسب چاپ‌شدهٔ max(0,1)؛ محور z و درجات −1، 1، 0.5 و 1",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "bfc3b569c592d346662c0a3cb7a1dba3f3e23bdca8f666d2a6bab91bf2702cd4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            14,
+            15
+          ],
+          "kind": "text",
+          "fa": "ایده: مقداردهی اولیهٔ هه (He Initialization) برای ReLU\nروش: از توزیعی با میانگین 0 به‌صورت تصادفی نمونه بگیرید؛ انحراف معیار را تعداد اتصال‌های ورودی هر نورون، یعنی «fan-in»، تعیین می‌کند.\nمقالهٔ «پس‌انتشار کارآمد» (Efficient Backprop) در سال 1998، برای تابع‌های فعال‌سازی متقارن.\nسیگموید (sigmoid)، تانژانت هذلولوی (tanh)، ReLU. میانگین حدود 0 و شیب‌های مثبت و منفی تقریباً برابر، واریانس خروجی را حفظ می‌کنند؛ شیب‌های 0 و 1 تقریباً برابر، واریانس خروجی را نصف می‌کنند.\nمقداردهی اولیه (Initialization). چرا مقدار 2؟ واریانس را حفظ می‌کند."
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "math",
+          "fa": "√(2.0/m)",
+          "latex": "\\sqrt{\\frac{2.0}{m}}"
+        },
+        {
+          "source_lines": [
+            16,
+            17
+          ],
+          "kind": "math",
+          "fa": "√(1.0/m)",
+          "latex": "\\sqrt{\\frac{1.0}{m}}"
+        },
+        {
+          "source_lines": [
+            13
+          ],
+          "kind": "reference",
+          "fa": "Figure source: Masi et al. Journal of the Mechanics and Physics of Solids. 2021"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "A′(z) = e⁻ᶻ/(1+e⁻ᶻ)²",
+          "fa": "مشتق سیگموید (Sigmoid):",
+          "verified": true,
+          "latex": "A^{\\prime}(z)=\\frac{e^{-z}}{(1+e^{-z})^{2}}"
+        },
+        {
+          "en": "A′(z) = cosh⁻²(z)",
+          "fa": "مشتق تانژانت هذلولوی (Tanh):",
+          "verified": true,
+          "latex": "A^{\\prime}(z)=\\cosh^{-2}(z)"
+        },
+        {
+          "en": "A′(z); max(0,1); z; −1, 1; 0.5, 1",
+          "fa": "نمودار مشتق ReLU با برچسب چاپ‌شدهٔ max(0,1)؛ محور z و درجات −1، 1، 0.5 و 1",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "0bc1d4f55ebffb1374337a5c3ad219bb13fb898d26bdd667edb4cc68eed2bffd",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "(ICML 2015)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift",
+          "fa": "نرمال‌سازی دسته‌ای (Batch Normalization): شتاب‌دادن به آموزش شبکهٔ عمیق با کاهش جابه‌جایی هم‌متغیر درونی (Internal Covariate Shift)",
+          "verified": true
+        },
+        {
+          "en": "Sergey Ioffe; Christian Szegedy; SIOFFE@GOOGLE.COM; SZEGEDY@GOOGLE.COM; Google, 1600 Amphitheatre Pkwy, Mountain View, CA 94043",
+          "fa": "سرگئی یوفه (Sergey Ioffe)؛ کریستیان سگدی (Christian Szegedy)؛ SIOFFE@GOOGLE.COM؛ SZEGEDY@GOOGLE.COM؛ Google, 1600 Amphitheatre Pkwy, Mountain View, CA 94043",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "5355893e15a14d1ab20bff13e02a3000eaee786af57f110f1ecdb7a2b6333290",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "انگیزه: از یادگیری کم‌عمق (Shallow Learning) به یاد بیاورید که نرمال‌سازی دادهٔ ورودی (Input Normalization)، یادگیری را سریع‌تر می‌کند.\nروش: برای بهبود چشم‌انداز زیان (Loss Landscape)، دادهٔ ورودی را نرمال‌سازی کنید.\nشهود: امکان حرکت سریع در جهت بهینه را فراهم می‌کند، به‌جای حرکت زیگزاگیِ کندتر و غیرمستقیم."
+        },
+        {
+          "source_lines": [
+            4,
+            7,
+            8,
+            9
+          ],
+          "kind": "reference",
+          "fa": "https://texomaexcavationandconstruction.com/gravel￾roads-construction-forest-wooded-remote-areas/\nhttps://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739\nhttps://texomaexcavationandconstruction.com/grave\nl-roads-construction-forest-wooded-remote-areas/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "W₁; W₂",
+          "fa": "محورهای وزن W₁ و W₂",
+          "verified": true
+        }
+      ],
+      "image_text_limits": [
+        {
+          "reason_fa": "دو نشانیِ یکسانِ منبعِ عکس جاده در خود PDF روی یکدیگر افتاده‌اند؛ نشانی‌های ثبت‌شده در لایهٔ متن حفظ شده‌اند.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "55d4ec94c5e4aae9aae1440941b841011553e6b0e3de85d3f49dabaa35310dcb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "مشاهده: برای شبکه‌های «عمیق‌تر» چه چیزی تغییر می‌کند؟\nشبکهٔ کم‌عمق (Shallow Network)؛ شبکهٔ عمیق‌تر (Deeper Network).\nمسئله: نرمال‌سازی ورودی (Input Normalization) فقط لایهٔ اول را هدف می‌گیرد. وزن‌های هر لایه مقیاس خروجی‌ها را تغییر می‌دهند؛ در نتیجه، تفاوتِ مقیاس ویژگی‌ها با عمق انباشته می‌شود. این امر به حرکت زیگزاگی ناکارآمد در یادگیری می‌انجامد.\nایده: نرمال‌سازی را برای لایه‌های میانی هم اضافه کنید تا یادگیری در کل شبکه سریع شود!"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://texomaexcavationandconstruction.com/grave\nl-roads-construction-forest-wooded-remote-areas/"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "9ccf17dd015816dfe5757cb871686062d262579836f14260ef9b744c358c9b8e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            2
+          ],
+          "kind": "text",
+          "fa": "روش: افزودن لایه‌ای با پارامترهای یادگرفتنی\nبرای مقدارهای فعال‌سازی (Activations) لایه‌های میانی، یک ماژول نرمال‌سازی دسته‌ای (BN) مجزا به کار می‌رود!"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "X; Layer₁; Batch Norm₁; β₁, γ₂; Mean Mov Avg₁; Var Mov Avg₁; Layer₁; Batch Norm₁; β₂, γ₂; Mean Mov Avg₂; Var Mov Avg₂; Layer₁; Batch Norm₁; β₃, γ₃; Mean Mov Avg₃; Var Mov Avg₃",
+          "fa": "ورودی X؛ برچسب‌های لایه (Layer₁) و نرمال‌سازی دسته‌ای (Batch Norm₁)، مطابق شکل در هر سه بخش تکرار شده‌اند؛ پارامترها β₁ و γ₂، سپس β₂ و γ₂، سپس β₃ و γ₃؛ میانگین متحرکِ میانگین (Mean Mov Avg) و میانگین متحرکِ واریانس (Var Mov Avg)، با اندیس‌های 1، 2 و 3.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "4ffdf3bd4225a0042b3a87327b941bf8f447269e58bf64c644045f512f55ecd5",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "روش: لایهٔ نرمال‌سازی دسته‌ای (Batch Normalization)\nورودی: دستهٔ کوچک (Mini-Batch).\nبرای مثال، یک لایهٔ تمام‌متصل (Fully-Connected Layer) را فرض کنید: هر سطر یک نمونهٔ مجزا و هر ستون همهٔ خروجی‌ها یا ویژگی‌های یکی از نورون‌های لایه را نشان می‌دهد.\nدر دستهٔ کوچکِ مثال ساده، چند نمونه وجود دارد؟ چند نورون از لایهٔ این مثال خارج می‌شوند؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Mini-batch: Activations; Features; M Samples; A₁, A₂, …, Aₙ",
+          "fa": "دستهٔ کوچک: فعال‌سازی‌ها (Mini-Batch: Activations)؛ ویژگی‌ها (Features)؛ M نمونه (M Samples)؛ A₁، A₂، …، Aₙ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "07f75118d20de79c4afdce0efba8ace52f111a76375c8363dfdb1208e9cb4ff8",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            5
+          ],
+          "kind": "text",
+          "fa": "روش: لایهٔ نرمال‌سازی دسته‌ای (Batch Normalization)، هنگام آموزش\nبرای هر ویژگی، با همهٔ نمونه‌های دستهٔ کوچک (Mini-Batch) میانگین و انحراف معیار را حساب کنید و سپس با این مقدارها ویژگی‌ها را به توزیع‌های هدف تبدیل کنید.\nیادآوری: استفاده از دستهٔ کوچک، تقریبی از استفاده از کل مجموعه‌دادهٔ آموزش برای نرمال‌سازی ورودی است."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Mini-batch: Activations; Features; M Samples; A₁, A₂, …, Aₙ",
+          "fa": "دستهٔ کوچک: فعال‌سازی‌ها (Mini-Batch: Activations)؛ ویژگی‌ها (Features)؛ M نمونه (M Samples)؛ A₁، A₂، …، Aₙ",
+          "verified": true
+        },
+        {
+          "en": "Batch Norm; Mean and Std Dev; Normalize",
+          "fa": "نرمال‌سازی دسته‌ای (Batch Norm)؛ میانگین و انحراف معیار (Mean and Std Dev)؛ نرمال‌سازی (Normalize)",
+          "verified": true
+        },
+        {
+          "en": "μᵢ = (1/M) Σ Aᵢ",
+          "fa": "میانگینِ ویژگی، مطابق نمادگذاری شکل:",
+          "verified": true,
+          "latex": "\\mu_i=\\frac{1}{M}\\sum A_i"
+        },
+        {
+          "en": "σᵢ = √((1/M) Σ (Aᵢ−μ)²)",
+          "fa": "انحراف معیار، مطابق نمادگذاری شکل:",
+          "verified": true,
+          "latex": "\\sigma_i=\\sqrt{\\frac{1}{M}\\sum(A_i-\\mu)^2}"
+        },
+        {
+          "en": "Âᵢ = (Aᵢ−μᵢ)/σᵢ",
+          "fa": "فعال‌سازی نرمال‌شده:",
+          "verified": true,
+          "latex": "\\hat{A}_i=\\frac{A_i-\\mu_i}{\\sigma_i}"
+        },
+        {
+          "en": "Features; Samples; X₁, X₂, …, Xₙ",
+          "fa": "ویژگی‌ها (Features)؛ نمونه‌ها (Samples)؛ X₁، X₂، …، Xₙ",
+          "verified": true
+        },
+        {
+          "en": "Xᵢ = (Xᵢ−Meanᵢ)/StdDevᵢ",
+          "fa": "رابطهٔ نرمال‌سازی ورودی:",
+          "verified": true,
+          "latex": "X_i=\\frac{X_i-\\mathrm{Mean}_i}{\\mathrm{StdDev}_i}"
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "6d467de4d2d77bb01c2f21bbb553045789557de88f9d4b544aed1de9fe7a8f37",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "روش: لایهٔ نرمال‌سازی دسته‌ای (Batch Normalization)، هنگام آموزش\nدو پارامتر یادگرفته‌شده، با امکان‌دادن به لایه برای بازیابی فعال‌سازی‌های اصلی خود، قدرت بازنمایی را حفظ می‌کنند. چه مقدارهایی پارامترهای اصلی را بازیابی می‌کنند؟\nبتا (Beta) نیاز به بایاس (Bias) در Wx + b را برطرف می‌کند؛ همان مقدار را در خود جذب می‌کند."
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Mini-batch: Activations; Features; M Samples; A₁, A₂, …, Aₙ",
+          "fa": "دستهٔ کوچک: فعال‌سازی‌ها (Mini-Batch: Activations)؛ ویژگی‌ها (Features)؛ M نمونه (M Samples)؛ A₁، A₂، …، Aₙ",
+          "verified": true
+        },
+        {
+          "en": "Batch Norm; Mean and Std Dev; Normalize",
+          "fa": "نرمال‌سازی دسته‌ای (Batch Norm)؛ میانگین و انحراف معیار (Mean and Std Dev)؛ نرمال‌سازی (Normalize)",
+          "verified": true
+        },
+        {
+          "en": "μᵢ = (1/M) Σ Aᵢ",
+          "fa": "میانگینِ ویژگی، مطابق نمادگذاری شکل:",
+          "verified": true,
+          "latex": "\\mu_i=\\frac{1}{M}\\sum A_i"
+        },
+        {
+          "en": "σᵢ = √((1/M) Σ (Aᵢ−μ)²)",
+          "fa": "انحراف معیار، مطابق نمادگذاری شکل:",
+          "verified": true,
+          "latex": "\\sigma_i=\\sqrt{\\frac{1}{M}\\sum(A_i-\\mu)^2}"
+        },
+        {
+          "en": "Âᵢ = (Aᵢ−μᵢ)/σᵢ",
+          "fa": "فعال‌سازی نرمال‌شده:",
+          "verified": true,
+          "latex": "\\hat{A}_i=\\frac{A_i-\\mu_i}{\\sigma_i}"
+        },
+        {
+          "en": "Scale and Shift; Beta (β); Gamma (γ); Output (bn)",
+          "fa": "تغییر مقیاس و انتقال (Scale and Shift)؛ بتا (Beta, β)؛ گاما (Gamma, γ)؛ خروجی (Output)، bn",
+          "verified": true
+        },
+        {
+          "en": "BÑᵢ = γ ⊙ Âᵢ + β",
+          "fa": "تبدیل مقیاس و انتقالِ چاپ‌شده در شکل:",
+          "verified": true,
+          "latex": "\\widetilde{BN}_i=\\gamma\\odot\\hat{A}_i+\\beta"
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "9a6816b7169e2e1dd28cbf86dc72ca6f99b8425a2269089e64d50594c9d103dc",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "روش: لایهٔ نرمال‌سازی دسته‌ای (Batch Normalization)، هنگام آموزش\nبرای آموزش می‌توانیم از روش معمول نزول گرادیان (Gradient Descent) استفاده کنیم، زیرا BN تبدیلی مشتق‌پذیر است!"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Mini-batch: Activations; Features; M Samples; A₁, A₂, …, Aₙ",
+          "fa": "دستهٔ کوچک: فعال‌سازی‌ها (Mini-Batch: Activations)؛ ویژگی‌ها (Features)؛ M نمونه (M Samples)؛ A₁، A₂، …، Aₙ",
+          "verified": true
+        },
+        {
+          "en": "Batch Norm; Mean and Std Dev; Normalize",
+          "fa": "نرمال‌سازی دسته‌ای (Batch Norm)؛ میانگین و انحراف معیار (Mean and Std Dev)؛ نرمال‌سازی (Normalize)",
+          "verified": true
+        },
+        {
+          "en": "μᵢ = (1/M) Σ Aᵢ",
+          "fa": "میانگینِ ویژگی، مطابق نمادگذاری شکل:",
+          "verified": true,
+          "latex": "\\mu_i=\\frac{1}{M}\\sum A_i"
+        },
+        {
+          "en": "σᵢ = √((1/M) Σ (Aᵢ−μ)²)",
+          "fa": "انحراف معیار، مطابق نمادگذاری شکل:",
+          "verified": true,
+          "latex": "\\sigma_i=\\sqrt{\\frac{1}{M}\\sum(A_i-\\mu)^2}"
+        },
+        {
+          "en": "Âᵢ = (Aᵢ−μᵢ)/σᵢ",
+          "fa": "فعال‌سازی نرمال‌شده:",
+          "verified": true,
+          "latex": "\\hat{A}_i=\\frac{A_i-\\mu_i}{\\sigma_i}"
+        },
+        {
+          "en": "Scale and Shift; Beta (β); Gamma (γ); Output (bn)",
+          "fa": "تغییر مقیاس و انتقال (Scale and Shift)؛ بتا (Beta, β)؛ گاما (Gamma, γ)؛ خروجی (Output)، bn",
+          "verified": true
+        },
+        {
+          "en": "BÑᵢ = γ ⊙ Âᵢ + β",
+          "fa": "تبدیل مقیاس و انتقالِ چاپ‌شده در شکل:",
+          "verified": true,
+          "latex": "\\widetilde{BN}_i=\\gamma\\odot\\hat{A}_i+\\beta"
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "93eaade08b9aa94e9b177184fcd517379f0cdd75b031977ce747d407a69a611e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "روش: لایهٔ نرمال‌سازی دسته‌ای (Batch Normalization)، هنگام آموزش\nدر یک گذر روی کل مجموعه‌دادهٔ آموزش، مقدارهایی را که برای استنتاج (Inference) استفاده خواهند شد، برآورد کنید."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Mini-batch: Activations; Features; M Samples; A₁, A₂, …, Aₙ",
+          "fa": "دستهٔ کوچک: فعال‌سازی‌ها (Mini-Batch: Activations)؛ ویژگی‌ها (Features)؛ M نمونه (M Samples)؛ A₁، A₂، …، Aₙ",
+          "verified": true
+        },
+        {
+          "en": "Batch Norm; Mean and Std Dev; Normalize",
+          "fa": "نرمال‌سازی دسته‌ای (Batch Norm)؛ میانگین و انحراف معیار (Mean and Std Dev)؛ نرمال‌سازی (Normalize)",
+          "verified": true
+        },
+        {
+          "en": "μᵢ = (1/M) Σ Aᵢ",
+          "fa": "میانگینِ ویژگی، مطابق نمادگذاری شکل:",
+          "verified": true,
+          "latex": "\\mu_i=\\frac{1}{M}\\sum A_i"
+        },
+        {
+          "en": "σᵢ = √((1/M) Σ (Aᵢ−μ)²)",
+          "fa": "انحراف معیار، مطابق نمادگذاری شکل:",
+          "verified": true,
+          "latex": "\\sigma_i=\\sqrt{\\frac{1}{M}\\sum(A_i-\\mu)^2}"
+        },
+        {
+          "en": "Âᵢ = (Aᵢ−μᵢ)/σᵢ",
+          "fa": "فعال‌سازی نرمال‌شده:",
+          "verified": true,
+          "latex": "\\hat{A}_i=\\frac{A_i-\\mu_i}{\\sigma_i}"
+        },
+        {
+          "en": "Scale and Shift; Beta (β); Gamma (γ); Output (bn)",
+          "fa": "تغییر مقیاس و انتقال (Scale and Shift)؛ بتا (Beta, β)؛ گاما (Gamma, γ)؛ خروجی (Output)، bn",
+          "verified": true
+        },
+        {
+          "en": "BÑᵢ = γ ⊙ Âᵢ + β",
+          "fa": "تبدیل مقیاس و انتقالِ چاپ‌شده در شکل:",
+          "verified": true,
+          "latex": "\\widetilde{BN}_i=\\gamma\\odot\\hat{A}_i+\\beta"
+        },
+        {
+          "en": "Moving Average; Moving Avg (mean); Moving Avg (Var)",
+          "fa": "میانگین متحرک (Moving Average)؛ میانگین متحرکِ میانگین (mean)؛ میانگین متحرکِ واریانس (Var)",
+          "verified": true
+        },
+        {
+          "en": "μmovᵢ = α μmovᵢ + (1−α) μᵢ",
+          "fa": "به‌روزرسانی میانگین متحرک، با اندیس‌های چاپ‌شده:",
+          "verified": true,
+          "latex": "\\mu_{\\mathrm{mov}_i}=\\alpha\\mu_{\\mathrm{mov}_i}+(1-\\alpha)\\mu_i"
+        },
+        {
+          "en": "σmovᵢ = α σmovᵢ + (1−α) σᵢ",
+          "fa": "به‌روزرسانی مقیاس متحرک، با نماد σ در منبع:",
+          "verified": true,
+          "latex": "\\sigma_{\\mathrm{mov}_i}=\\alpha\\sigma_{\\mathrm{mov}_i}+(1-\\alpha)\\sigma_i"
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "8f92889f275c94bd3b760a2581aaa71a84a10810602fe786c67c8ee55470a9d5",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            3
+          ],
+          "kind": "text",
+          "fa": "روش: افزودن لایه‌ای با پارامترهای یادگرفتنی\nبرای مقدارهای فعال‌سازی (Activations) لایه‌های میانی، یک ماژول نرمال‌سازی دسته‌ای (BN) مجزا به کار می‌رود!\nبرای این زیرشبکه چند پارامتر مدل آموزش داده می‌شود؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "X; Layer₁; Batch Norm₁; β₁, γ₂; Mean Mov Avg₁; Var Mov Avg₁; Layer₁; Batch Norm₁; β₂, γ₂; Mean Mov Avg₂; Var Mov Avg₂; Layer₁; Batch Norm₁; β₃, γ₃; Mean Mov Avg₃; Var Mov Avg₃",
+          "fa": "ورودی X؛ برچسب‌های لایه (Layer₁) و نرمال‌سازی دسته‌ای (Batch Norm₁)، مطابق شکل در هر سه بخش تکرار شده‌اند؛ پارامترها β₁ و γ₂، سپس β₂ و γ₂، سپس β₃ و γ₃؛ میانگین متحرکِ میانگین (Mean Mov Avg) و میانگین متحرکِ واریانس (Var Mov Avg)، با اندیس‌های 1، 2 و 3.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "6c41e80d0249b8cc9abfa03479010588200280462ed09a51a1ce3193c15adee6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "جزئیات پیاده‌سازی: نرمال‌سازی دسته‌ای (BN) را می‌توان پیش و پس از محاسبهٔ فعال‌سازی‌ها (Activations) به کار برد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Layer₁ → z₁ → Batch Norm₁ → bn₁ → Activation Function₁ → a₁ → Layer₂",
+          "fa": "لایهٔ 1 (Layer₁) ← z₁ ← نرمال‌سازی دسته‌ای 1 (Batch Norm₁) ← bn₁ ← تابع فعال‌سازی 1 (Activation Function₁) ← a₁ ← لایهٔ 2 (Layer₂)",
+          "verified": true
+        },
+        {
+          "en": "Layer₁ → z₁ → Activation Function₁ → a₁ → Batch Norm₁ → bn₁ → Layer₂",
+          "fa": "لایهٔ 1 (Layer₁) ← z₁ ← تابع فعال‌سازی 1 (Activation Function₁) ← a₁ ← نرمال‌سازی دسته‌ای 1 (Batch Norm₁) ← bn₁ ← لایهٔ 2 (Layer₂)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "eef6e12e540facfe9f1ab5f99d6f0807c49d3d1f98ffbc2a93529952ef308b4b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "آزمایش‌ها: نرمال‌سازی دسته‌ای (BN) یادگیری را سریع‌تر می‌کند!\nمدلی با 3 لایهٔ پنهان تمام‌متصل (Fully-Connected Hidden Layers)، با 100 نورون در هر لایه و تابع‌های فعال‌سازی سیگموید (Sigmoid)، روی MNIST ارزیابی شد؛ اندازهٔ دستهٔ کوچک (Mini-Batch) برابر 60 نمونه بود."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "[Ioffe and Szegedy. ICML 2015]"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Without BN; With BN; 0.7, 0.8, 0.9, 1; 10K, 20K, 30K, 40K, 50K",
+          "fa": "بدون BN (Without BN)، خط‌چین؛ با BN (With BN)، خط پیوسته؛ درجات محور عمودی 0.7، 0.8، 0.9، 1 و افقی 10K، 20K، 30K، 40K، 50K",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "623f2ddb93c58575074fe73028b1939e9645b51e522f93d03c7db2b20bab07b0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "آزمایش‌ها: نرمال‌سازی دسته‌ای (BN) یادگیری را سریع‌تر می‌کند!\nپنج گونهٔ BN که طبقه‌بند عمیقِ ImageNet با بهترین عملکرد روز (SOTA) آن زمان را گسترش می‌دهند؛ نزول گرادیان تصادفی (SGD) با تکانه (Momentum)، اندازهٔ دستهٔ کوچک (Mini-Batch) برابر 32 نمونه."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "[Ioffe and Szegedy. ICML 2015]"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Inception; BN–Baseline; BN–x5; BN–x30; BN–x5–Sigmoid; Steps to match Inception; 0.4–0.8; 5M, 10M, 15M, 20M, 25M, 30M",
+          "fa": "Inception؛ BN پایه (BN–Baseline)؛ BN–x5؛ BN–x30؛ BN–x5–Sigmoid؛ گام‌های لازم برای رسیدن به عملکرد Inception (Steps to Match Inception)؛ درجات عمودی 0.4 تا 0.8 و افقی 5M، 10M، 15M، 20M، 25M، 30M",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "ef8af2f67ee7686aed46e6f1538d010a5d2aa66b32dc8ca895976418d28e9efa",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "آزمایش‌ها: نرمال‌سازی دسته‌ای (BN) یادگیری را سریع‌تر می‌کند!\nبرای طبقه‌بندی ImageNet، تنها با 7% از گام‌های آموزش، عملکردی قابل مقایسه به دست آمد!\nنرخ یادگیری (Learning Rate) 5 برابر افزایش یافت، افت نرخ یادگیری سریع‌تر و منظم‌سازی (Regularization) کمتر شد: بدون حذف تصادفی (Dropout) و با جریمهٔ L2 کوچک‌تر برای وزن‌ها."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "[Ioffe and Szegedy. ICML 2015]"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Inception; BN–Baseline; BN–x5; BN–x30; BN–x5–Sigmoid; Steps to match Inception; 0.4–0.8; 5M, 10M, 15M, 20M, 25M, 30M",
+          "fa": "Inception؛ BN پایه (BN–Baseline)؛ BN–x5؛ BN–x30؛ BN–x5–Sigmoid؛ گام‌های لازم برای رسیدن به عملکرد Inception (Steps to Match Inception)؛ درجات عمودی 0.4 تا 0.8 و افقی 5M، 10M، 15M، 20M، 25M، 30M",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "Published as a conference paper at ICLR 2015",
+          "fa": "منتشرشده به‌صورت مقالهٔ کنفرانسی در ICLR 2015",
+          "verified": true
+        },
+        {
+          "en": "ADAM: A METHOD FOR STOCHASTIC OPTIMIZATION",
+          "fa": "آدم (ADAM): روشی برای بهینه‌سازی تصادفی (A Method for Stochastic Optimization)",
+          "verified": true
+        },
+        {
+          "en": "Diederik P. Kingma*; University of Amsterdam, OpenAI; dpkingma@openai.com; Jimmy Lei Ba*; University of Toronto; jimmy@psi.utoronto.ca",
+          "fa": "دیدریک پی. کینگما (Diederik P. Kingma*)؛ دانشگاه آمستردام، OpenAI؛ dpkingma@openai.com؛ جیمی لی با (Jimmy Lei Ba*)؛ دانشگاه تورنتو؛ jimmy@psi.utoronto.ca",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "de57f79beeb344d96eb0fca07ec48b9c0b40660d40e43af8d2613f326fa03027",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "Adam: تطبیق نرخ یادگیری (Learning Rate) برای هر پارامتر\nAdam کوتاه‌شدهٔ «برآورد تطبیقی گشتاور» (Adaptive Moment Estimation) است و نرخ یادگیری را برای هر پارامتر به‌صورت پویا طوری تطبیق می‌دهد که اندازهٔ گام به‌شیوهٔ مناسبی به‌تدریج کاهش یابد. محورهای نمودار: x1 و f(x1)؛ x2 و f(x2)."
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "math",
+          "fa": "W ← W − η ∂L/∂W",
+          "latex": "W\\leftarrow W-\\eta\\frac{\\partial L}{\\partial W}"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "afde3b31d2018133b62653e389b1f0bbfbbbf9e63366cdd77d76ae2f925a2e86",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "Adam: ترکیب AdaGrad و RMSProp\nمشاهده: دو روش که نرخ یادگیری (Learning Rate) را برای هر پارامتر تطبیق می‌دهند، می‌توانند از استفاده از یک نرخ یادگیری سراسری برای نزول گرادیان تصادفی (SGD) با تکانه (Momentum) بهتر عمل کنند."
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "http://cs231n.github.io/neural-networks-3/#update; image credit: Alec Radford"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "SGD; Momentum; NAG; Adagrad; Adadelta; Rmsprop",
+          "fa": "نزول گرادیان تصادفی (SGD)؛ تکانه (Momentum)؛ NAG؛ Adagrad؛ Adadelta؛ Rmsprop",
+          "verified": true
+        },
+        {
+          "en": "−4, −2, 0, 2, 4; −1.5, −1.0, −0.5, 0.0, 0.5, 1.0",
+          "fa": "درجات نمودار سه‌بعدی: −4، −2، 0، 2، 4؛ −1.5، −1.0، −0.5، 0.0، 0.5، 1.0",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "c9e1b19940703339d70e83651f2980ed9f6e6611f5655b053b77d6f80e4bf3a2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "kind": "text",
+          "fa": "Adam: تطبیق نرخ یادگیری (Learning Rate) برای هر پارامتر\n• مقدار ثابتِ تعیین‌شده در کد، کران بالای اندازهٔ گام را تعیین می‌کند.\n• «نسبت سیگنال به نویز» (Signal-to-Noise Ratio, SNR): وقتی SNR کوچک‌تر باشد، چه اتفاقی برای اندازهٔ گام می‌افتد؟\n• تکانه (Momentum)، با ابرپارامتری که نرخ افتِ میانگین متحرکِ گرادیان را کنترل می‌کند؛ نشان می‌دهد به کجا برویم و با میانگین‌گیری، جهت نزولی کم‌نویزتری به دست می‌دهد.\n• از میانگین متحرکِ مربع گرادیان‌ها استفاده می‌کند تا نشان دهد با چه سرعتی حرکت کنیم: اندازهٔ گام در جهت‌های پرشیب کوچک‌تر و در جهت‌های تخت بزرگ‌تر می‌شود.\n• محاسبه‌ای اضافی، مشکلات ناشی از مقداردهی اولیهٔ این مقدارها به 0 را برطرف می‌کند.\nنویز (Noise).\nاگر مقدار vₜ همهٔ پارامترها برابر بود، به کدام روش بهینه‌سازی می‌رسیدیم؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "math",
+          "fa": "W ← W − α·m̂ₜ/(√v̂ₜ+ε)",
+          "latex": "W\\leftarrow W-\\alpha\\cdot\\hat{m}_t/(\\sqrt{\\hat{v}_t}+\\epsilon)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "mₜ ← β₁·mₜ₋₁ + (1−β₁)·gₜ",
+          "fa": "میانگین متحرک گرادیان:",
+          "verified": true,
+          "latex": "m_t\\leftarrow\\beta_1\\cdot m_{t-1}+(1-\\beta_1)\\cdot g_t"
+        },
+        {
+          "en": "vₜ ← β₂·vₜ₋₁ + (1−β₂)·gₜ²",
+          "fa": "میانگین متحرک مربع گرادیان:",
+          "verified": true,
+          "latex": "v_t\\leftarrow\\beta_2\\cdot v_{t-1}+(1-\\beta_2)\\cdot g_t^2"
+        },
+        {
+          "en": "vₜ",
+          "fa": "نماد پایانی پرسش: vₜ",
+          "verified": true,
+          "latex": "v_t"
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "95d927d7af3078cd5341a5d6f60ec4396e759b42c29abce2f074e2220abe3c31",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "این ترفندهای یادگیری، شبکه‌های عصبی را عمیق‌تر کردند؛ اما بهبود عملکرد در حدود 30 تا 40 لایه به اشباع رسید."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "bd2e3d07f4f70bf540e87d5dad9317b8d360136e308179fe1f8ef96577559fee",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• جست‌وجوی شبکه‌های عصبی عمیق‌تر: چرا شکست می‌خورند؟\n• همگرایی (Convergence) دشوار است: مقداردهی اولیهٔ هه (He Initialization)، نرمال‌سازی دسته‌ای (Batch Normalization) و بهینه‌سازی Adam.\n• به چیز بیشتری نیاز داریم: یادگیری باقیمانده (Residual Learning) با اتصال‌های میان‌بُر (Skip Connections)، یعنی ResNet.\n• آموزش برنامه‌نویسی."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "e0ffdb5308ce51cfe0288cff1a7a6c993a67b69f999cffb62ed6576d238093b7",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "افزودن لایه‌های بیشتر: مسئله چه بود؟\n• محوشدن گرادیان‌ها (Vanishing Gradients)؟ خیر؛ با ترفندهای جدید آن زمان، یعنی مقداردهی اولیهٔ هه (He Initialization) و نرمال‌سازی دسته‌ای (BN)، گرادیان‌ها هنگام آموزش مقیاس مناسبی داشتند.\n• بیش‌برازش (Overfitting)؟ خیر؛ با لایه‌های بیشتر، خطای آموزش بزرگ‌تر است."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "He et al. Deep Residual Learning for Image Recognition. CVPR 2016."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "training error (%); test error (%); iter. (1e4); 56-layer; 20-layer; 0, 10, 20; 0–6",
+          "fa": "خطای آموزش بر حسب درصد (Training Error (%))؛ خطای آزمون بر حسب درصد (Test Error (%))؛ تکرار بر حسب 1e4 (iter. (1e4))؛ شبکهٔ 56 لایه و 20 لایه؛ درجات عمودی 0، 10، 20 و افقی 0 تا 6",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "9f9263b3e5cf67473bad12b4bb5d2dc0fb19117bc3869c5ed37533800aad6419",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "مسئله‌ای جدید: «افت عملکرد با عمق» (Degradation)\n• پرسش کلیدی: چرا شبکه‌های عمیق‌تر از شبکه‌های کم‌عمق‌تر بدتر عمل می‌کنند؟\n• مشاهده: شبکه‌های عمیق‌تر نباید از گزینه‌های کم‌عمق‌تر بدتر باشند؛ لایه‌های اضافه می‌توانند تابع‌های همانی (Identity Functions) باشند.\nورودی (Input) ← پنهان (Hidden) ← پنهان ← خروجی (Output).\nورودی ← پنهان ← پنهان ← همانی (Identity) ← خروجی."
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "He et al. Deep Residual Learning for Image Recognition. CVPR 2016."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "training error (%); test error (%); iter. (1e4); 56-layer; 20-layer; 0, 10, 20; 0–6",
+          "fa": "خطای آموزش بر حسب درصد (Training Error (%))؛ خطای آزمون بر حسب درصد (Test Error (%))؛ تکرار بر حسب 1e4 (iter. (1e4))؛ شبکهٔ 56 لایه و 20 لایه؛ درجات عمودی 0، 10، 20 و افقی 0 تا 6",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "1f6ec5738191aed5420bc41c882cee006ff07ed1cb8adea9b5b0dd696e1804b2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "راه‌حل مسئلهٔ افت عملکرد با عمق (Degradation): ترفندهای ResNet\nخطای پنج‌تای اول ImageNet (Top-5 Error). 8 لایه؛ 19 لایه؛ 152 لایه.\nعملکرد انسان با برچسب‌گذاری انسانیِ یک نمونهٔ تصادفی از 1500 تصویر آزمون اندازه‌گیری شد.\nبرای نخستین بار، یک مدل از عملکرد در سطح انسان فراتر رفت!"
+        },
+        {
+          "source_lines": [
+            1,
+            7
+          ],
+          "kind": "reference",
+          "fa": "https://www.edge-ai-vision.com/2018/07/deep-learning-in-five-and-a-half-minutes/\n[Russakovsky et al. IJCV 2015]"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "2011 (XRCE) 26,0; 2012 (AlexNet) 16,4; 2013 (ZF) 11,7; 2014 (VGG) 7,3; 2014 (GoogLeNet) 6,7; Human 5,0; 2015 (ResNet) 3,6; 0,0–25,0",
+          "fa": "2011 (XRCE): 26,0؛ 2012 (AlexNet): 16,4؛ 2013 (ZF): 11,7؛ 2014 (VGG): 7,3؛ 2014 (GoogLeNet): 6,7؛ انسان (Human): 5,0؛ 2015 (ResNet): 3,6؛ درجات محور از 0,0 تا 25,0",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "7be20b4191978c0e6d1f3e365057aa1b2666bd07c64bcd3e65ede6fc823132eb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "مدل بر اساس نام روش نام‌گذاری شده است؛ 2016، CVPR."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Deep Residual Learning for Image Recognition",
+          "fa": "یادگیری باقیماندهٔ عمیق برای بازشناسی تصویر (Deep Residual Learning for Image Recognition)",
+          "verified": true
+        },
+        {
+          "en": "Kaiming He; Xiangyu Zhang; Shaoqing Ren; Jian Sun; Microsoft Research",
+          "fa": "کایمینگ هه (Kaiming He)؛ شیانگ‌یو ژانگ (Xiangyu Zhang)؛ شائوچینگ رن (Shaoqing Ren)؛ جیان سون (Jian Sun)؛ پژوهشگاه مایکروسافت (Microsoft Research)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "8696dbdac0e6d4c8ea42e58a14337fe387092261a62e26da78b86f0b5544c5fe",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "ایده: آسان‌کردن یادگیری نگاشت همانی (Identity Mapping)\nفرضیه: یادگیری تابعی که نگاشت همانی را انجام دهد، از یادگیری پارامترهای نزدیک به 0 دشوارتر است."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "He et al. Deep Residual Learning for Image Recognition. CVPR 2016."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x; weight layer; relu; weight layer; x; +; relu",
+          "fa": "x؛ لایهٔ دارای وزن (Weight Layer)؛ ReLU؛ لایهٔ دارای وزن؛ x؛ جمع (+)؛ ReLU",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "a394855252b8a00b013b982c92770a9cff13cff23616eeedc65b695a72069a5e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "ایده: آسان‌کردن یادگیری نگاشت همانی (Identity Mapping) با اتصال‌های میان‌بُر (Skip Connections)\nمقاله حالت‌هایی را بررسی می‌کند که تعداد لایه‌های بین اتصال‌های میان‌بُر، یعنی بلوک باقیمانده (Residual Block)، 2 یا 3 باشد.\nهنگام افزودن یک اتصال میان‌بُر، چند پارامتر مدل باید یاد گرفته شود؟ 0."
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "He et al. Deep Residual Learning for Image Recognition. CVPR 2016."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x; weight layer; relu; weight layer; identity; +; relu",
+          "fa": "x؛ لایهٔ دارای وزن (Weight Layer)؛ ReLU؛ لایهٔ دارای وزن؛ همانی (Identity)؛ جمع (+)؛ ReLU",
+          "verified": true
+        },
+        {
+          "en": "F(x); F(x) + x",
+          "fa": "تابع باقیمانده و خروجیِ دارای اتصال میان‌بُر:",
+          "verified": true,
+          "latex": "\\mathcal{F}(x)\\,;\\quad\\mathcal{F}(x)+x"
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "aa1919d28ba4f6f2ffcd45bfaa912df2705f0fc24a0dae6c89bdb90002142fd2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "kind": "text",
+          "fa": "ایده: آسان‌کردن یادگیری نگاشت همانی (Identity Mapping) با اتصال‌های میان‌بُر (Skip Connections) و یادگیری باقیمانده (Residual Learning)\n«یادگیری باقیمانده» نامیده می‌شود، زیرا تابعی که باید یاد گرفته شود، تغییر می‌کند تا «+x» را نیز در بر گیرد.\nاگر نگاشت همانی بهینه باشد، چه وزن‌هایی برای تابع یاد گرفته می‌شوند؟ برای مثال 0؛ مثال با تابع زیان میانگین مربعات خطا (Mean Squared Error Loss).\nیادآوری: اتصال‌های میان‌بُر جریان گرادیان (Gradient Flow) را بهتر می‌کنند، زیرا مشتق جمع 1 است و گرادیان‌ها می‌توانند بدون تغییر عبور کنند.\nیادداشت: برای طبقه‌بندی ImageNet، زیان آنتروپی متقاطع (Cross-Entropy Loss) بهینه می‌شود."
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "He et al. Deep Residual Learning for Image Recognition. CVPR 2016."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "x; weight layer; relu; weight layer; identity; +; relu",
+          "fa": "x؛ لایهٔ دارای وزن (Weight Layer)؛ ReLU؛ لایهٔ دارای وزن؛ همانی (Identity)؛ جمع (+)؛ ReLU",
+          "verified": true
+        },
+        {
+          "en": "F(x); F(x) + x",
+          "fa": "تابع باقیمانده و خروجیِ دارای اتصال میان‌بُر:",
+          "verified": true,
+          "latex": "\\mathcal{F}(x)\\,;\\quad\\mathcal{F}(x)+x"
+        },
+        {
+          "en": "L = (x + F(x) − x)²",
+          "fa": "زیانِ مثال با نگاشت همانیِ هدف:",
+          "verified": true,
+          "latex": "\\mathcal{L}=(x+F(x)-x)^2"
+        }
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "50db01832d1d29f3631c8fda384345785033800694c40337bf02fba49344bddb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "معماری ResNet: زیرمجموعه‌ای از لایه‌ها نشان داده شده است؛ 34 لایه از 152 لایه.\nورودی: تصویر RGB که به اندازهٔ ورودی ثابت تغییر اندازه یافته است. خروجی: احتمال‌های 1000 کلاس که مجموع آن‌ها 1 است."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "He et al. Deep Residual Learning for Image Recognition. CVPR 2016."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "image; 7×7 conv, 64, /2; pool, /2",
+          "fa": "تصویر (image)؛ کانولوشن (conv) 7×7 با 64 کانال و /2؛ تجمیع (pool)، /2",
+          "verified": true
+        },
+        {
+          "en": "3×3 conv, 64 (6); 3×3 conv, 128 (8); 3×3 conv, 256 (12); 3×3 conv, 512 (6); /2 at first 128, 256, 512 layers",
+          "fa": "در شکل، کانولوشن‌های 3×3 با 64 کانال شش بار، با 128 کانال هشت بار، با 256 کانال دوازده بار و با 512 کانال شش بار تکرار می‌شوند؛ اولین لایهٔ گروه‌های 128، 256 و 512 با /2 مشخص شده است.",
+          "verified": true
+        },
+        {
+          "en": "avg pool; fc 1000",
+          "fa": "تجمیع میانگین (avg pool)؛ لایهٔ تمام‌متصل (fc) با 1000 خروجی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "6b3a3d78ea7f7b8e68f1f46f0f0c7e00671278b8620a078baddb8bb8060841c2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "تنظیمات آموزش: تغییرها نسبت به AlexNet\n• اندازهٔ دسته (Batch Size): 256 نمونه؛ دو برابر مقدار AlexNet.\n• مقداردهی اولیه (Initialization): روش هه (He).\n• بهینه‌سازی با تکانه (Momentum): نرخ یادگیری را از مقدار اولیهٔ 0.1، در برابر 0.01 برای AlexNet، به‌صورت دستی تنظیم کردند؛ هرگاه خطای اعتبارسنجی به حالت تقریباً ثابت می‌رسید، آن را بر 10 تقسیم می‌کردند. آزمایش‌های بعدی از Adam استفاده کردند.\n• نرمال‌سازی دسته‌ای (Batch Normalization) پیش از فعال‌سازی هر کانولوشن اضافه شد.\n• ضریب افت وزن (Weight Decay) به 0.0001 کاهش یافت، در برابر 0.005.\n• از حذف تصادفی (Dropout) استفاده نشد تا تحلیلِ غلبه بر مشکلات بهینه‌سازی به‌وسیلهٔ اتصال‌های میان‌بُر (Skip Connections) و یادگیری باقیمانده (Residual Learning)، به‌تنهایی بررسی شود."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "18be623647e81cee45fd5582d855bb7e688f72740a704fee212e18331ea50fb5",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "جمع‌بندی: اتصال‌های باقیمانده (Residual Connections)، عمق را از گلوگاه به یک انتخاب طراحی تبدیل کردند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "bd2e3d07f4f70bf540e87d5dad9317b8d360136e308179fe1f8ef96577559fee",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• جست‌وجوی شبکه‌های عصبی عمیق‌تر: چرا شکست می‌خورند؟\n• همگرایی (Convergence) دشوار است: مقداردهی اولیهٔ هه (He Initialization)، نرمال‌سازی دسته‌ای (Batch Normalization) و بهینه‌سازی Adam.\n• به چیز بیشتری نیاز داریم: یادگیری باقیمانده (Residual Learning) با اتصال‌های میان‌بُر (Skip Connections)، یعنی ResNet.\n• آموزش برنامه‌نویسی."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "bd2e3d07f4f70bf540e87d5dad9317b8d360136e308179fe1f8ef96577559fee",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• جست‌وجوی شبکه‌های عصبی عمیق‌تر: چرا شکست می‌خورند؟\n• همگرایی (Convergence) دشوار است: مقداردهی اولیهٔ هه (He Initialization)، نرمال‌سازی دسته‌ای (Batch Normalization) و بهینه‌سازی Adam.\n• به چیز بیشتری نیاز داریم: یادگیری باقیمانده (Residual Learning) با اتصال‌های میان‌بُر (Skip Connections)، یعنی ResNet.\n• آموزش برنامه‌نویسی."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ]
+    }
+  ]
+}

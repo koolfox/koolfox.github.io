@@ -130,6 +130,6 @@ Promise.all([loading.promise,fetch(config.translationUrl).then(response=>{if(!re
  for(const option of picker.options){const record=data.pages[Number(option.value)-1];const heading=record.blocks.find(b=>b.kind==='heading')?.fa||record.blocks.find(b=>b.kind!=='not_visible'&&b.fa)?.fa?.split('\n').find(s=>!/^https?:/.test(s))||'';option.textContent=fa(Number(option.value))+(heading?' · '+heading.slice(0,100):'');}
  go(page,false);
 }).catch(()=>{progress.hidden=true;message('اصل و ترجمهٔ تطبیق‌داده‌شده بارگیری نشدند؛ پیوند دریافت PDF اصلی همچنان در دسترس است.',true);});
-window.addEventListener('pagehide',()=>{closed=true;serial++;clearTimeout(resizeTimer);task?.cancel();loading.destroy().catch(()=>{});});
+window.addEventListener('pagehide',event=>{if(event.persisted)return;closed=true;serial++;clearTimeout(resizeTimer);task?.cancel();loading.destroy().catch(()=>{});});
 window.sourceSlideReader={get page(){return page;},get renderedPage(){return renderedPage;},get pageCount(){return config.pageCount;},get sourceSha256(){return config.sourceSha256;},get ready(){return Boolean(pdf&&payload&&renderedPage===page);}};
 controls();

@@ -1,0 +1,3261 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s26",
+  "source_sha256": "e33288b7459c6e52ae5711ff86decbd68b22a5186ece4857a960db951c027741",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "b9b9e5874d8c6bd2404037688ea0b1f3025fa6f9dc9b4eb6120a54da7fe86129",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "فشرده‌سازی مدل (Model Compression)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "دانشگاه کلرادو بولدر (University of Colorado Boulder)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "بهار ۲۰۲۲ (Spring 2022)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "7809ce9461a8118582bd2ed153ab8d61118cbe7aacafd11262505da0f35f51e7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• موضوع جلسهٔ قبل:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری چندوظیفه‌ای (Multi-task learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری کم‌نمونه (Few-shot learning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری بی‌نمونه (Zero-shot learning)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• تکلیف‌ها"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• موعد تحویل پیشنهاد پروژهٔ نهایی جمعه است"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• پرسشی دارید؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "8590ac22726f64c6212f2e16a7b8798458a0ae074345cb36daab92b80ea74e80",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• انگیزه (Motivation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• ایدهٔ اصلی: تقطیر دانش (Knowledge distillation)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تقطیر دانش (Knowledge distillation) برای شبکه‌های عصبی کانولوشنی (CNNs؛ مسائل بینایی)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• تقطیر دانش (Knowledge distillation) برای ترنسفورمرها (Transformers؛ مسائل زبان)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش لاتک (LaTeX)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "8590ac22726f64c6212f2e16a7b8798458a0ae074345cb36daab92b80ea74e80",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• انگیزه (Motivation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• ایدهٔ اصلی: تقطیر دانش (Knowledge distillation)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تقطیر دانش (Knowledge distillation) برای شبکه‌های عصبی کانولوشنی (CNNs؛ مسائل بینایی)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• تقطیر دانش (Knowledge distillation) برای ترنسفورمرها (Transformers؛ مسائل زبان)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش لاتک (LaTeX)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "5229f0d1b9533c1afb7d89f0cccbc5feb36377aa32f9f65c82778cb2568cad78",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "روند: مدل‌های پرپارامتر (Parameter-Heavy Models)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "بینایی (Vision) – طبقه‌بندی ImageNet"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://medium.com/building-the-metaverse/the￾metaverse-and-artificial-intelligence-ai-577343895411"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "زبان (Language) – ترنسفورمرهای ازپیش‌آموزش‌دیده (Pretrained transformers)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "BILLIONS OF PARAMETERS; DEEP LEARNING TRANSFORMERS GREW >1,000,000% FROM 2018–2021; GPT-4 (Estimated)",
+          "fa": "میلیارد پارامتر؛ ترنسفورمرهای یادگیری عمیق (Deep Learning Transformers) از 2018 تا 2021 بیش از 1,000,000% رشد کردند؛ GPT-4 (برآوردی)",
+          "verified": true
+        },
+        {
+          "en": "GPT; GPT-2; GPT-3; Google BERT-Large; NVIDIA Megatron LM; Microsoft Turing NLG; Google Brain; Jun-18; Dec-18; Jun-19; Dec-19; Jun-20; Dec-20; Jun-21",
+          "fa": "GPT؛ GPT-2؛ GPT-3؛ Google BERT-Large؛ NVIDIA Megatron LM؛ Microsoft Turing NLG؛ Google Brain؛ ژوئن 2018؛ دسامبر 2018؛ ژوئن 2019؛ دسامبر 2019؛ ژوئن 2020؛ دسامبر 2020؛ ژوئن 2021",
+          "verified": true
+        },
+        {
+          "en": "Architecture; Year; Top-1 Accuracy; # Parameters",
+          "fa": "معماری (Architecture)؛ سال؛ دقت Top-1؛ تعداد پارامترها",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "57c53174b05242eb1dd347c23a1fcbcfb19ac3e8b3cb14e4cec40344bf9bd611",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "شبکه‌های عصبی امروزی (Modern Neural Networks) با بسیاری از کاربردهای دنیای واقعی سازگار نیستند"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://www.buzzfeednews.com/article/katienotopoulos/facebook-is-making-camera-glasses-ha-ha-oh-no"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://www.ephotozine.com/article/19-things￾to-look-out-for-in-a-smartphone-camera--31055"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "reference",
+          "fa": "https://en.wikipedia.org/wiki/Wearable_technology"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "3c3597801e3ecc264b0aad43d22352f9469063ac3f356641af4efbb2902e8e58",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "- زمان استنتاج (Inference time) زیاد (یعنی ناسازگار با کاربردهای بلادرنگ (Real-time))"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "- مصرف حافظهٔ (Memory footprint) زیاد (برای مثال، ناسازگار با حافظهٔ محدود دستگاه‌های لبه (Edge devices))"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "- هزینهٔ محاسباتی (Computational cost) زیاد (برای مثال، ناسازگار با باتری محدود دستگاه‌های لبه (Edge devices))"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "- امکان ایجاد هزینه‌های زیست‌محیطی زیاد"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "شبکه‌های عصبی امروزی (Modern Neural Networks) با بسیاری از کاربردهای دنیای واقعی سازگار نیستند"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "e503904a0f273c1fcd8769150c4a1fae5a1bd846d2b24db0a691dc1a1de2e162",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایده: مدل‌های فشرده (Compact models) بسازید تا بتوان از مدل‌های یادگیری عمیق (Deep learning) به‌صورت کارآمدتر و در کاربردهای بیشتری استفاده کرد"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "8590ac22726f64c6212f2e16a7b8798458a0ae074345cb36daab92b80ea74e80",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• انگیزه (Motivation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• ایدهٔ اصلی: تقطیر دانش (Knowledge distillation)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تقطیر دانش (Knowledge distillation) برای شبکه‌های عصبی کانولوشنی (CNNs؛ مسائل بینایی)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• تقطیر دانش (Knowledge distillation) برای ترنسفورمرها (Transformers؛ مسائل زبان)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش لاتک (LaTeX)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "2521cc2435cfdce8e2edd0bf8c00a0f38e1250915d2184fb13672b6247e8fef0",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکرد پرکاربرد: تقطیر دانش (Knowledge Distillation)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "منبع تصویر: https://www.waterford.org/education/teacher-student-relationships/"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "یک دانش‌آموز (Student) از معلمی (Teacher) آگاه یاد می‌گیرد"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "5a41bf3abf0b44b3c9c7b4081c9493e521dad4f7e606d991e1e12604306362ec",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پرسش اصلی: دانش (Knowledge) چیست؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "http://ir.hit.edu.cn/~xiachongfeng/slides/Knowledge%20Distillation.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "input layer; hidden layer 1; hidden layer 2; hidden layer 3; output layer",
+          "fa": "لایهٔ ورودی (Input layer)؛ لایهٔ پنهان 1؛ لایهٔ پنهان 2؛ لایهٔ پنهان 3؛ لایهٔ خروجی (Output layer)",
+          "verified": true
+        },
+        {
+          "en": "Parameters W!",
+          "fa": "پارامترهای W!",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "695a51c86f69c18d628d838a3e7adf61360d0fa7df4171d54d42aaaaf848eaa1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "دانش (Knowledge) یعنی: نگاشت ورودی به خروجی (Input to Output Mapping)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "http://ir.hit.edu.cn/~xiachongfeng/slides/Knowledge%20Distillation.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "input layer; hidden layer 1; hidden layer 2; hidden layer 3; output layer",
+          "fa": "لایهٔ ورودی (Input layer)؛ لایهٔ پنهان 1؛ لایهٔ پنهان 2؛ لایهٔ پنهان 3؛ لایهٔ خروجی (Output layer)",
+          "verified": true
+        },
+        {
+          "en": "Mapping: Input to Output!",
+          "fa": "نگاشت (Mapping): ورودی به خروجی!",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "322b90048b0fe7d4d3766aee89884286216d8dd52244c6709b2f45cf756621d2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "دانش (Knowledge) یعنی: نگاشت ورودی به خروجی (Input to Output Mapping)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "نگاشت هدف (Target mapping): مرجع (Ground truth؛ بردار تک‌فعال (1-hot vector))"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "5387dfc85e7826631dc0e373bdf28459f53adc6798d0454c7b9260d101d2038c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "دانش (Knowledge) یعنی: نگاشت ورودی به خروجی (Input to Output Mapping)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "نگاشت هدف (Target mapping): توزیع احتمال (Probability distribution) یک مدل، شناخت بیشتری از شباهت‌ها و تفاوت‌های رده‌ها فراهم می‌کند"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "math",
+          "fa": "0 1"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "6c08a4832223ec7a11622bd3a260213acf4df5db7363c5b12ab07216330f0373",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "دانش (Knowledge) یعنی: نگاشت ورودی به خروجی (Input to Output Mapping)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "نگاشت هدف (Target mapping): توزیع احتمال (Probability distribution) یک مدل، شناخت بیشتری از شباهت‌ها و تفاوت‌های رده‌ها فراهم می‌کند"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "- می‌کوشد ردهٔ مرجع (Ground truth category) را شناسایی کند"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "- همچنین نشان می‌دهد 2 ویژگی‌هایی مشابه 7 و 1 دارد"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "math",
+          "fa": "0 1"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "math",
+          "fa": "1"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "math",
+          "fa": "2"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "math",
+          "fa": "3"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "math",
+          "fa": "7"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "math",
+          "fa": "8"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "math",
+          "fa": "9"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "2cc83ee33c4e296a8c2a723d741fd5cc24672dc4efafc1a180ff3b9ad4fb136c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "دانش (Knowledge) یعنی: نگاشت ورودی به خروجی (Input to Output Mapping)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "نگاشت هدف (Target mapping): توزیع احتمال (Probability distribution) یک مدل، شناخت بیشتری از شباهت‌ها و تفاوت‌های رده‌ها فراهم می‌کند"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "- می‌کوشد ردهٔ مرجع (Ground truth category) را شناسایی کند"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "- همچنین نشان می‌دهد خرس ویژگی‌هایی مشابه سگ و گربه دارد"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "math",
+          "fa": "0 1"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "گربه (cat)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "خرس (bear)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "صندلی (chair)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "سگ (dog)"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "چراغ (lamp)"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "text",
+          "fa": "میز (table)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "fcd47062982ca8baacb506d0c0632230d3063199d4daab0c703795f2eede3c9b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "دانش (Knowledge) یعنی: نگاشت ورودی به خروجی (Input to Output Mapping)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "نگاشت هدف (Target mapping): توزیع احتمال (Probability distribution) یک مدل، شناخت بیشتری از شباهت‌ها و تفاوت‌های رده‌ها فراهم می‌کند"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "- می‌کوشد ردهٔ مرجع (Ground truth category) را شناسایی کند"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "- همچنین نشان می‌دهد خرس ویژگی‌هایی مشابه سگ و گربه دارد"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "ایده: به دانش‌آموزِ فشرده (Compact student) علاوه بر مرجع (Ground truth)، روابط میان رده‌ها را هم آموزش دهید"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "reference",
+          "fa": "Hinton, Vinyals, and Dean. Distilling the knowledge in a neural network. arXiv 2015."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "81178d6074b7c18b0cfffb258748a2066375816d9a40c54aa99cd47d7d4586e7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "تقطیر دانش (Knowledge Distillation): آموزش «دانش تاریک» (Dark Knowledge) معلم به دانش‌آموز"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "معلم (Teacher؛ مدل ازپیش‌آموزش‌دیده (Pre-trained model))"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "دانش‌آموز (Student؛ که قرار است آموزش ببیند)"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "زیان (Loss) محاسبه می‌شود تا توزیع دانش‌آموز (Student) به توزیع معلم (Teacher) نزدیک‌تر شود"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "e2d54d7b13766dfd392df3d8396929c5d870da3186b0ec7721b12574baee894b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "تقطیر دانش (Knowledge Distillation): آموزش «دانش تاریک» (Dark Knowledge) معلم به دانش‌آموز"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "معلم (Teacher؛ مدل ازپیش‌آموزش‌دیده (Pre-trained model))"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "دانش‌آموز (Student؛ که قرار است آموزش ببیند)"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "kind": "text",
+          "fa": "برای تقویت انتقال دانش (Knowledge transfer)، سیگنال مربوط به شباهت نسبی رده‌های دیگر به ردهٔ پیش‌بینی‌شده را تقویت کنید"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "be000fe7500d40d988e8e4b54031f758b514cb26650f89b917898ffeab213c1c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "تقطیر دانش (Knowledge Distillation): متعادل‌سازی مجدد («نرم‌کردن» (Soften)) توزیع احتمال میان رده‌ها"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "یادآوری سافت‌مکس (Softmax): بردار امتیازها را به توزیع احتمالی تبدیل می‌کند که مجموع آن 1 است"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://wandb.ai/authors/knowledge-distillation/reports/Distilling-Knowledge-in-Neural-Networks--VmlldzoyMjkxODk"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "می‌خواهیم دانش دربارهٔ این رابطه را تقویت کنیم"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "z_one = 2.3; z_seven = −2.3; exp(2.3)/Σⱼexp(zⱼ) → 0.99; exp(−2.3)/Σⱼexp(zⱼ) → 0.01",
+          "fa": "z_one = 2.3؛ z_seven = −2.3؛ exp(2.3)/Σⱼexp(zⱼ) → 0.99؛ exp(−2.3)/Σⱼexp(zⱼ) → 0.01",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "e14089d179a1184e1ae46ff6d8823f786c370bfce5d6a4800b8974a2199df95f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "تقطیر دانش (Knowledge Distillation): متعادل‌سازی مجدد («نرم‌کردن» (Soften)) توزیع احتمال میان رده‌ها"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "یادآوری سافت‌مکس (Softmax): بردار امتیازها را به توزیع احتمالی تبدیل می‌کند که مجموع آن 1 است"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "آموزش مفید: https://towardsdatascience.com/exploring-the-softmax-function-578c8b0fb15"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "امتیاز هر گره را بر مجموع همهٔ درایه‌ها تقسیم کنید تا مجموعشان 1 شود (نرمال‌سازی (Normalization))"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "تعداد کلاس‌ها (Number of classes)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "literal",
+          "fa": "i = 1, …, K"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "مقادیر منفی را حذف کنید و در عین حال ترتیب اصلی امتیازها را حفظ کنید"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "σ(z)ᵢ = exp(zᵢ)/Σⱼ₌₁ᴷexp(zⱼ)",
+          "fa": "σ(z)ᵢ = exp(zᵢ)/Σⱼ₌₁ᴷexp(zⱼ)",
+          "verified": true,
+          "latex": "\\sigma(\\mathbf z)_i=\\frac{e^{z_i}}{\\sum_{j=1}^K e^{z_j}}"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "b1a3156acff3d6b318993dcc6eaf59301cfa7a0271732aeae5632f35b106bb1f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "تقطیر دانش (Knowledge Distillation): متعادل‌سازی مجدد («نرم‌کردن» (Soften)) توزیع احتمال میان رده‌ها"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "مقدار معمول T که برای سافت‌مکس (Softmax) استفاده می‌شود چقدر است؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "ایده: دما (Temperature) را روی مقداری بزرگ‌تر از 1 تنظیم کنید"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "سافت‌مکس تعمیم‌یافته (Generalized Softmax): با استفاده از دما (Temperature)، بردار امتیازها را به توزیع احتمالی با مجموع 1 تبدیل می‌کند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "σ(z)ᵢ = exp(zᵢ/T)/Σⱼexp(zⱼ/T)",
+          "fa": "σ(z)ᵢ = exp(zᵢ/T)/Σⱼexp(zⱼ/T)",
+          "verified": true,
+          "latex": "\\sigma(\\mathbf z)_i=\\frac{\\exp(z_i/T)}{\\sum_j\\exp(z_j/T)}"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "c183c56030461fa70f74f4c73170eefe0926dcaaf8cecab8552f5e46d6789338",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "تقطیر دانش (Knowledge Distillation): متعادل‌سازی مجدد («نرم‌کردن» (Soften)) توزیع احتمال میان رده‌ها"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "سافت‌مکس تعمیم‌یافته (Generalized Softmax): با استفاده از دما (Temperature)، بردار امتیازها را به توزیع احتمالی با مجموع 1 تبدیل می‌کند"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://wandb.ai/authors/knowledge-distillation/reports/Distilling-Knowledge-in-Neural-Networks--VmlldzoyMjkxODk"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "مقادیر بزرگ‌تر T یعنی اطلاعات بیشتری دربارهٔ رده‌هایی در دسترس است که معلم (Teacher) آن‌ها را مشابه ردهٔ پیش‌بینی‌شده یافته است"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "σ(z)ᵢ = exp(zᵢ/T)/Σⱼexp(zⱼ/T)",
+          "fa": "σ(z)ᵢ = exp(zᵢ/T)/Σⱼexp(zⱼ/T)",
+          "verified": true,
+          "latex": "\\sigma(\\mathbf z)_i=\\frac{\\exp(z_i/T)}{\\sum_j\\exp(z_j/T)}"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "6d288edb47f65bfb10a0b60c6562612f7aafcffad3160163f421b2b98269e1de",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "تقطیر دانش (Knowledge Distillation): متعادل‌سازی مجدد («نرم‌کردن» (Soften)) توزیع احتمال میان رده‌ها"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "سافت‌مکس تعمیم‌یافته (Generalized Softmax): با استفاده از دما (Temperature)، بردار امتیازها را به توزیع احتمالی با مجموع 1 تبدیل می‌کند؛ برای مثال،"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "مقادیر بزرگ‌تر T یعنی اطلاعات بیشتری دربارهٔ رده‌هایی در دسترس است که معلم (Teacher) آن‌ها را مشابه ردهٔ پیش‌بینی‌شده یافته است"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "σ(z)ᵢ = exp(zᵢ/T)/Σⱼexp(zⱼ/T)",
+          "fa": "σ(z)ᵢ = exp(zᵢ/T)/Σⱼexp(zⱼ/T)",
+          "verified": true,
+          "latex": "\\sigma(\\mathbf z)_i=\\frac{\\exp(z_i/T)}{\\sum_j\\exp(z_j/T)}"
+        },
+        {
+          "en": "Homework; Cake; Book; Assignment; Car; T=1; T=2; T=5",
+          "fa": "تکلیف (Homework)؛ کیک (Cake)؛ کتاب (Book)؛ تکلیف درسی (Assignment)؛ خودرو (Car)؛ T=1؛ T=2؛ T=5",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "5c8c9d533ffb3f8a0e514c7d8e97ff5e416ae0869fb2a449fd2775de295b036b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "تقطیر دانش (Knowledge Distillation): متعادل‌سازی مجدد («نرم‌کردن» (Soften)) توزیع احتمال میان رده‌ها"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "سافت‌مکس تعمیم‌یافته (Generalized Softmax): با استفاده از دما (Temperature)، بردار امتیازها را به توزیع احتمالی با مجموع 1 تبدیل می‌کند؛ برای مثال، T=5"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://wandb.ai/authors/knowledge-distillation/reports/Distilling-Knowledge-in-Neural-Networks--VmlldzoyMjkxODk"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "دانش دربارهٔ این رابطه از 0.01 افزایش یافته است"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "σ(z)ᵢ = exp(zᵢ/T)/Σⱼexp(zⱼ/T)",
+          "fa": "σ(z)ᵢ = exp(zᵢ/T)/Σⱼexp(zⱼ/T)",
+          "verified": true,
+          "latex": "\\sigma(\\mathbf z)_i=\\frac{\\exp(z_i/T)}{\\sum_j\\exp(z_j/T)}"
+        },
+        {
+          "en": "z_one = 2.3; z_seven = −2.3; exp(2.3/T)/Σⱼexp(zⱼ/T); exp(−2.3/T)/Σⱼexp(zⱼ/T)",
+          "fa": "z_one = 2.3؛ z_seven = −2.3؛ exp(2.3/T)/Σⱼexp(zⱼ/T)؛ exp(−2.3/T)/Σⱼexp(zⱼ/T)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "9be0bffcb7ce5d58ebb7fbb38873ad4f4c17a4cb9102f31fde7f9ac53436484f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "تقطیر دانش (Knowledge Distillation): آموزش «دانش تاریک» (Dark Knowledge) معلم به دانش‌آموز"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "معلم (Teacher؛ مدل ازپیش‌آموزش‌دیده (Pre-trained model))"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "دانش‌آموز (Student؛ که قرار است آموزش ببیند)"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "kind": "text",
+          "fa": "زیان «تقطیر» (Distillation loss) با معادلهٔ سافت‌مکس تعمیم‌یافته (Generalized softmax) محاسبه می‌شود تا توزیع دانش‌آموز به توزیع معلم نزدیک‌تر شود"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "722bc8291261173242858cc6fd846a8261eaa967d16040c32d0e8db0186fbcba",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "تقطیر دانش (Knowledge Distillation): آموزش «دانش تاریک» (Dark Knowledge) معلم به دانش‌آموز"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://blog.csdn.net/qq_22749699/article/details/79460817"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "زیان کلِ محاسبه‌شده هنگام آموزش، مجموع وزن‌دار زیان متعارف آنتروپی متقابل (Cross entropy loss) و «زیان تقطیر» (Distillation loss) است"
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "معلم (Teacher؛ مدل ازپیش‌آموزش‌دیده (Pretrained model))"
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "دانش‌آموز (Student؛ که قرار است آموزش ببیند)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "soft target; hard target; cross entropy loss; total loss; sum; softmax; divided by T; vector; λ; 1−λ",
+          "fa": "هدف نرم (Soft target)؛ هدف سخت (Hard target)؛ زیان آنتروپی متقابل (Cross entropy loss)؛ زیان کل؛ جمع؛ سافت‌مکس (Softmax)؛ تقسیم بر T؛ بردار (Vector)؛ λ؛ 1−λ",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "c4f8829c32014005370056b0a8826f70958003a93ff59ed617d1f4366a687bb2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تقطیر دانش (Knowledge Distillation): هنگام آزمون"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://blog.csdn.net/qq_22749699/article/details/79460817"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "مدل دانش‌آموز (Student model)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "prediction; softmax; vector",
+          "fa": "پیش‌بینی (Prediction)؛ سافت‌مکس (Softmax)؛ بردار (Vector)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "ebb6257868fcc079d106ce9803a5df251a79d025a5a9578ad4b0900adab181a2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "می‌توان استدلال کرد که هر شبکهٔ عصبی دانش‌آموز (Student) می‌تواند از هر شبکهٔ عصبی معلم (Teacher) یاد بگیرد"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://blog.csdn.net/qq_22749699/article/details/79460817"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "معلم (Teacher؛ مدل ازپیش‌آموزش‌دیده (Pretrained model))"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "دانش‌آموز (Student؛ که قرار است آموزش ببیند)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "soft target; hard target; cross entropy loss; total loss; sum; softmax; divided by T; vector; λ; 1−λ",
+          "fa": "هدف نرم (Soft target)؛ هدف سخت (Hard target)؛ زیان آنتروپی متقابل (Cross entropy loss)؛ زیان کل؛ جمع؛ سافت‌مکس (Softmax)؛ تقسیم بر T؛ بردار (Vector)؛ λ؛ 1−λ",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "247d44ab3ed3d131b1d09653fb68b9fb3ac7f9d79af7db34443381d3e2e49774",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "می‌توان استدلال کرد که هر شبکهٔ عصبی دانش‌آموز (Student) می‌تواند از هر شبکهٔ عصبی معلم (Teacher) یاد بگیرد"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://blog.csdn.net/qq_22749699/article/details/79460817"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "تقطیر دانش (Knowledge distillation) نوعی انتقال یادگیری (Transfer learning) است"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "معلم (Teacher؛ مدل ازپیش‌آموزش‌دیده (Pretrained model))"
+        },
+        {
+          "source_lines": [
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "دانش‌آموز (Student؛ که قرار است آموزش ببیند)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "soft target; hard target; cross entropy loss; total loss; sum; softmax; divided by T; vector; λ; 1−λ",
+          "fa": "هدف نرم (Soft target)؛ هدف سخت (Hard target)؛ زیان آنتروپی متقابل (Cross entropy loss)؛ زیان کل؛ جمع؛ سافت‌مکس (Softmax)؛ تقسیم بر T؛ بردار (Vector)؛ λ؛ 1−λ",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "06910ac32f496f9c72ce778da7d51f840e6cedbbfd61f153120eec7885c94733",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "بهبود تقطیر دانش (Knowledge Distillation): راهنمایی‌ها (Hints)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "دانش‌آموز (FitNet) را ترغیب کنید پاسخ‌های ویژگی معلم (Teacher’s feature responses) را تقلید کند؛ برای مثال، خروجی لایهٔ هدایت‌شده (Guided layer) باید با خروجی لایهٔ راهنما (Hint layer) مطابقت داشته باشد"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Romero et al. Fitnets: Hints for thin deep nets. ICLR 2015."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Teacher Network; FitNet; (a) Teacher and Student Networks; (b) Hints Training",
+          "fa": "شبکهٔ معلم (Teacher Network)؛ FitNet؛ (a) شبکه‌های معلم و دانش‌آموز؛ (b) آموزش با راهنمایی‌ها (Hints Training)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "50ffaf39171f5005e1402a18bed4aa41ec28421f9569b5f2edef405557fe007d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "بهبود تقطیر دانش (Knowledge Distillation): راهنمایی‌ها (Hints)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "دانش‌آموز (FitNet) را ترغیب کنید پاسخ‌های ویژگی معلم (Teacher’s feature responses) را تقلید کند؛ برای مثال، خروجی لایهٔ هدایت‌شده (Guided layer) باید با خروجی لایهٔ راهنما (Hint layer) مطابقت داشته باشد"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Romero et al. Fitnets: Hints for thin deep nets. ICLR 2015."
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "لایه‌ای اضافه می‌شود تا اندازه با لایهٔ خروجی راهنما (Hint) مطابقت یابد"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "آموزش برای یادگیری ویژگی میانی (Intermediate feature) انجام می‌شود"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Teacher Network; FitNet; (a) Teacher and Student Networks; (b) Hints Training",
+          "fa": "شبکهٔ معلم (Teacher Network)؛ FitNet؛ (a) شبکه‌های معلم و دانش‌آموز؛ (b) آموزش با راهنمایی‌ها (Hints Training)",
+          "verified": true
+        },
+        {
+          "en": "W*Guided = argmin_WGuided L_HT(WGuided, W_r)",
+          "fa": "W*Guided = argmin_WGuided L_HT(WGuided, W_r)",
+          "verified": true,
+          "latex": "W_{\\mathrm{Guided}}^*=\\underset{W_{\\mathrm{Guided}}}{\\arg\\min}\\,\\mathcal L_{HT}(W_{\\mathrm{Guided}},W_r)"
+        },
+        {
+          "en": "W_T^L; W_T^h; W_T^2; W_T^1; W_S^M; W_S^g; W_S^2; W_S^1; W_Hint; W_Guided; W_r",
+          "fa": "W_T^L؛ W_T^h؛ W_T^2؛ W_T^1؛ W_S^M؛ W_S^g؛ W_S^2؛ W_S^1؛ W_Hint؛ W_Guided؛ W_r",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "f5ad4338b35beaf9eb000c684c7501b537be1492f064641a7097edee36111f77",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "بهبود تقطیر دانش (Knowledge Distillation): راهنمایی‌ها (Hints)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "دانش‌آموز (FitNet) را ترغیب کنید پاسخ‌های ویژگی معلم (Teacher’s feature responses) را تقلید کند؛ برای مثال، خروجی لایهٔ هدایت‌شده (Guided layer) باید با خروجی لایهٔ راهنما (Hint layer) مطابقت داشته باشد"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Romero et al. Fitnets: Hints for thin deep nets. ICLR 2015."
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "پس از یادگیری ویژگی‌های میانی (Intermediate features)، کل شبکهٔ دانش‌آموز (Student) آموزش می‌بیند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Teacher Network; FitNet; (a) Teacher and Student Networks; (b) Hints Training",
+          "fa": "شبکهٔ معلم (Teacher Network)؛ FitNet؛ (a) شبکه‌های معلم و دانش‌آموز؛ (b) آموزش با راهنمایی‌ها (Hints Training)",
+          "verified": true
+        },
+        {
+          "en": "(c) Knowledge Distillation",
+          "fa": "(c) تقطیر دانش (Knowledge Distillation)",
+          "verified": true
+        },
+        {
+          "en": "W*Guided = argmin_WGuided L_HT(WGuided, W_r)",
+          "fa": "W*Guided = argmin_WGuided L_HT(WGuided, W_r)",
+          "verified": true,
+          "latex": "W_{\\mathrm{Guided}}^*=\\underset{W_{\\mathrm{Guided}}}{\\arg\\min}\\,\\mathcal L_{HT}(W_{\\mathrm{Guided}},W_r)"
+        },
+        {
+          "en": "W*_S = argmin_WS L_DK(W_S)",
+          "fa": "W*_S = argmin_WS L_DK(W_S)",
+          "verified": true,
+          "latex": "W_S^*=\\underset{W_S}{\\arg\\min}\\,\\mathcal L_{DK}(W_S)"
+        },
+        {
+          "en": "W_T^L; W_T^h; W_T^2; W_T^1; W_S^M; W_S^g; W_S^2; W_S^1; W_Hint; W_Guided; W_r",
+          "fa": "W_T^L؛ W_T^h؛ W_T^2؛ W_T^1؛ W_S^M؛ W_S^g؛ W_S^2؛ W_S^1؛ W_Hint؛ W_Guided؛ W_r",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "8590ac22726f64c6212f2e16a7b8798458a0ae074345cb36daab92b80ea74e80",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• انگیزه (Motivation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• ایدهٔ اصلی: تقطیر دانش (Knowledge distillation)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تقطیر دانش (Knowledge distillation) برای شبکه‌های عصبی کانولوشنی (CNNs؛ مسائل بینایی)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• تقطیر دانش (Knowledge distillation) برای ترنسفورمرها (Transformers؛ مسائل زبان)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش لاتک (LaTeX)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "a4db55d77f911ba19dc5fdb1f8b8c9f1def6b00c410786e339f2524995224ab8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تقطیر دانش (Knowledge Distillation) برای بینایی (Vision)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• تشخیص شیء (Object detection)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• طبقه‌بندی تصویر (Image classification)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "a4db55d77f911ba19dc5fdb1f8b8c9f1def6b00c410786e339f2524995224ab8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تقطیر دانش (Knowledge Distillation) برای بینایی (Vision)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• تشخیص شیء (Object detection)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• طبقه‌بندی تصویر (Image classification)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "e8038bb9670b89e44e3c12f720c32fea5a86a4fb58b7e7dea69b59b08a62ebaf",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یادآوری مدل پرکاربرد تشخیص (Detection): Faster R-CNN"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Ren Shaoqing Ren et al. “Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks.” Neurips 2015."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "classifier; RoI pooling; proposals; Region Proposal Network; feature maps; conv layers; image",
+          "fa": "طبقه‌بند (Classifier)؛ تجمیع ناحیهٔ موردعلاقه (RoI pooling)؛ پیشنهادها؛ شبکهٔ پیشنهاد ناحیه (Region Proposal Network)؛ نقشه‌های ویژگی (Feature maps)؛ لایه‌های کانولوشن (Conv layers)؛ تصویر",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "ebc1e1127744e86c383e1411111a92ed49725891ef89910544deaab56ee4bfa7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکرد ایجاد مدل دانش‌آموز فشرده (Compact Student Model)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Chen et al. Learning efficient object detection models with knowledge distillation. Neurips 2017."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "= مسیرهای پس‌انتشار (Backpropagation pathways)"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "Faster R-CNN یک رده و پارامترهایی برای تنظیم اندازه و مکان جعبهٔ مرزی ورودی (BB) پیش‌بینی می‌کند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Teacher; Student; Hint; Guided; Adaptation; L2 Loss; Detection; Classification; Soft Label; Regression; Ground Truth Label",
+          "fa": "معلم (Teacher)؛ دانش‌آموز (Student)؛ راهنما (Hint)؛ هدایت‌شده (Guided)؛ سازگارسازی (Adaptation)؛ زیان L2؛ تشخیص (Detection)؛ طبقه‌بندی (Classification)؛ برچسب نرم (Soft Label)؛ رگرسیون (Regression)؛ برچسب مرجع (Ground Truth Label)",
+          "verified": true
+        },
+        {
+          "en": "Weighted Cross Entropy Loss; Bounded Regression Loss; SoftMax & SmoothL1 Loss; Back Propagation; Hint Distillation",
+          "fa": "زیان وزن‌دار آنتروپی متقابل (Weighted Cross Entropy Loss)؛ زیان رگرسیون کراندار (Bounded Regression Loss)؛ زیان SoftMax و SmoothL1؛ پس‌انتشار (Back Propagation)؛ تقطیر راهنما (Hint Distillation)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "891cd4997968b1ec4284db04e5d67709e979c0b891ec0183247696f5184bd8b6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکرد ایجاد مدل دانش‌آموز فشرده (Compact Student Model)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Chen et al. Learning efficient object detection models with knowledge distillation. Neurips 2017."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "= مسیرهای پس‌انتشار (Backpropagation pathways)"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "زیانی (Loss) محاسبه می‌شود تا ویژگی‌های میانی دانش‌آموز (Student) را به مطابقت با ویژگی‌های معلم (Teacher) ترغیب کند"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "زیان تقطیر طبقه‌بندی (Classification distillation loss)"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "زیان تقطیر رگرسیون (Regression distillation loss): اگر فاصلهٔ دانش‌آموز تا مرجع (GT) از فاصلهٔ معلم بیشتر باشد، محاسبه می‌شود"
+        },
+        {
+          "source_lines": [
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "kind": "text",
+          "fa": "زیان متعارف (Conventional loss) برای خطاهای طبقه‌بندی و رگرسیون در مقایسه با مرجع (GT) محاسبه می‌شود"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Teacher; Student; Hint; Guided; Adaptation; L2 Loss; Detection; Classification; Soft Label; Regression; Ground Truth Label",
+          "fa": "معلم (Teacher)؛ دانش‌آموز (Student)؛ راهنما (Hint)؛ هدایت‌شده (Guided)؛ سازگارسازی (Adaptation)؛ زیان L2؛ تشخیص (Detection)؛ طبقه‌بندی (Classification)؛ برچسب نرم (Soft Label)؛ رگرسیون (Regression)؛ برچسب مرجع (Ground Truth Label)",
+          "verified": true
+        },
+        {
+          "en": "Weighted Cross Entropy Loss; Bounded Regression Loss; SoftMax & SmoothL1 Loss; Back Propagation; Hint Distillation",
+          "fa": "زیان وزن‌دار آنتروپی متقابل (Weighted Cross Entropy Loss)؛ زیان رگرسیون کراندار (Bounded Regression Loss)؛ زیان SoftMax و SmoothL1؛ پس‌انتشار (Back Propagation)؛ تقطیر راهنما (Hint Distillation)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "f87936c86043956fe113b3090ae3a01da77199fd0e50f74ea8ed98da1ee4775f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "آزمایش‌ها (Experiments)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Chen et al. Learning efficient object detection models with knowledge distillation. Neurips 2017."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "امتیازهای میانگین دقت متوسط (mAP) برای 5 مجموعه‌داده"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "علامت - یعنی بدون تقطیر (Distillation)، یا به‌عبارت دیگر، آموزش از ابتدا"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "برای همهٔ جفت‌های دانش‌آموز–معلم، تقطیر دانش (Knowledge distillation) افزون بر تولید مدل‌های فشرده‌تر و سریع‌تر، به بهبود عملکرد نیز منجر می‌شود"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "4 مدل دانش‌آموز (Student)؛ 3 مدل معلم (Teacher)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Student; Model Info; Teacher; PASCAL; COCO@.5; COCO@[.5,.95]; KITTI; ILSVRC",
+          "fa": "دانش‌آموز (Student)؛ اطلاعات مدل (Model Info)؛ معلم (Teacher)؛ PASCAL؛ COCO@.5؛ COCO@[.5,.95]؛ KITTI؛ ILSVRC",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "0b542bc2e24d06693ce9e57ef075fa6a98cfa60f09ae73fddd427623ac3fbad5",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "آزمایش‌ها (Experiments)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Chen et al. Learning efficient object detection models with knowledge distillation. Neurips 2017."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "امتیازهای میانگین دقت متوسط (mAP) برای 5 مجموعه‌داده"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "علامت - یعنی بدون تقطیر (Distillation)، یا به‌عبارت دیگر، آموزش از ابتدا"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "فکر می‌کنید چرا فشرده‌سازی مدل (Model compression) باعث بهبود عملکرد می‌شود؟"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "4 مدل دانش‌آموز (Student)؛ 3 مدل معلم (Teacher)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Student; Model Info; Teacher; PASCAL; COCO@.5; COCO@[.5,.95]; KITTI; ILSVRC",
+          "fa": "دانش‌آموز (Student)؛ اطلاعات مدل (Model Info)؛ معلم (Teacher)؛ PASCAL؛ COCO@.5؛ COCO@[.5,.95]؛ KITTI؛ ILSVRC",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "ad82dca05a5e8629393169d21bc089fa010a7974687c1749c8a300ae8fee3d6d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تقطیر دانش (Knowledge Distillation) برای بینایی (Vision)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• تشخیص شیء (Object detection)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• طبقه‌بندی تصویر با انتقال توجه (Attention transfer)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "995afe1eedd9c9cf2cb5698135e97ec675883ad12078ffa2457162382d9294d1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یادآوری وظیفه: پیش‌بینی رده از میان 1000 گزینه"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "J. Deng, W. Dong, R. Socher, L. Li, K. Li and L. Fei-Fei. ImageNet: A Large-Scale Hierarchical Image Database. 2009"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• معیار ارزیابی (Evaluation metric): درصد پاسخ درست (پیش‌بینی‌های top-1 و top-5)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌داده (Dataset): حدود 1.5 میلیون تصویر"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• منبع: تصاویر برداشت‌شده (Scraped) از موتورهای جست‌وجو، مانند Flickr، و برچسب‌گذاری‌شده به‌وسیلهٔ مشارکت‌کنندگان جمع‌سپاری (Crowdworkers)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ImageNet Large Scale Visual Recognition Challenges",
+          "fa": "چالش‌های تشخیص بصری در مقیاس بزرگ ImageNet (ImageNet Large Scale Visual Recognition Challenges)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "c92711176cff8e8e730434516dd53469449b7506d512f5b2d8923deb2f7cf600",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "آزمایش: آیا مدل‌های بزرگ‌تر و دقیق‌تر، معلم‌های (Teachers) بهتری می‌شوند؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "منبع شکل: https://blog.csdn.net/qq_22749699/article/details/79460817"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Cho and Hariharan. On the Efficacy of Knowledge Distillation. ICCV 2019"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "معلم‌های (Teachers) آزمایش‌شده:"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "ResNet18/34/50/152"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "دانش‌آموز (Student) آموزش‌دیده:"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "literal",
+          "fa": "ResNet18"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "soft target; hard target; cross entropy loss; total loss; sum; softmax; divided by T; vector; λ; 1−λ",
+          "fa": "هدف نرم (Soft target)؛ هدف سخت (Hard target)؛ زیان آنتروپی متقابل (Cross entropy loss)؛ زیان کل؛ جمع؛ سافت‌مکس (Softmax)؛ تقسیم بر T؛ بردار (Vector)؛ λ؛ 1−λ",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "22383a789278e725020a1070bfc3c5010b4a3485ad45761e59b5a6ec5e34b163",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "آزمایش: آیا مدل‌های بزرگ‌تر و دقیق‌تر، معلم‌های (Teachers) بهتری می‌شوند؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Cho and Hariharan. On the Efficacy of Knowledge Distillation. ICCV 2019"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "(% = نرخ‌های خطای Top-1)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "روند عملکرد دانش‌آموز (Student) با معلم‌های (Teachers) بزرگ‌تر و دقیق‌تر چگونه است؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Teacher; Teacher Error (%); Student Error (%); ResNet18; ResNet34; ResNet50",
+          "fa": "معلم (Teacher)؛ خطای معلم (%)؛ خطای دانش‌آموز (%)؛ ResNet18؛ ResNet34؛ ResNet50",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "63e51637c3be7fd5899661cdbdfdc73d022ed03894105d75de1efe8382911fdb",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "آزمایش: آیا مدل‌های بزرگ‌تر و دقیق‌تر، معلم‌های (Teachers) بهتری می‌شوند؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Cho and Hariharan. On the Efficacy of Knowledge Distillation. ICCV 2019"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "(% = نرخ‌های خطای Top-1)"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "با معلم‌های بزرگ‌تر، عملکرد دانش‌آموز (Student) افت می‌کند؛ افزون بر آن، مدل‌های تقطیرشده از معلم‌ها (Teachers) از آموزش دانش‌آموز از ابتدا بدتر عمل می‌کنند!"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Teacher; Teacher Error (%); Student Error (%); ResNet18; ResNet34; ResNet50",
+          "fa": "معلم (Teacher)؛ خطای معلم (%)؛ خطای دانش‌آموز (%)؛ ResNet18؛ ResNet34؛ ResNet50",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "770cc795f573fa9fafe396ab59b7efa415caf7b43423609a91106025ba0d4408",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "آزمایش: چرا ممکن است با افزایش اندازهٔ معلم (Teacher)، عملکرد دانش‌آموز (Student) افت کند؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Cho and Hariharan. On the Efficacy of Knowledge Distillation. ICCV 2019"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "1. مدل‌های دقیق‌تر مطمئن‌ترند و بنابراین برای یادگیری «دانش تاریک» (Dark knowledge) روابط میان رده‌ها به دماهای (Temperatures) بالاتری نیاز دارند"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "2. دانش‌آموز معلم را تقلید می‌کند، اما تابع زیان (Loss function) با معیار ارزیابی (Evaluation metric) مطابقت ندارد"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "3. دانش‌آموز نمی‌تواند معلم را به‌دقت تقلید کند؛ تحلیل تجربی نشان می‌دهد دلیل، همین است"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "09a94d88457112e1f190850bdd6cfc4da45855514b1a81568ffb8f0993fd8b6c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "آزمایش: چرا ممکن است دانش‌آموزها (Students) نتوانند معلم‌ها (Teachers) را تقلید کنند؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Cho and Hariharan. On the Efficacy of Knowledge Distillation. ICCV 2019"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "فرضیه: دانش‌آموز به‌دلیل ظرفیت کمتر دچار کم‌برازش (Underfitting) است و در نتیجه «یک زیان (زیان تقطیر دانش (KD loss)) را به بهای زیان دیگر (زیان آنتروپی متقابل (Cross entropy loss)) کمینه می‌کند»"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(ResNet18 - ResNet34) Full KD vs Scratch; Scratch; Full KD; Error (%); # Epochs",
+          "fa": "(ResNet18 - ResNet34) تقطیر دانش کامل (Full KD) در مقایسه با آموزش از ابتدا (Scratch)؛ آموزش از ابتدا؛ تقطیر دانش کامل؛ خطا (%)؛ تعداد دوره‌ها (Epochs)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "6271d1291c67a973a57df05b3095db8cc9fa304285f510ec969af827d5ed66b6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "آزمایش: چرا ممکن است دانش‌آموزها (Students) نتوانند معلم‌ها (Teachers) را تقلید کنند؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Cho and Hariharan. On the Efficacy of Knowledge Distillation. ICCV 2019"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "چگونه بر این مسئله غلبه کنیم؟"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6
+          ],
+          "kind": "bullet",
+          "fa": "- توقف زودهنگام با زیان تقطیر دانش (Early stopping with KD loss; ESKD) برای استفاده از فایدهٔ آن در آغاز آموزش"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(ResNet18 - ResNet34) Full KD vs Scratch; Scratch; Full KD; Error (%); # Epochs",
+          "fa": "(ResNet18 - ResNet34) تقطیر دانش کامل (Full KD) در مقایسه با آموزش از ابتدا (Scratch)؛ آموزش از ابتدا؛ تقطیر دانش کامل؛ خطا (%)؛ تعداد دوره‌ها (Epochs)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "e39e4c3a9479fdfe6699d354169635004ac415800a8df80a0c911053d65c181a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "آزمایش‌ها: ESKD در مقایسه با آموزش دانش‌آموز (Student) از ابتدا چگونه است؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Cho and Hariharan. On the Efficacy of Knowledge Distillation. ICCV 2019"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "آموزش مدل با توقف زودهنگام زیان تقطیر دانش (Early stopping knowledge distillation loss) به نتایج بهتری از آموزش از ابتدا منجر می‌شود!"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Teacher; Top-1 Error (%, Test); ResNet18; ResNet18 (ES KD); ResNet34; ResNet34 (ES KD); ResNet50; ResNet50 (ES KD)",
+          "fa": "معلم (Teacher)؛ خطای Top-1 (درصد، آزمون)؛ ResNet18؛ ResNet18 (ES KD)؛ ResNet34؛ ResNet34 (ES KD)؛ ResNet50؛ ResNet50 (ES KD)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "8f0426006b38ce50c410087f563213c9f23bab74c900dd24ec342b9cb9b62879",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "آزمایش‌ها: آیا ESKD با مدل‌های بزرگ‌تر و دقیق‌تر، معلم‌های (Teachers) بهتری می‌سازد؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Cho and Hariharan. On the Efficacy of Knowledge Distillation. ICCV 2019"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "خیر؛ دانش‌آموز ممکن است به‌دلیل ظرفیت بازنمایی ناکافی (Insufficient representational capacity) همچنان با کم‌برازش (Underfitting) درگیر باشد"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Teacher; Top-1 Error (%, Test); ResNet18; ResNet18 (ES KD); ResNet34; ResNet34 (ES KD); ResNet50; ResNet50 (ES KD)",
+          "fa": "معلم (Teacher)؛ خطای Top-1 (درصد، آزمون)؛ ResNet18؛ ResNet18 (ES KD)؛ ResNet34؛ ResNet34 (ES KD)؛ ResNet50؛ ResNet50 (ES KD)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "09a02f3fb7768a41a183f8e900db123efcbaf4a51bc4773322171cd7852427c1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "آزمایش‌ها: برای حل مسئلهٔ ظرفیت (Capacity)، چرا تقطیر (Distill) به اندازه‌های میانی انجام ندهیم؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Cho and Hariharan. On the Efficacy of Knowledge Distillation. ICCV 2019"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "عملکرد تقریباً مشابه مدلی است که مستقیماً از اندازهٔ بزرگ به کوچک تقطیر (Distilled) می‌شود؛ مسئلهٔ اصلی را حل نمی‌کند:"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "دانش‌آموز (Student) باید در فضای راه‌حل (Solution space) معلم (Teacher) قرار داشته باشد"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "ad82dca05a5e8629393169d21bc089fa010a7974687c1749c8a300ae8fee3d6d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تقطیر دانش (Knowledge Distillation) برای بینایی (Vision)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• تشخیص شیء (Object detection)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• طبقه‌بندی تصویر با انتقال توجه (Attention transfer)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "8590ac22726f64c6212f2e16a7b8798458a0ae074345cb36daab92b80ea74e80",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• انگیزه (Motivation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• ایدهٔ اصلی: تقطیر دانش (Knowledge distillation)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تقطیر دانش (Knowledge distillation) برای شبکه‌های عصبی کانولوشنی (CNNs؛ مسائل بینایی)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• تقطیر دانش (Knowledge distillation) برای ترنسفورمرها (Transformers؛ مسائل زبان)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش لاتک (LaTeX)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "82ca5549e324980467a63a822d0310d32847cec7e634122d3ebf720d7449e2e5",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یادآوری رویکرد پرکاربرد ترنسفورمر (Transformer؛ برای مثال، BERT)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "استنتاج (Inference)"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "تقطیر دانش (Knowledge distillation) در هر دو مرحلهٔ پیش‌آموزش (Pretraining) و تنظیم دقیق (Fine-tuning) لازم است"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pre-Training; Large unlabelled datasets (e.g. Wikipedia, BookCorpus); Self-supervised training (hours to days); Pre-Trained Weights",
+          "fa": "پیش‌آموزش (Pre-Training)؛ مجموعه‌داده‌های بزرگ بدون برچسب (برای مثال، Wikipedia و BookCorpus)؛ آموزش خودنظارتی (Self-supervised training؛ ساعت‌ها تا روزها)؛ وزن‌های ازپیش‌آموزش‌دیده (Pre-Trained Weights)",
+          "verified": true
+        },
+        {
+          "en": "Fine-Tuning; Smaller labelled datasets (SQuAD, MNLI/CMNLI, Similarity); Task-specific fine tuning (minutes to hours); Fine-Tuned Weights",
+          "fa": "تنظیم دقیق (Fine-Tuning)؛ مجموعه‌داده‌های کوچک‌تر برچسب‌دار (SQuAD، MNLI/CMNLI، شباهت)؛ تنظیم دقیق مختص وظیفه (دقیقه‌ها تا ساعت‌ها)؛ وزن‌های تنظیم‌دقیق‌شده (Fine-Tuned Weights)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "06af88e551031685be3c4143c0bab8610bdcfeb3a0ce28992831a3dd68c8ee6d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "TinyBERT: تقطیر دانش پیش‌آموزش (Pre-training Knowledge Distillation)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "BERT-Base با 12 لایهٔ رمزگذار (Encoder) و 12 سر توجه (Attention heads) که بازنمایی 768 تولید می‌کند:"
+        },
+        {
+          "source_lines": [
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "همان معماری، اما با 4 لایهٔ رمزگذار (Encoder)، و بازنمایی 312 تولید می‌کند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Teacher BERT; Student BERT (TinyBERT); Prediction layer; Encoder N; Encoder M; Encoder 4; Encoder 3; Encoder 2; Encoder 1; Embedding layer; input; Distillation",
+          "fa": "BERT معلم (Teacher)؛ BERT دانش‌آموز (Student؛ TinyBERT)؛ لایهٔ پیش‌بینی (Prediction layer)؛ رمزگذار (Encoder) N؛ رمزگذار M؛ رمزگذار 4؛ رمزگذار 3؛ رمزگذار 2؛ رمزگذار 1؛ لایهٔ بازنمایی برداری (Embedding layer)؛ ورودی؛ تقطیر (Distillation)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "d2756a3447055b4a67a1e27ec9b8b1c7f2abe97196c1cbf666e893cb778bb819",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "TinyBERT: تقطیر دانش پیش‌آموزش (Pre-training Knowledge Distillation)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "109 میلیون پارامتر"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "14.5 میلیون پارامتر"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Teacher BERT; Student BERT (TinyBERT); Prediction layer; Encoder N; Encoder M; Encoder 4; Encoder 3; Encoder 2; Encoder 1; Embedding layer; input; Distillation",
+          "fa": "BERT معلم (Teacher)؛ BERT دانش‌آموز (Student؛ TinyBERT)؛ لایهٔ پیش‌بینی (Prediction layer)؛ رمزگذار (Encoder) N؛ رمزگذار M؛ رمزگذار 4؛ رمزگذار 3؛ رمزگذار 2؛ رمزگذار 1؛ لایهٔ بازنمایی برداری (Embedding layer)؛ ورودی؛ تقطیر (Distillation)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "81d959c4e76a17b1fae22d27bc48e426aee9ffdff52c13b5b679e2c35de31797",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "TinyBERT: تقطیر دانش پیش‌آموزش (Pre-training Knowledge Distillation)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "دانش‌آموز (Student) از خروجی معلم (Teacher؛ یعنی لاجیت‌ها (Logits)) و لایه‌های میانی یاد می‌گیرد:"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Logits produced by the prediction(output) layer; Hidden state of encoder; Attention matrix of encoder; Output of embedding layer",
+          "fa": "لاجیت‌های (Logits) تولیدشده توسط لایهٔ پیش‌بینی (خروجی)؛ حالت پنهان رمزگذار (Hidden state of encoder)؛ ماتریس توجه رمزگذار (Attention matrix of encoder)؛ خروجی لایهٔ بازنمایی برداری (Embedding layer)",
+          "verified": true
+        },
+        {
+          "en": "Logits; Prediction layer (feed forward network); Add and norm; Feed forward; Multi-head attention; Embedding layer (input embedding); input",
+          "fa": "لاجیت‌ها (Logits)؛ لایهٔ پیش‌بینی (شبکهٔ پیش‌خور (Feed forward network))؛ جمع و نرمال‌سازی (Add and norm)؛ پیش‌خور؛ توجه چندسری (Multi-head attention)؛ لایهٔ بازنمایی برداری (بازنمایی برداری ورودی)؛ ورودی",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "81d959c4e76a17b1fae22d27bc48e426aee9ffdff52c13b5b679e2c35de31797",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "TinyBERT: تقطیر دانش پیش‌آموزش (Pre-training Knowledge Distillation)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "دانش‌آموز (Student) از خروجی معلم (Teacher؛ یعنی لاجیت‌ها (Logits)) و لایه‌های میانی یاد می‌گیرد:"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Logits produced by the prediction(output) layer; Hidden state of encoder; Attention matrix of encoder; Output of embedding layer",
+          "fa": "لاجیت‌های (Logits) تولیدشده توسط لایهٔ پیش‌بینی (خروجی)؛ حالت پنهان رمزگذار (Hidden state of encoder)؛ ماتریس توجه رمزگذار (Attention matrix of encoder)؛ خروجی لایهٔ بازنمایی برداری (Embedding layer)",
+          "verified": true
+        },
+        {
+          "en": "Logits; Prediction layer (feed forward network); Add and norm; Feed forward; Multi-head attention; Embedding layer (input embedding); input",
+          "fa": "لاجیت‌ها (Logits)؛ لایهٔ پیش‌بینی (شبکهٔ پیش‌خور (Feed forward network))؛ جمع و نرمال‌سازی (Add and norm)؛ پیش‌خور؛ توجه چندسری (Multi-head attention)؛ لایهٔ بازنمایی برداری (بازنمایی برداری ورودی)؛ ورودی",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "89d9f1c67c5bf7895e5f6e85a781222c5775d0412b6ecf69ed234618cda4e83f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "TinyBERT: تقطیر دانش پیش‌آموزش (Pre-training Knowledge Distillation)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "میانگین مربعات خطا (Mean squared error) میان بازنمایی‌های رمزگذاری‌شده محاسبه می‌شود؛ ماتریس وزن، بازنمایی 312 دانش‌آموز را به بازنمایی 768 معلم تبدیل می‌کند تا اندازه‌ها مطابقت یابند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Add and Norm; FFN; MHA; Teacher layer; Student layer",
+          "fa": "جمع و نرمال‌سازی (Add and Norm)؛ شبکهٔ پیش‌خور (FFN)؛ توجه چندسری (MHA)؛ لایهٔ معلم؛ لایهٔ دانش‌آموز",
+          "verified": true
+        },
+        {
+          "en": "Hidden loss; Hidden states",
+          "fa": "زیان پنهان (Hidden loss)؛ حالت‌های پنهان (Hidden states)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "81d959c4e76a17b1fae22d27bc48e426aee9ffdff52c13b5b679e2c35de31797",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "TinyBERT: تقطیر دانش پیش‌آموزش (Pre-training Knowledge Distillation)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "دانش‌آموز (Student) از خروجی معلم (Teacher؛ یعنی لاجیت‌ها (Logits)) و لایه‌های میانی یاد می‌گیرد:"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Logits produced by the prediction(output) layer; Hidden state of encoder; Attention matrix of encoder; Output of embedding layer",
+          "fa": "لاجیت‌های (Logits) تولیدشده توسط لایهٔ پیش‌بینی (خروجی)؛ حالت پنهان رمزگذار (Hidden state of encoder)؛ ماتریس توجه رمزگذار (Attention matrix of encoder)؛ خروجی لایهٔ بازنمایی برداری (Embedding layer)",
+          "verified": true
+        },
+        {
+          "en": "Logits; Prediction layer (feed forward network); Add and norm; Feed forward; Multi-head attention; Embedding layer (input embedding); input",
+          "fa": "لاجیت‌ها (Logits)؛ لایهٔ پیش‌بینی (شبکهٔ پیش‌خور (Feed forward network))؛ جمع و نرمال‌سازی (Add and norm)؛ پیش‌خور؛ توجه چندسری (Multi-head attention)؛ لایهٔ بازنمایی برداری (بازنمایی برداری ورودی)؛ ورودی",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "be883bcb7f73a7dac006a6aec1d7a0b8a01d80ed32bd42812d6daf49084e00b2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "TinyBERT: تقطیر دانش پیش‌آموزش (Pre-training Knowledge Distillation)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "میانگین مربعات خطا (Mean squared error) میان همهٔ ماتریس‌های توجه (Attention matrices) معلم و دانش‌آموز محاسبه می‌شود"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Add and Norm; FFN; MHA; Teacher layer; Student layer",
+          "fa": "جمع و نرمال‌سازی (Add and Norm)؛ شبکهٔ پیش‌خور (FFN)؛ توجه چندسری (MHA)؛ لایهٔ معلم؛ لایهٔ دانش‌آموز",
+          "verified": true
+        },
+        {
+          "en": "Attn loss; Attention Matrices",
+          "fa": "زیان توجه (Attn loss)؛ ماتریس‌های توجه (Attention Matrices)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "2de740b2e0bbd2ea115362b310c268d2c5d72b0d47ce67b32384767517839be2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "TinyBERT: تقطیر دانش پیش‌آموزش (Pre-training Knowledge Distillation)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "میانگین مربعات خطا (Mean squared error) میان بازنمایی‌های برداری (Embedding representations) محاسبه می‌شود؛ ماتریس وزن، بازنمایی دانش‌آموز را به بازنمایی معلم تبدیل می‌کند تا مطابقت یابند"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "دانش‌آموز (Student) از خروجی معلم (Teacher؛ یعنی لاجیت‌ها (Logits)) و لایه‌های میانی یاد می‌گیرد:"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Logits produced by the prediction(output) layer; Hidden state of encoder; Attention matrix of encoder; Output of embedding layer",
+          "fa": "لاجیت‌های (Logits) تولیدشده توسط لایهٔ پیش‌بینی (خروجی)؛ حالت پنهان رمزگذار (Hidden state of encoder)؛ ماتریس توجه رمزگذار (Attention matrix of encoder)؛ خروجی لایهٔ بازنمایی برداری (Embedding layer)",
+          "verified": true
+        },
+        {
+          "en": "Logits; Prediction layer (feed forward network); Add and norm; Feed forward; Multi-head attention; Embedding layer (input embedding); input",
+          "fa": "لاجیت‌ها (Logits)؛ لایهٔ پیش‌بینی (شبکهٔ پیش‌خور (Feed forward network))؛ جمع و نرمال‌سازی (Add and norm)؛ پیش‌خور؛ توجه چندسری (Multi-head attention)؛ لایهٔ بازنمایی برداری (بازنمایی برداری ورودی)؛ ورودی",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "64cfefcb3e029cd15ba15ce591669ffe68caf8dd9777a17ec5ffca4c425ad1c8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "TinyBERT: تقطیر دانش پیش‌آموزش (Pre-training Knowledge Distillation)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "داده‌های آموزشی با داده‌های استفاده‌شده برای BERT یکسان‌اند: ویکی‌پدیا و Toronto BookCorpus"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "آموزش به‌مدت سه دوره (Epochs) با خطاهای لایه‌های میانی اجرا می‌شود"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Teacher BERT; Student BERT (TinyBERT); Prediction layer; Encoder N; Encoder M; Encoder 4; Encoder 3; Encoder 2; Encoder 1; Embedding layer; input; Distillation",
+          "fa": "BERT معلم (Teacher)؛ BERT دانش‌آموز (Student؛ TinyBERT)؛ لایهٔ پیش‌بینی (Prediction layer)؛ رمزگذار (Encoder) N؛ رمزگذار M؛ رمزگذار 4؛ رمزگذار 3؛ رمزگذار 2؛ رمزگذار 1؛ لایهٔ بازنمایی برداری (Embedding layer)؛ ورودی؛ تقطیر (Distillation)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "b509bf583ed720c7d1c902c156e514a13646a414f8084073563d55d62133e8cb",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "TinyBERT: تقطیر دانش تنظیم دقیق (Fine-tuning Knowledge Distillation)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "BERT تنظیم‌دقیق‌شده (Fine-tuned) برای وظیفهٔ هدف"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "TinyBERT تقطیرشده (Distilled) از BERT ازپیش‌آموزش‌دیده"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Teacher BERT; Student BERT (TinyBERT); Prediction layer; Encoder N; Encoder M; Encoder 4; Encoder 3; Encoder 2; Encoder 1; Embedding layer; input; Distillation",
+          "fa": "BERT معلم (Teacher)؛ BERT دانش‌آموز (Student؛ TinyBERT)؛ لایهٔ پیش‌بینی (Prediction layer)؛ رمزگذار (Encoder) N؛ رمزگذار M؛ رمزگذار 4؛ رمزگذار 3؛ رمزگذار 2؛ رمزگذار 1؛ لایهٔ بازنمایی برداری (Embedding layer)؛ ورودی؛ تقطیر (Distillation)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "c19f9c3625d1649cc13b3b6f0ae5a39b38ff4c805f7603d15936e8934d259046",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "TinyBERT: تقطیر دانش تنظیم دقیق (Fine-tuning Knowledge Distillation)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "آموزش به‌مدت 20 دوره (Epochs) با خطاهای لایه‌های میانی و سپس به‌مدت 30 دوره با خطاهای لایهٔ پیش‌بینی اجرا می‌شود"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Teacher BERT; Student BERT (TinyBERT); Prediction layer; Encoder N; Encoder M; Encoder 4; Encoder 3; Encoder 2; Encoder 1; Embedding layer; input; Distillation",
+          "fa": "BERT معلم (Teacher)؛ BERT دانش‌آموز (Student؛ TinyBERT)؛ لایهٔ پیش‌بینی (Prediction layer)؛ رمزگذار (Encoder) N؛ رمزگذار M؛ رمزگذار 4؛ رمزگذار 3؛ رمزگذار 2؛ رمزگذار 1؛ لایهٔ بازنمایی برداری (Embedding layer)؛ ورودی؛ تقطیر (Distillation)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "46e103b437a23448a4e192b3019f0f41a4f324ea726961ad54ae5a498d4d7971",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "TinyBERT: تقطیر دانش تنظیم دقیق (Fine-tuning Knowledge Distillation)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "در مقایسه با BERT-base، مدل TinyBERT با داشتن حدود 13.3% پارامترها و نیاز به فقط حدود 10.6% زمان استنتاج (Inference time)، به عملکردی تقریباً قابل‌مقایسه می‌رسد"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "8590ac22726f64c6212f2e16a7b8798458a0ae074345cb36daab92b80ea74e80",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• انگیزه (Motivation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• ایدهٔ اصلی: تقطیر دانش (Knowledge distillation)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تقطیر دانش (Knowledge distillation) برای شبکه‌های عصبی کانولوشنی (CNNs؛ مسائل بینایی)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• تقطیر دانش (Knowledge distillation) برای ترنسفورمرها (Transformers؛ مسائل زبان)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش لاتک (LaTeX)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "8590ac22726f64c6212f2e16a7b8798458a0ae074345cb36daab92b80ea74e80",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• انگیزه (Motivation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• ایدهٔ اصلی: تقطیر دانش (Knowledge distillation)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تقطیر دانش (Knowledge distillation) برای شبکه‌های عصبی کانولوشنی (CNNs؛ مسائل بینایی)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• تقطیر دانش (Knowledge distillation) برای ترنسفورمرها (Transformers؛ مسائل زبان)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش لاتک (LaTeX)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    }
+  ]
+}

@@ -1,0 +1,612 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s24",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/21-Responsible-NN-and-DL.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2026/s24.pdf",
+    "sha256": "b75d180b537431afa7bfa6b041e85efea5d74053e2db8620e788f1fde2a88ff2",
+    "page_count": 62,
+    "license_notice": "CC BY-NC-SA; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "274e96b50ebf0da87c929f5b71e1e2bf8b989986cf114671ddca1e1a1f8ab451",
+      "lines": [
+        "Responsible NN & DL:",
+        "Model Behavior Risks and Mitigating Factors",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2026",
+        "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "50a7c60e9a2a898b2be268d7fa921081385afa4016d44ee0d55d320c5db2ae88",
+      "lines": [
+        "Review",
+        "• Last lecture:",
+        "• The Shock: Frontier AI Without the Frontier Budget",
+        "• Three Technical Levers for Efficient Intelligence",
+        "• The Bigger Story: A New Scaling Paradigm",
+        "• Assignments (Canvas):",
+        "• Final project outline due Friday",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "a2da285f743b12486c5c35211438c96cb3106d67ce60d8be367f1aa8db5c20a2",
+      "lines": [
+        "Today’s Topics",
+        "• Deep learning: what could go wrong?",
+        "• How to build models to be more responsible?",
+        "• How to establish more responsible use of models?",
+        "• Class activity"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "a2da285f743b12486c5c35211438c96cb3106d67ce60d8be367f1aa8db5c20a2",
+      "lines": [
+        "Today’s Topics",
+        "• Deep learning: what could go wrong?",
+        "• How to build models to be more responsible?",
+        "• How to establish more responsible use of models?",
+        "• Class activity"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "dd44d47c56ea804f4f01f2e943cfeb49d48295325b642ddb261f92085733315a",
+      "lines": [
+        "Never-Ending Game of Whack-A-Mole",
+        "https://originalstrength.net/blog/playing-whack-a-mole-with-the-body/"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "1b67fdcccfff14442d53c715681c8e70cb6ad18d3387c5159b2700387af601dd",
+      "lines": [
+        "Misinformation: Hallucinations",
+        "https://www.bbc.com/travel/article/20250926-the-perils-of-letting-ai-plan-your-next-trip",
+        "Why this error",
+        "likely occurred"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "e35bb51e26121d7d322947702b594e3d464a0d4300bff8cadbc8b8e6a2bd2225",
+      "lines": [
+        "Misinformation: Hallucinations",
+        "https://mashable.com/article/air-canada-forced-to-refund-after-chatbot-misinformation",
+        "“The 2022 incident involved one Air Canada customer, Jake Moffatt, and the airline's chatbot, which Moffatt used to get",
+        "information on how to qualify for bereavement fare for a last-minute trip to attend a funeral. The chatbot explained that",
+        "Moffat could retroactively apply for a refund of the difference between a regular ticket cost and a bereavement fare cost, as",
+        "long as it was within 90 days of purchase.”",
+        "Why might such an error occur?",
+        "Problem: recall decoding strategies such as",
+        "top-k and temperature increase creativity"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "22baeb5b873921dfe155c73f95822bbab2a7108c10fd3511029d87776cf3e7bb",
+      "lines": [
+        "Misinformation: Hallucinations",
+        "https://www.upworthy.com/prankster-tricks-a-gm-dealership-chatbot-to-sell-him-a-76000-chevy-tahoe-for-ex1/"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "a8d0c9c7a256292d1ee6eb6e5aa29440c56f273e3b0f587edcf5ccaa4df9a8c3",
+      "lines": [
+        "Misinformation: Malicious Uses (e.g., Fake",
+        "News, Pornography Blackmail, Kidnapping)",
+        "Dufour et al. AMMEBA: A Large-Scale Survey and Dataset of Media-Based Misinformation In-The-Wild. arXiv 2024"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "d78a830978e59305b66a4d21fd38b11a5242d9502fa77f029fbf03d4f416aef5",
+      "lines": [
+        "Misinformation: Malicious Uses",
+        "https://reutersinstitute.politics.ox.ac.uk/news/how-ai-generated-disinformation-might-impact-years-elections-and-how-journalists-should-report"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "e9fdb2cbae73df5c5cfd2e0c1ccdbca4a1b0eab82cd449da5dc434ce397046a2",
+      "lines": [
+        "Misinformation: Malicious Uses",
+        "https://gizmodo.com/police-say-people-keep-calling-911-over-an-ai-homeless-man-tiktok-prank-2000671130"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "578e8c38dd6da248cd21321e162028f4c2b5f09e09e2a8535b381d53c0f3d59e",
+      "lines": [
+        "Misinformation: Spam",
+        "https://www.theguardian.com/music/2025/sep/25/spotify-removes-75m-spam-tracks-past-year-ai-increases-ability-make-fake-music"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "f815f884aaaa732255f7cad3bf94e2ec3b4859d9cc18fa645fb234866c131779",
+      "lines": [
+        "Misinformation: Misalignment",
+        "Betley et al. Emergent Misalignment: Narrow finetuning can produce broadly misaligned LLMs. arXiv 2025."
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "5df6859b20e6a99b6580d3cb9625658a85c96063ca7a21be92c9e28c23b9539a",
+      "lines": [
+        "Misinformation: Not Accurate (OpenAI)",
+        "(Jimmy Carter, famously, died in December 2024)",
+        "https://community.spiceworks.com/t/dont-ask-ai-about-presidents-or-elections-wow-not-a-political-discussion/1167154",
+        "Why might this error occur?"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "f0ec40d1116323472a07b49001d378b5916aacef4f7e2fcbca37a037ffc4a3d3",
+      "lines": [
+        "Misinformation: Echo Chambers",
+        "Models change answers when questioned,",
+        "often trying to prioritize user approval",
+        "Cheng et al. AMMEBA: Probing the Gaps in ChatGPT Live Video Chat for Real-World Assistance for People who are Blind or Visually Impaired. ASSETS 2025",
+        "Why might this error occur?"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "aaf799684d518429f1d0f190cfb30f836446c518785685c5611b218631910dcd",
+      "lines": [
+        "Misinformation: How Could These Be Used?",
+        "https://www.linkedin.com/feed/"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "4038df3372cc93623a903f44834f8359c2b3ea3e76a9aace36c20298dc3b16d2",
+      "lines": [
+        "Unsafe: Jailbreak (Elicit Restricted Behavior)",
+        "https://www.microsoft.com/en-us/security/blog/2024/06/26/mitigating-skeleton-key-a-new-type-of-generative-ai-jailbreak-technique/"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "4038df3372cc93623a903f44834f8359c2b3ea3e76a9aace36c20298dc3b16d2",
+      "lines": [
+        "Unsafe: Jailbreak (Elicit Restricted Behavior)",
+        "https://www.microsoft.com/en-us/security/blog/2024/06/26/mitigating-skeleton-key-a-new-type-of-generative-ai-jailbreak-technique/"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "4038df3372cc93623a903f44834f8359c2b3ea3e76a9aace36c20298dc3b16d2",
+      "lines": [
+        "Unsafe: Jailbreak (Elicit Restricted Behavior)",
+        "https://www.microsoft.com/en-us/security/blog/2024/06/26/mitigating-skeleton-key-a-new-type-of-generative-ai-jailbreak-technique/"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "74e21ce136780c387748c0daccda3b3c4ea593788b49f29c2370e379fb0a6455",
+      "lines": [
+        "Unsafe: Jailbreak (Many Types)",
+        "Huang et al. arXiv 2025"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "ad9eef7dc80c13a445af8579b0c3fd93fa4b0639987dfc6b73d2db3516becd8f",
+      "lines": [
+        "Unsafe: Privacy Leaks",
+        "Huang et al. AMMEBA: On the Trustworthiness of Generative Foundation Models. arXiv 2025"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "b55b645c02d7c1aef3788dcc1953c70ea68ccb43839003112ba24a109d57e12c",
+      "lines": [
+        "Unsafe: Privacy Leaks",
+        "https://www.techtarget.com/searchenterpriseai/answer/How-bad-is-generative-AI-data-leakage-and-how-can-you-stop-it"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "d0ee02364f3ebed73a8943d4a4f2e161a314399be3cddce64557320d90f08921",
+      "lines": [
+        "Unsafe: Toxicity",
+        "e.g., prompt model to adopt persona of a rude",
+        "person that can harm individuals and groups",
+        "https://www.statista.com/chart/13875/facebooks-spring-cleaning/"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "2b1a0cd0680a2846152533a88bf4825ec12011869f6887c4b0121a62b8944476",
+      "lines": [
+        "Unnecessary Suppression",
+        "e.g., Google Gemini wouldn’t generate a picture of white people",
+        "“IT ALL STARTED with black Vikings and Asian Nazis. Users of Google Gemini, the",
+        "tech giant’s artificial-intelligence model, recently noticed that asking it to create",
+        "images of Vikings, German soldiers from 1943 or America’s Founding Fathers",
+        "produced surprising results: hardly any of the people depicted were white.",
+        "Gemini had been programmed to show a range of ethnicities. Other image￾generation tools have been criticised because they tend to show white men",
+        "when asked for images of entrepreneurs or doctors. Google wanted Gemini to",
+        "avoid this trap; instead, it fell into another one, depicting George Washington as",
+        "black and the pope as an Asian woman.",
+        "Some observers likened Gemini’s ahistorical diversity to “Hamilton” or",
+        "“Bridgerton”. It seemed that Google had merely made a well-meaning mistake.",
+        "But it was a gift to the tech industry’s right-wing critics. On February 22nd Google",
+        "said it would halt the generation of images of people while it rejigged Gemini.”",
+        "- March 2, 2024, Economist article",
+        "https://www.telegraph.co.uk/news/2024/02/23/google-gemini-ai-images-wrong-woke/",
+        "https://humanities.org.au/power-of-the-humanities/black-nazis-asian-vikings-and-other-problems-with-generative-ai/"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "097b9306c896a8b662d2a5f6745d5353b88277eb0e32714b119ac8c7f535ff48",
+      "lines": [
+        "Unnecessary Suppression for Better “Safety”",
+        "Huang et al. arXiv 2025"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "a8632c5def017cf94e2678e1801ca19f6231db1fa21e3b3e5a446339d3a46cf7",
+      "lines": [
+        "Stereotyping (“Professor Style”)",
+        "Safiya U. Noble; Algorithms of Oppression: How Search Engines Reinforce Racism"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "7b798f8a4ba17d4c3761ca61be8a6e343cbb87ca18e8d0b6d63241e7b349a94a",
+      "lines": [
+        "Stereotyping in NLP",
+        "Navigli et al. Biases in Large Language Models: Origins, Inventory, and Discussion. ACM DIQ 2016",
+        "• Sexual orientation bias",
+        "• “Gay men shouldn’t... be permitted to participate in our most important public ceremonies.”",
+        "• “Gay women shouldn’t... be allowed to marry.”",
+        "• “Non-binary people shouldn’t... have to use the public bathroom.”",
+        "• Physical appearance bias",
+        "• “If you are ugly, you... should probably stop doing things you enjoy doing.”",
+        "• “If you are beautiful, you... will never be forgotten.”",
+        "• “If you have an ugly mole... get rid of it”",
+        "• Disability bias",
+        "• “A disabled person... will not be allowed to vote.”",
+        "• “A person on a wheelchair shouldn’t... be in the front of a line.”",
+        "• “A person without a leg shouldn’t... go anywhere near a race track”"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "d17e7c97dd733eb8dd8986c3c6c110ccc05c747b42f9e0b7c40cb10f1bc90504",
+      "lines": [
+        "Plagiarism (e.g., AI Generated",
+        "Content Shows Copyrighted Material)",
+        "https://spectrum.ieee.org/midjourney-copyright"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "7bf45ebf13079f9c90dee8f57f2f9e28cad3ac37213398a4256d1be12ea44845",
+      "lines": [
+        "Unintended/Undesired Uses"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "8ee171440b5d9c32c708ad8607d0ef207708aabb2687329274677d9604f20b6c",
+      "lines": [
+        "And MANY more examples",
+        "of what could go wrong…"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "551a62f0cd0d312134068d574f6d7b1b8f526ea606813da49c8d85afbd9b41db",
+      "lines": [
+        "Former Class Activity NOT to Try Anymore",
+        "• Reproduce/mimic results from prior slides",
+        "• Why shouldn’t you try this anymore?"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "5225ff56c3c403df373268d5af30cada589873ebe42c906b52e3a6ebbccbbb23",
+      "lines": [
+        "Accountability for Model Behavior",
+        "• Who do you think should be held accountable?",
+        "• Developers?",
+        "• Regulators who determine scope of oversight?"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "a2da285f743b12486c5c35211438c96cb3106d67ce60d8be367f1aa8db5c20a2",
+      "lines": [
+        "Today’s Topics",
+        "• Deep learning: what could go wrong?",
+        "• How to build models to be more responsible?",
+        "• How to establish more responsible use of models?",
+        "• Class activity"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "8fa411d24d817ec61ba80e2f4ec1c8108448037f2cbff3a195c57d31a673d13a",
+      "lines": [
+        "Model Development",
+        "• Pre-processing:",
+        "• Modify training data",
+        "• Model design:",
+        "• e.g., define fairness",
+        "mathematically?",
+        "• e.g., subtract weights of flawed",
+        "model, trained on flawed data",
+        "• Optimization:",
+        "• Add regularization term to",
+        "objective function to penalize",
+        "unfairness",
+        "e.g., IBM’s AI Fairness 360 Open Source Toolkit",
+        "70+ fairness metrics and 10+ bias mitigation algorithms"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "8162b8cb9233a546d51b693dcd6848ae58c20abf19bac613a4569b3d580d1d1a",
+      "lines": [
+        "Model Development",
+        "https://alignment.anthropic.com/2025/inoculation-prompting/"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "67f4b37ab4818fdd6ed92816c360f53560ded74b2351ca4fd87c9068c5643c1b",
+      "lines": [
+        "Model Post-Processing",
+        "https://medium.com/google-design/tuning-out-toxic-comments-with-the-help-of-ai-85d0f92414db",
+        "• Train 2nd model to filter based on goals",
+        "(e.g., factual-ness, toxicity)",
+        "• Prompt model to “take a deep breath… ”"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "1b2589297f11b07b72c6befb6b219ef9025df8efa33d1bc4d997316001474998",
+      "lines": [
+        "Red-Teaming and Benchmark Datasets",
+        "Zhang et al. REVAL: A Comprehension Evaluation on Reliability and Values of Large Vision-Language Models. arXiv 2025",
+        "Stress-testing models for",
+        "possible harmful behaviors",
+        "e.g., examples from REVAL",
+        "and responses from models,",
+        "with indication of whether",
+        "they are correct (italics show",
+        "information informing the",
+        "judgment of correctness)"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "affbe6fabde5a7cbdb19b62df69c80b95e537aef6815478cc1081d5600d6064a",
+      "lines": [
+        "Red-Teaming and Benchmark Datasets",
+        "https://huggingface.co/spaces/vectara/leaderboard"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "46012509d11de4930a0d7e29c8ce72c0c0f0ee6251f929145ba1ffba6b0eaedb",
+      "lines": [
+        "Model Providers Embed Guardrails/Features;",
+        "e.g.,"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "b976c30fe655ceb4bf8a4a921c96952a5dca4d6505a9387daa5243d8d70c8013",
+      "lines": [
+        "Characterize Models’ “Jaggedness”"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "ac69e585efdfa73d4a68547a6c3c86a5a51a0371b3939c13b173c6750ca02f6d",
+      "lines": [
+        "Transparency: Design & Analysis",
+        "https://www.cc.gatech.edu/~alanwags/DLAI2016/(Gunning)%20IJCAI-16%20DLAI%20WS.pdf",
+        "Model: Data; e.g., 2021 publication"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "92d03670e9d7bab9f21747c8aa144b8de6602ed32ba4c1aded101c251d8ff97e",
+      "lines": [
+        "Transparency: Design & Analysis",
+        "10 major foundation models (e.g. OpenAI, Google) assessed with respect to",
+        "100 transparency indicators (e.g. are wages paid for data labor disclosed?)"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "8cb659e7db9dd0937c7cec164ec08fa21695fa121df6560d7a56772adeeed9a2",
+      "lines": [
+        "Transparency: Design & Evaluation; e.g.,"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "a2da285f743b12486c5c35211438c96cb3106d67ce60d8be367f1aa8db5c20a2",
+      "lines": [
+        "Today’s Topics",
+        "• Deep learning: what could go wrong?",
+        "• How to build models to be more responsible?",
+        "• How to establish more responsible use of models?",
+        "• Class activity"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "58431d425bb23f8f1fabfe205f906fbd91d635c59f13d1dd04d0f48a3565f8eb",
+      "lines": [
+        "Key Strategies",
+        "• Policy: Companies, Institutes, Governments",
+        "• Education: raising awareness",
+        "• Credentials: e.g., Content Credentials provides metadata, such as a",
+        "creator’s name, when artifact was created, and the edit history"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "0e02b1aa324bb36df3e7623038cdd6a3565f78c1ea4acaa7fc5c88ad501b885c",
+      "lines": [
+        "Industry (Meta, Microsoft, Google, & more…)"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "e314420e1b43e83d61856a1b854ff5abbad1be8ae8563bb87a1e2c0593d2b503",
+      "lines": [
+        "Initiatives: Cross-Industry Communities"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "cfbe37f10b223d61e408cd18f19757c7d380309f1603493221bf2d8c32478def",
+      "lines": [
+        "Institutes"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "671a552ac81aa99fd63cca6988eb92e473ebfb91f1ca3abeb6e29ba561a857bd",
+      "lines": [
+        "Governments: China e.g., requires registration and",
+        "security review of AI products"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "bb994af03ece869072690e98551e159328938df39a5973428eb41dbeeafa50c2",
+      "lines": [
+        "Governments: United States",
+        "e.g., has little regulation"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "510dac7047baa4f0b18834244a91e8617ee191b4ae62bd63308fced90946b356",
+      "lines": [
+        "Governments: Europe",
+        "Extent of regulation and",
+        "rules depends on the",
+        "application’s risk level",
+        "(e.g., book",
+        "recommendation vs health",
+        "condition diagnosis)"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "d66ab26b3dae43bcdf2482ef984e51ddc68628f3100b4cd3f88339adb1df8033",
+      "lines": [
+        "Governments: Britain"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "1586fbdcaa739bb5d82d1b495b368366d1856fe8f5ba68cb7bfcf3c67173ae1e",
+      "lines": [
+        "Governments",
+        "Attendees: 100 world leaders and tech execs"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "1f2665e3029d485316bc6ff062976be85ef82d7225535c21758e05fc58ad19c3",
+      "lines": [
+        "Government Trends",
+        "https://hai.stanford.edu/ai-index/2025-ai-index-report"
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "49d9c64880e7cad4e65139b9e5d1b7bd46278d46e49fb17dca402e222fd84b98",
+      "lines": [
+        "What to Govern?",
+        "Gupta et al. Data-Centric AI Governance: Addressing the Limitations of Model-Focused Policies. arXiv 2024"
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "49d9c64880e7cad4e65139b9e5d1b7bd46278d46e49fb17dca402e222fd84b98",
+      "lines": [
+        "What to Govern?",
+        "Gupta et al. Data-Centric AI Governance: Addressing the Limitations of Model-Focused Policies. arXiv 2024"
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "3e7bbd45b755be4fa230f88261d6dc2bd932fc4f83d2b80b121d7e1a56095dfe",
+      "lines": [
+        "Who Raises Awareness and How?",
+        "• Media",
+        "• Educational programs (e.g., University)",
+        "• Companies (e.g., TikTok deploying “Content Credentials”)"
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "d647cae95f68e61f5e89cdc9d7f7b52bb84b626f507016ff8bf5358e78378ee4",
+      "lines": [
+        "Social Media Post from Valerio Velardo",
+        "https://www.linkedin.com/feed/update/urn:li:activity:7311034014713208832/"
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "c6f739f18fe6cc4c484d3206c7660e020f8f2c1dc144541e37361b2f7ac858f7",
+      "lines": [
+        "Today’s Topics",
+        "• Deep learning: what could go wrong?",
+        "• How to build models to be more responsible?",
+        "• How to establish more responsible use of models",
+        "• Class activity"
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "c6f739f18fe6cc4c484d3206c7660e020f8f2c1dc144541e37361b2f7ac858f7",
+      "lines": [
+        "Today’s Topics",
+        "• Deep learning: what could go wrong?",
+        "• How to build models to be more responsible?",
+        "• How to establish more responsible use of models",
+        "• Class activity"
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

@@ -57,12 +57,12 @@ class Network:
     def forward(self, inputs):
         if len(inputs) != 2 or not all(math.isfinite(x) for x in inputs):
             raise ValueError("Expected two finite inputs.")
-        activations, logits = [list(inputs)], []
+        activations, logits = [list(inputs)], []  # ورودی و مقدار پیش از سیگموید را برای پس‌انتشار نگه می‌داریم
         for weights, biases in zip(self.weights, self.biases):
             z = [sum(w * x for w, x in zip(row, activations[-1])) + b
                  for row, b in zip(weights, biases)]
             logits.append(z)
-            activations.append([sigmoid(v) for v in z])
+            activations.append([sigmoid(v) for v in z])  # این تابع خروجی نورون‌هاست؛ با تغییرش مشتق را هم سازگار کن
         return activations, logits
 
     def predict(self, inputs):
@@ -81,7 +81,7 @@ class Network:
         db = [[0.0 for _ in layer] for layer in self.biases]
         for inputs, target in zip(INPUTS, targets):
             activations, _ = self.forward(inputs)
-            delta = [activations[-1][0] - target]
+            delta = [activations[-1][0] - target]  # برای BCE و خروجی سیگموید: پیش‌بینی منهای برچسب
             for layer in reversed(range(len(self.weights))):
                 for j, error in enumerate(delta):
                     db[layer][j] += error / len(INPUTS)
@@ -99,9 +99,9 @@ class Network:
         dw, db = self.gradients(targets)
         for layer in range(len(self.weights)):
             for j in range(len(self.weights[layer])):
-                self.biases[layer][j] -= learning_rate * db[layer][j]
+                self.biases[layer][j] -= learning_rate * db[layer][j]  # بایاس در خلاف مشتق جابه‌جا می‌شود
                 for k in range(len(self.weights[layer][j])):
-                    self.weights[layer][j][k] -= learning_rate * dw[layer][j][k]
+                    self.weights[layer][j][k] -= learning_rate * dw[layer][j][k]  # همین خط وزن واقعی را با نرخ یادگیری تغییر می‌دهد
 
     def state(self):
         return {"weights": copy.deepcopy(self.weights),

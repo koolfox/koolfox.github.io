@@ -48,13 +48,18 @@ class TrainingRun:
         self.history = []
         self._record()
 
+    def forward(self, point):
+        """عبور واقعی؛ نمودار و پیش‌بینی از همین تابع استفاده می‌کنند."""
+        if self.network:  # مدل سیگموید یا چندلایه، تابع خود شبکه را اجرا می‌کند
+            return self.network.forward(point)
+        z = sum(w * x for w, x in zip(self.weights, point)) + self.bias  # جمع وزن‌دار
+        output = int(z >= 0)  # آستانه؛ تغییر آن روی پیش‌بینی و یادگیری هر دو اثر دارد
+        return [list(point), [output]], [[z]]  # فعال‌سازی لایه‌ها و مقدار پیش از آستانه
+
     def scores(self):
         if self.network:
             return metrics(self.network, self.targets)
-        outputs = [
-            int(sum(w * x for w, x in zip(self.weights, row)) + self.bias >= 0)
-            for row in INPUTS
-        ]
+        outputs = [self.forward(row)[0][-1][0] for row in INPUTS]
         accuracy = sum(y == p for y, p in zip(self.targets, outputs)) / 4
         return {
             "probabilities": outputs,
@@ -85,9 +90,7 @@ class TrainingRun:
                 self.network.step(self.targets, lr)
             else:
                 for row, target in zip(INPUTS, self.targets):
-                    prediction = int(
-                        sum(w * x for w, x in zip(self.weights, row)) + self.bias >= 0
-                    )
+                    prediction = self.forward(row)[0][-1][0]
                     error = target - prediction
                     for i, value in enumerate(row):
                         self.weights[i] += lr * error * value

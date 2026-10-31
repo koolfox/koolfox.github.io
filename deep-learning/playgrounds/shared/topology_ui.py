@@ -46,7 +46,7 @@ def topology_panel():
         ),
         ui.tags.p("", id="network-flow-status", role="status", class_="caption"),
         ui.tags.p(
-            "در نمایش کوچک، نمودار را افقی حرکت بده؛ هنگام نمایش عبور، نمای نمودار لایهٔ فعال را دنبال می‌کند.",
+            "برای وارسی، یک نورون را انتخاب کن؛ با کلیدهای چپ/راست بین لایه‌ها و بالا/پایین بین نورون‌ها جابه‌جا شو.",
             class_="caption network-scroll-hint",
         ),
         ui.tags.div(id="network-trace", class_="network-trace"),

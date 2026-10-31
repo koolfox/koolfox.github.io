@@ -120,14 +120,14 @@ class DenseNetwork:
         return sigmoid(z)
 
     def forward(self, values):
-        activations, logits = [list(values)], []
-        for l, layer in enumerate(self.layers):
+        activations, logits = [list(values)], []  # بازنمایی ورودی و مقدارهای پیش از فعال‌سازی را نگه می‌داریم
+        for l, layer in enumerate(self.layers):  # وزن‌های هر لایه روی خروجی لایهٔ قبلی اعمال می‌شوند
             z = [
                 sum(self.params[k] * x for k, x in zip(weights, activations[-1]))
                 + self.params[bias]
                 for weights, bias in layer
             ]
-            logits.append(z)
+            logits.append(z)  # logit را برای زیان پایدار و مشتق ذخیره می‌کنیم
             activations.append(
                 [
                     sigmoid(v) if l == len(self.layers) - 1 else self.activate(v)
@@ -139,14 +139,14 @@ class DenseNetwork:
     def loss_gradient(self, rows, names, regularization="none", rate=0.0):
         if not rows:
             raise ValueError("Cannot train or evaluate an empty partition")
-        gradient = [0.0] * len(self.params)
+        gradient = [0.0] * len(self.params)  # برای هر وزن و بایاس یک جای مشتق داریم
         loss = 0.0
         for row in rows:
             activations, logits = self.forward(features(row["x"], names))
-            z, target = logits[-1][0], row["y"]
+            z, target = logits[-1][0], row["y"]  # مقدار خروجی پیش از سیگموید و برچسب درست همین نمونه
             # Stable BCE from logits; no probability clipping or altered gradient.
             loss += max(z, 0) - z * target + math.log1p(math.exp(-abs(z)))
-            delta = [activations[-1][0] - target]
+            delta = [activations[-1][0] - target]  # مشتق BCE نسبت به logit خروجی: احتمال منهای هدف
             for l in range(len(self.layers) - 1, -1, -1):
                 previous = [0.0] * len(activations[l])
                 for j, (weights, bias) in enumerate(self.layers[l]):
@@ -172,7 +172,7 @@ class DenseNetwork:
             p = self.params[i]
             if regularization == "l2":
                 loss += 0.5 * rate * p * p
-                gradient[i] += rate * p
+                gradient[i] += rate * p  # برای L2 مشتق جریمه برابر ضریب در وزن است
             elif regularization == "l1":
                 loss += rate * abs(p)
                 gradient[i] += rate * ((p > 0) - (p < 0))
@@ -292,26 +292,26 @@ class NetworkExperiment:
         )
 
     def _update(self, gradient):
-        self.updates += 1
+        self.updates += 1  # شمار گام‌ها برای تصحیح اریب Adam؛ با شمار دوره‌ها یکی نیست
         kind, lr = self.config["optimizer"], self.config["learning_rate"]
-        for i, g in enumerate(gradient):
+        for i, g in enumerate(gradient):  # هر مؤلفهٔ گرادیان، یک پارامتر را تغییر می‌دهد
             if kind == "momentum":
-                self.first_moment[i] = 0.9 * self.first_moment[i] + g
+                self.first_moment[i] = 0.9 * self.first_moment[i] + g  # مومنتوم، جهت گام قبلی را هم نگه می‌دارد
                 step = self.first_moment[i]
             elif kind == "adam":
-                self.first_moment[i] = 0.9 * self.first_moment[i] + 0.1 * g
-                self.second_moment[i] = 0.999 * self.second_moment[i] + 0.001 * g * g
-                m = self.first_moment[i] / (1 - 0.9**self.updates)
-                v = self.second_moment[i] / (1 - 0.999**self.updates)
-                step = m / (math.sqrt(v) + 1e-8)
+                self.first_moment[i] = 0.9 * self.first_moment[i] + 0.1 * g  # Adam: میانگین متحرک گرادیان با بتای ۰٫۹
+                self.second_moment[i] = 0.999 * self.second_moment[i] + 0.001 * g * g  # میانگین مربع گرادیان، مقیاس گام را تنظیم می‌کند
+                m = self.first_moment[i] / (1 - 0.9**self.updates)  # تصحیح اریب میانگین اول در گام‌های آغازین
+                v = self.second_moment[i] / (1 - 0.999**self.updates)  # تصحیح اریب میانگین دوم
+                step = m / (math.sqrt(v) + 1e-8)  # ε مانع تقسیم بر صفر می‌شود
             else:
-                step = g
-            value = self.network.params[i] - lr * step
+                step = g  # SGD ساده از همان گرادیان استفاده می‌کند
+            value = self.network.params[i] - lr * step  # علامت منفی یعنی حرکت در خلاف جهت افزایش زیان
             if not math.isfinite(value):
                 raise ArithmeticError(
                     "Non-finite update; restart with a lower learning rate"
                 )
-            self.network.params[i] = value
+            self.network.params[i] = value  # فقط مقدار معتبر و متناهی در مدل ثبت می‌شود
 
     def step(self, count=1):
         integer(count, 1, 100, "step count")

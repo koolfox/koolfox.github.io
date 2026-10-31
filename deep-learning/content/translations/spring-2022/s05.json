@@ -1,0 +1,3385 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s05",
+  "source_sha256": "2db080c38af3abe6ba241e685b19bbcc7a523b73a56b34ffd8b2340c7647370f",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "5474139d83f108abcc56d3e306904a77f5e7797ff41b480c4de5914e7f1e10c7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent) و آموزش شبکه‌های عصبی (Training Neural Networks)\nدانا گوراری (Danna Gurari)\nدانشگاه کلرادو بولدر (University of Colorado Boulder)\nبهار 2022\nhttps://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "64e6b058e19b6ea60b6cbb76de20fa42e379405fc02f27e92d912d3a2d54a02c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "مرور\n• جلسهٔ گذشته:\n• انگیزهٔ شبکه‌های عصبی (Neural Networks): نیاز به مدل‌های غیرخطی\n• معماری شبکهٔ عصبی: لایه‌های پنهان (Hidden Layers)\n• معماری شبکهٔ عصبی: توابع فعال‌سازی (Activation Functions)\n• معماری شبکهٔ عصبی: واحدهای خروجی (Output Units)\n• آموزش برنامه‌نویسی\n• تکالیف (Canvas):\n• مهلت تکلیف آزمایشگاهی 1 هفتهٔ آینده است.\n• پرسشی دارید؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "f4a45d277686303bb11e41053516c77f8592c21aa6dd567e8c25ce95f736b415",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• تابع هدف (Objective Function): چه چیزی یاد بگیریم\n• نزول گرادیان (Gradient Descent): چگونه یاد بگیریم\n• آموزش شبکهٔ عصبی: بهینه‌سازی (Optimization)\n• نزول گرادیان برای توابع فعال‌سازی (Activation Functions)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "f4a45d277686303bb11e41053516c77f8592c21aa6dd567e8c25ce95f736b415",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• تابع هدف (Objective Function): چه چیزی یاد بگیریم\n• نزول گرادیان (Gradient Descent): چگونه یاد بگیریم\n• آموزش شبکهٔ عصبی: بهینه‌سازی (Optimization)\n• نزول گرادیان برای توابع فعال‌سازی (Activation Functions)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "1af8ad2e823ac82619dafb1beb0493ad405f1e1ce61b5c444a520d2cc5f70639",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "تابع هدف (Objective Function): مشابه آموزش‌دادنِ...\nhttps://www.akc.org/expert-advice/training/how-to-become-a-dog-trainer/\nسگ‌ها برای یادگیری نشستن\nhttps://www.youtube.com/watch?v=58Pr-QrVNqU\nنوزادان برای نریختن غذا روی زمین"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "a7bbd98e75d780d35ce72467e47b3889e3ac9fa335a10b8507f20066be63b924",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "تابع هدف (Objective Function): یادگیری پارامترهای مدل که به هدفی مشخص دست می‌یابند\nرگرسیون (Regression): پیش‌بینی مقدار پیوسته\nطبقه‌بندی (Classification): پیش‌بینی مقدار گسسته\nHands-on Machine Learning with Scikit-Learn & TensorFlow, Aurelien Geron"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Value",
+          "fa": "مقدار (Value)",
+          "verified": true
+        },
+        {
+          "en": "Value?",
+          "fa": "مقدار؟ (Value?)",
+          "verified": true
+        },
+        {
+          "en": "Feature 1",
+          "fa": "ویژگی (Feature) 1",
+          "verified": true
+        },
+        {
+          "en": "Training set",
+          "fa": "مجموعهٔ آموزش (Training Set)",
+          "verified": true
+        },
+        {
+          "en": "Label",
+          "fa": "برچسب (Label)",
+          "verified": true
+        },
+        {
+          "en": "Instance",
+          "fa": "نمونه (Instance)",
+          "verified": true
+        },
+        {
+          "en": "New instance",
+          "fa": "نمونهٔ جدید (New Instance)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "e49cca3c36344b81c55d3dfdef60659ea672fe44f1ca8e804e0f12ea1f01d9e3",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "تابع هدف (Objective Function): یادگیری پارامترهای مدل که به هدفی مشخص دست می‌یابند\nمنبع شکل: http://cs231n.github.io/neural-networks-1/\nمثلاً خطای مربعی (Squared Error؛ با نام‌های زیان L2 و زیان درجهٔ دوم نیز شناخته می‌شود) را تا جای ممکن کوچک کنید.\nدامنهٔ مقدارهای ممکن چیست؟\n• کمینه: 0\n• یعنی همهٔ پیش‌بینی‌ها درست‌اند.\n• بیشینه: بی‌نهایت\n• یعنی پیش‌بینی‌های نادرست\nمقدار واقعی (True Value)؛ مقدار پیش‌بینی‌شده (Predicted Value)\nمیانگین روی n نمونه گرفته می‌شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "input layer",
+          "fa": "لایهٔ ورودی (Input Layer)",
+          "verified": true
+        },
+        {
+          "en": "hidden layer 1",
+          "fa": "لایهٔ پنهان (Hidden Layer) 1",
+          "verified": true
+        },
+        {
+          "en": "hidden layer 2",
+          "fa": "لایهٔ پنهان (Hidden Layer) 2",
+          "verified": true
+        },
+        {
+          "en": "output layer",
+          "fa": "لایهٔ خروجی (Output Layer)",
+          "verified": true
+        },
+        {
+          "en": "MSE = (1/n) Σᵢ₌₁ⁿ (Yᵢ − Ŷᵢ)²",
+          "fa": "MSE = (1/n) Σᵢ₌₁ⁿ (Yᵢ − Ŷᵢ)²",
+          "verified": true,
+          "latex": "\\operatorname{MSE}=\\frac{1}{n}\\sum_{i=1}^{n}(Y_i-\\hat Y_i)^2"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "a7bbd98e75d780d35ce72467e47b3889e3ac9fa335a10b8507f20066be63b924",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "تابع هدف (Objective Function): یادگیری پارامترهای مدل که به هدفی مشخص دست می‌یابند\nرگرسیون (Regression): پیش‌بینی مقدار پیوسته\nطبقه‌بندی (Classification): پیش‌بینی مقدار گسسته\nHands-on Machine Learning with Scikit-Learn & TensorFlow, Aurelien Geron"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Value",
+          "fa": "مقدار (Value)",
+          "verified": true
+        },
+        {
+          "en": "Value?",
+          "fa": "مقدار؟ (Value?)",
+          "verified": true
+        },
+        {
+          "en": "Feature 1",
+          "fa": "ویژگی (Feature) 1",
+          "verified": true
+        },
+        {
+          "en": "Training set",
+          "fa": "مجموعهٔ آموزش (Training Set)",
+          "verified": true
+        },
+        {
+          "en": "Label",
+          "fa": "برچسب (Label)",
+          "verified": true
+        },
+        {
+          "en": "Instance",
+          "fa": "نمونه (Instance)",
+          "verified": true
+        },
+        {
+          "en": "New instance",
+          "fa": "نمونهٔ جدید (New Instance)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "696d28f841e1b13f94f8b6b93fe6b9d87516618090b15b2d8879cba244b31776",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "تابع هدف (Objective Function): یادگیری پارامترهای مدل که به هدفی مشخص دست می‌یابند\nمنبع شکل: https://towardsdatascience.com/multi-label-image-classification-with-neural-network-keras-ddc1ab1afede\nمثلاً فاصلهٔ میان توزیع کلاس پیش‌بینی‌شده و واقعی را با زیان آنتروپی متقاطع (Cross Entropy Loss) تا جای ممکن کوچک کنید.\nپیش‌بینی واقعی یک بردار تک‌داغ (One-hot Vector) است (یعنی یک 1 و بقیه 0)."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "4fc7f9d46089ef7f20b6b7e455d1f832cb3b31b1a4da67cb98fbb698ace7396d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "تابع هدف (Objective Function): یادگیری پارامترهای مدل که به هدفی مشخص دست می‌یابند\nپیش‌زمینهٔ بسیار خوب: https://web.stanford.edu/~jurafsky/slp3/5.pdf\nتعداد کلاس‌ها\nتوزیع احتمال کلاس واقعی\nتوزیع احتمال کلاس پیش‌بینی‌شده\nبه یاد آورید که مقدار حقیقت برای یک کلاس 1 و در غیر این صورت 0 قرار داده می‌شود.\nویژگی‌های مشاهده‌شده (Observed Features)\nبه لگاریتم احتمال پیش‌بینی‌شده برای کلاس درست ساده می‌شود (یعنی زیان منفی لگاریتم درست‌نمایی؛ Negative Log Likelihood Loss)."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "LCE(ŷ,y) = −Σₖ₌₁ᴷ yₖ log ŷₖ = −Σₖ₌₁ᴷ yₖ log p̂(y=k|x)",
+          "fa": "LCE(ŷ,y) = −Σₖ₌₁ᴷ yₖ log ŷₖ = −Σₖ₌₁ᴷ yₖ log p̂(y=k|x)",
+          "verified": true,
+          "latex": "\\begin{aligned}L_{\\mathrm{CE}}(\\hat y,y)&=-\\sum_{k=1}^{K}y_k\\log\\hat y_k\\\\&=-\\sum_{k=1}^{K}y_k\\log\\hat p(y=k\\mid x)\\end{aligned}"
+        },
+        {
+          "en": "−log ŷₖ (where k is the correct class)",
+          "fa": "−log ŷₖ (که در آن k کلاس درست است)",
+          "verified": true,
+          "latex": "-\\log\\hat y_k,\\quad(k\\text{ is the correct class})"
+        },
+        {
+          "en": "−log [exp(wₖ·x+bₖ) / Σⱼ₌₁ᴷ exp(wⱼ·x+bⱼ)]",
+          "fa": "−log [exp(wₖ·x+bₖ) / Σⱼ₌₁ᴷ exp(wⱼ·x+bⱼ)]",
+          "verified": true,
+          "latex": "-\\log\\frac{\\exp(w_k\\cdot x+b_k)}{\\sum_{j=1}^{K}\\exp(w_j\\cdot x+b_j)}"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "fe5d990d550d12af7f245287012c9162be7d2432e5da0f2fe63d9c7128cd76b1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "kind": "text",
+          "fa": "تابع هدف (Objective Function): یادگیری پارامترهای مدل که به هدفی مشخص دست می‌یابند\nپیش‌زمینهٔ بسیار خوب: https://web.stanford.edu/~jurafsky/slp3/5.pdf\nتعداد کلاس‌ها؟\nتوزیع احتمال کلاس واقعی\nتوزیع احتمال کلاس پیش‌بینی‌شده\nبه یاد آورید که مقدار حقیقت برای یک کلاس 1 و در غیر این صورت 0 قرار داده می‌شود.\nویژگی‌های مشاهده‌شده (Observed Features)\nدامنهٔ مقدارهای ممکن چیست؟\n• کمینه: 0\n• یعنی پیش‌بینی درست: منفیِ لگاریتم 1\n• بیشینه: بی‌نهایت\n• یعنی پیش‌بینی نادرست: منفیِ لگاریتم 0"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "LCE(ŷ,y) = −Σₖ₌₁ᴷ yₖ log ŷₖ = −Σₖ₌₁ᴷ yₖ log p̂(y=k|x)",
+          "fa": "LCE(ŷ,y) = −Σₖ₌₁ᴷ yₖ log ŷₖ = −Σₖ₌₁ᴷ yₖ log p̂(y=k|x)",
+          "verified": true,
+          "latex": "\\begin{aligned}L_{\\mathrm{CE}}(\\hat y,y)&=-\\sum_{k=1}^{K}y_k\\log\\hat y_k\\\\&=-\\sum_{k=1}^{K}y_k\\log\\hat p(y=k\\mid x)\\end{aligned}"
+        },
+        {
+          "en": "−log ŷₖ (where k is the correct class)",
+          "fa": "−log ŷₖ (که در آن k کلاس درست است)",
+          "verified": true,
+          "latex": "-\\log\\hat y_k,\\quad(k\\text{ is the correct class})"
+        },
+        {
+          "en": "−log [exp(wₖ·x+bₖ) / Σⱼ₌₁ᴷ exp(wⱼ·x+bⱼ)]",
+          "fa": "−log [exp(wₖ·x+bₖ) / Σⱼ₌₁ᴷ exp(wⱼ·x+bⱼ)]",
+          "verified": true,
+          "latex": "-\\log\\frac{\\exp(w_k\\cdot x+b_k)}{\\sum_{j=1}^{K}\\exp(w_j\\cdot x+b_j)}"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "38e3da77f5434a4e0190da842ec44556e5f8c7451524c2a954aff1b60e11096d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "تابع هدف (Objective Function): یادگیری پارامترهای مدل که به هدفی مشخص دست می‌یابند\nدامنهٔ مقدارهای ممکن چیست؟\n• کمینه: 0\n• یعنی پیش‌بینی درست: منفیِ لگاریتم 1\n• بیشینه: بی‌نهایت\n• یعنی پیش‌بینی نادرست: منفیِ لگاریتم 0\nمنبع: https://ljvmiranda921.github.io/notebook/2017/08/13/softmax-and-the-negative-log-likelihood/\nپیش‌بینی‌های نادرست با اطمینان بیشتر، به خطای بیشتر منجر می‌شوند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Range of negative log-likelihood",
+          "fa": "دامنهٔ منفی لگاریتم درست‌نمایی (Negative Log-likelihood)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "a7bbd98e75d780d35ce72467e47b3889e3ac9fa335a10b8507f20066be63b924",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "تابع هدف (Objective Function): یادگیری پارامترهای مدل که به هدفی مشخص دست می‌یابند\nرگرسیون (Regression): پیش‌بینی مقدار پیوسته\nطبقه‌بندی (Classification): پیش‌بینی مقدار گسسته\nHands-on Machine Learning with Scikit-Learn & TensorFlow, Aurelien Geron"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Value",
+          "fa": "مقدار (Value)",
+          "verified": true
+        },
+        {
+          "en": "Value?",
+          "fa": "مقدار؟ (Value?)",
+          "verified": true
+        },
+        {
+          "en": "Feature 1",
+          "fa": "ویژگی (Feature) 1",
+          "verified": true
+        },
+        {
+          "en": "Training set",
+          "fa": "مجموعهٔ آموزش (Training Set)",
+          "verified": true
+        },
+        {
+          "en": "Label",
+          "fa": "برچسب (Label)",
+          "verified": true
+        },
+        {
+          "en": "Instance",
+          "fa": "نمونه (Instance)",
+          "verified": true
+        },
+        {
+          "en": "New instance",
+          "fa": "نمونهٔ جدید (New Instance)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "50a5f52fac8909036c3b14f0bfc42b8cdee2df900b6a6e3f096a97654612179d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "توابع هدف (Objective Functions) بسیاری وجود دارند و در این درس انواع رایج آن‌ها را بررسی خواهیم کرد."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "f4a45d277686303bb11e41053516c77f8592c21aa6dd567e8c25ce95f736b415",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• تابع هدف (Objective Function): چه چیزی یاد بگیریم\n• نزول گرادیان (Gradient Descent): چگونه یاد بگیریم\n• آموزش شبکهٔ عصبی: بهینه‌سازی (Optimization)\n• نزول گرادیان برای توابع فعال‌سازی (Activation Functions)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "b169e4b7255b8b25f950f5759fd900d36ad8b8882c7399b06ee858845a2c2509",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "kind": "text",
+          "fa": "زمینهٔ تاریخی: نزول گرادیان (Gradient Descent)؛ نخستین ماشین برنامه‌پذیر\n2012\nیادگیری ماشین (Machine Learning)\nآزمون تورینگ (Turing Test)\n1945\nهوش مصنوعی (AI)\n1956\n1950 1959\nشبکه‌های عصبی با راهبرد یادگیری مؤثر\n1986\nموج 3: اوج‌گیری «یادگیری عمیق» (Deep Learning)\n1957 پرسپترون (Perceptron)\n1847\nنزول گرادیان\nLouis Augustin Cauchy: Compte Rendu `a l’Acad´emie des Sciences of October 18, 1847"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "50a0e31a4928ce43c1c65bdf62418f0675ab07ad1d81affede5d9bfcc2b3856f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "text",
+          "fa": "روشی مقیاس‌پذیر برای آموزش مدل‌های غیرخطی (Nonlinear Models) روی «کلان‌داده» (Big Data)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "f6d25d03de9e5c1a55eb4492da2bb99147ff04069357b23469b32020208765ab",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "• تکرار کنید:\n1. حدس بزنید.\n2. خطا را محاسبه کنید.\n• مثلاً هنگامی که فقط ورودی «مایل» و خروجی «کیلومتر» را مشاهده می‌کنید، یک مدل خطی برای تبدیل کیلومتر به مایل یاد بگیرید.\nمایل؛ کیلومتر = مایل × ثابت؛ کیلومتر\nنزول گرادیان (Gradient Descent): درک شهودی\nMake Your Own Neural Network, Tariq Rashid"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "1 Mile; 1.60934 Kilometer",
+          "fa": "1 مایل (Mile)؛ 1.60934 کیلومتر (Kilometer)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "ec23397230bcb6db0449b4237fb61b78d692dab33ed3496aeff17f55a7be84c6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "• تکرار کنید:\n1. حدس بزنید.\n2. خطا را محاسبه کنید.\n• مثلاً ضریب ثابتی را یاد بگیرید که دلار آمریکا را به شِکِل اسرائیل تبدیل کند.\n$10؛ شِکِل = دلار × ثابت\nنزول گرادیان (Gradient Descent): درک شهودی"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "55dddba586903af0990206ca48423d407f4197e0466b6723d38754a2be3ca6d1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "• تکرار کنید:\n1. حدس بزنید.\n2. خطا را محاسبه کنید.\n• مثلاً ضریب ثابتی را یاد بگیرید که دلار آمریکا را به شِکِل اسرائیل تبدیل کند.\nخطا = حدس - مقدار درست\nنزول گرادیان (Gradient Descent): درک شهودی\n$10؛ شِکِل = دلار × ثابت"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "809269b55e9eed2a718ae0491bd5babdf5ffdae92061f326f5b2acdd24020d75",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "• تکرار کنید:\n1. حدس بزنید.\n2. خطا را محاسبه کنید.\n• مثلاً ضریب ثابتی را یاد بگیرید که دلار آمریکا را به شِکِل اسرائیل تبدیل کند.\nنزول گرادیان (Gradient Descent): درک شهودی\n$10؛ شِکِل = دلار × ثابت"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "9b0cd21102f72fd18e64315368d8ffb2df80fb5fd0b319f0f1a207ea411fb92e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "• تکرار کنید:\n1. حدس بزنید.\n2. خطا را محاسبه کنید.\n• مثلاً ضریب ثابتی را یاد بگیرید که دلار آمریکا را به شِکِل اسرائیل تبدیل کند.\nنزول گرادیان (Gradient Descent): درک شهودی\n$10؛ شِکِل = دلار × ثابت؛ خطا = حدس - مقدار درست"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "809269b55e9eed2a718ae0491bd5babdf5ffdae92061f326f5b2acdd24020d75",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "• تکرار کنید:\n1. حدس بزنید.\n2. خطا را محاسبه کنید.\n• مثلاً ضریب ثابتی را یاد بگیرید که دلار آمریکا را به شِکِل اسرائیل تبدیل کند.\nنزول گرادیان (Gradient Descent): درک شهودی\n$10؛ شِکِل = دلار × ثابت"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "63cc12601a19314c43ac78f0695f187e294ba6b25615d643652f4f84b0d8e328",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): درک شهودی\n• تکرار کنید:\n1. حدس بزنید.\n2. خطا را محاسبه کنید.\n• مثلاً ضریب ثابتی را یاد بگیرید که دلار آمریکا را به شِکِل اسرائیل تبدیل کند.\n• ایده: ثابت (یعنی پارامتر مدل) را به‌صورت تکراری تنظیم کنید تا خطا کاهش یابد.\n$10؛ شِکِل = دلار × ثابت؛ خطا = حدس - مقدار درست"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "fbdc8c63330a6a5582646472191c4a633513c298b55592095961c3cd70ce2900",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): درک شهودی\n• به‌صورت تکراری به‌دنبال مقدارهایی بگردید که مسئلهٔ بهینه‌سازی (Optimization) را حل می‌کنند (یعنی یک تابع هدف را کمینه یا بیشینه می‌کنند).\n• هنگام کمینه‌سازی تابع هدف (Objective Function)، اغلب به‌جای آن از نام تابع هزینه (Cost Function)، تابع زیان (Loss Function) یا تابع خطا (Error Function) نیز استفاده می‌شود.\nتشبیه: پیاده‌روی به پایین‌ترین نقطهٔ یک رشته‌کوه... در حالت نابینایی یا با چشم‌بند!\nشروع (Start)\nنقطهٔ پایان (کمینه؛ Minimum)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "f5314f7c4475c4f9e499ee1043debf486ebf4fbc4d9f464da9f5fb361e2bd291",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): استفاده از حساب دیفرانسیل\n• ایده: از مشتق‌ها استفاده کنید!\n• مشتق‌ها به ما می‌گویند برای ایجاد تغییری کوچک در خروجی f(x)، ورودی x را چگونه تغییر دهیم.\n• گرادیان (Gradient) برداری است که نشان می‌دهد f(x) با تغییر هر متغیر تابع چگونه تغییر می‌کند (یعنی مشتق‌های جزئی؛ Partial Derivatives).\n• نزول گرادیان:\n• برای کمینه‌کردن تابع، به‌صورت تکراری در جهت مخالف گرادیان گام بردارید.\nکدام حرف(ها) کمینه‌های سراسری (Global Minima) هستند؟\nکدام حرف(ها) کمینه‌های محلی (Local Minima) هستند؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Position 1; Position 2; Position 3",
+          "fa": "موقعیت (Position) 1؛ موقعیت 2؛ موقعیت 3",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "94f27ff75bc96e700bd48a292598ce94b2c72c435dfd5acb507492d65cf5a244",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "• اندازهٔ گام (Step Size) = نرخ یادگیری (Learning Rate)\n• (a) وقتی نرخ یادگیری خیلی کوچک باشد، همگرایی به یک راه‌حل خوب کند خواهد بود.\n• (b) وقتی نرخ یادگیری خیلی بزرگ باشد، همگرایی به یک راه‌حل خوب ممکن نیست.\n• جلسهٔ بعد: بررسی چگونگی یادگیری مؤثر با استفاده از گرادیان‌ها\nنزول گرادیان (Gradient Descent): چقدر به‌روز کنیم؟\nhttps://github.com/rasbt/python-machine-learning-book-2nd-edition/blob/master/code/ch02/ch02.ipynb\n(a) (b)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Initial weight",
+          "fa": "وزن اولیه (Initial Weight)",
+          "verified": true
+        },
+        {
+          "en": "Gradient",
+          "fa": "گرادیان (Gradient)",
+          "verified": true
+        },
+        {
+          "en": "Global cost minimum",
+          "fa": "کمینهٔ سراسری هزینه (Global Cost Minimum)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "d105b87a8ba4ae138bf531b5fae2685b54c1b97c53b559a99c6eb16960550ef9",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): هر چند وقت یک‌بار به‌روز کنیم؟\n• استفاده از محاسبات روی تمام نمونه‌های آموزش (نزول گرادیان دسته‌ای؛ Batch Gradient Descent)\n• نوسان کمتر، اما وقتی مجموعه‌داده بزرگ باشد می‌تواند کند یا غیرعملی شود.\n• استفاده از محاسبات یک نمونهٔ آموزش (نزول گرادیان تصادفی؛ Stochastic Gradient Descent)\n• محاسبه سریع است و می‌توان با مجموعه‌داده‌های عظیم آموزش داد (در هر تکرار یک نمونه را در حافظه نگه می‌دارد)، اما انتظار می‌رود به‌روزرسانی‌ها نوسان زیادی داشته باشند.\n• استفاده از محاسبات زیرمجموعه‌ای از نمونه‌های آموزش (نزول گرادیان مینی‌دسته‌ای؛ Mini-batch Gradient Descent)\n• نسبت به SGD نوسان‌های نامنظم کمتری دارد و می‌توان با مجموعه‌داده‌های عظیم آموزش داد (در هر تکرار چند نمونه را در حافظه نگه می‌دارد)، اما وقتی مجموعه‌داده بزرگ باشد می‌تواند کند یا غیرعملی شود.\n• اغلب نزول گرادیان مینی‌دسته‌ای با بیشترین تعداد نمونه‌ای که در حافظه جا می‌گیرد استفاده می‌شود."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "f4a45d277686303bb11e41053516c77f8592c21aa6dd567e8c25ce95f736b415",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• تابع هدف (Objective Function): چه چیزی یاد بگیریم\n• نزول گرادیان (Gradient Descent): چگونه یاد بگیریم\n• آموزش شبکهٔ عصبی: بهینه‌سازی (Optimization)\n• نزول گرادیان برای توابع فعال‌سازی (Activation Functions)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "a1e5acd1a30adaa2428d64399226c8880b49b74bcc53e33905d70b197d570111",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "kind": "text",
+          "fa": "یادآوری: در شبکهٔ عصبی (Neural Network) چه چیزی باید یاد گرفت؟\n• یادگیریِ:\n• وزن‌های اتصال‌دهندهٔ واحدها (Weights)\n• بایاس (Bias) هر واحد\n• مثلاً شبکهٔ عصبی 2 لایه:\nW11 x1\nx2 h2\no1\nb1\nh1\nb3\nW12\nW22\nW21\nw21\nw21\nb2\n1\n1\n1"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "960a6ddba88481a3c73c3f732b8fcb581651f47f81fbeec4ff5ab5c86e15e6a9",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "kind": "text",
+          "fa": "آموزش: شبکه‌های عصبی (Neural Networks) چگونه یاد می‌گیرند\n• تا برآورده‌شدن معیار توقف تکرار کنید:\n1. گذر رو به جلو (Forward Pass): داده‌های آموزش را از مدل عبور دهید تا پیش‌بینی انجام شود.\n2. نارضایتی از نتایج مدل روی داده‌های آموزش را کمّی کنید.\n3. گذر رو به عقب (Backward Pass): با استفاده از خروجی پیش‌بینی‌شده، گرادیان‌ها را در جهت عقب محاسبه کنید تا سهم تقصیر هر پارامتر مدل مشخص شود.\n4. هر پارامتر را با استفاده از گرادیان‌های محاسبه‌شده به‌روز کنید.\nشکل از: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul,\nJeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018\nاز تابع هدف/زیان (Objective/Loss Function) برای محاسبهٔ خطا استفاده می‌شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(a) Forward pass",
+          "fa": "(a) گذر رو به جلو (Forward Pass)",
+          "verified": true
+        },
+        {
+          "en": "(b) Backward pass",
+          "fa": "(b) گذر رو به عقب (Backward Pass)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "7a7a4df3b04aa51ab975cfc21f83992615dd2694cfff27e7a1dbaa690b710275",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "• از چه معیار توقفی استفاده کنیم؟\n• تغییرات وزن‌ها بسیار کوچک باشند.\n• تعداد دوره‌های (Epochs) ازپیش‌تعیین‌شده تمام شده باشد.\n• درصد نمونه‌های نادرست طبقه‌بندی‌شده کمتر از آستانه‌ای مشخص باشد.\n• ...\nچه زمانی آموزش شبکه‌های عصبی (Neural Networks) را متوقف کنیم؟\nشکل از: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul,\nJeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(a) Forward pass",
+          "fa": "(a) گذر رو به جلو (Forward Pass)",
+          "verified": true
+        },
+        {
+          "en": "(b) Backward pass",
+          "fa": "(b) گذر رو به عقب (Backward Pass)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "c3a5c326c9cbd9c580974dd8fc464c267449c7304dd316c25b7f540e44aec18d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "kind": "text",
+          "fa": "چالش اصلی: گرادیان (Gradient) را چگونه محاسبه کنیم؟\n• تا برآورده‌شدن معیار توقف تکرار کنید:\n1. گذر رو به جلو (Forward Pass): داده‌های آموزش را از مدل عبور دهید تا پیش‌بینی انجام شود.\n2. نارضایتی از نتایج مدل روی داده‌های آموزش را کمّی کنید.\n3. گذر رو به عقب (Backward Pass): با استفاده از خروجی پیش‌بینی‌شده، گرادیان‌ها را در جهت عقب محاسبه کنید تا سهم تقصیر هر پارامتر مدل مشخص شود.\n4. هر پارامتر را با استفاده از گرادیان‌های محاسبه‌شده به‌روز کنید.\nشکل از: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul,\nJeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018\nمعادلهٔ محاسبهٔ گرادیان‌ها به این موارد بستگی دارد:\n1) توابع فعال‌سازی (Activation Functions)\n2) تابع هدف/زیان (Objective/Loss Function)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(b) Backward pass",
+          "fa": "(b) گذر رو به عقب (Backward Pass)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "eda25799a712b134521e01c75d15809c1c34e97822fa29ee377456fbc781c61a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "kind": "text",
+          "fa": "زمینهٔ تاریخی: پس‌انتشار (Backpropagation)؛ نخستین ماشین برنامه‌پذیر\n2012\nیادگیری ماشین (Machine Learning)\nآزمون تورینگ (Turing Test)\n1945\nهوش مصنوعی (AI)\n1956\n1950 1959\nپس‌انتشار برای آموزش شبکه‌های عصبی\n1986\nموج 3: اوج‌گیری «یادگیری عمیق» (Deep Learning)\n1957 پرسپترون (Perceptron)\n1847\nنزول گرادیان (Gradient Descent)\nD. Rulhart, G. Hinton, and R. Williams, Learning Internal Representations by Error Propagation, 1986."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "471b8f0848d5286689cbf83726e001f81bce071e316d0a629cc386ad0af7fad4",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "آموزش شبکهٔ عصبی (Neural Network Training): پس‌انتشار (Backpropagation)\n• ایدهٔ پس‌انتشار:\nIan Goodfellow, Yoshua Bengio, and Aaron Courville; Deep Learning, 2016."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "chain: x = f(w), y = f(x), z = f(y)",
+          "fa": "زنجیره: x = f(w), y = f(x), z = f(y)",
+          "verified": true,
+          "latex": "x=f(w),\\qquad y=f(x),\\qquad z=f(y)"
+        },
+        {
+          "en": "∂z/∂w = (∂z/∂y)(∂y/∂x)(∂x/∂w) = f′(y)f′(x)f′(w) = f′(f(f(w)))f′(f(w))f′(w)",
+          "fa": "∂z/∂w = (∂z/∂y)(∂y/∂x)(∂x/∂w) = f′(y)f′(x)f′(w) = f′(f(f(w)))f′(f(w))f′(w)",
+          "verified": true,
+          "latex": "\\begin{aligned}\\frac{\\partial z}{\\partial w}&=\\frac{\\partial z}{\\partial y}\\frac{\\partial y}{\\partial x}\\frac{\\partial x}{\\partial w}\\\\&=f'(y)f'(x)f'(w)\\\\&=f'(f(f(w)))f'(f(w))f'(w)\\end{aligned}"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "47b703260796681ec841112ead664d039be3b0d67717c218f6dbfe682cc500d4",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "مثال: معماری شبکهٔ عصبی (Neural Network Architecture) را انتخاب کنید\n o6\nتابع فعال‌سازی سیگموید (Sigmoid Activation Function)\nx1\nx2\nx3\nمثال از: Jiawei Han and Micheline Kamber; Data Mining."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "σ(z) = 1/(1+exp(−z))",
+          "fa": "σ(z) = 1/(1+exp(−z))",
+          "verified": true,
+          "latex": "\\sigma(z)=\\frac{1}{1+\\exp(-z)}"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "312356bd77b5f258e2c55956fa13cd8af83f018fedfaa0d3377895f5d9270663",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "مثال: تابع زیان (Loss Function) را برای آموزش انتخاب کنید\nok\nمثال از: Jiawei Han and Micheline Kamber; Data Mining.\nتابع خطای مربعی (Squared Error Function)\n(مسئلهٔ رگرسیون یا طبقه‌بندی دودویی)\nx1\nx2\nx3"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "∂E/∂wⱼₖ = (∂/∂wⱼₖ)(tₖ − oₖ)²",
+          "fa": "∂E/∂wⱼₖ = (∂/∂wⱼₖ)(tₖ − oₖ)²",
+          "verified": true,
+          "latex": "\\frac{\\partial E}{\\partial w_{jk}}=\\frac{\\partial}{\\partial w_{jk}}(t_k-o_k)^2"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "c83fad227278e3543e201c0bdce37eb8a5f6f728df81f000257035d673f22e6e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "kind": "text",
+          "fa": "مثال: مشخص کنید گرادیان (Gradient) را چگونه محاسبه کنیم؟\n(لایهٔ خروجی؛ Output Layer)\nt یک مقدار ثابت است:\nok\nWi,j\nWi,j\nWi,j\nWi,j\nWi,j\nWi,j\ni = 1\ni = 2\ni = 3\nj = 1\nj = 2\nk = 1\ne = ?\nWj,k\nWj,k\nمثال از: Jiawei Han and Micheline Kamber; Data Mining."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "∂E/∂wⱼₖ = (∂/∂wⱼₖ)(tₖ − oₖ)²",
+          "fa": "∂E/∂wⱼₖ = (∂/∂wⱼₖ)(tₖ − oₖ)²",
+          "verified": true,
+          "latex": "\\frac{\\partial E}{\\partial w_{jk}}=\\frac{\\partial}{\\partial w_{jk}}(t_k-o_k)^2"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "a0d879eea07caa44734a07bda244bb3ce815ab49864e9c53196f9766c80e7d4d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "مثال: مشخص کنید گرادیان (Gradient) را چگونه محاسبه کنیم؟\n(لایهٔ خروجی؛ Output Layer)\nt یک مقدار ثابت است:\nبا استفاده از قاعدهٔ زنجیره‌ای (Chain Rule) زیر: تابع فعال‌سازی سیگموید (Sigmoid Activation Function):"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "∂E/∂wⱼₖ = (∂/∂wⱼₖ)(tₖ − oₖ)²",
+          "fa": "∂E/∂wⱼₖ = (∂/∂wⱼₖ)(tₖ − oₖ)²",
+          "verified": true,
+          "latex": "\\frac{\\partial E}{\\partial w_{jk}}=\\frac{\\partial}{\\partial w_{jk}}(t_k-o_k)^2"
+        },
+        {
+          "en": "∂E/∂wⱼₖ = (∂E/∂oₖ)(∂oₖ/∂wⱼₖ)",
+          "fa": "∂E/∂wⱼₖ = (∂E/∂oₖ)(∂oₖ/∂wⱼₖ)",
+          "verified": true,
+          "latex": "\\frac{\\partial E}{\\partial w_{jk}}=\\frac{\\partial E}{\\partial o_k}\\frac{\\partial o_k}{\\partial w_{jk}}"
+        },
+        {
+          "en": "∂E/∂oₖ = −2(tₖ−oₖ)",
+          "fa": "∂E/∂oₖ = −2(tₖ−oₖ)",
+          "verified": true,
+          "latex": "\\frac{\\partial E}{\\partial o_k}=-2(t_k-o_k)"
+        },
+        {
+          "en": "σ(x) = 1/(1+e⁻ˣ)",
+          "fa": "σ(x) = 1/(1+e⁻ˣ)",
+          "verified": true,
+          "latex": "\\sigma(x)=\\frac{1}{1+e^{-x}}"
+        },
+        {
+          "en": "dσ(x)/dx = (1−σ(x))σ(x)",
+          "fa": "dσ(x)/dx = (1−σ(x))σ(x)",
+          "verified": true,
+          "latex": "\\frac{d\\sigma(x)}{dx}=(1-\\sigma(x))\\sigma(x)"
+        },
+        {
+          "en": "dσ(x)/dx = e⁻ˣ/(1+e⁻ˣ)² = [(1+e⁻ˣ−1)/(1+e⁻ˣ)] [1/(1+e⁻ˣ)]",
+          "fa": "dσ(x)/dx = e⁻ˣ/(1+e⁻ˣ)² = [(1+e⁻ˣ−1)/(1+e⁻ˣ)] [1/(1+e⁻ˣ)]",
+          "verified": true,
+          "latex": "\\begin{aligned}\\frac{d\\sigma(x)}{dx}&=\\frac{e^{-x}}{(1+e^{-x})^2}\\\\&=\\left(\\frac{1+e^{-x}-1}{1+e^{-x}}\\right)\\left(\\frac{1}{1+e^{-x}}\\right)\\end{aligned}"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "bc06915c334251c0c7fb5931f1d6621aa00aade8ab5f89b6a8b10055b8c968c5",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "مثال: مشخص کنید گرادیان (Gradient) را چگونه محاسبه کنیم؟\n(لایهٔ خروجی؛ Output Layer)\nt یک مقدار ثابت است:\nبا استفاده از قاعدهٔ زنجیره‌ای (Chain Rule) زیر:\nمی‌توانیم تابع خود را به‌صورت زیر بازنویسی کنیم:\nتابع فعال‌سازی سیگموید (Sigmoid Activation Function):\nبرای کارایی، در آخر محاسبه کنید"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "∂E/∂wⱼₖ = (∂/∂wⱼₖ)(tₖ − oₖ)²",
+          "fa": "∂E/∂wⱼₖ = (∂/∂wⱼₖ)(tₖ − oₖ)²",
+          "verified": true,
+          "latex": "\\frac{\\partial E}{\\partial w_{jk}}=\\frac{\\partial}{\\partial w_{jk}}(t_k-o_k)^2"
+        },
+        {
+          "en": "∂E/∂wⱼₖ = (∂E/∂oₖ)(∂oₖ/∂wⱼₖ)",
+          "fa": "∂E/∂wⱼₖ = (∂E/∂oₖ)(∂oₖ/∂wⱼₖ)",
+          "verified": true,
+          "latex": "\\frac{\\partial E}{\\partial w_{jk}}=\\frac{\\partial E}{\\partial o_k}\\frac{\\partial o_k}{\\partial w_{jk}}"
+        },
+        {
+          "en": "∂E/∂oₖ = −2(tₖ−oₖ)",
+          "fa": "∂E/∂oₖ = −2(tₖ−oₖ)",
+          "verified": true,
+          "latex": "\\frac{\\partial E}{\\partial o_k}=-2(t_k-o_k)"
+        },
+        {
+          "en": "σ(x) = 1/(1+e⁻ˣ)",
+          "fa": "σ(x) = 1/(1+e⁻ˣ)",
+          "verified": true,
+          "latex": "\\sigma(x)=\\frac{1}{1+e^{-x}}"
+        },
+        {
+          "en": "dσ(x)/dx = (1−σ(x))σ(x)",
+          "fa": "dσ(x)/dx = (1−σ(x))σ(x)",
+          "verified": true,
+          "latex": "\\frac{d\\sigma(x)}{dx}=(1-\\sigma(x))\\sigma(x)"
+        },
+        {
+          "en": "∂E/∂wⱼₖ = −2(tₖ−oₖ) sigmoid(Σⱼ wⱼₖ*oⱼ) * (1−sigmoid(Σⱼ wⱼₖ*oⱼ)) * oⱼ",
+          "fa": "∂E/∂wⱼₖ = −2(tₖ−oₖ) sigmoid(Σⱼ wⱼₖ*oⱼ) * (1−sigmoid(Σⱼ wⱼₖ*oⱼ)) * oⱼ",
+          "verified": true,
+          "latex": "\\begin{aligned}\\frac{\\partial E}{\\partial w_{jk}}={}&-2(t_k-o_k)\\\\&\\cdot\\operatorname{sigmoid}\\!\\left(\\sum_jw_{jk}o_j\\right)\\\\&\\cdot\\left(1-\\operatorname{sigmoid}\\!\\left(\\sum_jw_{jk}o_j\\right)\\right)o_j\\end{aligned}"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "247c8099822671692d5bab302cfa7e03603e40b4f66327ad14e9d2838bc67aac",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "مثال: مشخص کنید گرادیان (Gradient) را چگونه محاسبه کنیم؟\n(لایهٔ خروجی؛ Output Layer)\nt یک مقدار ثابت است:\nبا استفاده از قاعدهٔ زنجیره‌ای (Chain Rule) زیر: تابع فعال‌سازی سیگموید (Sigmoid Activation Function):\nمشاهدهٔ اصلی: این کار ممکن است، چون تابع فعال‌سازی (Activation Function) و تابع زیان (Loss Function) مشتق‌پذیرند!!!"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "∂E/∂wⱼₖ = (∂/∂wⱼₖ)(tₖ − oₖ)²",
+          "fa": "∂E/∂wⱼₖ = (∂/∂wⱼₖ)(tₖ − oₖ)²",
+          "verified": true,
+          "latex": "\\frac{\\partial E}{\\partial w_{jk}}=\\frac{\\partial}{\\partial w_{jk}}(t_k-o_k)^2"
+        },
+        {
+          "en": "∂E/∂wⱼₖ = (∂E/∂oₖ)(∂oₖ/∂wⱼₖ)",
+          "fa": "∂E/∂wⱼₖ = (∂E/∂oₖ)(∂oₖ/∂wⱼₖ)",
+          "verified": true,
+          "latex": "\\frac{\\partial E}{\\partial w_{jk}}=\\frac{\\partial E}{\\partial o_k}\\frac{\\partial o_k}{\\partial w_{jk}}"
+        },
+        {
+          "en": "∂E/∂oₖ = −2(tₖ−oₖ)",
+          "fa": "∂E/∂oₖ = −2(tₖ−oₖ)",
+          "verified": true,
+          "latex": "\\frac{\\partial E}{\\partial o_k}=-2(t_k-o_k)"
+        },
+        {
+          "en": "σ(x) = 1/(1+e⁻ˣ)",
+          "fa": "σ(x) = 1/(1+e⁻ˣ)",
+          "verified": true,
+          "latex": "\\sigma(x)=\\frac{1}{1+e^{-x}}"
+        },
+        {
+          "en": "dσ(x)/dx = (1−σ(x))σ(x)",
+          "fa": "dσ(x)/dx = (1−σ(x))σ(x)",
+          "verified": true,
+          "latex": "\\frac{d\\sigma(x)}{dx}=(1-\\sigma(x))\\sigma(x)"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "9fd55370740fdde5097e29eb91392d6345cb247db6549c245abf489b336ef93e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "kind": "text",
+          "fa": "مثال: مشخص کنید گرادیان (Gradient) را چگونه محاسبه کنیم؟\n(لایهٔ خروجی؛ Output Layer)\nok\nWi,j\nWi,j\nWi,j\nWi,j\nWi,j\nWi,j\ni = 1\ni = 2\ni = 3\nj = 1\nj = 2\nk = 1\ne = ?\nWj,k\nWj,k"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "∂E/∂wⱼₖ = (∂/∂wⱼₖ)(tₖ − oₖ)²",
+          "fa": "∂E/∂wⱼₖ = (∂/∂wⱼₖ)(tₖ − oₖ)²",
+          "verified": true,
+          "latex": "\\frac{\\partial E}{\\partial w_{jk}}=\\frac{\\partial}{\\partial w_{jk}}(t_k-o_k)^2"
+        },
+        {
+          "en": "∂E/∂wⱼₖ = −(tₖ−oₖ) * sigmoid(Σⱼ wⱼₖ*oⱼ) * (1−sigmoid(Σⱼ wⱼₖ*oⱼ))",
+          "fa": "∂E/∂wⱼₖ = −(tₖ−oₖ) * sigmoid(Σⱼ wⱼₖ*oⱼ) * (1−sigmoid(Σⱼ wⱼₖ*oⱼ))",
+          "verified": true,
+          "latex": "\\begin{aligned}\\frac{\\partial E}{\\partial w_{jk}}={}&-(t_k-o_k)\\\\&\\cdot\\operatorname{sigmoid}\\!\\left(\\sum_jw_{jk}o_j\\right)\\\\&\\cdot\\left(1-\\operatorname{sigmoid}\\!\\left(\\sum_jw_{jk}o_j\\right)\\right)\\end{aligned}"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "e52f760a8e31db3f594e94d506e0e8f11f1b3b310a72586d2669c66484bd5c13",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "kind": "text",
+          "fa": "مثال: گرادیان (Gradient) را چگونه محاسبه کنیم؟\n(لایهٔ پنهان؛ Hidden Layer)\nتقارن در روش محاسبهٔ پارامترهای لایه‌های پنهان\nok\nWi,j\nWj,k\nWj,k\nWi,j\nWi,j\nWi,j\nWi,j\nWi,j\ni = 1\ni = 2\ni = 3\nj = 1\nj = 2\nk = 1\ne = ?\ne = ?"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "∂E/∂wⱼₖ = −(tₖ−oₖ) * sigmoid(Σⱼ wⱼₖ*oⱼ) * (1−sigmoid(Σⱼ wⱼₖ*oⱼ))",
+          "fa": "∂E/∂wⱼₖ = −(tₖ−oₖ) * sigmoid(Σⱼ wⱼₖ*oⱼ) * (1−sigmoid(Σⱼ wⱼₖ*oⱼ))",
+          "verified": true,
+          "latex": "\\begin{aligned}\\frac{\\partial E}{\\partial w_{jk}}={}&-(t_k-o_k)\\\\&\\cdot\\operatorname{sigmoid}\\!\\left(\\sum_jw_{jk}o_j\\right)\\\\&\\cdot\\left(1-\\operatorname{sigmoid}\\!\\left(\\sum_jw_{jk}o_j\\right)\\right)\\end{aligned}"
+        },
+        {
+          "en": "∂E/∂wᵢⱼ = −(Σₖ Errₖwⱼₖ) * sigmoid(Σᵢ wᵢⱼ*oᵢ) * (1−sigmoid(Σᵢ wᵢⱼ*oᵢ))",
+          "fa": "∂E/∂wᵢⱼ = −(Σₖ Errₖwⱼₖ) * sigmoid(Σᵢ wᵢⱼ*oᵢ) * (1−sigmoid(Σᵢ wᵢⱼ*oᵢ))",
+          "verified": true,
+          "latex": "\\begin{aligned}\\frac{\\partial E}{\\partial w_{ij}}={}&-\\left(\\sum_k\\operatorname{Err}_kw_{jk}\\right)\\\\&\\cdot\\operatorname{sigmoid}\\!\\left(\\sum_iw_{ij}o_i\\right)\\\\&\\cdot\\left(1-\\operatorname{sigmoid}\\!\\left(\\sum_iw_{ij}o_i\\right)\\right)\\end{aligned}"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "e3000e04fd1d63de5fab533aca7c4cded6c1cc083f945bf3ab406175d54d494f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "kind": "text",
+          "fa": "مثال: مقداردهی اولیه (وزن‌ها، بایاس‌ها؛ Weights, Biases)\nW1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\no6 6\n4\n5\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\n1\n1\nx1 1\nx2\nx3\nمثال از: Jiawei Han and Micheline Kamber; Data Mining."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "517471239b68007bf3bf9acc597e0c66b07464e356d1f819bfd444711f679d46",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "kind": "text",
+          "fa": "مثال: یک نمونهٔ آموزش را وارد کنید\n1 W1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\n6\n4\n5\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\n0\n1\nt1 = 1\no6\n1\n1\n1\nمثال از: Jiawei Han and Micheline Kamber; Data Mining."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "62ac6b4f0090b837cbfad89e967d905579535d72f53adf4a7b40fad909491749",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "آموزش: شبکه‌های عصبی (Neural Networks) چگونه یاد می‌گیرند\n• تا برآورده‌شدن معیار توقف تکرار کنید:\n1. گذر رو به جلو (Forward Pass): داده‌های آموزش را از مدل عبور دهید تا پیش‌بینی انجام شود.\nشکل از: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul,\nJeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(a) Forward pass",
+          "fa": "(a) گذر رو به جلو (Forward Pass)",
+          "verified": true
+        },
+        {
+          "en": "(b) Backward pass",
+          "fa": "(b) گذر رو به عقب (Backward Pass)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "35679b6b0e4e240e570427320f6b44ae01cc3d6a182d9fb03f180a66eb721ff5",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "kind": "text",
+          "fa": "مثال: گام 1 ـ گذر رو به جلو (Forward Pass)\nW1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\n6\n4\n5\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\nt1 = 1\no4 = ?\no6\nورودی گره 4:"
+        },
+        {
+          "source_lines": [
+            19,
+            20,
+            21
+          ],
+          "kind": "math",
+          "fa": "i4 = (1 x 0.2 + 0 x 0.4 + 1 x -0.5) – 0.4\ni4 = -0.7",
+          "latex": "\\begin{aligned}i_4&=(1\\cdot 0.2 + 0\\cdot 0.4 + 1\\cdot -0.5) - 0.4\\\\&=-0.7\\end{aligned}"
+        },
+        {
+          "source_lines": [
+            22
+          ],
+          "kind": "text",
+          "fa": "خروجی گره 4 (تابع سیگموید؛ Sigmoid):"
+        },
+        {
+          "source_lines": [
+            23,
+            24,
+            25
+          ],
+          "kind": "math",
+          "fa": "o4 = sigmoid(-0.7)\no4 = 1/(1+e^{−(-0.7)})\no4 = 0.332",
+          "latex": "\\begin{aligned}o_4&=\\operatorname{sigmoid}(-0.7)\\\\&=\\frac{1}{1+e^{-(-0.7)}}\\\\&=0.332\\end{aligned}"
+        },
+        {
+          "source_lines": [
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "kind": "text",
+          "fa": "1\n1\n1 1\n0\n1"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "f88162fa16b7bfa4217b133d573069fd4efa0b32abb8d00dc310be2744503ac9",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "kind": "text",
+          "fa": "مثال: گام 1 ـ گذر رو به جلو (Forward Pass)\nW1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\n6\n4\n5\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\nt1 = 1\no4 = 0.332\no5 = ?\no6\nورودی گره 5:"
+        },
+        {
+          "source_lines": [
+            20,
+            21,
+            22
+          ],
+          "kind": "math",
+          "fa": "i5 = (1 x -0.3 + 0 x 0.1 + 1 x 0.2) + 0.2\ni5 = 0.1",
+          "latex": "\\begin{aligned}i_5&=(1\\cdot -0.3 + 0\\cdot 0.1 + 1\\cdot 0.2) + 0.2\\\\&=0.1\\end{aligned}"
+        },
+        {
+          "source_lines": [
+            23
+          ],
+          "kind": "text",
+          "fa": "خروجی گره 5 (تابع سیگموید؛ Sigmoid):"
+        },
+        {
+          "source_lines": [
+            24,
+            25,
+            26
+          ],
+          "kind": "math",
+          "fa": "o5 = sigmoid(0.1)\no5 = 1/(1+e^{−0.1})\no5 = 0.525",
+          "latex": "\\begin{aligned}o_5&=\\operatorname{sigmoid}(0.1)\\\\&=\\frac{1}{1+e^{-(0.1)}}\\\\&=0.525\\end{aligned}"
+        },
+        {
+          "source_lines": [
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "kind": "text",
+          "fa": "1\n1\n1 1\n0\n1"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "3b79e276f5345c216d99ec8900fe90b286cf5ce45edf4fff62fadfb6305550b7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "kind": "text",
+          "fa": "مثال: گام 1 ـ گذر رو به جلو (Forward Pass)\nW1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\n6\n4\n5\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\nt1 = 1\no4 = 0.332\no6 = ?\no5 = 0.525\nورودی گره 6:"
+        },
+        {
+          "source_lines": [
+            20,
+            21,
+            22
+          ],
+          "kind": "math",
+          "fa": "i6 = (0.332 x -0.3 + 0.1 x -0.2) + 0.1\ni6 = -0.105",
+          "latex": "\\begin{aligned}i_6&=(0.332\\cdot -0.3 + 0.1\\cdot -0.2) + 0.1\\\\&=-0.105\\end{aligned}"
+        },
+        {
+          "source_lines": [
+            23
+          ],
+          "kind": "text",
+          "fa": "خروجی گره 6 (تابع سیگموید؛ Sigmoid):"
+        },
+        {
+          "source_lines": [
+            24,
+            25,
+            26
+          ],
+          "kind": "math",
+          "fa": "o6 = sigmoid(-0.105)\no6 = 1/(1+e^{−(-0.105)})\no6 = 0.474",
+          "latex": "\\begin{aligned}o_6&=\\operatorname{sigmoid}(-0.105)\\\\&=\\frac{1}{1+e^{-(-0.105)}}\\\\&=0.474\\end{aligned}"
+        },
+        {
+          "source_lines": [
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "kind": "text",
+          "fa": "1\n1\n1 1\n0\n1"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "d4c88f9b2b64f97a004f3d30bb00c9d0a29e86e6aa1777c3808270143253372b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "kind": "text",
+          "fa": "آموزش: شبکه‌های عصبی (Neural Networks) چگونه یاد می‌گیرند\n• تا برآورده‌شدن معیار توقف تکرار کنید:\n1. گذر رو به جلو (Forward Pass): داده‌های آموزش را از مدل عبور دهید تا پیش‌بینی انجام شود.\n2. نارضایتی از نتایج مدل روی داده‌های آموزش را کمّی کنید.\n3. گذر رو به عقب (Backward Pass): با استفاده از خروجی پیش‌بینی‌شده، گرادیان‌ها را در جهت عقب محاسبه کنید تا سهم تقصیر هر پارامتر مدل مشخص شود.\nشکل از: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul,\nJeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018\nاز تابع هدف/زیان (Objective/Loss Function) برای محاسبهٔ خطا استفاده می‌شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(a) Forward pass",
+          "fa": "(a) گذر رو به جلو (Forward Pass)",
+          "verified": true
+        },
+        {
+          "en": "(b) Backward pass",
+          "fa": "(b) گذر رو به عقب (Backward Pass)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "6a0708ba651787377192ef80cdd057d31f8270d81d1b03bdbd69e7aecda3fbf3",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ],
+          "kind": "text",
+          "fa": "مثال: گام 2 ـ گذر رو به عقب (Backward Pass)\nW1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\n6\n4\n5\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = ?\n1\n1\n1 1\n0\n1"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "c578863fe78caf4730835b47cb97810fb668d14dad2588731f19a8c49c557d47",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "kind": "text",
+          "fa": "مثال: گام 2 ـ گذر رو به عقب (Backward Pass)\nW1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\n6\n4\n5\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = ?\nخطا در گره 6:"
+        },
+        {
+          "source_lines": [
+            21,
+            22
+          ],
+          "kind": "math",
+          "fa": "e6 = (1-0.474) (0.474)(1-0.474)\ne6 = 0.1311",
+          "latex": "\\begin{aligned}e_6&=(1-0.474) (0.474)(1-0.474)\\\\&=0.1311\\end{aligned}"
+        },
+        {
+          "source_lines": [
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "kind": "text",
+          "fa": "1\n1\n1 1\n0\n1"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "∂E/∂wⱼₖ = −(tₖ−oₖ) * sigmoid(Σⱼ wⱼₖ*oⱼ) * (1−sigmoid(Σⱼ wⱼₖ*oⱼ))",
+          "fa": "∂E/∂wⱼₖ = −(tₖ−oₖ) * sigmoid(Σⱼ wⱼₖ*oⱼ) * (1−sigmoid(Σⱼ wⱼₖ*oⱼ))",
+          "verified": true,
+          "latex": "\\begin{aligned}\\frac{\\partial E}{\\partial w_{jk}}={}&-(t_k-o_k)\\\\&\\cdot\\operatorname{sigmoid}\\!\\left(\\sum_jw_{jk}o_j\\right)\\\\&\\cdot\\left(1-\\operatorname{sigmoid}\\!\\left(\\sum_jw_{jk}o_j\\right)\\right)\\end{aligned}"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "79068eb150324a3c4cf9fff27d9467fc4329c187688df171366779dd35555e9c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "kind": "text",
+          "fa": "مثال: گام 2 ـ گذر رو به عقب (Backward Pass)\nW1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\n6\n4\n5\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\nt1 = 1\no4 = 0.332\nخطا در گره 5:"
+        },
+        {
+          "source_lines": [
+            18,
+            19
+          ],
+          "kind": "math",
+          "fa": "e5 = (0.1311)(-0.2)(0.525)(1-0.525)\ne5 = -0.0065",
+          "latex": "\\begin{aligned}e_5&=(0.1311)(-0.2)(0.525)(1-0.525)\\\\&=-0.0065\\end{aligned}"
+        },
+        {
+          "source_lines": [
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "kind": "text",
+          "fa": "o6 = 0.474\no5 = 0.525\ne6 = 0.1311\ne5 = ?\n1\n1\n1 1\n0\n1"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "∂E/∂wᵢⱼ = −(Σₖ Errₖwⱼₖ) * sigmoid(Σᵢ wᵢⱼ*oᵢ) * (1−sigmoid(Σᵢ wᵢⱼ*oᵢ))",
+          "fa": "∂E/∂wᵢⱼ = −(Σₖ Errₖwⱼₖ) * sigmoid(Σᵢ wᵢⱼ*oᵢ) * (1−sigmoid(Σᵢ wᵢⱼ*oᵢ))",
+          "verified": true,
+          "latex": "\\begin{aligned}\\frac{\\partial E}{\\partial w_{ij}}={}&-\\left(\\sum_k\\operatorname{Err}_kw_{jk}\\right)\\\\&\\cdot\\operatorname{sigmoid}\\!\\left(\\sum_iw_{ij}o_i\\right)\\\\&\\cdot\\left(1-\\operatorname{sigmoid}\\!\\left(\\sum_iw_{ij}o_i\\right)\\right)\\end{aligned}"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "74a46e4740a43ed23d38d60bc84673d2589dca90b6297970b119f61446222733",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "kind": "text",
+          "fa": "مثال: گام 2 ـ گذر رو به عقب (Backward Pass)\nW1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\n6\n4\n5\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\nt1 = 1\no4 = 0.332\nخطا در گره 4:"
+        },
+        {
+          "source_lines": [
+            18,
+            19
+          ],
+          "kind": "math",
+          "fa": "e4 = (0.1311)(-0.3)(0.332)(1-0.332)\ne4 = -0.0087",
+          "latex": "\\begin{aligned}e_4&=(0.1311)(-0.3)(0.332)(1-0.332)\\\\&=-0.0087\\end{aligned}"
+        },
+        {
+          "source_lines": [
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "kind": "text",
+          "fa": "o6 = 0.474\no5 = 0.525\ne6 = 0.1311 e4 = ?\ne5 = -0.0065\n1\n1\n1 1\n0\n1"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "∂E/∂wᵢⱼ = −(Σₖ Errₖwⱼₖ) * sigmoid(Σᵢ wᵢⱼ*oᵢ) * (1−sigmoid(Σᵢ wᵢⱼ*oᵢ))",
+          "fa": "∂E/∂wᵢⱼ = −(Σₖ Errₖwⱼₖ) * sigmoid(Σᵢ wᵢⱼ*oᵢ) * (1−sigmoid(Σᵢ wᵢⱼ*oᵢ))",
+          "verified": true,
+          "latex": "\\begin{aligned}\\frac{\\partial E}{\\partial w_{ij}}={}&-\\left(\\sum_k\\operatorname{Err}_kw_{jk}\\right)\\\\&\\cdot\\operatorname{sigmoid}\\!\\left(\\sum_iw_{ij}o_i\\right)\\\\&\\cdot\\left(1-\\operatorname{sigmoid}\\!\\left(\\sum_iw_{ij}o_i\\right)\\right)\\end{aligned}"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "a941e8c361018951d024e34abf411d420212d543d97f239a7e6552444a4d417c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25
+          ],
+          "kind": "text",
+          "fa": "مثال: گام 2 ـ گذر رو به عقب (Backward Pass)\nW1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\n6\n4\n5\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = 0.1311 e4 = -0.0087\ne5 = -0.0065\n1\n1\n1 1\n0\n1"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "6ddde01edc15d4bb3d99206630181994461ea65372d081800e1a2e617d866c62",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "kind": "text",
+          "fa": "آموزش: شبکه‌های عصبی (Neural Networks) چگونه یاد می‌گیرند\n• تا برآورده‌شدن معیار توقف تکرار کنید:\n1. گذر رو به جلو (Forward Pass): داده‌های آموزش را از مدل عبور دهید تا پیش‌بینی انجام شود.\n2. نارضایتی از نتایج مدل روی داده‌های آموزش را کمّی کنید.\n3. گذر رو به عقب (Backward Pass): با استفاده از خروجی پیش‌بینی‌شده، گرادیان‌ها را در جهت عقب محاسبه کنید تا سهم تقصیر هر پارامتر مدل مشخص شود.\n4. هر پارامتر را با استفاده از گرادیان‌های محاسبه‌شده به‌روز کنید.\nشکل از: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul,\nJeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(a) Forward pass",
+          "fa": "(a) گذر رو به جلو (Forward Pass)",
+          "verified": true
+        },
+        {
+          "en": "(b) Backward pass",
+          "fa": "(b) گذر رو به عقب (Backward Pass)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "ff2c5ab981cb06e0ee5046d6da00cd022cd308e0e8eb7e32c64e636acfb87088",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25
+          ],
+          "kind": "text",
+          "fa": "مثال: گام 3 ـ به‌روزرسانی وزن‌ها (Weights)\nW1,4 = ?\nW4,6 = ?\nW5,6 = ?\nW1,5 = ?\nW2,4 = ?\nW2,5 = ?\nW3,4 = ?\nW3,5 = ?\n6\n4\n5\nb4 = ?\nb5 = ?\nb6 = ?\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = 0.1311 e4 = -0.0087\ne5 = -0.0065\n1\n1\n1 1\n0\n1"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "7e2b4b65e757afa3d49a02ffb49390d9ea5e7326c218d1d1bf581feb7da90dc9",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "مثال: گام 3 ـ به‌روزرسانی وزن‌ها (Weights)\n6\n4\n5\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = 0.1311 e4 = -0.0087\ne5 = -0.0065\nوزن‌های جدید (نرخ یادگیری؛ Learning Rate = 0.9):"
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "math",
+          "fa": "w4,6 = -0.3 + (0.9)(0.1311)(0.332)\nw4,6 = -0.261",
+          "latex": "\\begin{aligned}w_{4,6}&=-0.3 + (0.9)(0.1311)(0.332)\\\\&=-0.261\\end{aligned}"
+        },
+        {
+          "source_lines": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "kind": "text",
+          "fa": "W1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\nبرای کارایی اینجا اضافه کنید (از معادلهٔ قبلی حذف شده بود)\n1\n1\n1 1\n0\n1"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "wⱼₖ = wⱼₖ + η Errₖ oⱼ",
+          "fa": "wⱼₖ = wⱼₖ + η Errₖ oⱼ",
+          "verified": true,
+          "latex": "w_{jk}=w_{jk}+\\eta\\operatorname{Err}_ko_j"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "996f56aa36cb482169bd6a92eb80be041f7b858b6b9302480a5108e3d733084b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "مثال: گام 3 ـ به‌روزرسانی وزن‌ها (Weights)\n6\n4\n5\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = 0.1311 e4 = -0.0087\ne5 = -0.0065\nوزن‌های جدید (نرخ یادگیری؛ Learning Rate = 0.9):"
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "math",
+          "fa": "w5,6 = -0.2 + (0.9)(0.1311)(0.525)\nw5,6 = -0.138",
+          "latex": "\\begin{aligned}w_{5,6}&=-0.2 + (0.9)(0.1311)(0.525)\\\\&=-0.138\\end{aligned}"
+        },
+        {
+          "source_lines": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "kind": "text",
+          "fa": "W1,4 = 0.2\nW4,6 = -0.261\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\n1\n1\n1 1\n0\n1"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "wⱼₖ = wⱼₖ + η Errₖ oⱼ",
+          "fa": "wⱼₖ = wⱼₖ + η Errₖ oⱼ",
+          "verified": true,
+          "latex": "w_{jk}=w_{jk}+\\eta\\operatorname{Err}_ko_j"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "74a4428c593b95250fd457f871144f8a2a2a2551bd13fcfa01f954a233d7671e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "مثال: گام 3 ـ به‌روزرسانی وزن‌ها (Weights)\n6\n4\n5\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = 0.1311 e4 = -0.0087\ne5 = -0.0065\nبایاس (Bias) جدید (نرخ یادگیری؛ Learning Rate = 0.9):"
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "math",
+          "fa": "b6 = 0.1 + (0.9)(0.1311)\nb6 = 0.218",
+          "latex": "\\begin{aligned}b_{6}&=0.1 + (0.9)(0.1311)\\\\&=0.218\\end{aligned}"
+        },
+        {
+          "source_lines": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "kind": "text",
+          "fa": "W1,4 = 0.2\nW4,6 = -0.261\nW5,6 = -0.138\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\n1\n1\n1 1\n0\n1"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "bₖ = bₖ + η Errₖ",
+          "fa": "bₖ = bₖ + η Errₖ",
+          "verified": true,
+          "latex": "b_k=b_k+\\eta\\operatorname{Err}_k"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "2bfa32176c834eb0bbde70b74584cd441283ccd4ee115d932144ce00c1631ecc",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "مثال: گام 3 ـ به‌روزرسانی وزن‌ها (Weights)\n6\n4\n5\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = 0.1311 e4 = -0.0087\ne5 = -0.0065\nوزن‌های جدید (نرخ یادگیری؛ Learning Rate = 0.9):"
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "math",
+          "fa": "w1,4 = 0.2 + (0.9)(-0.0087)(1)\nw1,4 = 0.192",
+          "latex": "\\begin{aligned}w_{1,4}&=0.2 + (0.9)(-0.0087)(1)\\\\&=0.192\\end{aligned}"
+        },
+        {
+          "source_lines": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "kind": "text",
+          "fa": "W1,4 = 0.2\nW4,6 = -0.261\nW5,6 = -0.138\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.218\n1\n1\n1 1\n0\n1"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "wⱼₖ = wⱼₖ + η Errₖ oⱼ",
+          "fa": "wⱼₖ = wⱼₖ + η Errₖ oⱼ",
+          "verified": true,
+          "latex": "w_{jk}=w_{jk}+\\eta\\operatorname{Err}_ko_j"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "bbd20664bdcd51d7b7cc0d396950739c288b249b0b4f4712cafef55570bff795",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "مثال: گام 3 ـ به‌روزرسانی وزن‌ها (Weights)\n6\n4\n5\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = 0.1311 e4 = -0.0087\ne5 = -0.0065\nوزن‌های جدید (نرخ یادگیری؛ Learning Rate = 0.9):"
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "math",
+          "fa": "w1,5 = -0.3 + (0.9)(-0.0065)(1)\nw1,5 = -0.306",
+          "latex": "\\begin{aligned}w_{1,5}&=-0.3 + (0.9)(-0.0065)(1)\\\\&=-0.306\\end{aligned}"
+        },
+        {
+          "source_lines": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "kind": "text",
+          "fa": "W1,4 = 0.192\nW4,6 = -0.261\nW5,6 = -0.138\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.218\n1\n1\n1 1\n0\n1"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "wⱼₖ = wⱼₖ + η Errₖ oⱼ",
+          "fa": "wⱼₖ = wⱼₖ + η Errₖ oⱼ",
+          "verified": true,
+          "latex": "w_{jk}=w_{jk}+\\eta\\operatorname{Err}_ko_j"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "1144b1d79755773bc9fa5ed9d098dc7e8ab56d1c6042fea8049029b15d6941ac",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "مثال: گام 3 ـ به‌روزرسانی وزن‌ها (Weights)\n6\n4\n5\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = 0.1311 e4 = -0.0087\ne5 = -0.0065\nوزن‌های جدید (نرخ یادگیری؛ Learning Rate = 0.9):"
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "math",
+          "fa": "w2,4 = 0.4 + (0.9)(-0.0087)(0)\nw2,4 = 0.4",
+          "latex": "\\begin{aligned}w_{2,4}&=0.4 + (0.9)(-0.0087)(0)\\\\&=0.4\\end{aligned}"
+        },
+        {
+          "source_lines": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "kind": "text",
+          "fa": "W1,4 = 0.192\nW4,6 = -0.261\nW5,6 = -0.138\nW1,5 = -0.306\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.218\n1\n1\n1 1\n0\n1"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "wⱼₖ = wⱼₖ + η Errₖ oⱼ",
+          "fa": "wⱼₖ = wⱼₖ + η Errₖ oⱼ",
+          "verified": true,
+          "latex": "w_{jk}=w_{jk}+\\eta\\operatorname{Err}_ko_j"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "494cb707df2b3e161804061f43555016157d26aead27a281560eb6257d0ef7ad",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "مثال: گام 3 ـ به‌روزرسانی وزن‌ها (Weights)\n6\n4\n5\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = 0.1311 e4 = -0.0087\ne5 = -0.0065\nوزن‌های جدید (نرخ یادگیری؛ Learning Rate = 0.9):"
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "math",
+          "fa": "w2,5 = 0.1 + (0.9)(-0.0065)(0)\nw2,5 = 0.1",
+          "latex": "\\begin{aligned}w_{2,5}&=0.1 + (0.9)(-0.0065)(0)\\\\&=0.1\\end{aligned}"
+        },
+        {
+          "source_lines": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "kind": "text",
+          "fa": "W1,4 = 0.192\nW4,6 = -0.261\nW5,6 = -0.138\nW1,5 = -0.306\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.218\n1\n1\n1 1\n0\n1"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "wⱼₖ = wⱼₖ + η Errₖ oⱼ",
+          "fa": "wⱼₖ = wⱼₖ + η Errₖ oⱼ",
+          "verified": true,
+          "latex": "w_{jk}=w_{jk}+\\eta\\operatorname{Err}_ko_j"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "494cb707df2b3e161804061f43555016157d26aead27a281560eb6257d0ef7ad",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "مثال: گام 3 ـ به‌روزرسانی وزن‌ها (Weights)\n6\n4\n5\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = 0.1311 e4 = -0.0087\ne5 = -0.0065\nوزن‌های جدید (نرخ یادگیری؛ Learning Rate = 0.9):"
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "math",
+          "fa": "w2,5 = 0.1 + (0.9)(-0.0065)(0)\nw2,5 = 0.1",
+          "latex": "\\begin{aligned}w_{2,5}&=0.1 + (0.9)(-0.0065)(0)\\\\&=0.1\\end{aligned}"
+        },
+        {
+          "source_lines": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "kind": "text",
+          "fa": "W1,4 = 0.192\nW4,6 = -0.261\nW5,6 = -0.138\nW1,5 = -0.306\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.218\n1\n1\n1 1\n0\n1"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "wⱼₖ = wⱼₖ + η Errₖ oⱼ",
+          "fa": "wⱼₖ = wⱼₖ + η Errₖ oⱼ",
+          "verified": true,
+          "latex": "w_{jk}=w_{jk}+\\eta\\operatorname{Err}_ko_j"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "aae37e720cdf25a91d02b00520fe8ff9e29728e2c2f7ccc2362aab1c64fc5a4a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "مثال: گام 3 ـ به‌روزرسانی وزن‌ها (Weights)\n6\n4\n5\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = 0.1311 e4 = -0.0087\ne5 = -0.0065\nوزن‌های جدید (نرخ یادگیری؛ Learning Rate = 0.9):"
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "math",
+          "fa": "w3,4 = -0.5 + (0.9)(-0.0087)(1)\nw3,4 = -0.508",
+          "latex": "\\begin{aligned}w_{3,4}&=-0.5 + (0.9)(-0.0087)(1)\\\\&=-0.508\\end{aligned}"
+        },
+        {
+          "source_lines": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "kind": "text",
+          "fa": "W1,4 = 0.192\nW4,6 = -0.261\nW5,6 = -0.138\nW1,5 = -0.306\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.218\n1\n1\n1 1\n0\n1"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "wⱼₖ = wⱼₖ + η Errₖ oⱼ",
+          "fa": "wⱼₖ = wⱼₖ + η Errₖ oⱼ",
+          "verified": true,
+          "latex": "w_{jk}=w_{jk}+\\eta\\operatorname{Err}_ko_j"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "dad9c8bedcac54dd58cab15f7dd543390bd5abe0a05841e303d1fe2e28e0e7de",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "مثال: گام 3 ـ به‌روزرسانی وزن‌ها (Weights)\n6\n4\n5\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = 0.1311 e4 = -0.0087\ne5 = -0.0065\nوزن‌های جدید (نرخ یادگیری؛ Learning Rate = 0.9):"
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "math",
+          "fa": "w3,5 = 0.2 + (0.9)(-0.0065)(1)\nw3,5 = 01.94",
+          "latex": "\\begin{aligned}w_{3,5}&=0.2 + (0.9)(-0.0065)(1)\\\\&=01.94\\end{aligned}"
+        },
+        {
+          "source_lines": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "kind": "text",
+          "fa": "W1,4 = 0.192\nW4,6 = -0.261\nW5,6 = -0.138\nW1,5 = -0.306\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.508\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.218\n1\n1\n1 1\n0\n1"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "wⱼₖ = wⱼₖ + η Errₖ oⱼ",
+          "fa": "wⱼₖ = wⱼₖ + η Errₖ oⱼ",
+          "verified": true,
+          "latex": "w_{jk}=w_{jk}+\\eta\\operatorname{Err}_ko_j"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "704e42d0351a3e3203c3ca30e1b6351927dec2e7430b5176469482601c32d558",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "مثال: گام 3 ـ به‌روزرسانی وزن‌ها (Weights)\n6\n4\n5\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = 0.1311 e4 = -0.0087\ne5 = -0.0065\nبایاس (Bias) جدید (نرخ یادگیری؛ Learning Rate = 0.9):"
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "math",
+          "fa": "b5 = 0.2 + (0.9)(-0.0065)\nb5 = 0.194",
+          "latex": "\\begin{aligned}b_{5}&=0.2 + (0.9)(-0.0065)\\\\&=0.194\\end{aligned}"
+        },
+        {
+          "source_lines": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "kind": "text",
+          "fa": "W1,4 = 0.192\nW4,6 = -0.261\nW5,6 = -0.138\nW1,5 = -0.306\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.508\nW3,5 = 0.194\nb4 = -0.4\nb5 = 0.2\nb6 = 0.218\n1\n1\n1 1\n0\n1"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "bₖ = bₖ + η Errₖ",
+          "fa": "bₖ = bₖ + η Errₖ",
+          "verified": true,
+          "latex": "b_k=b_k+\\eta\\operatorname{Err}_k"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "5c587d63f0c8b7ae02f8b0830e83846e1962f2cf609e24176b3f82024d05931c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "مثال: گام 3 ـ به‌روزرسانی وزن‌ها (Weights)\n6\n4\n5\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = 0.1311 e4 = -0.0087\ne5 = -0.0065\nبایاس (Bias) جدید (نرخ یادگیری؛ Learning Rate = 0.9):"
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "math",
+          "fa": "b4 = -0.4 + (0.9)(-0.0087)\nb4 = -0.408",
+          "latex": "\\begin{aligned}b_{4}&=-0.4 + (0.9)(-0.0087)\\\\&=-0.408\\end{aligned}"
+        },
+        {
+          "source_lines": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "kind": "text",
+          "fa": "W1,4 = 0.192\nW4,6 = -0.261\nW5,6 = -0.138\nW1,5 = -0.306\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.508\nW3,5 = 0.194\nb4 = -0.4\nb5 = 0.2\nb6 = 0.218\n1\n1\n1 1\n0\n1"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "bₖ = bₖ + η Errₖ",
+          "fa": "bₖ = bₖ + η Errₖ",
+          "verified": true,
+          "latex": "b_k=b_k+\\eta\\operatorname{Err}_k"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "8d3d87f59ceb542fa2b143712d900e162ec7451d48704d522b023c5d3a96f8c8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25
+          ],
+          "kind": "text",
+          "fa": "گام‌های 1-3 را با نمونه‌های جدید تکرار کنید\n6\n4\n5\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = 0.1311 e4 = -0.0087\ne5 = -0.0065\nW1,4 = 0.192\nW4,6 = -0.261\nW5,6 = -0.138\nW1,5 = -0.306\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.508\nW3,5 = 0.194\nb4 = -0.408\nb5 = 0.2\nb6 = 0.218\n1\n1\nx1 1\nx2\nx3"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 71,
+      "source_text_sha256": "427272c13948964007398e854cd1f8487b961037272cfe2f20c9b910d9cc0900",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "kind": "text",
+          "fa": "گام‌های 1-4 را با نمونه‌های جدید تکرار کنید\n• تا برآورده‌شدن معیار توقف تکرار کنید:\n1. گذر رو به جلو (Forward Pass): داده‌های آموزش را از مدل عبور دهید تا پیش‌بینی انجام شود.\n2. نارضایتی از نتایج مدل روی داده‌های آموزش را کمّی کنید.\n3. گذر رو به عقب (Backward Pass): با استفاده از خروجی پیش‌بینی‌شده، گرادیان‌ها را در جهت عقب محاسبه کنید تا سهم تقصیر هر پارامتر مدل مشخص شود.\n4. هر پارامتر را با استفاده از گرادیان‌های محاسبه‌شده به‌روز کنید.\nشکل از: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul,\nJeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018\nاز تابع هدف/زیان (Objective/Loss Function) برای محاسبهٔ خطا استفاده می‌شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(a) Forward pass",
+          "fa": "(a) گذر رو به جلو (Forward Pass)",
+          "verified": true
+        },
+        {
+          "en": "(b) Backward pass",
+          "fa": "(b) گذر رو به عقب (Backward Pass)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 72,
+      "source_text_sha256": "2f0914967dec71fe1cbe3b445297023df8e7e9ba0b13ff753e6b445a898e0270",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "kind": "text",
+          "fa": "گام‌های 1-4 را با نمونه‌های جدید تکرار کنید\n• تا برآورده‌شدن معیار توقف تکرار کنید:\n1. گذر رو به جلو (Forward Pass): داده‌های آموزش را از مدل عبور دهید تا پیش‌بینی انجام شود.\n2. نارضایتی از نتایج مدل روی داده‌های آموزش را کمّی کنید.\n3. گذر رو به عقب (Backward Pass): با استفاده از خروجی پیش‌بینی‌شده، گرادیان‌ها را در جهت عقب محاسبه کنید تا سهم تقصیر هر پارامتر مدل مشخص شود.\n4. هر پارامتر را با استفاده از گرادیان‌های محاسبه‌شده به‌روز کنید.\nدر مثال کوچک از چه نوع نزول گرادیانی (Gradient Descent) استفاده شد؟\na. نزول گرادیان دسته‌ای (Batch Gradient Descent)\nb. نزول گرادیان تصادفی (Stochastic Gradient Descent)\nc. نزول گرادیان مینی‌دسته‌ای (Mini-batch Gradient Descent)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 73,
+      "source_text_sha256": "32e0c4705b2f4ace00ae3afaeeff314d1667ae4ca717c7b7633f25652e63f681",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "kind": "text",
+          "fa": "آموزش: شبکه‌های عصبی (Neural Networks) چگونه یاد می‌گیرند\nشکل از: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul,\nJeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018\nبرای نزول گرادیان دسته‌ای و مینی‌دسته‌ای (Batch / Mini-batch Gradient Descent) از میانگین گرادیان استفاده می‌شود.\n• تا برآورده‌شدن معیار توقف تکرار کنید:\n1. گذر رو به جلو (Forward Pass): داده‌های آموزش را از مدل عبور دهید تا پیش‌بینی انجام شود.\n2. نارضایتی از نتایج مدل روی داده‌های آموزش را کمّی کنید.\n3. گذر رو به عقب (Backward Pass): با استفاده از خروجی پیش‌بینی‌شده، گرادیان‌ها را در جهت عقب محاسبه کنید تا سهم تقصیر هر پارامتر مدل مشخص شود.\n4. هر پارامتر را با استفاده از گرادیان‌های محاسبه‌شده به‌روز کنید."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(b) Backward pass",
+          "fa": "(b) گذر رو به عقب (Backward Pass)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 74,
+      "source_text_sha256": "14bea52e302bbf25633f97aa6ebb91e8afdfdc3e1b35aa41e7fee5b42afb1580",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "* نکتهٔ عملی (بیشتر در جلسه‌های آینده)\nhttps://github.com/amueller/introduction_to_ml_with_python/blob/master/03-unsupervised-learning.ipynb\nرویکرد پایه برای مقداردهی اولیهٔ داده‌ها:\n- استانداردسازی (Standardization) به‌طوری که میانگین 0 و انحراف معیار 1 باشد\n- یادگیری را ساده می‌کند.\nمقداردهی اولیهٔ پایهٔ پارامترهای مدل:\n- وزن‌ها را برابر مقدارهای تصادفی گرفته‌شده از توزیع گاوسی (Gaussian) یا یکنواخت (Uniform) قرار دهید.\n- بایاس‌ها (Biases) را 0 قرار دهید.\nداده‌های اصلی: داده‌های استانداردشده:"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 75,
+      "source_text_sha256": "f4a45d277686303bb11e41053516c77f8592c21aa6dd567e8c25ce95f736b415",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• تابع هدف (Objective Function): چه چیزی یاد بگیریم\n• نزول گرادیان (Gradient Descent): چگونه یاد بگیریم\n• آموزش شبکهٔ عصبی: بهینه‌سازی (Optimization)\n• نزول گرادیان برای توابع فعال‌سازی (Activation Functions)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 76,
+      "source_text_sha256": "acbbacd6292f6ebdb4af1590cdd603f80a33168a0fb1bcdfaef65bbbff1d9525",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "چالش هنگام انتخاب توابع فعال‌سازی (Activation Functions)\nمی‌خواهیم تابع:\n1) مشتق‌پذیر باشد.\n2) سیگنال گرادیان (Gradient) کافی برای پشتیبانی از نزول گرادیان (Gradient Descent) فراهم کند."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 77,
+      "source_text_sha256": "9484f9bfdc95d52b518b4651a5c251a801ad29cb6c33bfb323fe848a97d9f7dc",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "توابع فعال‌سازی (Activation Functions) با گرادیان: بازگشت به پرسپترون (Perceptron)\nPython Machine Learning; Raschka & Mirjalili\nگرادیان تابع پله‌ای (Step Function) چیست؟\nDeep Learning for NLP and Speech Recognition; Kamath, Liu, & Whitaker\nدر همه‌جا 0 است، به‌جز در 0 که مشتق‌پذیر نیست.\nنبود گرادیان یعنی پارامترهای مدل با نزول گرادیان (Gradient Descent) تغییر نمی‌کنند!"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Net input function",
+          "fa": "تابع ورودی خالص (Net Input Function)",
+          "verified": true
+        },
+        {
+          "en": "Threshold function",
+          "fa": "تابع آستانه (Threshold Function)",
+          "verified": true
+        },
+        {
+          "en": "Output",
+          "fa": "خروجی (Output)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 78,
+      "source_text_sha256": "c2e0e12f49fa6b41b3e006e33341acabe93b94ba661c22542f6062182caa81bc",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "توابع فعال‌سازی (Activation Functions) با گرادیان: توابع فعال‌سازی غیرخطی (Nonlinear)\nMasi et al. Journal of the Mechanics and Physics of Solids. 2021\nسیگموید (Sigmoid)؛ تانژانت هذلولوی (Tanh)؛ ReLU؛ ELU\nگرادیان کوچک، میزان تغییر پارامترهای مدل با نزول گرادیان (Gradient Descent) را محدود می‌کند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "A(z) = 1/(1+e⁻ᶻ)",
+          "fa": "A(z) = 1/(1+e⁻ᶻ)",
+          "verified": true,
+          "latex": "A(z)=\\frac{1}{1+e^{-z}}"
+        },
+        {
+          "en": "A′(z) = e⁻ᶻ/(1+e⁻ᶻ)²",
+          "fa": "A′(z) = e⁻ᶻ/(1+e⁻ᶻ)²",
+          "verified": true,
+          "latex": "A'(z)=\\frac{e^{-z}}{(1+e^{-z})^2}"
+        },
+        {
+          "en": "tanh(z); cosh⁻²(z)",
+          "fa": "tanh(z)؛ cosh⁻²(z)",
+          "verified": true,
+          "latex": "\\tanh(z),\\qquad\\cosh^{-2}(z)"
+        },
+        {
+          "en": "max(0,z); max(0,1)",
+          "fa": "max(0,z)؛ max(0,1)",
+          "verified": true,
+          "latex": "\\max(0,z),\\qquad\\max(0,1)"
+        },
+        {
+          "en": "A(z<0)=eᶻ−1; A(z≥0)=z",
+          "fa": "A(z<0)=eᶻ−1؛ A(z≥0)=z",
+          "verified": true,
+          "latex": "A(z<0)=e^z-1,\\qquad A(z\\ge0)=z"
+        },
+        {
+          "en": "A′(z<0)=eᶻ; A′(z≥0)=1",
+          "fa": "A′(z<0)=eᶻ؛ A′(z≥0)=1",
+          "verified": true,
+          "latex": "A'(z<0)=e^z,\\qquad A'(z\\ge0)=1"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 79,
+      "source_text_sha256": "bbd94647f8f0b1f0a01945af014d358579ea8706d04d0058e531da0a81ce5dfe",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "توابع فعال‌سازی (Activation Functions) با گرادیان: توابع فعال‌سازی غیرخطی (Nonlinear)\nMasi et al. Journal of the Mechanics and Physics of Solids. 2021\nسیگموید (Sigmoid)؛ تانژانت هذلولوی (Tanh)؛ ReLU؛ ELU\nگرادیان‌های همواره بزرگِ توابع فعال‌سازی مبتنی بر ELU از یادگیری پشتیبانی می‌کنند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "A(z) = 1/(1+e⁻ᶻ)",
+          "fa": "A(z) = 1/(1+e⁻ᶻ)",
+          "verified": true,
+          "latex": "A(z)=\\frac{1}{1+e^{-z}}"
+        },
+        {
+          "en": "A′(z) = e⁻ᶻ/(1+e⁻ᶻ)²",
+          "fa": "A′(z) = e⁻ᶻ/(1+e⁻ᶻ)²",
+          "verified": true,
+          "latex": "A'(z)=\\frac{e^{-z}}{(1+e^{-z})^2}"
+        },
+        {
+          "en": "tanh(z); cosh⁻²(z)",
+          "fa": "tanh(z)؛ cosh⁻²(z)",
+          "verified": true,
+          "latex": "\\tanh(z),\\qquad\\cosh^{-2}(z)"
+        },
+        {
+          "en": "max(0,z); max(0,1)",
+          "fa": "max(0,z)؛ max(0,1)",
+          "verified": true,
+          "latex": "\\max(0,z),\\qquad\\max(0,1)"
+        },
+        {
+          "en": "A(z<0)=eᶻ−1; A(z≥0)=z",
+          "fa": "A(z<0)=eᶻ−1؛ A(z≥0)=z",
+          "verified": true,
+          "latex": "A(z<0)=e^z-1,\\qquad A(z\\ge0)=z"
+        },
+        {
+          "en": "A′(z<0)=eᶻ; A′(z≥0)=1",
+          "fa": "A′(z<0)=eᶻ؛ A′(z≥0)=1",
+          "verified": true,
+          "latex": "A'(z<0)=e^z,\\qquad A'(z\\ge0)=1"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 80,
+      "source_text_sha256": "f4a45d277686303bb11e41053516c77f8592c21aa6dd567e8c25ce95f736b415",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• تابع هدف (Objective Function): چه چیزی یاد بگیریم\n• نزول گرادیان (Gradient Descent): چگونه یاد بگیریم\n• آموزش شبکهٔ عصبی: بهینه‌سازی (Optimization)\n• نزول گرادیان برای توابع فعال‌سازی (Activation Functions)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 81,
+      "source_text_sha256": "e2ace0c5ec75814d4b03eb1a7f8d67c85d2148491ac54a886bd68c4947ad75b2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• تابع هدف (Objective Function): چه چیزی یاد بگیریم\n• نزول گرادیان (Gradient Descent): چگونه یاد بگیریم\n• آموزش شبکهٔ عصبی: بهینه‌سازی (Optimization)\n• نزول گرادیان برای توابع فعال‌سازی مختلف (Activation Functions)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 82,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    }
+  ]
+}

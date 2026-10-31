@@ -1,5 +1,6 @@
 import {test,expect} from '@playwright/test';
-import {readFileSync,mkdtempSync,writeFileSync,rmSync} from 'node:fs';
+import {readFileSync,mkdtempSync,writeFileSync,rmSync,mkdirSync} from 'node:fs';
+import {createHash} from 'node:crypto';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {spawn,execFileSync} from 'node:child_process';
@@ -89,5 +90,121 @@ test('downloaded bundle runs representative Python without any external network'
     await page.locator('[data-deck-next]').click();
     await expect(page.locator('.dl-slide:visible')).toHaveAttribute('id','slide-6');
     expect(external).toEqual([]);
+  }finally{if(server){server.kill();await new Promise(resolve=>server.once('exit',resolve));}rmSync(directory,{recursive:true,force:true});}
+});
+
+const readerTerm='spring-2026';
+const readerRegistry=JSON.parse(readFileSync(new URL('../data/metadata/source-readers.json',import.meta.url)));
+const readerSessions=readerRegistry.terms[readerTerm]||[];
+const sourceTerm=JSON.parse(readFileSync(new URL(`../data/metadata/${readerTerm}.json`,import.meta.url))).term;
+const sourceRows=sourceTerm.schedule.filter(row=>row.slides.length);
+const sourceLesson=id=>`/deep-learning/terms/${readerTerm}/${id}/`;
+const sourceDeck=id=>sourceLesson(id)+'slides/';
+const sha256=data=>createHash('sha256').update(data).digest('hex');
+function expectReference(actual,reference){
+  if(typeof actual==='number'&&typeof reference==='number')expect(Math.abs(actual-reference)).toBeLessThanOrEqual(Math.max(1e-12,Math.abs(reference)*1e-10));
+  else if(Array.isArray(reference)){expect(actual).toHaveLength(reference.length);reference.forEach((value,i)=>expectReference(actual[i],value));}
+  else if(reference&&typeof reference==='object'){expect(Object.keys(actual).sort()).toEqual(Object.keys(reference).sort());for(const key of Object.keys(reference))expectReference(actual[key],reference[key]);}
+  else expect(actual).toEqual(reference);
+}
+async function readerReady(page,number=1){
+  await expect.poll(()=>page.evaluate(()=>window.sourceSlideReader?.ready),{timeout:45000}).toBeTruthy();
+  expect(await page.evaluate(()=>[window.sourceSlideReader.page,window.sourceSlideReader.renderedPage])).toEqual([number,number]);
+  await expect(page.locator('[data-page-select]')).toHaveValue(String(number));
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-page',String(number));
+}
+function readerErrors(page){
+  const errors=[];
+  page.on('pageerror',error=>errors.push(error.message));
+  page.on('console',message=>{if(message.type()==='error'&&message.text().includes('Math.sumPrecise'))errors.push(message.text());});
+  return errors;
+}
+
+test('2026 catalog preserves all21originals and1303pages, registry names actual sessions',async()=>{
+  expect(sourceRows).toHaveLength(21);
+  expect(sourceRows.reduce((sum,row)=>sum+row.slides.reduce((n,source)=>n+source.page_count,0),0)).toBe(1303);
+  expect(new Set(readerSessions).size).toBe(readerSessions.length);
+  expect(readerSessions.every(id=>sourceRows.some(row=>row.id===id))).toBeTruthy();
+});
+
+test('registered2026readers align original and Persian pages, math, download and keyboard',async({page,request})=>{
+  test.skip(!readerSessions.length,'No complete2026translation is registered yet.');
+  test.setTimeout(Math.max(90000,readerSessions.length*50000));
+  const errors=readerErrors(page);
+  for(const id of readerSessions){
+    await page.goto(sourceDeck(id));await readerReady(page);
+    const config=await page.locator('#source-reader-config').evaluate(node=>JSON.parse(node.textContent));
+    const response=await request.get(config.translationUrl);expect(response.ok()).toBeTruthy();
+    const payload=await response.json();
+    expect(config.pageCount).toBe(payload.pages.length);
+    expect(config.sourceSha256).toBe(payload.source.sha256);
+    await expect(page.locator('[data-page-select] option')).toHaveCount(payload.pages.length);
+    await expect(page.locator('[data-original-download]')).toHaveAttribute('href',payload.source.local_url);
+    const pdf=await request.get(payload.source.local_url);expect(pdf.ok()).toBeTruthy();
+    const bytes=await pdf.body();expect(bytes.subarray(0,5).toString()).toBe('%PDF-');expect(sha256(bytes)).toBe(payload.source.sha256);
+    const target=Math.min(4,payload.pages.length);
+    await page.locator('[data-page-select]').evaluate((select,last)=>{for(let n=2;n<=last;n++){select.value=String(n);select.dispatchEvent(new Event('change',{bubbles:true}));}},target);
+    await readerReady(page,target);
+    const record=payload.pages[target-1];
+    const copy=record.blocks.find(block=>block.kind!=='not_visible'&&!block.latex&&block.fa.trim());
+    if(copy)await expect(page.locator('#persian-page')).toContainText(copy.fa.replace(/\s+/g,' '),{useInnerText:true});
+    const mathPage=payload.pages.findIndex(record=>record.blocks.some(block=>block.latex)||record.image_text.some(item=>item.latex));
+    if(mathPage>=0){await page.locator('[data-page-select]').selectOption(String(mathPage+1));await readerReady(page,mathPage+1);await expect(page.locator('#persian-page .katex').first()).toBeVisible();await expect(page.locator('[data-math-error]')).toHaveCount(0);}
+    expect(payload.pages.some(record=>record.blocks.some(block=>/[\u0600-\u06ff].*\([A-Za-z]/s.test(block.fa))||record.image_text.some(item=>/[\u0600-\u06ff].*\([A-Za-z]/s.test(item.fa)))).toBeTruthy();
+    await page.locator('body').click({position:{x:5,y:5}});await page.keyboard.press('Home');await readerReady(page,1);
+    await page.keyboard.press('ArrowLeft');await readerReady(page,Math.min(2,payload.pages.length));
+    await page.keyboard.press('End');await readerReady(page,payload.pages.length);
+    await page.evaluate(()=>{window.__printCalls=0;window.print=()=>window.__printCalls++;});
+    await page.locator('[data-print]').click();expect(await page.evaluate(()=>window.__printCalls)).toBe(1);
+    await page.emulateMedia({media:'print'});await expect(page.locator('#source-canvas')).toBeVisible();await expect(page.locator('#persian-page')).toBeVisible();await expect(page.locator('[data-print]')).toBeHidden();
+    await page.emulateMedia({media:'screen'});
+    const workshop=page.locator('[data-session-workshop]');
+    if(await workshop.count()){await expect(workshop).toHaveAttribute('href',sourceLesson(id)+'#workshop');await workshop.click();await expect(page.locator('#workshop')).toBeVisible();}
+  }
+  expect(errors).toEqual([]);
+});
+
+test('2026reader phone view keeps the selected original and translation together',async({page})=>{
+  test.skip(!readerSessions.length,'No complete2026translation is registered yet.');
+  await page.setViewportSize({width:390,height:844});const errors=readerErrors(page);
+  await page.goto(sourceDeck(readerSessions[0])+'#page=2');await readerReady(page,2);
+  await expect(page.locator('#original-panel')).toBeVisible();await expect(page.locator('#translation-panel')).toBeHidden();
+  await page.locator('[data-view-translation]').click();await expect(page.locator('#translation-panel')).toBeVisible();
+  await expect(page.locator('#original-panel')).toBeHidden();
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-page','2');
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBeTruthy();
+  await page.locator('[data-view-source]').click();await readerReady(page,2);expect(errors).toEqual([]);
+});
+
+test('downloaded2026bundle serves readers and every authored workshop under a prefix with external network blocked',async({page,request})=>{
+  test.skip(!readerSessions.length,'No complete2026translation is registered yet.');
+  test.setTimeout(600000);const directory=mkdtempSync(join(tmpdir(),'dl-source-bundle-'));
+  const prefix=join(directory,'portable');mkdirSync(prefix);const archive=join(directory,'source.zip');let server;
+  try{
+    const response=await request.get(`/deep-learning/slides/${readerTerm}.zip`);expect(response.ok()).toBeTruthy();
+    writeFileSync(archive,await response.body());execFileSync('python3',['-m','zipfile','-e',archive,prefix]);
+    const manifest=JSON.parse(readFileSync(join(prefix,'bundle-manifest.json')));
+    expect(manifest.original_pdfs).toBe(21);expect(manifest.original_pages).toBe(1303);
+    expect(manifest.sessions).toEqual(readerSessions);
+    expect(manifest.pages).toBe(sourceRows.filter(row=>readerSessions.includes(row.id)).reduce((n,row)=>n+row.slides[0].page_count,0));
+    for(const record of manifest.files){const bytes=readFileSync(join(prefix,record.path));expect(bytes.length).toBe(record.bytes);expect(sha256(bytes)).toBe(record.sha256);}
+    server=spawn('python3',['-u','-m','http.server','0','--bind','127.0.0.1','--directory',directory],{stdio:['ignore','pipe','pipe']});
+    const port=await new Promise((resolve,reject)=>{const timeout=setTimeout(()=>reject(Error('Bundle server did not start')),10000);server.once('error',reject);server.stdout.on('data',data=>{const match=data.toString().match(/port (\d+)/);if(match){clearTimeout(timeout);resolve(match[1]);}});});
+    const origin=`http://127.0.0.1:${port}`,base=origin+'/portable';const external=[],errors=readerErrors(page);
+    await page.route('**/*',route=>{const url=new URL(route.request().url());if(url.protocol==='http:'||url.protocol==='https:'){if(url.origin!==origin||!url.pathname.startsWith('/portable/')){external.push(url.href);return route.abort();}}return route.continue();});
+    await page.goto(base+'/');await expect(page.locator('h1')).toContainText('اصل اسلاید و ترجمه');
+    for(const id of manifest.sessions){
+      await page.goto(base+sourceDeck(id));await readerReady(page);
+      const config=await page.locator('#source-reader-config').evaluate(node=>JSON.parse(node.textContent));
+      expect(config.pdfUrl.startsWith('/')).toBeFalsy();expect(config.translationUrl.startsWith('/')).toBeFalsy();
+      await page.locator('[data-page-select]').selectOption('2');await readerReady(page,2);
+    }
+    for(const id of manifest.workshop_sessions){
+      await page.goto(base+sourceLesson(id)+'#workshop');await expect(page.locator('[data-workshop-code]')).toBeVisible();
+      await run(page);const actual=await result(page);
+      const reference=await page.locator('[data-workshop-config]').evaluate(node=>JSON.parse(node.textContent).reference);
+      expectReference(actual,reference);expect(await page.evaluate(()=>document.fonts.check('17px Arad'))).toBeTruthy();
+    }
+    expect(external).toEqual([]);expect(errors).toEqual([]);
   }finally{if(server){server.kill();await new Promise(resolve=>server.once('exit',resolve));}rmSync(directory,{recursive:true,force:true});}
 });

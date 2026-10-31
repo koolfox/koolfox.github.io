@@ -1,7 +1,9 @@
 """Render the five source-faithful course paths as accessible static HTML."""
 
 import argparse
+import hashlib
 import json
+import os
 import re
 import shutil
 from html import escape
@@ -12,8 +14,39 @@ from mnist_reference import load_reference
 from source_catalog import ROOT
 from workshops import load_workshops
 from local_slides import load_slides
+from source_reader import load_source_translation, source_reader_page
 
 BASE = "/deep-learning"
+
+
+def load_reader_registry(course, root=ROOT):
+    """Only explicitly enabled, complete translations acquire a public route."""
+    path = root / "data/metadata/source-readers.json"
+    if not path.exists():
+        return {}
+    if any(p.is_symlink() for p in (path, *path.parents)):
+        raise ValueError("Symlink source-reader registry")
+    registry = json.loads(path.read_text())
+    if (not isinstance(registry, dict) or type(registry.get("schema_version")) is not int
+            or registry["schema_version"] != 1 or not isinstance(registry.get("terms"), dict)):
+        raise ValueError("Invalid source-reader registry")
+    terms = {term["id"]: term for term in course["terms"]}
+    result = {}
+    for term_id, sessions in registry["terms"].items():
+        if term_id not in terms or not isinstance(sessions, list):
+            raise ValueError("Unknown source-reader term or invalid session list")
+        expected = {row["id"] for row in terms[term_id]["schedule"] if row["slides"]}
+        if any(not isinstance(s, str) or s not in expected for s in sessions) or len(set(sessions)) != len(sessions):
+            raise ValueError(f"Duplicate or unknown source-reader session: {term_id}")
+        if sessions:
+            result[term_id] = {
+                session: load_source_translation(
+                    session, root=root, term_id=term_id,
+                    require_reviewed=os.environ.get("DANNA_SOURCE_DRAFT") != "1",
+                )
+                for session in sessions
+            }
+    return result
 LABS = {
     "neuron-xor": ("نورون و مسئله XOR", "پیش‌بینی، آموزش زنده و مقایسه مرز تصمیم"),
     "network-playground": (
@@ -117,6 +150,33 @@ def teaching_sessions(term):
     return [row for row in term["schedule"] if row["slides"]]
 
 
+def local_original_urls(term, root):
+    """Only verified originals may replace official PDF links in the reader."""
+    path = root / f"data/metadata/{term['id']}-slide-identity.json"
+    if not path.exists():
+        return {}
+    records = json.loads(path.read_text())["records"]
+    rows = {row['id']: row for row in teaching_sessions(term)}
+    result = {}
+    seen = set()
+    for record in records:
+        session = record['session_id']
+        if session not in rows or session in seen:
+            raise ValueError('Original PDF inventory session mismatch')
+        seen.add(session)
+        source = rows[session]['slides'][0]
+        relative = f"assets/danna/{term['id']}/{session}.pdf"
+        if record.get('local_file') != relative or any(record.get(k) != source.get(k) for k in ('url', 'sha256', 'page_count')):
+            raise ValueError('Original PDF provenance differs from the official course catalog')
+        original = root / relative
+        if any(p.is_symlink() for p in (original, *original.parents)) or hashlib.sha256(original.read_bytes()).hexdigest() != record['sha256']:
+            raise ValueError('Original PDF bytes changed')
+        result[source['url']] = BASE + '/' + relative
+    if seen != set(rows):
+        raise ValueError('Original PDF inventory is incomplete')
+    return result
+
+
 def page(title, body, crumbs=(), data=None):
     trail = link(f"{BASE}/", "یادگیری ژرف")
     for url, label in crumbs:
@@ -158,11 +218,11 @@ def hub(course):
         rows.append(f'''<li class="term-row"><div><h2>{link(term_url(term), term["title_fa"])}</h2>
 <p>{e(TERM_SUMMARIES[term["id"]])}</p><p class="meta">{count} جلسه دارای اسلاید · {ready} درسنامه آماده
 <span data-term-progress="{e(term["id"])}"></span></p></div>{link(term_url(term), "ورود به مسیر ", class_="row-action")}</li>''')
-    first = next(t for t in course["terms"] if t["id"] == "spring-2022")
+    first = next(t for t in course["terms"] if t["id"] == "spring-2026")
     body = f"""<section class="course-intro">
 <h1>از یک نورون تا مدل‌های پایه</h1><p class="lead">درس را به فارسی بخوان، نتیجه را پیش‌بینی کن و با اجرای پایتون امتحانش کن.
 هر ترم دانا گوراری، مسیر مستقل خودش را دارد؛ اصل اسلایدها هم کنار هر جلسه در دسترس است.</p>
-<div class="intro-actions">{link(term_url(first), "شروع مسیر بهار ۲۰۲۲", class_="button primary")}
+<div class="intro-actions">{link(term_url(first), "شروع مسیر بهار ۲۰۲۶", class_="button primary")}
 {link(f"{BASE}/playgrounds/neuron-xor/", "آزمایش یک نورون", class_="text-link")}</div></section>
 <section aria-labelledby="terms-title"><div class="section-heading"><h2 id="terms-title">یک ترم را دنبال کن</h2>
 <p>ترتیب جلسه‌ها از برنامه رسمی همان دوره می‌آید.</p></div><ol class="term-list">{"".join(rows)}</ol></section>
@@ -195,7 +255,9 @@ def term_page(term):
         )
         if row.get("workshop"):
             status += " · کارگاه با کد و پرسش‌وپاسخ آماده"
-        if row.get("local_slides"):
+        if row.get("source_reader"):
+            status += " · اصل اسلاید و ترجمهٔ صفحه‌به‌صفحهٔ فارسی"
+        elif row.get("local_slides"):
             status += " · اسلاید فارسی محلی"
         items.append(f'''<li class="session-row" data-session-key="{term["id"]}/{row["id"]}">
 <span class="session-number" aria-label="درس {lesson_number}">{lesson_number:02d}</span><div>
@@ -204,11 +266,11 @@ def term_page(term):
 <p class="session-state">{e(status)}<span data-completion-label></span></p></div></li>''')
     bundle = (
         link(
-            BASE + "/slides/spring-2022.zip",
-            "دریافت اسلایدهای فارسی و کارگاه‌ها",
+            BASE + f"/slides/{term['id']}.zip",
+            "دریافت اسلایدها، ترجمه و کارگاه‌ها" if any(r.get("source_reader") for r in term["schedule"]) else "دریافت اسلایدهای فارسی و کارگاه‌ها",
             download="",
         )
-        if any(r.get("local_slides") for r in term["schedule"])
+        if any(r.get("local_slides") or r.get("source_reader") for r in term["schedule"])
         else ""
     )
     body = f"""<div class="term-heading"><h1>{e(term["title_fa"])}</h1>
@@ -228,12 +290,16 @@ def term_page(term):
 def source_panel(term, row, concepts):
     original = "<p>منبع اصلی مباحث: دانا گوراری، دانشگاه کلرادو بولدر. فایل اصلی تغییر نکرده است.</p>"
     for source in row["slides"]:
+        url = row.get('local_original_urls', {}).get(source['url'], source['url'])
         preview = (
             ""
-            if row.get("local_slides")
-            else f'<button type="button" class="quiet" data-show-source="{e(source["url"])}">نمایش در همین صفحه</button>'
+            if row.get("local_slides") or row.get("source_reader")
+            else f'<button type="button" class="quiet" data-show-source="{e(url)}">نمایش در همین صفحه</button>'
         )
-        original += f'<div class="source-document">{link(source["url"], f"اسلاید مرجع · {source["page_count"]} صفحه", True, class_="source-link")}{preview}</div>'
+        label = f"دریافت PDF اصلی · {source['page_count']} صفحه" if url != source['url'] else f"اسلاید مرجع · {source['page_count']} صفحه"
+        original += f'<div class="source-document">{link(url, label, True, class_="source-link")}{preview}</div>'
+        if url != source['url']:
+            original += link(source['url'], 'نشانی رسمی منبع', True)
     mapping = row["mapping"]
     if mapping:
         original += (
@@ -242,9 +308,18 @@ def source_panel(term, row, concepts):
         for guide in mapping["source_guides"]:
             for part in guide["ranges"]:
                 label = f"{part['start']}–{part['end']} · {part['topic_fa']}"
-                original += f"<li>{link(guide['url'] + '#page=' + str(part['start']), label, True)}</li>"
+                guide_url = row.get('local_original_urls', {}).get(guide['url'], guide['url'])
+                original += f"<li>{link(guide_url + '#page=' + str(part['start']), label, True)}</li>"
         original += "</ol></details>"
-    if row.get("local_slides"):
+    if row.get("source_reader"):
+        payload = row["source_reader"]
+        url = session_url(term, row) + "slides/"
+        content = f'<h2>اصل اسلاید و ترجمهٔ فارسی</h2><p>{prose(str(len(payload["pages"])))} صفحهٔ اصلی، همراه با ترجمهٔ فارسی همان صفحه؛ ترتیب و تصاویر منبع حفظ شده‌اند.</p>'
+        content += f'<div class="source-document">{link(url, "باز کردن اصل اسلاید و ترجمه", class_="local-slide-link")}'
+        content += f'<button type="button" class="quiet" data-show-source="{e(url)}" data-source-kind="local" data-preview-target="local-slide-view">نمایش در همین صفحه</button></div>'
+        content += link(BASE + f"/slides/{term['id']}.zip", "دریافت بستهٔ اصل اسلاید، ترجمه و تمرین‌ها", class_="bundle-link", download="")
+        content += '<details class="original-source"><summary>منبع رسمی و راهنمای صفحه‌ها</summary>' + original + "</details>"
+    elif row.get("local_slides"):
         url = session_url(term, row) + "slides/"
         count = len(row["workshop"]["questions"]) + 6
         content = f'<h2>اسلاید آموزشی فارسی</h2><p>تألیف مستقل مجموعه؛ همراه با کارگاه و پرسش‌وپاسخ.</p><p class="meta">{prose(str(count))} اسلاید محلی برای این جلسه</p>'
@@ -518,8 +593,8 @@ def session_page(term, row, concepts):
     content = intro
     if row.get("workshop"):
         slide_action = (
-            link(session_url(term, row) + "slides/", "اسلایدهای فارسی")
-            if row.get("local_slides")
+            link(session_url(term, row) + "slides/", "اصل اسلاید و ترجمهٔ فارسی" if row.get("source_reader") else "اسلایدهای فارسی")
+            if row.get("local_slides") or row.get("source_reader")
             else ""
         )
         content += (
@@ -530,7 +605,7 @@ def session_page(term, row, concepts):
             + link("#source-activities", "تمرین‌های داخل اسلاید")
             + "</nav>"
         )
-    if row.get("local_slides"):
+    if row.get("local_slides") or row.get("source_reader"):
         content += '<div id="local-slide-view" class="local-slide-view"></div>'
     if not ready:
         note = (
@@ -718,15 +793,38 @@ def sources_page(course):
 
 def build(output, root=ROOT):
     course = load_course(root)
+    readers = load_reader_registry(course, root)
+    reader_identity = (
+        json.loads((root / "content/slide-reader-identity.json").read_text())
+        if readers else {}
+    )
     output.mkdir(parents=True, exist_ok=True)
+    registry_path = root / 'data/metadata/source-readers.json'
+    registered_terms = json.loads(registry_path.read_text()).get('terms', {}) if registry_path.exists() else {}
     pages = {"index.html": hub(course), "sources/index.html": sources_page(course)}
     for term in course["terms"]:
-        workshops = load_workshops(term["id"], root)
+        selected = list(readers.get(term['id'], {})) if term['id'] in registered_terms and not (root / f"content/workshops/{term['id']}.json").exists() else None
+        workshops = load_workshops(term["id"], root, session_ids=selected)
+        originals = local_original_urls(term, root)
         slide_identity, slide_units = load_slides(term["id"], root)
         for row in term["schedule"]:
-            row["workshop"] = workshops.get(row["id"])
+            unit = workshops.get(row['id'])
+            row["workshop"] = {**unit, 'source_url': originals.get(unit['source_url'], unit['source_url'])} if unit else None
+            row['local_original_urls'] = originals
             row["local_slides"] = slide_units.get(row["id"])
-            if row["local_slides"]:
+            row["source_reader"] = readers.get(term["id"], {}).get(row["id"])
+            if row["source_reader"]:
+                payload = row["source_reader"]
+                pages[f"terms/{term['id']}/{row['id']}/slides/index.html"] = source_reader_page(term, row, reader_identity, payload)
+                destination = output / f"source-translations/{term['id']}/{row['id']}.json"
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                destination.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+                pdf = payload["source"]["local_url"].removeprefix(BASE + "/")
+                target = output / pdf
+                target.parent.mkdir(parents=True, exist_ok=True)
+                if (root / pdf).resolve() != target.resolve():
+                    shutil.copyfile(root / pdf, target)
+            elif row["local_slides"]:
                 pages[f"terms/{term['id']}/{row['id']}/slides/index.html"] = (
                     slides_page(term, row, slide_identity, row["local_slides"])
                 )
@@ -786,6 +884,8 @@ def build(output, root=ROOT):
         "slides.js",
         "university-logo.png",
         "university-logo.source.json",
+        "source-reader.js",
+        "source-reader.css",
     ):
         if (root / "assets" / name).resolve() != (assets / name).resolve():
             shutil.copyfile(root / "assets" / name, assets / name)
@@ -797,9 +897,21 @@ def build(output, root=ROOT):
             shutil.copyfile(source, target)
     for name in ("LICENSE", "THIRD_PARTY_NOTICES.md"):
         shutil.copyfile(root / name, output / name)
-    from package_slides import package_slides
+    from package_slides import declared_vendor_files, package_slides, package_source_readers
+
+    if readers:
+        for vendor in ("pdfjs", "katex"):
+            for name in declared_vendor_files(root, vendor):
+                source = root / "assets/vendor" / vendor / name
+                target = assets / "vendor" / vendor / name
+                target.parent.mkdir(parents=True, exist_ok=True)
+                if source.resolve() != target.resolve():
+                    shutil.copyfile(source, target)
 
     package_slides(output, root)
+    if os.environ.get("DANNA_SOURCE_DRAFT") != "1":
+        for term_id, sessions in readers.items():
+            package_source_readers(output, term_id, sessions, root=root)
     return len(pages)
 
 

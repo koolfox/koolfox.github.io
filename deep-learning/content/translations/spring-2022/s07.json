@@ -1,0 +1,2227 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s07",
+  "source_sha256": "4ea3dddf6176cd454ce352f019545fb96216ba821585fb3e688c3783d6bc7347",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "18ca3b8e3c768091d487c6e5f9da0c99415d0f4a76ddcf30576bb61c109b325f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "شبکه‌های عصبی کانولوشنی (Convolutional Neural Networks)\nدانا گوراری (Danna Gurari)\nدانشگاه کلرادو بولدر (University of Colorado Boulder)\nبهار 2022\nhttps://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "500f6b2f9e908885caeaa4871c7d3fa58b603ce333093a7a121ff0f534171008",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "مرور\n• جلسهٔ گذشته:\n• قضیهٔ تقریب همگانی (Universal Approximation Theorem)\n• انتخاب ظرفیت مدل (Model Capacity): پرهیز از بیش‌برازش (Overfitting) و کم‌برازش (Underfitting)\n• انتخاب ابرپارامترهای مدل (Hyperparameters)\n• یادگیری کارآمد: روش‌های بهینه‌سازی (Optimization Methods)\n• آموزش برنامه‌نویسی\n• تکالیف (Canvas):\n• مهلت تکلیف آزمایشگاهی 1 امروز پیش‌تر به پایان رسید.\n• مهلت مجموعه‌مسئلهٔ 2 هفتهٔ آینده است.\n• پرسشی دارید؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "e8d4ea29adff2daff309b7eb49697e6bd7db80b3ab2abf05eaec623423e951b7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• شبکه‌های عصبی (Neural Networks) برای داده‌های مکانی (Spatial Data)\n• تاریخچهٔ شبکه‌های عصبی کانولوشنی (CNNs؛ Convolutional Neural Networks)\n• CNNها ـ لایه‌های کانولوشن (Convolutional Layers)\n• CNNها ـ لایه‌های تجمیع (Pooling Layers)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "e8d4ea29adff2daff309b7eb49697e6bd7db80b3ab2abf05eaec623423e951b7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• شبکه‌های عصبی (Neural Networks) برای داده‌های مکانی (Spatial Data)\n• تاریخچهٔ شبکه‌های عصبی کانولوشنی (CNNs؛ Convolutional Neural Networks)\n• CNNها ـ لایه‌های کانولوشن (Convolutional Layers)\n• CNNها ـ لایه‌های تجمیع (Pooling Layers)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "2477689694483f7c17583d28f78d80d93a885b4858b1af5709d74070d67a5954",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "دادهٔ مکانی (Spatial Data) چیست؟\n• داده‌ای که ترتیب در آن اهمیت دارد؛ مثلاً،\nدوبعدی (2D)؛ سه‌بعدی (3D)\nتصویرها (Images)؛ صوت (Audio؛ طیف‌نگاشت، Spectrogram)؛ متن (Text؛ تعبیهٔ واژه‌ها، Word Embeddings)\nI like learning about deep learning\n(دوست دارم دربارهٔ یادگیری عمیق یاد بگیرم.)\nویدئو (Video)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "e8d4ea29adff2daff309b7eb49697e6bd7db80b3ab2abf05eaec623423e951b7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• شبکه‌های عصبی (Neural Networks) برای داده‌های مکانی (Spatial Data)\n• تاریخچهٔ شبکه‌های عصبی کانولوشنی (CNNs؛ Convolutional Neural Networks)\n• CNNها ـ لایه‌های کانولوشن (Convolutional Layers)\n• CNNها ـ لایه‌های تجمیع (Pooling Layers)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "55bf84e823ee29928d207b0fb50c9b07a4afa1c790dfd76c689b86f7b7e8d71f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23
+          ],
+          "kind": "text",
+          "fa": "زمینهٔ تاریخی: منبع الهام؛ نخستین ماشین برنامه‌پذیر\n2012\nآزمون تورینگ (Turing Test)\n1945\nهوش مصنوعی (AI)\n1956\n1950 1959\nشبکه‌های عصبی با راهبرد یادگیری مؤثر\n1986\nموج 3: اوج‌گیری «یادگیری عمیق» (Deep Learning)\n1957 پرسپترون (Perceptron)\n1847 نزول گرادیان (Gradient Descent)\nمقالهٔ تقریب همگانی (Universal Approximation)\n1980\nآزمایش‌های عصب‌شناختی هوبل و ویزل (Hubel & Weisel) برای درک چگونگی کار دستگاه بینایی پستانداران\nجایزهٔ نوبل فیزیولوژی و پزشکی به هوبل و ویزل\n1989\nیادگیری ماشین (Machine Learning)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "fdca4aad7312f4ebd1822d20ea43db865e9b3ec84805f0f3b474f296fbfba129",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "انگیزه: دستگاه بینایی چگونه کار می‌کند\nمنبع تصویر: https://braintour.harvard.edu/archives/portfolio-items/hubel-and-wiesel"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "64ec07650ef1793dd47e4fb33a15599325b3bf230a46665cb856cecced4c5a62",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "انگیزه: دستگاه بینایی چگونه کار می‌کند\nhttps://neuwritesd.files.wordpress.com/2015/10/visual_stream_small.png"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "input",
+          "fa": "ورودی (Input)",
+          "verified": true
+        },
+        {
+          "en": "retina",
+          "fa": "شبکیه (Retina)",
+          "verified": true
+        },
+        {
+          "en": "LGN; V1; V2; V3; LOC",
+          "fa": "LGN؛ V1؛ V2؛ V3؛ LOC",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "263ae268062697ab83d8992dab6cc4fe0fc7a9bf38d9eccf3d98ccd62052821a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "انگیزه: دستگاه بینایی چگونه کار می‌کند\nیافتهٔ اصلی: نورون‌های اولیه تنها زمانی پاسخ شدیدی نشان می‌دادند که نور با جهت‌گیری‌های معینی نمایش داده می‌شد.\nhttps://www.cns.nyu.edu/~david/courses/perception/lecturenotes/V1/lgn-V1.html\nhttps://www.esantus.com/blog/2019/1/31/convolutional-neural-networks-a-quick-guide-for-newbies\nآرایش آزمایش (Experiment Set-up):"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Electrical signal from brain",
+          "fa": "سیگنال الکتریکی از مغز",
+          "verified": true
+        },
+        {
+          "en": "Recording electrode",
+          "fa": "الکترود ثبت (Recording Electrode)",
+          "verified": true
+        },
+        {
+          "en": "Visual area of brain",
+          "fa": "ناحیهٔ بینایی مغز",
+          "verified": true
+        },
+        {
+          "en": "Stimulus",
+          "fa": "محرک (Stimulus)",
+          "verified": true
+        },
+        {
+          "en": "V1 physiology: direction selectivity",
+          "fa": "فیزیولوژی V1: گزینش‌پذیری جهت (Direction Selectivity)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "6c2f5a927de22d427d8ad0054bf87762f5b5d649a7660804131ddcbbccd0f5aa",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "انگیزه: دستگاه بینایی چگونه کار می‌کند\nایدهٔ اصلی: سلول‌ها به‌صورت سلسله‌مراتبی از آشکارسازهای ویژگی (Feature Detectors) سازمان یافته‌اند؛ ویژگی‌های سطح بالاتر به الگوهای فعال‌سازی در سلول‌های سطح پایین‌تر پاسخ می‌دهند.\nمنبع: https://bruceoutdoors.files.wordpress.com/2017/08/hubel.jpg"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "featural hierarchy",
+          "fa": "سلسله‌مراتب ویژگی (Featural Hierarchy)",
+          "verified": true
+        },
+        {
+          "en": "hyper-complex cells",
+          "fa": "سلول‌های فوق‌پیچیده (Hyper-complex Cells)",
+          "verified": true
+        },
+        {
+          "en": "complex cells",
+          "fa": "سلول‌های پیچیده (Complex Cells)",
+          "verified": true
+        },
+        {
+          "en": "simple cells",
+          "fa": "سلول‌های ساده (Simple Cells)",
+          "verified": true
+        },
+        {
+          "en": "high level; mid level; low level",
+          "fa": "سطح بالا (High Level)؛ سطح میانی (Mid Level)؛ سطح پایین (Low Level)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "6e61fcf9e4b236f3ff144de155e5dd612378cfa75ba75b5f1d627036825755e8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25
+          ],
+          "kind": "text",
+          "fa": "زمینهٔ تاریخی: عناصر اصلی؛ نخستین ماشین برنامه‌پذیر\n2012\nیادگیری ماشین (Machine Learning)\nآزمون تورینگ (Turing Test)\n1945\nهوش مصنوعی (AI)\n1956\n1950 1959\nشبکه‌های عصبی با راهبرد یادگیری مؤثر\n1986\nموج 3: اوج‌گیری «یادگیری عمیق» (Deep Learning)\n1957 پرسپترون (Perceptron)\n1847 نزول گرادیان (Gradient Descent)\nمقالهٔ تقریب همگانی (Universal Approximation)\n1980\nآزمایش‌های عصب‌شناختی برای درک چگونگی کار دستگاه بینایی پستانداران\nجایزهٔ نوبل فیزیولوژی و پزشکی به هوبل و ویزل (Hubel and Weisel)\n1989\nنئوکگنیترون (Neocognitron): لایه‌های کانولوشن (Convolutional Layers) و لایه‌های کاهش نمونه‌برداری (Downsampling Layers)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "5eaf11d7e726356b6268419651eaf4a6c2947f350b4e142bade48b98e364709f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "نئوکگنیترون (Neocognitron): عناصر اصلی\n«در این مقاله بحث می‌کنیم که چگونه یک مدل شبکهٔ عصبی بسازیم تا مانند انسان توانایی بازشناسی الگو داشته باشد... شبکه ساختاری مشابه مدل سلسله‌مراتبی دستگاه عصبی بینایی که هوبل و ویزل (Hubel and Wiesel) پیشنهاد کرده‌اند به دست می‌آورد.»\n- Fukushima, Neocognitron: A Self-organizing Neural Network Model for a Mechanism of Pattern Recognition Unaffected by Shift in Position. Biological Cybernetics, 1980.\nhttp://personalpage.flsi.or.jp/fukushima/index-e.html"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "879e530713f26fa20fa5ebcb120841c6ca38f523d602e64b7671474e6ddf1700",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "نئوکگنیترون (Neocognitron): عناصر اصلی\nFukushima, 1980.\nآبشاری از سلول‌های ساده (Simple Cells) و پیچیده (Complex Cells):"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "visual area; association area",
+          "fa": "ناحیهٔ بینایی (Visual Area)؛ ناحیهٔ ارتباطی (Association Area)",
+          "verified": true
+        },
+        {
+          "en": "retina → LGB → simple → complex → lower-order hypercomplex → higher-order hypercomplex → ? → grandmother cell?",
+          "fa": "شبکیه (Retina) → LGB → ساده (Simple) → پیچیده (Complex) → فوق‌پیچیدهٔ مرتبهٔ پایین‌تر (Lower-order Hypercomplex) → فوق‌پیچیدهٔ مرتبهٔ بالاتر (Higher-order Hypercomplex) → ؟ → سلول مادربزرگ؟ (Grandmother Cell?)",
+          "verified": true
+        },
+        {
+          "en": "Fig. 1. Correspondence between the hierarchy model by Hubel and Wiesel, and the neural network of the neocognitron",
+          "fa": "شکل 1. تناظر میان مدل سلسله‌مراتبی هوبل و ویزل (Hubel and Wiesel) و شبکهٔ عصبی نئوکگنیترون (Neocognitron)",
+          "verified": true
+        },
+        {
+          "en": "Fig. 2. Schematic diagram illustrating the interconnections between layers in the neocognitron",
+          "fa": "شکل 2. نمودار شماتیک نمایش‌دهندهٔ اتصال‌های بین لایه‌ها در نئوکگنیترون (Neocognitron)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "7db4ac26d5050911f632dea10559837d27adfbc43c08980a0f1ba210855559d5",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "نئوکگنیترون (Neocognitron): عناصر اصلی\nFukushima, 1980.\nسلول‌های ساده (Simple Cells) با استفاده از یک فیلتر لغزان (Sliding Filter)، ویژگی‌های محلی را استخراج می‌کنند:"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "visual area; association area",
+          "fa": "ناحیهٔ بینایی (Visual Area)؛ ناحیهٔ ارتباطی (Association Area)",
+          "verified": true
+        },
+        {
+          "en": "retina → LGB → simple → complex → lower-order hypercomplex → higher-order hypercomplex → ? → grandmother cell?",
+          "fa": "شبکیه (Retina) → LGB → ساده (Simple) → پیچیده (Complex) → فوق‌پیچیدهٔ مرتبهٔ پایین‌تر (Lower-order Hypercomplex) → فوق‌پیچیدهٔ مرتبهٔ بالاتر (Higher-order Hypercomplex) → ؟ → سلول مادربزرگ؟ (Grandmother Cell?)",
+          "verified": true
+        },
+        {
+          "en": "Fig. 1. Correspondence between the hierarchy model by Hubel and Wiesel, and the neural network of the neocognitron",
+          "fa": "شکل 1. تناظر میان مدل سلسله‌مراتبی هوبل و ویزل (Hubel and Wiesel) و شبکهٔ عصبی نئوکگنیترون (Neocognitron)",
+          "verified": true
+        },
+        {
+          "en": "Fig. 2. Schematic diagram illustrating the interconnections between layers in the neocognitron",
+          "fa": "شکل 2. نمودار شماتیک نمایش‌دهندهٔ اتصال‌های بین لایه‌ها در نئوکگنیترون (Neocognitron)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "4f2a6b547d1d930bab35920ccec9d709a90a82aa91326ca52b30eefc631868c8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "نئوکگنیترون (Neocognitron): عناصر اصلی\nFukushima, 1980.\nسلول‌های پیچیده (Complex Cells) هنگامی شلیک می‌کنند که هر قسمتی از ناحیهٔ محلی، الگوی مطلوب باشد."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "visual area; association area",
+          "fa": "ناحیهٔ بینایی (Visual Area)؛ ناحیهٔ ارتباطی (Association Area)",
+          "verified": true
+        },
+        {
+          "en": "retina → LGB → simple → complex → lower-order hypercomplex → higher-order hypercomplex → ? → grandmother cell?",
+          "fa": "شبکیه (Retina) → LGB → ساده (Simple) → پیچیده (Complex) → فوق‌پیچیدهٔ مرتبهٔ پایین‌تر (Lower-order Hypercomplex) → فوق‌پیچیدهٔ مرتبهٔ بالاتر (Higher-order Hypercomplex) → ؟ → سلول مادربزرگ؟ (Grandmother Cell?)",
+          "verified": true
+        },
+        {
+          "en": "Fig. 1. Correspondence between the hierarchy model by Hubel and Wiesel, and the neural network of the neocognitron",
+          "fa": "شکل 1. تناظر میان مدل سلسله‌مراتبی هوبل و ویزل (Hubel and Wiesel) و شبکهٔ عصبی نئوکگنیترون (Neocognitron)",
+          "verified": true
+        },
+        {
+          "en": "Fig. 2. Schematic diagram illustrating the interconnections between layers in the neocognitron",
+          "fa": "شکل 2. نمودار شماتیک نمایش‌دهندهٔ اتصال‌های بین لایه‌ها در نئوکگنیترون (Neocognitron)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "91b07403da3cf6eb5616acd965796d41181809bfed88d901f9bf5dd19ef59a9f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "نئوکگنیترون (Neocognitron): عناصر اصلی\nFukushima, 1980.\n1. ~ لایه‌های کانولوشن (Convolutional Layers)\n2. ~ لایه‌های تجمیع (Pooling Layers)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "visual area; association area",
+          "fa": "ناحیهٔ بینایی (Visual Area)؛ ناحیهٔ ارتباطی (Association Area)",
+          "verified": true
+        },
+        {
+          "en": "retina → LGB → simple → complex → lower-order hypercomplex → higher-order hypercomplex → ? → grandmother cell?",
+          "fa": "شبکیه (Retina) → LGB → ساده (Simple) → پیچیده (Complex) → فوق‌پیچیدهٔ مرتبهٔ پایین‌تر (Lower-order Hypercomplex) → فوق‌پیچیدهٔ مرتبهٔ بالاتر (Higher-order Hypercomplex) → ؟ → سلول مادربزرگ؟ (Grandmother Cell?)",
+          "verified": true
+        },
+        {
+          "en": "Fig. 1. Correspondence between the hierarchy model by Hubel and Wiesel, and the neural network of the neocognitron",
+          "fa": "شکل 1. تناظر میان مدل سلسله‌مراتبی هوبل و ویزل (Hubel and Wiesel) و شبکهٔ عصبی نئوکگنیترون (Neocognitron)",
+          "verified": true
+        },
+        {
+          "en": "Fig. 2. Schematic diagram illustrating the interconnections between layers in the neocognitron",
+          "fa": "شکل 2. نمودار شماتیک نمایش‌دهندهٔ اتصال‌های بین لایه‌ها در نئوکگنیترون (Neocognitron)",
+          "verified": true
+        },
+        {
+          "en": "modifiable synapses",
+          "fa": "سیناپس‌های قابل‌تغییر (Modifiable Synapses)",
+          "verified": true
+        },
+        {
+          "en": "unmodifiable synapses",
+          "fa": "سیناپس‌های تغییرناپذیر (Unmodifiable Synapses)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "e8d4ea29adff2daff309b7eb49697e6bd7db80b3ab2abf05eaec623423e951b7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• شبکه‌های عصبی (Neural Networks) برای داده‌های مکانی (Spatial Data)\n• تاریخچهٔ شبکه‌های عصبی کانولوشنی (CNNs؛ Convolutional Neural Networks)\n• CNNها ـ لایه‌های کانولوشن (Convolutional Layers)\n• CNNها ـ لایه‌های تجمیع (Pooling Layers)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "0cd77e89d10d7e374b02490168d35e94b96440190957fee1b5509c9a55e9470c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "انگیزه: لایه‌های تمام‌متصل (Fully-Connected Layers) محدودند\nهر گره برای هر گرهٔ لایهٔ بعد ورودی فراهم می‌کند.\nمنبع شکل: http://cs231n.github.io/neural-networks-1/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "input layer",
+          "fa": "لایهٔ ورودی (Input Layer)",
+          "verified": true
+        },
+        {
+          "en": "hidden layer 1",
+          "fa": "لایهٔ پنهان (Hidden Layer) 1",
+          "verified": true
+        },
+        {
+          "en": "hidden layer 2",
+          "fa": "لایهٔ پنهان (Hidden Layer) 2",
+          "verified": true
+        },
+        {
+          "en": "output layer",
+          "fa": "لایهٔ خروجی (Output Layer)",
+          "verified": true
+        },
+        {
+          "en": "hidden layer",
+          "fa": "لایهٔ پنهان (Hidden Layer)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "9fbb18d8ba32833edda0dae8b6a41e0b5c907b745f65c8908bf795635375c293",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "انگیزه: لایه‌های تمام‌متصل (Fully-Connected Layers) محدودند\n• یک مدل 2 لایه با 100 گره در هر لایه فرض کنید.\n• مثلاً برای یک تصویر 640x480 چند وزن وجود دارد؟\n• 640x480x3x100 + 100x100 + 100x1 = 92,170,100\n• مثلاً برای یک تصویر 2048X1536 (تصویر 3.1 مگاپیکسلی) چند وزن وجود دارد؟\n• 2048x1536x3x100 + 100x100 + 100x1 = 943,728,500"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "input layer",
+          "fa": "لایهٔ ورودی (Input Layer)",
+          "verified": true
+        },
+        {
+          "en": "hidden layer 1",
+          "fa": "لایهٔ پنهان (Hidden Layer) 1",
+          "verified": true
+        },
+        {
+          "en": "hidden layer 2",
+          "fa": "لایهٔ پنهان (Hidden Layer) 2",
+          "verified": true
+        },
+        {
+          "en": "output layer",
+          "fa": "لایهٔ خروجی (Output Layer)",
+          "verified": true
+        },
+        {
+          "en": "hidden layer",
+          "fa": "لایهٔ پنهان (Hidden Layer)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "5d5a0f6ac8b8d91bd7dad8d5a743f3405a6a26c7c9eaa686d80a99265faa8afc",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "انگیزه: لایه‌های تمام‌متصل (Fully-Connected Layers) محدودند\n• یک مدل 2 لایه با 100 گره در هر لایه فرض کنید.\n• مثلاً برای یک تصویر 640x480 چند وزن وجود دارد؟\n• 640x480x3x100 + 100x100 + 100x1 = 92,170,100\n• مثلاً برای یک تصویر 2048X1536 (تصویر 3.1 مگاپیکسلی) چند وزن وجود دارد؟\n• 2048x1536x3x100 + 100x100 + 100x1 = 943,728,500\nمسئله: پارامترهای مدل در شبکه‌های تمام‌متصل بسیار زیادند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "input layer",
+          "fa": "لایهٔ ورودی (Input Layer)",
+          "verified": true
+        },
+        {
+          "en": "hidden layer 1",
+          "fa": "لایهٔ پنهان (Hidden Layer) 1",
+          "verified": true
+        },
+        {
+          "en": "hidden layer 2",
+          "fa": "لایهٔ پنهان (Hidden Layer) 2",
+          "verified": true
+        },
+        {
+          "en": "output layer",
+          "fa": "لایهٔ خروجی (Output Layer)",
+          "verified": true
+        },
+        {
+          "en": "hidden layer",
+          "fa": "لایهٔ پنهان (Hidden Layer)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "fa79fff3238246be92432c2146994068ed0102e5fee3462f6b675e48ff9652cd",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "انگیزه: لایه‌های تمام‌متصل (Fully-Connected Layers) محدودند\n• یک مدل 2 لایه با 100 گره در هر لایه فرض کنید.\n• مثلاً برای یک تصویر 640x480 چند وزن وجود دارد؟\n• 640x480x3x100 + 100x100 + 100x1 = 92,170,100\n• مثلاً برای یک تصویر 2048X1536 (تصویر 3.1 مگاپیکسلی) چند وزن وجود دارد؟\n• 2048x1536x3x100 + 100x100 + 100x1 = 943,728,500\nپارامترهای مدل بسیار زیادند و در نتیجه...\n- احتمال بیش‌برازش (Overfitting) بیشتر می‌شود.\n- زمان آموزش افزایش می‌یابد.\n- داده‌های آموزش بیشتری لازم است."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "input layer",
+          "fa": "لایهٔ ورودی (Input Layer)",
+          "verified": true
+        },
+        {
+          "en": "hidden layer 1",
+          "fa": "لایهٔ پنهان (Hidden Layer) 1",
+          "verified": true
+        },
+        {
+          "en": "hidden layer 2",
+          "fa": "لایهٔ پنهان (Hidden Layer) 2",
+          "verified": true
+        },
+        {
+          "en": "output layer",
+          "fa": "لایهٔ خروجی (Output Layer)",
+          "verified": true
+        },
+        {
+          "en": "hidden layer",
+          "fa": "لایهٔ پنهان (Hidden Layer)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "9d6571350ebb51ad6aa6079881f3754df84e31b367abe0d484a705562a301c7b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "لایهٔ کانولوشن (Convolutional Layer؛ نئوکگنیترون را به یاد آورید)\nایده: هر گره فقط از همسایگی کوچکی در لایهٔ قبلی ورودی دریافت می‌کند، و پارامترها مشترک‌اند (Parameter Sharing).\nFukushima, 1980."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "dcb1e452e933bebf34fdbee75b5892da01d0b028a138d8ccb78ecd168a94df6b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "لایهٔ کانولوشن (Convolutional Layer؛ نئوکگنیترون را به یاد آورید)\nبرای این کار، کانولوشن‌ها (Convolutions) جای ضرب ماتریسی عمومیِ به‌کاررفته در لایه‌های تمام‌متصل را می‌گیرند.\nFukushima, 1980."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "bda1f54d5d7be22c5a0a91b13d8c85d9c0bdd72bd796c6719702a3d426000039",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "کانولوشن (Convolution): اعمال فیلتر خطی (مثلاً دوبعدی؛ 2D)\nhttps://www.jefkine.com/general/2016/09/05/backpropagation-in-convolutional-neural-networks/\nورودی (Input)؛ فیلتر (Filter؛ با نام کرنل، Kernel نیز شناخته می‌شود)\nنقشهٔ ویژگی (Feature Map)\nروشی برای تفسیر شبکهٔ عصبی (Neural Network)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "d640c136bf3c9643d08d3ad57bfc98848aaae1167470b4d734912352b159df30",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "فیلترکردن دوبعدی (2D Filtering)\n• برای هر مکان در ماتریس، تابعی از همسایگی محلی را محاسبه کنید.\n• فیلتر (Filter) تابعِ چگونگی ترکیب مقدارهای همسایه‌ها را مشخص می‌کند."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "7137b13fe7a35d8f43bcf5539fbecf0ccffed7b66c0bbb84bbcca7417cbc0f2d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "فیلترکردن دوبعدی (2D Filtering)\nhttps://people.eecs.berkeley.edu/~jrs/189/lec/cnn.pdf\nماتریس (Matrix):\nفیلتر را روی ماتریس می‌لغزاند و ضرب‌های داخلی (Dot Products) را محاسبه می‌کند.\nنتیجهٔ فیلترشده (Filtered Result):"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "7137b13fe7a35d8f43bcf5539fbecf0ccffed7b66c0bbb84bbcca7417cbc0f2d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "فیلترکردن دوبعدی (2D Filtering)\nhttps://people.eecs.berkeley.edu/~jrs/189/lec/cnn.pdf\nماتریس (Matrix):\nفیلتر را روی ماتریس می‌لغزاند و ضرب‌های داخلی (Dot Products) را محاسبه می‌کند.\nنتیجهٔ فیلترشده (Filtered Result):"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "7137b13fe7a35d8f43bcf5539fbecf0ccffed7b66c0bbb84bbcca7417cbc0f2d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "فیلترکردن دوبعدی (2D Filtering)\nhttps://people.eecs.berkeley.edu/~jrs/189/lec/cnn.pdf\nماتریس (Matrix):\nفیلتر را روی ماتریس می‌لغزاند و ضرب‌های داخلی (Dot Products) را محاسبه می‌کند.\nنتیجهٔ فیلترشده (Filtered Result):"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "7137b13fe7a35d8f43bcf5539fbecf0ccffed7b66c0bbb84bbcca7417cbc0f2d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "فیلترکردن دوبعدی (2D Filtering)\nhttps://people.eecs.berkeley.edu/~jrs/189/lec/cnn.pdf\nماتریس (Matrix):\nفیلتر را روی ماتریس می‌لغزاند و ضرب‌های داخلی (Dot Products) را محاسبه می‌کند.\nنتیجهٔ فیلترشده (Filtered Result):"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "7ee5ead1329ed62527991389df898d83622918d96cbd59cb2a6d3a70bf36b7a0",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "فیلترکردن دوبعدی (2D Filtering): مثال کوچک\n? ? ?\n? ? ?\n? ? ?\nورودی (Input)؛ فیلتر (Filter)؛ نقشهٔ ویژگی (Feature Map)\n1 1 1 0 0\n0 1 1 1 0\n0 0 1 1 1\n0 0 1 1 0\n0 1 1 0 0\n1 0 1\n0 1 0\n1 0 1"
+        },
+        {
+          "source_lines": [
+            13
+          ],
+          "kind": "math",
+          "fa": "ضرب داخلی (Dot Product) = 1*1 + 1*0 + 1*1 + 0*0 + 1*1 + 1*0 + 0*1 + 0*1 + 0*0 + 0*0 + 1*1",
+          "latex": "\\begin{aligned}\\text{Dot Product}={}&1\\cdot1+1\\cdot0+1\\cdot1+0\\cdot0\\\\&+1\\cdot1+1\\cdot0+0\\cdot1+0\\cdot1\\\\&+0\\cdot0+0\\cdot0+1\\cdot1\\end{aligned}"
+        },
+        {
+          "source_lines": [
+            14
+          ],
+          "kind": "math",
+          "fa": "ضرب داخلی (Dot Product) = 4",
+          "latex": "\\text{Dot Product}=4"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "dd7fb58f7cda73113613de7bda0e4c8afb4944e4e941383bed5dcac2e237b7c8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "1 1 1 0 0\n0 1 1 1 0\n0 0 1 1 1\n0 0 1 1 0\n0 1 1 0 0\n1 0 1\n0 1 0\n1 0 1\nفیلترکردن دوبعدی (2D Filtering): مثال کوچک\nورودی (Input)؛ فیلتر (Filter)؛ نقشهٔ ویژگی (Feature Map)\n4 ? ?\n? ? ?\n? ? ?"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "73c910320bb0c6d1e54bfa6e1d8411b6b48af08ed0786056389a08ab56686d44",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "1 1 1 0 0\n0 1 1 1 0\n0 0 1 1 1\n0 0 1 1 0\n0 1 1 0 0\n1 0 1\n0 1 0\n1 0 1\nفیلترکردن دوبعدی (2D Filtering): مثال کوچک\nورودی (Input)؛ فیلتر (Filter)؛ نقشهٔ ویژگی (Feature Map)\n4 3 ?\n? ? ?\n? ? ?"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "0ef36c1f5fd5565c4f93d785854dbbaed17008583a42b11a87472d1cd8ecd4ed",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "1 1 1 0 0\n0 1 1 1 0\n0 0 1 1 1\n0 0 1 1 0\n0 1 1 0 0\n1 0 1\n0 1 0\n1 0 1\nفیلترکردن دوبعدی (2D Filtering): مثال کوچک\nورودی (Input)؛ فیلتر (Filter)؛ نقشهٔ ویژگی (Feature Map)\n4 3 4\n? ? ?\n? ? ?"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "2a74024b5da45b33af4a5a854d7239fe3dc51743bd63617d8f4989fc4918227e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "1 1 1 0 0\n0 1 1 1 0\n0 0 1 1 1\n0 0 1 1 0\n0 1 1 0 0\n1 0 1\n0 1 0\n1 0 1\nفیلترکردن دوبعدی (2D Filtering): مثال کوچک\nورودی (Input)؛ فیلتر (Filter)؛ نقشهٔ ویژگی (Feature Map)\n4 3 4\n2 ? ?\n? ? ?"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "9eea462bbfa09a0aef3e23d299611eab69c0f7d13d4f651187d10c85951b0eb9",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "1 1 1 0 0\n0 1 1 1 0\n0 0 1 1 1\n0 0 1 1 0\n0 1 1 0 0\n1 0 1\n0 1 0\n1 0 1\nفیلترکردن دوبعدی (2D Filtering): مثال کوچک\nورودی (Input)؛ فیلتر (Filter)؛ نقشهٔ ویژگی (Feature Map)\n4 3 4\n2 4 ?\n? ? ?"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "7c0acde1e48cefed6b9c26b58294c28a73d7af72b049283bf1c7a72f34d5cfa8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "1 1 1 0 0\n0 1 1 1 0\n0 0 1 1 1\n0 0 1 1 0\n0 1 1 0 0\n1 0 1\n0 1 0\n1 0 1\nفیلترکردن دوبعدی (2D Filtering): مثال کوچک\nورودی (Input)؛ فیلتر (Filter)؛ نقشهٔ ویژگی (Feature Map)\n4 3 4\n2 4 3\n? ? ?"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "ea991fe3922a8b0fac54ab2c37e365c2eaf90b9ecec94ddfd881a6d18192f881",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "1 1 1 0 0\n0 1 1 1 0\n0 0 1 1 1\n0 0 1 1 0\n0 1 1 0 0\n1 0 1\n0 1 0\n1 0 1\nفیلترکردن دوبعدی (2D Filtering): مثال کوچک\nورودی (Input)؛ فیلتر (Filter)؛ نقشهٔ ویژگی (Feature Map)\n4 3 4\n2 4 3\n2 ? ?"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "d9fd745363fa5d770128475e96d5b24520ba06b8b2e24168cbd52caf7c54ec17",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "1 1 1 0 0\n0 1 1 1 0\n0 0 1 1 1\n0 0 1 1 0\n0 1 1 0 0\n1 0 1\n0 1 0\n1 0 1\nفیلترکردن دوبعدی (2D Filtering): مثال کوچک\nورودی (Input)؛ فیلتر (Filter)؛ نقشهٔ ویژگی (Feature Map)\n4 3 4\n2 4 3\n2 3 ?"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "ef395f5f6889290c50ca7604865cebf4949c3cd744fc845181182d2510411a06",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "1 1 1 0 0\n0 1 1 1 0\n0 0 1 1 1\n0 0 1 1 0\n0 1 1 0 0\n1 0 1\n0 1 0\n1 0 1\nفیلترکردن دوبعدی (2D Filtering): مثال کوچک\nورودی (Input)؛ فیلتر (Filter)؛ نقشهٔ ویژگی (Feature Map)\n4 3 4\n2 4 3\n2 3 4"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "6195704522eceaf64b4ed7ba43f2f36196d842ea8c9589878e35e7ee6603a4d5",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "لایهٔ کانولوشن (Convolutional Layer): پارامترهایی برای یادگیری\nhttps://www.jefkine.com/general/2016/09/05/backpropagation-in-convolutional-neural-networks/\nورودی (Input)؛ فیلتر (Filter؛ با نام کرنل، Kernel نیز شناخته می‌شود)\nنقشهٔ ویژگی (Feature Map)\nروشی برای تفسیر شبکهٔ عصبی (Neural Network)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "81922b60f8b7fbfd151f35180037ee781bd63a41e1e263f393fc02d44b23795b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "https://www.jefkine.com/general/2016/09/05/backpropagation-in-convolutional-neural-networks/\nلایهٔ کانولوشن (Convolutional Layer): پارامترهایی برای یادگیری\n• برای مثال نشان‌داده‌شده، چند وزن باید یاد گرفته شود؟\n• 4 (مقدارهای قرمز، آبی، زرد و سبز)\n• اگر به‌جای آن از لایهٔ تمام‌متصل (Fully Connected) استفاده کنیم، چند وزن باید یاد گرفته شود؟\n• 36 (9 گرهٔ فیروزه‌ای × 4 گرهٔ ارغوانی)\n• برای مثال نشان‌داده‌شده، چند پارامتر باید یاد گرفته شود؟\n• 5 (4 وزن + 1 بایاس؛ Bias)\n• اگر به‌جای آن از لایهٔ تمام‌متصل استفاده کنیم، چند پارامتر باید یاد گرفته شود؟\n• 40 (36 وزن + 4 بایاس)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "76fe49b3183726d019f0681bba2b07af4e87ff976e1c00c0a63fe3de7d384f5c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "لایهٔ کانولوشن (Convolutional Layer): پارامترهایی برای یادگیری\n• اشتراک پارامتر (Parameter Sharing) تعداد پارامترهای لازم برای یادگیری، و در نتیجه نیازهای ذخیره‌سازی را به‌شدت کاهش می‌دهد.\n• اتصال تنک (Sparse Connectivity؛ به‌جای اتصال کامل) نیز تعداد عملیات محاسباتی لازم را به‌شدت کاهش می‌دهد.\nhttps://www.jefkine.com/general/2016/09/05/backpropagation-in-convolutional-neural-networks/"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "9c5025570442a939ec6a19359d7cb311b39188fd7fc09475f6608c8dc456da81",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "لایهٔ کانولوشن (Convolutional Layer): پارامترهایی برای یادگیری\n• مقدارهای فیلتر در نئوکگنیترون (Neocognitron) به‌صورت ثابت در برنامه تعیین شده بودند... در جلسهٔ بعد مدل‌هایی را بررسی می‌کنیم که مقدارهای فیلتر را یاد می‌گیرند.\nhttps://www.jefkine.com/general/2016/09/05/backpropagation-in-convolutional-neural-networks/"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "e237bd5446622fc3b1e3d9b3360e5a25c862d0da3954ed8ba6150d1e9320e10b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "لایهٔ کانولوشن (Convolutional Layer)\nhttps://www.jefkine.com/general/2016/09/05/backpropagation-in-convolutional-neural-networks/\nورودی (Input)؛ فیلتر (Filter؛ با نام کرنل، Kernel نیز شناخته می‌شود)\nنقشهٔ ویژگی (Feature Map)\n• بسیاری از کتابخانه‌های شبکهٔ عصبی «کانولوشن» (Convolution) و «هم‌بستگی متقابل» (Cross Correlation) را به‌جای یکدیگر به کار می‌برند؛ برای ریاضی‌دانان این دو از نظر فنی متفاوت‌اند.\n• مثال‌های این اسلایدها تابع «هم‌بستگی متقابل» را نشان می‌دهند.\nروشی برای تفسیر شبکهٔ عصبی (Neural Network)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "9da345abaf52703e19fc9ed49983aa7faefefbfbb80f90a4c65330b0b560194c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "لایهٔ کانولوشن (Convolutional Layer): فیلتر چه می‌کند؟\nhttps://www.jefkine.com/general/2016/09/05/backpropagation-in-convolutional-neural-networks/\nورودی (Input)؛ فیلتر (Filter؛ با نام کرنل، Kernel نیز شناخته می‌شود)\nنقشهٔ ویژگی (Feature Map)\nروشی برای تفسیر شبکهٔ عصبی (Neural Network)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "f14a32266b789bf3f668070bf37d159938aaf5505e00d8a9cd239730b213e5ab",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "فیلتر (Filter): چه می‌کند؟\nفیلتر"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "31ff7d60289f5007869f9e63c9310c322b09d79687dd90c774fee5e2cbfb891d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "فیلتر (Filter): چه می‌کند؟\n• مثلاً،\nاعتبار تصویر: https://adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/\nفیلتر؛ نمایش بصری فیلتر (Visualization of Filter)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "b6fc17427c46fc9fe113186ba147bb63fb7adb7bb1984befcf80369e92f06b3a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "فیلتر (Filter): چه می‌کند؟\n• مثلاً،\nفیلتر قرارگرفته روی تصویر (Filter Overlaid on Image)\nتصویر (Image)؛ فیلتر\nمجموع وزن‌دار (Weighted Sum) = ?"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "math",
+          "fa": "مجموع وزن‌دار = (50x30) + (20x30) +\n(50x30) + (50x3) + (50x30)",
+          "latex": "\\begin{aligned}\\text{Weighted Sum}={}&(50\\times30)+(20\\times30)\\\\&+(50\\times30)+(50\\times3)\\\\&+(50\\times30)\\end{aligned}"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "مجموع وزن‌دار = 6600 (عدد بزرگ!!)\nاعتبار تصویر: https://adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "ceedb211ce1a6edf0a8e1bcae564c468e49e566aee41289006801d68fdad9935",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "فیلتر (Filter): چه می‌کند؟\n• مثلاً،\nفیلتر قرارگرفته روی تصویر (Filter Overlaid on Image)\nمجموع وزن‌دار (Weighted Sum) = ?\nمجموع وزن‌دار = 0 (عدد کوچک!!)\nتصویر (Image)؛ فیلتر\nاعتبار تصویر: https://adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "586ce682dabc0db3461fef27e348f9991e10448970c430ec04c500bb041ae822",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "فیلتر (Filter): چه می‌کند؟\n• مثلاً،\nفیلتر قرارگرفته روی تصویر (پاسخ بزرگ!)؛ فیلتر قرارگرفته روی تصویر (پاسخ کوچک!)\nاین فیلتر آشکارساز منحنی (Curve Detector) است!\nاعتبار تصویر: https://adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "2405996a1ae41f12bc9c9719fecdde7d79ecf999e38d5ed0ef9eb7b67c12d410",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "فیلترها (Filters) ویژگی‌های متفاوت را آشکار می‌کنند\nفیلتر؛ نقشهٔ ویژگی (Feature Map)؛ فیلتر؛ نقشهٔ ویژگی\nhttps://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Identity",
+          "fa": "همانی (Identity)",
+          "verified": true
+        },
+        {
+          "en": "Edge detection",
+          "fa": "آشکارسازی لبه (Edge Detection)",
+          "verified": true
+        },
+        {
+          "en": "Sharpen",
+          "fa": "واضح‌سازی (Sharpen)",
+          "verified": true
+        },
+        {
+          "en": "Box blur (normalized)",
+          "fa": "تاری جعبه‌ای (Box Blur؛ نرمال‌شده، Normalized)",
+          "verified": true
+        },
+        {
+          "en": "Gaussian blur (approximation)",
+          "fa": "تاری گاوسی (Gaussian Blur؛ تقریب، Approximation)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "17475391d15efd0691a188aa89ce6ec5a39f5ec96b7de51f056578514fc60ce8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "فیلترهای (Filters) متفاوت، ویژگی‌های متفاوت را آشکار می‌کنند\nنمایش: http://beej.us/blog/data/convolution-image-processing/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Filter: Sharpen",
+          "fa": "فیلتر (Filter): واضح‌سازی (Sharpen)",
+          "verified": true
+        },
+        {
+          "en": "Image: Bell",
+          "fa": "تصویر (Image): زنگ (Bell)",
+          "verified": true
+        },
+        {
+          "en": "The Matrix",
+          "fa": "ماتریس (The Matrix)",
+          "verified": true
+        },
+        {
+          "en": "Divisor: 9",
+          "fa": "مقسوم‌علیه (Divisor): 9",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "eb90123824d955bea9d7964d7b9f4f30e116187e5df758797882764964936189",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "بحث گروهی\n1. برای «روشن‌ترکردن» یک تصویر، فیلتر (Filter) را چگونه طراحی می‌کنید؟\n2. برای حذف چین‌وچروک‌ها/لکه‌ها، فیلتر را چگونه طراحی می‌کنید؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Before; After",
+          "fa": "پیش از تغییر (Before)؛ پس از تغییر (After)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "25716cfa57baeedb2ba66785d590f5080614baf97459e77e1989ca25f2b18702",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "لایهٔ کانولوشن (Convolutional Layer): پس از اعمال فیلتر، واردکردن غیرخطی‌بودن را فراموش نکنید\nتابع فعال‌سازی (Activation Function) را به عدد اعمال کنید؛ مثلاً ReLU\nاعتبار اسلاید: http://cs231n.stanford.edu/slides/2018/cs231n_2018_lecture05.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "32x32x3 image",
+          "fa": "تصویر (Image) با اندازهٔ 32x32x3",
+          "verified": true
+        },
+        {
+          "en": "5x5x3 filter w",
+          "fa": "فیلتر (Filter) w با اندازهٔ 5x5x3",
+          "verified": true
+        },
+        {
+          "en": "1 number: the result of taking a dot product between the filter and a small 5x5x3 chunk of the image (i.e. 5*5*3 = 75-dimensional dot product + bias)",
+          "fa": "1 عدد: حاصل ضرب داخلی (Dot Product) فیلتر و یک قطعهٔ کوچک 5x5x3 از تصویر (یعنی 5*5*3 = ضرب داخلی 75 بُعدی + بایاس؛ Bias)",
+          "verified": true
+        },
+        {
+          "en": "wᵀx+b",
+          "fa": "wᵀx+b",
+          "verified": true,
+          "latex": "w^Tx+b"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "9fa66eb209b499bffdb1c290f7adb1608c4e60ec7cbc965fabbd0e4e4278e0d1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "لایهٔ کانولوشن (Convolutional Layer): فیلتر را روی ورودی بلغزانید\nاعتبار اسلاید: http://cs231n.stanford.edu/slides/2018/cs231n_2018_lecture05.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "32x32x3 image",
+          "fa": "تصویر (Image) با اندازهٔ 32x32x3",
+          "verified": true
+        },
+        {
+          "en": "5x5x3 filter",
+          "fa": "فیلتر (Filter) با اندازهٔ 5x5x3",
+          "verified": true
+        },
+        {
+          "en": "convolve (slide) over all spatial locations",
+          "fa": "روی همهٔ مکان‌های فضایی کانولوشن (Convolve) انجام دهید (بلغزانید).",
+          "verified": true
+        },
+        {
+          "en": "activation map",
+          "fa": "نقشهٔ فعال‌سازی (Activation Map)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "9fa66eb209b499bffdb1c290f7adb1608c4e60ec7cbc965fabbd0e4e4278e0d1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "لایهٔ کانولوشن (Convolutional Layer): فیلتر را روی ورودی بلغزانید\nاعتبار اسلاید: http://cs231n.stanford.edu/slides/2018/cs231n_2018_lecture05.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "32x32x3 image",
+          "fa": "تصویر (Image) با اندازهٔ 32x32x3",
+          "verified": true
+        },
+        {
+          "en": "5x5x3 filter",
+          "fa": "فیلتر (Filter) با اندازهٔ 5x5x3",
+          "verified": true
+        },
+        {
+          "en": "convolve (slide) over all spatial locations",
+          "fa": "روی همهٔ مکان‌های فضایی کانولوشن (Convolve) انجام دهید (بلغزانید).",
+          "verified": true
+        },
+        {
+          "en": "activation maps",
+          "fa": "نقشه‌های فعال‌سازی (Activation Maps)",
+          "verified": true
+        },
+        {
+          "en": "consider a second, green filter",
+          "fa": "یک فیلتر دوم به رنگ سبز در نظر بگیرید.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "7ac1e3c40a8a9b6334826195152033d9b9ae48ac13b620d9c88c0a5ecd54c301",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "لایهٔ کانولوشن (Convolutional Layer): فیلتر را روی ورودی بلغزانید\nاین‌ها را روی هم می‌چینیم تا یک «تصویر جدید» به اندازهٔ 28x28x6 به دست آوریم!\nاعتبار اسلاید: http://cs231n.stanford.edu/slides/2018/cs231n_2018_lecture05.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "activation maps",
+          "fa": "نقشه‌های فعال‌سازی (Activation Maps)",
+          "verified": true
+        },
+        {
+          "en": "if we had 6 5x5 filters, we'll get 6 separate activation maps:",
+          "fa": "اگر 6 فیلتر 5x5 داشته باشیم، 6 نقشهٔ فعال‌سازی (Activation Maps) جداگانه به دست می‌آوریم:",
+          "verified": true
+        },
+        {
+          "en": "Convolution Layer",
+          "fa": "لایهٔ کانولوشن (Convolution Layer)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "41077bf9ec3ee219a075bc51a56854ef0784bad1234d2b66ea8a3cab5a86cacd",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "لایهٔ کانولوشن (Convolutional Layer): پارامترهایی برای یادگیری\nپارامترها (Parameters): مجموعه‌ای از فیلترها و بایاس‌ها (Biases) که برای ساخت نقشه‌های فعال‌سازی (Activation Maps؛ با نام نقشه‌های ویژگی، Feature Maps نیز شناخته می‌شوند) به کار می‌روند.\nاعتبار اسلاید: http://cs231n.stanford.edu/slides/2018/cs231n_2018_lecture05.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "activation maps",
+          "fa": "نقشه‌های فعال‌سازی (Activation Maps)",
+          "verified": true
+        },
+        {
+          "en": "Convolution Layer",
+          "fa": "لایهٔ کانولوشن (Convolution Layer)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "a931d7b56d8626df842e4da707a0a1a7d57e921448703a2aedf86915886c9352",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "روی‌هم‌چیدن لایه‌های کانولوشن (Convolutional Layers)\nاعتبار اسلاید: http://cs231n.stanford.edu/slides/2018/cs231n_2018_lecture05.pdf\nسپس می‌توان دنباله‌ای از لایه‌های کانولوشن را که میانشان توابع فعال‌سازی (Activation Functions) قرار می‌گیرند روی هم چید:"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CONV, ReLU",
+          "fa": "کانولوشن (CONV)، ReLU",
+          "verified": true
+        },
+        {
+          "en": "e.g. 6 5x5x3 filters",
+          "fa": "مثلاً 6 فیلتر (Filters) با اندازهٔ 5x5x3",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "94de5f2c8443170508d1b625acaf45f9e3cb535c3ba36dfef4849c1df54bbbf4",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "اعتبار اسلاید: http://cs231n.stanford.edu/slides/2018/cs231n_2018_lecture05.pdf\nروی‌هم‌چیدن لایه‌های کانولوشن (Convolutional Layers)\nسپس می‌توان دنباله‌ای از لایه‌های کانولوشن را که میانشان توابع فعال‌سازی (Activation Functions) قرار می‌گیرند روی هم چید:"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CONV, ReLU",
+          "fa": "کانولوشن (CONV)، ReLU",
+          "verified": true
+        },
+        {
+          "en": "e.g. 6 5x5x3 filters",
+          "fa": "مثلاً 6 فیلتر (Filters) با اندازهٔ 5x5x3",
+          "verified": true
+        },
+        {
+          "en": "e.g. 10 5x5x6 filters",
+          "fa": "مثلاً 10 فیلتر (Filters) با اندازهٔ 5x5x6",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "286816025f6aaf45f588fdb3730f324ed0b3e6dddd446cfbc3e11d832cd5e47c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "روی‌هم‌چیدن لایه‌های کانولوشن (Convolutional Layers)\nسپس می‌توان دنباله‌ای از لایه‌های کانولوشن را که میانشان توابع فعال‌سازی (Activation Functions) قرار می‌گیرند روی هم چید:\nروی‌هم‌چیدن تعداد زیادی لایهٔ کانولوشن به شناسایی الگوها در ناحیه‌های هرچه بزرگ‌تر از فضای ورودی (مثلاً پیکسل) می‌انجامد.\nhttps://www.deeplearningbook.org/contents/convnets.html"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "2cd3e75b80dd464178acb49f037e194b191a7a4b51b05842470282f1eeb34e20",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "کانولوشن (Convolution): جزئیات پیاده‌سازی\n• پدگذاری (Padding): برای کنترل اندازهٔ خروجی، در مرزها مقدارهایی اضافه کنید.\nاعتبار تصویر: https://software.intel.com/en-us/node/586159"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "22da67db5e3714752a1f6dd1130b27a95068612e25ef8a834edc2dae264e1a16",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "کانولوشن (Convolution): جزئیات پیاده‌سازی\n• گام (Stride): پیش از اعمال فیلتر، از نظر مکانی چند گام برداشته می‌شود\n• مثلاً 2x2\nhttp://deeplearning.net/software/theano/tutorial/conv_arithmetic.html\nتصویر (Image)؛ فیلتر (Filter)؛ نقشهٔ ویژگی (Feature Map)\n4 4\n2 4"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "5abc02fef37a83ae9eb81ecfb96e10ea814cf6c517d65a8658e4ba3cfc3e718c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "کانولوشن (Convolution): جزئیات پیاده‌سازی\n• نمایش:\n• https://theano-pymc.readthedocs.io/en/latest/tutorial/conv_arithmetic.html"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "8993f7d63ebfc0511a5ba407cb5ce775451987bbb6105cb9d7cadee2e3fda4da",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "پارامترها (Parameters) در برابر ابرپارامترها (Hyperparameters) در لایه‌های کانولوشن (Convolutional Layers)\n• ابرپارامترها:\n• تعداد فیلترها، شامل ارتفاع و عرض هرکدام\n• گام‌ها (Strides)\n• نوع پدگذاری (Padding)\n• پارامترها\n• وزن‌ها (Weights)\n• بایاس‌ها (Biases)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "e8d4ea29adff2daff309b7eb49697e6bd7db80b3ab2abf05eaec623423e951b7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• شبکه‌های عصبی (Neural Networks) برای داده‌های مکانی (Spatial Data)\n• تاریخچهٔ شبکه‌های عصبی کانولوشنی (CNNs؛ Convolutional Neural Networks)\n• CNNها ـ لایه‌های کانولوشن (Convolutional Layers)\n• CNNها ـ لایه‌های تجمیع (Pooling Layers)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "4ebc8c7c05ee8db6a97f82258085a112b569fff734d4e27570a60f2ddd372c37",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "لایهٔ تجمیع (Pooling Layer): خلاصه‌کردن همسایگی\n• تجمیع بیشینه (Max-pooling): ورودی را به مجموعه‌ای از مستطیل‌های بدون هم‌پوشانی تقسیم می‌کند و برای هر قطعه، مقدار بیشینه را خروجی می‌دهد.\nhttp://cs231n.github.io/convolutional-networks/#pool\n? ?\n? ?"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Single depth slice",
+          "fa": "یک برش عمقی (Single Depth Slice)",
+          "verified": true
+        },
+        {
+          "en": "max pool with 2x2 filters and stride 2",
+          "fa": "تجمیع بیشینه (Max Pool) با فیلترهای 2x2 و گام (Stride) 2",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "7855d8914e71f4841a72e1f67cc51a8de605548a806638222ec636691b25e021",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "لایهٔ تجمیع (Pooling Layer): خلاصه‌کردن همسایگی\n• تجمیع بیشینه (Max-pooling): ورودی را به مجموعه‌ای از مستطیل‌های بدون هم‌پوشانی تقسیم می‌کند و برای هر قطعه، مقدار بیشینه را خروجی می‌دهد.\nhttp://cs231n.github.io/convolutional-networks/#pool"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Single depth slice",
+          "fa": "یک برش عمقی (Single Depth Slice)",
+          "verified": true
+        },
+        {
+          "en": "max pool with 2x2 filters and stride 2",
+          "fa": "تجمیع بیشینه (Max Pool) با فیلترهای 2x2 و گام (Stride) 2",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "7855d8914e71f4841a72e1f67cc51a8de605548a806638222ec636691b25e021",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "لایهٔ تجمیع (Pooling Layer): خلاصه‌کردن همسایگی\n• تجمیع بیشینه (Max-pooling): ورودی را به مجموعه‌ای از مستطیل‌های بدون هم‌پوشانی تقسیم می‌کند و برای هر قطعه، مقدار بیشینه را خروجی می‌دهد.\nhttp://cs231n.github.io/convolutional-networks/#pool"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Single depth slice",
+          "fa": "یک برش عمقی (Single Depth Slice)",
+          "verified": true
+        },
+        {
+          "en": "max pool with 2x2 filters and stride 2",
+          "fa": "تجمیع بیشینه (Max Pool) با فیلترهای 2x2 و گام (Stride) 2",
+          "verified": true
+        },
+        {
+          "en": "pool",
+          "fa": "تجمیع (Pool)",
+          "verified": true
+        },
+        {
+          "en": "downsampling",
+          "fa": "کاهش نمونه‌برداری (Downsampling)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 71,
+      "source_text_sha256": "fa5827f2163ebc414ac337182b90530dc2972be968d0a5ca64afc90d02b494dd",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "لایهٔ تجمیع (Pooling Layer)\n• در برابر انتقال‌های کوچک مقاوم است.\n• مثلاً،\n• ورودی: همهٔ مقدارها تغییر می‌کنند (انتقال به راست).\n• خروجی: تنها نیمی از مقدارها تغییر می‌کنند.\nhttps://www.deeplearningbook.org/contents/convnets.html"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "POOLING STAGE",
+          "fa": "مرحلهٔ تجمیع (Pooling Stage)",
+          "verified": true
+        },
+        {
+          "en": "DETECTOR STAGE",
+          "fa": "مرحلهٔ آشکارساز (Detector Stage)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 72,
+      "source_text_sha256": "fdddc7f358c2b1e788d559541121cafd488d81b4012b8e3771a0ee3011bc78b8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "لایهٔ تجمیع (Pooling Layer): خلاصه‌کردن همسایگی\n• تجمیع بیشینه (Max-pooling): ورودی را به مجموعه‌ای از مستطیل‌های بدون هم‌پوشانی تقسیم می‌کند و برای هر قطعه، مقدار بیشینه را خروجی می‌دهد.\n• تجمیع میانگین (Average-pooling): ورودی را به مجموعه‌ای از مستطیل‌های بدون هم‌پوشانی تقسیم می‌کند و برای هر قطعه، مقدار میانگین را خروجی می‌دهد.\nhttp://cs231n.github.io/convolutional-networks/#pool\n? ?\n? ?\nمیانگین (Avg)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Single depth slice",
+          "fa": "یک برش عمقی (Single Depth Slice)",
+          "verified": true
+        },
+        {
+          "en": "Avg pool with 2x2 filters and stride 2",
+          "fa": "تجمیع میانگین (Avg Pool) با فیلترهای 2x2 و گام (Stride) 2",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 73,
+      "source_text_sha256": "f1757021653475609719c5a213773f8f37be0ff1c2d93f2dbbf292ffb6d825c2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "لایهٔ تجمیع (Pooling Layer): خلاصه‌کردن همسایگی\n• تجمیع بیشینه (Max-pooling): ورودی را به مجموعه‌ای از مستطیل‌های بدون هم‌پوشانی تقسیم می‌کند و برای هر قطعه، مقدار بیشینه را خروجی می‌دهد.\n• تجمیع میانگین (Average-pooling): ورودی را به مجموعه‌ای از مستطیل‌های بدون هم‌پوشانی تقسیم می‌کند و برای هر قطعه، مقدار میانگین را خروجی می‌دهد.\nhttp://cs231n.github.io/convolutional-networks/#pool\n3.25 5.25\n2 2\nمیانگین (Avg)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Single depth slice",
+          "fa": "یک برش عمقی (Single Depth Slice)",
+          "verified": true
+        },
+        {
+          "en": "Avg pool with 2x2 filters and stride 2",
+          "fa": "تجمیع میانگین (Avg Pool) با فیلترهای 2x2 و گام (Stride) 2",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 74,
+      "source_text_sha256": "f306883aa0e6c7bd722725a0143ca7c76d5e27ba61fb5c746e959626956b8a6c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "لایهٔ تجمیع (Pooling Layer): مزایا\n• چند پارامتر باید یاد گرفته شود؟\n• هیچ‌کدام\n• مزایا؟\n• ناوردایی (Invariance) نسبت به انتقال‌های ورودی را در ساختار می‌گنجاند.\n• نیازهای حافظه را کاهش می‌دهد.\n• نیازهای محاسباتی را کاهش می‌دهد."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 75,
+      "source_text_sha256": "e8d4ea29adff2daff309b7eb49697e6bd7db80b3ab2abf05eaec623423e951b7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• شبکه‌های عصبی (Neural Networks) برای داده‌های مکانی (Spatial Data)\n• تاریخچهٔ شبکه‌های عصبی کانولوشنی (CNNs؛ Convolutional Neural Networks)\n• CNNها ـ لایه‌های کانولوشن (Convolutional Layers)\n• CNNها ـ لایه‌های تجمیع (Pooling Layers)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 76,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    }
+  ]
+}

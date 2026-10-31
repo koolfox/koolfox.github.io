@@ -1,0 +1,2522 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s10",
+  "source_sha256": "3e223b8a2dfca08958b8d4fbd5d184b85abdc205f99e94876bd51340b028be52",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "b3b16933aacfa98ffed97e0eeeb3ff03cb36b6c1e48d99f33a46de42f61a0320",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "منظم‌سازی (Regularization)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "دانشگاه کلرادو بولدر (University of Colorado Boulder)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "بهار ۲۰۲۲ (Spring 2022)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CC BY",
+          "fa": "CC BY — انتساب",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "8139612d6ba1c20eef58f89d4fd9a87316e7e86085a6293dedbd4a7974fc8a1f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• جلسهٔ پیش:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• بینایی رایانه‌ای (Computer vision)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• عصر چالش‌های مجموعه‌داده"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش MNIST: شبکهٔ LeNet"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• برندگان چالش ImageNet: یادگیری عمیق‌تر (AlexNet، VGG، ResNet)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• تکلیف‌ها (Canvas)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• مهلت تحویل تکلیف آزمایشگاه ۲، هفتهٔ آینده است."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "• پرسشی دارید؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "3e0a1a43a32710e7456166ad888db66ef154f1368d90d62eb2cb049c2448ae6c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• منظم‌سازی (Regularization)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• جریمهٔ نرم پارامتر (Parameter norm penalty)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• توقف زودهنگام (Early stopping)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• افزون‌سازی مجموعه‌داده (Dataset augmentation)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• حذف تصادفی (Dropout)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• نرمال‌سازی دسته‌ای (Batch Normalization)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "3e0a1a43a32710e7456166ad888db66ef154f1368d90d62eb2cb049c2448ae6c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• منظم‌سازی (Regularization)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• جریمهٔ نرم پارامتر (Parameter norm penalty)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• توقف زودهنگام (Early stopping)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• افزون‌سازی مجموعه‌داده (Dataset augmentation)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• حذف تصادفی (Dropout)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• نرمال‌سازی دسته‌ای (Batch Normalization)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "41c0c56fcf24b582d0bbd41aa0aa39f6252e90a108f8a0339f3f24b746634670",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "منظم‌سازی (Regularization) چیست؟"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "«هر تغییری که در یک الگوریتم یادگیری ایجاد می‌کنیم و هدف آن کاهش خطای تعمیم (Generalization error)، و نه خطای آموزش آن است.»"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "— بخش ۵٫۲ کتاب یادگیری عمیق (Deep Learning) گودفلو"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "dcc8d21af2eb9a0243dec1a6f9204436696f38001c69a2c1357ba461de28d2ad",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چه راهبردهایی برای ترجیح دادن یک تابع به تابعی دیگر وجود دارد؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "3e0a1a43a32710e7456166ad888db66ef154f1368d90d62eb2cb049c2448ae6c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• منظم‌سازی (Regularization)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• جریمهٔ نرم پارامتر (Parameter norm penalty)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• توقف زودهنگام (Early stopping)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• افزون‌سازی مجموعه‌داده (Dataset augmentation)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• حذف تصادفی (Dropout)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• نرمال‌سازی دسته‌ای (Batch Normalization)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "ec469870269010d471b1cd61e9e7a45b5ba94fa02166de2cb07a6ce703a71681",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "هدف"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://cdn.analyticsvidhya.com/wp-content/uploads/2018/04/Screen-Shot-2018-04-04-at-2.43.37-PM.png"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "به‌جای کنار گذاشتن توابع از فضای فرضیه (Hypothesis space)، راهبردهایی به کار ببرید که برای کاهش خطای آزمون، یک راه‌حل را به راه‌حل دیگر ترجیح می‌دهند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Error; Model Complexity; Optimum Model Complexity; Test Set; Training Set",
+          "fa": "خطا؛ پیچیدگی مدل؛ پیچیدگی بهینهٔ مدل؛ مجموعهٔ آزمون؛ مجموعهٔ آموزش",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "31943b6c4ef7ba030d44886b3a9dbdd1bf15cb8b37992cbea5be1926097765d0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "هدف"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "منبع شکل: https://towardsdatascience.com/underfitting-and￾overfitting-in-machine-learning-and-how-to-deal-with-it-6fe4a8a49dbf"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "(a) (b) (c)"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "به‌جای کنار گذاشتن توابع از فضای فرضیه (Hypothesis space)، راهبردهایی به کار ببرید که برای کاهش خطای آزمون، یک راه‌حل را به راه‌حل دیگر ترجیح می‌دهند؛ برای مثال، (c) را منظم‌سازی کنید."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "5eb8497d4bad5d0454a095dffed5d7f27c4f02b3098897624927ffca7b70f2ca",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نکته: وزن‌های بزرگ نشانهٔ بیش‌برازش (Overfitting) هستند."
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "برای مدل‌سازی نویز، وزن‌های مثبت بسیار بزرگ با وزن‌های منفی با بزرگی مشابه خنثی می‌شوند (یعنی به‌دلیل هم‌بسته بودن پارامترهای مدل)."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/techniques-for-handling-underfitting-and-overfitting-in-machine-learning-348daa2380b9"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Under-fitting; Optimal-fitting; Over-fitting; Regression; Classification; Deep learning; Error; Validation; Training; Epochs",
+          "fa": "کم‌برازش؛ برازش بهینه؛ بیش‌برازش؛ رگرسیون؛ دسته‌بندی؛ یادگیری عمیق؛ خطا؛ اعتبارسنجی؛ آموزش؛ دوره‌ها (Epochs)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "56d87bb88ba17c48a3c9d4c3b19eb31fcd0639546dd21f1e3ae4cd2281405a35",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ایده: مشابه بستن کمربند روی شلوار گشاد"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "55231b0fa6b0c5795a3f286dea565bdb71b7fc7a3e21f44c0a44461313d7fd90",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ایده: وزن‌های بزرگ را در تابع هدف (Objective function) جریمه کنید."
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "برای مثال، هدف کمینه کردن مجموع مربع خطاها روی نمونه‌های آموزشی است."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• نرم L2: مربع مقدار وزن‌ها را جریمه کنید."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• نرم L1: قدر مطلق مقدار وزن‌ها را جریمه کنید."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• توجه: فقط وزن‌ها جریمه می‌شوند، نه جمله‌های بایاس (Bias)."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Error = ∑ᵢ₌₁ⁿ (y⁽ⁱ⁾ − ŷ⁽ⁱ⁾)² + α ∑ⱼ₌₁ᵐ wⱼ²",
+          "fa": "خطا (Error) = ∑ᵢ₌₁ⁿ (y⁽ⁱ⁾ − ŷ⁽ⁱ⁾)² + α ∑ⱼ₌₁ᵐ wⱼ²",
+          "verified": true
+        },
+        {
+          "en": "Error = ∑ᵢ₌₁ⁿ (y⁽ⁱ⁾ − ŷ⁽ⁱ⁾)² + α ∑ⱼ₌₁ᵐ |wⱼ|",
+          "fa": "خطا (Error) = ∑ᵢ₌₁ⁿ (y⁽ⁱ⁾ − ŷ⁽ⁱ⁾)² + α ∑ⱼ₌₁ᵐ |wⱼ|",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "20bc995e14b628a55efe2f54c5005dc1d412736dfecf57881c83440ef9d7fa82",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ایده: وزن‌های بزرگ را در تابع هدف (Objective function) جریمه کنید."
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "برای مثال، هدف کمینه کردن مجموع مربع خطاها روی نمونه‌های آموزشی است."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• نرم L2: مربع مقدار وزن‌ها را جریمه کنید."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• نرم L1: قدر مطلق مقدار وزن‌ها را جریمه کنید."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• ابرپارامتر (Hyperparameter)، سهم نسبی جملهٔ جریمهٔ نرم را تعیین می‌کند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Error = ∑ᵢ₌₁ⁿ (y⁽ⁱ⁾ − ŷ⁽ⁱ⁾)² + α ∑ⱼ₌₁ᵐ wⱼ²",
+          "fa": "خطا (Error) = ∑ᵢ₌₁ⁿ (y⁽ⁱ⁾ − ŷ⁽ⁱ⁾)² + α ∑ⱼ₌₁ᵐ wⱼ²",
+          "verified": true
+        },
+        {
+          "en": "Error = ∑ᵢ₌₁ⁿ (y⁽ⁱ⁾ − ŷ⁽ⁱ⁾)² + α ∑ⱼ₌₁ᵐ |wⱼ|",
+          "fa": "خطا (Error) = ∑ᵢ₌₁ⁿ (y⁽ⁱ⁾ − ŷ⁽ⁱ⁾)² + α ∑ⱼ₌₁ᵐ |wⱼ|",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "49595e696e1362bf043770916f49a3e1bd4c7a3a0dd8788db4dc7ad7b74fda04",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "منظم‌سازی (Regularization): آلفا را چگونه تنظیم کنیم؟"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "یک شبکهٔ عصبی یکسان با سطوح مختلف منظم‌سازی نشان داده شده است. کدام مدل بزرگ‌ترین مقدار آلفا را دارد (یعنی بیشترین سهم جریمهٔ نرم)؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "(a) (b) (c)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://cs231n.github.io/neural-networks-1/"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "983caf5db213f65c9f9cf8bbf66a6d0c4376dcb5610170226789e4d26b508e94",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تفسیر هندسی در دو بُعد"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://web.stanford.edu/~hastie/Papers/ESLII.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "خط هم‌تراز تابع خطای کمترین مربعات (Least square error)"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "خط هم‌تراز توابع قید منظم‌سازی که زیر هر دو نمودار نشان داده شده‌اند."
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "literal",
+          "fa": "L1 L2"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "هزینهٔ مجموع مربع خطاها (SSE) را کمینه می‌کند."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "جملهٔ جریمه را کمینه می‌کند."
+        },
+        {
+          "source_lines": [
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "هزینه + جریمه را کمینه می‌کند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "β₁; β₂; β̂; |β₁| + |β₂| ≤ t; β₁² + β₂² ≤ t²",
+          "fa": "β₁؛ β₂؛ β̂؛ |β₁| + |β₂| ≤ t؛ β₁² + β₂² ≤ t²",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "f9bf11f0f3d4612e177eb4fb44921b265d7527781336dfa1cf2687d16b4bcd5c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "جزئیات پیاده‌سازی: وزن‌ها را می‌توان هم به‌طور سراسری و هم در هر لایه جریمه کرد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "برای مثال، هدف کمینه کردن مجموع مربع خطاها روی نمونه‌های آموزشی است."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• نرم L2: مربع مقدار وزن‌ها را جریمه کنید."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• نرم L1: قدر مطلق مقدار وزن‌ها را جریمه کنید."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• توجه: فقط وزن‌ها جریمه می‌شوند، نه جمله‌های بایاس (Bias)."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Error = ∑ᵢ₌₁ⁿ (y⁽ⁱ⁾ − ŷ⁽ⁱ⁾)² + α ∑ⱼ₌₁ᵐ wⱼ²",
+          "fa": "خطا (Error) = ∑ᵢ₌₁ⁿ (y⁽ⁱ⁾ − ŷ⁽ⁱ⁾)² + α ∑ⱼ₌₁ᵐ wⱼ²",
+          "verified": true
+        },
+        {
+          "en": "Error = ∑ᵢ₌₁ⁿ (y⁽ⁱ⁾ − ŷ⁽ⁱ⁾)² + α ∑ⱼ₌₁ᵐ |wⱼ|",
+          "fa": "خطا (Error) = ∑ᵢ₌₁ⁿ (y⁽ⁱ⁾ − ŷ⁽ⁱ⁾)² + α ∑ⱼ₌₁ᵐ |wⱼ|",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "3e0a1a43a32710e7456166ad888db66ef154f1368d90d62eb2cb049c2448ae6c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• منظم‌سازی (Regularization)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• جریمهٔ نرم پارامتر (Parameter norm penalty)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• توقف زودهنگام (Early stopping)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• افزون‌سازی مجموعه‌داده (Dataset augmentation)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• حذف تصادفی (Dropout)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• نرمال‌سازی دسته‌ای (Batch Normalization)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "a30e1971076366689986f56fd2412b0da9a33e66e9605f9128a68c60450a74fd",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یادآوری: راه‌حل بیش‌برازش (Overfitting)، توقف زودهنگام (Early stopping) است."
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "منبع تصویر: https://chatbotslife.com/regularization-in-deep-learning-f649a45d6e0"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "از این مدل استفاده کنید."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Error; Testing Error; Training Error; Training steps",
+          "fa": "خطا؛ خطای آزمون؛ خطای آموزش؛ گام‌های آموزش",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "82453cec43693e407846a4e99ff396da6728fb177ab8802a9125f94cc7e1fa54",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چرا توقف زودهنگام (Early stopping) نقش منظم‌ساز را دارد؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://www.deeplearningbook.org/contents/regularization.html"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "اگر پارامترها در حوالی مبدأ مقداردهی اولیه شوند، توقف زودهنگام می‌تواند مانند جریمهٔ نرم پارامتر (Parameter norm penalty) عمل کند (مثلاً L2، بدون داشتن ابرپارامتری برای تنظیم)؛ برای مثال،"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "w₁; w₂; w; w̃",
+          "fa": "w₁؛ w₂؛ w؛ w̃",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "3e0a1a43a32710e7456166ad888db66ef154f1368d90d62eb2cb049c2448ae6c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• منظم‌سازی (Regularization)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• جریمهٔ نرم پارامتر (Parameter norm penalty)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• توقف زودهنگام (Early stopping)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• افزون‌سازی مجموعه‌داده (Dataset augmentation)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• حذف تصادفی (Dropout)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• نرمال‌سازی دسته‌ای (Batch Normalization)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "ed6914b65b8434c7c8fb2057c1c6541bf1ce638c909cd50e24bf73b436708a80",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یادآوری: راه‌حل بیش‌برازش (Overfitting)، افزودن داده است."
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "افزودن دادهٔ آموزشی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "a602498595f1e09c53368cce7a60da69bc2649729484166a6763d33ea7a87661",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "راهبرد افزون‌سازی داده (Data augmentation) در AlexNet"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• به یاد داشته باشید که مدل‌های دارای ظرفیت بازنمایی بیشتر در معرض بیش‌برازش هستند، و AlexNet دارای ۶۰ میلیون پارامتر است!"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• راهبرد افزون‌سازی داده (Data augmentation)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "۱. تکه‌های تصادفی تصویر و تصاویر آینه‌ای آن‌ها (۲۰۴۸ برابر دادهٔ بیشتر)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "۲. تنظیم کانال‌های RGB (استفاده از تحلیل مؤلفه‌های اصلی (PCA) برای افزودن مضرب‌هایی از مؤلفه‌های اصلی)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "منبع شکل: https://learnopencv.com/understanding-alexnet/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Random Crops; Mirror Image; 256; 227",
+          "fa": "برش‌های تصادفی (Random Crops)؛ تصویر آینه‌ای (Mirror Image)؛ 256؛ 227",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "7857e26ffec34eabe2e23c8a8dacd50711b43d157380af2c29415d5ab0b5b9c7",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "احتیاط: طرح افزون‌سازی را با داده تطبیق دهید."
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• برای مثال، آینه‌ای کردن و وارونه کردن تصویر ممکن است انتخاب‌های نامناسبی برای بازشناسی نویسه باشند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "9 → 6; d → b",
+          "fa": "9 → 6؛ d → b (نمونه‌های اصلی نویسه‌ها حفظ شده‌اند)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "bce69b7be090dfeee3a8af93c2c1f5a4e10a79d79a1d0238995951748c86eff8",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گفت‌وگوی کلاسی"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "۱. چه زمانی/چرا تکه‌های تصادفی تصویر انتخابی خوب/نامناسب برای افزون‌سازی داده هستند؟"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "۲. به چه روش‌های دیگری می‌توانید برای یادگیری مدل‌های دسته‌بندی تصویر، داده‌ها را افزون‌سازی کنید؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "3e0a1a43a32710e7456166ad888db66ef154f1368d90d62eb2cb049c2448ae6c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• منظم‌سازی (Regularization)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• جریمهٔ نرم پارامتر (Parameter norm penalty)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• توقف زودهنگام (Early stopping)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• افزون‌سازی مجموعه‌داده (Dataset augmentation)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• حذف تصادفی (Dropout)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• نرمال‌سازی دسته‌ای (Batch Normalization)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "666d7f181363f9394272857648cb6fd0a675b5b562b5716afbd448f67ce4f947",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ایده: از خرد جمعی استفاده کنید."
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "بیش از یکی: همادی (Ensemble)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "382d028da3ecdb3485ae3fe9af0852e2566c81a9acf3e5a2fa6015146c73c7f8",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چرا همادی (Ensemble) را به یک پیش‌بین ترجیح دهیم؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• احتمال پیش‌بینی نادرست را کاهش می‌دهد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• فرض کنید:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• برای مسئلهٔ دسته‌بندی دودویی، n دسته‌بند داریم."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• همهٔ دسته‌بندها نرخ خطای یکسان دارند."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• دسته‌بندها مستقل‌اند (در عمل درست نیست!)."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• تابع جرم احتمال (Probability mass function)، احتمال خطای یک همادی را نشان می‌دهد:"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• برای مثال، n = 11، = 0.25؛ k = 6: احتمال خطا حدود 0.034 است که از احتمال خطای یک الگوریتم منفرد (0.25) بسیار کمتر است."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "تعداد دسته‌بندها؛ نرخ خطای دسته‌بند"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "تعداد روش‌های انتخاب k زیرمجموعه از مجموعه‌ای با اندازهٔ n"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "text",
+          "fa": "احتمال خطا"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ε; P(y ≥ k) = ∑ᵏⁿ (n k) εᵏ (1−ε)ⁿ⁻ᵏ = εensemble",
+          "fa": "ε؛ P(y ≥ k) = ∑ᵏⁿ (n k) εᵏ (1−ε)ⁿ⁻ᵏ = εensemble",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "672104c2a056a97beaa9a3f831fcfc2ccde022a112cd5ff9b67289be7134705f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چگونه یک همادی (Ensemble) بسازیم؟ — بگینگ (Bagging)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "تجمیع بوت‌استرپ (Bootstrap Aggregation)، ۱۹۹۴"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "الگوریتم را بارها روی زیرمجموعه‌های تصادفی متفاوتی از مجموعهٔ آموزش، آموزش دهید."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "اعتبار شکل: Raschka & Mirjalili, Python Machine Learning."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Training set; Bootstrap samples; Classification models; Predictions; New data; Voting; Final prediction; T₁; T₂; Tₘ; C₁; C₂; Cₘ; p₁; p₂; pₘ; pᶠ",
+          "fa": "مجموعهٔ آموزش؛ نمونه‌های بوت‌استرپ؛ مدل‌های دسته‌بندی؛ پیش‌بینی‌ها؛ دادهٔ جدید؛ رأی‌گیری؛ پیش‌بینی نهایی؛ T₁؛ T₂؛ Tₘ؛ C₁؛ C₂؛ Cₘ؛ p₁؛ p₂؛ pₘ؛ pᶠ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "8ebf38e30b5fc63fe2246681e55903ea302c86ee1bd9ac36ce72a56f44f771c8",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چگونه یک همادی (Ensemble) بسازیم؟ — بگینگ (Bagging)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• همادی را از «نمونه‌های بوت‌استرپ» (Bootstrap samples) بسازید که با جایگذاری انتخاب می‌شوند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• برای مثال،"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "Breiman, Bagging Predictors, 1994. هر دسته‌بند روی زیرمجموعهٔ متفاوتی از داده آموزش داده می‌شود."
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "ممکن است دادهٔ تکراری در آموزش وجود داشته باشد."
+        },
+        {
+          "source_lines": [
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "برخی نمونه‌ها در داده‌های آموزشی حضور ندارند؛ مثلاً دور ۱."
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "reference",
+          "fa": "Ho, Random Decision Forests, 1995."
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "reference",
+          "fa": "اعتبار شکل: Raschka & Mirjalili, Python Machine Learning."
+        },
+        {
+          "source_lines": [
+            13,
+            14
+          ],
+          "kind": "text",
+          "fa": "پیش‌بینی با رأی‌گیری «سخت» (Hard voting)، یا میانگین‌گیری مقادیر برای رگرسیون و رأی‌گیری «نرم» (Soft voting) انجام می‌شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Sample indices | Bagging round 1 | Bagging round 2 | …\n1 | 2 | 7 | …\n2 | 2 | 3 | …\n3 | 1 | 2 | …\n4 | 3 | 1 | …\n5 | 7 | 1 | …\n6 | 2 | 7 | …\n7 | 4 | 7 | …\nC₁; C₂; Cₘ",
+          "fa": "شاخص نمونه | دور ۱ بگینگ | دور ۲ بگینگ | …\n1 | 2 | 7 | …\n2 | 2 | 3 | …\n3 | 1 | 2 | …\n4 | 3 | 1 | …\n5 | 7 | 1 | …\n6 | 2 | 7 | …\n7 | 4 | 7 | …\nC₁؛ C₂؛ Cₘ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "d233fbb8d222d10f9925f5f89cf89fb30bb6cbf4c4a6eb88b8dc10ac83a3c2cf",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "درک شهودی بگینگ (Bagging): آموزش یک آشکارساز رقم ۸"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Goodfellow et al., Deep Learning (chapter 7), 2016."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Original dataset; First resampled dataset; Second resampled dataset; First ensemble member; Second ensemble member",
+          "fa": "مجموعه‌دادهٔ اصلی؛ نخستین مجموعه‌دادهٔ بازنمونه‌گیری‌شده؛ دومین مجموعه‌دادهٔ بازنمونه‌گیری‌شده؛ نخستین عضو همادی؛ دومین عضو همادی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "54161087f979f16f54cd681cfe14c9956eea571a1b1dc04e966d6887fcbfc91e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محدودیت‌های بگینگ (Bagging)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "الگوریتم را بارها روی زیرمجموعه‌های تصادفی متفاوتی از مجموعهٔ آموزش، آموزش دهید."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "چرا بگینگ برای شبکه‌های عصبی رویکرد نامناسبی است؟"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• یافتن ابرپارامترهای بهینه برای هر معماری زمان‌بر است."
+        },
+        {
+          "source_lines": [
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "bullet",
+          "fa": "• به‌کارگیری چند شبکهٔ عصبی اغلب عملی نیست، زیرا این مدل‌ها به حافظهٔ زیادی نیاز دارند و اجرای آن‌ها از نظر محاسباتی پرهزینه است."
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "reference",
+          "fa": "اعتبار شکل: Raschka & Mirjalili, Python Machine Learning."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Training set; Bootstrap samples; Classification models; Predictions; New data; Voting; Final prediction; T₁; T₂; Tₘ; C₁; C₂; Cₘ; p₁; p₂; pₘ; pᶠ",
+          "fa": "مجموعهٔ آموزش؛ نمونه‌های بوت‌استرپ؛ مدل‌های دسته‌بندی؛ پیش‌بینی‌ها؛ دادهٔ جدید؛ رأی‌گیری؛ پیش‌بینی نهایی؛ T₁؛ T₂؛ Tₘ؛ C₁؛ C₂؛ Cₘ؛ p₁؛ p₂؛ pₘ؛ pᶠ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "521303069781a11ede0da35d6b6793953ba516c05db9dd74f709953212c564e0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چگونه یک همادی (Ensemble) بسازیم؟"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• ایده: در طول آموزش، بگینگ را با حذف تصادفی (Dropout) تقریب بزنید تا زیرمدل‌های مختلف شبکه با داده‌های آموزشی متفاوت آموزش ببینند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "مثلاً ۲۰٪ از واحدهای لایه‌های ورودی را حذف کنید."
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "مثلاً ۵۰٪ از واحدهای لایه‌های پنهان را حذف کنید."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(a) Standard Neural Net",
+          "fa": "(a) شبکهٔ عصبی استاندارد",
+          "verified": true
+        },
+        {
+          "en": "(b) After applying dropout.",
+          "fa": "(b) پس از اعمال حذف تصادفی (Dropout).",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "e407cb6fd26060776e6b59739415bf2e4e1cac877b7ba74e2603b740acdc0a18",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چگونه یک همادی (Ensemble) بسازیم؟"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• ایده: در طول آموزش، بگینگ را با حذف تصادفی (Dropout) تقریب بزنید تا زیرمدل‌های مختلف شبکه با داده‌های آموزشی متفاوت آموزش ببینند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "در آموزش، تنها تغییر نسبت به مطالب گفته‌شده این است که گذر پیش‌رو (Forward pass) و پس‌انتشار (Backpropagation) فقط در زیرشبکه اجرا می‌شوند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(b) After applying dropout.",
+          "fa": "(b) پس از اعمال حذف تصادفی (Dropout).",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "20a158ae379b1d81d0d0e030b8e31e92e2f14d772c8aa5571a50de09579893bf",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چگونه یک همادی (Ensemble) بسازیم؟"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• ایده: در طول آموزش، بگینگ را با حذف تصادفی (Dropout) تقریب بزنید تا زیرمدل‌های مختلف شبکه با داده‌های آموزشی متفاوت آموزش ببینند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "kind": "text",
+          "fa": "در زمان آزمون، با اجرای شبکه بدون حذف تصادفی (Dropout)، یک همادی شبیه‌سازی می‌شود. برای بازتاب دادن انتظار شبکه از مقدار سیگنال فعال‌سازی کمتر نسبت به آنچه در زمان آزمون دیده می‌شود (مثلاً ورودی از ۲ یا ۳ واحد به‌جای ۵ واحد)، وزن‌های خروجی هر واحد باید در احتمال حذف شدن آن هنگام آموزش ضرب شوند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(b) After applying dropout.",
+          "fa": "(b) پس از اعمال حذف تصادفی (Dropout).",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "429b5622d25e1ab40caae93a2c6d7baad0c7a708aa3cbf45185b51348d247d07",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "حذف تصادفی (Dropout) در برابر بگینگ (Bagging)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• حذف تصادفی، بگینگ را با مدل‌های بسیار و با هزینهٔ کم تقریب می‌زند."
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• الگوریتم را بارها روی زیرمجموعه‌های تصادفی متفاوتی از مجموعهٔ آموزش، آموزش می‌دهد."
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• تفاوت حذف تصادفی این است که زیرشبکه‌ها:"
+        },
+        {
+          "source_lines": [
+            8,
+            9
+          ],
+          "kind": "bullet",
+          "fa": "• تا همگرایی آموزش نمی‌بینند (در عوض، برای یک گام آموزش می‌بینند)."
+        },
+        {
+          "source_lines": [
+            10,
+            11
+          ],
+          "kind": "bullet",
+          "fa": "• مستقل نیستند (در عوض، همگی پارامترهای مشترک دارند)."
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "reference",
+          "fa": "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(b) After applying dropout.",
+          "fa": "(b) پس از اعمال حذف تصادفی (Dropout).",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "56407f587478267b232fb40579379d18c38be83903606abc1030b5929e2572dd",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "انگیزهٔ حذف تصادفی (Dropout)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "انگیزهٔ این رویکرد، نقش تولیدمثل جنسی در تکامل بود. «... نقش تولیدمثل جنسی فقط این نیست که به ژن‌های جدید مفید اجازه دهد در سراسر جمعیت گسترش یابند؛ بلکه تسهیل این فرایند با کاهش هم‌سازگاری‌های پیچیده‌ای نیز هست که احتمال بهبود برازش یک فرد به‌وسیلهٔ ژنی جدید را کاهش می‌دهند.»"
+        },
+        {
+          "source_lines": [
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23
+          ],
+          "kind": "text",
+          "fa": "«به همین ترتیب، هر واحد پنهان در شبکهٔ عصبی آموزش‌دیده با حذف تصادفی باید یاد بگیرد با نمونه‌ای تصادفی از واحدهای دیگر کار کند. این باید هر واحد پنهان را مقاوم‌تر کند و آن را به سوی ایجاد مستقل ویژگی‌های مفید سوق دهد، بدون تکیه بر واحدهای پنهان دیگر برای اصلاح خطاهایش.»"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(b) After applying dropout.",
+          "fa": "(b) پس از اعمال حذف تصادفی (Dropout).",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "0915397bc18d848164419ae81f8b4ab0143fa43d707bbfa6ace705d8307b3386",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "انگیزهٔ حذف تصادفی (Dropout)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "واحدهای شبکه یاد می‌گیرند با زیرمجموعه‌های متفاوت بسیاری از واحدهای دیگر مفید باشند، به‌جای آنکه تنها در ترکیب با واحدهای دیگر کار کنند؛ مثلاً وضعیتی را کاهش می‌دهد که در آن وزن‌های مثبت بزرگ با وزن‌های منفی با بزرگی مشابه خنثی می‌شوند، که نشانه‌ای از بیش‌برازش (Overfitting) است."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/techniques-for-handling-underfitting-and-overfitting-in-machine-learning-348daa2380b9"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(b) After applying dropout.",
+          "fa": "(b) پس از اعمال حذف تصادفی (Dropout).",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "dc6b135284459e90e17f3c0e8a183263af4565e06a4d5857db5d850cd6120e1b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چگونه یک همادی (Ensemble) بسازیم؟"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• تعمیم صفر کردن واحدها، ضرب کردن آن‌ها در نویز است و این رویکردی رایج برای لایه‌های کانولوشنی (Convolutional layers) است."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "مقاله‌های مرتبط:"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "*https://towardsdatascience.com/dropout-on￾convolutional-layers-is-weird-5c6ab14f19b2"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "*Wu and Gu. “Towards dropout training for convolutional neural networks.” Neural Networks, 2015."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(b) After applying dropout.",
+          "fa": "(b) پس از اعمال حذف تصادفی (Dropout).",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "958a94081087f2705d88e758ccd9c7d844293e8e89522efc8a04a31a2684d95e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "حذف تصادفی (Dropout) برای شبکه‌های عصبی کانولوشنی (CNNs)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "فکر می‌کنید چرا معمولاً در لایه‌های کانولوشنی از حذف تصادفی استفاده نمی‌شود؟ مثلاً در الگوریتم‌های دسته‌بندی تصویری که بررسی کردیم، فقط در لایه‌های تمام‌متصل (Fully connected) استفاده می‌شود:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "AlexNet (2012)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://www.researchgate.net/figure/Architecture-of-Alexnet-From￾left-to-right-input-to-output-five-convolutional-layers_fig2_312303454"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "VGG (2014)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "https://neurohive.io/en/popular-networks/vgg16/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "C1; C2; C3; C4; C5; FC6; FC7; FC8; 55; 27; 13; 96; 256; 384; 4096; 1000",
+          "fa": "C1؛ C2؛ C3؛ C4؛ C5؛ FC6؛ FC7؛ FC8؛ 55؛ 27؛ 13؛ 96؛ 256؛ 384؛ 4096؛ 1000",
+          "verified": true
+        },
+        {
+          "en": "224×224×3; 224×224×64; 112×112×128; 56×56×256; 28×28×512; 14×14×512; 7×7×512; 1×1×4096; 1×1×1000; convolution+ReLU; max pooling; fully connected+ReLU; softmax",
+          "fa": "224×224×3؛ 224×224×64؛ 112×112×128؛ 56×56×256؛ 28×28×512؛ 14×14×512؛ 7×7×512؛ 1×1×4096؛ 1×1×1000؛ کانولوشن + ReLU؛ تجمیع بیشینه (Max pooling)؛ تمام‌متصل + ReLU؛ سافت‌مکس (Softmax)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "c9f5182b3e0b328e74b0aa7931a8f114b6dda76d4185a3f2b2d71e619ffa5441",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "حذف تصادفی (Dropout) برای شبکه‌های عصبی کانولوشنی (CNNs)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "اشتراک پارامترها (Parameter tying) تعداد پارامترها را کاهش می‌دهد و بنابراین خود منظم‌سازی (Regularization) نیرومندی فراهم می‌کند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "AlexNet (2012)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://www.researchgate.net/figure/Architecture-of-Alexnet-From￾left-to-right-input-to-output-five-convolutional-layers_fig2_312303454"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "VGG (2014)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://neurohive.io/en/popular-networks/vgg16/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "C1; C2; C3; C4; C5; FC6; FC7; FC8; 55; 27; 13; 96; 256; 384; 4096; 1000",
+          "fa": "C1؛ C2؛ C3؛ C4؛ C5؛ FC6؛ FC7؛ FC8؛ 55؛ 27؛ 13؛ 96؛ 256؛ 384؛ 4096؛ 1000",
+          "verified": true
+        },
+        {
+          "en": "224×224×3; 224×224×64; 112×112×128; 56×56×256; 28×28×512; 14×14×512; 7×7×512; 1×1×4096; 1×1×1000; convolution+ReLU; max pooling; fully connected+ReLU; softmax",
+          "fa": "224×224×3؛ 224×224×64؛ 112×112×128؛ 56×56×256؛ 28×28×512؛ 14×14×512؛ 7×7×512؛ 1×1×4096؛ 1×1×1000؛ کانولوشن + ReLU؛ تجمیع بیشینه (Max pooling)؛ تمام‌متصل + ReLU؛ سافت‌مکس (Softmax)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "3e0a1a43a32710e7456166ad888db66ef154f1368d90d62eb2cb049c2448ae6c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• منظم‌سازی (Regularization)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• جریمهٔ نرم پارامتر (Parameter norm penalty)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• توقف زودهنگام (Early stopping)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• افزون‌سازی مجموعه‌داده (Dataset augmentation)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• حذف تصادفی (Dropout)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• نرمال‌سازی دسته‌ای (Batch Normalization)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "5015dd0fee370447408c0c1d7e3a197784d73a72a00531e167cf7383acf78ee5",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "انگیزه: ویژگی‌هایی با مقیاس‌های متفاوت می‌توانند یادگیری را کندتر کنند و عملکرد ضعیفی ایجاد کنند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "مثلاً تابع زیان دوبعدی (2D loss function): هنگامی که برای کمینه کردن زیان در گرادیان کاهشی (Gradient descent)، برخی وزن‌ها به به‌روزرسانی‌های بزرگ‌تر نیاز دارند، ممکن است در طول یادگیری جهش‌های رفت‌وبرگشتی ناکارآمد رخ دهد."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "W₁; W₂",
+          "fa": "W₁؛ W₂",
+          "verified": true
+        },
+        {
+          "en": "W₂b; W₂a",
+          "fa": "W₂b؛ W₂a",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "204934a469bae087f55d76e93f446182b1e9485911df0c6dadcf50fc1fc0e9b9",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یادآوری: رویکرد پایهٔ مقداردهی اولیهٔ داده"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "* یادگیری را با استانداردسازی دادهٔ ورودی ساده کنید، به‌گونه‌ای که میانگین ۰ و انحراف معیار ۱ باشد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "دادهٔ اصلی: دادهٔ استانداردشده:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://github.com/amueller/introduction_to_ml_with_python/blob/master/03-unsupervised-learning.ipynb"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "5340e222e2a975ccf2852aef79effdd432b678a228100a0fae6f178f7aa708aa",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یادآوری: رویکرد پایهٔ مقداردهی اولیهٔ داده"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "* یادگیری را با استانداردسازی دادهٔ ورودی ساده کنید، به‌گونه‌ای که میانگین ۰ و انحراف معیار ۱ باشد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "استانداردسازی، تابع زیان (Loss function) را تغییر می‌دهد تا گرادیان کاهشی روان‌تر به کمینه برسد!"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "W₁; W₂",
+          "fa": "W₁؛ W₂",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "6caa1cafc8e17a7effef997a6443db0622399c6345be3986c40e9f6a8d7a6dd5",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایده: با تبدیل ورودی لایه(های) پنهان، یادگیری را باز هم ساده‌تر کنید."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input (X); Layer₁; Activation (a₁); Layer₂; Activation (a₂); Layerₙ",
+          "fa": "ورودی (X)؛ لایهٔ ۱؛ فعال‌سازی (a₁)؛ لایهٔ ۲؛ فعال‌سازی (a₂)؛ لایهٔ n",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "78ccd6d37831ee1c1741d4262912fdf0f8221b75d0b7fc7183b8037165a6fcc3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "لایهٔ نرمال‌سازی دسته‌ای (Batch Normalization)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "پارامترهای هر لایه:"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "به هر لایه انعطاف می‌دهد که مقادیر نرمال‌شده را جابه‌جا و مقیاس‌بندی کند تا میانگین و واریانس جدیدی داشته باشند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "X; Linear₁; W₁; b₁; z₁; Activation Function; a₁; Batch Norm₁; bn₁; Linear₂; W₂; b₂",
+          "fa": "X؛ خطی ۱؛ W₁؛ b₁؛ z₁؛ تابع فعال‌سازی؛ a₁؛ نرمال‌سازی دسته‌ای ۱؛ bn₁؛ خطی ۲؛ W₂؛ b₂",
+          "verified": true
+        },
+        {
+          "en": "Batch Norm; Learnable Params; Beta (β); Gamma (γ); Saved Params; Moving Avg (mean); Moving Avg (Var)",
+          "fa": "نرمال‌سازی دسته‌ای؛ پارامترهای یادگرفتنی؛ بتا (β)؛ گاما (γ)؛ پارامترهای ذخیره‌شده؛ میانگین متحرک (میانگین)؛ میانگین متحرک (واریانس)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "835f20d683d53fb4e283c229ef76c6544e04b3622d63aae5edb21dc0355b2556",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "لایهٔ نرمال‌سازی دسته‌ای (Batch Normalization)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "برای این زیرشبکه، چند پارامتر آموزش‌پذیر باید در طول آموزش آموخته شوند؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "X; Layer₁; Batch Norm₁; β₁; γ₁; Layer₂; Batch Norm₂; β₂; γ₂; Layer₃; Batch Norm₃; β₃; γ₃; Mean Mov Avg.; Var Mov Avg.",
+          "fa": "X؛ لایهٔ ۱؛ نرمال‌سازی دسته‌ای ۱؛ β₁؛ γ₁؛ لایهٔ ۲؛ نرمال‌سازی دسته‌ای ۲؛ β₂؛ γ₂؛ لایهٔ ۳؛ نرمال‌سازی دسته‌ای ۳؛ β₃؛ γ₃؛ میانگین متحرکِ میانگین؛ میانگین متحرکِ واریانس",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "ec4a90b61bcefe4afd380bb71761012ad28329e23f65454f6e139933527923df",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نرمال‌سازی دسته‌ای (Batch Normalization): عملکرد هنگام آموزش"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "از پارامترهای هر لایهٔ نرمال‌سازی دسته‌ای استفاده می‌کند که شبکه آموخته است."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Mini-batch: Activations; Features; M Samples; A₁; A₂; Aₙ; Batch Norm; Mean and Std Dev; Normalize; Scale and Shift; Beta (β); Gamma (γ); Moving Average; Moving Avg (mean); Moving Avg (Var); Output (bn)",
+          "fa": "دستهٔ کوچک: فعال‌سازی‌ها؛ ویژگی‌ها؛ M نمونه؛ A₁؛ A₂؛ Aₙ؛ نرمال‌سازی دسته‌ای؛ میانگین و انحراف معیار؛ نرمال‌سازی؛ مقیاس‌بندی و جابه‌جایی؛ بتا (β)؛ گاما (γ)؛ میانگین متحرک؛ میانگین متحرک (میانگین)؛ میانگین متحرک (واریانس)؛ خروجی (bn)",
+          "verified": true
+        },
+        {
+          "en": "μᵢ = (1/M) ∑ Aᵢ; σᵢ = √[(1/M) ∑(Aᵢ−μ)²]; Âᵢ = (Aᵢ−μᵢ)/σᵢ; BÑᵢ = γ ⊙ Âᵢ + β; μmovᵢ = αμmovᵢ + (1−α)μᵢ; σmovᵢ = ασmovᵢ + (1−α)σᵢ",
+          "fa": "μᵢ = (1/M) ∑ Aᵢ؛ σᵢ = √[(1/M) ∑(Aᵢ−μ)²]؛ Âᵢ = (Aᵢ−μᵢ)/σᵢ؛ BÑᵢ = γ ⊙ Âᵢ + β؛ μmovᵢ = αμmovᵢ + (1−α)μᵢ؛ σmovᵢ = ασmovᵢ + (1−α)σᵢ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "569a0f7ac97a199220fe79d52a79bc2376d79d8c7528c8a9008af7408545b362",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نرمال‌سازی دسته‌ای (Batch Normalization): عملکرد هنگام آزمون"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Batch Norm (Inference); Activations (a); Normalize; Moving Avg (mean); Moving Avg (Var); Scale and Shift; Beta (β); Gamma (γ); Output (bn)",
+          "fa": "نرمال‌سازی دسته‌ای (استنتاج)؛ فعال‌سازی‌ها (a)؛ نرمال‌سازی؛ میانگین متحرک (میانگین)؛ میانگین متحرک (واریانس)؛ مقیاس‌بندی و جابه‌جایی؛ بتا (β)؛ گاما (γ)؛ خروجی (bn)",
+          "verified": true
+        },
+        {
+          "en": "Âᵢ = (Aᵢ−μmovᵢ)/σmovᵢ; BÑᵢ = γ ⊙ Âᵢ + β",
+          "fa": "Âᵢ = (Aᵢ−μmovᵢ)/σmovᵢ؛ BÑᵢ = γ ⊙ Âᵢ + β",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "b00803c5557335aca5e689d440d4bfd036284c63efe97f76bce7c59bb2094fa0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مزایا و محدودیت‌ها"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• مزایا — تابع بهینه‌سازی را هموار می‌کند و منجر به این موارد می‌شود:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• همگرایی سریع‌تر آموزش"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری پایدارتر در ترکیب با ابرپارامترها و مقداردهی‌های اولیهٔ مختلف"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• عملکرد تعمیم بهتر"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• معایب — لایه(های) اضافی، زمان آموزش و آزمون را افزایش می‌دهند."
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "reference",
+          "fa": "Santurkar et al. How Does Batch Normalization Help Optimization? Neurips 2018."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "3e0a1a43a32710e7456166ad888db66ef154f1368d90d62eb2cb049c2448ae6c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• منظم‌سازی (Regularization)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• جریمهٔ نرم پارامتر (Parameter norm penalty)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• توقف زودهنگام (Early stopping)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• افزون‌سازی مجموعه‌داده (Dataset augmentation)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• حذف تصادفی (Dropout)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• نرمال‌سازی دسته‌ای (Batch Normalization)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3269 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s09",
+  "source_sha256": "cc1db564e3d432a2220a094e59fe1233d64691cd856612ab919d917ecd6ed73c",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "a7026c5007d5258d584cbd1b2cb098512599394b772f5cd9e4d09be935143a42",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "مقدمه‌ای بر بینایی ماشین (Computer Vision) و طبقه‌بندی تصویر (Image Classification)\nدانا گوراری (Danna Gurari)\nدانشگاه کلرادو بولدر (University of Colorado Boulder)\nبهار 2022\nhttps://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "4018b346a61f4dae814b060ae958fa9972212330a3de6b9bdc09725b912aed0d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "مرور\n• جلسهٔ گذشته:\n• شبکه‌های عصبی (Neural Networks) برای داده‌های مکانی (Spatial Data)\n• تاریخچهٔ شبکه‌های عصبی کانولوشنی (CNNs؛ Convolutional Neural Networks)\n• CNNها ـ لایه‌های کانولوشن (Convolutional Layers)\n• CNNها ـ لایه‌های تجمیع (Pooling Layers)\n• تکالیف (Canvas)\n• نمره‌های تکلیف آزمایشگاهی 1 اعلام شده‌اند.\n• مهلت مجموعه‌مسئلهٔ 2 امروز پیش‌تر به پایان رسید.\n• مهلت تکلیف آزمایشگاهی 2 تا 1.5 هفتهٔ دیگر است.\n• پرسشی دارید؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "d25723e697e6f82a0c55b7516705ef310e18d4218aa65867c81cf3402a6d4fe1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• بینایی ماشین (Computer Vision)\n• دوران چالش‌های مجموعه‌داده (Dataset Challenges)\n• برندهٔ چالش MNIST: LeNet\n• برندگان چالش ImageNet: یادگیری عمیق‌تر (AlexNet، VGG، ResNet)\n• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "d25723e697e6f82a0c55b7516705ef310e18d4218aa65867c81cf3402a6d4fe1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• بینایی ماشین (Computer Vision)\n• دوران چالش‌های مجموعه‌داده (Dataset Challenges)\n• برندهٔ چالش MNIST: LeNet\n• برندگان چالش ImageNet: یادگیری عمیق‌تر (AlexNet، VGG، ResNet)\n• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "03a5f07cedb85f6c585491d4e9684a43eaabb8ff4f10cc4eed095d91368af6c5",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "بینایی ماشین (Computer Vision): رایانه‌هایی که «می‌بینند»\n5\nخودروهای خودران؛ اکتشاف در مریخ؛ جراحی هدایت‌شده\nکمک بصری به افراد نابینا؛ امنیت"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "8110c0ed25c7bef312a4e3d987f0d820ab5baf72436cd96d9f4131e34d08b583",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "چرا بینایی ماشین (Computer Vision) را همراه CNNها بررسی کنیم؟\n• شبکه‌های عصبی کانولوشنی (CNNs) سابقهٔ موفقی در مسائل بینایی دارند.\n• بازنمایی داده‌های بصری (یعنی دادهٔ مکانی؛ Spatial Data) به‌طور طبیعی برای CNNها مناسب است.\nتصویر (Image): ویدئو (Video):\nزمان 1\nزمان t"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "6d51f3525f5b2e4a18a1581b9cc5d0cdb974e165377b5de43f6e3ed8271e72f5",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "kind": "text",
+          "fa": "زمینهٔ تاریخی: خاستگاه‌های بینایی ماشین (Computer Vision)؛ نخستین ماشین برنامه‌پذیر\n2012\nیادگیری ماشین (Machine Learning)\nآزمون تورینگ (Turing Test)\n1945\nهوش مصنوعی (AI)\n1956\n1950 1959\nموج 3: اوج‌گیری «یادگیری عمیق» (Deep Learning)\n1957 پرسپترون (Perceptron)\n1847 نزول گرادیان (Gradient Descent)\nنخستین تصویر دیجیتال: 176 x 176 پیکسل"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "158b0907526ce1be6b66a63d3a7e069ef12227e29ac3954bd063912b40b7ba52",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "زمینهٔ تاریخی: خاستگاه‌های بینایی ماشین (Computer Vision)؛ نخستین ماشین برنامه‌پذیر؛ یادگیری ماشین (Machine Learning)؛ آزمون تورینگ (Turing Test)\n1945\nهوش مصنوعی (AI)\n1956\n1950 1957\n1959\n1847 نزول گرادیان (Gradient Descent)\nتولد بینایی ماشین\n1966\nنخستین تصویر دیجیتال؛ پرسپترون (Perceptron)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "MASSACHUSETTS INSTITUTE OF TECHNOLOGY; PROJECT MAC; Artificial Intelligence Group; Vision Memo. No. 100.; July 7, 1966",
+          "fa": "مؤسسهٔ فناوری ماساچوست (Massachusetts Institute of Technology)؛ پروژهٔ MAC؛ گروه هوش مصنوعی (Artificial Intelligence Group)؛ یادداشت بینایی شمارهٔ 100؛ 7 ژوئیهٔ 1966",
+          "verified": true
+        },
+        {
+          "en": "THE SUMMER VISION PROJECT; Seymour Papert",
+          "fa": "پروژهٔ تابستانی بینایی (The Summer Vision Project)؛ سیمور پاپرت (Seymour Papert)",
+          "verified": true
+        },
+        {
+          "en": "The summer vision project is an attempt to use our summer workers effectively in the construction of a significant part of a visual system.",
+          "fa": "پروژهٔ تابستانی بینایی تلاشی است برای استفادهٔ مؤثر از کارکنان تابستانی‌مان در ساخت بخش چشمگیری از یک سامانهٔ بینایی.",
+          "verified": true
+        },
+        {
+          "en": "sub-problems which will allow individuals to work independently and yet participate in the construction of a system complex enough to be a real landmark in the development of \"pattern recognition\".",
+          "fa": "... زیرمسئله‌هایی که به افراد امکان می‌دهند مستقل کار کنند و با این حال در ساخت سامانه‌ای مشارکت کنند که به‌اندازهٔ کافی پیچیده باشد تا نقطهٔ عطفی واقعی در توسعهٔ «بازشناسی الگو» (Pattern Recognition) باشد.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "d4131c09eb522d6bfef988621cc9ccaf285cb9eeb2452e698086f7caea9bd44c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "kind": "text",
+          "fa": "زمینهٔ تاریخی: خاستگاه‌های بینایی ماشین (Computer Vision)؛ نخستین ماشین برنامه‌پذیر؛ یادگیری ماشین (Machine Learning)؛ آزمون تورینگ (Turing Test)\n1945\nهوش مصنوعی (AI)\n1956\n1950 1957\n1959\nپرسپترون (Perceptron)؛ نخستین تصویر دیجیتال\n1847 نزول گرادیان (Gradient Descent)\nتولد بینایی ماشین\n1966\nآزمون تورینگ: «بینایی ماشین» را چنان طراحی کنید که از «بینایی انسان» تشخیص‌ناپذیر باشد."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "e2d23e2f084e8217c9d4a748137d7e819ae514c4e8ba116c226837b7d077571a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "kind": "text",
+          "fa": "هوش مصنوعی (Artificial Intelligence): ماشین‌هایی که کارهای «هوشمندانه» انجام می‌دهند\nجایگاه بینایی ماشین (Computer Vision)\nیادگیری عمیق (Deep Learning): ماشین‌هایی که یاد می‌گیرند با استفاده از شبکه‌های عصبی کارهای «هوشمندانه» انجام دهند\nبینایی ماشین: ماشین‌هایی که «می‌بینند»\nدامنهٔ درس"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "f26274a55a33b724294f00931b9c78801ccb81ee9196d4891a8b3b7eabf7b0df",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "• بازشناسی شیء (Object Recognition)\n• آشکارسازی شیء (Object Detection)\n• بخش‌بندی (Segmentation)\n• شرح‌نویسی تصویر (Image Captioning)\n• پاسخ‌گویی به پرسش بصری (Visual Question Answering)\n• ردیابی شیء (Object Tracking)\n• مسائل ذهنی (Subjective Problems)\n• و بیشتر...\nچالش اصلی: بازآفرینی بینایی انسان برای این‌همه تنوع و این‌همه وظیفه!"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "68e94fcab0e007fdaa509b91c5c2790c1c6e2db107042a6ab8ae891eec64d692",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "چالش اصلی: بازآفرینی بینایی انسان برای این‌همه تنوع و این‌همه وظیفه!\nمثلاً از یک شیء عکس بگیرید و محل خرید آن را پیدا کنید.\n• بازشناسی شیء (Object Recognition)\n• آشکارسازی شیء (Object Detection)\n• بخش‌بندی (Segmentation)\n• شرح‌نویسی تصویر (Image Captioning)\n• پاسخ‌گویی به پرسش بصری (Visual Question Answering)\n• ردیابی شیء (Object Tracking)\n• مسائل ذهنی (Subjective Problems)\n• و بیشتر..."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Point, Shoot & Discover",
+          "fa": "نشانه بگیرید، عکس بگیرید و کشف کنید.",
+          "verified": true
+        },
+        {
+          "en": "1969 Ford Mustang",
+          "fa": "فورد موستانگ 1969 (Ford Mustang)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "f472a497f9b5171887318af23e19d72324257d3ee756cc116e3e2685edbabaf1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "مثلاً چهره‌ها را برای برچسب‌زدن آشکار کنید.\nچالش اصلی: بازآفرینی بینایی انسان برای این‌همه تنوع و این‌همه وظیفه!\n• بازشناسی شیء (Object Recognition)\n• آشکارسازی شیء (Object Detection)\n• بخش‌بندی (Segmentation)\n• شرح‌نویسی تصویر (Image Captioning)\n• پاسخ‌گویی به پرسش بصری (Visual Question Answering)\n• ردیابی شیء (Object Tracking)\n• مسائل ذهنی (Subjective Problems)\n• و بیشتر..."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "dd5583d5249c4f5aa35956901a2580fd41e8b858e97368fd5a1e5d3b9b36e8d2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "مثلاً روتوسکوپی (Rotoscoping)\nhttps://www.starnow.co.uk/ahmedmohammed1/photos/4650871/before-and-after-rotoscopinggreen-screening\nچالش اصلی: بازآفرینی بینایی انسان برای این‌همه تنوع و این‌همه وظیفه!\n• بازشناسی شیء (Object Recognition)\n• آشکارسازی شیء (Object Detection)\n• بخش‌بندی (Segmentation)\n• شرح‌نویسی تصویر (Image Captioning)\n• پاسخ‌گویی به پرسش بصری (Visual Question Answering)\n• ردیابی شیء (Object Tracking)\n• مسائل ذهنی (Subjective Problems)\n• و بیشتر..."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "a8a7f4bf41aa319558ba6dc18b45406bb0e7e9df70154d83e48220a6e3e86613",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "چالش اصلی: بازآفرینی بینایی انسان برای این‌همه تنوع و این‌همه وظیفه!\nمثلاً Microsoft Power Point\n• بازشناسی شیء (Object Recognition)\n• آشکارسازی شیء (Object Detection)\n• بخش‌بندی (Segmentation)\n• شرح‌نویسی تصویر (Image Captioning)\n• پاسخ‌گویی به پرسش بصری (Visual Question Answering)\n• ردیابی شیء (Object Tracking)\n• مسائل ذهنی (Subjective Problems)\n• و بیشتر..."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "A city with a river running through it and mountains in the background",
+          "fa": "شهری با رودخانه‌ای که از میان آن می‌گذرد و کوه‌هایی در پس‌زمینه",
+          "verified": true
+        },
+        {
+          "en": "Description automatically generated with low confidence",
+          "fa": "توصیف با اطمینان پایین به‌صورت خودکار تولید شده است.",
+          "verified": true
+        },
+        {
+          "en": "Mark as decorative",
+          "fa": "به‌عنوان تزئینی علامت بزنید.",
+          "verified": true
+        },
+        {
+          "en": "Generate a description for me",
+          "fa": "برای من یک توصیف تولید کن.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "62a68a9e7f8273ab0c720dccc5b5e6f5271e9a8088e127b8bb53f2895c2e56f5",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "چالش اصلی: بازآفرینی بینایی انسان برای این‌همه تنوع و این‌همه وظیفه!\nمثلاً BeSpecular\nhttps://www.lionessesofafrica.com/blog/2015/2/15/the-startup-story-of-stephanie-cowper\n• بازشناسی شیء (Object Recognition)\n• آشکارسازی شیء (Object Detection)\n• بخش‌بندی (Segmentation)\n• شرح‌نویسی تصویر (Image Captioning)\n• پاسخ‌گویی به پرسش بصری (Visual Question Answering)\n• ردیابی شیء (Object Tracking)\n• مسائل ذهنی (Subjective Problems)\n• و بیشتر..."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Did the waiter serve the Cabernet I ordered? It tastes strange...",
+          "fa": "آیا پیشخدمت همان کابرنه‌ای (Cabernet) را آورده که سفارش دادم؟ مزه‌اش عجیب است...",
+          "verified": true
+        },
+        {
+          "en": "Hello! Actually you are drinking a Merlot!",
+          "fa": "سلام! در واقع دارید مرلو (Merlot) می‌نوشید!",
+          "verified": true
+        },
+        {
+          "en": "Double tap to take a picture",
+          "fa": "برای عکس‌گرفتن دوبار ضربه بزنید.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "69a54a1ead967e63d4734d208748f40d1bac8c08dce7a05a80049e8feefb4d8f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "چالش اصلی: بازآفرینی بینایی انسان برای این‌همه تنوع و این‌همه وظیفه!\nمثلاً ردیابی مسیر توپ بولینگ\nمثلاً محاسبهٔ سرعت چوب بیسبال\n• بازشناسی شیء (Object Recognition)\n• آشکارسازی شیء (Object Detection)\n• بخش‌بندی (Segmentation)\n• شرح‌نویسی تصویر (Image Captioning)\n• پاسخ‌گویی به پرسش بصری (Visual Question Answering)\n• ردیابی شیء (Object Tracking)\n• مسائل ذهنی (Subjective Problems)\n• و بیشتر..."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "52b042266312b19ab5b542e1982a0841d55bc694adfbe9c1a74a337c304c22f1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "چالش اصلی: بازآفرینی بینایی انسان برای این‌همه تنوع و این‌همه وظیفه!\n• بازشناسی شیء (Object Recognition)\n• آشکارسازی شیء (Object Detection)\n• بخش‌بندی (Segmentation)\n• شرح‌نویسی تصویر (Image Captioning)\n• پاسخ‌گویی به پرسش بصری (Visual Question Answering)\n• ردیابی شیء (Object Tracking)\n• مسائل ذهنی (Subjective Problems)\n• و بیشتر..."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "face",
+          "fa": "چهره (Face)",
+          "verified": true
+        },
+        {
+          "en": "beautiful",
+          "fa": "زیبا (Beautiful)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "52b042266312b19ab5b542e1982a0841d55bc694adfbe9c1a74a337c304c22f1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "چالش اصلی: بازآفرینی بینایی انسان برای این‌همه تنوع و این‌همه وظیفه!\n• بازشناسی شیء (Object Recognition)\n• آشکارسازی شیء (Object Detection)\n• بخش‌بندی (Segmentation)\n• شرح‌نویسی تصویر (Image Captioning)\n• پاسخ‌گویی به پرسش بصری (Visual Question Answering)\n• ردیابی شیء (Object Tracking)\n• مسائل ذهنی (Subjective Problems)\n• و بیشتر..."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "93058bd98a99b467af7d30c97988afa39a82c9d0c1e3ce7c63820fa5b47768e3",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "اسلاید از کریستن گرومان (Kristen Grauman)\nچالش اصلی: بازآفرینی بینایی انسان برای این‌همه تنوع و این‌همه وظیفه!"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Illumination",
+          "fa": "روشنایی (Illumination)",
+          "verified": true
+        },
+        {
+          "en": "Object pose",
+          "fa": "حالت شیء (Object Pose)",
+          "verified": true
+        },
+        {
+          "en": "Clutter",
+          "fa": "شلوغی (Clutter)",
+          "verified": true
+        },
+        {
+          "en": "Occlusions",
+          "fa": "پوشیدگی‌ها (Occlusions)",
+          "verified": true
+        },
+        {
+          "en": "Intra-class appearance",
+          "fa": "ظاهر درون‌کلاسی (Intra-class Appearance)",
+          "verified": true
+        },
+        {
+          "en": "Viewpoint",
+          "fa": "زاویهٔ دید (Viewpoint)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "d25723e697e6f82a0c55b7516705ef310e18d4218aa65867c81cf3402a6d4fe1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• بینایی ماشین (Computer Vision)\n• دوران چالش‌های مجموعه‌داده (Dataset Challenges)\n• برندهٔ چالش MNIST: LeNet\n• برندگان چالش ImageNet: یادگیری عمیق‌تر (AlexNet، VGG، ResNet)\n• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "1d9719a52be47e414c5b218a317a583606a306e7129bc27e42372558f5a2cea0",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "الگوریتم (Algorithm)؛ مجموعه‌داده (Dataset)\nتا دههٔ 1990، رویکرد رایج توسعهٔ مدل‌های بینایی ماشین (Computer Vision):\nالگوریتم\nالگوریتم؛ مجموعه‌داده؛ مجموعه‌داده؛ مجموعه‌داده؛ الگوریتم\nمجموعه‌داده‌ها معمولاً نسبتاً کوچک بودند (مثلاً ده‌ها یا صدها نمونه)."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "41459baf7ee95a1d9a098d0a8d2baac33da5488df577f137bde4d75e2a1ac6d0",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "از دههٔ 1990 به بعد، رویکرد رایج توسعهٔ مدل‌های بینایی ماشین (Computer Vision):\nالگوریتم‌ها (Algorithms)\nمجموعه‌داده (Dataset)\nمنبع تصویر: http://larryzitnick.org/Talks/CVPR15_Dataset.pptx\nمجموعه‌داده‌ها معمولاً بزرگ‌اند (یعنی هزاران تا میلیون‌ها نمونه)."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "DIVORCE",
+          "fa": "جدایی (Divorce)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "64a3e6df10e65df8f4a99054780fb3f19bd2056418e275118effb7e766d46a98",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "از دههٔ 1990 به بعد، رویکرد رایج توسعهٔ مدل‌های بینایی ماشین (Computer Vision):\nالگوریتم‌ها (Algorithms)\nمجموعه‌داده (Dataset)\nمنبع تصویر: http://larryzitnick.org/Talks/CVPR15_Dataset.pptx\nمجموعه‌داده‌ها معمولاً بزرگ‌اند (یعنی هزاران تا میلیون‌ها نمونه).\nفکر می‌کنید چه چیزی سبب این گذار به مجموعه‌داده‌های بزرگ‌مقیاس شد؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "5cddf355da13e1b2b63039c0d87b76bf8d6e9c99245c0ba32b01b451168fb8d1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "سنجش پیشرفت از طریق پیشرفت در چالش‌های مجموعه‌دادهٔ مشترک جامعهٔ پژوهشی: سازوکار\nداده‌های آموزش (Training Data)؛ داده‌های آزمون (Test Data)\n1. مجموعه‌داده به یک «مجموعهٔ آموزش» (Training Set) و «مجموعهٔ آزمون» (Test Set) تقسیم می‌شود و برچسب‌های «مجموعهٔ آزمون» (Test Set) پنهان می‌مانند.\n2. تیم‌ها یک مدل طراحی می‌کنند و پیش‌بینی‌های آن را برای مجموعهٔ آزمون به یک سرور ارزیابی ارسال می‌کنند.\n3. یک جدول امتیاز عمومی (Leaderboard)، رتبهٔ عملکرد تمام مدل‌های ارسال‌شدهٔ تیم‌ها را نشان می‌دهد.\nبرچسب (Label): xyz\nداده (Data):\nxyz xyz xyz xyz xyz"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "77cefc4b713c5d83ae1d2b25212b349c71968074c11fd5bd5a340f92644d6a2d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "سنجش پیشرفت از طریق پیشرفت در چالش‌های مجموعه‌دادهٔ مشترک جامعهٔ پژوهشی: چرا چالش؟\n• فراهم‌کردن مقایسهٔ «منصفانه» میان مدل‌ها\n• ایجاد جامعه‌ای پیرامون یک هدف مشترک"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "e82012093ce984e99c254a85a39bfdc11d9b2000e24035ccb8ad791cc4bb77b5",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "چالش‌های مجموعه‌دادهٔ عمومی بسیاری در دسترس‌اند؛ مثلاً،\n• Google Dataset Search\n• مجموعه‌داده‌های AWS آمازون\n• مجموعه‌داده‌های Kaggle\n• فهرست Wikipedia\n• UC Irvine Machine Learning Repository\n• Quora.com\n• Reddit\n• Dataportals.org\n• Opendatamonitor.eu\n• Quandl.com"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "d25723e697e6f82a0c55b7516705ef310e18d4218aa65867c81cf3402a6d4fe1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• بینایی ماشین (Computer Vision)\n• دوران چالش‌های مجموعه‌داده (Dataset Challenges)\n• برندهٔ چالش MNIST: LeNet\n• برندگان چالش ImageNet: یادگیری عمیق‌تر (AlexNet، VGG، ResNet)\n• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "d62ebf6856708e6fc8da58604f40d7c8378f59243dfb3e6603fa1687c79b3379",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "kind": "text",
+          "fa": "زمینهٔ تاریخی: منبع الهام؛ نخستین ماشین برنامه‌پذیر\n2012\nآزمون تورینگ (Turing Test)\n1945\nهوش مصنوعی (AI)\n1956\n1950 1959\nشبکه‌های عصبی با راهبرد یادگیری مؤثر\nموج 3: اوج‌گیری «یادگیری عمیق» (Deep Learning)\n1957 پرسپترون (Perceptron)\n1847 نزول گرادیان (Gradient Descent)\nیادگیری ماشین (Machine Learning)\n1986\n1998\nپس‌انتشار (Backpropagation) برای CNNها\n1989\nMNIST, LeNet\nنئوکگنیترون (Neocognitron)\n1980"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "e2a4ed0b3f96da11afd36eef583264187325b8b2b104b8f9449a2760cb894851",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "دستاورد اصلی: نشان‌دادن چگونگی اجرای پس‌انتشار (Backpropagation) برای شبکه‌های عصبی کانولوشنی (CNNs) به‌منظور امکان‌پذیرکردن یادگیری، و در نتیجه حذف نیاز به فیلترهای دست‌ساز (Hand-crafted Filters)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "6d6e4a462eb166b70fb0bf64de09e68231ac95bb3f8db1ae4538a83069584617",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "چالش مجموعه‌دادهٔ MNIST\n• هدف: طبقه‌بندی رقم به‌عنوان 0، 1، ...، یا 9\n• معیار ارزیابی: دقت (Accuracy؛ درصد درست)\n• مجموعه‌داده (Dataset): 60,000 نمونهٔ آموزش و 10,000 نمونهٔ آزمون که پیش‌پردازش شده‌اند تا در مرکز قرار گیرند و هم‌اندازه باشند؛ نویسندگان در دو مجموعه متفاوت بودند.\n• منبع: تصویرهایی که NIST از مجموعاً 500 کارمند ادارهٔ سرشماری و دانش‌آموز دبیرستانی گردآوری کرده است.\nمحل مجموعه‌داده: http://yann.lecun.com/exdb/mnist/\nمجموعه‌دادهٔ NIST: https://www.nist.gov/srd/nist-special-database-19\nمنبع شکل: https://commons.wikimedia.org/w/index.php?curid=64810040"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "c1f48d590aa9c8871f938b46031d17183217bd4c5b200ceb3e9d84e796157042",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "معماری LeNet (مانند نئوکگنیترون، دارای لایه‌های کانولوشن؛ Convolutional Layers و لایه‌های تجمیع؛ Pooling Layers است)\nY. Lecun ; L. Bottou ; Y. Bengio ; P. Haffner; Gradient-based learning applied to document recognition; 1998\nشبکهٔ عصبی چندلایه (Multi-layer Neural Network)؛ tanh به‌عنوان تابع فعال‌سازی (Activation Function) به کار می‌رود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "INPUT 32x32",
+          "fa": "ورودی (INPUT): 32x32",
+          "verified": true
+        },
+        {
+          "en": "C1: feature maps 6@28x28",
+          "fa": "C1: نقشه‌های ویژگی (Feature Maps)، 6@28x28",
+          "verified": true
+        },
+        {
+          "en": "S2: f. maps 6@14x14",
+          "fa": "S2: نقشه‌های ویژگی (Feature Maps)، 6@14x14",
+          "verified": true
+        },
+        {
+          "en": "C3: f. maps 16@10x10",
+          "fa": "C3: نقشه‌های ویژگی (Feature Maps)، 16@10x10",
+          "verified": true
+        },
+        {
+          "en": "S4: f. maps 16@5x5",
+          "fa": "S4: نقشه‌های ویژگی (Feature Maps)، 16@5x5",
+          "verified": true
+        },
+        {
+          "en": "C5: layer 120",
+          "fa": "C5: لایه (Layer)، 120",
+          "verified": true
+        },
+        {
+          "en": "F6: layer 84",
+          "fa": "F6: لایه (Layer)، 84",
+          "verified": true
+        },
+        {
+          "en": "OUTPUT 10",
+          "fa": "خروجی (OUTPUT): 10",
+          "verified": true
+        },
+        {
+          "en": "Convolutions",
+          "fa": "کانولوشن‌ها (Convolutions)",
+          "verified": true
+        },
+        {
+          "en": "Subsampling",
+          "fa": "زیرنمونه‌برداری (Subsampling)",
+          "verified": true
+        },
+        {
+          "en": "Full connection",
+          "fa": "اتصال کامل (Full Connection)",
+          "verified": true
+        },
+        {
+          "en": "Gaussian connections",
+          "fa": "اتصال‌های گاوسی (Gaussian Connections)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "b72ce4bf5af6d9337cd8de70fce8bb3613e7c985ddbfbc945ae7d33ccc540f2d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "معماری LeNet (مانند نئوکگنیترون، دارای لایه‌های کانولوشن؛ Convolutional Layers و لایه‌های تجمیع؛ Pooling Layers است)\nY. Lecun ; L. Bottou ; Y. Bengio ; P. Haffner; Gradient-based learning applied to document recognition; 1998\nشبکهٔ عصبی چندلایه (Multi-layer Neural Network)\nاین شبکه چند مقدار خروجی ممکن را پیش‌بینی می‌کند؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "INPUT 32x32",
+          "fa": "ورودی (INPUT): 32x32",
+          "verified": true
+        },
+        {
+          "en": "C1: feature maps 6@28x28",
+          "fa": "C1: نقشه‌های ویژگی (Feature Maps)، 6@28x28",
+          "verified": true
+        },
+        {
+          "en": "S2: f. maps 6@14x14",
+          "fa": "S2: نقشه‌های ویژگی (Feature Maps)، 6@14x14",
+          "verified": true
+        },
+        {
+          "en": "C3: f. maps 16@10x10",
+          "fa": "C3: نقشه‌های ویژگی (Feature Maps)، 16@10x10",
+          "verified": true
+        },
+        {
+          "en": "S4: f. maps 16@5x5",
+          "fa": "S4: نقشه‌های ویژگی (Feature Maps)، 16@5x5",
+          "verified": true
+        },
+        {
+          "en": "C5: layer 120",
+          "fa": "C5: لایه (Layer)، 120",
+          "verified": true
+        },
+        {
+          "en": "F6: layer 84",
+          "fa": "F6: لایه (Layer)، 84",
+          "verified": true
+        },
+        {
+          "en": "OUTPUT 10",
+          "fa": "خروجی (OUTPUT): 10",
+          "verified": true
+        },
+        {
+          "en": "Convolutions",
+          "fa": "کانولوشن‌ها (Convolutions)",
+          "verified": true
+        },
+        {
+          "en": "Subsampling",
+          "fa": "زیرنمونه‌برداری (Subsampling)",
+          "verified": true
+        },
+        {
+          "en": "Full connection",
+          "fa": "اتصال کامل (Full Connection)",
+          "verified": true
+        },
+        {
+          "en": "Gaussian connections",
+          "fa": "اتصال‌های گاوسی (Gaussian Connections)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "2687821c4cd0f3c2283019933e6822449a82912b5e924c83b430b1f458876943",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "معماری LeNet (مانند نئوکگنیترون، دارای لایه‌های کانولوشن؛ Convolutional Layers و لایه‌های تجمیع؛ Pooling Layers است)\nY. Lecun ; L. Bottou ; Y. Bengio ; P. Haffner; Gradient-based learning applied to document recognition; 1998\nبین ورودی و لایهٔ پنهان (Hidden Layer) 1 چند فیلتر وجود دارد؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "INPUT 32x32",
+          "fa": "ورودی (INPUT): 32x32",
+          "verified": true
+        },
+        {
+          "en": "C1: feature maps 6@28x28",
+          "fa": "C1: نقشه‌های ویژگی (Feature Maps)، 6@28x28",
+          "verified": true
+        },
+        {
+          "en": "S2: f. maps 6@14x14",
+          "fa": "S2: نقشه‌های ویژگی (Feature Maps)، 6@14x14",
+          "verified": true
+        },
+        {
+          "en": "C3: f. maps 16@10x10",
+          "fa": "C3: نقشه‌های ویژگی (Feature Maps)، 16@10x10",
+          "verified": true
+        },
+        {
+          "en": "S4: f. maps 16@5x5",
+          "fa": "S4: نقشه‌های ویژگی (Feature Maps)، 16@5x5",
+          "verified": true
+        },
+        {
+          "en": "C5: layer 120",
+          "fa": "C5: لایه (Layer)، 120",
+          "verified": true
+        },
+        {
+          "en": "F6: layer 84",
+          "fa": "F6: لایه (Layer)، 84",
+          "verified": true
+        },
+        {
+          "en": "OUTPUT 10",
+          "fa": "خروجی (OUTPUT): 10",
+          "verified": true
+        },
+        {
+          "en": "Convolutions",
+          "fa": "کانولوشن‌ها (Convolutions)",
+          "verified": true
+        },
+        {
+          "en": "Subsampling",
+          "fa": "زیرنمونه‌برداری (Subsampling)",
+          "verified": true
+        },
+        {
+          "en": "Full connection",
+          "fa": "اتصال کامل (Full Connection)",
+          "verified": true
+        },
+        {
+          "en": "Gaussian connections",
+          "fa": "اتصال‌های گاوسی (Gaussian Connections)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "3dc433ec897474f171163ae8afad6b701505513cbf09592bc3eb716c0fd449ed",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "معماری LeNet (مانند نئوکگنیترون، دارای لایه‌های کانولوشن؛ Convolutional Layers و لایه‌های تجمیع؛ Pooling Layers است)\nY. Lecun ; L. Bottou ; Y. Bengio ; P. Haffner; Gradient-based learning applied to document recognition; 1998\nبرای این لایهٔ تجمیع (Pooling Layer) از همسایگی با چه اندازه‌ای استفاده می‌شود؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "INPUT 32x32",
+          "fa": "ورودی (INPUT): 32x32",
+          "verified": true
+        },
+        {
+          "en": "C1: feature maps 6@28x28",
+          "fa": "C1: نقشه‌های ویژگی (Feature Maps)، 6@28x28",
+          "verified": true
+        },
+        {
+          "en": "S2: f. maps 6@14x14",
+          "fa": "S2: نقشه‌های ویژگی (Feature Maps)، 6@14x14",
+          "verified": true
+        },
+        {
+          "en": "C3: f. maps 16@10x10",
+          "fa": "C3: نقشه‌های ویژگی (Feature Maps)، 16@10x10",
+          "verified": true
+        },
+        {
+          "en": "S4: f. maps 16@5x5",
+          "fa": "S4: نقشه‌های ویژگی (Feature Maps)، 16@5x5",
+          "verified": true
+        },
+        {
+          "en": "C5: layer 120",
+          "fa": "C5: لایه (Layer)، 120",
+          "verified": true
+        },
+        {
+          "en": "F6: layer 84",
+          "fa": "F6: لایه (Layer)، 84",
+          "verified": true
+        },
+        {
+          "en": "OUTPUT 10",
+          "fa": "خروجی (OUTPUT): 10",
+          "verified": true
+        },
+        {
+          "en": "Convolutions",
+          "fa": "کانولوشن‌ها (Convolutions)",
+          "verified": true
+        },
+        {
+          "en": "Subsampling",
+          "fa": "زیرنمونه‌برداری (Subsampling)",
+          "verified": true
+        },
+        {
+          "en": "Full connection",
+          "fa": "اتصال کامل (Full Connection)",
+          "verified": true
+        },
+        {
+          "en": "Gaussian connections",
+          "fa": "اتصال‌های گاوسی (Gaussian Connections)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "a18ecff77c5e59bbf0b6aa4dd4f95a6de8279cc7a39ee918cc039d85ea179339",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21
+          ],
+          "kind": "text",
+          "fa": "رویکرد فرایند آموزش (نوآوری اصلی)\n• تا برآورده‌شدن معیار توقف تکرار کنید:\n1. گذر رو به جلو (Forward Pass): داده‌های آموزش را از مدل عبور دهید تا پیش‌بینی انجام شود.\n2. نارضایتی از نتایج مدل روی داده‌های آموزش را کمّی کنید.\n3. گذر رو به عقب (Backward Pass): با استفاده از خروجی پیش‌بینی‌شده، گرادیان‌ها را در جهت عقب محاسبه کنید تا سهم تقصیر هر پارامتر مدل مشخص شود.\n4. اشتراک وزن (Weight Sharing) را با استفاده از میانگین همهٔ اتصال‌های مربوط به یک پارامتر لحاظ کنید.\n5. هر پارامتر را با استفاده از گرادیان‌های محاسبه‌شده به‌روز کنید.\nشکل از: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul,\nJeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018\nاز تابع هدف/زیان (Objective/Loss Function) برای محاسبهٔ خطا استفاده می‌شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(a) Forward pass",
+          "fa": "(a) گذر رو به جلو (Forward Pass)",
+          "verified": true
+        },
+        {
+          "en": "(b) Backward pass",
+          "fa": "(b) گذر رو به عقب (Backward Pass)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "550d14aa33e42542e0fd1afb579915799adb9ee4972f6f55febf7b3f41400c79",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "kind": "text",
+          "fa": "رویکرد فرایند آموزش (نوآوری اصلی)\n• تا برآورده‌شدن معیار توقف تکرار کنید:\n1. گذر رو به جلو (Forward Pass): داده‌های آموزش را از مدل عبور دهید تا پیش‌بینی انجام شود.\n2. نارضایتی از نتایج مدل روی داده‌های آموزش را کمّی کنید.\n3. گذر رو به عقب (Backward Pass): با استفاده از خروجی پیش‌بینی‌شده، گرادیان‌ها را در جهت عقب محاسبه کنید تا سهم تقصیر هر پارامتر مدل مشخص شود.\n4. اشتراک وزن (Weight Sharing) را با استفاده از میانگین همهٔ اتصال‌های مربوط به یک پارامتر لحاظ کنید.\n5. هر پارامتر را با استفاده از گرادیان‌های محاسبه‌شده به‌روز کنید.\nYann Lecun. Generalization and network design strategies. Technical Report, 1989\nاستخراج روابط گرادیان (Gradient Derivations) در خواندنی‌های تعیین‌شده آمده است."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "f765f706e7762a1f3e24aeaf400e6a865372561032182445b2ad4d4a2d906862",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "kind": "text",
+          "fa": "رویکرد فرایند آموزش (نوآوری اصلی)\n• تا برآورده‌شدن معیار توقف تکرار کنید:\n1. گذر رو به جلو (Forward Pass): داده‌های آموزش را از مدل عبور دهید تا پیش‌بینی انجام شود.\n2. نارضایتی از نتایج مدل روی داده‌های آموزش را کمّی کنید.\n3. گذر رو به عقب (Backward Pass): با استفاده از خروجی پیش‌بینی‌شده، گرادیان‌ها را در جهت عقب محاسبه کنید تا سهم تقصیر هر پارامتر مدل مشخص شود.\n4. اشتراک وزن (Weight Sharing) را با استفاده از میانگین همهٔ اتصال‌های مربوط به یک پارامتر لحاظ کنید.\n5. هر پارامتر را با استفاده از گرادیان‌های محاسبه‌شده به‌روز کنید.\nhttps://www.jefkine.com/general/2016/09/05/backpropagation-in-convolutional-neural-networks/\nورودی (Input)؛ فیلتر (Filter؛ با نام کرنل، Kernel نیز شناخته می‌شود)\nنقشهٔ ویژگی (Feature Map)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "c619ea062a5a5865af1ee1780479449d6db3931d66fbe338b600c388d5f6955d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "LeNet در برابر نئوکگنیترون (Neocognitron)\nاستخراج ویژگی (Feature Extraction)؛ پیش‌بینی (Prediction)\n9\nورودی (INPUT)؛ خروجی (OUTPUT)\n9\nاستخراج ویژگی\nLeNet: فیلترهای یادگرفته‌شده (Learned Filters)\nپیش‌بینی\nنئوکگنیترون: فیلترهای دست‌ساز (Hand-crafted Filters)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "1aa3c0e7a19335ab74fc98ced8cb97052ad4efd3a0cfa5ba25aa4c9e062d7a46",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "تحلیل عملکرد LeNet\nY. Lecun ; L. Bottou ; Y. Bengio ; P. Haffner; Gradient-based learning applied to document recognition; 1998\nبرای همگرایی آموزش چند دوره (Epochs) لازم است؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Error Rate (%)",
+          "fa": "نرخ خطا (%)؛ Error Rate",
+          "verified": true
+        },
+        {
+          "en": "Test",
+          "fa": "آزمون (Test)",
+          "verified": true
+        },
+        {
+          "en": "Training",
+          "fa": "آموزش (Training)",
+          "verified": true
+        },
+        {
+          "en": "Training set Iterations",
+          "fa": "تکرارهای مجموعهٔ آموزش (Training Set Iterations)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "c6df137f55e6aba4d49ca0092600255359dbf8a927f6f7dd8a121ce2dae56967",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "LeNet که بر مبنای چالش MNIST طراحی شد، در دههٔ 1990 برای خواندن بیش از 10% از چک‌های آمریکای شمالی استفاده می‌شد و هر ماه میلیون‌ها چک را می‌خواند."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "d25723e697e6f82a0c55b7516705ef310e18d4218aa65867c81cf3402a6d4fe1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• بینایی ماشین (Computer Vision)\n• دوران چالش‌های مجموعه‌داده (Dataset Challenges)\n• برندهٔ چالش MNIST: LeNet\n• برندگان چالش ImageNet: یادگیری عمیق‌تر (AlexNet، VGG، ResNet)\n• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "b9ed6679a95147f147b42433f6837b4efb5af310c3853cc807dd61ba3e65a53b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21
+          ],
+          "kind": "text",
+          "fa": "زمینهٔ تاریخی؛ نخستین ماشین برنامه‌پذیر\n2012\nآزمون تورینگ (Turing Test)\n1945\nهوش مصنوعی (AI)\n1956\n1950 1959\nشبکه‌های عصبی با راهبرد یادگیری مؤثر\nموج 3: اوج‌گیری «یادگیری عمیق» (Deep Learning)\n1957 پرسپترون (Perceptron)\n1847 نزول گرادیان (Gradient Descent)\nیادگیری ماشین (Machine Learning)\n1986\n1998\nپس‌انتشار (Backpropagation) برای CNNها\n1989\nMNIST, LeNet\nنئوکگنیترون (Neocognitron)\n1980\n2009\nImageNet: محرک موج سوم"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "8d5b3d97964862707d3300fa805fb78d56a7049b1c7430f01c5ee03a520ea1dd",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "ImageNet: پیش‌بینی دسته از میان 1000 گزینه\nJ. Deng, W. Dong, R. Socher, L. Li, K. Li and L. Fei-Fei. ImageNet: A Large-Scale Hierarchical Image Database. 2009\n• معیار ارزیابی: درصد درست (پیش‌بینی‌های رتبهٔ اول و پنج رتبهٔ برتر؛ Top-1 / Top-5)\n• مجموعه‌داده (Dataset): حدود 1.5 میلیون تصویر\n• منبع: تصویرهایی استخراج‌شده از موتورهای جست‌وجو، مانند Flickr، و برچسب‌گذاری‌شده به‌وسیلهٔ نیروهای جمع‌سپاری (Crowdworkers)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ImageNet Large Scale Visual Recognition Challenges",
+          "fa": "چالش‌های بازشناسی بصری بزرگ‌مقیاس ImageNet (ImageNet Large Scale Visual Recognition Challenges)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "df93e6660c4fcce17bf47ba1166dc6f3c4732189c301eddac1980a102458785d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "ImageNet در برابر MNIST\nJ. Deng, W. Dong, R. Socher, L. Li, K. Li and L. Fei-Fei. ImageNet: A Large-Scale Hierarchical Image Database. 2009\n• اشیای سه‌بعدی (3D) در پس‌زمینه‌های طبیعی\n• دسته‌های بسیار بیشتر"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ImageNet Large Scale Visual Recognition Challenges",
+          "fa": "چالش‌های بازشناسی بصری بزرگ‌مقیاس ImageNet (ImageNet Large Scale Visual Recognition Challenges)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "52280c252e90648977f238e59dff57eafac60bc895450a413e16ba12e80dd929",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "اوج‌گیری «یادگیری عمیق» (Deep Learning)\nپیشرفت مدل‌ها در ImageNet (خطای پنج رتبهٔ برتر؛ Top 5 Error)\nبزرگ‌کردن مقیاس مجموعه‌داده به بهبودهای غیرمنتظره و بی‌سابقه‌ای از سوی مدل «یادگیری عمیق» AlexNet انجامید.\nمنبع شکل: https://www.edge-ai-vision.com/2018/07/deep-learning-in-five-and-a-half-minutes/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "2011 (XRCE); 2012 (AlexNet); 2013 (ZF); 2014 (VGG); 2014 (GoogLeNet); Human; 2015 (ResNet)",
+          "fa": "2011 (XRCE)؛ 2012 (AlexNet)؛ 2013 (ZF)؛ 2014 (VGG)؛ 2014 (GoogLeNet)؛ انسان (Human)؛ 2015 (ResNet)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "c9632cc2f875e4ffbcdf4bc2fa30b08aa25250aeca6c85ad5740072f8a501957",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "اوج‌گیری «یادگیری عمیق» (Deep Learning) پس از AlexNet\nمنبع: https://image-net.org/static_files/files/ILSVRC2017_overview.pdf\nبا الهام از AlexNet، پژوهشگران بسیار بیشتری در جامعهٔ بینایی ماشین (Computer Vision)، شبکه‌های عصبی را پیشنهاد کردند و نشان دادند چگونه طی سال‌ها پیشرفت بیشتری ایجاد کنند!"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "The number of Entries",
+          "fa": "تعداد آثار ارسالی (The Number of Entries)",
+          "verified": true
+        },
+        {
+          "en": "1 year; 9 month",
+          "fa": "1 سال؛ 9 ماه",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "daa18c8b24f249e948239a98c50708b97d6326608e323f2a98f1f6b517b4ec10",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "اوج‌گیری «یادگیری عمیق» (Deep Learning) پس از AlexNet\nمنبع: https://image-net.org/static_files/files/ILSVRC2017_overview.pdf\n• 727 اثر ارسالی (به‌اضافهٔ مورد معروفی از Baidu که در 2015 به‌دلیل تقلب اخراج شد)\n• هزینهٔ نیروی کار حدود $110 میلیون: با فرض مشارکت 3 نفر در هر مورد و هزینهٔ $50k برای هر نفر"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "The number of Entries",
+          "fa": "تعداد آثار ارسالی (The Number of Entries)",
+          "verified": true
+        },
+        {
+          "en": "1 year; 9 month",
+          "fa": "1 سال؛ 9 ماه",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "cc57b8636155413d8cbb8a40986446161217a8d5120dc059b4e5a75e9e03ec99",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "راز عملکرد برتر (State-of-Art): CNNهای عمیق‌تر\nموضوع‌های امروز\nپیشرفت مدل‌ها در ImageNet (خطای پنج رتبهٔ برتر؛ Top 5 Error)\nمنبع شکل: https://www.edge-ai-vision.com/2018/07/deep-learning-in-five-and-a-half-minutes/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "2011 (XRCE); 2012 (AlexNet); 2013 (ZF); 2014 (VGG); 2014 (GoogLeNet); Human; 2015 (ResNet)",
+          "fa": "2011 (XRCE)؛ 2012 (AlexNet)؛ 2013 (ZF)؛ 2014 (VGG)؛ 2014 (GoogLeNet)؛ انسان (Human)؛ 2015 (ResNet)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "2b4c44823568dc0e6918c54461ab1d9e0272e42e7075720d9f55841b852e6ee6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "kind": "text",
+          "fa": "• تا برآورده‌شدن معیار توقف تکرار کنید:\n1. گذر رو به جلو (Forward Pass): داده‌های آموزش را از مدل عبور دهید تا پیش‌بینی انجام شود.\n2. نارضایتی از نتایج مدل روی داده‌های آموزش را کمّی کنید.\n3. گذر رو به عقب (Backward Pass): با استفاده از خروجی پیش‌بینی‌شده، گرادیان‌ها را در جهت عقب محاسبه کنید تا سهم تقصیر هر پارامتر مدل مشخص شود.\n4. هر پارامتر را با استفاده از گرادیان‌های محاسبه‌شده به‌روز کنید.\nشکل از: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul,\nJeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018\nچرا دستیابی به عملکرد بهتر با CNNهای عمیق‌تر دشوار است: محوشدن گرادیان‌ها (Vanishing Gradients)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(a) Forward pass",
+          "fa": "(a) گذر رو به جلو (Forward Pass)",
+          "verified": true
+        },
+        {
+          "en": "(b) Backward pass",
+          "fa": "(b) گذر رو به عقب (Backward Pass)",
+          "verified": true
+        },
+        {
+          "en": "Wₓ = Wₓ − α ∂Error/∂Wₓ",
+          "fa": "Wₓ = Wₓ − α ∂خطا/∂Wₓ؛ Error = خطا",
+          "verified": true,
+          "latex": "W_x=W_x-\\alpha\\frac{\\partial\\operatorname{Error}}{\\partial W_x}"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "39021271f1669073ac3479069c1a3feda280b48e4367b0ff59f40d6f6d1ff5e0",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "چرا دستیابی به عملکرد بهتر با CNNهای عمیق‌تر دشوار است: محوشدن گرادیان‌ها (Vanishing Gradients)\nhttps://ayearofai.com/rohan-4-the-vanishing-gradient-problem-ec68f76ffb9b\nگرادیان‌های کوچک، پس وزن‌ها آهسته تغییر می‌کنند؛ گرادیان‌های بزرگ، پس وزن‌ها سریع تغییر می‌کنند.\nتابع هزینه (Cost Function) 1؛ تابع هزینه 2"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Weight 1",
+          "fa": "وزن (Weight) 1",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "e3c78fbd0a677c50b886d798c9117bb5f08465ff0f71976e2158449be991e5e9",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "چرا دستیابی به عملکرد بهتر با CNNهای عمیق‌تر دشوار است: محوشدن گرادیان‌ها (Vanishing Gradients)\nسیگموید (Sigmoid)؛ تانژانت هذلولوی (Tanh)\nاز 0 تا 0.25 تغییر می‌کند.\nتوابع فعال‌سازی (Activation Functions) و مشتق‌های آن‌ها را به یاد آورید:\nMasi et al. Journal of the Mechanics and Physics of Solids. 2021"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "A(z) = 1/(1+e⁻ᶻ)",
+          "fa": "A(z) = 1/(1+e⁻ᶻ)",
+          "verified": true,
+          "latex": "A(z)=\\frac{1}{1+e^{-z}}"
+        },
+        {
+          "en": "A′(z) = e⁻ᶻ/(1+e⁻ᶻ)²",
+          "fa": "A′(z) = e⁻ᶻ/(1+e⁻ᶻ)²",
+          "verified": true,
+          "latex": "A'(z)=\\frac{e^{-z}}{(1+e^{-z})^2}"
+        },
+        {
+          "en": "tanh(z); cosh⁻²(z)",
+          "fa": "tanh(z)؛ cosh⁻²(z)",
+          "verified": true,
+          "latex": "\\tanh(z),\\qquad\\cosh^{-2}(z)"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "8574ee61be008c384ef0837d1b22c556ace9cbb78869cf2e480496a09b192760",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "مسئلهٔ محوشدن گرادیان (Vanishing Gradient Problem؛ مثلاً سیگموید، Sigmoid)\n• مثال کوچک:\n• مشتق خطا نسبت به وزن w1:\nمشتق تابع فعال‌سازی سیگموید (Sigmoid Activation Function): (0 to 1/4]\nمشتق تابع فعال‌سازی سیگموید: (0 to 1/4]\nمسئله: با ضرب‌کردن تعداد بیشتری عدد کوچک‌تر از 1 چه اتفاقی می‌افتد؟\nهرچه از لایهٔ آخر دورتر شویم، گرادیان کاهش می‌یابد... بنابراین وزن‌ها هنگام آموزش به‌سختی تغییر می‌کنند!\nhttps://ayearofai.com/rohan-4-the-vanishing-gradient-problem-ec68f76ffb9b"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "input; hidden 1; hidden 2; output; error",
+          "fa": "ورودی (Input)؛ پنهان (Hidden) 1؛ پنهان 2؛ خروجی (Output)؛ خطا (Error)",
+          "verified": true
+        },
+        {
+          "en": "∂error/∂w1 = (∂error/∂output)(∂output/∂hidden2)(∂hidden2/∂hidden1)(∂hidden1/∂w1)",
+          "fa": "∂خطا/∂w1 = (∂خطا/∂خروجی)(∂خروجی/∂پنهان2)(∂پنهان2/∂پنهان1)(∂پنهان1/∂w1)",
+          "verified": true,
+          "latex": "\\begin{aligned}\\frac{\\partial\\operatorname{error}}{\\partial w_1}={}&\\frac{\\partial\\operatorname{error}}{\\partial\\operatorname{output}}\\frac{\\partial\\operatorname{output}}{\\partial\\operatorname{hidden2}}\\\\&\\cdot\\frac{\\partial\\operatorname{hidden2}}{\\partial\\operatorname{hidden1}}\\frac{\\partial\\operatorname{hidden1}}{\\partial w_1}\\end{aligned}"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "291e9889668f82f985e2bfd4f65fef5cda32c20add826d4cd25b6a2465cdab2d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "مسئلهٔ محوشدن گرادیان (Vanishing Gradient Problem؛ مثلاً سیگموید، Sigmoid)\nکوچک‌ترین گرادیان‌ها در ابتدایی‌ترین لایه‌ها، آموزش آن‌ها را از همه کندتر می‌کند؛ با این حال لایه‌های بعدی برای انجام کاری مفید به این لایه‌های قبلی وابسته‌اند. در نتیجه، شبکه‌های عصبی (NNs) با مشکل «ورودی بی‌کیفیت، خروجی بی‌کیفیت» روبه‌رو می‌شوند.\nhttps://towardsdatascience.com/batch-normalization-the-greatest-breakthrough-in-deep-learning-77e64909d81d"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Backpropagation Signal in Neural Networks (gradually diminishes)",
+          "fa": "سیگنال پس‌انتشار (Backpropagation) در شبکه‌های عصبی (به‌تدریج کاهش می‌یابد)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "5f44356bc15f896089b1b56739bb0910fd99e80e0f29c2b2a7dcb24376c0a29b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "text",
+          "fa": "چگونه می‌توانیم از مسئلهٔ محوشدن گرادیان (Vanishing Gradient Problem) جلوگیری کنیم؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "4d2ad796e12a7656d2f0ff8176d6a440f7777eb2c6bf111e94024970e899ab5e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "AlexNet: یک CNN عمیق‌تر\nپیشرفت مدل‌ها در ImageNet (خطای پنج رتبهٔ برتر؛ Top 5 Error)\nمنبع شکل: https://www.edge-ai-vision.com/2018/07/deep-learning-in-five-and-a-half-minutes/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "2011 (XRCE); 2012 (AlexNet); 2013 (ZF); 2014 (VGG); 2014 (GoogLeNet); Human; 2015 (ResNet)",
+          "fa": "2011 (XRCE)؛ 2012 (AlexNet)؛ 2013 (ZF)؛ 2014 (VGG)؛ 2014 (GoogLeNet)؛ انسان (Human)؛ 2015 (ResNet)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "950ac5bcbf5e8c3ce2bca1ada0b2b85f493f4e41544ba95e38faadf8a6057c54",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "ایدهٔ اصلی: توابع فعال‌سازی اشباع‌نشونده (Non-Saturating Activation Functions)\nاز توابع فعال‌سازی با مقدار مشتق برابر 1 استفاده کنید (یعنی 1x1x1… محو نمی‌شود).\nMasi et al. Journal of the Mechanics and Physics of Solids. 2021\nسیگموید (Sigmoid)؛ تانژانت هذلولوی (Tanh)؛ ReLU"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "A(z) = 1/(1+e⁻ᶻ)",
+          "fa": "A(z) = 1/(1+e⁻ᶻ)",
+          "verified": true,
+          "latex": "A(z)=\\frac{1}{1+e^{-z}}"
+        },
+        {
+          "en": "A′(z) = e⁻ᶻ/(1+e⁻ᶻ)²",
+          "fa": "A′(z) = e⁻ᶻ/(1+e⁻ᶻ)²",
+          "verified": true,
+          "latex": "A'(z)=\\frac{e^{-z}}{(1+e^{-z})^2}"
+        },
+        {
+          "en": "tanh(z); cosh⁻²(z)",
+          "fa": "tanh(z)؛ cosh⁻²(z)",
+          "verified": true,
+          "latex": "\\tanh(z),\\qquad\\cosh^{-2}(z)"
+        },
+        {
+          "en": "max(0,z); max(0,1)",
+          "fa": "max(0,z)؛ max(0,1)",
+          "verified": true,
+          "latex": "\\max(0,z),\\qquad\\max(0,1)"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "a5b4e7d7a4b40885f1a2b9d646adbd6d11eb4955724a64171e665ff7901efba4",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "معماری AlexNet: مشابه LeNet، ولی با لایه‌های کانولوشن (Convolutional) و تجمیع (Pooling) بیشتر\nمنبع: https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CONV 11x11, stride=4, 96 kernels",
+          "fa": "کانولوشن (CONV) با 11x11، گام (Stride)=4، تعداد 96 کرنل (Kernels)",
+          "verified": true
+        },
+        {
+          "en": "Overlapping Max POOL 3x3, stride=2",
+          "fa": "تجمیع بیشینهٔ هم‌پوشان (Overlapping Max POOL) با 3x3، گام (Stride)=2",
+          "verified": true
+        },
+        {
+          "en": "CONV 5x5,pad=2, 256 kernels",
+          "fa": "کانولوشن (CONV) با 5x5، پدگذاری (Pad)=2، تعداد 256 کرنل (Kernels)",
+          "verified": true
+        },
+        {
+          "en": "CONV 3x3,pad=1, 384 kernels",
+          "fa": "کانولوشن (CONV) با 3x3، پدگذاری (Pad)=1، تعداد 384 کرنل (Kernels)",
+          "verified": true
+        },
+        {
+          "en": "CONV 3x3,pad=1, 256 kernels",
+          "fa": "کانولوشن (CONV) با 3x3، پدگذاری (Pad)=1، تعداد 256 کرنل (Kernels)",
+          "verified": true
+        },
+        {
+          "en": "FC; Softmax",
+          "fa": "تمام‌متصل (FC)؛ سافت‌مکس (Softmax)",
+          "verified": true
+        },
+        {
+          "en": "(227−11)/4+1=55; (55−3)/2+1=27; (27+2*2−5)/1+1=27; (27−3)/2+1=13; (13+2*1−3)/1+1=13; (13−3)/2+1=6",
+          "fa": "(227−11)/4+1=55؛ (55−3)/2+1=27؛ (27+2*2−5)/1+1=27؛ (27−3)/2+1=13؛ (13+2*1−3)/1+1=13؛ (13−3)/2+1=6",
+          "verified": true,
+          "latex": "\\begin{aligned}(227-11)/4+1&=55\\\\(55-3)/2+1&=27\\\\(27+2\\cdot2-5)/1+1&=27\\\\(27-3)/2+1&=13\\\\(13+2\\cdot1-3)/1+1&=13\\\\(13-3)/2+1&=6\\end{aligned}"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "10a1bc45561da505044f0f059d821c8c6c7d403155add412e2eda106211f2f0d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "معماری AlexNet\nمنبع: https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png\nورودی (Input): تصویر RGB که به اندازهٔ ثابت ورودی تغییر اندازه داده شده است\nخروجی (Output): احتمال‌های 1000 کلاس (مجموعشان 1 می‌شود)\nلایه‌های کانولوشن (Convolutional Layers): 5 لایه\nلایه‌های تجمیع (Pooling Layers): 3 لایه\nلایه‌های تمام‌متصل (Fully-connected Layers): 3 لایه"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CONV 11x11, stride=4, 96 kernels",
+          "fa": "کانولوشن (CONV) با 11x11، گام (Stride)=4، تعداد 96 کرنل (Kernels)",
+          "verified": true
+        },
+        {
+          "en": "Overlapping Max POOL 3x3, stride=2",
+          "fa": "تجمیع بیشینهٔ هم‌پوشان (Overlapping Max POOL) با 3x3، گام (Stride)=2",
+          "verified": true
+        },
+        {
+          "en": "CONV 5x5,pad=2, 256 kernels",
+          "fa": "کانولوشن (CONV) با 5x5، پدگذاری (Pad)=2، تعداد 256 کرنل (Kernels)",
+          "verified": true
+        },
+        {
+          "en": "CONV 3x3,pad=1, 384 kernels",
+          "fa": "کانولوشن (CONV) با 3x3، پدگذاری (Pad)=1، تعداد 384 کرنل (Kernels)",
+          "verified": true
+        },
+        {
+          "en": "CONV 3x3,pad=1, 256 kernels",
+          "fa": "کانولوشن (CONV) با 3x3، پدگذاری (Pad)=1، تعداد 256 کرنل (Kernels)",
+          "verified": true
+        },
+        {
+          "en": "FC; Softmax",
+          "fa": "تمام‌متصل (FC)؛ سافت‌مکس (Softmax)",
+          "verified": true
+        },
+        {
+          "en": "(227−11)/4+1=55; (55−3)/2+1=27; (27+2*2−5)/1+1=27; (27−3)/2+1=13; (13+2*1−3)/1+1=13; (13−3)/2+1=6",
+          "fa": "(227−11)/4+1=55؛ (55−3)/2+1=27؛ (27+2*2−5)/1+1=27؛ (27−3)/2+1=13؛ (13+2*1−3)/1+1=13؛ (13−3)/2+1=6",
+          "verified": true,
+          "latex": "\\begin{aligned}(227-11)/4+1&=55\\\\(55-3)/2+1&=27\\\\(27+2\\cdot2-5)/1+1&=27\\\\(27-3)/2+1&=13\\\\(13+2\\cdot1-3)/1+1&=13\\\\(13-3)/2+1&=6\\end{aligned}"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "99b0cdfef574b99eb8855df8fb92a2f56ef5162f6c682669ea0385925c47a45d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "معماری AlexNet\nمنبع: https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png\nچند لایه پارامترهای مدلی دارند که باید یاد گرفته شوند؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CONV 11x11, stride=4, 96 kernels",
+          "fa": "کانولوشن (CONV) با 11x11، گام (Stride)=4، تعداد 96 کرنل (Kernels)",
+          "verified": true
+        },
+        {
+          "en": "Overlapping Max POOL 3x3, stride=2",
+          "fa": "تجمیع بیشینهٔ هم‌پوشان (Overlapping Max POOL) با 3x3، گام (Stride)=2",
+          "verified": true
+        },
+        {
+          "en": "CONV 5x5,pad=2, 256 kernels",
+          "fa": "کانولوشن (CONV) با 5x5، پدگذاری (Pad)=2، تعداد 256 کرنل (Kernels)",
+          "verified": true
+        },
+        {
+          "en": "CONV 3x3,pad=1, 384 kernels",
+          "fa": "کانولوشن (CONV) با 3x3، پدگذاری (Pad)=1، تعداد 384 کرنل (Kernels)",
+          "verified": true
+        },
+        {
+          "en": "CONV 3x3,pad=1, 256 kernels",
+          "fa": "کانولوشن (CONV) با 3x3، پدگذاری (Pad)=1، تعداد 256 کرنل (Kernels)",
+          "verified": true
+        },
+        {
+          "en": "FC; Softmax",
+          "fa": "تمام‌متصل (FC)؛ سافت‌مکس (Softmax)",
+          "verified": true
+        },
+        {
+          "en": "(227−11)/4+1=55; (55−3)/2+1=27; (27+2*2−5)/1+1=27; (27−3)/2+1=13; (13+2*1−3)/1+1=13; (13−3)/2+1=6",
+          "fa": "(227−11)/4+1=55؛ (55−3)/2+1=27؛ (27+2*2−5)/1+1=27؛ (27−3)/2+1=13؛ (13+2*1−3)/1+1=13؛ (13−3)/2+1=6",
+          "verified": true,
+          "latex": "\\begin{aligned}(227-11)/4+1&=55\\\\(55-3)/2+1&=27\\\\(27+2\\cdot2-5)/1+1&=27\\\\(27-3)/2+1&=13\\\\(13+2\\cdot1-3)/1+1&=13\\\\(13-3)/2+1&=6\\end{aligned}"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "4d72bc1a5da1bb0ace48abca6ebd36a77c2115bbdd0207d16918015cf22805b7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "معماری AlexNet\nمنبع: https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png\nدر مجموع، 60 میلیون پارامتر مدل باید یاد گرفته شود!"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CONV 11x11, stride=4, 96 kernels",
+          "fa": "کانولوشن (CONV) با 11x11، گام (Stride)=4، تعداد 96 کرنل (Kernels)",
+          "verified": true
+        },
+        {
+          "en": "Overlapping Max POOL 3x3, stride=2",
+          "fa": "تجمیع بیشینهٔ هم‌پوشان (Overlapping Max POOL) با 3x3، گام (Stride)=2",
+          "verified": true
+        },
+        {
+          "en": "CONV 5x5,pad=2, 256 kernels",
+          "fa": "کانولوشن (CONV) با 5x5، پدگذاری (Pad)=2، تعداد 256 کرنل (Kernels)",
+          "verified": true
+        },
+        {
+          "en": "CONV 3x3,pad=1, 384 kernels",
+          "fa": "کانولوشن (CONV) با 3x3، پدگذاری (Pad)=1، تعداد 384 کرنل (Kernels)",
+          "verified": true
+        },
+        {
+          "en": "CONV 3x3,pad=1, 256 kernels",
+          "fa": "کانولوشن (CONV) با 3x3، پدگذاری (Pad)=1، تعداد 256 کرنل (Kernels)",
+          "verified": true
+        },
+        {
+          "en": "FC; Softmax",
+          "fa": "تمام‌متصل (FC)؛ سافت‌مکس (Softmax)",
+          "verified": true
+        },
+        {
+          "en": "(227−11)/4+1=55; (55−3)/2+1=27; (27+2*2−5)/1+1=27; (27−3)/2+1=13; (13+2*1−3)/1+1=13; (13−3)/2+1=6",
+          "fa": "(227−11)/4+1=55؛ (55−3)/2+1=27؛ (27+2*2−5)/1+1=27؛ (27−3)/2+1=13؛ (13+2*1−3)/1+1=13؛ (13−3)/2+1=6",
+          "verified": true,
+          "latex": "\\begin{aligned}(227-11)/4+1&=55\\\\(55-3)/2+1&=27\\\\(27+2\\cdot2-5)/1+1&=27\\\\(27-3)/2+1&=13\\\\(13+2\\cdot1-3)/1+1&=13\\\\(13-3)/2+1&=6\\end{aligned}"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "66bb490e8c72925767f4f83d959d0b8baf0e1493f4a70608ed9ab66c445066a7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "جزئیات پیاده‌سازی: پیش‌پردازش ورودی (Input Preprocessing)\nمنبع تصویر: https://learnopencv.com/understanding-alexnet/\n(ضلع با اندازهٔ کوچک‌تر)\n227\n227\n(مکان تصادفی)\n(نگه‌داشتن قطعهٔ مرکزی)\n(کم‌کردن تصویر میانگین داده‌های آموزش برای مرکزکردن ورودی)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Resize & Crop",
+          "fa": "تغییر اندازه و برش (Resize & Crop)",
+          "verified": true
+        },
+        {
+          "en": "Crop",
+          "fa": "برش (Crop)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "d671a895cb7a38bd4b93be35b313d4a317baddd6ee4aa416950a91058e73f475",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "معماری AlexNet\nمنبع: http://www.philkr.net/cs342/lectures/computer_vision/02.pdf\nپارامترهای کمی از لایه‌های کانولوشن (Convolutional Layers) می‌آیند.\nبیشتر پارامترها از لایه‌های تمام‌متصل (Fully Connected Layers) می‌آیند.\nدر مجموع، 60 میلیون پارامتر مدل باید یاد گرفته شود!"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Parameters (M)",
+          "fa": "پارامترها (میلیون)؛ Parameters (M)",
+          "verified": true
+        },
+        {
+          "en": "conv",
+          "fa": "کانولوشن (Conv)",
+          "verified": true
+        },
+        {
+          "en": "fc",
+          "fa": "تمام‌متصل (FC)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "7fe2ad21cbf335ab97c2979ca837ab878d718eae98579a8c52e141e2f51cd302",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "kind": "text",
+          "fa": "آموزش AlexNet: تعداد 90 دوره (Epochs)\n• تا برآورده‌شدن معیار توقف تکرار کنید:\n1. گذر رو به جلو (Forward Pass): داده‌های آموزش را از مدل عبور دهید تا پیش‌بینی انجام شود.\n2. نارضایتی از نتایج مدل روی داده‌های آموزش را کمّی کنید.\n3. گذر رو به عقب (Backward Pass): با استفاده از خروجی پیش‌بینی‌شده، گرادیان‌ها را در جهت عقب محاسبه کنید تا سهم تقصیر هر پارامتر مدل مشخص شود.\n4. هر پارامتر را با استفاده از گرادیان‌های محاسبه‌شده به‌روز کنید.\nشکل از: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul,\nJeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018\nاز زیان آنتروپی متقاطع (Cross Entropy Loss) استفاده می‌کند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(a) Forward pass",
+          "fa": "(a) گذر رو به جلو (Forward Pass)",
+          "verified": true
+        },
+        {
+          "en": "(b) Backward pass",
+          "fa": "(b) گذر رو به عقب (Backward Pass)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "570a6784c464a211a07ab0b44aa98dad34626f4652346ed1890212b83dd80e99",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "AlexNet: ترفندهای اصلی برای عمیق‌ترشدن\n• ReLU به‌جای توابع فعال‌سازی سیگموید (Sigmoid) یا تانژانت هذلولوی (Tanh)\n• روش‌های منظم‌سازی (Regularization): جلسهٔ بعد بررسی می‌شوند\n1. افزایش داده (Data Augmentation)\n2. حذف تصادفی (Dropout) در لایه‌های تمام‌متصل (Fully Connected Layers)\n3. جریمهٔ نرم L2 پارامتر (L2 Parameter Norm Penalty)\n• روی دو پردازندهٔ گرافیکی (GPUs) آموزش داده شد."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "cc5d0dd80dc3bc96258e33d109da74e207f115b3cb8e5e19b662523169cf907b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "VGG: یک CNN عمیق‌تر\nپیشرفت مدل‌ها در ImageNet (خطای پنج رتبهٔ برتر؛ Top 5 Error)\nمنبع شکل: https://www.edge-ai-vision.com/2018/07/deep-learning-in-five-and-a-half-minutes/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "2011 (XRCE); 2012 (AlexNet); 2013 (ZF); 2014 (VGG); 2014 (GoogLeNet); Human; 2015 (ResNet)",
+          "fa": "2011 (XRCE)؛ 2012 (AlexNet)؛ 2013 (ZF)؛ 2014 (VGG)؛ 2014 (GoogLeNet)؛ انسان (Human)؛ 2015 (ResNet)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "d38a2098bb7476028512cbcf17c98896cdd6ad0f9039607f6d8491d4874250a0",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "نوآوری اصلی: عمیق‌تر، بهتر عمل می‌کند\nمنبع شکل (ویرایش‌شده برای اصلاح اشتباه‌ها): https://medium.com/deep-learning-g/cnn-architectures-vggnet-e09d7fe79c45\n8 لایه\n16 لایه\n* تعداد لایه‌های دارای پارامترهای مدلِ یادگرفتنی میان لایهٔ ورودی و خروجی (یعنی لایه‌های تجمیع؛ Pooling Layers را کنار بگذارید)\n19 لایه\nلایه‌های دارای تفاوت"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input; Pool; Softmax",
+          "fa": "ورودی (Input)؛ تجمیع (Pool)؛ سافت‌مکس (Softmax)",
+          "verified": true
+        },
+        {
+          "en": "FC 1000; FC 4096",
+          "fa": "تمام‌متصل (FC) 1000؛ تمام‌متصل 4096",
+          "verified": true
+        },
+        {
+          "en": "11x11 conv,96; 5x5 conv,256",
+          "fa": "کانولوشن (Conv) با 11x11، تعداد 96؛ کانولوشن با 5x5، تعداد 256",
+          "verified": true
+        },
+        {
+          "en": "3x3 conv,64; 3x3 conv,128; 3x3 conv,256; 3x3 conv,384; 3x3 conv,512",
+          "fa": "کانولوشن (Conv) با 3x3، تعداد 64؛ کانولوشن با 3x3، تعداد 128؛ کانولوشن با 3x3، تعداد 256؛ کانولوشن با 3x3، تعداد 384؛ کانولوشن با 3x3، تعداد 512",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "925b2cb568cbb7eb9b494bf3916e9dd50a9c8b0d09f6b6e6fa686cb3ff7331d3",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "منبع شکل (ویرایش‌شده برای اصلاح اشتباه‌ها): https://medium.com/deep-learning-g/cnn-architectures-vggnet-e09d7fe79c45\nایدهٔ اصلی: فیلترهای کانولوشن (Convolutional Filters) کوچک‌تر\nفیلتر 11x11، تعداد 96 فیلتر\n• فیلتر بزرگ‌تر را با پشته‌ای از فیلترهای کوچک‌تر جایگزین کنید."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input; Pool",
+          "fa": "ورودی (Input)؛ تجمیع (Pool)",
+          "verified": true
+        },
+        {
+          "en": "11x11 conv,96; 5x5 conv,256; 3x3 conv,384; 3x3 conv,256; 3x3 conv,128; 3x3 conv,64",
+          "fa": "کانولوشن (Conv) با 11x11، تعداد 96؛ کانولوشن با 5x5، تعداد 256؛ کانولوشن با 3x3، تعداد 384؛ کانولوشن با 3x3، تعداد 256؛ کانولوشن با 3x3، تعداد 128؛ کانولوشن با 3x3، تعداد 64",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "046fb25cec4d61a9cd7c639650407d9b24c56e5390cc4d51622e4484583109b6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "ایدهٔ اصلی: فیلترهای کانولوشن (Convolutional Filters) کوچک‌تر\n• فیلتر بزرگ‌تر را با پشته‌ای از فیلترهای کوچک‌تر جایگزین کنید؛ مثلاً یک 7x7 را با سه 3x3 جایگزین کنید.\n• مزایا:\n• طبقه‌بند تمایزگذارتر (Discriminative Classifier)، زیرا یکسوسازی‌های غیرخطی بیشتری وجود دارند: 3 در برابر 1\n• تعداد پارامترها را کاهش می‌دهد: مضربی از 27 (3 x 3²) پارامتر در برابر 49 (7 x 7) پارامتر\nhttps://www.deeplearningbook.org/contents/convnets.html"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "fe3fb53280374c28c35550b3810e83aa1dab5d2a9272f662cb7c2d569c8d6246",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "kind": "text",
+          "fa": "آموزش VGG (پیروی از AlexNet): تعداد 74 دوره (Epochs)\n• تا برآورده‌شدن معیار توقف تکرار کنید:\n1. گذر رو به جلو (Forward Pass): داده‌های آموزش را از مدل عبور دهید تا پیش‌بینی انجام شود.\n2. نارضایتی از نتایج مدل روی داده‌های آموزش را کمّی کنید.\n3. گذر رو به عقب (Backward Pass): با استفاده از خروجی پیش‌بینی‌شده، گرادیان‌ها را در جهت عقب محاسبه کنید تا سهم تقصیر هر پارامتر مدل مشخص شود.\n4. هر پارامتر را با استفاده از گرادیان‌های محاسبه‌شده به‌روز کنید.\nشکل از: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul,\nJeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018\nهمچنان ممکن است با محوشدن گرادیان‌ها (Vanishing Gradients) روبه‌رو شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(a) Forward pass",
+          "fa": "(a) گذر رو به جلو (Forward Pass)",
+          "verified": true
+        },
+        {
+          "en": "(b) Backward pass",
+          "fa": "(b) گذر رو به عقب (Backward Pass)",
+          "verified": true
+        },
+        {
+          "en": "Wₓ = Wₓ − α ∂Error/∂Wₓ",
+          "fa": "Wₓ = Wₓ − α ∂خطا/∂Wₓ؛ Error = خطا",
+          "verified": true,
+          "latex": "W_x=W_x-\\alpha\\frac{\\partial\\operatorname{Error}}{\\partial W_x}"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 71,
+      "source_text_sha256": "76bd8aa2bc59dc2e7510d3e37520795fa4e04bd68415c33d8f4556298bc282ea",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "مقداردهی اولیهٔ وزن‌ها (Weight Initialization): رویکرد زاویر/گلورو (Xavier/Glorot)\n• مسئله: محوشدن گرادیان‌ها (Vanishing Gradients) ممکن است رخ دهد، زیرا عبارت مشتق شامل ضرب وزن‌هاست و وزن‌ها معمولاً با مقدار < 1 مقداردهی اولیه می‌شوند.\n• راه‌حل: وزن‌ها را از یک توزیع نرمال (Normal Distribution) با مرکز 0 مقداردهی اولیه کنید و در عین حال مقیاس سیگنال‌ها و گرادیان‌ها را به همسان‌شدن در همهٔ لایه‌ها سوق دهید.\n(1) واریانس برابرِ سیگنال پیش و پس از عبور از هر لایه\n(2) واریانس برابرِ گرادیان‌ها پیش و پس از عبور از هر لایه\nXavier Glorot & Yoshua Bengio. Understanding the difficulty of training deep feedforward neural networks. 2010"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 72,
+      "source_text_sha256": "d4904294cdc31143fd46231e59af39e9d737261756b3b505628e742dde69e71e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "kind": "text",
+          "fa": "مقداردهی اولیهٔ وزن‌ها (Weight Initialization): رویکرد زاویر/گلورو (Xavier/Glorot)\nhttps://towardsdatascience.com/hyper-parameters-in-action-part-ii-weight-initializers-35aee1a28404\nوزن‌ها را چنان انتخاب می‌کند که گرادیان‌ها در لایه‌های مختلف مشابه باشند، مقدارهای z در لایه‌های مختلف در بازهٔ (1, -1) مشابه باشند، و فعال‌سازی‌ها در لایه‌های مختلف مشابه باشند، بدون آنکه ناپدید شوند یا به مقدارهای بسیار بزرگ/کوچک بروند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Activation: tanh - Initializer: Glorot Normal - Epoch 0",
+          "fa": "فعال‌سازی (Activation): tanh ـ مقداردهندهٔ اولیه (Initializer): نرمال گلورو (Glorot Normal) ـ دوره (Epoch) 0",
+          "verified": true
+        },
+        {
+          "en": "Z-values; Weights; Activations; Gradients; Layers",
+          "fa": "مقدارهای Z (Z-values)؛ وزن‌ها (Weights)؛ فعال‌سازی‌ها (Activations)؛ گرادیان‌ها (Gradients)؛ لایه‌ها (Layers)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 73,
+      "source_text_sha256": "99d27aac11f034c4510d72b400460f889a62c7d4868f32205ab9e11803439fe9",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "محدودیت VGG: مدل‌ها بزرگ‌اند!\nمنبع شکل (ویرایش‌شده برای اصلاح اشتباه‌ها): https://medium.com/deep-learning-g/cnn-architectures-vggnet-e09d7fe79c45\n60 میلیون پارامتر\n138 میلیون پارامتر\n144 میلیون پارامتر"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input; Pool; Softmax",
+          "fa": "ورودی (Input)؛ تجمیع (Pool)؛ سافت‌مکس (Softmax)",
+          "verified": true
+        },
+        {
+          "en": "FC 1000; FC 4096",
+          "fa": "تمام‌متصل (FC) 1000؛ تمام‌متصل 4096",
+          "verified": true
+        },
+        {
+          "en": "11x11 conv,96; 5x5 conv,256",
+          "fa": "کانولوشن (Conv) با 11x11، تعداد 96؛ کانولوشن با 5x5، تعداد 256",
+          "verified": true
+        },
+        {
+          "en": "3x3 conv,64; 3x3 conv,128; 3x3 conv,256; 3x3 conv,384; 3x3 conv,512",
+          "fa": "کانولوشن (Conv) با 3x3، تعداد 64؛ کانولوشن با 3x3، تعداد 128؛ کانولوشن با 3x3، تعداد 256؛ کانولوشن با 3x3، تعداد 384؛ کانولوشن با 3x3، تعداد 512",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 74,
+      "source_text_sha256": "e232e7f2bb6e642ed16fdaecd76eb6339d131dd8e2b6784029648d41a3be7501",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "محدودیت VGG: مدل‌ها بزرگ‌اند (مثلاً VGG16)\nمنبع: http://www.philkr.net/cs342/lectures/computer_vision/03.pdf\nپارامترهای کمی از لایه‌های کانولوشن (Convolutional Layers) می‌آیند.\nبیشتر پارامترها از لایه‌های تمام‌متصل (Fully Connected Layers) می‌آیند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Parameters (M)",
+          "fa": "پارامترها (میلیون)؛ Parameters (M)",
+          "verified": true
+        },
+        {
+          "en": "conv",
+          "fa": "کانولوشن (Conv)",
+          "verified": true
+        },
+        {
+          "en": "fc",
+          "fa": "تمام‌متصل (FC)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 75,
+      "source_text_sha256": "706dd20987c6415818ccbd43dccab3ea9ad39baec2e766669ad2a2aa8cc86852",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "VGG: ترفندهای اصلی برای عمیق‌ترشدن\n• فیلترهای 3x3 به‌جای فیلترهای بزرگ‌تر\n• مقداردهی اولیهٔ وزن‌ها (Weight Initialization) با روش Xavier Glorot\n• روش‌های منظم‌سازی (Regularization): جلسهٔ بعد بررسی می‌شوند\n1. افزایش داده (Data Augmentation)\n2. حذف تصادفی (Dropout) در لایه‌های تمام‌متصل (Fully Connected Layers)\n3. جریمهٔ نرم L2 پارامتر (L2 Parameter Norm Penalty)\n• روی چند پردازندهٔ گرافیکی (GPUs) آموزش داده شد."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 76,
+      "source_text_sha256": "29850d9f8236c8913f69e298af0566b4d50b5276839817961e943c40b2e6f8c6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "ResNet: یک CNN عمیق‌تر\nپیشرفت مدل‌ها در ImageNet (خطای پنج رتبهٔ برتر؛ Top 5 Error)\nمنبع شکل: https://www.edge-ai-vision.com/2018/07/deep-learning-in-five-and-a-half-minutes/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "2011 (XRCE); 2012 (AlexNet); 2013 (ZF); 2014 (VGG); 2014 (GoogLeNet); Human; 2015 (ResNet)",
+          "fa": "2011 (XRCE)؛ 2012 (AlexNet)؛ 2013 (ZF)؛ 2014 (VGG)؛ 2014 (GoogLeNet)؛ انسان (Human)؛ 2015 (ResNet)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 77,
+      "source_text_sha256": "2f47baa9e500f7cd0f37d44d605bab1205cbc76769c50af42af86db7cfe9c4c5",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "مشاهدهٔ انگیزه‌بخش\nمنبع: https://medium.com/@realmichaelye/intuition-for-resnet-deep-residual-learning-for-image-recognition-39d24d173e78\nایده: یک شبکهٔ عمیق‌تر باید دست‌کم به‌اندازهٔ شبکه‌های کم‌عمق‌تر خوب عمل کند، زیرا می‌تواند تابع کم‌عمق‌تر را صرفاً با یادگیری توابع «همانی» (Identity Functions) برای لایه‌های بعدی یاد بگیرد.\nمشاهده: افزودن لایه‌های بیشتر به نتایج بدتر می‌انجامد!\nآیا مسئله بیش‌برازش (Overfitting) است؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Neural Net #1; Neural Net #2",
+          "fa": "شبکهٔ عصبی (Neural Net) شمارهٔ 1؛ شبکهٔ عصبی شمارهٔ 2",
+          "verified": true
+        },
+        {
+          "en": "Input; Hidden Layer; Output; Identity",
+          "fa": "ورودی (Input)؛ لایهٔ پنهان (Hidden Layer)؛ خروجی (Output)؛ همانی (Identity)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 78,
+      "source_text_sha256": "70a152b80d9f95818f7a22f15c96ecc5c4f842b507504067f58c3cda3f8944e1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "مشاهدهٔ انگیزه‌بخش\nایده: یک شبکهٔ عمیق‌تر باید دست‌کم به‌اندازهٔ شبکه‌های کم‌عمق‌تر خوب عمل کند، زیرا می‌تواند تابع کم‌عمق‌تر را صرفاً با یادگیری توابع «همانی» (Identity Functions) برای لایه‌های بعدی یاد بگیرد.\nمشاهده: افزودن لایه‌های بیشتر به نتایج بدتر می‌انجامد!\nآیا مسئله بیش‌برازش (Overfitting) است؟ خیر. خطای داده‌های آموزش (و خطای آزمون) با لایه‌های بیشتر، بیشتر است.\nKaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. “Deep Residual Learning for Image Recognition.” CVPR, 2016."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "training error (%); test error (%)",
+          "fa": "خطای آموزش (%)؛ خطای آزمون (%)",
+          "verified": true
+        },
+        {
+          "en": "56-layer; 20-layer",
+          "fa": "56 لایه‌ای؛ 20 لایه‌ای",
+          "verified": true
+        },
+        {
+          "en": "iter. (1e4)",
+          "fa": "تکرار (Iter.) با مقیاس 1e4",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 79,
+      "source_text_sha256": "7d2be63bb484a4d25ec7b95fd15c73ad13e4450b7d8a14b1f8fdd8ac88ed84fb",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "مشاهدهٔ انگیزه‌بخش\nایده: یک شبکهٔ عمیق‌تر باید دست‌کم به‌اندازهٔ شبکه‌های کم‌عمق‌تر خوب عمل کند، زیرا می‌تواند تابع کم‌عمق‌تر را صرفاً با یادگیری توابع «همانی» (Identity Functions) برای لایه‌های بعدی یاد بگیرد.\nمشاهده: افزودن لایه‌های بیشتر به نتایج بدتر می‌انجامد!\nآیا مسئله بیش‌برازش (Overfitting) است؟ خیر.\nمسئله: برای الگوریتم دشوار است که لایه‌هایی از نگاشت‌های همانی (Identity Mappings) را یاد بگیرد.\nKaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. ”Deep Residual Learning for Image Recognition.\" CVPR, 2016."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 80,
+      "source_text_sha256": "24be0c6514ab93c75cc675fbcef8a839eebc82a2136fe83f6a67758fa3b8e318",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "مسئله: انجام نگاشت همانی (Identity Mapping) دشوار است\nKaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. ”Deep Residual Learning for Image Recognition.\" CVPR, 2016.\nمثلاً،"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "weight layer",
+          "fa": "لایهٔ وزن (Weight Layer)",
+          "verified": true
+        },
+        {
+          "en": "relu",
+          "fa": "ReLU",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 81,
+      "source_text_sha256": "b5df3536f7d8da4656552f9c60aca6a2750dd30886db45e5e74ce7e15c319a97",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "ایدهٔ اصلی: اتصال‌های میان‌بُر (Skip Connections) که نگاشت همانی (Identity Mapping) انجام می‌دهند\nKaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. ”Deep Residual Learning for Image Recognition.\" CVPR, 2016.\nتابع باقیمانده (Residual Function) که باید یاد گرفته شود\nفرض: برای شبکه آسان‌تر است پارامترهایی نزدیک 0 را یاد بگیرد تا تابعی را که نگاشت همانی انجام می‌دهد (آزمایش‌های مقاله از این فرض پشتیبانی می‌کنند)."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "weight layer",
+          "fa": "لایهٔ وزن (Weight Layer)",
+          "verified": true
+        },
+        {
+          "en": "relu",
+          "fa": "ReLU",
+          "verified": true
+        },
+        {
+          "en": "identity",
+          "fa": "همانی (Identity)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 82,
+      "source_text_sha256": "3f8305f2e55563a7517af1ca2be2f0bef7467014f0ec1492e3416e30e9c359c9",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "ایدهٔ اصلی: اتصال‌های میان‌بُر (Skip Connections) که نگاشت همانی (Identity Mapping) انجام می‌دهند\nKaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. ”Deep Residual Learning for Image Recognition.\" CVPR, 2016.\nتابع باقیمانده (Residual Function) که باید یاد گرفته شود\nمقاله حالت‌هایی را بررسی می‌کند که تعداد لایه‌های میان اتصال‌های میان‌بُر 2 یا 3 است."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "weight layer",
+          "fa": "لایهٔ وزن (Weight Layer)",
+          "verified": true
+        },
+        {
+          "en": "relu",
+          "fa": "ReLU",
+          "verified": true
+        },
+        {
+          "en": "identity",
+          "fa": "همانی (Identity)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 83,
+      "source_text_sha256": "6ca9f5f871a198356a647cb73e144c4bcba4aa6932da21a282e2392cb4046f40",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "ایدهٔ اصلی: اتصال‌های میان‌بُر (Skip Connections) که نگاشت همانی (Identity Mapping) انجام می‌دهند\nKaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. ”Deep Residual Learning for Image Recognition.\" CVPR, 2016.\nهنگام افزودن یک اتصال میان‌بُر، چند پارامتر مدل باید یاد گرفته شود؟\n- 0"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "weight layer",
+          "fa": "لایهٔ وزن (Weight Layer)",
+          "verified": true
+        },
+        {
+          "en": "relu",
+          "fa": "ReLU",
+          "verified": true
+        },
+        {
+          "en": "identity",
+          "fa": "همانی (Identity)",
+          "verified": true
+        },
+        {
+          "en": "Figure 2. Residual learning: a building block.",
+          "fa": "شکل 2. یادگیری باقیمانده (Residual Learning): یک بلوک سازنده.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 84,
+      "source_text_sha256": "951aa5b70cc3d227d800e94e0a700962e45d55338ca7de21917587a0958bd740",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "ایدهٔ اصلی: اتصال‌های میان‌بُر (Skip Connections) که نگاشت همانی (Identity Mapping) انجام می‌دهند\nKaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. ”Deep Residual Learning for Image Recognition.\" CVPR, 2016.\nاتصال‌های باقیمانده (Residual Connections) از توابع فعال‌سازی (Activation Functions) که مشتق‌ها را «فشرده» می‌کنند عبور نمی‌کنند؛ در نتیجه گرادیان بزرگ‌تری برای یادگیری فراهم می‌شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "weight layer",
+          "fa": "لایهٔ وزن (Weight Layer)",
+          "verified": true
+        },
+        {
+          "en": "relu",
+          "fa": "ReLU",
+          "verified": true
+        },
+        {
+          "en": "identity",
+          "fa": "همانی (Identity)",
+          "verified": true
+        },
+        {
+          "en": "Figure 2. Residual learning: a building block.",
+          "fa": "شکل 2. یادگیری باقیمانده (Residual Learning): یک بلوک سازنده.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 85,
+      "source_text_sha256": "9819a8712421dc13059092327d7d2bf6ccb674c9283bf494349528421b092bff",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "رویکرد\nVGG19 ResNet34\nچارچوب یادگیری باقیماندهٔ عمیق (Deep Residual Learning) با استفاده از اتصال‌های میان‌بُر (Skip Connections)، با یادگیری مدل‌هایی عمیق‌تر از کارهای قبلی (18، 34، 50، 101 و 152 لایه!) در چالش بازشناسی شیء ImageNet و چالش‌های دیگر به عملکرد برتر (State-of-Art) دست می‌یابد.\nلایه‌های اضافی\nاتصال‌های میان‌بُر\nKaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. ”Deep Residual Learning for Image Recognition.\" CVPR, 2016."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "input; output",
+          "fa": "ورودی (Input)؛ خروجی (Output)",
+          "verified": true
+        },
+        {
+          "en": "3x3 conv; 7x7 conv; pool /2; avg pool; fc 1000",
+          "fa": "کانولوشن (Conv) با 3x3؛ کانولوشن با 7x7؛ تجمیع (Pool) /2؛ تجمیع میانگین (Avg Pool)؛ تمام‌متصل (FC) 1000",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 86,
+      "source_text_sha256": "d683f5b77377cc30b11675f0f0996229436dbcecf8aa188aef7ca394a4c2b2b9",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "kind": "text",
+          "fa": "آموزش ResNet (پیروی از AlexNet)\n• تا برآورده‌شدن معیار توقف تکرار کنید:\n1. گذر رو به جلو (Forward Pass): داده‌های آموزش را از مدل عبور دهید تا پیش‌بینی انجام شود.\n2. نارضایتی از نتایج مدل روی داده‌های آموزش را کمّی کنید.\n3. گذر رو به عقب (Backward Pass): با استفاده از خروجی پیش‌بینی‌شده، گرادیان‌ها را در جهت عقب محاسبه کنید تا سهم تقصیر هر پارامتر مدل مشخص شود.\n4. هر پارامتر را با استفاده از گرادیان‌های محاسبه‌شده به‌روز کنید.\nشکل از: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul,\nJeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(a) Forward pass",
+          "fa": "(a) گذر رو به جلو (Forward Pass)",
+          "verified": true
+        },
+        {
+          "en": "(b) Backward pass",
+          "fa": "(b) گذر رو به عقب (Backward Pass)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 87,
+      "source_text_sha256": "30523d7bfa43a1635fed4345086ce301034ce6d81e8ab4a71974e22ccfd28dab",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "نتایج آزمایشی روی مجموعهٔ اعتبارسنجی (Validation Set)\nعملکرد با افزایش لایه‌ها بهتر می‌شود.\nKaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. ”Deep Residual Learning for Image Recognition.\" CVPR, 2016."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "model; top-1 err.; top-5 err.",
+          "fa": "مدل (Model)؛ خطای رتبهٔ اول (Top-1 Error)؛ خطای پنج رتبهٔ برتر (Top-5 Error)",
+          "verified": true
+        },
+        {
+          "en": "VGG-16 [40]: 28.07; 9.33",
+          "fa": "VGG-16 [40]: 28.07؛ 9.33",
+          "verified": true
+        },
+        {
+          "en": "GoogLeNet [43]: −; 9.15",
+          "fa": "GoogLeNet [43]: −؛ 9.15",
+          "verified": true
+        },
+        {
+          "en": "PReLU-net [12]: 24.27; 7.38",
+          "fa": "PReLU-net [12]: 24.27؛ 7.38",
+          "verified": true
+        },
+        {
+          "en": "ResNet-50: 22.85; 6.71",
+          "fa": "ResNet-50: 22.85؛ 6.71",
+          "verified": true
+        },
+        {
+          "en": "ResNet-101: 21.75; 6.05",
+          "fa": "ResNet-101: 21.75؛ 6.05",
+          "verified": true
+        },
+        {
+          "en": "ResNet-152: 21.43; 5.71",
+          "fa": "ResNet-152: 21.43؛ 5.71",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 88,
+      "source_text_sha256": "38107ae8b1700dcada070285c7ec9555ed56d4eb723a60376b3b36a4a0f1c6c5",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "ResNet از عملکرد انسان فراتر می‌رود!\nپیشرفت مدل‌ها در ImageNet (خطای پنج رتبهٔ برتر؛ Top 5 Error)\nمنبع شکل: https://www.edge-ai-vision.com/2018/07/deep-learning-in-five-and-a-half-minutes/\nبا استفاده از برچسب‌گذاری متخصصان انسانی برای حداکثر پنج کلاس هدف در هر تصویر، روی نمونه‌ای تصادفی از 1500 تصویر آزمون اندازه‌گیری شده است.\n[Russakovsky et al. IJCV 2015]"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "2011 (XRCE); 2012 (AlexNet); 2013 (ZF); 2014 (VGG); 2014 (GoogLeNet); Human; 2015 (ResNet)",
+          "fa": "2011 (XRCE)؛ 2012 (AlexNet)؛ 2013 (ZF)؛ 2014 (VGG)؛ 2014 (GoogLeNet)؛ انسان (Human)؛ 2015 (ResNet)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 89,
+      "source_text_sha256": "2e2f2bff9b9fbc35365e867a0e1763faf3f0c496f87aadd8a75d7de434c8b60d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "ResNet: ترفندهای اصلی برای عمیق‌ترشدن\n• اتصال‌های میان‌بُر (Skip Connections) همراه با یادگیری باقیمانده (Residual Learning)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 90,
+      "source_text_sha256": "f9bea0ca90873687ba5e95614d297e8d4534e139f57b738b395a6c72f49b4fbb",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "مدل‌های «عمیق‌تر» بهتر عمل می‌کنند\nموضوع‌های امروز\nپیشرفت مدل‌ها در ImageNet (خطای پنج رتبهٔ برتر؛ Top 5 Error)\nمنبع شکل: https://www.edge-ai-vision.com/2018/07/deep-learning-in-five-and-a-half-minutes/\n8 لایه\n19 لایه\n152 لایه"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "2011 (XRCE); 2012 (AlexNet); 2013 (ZF); 2014 (VGG); 2014 (GoogLeNet); Human; 2015 (ResNet)",
+          "fa": "2011 (XRCE)؛ 2012 (AlexNet)؛ 2013 (ZF)؛ 2014 (VGG)؛ 2014 (GoogLeNet)؛ انسان (Human)؛ 2015 (ResNet)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 91,
+      "source_text_sha256": "6425f918291fc2dc05f6d03b2f7783c4a768c42bc54cfe25730c2378f43c2802",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "تأثیر ImageNet در 2019 مورد تقدیر قرار گرفت\nhttps://syncedreview.com/2019/06/18/cvpr-2019-attracts-9k-attendees-best-papers-announced-imagenet-honoured-10-years-later/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "PAMI Longuet-Higgins Prize",
+          "fa": "جایزهٔ لونگه-هیگینز PAMI (PAMI Longuet-Higgins Prize)",
+          "verified": true
+        },
+        {
+          "en": "Retrospective Most Impactful Paper from CVPR 2009",
+          "fa": "تأثیرگذارترین مقالهٔ CVPR 2009 در نگاه به گذشته",
+          "verified": true
+        },
+        {
+          "en": "ImageNet: A large-scale hierarchical image database",
+          "fa": "ImageNet: یک پایگاه‌دادهٔ تصویری سلسله‌مراتبی بزرگ‌مقیاس",
+          "verified": true
+        },
+        {
+          "en": "Jia Deng, Wei Dong, Richard Socher, Li-Jia Li, Kai Li, and Li Fei-Fei",
+          "fa": "Jia Deng, Wei Dong, Richard Socher, Li-Jia Li, Kai Li, and Li Fei-Fei",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 92,
+      "source_text_sha256": "c85752013f46015289059851d0317103d573f6909496f96da3239d226b103a49",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "تأثیر ImageNet مورد تقدیر قرار گرفت\n«ناگهان مردم شروع کردند به توجه‌کردن؛ نه‌فقط در جامعهٔ هوش مصنوعی، بلکه در کل صنعت فناوری.»\n- اکونومیست (Economist)\n“From not working to neural networking\". The Economist. 25 June 2016. Retrieved July 15, 2021."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "About 9,230,000 results",
+          "fa": "حدود 9,230,000 نتیجه",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 93,
+      "source_text_sha256": "d5165d655252c65076d33e7ce2c3cd1548a9ae58c33b9cf1412ae43374ffd74b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "ImageNet: شروعی عالی...\nJieyu Zhao et al. Men also like shopping: Reducing gender bias amplification using corpus-level constraints. 2017.\nتوزیع جغرافیایی تصویرها در ImageNet با استفاده از فرادادهٔ Flickr:"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 94,
+      "source_text_sha256": "d25723e697e6f82a0c55b7516705ef310e18d4218aa65867c81cf3402a6d4fe1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• بینایی ماشین (Computer Vision)\n• دوران چالش‌های مجموعه‌داده (Dataset Challenges)\n• برندهٔ چالش MNIST: LeNet\n• برندگان چالش ImageNet: یادگیری عمیق‌تر (AlexNet، VGG، ResNet)\n• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 95,
+      "source_text_sha256": "d25723e697e6f82a0c55b7516705ef310e18d4218aa65867c81cf3402a6d4fe1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• بینایی ماشین (Computer Vision)\n• دوران چالش‌های مجموعه‌داده (Dataset Challenges)\n• برندهٔ چالش MNIST: LeNet\n• برندگان چالش ImageNet: یادگیری عمیق‌تر (AlexNet، VGG، ResNet)\n• آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 96,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    }
+  ]
+}

@@ -15,7 +15,11 @@ with independently authored Persian lessons. Full visual review subsequently
 found Creative Commons badges on some decks; record and verify their exact
 license, version and scope per source. The earlier text-only license search was
 incomplete and must not be treated as a blanket absence of source licenses.
-Do not modify or publicly mirror the original slides. Every correction belongs
+Do not modify the original bytes. Local copies require per-source visual license
+evidence and retained attribution. Spring 2022's 23 covers were verified as
+CC BY-marked on October 31, 2026; the badge does not print a version, so do not
+invent one or apply MIT to the originals. Other terms remain linked references.
+Every correction belongs
 in a separate annotation identifying semester, PDF page, reason, evidence and
 whether it is a verified error, historical update, clarification or open question.
 
@@ -150,6 +154,28 @@ the input/filter view from the detailed products and pooled result.
 This is a laboratory usability milestone. It adds no semester, source-review
 completion claim or new CNN training capability. Local acceptance is recorded in
 `docs/interactive-workspace-acceptance.md`; deployment is verified separately.
+
+## Source presentation refinement — 2026-10-31
+
+The owner asked to follow Danna's source design and preserve source text, images,
+video references and ordering, with accurate Persian and English terminology.
+All 23 original Spring 2022 PDFs (1,595 pages) are now hosted byte-for-byte with
+their original credits and CC BY cover notices. The source links lead the lesson
+sidebar and the companion slide toolbar; viewing remains an explicit action.
+Official URLs, retrieval times, hashes and observed badge scope are recorded.
+
+The current 207-slide independent companion retains its exercises and Python.
+Its cover titles now follow the actual source covers, with English in parentheses.
+Plain white 16:9 composition and simple headings follow the source reference.
+Technical terms have their English equivalent at first mention per slide and
+within Spring 2022 lessons, while code and math nodes remain unchanged.
+All 23 companion formulas are authored in LaTeX and compiled to static KaTeX
+HTML plus accessible MathML with local fonts, including the offline bundle.
+
+This increment does not claim a complete page-by-page translation of all 1,595
+source pages. That replacement has a different scope from refining the 207-slide
+companion; the requested display/scope clarification is pending. Scientific
+review status and the other semesters remain unchanged.
 
 ## Earlier shipped implementation (migration baseline)
 

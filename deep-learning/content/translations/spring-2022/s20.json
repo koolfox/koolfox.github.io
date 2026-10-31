@@ -1,0 +1,2359 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s20",
+  "source_sha256": "d787fae39485e67cbad98b868dd7c6cae1b9725d84d8ddc67b0a7e942dda9caf",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "c40cea2c828fca68694b79a12d9de93670569077815be4f0cd98001ecab62018",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گفت‌وگوی بصری (Visual Dialog)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "دانشگاه کلرادو بولدر (University of Colorado Boulder)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "بهار ۲۰۲۲ (Spring 2022)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "52522e788f68225d10400e95b863c597515ad66ef31099dc7bc7a2fe6f77a575",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• هفتهٔ قبل:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردهای پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌داده‌های پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش اصلی سال 2015: رویکرد پایه (Baseline approach)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش اصلی سال 2019: رویکرد مبتنی بر ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی (Programming tutorial)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• تکلیف‌ها (Canvas)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "• موعد تحویل تکلیف آزمایشگاهی 4 هفتهٔ پس از تعطیلات بهاری است"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "bullet",
+          "fa": "• موعد تحویل پیشنهاد پروژهٔ نهایی 3 هفتهٔ دیگر است"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "bullet",
+          "fa": "• پرسشی دارید؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "3432b2face684e532fa2768c2e870f09ccf431e7ebcef8390c04a92c05dd2ce8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردهای گفت‌وگوی بصری (Visual Dialog)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌دادهٔ گفت‌وگوی بصری (Visual Dialog)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی گفت‌وگوی بصری (Visual Dialog)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• چالش‌های اصلی سال 2017: رویکردهای پایه (Baseline approaches)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "3432b2face684e532fa2768c2e870f09ccf431e7ebcef8390c04a92c05dd2ce8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردهای گفت‌وگوی بصری (Visual Dialog)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌دادهٔ گفت‌وگوی بصری (Visual Dialog)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی گفت‌وگوی بصری (Visual Dialog)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• چالش‌های اصلی سال 2017: رویکردهای پایه (Baseline approaches)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "6da5698071d3b570e93fb9910aeb27112306c086f43d4f10693ffdd08b354bc6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گفت‌وگوی پرسش‌وپاسخ بصری (VQA Dialog)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "«گفت‌وگویی معنادار با انسان‌ها به زبان طبیعی دربارهٔ محتوای بصری برقرار کنید»"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Das et al. Visual Dialog. CVPR 2017."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "A cat drinking water out of a coffee mug.",
+          "fa": "A cat drinking water out of a coffee mug. (گربه‌ای در حال نوشیدن آب از ماگ قهوه.)",
+          "verified": true
+        },
+        {
+          "en": "What color is the mug? White and red",
+          "fa": "What color is the mug? White and red (ماگ چه رنگی است؟ سفید و قرمز)",
+          "verified": true
+        },
+        {
+          "en": "Are there any pictures on it? No, something is there can’t tell what it is",
+          "fa": "Are there any pictures on it? No, something is there can’t tell what it is (آیا تصویری روی آن هست؟ نه، چیزی هست که نمی‌توانم بگویم چیست)",
+          "verified": true
+        },
+        {
+          "en": "Is the mug and cat on a table? Yes, they are",
+          "fa": "Is the mug and cat on a table? Yes, they are (آیا ماگ و گربه روی میز هستند؟ بله، هستند)",
+          "verified": true
+        },
+        {
+          "en": "Are there other items on the table? Yes, magazines, books, toaster and basket, and a plate",
+          "fa": "Are there other items on the table? Yes, magazines, books, toaster and basket, and a plate (آیا چیزهای دیگری روی میز هست؟ بله، مجله، کتاب، توستر و سبد و یک بشقاب)",
+          "verified": true
+        },
+        {
+          "en": "Visual Dialog; Start typing question here ...",
+          "fa": "گفت‌وگوی بصری (Visual Dialog)؛ نوشتن پرسش را اینجا آغاز کنید…",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "b70a0e0e49ac38c63c1dc3a012bb23ef3c75b51ccc51e3651e76916471d64ebc",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گفت‌وگوی پرسش‌وپاسخ بصری (VQA Dialog) در مقایسه با پرسش‌وپاسخ بصری (VQA) و توصیف تصاویر (Image Descriptions)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "گفت‌وگوی بصری (Visual dialog) برای پاسخ‌دادن به پرسش‌های پیگیرانه از حافظه (Memory) استفاده می‌کند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Das et al. Visual Dialog. CVPR 2017."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Captioning; VQA; Visual Dialog",
+          "fa": "شرح تصویر (Captioning)؛ پرسش‌وپاسخ بصری (VQA)؛ گفت‌وگوی بصری (Visual Dialog)",
+          "verified": true
+        },
+        {
+          "en": "Two people are in a wheelchair and one is holding a racket.",
+          "fa": "Two people are in a wheelchair and one is holding a racket. (دو نفر روی صندلی چرخ‌دار هستند و یکی راکت در دست دارد.)",
+          "verified": true
+        },
+        {
+          "en": "Q: How many people on wheelchairs? A: Two. Q: How many wheelchairs? A: One.",
+          "fa": "Q: How many people on wheelchairs? A: Two. Q: How many wheelchairs? A: One. (پرسش: چند نفر روی صندلی چرخ‌دار هستند؟ پاسخ: دو نفر. پرسش: چند صندلی چرخ‌دار؟ پاسخ: یکی.)",
+          "verified": true
+        },
+        {
+          "en": "Q: How many people are on wheelchairs? A: Two. Q: What are their genders? A: One male and one female. Q: Which one is holding a racket? A: The woman.",
+          "fa": "Q: How many people are on wheelchairs? A: Two. Q: What are their genders? A: One male and one female. Q: Which one is holding a racket? A: The woman. (پرسش: چند نفر روی صندلی چرخ‌دارند؟ پاسخ: دو نفر. پرسش: جنسیت آن‌ها چیست؟ پاسخ: یک مرد و یک زن. پرسش: کدام‌یک راکت دارد؟ پاسخ: زن.)",
+          "verified": true
+        },
+        {
+          "en": "Q: What is the gender of the one in the white shirt? A: She is a woman. Q: What is she doing? A: Playing a Wii game. Q: Is that a man to her right? A: No, it’s a woman.",
+          "fa": "Q: What is the gender of the one in the white shirt? A: She is a woman. Q: What is she doing? A: Playing a Wii game. Q: Is that a man to her right? A: No, it’s a woman. (پرسش: جنسیت فرد با پیراهن سفید چیست؟ پاسخ: زن است. پرسش: چه می‌کند؟ پاسخ: بازی Wii انجام می‌دهد. پرسش: فرد سمت راستش مرد است؟ پاسخ: خیر، زن است.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "768f2393cf005284c9ff5faa1a6e3a776d980af73b12216716c60b1ce5c3a0de",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "کاربرد: کمک بصری برای افراد دارای کاهش بینایی (Vision Loss)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Be My Eyes",
+          "fa": "Be My Eyes (چشم‌های من باش)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "46e67b154776145368ee735eca171555701cca4225844f647c756c197f08c605",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "کاربردها: پزشکی (Medical)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Kovaleva et al. Visual Dialog for Radiology: Data Curation and First Steps. 2019."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "80 year old man s/p vats R lower lobectomy",
+          "fa": "مرد 80ساله پس از لوبکتومی لوب تحتانی راست با جراحی توراکوسکوپی به‌کمک ویدئو (s/p VATS R lower lobectomy)",
+          "verified": true
+        },
+        {
+          "en": "Q: Airspace opacity? A: Yes. Q: Fracture? A: Not in report. Q: Lung lesion? A: No. Pneumonia? Yes.",
+          "fa": "Q: Airspace opacity? A: Yes. Q: Fracture? A: Not in report. Q: Lung lesion? A: No. Pneumonia? Yes. (پرسش: کدورت فضای هوایی؟ پاسخ: بله. پرسش: شکستگی؟ پاسخ: در گزارش نیست. پرسش: ضایعهٔ ریه؟ پاسخ: خیر. پنومونی؟ بله.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "a1051446a3b16224ec522312ac9f24967667094232e93b308ae17ba216f92ec6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "کاربرد: پایش (Surveillance)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Li et al. ISEE: An Intelligent Scene Exploration and Evaluation Platform for Large-Scale Visual Surveillance. 2019."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Attribute-based Query; Relationship-based Query",
+          "fa": "پرس‌وجوی مبتنی بر صفت (Attribute-based Query)؛ پرس‌وجوی مبتنی بر رابطه (Relationship-based Query)",
+          "verified": true
+        },
+        {
+          "en": "Q: Is it a person in the green bounding box? A: Yes. (Define the person as P1)",
+          "fa": "Q: Is it a person in the green bounding box? A: Yes. (Define the person as P1) (پرسش: آیا داخل جعبهٔ مرزی سبز یک شخص است؟ پاسخ: بله. (شخص را P1 تعریف کنید))",
+          "verified": true
+        },
+        {
+          "en": "Q: Is P1 female? A: Yes. Q: Does P1 hold a bag? A: Yes. Q: Does P1 has long hair and wear leather shoes? A: Yes. Q: Is P1 in padded jacket and skirt? A: No.",
+          "fa": "Q: Is P1 female? A: Yes. Q: Does P1 hold a bag? A: Yes. Q: Does P1 has long hair and wear leather shoes? A: Yes. Q: Is P1 in padded jacket and skirt? A: No. (پرسش: P1 زن است؟ پاسخ: بله. پرسش: P1 کیف دارد؟ پاسخ: بله. پرسش: P1 موی بلند و کفش چرمی دارد؟ پاسخ: بله. پرسش: P1 کاپشن پفی و دامن پوشیده است؟ پاسخ: خیر.)",
+          "verified": true
+        },
+        {
+          "en": "Q: Are they persons in both of the two red bounding boxes? A: Yes. (Define the upper one as P2, and define the lower one as P3). Q: Are P2 and P3 the same person? A: Yes.",
+          "fa": "Q: Are they persons in both of the two red bounding boxes? A: Yes. (Define the upper one as P2, and define the lower one as P3). Q: Are P2 and P3 the same person? A: Yes. (پرسش: آیا در هر دو جعبهٔ مرزی قرمز شخص وجود دارد؟ پاسخ: بله. (فرد بالا را P2 و فرد پایین را P3 تعریف کنید). پرسش: آیا P2 و P3 یک نفرند؟ پاسخ: بله.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "05bbf053515031cda3c623f17840ef9f32e995ac445ace4ae55ca4db5efc40b7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "کاربرد: رباتیک (Robotics)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Singh et al. ISEE: Towards Environment Aware Social Robots using Visual Dialog"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "برای مثال، به‌عنوان همراه، روان‌شناس و/یا دستیار در مأموریت‌های جست‌وجو و نجات (برای مثال، آتش‌نشان‌ها)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "User: What are the people doing? Nadine: Talking to each other. User: What is their gender? Nadine: Both are male.",
+          "fa": "User: What are the people doing? Nadine: Talking to each other. User: What is their gender? Nadine: Both are male. (کاربر: افراد چه می‌کنند؟ نادین: با یکدیگر صحبت می‌کنند. کاربر: جنسیتشان چیست؟ نادین: هر دو مردند.)",
+          "verified": true
+        },
+        {
+          "en": "Social Robot: Nadine; Current Scene; User",
+          "fa": "ربات اجتماعی: نادین (Nadine)؛ صحنهٔ کنونی؛ کاربر",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "8c7a0275760a8205988d9a9e221be1aa7826dcd22a3c6fcd3c3a858d983b3500",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "کاربرد: رباتیک (Robotics)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "برای مثال، به‌عنوان همراه"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Joaquin Phoenix; Amy Adams; Rooney Mara; Olivia Wilde; Scarlett Johansson; her; A Spike Jonze Love Story",
+          "fa": "Joaquin Phoenix؛ Amy Adams؛ Rooney Mara؛ Olivia Wilde؛ Scarlett Johansson؛ her (او)؛ داستان عاشقانه‌ای از Spike Jonze",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": false,
+      "image_review_note_fa": "نام فیلم و عوامل خوانای پوستر حفظ شده‌اند؛ ریزنوشته‌های بسیار کوچک عوامل در پایین پوستر برای پیاده‌سازی کامل خوانایی کافی ندارند."
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "ff5cf197a1ca4f21ba60dfd6358d433f5484f29faa37510b310ecc962cf4b73f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "سامانه‌های پرسش‌وپاسخ بصری (Visual Question Answering) برای چه کاربردهای دیگری می‌توانند مفید باشند؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "3432b2face684e532fa2768c2e870f09ccf431e7ebcef8390c04a92c05dd2ce8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردهای گفت‌وگوی بصری (Visual Dialog)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌دادهٔ گفت‌وگوی بصری (Visual Dialog)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی گفت‌وگوی بصری (Visual Dialog)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• چالش‌های اصلی سال 2017: رویکردهای پایه (Baseline approaches)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "cc569e6ded6b465145587b36fad1b83ac8af6d97ae6b362dd8c26a28a1625600",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مجموعه‌داده (Dataset): طیف وظیفه‌های ممکن"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "گپ‌وگفت (Chit-chat؛ گفت‌وگوهای طولانی مطلوب‌اند)"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "هدف‌محور (Goal-oriented؛ گفت‌وگوهای کوتاهی مطلوب‌اند که به انجام وظیفه منجر شوند)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "5648d532be696459e9d2a1a8fe4daa83cc2d46052128dbe43004240e9922087c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مجموعه‌داده‌های پرکاربرد (Popular Datasets)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "• GuessWhat?!"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• VisDial"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "5648d532be696459e9d2a1a8fe4daa83cc2d46052128dbe43004240e9922087c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مجموعه‌داده‌های پرکاربرد (Popular Datasets)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "• GuessWhat?!"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• VisDial"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "e85c3a3a642790aa5a88459c8823770ac2aac15561ce01b6d3d3f4a95d3dfe0e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "GuessWhat!? – وظیفهٔ جمع‌سپاری (Crowdsourcing Task)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "De Vries et al. GuessWhat?! Visual object discovery through multi-modal dialogue. CVPR 2017."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "2 نقش بر عهدهٔ 2 نفر قرار می‌گیرد"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "پاسخ هدفِ پرسش‌کننده"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "پرسش‌کننده پرسش‌های بله/خیر/نامرتبط (yes/no/NA) می‌پرسد تا آمادهٔ انتخاب یک پاسخ از فهرست گزینه‌ها شود"
+        },
+        {
+          "source_lines": [
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "تصاویر نامزد به تصویرهای دارای 3-20 شیء، «برای پرهیز از تصاویر بدیهی یا بیش‌ازحد پیچیده»، و تصویرهای بزرگ‌تر از 500x500 پیکسل محدود می‌شوند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Questioner; Oracle; LSTM encoder; MLP; Softmax; obj1; obj2; obj3; obj4; O_predict",
+          "fa": "پرسش‌کننده (Questioner)؛ مرجع پاسخ (Oracle)؛ رمزگذار LSTM؛ پرسپترون چندلایه (MLP)؛ سافت‌مکس (Softmax)؛ obj1؛ obj2؛ obj3؛ obj4؛ O_predict",
+          "verified": true
+        },
+        {
+          "en": "Is it a vase? Yes. Is it partially visible? No. Is it in the left corner? No. Is it the turquoise and purple one? Yes.",
+          "fa": "Is it a vase? Yes. Is it partially visible? No. Is it in the left corner? No. Is it the turquoise and purple one? Yes. (آیا گلدان است؟ بله. آیا بخشی از آن دیده می‌شود؟ خیر. آیا در گوشهٔ چپ است؟ خیر. آیا همان فیروزه‌ای و بنفش است؟ بله.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "fdd4d3baca88b0f66a85314c9c5580e76228e460cf0a50f9af36862d81b3cbf9",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "آمار GuessWhat!?"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• 66,537 تصویر (از COCO)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• 821,889 جفت پرسش‌وپاسخ (QA pairs)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• به‌طور میانگین، 5.2 پرسش در هر گفت‌وگو"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "De Vries et al. GuessWhat?! Visual object discovery through multi-modal dialogue. CVPR 2017."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "5648d532be696459e9d2a1a8fe4daa83cc2d46052128dbe43004240e9922087c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مجموعه‌داده‌های پرکاربرد (Popular Datasets)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "• GuessWhat?!"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• VisDial"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "8bfd6eedd040dea06c0a17178bfb4e654f2672a8b18bd5b09c404aa213021039",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "وظیفهٔ جمع‌سپاری (Crowdsourcing Task)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "مشارکت‌کنندگان می‌توانند پس از تبادل 20 پیام (10 جفت پرسش‌وپاسخ) مکالمه را پایان دهند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Das et al. Visual Dialog. CVPR 2017."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Caption: A sink and toilet in a small room.",
+          "fa": "Caption: A sink and toilet in a small room. (شرح: سینک و توالت در اتاقی کوچک.)",
+          "verified": true
+        },
+        {
+          "en": "You have to ASK questions about the image. You have to ANSWER questions about the image. Fellow Turker connected. Now you can send messages. You; Fellow Turker; Message; SEND",
+          "fa": "باید دربارهٔ تصویر پرسش بپرسید. باید به پرسش‌ها دربارهٔ تصویر پاسخ دهید. همکار جمع‌سپاری متصل شد. اکنون می‌توانید پیام بفرستید. شما؛ همکار جمع‌سپاری؛ پیام؛ ارسال",
+          "verified": true
+        },
+        {
+          "en": "Q1: is this a bathroom? A1: yes, it’s a bathroom. Q2: what color is the room? A2: it looks cream colored.",
+          "fa": "Q1: is this a bathroom? A1: yes, it’s a bathroom. Q2: what color is the room? A2: it looks cream colored. (پرسش 1: آیا این حمام است؟ پاسخ 1: بله، حمام است. پرسش 2: اتاق چه رنگی است؟ پاسخ 2: کرم‌رنگ به نظر می‌رسد.)",
+          "verified": true
+        },
+        {
+          "en": "Q3: can you see anything else? A3: there is a shelf with items on it. Q4: is anyone in the room? A4: nobody is in the room.",
+          "fa": "Q3: can you see anything else? A3: there is a shelf with items on it. Q4: is anyone in the room? A4: nobody is in the room. (پرسش 3: چیز دیگری می‌بینید؟ پاسخ 3: قفسه‌ای با چیزهایی روی آن هست. پرسش 4: کسی در اتاق است؟ پاسخ 4: هیچ‌کس در اتاق نیست.)",
+          "verified": true
+        },
+        {
+          "en": "Q5: can you see on the outside? A5: no, it is only inside. Q6: what color is the sink? A6: the sink is white.",
+          "fa": "Q5: can you see on the outside? A5: no, it is only inside. Q6: what color is the sink? A6: the sink is white. (پرسش 5: بیرون را می‌بینید؟ پاسخ 5: نه، فقط داخل است. پرسش 6: سینک چه رنگی است؟ پاسخ 6: سینک سفید است.)",
+          "verified": true
+        },
+        {
+          "en": "Q7: is the room clean? A7: it is very clean. Q8: is the toilet facing the sink? A8: yes the toilet is facing the sink.",
+          "fa": "Q7: is the room clean? A7: it is very clean. Q8: is the toilet facing the sink? A8: yes the toilet is facing the sink. (پرسش 7: اتاق تمیز است؟ پاسخ 7: خیلی تمیز است. پرسش 8: توالت روبه‌روی سینک است؟ پاسخ 8: بله، توالت روبه‌روی سینک است.)",
+          "verified": true
+        },
+        {
+          "en": "Q9: can you see a door? A9: yes, I can see the door. Q10: what color is the door? A10: the door is tan colored.",
+          "fa": "Q9: can you see a door? A9: yes, I can see the door. Q10: what color is the door? A10: the door is tan colored. (پرسش 9: در می‌بینید؟ پاسخ 9: بله، در را می‌بینم. پرسش 10: در چه رنگی است؟ پاسخ 10: در قهوه‌ای مایل به زرد است.)",
+          "verified": true
+        },
+        {
+          "en": "(a) What the “questioner” sees. (b) What the “answerer” sees. (c) Example dialog from our VisDial dataset.",
+          "fa": "(a) آنچه «پرسش‌کننده» می‌بیند. (b) آنچه «پاسخ‌دهنده» می‌بیند. (c) نمونهٔ گفت‌وگو از مجموعه‌دادهٔ VisDial ما.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "cab1f1d9ab5f988efbc9f95248baa32492e156fa065919df0d091b48bc0c4eb7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رابط جمع‌سپاری پرسش‌کردن (Asking Crowdsourcing Interface)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Das et al. Visual Dialog. CVPR 2017."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "نشان‌ندادن تصویر چه فایده‌ای دارد؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "- آماده‌سازی بصری (Visual priming) رخ نمی‌دهد؛ پرسش‌ها به ساختن یک مدل ذهنی کمک می‌کنند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Caption: A man, wearing goggles and a backpack on skis pulls a girl on skis behind him.",
+          "fa": "Caption: A man, wearing goggles and a backpack on skis pulls a girl on skis behind him. (شرح: مردی با عینک محافظ و کوله‌پشتی روی اسکی، دختری روی اسکی را پشت سرش می‌کشد.)",
+          "verified": true
+        },
+        {
+          "en": "Fellow Turker connected. Now you can send messages. Type Message Here; Message; Send; End Conversation And Finish Hit",
+          "fa": "همکار جمع‌سپاری متصل شد. اکنون می‌توانید پیام بفرستید. پیام را اینجا بنویسید؛ پیام؛ ارسال؛ پایان گفت‌وگو و تکمیل وظیفه (HIT)",
+          "verified": true
+        },
+        {
+          "en": "You have to ASK Questions about the image.",
+          "fa": "باید دربارهٔ تصویر پرسش بپرسید.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "8bfd6eedd040dea06c0a17178bfb4e654f2672a8b18bd5b09c404aa213021039",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "وظیفهٔ جمع‌سپاری (Crowdsourcing Task)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "مشارکت‌کنندگان می‌توانند پس از تبادل 20 پیام (10 جفت پرسش‌وپاسخ) مکالمه را پایان دهند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Das et al. Visual Dialog. CVPR 2017."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Caption: A sink and toilet in a small room.",
+          "fa": "Caption: A sink and toilet in a small room. (شرح: سینک و توالت در اتاقی کوچک.)",
+          "verified": true
+        },
+        {
+          "en": "You have to ASK questions about the image. You have to ANSWER questions about the image. Fellow Turker connected. Now you can send messages. You; Fellow Turker; Message; SEND",
+          "fa": "باید دربارهٔ تصویر پرسش بپرسید. باید به پرسش‌ها دربارهٔ تصویر پاسخ دهید. همکار جمع‌سپاری متصل شد. اکنون می‌توانید پیام بفرستید. شما؛ همکار جمع‌سپاری؛ پیام؛ ارسال",
+          "verified": true
+        },
+        {
+          "en": "Q1: is this a bathroom? A1: yes, it’s a bathroom. Q2: what color is the room? A2: it looks cream colored.",
+          "fa": "Q1: is this a bathroom? A1: yes, it’s a bathroom. Q2: what color is the room? A2: it looks cream colored. (پرسش 1: آیا این حمام است؟ پاسخ 1: بله، حمام است. پرسش 2: اتاق چه رنگی است؟ پاسخ 2: کرم‌رنگ به نظر می‌رسد.)",
+          "verified": true
+        },
+        {
+          "en": "Q3: can you see anything else? A3: there is a shelf with items on it. Q4: is anyone in the room? A4: nobody is in the room.",
+          "fa": "Q3: can you see anything else? A3: there is a shelf with items on it. Q4: is anyone in the room? A4: nobody is in the room. (پرسش 3: چیز دیگری می‌بینید؟ پاسخ 3: قفسه‌ای با چیزهایی روی آن هست. پرسش 4: کسی در اتاق است؟ پاسخ 4: هیچ‌کس در اتاق نیست.)",
+          "verified": true
+        },
+        {
+          "en": "Q5: can you see on the outside? A5: no, it is only inside. Q6: what color is the sink? A6: the sink is white.",
+          "fa": "Q5: can you see on the outside? A5: no, it is only inside. Q6: what color is the sink? A6: the sink is white. (پرسش 5: بیرون را می‌بینید؟ پاسخ 5: نه، فقط داخل است. پرسش 6: سینک چه رنگی است؟ پاسخ 6: سینک سفید است.)",
+          "verified": true
+        },
+        {
+          "en": "Q7: is the room clean? A7: it is very clean. Q8: is the toilet facing the sink? A8: yes the toilet is facing the sink.",
+          "fa": "Q7: is the room clean? A7: it is very clean. Q8: is the toilet facing the sink? A8: yes the toilet is facing the sink. (پرسش 7: اتاق تمیز است؟ پاسخ 7: خیلی تمیز است. پرسش 8: توالت روبه‌روی سینک است؟ پاسخ 8: بله، توالت روبه‌روی سینک است.)",
+          "verified": true
+        },
+        {
+          "en": "Q9: can you see a door? A9: yes, I can see the door. Q10: what color is the door? A10: the door is tan colored.",
+          "fa": "Q9: can you see a door? A9: yes, I can see the door. Q10: what color is the door? A10: the door is tan colored. (پرسش 9: در می‌بینید؟ پاسخ 9: بله، در را می‌بینم. پرسش 10: در چه رنگی است؟ پاسخ 10: در قهوه‌ای مایل به زرد است.)",
+          "verified": true
+        },
+        {
+          "en": "(a) What the “questioner” sees. (b) What the “answerer” sees. (c) Example dialog from our VisDial dataset.",
+          "fa": "(a) آنچه «پرسش‌کننده» می‌بیند. (b) آنچه «پاسخ‌دهنده» می‌بیند. (c) نمونهٔ گفت‌وگو از مجموعه‌دادهٔ VisDial ما.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "37db86c41759fa8de21683eb1cf1b6caa0440527c7ebcc1b128f247e8bc76428",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رابط جمع‌سپاری پاسخ‌دادن (Answering Crowdsourcing Interface)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Das et al. Visual Dialog. CVPR 2017."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Caption: A man, wearing goggles and a backpack on skis pulls a girl on skis behind him.",
+          "fa": "Caption: A man, wearing goggles and a backpack on skis pulls a girl on skis behind him. (شرح: مردی با عینک محافظ و کوله‌پشتی روی اسکی، دختری روی اسکی را پشت سرش می‌کشد.)",
+          "verified": true
+        },
+        {
+          "en": "Fellow Turker connected. Now you can send messages. Type Message Here; Message; Send; End Conversation And Finish Hit",
+          "fa": "همکار جمع‌سپاری متصل شد. اکنون می‌توانید پیام بفرستید. پیام را اینجا بنویسید؛ پیام؛ ارسال؛ پایان گفت‌وگو و تکمیل وظیفه (HIT)",
+          "verified": true
+        },
+        {
+          "en": "You have to ANSWER questions about the image.",
+          "fa": "باید به پرسش‌ها دربارهٔ تصویر پاسخ دهید.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "a43930d9bb46931787645b53290b9280cf10baa481dde75388603ddf6ae1a9d9",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "دستورالعمل‌های جمع‌سپاری (Crowdsourcing Instructions)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Das et al. Visual Dialog. CVPR 2017."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Live Question/Answering about an Image. Instructions",
+          "fa": "پرسش‌وپاسخ زنده دربارهٔ تصویر. دستورالعمل‌ها",
+          "verified": true
+        },
+        {
+          "en": "In this task, you will be talking to a fellow Turker. You will either be asking questions or answering questions about an image. You will be given more specific instructions once you are connected to a fellow Turker. Stay tuned. A message and a beep will notify you when you have been connected with a fellow Turker. Please keep the following in mind while chatting with your fellow Turker:",
+          "fa": "در این وظیفه با یک همکار جمع‌سپاری (Turker) گفت‌وگو می‌کنید. یا دربارهٔ تصویر پرسش می‌پرسید یا به پرسش‌ها پاسخ می‌دهید. پس از اتصال به همکار، دستورالعمل‌های مشخص‌تری دریافت می‌کنید. منتظر بمانید. پیام و صدای بوق شما را از اتصال به همکار آگاه می‌کند. هنگام گپ با همکار موارد زیر را در نظر داشته باشید:",
+          "verified": true
+        },
+        {
+          "en": "1 Please directly start the conversation. Do not make small talk. 2 Please do not write potentially offensive messages. 3 Please do not have conversations about something other than the image. Just either ask questions, or answer questions about an image (depending on your role).",
+          "fa": "1 لطفاً مستقیماً گفت‌وگو را آغاز کنید. احوال‌پرسی و گپ بی‌ربط نکنید. 2 لطفاً پیام‌هایی که ممکن است توهین‌آمیز باشند ننویسید. 3 لطفاً دربارهٔ چیزی جز تصویر گفت‌وگو نکنید. فقط بسته به نقش خود، دربارهٔ تصویر پرسش بپرسید یا پاسخ دهید.",
+          "verified": true
+        },
+        {
+          "en": "4 Please do not use chat/IM language (e.g., “r8” instead of “right”). Please use professional and grammatically correct English. 5 Please have a natural conversation. Unnatural sounding conversation including awkward messages and long silences will be rejected.",
+          "fa": "4 لطفاً از زبان کوتاه‌شدهٔ چت/پیام‌رسانی (برای مثال، “r8” به‌جای “right”) استفاده نکنید. لطفاً انگلیسی حرفه‌ای و از نظر دستوری درست بنویسید. 5 لطفاً گفت‌وگویی طبیعی داشته باشید. گفت‌وگوی غیرطبیعی شامل پیام‌های نامأنوس و سکوت‌های طولانی رد می‌شود.",
+          "verified": true
+        },
+        {
+          "en": "6 Please note that you are expected to complete and submit the hit in one go (once you have been connected with a partner). You cannot resume hits.",
+          "fa": "6 توجه کنید که انتظار می‌رود وظیفه (HIT) را پس از اتصال به همکار، در یک نوبت کامل و ارسال کنید. نمی‌توانید وظیفه‌ها را بعداً از سر بگیرید.",
+          "verified": true
+        },
+        {
+          "en": "7 If you see someone who isn’t performing HITs as per instructions or is idle for long, do let us know. We’ll make sure we keep a close watch on their work and reject it if they have a track record of not doing HITs properly or wasting too much time. Make sure you include a snippet of the conversation and your role (questioner or answerer) in your message to us, so we can look up who the other worker was.",
+          "fa": "7 اگر دیدید کسی وظیفه‌ها را طبق دستورالعمل انجام نمی‌دهد یا مدتی طولانی بیکار است، حتماً به ما اطلاع دهید. کارش را دقیق زیر نظر می‌گیریم و اگر سابقهٔ انجام نادرست وظیفه‌ها یا اتلاف وقت زیاد داشته باشد آن را رد می‌کنیم. در پیامتان به ما حتماً بخشی از گفت‌وگو و نقش خود (پرسش‌کننده یا پاسخ‌دهنده) را ذکر کنید تا بتوانیم همکار دیگر را پیدا کنیم.",
+          "verified": true
+        },
+        {
+          "en": "8 Do not wait for your partner to disconnect to be able to type in responses quickly, or your work will be rejected. Please complete one hit before proceeding to the other. Please don’t open multiple tabs, you cannot chat with yourself.",
+          "fa": "8 منتظر قطع اتصال همکار نمانید تا بتوانید پاسخ‌ها را سریع تایپ کنید؛ وگرنه کارتان رد می‌شود. لطفاً یک وظیفه را پیش از رفتن به وظیفهٔ بعدی کامل کنید. چند تب باز نکنید؛ نمی‌توانید با خودتان گپ بزنید.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "01eaa54d9e1209e10edaeeb8837d2f1922ff001b37a56720c6837b0655a154c3",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "آمار VisDial"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• حدود 140,000 تصویر (از COCO)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• حدود 2.4 میلیون جفت پرسش‌وپاسخ (QA pairs)، با 10 جفت پرسش‌وپاسخ برای هر تصویر"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Das et al. Visual Dialog. CVPR 2017."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "5648d532be696459e9d2a1a8fe4daa83cc2d46052128dbe43004240e9922087c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مجموعه‌داده‌های پرکاربرد (Popular Datasets)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "• GuessWhat?!"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• VisDial"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "b375bde139f349920f013ea38a4e38a4b09a31af261503de22c214d6b683918c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مجموعه‌داده‌های پرکاربرد (Popular Datasets): VisDial و GuessWhat?!"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• سوگیری‌های (Biases) این مجموعه‌داده‌ها چیست و چنین سوگیری‌هایی چه تأثیری می‌توانند بر مدل‌های آموزش‌دیده و ارزیابی‌شده روی این مجموعه‌داده‌ها داشته باشند؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "3432b2face684e532fa2768c2e870f09ccf431e7ebcef8390c04a92c05dd2ce8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردهای گفت‌وگوی بصری (Visual Dialog)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌دادهٔ گفت‌وگوی بصری (Visual Dialog)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی گفت‌وگوی بصری (Visual Dialog)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• چالش‌های اصلی سال 2017: رویکردهای پایه (Baseline approaches)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "18cb1e51e147988bd3d87470e418f815b0ade42569ecd877b9ba1cf8d41b240f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معیار ارزیابی (Evaluation Metric) GuessWhat?!"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "گپ‌وگفت (Chit-chat؛ گفت‌وگوهای طولانی مطلوب‌اند)"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "هدف‌محور (Goal-oriented؛ گفت‌وگوهای کوتاهی مطلوب‌اند که به انجام وظیفه منجر شوند)"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "با داشتن گفت‌وگوی بصری (Visual dialog) و فهرست گزینه‌های اشیا، شیء درست را پیش‌بینی کنید"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "De Vries et al. GuessWhat?! Visual object discovery through multi-modal dialogue. CVPR 2017."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "18aee81480ee826338531e68ec16c3c7c6103e50a00e7ade47bb82a04fc9a01c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معیار ارزیابی (Evaluation Metric) VisDial"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "گپ‌وگفت (Chit-chat؛ گفت‌وگوهای طولانی مطلوب‌اند)"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "هدف‌محور (Goal-oriented؛ گفت‌وگوهای کوتاهی مطلوب‌اند که به انجام وظیفه منجر شوند)"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "برای هر جفت پرسش‌وپاسخ (QA pair) جدید، رتبه‌بندی پیش‌بینی‌شدهٔ پاسخ‌ها را با معیارهای بازیابی (Retrieval metrics؛ برای مثال recall@k) ارزیابی کنید؛ 100 پاسخ نامزد همراه با گفت‌وگوی بصری (Visual dialog) ارائه می‌شود"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "3432b2face684e532fa2768c2e870f09ccf431e7ebcef8390c04a92c05dd2ce8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردهای گفت‌وگوی بصری (Visual Dialog)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌دادهٔ گفت‌وگوی بصری (Visual Dialog)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی گفت‌وگوی بصری (Visual Dialog)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• چالش‌های اصلی سال 2017: رویکردهای پایه (Baseline approaches)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "9da25d5ba361be66d74d2f202a3e56ab249a0101ddab55c65daac31cd00ab239",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مدل پایهٔ (Baseline Model) GuessWhat?!"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "De Vries et al. GuessWhat?! Visual object discovery through multi-modal dialogue. CVPR 2017."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "ورودی: تاریخچهٔ گفت‌وگو (Dialog history)، تصویر و…"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "خروجی: شیء (Object)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "فهرست اشیای موجود در تصویر"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Questioner; Oracle; LSTM encoder; MLP; Softmax; obj1; obj2; obj3; obj4; O_predict",
+          "fa": "پرسش‌کننده (Questioner)؛ مرجع پاسخ (Oracle)؛ رمزگذار LSTM؛ پرسپترون چندلایه (MLP)؛ سافت‌مکس (Softmax)؛ obj1؛ obj2؛ obj3؛ obj4؛ O_predict",
+          "verified": true
+        },
+        {
+          "en": "Is it a vase? Yes. Is it partially visible? No. Is it in the left corner? No. Is it the turquoise and purple one? Yes.",
+          "fa": "Is it a vase? Yes. Is it partially visible? No. Is it in the left corner? No. Is it the turquoise and purple one? Yes. (آیا گلدان است؟ بله. آیا بخشی از آن دیده می‌شود؟ خیر. آیا در گوشهٔ چپ است؟ خیر. آیا همان فیروزه‌ای و بنفش است؟ بله.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "f90d7703601f1d6f28783a90158618b8e3f0bcebd529cd5c9761a0dc6b4b67b3",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مدل پایهٔ (Baseline Model) GuessWhat?!"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "De Vries et al. GuessWhat?! Visual object discovery through multi-modal dialogue. CVPR 2017."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "بازنمایی تصویر (Image representation): ویژگی‌های FC8 از VGG16"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "بازنمایی پرسش (Question representation): حالت پنهان (Hidden state) پس از واردکردن همهٔ تصاویر و پرسش‌ها به‌صورت یک دنباله"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Questioner; Oracle; LSTM encoder; MLP; Softmax; obj1; obj2; obj3; obj4; O_predict",
+          "fa": "پرسش‌کننده (Questioner)؛ مرجع پاسخ (Oracle)؛ رمزگذار LSTM؛ پرسپترون چندلایه (MLP)؛ سافت‌مکس (Softmax)؛ obj1؛ obj2؛ obj3؛ obj4؛ O_predict",
+          "verified": true
+        },
+        {
+          "en": "Is it a vase? Yes. Is it partially visible? No. Is it in the left corner? No. Is it the turquoise and purple one? Yes.",
+          "fa": "Is it a vase? Yes. Is it partially visible? No. Is it in the left corner? No. Is it the turquoise and purple one? Yes. (آیا گلدان است؟ بله. آیا بخشی از آن دیده می‌شود؟ خیر. آیا در گوشهٔ چپ است؟ خیر. آیا همان فیروزه‌ای و بنفش است؟ بله.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "4218b1a1de3c800981ea436b28278d5b024f9784f158844b2d17ff69537c5c64",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مدل پایهٔ (Baseline Model) GuessWhat?!"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "De Vries et al. GuessWhat?! Visual object discovery through multi-modal dialogue. CVPR 2017."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "بازنمایی‌های تصویر و پرسش به هم متصل می‌شوند (Concatenated)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Questioner; Oracle; LSTM encoder; MLP; Softmax; obj1; obj2; obj3; obj4; O_predict",
+          "fa": "پرسش‌کننده (Questioner)؛ مرجع پاسخ (Oracle)؛ رمزگذار LSTM؛ پرسپترون چندلایه (MLP)؛ سافت‌مکس (Softmax)؛ obj1؛ obj2؛ obj3؛ obj4؛ O_predict",
+          "verified": true
+        },
+        {
+          "en": "Is it a vase? Yes. Is it partially visible? No. Is it in the left corner? No. Is it the turquoise and purple one? Yes.",
+          "fa": "Is it a vase? Yes. Is it partially visible? No. Is it in the left corner? No. Is it the turquoise and purple one? Yes. (آیا گلدان است؟ بله. آیا بخشی از آن دیده می‌شود؟ خیر. آیا در گوشهٔ چپ است؟ خیر. آیا همان فیروزه‌ای و بنفش است؟ بله.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "533e59203da698cb23ed357d30576e0d90611ee44cddd33a63d215e6d4a17568",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مدل پایهٔ (Baseline Model) GuessWhat?!"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "De Vries et al. GuessWhat?! Visual object discovery through multi-modal dialogue. CVPR 2017."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "بازنمایی شیء (Object representation): رده و ویژگی‌های مکانی (Spatial features)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Questioner; Oracle; LSTM encoder; MLP; Softmax; obj1; obj2; obj3; obj4; O_predict",
+          "fa": "پرسش‌کننده (Questioner)؛ مرجع پاسخ (Oracle)؛ رمزگذار LSTM؛ پرسپترون چندلایه (MLP)؛ سافت‌مکس (Softmax)؛ obj1؛ obj2؛ obj3؛ obj4؛ O_predict",
+          "verified": true
+        },
+        {
+          "en": "Is it a vase? Yes. Is it partially visible? No. Is it in the left corner? No. Is it the turquoise and purple one? Yes.",
+          "fa": "Is it a vase? Yes. Is it partially visible? No. Is it in the left corner? No. Is it the turquoise and purple one? Yes. (آیا گلدان است؟ بله. آیا بخشی از آن دیده می‌شود؟ خیر. آیا در گوشهٔ چپ است؟ خیر. آیا همان فیروزه‌ای و بنفش است؟ بله.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "1f8284ab06ec6e04adf47f7b2b8a7ed5475acd5a47f5b70a55e48679781d70b5",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مدل پایهٔ (Baseline Model) GuessWhat?!"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "De Vries et al. GuessWhat?! Visual object discovery through multi-modal dialogue. CVPR 2017."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "ضرب داخلی (Dot product) میان بازنماییِ به‌هم‌متصل‌شدهٔ I+Q و همهٔ اشیا محاسبه و به لایهٔ سافت‌مکس (Softmax) فرستاده می‌شود"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Questioner; Oracle; LSTM encoder; MLP; Softmax; obj1; obj2; obj3; obj4; O_predict",
+          "fa": "پرسش‌کننده (Questioner)؛ مرجع پاسخ (Oracle)؛ رمزگذار LSTM؛ پرسپترون چندلایه (MLP)؛ سافت‌مکس (Softmax)؛ obj1؛ obj2؛ obj3؛ obj4؛ O_predict",
+          "verified": true
+        },
+        {
+          "en": "Is it a vase? Yes. Is it partially visible? No. Is it in the left corner? No. Is it the turquoise and purple one? Yes.",
+          "fa": "Is it a vase? Yes. Is it partially visible? No. Is it in the left corner? No. Is it the turquoise and purple one? Yes. (آیا گلدان است؟ بله. آیا بخشی از آن دیده می‌شود؟ خیر. آیا در گوشهٔ چپ است؟ خیر. آیا همان فیروزه‌ای و بنفش است؟ بله.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "21c461e55a1349820e87d64ddf6723ca1d1705550d76ef1dbb472be86724e735",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نتایج تجربی GuessWhat?!"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "De Vries et al. GuessWhat?! Visual object discovery through multi-modal dialogue. CVPR 2017."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "مطالعهٔ حذف مؤلفه (Ablation study) که ویژگی‌های تصویر را کنار گذاشت، نشان داد این ویژگی‌ها برای پیش‌بینی مفید نیستند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Questioner; Oracle; LSTM encoder; MLP; Softmax; obj1; obj2; obj3; obj4; O_predict",
+          "fa": "پرسش‌کننده (Questioner)؛ مرجع پاسخ (Oracle)؛ رمزگذار LSTM؛ پرسپترون چندلایه (MLP)؛ سافت‌مکس (Softmax)؛ obj1؛ obj2؛ obj3؛ obj4؛ O_predict",
+          "verified": true
+        },
+        {
+          "en": "Is it a vase? Yes. Is it partially visible? No. Is it in the left corner? No. Is it the turquoise and purple one? Yes.",
+          "fa": "Is it a vase? Yes. Is it partially visible? No. Is it in the left corner? No. Is it the turquoise and purple one? Yes. (آیا گلدان است؟ بله. آیا بخشی از آن دیده می‌شود؟ خیر. آیا در گوشهٔ چپ است؟ خیر. آیا همان فیروزه‌ای و بنفش است؟ بله.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "b41dfa618ed9cf565192bc9c7c71e24c7d4b833631d0f3d3299e5af6c9c846d7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مدل پایهٔ (Baseline Model) VisDial"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Das et al. Visual Dialog. CVPR 2017."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "داده (Data)؛ رمزگذار (Encoder)؛ رمزگشا (Decoder)؛ داده"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "cecd1cf6c17c65b90632e0cd2098b17df865510d52a9d564f6700c8cae153416",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مدل پایهٔ (Baseline Model) VisDial"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Das et al. Visual Dialog. CVPR 2017."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "رمزگذار (Encoder): شبکهٔ حافظه (Memory network)"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "رمزگشا (Decoder): تمایزدهنده (Discriminator؛ سافت‌مکس (Softmax))"
+        },
+        {
+          "source_lines": [
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "پرسش، تصویر و تاریخچهٔ مرجع گفت‌وگو (GT dialog history)، همراه با شرح تصویر (Image caption)"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "text",
+          "fa": "داده (Data)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "a3d033648c555524b239892b7875e473fa330bb3bff45c787915a95c6c87dc16",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مدل پایهٔ (Baseline Model) VisDial"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Das et al. Visual Dialog. CVPR 2017."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CNN; Image I; Question Q_t; LSTM; Inner product; Fully-connected layer; Weighted sum; Attention over history; t rounds of history; Decoder; Answer A_t; t×512",
+          "fa": "شبکهٔ عصبی کانولوشنی (CNN)؛ تصویر I؛ پرسش Q_t؛ LSTM؛ ضرب داخلی (Inner product)؛ لایهٔ تمام‌متصل (Fully-connected layer)؛ مجموع وزن‌دار (Weighted sum)؛ توجه روی تاریخچه (Attention over history)؛ t دور تاریخچه؛ رمزگشا (Decoder)؛ پاسخ A_t؛ t×512",
+          "verified": true
+        },
+        {
+          "en": "Do you think the woman is with him? No I don’t think they are together.",
+          "fa": "Do you think the woman is with him? No I don’t think they are together. (فکر می‌کنید زن همراه اوست؟ نه، فکر نمی‌کنم آن‌ها با هم باشند.)",
+          "verified": true
+        },
+        {
+          "en": "The man is riding his bicycle on the sidewalk.",
+          "fa": "The man is riding his bicycle on the sidewalk. (مرد با دوچرخه‌اش در پیاده‌رو حرکت می‌کند.)",
+          "verified": true
+        },
+        {
+          "en": "Is the man wearing a helmet? No he does not have a helmet on.",
+          "fa": "Is the man wearing a helmet? No he does not have a helmet on. (آیا مرد کلاه ایمنی دارد؟ خیر، کلاه ایمنی ندارد.)",
+          "verified": true
+        },
+        {
+          "en": "How old is the man? He looks around 40 years old.",
+          "fa": "How old is the man? He looks around 40 years old. (مرد چند سال دارد؟ حدود 40ساله به نظر می‌رسد.)",
+          "verified": true
+        },
+        {
+          "en": "What color is his bike? It has black wheels and handlebars. I can’t see the body of the bike that well.",
+          "fa": "What color is his bike? It has black wheels and handlebars. I can’t see the body of the bike that well. (دوچرخه‌اش چه رنگی است؟ چرخ‌ها و فرمانش سیاه است. بدنهٔ دوچرخه را چندان خوب نمی‌بینم.)",
+          "verified": true
+        },
+        {
+          "en": "Is anyone else riding a bike? No he’s the only one.",
+          "fa": "Is anyone else riding a bike? No he’s the only one. (آیا فرد دیگری هم دوچرخه‌سواری می‌کند؟ خیر، فقط اوست.)",
+          "verified": true
+        },
+        {
+          "en": "Are there any people nearby? Yes there’s a woman walking behind him.",
+          "fa": "Are there any people nearby? Yes there’s a woman walking behind him. (آیا افرادی نزدیک او هستند؟ بله، زنی پشت سرش راه می‌رود.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "998a7ab46164c0f7a6d0b0ea654680778fb0ac7258b61ba1ee421b1c6b4bd0a3",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مدل پایهٔ (Baseline Model) VisDial"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Das et al. Visual Dialog. CVPR 2017."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "بازنمایی تصویر (Image representation): فعال‌سازی‌های l2 از لایهٔ ماقبل آخر VGG-16"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CNN; Image I; Question Q_t; LSTM; Inner product; Fully-connected layer; Weighted sum; Attention over history; t rounds of history; Decoder; Answer A_t; t×512",
+          "fa": "شبکهٔ عصبی کانولوشنی (CNN)؛ تصویر I؛ پرسش Q_t؛ LSTM؛ ضرب داخلی (Inner product)؛ لایهٔ تمام‌متصل (Fully-connected layer)؛ مجموع وزن‌دار (Weighted sum)؛ توجه روی تاریخچه (Attention over history)؛ t دور تاریخچه؛ رمزگشا (Decoder)؛ پاسخ A_t؛ t×512",
+          "verified": true
+        },
+        {
+          "en": "Do you think the woman is with him? No I don’t think they are together.",
+          "fa": "Do you think the woman is with him? No I don’t think they are together. (فکر می‌کنید زن همراه اوست؟ نه، فکر نمی‌کنم آن‌ها با هم باشند.)",
+          "verified": true
+        },
+        {
+          "en": "The man is riding his bicycle on the sidewalk.",
+          "fa": "The man is riding his bicycle on the sidewalk. (مرد با دوچرخه‌اش در پیاده‌رو حرکت می‌کند.)",
+          "verified": true
+        },
+        {
+          "en": "Is the man wearing a helmet? No he does not have a helmet on.",
+          "fa": "Is the man wearing a helmet? No he does not have a helmet on. (آیا مرد کلاه ایمنی دارد؟ خیر، کلاه ایمنی ندارد.)",
+          "verified": true
+        },
+        {
+          "en": "How old is the man? He looks around 40 years old.",
+          "fa": "How old is the man? He looks around 40 years old. (مرد چند سال دارد؟ حدود 40ساله به نظر می‌رسد.)",
+          "verified": true
+        },
+        {
+          "en": "What color is his bike? It has black wheels and handlebars. I can’t see the body of the bike that well.",
+          "fa": "What color is his bike? It has black wheels and handlebars. I can’t see the body of the bike that well. (دوچرخه‌اش چه رنگی است؟ چرخ‌ها و فرمانش سیاه است. بدنهٔ دوچرخه را چندان خوب نمی‌بینم.)",
+          "verified": true
+        },
+        {
+          "en": "Is anyone else riding a bike? No he’s the only one.",
+          "fa": "Is anyone else riding a bike? No he’s the only one. (آیا فرد دیگری هم دوچرخه‌سواری می‌کند؟ خیر، فقط اوست.)",
+          "verified": true
+        },
+        {
+          "en": "Are there any people nearby? Yes there’s a woman walking behind him.",
+          "fa": "Are there any people nearby? Yes there’s a woman walking behind him. (آیا افرادی نزدیک او هستند؟ بله، زنی پشت سرش راه می‌رود.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "034e8beadd587a8ce5f59836fe3dd1d94569266864dab01c4adadb1312eb263a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مدل پایهٔ (Baseline Model) VisDial"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Das et al. Visual Dialog. CVPR 2017."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "بازنمایی پرسش (Question representation): آخرین بازنمایی پنهانِ پرسش ورودی"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CNN; Image I; Question Q_t; LSTM; Inner product; Fully-connected layer; Weighted sum; Attention over history; t rounds of history; Decoder; Answer A_t; t×512",
+          "fa": "شبکهٔ عصبی کانولوشنی (CNN)؛ تصویر I؛ پرسش Q_t؛ LSTM؛ ضرب داخلی (Inner product)؛ لایهٔ تمام‌متصل (Fully-connected layer)؛ مجموع وزن‌دار (Weighted sum)؛ توجه روی تاریخچه (Attention over history)؛ t دور تاریخچه؛ رمزگشا (Decoder)؛ پاسخ A_t؛ t×512",
+          "verified": true
+        },
+        {
+          "en": "Do you think the woman is with him? No I don’t think they are together.",
+          "fa": "Do you think the woman is with him? No I don’t think they are together. (فکر می‌کنید زن همراه اوست؟ نه، فکر نمی‌کنم آن‌ها با هم باشند.)",
+          "verified": true
+        },
+        {
+          "en": "The man is riding his bicycle on the sidewalk.",
+          "fa": "The man is riding his bicycle on the sidewalk. (مرد با دوچرخه‌اش در پیاده‌رو حرکت می‌کند.)",
+          "verified": true
+        },
+        {
+          "en": "Is the man wearing a helmet? No he does not have a helmet on.",
+          "fa": "Is the man wearing a helmet? No he does not have a helmet on. (آیا مرد کلاه ایمنی دارد؟ خیر، کلاه ایمنی ندارد.)",
+          "verified": true
+        },
+        {
+          "en": "How old is the man? He looks around 40 years old.",
+          "fa": "How old is the man? He looks around 40 years old. (مرد چند سال دارد؟ حدود 40ساله به نظر می‌رسد.)",
+          "verified": true
+        },
+        {
+          "en": "What color is his bike? It has black wheels and handlebars. I can’t see the body of the bike that well.",
+          "fa": "What color is his bike? It has black wheels and handlebars. I can’t see the body of the bike that well. (دوچرخه‌اش چه رنگی است؟ چرخ‌ها و فرمانش سیاه است. بدنهٔ دوچرخه را چندان خوب نمی‌بینم.)",
+          "verified": true
+        },
+        {
+          "en": "Is anyone else riding a bike? No he’s the only one.",
+          "fa": "Is anyone else riding a bike? No he’s the only one. (آیا فرد دیگری هم دوچرخه‌سواری می‌کند؟ خیر، فقط اوست.)",
+          "verified": true
+        },
+        {
+          "en": "Are there any people nearby? Yes there’s a woman walking behind him.",
+          "fa": "Are there any people nearby? Yes there’s a woman walking behind him. (آیا افرادی نزدیک او هستند؟ بله، زنی پشت سرش راه می‌رود.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "37de64ceaefcb0f040cb2b129f7c09acfff59cc47ee0a65395ca79a28169ad9c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مدل پایهٔ (Baseline Model) VisDial"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Das et al. Visual Dialog. CVPR 2017."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "بازنمایی گفت‌وگو (Dialog representation): هر شرح (Caption) و جفت پرسش‌وپاسخ (QA pair) با یک LSTM مشترک به بازنمایی‌های پنهان رمزگذاری می‌شود"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CNN; Image I; Question Q_t; LSTM; Inner product; Fully-connected layer; Weighted sum; Attention over history; t rounds of history; Decoder; Answer A_t; t×512",
+          "fa": "شبکهٔ عصبی کانولوشنی (CNN)؛ تصویر I؛ پرسش Q_t؛ LSTM؛ ضرب داخلی (Inner product)؛ لایهٔ تمام‌متصل (Fully-connected layer)؛ مجموع وزن‌دار (Weighted sum)؛ توجه روی تاریخچه (Attention over history)؛ t دور تاریخچه؛ رمزگشا (Decoder)؛ پاسخ A_t؛ t×512",
+          "verified": true
+        },
+        {
+          "en": "Do you think the woman is with him? No I don’t think they are together.",
+          "fa": "Do you think the woman is with him? No I don’t think they are together. (فکر می‌کنید زن همراه اوست؟ نه، فکر نمی‌کنم آن‌ها با هم باشند.)",
+          "verified": true
+        },
+        {
+          "en": "The man is riding his bicycle on the sidewalk.",
+          "fa": "The man is riding his bicycle on the sidewalk. (مرد با دوچرخه‌اش در پیاده‌رو حرکت می‌کند.)",
+          "verified": true
+        },
+        {
+          "en": "Is the man wearing a helmet? No he does not have a helmet on.",
+          "fa": "Is the man wearing a helmet? No he does not have a helmet on. (آیا مرد کلاه ایمنی دارد؟ خیر، کلاه ایمنی ندارد.)",
+          "verified": true
+        },
+        {
+          "en": "How old is the man? He looks around 40 years old.",
+          "fa": "How old is the man? He looks around 40 years old. (مرد چند سال دارد؟ حدود 40ساله به نظر می‌رسد.)",
+          "verified": true
+        },
+        {
+          "en": "What color is his bike? It has black wheels and handlebars. I can’t see the body of the bike that well.",
+          "fa": "What color is his bike? It has black wheels and handlebars. I can’t see the body of the bike that well. (دوچرخه‌اش چه رنگی است؟ چرخ‌ها و فرمانش سیاه است. بدنهٔ دوچرخه را چندان خوب نمی‌بینم.)",
+          "verified": true
+        },
+        {
+          "en": "Is anyone else riding a bike? No he’s the only one.",
+          "fa": "Is anyone else riding a bike? No he’s the only one. (آیا فرد دیگری هم دوچرخه‌سواری می‌کند؟ خیر، فقط اوست.)",
+          "verified": true
+        },
+        {
+          "en": "Are there any people nearby? Yes there’s a woman walking behind him.",
+          "fa": "Are there any people nearby? Yes there’s a woman walking behind him. (آیا افرادی نزدیک او هستند؟ بله، زنی پشت سرش راه می‌رود.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "1c1c6d30f717241b5eb24ec07535364bcc41d58c40b046024398d212fc667466",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مدل پایهٔ (Baseline Model) VisDial"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Das et al. Visual Dialog. CVPR 2017."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "بازنمایی میان‌وجهی (Cross-modality representation): ویژگی‌های به‌هم‌متصل‌شده و سپس لایهٔ تمام‌متصل (Fully-connected layer) با تابع فعال‌سازی tanh"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CNN; Image I; Question Q_t; LSTM; Inner product; Fully-connected layer; Weighted sum; Attention over history; t rounds of history; Decoder; Answer A_t; t×512",
+          "fa": "شبکهٔ عصبی کانولوشنی (CNN)؛ تصویر I؛ پرسش Q_t؛ LSTM؛ ضرب داخلی (Inner product)؛ لایهٔ تمام‌متصل (Fully-connected layer)؛ مجموع وزن‌دار (Weighted sum)؛ توجه روی تاریخچه (Attention over history)؛ t دور تاریخچه؛ رمزگشا (Decoder)؛ پاسخ A_t؛ t×512",
+          "verified": true
+        },
+        {
+          "en": "Do you think the woman is with him? No I don’t think they are together.",
+          "fa": "Do you think the woman is with him? No I don’t think they are together. (فکر می‌کنید زن همراه اوست؟ نه، فکر نمی‌کنم آن‌ها با هم باشند.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "a145f09bc6ca571d3de6b37542c3de10211b6c9d3e6775dc9d0208b9c70452b0",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مدل پایهٔ (Baseline Model) VisDial"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Das et al. Visual Dialog. CVPR 2017."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "بازنمایی جدید رمزگذار (Encoder): وزن توجه (Attention weight) هر «واقعیت» (Fact؛ یعنی شرح یا جفت پرسش‌وپاسخ) برای پرس‌وجوی چندوجهی (Multimodal query) برای استخراج بازنمایی جدید استفاده می‌شود"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CNN; Image I; Question Q_t; LSTM; Inner product; Fully-connected layer; Weighted sum; Attention over history; t rounds of history; Decoder; Answer A_t; t×512",
+          "fa": "شبکهٔ عصبی کانولوشنی (CNN)؛ تصویر I؛ پرسش Q_t؛ LSTM؛ ضرب داخلی (Inner product)؛ لایهٔ تمام‌متصل (Fully-connected layer)؛ مجموع وزن‌دار (Weighted sum)؛ توجه روی تاریخچه (Attention over history)؛ t دور تاریخچه؛ رمزگشا (Decoder)؛ پاسخ A_t؛ t×512",
+          "verified": true
+        },
+        {
+          "en": "Do you think the woman is with him? No I don’t think they are together.",
+          "fa": "Do you think the woman is with him? No I don’t think they are together. (فکر می‌کنید زن همراه اوست؟ نه، فکر نمی‌کنم آن‌ها با هم باشند.)",
+          "verified": true
+        },
+        {
+          "en": "The man is riding his bicycle on the sidewalk.",
+          "fa": "The man is riding his bicycle on the sidewalk. (مرد با دوچرخه‌اش در پیاده‌رو حرکت می‌کند.)",
+          "verified": true
+        },
+        {
+          "en": "Is the man wearing a helmet? No he does not have a helmet on.",
+          "fa": "Is the man wearing a helmet? No he does not have a helmet on. (آیا مرد کلاه ایمنی دارد؟ خیر، کلاه ایمنی ندارد.)",
+          "verified": true
+        },
+        {
+          "en": "How old is the man? He looks around 40 years old.",
+          "fa": "How old is the man? He looks around 40 years old. (مرد چند سال دارد؟ حدود 40ساله به نظر می‌رسد.)",
+          "verified": true
+        },
+        {
+          "en": "What color is his bike? It has black wheels and handlebars. I can’t see the body of the bike that well.",
+          "fa": "What color is his bike? It has black wheels and handlebars. I can’t see the body of the bike that well. (دوچرخه‌اش چه رنگی است؟ چرخ‌ها و فرمانش سیاه است. بدنهٔ دوچرخه را چندان خوب نمی‌بینم.)",
+          "verified": true
+        },
+        {
+          "en": "Is anyone else riding a bike? No he’s the only one.",
+          "fa": "Is anyone else riding a bike? No he’s the only one. (آیا فرد دیگری هم دوچرخه‌سواری می‌کند؟ خیر، فقط اوست.)",
+          "verified": true
+        },
+        {
+          "en": "Are there any people nearby? Yes there’s a woman walking behind him.",
+          "fa": "Are there any people nearby? Yes there’s a woman walking behind him. (آیا افرادی نزدیک او هستند؟ بله، زنی پشت سرش راه می‌رود.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "e4719846b20a44a64035c61e42f43c2c40887b31e05b08c66b30fb4b39bb2cd4",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مدل پایهٔ (Baseline Model) VisDial"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Das et al. Visual Dialog. CVPR 2017."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "پیش‌بینی: شباهت میان کدگذاری ورودی (Input encoding) و هر پاسخ نامزد با ضرب داخلی (Dot product) اندازه‌گیری می‌شود؛ همهٔ نتایج از لایهٔ سافت‌مکس (Softmax) عبور می‌کنند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CNN; Image I; Question Q_t; LSTM; Inner product; Fully-connected layer; Weighted sum; Attention over history; t rounds of history; Decoder; Answer A_t; t×512",
+          "fa": "شبکهٔ عصبی کانولوشنی (CNN)؛ تصویر I؛ پرسش Q_t؛ LSTM؛ ضرب داخلی (Inner product)؛ لایهٔ تمام‌متصل (Fully-connected layer)؛ مجموع وزن‌دار (Weighted sum)؛ توجه روی تاریخچه (Attention over history)؛ t دور تاریخچه؛ رمزگشا (Decoder)؛ پاسخ A_t؛ t×512",
+          "verified": true
+        },
+        {
+          "en": "Do you think the woman is with him? No I don’t think they are together.",
+          "fa": "Do you think the woman is with him? No I don’t think they are together. (فکر می‌کنید زن همراه اوست؟ نه، فکر نمی‌کنم آن‌ها با هم باشند.)",
+          "verified": true
+        },
+        {
+          "en": "The man is riding his bicycle on the sidewalk.",
+          "fa": "The man is riding his bicycle on the sidewalk. (مرد با دوچرخه‌اش در پیاده‌رو حرکت می‌کند.)",
+          "verified": true
+        },
+        {
+          "en": "Is the man wearing a helmet? No he does not have a helmet on.",
+          "fa": "Is the man wearing a helmet? No he does not have a helmet on. (آیا مرد کلاه ایمنی دارد؟ خیر، کلاه ایمنی ندارد.)",
+          "verified": true
+        },
+        {
+          "en": "How old is the man? He looks around 40 years old.",
+          "fa": "How old is the man? He looks around 40 years old. (مرد چند سال دارد؟ حدود 40ساله به نظر می‌رسد.)",
+          "verified": true
+        },
+        {
+          "en": "What color is his bike? It has black wheels and handlebars. I can’t see the body of the bike that well.",
+          "fa": "What color is his bike? It has black wheels and handlebars. I can’t see the body of the bike that well. (دوچرخه‌اش چه رنگی است؟ چرخ‌ها و فرمانش سیاه است. بدنهٔ دوچرخه را چندان خوب نمی‌بینم.)",
+          "verified": true
+        },
+        {
+          "en": "Is anyone else riding a bike? No he’s the only one.",
+          "fa": "Is anyone else riding a bike? No he’s the only one. (آیا فرد دیگری هم دوچرخه‌سواری می‌کند؟ خیر، فقط اوست.)",
+          "verified": true
+        },
+        {
+          "en": "Are there any people nearby? Yes there’s a woman walking behind him.",
+          "fa": "Are there any people nearby? Yes there’s a woman walking behind him. (آیا افرادی نزدیک او هستند؟ بله، زنی پشت سرش راه می‌رود.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "bc1980ebe6553f7bd184dc5b7e2fdc95fe9828e758f60cf077ecc6ed0df85e37",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نتایج کیفی (Qualitative Results)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Das et al. Visual Dialog. CVPR 2017."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "(شدت رنگ، میزان توجه (Attention) به واقعیت (Fact) را نشان می‌دهد)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Is anyone on bus? A large yellow bus parked in some grass. Are there any black stripes? Yes 3 black stripes. Is there any writing? Yes it says “moon farm day camp”. Is grass well-maintained? No it’s all weeds.",
+          "fa": "Is anyone on bus? A large yellow bus parked in some grass. Are there any black stripes? Yes 3 black stripes. Is there any writing? Yes it says “moon farm day camp”. Is grass well-maintained? No it’s all weeds. (آیا کسی در اتوبوس است؟ اتوبوس زرد بزرگی در چمن پارک شده است. آیا نوار سیاهی دارد؟ بله 3 نوار سیاه. آیا نوشته‌ای هست؟ بله، نوشته “moon farm day camp”. آیا چمن خوب نگهداری شده؟ خیر، همه علف هرز است.)",
+          "verified": true
+        },
+        {
+          "en": "What color is his board? A surfer wiping out on an ocean wave. Is it man or woman? Man. Are they wearing wetsuit? No.",
+          "fa": "What color is his board? A surfer wiping out on an ocean wave. Is it man or woman? Man. Are they wearing wetsuit? No. (تختهٔ او چه رنگی است؟ موج‌سواری در حال افتادن روی موج اقیانوس. مرد است یا زن؟ مرد. لباس غواصی پوشیده است؟ خیر.)",
+          "verified": true
+        },
+        {
+          "en": "Is it fairly close up shot? A nice bird standing on a bench. Gazing at? Camera I think. Can you tell what kind of bird it is? No it’s bright red bird with black face and red beek. Is it tiny bird? Yes. What sort of area is this in? Looks like it could be back deck.",
+          "fa": "Is it fairly close up shot? A nice bird standing on a bench. Gazing at? Camera I think. Can you tell what kind of bird it is? No it’s bright red bird with black face and red beek. Is it tiny bird? Yes. What sort of area is this in? Looks like it could be back deck. (آیا نمای نسبتاً نزدیک است؟ پرنده‌ای زیبا روی نیمکت ایستاده است. به چه نگاه می‌کند؟ فکر می‌کنم دوربین. می‌توانید نوع پرنده را بگویید؟ خیر، پرنده‌ای قرمز روشن با صورت سیاه و نوک قرمز است. پرندهٔ کوچکی است؟ بله. در چه نوع محوطه‌ای است؟ ممکن است ایوان پشتی باشد.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "b4fda35afc88166d564f73254de45f385892692030429a8864d13119a2799f11",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نتایج کیفی (Qualitative Results)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Das et al. Visual Dialog. CVPR 2017."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Are there people on carriage? A street scene with a horse and carriage. Is it real? Yes. What color is horse? Dark brown. What color is carriage? Red.",
+          "fa": "Are there people on carriage? A street scene with a horse and carriage. Is it real? Yes. What color is horse? Dark brown. What color is carriage? Red. (آیا افرادی روی کالسکه هستند؟ صحنهٔ خیابان با اسب و کالسکه. واقعی است؟ بله. اسب چه رنگی است؟ قهوه‌ای تیره. کالسکه چه رنگی است؟ قرمز.)",
+          "verified": true
+        },
+        {
+          "en": "What color are kites? A lot of people stand around flying kites in a park. Are these people children? It looks like a mixture of families. Is this field trip you think? Just family outing. Is there lot of grass? Yes. Are there lot of trees? No. Any vehicles around? No.",
+          "fa": "What color are kites? A lot of people stand around flying kites in a park. Are these people children? It looks like a mixture of families. Is this field trip you think? Just family outing. Is there lot of grass? Yes. Are there lot of trees? No. Any vehicles around? No. (بادبادک‌ها چه رنگی‌اند؟ افراد زیادی در پارک ایستاده‌اند و بادبادک هوا می‌کنند. این افراد کودک‌اند؟ ترکیبی از خانواده‌ها به نظر می‌رسد. فکر می‌کنید گردش علمی است؟ فقط گردش خانوادگی است. چمن زیادی هست؟ بله. درخت زیاد هست؟ خیر. وسیلهٔ نقلیه‌ای اطراف هست؟ خیر.)",
+          "verified": true
+        },
+        {
+          "en": "Can you see street signs? The computer on the desk shows an image of a car. What color is car? White. Do you know make? Volkswagen. Are there people? Probably driving car. Is it in office? It’s close up of desk so can’t tell. Do you see desk? Yes. Is it laptop? No, desktop. What color is computer? You can’t see actual computer just screen and keyboard. Can you see brand? It’s Mac. Is picture of car taken outside? Yes.",
+          "fa": "Can you see street signs? The computer on the desk shows an image of a car. What color is car? White. Do you know make? Volkswagen. Are there people? Probably driving car. Is it in office? It’s close up of desk so can’t tell. Do you see desk? Yes. Is it laptop? No, desktop. What color is computer? You can’t see actual computer just screen and keyboard. Can you see brand? It’s Mac. Is picture of car taken outside? Yes. (تابلوهای خیابان را می‌بینید؟ رایانهٔ روی میز تصویری از خودرو نشان می‌دهد. خودرو چه رنگی است؟ سفید. سازنده را می‌دانید؟ Volkswagen. افراد حضور دارند؟ احتمالاً خودرو را می‌رانند. در دفتر است؟ نمای نزدیک میز است، نمی‌توان تشخیص داد. میز را می‌بینید؟ بله. لپ‌تاپ است؟ خیر، رومیزی. رایانه چه رنگی است؟ خود رایانه دیده نمی‌شود، فقط صفحه‌نمایش و صفحه‌کلید. نام تجاری را می‌بینید؟ Mac است. عکس خودرو بیرون گرفته شده است؟ بله.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "3432b2face684e532fa2768c2e870f09ccf431e7ebcef8390c04a92c05dd2ce8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردهای گفت‌وگوی بصری (Visual Dialog)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌دادهٔ گفت‌وگوی بصری (Visual Dialog)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی گفت‌وگوی بصری (Visual Dialog)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• چالش‌های اصلی سال 2017: رویکردهای پایه (Baseline approaches)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    }
+  ]
+}

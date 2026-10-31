@@ -1,0 +1,873 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s07",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/07-Deep-Learning-Birth.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2026/s07.pdf",
+    "sha256": "ac4446d8edc7398cf4e6c6601b30c6d842c6e1d9a656eb243d841a982ee75d1a",
+    "page_count": 67,
+    "license_notice": "CC BY-NC-SA; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "2995739a6046e72452bcff46a24f39ffc7bf014ba1c62cd13646d797b379cebf",
+      "lines": [
+        "From a Flame to a Fire:",
+        "Birth of “Deep” Learning",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2026",
+        "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "6c3a4c1fdc40c0cf9babc3c8dc3ef13b49f6fcfedb9bda14339fe1b2451bf531",
+      "lines": [
+        "Review",
+        "• Last lecture:",
+        "• Shallow learning: why doesn’t it work?",
+        "• Navigating the loss landscape: how to make learning converge",
+        "• Generalizing to the real world: avoiding overfitting and underfitting",
+        "• Programming tutorial",
+        "• Assignments (Canvas)",
+        "• Problem set 1 due tomorrow",
+        "• Lab assignment 2 due in 2 weeks",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "9a41865e3388545152a3947c0ba2a607c08ffc07248e226bcb5ad55acc734dba",
+      "lines": [
+        "Today’s Topics",
+        "• NN neglect: 2nd AI winter & retreat to shallow models with engineered features",
+        "• NN hope lingers: the unfashionable quest for depth",
+        "• NNs take over: AlexNet triggers a revolution where ‘deep learning’ dominates",
+        "• Programming tutorial: AlexNet in PyTorch"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "9a41865e3388545152a3947c0ba2a607c08ffc07248e226bcb5ad55acc734dba",
+      "lines": [
+        "Today’s Topics",
+        "• NN neglect: 2nd AI winter & retreat to shallow models with engineered features",
+        "• NN hope lingers: the unfashionable quest for depth",
+        "• NNs take over: AlexNet triggers a revolution where ‘deep learning’ dominates",
+        "• Programming tutorial: AlexNet in PyTorch"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "cba3b22b7737ba1e1f4505b7c690d67006ef7ffb1eb8180e320018493ac283a4",
+      "lines": [
+        "2nd “AI Winter” (late-1980s to late-1990s)",
+        "• Dominant, hyped paradigm of rule-based",
+        "expert systems didn’t deliver",
+        "• Funding agencies lost interest",
+        "• Researchers left for other topics",
+        "https://medium.com/@bergholz/proclaimed-dead-twice-the-ai-winters-5848c7f8a29f"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "73fb8bf3fef69cd2e45aa09e73acca14c9b3cdc5727319a08310ec3338f8539d",
+      "lines": [
+        "Machine Learning Survived",
+        "and Sparked New Hope for AI",
+        "Feature Extraction Prediction",
+        "e.g., Is a person present?",
+        "Yes",
+        "Yes",
+        "Feature Extraction",
+        "NN APPROACH: REPRESENTATION LEARNING",
+        "Prediction",
+        "INPUT OTHER ML APPROACH: HAND-CRAFTED FEATURES OUTPUT",
+        "Dominant approach",
+        "(shallow architectures)"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "05842d75dfecf9001c87502c59f9dd9e8f2b19fc935ad978581e27c209e12153",
+      "lines": [
+        "Machine Learning Survived",
+        "and Sparked New Hope for AI",
+        "SVMs, in particular, were a key choice"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "9a41865e3388545152a3947c0ba2a607c08ffc07248e226bcb5ad55acc734dba",
+      "lines": [
+        "Today’s Topics",
+        "• NN neglect: 2nd AI winter & retreat to shallow models with engineered features",
+        "• NN hope lingers: the unfashionable quest for depth",
+        "• NNs take over: AlexNet triggers a revolution where ‘deep learning’ dominates",
+        "• Programming tutorial: AlexNet in PyTorch"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "f5ca52d758e05a8995f0ca4bfc964e1f9ed161f21f00adc01fd0181e0e3ad57a",
+      "lines": [
+        "(2007; published in the book",
+        "Large-scale Kernel Machines)",
+        "Yann LeCun",
+        "1960 – Present",
+        "Professor, Former Chief AI Scientist (Meta)",
+        "Yoshua Bengio",
+        "1964 – Present",
+        "Professor, Co-President of LawZero",
+        "Shallow vs Deep Architectures",
+        "“We argue that deep architectures… crucial in order to make progress",
+        "on the kind of complex tasks required for artificial intelligence."
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "fadac5940afeabc5d2766eeab2137be851b614e9da6e9f9ad5fd5a3920ed72f7",
+      "lines": [
+        "Shallow vs Deep Architectures",
+        "Feature Extraction Prediction",
+        "e.g., Is a person present?",
+        "Yes",
+        "INPUT OTHER ML APPROACH: HAND-CRAFTED FEATURES OUTPUT",
+        "They argue hand-crafted approaches are not an efficient long-term strategy; e.g.,",
+        "- “very attractive in the short term because they often yield quick results in",
+        "making progress on a specific task”",
+        "- fundamentally flawed: “If task-specific designs must be devised by hand for each",
+        "new task, achieving AI will require an overwhelming amount of human effort”"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "03d939a8b7f08552222e5d1efffbb4b0b21512383e4b8768cae04480378840af",
+      "lines": [
+        "• Key insight: while shallow architectures can represent any function,",
+        "they offer less efficient representations than deep architectures",
+        "• e.g., predict for the image one of the following 9 categories",
+        "Shallow vs Deep Architectures",
+        "Red truck",
+        "Red car",
+        "Red bird",
+        "Green truck",
+        "Green car",
+        "Green bird",
+        "Blue truck",
+        "Blue car",
+        "Blue bird",
+        "How else could this be represented?"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "34acdeadfe43f9c97b5323da71c011c5c80f9dc3aec9ba266c7ce8fb82eddd8e",
+      "lines": [
+        "• Key insight: while shallow architectures can represent any function,",
+        "they offer less efficient representations than deep architectures",
+        "• e.g., predict for the image one of the following 9 categories",
+        "Shallow vs Deep Architectures",
+        "Red",
+        "Green",
+        "Blue",
+        "Truck",
+        "Car",
+        "Bird",
+        "More efficient representation:",
+        "capture color and then objects!"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "867060795aa2194fe41b79c238ae4428982a843b745debfdf0ff06c57b9affb0",
+      "lines": [
+        "• Key insight: while shallow architectures can represent any function,",
+        "they offer less efficient representations than deep architectures",
+        "• Problem: deeper NNs often failed with shallow learning techniques",
+        "• Analogy: what would happen if you scaled an ant to an elephant’s size?",
+        "• It would collapse under its own weight (needs different fundamentals, like legs)",
+        "Shallow vs Deep Architectures"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "961b638e61b52d8a2e074cee7052d4aa6f98bcfd648f237672ca75a7ee3ad163",
+      "lines": [
+        "• Key insight: while shallow architectures can represent any function,",
+        "they offer less efficient representations than deep architectures",
+        "• Problem: deeper NNs often failed with shallow learning techniques",
+        "• Renewed hope: after LeCun’s LeNet-5 came Bengio’s 2006 success",
+        "Shallow vs Deep Architectures",
+        "(NeurIPS)"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "b722e876d355f242047823a9ef4892fdf17f395fccc7b5b7d3c54bfe047a4281",
+      "lines": [
+        "Idea: Initialize Parameters Near Good Minima",
+        "• Approach:",
+        "1. Unsupervised training of each layer sequentially, building depth gradually",
+        "2. Supervised fine-tuning for the target task (add output layer and then train)",
+        "• Why unsupervised learning? - lots of data for supervision; e.g.,",
+        "• Autoencoder learning to predict itself, encoding the input followed by decoding into a prediction",
+        "• Given this 620 x 426 input, what would a perfect autoencoder predict:",
+        "• The 264,120 flattened pixels in the input image",
+        "• Intuition behind autoencoders: which is easier to remember",
+        "• A: 30, 27, 22, 11, 6, 8, 7, 2",
+        "• B: 30, 15, 46, 23, 70, 35, 106, 53, 160, 80, 40, 20, 10, 5",
+        "• B; only need a compact set of rules - divide by 2 if even; multiply by 3 and add 1 otherwise",
+        "Input Train Train Train",
+        "https://lazyprogrammer.me/",
+        "a-tutorial-on-autoencoders/"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "c8c5b987c8c3dba406e892d48e00bf1d1405531f1f22d656292455fd7fdd68ac",
+      "lines": [
+        "Experiments: “Deep Learning” Holds Promise!",
+        "Autoencoder:",
+        "For MNIST, outperforms alternatives of (1) a shallow network, (2) training without",
+        "greedy pre-training, and (3) pre-training greedily with supervised learning"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "bf72232d4e65ab9838cbc4e2a703e7c8a4f3ea0d4c771664ac8a37e81018d936",
+      "lines": [
+        "Vision in 2007 paper for deep learning (stay tuned for 2020s):",
+        "“... one should not consider the large variety of [AI] tasks separately,",
+        "but as different aspects of a more general problem: that of learning",
+        "the basic structure of the world, as seen say through the eyes and",
+        "ears of a growing animal or a young child. This is an instance of multi￾task learning… after training such a system on a large variety of tasks",
+        "in the AI-set, the system may generalize to a new task from only a",
+        "few labeled examples. We hypothesize that many tasks in the AI-set",
+        "may be built around common representations...”"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "8b128210ee0790c936ba106dbb57b3c6356c14f2a458cae8cc3084ac67370384",
+      "lines": [
+        "Despite Progress, Resistance to NNs Remained",
+        "Yann LeCun’s famous letter to CVPR organizers about a 2012 paper submission:",
+        "(Paper ratings: “Definitely Reject,” “Borderline”, “Weakly Reject” )",
+        "“… I was very sure that this paper was going to get good reviews because:",
+        "1) it has two simple and generally applicable ideas for segmentation (\"purity tree\"",
+        "and \"optimal cover\");",
+        "2) it uses no hand-crafted features (it's all learned all the way through. Incredibly,",
+        "this was seen as a negative point by the reviewers!)",
+        "3) it beats all published results on 3 standard datasets for scene parsing;",
+        "4) it's an order of magnitude faster than the competing methods.",
+        "If that is not enough to get good reviews, I just don't know what is.”",
+        "“Scene Parsing with Multiscale Feature Learning, Purity Trees, and Optimal Covers” rejected by CVPR but accepted by ICML’12"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "9a41865e3388545152a3947c0ba2a607c08ffc07248e226bcb5ad55acc734dba",
+      "lines": [
+        "Today’s Topics",
+        "• NN neglect: 2nd AI winter & retreat to shallow models with engineered features",
+        "• NN hope lingers: the unfashionable quest for depth",
+        "• NNs take over: AlexNet triggers a revolution where ‘deep learning’ dominates",
+        "• Programming tutorial: AlexNet in PyTorch"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "96e70ab4f15cb40a6630ee7801ed09926dfcf5c0ffe6a08b0d5ad35a2134374d",
+      "lines": [
+        "AlexNet Model (Named After 1rst Author)",
+        "(2012, NeurIPS)",
+        "1947 – Present",
+        "Professor; Google Brain",
+        "2024 Nobel Prize winner"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "2e4f28356201ac9ccb749d493760b9f5b33cc3892a1f9cc710410adb8947814b",
+      "lines": [
+        "AlexNet Architecture: Going “Deeper”",
+        "https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "87d657122086bb0e7d32d105dd073131e10c230d1a8a431cb298bbcec3054a35",
+      "lines": [
+        "AlexNet Architecture",
+        "https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png",
+        "Input: RGB image resized to fixed input size",
+        "Output: 1000 class probabilities (sums to 1)",
+        "Convolutional layers: 5 layers",
+        "Pooling Layers: 3 layers",
+        "Fully-connected layers: 3 layers",
+        "Implementation detail:",
+        "subtract mean image",
+        "from data to center input"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "5e2bf85a367d5059644bd7ffb7a0b52b28e9683f29db50123a777ce24f51f6d5",
+      "lines": [
+        "AlexNet Architecture",
+        "How many layers have model parameters that need to be learned?",
+        "https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png",
+        "Altogether, 60 million model parameters must be learned!"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "ab4d3df2a78fac0e69164d23a2e84306acfa4bbbc99834f3fbc58163fca55f59",
+      "lines": [
+        "Premise: Large Capacity Model",
+        "Necessary for Real-World Complexity",
+        "Deng et al. ImageNet: A Large-Scale Hierarchical Image Database. 2009",
+        "• Task: predict category from",
+        "1000 options",
+        "• Dataset: ~1.5 million images of",
+        "objects in natural backgrounds",
+        "• Source: images scraped from",
+        "search engines, such as Flickr,",
+        "and labeled by crowdworkers",
+        "• Evaluation metric: % correct",
+        "(top-1 and top-5 predictions)"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "000496e3f4d9ff1d25eb6b3286a121dba3ec06e56d08655ac6e680d98343ae78",
+      "lines": [
+        "Source: Kristen Grauman",
+        "Premise: Large Capacity Model",
+        "Necessary for Real-World Complexity",
+        "Consider complexity for",
+        "just one object category:"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "1e7b1998b8b1c11a7a326e43afe96694c3d7eb619b0ed352c90b84f65bc3d72f",
+      "lines": [
+        "AlexNet Training: What Could Go Wrong?",
+        "• Learning is not possible: vanishing gradients",
+        "• Learning doesn’t generalize: overfitting",
+        "• Learning is not practical: training takes too long to converge"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "bd388025e229020dab34296195fd754face4a7341eac2ad0fcb5ed36f96daeff",
+      "lines": [
+        "AlexNet Training: Key Ideas For Deep Learning",
+        "• Enable learning: use non-saturating activation functions",
+        "• Prevent overfitting: incorporate regularization methods",
+        "• Make training feasible: speed it up with better hardware"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "b07e240ff376860aa2ecf866717d40884186eb9a7faf9f1e0b5a43762fb88973",
+      "lines": [
+        "Recall Vanishing Gradient Problem",
+        "Garbage In = Garbage Out : Earlier layers struggle to get gradients to learn",
+        "something useful, yet are the foundation for later layers to make predictions",
+        "https://towardsdatascience.com/batch-normalization-the-greatest-breakthrough-in-deep-learning-77e64909d81d"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "04a366875b71675d29ecb7d2602188734747dc5e36d16a800c20c5dcadf7ec54",
+      "lines": [
+        "Idea: Employ an Activation Function that",
+        "Preserves Gradients During Backpropagation",
+        "Masi et al. Journal of the Mechanics and Physics of Solids. 2021",
+        "ReLU Activation Function",
+        "What are possible gradient values?",
+        "Note: ReLU was previously used in NNs including by Fukushima for his 1980 Neocognitron",
+        "and a 1969 precursor as well as Hinton in 2010 with RBMs"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "25397ccd86feee24ffc33cd3ddf6c0f744efe4992558331be287468d583b3991",
+      "lines": [
+        "Idea: Employ an Activation Function that",
+        "Preserves Gradients During Backpropagation",
+        "Masi et al. Journal of the Mechanics and Physics of Solids. 2021",
+        "- Gradient won’t vanish: i.e., 1x1x1x…",
+        "- Fast to compute! - 0 or 1",
+        "ReLU Activation Function",
+        "How to handle non-differentiable",
+        "point (at z=0)?",
+        "- hard code value (i.e., 0 or 1)",
+        "Issues arise when many neurons lack a",
+        "gradient; i.e., “dead” (analogy: brain damage)"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "04b9d894d96408eebe18785620cdff5a538b70b13418b26a1e9870f384033024",
+      "lines": [
+        "Validating Experimental Analysis",
+        "• Dataset: CIFAR-10",
+        "• Architecture: 4-layer",
+        "convolutional network",
+        "• Evaluation metric: % correct",
+        "What is the key finding?",
+        "Krizhevsky et al. ImageNet Classification with Deep Convolutional Neural Networks. NeurIPS 2012.",
+        "ReLU learns much faster than tanh, with the latter unsuitable for learning!",
+        "(e.g., ReLU is 6x faster in achieving 25% error rate)",
+        "ReLU (solid line)",
+        "tanh (dashed line)"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "bd388025e229020dab34296195fd754face4a7341eac2ad0fcb5ed36f96daeff",
+      "lines": [
+        "AlexNet Training: Key Ideas For Deep Learning",
+        "• Enable learning: use non-saturating activation functions",
+        "• Prevent overfitting: incorporate regularization methods",
+        "• Make training feasible: speed it up with better hardware"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "e7f72ed197176edc68d5075528cda1a2df617ca70c09ea553480d5e7d4900720",
+      "lines": [
+        "Regularization Methods",
+        "• Recall: regularization is “any modification we make to a learning algorithm",
+        "that is intended to reduce its generalization error.”- Goodfellow book",
+        "• Two approaches leveraged by AlexNet: data augmentation & dropout"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "5a0465967bae5f06ba8a755bb0ebcb3b435318428752de952497051311d8c097",
+      "lines": [
+        "Data Augmentation: Intuition",
+        "Adding training data"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "751f26a20addcf62de1701f6afb06bf1b6aa05ee16ec62a1a7370ba733ca67fa",
+      "lines": [
+        "Data Augmentation: Approach",
+        "• Random patches and their mirror images (2048x more data)",
+        "• Adjust RGB channels (using PCA-based method)",
+        "https://learnopencv.com/understanding-alexnet/",
+        "Generally, need to ensure",
+        "augmentation scheme aligns",
+        "with target application:"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "395a221cc2a16ea0e98620ec041f3bc1397012452e1b78b205fc772da7855edd",
+      "lines": [
+        "(2012, arXiv)",
+        "Dropout"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "1a1810879255a7148a56b0071544b1a29fedef2c27fe9275049649c5585fa1fb",
+      "lines": [
+        "Dropout: Idea",
+        "Use ensemble"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "d24f174cec545c2e52ff6f931ef27842f40b812b0de13c0daf0d0d87659b08a4",
+      "lines": [
+        "Dropout: Idea",
+        "• Using ensemble reduces probability for making a wrong prediction",
+        "• Suppose:",
+        "• n classifiers for binary classification task",
+        "• Each classifier has same error rate",
+        "• Classifiers are independent (not true in practice!)",
+        "• Probability mass function indicates the probability of error from an ensemble:",
+        "• e.g., n = 11, = 0.25; k = 6: probability of error is ~0.034 which is much lower",
+        "than probability of error from a single algorithm (0.25)",
+        "Number of classifiers Classifier error rate",
+        "# ways to choose k subsets from set of size n",
+        "Error probability"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "ded6240b44020ce1deb81e1d3949624f23b1cdf936002d56b4515cbe477afb16",
+      "lines": [
+        "Dropout: Precursor",
+        "Bootstrap Aggregation (1994)",
+        "Train algorithm repeatedly on different",
+        "random subsets of the training set",
+        "Raschka & Mirjalili, Python Machine Learning."
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "b22a7b5a7b92b02f5881e54f15989cd6515073b6369e22edae985c3880937652",
+      "lines": [
+        "Dropout: Precursor",
+        "Train algorithm repeatedly on different",
+        "random subsets of the training set",
+        "Why is bagging a poor approach for",
+        "neural networks?",
+        "• Finding optimal hyperparameters for",
+        "each architecture is time-consuming",
+        "• Applying multiple neural networks is",
+        "often infeasible since the models",
+        "require lots of memory and are",
+        "computationally expensive to run",
+        "Raschka & Mirjalili, Python Machine Learning."
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "b97414a0480328b1f49640a761ba5aa5adfec7950359e8910f4f5c1d2e3aa240",
+      "lines": [
+        "Dropout: Approach",
+        "• Approximates bagging with dropout during training so different sub-models in the",
+        "network are trained with different training data",
+        "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014",
+        "e.g., drop 20% of",
+        "units in input layers",
+        "e.g., drop 50% of",
+        "units in hidden layers"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "fa097bc96a216477b36dd9499610daee9f83a4fde39f7f29d8dde92d56e43199",
+      "lines": [
+        "Dropout: Approach",
+        "For training, the forward pass and",
+        "backpropagation run only through",
+        "the sub-network (with a different",
+        "dropout per minibatch).",
+        "What might happen to loss curves?",
+        "- Bouncier since the underlying",
+        "network continuously changes",
+        "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014",
+        "• Approximates bagging with dropout during training so different sub-models in the",
+        "network are trained with different training data"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "c162b6f6dd69bd9d2ef14c3bec09eea93ac7e7cf1eb37db09055413cce4554e5",
+      "lines": [
+        "Dropout: Approach",
+        "Ensemble is emulated at test time by",
+        "applying the network without dropout",
+        "How to handle network’s expectation",
+        "for a smaller activation signal than",
+        "observed at test time (e.g., input from",
+        "2 versus 5 neurons)?",
+        "- Multiply each unit’s outgoing weights",
+        "by probability of dropping at training",
+        "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014",
+        "• Approximates bagging with dropout during training so different sub-models in the",
+        "network are trained with different training data"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "58fa77d878db13e0d3f7e71052c1bc62136409fdd723df7304c4ddfb437ec4ce",
+      "lines": [
+        "Dropout: Dropout vs Bagging",
+        "• Dropout approximates bagging",
+        "with many models inexpensively",
+        "• Trains algorithm repeatedly on",
+        "random subsets of the training set",
+        "• Dropout differences are that",
+        "subnetworks are not:",
+        "• Trained to convergence (instead,",
+        "trained for one step)",
+        "• Independent (instead, they all",
+        "share parameters)",
+        "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "f792a7bacdb6d43d4e90db2dbfe71da10fb810e7e979d1c4e5374718f31c4589",
+      "lines": [
+        "Dropout: Motivation",
+        "This approach was motivated by the",
+        "role of sex in evolution: “… the role of",
+        "sexual reproduction is not just to",
+        "allow useful new genes to spread",
+        "throughout the population, but also to",
+        "facilitate this process by reducing",
+        "complex co-adaptations that would",
+        "reduce the chance of a new gene",
+        "improving the fitness of an individual.”",
+        "“Similarly, each hidden",
+        "unit in a neural network",
+        "trained with dropout",
+        "must learn to work with a",
+        "randomly chosen sample",
+        "of other units. This",
+        "should make each hidden",
+        "unit more robust and",
+        "drive it towards creating",
+        "useful features on its",
+        "own without relying on",
+        "other hidden units to",
+        "correct its mistakes.”",
+        "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "b81887520348643d5ad1c628adc598b2bb993a039da3a534281558b9f67c25e5",
+      "lines": [
+        "Dropout: Motivation",
+        "Neurons learn to be useful alone, rather than in partnership with other neurons; e.g.,",
+        "mitigates large positive and negative weights canceling each other (a sign of overfitting)",
+        "https://towardsdatascience.com/techniques-for-handling￾underfitting-and-overfitting-in-machine-learning-348daa2380b9",
+        "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "0d57e077227d041a7b4b6150cd12f051f744ecc645a9c0607edcdfeedd6d8b8b",
+      "lines": [
+        "Dropout: Alternative Approach",
+        "A generalization of zeroing units is to instead multiply units by noise",
+        "Relevant articles:",
+        "*https://towardsdatascience.com/dropout-on￾convolutional-layers-is-weird-5c6ab14f19b2",
+        "*Wu and Gu. “Towards dropout training for",
+        "convolutional neural networks.” Neural Networks, 2015.",
+        "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "e8c29d5d51927b118c7449c7a6258c153cabe5a025429a945cad803e5b7e26fc",
+      "lines": [
+        "Dropout: Implementation",
+        "• Only used in fully connected layers",
+        "• Why not use it in convolutional layers?",
+        "• Parameter tying already reduces parameter count and so offers enough regularization",
+        "https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png",
+        "https://www.researchgate.net/figure/Architecture-of-Alexnet-From-left-to-right-input-to-output-five-convolutional-layers_fig2_312303454"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "2b41ef94578ee2ac3890028917cb2f68394d1cd429c51770a1cea5ff121660a3",
+      "lines": [
+        "Dropout: Implementation",
+        "Not applied to convolutional layers, each of which",
+        "constitute less than 1% of model capacity",
+        "Applied in fully connected layers,",
+        "with most the parameters",
+        "http://www.philkr.net/cs342/lectures/computer_vision/02.pdf"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "bd388025e229020dab34296195fd754face4a7341eac2ad0fcb5ed36f96daeff",
+      "lines": [
+        "AlexNet Training: Key Ideas For Deep Learning",
+        "• Enable learning: use non-saturating activation functions",
+        "• Prevent overfitting: incorporate regularization methods",
+        "• Make training feasible: speed it up with better hardware"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "109ca09c023f4e5632879efefd6a8ad1c9f7379593017e1d4e8af2b49346a035",
+      "lines": [
+        "With 60M Parameters, AlexNet",
+        "Was Very Time-Consuming to Train",
+        "https://hanlab.mit.edu/files/course/slides/MIT-TinyML-Lec13-Distributed-Training-I.pdf"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "76e02539afb70719f12e50b81cb2674dfe3dbc02027d9dda9681b9e038e0524e",
+      "lines": [
+        "Training: Used Shallow Learning Techniques",
+        "• Parameter Initialization: weight values drawn from zero-mean Gaussian",
+        "distribution with standard deviation 0.01",
+        "• Batch size: 128 examples",
+        "• Weight decay: 0.0005",
+        "• Momentum optimization: manually adjusted learning rate 3 times from initial",
+        "value of 0.01, dividing it by 10 each time validation error stopped falling"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "4a46704c0d1570db972098c9c1dc202495497910d36e82e3fbcfbd1b83ae183a",
+      "lines": [
+        "Speed-Up: Computations Run on 2 GPUs to",
+        "Accelerate Training to 5-6 Days (for ~90 Epochs)",
+        "http://cs231n.stanford.edu/slides/2018/cs231n_2018_lecture08.pdf",
+        "Graphics Processing Units (GPUs)",
+        "Central Processing Unit",
+        "(CPU)"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "cf8deabe502a8436fa9f0535002d9216ba28d94382dc458fe3b61d31a7305963",
+      "lines": [
+        "Recap: Key Ideas for Deep Learning",
+        "• Enable learning: use non-saturating activation functions (ReLUs)",
+        "• Prevent overfitting: incorporate regularization methods (data",
+        "augmentation and dropout)",
+        "• Make training feasible: speed it up with better hardware (GPUs)"
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "7b718fde411a55eb66beecf451f1fafa084ea9c9f9e2873463367624e28ee640",
+      "lines": [
+        "Experiments: Deep Learning Dominated!",
+        "https://www.pinecone.io/learn/series/image-search/imagenet/",
+        "Achieved unexpected, unprecedented improvements on ImageNet",
+        "(9.6 percentage point drop in top-5 error to 16.4% compared to 2011’s best model)"
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "66e651857d3ca4bf68f6edac98bf804e88ff9c5a57b7cb6ed0cf6a942fd16e2a",
+      "lines": [
+        "Analysis: Errors",
+        "8 examples of predictions,",
+        "correct and incorrect",
+        "When/why might it succeed?",
+        "- Single well-defined object",
+        "(even if off-centered)",
+        "When/why might it fail?",
+        "- Ambiguity",
+        "- Similar categories",
+        "Krizhevsky et al. ImageNet Classification with Deep Convolutional Neural Networks. NeurIPS 2012."
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "3e0edd69ebf735ac1852b18232bc287a866bf756fc35cd164d5e18ee42f088f5",
+      "lines": [
+        "Analysis: What Was Learned?",
+        "https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png"
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "9e3d11831ceef03ba9b317551ce18da6fda12796c5e1a77195915cc69419bbbe",
+      "lines": [
+        "Analysis: What Was Learned? (96 Filters)",
+        "Learned model filters select based on frequency, orientation, and color!",
+        "(aligns with Hubel & Weisel’s findings for how vision systems work)",
+        "Krizhevsky et al. ImageNet Classification with Deep Convolutional Neural Networks. NeurIPS 2012."
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "403df5ce68d34ee8a9eecc02080af8dfa5eb38bb4fe57f02827b4a323845c431",
+      "lines": [
+        "Analysis: What Was Detected?",
+        "https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png"
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "55f9a34bc3750b7aa6a78a47bd93e99f8d4b74e9ce71ae5b7cd55052eb055bc1",
+      "lines": [
+        "Analysis: What Was Detected?",
+        "Images",
+        "Features maps reveal that frequencies, orientations, and colors are detected",
+        "Krizhevsky et al. ImageNet Classification with Deep Convolutional Neural Networks. NeurIPS 2012."
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "4892bf5979e45d61304f4eeac413cb954ad602ab8162e6fb85a9c7a0775f5b85",
+      "lines": [
+        "Analysis: Influence of Depth",
+        "“… our network’s performance degrades if a single convolutional layer",
+        "is removed… the depth really is important for achieving our results.”"
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "ec54a9eae4d43757bd0a28c96d11c89df1b1bd81acddaae30ee706c1e89f46ad",
+      "lines": [
+        "Impact: Catalyzed Today’s",
+        "Deep Learning Revolution",
+        "Inspired, many more researchers",
+        "focused on neural networks for",
+        "many more problems (e.g., within",
+        "the computer vision community)!",
+        "https://www.slideshare.net/xavigiro/saliency-prediction-using-deep-learning-techniques"
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "16dd1739d92c79577420f889991efa718936600cf134809c8711163f1623e1c8",
+      "lines": [
+        "https://www.nytimes.com",
+        "/2019/03/27/technology/t",
+        "uring-award-ai.html",
+        "2018 Retrospective",
+        "Acknowledgment",
+        "of Pioneers for",
+        "Deep Learning:"
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "32e5bd583b841d692820f6d0cf63254bf1625c60475a4aeb20ff7e7eb8603c45",
+      "lines": [
+        "https://www.youtube.com/watch?v=HzilDIhWhrE&t=24s"
+      ]
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "9a41865e3388545152a3947c0ba2a607c08ffc07248e226bcb5ad55acc734dba",
+      "lines": [
+        "Today’s Topics",
+        "• NN neglect: 2nd AI winter & retreat to shallow models with engineered features",
+        "• NN hope lingers: the unfashionable quest for depth",
+        "• NNs take over: AlexNet triggers a revolution where ‘deep learning’ dominates",
+        "• Programming tutorial: AlexNet in PyTorch"
+      ]
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "9a41865e3388545152a3947c0ba2a607c08ffc07248e226bcb5ad55acc734dba",
+      "lines": [
+        "Today’s Topics",
+        "• NN neglect: 2nd AI winter & retreat to shallow models with engineered features",
+        "• NN hope lingers: the unfashionable quest for depth",
+        "• NNs take over: AlexNet triggers a revolution where ‘deep learning’ dominates",
+        "• Programming tutorial: AlexNet in PyTorch"
+      ]
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

@@ -1,0 +1,664 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s10",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/08-Regularization.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2022/s10.pdf",
+    "sha256": "3e223b8a2dfca08958b8d4fbd5d184b85abdc205f99e94876bd51340b028be52",
+    "page_count": 52,
+    "license_notice": "CC BY; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "b3b16933aacfa98ffed97e0eeeb3ff03cb36b6c1e48d99f33a46de42f61a0320",
+      "lines": [
+        "Regularization",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2022",
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "8139612d6ba1c20eef58f89d4fd9a87316e7e86085a6293dedbd4a7974fc8a1f",
+      "lines": [
+        "Review",
+        "• Last lecture:",
+        "• Computer vision",
+        "• Era of dataset challenges",
+        "• MNIST challenge winner: LeNet",
+        "• ImageNet challenge winners: deeper learning (AlexNet, VGG, ResNet)",
+        "• Programming tutorial",
+        "• Assignments (Canvas)",
+        "• Lab assignment 2 due next week",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "3e0a1a43a32710e7456166ad888db66ef154f1368d90d62eb2cb049c2448ae6c",
+      "lines": [
+        "Today’s Topics",
+        "• Regularization",
+        "• Parameter norm penalty",
+        "• Early stopping",
+        "• Dataset augmentation",
+        "• Dropout",
+        "• Batch Normalization"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "3e0a1a43a32710e7456166ad888db66ef154f1368d90d62eb2cb049c2448ae6c",
+      "lines": [
+        "Today’s Topics",
+        "• Regularization",
+        "• Parameter norm penalty",
+        "• Early stopping",
+        "• Dataset augmentation",
+        "• Dropout",
+        "• Batch Normalization"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "41c0c56fcf24b582d0bbd41aa0aa39f6252e90a108f8a0339f3f24b746634670",
+      "lines": [
+        "What is Regularization?",
+        "“any modification we make to a learning algorithm that is intended",
+        "to reduce its generalization error but not its training error.”",
+        "- Ch. 5.2 of Goodfellow book on Deep Learning"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "dcc8d21af2eb9a0243dec1a6f9204436696f38001c69a2c1357ba461de28d2ad",
+      "lines": [
+        "What are strategies for preferring one function over another?"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "3e0a1a43a32710e7456166ad888db66ef154f1368d90d62eb2cb049c2448ae6c",
+      "lines": [
+        "Today’s Topics",
+        "• Regularization",
+        "• Parameter norm penalty",
+        "• Early stopping",
+        "• Dataset augmentation",
+        "• Dropout",
+        "• Batch Normalization"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "ec469870269010d471b1cd61e9e7a45b5ba94fa02166de2cb07a6ce703a71681",
+      "lines": [
+        "Goal",
+        "https://cdn.analyticsvidhya.com/wp-content/uploads/2018/04/Screen-Shot-2018-04-04-at-2.43.37-PM.png",
+        "Rather than exclude functions from a hypothesis space, apply strategies that create",
+        "a preference for one solution over another to reduce test error"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "31943b6c4ef7ba030d44886b3a9dbdd1bf15cb8b37992cbea5be1926097765d0",
+      "lines": [
+        "Goal",
+        "Figure source: https://towardsdatascience.com/underfitting-and￾overfitting-in-machine-learning-and-how-to-deal-with-it-6fe4a8a49dbf",
+        "(a) (b) (c)",
+        "Rather than exclude functions from a hypothesis space, apply strategies that create",
+        "a preference for one solution over another to reduce test error; e.g., regularize (c)"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "5eb8497d4bad5d0454a095dffed5d7f27c4f02b3098897624927ffca7b70f2ca",
+      "lines": [
+        "Insight: Sign of Overfitting is Large Weights",
+        "Very large positive weights get",
+        "canceled by similarly large",
+        "negative weights (i.e., due to",
+        "correlated model parameters)",
+        "in order to model noise",
+        "https://towardsdatascience.com/techniques-for-handling-underfitting-and-overfitting-in-machine-learning-348daa2380b9"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "56d87bb88ba17c48a3c9d4c3b19eb31fcd0639546dd21f1e3ae4cd2281405a35",
+      "lines": [
+        "Idea: Analogous to Wearing Belt on Big Pants"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "55231b0fa6b0c5795a3f286dea565bdb71b7fc7a3e21f44c0a44461313d7fd90",
+      "lines": [
+        "Idea: Penalize Large Weights in Objective Function",
+        "e.g., objective is to minimize sum of squared errors over training examples",
+        "• L2 norm: penalize squared weight values",
+        "• L1 norm: penalize absolute weight values",
+        "• Note: only weights are penalized, not bias terms"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "20bc995e14b628a55efe2f54c5005dc1d412736dfecf57881c83440ef9d7fa82",
+      "lines": [
+        "Idea: Penalize Large Weights in Objective Function",
+        "e.g., objective is to minimize sum of squared errors over training examples",
+        "• L2 norm: penalize squared weight values",
+        "• L1 norm: penalize absolute weight values",
+        "• Hyperparameter determines relative contribution of norm penalty term"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "49595e696e1362bf043770916f49a3e1bd4c7a3a0dd8788db4dc7ad7b74fda04",
+      "lines": [
+        "Regularization: How to Set Alpha?",
+        "Shown is the same neural network with different levels of regularization. Which",
+        "model has the largest value for alpha (i.e., largest norm penalty contribution)?",
+        "(a) (b) (c)",
+        "https://cs231n.github.io/neural-networks-1/"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "983caf5db213f65c9f9cf8bbf66a6d0c4376dcb5610170226789e4d26b508e94",
+      "lines": [
+        "Geometric Interpretation in 2D",
+        "https://web.stanford.edu/~hastie/Papers/ESLII.pdf",
+        "Contour of least",
+        "square error function",
+        "Contour of regularization",
+        "constraint functions",
+        "shown below both plots",
+        "L1 L2",
+        "Minimizes SSE cost",
+        "Minimizes penalty term",
+        "Minimizes",
+        "cost + penalty"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "f9bf11f0f3d4612e177eb4fb44921b265d7527781336dfa1cf2687d16b4bcd5c",
+      "lines": [
+        "Implementation Detail: Can Penalize Weights",
+        "Globally as Well As Per Layer",
+        "e.g., objective is to minimize sum of squared errors over training examples",
+        "• L2 norm: penalize squared weight values",
+        "• L1 norm: penalize absolute weight values",
+        "• Note: only weights are penalized, not bias terms"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "3e0a1a43a32710e7456166ad888db66ef154f1368d90d62eb2cb049c2448ae6c",
+      "lines": [
+        "Today’s Topics",
+        "• Regularization",
+        "• Parameter norm penalty",
+        "• Early stopping",
+        "• Dataset augmentation",
+        "• Dropout",
+        "• Batch Normalization"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "a30e1971076366689986f56fd2412b0da9a33e66e9605f9128a68c60450a74fd",
+      "lines": [
+        "Recall: Overfitting Solution is Early Stopping",
+        "Image Source: https://chatbotslife.com/regularization-in-deep-learning-f649a45d6e0",
+        "Use This Model"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "82453cec43693e407846a4e99ff396da6728fb177ab8802a9125f94cc7e1fa54",
+      "lines": [
+        "Why Early Stopping Acts As a Regularizer",
+        "https://www.deeplearningbook.org/contents/regularization.html",
+        "With parameters initialized around the origin, early stopping can behave like a",
+        "parameter norm penalty (e.g., L2, without having a hyperparameter to tune); e.g.,"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "3e0a1a43a32710e7456166ad888db66ef154f1368d90d62eb2cb049c2448ae6c",
+      "lines": [
+        "Today’s Topics",
+        "• Regularization",
+        "• Parameter norm penalty",
+        "• Early stopping",
+        "• Dataset augmentation",
+        "• Dropout",
+        "• Batch Normalization"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "ed6914b65b8434c7c8fb2057c1c6541bf1ce638c909cd50e24bf73b436708a80",
+      "lines": [
+        "Recall: Overfitting Solution is to Add Data",
+        "Adding training data"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "a602498595f1e09c53368cce7a60da69bc2649729484166a6763d33ea7a87661",
+      "lines": [
+        "AlexNet’s Data Augmentation Strategy",
+        "• Recall overfitting is risk for models with larger representational capacity, and",
+        "AlexNet has 60 million parameters!",
+        "• Data augmentation strategy",
+        "1. Random patches and their mirror images (2048x more data)",
+        "2. Adjust RGB channels (using PCA to add multiples of principal components)",
+        "Figure Source: https://learnopencv.com/understanding-alexnet/"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "7857e26ffec34eabe2e23c8a8dacd50711b43d157380af2c29415d5ab0b5b9c7",
+      "lines": [
+        "Caution: Match Augmentation Scheme to Data",
+        "• e.g., image mirroring and flipping could be poor choices for character recognition"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "bce69b7be090dfeee3a8af93c2c1f5a4e10a79d79a1d0238995951748c86eff8",
+      "lines": [
+        "Class Discussion",
+        "1. When/why are random patches a good/poor choice for data",
+        "augmentation?",
+        "2. How else can you augment data for learning image classification",
+        "models?"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "3e0a1a43a32710e7456166ad888db66ef154f1368d90d62eb2cb049c2448ae6c",
+      "lines": [
+        "Today’s Topics",
+        "• Regularization",
+        "• Parameter norm penalty",
+        "• Early stopping",
+        "• Dataset augmentation",
+        "• Dropout",
+        "• Batch Normalization"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "666d7f181363f9394272857648cb6fd0a675b5b562b5716afbd448f67ce4f947",
+      "lines": [
+        "Idea: Use Wisdom of the Crowds",
+        "More than 1: Ensemble"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "382d028da3ecdb3485ae3fe9af0852e2566c81a9acf3e5a2fa6015146c73c7f8",
+      "lines": [
+        "Why Choose Ensemble vs One Predictor?",
+        "• Reduces probability for making a wrong prediction",
+        "• Suppose:",
+        "• n classifiers for binary classification task",
+        "• Each classifier has same error rate",
+        "• Classifiers are independent (not true in practice!)",
+        "• Probability mass function indicates the probability of error from an ensemble:",
+        "• e.g., n = 11, = 0.25; k = 6: probability of error is ~0.034 which is much lower",
+        "than probability of error from a single algorithm (0.25)",
+        "Number of classifiers Classifier error rate",
+        "# ways to choose k subsets from set of size n",
+        "Error probability"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "672104c2a056a97beaa9a3f831fcfc2ccde022a112cd5ff9b67289be7134705f",
+      "lines": [
+        "How to Produce an Ensemble? - Bagging",
+        "Bootstrap Aggregation (1994)",
+        "Train algorithm repeatedly on different",
+        "random subsets of the training set",
+        "Figure Credit: Raschka & Mirjalili, Python Machine Learning."
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "8ebf38e30b5fc63fe2246681e55903ea302c86ee1bd9ac36ce72a56f44f771c8",
+      "lines": [
+        "How to Produce an Ensemble? - Bagging",
+        "• Build ensemble from “bootstrap samples” drawn with replacement",
+        "• e.g.,",
+        "Breiman, Bagging Predictors, 1994. Each classifier trained on",
+        "different subset of data",
+        "Duplicate data can",
+        "occur for training",
+        "Some examples",
+        "missing from",
+        "training data;",
+        "e.g., round 1",
+        "Ho, Random Decision Forests, 1995.",
+        "Figure Credit: Raschka & Mirjalili, Python Machine Learning.",
+        "Predict using “hard” voting or averaging",
+        "values for regression and “soft” voting"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "d233fbb8d222d10f9925f5f89cf89fb30bb6cbf4c4a6eb88b8dc10ac83a3c2cf",
+      "lines": [
+        "Intuition of Bagging (Train an 8 detector)",
+        "Goodfellow et al., Deep Learning (chapter 7), 2016."
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "54161087f979f16f54cd681cfe14c9956eea571a1b1dc04e966d6887fcbfc91e",
+      "lines": [
+        "Bagging Limitations",
+        "Train algorithm repeatedly on different",
+        "random subsets of the training set",
+        "Why is bagging a poor approach for",
+        "neural networks?",
+        "• Finding optimal hyperparameters for",
+        "each architecture is time-consuming",
+        "• Applying multiple neural networks is",
+        "often infeasible since the models",
+        "require lots of memory and are",
+        "computationally expensive to run",
+        "Figure Credit: Raschka & Mirjalili, Python Machine Learning."
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "521303069781a11ede0da35d6b6793953ba516c05db9dd74f709953212c564e0",
+      "lines": [
+        "How to Produce an Ensemble?",
+        "• Idea: approximate bagging with dropout during training so different",
+        "sub-models in the network are trained with different training data",
+        "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014",
+        "e.g., drop 20% of",
+        "units in input layers",
+        "e.g., drop 50% of",
+        "units in hidden layers"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "e407cb6fd26060776e6b59739415bf2e4e1cac877b7ba74e2603b740acdc0a18",
+      "lines": [
+        "How to Produce an Ensemble?",
+        "• Idea: approximate bagging with dropout during training so different",
+        "sub-models in the network are trained with different training data",
+        "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014",
+        "For training, the only change",
+        "from what has been discussed",
+        "is that the forward pass and",
+        "backpropagation run only",
+        "through the sub-network."
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "20a158ae379b1d81d0d0e030b8e31e92e2f14d772c8aa5571a50de09579893bf",
+      "lines": [
+        "How to Produce an Ensemble?",
+        "• Idea: approximate bagging with dropout during training so different",
+        "sub-models in the network are trained with different training data",
+        "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014",
+        "An ensemble is emulated at test",
+        "time by applying the network",
+        "without dropout. To reflect the",
+        "network’s expectation for a smaller",
+        "amount of activation signal than",
+        "observed at test time (e.g., input",
+        "from 2 or 3 units instead of 5 units),",
+        "each unit’s outgoing weights should",
+        "be multiplied by the probability it",
+        "was dropped at training."
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "429b5622d25e1ab40caae93a2c6d7baad0c7a708aa3cbf45185b51348d247d07",
+      "lines": [
+        "Dropout vs Bagging",
+        "• Dropout approximates bagging",
+        "with many models inexpensively",
+        "• Trains algorithm repeatedly on",
+        "different random subsets of the",
+        "training set",
+        "• Dropout differences are that",
+        "subnetworks are not:",
+        "• Trained to convergence (instead,",
+        "trained for one step)",
+        "• Independent (instead, they all",
+        "share parameters)",
+        "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "56407f587478267b232fb40579379d18c38be83903606abc1030b5929e2572dd",
+      "lines": [
+        "Motivation for Dropout",
+        "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014",
+        "This approach was motivated by the",
+        "role of sex in evolution. “… the role of",
+        "sexual reproduction is not just to",
+        "allow useful new genes to spread",
+        "throughout the population, but also to",
+        "facilitate this process by reducing",
+        "complex co-adaptations that would",
+        "reduce the chance of a new gene",
+        "improving the fitness of an individual.”",
+        "“Similarly, each hidden",
+        "unit in a neural network",
+        "trained with dropout",
+        "must learn to work with a",
+        "randomly chosen sample",
+        "of other units. This",
+        "should make each hidden",
+        "unit more robust and",
+        "drive it towards creating",
+        "useful features on its",
+        "own without relying on",
+        "other hidden units to",
+        "correct its mistakes.”"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "0915397bc18d848164419ae81f8b4ab0143fa43d707bbfa6ace705d8307b3386",
+      "lines": [
+        "Motivation for Dropout",
+        "Units in the network learn to be useful with many different subsets of other units rather",
+        "than in conjunction with other units; e.g., mitigates the situation where large positive",
+        "weights cancel similarly large negative weights, a sign of overfitting.",
+        "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014",
+        "https://towardsdatascience.com/techniques-for-handling-underfitting-and-overfitting-in-machine-learning-348daa2380b9"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "dc6b135284459e90e17f3c0e8a183263af4565e06a4d5857db5d850cd6120e1b",
+      "lines": [
+        "How to Produce an Ensemble?",
+        "• A generalization of zeroing units out is to instead multiply units by",
+        "noise, and this is a common approach for convolutional layers",
+        "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014",
+        "Relevant articles:",
+        "*https://towardsdatascience.com/dropout-on￾convolutional-layers-is-weird-5c6ab14f19b2",
+        "*Wu and Gu. “Towards dropout training for",
+        "convolutional neural networks.” Neural Networks, 2015."
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "958a94081087f2705d88e758ccd9c7d844293e8e89522efc8a04a31a2684d95e",
+      "lines": [
+        "Dropout for CNNs",
+        "Why do you think dropout is typically not used in convolutional layers? e.g., for the",
+        "image classification algorithms we discussed, it is used only in fully connected layers:",
+        "AlexNet (2012)",
+        "https://www.researchgate.net/figure/Architecture-of-Alexnet-From￾left-to-right-input-to-output-five-convolutional-layers_fig2_312303454",
+        "VGG (2014)",
+        "https://neurohive.io/en/popular-networks/vgg16/"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "c9f5182b3e0b328e74b0aa7931a8f114b6dda76d4185a3f2b2d71e619ffa5441",
+      "lines": [
+        "Dropout for CNNs",
+        "Parameter tying reduces parameter count and so already offers strong regularization",
+        "AlexNet (2012)",
+        "https://www.researchgate.net/figure/Architecture-of-Alexnet-From￾left-to-right-input-to-output-five-convolutional-layers_fig2_312303454",
+        "VGG (2014)",
+        "https://neurohive.io/en/popular-networks/vgg16/"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "3e0a1a43a32710e7456166ad888db66ef154f1368d90d62eb2cb049c2448ae6c",
+      "lines": [
+        "Today’s Topics",
+        "• Regularization",
+        "• Parameter norm penalty",
+        "• Early stopping",
+        "• Dataset augmentation",
+        "• Dropout",
+        "• Batch Normalization"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "5015dd0fee370447408c0c1d7e3a197784d73a72a00531e167cf7383acf78ee5",
+      "lines": [
+        "Motivation: Features On Different Scales Can Cause",
+        "Learning To Be Slower and Poor Performance",
+        "https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739",
+        "e.g., 2D loss function: Inefficient bouncing can occur during learning when larger updates are",
+        "needed for some weights to minimize the loss during gradient descent"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "204934a469bae087f55d76e93f446182b1e9485911df0c6dadcf50fc1fc0e9b9",
+      "lines": [
+        "Recall: Basic Data Initialization Approach",
+        "* Simplify learning by standardizing input data so mean is 0 and standard deviation 1",
+        "Original data: Standardized data:",
+        "https://github.com/amueller/introduction_to_ml_with_python/blob/master/03-unsupervised-learning.ipynb"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "5340e222e2a975ccf2852aef79effdd432b678a228100a0fae6f178f7aa708aa",
+      "lines": [
+        "Recall: Basic Data Initialization Approach",
+        "* Simplify learning by standardizing input data so mean is 0 and standard deviation 1",
+        "https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739",
+        "Standardization changes the",
+        "loss function so gradient",
+        "descent can more smoothly",
+        "arrive at the minimum!"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "6caa1cafc8e17a7effef997a6443db0622399c6345be3986c40e9f6a8d7a6dd5",
+      "lines": [
+        "Idea: Further Simplify Learning by",
+        "Transforming Input to Hidden Layer(s)",
+        "https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "78ccd6d37831ee1c1741d4262912fdf0f8221b75d0b7fc7183b8037165a6fcc3",
+      "lines": [
+        "Batch Normalization Layer",
+        "https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739",
+        "Parameters per layer:",
+        "Offers flexibility for each layer to",
+        "shift and scale normalized values",
+        "to a new mean and variance"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "835f20d683d53fb4e283c229ef76c6544e04b3622d63aae5edb21dc0355b2556",
+      "lines": [
+        "Batch Normalization Layer",
+        "How many trainable parameters must be learned during training for this subnetwork?",
+        "https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "ec4a90b61bcefe4afd380bb71761012ad28329e23f65454f6e139933527923df",
+      "lines": [
+        "Batch Normalization: Training Operation",
+        "https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739",
+        "Uses parameters per",
+        "batch normalization layer",
+        "learned by the network"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "569a0f7ac97a199220fe79d52a79bc2376d79d8c7528c8a9008af7408545b362",
+      "lines": [
+        "Batch Normalization: Test-Time Operation",
+        "https://towardsdatascience.com/batch-norm-explained-visually-how-it-works-and-why-neural-networks-need-it-b18919692739"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "b00803c5557335aca5e689d440d4bfd036284c63efe97f76bce7c59bb2094fa0",
+      "lines": [
+        "Benefits and Limitations",
+        "• Pros - smooths the optimization function leading to:",
+        "• Faster training convergence",
+        "• More stable learning when paired with different hyperparameters and",
+        "initializations",
+        "• Better generalization performance",
+        "• Cons - extra layer(s) introduce more training and testing time",
+        "Santurkar et al. How Does Batch Normalization Help Optimization? Neurips 2018."
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "3e0a1a43a32710e7456166ad888db66ef154f1368d90d62eb2cb049c2448ae6c",
+      "lines": [
+        "Today’s Topics",
+        "• Regularization",
+        "• Parameter norm penalty",
+        "• Early stopping",
+        "• Dataset augmentation",
+        "• Dropout",
+        "• Batch Normalization"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

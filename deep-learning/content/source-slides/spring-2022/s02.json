@@ -1,0 +1,867 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s02",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/02-ArtificialNeurons.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2022/s02.pdf",
+    "sha256": "2dcd417337d93fa5b74fb4bf7f369728bab3a031e651b55dfff17406a9ef2ffe",
+    "page_count": 65,
+    "license_notice": "CC BY; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "a6122aaee633d00605375c3c53d3b01b956f9e3a031cdee95eebaf12b8f2cb1a",
+      "lines": [
+        "Artificial Neurons",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2022",
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "86701fbd958914ac4059aa36fff1a7961554d979cae5b99dd8d9335f9104d15e",
+      "lines": [
+        "Review",
+        "• Last lecture:",
+        "• Deep learning applications",
+        "• History of neural networks and deep learning",
+        "• How does a machine learn?",
+        "• Course logistics",
+        "• Assignments (Canvas):",
+        "• Problem set 1 due next week",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "7aab01ea333b3813ef5e20d8967549e780c91366771ff140d10b58c1d7529ff3",
+      "lines": [
+        "Today’s Topics",
+        "• Binary classification applications",
+        "• Evaluating classification models",
+        "• Biological neurons: inspiration",
+        "• Artificial neuron: Perceptron"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "7aab01ea333b3813ef5e20d8967549e780c91366771ff140d10b58c1d7529ff3",
+      "lines": [
+        "Today’s Topics",
+        "• Binary classification applications",
+        "• Evaluating classification models",
+        "• Biological neurons: inspiration",
+        "• Artificial neuron: Perceptron"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "7cadaf4adc77dea920840ab050d8313c10cfaa8d92989a0b10f3286c73ae7e43",
+      "lines": [
+        "Today’s Scope: Binary Classification",
+        "Distinguish 2 classes"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "1dd66e719b569df471f920f28bee71238af12ecfcd8576404c24535f6c90f210",
+      "lines": [
+        "Binary Classification: Spam Detection"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "16965851038d107e44b4569e3bf2dc99ae1e78b8f0856f1a439fc230064bf12d",
+      "lines": [
+        "Binary Classification: Resume Pre-Screening"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "cb89ecc8808f506f028996bb18994450776c72e9f0061ec10d1bf4ac6410cb6e",
+      "lines": [
+        "Binary Classification: Cancer Diagnosis"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "3fad280b666c5e16d07d829c4e97f1df1447b3d0bd3a89ca308d9eb096c91c09",
+      "lines": [
+        "Binary Classification: Cognitive Impairment",
+        "Recognition by Apple App Usage",
+        "https://www.technologyreview.com/f/615032/the-apps-you-use-on-your-phone-could-help-diagnose-your-cognitive￾health/?utm_medium=tr_social&utm_campaign=site_visitor.unpaid.engagement&utm_source=Twitter#Echobox=1579899156",
+        "Image Credit: https://www.techradar.com/news/the-10-best-phones-for-seniors"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "f683bb0cd0666e141025eae8ba70fc7aa44548de5c036d4b927409a35357224a",
+      "lines": [
+        "Binary Classification: Sentiment Analysis"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "0a7bfa6e0074dd77b6ec90fbe93cd73086b66cfb20f45d6437a439d4a074d1ca",
+      "lines": [
+        "Binary Classification: Food Quality Control",
+        "Demo: https://www.youtube.com/watch?v=Bl3XzBWpZbY"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "7aab01ea333b3813ef5e20d8967549e780c91366771ff140d10b58c1d7529ff3",
+      "lines": [
+        "Today’s Topics",
+        "• Binary classification applications",
+        "• Evaluating classification models",
+        "• Biological neurons: inspiration",
+        "• Artificial neuron: Perceptron"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "d41faaa20530cfaeb13c598d2eeed837d38ba2a2eccad7aa5b1153bcce5079db",
+      "lines": [
+        "Goal: Design Models that Generalize Well to",
+        "New, Previously Unseen Examples",
+        "Example:",
+        "Label: Hairy Hairy Not Hairy Hairy"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "d8266f73dc1b08dd79b16a239dbd44a29e33d4d7d3100e48b730b142573a682f",
+      "lines": [
+        "Goal: Design Models that Generalize Well to",
+        "New, Previously Unseen Examples",
+        "Training Data Test Data",
+        "1. Split data into a “training set” and “ ”",
+        "Example:",
+        "Label: Hairy Hairy Not Hairy Hairy"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "ecc1d10f046b6546485b3d504d5bd2aecf4df60f8e48cef69cb61c1dde161cee",
+      "lines": [
+        "Goal: Design Models that Generalize Well to",
+        "New, Previously Unseen Examples",
+        "Training Data",
+        "2. Train model on “training set” to try to minimize prediction error on it",
+        "Example:",
+        "Label: Hairy Hairy Not Hairy"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "12546770eed40f092e295f24cce9894d5a3da91de0e82ae953688626fd61fad1",
+      "lines": [
+        "Goal: Design Models that Generalize Well to",
+        "New, Previously Unseen Examples",
+        "3. Apply trained model on “ ” to measure generalization error",
+        "Example:",
+        "Label:",
+        "Test Data",
+        "Prediction Model",
+        "Predicted Label: ?",
+        "Hairy"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "40d8ebadc6798c62868b864563547828ba595d6536576f47b294865cc1c62a31",
+      "lines": [
+        "Goal: Design Models that Generalize Well to",
+        "New, Previously Unseen Examples",
+        "3. Apply trained model on “ ” to measure generalization error",
+        "Test Data",
+        "Prediction Model",
+        "Example:",
+        "Label:",
+        "Predicted Label: Not Hairy",
+        "Hairy"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "40d8ebadc6798c62868b864563547828ba595d6536576f47b294865cc1c62a31",
+      "lines": [
+        "Goal: Design Models that Generalize Well to",
+        "New, Previously Unseen Examples",
+        "3. Apply trained model on “ ” to measure generalization error",
+        "Test Data",
+        "Prediction Model",
+        "Example:",
+        "Label:",
+        "Predicted Label: Not Hairy",
+        "Hairy"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "2e0c8384efe3848fa52e2bdc36a82f35d7f27132b34487ff164231be9af6ef9d",
+      "lines": [
+        "Evaluation Methods: Confusion Matrix",
+        "TP FP",
+        "FN TN",
+        "Spam Trusted",
+        "Spam Trusted",
+        "Predicted",
+        "Actual",
+        "TP = true positive",
+        "TN = true negative",
+        "FP = false positive",
+        "FN = false negative"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "dd25fd74d93f166a449689ec20a04d7317531596afc771b29200b26c83b4776e",
+      "lines": [
+        "Evaluation Methods : Descriptive Statistics",
+        "50 10",
+        "15 100",
+        "Spam Trusted",
+        "Spam Trusted",
+        "Predicted",
+        "Actual",
+        "Commonly-used statistical descriptions:",
+        "• How many actual spam results are there?",
+        "• How many actual trusted results are there?",
+        "• How many correctly classified instances?",
+        "• How many incorrectly classified instances?",
+        "• What is the precision?",
+        "• 50/(50+10) ~ 83%",
+        "• What is the recall?",
+        "• 50/(50+15) ~ 77%",
+        "e.g., - 65",
+        "- 110",
+        "- 150/175 ~ 86%",
+        "- 25/175 ~ 14%"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "61b08d5c93e1ac5a1302a5c04eaa96aaa7352462035618481f66b3f250a0327c",
+      "lines": [
+        "Group Discussion",
+        "• Which of these evaluation metrics would you use versus not use and why?",
+        "• Accuracy (number of correctly classified examples)",
+        "• Precision",
+        "• Recall",
+        "• Scenario 1: Medical test for a rare disease affecting one in every million",
+        "people.",
+        "• Scenario 2: Deciding which emails to flag as spam."
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "7aab01ea333b3813ef5e20d8967549e780c91366771ff140d10b58c1d7529ff3",
+      "lines": [
+        "Today’s Topics",
+        "• Binary classification applications",
+        "• Evaluating classification models",
+        "• Biological neurons: inspiration",
+        "• Artificial neuron: Perceptron"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "e6d85a7e064ef13ec366466e413960141991a34797fe2b7e4685bb581fb4199a",
+      "lines": [
+        "Inspiration: Animal’s Computing Machinery",
+        "Neuron",
+        "- basic unit in the nervous system for receiving, processing, and",
+        "transmitting information; e.g., messages such as…",
+        "“hot”",
+        "https://www.clipart.email/clipart/don",
+        "t-touch-hot-stove-clipart-73647.html",
+        "“loud”",
+        "https://kisselpaso.com/if-the-sun-city￾music-fest-gets-too-loud-there-is-a￾phone-number-you-can-call-to-complain/",
+        "“spicy”",
+        "https://www.babycenter.com/404_when￾can-my-baby-eat-spicy-foods_1368539.bc"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "09e37a2529d2a3922c749f38f2cbc68c52eb46fb73dad921a7fa791d87606bde",
+      "lines": [
+        "Inspiration: Animal’s Computing Machinery",
+        "Demo (0-1:14): https://www.youtube.com/watch?v=oa6rvUJlg7o"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "9b2cf9582c933aa89c217f8a65a67a30559c6d3a1c616f201f9a6c2a4813ab4e",
+      "lines": [
+        "Inspiration: Neuron “Firing”",
+        "Image Source: https://becominghuman.ai/introduction-to-neural-networks-bd042ebf2653",
+        "• When the input signals exceed a certain threshold within a short period of time, a neuron “fires”",
+        "• Neuron “firing” (outputs signal) is an “all-or-none” process"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "aa62c4c27febdeb0e304a2095ec7e8f2af752aff3b102b46c5cfda9d0df5ea9b",
+      "lines": [
+        "Inspiration: Animal’s Computing Machinery",
+        "Human: ~100,000,000,000 neurons",
+        "https://www.britannica.com/sci",
+        "ence/human-nervous-system",
+        "Nematode worm: 302 neurons",
+        "https://en.wikipedia.org/wiki",
+        "/Nematode#/media/File:Cele",
+        "gansGoldsteinLabUNC.jpg"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "7aab01ea333b3813ef5e20d8967549e780c91366771ff140d10b58c1d7529ff3",
+      "lines": [
+        "Today’s Topics",
+        "• Binary classification applications",
+        "• Evaluating classification models",
+        "• Biological neurons: inspiration",
+        "• Artificial neuron: Perceptron"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "39e324d3a17bff2c3bbba90ecff061293d2138cb502157f88a680886a1a627b1",
+      "lines": [
+        "Historical Context: Artificial Neurons",
+        "First programmable",
+        "machine",
+        "2012",
+        "Machine",
+        "learning",
+        "Turing test",
+        "1945",
+        "AI",
+        "1956",
+        "1950 1959",
+        "Neural networks with",
+        "effective learning strategy",
+        "1986",
+        "Wave 3: rise of",
+        "“deep learning”",
+        "1943 1957",
+        "First mathematical",
+        "model of neuron",
+        "Perceptron",
+        "Recall: modern deep learning algorithms rely on",
+        "techniques developed over the past 65 years."
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "c9a008ea8fbbc1c29945088ef6d658233307e965303cb64cad1df137de195932",
+      "lines": [
+        "Artificial Neuron: McCulloch-Pitts Neuron",
+        "Warren McCulloch and Walter Pitts, A Logical Calculus of Ideas Immanent in Nervous Activity, 1943",
+        "Walter Pitts",
+        "(Mathematician)",
+        "Warren McCulloch",
+        "(Neurophysiologist)",
+        "http://web.csulb.edu/~cwallis/artificialn/warren_mcculloch.html",
+        "https://en.wikipedia.org/wiki/Walter_Pitts",
+        "Figure Source: https://web.csulb.edu/~cwallis/artificialn/History.htm",
+        "Note: NO learning involved",
+        "- weights (W) and threshold (T) values are fixed",
+        "- inputs and weights can be 0 or 1",
+        "- fires when combined input exceeds threshold"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "fb3924d301529b936bf339cf938706e63e3be6d0182bf58ba45ca078ff3d3305",
+      "lines": [
+        "Artificial Neuron: McCulloch-Pitts Neuron",
+        "• Mathematical definition:",
+        "• “fire” or “do not fire”",
+        "• mimics human brain",
+        "z =",
+        "1 if z",
+        "-1 otherwise",
+        "Python Machine Learning; Raschkka & Mirjalili",
+        "z ="
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "243dda0405121ce9e21565946b0cda3f63ebea0818d9dd20783e87e61cdb1d31",
+      "lines": [
+        "Artificial Neuron: McCulloch-Pitts Neuron",
+        "• Mathematical definition:",
+        "Python Machine Learning; Raschkka & Mirjalili",
+        "z =",
+        "1 if z",
+        "-1 otherwise"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "39e324d3a17bff2c3bbba90ecff061293d2138cb502157f88a680886a1a627b1",
+      "lines": [
+        "Historical Context: Artificial Neurons",
+        "First programmable",
+        "machine",
+        "2012",
+        "Machine",
+        "learning",
+        "Turing test",
+        "1945",
+        "AI",
+        "1956",
+        "1950 1959",
+        "Neural networks with",
+        "effective learning strategy",
+        "1986",
+        "Wave 3: rise of",
+        "“deep learning”",
+        "1943 1957",
+        "First mathematical",
+        "model of neuron",
+        "Perceptron",
+        "Recall: modern deep learning algorithms rely on",
+        "techniques developed over the past 65 years."
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "7cacc4e12f6c01f47d569d02feb66aa2760604b972dc75a6ad0f39a863dc2a02",
+      "lines": [
+        "Perceptron: Innovator and Vision",
+        "Frank Rosenblatt",
+        "(Psychologist)",
+        "“[The perceptron is] the embryo of an",
+        "electronic computer that [the Navy] expects",
+        "will be able to walk, talk, see, write,",
+        "reproduce itself and be conscious of its",
+        "existence…. [It] is expected to be finished in",
+        "about a year at a cost of $100,000.”",
+        "1958 New York Times article: https://www.nytimes.com/1958/07/08/archives/new￾navy-device-learns-by-doing-psychologist-shows-embryo-of.html",
+        "https://en.wikipedia.org/wiki/Frank_Rosenblatt"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "78fb48b35652a4a3c4d279559d553d8deeafbc2d0c9d4120ed28d2a943c6a54b",
+      "lines": [
+        "Perceptron: Model (Linear Threshold Unit)",
+        "Frank Rosenblatt, The perceptron, a perceiving and recognizing automaton Project Para. Cornell Aeronautical Laboratory, 1957",
+        "Python Machine Learning; Raschka & Mirjalili",
+        "Note:",
+        "- weights (W) are learned",
+        "- inputs and weights can be any value",
+        "- fires when combined input exceeds threshold"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "869bbc4c532840f332fa57cdcd56efbd97fee06dc2c92be65e47366fc0c993e3",
+      "lines": [
+        "• Fires when a function exceeds threshold:",
+        "• Rewriting model:",
+        "• Where:",
+        "Perceptron: Model (Linear Threshold Unit)",
+        "Bias 1 Python Machine Learning; Raschka & Mirjalili",
+        "Frank Rosenblatt, The perceptron, a perceiving and recognizing automaton Project Para. Cornell Aeronautical Laboratory, 1957"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "03cd1a158ecd439b07e7edbd83658079c4605c86cf0ca1eca4f1c46565c5df9d",
+      "lines": [
+        "Perceptron: Model (Linear Threshold Unit)",
+        "Bias 1",
+        "Uday Kamath, John Liu, and James Whitaker. Deep Learning for NLP and Speech Recognition. 2019.",
+        "Motivation for bias: without it,",
+        "model must go through origin",
+        "Error"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "bdfc31e80f1c4f3f3976f0250529499921f65254a3fb68748865f6328c9b15f4",
+      "lines": [
+        "Perceptron: Model (Linear Threshold Unit)",
+        "Bias 1",
+        "Uday Kamath, John Liu, and James Whitaker. Deep Learning for NLP and Speech Recognition. 2019.",
+        "Motivation for bias: with it, model",
+        "does not have to go through origin"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "f8f0f084f210747badfca94624863161fbf7a230854cfffa05a42d0cc8b0ab08",
+      "lines": [
+        "Perceptron: Model (Linear Threshold Unit)",
+        "Python Machine Learning; Raschka & Mirjalili",
+        "Frank Rosenblatt, The perceptron, a perceiving and recognizing automaton Project Para. Cornell Aeronautical Laboratory, 1957"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "be0d9accc9efb69339d5c511096c22535ff71ed295f93577b6a4fa5c801f1d3e",
+      "lines": [
+        "Perceptron: Model (Linear Threshold Unit)",
+        "“Input signals”",
+        "“Output signal”",
+        "Artificial Neuron:",
+        "Biological Neuron:",
+        "Python Machine Learning; Raschka & Mirjalili",
+        "Image Source: https://becominghuman.ai/introduction-to-neural-networks-bd042ebf2653"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "1d1ca3243decd2da09bb8083e078ddff7833384269e24f3a8c1134a02823888c",
+      "lines": [
+        "Perceptron: Learning Algorithm",
+        "Iteratively update linear",
+        "boundary with observation",
+        "of each additional example:",
+        "https://en.wikipedia.org/wiki/Perceptron"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "1d1ca3243decd2da09bb8083e078ddff7833384269e24f3a8c1134a02823888c",
+      "lines": [
+        "Perceptron: Learning Algorithm",
+        "Iteratively update linear",
+        "boundary with observation",
+        "of each additional example:",
+        "https://en.wikipedia.org/wiki/Perceptron"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "f811e40836d7d63b0387e92d49386de315944bc27a1440dd603d306855ac1874",
+      "lines": [
+        "Perceptron: Learning Algorithm",
+        "1. Initialize weights to 0 or small random numbers",
+        "2. For each training sample:",
+        "1. Compute output value:",
+        "2. Update weights with the following definition:",
+        "https://sebastianraschka.com/faq/docs/diff-perceptron-adaline-neuralnet.html",
+        "Learning Rate",
+        "True Class Label Predicted Class Label"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "3b11481c1f7d3d4dda879eb78a5a5c8fb2930223de2fe4b7820f02a22118c664",
+      "lines": [
+        "Perceptron: Learning Algorithm - What Happens",
+        "to Weights When It Predicts Correct Class Label?",
+        "1. Initialize weights to 0 or small random numbers",
+        "2. For each training sample:",
+        "1. Compute output value:",
+        "2. Update weights with the following definition:",
+        "Learning Rate",
+        "True Class Label Predicted Class Label",
+        "equals 0, so no weight update",
+        "https://sebastianraschka.com/faq/docs/diff-perceptron-adaline-neuralnet.html"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "eca1c1c851549a45c653de6f1cbb1f06b1313fdd462314cf489135e217801bfc",
+      "lines": [
+        "Perceptron: Learning Algorithm - What Happens",
+        "to Weights When It Predicts Wrong Class Label?",
+        "1. Initialize weights to 0 or small random numbers",
+        "2. For each training sample:",
+        "1. Compute output value:",
+        "2. Update weights with the following definition:",
+        "Learning Rate",
+        "True Class Label Predicted Class Label",
+        "Equals positive or negative value, so weights change",
+        "https://sebastianraschka.com/faq/docs/diff-perceptron-adaline-neuralnet.html"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "42bdf0f9d4ac946dee4432490ee6bd2a8068a86ad6307c8ea91ae72486e0fbe1",
+      "lines": [
+        "Perceptron: Learning Algorithm (e.g., 2D dataset)",
+        "0",
+        "1 1",
+        "2 2",
+        "All weights updated",
+        "simultaneously",
+        "1. Initialize weights to 0 or small random numbers",
+        "2. For each training sample:",
+        "1. Compute output value:",
+        "2. Update weights with the following definition:",
+        "https://sebastianraschka.com/faq/docs/diff-perceptron-adaline-neuralnet.html"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "94ef6d39d82c6f904bcfe87b2ce9319cde49f6a6d16e4d5c476a5463bf9cbbe7",
+      "lines": [
+        "Perceptron: Learning Algorithm",
+        "Python Machine Learning; Raschka & Mirjalili"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "1ef1039a23fe678f2a6e814c811f52e7105a2e18f280f0954bbc46d41c242e5c",
+      "lines": [
+        "Perceptron: Learning Algorithm Example",
+        "• True Model: Y is 1 if at least two of the three inputs are equal to 1.",
+        "?",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "1ef1039a23fe678f2a6e814c811f52e7105a2e18f280f0954bbc46d41c242e5c",
+      "lines": [
+        "Perceptron: Learning Algorithm Example",
+        "• True Model: Y is 1 if at least two of the three inputs are equal to 1.",
+        "?",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "1ef1039a23fe678f2a6e814c811f52e7105a2e18f280f0954bbc46d41c242e5c",
+      "lines": [
+        "Perceptron: Learning Algorithm Example",
+        "• True Model: Y is 1 if at least two of the three inputs are equal to 1.",
+        "?",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "9e0db6bbb72f6988ffe6b366d44446e8ce597bb4c9b1ef90f4a7673390e6bccc",
+      "lines": [
+        "Perceptron: Learning Algorithm Example",
+        "• True Model: Y is 1 if at least two of the three inputs are equal to 1.",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "ee69200bd6e47051774489164062c36511a4d83048dd6d2472e3ff841c57ac05",
+      "lines": [
+        "Perceptron: Learning Algorithm Example",
+        "- First Sample",
+        "?",
+        "Predicted",
+        "=",
+        "1 if",
+        "-1 otherwise",
+        "• Compute output value: ;",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "c348204080861cc5a2b7684a7612db341f324f9ca11539dc377a7aa28fec8d5f",
+      "lines": [
+        "Perceptron: Learning Algorithm Example",
+        "- First Sample",
+        "Predicted",
+        "=",
+        "1 if",
+        "-1 otherwise",
+        "• Compute output value: ;",
+        "1",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "d13afa76b1fd527eec0db626c0c3e494ef0fcc636454560fa3cca78e22a5458e",
+      "lines": [
+        "Perceptron: Learning Algorithm Example",
+        "- First Sample",
+        "• Update weights: ; learning rate = 0.1",
+        "0",
+        "1 1",
+        "2 2",
+        "3 3",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf",
+        "1",
+        "Predicted",
+        "? ? ? ?"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "f76f3bb4b3b90b25f78d1c50871e3fedb8c333fd828e20dfcc29181393dd3ce7",
+      "lines": [
+        "Perceptron: Learning Algorithm Example",
+        "- First Sample",
+        "0 = 0.1(-1-1)*1 = -0.2",
+        "1 = 0.1(-1-1)*1 = -0.2",
+        "2 = 0.1(-1-1)*0 = 0",
+        "3 = 0.1(-1-1)*0 = 0",
+        "• Update weights: ; learning rate = 0.1",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf",
+        "1",
+        "Predicted",
+        "? ? ? ?"
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "9f91516d05128c7bdefcb24362171855984f81483087d59dc90a1842547d426b",
+      "lines": [
+        "Perceptron: Learning Algorithm Example",
+        "- Second Sample",
+        "1",
+        "?",
+        "Predicted",
+        "=",
+        "1 if",
+        "-1 otherwise",
+        "• Compute output value: ;",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf"
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "206d40a0b1210223560be146006a9544dd511f50560bfc28e26032baaceaf1f1",
+      "lines": [
+        "Perceptron: Learning Algorithm Example",
+        "- Second Sample",
+        "1",
+        "Predicted",
+        "=",
+        "1 if",
+        "-1 otherwise",
+        "• Compute output value: ;",
+        "-1",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf"
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "dd7d7e7ff3ed419fab0e6b8e633bf856bd36f8d5c423c16520992052aa38dd89",
+      "lines": [
+        "Perceptron: Learning Algorithm Example",
+        "- Second Sample",
+        "1",
+        "-1",
+        "Predicted",
+        "• Update weights: ; learning rate = 0.1",
+        "? ? ? ?",
+        "0",
+        "1 1",
+        "2 2",
+        "3 3",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf"
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "b0f48fe49ab37f21aca7f5b6cbe496a8a881cbad2b7f0bc668b52cd6afdceab2",
+      "lines": [
+        "Perceptron: Learning Algorithm Example",
+        "- Second Sample",
+        "• Update weights: ; learning rate = 0.1",
+        "0",
+        "1",
+        "2",
+        "3",
+        "= 0.1(1--1)*1 = 0.2",
+        "= 0.1(1--1)*1 = 0.2",
+        "= 0.1(1--1)*0 = 0",
+        "= 0.1(1--1)*1 = 0.2",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf",
+        "1",
+        "-1",
+        "Predicted",
+        "? ? ? ?"
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "a1d09edaebd4accf55bd30bb3c351a8ab2b3d472831c6f40d126a9948b43af0f",
+      "lines": [
+        "Perceptron: Learning Algorithm Example",
+        "- One Epoch (All Examples)",
+        "• ; learning rate = 0.1",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf"
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "1d3d48fea57d850a2490b016c5d573475ac516ff7185a8093769b070d9ab7db0",
+      "lines": [
+        "Perceptron: Learning Algorithm Example",
+        "- Six Epochs (All Examples)",
+        "• ; learning rate = 0.1",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf"
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "1d3d48fea57d850a2490b016c5d573475ac516ff7185a8093769b070d9ab7db0",
+      "lines": [
+        "Perceptron: Learning Algorithm Example",
+        "- Six Epochs (All Examples)",
+        "• ; learning rate = 0.1",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf"
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "692f3b349cc0a9c187d682a6ff3eb56ac607b27ea9bf7d42372cea52b43f1e41",
+      "lines": [
+        "Perceptron: Learning Algorithm Choices",
+        "• Learning rate",
+        "• Number of epochs (passes over the dataset)",
+        "* Note: Kamath textbook offers two representations of this algorithm with “Algorithm 4”",
+        "(Ch. 2.5) matching that shown in this lecture and Ch. 4 using a 0.5 threshold instead; the",
+        "threshold depends on the predicted values with 0 for {-1, 1} and 0.5 for {0, 1}."
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "7aab01ea333b3813ef5e20d8967549e780c91366771ff140d10b58c1d7529ff3",
+      "lines": [
+        "Today’s Topics",
+        "• Binary classification applications",
+        "• Evaluating classification models",
+        "• Biological neurons: inspiration",
+        "• Artificial neuron: Perceptron"
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "7eabd35ecca581db0882b5964a089bdcf003b59641fd057778b5ea4d788ac76c",
+      "lines": [
+        "Credits",
+        "• Image of Boulder: http://boulderrunning.com/where2run/five-trails￾for-hill-running-and-mountain-training/",
+        "• Stick person figure:",
+        "https://drawception.com/game/AsPNcppPND/draw-yourself￾blindfolded-pio/",
+        "• Figure: https://www.quora.com/What-is-meant-by-gradient-descent￾in-laymen-terms",
+        "• Figure and great reference:",
+        "https://beamandrew.github.io/deeplearning/2017/02/23/deep_learn",
+        "ing_101_part1.html"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,699 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s17",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/15-PopularTransformers.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2022/s17.pdf",
+    "sha256": "25facc81397c9c1040925d617e84296f7fe386838e1255f794fd66e16be24994",
+    "page_count": 62,
+    "license_notice": "CC BY; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "90f31fed3f9bff22281ba3100455214e71830ab5ba195041d25401e7949428c5",
+      "lines": [
+        "Popular Transformers",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2022",
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "6c62647f27f3e5a562c5da876830516c7a17dbb7c07eef95003749adbf661b4a",
+      "lines": [
+        "Review",
+        "• Last lecture:",
+        "• Transformer overview",
+        "• Self-attention",
+        "• Multi-head attention",
+        "• Common transformer ingredients",
+        "• Pioneering transformer: machine translation",
+        "• Assignments (Canvas):",
+        "• Lab assignment 3 due earlier today",
+        "• Problem set 4 due next week",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "4a9cc33b6cf3c9b1f93c45fc7009f4560066cdb14e05cf706d67b1af55c83f24",
+      "lines": [
+        "Today’s Topics",
+        "• Explosion of transformers",
+        "• GPT",
+        "• BERT",
+        "• Limitations of transformer models",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "4a9cc33b6cf3c9b1f93c45fc7009f4560066cdb14e05cf706d67b1af55c83f24",
+      "lines": [
+        "Today’s Topics",
+        "• Explosion of transformers",
+        "• GPT",
+        "• BERT",
+        "• Limitations of transformer models",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "5cf4de0f856a47e4920bfbbc3b29c3e3996b9cb662b7f498d217311aa0614542",
+      "lines": [
+        "Explosion of Transformers in Society",
+        "https://www.pinterest.com/pin/521784306804400819/"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "99f02b859409931cfd480992f5da16cf74642def99a8c53274b35af8f7819d85",
+      "lines": [
+        "Popularity of Transformers in Society",
+        "https://trends.google.com/trends/explore"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "2194d9af4a26668eb679516a97d377163e9b749d71923572ffc01bde59b687d4",
+      "lines": [
+        "Today’s Focus: Methods that Perform",
+        "Pretraining and then Fine-tuning",
+        "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html",
+        "Inference",
+        "Transformers can provide better embeddings for",
+        "downstream tasks since they capture context",
+        "(unlike context-free embeddings such as word2vec)"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "4a9cc33b6cf3c9b1f93c45fc7009f4560066cdb14e05cf706d67b1af55c83f24",
+      "lines": [
+        "Today’s Topics",
+        "• Explosion of transformers",
+        "• GPT",
+        "• BERT",
+        "• Limitations of transformer models",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "d7fdc6ab11a2c2dce10e29b5b8ee5efc44d1742caae239b061925d55d6a93bb0",
+      "lines": [
+        "GPT: Generative Pre-Training",
+        "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html",
+        "Inference"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "4e9ca7bca8b561e542f3855f5e1fd121f0cbfff95585fc220ddbd16b3bdeae7b",
+      "lines": [
+        "Task: Predict Next Word Given Previous Ones",
+        "e.g.,",
+        "1. Background music from a _______",
+        "2. Many people danced around the _______",
+        "3. I practiced for many years to learn how to play the _______"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "b72a3c505760798659f897eb0899590bf1dea8889111b935c832a30f9cda95ee",
+      "lines": [
+        "Vaswani et al. Attention Is All You Need. Neurips 2017.",
+        "Architecture: Decoder from",
+        "Pioneering Transformer"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "2c40ff8a8cb0678aa36eb6836d545d7b8861720f02c77f03225fcba89ab44695",
+      "lines": [
+        "Architecture",
+        "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "1da137b619d4c0d907c4b17feae8448443b6bd6e863e062a2b9b4aed0eb7465f",
+      "lines": [
+        "Architecture: Input & Output",
+        "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018.",
+        "Softmax layer determines",
+        "next predicted word at",
+        "each time step",
+        "http://jalammar.github.io/illustrated-transformer/"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "75a0902c3ed4cb69f4407aa288020c9eba649b02cd23e28116fc94790c7665c2",
+      "lines": [
+        "Architecture: Masked Attention",
+        "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018.",
+        "Limit each word’s new representation to only reflect earlier words",
+        "(mimics inference time when only previous tokens can be seen):",
+        "https://stackoverflow.com/questions/64799622/how-is-the￾gpts-masked-self-attention-is-utilized-on-fine-tuning-inference",
+        "Query",
+        "Query x Key",
+        "e.g., at <sos> token, no previous inputs",
+        "e.g., at 3rd token, have two previous inputs"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "34fcc7d724c737f9f7b939cd15f0cd9177de5b8456ee4cb6ca44498c1e78f18e",
+      "lines": [
+        "Architecture: Masked Attention",
+        "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018.",
+        "Limit each word’s new representation to only reflect earlier words",
+        "(mimics inference time when only previous tokens can be seen):",
+        "https://stackoverflow.com/questions/64799622/how-is-the￾gpts-masked-self-attention-is-utilized-on-fine-tuning-inference",
+        "Query",
+        "Query x Key",
+        "Masked out scores are represented as",
+        "negative infinity so the softmax result",
+        "(i.e., attention weight) returns 0"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "97445ccad5d1aba50f1017b01f69354267315dac7de80f231044765609a8950a",
+      "lines": [
+        "Training",
+        "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018.",
+        "• Dataset: 800M words from BooksCorpus (>7,000 books)",
+        "• Optimizer: Adam",
+        "• Training duration: 100 epochs"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "e6484fa15ce3854bba98e4a155143e9e5608051f74f8cfc731aa3bc4a6cecf6e",
+      "lines": [
+        "Implementation Details",
+        "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018.",
+        "Activation function: Gaussian error linear unit (GELU)",
+        "https://datascience.stackexchange.com/questions/49522/what-is-gelu-activation"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "651d645aabcfc81eb27787ef743b847ed4338ce5eb0823d0ecee7cbfcadb1f5a",
+      "lines": [
+        "Implementation Details",
+        "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018.",
+        "Avoid out of vocabulary tokens with subword tokenization (byte pair encoding):",
+        "1. Identify all tokens in the training data with their frequency",
+        "2. Define vocabulary size; e.g., 14",
+        "3. Add all characters in the tokenized input to the vocabulary; e.g.,",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "2276fad5f60ba0f20fd29da84d972ff8be22b59ac54ea93cf8a3fbcc6292f36b",
+      "lines": [
+        "Implementation Details",
+        "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018.",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "e.g., What are the",
+        "highest frequency",
+        "symbol pairs?",
+        "Avoid out of vocabulary tokens with subword tokenization (byte pair encoding):",
+        "1. Identify all tokens in the training data with their frequency",
+        "2. Define vocabulary size; e.g., 14",
+        "3. Add all characters in the tokenized input to the vocabulary; e.g.,",
+        "4. Until vocabulary is filled, add merged highest frequency symbol pairs"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "2276fad5f60ba0f20fd29da84d972ff8be22b59ac54ea93cf8a3fbcc6292f36b",
+      "lines": [
+        "Implementation Details",
+        "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018.",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "e.g., What are the",
+        "highest frequency",
+        "symbol pairs?",
+        "Avoid out of vocabulary tokens with subword tokenization (byte pair encoding):",
+        "1. Identify all tokens in the training data with their frequency",
+        "2. Define vocabulary size; e.g., 14",
+        "3. Add all characters in the tokenized input to the vocabulary; e.g.,",
+        "4. Until vocabulary is filled, add merged highest frequency symbol pairs"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "2276fad5f60ba0f20fd29da84d972ff8be22b59ac54ea93cf8a3fbcc6292f36b",
+      "lines": [
+        "Implementation Details",
+        "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018.",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "e.g., What are the",
+        "highest frequency",
+        "symbol pairs?",
+        "Avoid out of vocabulary tokens with subword tokenization (byte pair encoding):",
+        "1. Identify all tokens in the training data with their frequency",
+        "2. Define vocabulary size; e.g., 14",
+        "3. Add all characters in the tokenized input to the vocabulary; e.g.,",
+        "4. Until vocabulary is filled, add merged highest frequency symbol pairs"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "708eb8107173ebd81dd23b255b24fd6049ad909df45d64285e15dd9899ebf2e4",
+      "lines": [
+        "Implementation Details:",
+        "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018.",
+        "Avoid out of vocabulary tokens with subword tokenization (byte pair encoding):",
+        "- 40,000 merges used"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "d7fdc6ab11a2c2dce10e29b5b8ee5efc44d1742caae239b061925d55d6a93bb0",
+      "lines": [
+        "GPT: Generative Pre-Training",
+        "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html",
+        "Inference"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "c03f9564bbd97a925c401715fdb5cdc28ea6530193bb44e16d3337af9c18fa0b",
+      "lines": [
+        "Fine-Tuning (Softmax Output Layers)",
+        "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "e0d086fade28fd4cc5956ba2343345d837c3c216d7c0d3d7f9b854b546f07623",
+      "lines": [
+        "Experimental Findings",
+        "Achieved the best performance on 9 NLP dataset challenges",
+        "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "d7fdc6ab11a2c2dce10e29b5b8ee5efc44d1742caae239b061925d55d6a93bb0",
+      "lines": [
+        "GPT: Generative Pre-Training",
+        "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html",
+        "Inference"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "4a9cc33b6cf3c9b1f93c45fc7009f4560066cdb14e05cf706d67b1af55c83f24",
+      "lines": [
+        "Today’s Topics",
+        "• Explosion of transformers",
+        "• GPT",
+        "• BERT",
+        "• Limitations of transformer models",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "10e241cbd3791ab0049d4312baf0550ca658595c3e10635a230f08e3118e0c1e",
+      "lines": [
+        "Motivation: Choose a Pretraining Task That",
+        "Is Not Unidirectional",
+        "GPT’s prediction of the next word given previous ones is unidirectional (left-to-right)",
+        "1. Background music from a _______",
+        "2. Many people danced around the _______",
+        "3. I practiced for many years to learn how to play the _______"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "699fe45a3c08e817f53e5445949b94250955bfa134454062b24be613971240b6",
+      "lines": [
+        "BERT: Bidirectional Encoder Representation",
+        "from Transformer",
+        "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html",
+        "Inference"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "bbca82e603486c6bcc2bc79c72367eeb862443291bee509d434cb750bcfe14b2",
+      "lines": [
+        "Two Tasks",
+        "1. Predict masked token (key contribution)",
+        "2. Predict if one sentence follows a second sentence (augments",
+        "understanding of how sentences relate)"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "df7873740c70aac79284b948fd213b8b480d45a6753a8dde2ce758d6a1001bad",
+      "lines": [
+        "Vaswani et al. Attention Is All You Need. Neurips 2017.",
+        "Architecture: Encoder from",
+        "Pioneering Transformer"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "2fcf664b3d51261c58267146ad4dbc99331e8fff37720ed020224b2dd2447873",
+      "lines": [
+        "Architecture: Variants",
+        "• L = number of stacked encoders",
+        "• H = number of hidden units in feedforward layer",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "BERT-large (H = 1024)"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "32b9bf690cf11c6a645407edd505238b8817420d11eb2df38032758f5dfc7bf4",
+      "lines": [
+        "Architecture: BERT-Base (Matches Size of GPT)",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "643938454c98011e34279ca93e9ad9e9fae7d5e24cc2caec0f50f87359f53b91",
+      "lines": [
+        "Architecture: Input",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "Two input sentences with",
+        "[CLS] at the start and",
+        "[SEP] between sentences"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "c7285bc393f6b8e3a108c1b3bd317463b02d221b4bfa695b9662ae2483b26e03",
+      "lines": [
+        "Architecture: Input",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "Input is addition of a segment",
+        "embedding to the token and",
+        "position embeddings (helps",
+        "differentiate which tokens",
+        "belong to which sentence)"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "5add8d5b4ba8406da3ccdc9677b3c8b9f924b2b1d3158b1cdefbd3d2d6b86ab1",
+      "lines": [
+        "Architecture: Output",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "New representation of each",
+        "input that accounts for context"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "cb8b7ce5e7c1b1c2be44778f164d19b7c4d5d05bdbcd8b9e249d7679a5ae00d1",
+      "lines": [
+        "Architecture: Predicting Masked Token Task",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "15% of random tokens from",
+        "sequence masked",
+        "- 80% use [MASK]",
+        "- 10% use a random token",
+        "- 10% are unchanged",
+        "Multiple masking options",
+        "encourage the model to pay",
+        "attention to each token separately",
+        "Probability distribution over output vocabulary"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "89c094dbe985c43595fac41e62669e96e3c87c7ba603ab1c1579bc75b51ed1d4",
+      "lines": [
+        "Architecture: Predict if Next Sentence Task",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "50% of 2nd sentences are the original",
+        "next sentence and the rest are random",
+        "Predict with token representation that aggregates",
+        "representation of all tokens in both sentences"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "0efc21fadf0c9c95774f9ae69548b505f1f88ce2c9ff8a361d950892c659869b",
+      "lines": [
+        "Training",
+        "Devlin et al. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. arXiv 2018.",
+        "• Dataset: 2,500M words in Wikipedia + 800M words in BooksCorpus used for GPT",
+        "• Optimizer: Adam",
+        "• Training loss: sums over losses from predicting masked words and if next sentence"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "a1cc175bf9eeb6e017dd6e84b88a6069fc90fd49cb9e3c1db37b4cd1e239d0de",
+      "lines": [
+        "• Gaussian error linear unit (GELU) used as activation function in feedforward layers",
+        "• Avoids out of vocabulary tokens by using subword tokenization, with a different variant called",
+        "WordPiece Tokenization",
+        "Implementation Details: Mimics GPT",
+        "https://datascience.stackexchange.com/",
+        "questions/49522/what-is-gelu-activation"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "039cba9a03d834134b66f2d3da4cb8bf2afc87c7fd5c883ef4c930917adecead",
+      "lines": [
+        "BERT: Bidirectional Encoder Representation from",
+        "Transformer",
+        "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html",
+        "Inference"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "49f8b28ee5098f45644919401e635c265ad30490c316f7ab4ef16fa83d19e577",
+      "lines": [
+        "Fine-Tuning for Classification",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "What is the difference between fine￾tuning and using the pre-trained word",
+        "embedding as classifier input?"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "ac6680b27ed48b1b0b5a206fa18cbf293d45cb3236e117d384a44d98e431edd7",
+      "lines": [
+        "Fine-Tuning for Natural Language Inference",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "ac6680b27ed48b1b0b5a206fa18cbf293d45cb3236e117d384a44d98e431edd7",
+      "lines": [
+        "Fine-Tuning for Natural Language Inference",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "b06ff9159189b9d9ba544d1b60ab69fd465bd71d7e02adf8428725d9dc26aae4",
+      "lines": [
+        "Fine-Tuning for Question Answering",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "To find indexes of the start and",
+        "end words in the paragraph, two",
+        "vector representations are learned",
+        "that lead to the approximate",
+        "softmax output when dot",
+        "producted with each token"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "32a954a7ae881cb36dedcc5cf336b3c62e7d79c9ca317e3b5dc511d0b433c1f4",
+      "lines": [
+        "Fine-Tuning for Named Entity Recognition",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "Each token’s new representation",
+        "is passed to a classifier"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "46c552d53c73145f2d0b56d48eb54a7f80176e9b271043fd6b4526d489401983",
+      "lines": [
+        "Implementation Detail",
+        "• Padding supports the use of variable input length",
+        "• Uses attention vector of 1s and 0s, with the latter at indices of [PAD] tokens",
+        "http://juditacs.github.io/2018/12/27/masked-attention.html"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "fcd4f0c48394fae5b5624083b4b843ead060fd39d09bb73218a0072f20cdb300",
+      "lines": [
+        "Experimental Findings",
+        "Devlin et al. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. arXiv 2018.",
+        "Achieved the best performance on 11 NLP dataset challenges"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "0886c0396a589ab81c34cffbcda18e2f6c4e76f808eec67b87d51202c19cb55d",
+      "lines": [
+        "Experimental Findings",
+        "Devlin et al. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. arXiv 2018.",
+        "What can we infer from these results?"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "5297783b1ac960ef8cab486c64ede177c5b4f46f559f1b79400fe2966f85f3c4",
+      "lines": [
+        "Experimental Findings",
+        "Devlin et al. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. arXiv 2018.",
+        "Next sentence prediction (NSP) supports slight improvements"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "a92c9b6cbb7c0b0dabf8c9cb4b218359f2733d6bff66b52453d61ace68a6caaf",
+      "lines": [
+        "Experimental Findings",
+        "Devlin et al. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. arXiv 2018.",
+        "We observe a performance boost when using bidirectional",
+        "pretraining instead of unidirectional pretraining (LTR)"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "039cba9a03d834134b66f2d3da4cb8bf2afc87c7fd5c883ef4c930917adecead",
+      "lines": [
+        "BERT: Bidirectional Encoder Representation from",
+        "Transformer",
+        "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html",
+        "Inference"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "4a9cc33b6cf3c9b1f93c45fc7009f4560066cdb14e05cf706d67b1af55c83f24",
+      "lines": [
+        "Today’s Topics",
+        "• Explosion of transformers",
+        "• GPT",
+        "• BERT",
+        "• Limitations of transformer models",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "c7c3b28f1052619136677cc614b754a2962a6da84820465865cbb67716e7efe7",
+      "lines": [
+        "Context: original Transformer paper",
+        "and BERT published by Google",
+        "https://www.wired.com/story/google￾timnit-gebru-ai-what-really-happened/"
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "76337b8c84e869a22f13e73e1f847d4440bea96c839acd252684d9fa9ab207c3",
+      "lines": [
+        "Transformers’ Financial Cost; e.g., To Train BERT,",
+        "How Much Do You Think it Costs in US Dollars?"
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "86aa927eabf2b3f07e33dd825592ff8f9eef7486ca6369cf6fb9debbec9c9a39",
+      "lines": [
+        "Transformers’ Environmental Cost",
+        "• Does training a BERT base model require as much energy as:",
+        "a) Microwaving food for 7 minutes",
+        "b) Heating your home for a day",
+        "c) Driving 100 miles",
+        "d) A trans-American flight",
+        "Bender et al. On the Dangers of Stochastic Parrots: Can Language Models Be Too Big. FAT 2021."
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "f56c3921bdf83de3f642bc913261b1c1e2a7a74a6b44950567f505837bfea76c",
+      "lines": [
+        "Transformers: Huge and Growing in Size",
+        "https://medium.com/building-the-metaverse/the-metaverse-and-artificial-intelligence-ai-577343895411"
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "610468c22134564ce4e6012ae44faf8fc9cac9eb3e555a446d619ccc4ef711cd",
+      "lines": [
+        "Transformers’ Societal Cost; e.g., BERT",
+        "• Influence of training data: 2,500M words in Wikipedia + 800M words in BooksCorpus",
+        "• Who does and who does not contribute to such data repositories?",
+        "• e.g., “recent surveys of Wikipedians find that only 8.8–15% are women or girls”",
+        "• e.g., “Internet access itself is not evenly distributed, resulting in Internet data overrepresenting",
+        "younger users and those from developed countries”",
+        "• What kind of biases might be found in such data repositories?",
+        "• e.g., “BERT associates phrases referencing persons with disabilities with more negative sentiment",
+        "words, and that gun violence, homelessness, and drug addiction are overrepresented in texts",
+        "discussing mental illness”",
+        "• Given that “unsupervised pre-training is an integral part of many language understanding",
+        "systems” (BERT paper: Devlin et al. arXiv 2018), how do we do this responsibly?",
+        "Bender et al. On the Dangers of Stochastic Parrots: Can Language Models Be Too Big. FAT 2021."
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "4a9cc33b6cf3c9b1f93c45fc7009f4560066cdb14e05cf706d67b1af55c83f24",
+      "lines": [
+        "Today’s Topics",
+        "• Explosion of transformers",
+        "• GPT",
+        "• BERT",
+        "• Limitations of transformer models",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "4a9cc33b6cf3c9b1f93c45fc7009f4560066cdb14e05cf706d67b1af55c83f24",
+      "lines": [
+        "Today’s Topics",
+        "• Explosion of transformers",
+        "• GPT",
+        "• BERT",
+        "• Limitations of transformer models",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

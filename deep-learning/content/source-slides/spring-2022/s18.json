@@ -1,0 +1,634 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s18",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/16-ImageCaptioning.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2022/s18.pdf",
+    "sha256": "7b8984a19baeedd593f92a14e0aa5dcf28ea6f98b8675967a5a494f0aa785c30",
+    "page_count": 56,
+    "license_notice": "CC BY; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "18304c2d00c676d0cd8883b413fc73fdce103ceec2d3c021a7ba13faa11504ed",
+      "lines": [
+        "Image Captioning",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2022",
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "451212547ec3b03ec2fbcd6c56706576077e2e57e6db71e170ee421a2202880d",
+      "lines": [
+        "Review",
+        "• Last week",
+        "• Explosion of transformers",
+        "• GPT",
+        "• BERT",
+        "• Limitations of transformer models",
+        "• Programming tutorial",
+        "• Assignments (Canvas)",
+        "• Problem set 4 due next week",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "ce19965e91c2b17cff2f7ba00fd1097f92c4a9de1e87c2015d499642071cf8cb",
+      "lines": [
+        "Today’s Topics",
+        "• Image captioning applications",
+        "• Image captioning datasets",
+        "• Image captioning evaluation",
+        "• Challenge winner: encoder decoder pipeline with attention"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "ce19965e91c2b17cff2f7ba00fd1097f92c4a9de1e87c2015d499642071cf8cb",
+      "lines": [
+        "Today’s Topics",
+        "• Image captioning applications",
+        "• Image captioning datasets",
+        "• Image captioning evaluation",
+        "• Challenge winner: encoder decoder pipeline with attention"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "ef2d0432895c35aa31c6fce46de7032418d58f501aacc7384779d85403c75ad5",
+      "lines": [
+        "A “Human-Like” Description",
+        "Captions: https://www.microsoft.com/cognitive-services/en-us/computer-vision-api"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "6bd71e03a680d151c3fbe91ead9f269af0090d0e228f15175b6681e9ff2fe9e8",
+      "lines": [
+        "Visual Assistance for People with Visual",
+        "Impairments",
+        "https://www.youtube.com/watch?v=Tjugc8a836Q",
+        "Facebook Microsoft",
+        "https://www.youtube.com/watch?v=R2mC-NUAmMk"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "071cf1c47933110cdd1b0c824e97b10da404b127e79b6deb816b1324d00c8ca3",
+      "lines": [
+        "Alt Text for People with Visual Impairments",
+        "e.g., Microsoft Power Point (Office 365 demo)"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "9ad746f516cca246e8e89cbcfae307361240ab681364842cbc8a05232cf83cdf",
+      "lines": [
+        "Image Captioning for Newspaper Articles",
+        "Feng and Lapata. Automatic Image Annotation Using Auxiliary Text Information. Proceedings of ACL-08: HLT. 2008"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "ce643e181d839284f74ce7f78c7fb1cfce5678aa29c3249caecc7ea6bcf68afe",
+      "lines": [
+        "Aiding Tourism with Captioned Images",
+        "Grubinger et al. The iapr tc-12 benchmark: A new evaluation resource for visual information systems. 2006"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "dfd9f8a4a6087a0766e4c2a8ff5a02ce6a7f8d150aa27e2244ac7206d370a333",
+      "lines": [
+        "Describing and Responding to Images Posted",
+        "to Social Media with “Personality”",
+        "Shuster et al. Engaging Image Captioning via Personality. 2019"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "5cbb97180ea6e95954d1db1f8d53ae2cba01bb243542b10d596b97132b2d362a",
+      "lines": [
+        "Describing Products",
+        "Yang et al. Fashion Captioning: Towards Generating Accurate Descriptions with Semantic Rewards. ECCV 2020"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "f6fee95b18fcc1890a97819ef8ffb5983bbf1a386eb87e7e4eb4db37f636218a",
+      "lines": [
+        "What are other potential applications for image captioning?"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "ce19965e91c2b17cff2f7ba00fd1097f92c4a9de1e87c2015d499642071cf8cb",
+      "lines": [
+        "Today’s Topics",
+        "• Image captioning applications",
+        "• Image captioning datasets",
+        "• Image captioning evaluation",
+        "• Challenge winner: encoder decoder pipeline with attention"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "838a9e148e7dd48dbf888ab1f447f174cfcca6c51f8e9d33654495ea2fb9a176",
+      "lines": [
+        "Sample of Existing Dataset Challenges",
+        "Stefanini et al. From Show to Tell: A Survey on Deep Learning-based Image Captioning. arXiv 2021"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "838a9e148e7dd48dbf888ab1f447f174cfcca6c51f8e9d33654495ea2fb9a176",
+      "lines": [
+        "Sample of Existing Dataset Challenges",
+        "Stefanini et al. From Show to Tell: A Survey on Deep Learning-based Image Captioning. arXiv 2021"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "9b2d61513fda266c4c756a33db696f3b3e817e4dce32d811f9f48abd6411a2ac",
+      "lines": [
+        "Challenge: What Instructions Should Be Provided",
+        "When Collecting Captions from Human Annotators?"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "a3faf48022cc259713e0e6c2ad3c39c9c922c8e135efa64c40f90ffae6aaac40",
+      "lines": [
+        "Class Task: How Would You Describe This Image?"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "36f1204d5fe4d63b74a30bfd2fb7a3f45beab75c874f6711eca1330a1a9c4e7d",
+      "lines": [
+        "VLT2K",
+        "D. Elliott and F. Keller. Image description using visual dependency representations. EMNLP 2013."
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "669e2e802ce1b36c70180cc9884e93a087b0a28d863660c1364fc1a517123718",
+      "lines": [
+        "Flickr8K and 30K",
+        "Hodosh, Young, and Hockenmaier. Framing image description as a ranking task: Data, models, and evaluation metrics. JAIR 2013"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "cd3a6f1fc8b17576fce14fafe90364e4e2b13221c834fe0a7a281f33c1a083e6",
+      "lines": [
+        "MSCOCO",
+        "Chen et al. Microsoft COCO Captions: Data Collection and Evaluation Server. arXiv 2015."
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "a54c333781164871673b98794ebeba388b2e5d3fced13f80c5151616b135dab5",
+      "lines": [
+        "VizWiz",
+        "Gurari et al. Captioning Images Taken by People Who Are Blind. ECCV 2020"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "857e4e1e20b818bbe7e7f2df653691442aa0b46b8b703bb010f32ef4b3738e16",
+      "lines": [
+        "Personality-Captions",
+        "K. Shuster, S. Humeau, H. Hu, A. Bordes, and J. Weston. Engaging image captioning via personality. CVPR 2019.",
+        "215 personalities selected from this list: http://ideonomy.mit.edu/essays/traits.html"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "ce19965e91c2b17cff2f7ba00fd1097f92c4a9de1e87c2015d499642071cf8cb",
+      "lines": [
+        "Today’s Topics",
+        "• Image captioning applications",
+        "• Image captioning datasets",
+        "• Image captioning evaluation",
+        "• Challenge winner: encoder decoder pipeline with attention"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "f97a0de1c901b1613252989c642f81bb6621a9b2c74865e6f7e9028c168b8770",
+      "lines": [
+        "Group Discussion: How Would You Evaluate",
+        "Captions from an Algorithm?"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "539749180feabf6f669ed9480edb7bec0dab33ad5a78cd7d496dd74396f87fd3",
+      "lines": [
+        "Evaluation: Human Judgments",
+        "• The description accurately describes the image (Kulkarni et al., 2011; Li et al., 2011; Mitchell et",
+        "al., 2012; Kuznetsova et al., 2012; Elliott & Keller, 2013; Hodosh et al., 2013).",
+        "• The description is grammatically correct (Yang et al., 2011; Mitchell et al., 2012; Kuznetsova et al.,",
+        "2012; Elliott & Keller, 2013).",
+        "• The description has no incorrect information (Mitchell et al., 2012).",
+        "• The description is relevant for this image (Li et al., 2011; Yang et al., 2011).",
+        "• The description is creatively constructed (Li et al., 2011).",
+        "• The description is human-like (Mitchell et al., 2012).",
+        "Raffaella Bernardi, Ruket Cakici, Desmond Elliott, Aykut Erdem, Erkut Erdem, Nazli Ikizler-Cinbis, Frank Keller, Adrian Muscat,",
+        "and Barbara Plank. Automatic Description from Images: A Survey of Models, Datasets, and Measures. JAIR 2016."
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "afd3a3d02408ce5c12a8f03c2ad85db9141e2fc683f312675191687500dad2bb",
+      "lines": [
+        "Evaluation: Automated",
+        "• BLEU",
+        "• METEOR",
+        "• Rouge",
+        "• CIDEr",
+        "• SPICE"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "a1e59c3ef0bbb89f47cbfd0cf4ad3c9e57c2b7619ffade09a99c113ffba66757",
+      "lines": [
+        "Evaluation: Automated",
+        "• BLEU",
+        "• METEOR",
+        "• Rouge",
+        "• CIDEr",
+        "• SPICE",
+        "Idea: compute similarities of n-grams between a",
+        "predicted caption and each ground truth caption",
+        "http://recognize-speech.com/language-model/n-gram-model/comparison"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "72edf27dad3194ed3d88766a935156e92cdd1029ded57c50a6d8a624d4bf3b4a",
+      "lines": [
+        "Evaluation: Automated",
+        "• BLEU",
+        "• METEOR",
+        "• Rouge",
+        "• CIDEr",
+        "• SPICE",
+        "R. Vedantam, C. L. Zitnick, and D. Parikh. CIDEr: Consensus-based Image Description Evaluation. CVPR 2015.",
+        "Idea: measure similarity of a predicted caption to how most",
+        "people describe an image based on n-grams unique to the image"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "85472c39d87f409089a3dd7b1b798cc41d2892c7410f6b869f8baf557ed3208f",
+      "lines": [
+        "Evaluation: Automated",
+        "• BLEU",
+        "• METEOR",
+        "• Rouge",
+        "• CIDEr",
+        "• SPICE",
+        "R. Vedantam, C. L. Zitnick, and D. Parikh. CIDEr: Consensus-based Image Description Evaluation. CVPR 2015.",
+        "What content do most people describe in this image?"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "a98ff0c7b7261e485ab1de6360d1307cdd2b11cfc2779a0cf1a7343ebd95f65c",
+      "lines": [
+        "Evaluation: Automated",
+        "• BLEU",
+        "• METEOR",
+        "• Rouge",
+        "• CIDEr",
+        "• SPICE",
+        "Do you think these two captions describe the same image?",
+        "P. Anderson, B. Fernando, M. Johnson, and S. Gould. SPICE: Semantic Propositional Image Caption Evaluation. ECCV 2016."
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "623dde3674279f9e8c48f51fc77d3f658277a350d5c8010c800888b9b3e15973",
+      "lines": [
+        "Evaluation: Automated",
+        "• BLEU",
+        "• METEOR",
+        "• Rouge",
+        "• CIDEr",
+        "• SPICE",
+        "Problem: n-gram methods scores these as very similar",
+        "P. Anderson, B. Fernando, M. Johnson, and S. Gould. SPICE: Semantic Propositional Image Caption Evaluation. ECCV 2016."
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "a98ff0c7b7261e485ab1de6360d1307cdd2b11cfc2779a0cf1a7343ebd95f65c",
+      "lines": [
+        "Evaluation: Automated",
+        "• BLEU",
+        "• METEOR",
+        "• Rouge",
+        "• CIDEr",
+        "• SPICE",
+        "Do you think these two captions describe the same image?",
+        "P. Anderson, B. Fernando, M. Johnson, and S. Gould. SPICE: Semantic Propositional Image Caption Evaluation. ECCV 2016."
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "94f1fbdf400bece5c95cae8c8de5ae64cb1ac5a164a969682429192a44ecb456",
+      "lines": [
+        "Evaluation: Automated",
+        "• BLEU",
+        "• METEOR",
+        "• Rouge",
+        "• CIDEr",
+        "• SPICE",
+        "Problem: n-gram methods scores these as very different",
+        "P. Anderson, B. Fernando, M. Johnson, and S. Gould. SPICE: Semantic Propositional Image Caption Evaluation. ECCV 2016."
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "f04101b23c8da68e361f58773217f1df7af753eb91cbf21e42ab43b08b38b9f2",
+      "lines": [
+        "Evaluation: Automated",
+        "• BLEU",
+        "• METEOR",
+        "• Rouge",
+        "• CIDEr",
+        "• SPICE",
+        "Idea: compare scene graph of prediction to scene graph of ground truth",
+        "P. Anderson, B. Fernando, M. Johnson, and S. Gould. SPICE: Semantic Propositional Image Caption Evaluation. ECCV 2016."
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "d571c7cd7570a17c1b73726879c18d4f4ecf2161ae44872183bb079b50ff2afd",
+      "lines": [
+        "Evaluation: Automated",
+        "• BLEU",
+        "• METEOR",
+        "• Rouge",
+        "• CIDEr",
+        "• SPICE",
+        "What is the meaningful semantic content in these captions?",
+        "P. Anderson, B. Fernando, M. Johnson, and S. Gould. SPICE: Semantic Propositional Image Caption Evaluation. ECCV 2016."
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "69a3a8c749e64446885b959fc2b126d08ae7141511d60264604a0345f4a88185",
+      "lines": [
+        "Evaluation: Automated",
+        "• BLEU",
+        "• METEOR",
+        "• Rouge",
+        "• CIDEr",
+        "• SPICE",
+        "P. Anderson, B. Fernando, M. Johnson, and S. Gould. SPICE: Semantic Propositional Image Caption Evaluation. ECCV 2016.",
+        "Meaningful semantic content in these captions:"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "ce19965e91c2b17cff2f7ba00fd1097f92c4a9de1e87c2015d499642071cf8cb",
+      "lines": [
+        "Today’s Topics",
+        "• Image captioning applications",
+        "• Image captioning datasets",
+        "• Image captioning evaluation",
+        "• Challenge winner: encoder decoder pipeline with attention"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "f0be8b0cc70f4c6eba47bc493dacb42e148faed71092a22acc3833a24c0317ab",
+      "lines": [
+        "Idea: Treat Problem Like Machine Translation",
+        "Data Encoder Decoder Data"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "3f2f3d1833c72ca8ee94f7685926cd627f06192acf9e75a018d4669709578113",
+      "lines": [
+        "Idea: Treat Problem Like Machine Translation",
+        "Encoder Decoder A bird flying over",
+        "a body of water.",
+        "Image Caption"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "85301e258f975b20ece0248309fe6f74637980bee71785454f6cffc4669730cd",
+      "lines": [
+        "Recall Solution:",
+        "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3",
+        "2. At each decoder time step,",
+        "attention weights are computed",
+        "that determine each input’s",
+        "relevance for the prediction",
+        "3. At each decoder time step, a",
+        "prediction is made based on the",
+        "weighted sum of the inputs",
+        "1. Encoder produces hidden",
+        "state for every input"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "e2f9ba07ee87ec30ce0b38b2217d5200f724cddaf96469497aa43b4e05fc9411",
+      "lines": [
+        "Decoder decides which inputs are needed for prediction at each time step;",
+        "e.g., “soft attention” uses a weighted combination of the input",
+        "Recall Intuition",
+        "Input Target",
+        "t = 1 t = 2 t = 3 t = 4",
+        "Model learns how to weight each input!"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "00b8559ce2bb845bf2612172915bf58700e5a8129209c2c07284ab46ae261022",
+      "lines": [
+        "Approach: Key",
+        "Difference",
+        "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3",
+        "1. Input represents an image"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "3f4bde8f01601df387cfddcc523243f60f8a42539af32b6fe43c2c5b48b49708",
+      "lines": [
+        "Decoder decides which inputs are needed for prediction at each time step;",
+        "e.g., “soft attention” uses a weighted combination of the input",
+        "Intuition",
+        "Input Target",
+        "A bird is flying…",
+        "t = 1 t = 2 t = 3 t = 4"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "c007b33da73fbffed59bf3208701781d76a46af056c52e2605572d10dd56e181",
+      "lines": [
+        "Decoder decides which inputs are needed for prediction at each time step;",
+        "e.g., “soft attention” uses a weighted combination of the input",
+        "Intuition",
+        "Input Target",
+        "A",
+        "t = 1"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "7a2e366da03b1c93a9c582004f550f1aaecdf233ebf3e9c143ccf75b4cb61487",
+      "lines": [
+        "Decoder decides which inputs are needed for prediction at each time step;",
+        "e.g., “soft attention” uses a weighted combination of the input",
+        "Intuition",
+        "Input Target",
+        "A",
+        "t = 1 t = 2",
+        "bird"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "fe8f5938794cdd5ed4519250da18a1522f1af256186f6bdabe93cbc57dc9fd10",
+      "lines": [
+        "Decoder decides which inputs are needed for prediction at each time step;",
+        "e.g., “soft attention” uses a weighted combination of the input",
+        "Intuition",
+        "Input Target",
+        "A",
+        "t = 1 t = 2",
+        "bird",
+        "t = 3",
+        "is"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "cfd55ecfeaa7a90e91b87b2ef6348256cb5448905120972410084cc518aa06cb",
+      "lines": [
+        "Decoder decides which inputs are needed for prediction at each time step;",
+        "e.g., “soft attention” uses a weighted combination of the input",
+        "Intuition",
+        "Input Target",
+        "A",
+        "t = 1 t = 2",
+        "bird",
+        "t = 3",
+        "is",
+        "t = 4",
+        "flying",
+        "…"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "263ba9a8d598eb999cf160ad90fb8cb33d4827b1d7b06cc25297db95cf6b42d8",
+      "lines": [
+        "Input Representation: Idea",
+        "Use convolutional layer that map to regions of the input (e.g., pixel) space; e.g., 1rst layer with h values",
+        "https://www.deeplearningbook.org/contents/convnets.html"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "0598965a04411980ecb2acc8639dd331116d19cec0962473ff8cb9dc8d9d0422",
+      "lines": [
+        "Input Representation: Implementation",
+        "Grids reflect relative spatial",
+        "coarseness at each layer",
+        "Each line represents a",
+        "convolutional layer",
+        "VGG16:",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015.",
+        "14×14×512 feature maps",
+        "are reshaped to be inputs"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "6c47a82834d5c076c998d58546f784c58beb3572e78871019070922f04953baa",
+      "lines": [
+        "Input Representation: Implementation",
+        "Grids reflect relative spatial",
+        "coarseness at each layer",
+        "Each line represents a",
+        "convolutional layer",
+        "VGG16:",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015.",
+        "The size of each attended to region",
+        "is therefore the size of the original",
+        "image observed at this layer"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "3c1829539e5d2c1ad991bfc12b3c90ebdcb753758326e71af437961761c8ffa2",
+      "lines": [
+        "Experimental Results",
+        "Xu et al. Show, Attend and Tell: Neural Image Caption Generation with Visual Attention. ICML 2015",
+        "State-of-the-art performance on three dataset challenges",
+        "(Flickr8k, Flicker30k, and MS COCO)"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "d90851104bddd9edfbed1b478e78a7d0389588f15108a10f4f1d0ab816ada31b",
+      "lines": [
+        "Experimental Results: Visualizations",
+        "Xu et al. Show, Attend and Tell: Neural Image Caption Generation with Visual Attention. ICML 2015",
+        "Examples where correct content was attended to when predicting the word:"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "69bef1a8d0e6f7c4a466b963ae397758ea4d14db33a498c043d3ceec365c9af2",
+      "lines": [
+        "Experimental Results: Visualizations",
+        "Xu et al. Show, Attend and Tell: Neural Image Caption Generation with Visual Attention. ICML 2015",
+        "Examples where incorrect content was attended to when predicting the word:"
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "ce19965e91c2b17cff2f7ba00fd1097f92c4a9de1e87c2015d499642071cf8cb",
+      "lines": [
+        "Today’s Topics",
+        "• Image captioning applications",
+        "• Image captioning datasets",
+        "• Image captioning evaluation",
+        "• Challenge winner: encoder decoder pipeline with attention"
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

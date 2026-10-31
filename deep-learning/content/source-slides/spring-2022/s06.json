@@ -1,0 +1,723 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s06",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/05-NN_Training.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2022/s06.pdf",
+    "sha256": "099a958894ff28acf01814ec6955f59d1d513ae4d836581d19eeb0b781dd2902",
+    "page_count": 53,
+    "license_notice": "CC BY; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "504bb9c11af2149a17b3f29e9e3421ab104bf0eed1407a5f974b063a67f78419",
+      "lines": [
+        "Neural Network Training",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2022",
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "64a336814be441ba967bec2dd7ab15845843c5fef6c9e32396cefb8ddd5a72da",
+      "lines": [
+        "Review",
+        "• Last lecture:",
+        "• Objective function: what to learn",
+        "• Gradient descent: how to learn",
+        "• Training a neural network: optimization",
+        "• Gradient descent for different activation functions",
+        "• Assignments (Canvas):",
+        "• Problem set 1 grades out",
+        "• Lab assignment 1 due Monday",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "0268d35a727fe96ea1da6d9d36c0a7be376efec4602c328df49054ebc820e4ef",
+      "lines": [
+        "Today’s Topics",
+        "• Universal approximation theorem",
+        "• Selecting model capacity: avoid overfitting and underfitting",
+        "• Selecting model hyperparameters",
+        "• Learning efficiently: optimization methods",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "0268d35a727fe96ea1da6d9d36c0a7be376efec4602c328df49054ebc820e4ef",
+      "lines": [
+        "Today’s Topics",
+        "• Universal approximation theorem",
+        "• Selecting model capacity: avoid overfitting and underfitting",
+        "• Selecting model hyperparameters",
+        "• Learning efficiently: optimization methods",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "849fa8e6dc9503bdb4b8716ee223f8ad66277d2cafe6742c7902ea2ddd38096c",
+      "lines": [
+        "Historical Context: Universal Approximator First programmable machine",
+        "2012",
+        "Machine",
+        "learning",
+        "Turing test",
+        "1945",
+        "AI",
+        "1956",
+        "1950 1959",
+        "Neural networks",
+        "with effective",
+        "learning strategy",
+        "1986",
+        "Wave 3: rise of",
+        "“deep learning”",
+        "1957 Perceptron",
+        "1847 1989 Gradient descent",
+        "1rst NN universal",
+        "approximation paper",
+        "Hornik, Stinchcombe and White. Multilayer feedforward networks are universal approximators. Neural Networks, 1989"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "f6d44fc1b2980b876918baaacdd9de9ed91763687c1f1eb1036366a8dc2fc2a4",
+      "lines": [
+        "“The universal approximation theorem means that regardless of",
+        "what function we are trying to learn, we know that a large MLP",
+        "[multilayer perceptron] will be able to represent this function.”",
+        "- Ch. 6.4.1 of Goodfellow book on Deep Learning"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "9f010029027f66cae879140e5aefdbd152584c695ee88ef7604f6b2832717be3",
+      "lines": [
+        "Historical Context: Challenge First programmable machine",
+        "2012",
+        "Machine",
+        "learning",
+        "Turing test",
+        "1945",
+        "AI",
+        "1956",
+        "1950 1959",
+        "Neural networks",
+        "with effective",
+        "learning strategy",
+        "1986",
+        "Wave 3: rise of",
+        "“deep learning”",
+        "1957 Perceptron",
+        "1847 Gradient descent",
+        "Universal approximation paper",
+        "Hornik, Stinchcombe and White. Multilayer feedforward networks are universal approximators. Neural Networks, 1989",
+        "1996",
+        "No free lunch",
+        "theorem"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "93f2ef8f7c706aae185fffb344691478c31c3ce87ae666085c77694bd29b2c9b",
+      "lines": [
+        "“no free lunch theorem… no machine learning algorithm is",
+        "universally is any better than any other.”",
+        "- Ch. 5.2.1 of Goodfellow book on Deep Learning"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "6f3e767e8962c72a037c8cdba300f8930c222a48f6e5d87106f20052c554b07e",
+      "lines": [
+        "Deep Learning Goal",
+        "Since neural networks can in theory represent ANY",
+        "function, how do we learn models that can perform",
+        "well for the data generated in real world problems…"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "0268d35a727fe96ea1da6d9d36c0a7be376efec4602c328df49054ebc820e4ef",
+      "lines": [
+        "Today’s Topics",
+        "• Universal approximation theorem",
+        "• Selecting model capacity: avoid overfitting and underfitting",
+        "• Selecting model hyperparameters",
+        "• Learning efficiently: optimization methods",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "14ea06611a96c8ec35467246e1797587ffedadd7d97574b96c00f74e3a47a547",
+      "lines": [
+        "• Model-based classification approach: separate x from o",
+        "Figure source: https://medium.com/greyatom/what-is-underfitting-and￾overfitting-in-machine-learning-and-how-to-deal-with-it-6803a989c76",
+        "Recall: Class Exercise from Lecture 1",
+        "Class volunteer:",
+        "1) Draw a straight line (linear equation)",
+        "2) Draw a parabola (quadratic equation)",
+        "3) Draw any curve",
+        "Models with increasing",
+        "representational capacity"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "f8a09db6499d5643bc9c966ef8dda30d928beb035e4396fa3d4cb71ec4b22ddc",
+      "lines": [
+        "Model Capacity",
+        "Figure source: https://towardsdatascience.com/underfitting-and￾overfitting-in-machine-learning-and-how-to-deal-with-it-6fe4a8a49dbf",
+        "Which model would you choose to separate x from o?",
+        "(a) (b) (c)"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "429ce11728fa05d07a05724dc57980b9ceb2d6ef62af56e40f73ff3b93387ec8",
+      "lines": [
+        "Model Capacity",
+        "Figure source: https://towardsdatascience.com/underfitting-and￾overfitting-in-machine-learning-and-how-to-deal-with-it-6fe4a8a49dbf",
+        "(a) (b) (c)",
+        "Underfits: too simple",
+        "to explain the data",
+        "Overfits: too complex to",
+        "generalize to a test set"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "0967e936181c0d733e12184d0d156bc8640d12685d30aa2dd98892ef9740023e",
+      "lines": [
+        "Model Capacity",
+        "Figure source: https://towardsdatascience.com/underfitting-and￾overfitting-in-machine-learning-and-how-to-deal-with-it-6fe4a8a49dbf",
+        "(a) (b) (c)",
+        "Underfits: too simple",
+        "to explain the data",
+        "Overfits: too complex to",
+        "generalize to a test set",
+        "Key challenge for neural networks",
+        "since they have many parameters"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "b98435ebf791585222d1cf0863e8bb4d5be4df68ddf1d361ef641ef52350eeaf",
+      "lines": [
+        "Model Capacity: Overfitting",
+        "Figure source: https://towardsdatascience.com/underfitting-and￾overfitting-in-machine-learning-and-how-to-deal-with-it-6fe4a8a49dbf",
+        "• What is learned by models that overfit?",
+        "• How to model noise!",
+        "• What would cause noise in a dataset?"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "a19b208347f24d8316c96dd828160c23ef6f163263e46b84ad4b047bd51c4685",
+      "lines": [
+        "Model Capacity: Overfitting",
+        "• To detect overfitting, analyze error/loss for models",
+        "tested on training data and test data",
+        "• What happens to training data error as number of",
+        "training steps increases?",
+        "• Error shrinks",
+        "• What happens to test data error as number of training",
+        "steps increases?",
+        "• Error shrinks and then grows",
+        "• Why does training error shrink and test error grow?",
+        "• Modeling noise in the training data (i.e., “overfitting”)",
+        "reduces training error at the expense of losing",
+        "knowledge that generalizes to unobserved test data",
+        "Image Source: https://chatbotslife.com/regularization-in-deep-learning-f649a45d6e0"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "7119925474045dc719cc38bd531f50999e3a4089bbd3da649f054ea77092561c",
+      "lines": [
+        "Model Capacity: How to Avoid Overfitting?",
+        "Image Source: https://chatbotslife.com/regularization-in-deep-learning-f649a45d6e0",
+        "One Remedy:",
+        "Use This Model",
+        "Early stopping Add training data",
+        "Many more techniques to be discussed in this course…"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "429ce11728fa05d07a05724dc57980b9ceb2d6ef62af56e40f73ff3b93387ec8",
+      "lines": [
+        "Model Capacity",
+        "Figure source: https://towardsdatascience.com/underfitting-and￾overfitting-in-machine-learning-and-how-to-deal-with-it-6fe4a8a49dbf",
+        "(a) (b) (c)",
+        "Underfits: too simple",
+        "to explain the data",
+        "Overfits: too complex to",
+        "generalize to a test set"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "c90edc58c5f4f32971dc0a157a078fd2d937a160987b8ab4159ef4d858e5a17d",
+      "lines": [
+        "Model Capacity: Underfitting",
+        "• To detect overfitting, analyze error/loss for models",
+        "tested on training data (and optionally test data)",
+        "• What happens to training data error as number of",
+        "training steps increases?",
+        "• Error remains high",
+        "• What happens to test data error as number of training",
+        "steps increases?",
+        "• Error remains high",
+        "Training error",
+        "Test error"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "7a9598f14172224e642f36ff2aebd46df194ccd5507cb270145cc1e6fff71cf3",
+      "lines": [
+        "Model Capacity: How to Avoid Underfitting?",
+        "Increase representational complexity, for example add",
+        "the number of layers and/or units in a neural network"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "145225199af7fc069cc778e6d317b841593468531305526e5f9fc6dc6a9426e7",
+      "lines": [
+        "Goal: learn a model with a capacity that is neither",
+        "too small nor too large so it can generalize well",
+        "when predicting on previously unseen test data"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "0268d35a727fe96ea1da6d9d36c0a7be376efec4602c328df49054ebc820e4ef",
+      "lines": [
+        "Today’s Topics",
+        "• Universal approximation theorem",
+        "• Selecting model capacity: avoid overfitting and underfitting",
+        "• Selecting model hyperparameters",
+        "• Learning efficiently: optimization methods",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "81baf7c2cec76d1421119681218c6d5b5a8481280f1ac7d6ef8163eb40c6f8e7",
+      "lines": [
+        "Recall: Our Goal is to Design Models that Generalize",
+        "Well to New, Previously Unseen Examples (Test Data)",
+        "Training Data Test Data",
+        "Example:",
+        "Label: Hairy Hairy Not Hairy Hairy",
+        "Key Challenge: how to select a model without repeatedly",
+        "observing the test data (which leads to overfitting)?"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "d5732edf99dcd1cabe1c99e4497b3417fabf13f019457b19e56007cb2f4d664d",
+      "lines": [
+        "Model Design Decisions",
+        "Key Challenge: how to select a model without repeatedly",
+        "observing the test data (which leads to overfitting)?",
+        "Model parameters (learned)",
+        "• Weights",
+        "• Biases",
+        "Model hyperparameters (selected); e.g.,",
+        "• Number of layers",
+        "• Number of units in each layer",
+        "• Activation function",
+        "• Batch size",
+        "• Learning rate",
+        "• …"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "fb92dfebebfe796d32e77a315121512b5d86cfe4eb3245501b44699b180ee773",
+      "lines": [
+        "Hyperparameter Tuning: Split Training Set So It",
+        "Can Be Used to Test Different Hyperparameters",
+        "For statistically strong results:",
+        "Small training dataset: cross validation Else: train/validation split",
+        "https://kevinzakka.github.io/2016/07/13/k-nearest-neighbor/",
+        "https://github.com/amueller/introduction_to_ml_with_pytho",
+        "n/blob/master/05-model-evaluation-and-improvement.ipynb"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "09145634d35f121338533ab1a8100a5820ceb603d599636c1e84c9793852d059",
+      "lines": [
+        "Cross-Validation: Limit Influence of Dataset Split",
+        "https://kevinzakka.github.io/2016/07/13/k-nearest-neighbor/"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "c7979580571a9eb3ec4b1fde6975eae75b216252561ba60ec0f5febfb153737e",
+      "lines": [
+        "Cross-Validation: Limit Influence of Dataset Split",
+        "Hairy Hairy Not Hairy",
+        "Input:",
+        "Label: Not Hairy",
+        "1/3 1/3 1/3",
+        "e.g., 3-fold cross-validation on training data"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "0fb22783419f988c1cf164b1c3423ad7244a8bbdebaae7beb0e1015cbbc96ec2",
+      "lines": [
+        "Cross-Validation: Limit Influence of Dataset Split",
+        "Hairy Hairy Not Hairy",
+        "Input:",
+        "Label:",
+        "Testing Data",
+        "Fold 2:",
+        "- train on k-1 partitions",
+        "- test on k partitions ?",
+        "? ? Not Hairy",
+        "Input:",
+        "Label:",
+        "Testing Data",
+        "Fold 3:",
+        "- train on k-1 partitions",
+        "- test on k partitions Not Hairy",
+        "Hairy Hairy ?",
+        "Input:",
+        "Label: Not Hairy",
+        "Testing Data",
+        "Fold 1:",
+        "- train on k-1 partitions",
+        "- test on k partitions",
+        "e.g., 3-fold cross-validation on training data"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "4038c3c97d6a5dfbc574278ff6f6bc089f29d1353480007a0627f3e326462564",
+      "lines": [
+        "Cross-Validation: Limit Influence of Dataset Split",
+        "Testing Data",
+        "?",
+        "Testing Data",
+        "? ?",
+        "Testing Data",
+        "Model performance: ?",
+        "performance across all",
+        "folds of “test” data",
+        "e.g., 3-fold cross-validation on training data"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "1268df0cb1d20ec0cdd2872e99cf01d70d6d916cbe9574d96f8cb4b319e738b0",
+      "lines": [
+        "Cross-Validation: Limit Influence of Dataset Split",
+        "Hairy Hairy Not Hairy",
+        "Input:",
+        "Label: Not Hairy",
+        "How many partitions of the data to create?",
+        "1/5 1/5 1/5 1/5 1/5",
+        "e.g., 5-fold cross-validation on training data"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "c32d5bcc59845c25055c11e7c080dea13eb20a89d02f20beaf5dae5e93b0dfd2",
+      "lines": [
+        "Cross-Validation: Limit Influence of Dataset Split",
+        "Hairy Hairy Not Hairy",
+        "Input:",
+        "Label: Not Hairy",
+        "How many iterations of train & test to run?",
+        "Iter 1: test data Iter 2: test data Iter 3: test data Iter 4: test data Iter 5: test data",
+        "e.g., 5-fold cross-validation on training data"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "51c8035a14f082d704eb631a0257ca7f6fd3e6b82a2a7c49f6d905998144ec3a",
+      "lines": [
+        "Cross-Validation: Limit Influence of Dataset Split",
+        "Hairy Hairy Not Hairy",
+        "Input:",
+        "Label: Not Hairy",
+        "How many partitions of the data to create?",
+        "1/10 1/10 1/10 1/10 1/10 1/10 1/10 1/10 1/10 1/10",
+        "e.g., 10-fold cross-validation on training data"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "157ed69b651d9106be0858f2dca4e490fff02a5b84743d0e3acbc6cc167c402b",
+      "lines": [
+        "Cross-Validation: Limit Influence of Dataset Split",
+        "Hairy Hairy Not Hairy",
+        "Input:",
+        "Label: Not Hairy",
+        "Iter 1 Iter 2 Iter 3 Iter 4 Iter 5 Iter 6 Iter 7 Iter 8 Iter 9 Iter 10",
+        "How many iterations of train & test to run?",
+        "e.g., 10-fold cross-validation on training data"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "cd29b218373a65ab9322e2efc64e7ed7d0da03152301c7a27daafc32ff4cd543",
+      "lines": [
+        "Cross-Validation: Limit Influence of Dataset Split",
+        "Hairy Hairy Not Hairy",
+        "Input:",
+        "Label: Not Hairy",
+        "What are the (dis)advantages of",
+        "using larger values for “k”?",
+        "e.g., k-fold cross-validation on training data"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "8d02b5de82d0d091204df17b26df8c6edf7a1c721d465d78bbb255b153802071",
+      "lines": [
+        "Cross-Validation: Limit Influence of Dataset Split",
+        "https://kevinzakka.github.io/2016/07/13/k-nearest-neighbor/",
+        "Typically, select the",
+        "hyperparameters",
+        "that lead to the",
+        "best results overall",
+        "across all the folds"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "fb92dfebebfe796d32e77a315121512b5d86cfe4eb3245501b44699b180ee773",
+      "lines": [
+        "Hyperparameter Tuning: Split Training Set So It",
+        "Can Be Used to Test Different Hyperparameters",
+        "For statistically strong results:",
+        "Small training dataset: cross validation Else: train/validation split",
+        "https://kevinzakka.github.io/2016/07/13/k-nearest-neighbor/",
+        "https://github.com/amueller/introduction_to_ml_with_pytho",
+        "n/blob/master/05-model-evaluation-and-improvement.ipynb"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "02be7c4a2e99c1825036aa45240bf640b79db83d8ef635ee46b90ee0d63e25e2",
+      "lines": [
+        "Validation Split",
+        "• Split training data into “train” and “validation” datasets",
+        "• Hyperparameter selection: test models trained with different",
+        "hyperparameter values on the validation set to find the best one",
+        "• Final model: retrain using the model hyperparameters selected from",
+        "validation set testing using the data in the training AND validation splits",
+        "https://github.com/amueller/introduction_to_ml_with_python/blob/master/05-model-evaluation-and-improvement.ipynb"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "fb92dfebebfe796d32e77a315121512b5d86cfe4eb3245501b44699b180ee773",
+      "lines": [
+        "Hyperparameter Tuning: Split Training Set So It",
+        "Can Be Used to Test Different Hyperparameters",
+        "For statistically strong results:",
+        "Small training dataset: cross validation Else: train/validation split",
+        "https://kevinzakka.github.io/2016/07/13/k-nearest-neighbor/",
+        "https://github.com/amueller/introduction_to_ml_with_pytho",
+        "n/blob/master/05-model-evaluation-and-improvement.ipynb"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "fddf7e892c9aba9116777bd68c37c471fccb8b82d317a5d0170043ff2c5aee95",
+      "lines": [
+        "Stratified Dataset Splits",
+        "• Preserve frequencies of each category in each dataset split; e.g.,",
+        "https://github.com/amueller/introduction_to_ml_with_python/blob/master/05-model-evaluation-and-improvement.ipynb"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "0268d35a727fe96ea1da6d9d36c0a7be376efec4602c328df49054ebc820e4ef",
+      "lines": [
+        "Today’s Topics",
+        "• Universal approximation theorem",
+        "• Selecting model capacity: avoid overfitting and underfitting",
+        "• Selecting model hyperparameters",
+        "• Learning efficiently: optimization methods",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "957a10c09cf5907bb3776663b9456e9f5b495c57143fd8dacd2a0d0c6e39b0b1",
+      "lines": [
+        "Challenge: Train Faster!!!",
+        "Algorithm training can take hours, days, weeks, months,",
+        "or more with big data and so many parameters…"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "641ca1f5ec3d7d3be78ba5a6ab675f7d92cd9197513dd23fecc04c1622784cde",
+      "lines": [
+        "Recall: How Neural Networks Learn",
+        "• Repeat until stopping criterion met:",
+        "1. Forward pass: propagate",
+        "training data through model",
+        "to make prediction",
+        "2. Quantify the dissatisfaction",
+        "with a model’s results on the",
+        "training data",
+        "3. Backward pass: using",
+        "predicted output, calculate",
+        "gradients backward to assign",
+        "blame to each model",
+        "parameter",
+        "4. Update each parameter",
+        "using calculated gradients",
+        "Figure from: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul,",
+        "Jeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "6c5b55c37ded39efb9b405e3c661bd6baa22ee242d8de2d8677fb873e29aeda6",
+      "lines": [
+        "Train Faster: How to Update Using Gradient?",
+        "• Demo at http://cs231n.github.io/neural-networks-3/#update"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "29f5b15634b8be81f530501663998a705ea787706bd46d090844bb47a3450692",
+      "lines": [
+        "Train Faster: How to Update Using Gradient?",
+        "• Vanilla Approach:",
+        "Figure from: https://rasbt.github.io/mlxtend/user_guide/general_concepts/gradient-optimization/",
+        "Inefficient since",
+        "steps get smaller as",
+        "gradient gets smaller",
+        "http://cs231n.github.io/neural-networks-3/#update",
+        "Parameters Gradient"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "ad9706d4df57c2799271960b5a9ea43661cf3fa02be0906f48d784623dd55cfa",
+      "lines": [
+        "Train Faster: How to Update Using Gradient?",
+        "• Momentum optimization:",
+        "• Analogy: roll a ball down a hill and it will pick up momentum",
+        "Figure from: https://medium.com/ai-society/hello-gradient-descent-ef74434bdfa5"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "31199a7cd86220b3c19a2e3e973edf54a69d70c506d50eee3aa0f817077ab993",
+      "lines": [
+        "Train Faster: How to Update Using Gradient?",
+        "• Momentum optimization:",
+        "• Analogy: roll a ball down a hill and it will pick up momentum",
+        "• What are advantages and disadvantages?",
+        "• Can roll past local minima J",
+        "• It may roll past optimum and oscillate around it L",
+        "• Another hyperparameter to tune: mu L",
+        "http://cs231n.github.io/neural-networks-3/#update",
+        "Like friction; values range",
+        "from 0 to 1 with larger",
+        "being greater friction",
+        "Gradient not used for speed",
+        "but instead acceleration",
+        "Velocity vector captures cumulative",
+        "direction of previous gradients;",
+        "initialized to 0"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "f4cdb440d579aac1bb170f6706de1e8f000e0a13126c26e8ef0edc427aace7af",
+      "lines": [
+        "Train Faster: How to Update Using Gradient?",
+        "• Step decay:",
+        "• Reduce the learning rate by some factor every few epochs",
+        "• Exponential decay",
+        "• 1/t decay",
+        "• Adapt learning rate per-parameter",
+        "• e.g., AdaGrad, RMSprop, and Adam (i.e., adaptive momentum – very popular in practice)",
+        "http://cs231n.github.io/neural-networks-3/#update"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "9350700da43f853041b5cccc646abe9076d2118c28f1f2e8067bc413e9a6b6eb",
+      "lines": [
+        "Monitor Loss/Error During Training",
+        "• What should happen to the loss function value during training?",
+        "https://cs231n.github.io/neural-networks-3/#update"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "218d09f62ebb193269b62780ed6e5bcbe1d8ceecda0b52f4e863b4e0afadb900",
+      "lines": [
+        "Monitor Loss/Error: It Should Shrink",
+        "And have fun along the way: https://lossfunctions.tumblr.com/"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "b48978c24a9c0df1627bcfc4852001a8d4a0a1b0e4c32d036e65d80fbbbd2fc2",
+      "lines": [
+        "Discussion: Given These Loss Curves, What",
+        "Do You Think Is Happening With Learning?",
+        "(a) (b) (c)"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "0268d35a727fe96ea1da6d9d36c0a7be376efec4602c328df49054ebc820e4ef",
+      "lines": [
+        "Today’s Topics",
+        "• Universal approximation theorem",
+        "• Selecting model capacity: avoid overfitting and underfitting",
+        "• Selecting model hyperparameters",
+        "• Learning efficiently: optimization methods",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "0268d35a727fe96ea1da6d9d36c0a7be376efec4602c328df49054ebc820e4ef",
+      "lines": [
+        "Today’s Topics",
+        "• Universal approximation theorem",
+        "• Selecting model capacity: avoid overfitting and underfitting",
+        "• Selecting model hyperparameters",
+        "• Learning efficiently: optimization methods",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

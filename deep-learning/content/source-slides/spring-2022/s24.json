@@ -1,0 +1,1018 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s24",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/19_TransferLearning.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2022/s24.pdf",
+    "sha256": "8947bf7ea3167ba4d1d251abf8d0fc7326a79f58966bcee0f45cd721544e8162",
+    "page_count": 77,
+    "license_notice": "CC BY; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "2093b568933ecc30bbce8e573d5ceb8e209daef6de0b802e4c0e683e97055d8f",
+      "lines": [
+        "Transfer Learning:",
+        "Self-Supervised Learning",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2022",
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "bf51f6437481e41a3390a237981505f64dfbc6c50771f787b643e3e2671eafb2",
+      "lines": [
+        "Review",
+        "• Last lecture topic:",
+        "• Visual dialog applications",
+        "• Visual dialog dataset",
+        "• Visual dialog evaluation",
+        "• Mainstream 2017 challenges: baseline approaches",
+        "• Assignments (Canvas)",
+        "• Lab assignment 4 due Friday",
+        "• Final project proposal due next week",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "2e5c94712fcb9c541bde3e5c7c2268194b5e08fc969f7e4a0ec9ea5cb9c686b2",
+      "lines": [
+        "Today’s Topics",
+        "• Transfer learning definition",
+        "• Overview of self-supervised learning",
+        "• Generative-based methods",
+        "• Generative adversarial networks",
+        "• Context-based methods"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "2e5c94712fcb9c541bde3e5c7c2268194b5e08fc969f7e4a0ec9ea5cb9c686b2",
+      "lines": [
+        "Today’s Topics",
+        "• Transfer learning definition",
+        "• Overview of self-supervised learning",
+        "• Generative-based methods",
+        "• Generative adversarial networks",
+        "• Context-based methods"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "ce970281e17c9687d60da7d54b3d7645c1ce0a8b26110e63d56fb2edd1069c17",
+      "lines": [
+        "Goal: Avoid Always Relying on Large Labeled Datasets",
+        "Caltech 101 (2004), Caltech 256 (2006) PASCAL (2007-12)",
+        "LabelMe (2007) ImageNet (2009)",
+        "MS COCO (2014)",
+        "SUN (2010)",
+        "Places (2014)",
+        "BSD (2001)",
+        "Visual Genome (2016)",
+        "Slide Credit: http://vision.cs.utexas.edu/slides/mit-ibm-august2018.pdf",
+        "- Expensive",
+        "- Relatively Slow to Build Dataset"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "43c02c739decc403a8f852243789f3b0deb57e5b4914631a14f9001b176320a1",
+      "lines": [
+        "Rather than Learn Solution from Scratch For",
+        "Each Task/Domain Pair… (Problem for B)",
+        "https://ruder.io/transfer-learning/",
+        "Insufficient",
+        "Labeled",
+        "Data",
+        "Sufficient",
+        "Labeled",
+        "Data"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "daef4b43af4f21ae58bda7bf387395f9e24bafb2ce6c0de3bd5cafc00134269a",
+      "lines": [
+        "Idea: Improve the Learning for Conditions Not",
+        "Observed During Training",
+        "https://ruder.io/transfer-learning/",
+        "Insufficient",
+        "Labeled",
+        "Data",
+        "Sufficient",
+        "Labeled",
+        "Data"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "25beee972c4479c4fa9cdd58c1be0c152791946d35e3c8398067f713085c7ac7",
+      "lines": [
+        "Transfer Learning When Data Sampling Changes",
+        "(e.g., Sentiment Classification)",
+        "News (formal and lengthy) Tweets (informal and brief)",
+        "https://ruder.io/transfer-learning/"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "c0d2d537bf9a7439adbde9e3350ee98894a36c22cd19486b1038034c11822362",
+      "lines": [
+        "Transfer Learning When Feature Space Changes",
+        "(e.g., Sentiment Classification in Different Language)",
+        "https://www.nytimes.com/wirecutter/blog/lets-talk-about-amazon-reviews/"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "0f74117d2e9150d9c93ff6040a56698e5f2910cac414eac247d903b8c17b2174",
+      "lines": [
+        "Transfer Learning When Target Categories Change",
+        "(e.g., Items in Low Income Household vs ImageNet)",
+        "Zhao et al. Men also like shopping: Reducing gender",
+        "bias amplification using corpus-level constraints. 2017.",
+        "DeVries et al. Does object recognition work",
+        "for everyone? CVPR workshops, 2019."
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "a4fda0654b6292ef14e1fa3b09661727a723cb49a0753c0e75bfa6e10d8f2d9e",
+      "lines": [
+        "Transfer Learning When Limited Data Available",
+        "(e.g., Items in Low Income Household vs ImageNet)",
+        "Zhao et al. Men also like shopping: Reducing gender",
+        "bias amplification using corpus-level constraints. 2017.",
+        "DeVries et al. Does object recognition work",
+        "for everyone? CVPR workshops, 2019."
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "efc00829d1182b6da54ae3393e1a488e1f6f03ee4ee6ed5b21ffc6d91e9cd6fc",
+      "lines": [
+        "Transfer Learning Approaches",
+        "Kamath et al. Deep Learning for NLP and Speech Recognition. 2019.",
+        "Today’s",
+        "focus",
+        "Next",
+        "lecture"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "e68ba5cba4b928aa5c935d2e34c889527f86cb4d297b147a813be70c6473273f",
+      "lines": [
+        "Transfer Learning: Key Challenges",
+        "• What to transfer? i.e., what knowledge generalizes",
+        "• How to transfer?",
+        "• When to transfer? i.e., transferring knowledge can harm performance",
+        "Pan and Yang. A Survey on Transfer Learning. 2010."
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "2e5c94712fcb9c541bde3e5c7c2268194b5e08fc969f7e4a0ec9ea5cb9c686b2",
+      "lines": [
+        "Today’s Topics",
+        "• Transfer learning definition",
+        "• Overview of self-supervised learning",
+        "• Generative-based methods",
+        "• Generative adversarial networks",
+        "• Context-based methods"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "06f62bc178f3f03bf6241f6332038f81a65695fbf740a8b5e2294e837f7efa27",
+      "lines": [
+        "Goal: Create Generalizable Features",
+        "Image Source: https://www.mathworks.com/help/deeplearning/ug/transfer-learning-using-alexnet.html",
+        "Key observation: features from a pretrained network can be useful for other datasets/tasks"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "034865235be852020d5c75e7444d27c47b0814b0ecec002d3da19346e2c19997",
+      "lines": [
+        "Intuition: How Do Humans Learn?",
+        "https://pixabay.com/en/toddler-learning-book-child-423227/",
+        "https://www.maxpixel.net/Father-Child-Family-Dad-Baby-Daughter-3046495",
+        "With Supervision Unsupervised",
+        "Learn from instruction Learn from experience",
+        "Today’s",
+        "scope"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "3c5bcc58c1119a61c491a489c41934a2d63f0526f944484fb5859905fb583c70",
+      "lines": [
+        "Self-Supervised Learning: Data Gives Supervision",
+        "https://lovevery.com/community/blog/child-development/the￾surprising-learning-power-of-a-household-mirror/",
+        "- Relatively Cheap",
+        "- Can Collect Data Fast",
+        "https://www.rockettes.com/blog/ho",
+        "w-to-use-the-mirror-in-dance-class/"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "43ed59372a9d563f3e5021b57bde69e4f923860d1856da9f192b9afc7b7c7dba",
+      "lines": [
+        "Self-Supervised Learning: Data Gives Supervision",
+        "Image Source: https://www.mathworks.com/help/deeplearning/ug/transfer-learning-using-alexnet.html",
+        "Approach: create features that are useful for other datasets/tasks"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "41d94940eb5f30594d34dec923ea82b8ed6598668ac8843b2f5f4a6ac645b2ed",
+      "lines": [
+        "Self-Supervised Learning Methods Already",
+        "Covered in This Course (Many NLP Methods)",
+        "https://www.analyticsvidhya.com/blog/2017/",
+        "12/introduction-to-recurrent-neural-networks/",
+        "…",
+        "Character prediction with RNNs",
+        "https://towardsdatascience.com/word2vec-skip￾gram-model-part-1-intuition-78614e4d6e0b",
+        "Word embeddings",
+        "(e.g., word2vec; predict",
+        "nearby word for given word)",
+        "https://static.packt-cdn.com/downloads/",
+        "9781838821593_ColorImages.pdf",
+        "Transformers",
+        "(e.g., BERT and",
+        "LXMERT with masking)"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "c8709a319a15fe1e61c78d42e88654048cb008a94b55dcdbcaaf53d52fb2d020",
+      "lines": [
+        "Next: self-supervised learning methods",
+        "explored in computer vision to learn",
+        "visual features which generalize"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "2e5c94712fcb9c541bde3e5c7c2268194b5e08fc969f7e4a0ec9ea5cb9c686b2",
+      "lines": [
+        "Today’s Topics",
+        "• Transfer learning definition",
+        "• Overview of self-supervised learning",
+        "• Generative-based methods",
+        "• Generative adversarial networks",
+        "• Context-based methods"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "cfc6137ee3a2bc1ce226d28323d56e4abc68bbe0ae346f48b9d604c21d4d3f8d",
+      "lines": [
+        "Generative-based Methods",
+        "• Autoencoder: predict self",
+        "• Colorization: convert grayscale to color",
+        "• Video prediction: predict future frames"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "cfc6137ee3a2bc1ce226d28323d56e4abc68bbe0ae346f48b9d604c21d4d3f8d",
+      "lines": [
+        "Generative-based Methods",
+        "• Autoencoder: predict self",
+        "• Colorization: convert grayscale to color",
+        "• Video prediction: predict future frames"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "7b6314290ce022c32950511f473ea187dc7da8a25a4c23dbbf5f6b7f4f23eb38",
+      "lines": [
+        "Image Autoencoder Architecture",
+        "• Learn to copy the input to the output",
+        "Figure Credit: https://lazyprogrammer.me/a-tutorial-on-autoencoders/"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "832dff3066b8d9c3253d7580a038ed39a6b438dc1b46dbfa9254ef168fdb9829",
+      "lines": [
+        "Image Autoencoder Architecture",
+        "• Consists of two parts:",
+        "• Encoder: compresses inputs to",
+        "an internal representation",
+        "• Decoder: tries to reconstruct",
+        "the input from the internal",
+        "representation",
+        "Figure Credit: https://www.datacamp.com/community/tutorials/autoencoder-keras-tutorial"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "9412918f091149c9c04b69f875add43552ea96ea834d00890c15ddb9d46447cb",
+      "lines": [
+        "Image Autoencoder Architecture",
+        "• Given this input 620 x 426 image (264,120 pixels):",
+        "• What would a perfect autoencoder predict?",
+        "• Itself",
+        "• What number of nodes are in the final layer?",
+        "• 264,120",
+        "Figure Credit: https://lazyprogrammer.me/a-tutorial-on-autoencoders/"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "22503c959a0ee699c1bc9539af68226fd9ab813dfcb0e7dc0abd6a2924bff0ee",
+      "lines": [
+        "Image Autoencoders",
+        "• Intuition: which number sequence is easier to remember?",
+        "• A: 30, 27, 22, 11, 6, 8, 7, 2",
+        "• B: 30, 15, 46, 23, 70, 35, 106, 53, 160, 80, 40, 20, 10, 5",
+        "• B: need learn only two rules",
+        "• If even, divide by 2",
+        "• If odd, multiply by 3 and add 1",
+        "more compact",
+        "representation",
+        "Figure Credit: https://lazyprogrammer.me/a-tutorial-on-autoencoders/"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "c9ab968c6ed94d03c5e36d958a5a85216577546d11b8633cc34d20ecd0226ea6",
+      "lines": [
+        "Image Autoencoder Training",
+        "Repeat until stopping criterion met:",
+        "1. Forward pass: propagate training data through network to make prediction",
+        "2. Backward pass: using predicted output, calculate error gradients backward",
+        "3. Update each weight using calculated gradients"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "1b66451d9ce29d447043b7b7e80d2588e51f5dd3fce9087df73e7fc05efa6804",
+      "lines": [
+        "Image Autoencoder Features",
+        "• e.g., training data:",
+        "• 1 image taken from 10 million YouTube videos",
+        "• Each image is in color and 200x200 pixels",
+        "• What features do you think it learned?",
+        "Quoc V. Le et al., Building High-level Features Using Large Scale Unsupervised Learning; ICML 2013."
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "83874a58e9ec8826164f3f2be5c0edf1f1625e7a44bf014773fe0eec3b6dec60",
+      "lines": [
+        "Image Autoencoder Features",
+        "• e.g., features learned include:",
+        "Quoc V. Le et al., Building High-level Features Using Large Scale Unsupervised Learning; ICML 2013.",
+        "human face cat face human body"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "5256804d69e781e26d204206cabf838efda2add7e26296f2bc86032b2c889ece",
+      "lines": [
+        "Video Autoencoder",
+        "• Train RNN to predict input sequence",
+        "Srivastava et al., Unsupervised Learning of Video Representations using LSTMs; ICML 2015."
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "cfc6137ee3a2bc1ce226d28323d56e4abc68bbe0ae346f48b9d604c21d4d3f8d",
+      "lines": [
+        "Generative-based Methods",
+        "• Autoencoder: predict self",
+        "• Colorization: convert grayscale to color",
+        "• Video prediction: predict future frames"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "1179a0e10eadc27865df379e11f6f7029625d65b4c1e075560129724eb4dd4e0",
+      "lines": [
+        "Colorization: Plausible Coloring Results",
+        "R. Zhang, P. Isoa, and A. A. Efros. Colorful Image Colorization. ECCV 2016."
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "777ca91627dd9aee04c3d247d1afbbbd527e4de62089d727fd95ff2324255ce7",
+      "lines": [
+        "Colorization: Plausible Coloring Results",
+        "Figure Sources: https://www.flickr.com/photos/applesnpearsau/12197380673/in/photostream/;",
+        "https://commons.wikimedia.org/wiki/File:JACQUES_VILET_-_1982,_Les_Fruits_du_Jardin.jpg"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "37ebb4311e2023ea21a8a8dc99ced3f9cff795d8dbdaacd80599a52bc66d59c5",
+      "lines": [
+        "Image Colorization Architecture",
+        "R. Zhang, P. Isoa, and A. A. Efros. Colorful Image Colorization. ECCV 2016.",
+        "Input Output"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "640525ebebd68e441abe069432b7d6240cd1479ee8ea63704e2bfb32694649c1",
+      "lines": [
+        "Image Colorization Architecture: CIE Lab Color",
+        "L indicates grayscale information",
+        "whereas a and b represent colors",
+        "Figure source: https://www.researchgate.net/figure/The￾cubical-CIE-Lab-color-space_fig3_23789543"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "20e206ddc9637dfaadbff00d26c6daa80788676e87fc613ee417f6780486e719",
+      "lines": [
+        "Image Colorization Architecture",
+        "R. Zhang, P. Isoa, and A. A. Efros. Colorful Image Colorization. ECCV 2016.",
+        "Create image by combining",
+        "predicted a and b channels",
+        "with the L channel"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "7080b6505399443b2a7236149a8c74699a14a23e4b7a0caf3dfba66946f326a5",
+      "lines": [
+        "Image Colorization Architecture",
+        "Figure source: http://videolectures.net/eccv2016_zhang_image_colorization/"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "7080b6505399443b2a7236149a8c74699a14a23e4b7a0caf3dfba66946f326a5",
+      "lines": [
+        "Image Colorization Architecture",
+        "Figure source: http://videolectures.net/eccv2016_zhang_image_colorization/"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "7c46ca4acfbece5451f19e1dc5abb44cdb5290f96421c041dd2d696d3c78ee41",
+      "lines": [
+        "Image Colorization Training",
+        "R. Zhang, P. Isoa, and A. A. Efros. Colorful Image Colorization. ECCV 2016.",
+        "For 1.3 million ImageNet images, repeat until stopping criterion met:",
+        "1. Forward pass: propagate training data through network to make prediction",
+        "2. Backward pass: using predicted output, calculate error gradients backward",
+        "3. Update each weight using calculated gradients"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "2fe3b4036f7f5ff981f3a91f8251d2c1deca8f8e2ad715f9e0e91171e9457596",
+      "lines": [
+        "Image Colorization Features",
+        "Task requires understanding an image at the pixel and semantic-level",
+        "Figure source: http://richzhang.github.io/colorization/"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "cfc6137ee3a2bc1ce226d28323d56e4abc68bbe0ae346f48b9d604c21d4d3f8d",
+      "lines": [
+        "Generative-based Methods",
+        "• Autoencoder: predict self",
+        "• Colorization: convert grayscale to color",
+        "• Video prediction: predict future frames"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "7ec06a0c315fdc54bbe7766c1cf4b7aa0d15ef3c0cf575fd8f3cca9767362298",
+      "lines": [
+        "Video Prediction",
+        "• Train RNN to predict future frames",
+        "• Limitations: identifying new objects",
+        "and background as a camera moves",
+        "Srivastava et al., Unsupervised Learning of Video Representations using LSTMs; ICML 2015.",
+        "What type of features might be learned?"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "cfc6137ee3a2bc1ce226d28323d56e4abc68bbe0ae346f48b9d604c21d4d3f8d",
+      "lines": [
+        "Generative-based Methods",
+        "• Autoencoder: predict self",
+        "• Colorization: convert grayscale to color",
+        "• Video prediction: predict future frames"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "2e5c94712fcb9c541bde3e5c7c2268194b5e08fc969f7e4a0ec9ea5cb9c686b2",
+      "lines": [
+        "Today’s Topics",
+        "• Transfer learning definition",
+        "• Overview of self-supervised learning",
+        "• Generative-based methods",
+        "• Generative adversarial networks",
+        "• Context-based methods"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "65489aa3263f717c751aa36ea3f7c1ebcdd0bab416544de6b8784ae156a58100",
+      "lines": [
+        "Generative adversarial networks",
+        "• Generative adversarial networks (GANs)",
+        "• Context encoder"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "65489aa3263f717c751aa36ea3f7c1ebcdd0bab416544de6b8784ae156a58100",
+      "lines": [
+        "Generative adversarial networks",
+        "• Generative adversarial networks (GANs)",
+        "• Context encoder"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "832eff232504921e9ab3a7092f70018c9f8779ca3dcb7a35419ccbdbb23d021e",
+      "lines": [
+        "GAN: Basic Architecture",
+        "https://machinelearningmastery.com/what-are-generative-adversarial-networks-gans/",
+        "e.g., upsample noise to image of desired size",
+        "classify which examples are real",
+        "Consists of two models that",
+        "compete against each other"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "4f4b2e53efae7f7af1c3483af0042d81b428cba95649ae613de82294550ff893",
+      "lines": [
+        "GAN: Training",
+        "https://machinelearningmastery.com/what-are-generative-adversarial-networks-gans/",
+        "The two models are iteratively trained separately",
+        "- Train discriminator using fake and real images",
+        "- Train generator using just fake images and",
+        "penalize it when the discriminator recognizes",
+        "images are fake"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "94aae6eefe88b5515d215f48552f2a1fe2c9a9b449b4f72e8750718be6990546",
+      "lines": [
+        "GAN: Discriminator Loss Function",
+        "BRIEF ARTICLE",
+        "THE AUTHOR",
+        "Maximum likelihood",
+        "✓⇤ = arg max",
+        "✓",
+        "Ex⇠pdata log pmodel(x | ✓)",
+        "Fully-visible belief net",
+        "pmodel(x)= pmodel(x1)",
+        "Y",
+        "n",
+        "i=2",
+        "pmodel(xi | x1,...,xi￾1)",
+        "Change of variables",
+        "y = g(x) ) px(x)= py(g(x))",
+        "￾",
+        "￾",
+        "￾",
+        "￾",
+        "det ✓@g(x)",
+        "@x",
+        "◆￾",
+        "￾",
+        "￾",
+        "￾",
+        "Variational bound",
+        "log p(x) ￾ log p(x) ￾ DKL (q(z)kp(z | x))(1)",
+        "=Ez⇠q log p(x, z)+ H(q)(2)",
+        "Boltzmann Machines",
+        "p(x)= 1",
+        "Z exp (￾E(x, z))(3)",
+        "Z =",
+        "X",
+        "x",
+        "X",
+        "z",
+        "exp (￾E(x, z))(4)",
+        "Generator equation",
+        "x = G(z; ✓(G)",
+        ")",
+        "Minimax",
+        "J(D) = ￾1",
+        "2",
+        "Ex⇠pdata log D(x) ￾ 1",
+        "2",
+        "Ez log (1 ￾ D (G(z)))(5)",
+        "J(G) = ￾J(D) (6)",
+        "1",
+        "https://arxiv.org/pdf/1701.00160.pdf",
+        "Real image Input noise",
+        "Discriminator wants a",
+        "value of 1 for real images",
+        "Discriminator wants a",
+        "value of 0 for fake images",
+        "Discriminator tries to minimize classification error"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "0b996ef352dbc15d0fd6d316e408ba9cd0153d618839b448ac57f94198f5b520",
+      "lines": [
+        "GAN: Generator Loss Function",
+        "https://arxiv.org/pdf/1701.00160.pdf",
+        "BRIEF ARTICLE",
+        "THE AUTHOR",
+        "Maximum likelihood",
+        "✓⇤ = arg max",
+        "✓",
+        "Ex⇠pdata log pmodel(x | ✓)",
+        "Fully-visible belief net",
+        "pmodel(x)= pmodel(x1)",
+        "Y",
+        "n",
+        "i=2",
+        "pmodel(xi | x1,...,xi￾1)",
+        "Change of variables",
+        "y = g(x) ) px(x)= py(g(x))",
+        "￾",
+        "￾",
+        "￾",
+        "￾",
+        "det ✓@g(x)",
+        "@x",
+        "◆￾",
+        "￾",
+        "￾",
+        "￾",
+        "Variational bound",
+        "log p(x) ￾ log p(x) ￾ DKL (q(z)kp(z | x))(1)",
+        "=Ez⇠q log p(x, z)+ H(q)(2)",
+        "Boltzmann Machines",
+        "p(x)= 1",
+        "Z exp (￾E(x, z))(3)",
+        "Z =",
+        "X",
+        "x",
+        "X",
+        "z",
+        "exp (￾E(x, z))(4)",
+        "Generator equation",
+        "x = G(z; ✓(G)",
+        ")",
+        "Minimax",
+        "J(D) = ￾1",
+        "2",
+        "Ex⇠pdata log D(x) ￾ 1",
+        "2",
+        "Ez log (1 ￾ D (G(z)))(5)",
+        "J(G) = ￾J(D) (6)",
+        "1",
+        "BRIEF ARTICLE",
+        "THE AUTHOR",
+        "Maximum likelihood",
+        "✓⇤ = arg max",
+        "✓",
+        "Ex⇠pdata log pmodel(x | ✓)",
+        "Fully-visible belief net",
+        "pmodel(x)= pmodel(x1)",
+        "Y",
+        "n",
+        "i=2",
+        "pmodel(xi | x1,...,xi￾1)",
+        "Change of variables",
+        "y = g(x) ) px(x)= py(g(x))",
+        "￾",
+        "￾",
+        "￾",
+        "￾",
+        "det ✓@g(x)",
+        "@x",
+        "◆￾",
+        "￾",
+        "￾",
+        "￾",
+        "Variational bound",
+        "log p(x) ￾ log p(x) ￾ DKL (q(z)kp(z | x))(1)",
+        "=Ez⇠q log p(x, z)+ H(q)(2)",
+        "Boltzmann Machines",
+        "p(x)= 1",
+        "Z exp (￾E(x, z))(3)",
+        "Z =",
+        "X",
+        "x",
+        "X",
+        "z",
+        "exp (￾E(x, z))(4)",
+        "Generator equation",
+        "x = G(z; ✓(G)",
+        ")",
+        "Minimax",
+        "J(D) = ￾1",
+        "2",
+        "Ex⇠pdata log D(x) ￾ 1",
+        "2",
+        "Ez log (1 ￾ D (G(z)))(5)",
+        "J(G) = ￾J(D) (6)",
+        "Non-saturating",
+        "J(D) = ￾1",
+        "2",
+        "Ex⇠pdata log D(x) ￾ 1",
+        "2",
+        "Ez log (1 ￾ D (G(z)))(7)",
+        "J(G) = ￾1",
+        "2",
+        "Ez log D (G(z))(8)",
+        "1",
+        "Want the discriminator to mistakenly",
+        "arrive at a value of 1 for fake images",
+        "Input noise",
+        "Generator tries to maximize classification error"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "f099fb61566122bc959634ea75b6bf4926109417f205e9ebbe6dca31c65f6814",
+      "lines": [
+        "DGANs: GANs that Use Convolutional Layers",
+        "Radford et al. Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks. arXiv 2015.",
+        "Bedrooms generated by observing over 3M bedroom images"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "f8119de9db774889d3f61bf06c62ecbe0ff17f48cb04acd603fb620477415d79",
+      "lines": [
+        "DGANs: GANs that Use Convolutional Layers",
+        "Radford et al. Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks. arXiv 2015.",
+        "What objects does it learn to generate?"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "8d575f776fd65fcb9e876868e0197c7492350cb928442f53eca02d7fbb9f8139",
+      "lines": [
+        "DGANs: GANs that Use Convolutional Layers",
+        "Radford et al. Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks. arXiv 2015.",
+        "What objects may it not have learned to generate?"
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "2e0027e7a55f82aa85a6d761da2930ad2bae9e651e5775e95f93bed307231438",
+      "lines": [
+        "DGANs: GANs that Use Convolutional Layers",
+        "Radford et al. Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks. arXiv 2015.",
+        "Faces generated by observing over 3M images of 10K people"
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "25dd1dadef3988521a03fedd1a58a5ea04aca0ec12d73474721e5a7d0280fb08",
+      "lines": [
+        "DGANs: GANs that Use Convolutional Layers",
+        "Radford et al. Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks. arXiv 2015.",
+        "What does it generate poorly or not all?"
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "65489aa3263f717c751aa36ea3f7c1ebcdd0bab416544de6b8784ae156a58100",
+      "lines": [
+        "Generative adversarial networks",
+        "• Generative adversarial networks (GANs)",
+        "• Context encoder"
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "a45fad4ff00eee2b32e867e9500f245afc2c8625b2ca6d68d2ea67375bc8a141",
+      "lines": [
+        "Task: Hole Filling",
+        "• What might fit into this hole?",
+        "• Many items may plausibly fit into the hole:",
+        "• Challenge: have up to 1 known ground truth region per hole"
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "bf86008f7e27c5b5d6007650758824c81ae65fb245a695c76a6d3e95a4a427eb",
+      "lines": [
+        "Architecture",
+        "Figure source: https://medium.com/knowledge-engineering-seminar/context-encoder-image-inpainting-using-gan-ccd6a1ea5fb7",
+        "Image with hole Follows AlexNet architecture Patch for hole Transposed convolutions Encoded",
+        "context"
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "e3064d1e763a204f0a2fdf2687605623e10937ab5be2c4600601408dd8825dad",
+      "lines": [
+        "Training: Loss Functions ( )",
+        "Figure source: https://medium.com/knowledge-engineering-seminar/context-encoder-image-inpainting-using-gan-ccd6a1ea5fb7"
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "22c89804a7a7b36ce9c8e364ad6030fda0de64daeb2ab271640aa02cb7c25ed4",
+      "lines": [
+        "Training: Reconstruction Loss",
+        "(i.e., Self-Supervised Learning Approach)",
+        "Pathak et al., Context encoders: Feature learning by inpainting; CVPR 2016",
+        "Learns to fit into the context by",
+        "computing the L2 loss to compare",
+        "the original patch content (P) to",
+        "the predicted patch content",
+        "created by the model when given",
+        "the image with hole (CE(X’))."
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "d7d3c34c2bca22af1e3335ffdc2df64d00d860b91e420eeafcb59908c756a608",
+      "lines": [
+        "Training: Reconstruction Loss",
+        "(i.e., Self-Supervised Learning Approach)",
+        "Pathak et al., Context encoders: Feature learning by inpainting; CVPR 2016",
+        "Why might training with this loss function alone lead to blurry results?",
+        "- It averages the multiple plausible inpaintings for a hole"
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "41a78c8adc63a384dc1158b3a7419b80914bf1ece9667834f5b2d08a6dfc69ce",
+      "lines": [
+        "Training: Loss Functions ( )",
+        "Figure source: https://medium.com/knowledge-engineering-seminar/context-encoder-image-inpainting-using-gan-ccd6a1ea5fb7",
+        "Remedy is to introduce an adversarial loss:"
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "777798e3a38b47bf592e1f3c86e9725512a8a99d9b37e8b32cdff4b829d85b61",
+      "lines": [
+        "Training: Datasets",
+        "Pathak et al., Context encoders: Feature learning by inpainting; CVPR 2016",
+        "Training completed on ImageNet (all 1.2M and a 100K subset) for three hole types"
+      ]
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "5fc322ebfbce0bf968d375113e1845aa5bd8871f1d39649b7a1580ddfa04abe4",
+      "lines": [
+        "Results: https://www.cs.cmu.edu/~dpathak/context_encoder/",
+        "Pathak et al., Context encoders: Feature learning by inpainting; CVPR 2016",
+        "What type of features might be learned?"
+      ]
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "2e5c94712fcb9c541bde3e5c7c2268194b5e08fc969f7e4a0ec9ea5cb9c686b2",
+      "lines": [
+        "Today’s Topics",
+        "• Transfer learning definition",
+        "• Overview of self-supervised learning",
+        "• Generative-based methods",
+        "• Generative adversarial networks",
+        "• Context-based methods"
+      ]
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "dfdcfb2a16dd4db700d5f6fc32993ad8218c62ab29f0524ae9633a01f6568f4a",
+      "lines": [
+        "Context-based Methods",
+        "• Spatial context: predict relative positions of image patches",
+        "• Timing context: predict relative positions of video frames",
+        "• Similarity context: clustering"
+      ]
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "0c08a2e0c74bdc89c58790f0736dfff71c08c34199864da507325f7d2c8a006d",
+      "lines": [
+        "Spatial Context: Predict Image Index Per Patch",
+        "Carl Doersch, Abhinav Gupta, and Alexei A. Efros, Unsupervised Visual Representation Learning by Context Prediction; ICCV 2015.",
+        "What type of features might be learned?"
+      ]
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "1a90e1a682999b39d8e3f64271df891537ea5c9adfea360955a3c43c677f4de7",
+      "lines": [
+        "Timing Context : Predict Order of Video Frames",
+        "Lee et al., Unsupervised Representation Learning by Sorting Sequences; ICCV 2017.",
+        "What type of features might be learned?"
+      ]
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "495ba7b908cc847b030c7ddca0252ebb14b8c2d90cde778f6b8268296846df07",
+      "lines": [
+        "Similarity Context: Predict Clusters",
+        "x2",
+        "x1",
+        "A. B. C.",
+        "Raschka and Mirjalili; Python Machine Learning",
+        "CNNS are trained to identify cluster assignments OR to",
+        "recognize whether images belong to the same cluster"
+      ]
+    },
+    {
+      "number": 71,
+      "source_text_sha256": "3b8d65ea5333eaf36b4b2a74d01bde5246eb19745c732a2ff0d2a3e3cdcf61df",
+      "lines": [
+        "Clustering",
+        "x2",
+        "x1",
+        "A. B. C.",
+        "Raschka and Mirjalili; Python Machine Learning",
+        "Create groupings so entities in a group will be similar to",
+        "each other and different from the entities in other groups."
+      ]
+    },
+    {
+      "number": 72,
+      "source_text_sha256": "b9b5347496c25f48d8907c66a2e105b0a02696a1121918495ecbe358eaae73aa",
+      "lines": [
+        "• How many data clusters to create?",
+        "• What “algorithm” to use to partition the data?",
+        "Clustering: Key Questions",
+        "x2",
+        "x1",
+        "A. B. C.",
+        "Raschka and Mirjalili; Python Machine Learning"
+      ]
+    },
+    {
+      "number": 73,
+      "source_text_sha256": "e7c7390f4813eacb291b129d4bc760650db5a9a54d5792b8b87b69109cb3fc9f",
+      "lines": [
+        "Clustering: How Many Clusters to Create?",
+        "Two Clusters Four Clusters",
+        "Six Clusters",
+        "Number of clusters can be ambiguous.",
+        "Slide adapted from: https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap7_basic_cluster_analysis.pdf"
+      ]
+    },
+    {
+      "number": 74,
+      "source_text_sha256": "f20fd749bad4f48605509d37f8d96cf5f80e60a6858db7945d64816e310f54aa",
+      "lines": [
+        "Clustering",
+        "x2",
+        "x1",
+        "A. B. C.",
+        "Raschka and Mirjalili; Python Machine Learning",
+        "Create groupings so entities in a group will be similar to",
+        "each other and different from the entities in other groups.",
+        "What type of features might be learned?"
+      ]
+    },
+    {
+      "number": 75,
+      "source_text_sha256": "bc5d0954d85bdb529b793550810fc279e6edf8713958506a599427202bf3a19d",
+      "lines": [
+        "Context-based Methods: How Might Such",
+        "Methods Be Used in the NLP Field?",
+        "• Spatial context: predict relative positions of image patches",
+        "• Timing context: predict relative positions of video frames",
+        "• Similarity context: clustering"
+      ]
+    },
+    {
+      "number": 76,
+      "source_text_sha256": "2e5c94712fcb9c541bde3e5c7c2268194b5e08fc969f7e4a0ec9ea5cb9c686b2",
+      "lines": [
+        "Today’s Topics",
+        "• Transfer learning definition",
+        "• Overview of self-supervised learning",
+        "• Generative-based methods",
+        "• Generative adversarial networks",
+        "• Context-based methods"
+      ]
+    },
+    {
+      "number": 77,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

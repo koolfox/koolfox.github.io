@@ -1,0 +1,1195 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s04",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/03-Feedforward_NN.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2022/s04.pdf",
+    "sha256": "ad3aa008952b4e86a71cbd7d92ff096d9adf037571ef99b3adce85767f63eea1",
+    "page_count": 74,
+    "license_notice": "CC BY; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "d3fdba6ef000d0ce38e25e7e5edfb4cd89f714da13cf38be6caea017d1aba1c4",
+      "lines": [
+        "Feedforward Neural Networks",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2022",
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "ab26b6be4895175b986b40581206665aae9a350e21fa47afa27f923e207edc16",
+      "lines": [
+        "Review",
+        "• Last week:",
+        "• Binary classification applications",
+        "• Evaluating classification models",
+        "• Biological neurons: inspiration",
+        "• Artificial neuron: Perceptron",
+        "• Assignments (Canvas):",
+        "• Problem set 1 due earlier today (should receive grades in ~1 week)",
+        "• Lab assignment 1 due in 1.5 weeks",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "0a1352b429d5e350d159239030016b773e70e58bc471066ca0959cf7c23032a1",
+      "lines": [
+        "Today’s Topics",
+        "• Motivation for neural networks: need non-linear models",
+        "• Neural network architecture: hidden layers",
+        "• Neural network architecture: activation functions",
+        "• Neural network architecture: output units",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "0a1352b429d5e350d159239030016b773e70e58bc471066ca0959cf7c23032a1",
+      "lines": [
+        "Today’s Topics",
+        "• Motivation for neural networks: need non-linear models",
+        "• Neural network architecture: hidden layers",
+        "• Neural network architecture: activation functions",
+        "• Neural network architecture: output units",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "dbc256780cc5aeab8365f77cdfafd9e55f245138ca6b27947b115fdc7aa61643",
+      "lines": [
+        "Historical Context: Artificial Neurons First programmable machine",
+        "2012",
+        "Machine",
+        "learning",
+        "Turing test",
+        "1945",
+        "AI",
+        "1956",
+        "1950 1959",
+        "Neural networks with",
+        "effective learning strategy",
+        "1986",
+        "Wave 3: rise of",
+        "“deep learning”",
+        "1943 1957",
+        "First mathematical",
+        "model of neuron",
+        "Perceptron",
+        "1969",
+        "Minsky & Papert",
+        "published a book",
+        "called “Perceptrons” to",
+        "discuss its limitations"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "1fc5be65c66336d56e6ec3d7b6200e8754fc1103e552cecdb3310c421766928e",
+      "lines": [
+        "Recall: Vision for Perceptron",
+        "Frank Rosenblatt",
+        "(Psychologist)",
+        "“[The perceptron is] the embryo of an",
+        "electronic computer that [the Navy] expects",
+        "will be able to walk, talk, see, write,",
+        "reproduce itself and be conscious of its",
+        "existence…. [It] is expected to be finished in",
+        "about a year at a cost of $100,000.”",
+        "1958 New York Times article: https://www.nytimes.com/1958/07/08/archives/new￾navy-device-learns-by-doing-psychologist-shows-embryo-of.html",
+        "https://en.wikipedia.org/wiki/Frank_Rosenblatt"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "a2198f63205d3773ea1e17bc945008b8f7a9e20ae947bd7f0168cd34b00a80b5",
+      "lines": [
+        "https://github.com/rasbt/python-machine-learning-book-2nd-edition/blob/master/code/ch02/ch02.ipynb",
+        "Biological Neuron:",
+        "Artificial Neurons",
+        "(e.g., Perceptron):",
+        "Recall: Perceptron",
+        "Python Machine Learning; Raschka & Mirjalili"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "bc3e0ae6912c372ee73721266bcb13d5dec4f64de687a2b347a150a7ab49b111",
+      "lines": [
+        "Perceptron Limitation: XOR Problem",
+        "XOR = “Exclusive Or”",
+        "- Input: two binary values x1 and x2",
+        "- Output:",
+        "- 1, when exactly one input equals 1",
+        "- 0, otherwise",
+        "x1 x2 x1 XOR x2",
+        "0 0",
+        "0 1",
+        "1 0",
+        "1 1",
+        "?",
+        "?",
+        "?",
+        "?"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "bc3e0ae6912c372ee73721266bcb13d5dec4f64de687a2b347a150a7ab49b111",
+      "lines": [
+        "Perceptron Limitation: XOR Problem",
+        "XOR = “Exclusive Or”",
+        "- Input: two binary values x1 and x2",
+        "- Output:",
+        "- 1, when exactly one input equals 1",
+        "- 0, otherwise",
+        "x1 x2 x1 XOR x2",
+        "0 0",
+        "0 1",
+        "1 0",
+        "1 1",
+        "?",
+        "?",
+        "?",
+        "?"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "54d560736422443bad031ff26aa840df313ea34674085b30cbdf4f3ebb12349a",
+      "lines": [
+        "Perceptron Limitation: XOR Problem",
+        "XOR = “Exclusive Or”",
+        "- Input: two binary values x1 and x2",
+        "- Output:",
+        "- 1, when exactly one input equals 1",
+        "- 0, otherwise",
+        "x1 x2 x1 XOR x2",
+        "0 0",
+        "0 1",
+        "1 0",
+        "1 1",
+        "0",
+        "?",
+        "?",
+        "?"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "6270c40c93ff420e2decd2daba706013140080d2013b822be4122d04b3c8d3f2",
+      "lines": [
+        "Perceptron Limitation: XOR Problem",
+        "XOR = “Exclusive Or”",
+        "- Input: two binary values x1 and x2",
+        "- Output:",
+        "- 1, when exactly one input equals 1",
+        "- 0, otherwise",
+        "x1 x2 x1 XOR x2",
+        "0 0",
+        "0 1",
+        "1 0",
+        "1 1",
+        "0",
+        "1",
+        "?",
+        "?"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "5c7f5bdc18c94515438e69c245d0ae3fb538c95a112e7261a07729a4f95cc8e9",
+      "lines": [
+        "Perceptron Limitation: XOR Problem",
+        "XOR = “Exclusive Or”",
+        "- Input: two binary values x1 and x2",
+        "- Output:",
+        "- 1, when exactly one input equals 1",
+        "- 0, otherwise",
+        "x1 x2 x1 XOR x2",
+        "0 0",
+        "0 1",
+        "1 0",
+        "1 1",
+        "0",
+        "1",
+        "1",
+        "?"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "aedff6cc143d13bfbf7fad0d513005619de87c31988838d80dba9a0ea4d5e55a",
+      "lines": [
+        "Perceptron Limitation: XOR Problem",
+        "XOR = “Exclusive Or”",
+        "- Input: two binary values x1 and x2",
+        "- Output:",
+        "- 1, when exactly one input equals 1",
+        "- 0, otherwise",
+        "x1 x2 x1 XOR x2",
+        "0 0",
+        "0 1",
+        "1 0",
+        "1 1",
+        "0",
+        "1",
+        "1",
+        "0"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "0cd1f32916d97c1201d33297fdc0b7b1f15001cdb7101d9fefea1d5d398d8c9d",
+      "lines": [
+        "Perceptron Limitation: XOR Problem",
+        "x1 x2 x1 XOR x2",
+        "0 0",
+        "0 1",
+        "1 0",
+        "1 1",
+        "0",
+        "1",
+        "1",
+        "0",
+        "Cannot solve XOR problem and so separate 1s from 0s with a perceptron (linear function):"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "2015b329e0e60995b68ca5df2bf4d2caa7e5d041e63409d861d5a329e8b544f3",
+      "lines": [
+        "Perceptron Limitation: XOR Problem",
+        "Frank Rosenblatt",
+        "(Psychologist)",
+        "“[The perceptron is] the embryo of an",
+        "electronic computer that [the Navy] expects",
+        "will be able to walk, talk, see, write,",
+        "reproduce itself and be conscious of its",
+        "existence…. [It] is expected to be finished in",
+        "about a year at a cost of $100,000.”",
+        "1958 New York Times article: https://www.nytimes.com/1958/07/08/archives/new￾navy-device-learns-by-doing-psychologist-shows-embryo-of.html",
+        "How can a machine be “conscious”",
+        "when it can’t solve the XOR problem?"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "0a1352b429d5e350d159239030016b773e70e58bc471066ca0959cf7c23032a1",
+      "lines": [
+        "Today’s Topics",
+        "• Motivation for neural networks: need non-linear models",
+        "• Neural network architecture: hidden layers",
+        "• Neural network architecture: activation functions",
+        "• Neural network architecture: output units",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "2311e8a74d0ce633be003cdcf4f8b6b3a8a4da6846edb8f367baff526e473378",
+      "lines": [
+        "Neural Networks: Connected Neurons",
+        "Biological Neural Network:",
+        "Artificial Neural Network:",
+        "http://www.rzagabe.com/2014/11/03/an￾introduction-to-artificial-neural-networks.html",
+        "https://github.com/amueller/introduction_to_ml_with_python/blob/master/02-supervised-learning.ipynb"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "b9aff4cfebecd5f0f48bb8c43f2dbad1fb5c0f7434216e01f9dc40302ef8564b",
+      "lines": [
+        "http://cs231n.github.io/neural-networks-1/",
+        "Neural Network",
+        "This is a 3-layer neural network",
+        "(i.e., count number of hidden",
+        "layers plus output layer)",
+        "one input",
+        "per feature",
+        "each “hidden layer” uses outputs of",
+        "units (i.e., neurons) and provides them",
+        "as inputs to other units (i.e., neurons)",
+        "prediction"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "d436e40126568f9f48578e043d507eb9040062132313d67bf132be92c826b5cc",
+      "lines": [
+        "Neural Network",
+        "• How does this relate to a perceptron?",
+        "• Unit: takes as input a weighted sum",
+        "and applies an activation function",
+        "Python Machine Learning; Raschka & Mirjalili",
+        "http://cs231n.github.io/neural-networks-1/"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "1f67300fa6a2cef7241975b9b35af83c436055491aba718ce9db068e1efbe2c4",
+      "lines": [
+        "Neural Network",
+        "Python Machine Learning; Raschka & Mirjalili",
+        "http://cs231n.github.io/neural-networks-1/",
+        "• How does this relate to a perceptron?",
+        "• Unit: takes as input a weighted sum",
+        "and applies an activation function"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "1f67300fa6a2cef7241975b9b35af83c436055491aba718ce9db068e1efbe2c4",
+      "lines": [
+        "Neural Network",
+        "Python Machine Learning; Raschka & Mirjalili",
+        "http://cs231n.github.io/neural-networks-1/",
+        "• How does this relate to a perceptron?",
+        "• Unit: takes as input a weighted sum",
+        "and applies an activation function"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "1f67300fa6a2cef7241975b9b35af83c436055491aba718ce9db068e1efbe2c4",
+      "lines": [
+        "Neural Network",
+        "Python Machine Learning; Raschka & Mirjalili",
+        "http://cs231n.github.io/neural-networks-1/",
+        "• How does this relate to a perceptron?",
+        "• Unit: takes as input a weighted sum",
+        "and applies an activation function"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "1f67300fa6a2cef7241975b9b35af83c436055491aba718ce9db068e1efbe2c4",
+      "lines": [
+        "Neural Network",
+        "Python Machine Learning; Raschka & Mirjalili",
+        "http://cs231n.github.io/neural-networks-1/",
+        "• How does this relate to a perceptron?",
+        "• Unit: takes as input a weighted sum",
+        "and applies an activation function"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "1f67300fa6a2cef7241975b9b35af83c436055491aba718ce9db068e1efbe2c4",
+      "lines": [
+        "Neural Network",
+        "Python Machine Learning; Raschka & Mirjalili",
+        "http://cs231n.github.io/neural-networks-1/",
+        "• How does this relate to a perceptron?",
+        "• Unit: takes as input a weighted sum",
+        "and applies an activation function"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "1f67300fa6a2cef7241975b9b35af83c436055491aba718ce9db068e1efbe2c4",
+      "lines": [
+        "Neural Network",
+        "Python Machine Learning; Raschka & Mirjalili",
+        "http://cs231n.github.io/neural-networks-1/",
+        "• How does this relate to a perceptron?",
+        "• Unit: takes as input a weighted sum",
+        "and applies an activation function"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "1f67300fa6a2cef7241975b9b35af83c436055491aba718ce9db068e1efbe2c4",
+      "lines": [
+        "Neural Network",
+        "Python Machine Learning; Raschka & Mirjalili",
+        "http://cs231n.github.io/neural-networks-1/",
+        "• How does this relate to a perceptron?",
+        "• Unit: takes as input a weighted sum",
+        "and applies an activation function"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "1f67300fa6a2cef7241975b9b35af83c436055491aba718ce9db068e1efbe2c4",
+      "lines": [
+        "Neural Network",
+        "Python Machine Learning; Raschka & Mirjalili",
+        "http://cs231n.github.io/neural-networks-1/",
+        "• How does this relate to a perceptron?",
+        "• Unit: takes as input a weighted sum",
+        "and applies an activation function"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "c15078f22404460312da94446c6ac66c67a85037e271bc5b15dbf70c88432a50",
+      "lines": [
+        "Neural Network",
+        "• Training goal: learn model parameters",
+        "• Layers are called “hidden” because",
+        "algorithm decides how to use each",
+        "layer to produce its output",
+        "http://cs231n.github.io/neural-networks-1/"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "9e28a60a25674556335b81655a8eef9819784cf62c65d40094b7923d9461d7ef",
+      "lines": [
+        "http://cs231n.github.io/neural-networks-1/",
+        "Neural Network",
+        "How many weights are in this model?",
+        "• Input to Hidden Layer 1:",
+        "• 3x4 = 12",
+        "• Hidden Layer 1 to Hidden Layer 2:",
+        "• 4x4 = 16",
+        "• Hidden Layer 2 to Output Layer",
+        "• 4x1 = 4",
+        "• Total:",
+        "• 12 + 16 + 4 = 32"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "6b96fe890559d15a2b1a21f0c712211cf44acb55971d40aa2f6f040bb2ac1afb",
+      "lines": [
+        "http://cs231n.github.io/neural-networks-1/",
+        "Neural Network",
+        "How many parameters are there to learn?",
+        "• Number of weights:",
+        "• 32",
+        "• Number of biases:",
+        "• 4 + 4 + 1 = 9",
+        "• Total",
+        "• 41"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "e43bda89796ea6da43a324bf15a6c022dba5f2d71cbfebf13d86dc5638a39d35",
+      "lines": [
+        "http://cs231n.github.io/neural-networks-1/",
+        "Fully Connected, Feedforward Neural Networks",
+        "• What does it mean for a model to be fully",
+        "connected?",
+        "• Each unit provides input to each unit in the next layer",
+        "• What does it mean for a model to be feedforward?",
+        "• Each layer serves as input to the next layer with no loops"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "d6120d35df3ec9ecd06e722bd698d0f6e03a04eb564f9a34752c87a35d101bf9",
+      "lines": [
+        "How Many Layers and Units Should be Used?",
+        "To be explored more in this course",
+        "and in lab assignment set 1"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "8c16a6576c2175260ced9033ae798c6829db8ff17fdc064faa97a0821677518f",
+      "lines": [
+        "Hidden Layers Alone Are NOT Enough to",
+        "Model Non-Linear Functions",
+        "Key Observation: feedforward networks are just functions chained together",
+        "e.g.,",
+        "W1",
+        "W2",
+        "W3",
+        "W4",
+        "W5",
+        "W6",
+        "x1",
+        "x2",
+        "h1",
+        "h2",
+        "y",
+        "• What is function for h1?",
+        "• h1 = w1x1 + w3x2 + b1",
+        "• What is function for h2?",
+        "• h2 = w2x1 + w4x2 + b2",
+        "• What is function for y?",
+        "• y = h1w5 + h2w6 + b3",
+        "• y = (w1x1 + w3x2 + b1 )w5 + (w2x1 + w4x2 + b2)w6 + b3",
+        "• y = w1w5x1 + w3w5x2 + w5b1 + w2w6 x1 + w4w6x2 + w6b2 + b3",
+        "A chain of LINEAR functions at any depth is still a LINEAR function!"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "f1788ec9641f1b5e2f9f27c016e3bd3b5f552b7b184e2ddd56e584ba05f5a3ed",
+      "lines": [
+        "Hidden Layers Alone Are NOT Enough to",
+        "Model Non-Linear Functions",
+        "Key Observation: feedforward networks are just functions chained together",
+        "e.g.,",
+        "W1",
+        "W2",
+        "W3",
+        "W4",
+        "W5",
+        "W6",
+        "x1",
+        "x2",
+        "h1",
+        "h2",
+        "y",
+        "• What is function for h1?",
+        "• h1 = w1x1 + w3x2 + b1",
+        "• What is function for h2?",
+        "• h2 = w2x1 + w4x2 + b2",
+        "• What is function for y?",
+        "• y = h1w5 + h2w6 + b3",
+        "A chain of LINEAR functions at any depth is still a LINEAR function!",
+        "Constant x linear function = linear function"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "0a1352b429d5e350d159239030016b773e70e58bc471066ca0959cf7c23032a1",
+      "lines": [
+        "Today’s Topics",
+        "• Motivation for neural networks: need non-linear models",
+        "• Neural network architecture: hidden layers",
+        "• Neural network architecture: activation functions",
+        "• Neural network architecture: output units",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "893c3c96d8e28e537cf07ed924a5ebc890b83b87595f8e1d495915030ecabcb4",
+      "lines": [
+        "Key Idea: Use Connected Neurons to Non-linearly",
+        "Transform Input into Useful Features for Predictions",
+        "Biological Neural Network:",
+        "Artificial Neural Network:",
+        "http://www.rzagabe.com/2014/11/03/an￾introduction-to-artificial-neural-networks.html",
+        "https://github.com/amueller/introduction_to_ml_with_python/blob/master/02-supervised-learning.ipynb"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "b5c396014919b26d5497c2f181706e40ed83bd596e26c310c3d5746bc2d4f305",
+      "lines": [
+        "Key Idea: Use Connected Neurons to Non-linearly",
+        "Transform Input into Useful Features for Predictions",
+        "Python Machine Learning; Raschka & Mirjalili",
+        "Biological Neuron:",
+        "Artificial Neurons",
+        "(e.g., Perceptron):",
+        "Mimic a neuron firing,",
+        "by having each unit",
+        "apply a non-linear",
+        "“activation” function",
+        "to the weighted input",
+        "Activation",
+        "Function",
+        "?"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "bb831bfbecc76f4f5f3be42793beea18fe791874ac09b04ca2d0b716214b1b18",
+      "lines": [
+        "Non-Linear Activation Functions",
+        "• Each unit applies a non-linear “activation” function to the weighted input to",
+        "mimic a neuron firing",
+        "http://www.cs.utoronto.ca/~fidler/teaching/2015/slides/CSC411/10_nn1.pdf",
+        "Sigmoid Tanh ReLU",
+        "Computationally faster"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "53e7e5a7ba1e01fc2cd1f4704f4fdc508a2cb743dc06c1df23e5370370aadfcf",
+      "lines": [
+        "Non-Linear Example: Revisiting XOR problem",
+        "• Non-linear function: separate 1s from 0s:",
+        "(1, 1)",
+        "(1, 0)",
+        "(0, 1)",
+        "(0, 0)",
+        "INPUT OUTPUT"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "a5208473e50450c766401c5a0a57d3e9cd7c0cb00129b83c370aa10f479dadc4",
+      "lines": [
+        "Non-Linear Example: Revisiting XOR problem",
+        "• Non-linear function: separate 1s from 0s:",
+        "• Approach: ReLU activation function ( ) with these parameters:",
+        "(1, 1)",
+        "(1, 0)",
+        "(0, 1)",
+        "(0, 0)",
+        "1",
+        "1",
+        "1",
+        "1 1",
+        "-2",
+        "Bias = 0",
+        "Bias = -1",
+        "Bias = 0"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "4bc5a15723f07717222f5d5c3d047c425346f4753a215c189daa96383d4c75b3",
+      "lines": [
+        "Non-Linear Example: Revisiting XOR problem",
+        "(1, 1)",
+        "(1, 0)",
+        "(0, 1)",
+        "(0, 0)",
+        "1",
+        "1",
+        "1",
+        "1 1",
+        "-2",
+        "Bias = 0",
+        "Bias = -1",
+        "0",
+        "0",
+        "?",
+        "?",
+        "Bias = 0",
+        "• Non-linear function: separate 1s from 0s:",
+        "• Approach: ReLU activation function ( ) with these parameters:"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "6d7c99e11b9933b43f8a0f34567f2b9ac68c4818f18faefdc5375b6815d038c6",
+      "lines": [
+        "Non-Linear Example: Revisiting XOR problem",
+        "(1, 1)",
+        "(1, 0)",
+        "(0, 1)",
+        "(0, 0)",
+        "1",
+        "1",
+        "1",
+        "1 1",
+        "-2",
+        "Bias = 0",
+        "Bias = -1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "?",
+        "Bias = 0",
+        "• Non-linear function: separate 1s from 0s:",
+        "• Approach: ReLU activation function ( ) with these parameters:"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "19c9f470a90cde23f82a992f95b164e50eba09bc53e8e3ba2fc5d67ea18fc73d",
+      "lines": [
+        "Non-Linear Example: Revisiting XOR problem",
+        "(1, 1)",
+        "(1, 0)",
+        "(0, 1)",
+        "(0, 0)",
+        "1",
+        "1",
+        "1",
+        "1 1",
+        "-2",
+        "Bias = 0",
+        "Bias = -1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "Bias = 0",
+        "• Non-linear function: separate 1s from 0s:",
+        "• Approach: ReLU activation function ( ) with these parameters:"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "b48fb9ade0cb13e45b1b68059efabb8a488c976863c826330c8778caacee0db0",
+      "lines": [
+        "Non-Linear Example: Revisiting XOR problem",
+        "(1, 1)",
+        "(1, 0)",
+        "(0, 1)",
+        "(0, 0)",
+        "1",
+        "1",
+        "1",
+        "1 1",
+        "-2",
+        "Bias = 0",
+        "Bias = -1",
+        "0",
+        "1",
+        "?",
+        "?",
+        "Bias = 0",
+        "• Non-linear function: separate 1s from 0s:",
+        "• Approach: ReLU activation function ( ) with these parameters:"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "7b565d0193787bb3ff22bc81cc395c6c93ddecd5f3e14037a6d998fd754ec880",
+      "lines": [
+        "Non-Linear Example: Revisiting XOR problem",
+        "(1, 1)",
+        "(1, 0)",
+        "(0, 1)",
+        "(0, 0)",
+        "1",
+        "1",
+        "1",
+        "1 1",
+        "-2",
+        "Bias = 0",
+        "Bias = -1",
+        "0",
+        "1",
+        "1",
+        "0",
+        "Bias = 0",
+        "?",
+        "• Non-linear function: separate 1s from 0s:",
+        "• Approach: ReLU activation function ( ) with these parameters:"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "e5d72aa6a277da7f9663a14827fa04d952f34628cdd1c14760141fd3949ffd25",
+      "lines": [
+        "Non-Linear Example: Revisiting XOR problem",
+        "(1, 1)",
+        "(1, 0)",
+        "(0, 1)",
+        "(0, 0)",
+        "1",
+        "1",
+        "1",
+        "1 1",
+        "-2",
+        "Bias = 0",
+        "Bias = -1",
+        "0",
+        "1",
+        "1",
+        "0",
+        "1",
+        "Bias = 0",
+        "• Non-linear function: separate 1s from 0s:",
+        "• Approach: ReLU activation function ( ) with these parameters:"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "0fc8b42ec87b063b40d37015813420c033958ff17cb1def85577ac17b0a05cb1",
+      "lines": [
+        "Non-Linear Example: Revisiting XOR problem",
+        "(1, 1)",
+        "(1, 0)",
+        "(0, 1)",
+        "(0, 0)",
+        "1",
+        "1",
+        "1",
+        "1 1",
+        "-2",
+        "Bias = 0",
+        "Bias = -1",
+        "1",
+        "0",
+        "?",
+        "?",
+        "Bias = 0",
+        "• Non-linear function: separate 1s from 0s:",
+        "• Approach: ReLU activation function ( ) with these parameters:"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "9e5d6d8d8a6c7d7ddfd1e2bc61557a3bcb49b51bb91c794895053cf26699cffb",
+      "lines": [
+        "Non-Linear Example: Revisiting XOR problem",
+        "(1, 1)",
+        "(1, 0)",
+        "(0, 1)",
+        "(0, 0)",
+        "1",
+        "1",
+        "1",
+        "1 1",
+        "-2",
+        "Bias = 0",
+        "Bias = -1",
+        "1",
+        "0",
+        "1",
+        "0",
+        "Bias = 0",
+        "?",
+        "• Non-linear function: separate 1s from 0s:",
+        "• Approach: ReLU activation function ( ) with these parameters:"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "662e3e07ba1176a6a1d38a4e1aa9f6b0373f02ddbfa1773196cabf082ca2153f",
+      "lines": [
+        "Non-Linear Example: Revisiting XOR problem",
+        "(1, 1)",
+        "(1, 0)",
+        "(0, 1)",
+        "(0, 0)",
+        "1",
+        "1",
+        "1",
+        "1 1",
+        "-2",
+        "Bias = 0",
+        "Bias = -1",
+        "1",
+        "0",
+        "1",
+        "0",
+        "1",
+        "Bias = 0",
+        "• Non-linear function: separate 1s from 0s:",
+        "• Approach: ReLU activation function ( ) with these parameters:"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "316fd9da960e080d8dc9673a1ce85210e741a353d238db309776b7edfb763c4b",
+      "lines": [
+        "Non-Linear Example: Revisiting XOR problem",
+        "(1, 1)",
+        "(1, 0)",
+        "(0, 1)",
+        "(0, 0)",
+        "1",
+        "1",
+        "1",
+        "1 1",
+        "-2",
+        "Bias = 0",
+        "Bias = -1",
+        "1",
+        "1",
+        "?",
+        "?",
+        "Bias = 0",
+        "• Non-linear function: separate 1s from 0s:",
+        "• Approach: ReLU activation function ( ) with these parameters:"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "86a4c32e793be702e165ca50d5c5e80bc30c8eb72b09804997105351b8c7cda4",
+      "lines": [
+        "Non-Linear Example: Revisiting XOR problem",
+        "(1, 1)",
+        "(1, 0)",
+        "(0, 1)",
+        "(0, 0)",
+        "1",
+        "1",
+        "1",
+        "1 1",
+        "-2",
+        "Bias = 0",
+        "Bias = -1",
+        "1",
+        "1",
+        "2",
+        "1",
+        "Bias = 0",
+        "?",
+        "• Non-linear function: separate 1s from 0s:",
+        "• Approach: ReLU activation function ( ) with these parameters:"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "110741a3ad0450c7020021140b07e27ae120e3f9114bd39f9d3ae5bddd4927ec",
+      "lines": [
+        "Non-Linear Example: Revisiting XOR problem",
+        "(1, 1)",
+        "(1, 0)",
+        "(0, 1)",
+        "(0, 0)",
+        "1",
+        "1",
+        "1",
+        "1 1",
+        "-2",
+        "Bias = 0",
+        "Bias = -1",
+        "1",
+        "1",
+        "2",
+        "1",
+        "0",
+        "Bias = 0",
+        "• Non-linear function: separate 1s from 0s:",
+        "• Approach: ReLU activation function ( ) with these parameters:"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "1c5a781deea7554786c4f57286e75b692d11d03c97a6ee70c44165bdc231b185",
+      "lines": [
+        "Non-Linear Example: Revisiting XOR problem",
+        "(1, 1)",
+        "(1, 0)",
+        "(0, 1)",
+        "(0, 0)",
+        "• Non-linear function: separate 1s from 0s:",
+        "• Approach: ReLU activation function ( ) with these parameters:",
+        "Neural networks can solve XOR problem...",
+        "and so model non-linear functions!"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "3477557c136c28f2e62a5c32b8330581e54bc7cee17a94cb11898ed4449e899c",
+      "lines": [
+        "Activation Functions and Model Parameters",
+        "(e.g., Sigmoid)",
+        "Weights determine curvature: Biases determine shifted position:",
+        "https://stackoverflow.com/questions/2480650/what-is-the-role-of-the-bias-in-neural-networks",
+        "Input Input",
+        "Output",
+        "Output"
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "0c7d46abba15bcdde6b7866f350346532cf892c1e917e928d08dd3ba9de3ff77",
+      "lines": [
+        "Which Activation Function Should be Used?",
+        "To be explored more in this course",
+        "and in lab assignment set 1"
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "0a1352b429d5e350d159239030016b773e70e58bc471066ca0959cf7c23032a1",
+      "lines": [
+        "Today’s Topics",
+        "• Motivation for neural networks: need non-linear models",
+        "• Neural network architecture: hidden layers",
+        "• Neural network architecture: activation functions",
+        "• Neural network architecture: output units",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "22bb92fe503182544637027090a87cf50fff5594907164c508b4186162861c62",
+      "lines": [
+        "Desired Output Driven by Task",
+        "Regression",
+        "(predict continuous value)",
+        "Classification",
+        "(predict discrete value)",
+        "Hands-on Machine Learning with Scikit-Learn & TensorFlow, Aurelien Geron"
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "198f535487d1e39f2cae0b6833c25011b5e410ef70d913784c389e812d470610",
+      "lines": [
+        "Linear (No Activation Function)",
+        "Python Machine Learning; Raschka & Mirjalili",
+        "x"
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "22bb92fe503182544637027090a87cf50fff5594907164c508b4186162861c62",
+      "lines": [
+        "Desired Output Driven by Task",
+        "Regression",
+        "(predict continuous value)",
+        "Classification",
+        "(predict discrete value)",
+        "Hands-on Machine Learning with Scikit-Learn & TensorFlow, Aurelien Geron"
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "e12648d1a916f17fb54b4764e634d2d6878d56bcb148952585e2f2f5b35f860d",
+      "lines": [
+        "Sigmoid (for Binary Classification)",
+        "If >= 0.5, output 1;",
+        "Else, outputs 0"
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "b1699e8012498e2fa11414c1ec943c32b5beff17ce0366520b190aed2b50d398",
+      "lines": [
+        "Softmax (for Multiclass Classification)",
+        "Converts vector of scores into a probability distribution that sums to 1; e.g.,",
+        "Figure Source: https://towardsdatascience.com/multi-label-image-classification-with-neural-network-keras-ddc1ab1afede",
+        "node with largest",
+        "probability is the class",
+        "assigned to the image"
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "5ae16e58134cf348f57d900a2228c2ed4b74f7b8455776b44153548d20df2f45",
+      "lines": [
+        "Softmax (for Multiclass Classification)",
+        "Converts vector of scores into a probability distribution that sums to 1; e.g.,",
+        "Figure Source: https://towardsdatascience.com/multi-label-image-classification-with-neural-network-keras-ddc1ab1afede",
+        "Ideal prediction; 1",
+        "hot vector of one 1",
+        "and the rest 0s"
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "46c75f21f80361ca3f4706558e968cb92e2b144bccad52213878b94d4a66724b",
+      "lines": [
+        "Softmax (for Multiclass Classification)",
+        "Converts vector of scores into a probability distribution that sums to 1",
+        "Useful tutorial: https://towardsdatascience.com/exploring-the-softmax-function-578c8b0fb15",
+        "Want to divide each node’s score",
+        "by sum of all entries to make",
+        "them sum to 1 (normalization)",
+        "Number of classes",
+        "i = 1, …, K",
+        "Get rid of negative values while preserving original order of",
+        "scores; e causes negative scores to become slightly larger than",
+        "0 while positive values grow exponentially (choosing e rather",
+        "than another exponent base simplifies math during training)"
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "4547c8f49917b5dd80deaa2bb2eb35cf9ab1813d79f98c44924069c0d3d2b777",
+      "lines": [
+        "Softmax (for Multiclass Classification)",
+        "Converts vector of scores into a probability distribution that sums to 1; e.g.,",
+        "Figure Source: https://towardsdatascience.com/multi-label-image-classification-with-neural-network-keras-ddc1ab1afede"
+      ]
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "f6e8d2a704b2ca4ed7712308db9ce57de686205f4dbee22d0a0c3257c920d893",
+      "lines": [
+        "Softmax (for Multiclass Classification)",
+        "Converts vector of scores into a probability distribution that sums to 1; e.g.,"
+      ]
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "4547c8f49917b5dd80deaa2bb2eb35cf9ab1813d79f98c44924069c0d3d2b777",
+      "lines": [
+        "Softmax (for Multiclass Classification)",
+        "Converts vector of scores into a probability distribution that sums to 1; e.g.,",
+        "Figure Source: https://towardsdatascience.com/multi-label-image-classification-with-neural-network-keras-ddc1ab1afede"
+      ]
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "f6e8d2a704b2ca4ed7712308db9ce57de686205f4dbee22d0a0c3257c920d893",
+      "lines": [
+        "Softmax (for Multiclass Classification)",
+        "Converts vector of scores into a probability distribution that sums to 1; e.g.,"
+      ]
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "b1699e8012498e2fa11414c1ec943c32b5beff17ce0366520b190aed2b50d398",
+      "lines": [
+        "Softmax (for Multiclass Classification)",
+        "Converts vector of scores into a probability distribution that sums to 1; e.g.,",
+        "Figure Source: https://towardsdatascience.com/multi-label-image-classification-with-neural-network-keras-ddc1ab1afede",
+        "node with largest",
+        "probability is the class",
+        "assigned to the image"
+      ]
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "f6e8d2a704b2ca4ed7712308db9ce57de686205f4dbee22d0a0c3257c920d893",
+      "lines": [
+        "Softmax (for Multiclass Classification)",
+        "Converts vector of scores into a probability distribution that sums to 1; e.g.,"
+      ]
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "22bb92fe503182544637027090a87cf50fff5594907164c508b4186162861c62",
+      "lines": [
+        "Desired Output Driven by Task",
+        "Regression",
+        "(predict continuous value)",
+        "Classification",
+        "(predict discrete value)",
+        "Hands-on Machine Learning with Scikit-Learn & TensorFlow, Aurelien Geron"
+      ]
+    },
+    {
+      "number": 71,
+      "source_text_sha256": "bd0817e9457e845c3c08ba0dbfd47e5a82d294ae98d2a8a6a5fe975f4fe34f4b",
+      "lines": [
+        "Desired Output Driven by Task",
+        "https://machinelearningmastery.com/choose-an-activation-function-for-deep-learning/"
+      ]
+    },
+    {
+      "number": 72,
+      "source_text_sha256": "09bd32ab9121dbd8d773667933da82ba68797ef7404be05221676d427e7d5c3a",
+      "lines": [
+        "Today’s Topics",
+        "• Motivation for neural networks: need non-linear models",
+        "• Neural network architecture: hidden layers",
+        "• Neural network architecture: activation functions",
+        "• Neural network architecture: output units",
+        "• Programming tutorial: link to code and video in Canvas"
+      ]
+    },
+    {
+      "number": 73,
+      "source_text_sha256": "0a1352b429d5e350d159239030016b773e70e58bc471066ca0959cf7c23032a1",
+      "lines": [
+        "Today’s Topics",
+        "• Motivation for neural networks: need non-linear models",
+        "• Neural network architecture: hidden layers",
+        "• Neural network architecture: activation functions",
+        "• Neural network architecture: output units",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 74,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

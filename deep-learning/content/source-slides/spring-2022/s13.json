@@ -1,0 +1,836 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s13",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/11-RecurrentNeuralNetworks.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2022/s13.pdf",
+    "sha256": "8d7e660e7271abaa0c7d4c57e0fc70b593aa0560d0b13b9d37cad081288f50bf",
+    "page_count": 65,
+    "license_notice": "CC BY; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "8719fb56ef066bce2ee58eedd8681134ebeb6f787377c979a38dcc96d3d1d50a",
+      "lines": [
+        "Recurrent Neural Networks",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2022",
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "e88c04e8de397c1dcedfc22d6097001c586d3131c931710200b555c6d2420f0e",
+      "lines": [
+        "Review",
+        "• Last week:",
+        "• Problems",
+        "• Applications",
+        "• PASCAL VOC detection challenge: region proposals with CNN features",
+        "• PASCAL VOC semantic segmentation challenge: fully convolutional networks",
+        "• Assignments (Canvas):",
+        "• Problem set 3 due Wednesday",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "431e047458c897ee17bd4f395576e0e7cb2fbf5a865f42b6342916a875526af6",
+      "lines": [
+        "Today’s Topics",
+        "• Machine learning for sequential data",
+        "• Recurrent neural networks (RNNs)",
+        "• Gated RNNs",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "431e047458c897ee17bd4f395576e0e7cb2fbf5a865f42b6342916a875526af6",
+      "lines": [
+        "Today’s Topics",
+        "• Machine learning for sequential data",
+        "• Recurrent neural networks (RNNs)",
+        "• Gated RNNs",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "8e4ca083a8b34ec1fad64df58519b4e247c20a86e07290ff163ae589b5a9fe93",
+      "lines": [
+        "Sequence Definition: Data of Arbitrary Length",
+        "e.g., Document e.g., Images",
+        "e.g., Time-Series Data",
+        "e.g., sentences, audio samples, brain waves, radio waves, air temperature"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "44aca0f0a39769df65d0124f600d4b8fd3f15da200a0fcf51361a88770b7d80b",
+      "lines": [
+        "Properties of Sequences?",
+        "e.g., Document e.g., Images",
+        "e.g., Time-Series Data",
+        "e.g., sentences, audio samples, brain waves, radio waves, air temperature",
+        "* Elements of a sequence occur in a certain order",
+        "* Elements depend on each other"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "6f629761bc93ec89e6b0ad6171ae09730074a1cdba54406d9167407da867d0f4",
+      "lines": [
+        "Sequence Sources",
+        "https://www.tensorflow.org/tutorials/representation/word2vec",
+        "* Elements of a sequence occur in a certain order",
+        "* Elements depend on each other"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "29608ab3eba3ed0df5a2f6a7430a74cdd882fa7b433cbd80959259d1abaa08a1",
+      "lines": [
+        "Sequence Applications: One-to-Many",
+        "• Input: fixed-size",
+        "• Output: sequence",
+        "• e.g., image captioning",
+        "Captions: https://www.microsoft.com/cognitive-services/en-us/computer-vision-api"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "94c3edb40a4d186c2ae63159cfca4f8c8b980106863eeb25ec3b20c9a2c7e104",
+      "lines": [
+        "Sequence Applications: Many-to-One",
+        "• Input: sequence",
+        "• Output: fixed-size",
+        "• e.g., sentiment analysis",
+        "(hate? love?, etc)",
+        "https://www.rottentomatoes.com/m/star_wars_the_last_jedi"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "b6822aa4c0f9c26b57be778c572b15a2538d9d1fc6a6a55e2546d2b85062e3ea",
+      "lines": [
+        "Sequence Applications: Many-to-Many",
+        "• Input: sequence",
+        "• Output: sequence",
+        "• e.g., language translation"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "431e047458c897ee17bd4f395576e0e7cb2fbf5a865f42b6342916a875526af6",
+      "lines": [
+        "Today’s Topics",
+        "• Machine learning for sequential data",
+        "• Recurrent neural networks (RNNs)",
+        "• Gated RNNs",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "dc885921a76e0d1328201bb1cf3d9fd02bf0b45e0cb82056d74b525921318f3e",
+      "lines": [
+        "Historical Context First programmable machine",
+        "2012",
+        "Turing test",
+        "1945",
+        "AI",
+        "1956",
+        "1950 1959",
+        "RNN: Rumelhart’s paper “Learning",
+        "representations by back-propagating errors”",
+        "AlexNet",
+        "1957 Perceptron",
+        "1847 Gradient descent",
+        "Machine learning",
+        "1986",
+        "1998",
+        "Backpropagation for CNNs",
+        "1989",
+        "MNIST, LeNet",
+        "Neocognitron",
+        "1980"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "f5ae56c481389d49bf9a53240044f63188385e14cc98d879aeb8fa1905ab3ed4",
+      "lines": [
+        "Recall: Feedforward Neural Networks",
+        "Each layer serves as input to the next layer with no loops",
+        "Problem: many model parameters",
+        "Problem: inputs/output sizes are fixed",
+        "Problem: no memory of past since weights learned independently",
+        "Figure Source: http://cs231n.github.io/neural-networks-1/"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "4ae75bbf7d91ae024c233d8fa9e048a473374b1dc52948a55be5f76dfbf9ebec",
+      "lines": [
+        "Recurrent Neural Networks (RNNs)",
+        "Feedforward Network",
+        "Each layer receives input from",
+        "the previous layer with no loops",
+        "Recurrent Network",
+        "Each layer receives input",
+        "from the previous layer",
+        "and the output from the",
+        "previous time step (i.e.,",
+        "time-delayed connections)",
+        "• Main idea: use hidden state to capture information about the past",
+        "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "c1b37789be5ae44daad8a1998d605235a5b23445f1feaf0136095ba6552640b2",
+      "lines": [
+        "Recurrent Neural Networks (RNNs)",
+        "Recurrent Network",
+        "Each layer receives input",
+        "from the previous layer",
+        "and the output from the",
+        "previous time step (i.e.,",
+        "time-delayed connections)",
+        "• Main idea: use hidden state to capture information about the past",
+        "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/",
+        "Recurrent: same function is",
+        "applied to previous result",
+        "st = fm(st-1, xt",
+        ")",
+        "New",
+        "state",
+        "Old",
+        "state",
+        "Input at",
+        "time step",
+        "Model parameters"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "239b13cfac01354054c2b933136357c6502f864491f9dc78c07c13fc4600e2f9",
+      "lines": [
+        "RNN: Time Step 1",
+        "• Main idea: use hidden state to capture information about the past",
+        "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "239b13cfac01354054c2b933136357c6502f864491f9dc78c07c13fc4600e2f9",
+      "lines": [
+        "RNN: Time Step 1",
+        "• Main idea: use hidden state to capture information about the past",
+        "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "1f5918f7d2540227b8d9ca36df5f6596374f0b50ec45ec5a55d89fb79cc0f322",
+      "lines": [
+        "RNN: Time Step 2",
+        "• Main idea: use hidden state to capture information about the past",
+        "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "76c0b6fc3088ca162f22f40f242b948eb22989ccfa2f32d19af77e300412ac96",
+      "lines": [
+        "RNN: Time Step 3",
+        "• Main idea: use hidden state to capture information about the past",
+        "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "a6cc05ff8b75d5a09d34393afa8c6c7bb285a5e25042aefc22151e2d24e1795e",
+      "lines": [
+        "RNN: And So On…",
+        "• Main idea: use hidden state to capture information about the past",
+        "…",
+        "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "15fd6bc64eedc7310228c3e60b81474d9a6a83d6932056cb4d6cb03a032ee6c6",
+      "lines": [
+        "RNN: Model Parameters and Inputs",
+        "• Main idea: use hidden state to capture information about the past",
+        "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/",
+        "Recurrence formula applied",
+        "at every time step:",
+        "st = fm(st-1, xt",
+        ")",
+        "New",
+        "state",
+        "Old",
+        "state",
+        "Input at",
+        "time step",
+        "Model parameters"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "a1bc6a9a31b91e27ed54517b606a806621f959816b0ac8d1b0e751ad06e23d4b",
+      "lines": [
+        "Recurrence formula applied",
+        "at every time step:",
+        "st = fm(st-1, xt",
+        ")",
+        "RNN: Model Parameters and Inputs",
+        "• Main idea: use hidden state to capture information about the past",
+        "New",
+        "state",
+        "Old",
+        "state",
+        "Input at",
+        "time step",
+        "Model parameters",
+        "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "470da37489c2f3b01b5fd2db44e535650b311227a04f4c378b8e645bcabc277f",
+      "lines": [
+        "RNN: Model Parameters and Inputs",
+        "• All layers share the same model parameters (U, V, W)",
+        "• What is different between the layers?",
+        "…",
+        "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "ecee341c50e3187c81d84c5269117461f339617db4dd8fecbf0510c4bea2c67d",
+      "lines": [
+        "RNN: Model Parameters and Inputs",
+        "• When unfolded, a RNN is a deep feedforward network with shared weights!",
+        "…",
+        "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "08c3207a459703fe570d666b53f4e97a33c1a89f1b0ceb2de4890c466fdce1f2",
+      "lines": [
+        "RNN: Advantages",
+        "…",
+        "• Overcomes problem that weights of each layer are learned independently by using previous hidden state",
+        "• Overcomes problem that model has many parameters since weights are shared across layers",
+        "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "a2fa447ac8209a77eb17ce27a1b9b70844ab89be09ac3ab38282f2ab84a94aec",
+      "lines": [
+        "RNN: Advantages",
+        "…",
+        "• Retains information about past inputs for an amount of time that depends on the model’s weights",
+        "and input data rather than a fixed duration selected a priori",
+        "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "a2fa447ac8209a77eb17ce27a1b9b70844ab89be09ac3ab38282f2ab84a94aec",
+      "lines": [
+        "RNN: Advantages",
+        "…",
+        "• Retains information about past inputs for an amount of time that depends on the model’s weights",
+        "and input data rather than a fixed duration selected a priori",
+        "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "a9007221e3beb57c6bbf935b59ef43ff0d98a332092b260a0d7807cff04e7d43",
+      "lines": [
+        "RNN: Advantages",
+        "…",
+        "• Can theoretically handle any input size by unfolding less/more time steps",
+        "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "de2cb3f31e9e2a42bf9ff487c4ca4008084c53a4b805e24967841121af497046",
+      "lines": [
+        "RNN Example: Predict Sequence of Characters",
+        "• Goal: predict next character in text",
+        "• Training Data: sequence of characters represented as one-hot vectors"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "c9b7abfb69afd7f81d2ed48dbabcb31ce7e1221fccd08ebce1f5c3638497d412",
+      "lines": [
+        "http://karpathy.github.io/2015/05/21/rnn-effectiveness/",
+        "Training Input Predicted Output",
+        "RNN Example: Predict Sequence of Characters;",
+        "e.g., To Write a Wikipedia Page"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "bdb18c39883313fc7d14f2899b211ec1ec24f666feb7e90d5bf56a0b4fdfd02d",
+      "lines": [
+        "https://github.com/martin-gorner/tensorflow-rnn-shakespeare",
+        "Training Input (All Works of Shakespeare) Predicted Output",
+        "http://karpathy.github.io/2015/05/21/rnn-effectiveness/",
+        "RNN Example: Predict Sequence of Characters;",
+        "e.g., To Write Like Shakespeare"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "1b5b8f1c164d1402653dcb8b600d48254d2564c527047c34b408df14894e0a0f",
+      "lines": [
+        "RNN Example: Predict Sequence of Characters;",
+        "e.g., To Write Code",
+        "https://github.com/martin-gorner/tensorflow-rnn-shakespeare",
+        "Training Input (C code on GitHub) Predicted Output",
+        "http://karpathy.github.io/2015/05/21/rnn-effectiveness/"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "c7d287040a0e6d3207c3607ff3877fdff4be053e69d1513ba36cf29db6b7dae9",
+      "lines": [
+        "https://hjweide.github.io/char-rnn",
+        "Training Input Predicted Output",
+        "Facebook messages from…",
+        "RNN Example: Predict Sequence of Characters;",
+        "e.g., To Write Facebook Messages"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "3fe0c4ba46d9f78457220370e5c228b274e1efbabf02f7d206f95dbab29c701e",
+      "lines": [
+        "• Goal: predict next character in text",
+        "• Prediction: feed training sequence of one-hot encoded characters; e.g., “hello”",
+        "• For simplicity, assume the following vocabulary (i.e., character set): {h, e, l, o}",
+        "• What is our input at time step 1?",
+        "• What is our input at time step 2?",
+        "• What is our input at time step 3?",
+        "• What is our input at time step 4?",
+        "• And so on…",
+        "Example: Predict Sequence of Characters",
+        "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "b73e92d405ca2b9647d9df51dc6ed40d46a2da00e1ef127133ba957f5ff9140e",
+      "lines": [
+        "Sigmoid Tanh ReLU",
+        "Recall activation functions: use tanh as activation function",
+        "Example: Predict Sequence of Characters"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "b5cb7cd4de4cce65d2e4d1b4587a609d725a21d4e2d6478d6a62d90d239d651c",
+      "lines": [
+        "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/",
+        "+ bias )",
+        "Example: Predict Sequence of Characters",
+        "Why do we use three rows instead of 1 row for the weight matrix?",
+        "- provides more model parameters and so can generate a more complex",
+        "function; the number of rows is a hyperparameter set by the developer"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "1cd47819c4838bf035658391524648861553e95460926e86cc15f092aee1c415",
+      "lines": [
+        "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/",
+        "+ bias )",
+        "Input at next time step",
+        "Initialize to 0",
+        "Initialize to random value: 0.567001",
+        "Example: Predict Sequence of Characters"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "42363c5cfa0749735cf1839b13cfbc4c4d81c31bd222aaeed3908c4f04a27541",
+      "lines": [
+        "+ bias )",
+        "Output at previous time step",
+        "Initialize to random value: 0.427043 Initialized to random value: 0.567001",
+        "Example: Predict Sequence of Characters",
+        "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "71c63655ff95ddd1916c8bfb2251224eff83962a911592141993a34ad93746db",
+      "lines": [
+        "Example: Prediction for Time Step 2",
+        "Applying softmax,",
+        "to compute letter",
+        "probabilities:",
+        "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "2fbd039678b4c6afcda06f4d4c09c404bdeea655f63ea0c8eb8f0161f2399888",
+      "lines": [
+        "Example: Prediction for Time Step 2",
+        "Applying softmax,",
+        "to compute letter",
+        "probabilities:",
+        "Given our vocabulary",
+        "is {h, e, l, o}, what",
+        "letter is predicted?",
+        "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "3884b94b8d6786fedf193ffa2b8874128163191d990bc9ff0d54c00cc746fe3a",
+      "lines": [
+        "Training Approach",
+        "• Repeat until stopping criterion met:",
+        "1. Forward pass: propagate",
+        "training data through",
+        "unfolded network to predict",
+        "2. Quantify the dissatisfaction",
+        "with a model’s results on the",
+        "training data",
+        "3. Backward pass: using",
+        "predicted output, calculate",
+        "gradients backward to assign",
+        "blame to each model",
+        "parameter; weight sharing",
+        "accounted for by summing",
+        "gradients for all time steps",
+        "4. Update each parameter",
+        "using calculated gradients",
+        "Figure from: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul,",
+        "Jeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "a2bf56284944084e167d74aca3fc59cee8b6a6a6ff16c9cc722ba4f77e35296b",
+      "lines": [
+        "Training Approach",
+        "• Repeat until stopping criterion met:",
+        "1. Forward pass: propagate",
+        "training data through",
+        "unfolded network to predict",
+        "2. Quantify the dissatisfaction",
+        "with a model’s results on the",
+        "training data",
+        "3. Backward pass: using",
+        "predicted output, calculate",
+        "gradients backward to assign",
+        "blame to each model",
+        "parameter; weight sharing",
+        "accounted for by summing",
+        "gradients for all time steps",
+        "4. Update each parameter",
+        "using calculated gradients",
+        "Figure from: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul,",
+        "Jeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018",
+        "See assigned readings for derivations of",
+        "back-propagation through time (BPTT)"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "cc1df1f0a3c4a234f9e09a49a3e823a3a028add010d752ea69f8f3459615ccb4",
+      "lines": [
+        "http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture10.pdf",
+        "Training Approach; e.g., Many-to-Many Loss"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "dd84b35a219974925fe8a707a105e11286eb857a7fe347f93e4375606bcdbb49",
+      "lines": [
+        "Example: Predict Sequence of Characters",
+        "at Test Time",
+        "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/",
+        "Feed previous prediction",
+        "… as input for next time step"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "dd84b35a219974925fe8a707a105e11286eb857a7fe347f93e4375606bcdbb49",
+      "lines": [
+        "Example: Predict Sequence of Characters",
+        "at Test Time",
+        "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/",
+        "Feed previous prediction",
+        "… as input for next time step"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "d8e0756d0ebcff10c84f432f46e3c15fa94bef5e5ffb6481514dae05b02f5f3b",
+      "lines": [
+        "RNN Variants: Different Number of Hidden Layers",
+        "Experimental evidence suggests deeper",
+        "models can perform better:",
+        "- Graves et al.; Speech Recognition with",
+        "Deep Recurrent Neural Networks; 2013.",
+        "- Pascanu et al.; How to Construct Deep",
+        "Recurrent Neural Networks; 2014.",
+        "http://cs231n.stanford.edu/slides/2016/winter1516_lecture10.pdf"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "c3e1f083e465f9cad5d7b0762d9fe6ce3a633b8caff283307e8d963b78ba66e4",
+      "lines": [
+        "RNN Variants: Variable Input/Output Lengths",
+        "Which variant would you use for text classification?",
+        "http://cs231n.stanford.edu/slides/2016/winter1516_lecture10.pdf"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "45046944826a42167c1b150ce30d603ac0a3de44acd2f4f309431ec48230d82c",
+      "lines": [
+        "RNN Variants: Variable Input/Output Lengths",
+        "Why would you choose the",
+        "former variant of “many to",
+        "many” over the latter?",
+        "- Need full context before",
+        "predicting; e.g. text dialogue",
+        "http://cs231n.stanford.edu/slides/2016/winter1516_lecture10.pdf"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "727b32b59cd05eb19b862b51409a2c092c13b96db3c8471d20c4821ea16e567c",
+      "lines": [
+        "RNN Variants: Variable Input/Output Lengths",
+        "Why would you choose the",
+        "latter variant of “many to",
+        "many” over the former?",
+        "- Full context not needed to predict;",
+        "e.g., named entity recognition",
+        "https://en.wikipedia.org/wiki/Named-entity_recognition",
+        "http://cs231n.stanford.edu/slides/2016/winter1516_lecture10.pdf"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "431e047458c897ee17bd4f395576e0e7cb2fbf5a865f42b6342916a875526af6",
+      "lines": [
+        "Today’s Topics",
+        "• Machine learning for sequential data",
+        "• Recurrent neural networks (RNNs)",
+        "• Gated RNNs",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "bcfc26521ba535f40d7ddc531a0594b57442c16a1a67a2011efb55c24f4fdb1f",
+      "lines": [
+        "Historical Context First programmable machine",
+        "2012",
+        "Turing test",
+        "1945",
+        "AI",
+        "1956",
+        "1950 1959",
+        "RNN: Rumelhart’s paper “Learning",
+        "representations by back-propagating errors”",
+        "AlexNet",
+        "1957 Perceptron",
+        "1847 Gradient descent",
+        "Machine learning",
+        "1986",
+        "1997",
+        "Backpropagation for CNNs",
+        "1989",
+        "LeNet",
+        "Neocognitron",
+        "1980",
+        "LSTM",
+        "2014",
+        "GRU",
+        "1998"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "255073431ba2cd9fcc6de8b9f56747e163209019886b3f36ff66b0a1903611c3",
+      "lines": [
+        "Motivation: Recall Vanishing Gradients Problem",
+        "Smallest gradients at earliest layers make them slowest to train, yet later layers depend on those",
+        "earlier layers to do something useful; consequently, NNs struggle with garbage in means garbage out",
+        "https://towardsdatascience.com/batch-normalization-the-greatest-breakthrough-in-deep-learning-77e64909d81d"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "60d8d01400da30377065e5770b90dfb080471063f7ff3ef4bbfa123ff49d2f2b",
+      "lines": [
+        "Motivation: Recall Vanishing Gradients Problem",
+        "Sigmoid Tanh",
+        "Ranges from 0 to 1, and",
+        "typically less than 1:",
+        "Main reason is activation",
+        "functions and their derivatives:",
+        "Masi et al. Journal of the Mechanics and Physics of Solids. 2021"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "29c0f3976986c1d1a0987b8b2507a2f26892263aa4895f552c705c689d2f1205",
+      "lines": [
+        "RNN Challenge: Learn Long-Term Dependencies",
+        "• e.g., language: “In 2004, I started college” vs “I started college in 2004”",
+        "• e.g.,",
+        "• Vanishing gradient: a product of numbers less than 1 shrinks to zero",
+        "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/"
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "a2b60365cf52078f31ab19afe3df113239d7bef0b901d6097ea5fb39d0fc3d9d",
+      "lines": [
+        "RNN Challenge: Learn Long-Term Dependencies",
+        "Analogy: memory of past in RNN diminishes similar to how the road starts to",
+        "disappear as the vehicle that plowed the snow moves farther down the road",
+        "Image: https://www.timesunion.com/news/article/albany-saratoga-snow-totals-16826908.php"
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "c068c5fc05b5695497ebaa676e0d6f1f2bc43e221605441cb3256c6b25f74bfc",
+      "lines": [
+        "What Are Vanishing Gradient Remedies?",
+        "• Many remedies we have discussed can be used with RNNs; e.g.,",
+        "• ReLU activation functions",
+        "• Intelligent weight initialization",
+        "• Skip connections",
+        "• Popular RNN Solution: gates"
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "933e6703c7343886713df93ca6e3c6ad963e2fe82e9bee2da91a3541126b1b4d",
+      "lines": [
+        "Popular RNN Variant #1: LSTM",
+        "Both the previous hidden state and cell state are passed to next time steps",
+        "http://adventuresinmachinelearning.com/recurrent-neural-networks-lstm-tutorial-tensorflow/"
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "40ad16ef9b1e75f382913d74ee429fda39bd10e4c0bdf7fb5a5a6d045dcb335c",
+      "lines": [
+        "Popular RNN Variant #1: LSTM",
+        "Cell state: can retain memory of the past for a long duration",
+        "http://adventuresinmachinelearning.com/recurrent-neural-networks-lstm-tutorial-tensorflow/"
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "d2e411e37a083d1b6fa420709061ba101bfb8f22009592d865339e260a24940b",
+      "lines": [
+        "Popular RNN Variant #1: LSTM",
+        "Cell state: can retain memory of the past for a long duration, based on the forget gate",
+        "http://adventuresinmachinelearning.com/recurrent-neural-networks-lstm-tutorial-tensorflow/",
+        "g i f",
+        "The addition enables",
+        "the cell state to flow",
+        "back through time",
+        "for long durations"
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "1e7d7bd1dd6c3fbc209b6e032d662b1272084bae493da465df184a2650ecf5eb",
+      "lines": [
+        "Popular RNN Variant #1: LSTM",
+        "Cell state: can retain memory of the past for a long duration, based on the forget gate",
+        "http://adventuresinmachinelearning.com/recurrent-neural-networks-lstm-tutorial-tensorflow/",
+        "g i f",
+        "Forget gate range: 0 to 1",
+        "• What happens if 0?",
+        "• Past discarded",
+        "• What happens if 1?",
+        "• Past retained"
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "37b56676357a2e2de94ff21009526c131f49b1402a5e6045274b85031532162f",
+      "lines": [
+        "Popular RNN Variant #1: LSTM",
+        "Cell state: can retain memory of the past for a long duration, based on the forget gate",
+        "http://adventuresinmachinelearning.com/recurrent-neural-networks-lstm-tutorial-tensorflow/",
+        "Called gate because",
+        "sigmoid function mimics",
+        "open (1) and closed (0)"
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "54e9ba0c096ecbe4231b20387f215ba0f6a186e7670918335f0124035b152800",
+      "lines": [
+        "Popular RNN Variant #1: Gated Recurrent Unit",
+        "• Simplifies LSTM by merging: (1) cell and hidden states and (2) forget and input gates",
+        "K. Chou et al; Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation; 2014",
+        "https://en.wikipedia.org/wiki/Gated_recurrent_unit"
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "431e047458c897ee17bd4f395576e0e7cb2fbf5a865f42b6342916a875526af6",
+      "lines": [
+        "Today’s Topics",
+        "• Machine learning for sequential data",
+        "• Recurrent neural networks (RNNs)",
+        "• Gated RNNs",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "431e047458c897ee17bd4f395576e0e7cb2fbf5a865f42b6342916a875526af6",
+      "lines": [
+        "Today’s Topics",
+        "• Machine learning for sequential data",
+        "• Recurrent neural networks (RNNs)",
+        "• Gated RNNs",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

@@ -1,0 +1,541 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s27",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/22_EfficientAndReinforcementLearning.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2022/s27.pdf",
+    "sha256": "6f4c445a0094d7c44f8c6bd1e2a4ed11cec29e7f65d0aaec437efc57706a526d",
+    "page_count": 48,
+    "license_notice": "CC BY; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "4b6de382e174e9ee0fb0b6e782da7f0d4f307f6008dc745cae8297ed209827de",
+      "lines": [
+        "Efficient Learning and",
+        "Deep Reinforcement Learning",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2022",
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "d8abe3532bf251cf2068f71bc00ea9edc443f8b9a3705d2a0a510cd9abf272df",
+      "lines": [
+        "Review",
+        "• Last week:",
+        "• Motivation",
+        "• Key idea: knowledge distillation",
+        "• Knowledge distillation for CNNs (vision problems)",
+        "• Knowledge distillation for Transformers (language problems)",
+        "• Assignments (Canvas):",
+        "• Lab assignment 4 grades out",
+        "• Final project outline due Friday",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "794efc3d28f6cf090bafcaf97bf1df0e123d1a03311012b82496b4071ed3f008",
+      "lines": [
+        "VQA Challenge Analysis",
+        "• 88 valid submissions",
+        "• Mean: 28.65%",
+        "• Naive model: 35.53%",
+        "• Unanswerable predictions",
+        "• 2nd place: 44.93%",
+        "• Cole Sturza",
+        "• 1rst place: 47.73%",
+        "• Tushar Gautam"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "5ab6853b4d3af30dd9dc8b7bf3e1463a633e6d76b8d5ee05a87a68ff0172e67e",
+      "lines": [
+        "Today’s Topics",
+        "• Efficient learning: curriculum learning",
+        "• Efficient learning: active learning",
+        "• Reinforcement learning"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "5ab6853b4d3af30dd9dc8b7bf3e1463a633e6d76b8d5ee05a87a68ff0172e67e",
+      "lines": [
+        "Today’s Topics",
+        "• Efficient learning: curriculum learning",
+        "• Efficient learning: active learning",
+        "• Reinforcement learning"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "760d8c314913d0f89a8823934fdfb681feb99fbd7b076eb06510ddd3ca2eebd2",
+      "lines": [
+        "How to teach machines so they learn faster?"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "97a2829571790b0c17f654e1f7547544a942c44e17b4bd10f3f7283d63c47b0b",
+      "lines": [
+        "Intuition: How to Teach a Child Math?",
+        "Random Order of Examples Meaningful Order of Examples",
+        "Big Book of Math; Dinah Zike"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "84ece5bb591b21155811ba7a3751e0be317a3e0b193de9109200314c6465ff3a",
+      "lines": [
+        "Intuition: How to Teach a Child To Read?",
+        "Random Order of Examples Meaningful Order of Examples"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "8cf985c7f9491837a20064cfaf1121dc3a41721271ebfbb7906a95bf1a0fdc3e",
+      "lines": [
+        "Idea: Teach Machines As We Teach Humans",
+        "Curriculum",
+        "Train with simpler examples first and",
+        "progressively harder examples over time",
+        "Jeffrey L. Elman. Learning and development in neural networks: The importance of starting small. Cognition, 1993."
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "ef0662fb4fd32ec9af678e34c96dc450e96e8e0d0e19738dec73faa8bf257e75",
+      "lines": [
+        "Tasks",
+        "1. Classify each shape as rectangle, ellipse, or triangle",
+        "Background music from a _______",
+        "2. Predict the next word",
+        "Bengio et al., Curriculum Learning, 2009"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "7702c70e33b6db638c01b4b885d5d31129c4f4347df9ad3bce283599fa87e222",
+      "lines": [
+        "Shape Prediction: Curriculum Learning",
+        "1. Classify each shape as rectangle, ellipse, or triangle",
+        "Easy (Basic): less shape variability",
+        "(squares, circles, and equilateral triangles);",
+        "10,000 examples",
+        "Hard (Geom): more shape variability",
+        "(rectangles, ellipses, and triangles);",
+        "10,000 examples",
+        "Bengio et al., Curriculum Learning, 2009",
+        "Architecture: 3-layer neural network"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "e73e95dbbb3040ab2ba11b3706e338b399a5edfd0092736207b43c41398dc9da",
+      "lines": [
+        "Shape Prediction: Curriculum Learning",
+        "No curriculum Error",
+        "Results of training on “easy”",
+        "examples for n epochs and",
+        "then training on “hard”",
+        "examples.",
+        "What are benefits of",
+        "curriculum learning?",
+        "How many epochs should",
+        "the algorithm train with easy",
+        "examples before switching",
+        "to difficult examples?",
+        "Bengio et al., Curriculum Learning, 2009"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "a88c47c78a99be44800ff9c22e7ff4f28bf02cf876cda6f1759a3dd2e13aa4f5",
+      "lines": [
+        "Next Word Prediction: Curriculum Learning",
+        "Background music from a _______",
+        "2. Predict the next word",
+        "Bengio et al., Curriculum Learning, 2009",
+        "Easy: 5,000 most",
+        "frequent words",
+        "Hard: additional 5,000",
+        "words at each epoch",
+        "until 20,000 words",
+        "Architecture:",
+        "context size",
+        "set to 5",
+        "Examples with words",
+        "not in the vocab were",
+        "discarded from training"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "616b623ede8ade2ecd0bc33aaf0055db73848c4877359b33a05a440987639c79",
+      "lines": [
+        "Next Word Prediction: Curriculum Learning",
+        "Bengio et al., Curriculum Learning, 2009",
+        "What are benefits of curriculum learning?",
+        "Increases in vocab size"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "0e48e73e262aa3969b2322743f2fd3029b3c437d0d0e1121458dac0872355bc7",
+      "lines": [
+        "Summary: Curriculum Learning is a Form of",
+        "Transfer Learning that Accelerates Optimization",
+        "1. Classify each shape as rectangle, ellipse, or triangle",
+        "Background music from a _______",
+        "2. Predict the next word",
+        "Bengio et al., Curriculum Learning, 2009"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "92db645d70aac9cbbfc5d0c7e1816a2f75e0ac13c2e8bfd646f5c6d5bfe887d1",
+      "lines": [
+        "Class Discussion: Curriculum Learning for",
+        "Visual Question Answering",
+        "Does this picture look",
+        "scary?",
+        "Hi there can you please",
+        "tell me what flavor this is?",
+        "Which side of the",
+        "room is the toilet on?",
+        "Is my monitor on?",
+        "Questions",
+        "1. What criteria should be used to order examples?",
+        "2. How would you update the training data (and how often)?"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "5ab6853b4d3af30dd9dc8b7bf3e1463a633e6d76b8d5ee05a87a68ff0172e67e",
+      "lines": [
+        "Today’s Topics",
+        "• Efficient learning: curriculum learning",
+        "• Efficient learning: active learning",
+        "• Reinforcement learning"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "5c78cc46549c12c79157dce48bef53cabe633d6ad0181cc691107f9725e52681",
+      "lines": [
+        "Actively select the examples to label that",
+        "would be most effective for learning",
+        "rather than labelling all available data"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "952a47909aed9f41c41b8bd58e17df31f5ca8c62abafc9280cb3d4dff2ec17c8",
+      "lines": [
+        "Types of Active Learning",
+        "1. Stream-Based 2. Pool-Based",
+        "Consider one example at a time",
+        "Image Credit: https://www.cs.utah.edu/~piyush/teaching/10-11-slides.pdf",
+        "Consider many examples at a time"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "1f36b98a060fddb72876e9efb7161977521a7f2cf26343db8acb7986128afe21",
+      "lines": [
+        "Types of Active Learning",
+        "1. Stream-Based 2. Pool-Based",
+        "Consider one example at a time Consider many examples at a time",
+        "Image Credit: https://www.cs.utah.edu/~piyush/teaching/10-11-slides.pdf"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "20f70e79bb3e0caec403e06a2c5a3ea2cdfa92b02e98dda21e40f7e232bc33cc",
+      "lines": [
+        "Types of Active Learning",
+        "Stream-Based Pool-Based",
+        "Consider one example at a time Consider many examples at a time",
+        "Image Credit: https://www.cs.utah.edu/~piyush/teaching/10-11-slides.pdf"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "a3ecb6cd755850e392d5d910a0571913b5cb68f745c8fa79236ab39531fd3606",
+      "lines": [
+        "Active Learning Approach",
+        "Image Credit: https://www.cs.utah.edu/~piyush/teaching/10-11-slides.pdf"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "0aab1b431130672d0bcc7fa34e8a6239a8bba6d2bc7ea290f9e56de16bca83ff",
+      "lines": [
+        "Active Learning for Neural Networks: Status Quo",
+        "Pool-Based",
+        "Consider many examples at a time",
+        "Image Credit: https://www.cs.utah.edu/~piyush/teaching/10-11-slides.pdf",
+        "Iteratively add more labelled",
+        "training examples after n epochs;",
+        "different from curriculum",
+        "learning because labels need to",
+        "be collected for the added data"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "119d6f01f9520cccc46e03eee1153a38e37f4c35d6d5a9911588626da1be9df5",
+      "lines": [
+        "Challenge: how to choose most informative example(s) to label?"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "ad2fa21af169c0a2d93bb11393d16d95662edd9fa15233bbc380e69858cb05a0",
+      "lines": [
+        "Common Approach: Uncertainty Sampling",
+        "Passive Learner",
+        "(Random Selection)",
+        "True Representation",
+        "(Assume Labels Are",
+        "Not Known)",
+        "Active Learner",
+        "(Uncertainty Sampling)",
+        "http://burrsettles.com/pub/settles.activelearning.pdf",
+        "Query instance(s) the classifier is most uncertain about."
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "0c67b12596e963de314dfdf0a55a04536db297f2caea6c39e773d35c384d2d7a",
+      "lines": [
+        "Common Approach: Uncertainty Sampling",
+        "Passive Learner",
+        "(Random Selection)",
+        "True Representation",
+        "(Assume Labels Are",
+        "Not Known)",
+        "Active Learner",
+        "(Uncertainty Sampling)",
+        "http://burrsettles.com/pub/settles.activelearning.pdf",
+        "Why might this be a poor approach?"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "33a392460da31e44c4b8f3d6da4fb1794eb9a030722aef06171caf0d53f00c24",
+      "lines": [
+        "What Are Other Potential Active Learning Approaches?",
+        "• Select examples expected to:",
+        "• meet a specific skill (e.g., learn to count in VQA)",
+        "• boost model performance the most"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "80aded14e854d4c456804dd3313e47ff44372c7016972b0129cc9e08eef45f78",
+      "lines": [
+        "Learning Curves: : Active vs Passive Learning",
+        "What are benefits of the",
+        "active learning methods",
+        "over passive learning?",
+        "- Learning is faster",
+        "- Reduces humans’",
+        "annotation effort",
+        "Lin and Parikh. Active Learning for Visual Question Answering: An Empirical Study. 2017"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "5ab6853b4d3af30dd9dc8b7bf3e1463a633e6d76b8d5ee05a87a68ff0172e67e",
+      "lines": [
+        "Today’s Topics",
+        "• Efficient learning: curriculum learning",
+        "• Efficient learning: active learning",
+        "• Reinforcement learning"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "11da7798110bdf89ff64fdba98095dc805a5ebb29d566b20e4c07f59ab280051",
+      "lines": [
+        "Deep Learning Approaches",
+        "http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/intro_RL.pdf",
+        "Deep",
+        "Learning"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "0afa4b90cb29f8c7c42c448e3c26433b78a4bcb97114f8ce43ecd63132671790",
+      "lines": [
+        "Reinforcement Learning Overview",
+        "Agent takes actions in an environment to maximize the total reward",
+        "Figure Credit: https://towardsdatascience.com/applications-of-reinforcement-learning-in-real-world-1a94955bcd12"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "b52d200cc113b91e076dd1a0dabf8aff592b7eac4d6c75010f9a20a92ae6d598",
+      "lines": [
+        "Intuition: Learning to Walk by Trial-and Error",
+        "https://en.wikipedia.org/wiki/Crawling_(human)"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "ab152ae1d67a2ec9887e33a33743f841b480747727b8cc9ed1427e2ed4d15661",
+      "lines": [
+        "Reinforcement Learning Applications"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "ab152ae1d67a2ec9887e33a33743f841b480747727b8cc9ed1427e2ed4d15661",
+      "lines": [
+        "Reinforcement Learning Applications"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "ec12e7c66f4399b4c2f57821bc29fd75aec78221ebebb3c317e0893bc9d57fea",
+      "lines": [
+        "Reinforcement Learning Applications",
+        "https://web.stanford.edu/class/psych209/Readings/MnihEtAlHassibis15NatureControlDeepRL.pdf",
+        "https://www.tastehit.com/blog/google",
+        "-deepmind-alphago-how-it-works/"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "ff9bf6e3c125d91668b04ce12257c92d0a93dbe9b8a83ad0237426ae6cddd3af",
+      "lines": [
+        "e.g., Pong Game Learning Example",
+        "Goal: compute optimal “up” and “down” paddle movements to maximize rewards",
+        "http://karpathy.github.io/2016/05/31/rl/"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "afde06abdfb835f91292d2bf99bb86d30dad595b4583d735a495262c58068192",
+      "lines": [
+        "e.g., Pong Game Learning Example",
+        "http://karpathy.github.io/2016/05/31/rl/",
+        "Representation: graph where nodes",
+        "are game states and edges are",
+        "possible transitions with rewards",
+        "-1 if missed the ball",
+        "+1 reward if ball goes past opponent",
+        "0 otherwise"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "ecde27174ea4a0d4c6c3edc92007a3cb7ed5adb5f0de812e1eb6b830bdfac5e3",
+      "lines": [
+        "e.g., Pong Game: Policy Network",
+        "Given game state (as image), decide if to move paddle up or down",
+        "http://karpathy.github.io/2016/05/31/rl/"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "075464d5ea7c1bdd603eef5aab9d0abd4d7f8204364e7af085a435ab79c8ceaf",
+      "lines": [
+        "e.g., Pong Game: Policy Network",
+        "Reward provided after each game state of moving paddle up or down",
+        "http://karpathy.github.io/2016/05/31/rl/"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "236045fffef4c2f33ee4af690da4fa574921719cfbb44a355834104c8f91a922",
+      "lines": [
+        "e.g., Pong Game: Policy Network",
+        "Credit assignment problem: reward may be due to good action many steps ago",
+        "http://karpathy.github.io/2016/05/31/rl/"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "5875b501f67a2f52fb9cdd2e31ec76e87dbb6e0133b32f4cb4e0aa0fd1c50382",
+      "lines": [
+        "e.g., Pong Game: Training Protocol",
+        "Encourages actions that eventually lead to good outcomes and",
+        "discourages actions that eventually lead to bad outcomes by",
+        "updating gradients accordingly",
+        "http://karpathy.github.io/2016/05/31/rl/"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "9739bd13d31a9e3fd14e5353f24d78d93840c81740163ad13b7a9e239697cc63",
+      "lines": [
+        "e.g., Pong Game: Training Protocol",
+        "• 100 games played with 200 images/game",
+        "• Suppose: win 12 games, lose 88",
+        "• # winning decisions = 200*12 = 2400 decisions; gradient updated to encourage each",
+        "up/down action",
+        "• # losing decisions: 200*88 = 17600; gradient updated to discourage each up/down action",
+        "http://karpathy.github.io/2016/05/31/rl/"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "c5645095fe5e0efe9844f1d17185a6f8f98fd7674f649590e2911aed0807d9f0",
+      "lines": [
+        "e.g., Pong Game: Trained for Three Nights",
+        "Demo: https://www.youtube.com/watch?time_continue=16&v=YOW8m2YGtRg"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "4fa8ac36e54b16886a5d5649ba4dfe3a1a502f473046c97013ed28dbc0f95d49",
+      "lines": [
+        "e.g., Learning Dexterity",
+        "Demo: https://www.youtube.com/watch?v=jwSbzNHGflM"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "3fd81fc51e575ad3da309e10228be7ab80a0384a72ff913bad263c17fe5abf30",
+      "lines": [
+        "e.g., Learning to Flip Pancakes",
+        "Demo: https://www.youtube.com/watch?v=W_gxLKSsSIE&list=PL5nBAYUyJTrM48dViibyi68urttMlUv7e"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "61f7b741272a0234fba3a17b9a053fd105e5d31c9c287e7f39a0a5393760467f",
+      "lines": [
+        "e.g., Learning to Walk",
+        "Demo: https://www.youtube.com/watch?v=gn4nRCC9TwQ"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "5ab6853b4d3af30dd9dc8b7bf3e1463a633e6d76b8d5ee05a87a68ff0172e67e",
+      "lines": [
+        "Today’s Topics",
+        "• Efficient learning: curriculum learning",
+        "• Efficient learning: active learning",
+        "• Reinforcement learning"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

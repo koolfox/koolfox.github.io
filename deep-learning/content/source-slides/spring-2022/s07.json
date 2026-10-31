@@ -1,0 +1,1008 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s07",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/06-ConvolutionalNeuralNetworks.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2022/s07.pdf",
+    "sha256": "4ea3dddf6176cd454ce352f019545fb96216ba821585fb3e688c3783d6bc7347",
+    "page_count": 76,
+    "license_notice": "CC BY; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "18ca3b8e3c768091d487c6e5f9da0c99415d0f4a76ddcf30576bb61c109b325f",
+      "lines": [
+        "Convolutional",
+        "Neural Networks",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2022",
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "500f6b2f9e908885caeaa4871c7d3fa58b603ce333093a7a121ff0f534171008",
+      "lines": [
+        "Review",
+        "• Last class:",
+        "• Universal approximation theorem",
+        "• Selecting model capacity: avoid overfitting and underfitting",
+        "• Selecting model hyperparameters",
+        "• Learning efficiently: optimization methods",
+        "• Programming tutorial",
+        "• Assignments (Canvas):",
+        "• Lab assignment 1 due earlier today",
+        "• Problem set 2 due next week",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "e8d4ea29adff2daff309b7eb49697e6bd7db80b3ab2abf05eaec623423e951b7",
+      "lines": [
+        "Today’s Topics",
+        "• Neural Networks for Spatial Data",
+        "• History of Convolutional Neural Networks (CNNs)",
+        "• CNNs – Convolutional Layers",
+        "• CNNs – Pooling Layers"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "e8d4ea29adff2daff309b7eb49697e6bd7db80b3ab2abf05eaec623423e951b7",
+      "lines": [
+        "Today’s Topics",
+        "• Neural Networks for Spatial Data",
+        "• History of Convolutional Neural Networks (CNNs)",
+        "• CNNs – Convolutional Layers",
+        "• CNNs – Pooling Layers"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "2477689694483f7c17583d28f78d80d93a885b4858b1af5709d74070d67a5954",
+      "lines": [
+        "What is Spatial Data?",
+        "• Data where the order matters; e.g.,",
+        "2D 3D",
+        "Images Audio (spectrogram) Text (word embeddings)",
+        "I",
+        "like",
+        "deep",
+        "learning",
+        "learning",
+        "about",
+        "Video"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "e8d4ea29adff2daff309b7eb49697e6bd7db80b3ab2abf05eaec623423e951b7",
+      "lines": [
+        "Today’s Topics",
+        "• Neural Networks for Spatial Data",
+        "• History of Convolutional Neural Networks (CNNs)",
+        "• CNNs – Convolutional Layers",
+        "• CNNs – Pooling Layers"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "55bf84e823ee29928d207b0fb50c9b07a4afa1c790dfd76c689b86f7b7e8d71f",
+      "lines": [
+        "Historical Context: Inspiration First programmable machine",
+        "2012",
+        "Turing test",
+        "1945",
+        "AI",
+        "1956",
+        "1950 1959",
+        "Neural networks with",
+        "effective learning strategy",
+        "1986",
+        "Wave 3: rise of",
+        "“deep learning”",
+        "1957 Perceptron",
+        "1847 Gradient descent",
+        "Universal approximation paper",
+        "1980",
+        "Neuroscientific experiments",
+        "by Hubel & Weisel to",
+        "understand how mammalian",
+        "vision system works",
+        "Nobel Prize in Physiology and",
+        "Medicine to Hubel and Weisel",
+        "1989",
+        "Machine learning"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "fdca4aad7312f4ebd1822d20ea43db865e9b3ec84805f0f3b474f296fbfba129",
+      "lines": [
+        "Motivation: How Vision System Works",
+        "Image Source: https://braintour.harvard.edu/archives/portfolio-items/hubel-and-wiesel"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "64ec07650ef1793dd47e4fb33a15599325b3bf230a46665cb856cecced4c5a62",
+      "lines": [
+        "Motivation: How Vision System Works",
+        "https://neuwritesd.files.wordpress.com/2015/10/visual_stream_small.png"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "263ae268062697ab83d8992dab6cc4fe0fc7a9bf38d9eccf3d98ccd62052821a",
+      "lines": [
+        "Motivation: How Vision System Works",
+        "Key Finding: initial neurons responded strongly",
+        "only when light was shown in certain orientations",
+        "https://www.cns.nyu.edu/~david/courses",
+        "/perception/lecturenotes/V1/lgn-V1.html",
+        "https://www.esantus.com/blog/2019/1/31/convolu",
+        "tional-neural-networks-a-quick-guide-for-newbies",
+        "Experiment Set-up:"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "6c2f5a927de22d427d8ad0054bf87762f5b5d649a7660804131ddcbbccd0f5aa",
+      "lines": [
+        "Motivation: How Vision System Works",
+        "Key Idea: cells are organized as a hierarchy of feature detectors, with higher",
+        "level features responding to patterns of activation in lower level cells",
+        "Source: https://bruceoutdoors.files.wordpress.com/2017/08/hubel.jpg"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "6e61fcf9e4b236f3ff144de155e5dd612378cfa75ba75b5f1d627036825755e8",
+      "lines": [
+        "Historical Context: Key Ingredients First programmable machine",
+        "2012",
+        "Machine learning",
+        "Turing test",
+        "1945",
+        "AI",
+        "1956",
+        "1950 1959",
+        "Neural networks with",
+        "effective learning strategy",
+        "1986",
+        "Wave 3: rise of",
+        "“deep learning”",
+        "1957 Perceptron",
+        "1847 Gradient descent",
+        "Universal approximation paper",
+        "1980",
+        "Neuroscientific experiments to",
+        "understand how mammalian",
+        "vision system works",
+        "Nobel Prize in Physiology and",
+        "Medicine to Hubel and Weisel",
+        "1989",
+        "Neocognitron:",
+        "convolutional layers and",
+        "downsampling layers"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "5eaf11d7e726356b6268419651eaf4a6c2947f350b4e142bade48b98e364709f",
+      "lines": [
+        "Neocognitron: Key Ingredients",
+        "“In this paper, we discuss how to synthesize a neural",
+        "network model in order to endow it an ability of pattern",
+        "recognition like a human being… the network acquires a",
+        "similar structure to the hierarchy model of the visual",
+        "nervous system proposed by Hubel and Wiesel.”",
+        "- Fukushima, Neocognitron: A Self-organizing Neural Network Model for a Mechanism",
+        "of Pattern Recognition Unaffected by Shift in Position. Biological Cybernetics, 1980. http://personalpage.flsi.or.j",
+        "p/fukushima/index-e.html"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "879e530713f26fa20fa5ebcb120841c6ca38f523d602e64b7671474e6ddf1700",
+      "lines": [
+        "Neocognitron: Key Ingredients",
+        "Fukushima, 1980.",
+        "Cascade of simple",
+        "and complex cells:"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "7db4ac26d5050911f632dea10559837d27adfbc43c08980a0f1ba210855559d5",
+      "lines": [
+        "Neocognitron: Key Ingredients",
+        "Fukushima, 1980.",
+        "Simple cells extract",
+        "local features using",
+        "a sliding filter:"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "4f2a6b547d1d930bab35920ccec9d709a90a82aa91326ca52b30eefc631868c8",
+      "lines": [
+        "Neocognitron: Key Ingredients",
+        "Fukushima, 1980.",
+        "Complex cells fire",
+        "when any part of the",
+        "local region is the",
+        "desired pattern"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "91b07403da3cf6eb5616acd965796d41181809bfed88d901f9bf5dd19ef59a9f",
+      "lines": [
+        "Neocognitron: Key Ingredients",
+        "Fukushima, 1980.",
+        "1. ~ Convolutional layers",
+        "2. ~ Pooling Layers"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "e8d4ea29adff2daff309b7eb49697e6bd7db80b3ab2abf05eaec623423e951b7",
+      "lines": [
+        "Today’s Topics",
+        "• Neural Networks for Spatial Data",
+        "• History of Convolutional Neural Networks (CNNs)",
+        "• CNNs – Convolutional Layers",
+        "• CNNs – Pooling Layers"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "0cd77e89d10d7e374b02490168d35e94b96440190957fee1b5509c9a55e9470c",
+      "lines": [
+        "Motivation: Fully-Connected Layers Are Limited",
+        "Each node provides input to each node in the next layer",
+        "Figure Source: http://cs231n.github.io/neural-networks-1/"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "9fbb18d8ba32833edda0dae8b6a41e0b5c907b745f65c8908bf795635375c293",
+      "lines": [
+        "Motivation: Fully-Connected Layers Are Limited",
+        "• Assume 2 layer model with 100 nodes per layer",
+        "• e.g., how many weights are in a 640x480 image?",
+        "• 640x480x3x100 + 100x100 + 100x1 = 92,170,100",
+        "• e.g., how many weights are in a 2048X1536 image (3.1 Megapixel image)?",
+        "• 2048x1536x3x100 + 100x100 + 100x1 = 943,728,500"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "5d5a0f6ac8b8d91bd7dad8d5a743f3405a6a26c7c9eaa686d80a99265faa8afc",
+      "lines": [
+        "Motivation: Fully-Connected Layers Are Limited",
+        "• Assume 2 layer model with 100 nodes per layer",
+        "• e.g., how many weights are in a 640x480 image?",
+        "• 640x480x3x100 + 100x100 + 100x1 = 92,170,100",
+        "• e.g., how many weights are in a 2048X1536 image (3.1 Megapixel image)?",
+        "• 2048x1536x3x100 + 100x100 + 100x1 = 943,728,500",
+        "Issue: many model parameters in fully connected networks"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "fa79fff3238246be92432c2146994068ed0102e5fee3462f6b675e48ff9652cd",
+      "lines": [
+        "Motivation: Fully-Connected Layers Are Limited",
+        "• Assume 2 layer model with 100 nodes per layer",
+        "• e.g., how many weights are in a 640x480 image?",
+        "• 640x480x3x100 + 100x100 + 100x1 = 92,170,100",
+        "• e.g., how many weights are in a 2048X1536 image (3.1 Megapixel image)?",
+        "• 2048x1536x3x100 + 100x100 + 100x1 = 943,728,500",
+        "Many model parameters and so…",
+        "- greater chance to overfit",
+        "- increased training time",
+        "- needs more training data"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "9d6571350ebb51ad6aa6079881f3754df84e31b367abe0d484a705562a301c7b",
+      "lines": [
+        "Convolutional Layer (Recall Neocognitron)",
+        "Idea: each node receives input only from a small",
+        "neighborhood in previous layer and parameter sharing",
+        "Fukushima, 1980."
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "dcb1e452e933bebf34fdbee75b5892da01d0b028a138d8ccb78ecd168a94df6b",
+      "lines": [
+        "Convolutional Layer (Recall Neocognitron)",
+        "To do so, convolutions replace general matrix",
+        "multiplication used in fully connected layers",
+        "Fukushima, 1980."
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "bda1f54d5d7be22c5a0a91b13d8c85d9c0bdd72bd796c6719702a3d426000039",
+      "lines": [
+        "Convolution: Applies Linear Filter (e.g., 2D)",
+        "https://www.jefkine.com/general/2016/09/05/backpropagation-in-convolutional-neural-networks/",
+        "Input Filter",
+        "(aka – Kernel)",
+        "Feature",
+        "Map",
+        "Way to Interpret",
+        "Neural Network"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "d640c136bf3c9643d08d3ad57bfc98848aaae1167470b4d734912352b159df30",
+      "lines": [
+        "2D Filtering",
+        "• Compute a function of local neighborhood for each location in matrix",
+        "• A filter specifies the function for how to combine neighbors’ values"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "7137b13fe7a35d8f43bcf5539fbecf0ccffed7b66c0bbb84bbcca7417cbc0f2d",
+      "lines": [
+        "2D Filtering",
+        "https://people.eecs.berkeley.edu/~jrs/189/lec/cnn.pdf",
+        "Matrix:",
+        "Slides filter over the matrix and computes dot products",
+        "Filtered",
+        "Result:"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "7137b13fe7a35d8f43bcf5539fbecf0ccffed7b66c0bbb84bbcca7417cbc0f2d",
+      "lines": [
+        "2D Filtering",
+        "https://people.eecs.berkeley.edu/~jrs/189/lec/cnn.pdf",
+        "Matrix:",
+        "Slides filter over the matrix and computes dot products",
+        "Filtered",
+        "Result:"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "7137b13fe7a35d8f43bcf5539fbecf0ccffed7b66c0bbb84bbcca7417cbc0f2d",
+      "lines": [
+        "2D Filtering",
+        "https://people.eecs.berkeley.edu/~jrs/189/lec/cnn.pdf",
+        "Matrix:",
+        "Slides filter over the matrix and computes dot products",
+        "Filtered",
+        "Result:"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "7137b13fe7a35d8f43bcf5539fbecf0ccffed7b66c0bbb84bbcca7417cbc0f2d",
+      "lines": [
+        "2D Filtering",
+        "https://people.eecs.berkeley.edu/~jrs/189/lec/cnn.pdf",
+        "Matrix:",
+        "Slides filter over the matrix and computes dot products",
+        "Filtered",
+        "Result:"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "7ee5ead1329ed62527991389df898d83622918d96cbd59cb2a6d3a70bf36b7a0",
+      "lines": [
+        "2D Filtering: Toy Example",
+        "? ? ?",
+        "? ? ?",
+        "? ? ?",
+        "Input Filter Feature Map",
+        "1 1 1 0 0",
+        "0 1 1 1 0",
+        "0 0 1 1 1",
+        "0 0 1 1 0",
+        "0 1 1 0 0",
+        "1 0 1",
+        "0 1 0",
+        "1 0 1",
+        "Dot Product = 1*1 + 1*0 + 1*1 + 0*0 + 1*1 + 1*0 + 0*1 + 0*1 + 0*0 + 0*0 + 1*1",
+        "Dot Product = 4"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "dd7fb58f7cda73113613de7bda0e4c8afb4944e4e941383bed5dcac2e237b7c8",
+      "lines": [
+        "1 1 1 0 0",
+        "0 1 1 1 0",
+        "0 0 1 1 1",
+        "0 0 1 1 0",
+        "0 1 1 0 0",
+        "1 0 1",
+        "0 1 0",
+        "1 0 1",
+        "2D Filtering: Toy Example",
+        "Input Filter Feature Map",
+        "4 ? ?",
+        "? ? ?",
+        "? ? ?"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "73c910320bb0c6d1e54bfa6e1d8411b6b48af08ed0786056389a08ab56686d44",
+      "lines": [
+        "1 1 1 0 0",
+        "0 1 1 1 0",
+        "0 0 1 1 1",
+        "0 0 1 1 0",
+        "0 1 1 0 0",
+        "1 0 1",
+        "0 1 0",
+        "1 0 1",
+        "2D Filtering: Toy Example",
+        "Input Filter Feature Map",
+        "4 3 ?",
+        "? ? ?",
+        "? ? ?"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "0ef36c1f5fd5565c4f93d785854dbbaed17008583a42b11a87472d1cd8ecd4ed",
+      "lines": [
+        "1 1 1 0 0",
+        "0 1 1 1 0",
+        "0 0 1 1 1",
+        "0 0 1 1 0",
+        "0 1 1 0 0",
+        "1 0 1",
+        "0 1 0",
+        "1 0 1",
+        "2D Filtering: Toy Example",
+        "Input Filter Feature Map",
+        "4 3 4",
+        "? ? ?",
+        "? ? ?"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "2a74024b5da45b33af4a5a854d7239fe3dc51743bd63617d8f4989fc4918227e",
+      "lines": [
+        "1 1 1 0 0",
+        "0 1 1 1 0",
+        "0 0 1 1 1",
+        "0 0 1 1 0",
+        "0 1 1 0 0",
+        "1 0 1",
+        "0 1 0",
+        "1 0 1",
+        "2D Filtering: Toy Example",
+        "Input Filter Feature Map",
+        "4 3 4",
+        "2 ? ?",
+        "? ? ?"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "9eea462bbfa09a0aef3e23d299611eab69c0f7d13d4f651187d10c85951b0eb9",
+      "lines": [
+        "1 1 1 0 0",
+        "0 1 1 1 0",
+        "0 0 1 1 1",
+        "0 0 1 1 0",
+        "0 1 1 0 0",
+        "1 0 1",
+        "0 1 0",
+        "1 0 1",
+        "2D Filtering: Toy Example",
+        "Input Filter Feature Map",
+        "4 3 4",
+        "2 4 ?",
+        "? ? ?"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "7c0acde1e48cefed6b9c26b58294c28a73d7af72b049283bf1c7a72f34d5cfa8",
+      "lines": [
+        "1 1 1 0 0",
+        "0 1 1 1 0",
+        "0 0 1 1 1",
+        "0 0 1 1 0",
+        "0 1 1 0 0",
+        "1 0 1",
+        "0 1 0",
+        "1 0 1",
+        "2D Filtering: Toy Example",
+        "Input Filter Feature Map",
+        "4 3 4",
+        "2 4 3",
+        "? ? ?"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "ea991fe3922a8b0fac54ab2c37e365c2eaf90b9ecec94ddfd881a6d18192f881",
+      "lines": [
+        "1 1 1 0 0",
+        "0 1 1 1 0",
+        "0 0 1 1 1",
+        "0 0 1 1 0",
+        "0 1 1 0 0",
+        "1 0 1",
+        "0 1 0",
+        "1 0 1",
+        "2D Filtering: Toy Example",
+        "Input Filter Feature Map",
+        "4 3 4",
+        "2 4 3",
+        "2 ? ?"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "d9fd745363fa5d770128475e96d5b24520ba06b8b2e24168cbd52caf7c54ec17",
+      "lines": [
+        "1 1 1 0 0",
+        "0 1 1 1 0",
+        "0 0 1 1 1",
+        "0 0 1 1 0",
+        "0 1 1 0 0",
+        "1 0 1",
+        "0 1 0",
+        "1 0 1",
+        "2D Filtering: Toy Example",
+        "Input Filter Feature Map",
+        "4 3 4",
+        "2 4 3",
+        "2 3 ?"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "ef395f5f6889290c50ca7604865cebf4949c3cd744fc845181182d2510411a06",
+      "lines": [
+        "1 1 1 0 0",
+        "0 1 1 1 0",
+        "0 0 1 1 1",
+        "0 0 1 1 0",
+        "0 1 1 0 0",
+        "1 0 1",
+        "0 1 0",
+        "1 0 1",
+        "2D Filtering: Toy Example",
+        "Input Filter Feature Map",
+        "4 3 4",
+        "2 4 3",
+        "2 3 4"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "6195704522eceaf64b4ed7ba43f2f36196d842ea8c9589878e35e7ee6603a4d5",
+      "lines": [
+        "Convolutional Layer: Parameters to Learn",
+        "https://www.jefkine.com/general/2016/09/05/backpropagation-in-convolutional-neural-networks/",
+        "Input Filter",
+        "(aka – Kernel)",
+        "Feature",
+        "Map",
+        "Way to Interpret",
+        "Neural Network"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "81922b60f8b7fbfd151f35180037ee781bd63a41e1e263f393fc02d44b23795b",
+      "lines": [
+        "https://www.jefkine.com/general/2016/09/05/backpropagation-in-convolutional-neural-networks/",
+        "Convolutional Layer: Parameters to Learn",
+        "• For shown example, how many weights must be learned?",
+        "• 4 (red, blue, yellow, and green values)",
+        "• If we instead used a fully connected layer, how many",
+        "weights would need to be learned?",
+        "• 36 (9 turquoise nodes x 4 magenta nodes)",
+        "• For shown example, how many parameters must be learned?",
+        "• 5 (4 weights + 1 bias)",
+        "• If we instead used a fully connected layer, how many",
+        "parameters would need to be learned?",
+        "• 40 (36 weights + 4 bias)"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "76fe49b3183726d019f0681bba2b07af4e87ff976e1c00c0a63fe3de7d384f5c",
+      "lines": [
+        "Convolutional Layer: Parameters to Learn",
+        "• Parameter sharing significantly reduces",
+        "number of parameters to learn and so",
+        "storage requirements",
+        "• Sparse (rather than full) connectivity",
+        "also significantly reduces the number of",
+        "computational operations required",
+        "https://www.jefkine.com/general/2016/09/05/backpropagation-in-convolutional-neural-networks/"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "9c5025570442a939ec6a19359d7cb311b39188fd7fc09475f6608c8dc456da81",
+      "lines": [
+        "Convolutional Layer: Parameters to Learn",
+        "• Neocognitron hard-coded filter values...",
+        "we will cover models that learn the",
+        "filter values in the next lecture",
+        "https://www.jefkine.com/general/2016/09/05/backpropagation-in-convolutional-neural-networks/"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "e237bd5446622fc3b1e3d9b3360e5a25c862d0da3954ed8ba6150d1e9320e10b",
+      "lines": [
+        "Convolutional Layer",
+        "https://www.jefkine.com/general/2016/09/05/backpropagation-in-convolutional-neural-networks/",
+        "Input Filter",
+        "(aka – Kernel)",
+        "Feature",
+        "Map",
+        "• Many neural network libraries use “convolution” interchangeably with",
+        "“cross correlation”; for mathematicians, these are technically different",
+        "• Examples in these slides show the “cross-correlation” function",
+        "Way to Interpret",
+        "Neural Network"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "9da345abaf52703e19fc9ed49983aa7faefefbfbb80f90a4c65330b0b560194c",
+      "lines": [
+        "Convolutional Layer: What Does The Filter Do?",
+        "https://www.jefkine.com/general/2016/09/05/backpropagation-in-convolutional-neural-networks/",
+        "Input Filter",
+        "(aka – Kernel)",
+        "Feature",
+        "Map",
+        "Way to Interpret",
+        "Neural Network"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "f14a32266b789bf3f668070bf37d159938aaf5505e00d8a9cd239730b213e5ab",
+      "lines": [
+        "Filter: What Does It Do?",
+        "Filter"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "31ff7d60289f5007869f9e63c9310c322b09d79687dd90c774fee5e2cbfb891d",
+      "lines": [
+        "Filter: What Does It Do?",
+        "• e.g.,",
+        "Image Credit: https://adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/",
+        "Filter Visualization of Filter"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "b6fc17427c46fc9fe113186ba147bb63fb7adb7bb1984befcf80369e92f06b3a",
+      "lines": [
+        "Filter: What Does It Do?",
+        "• e.g.,",
+        "Filter Overlaid on Image",
+        "Image Filter",
+        "Weighted Sum = ?",
+        "Weighted Sum = (50x30) + (20x30) +",
+        "(50x30) + (50x3) + (50x30)",
+        "Weighted Sum = 6600 (Large Number!!)",
+        "Image Credit: https://adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "ceedb211ce1a6edf0a8e1bcae564c468e49e566aee41289006801d68fdad9935",
+      "lines": [
+        "Filter: What Does It Do?",
+        "• e.g.,",
+        "Filter Overlaid on Image",
+        "Weighted Sum = ?",
+        "Weighted Sum = 0 (Small Number!!)",
+        "Image Filter",
+        "Image Credit: https://adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "586ce682dabc0db3461fef27e348f9991e10448970c430ec04c500bb041ae822",
+      "lines": [
+        "Filter: What Does It Do?",
+        "• e.g.,",
+        "Filter Overlaid on Image (Big Response! Filter Overlaid on Image (Small Response!) )",
+        "This Filter is a Curve Detector!",
+        "Image Credit: https://adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "2405996a1ae41f12bc9c9719fecdde7d79ecf999e38d5ed0ef9eb7b67c12d410",
+      "lines": [
+        "Filters Detect Different Features",
+        "Filter Feature Map Filter Feature Map",
+        "https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "17475391d15efd0691a188aa89ce6ec5a39f5ec96b7de51f056578514fc60ce8",
+      "lines": [
+        "Different Filters Detect Different Features",
+        "Demo: http://beej.us/blog/data/convolution-image-processing/"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "eb90123824d955bea9d7964d7b9f4f30e116187e5df758797882764964936189",
+      "lines": [
+        "Group Discussion",
+        "1. How would you design a filter to “brighten” an image?",
+        "2. How would you design a filter to remove wrinkles/blemishes?"
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "25716cfa57baeedb2ba66785d590f5080614baf97459e77e1989ca25f2b18702",
+      "lines": [
+        "Convolutional Layer: After Applying Filter,",
+        "Remember to Introduce Non-Linearity",
+        "Apply activation function to number; e.g., ReLU",
+        "Slide Credit: http://cs231n.stanford.edu/slides/2018/cs231n_2018_lecture05.pdf"
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "9fa66eb209b499bffdb1c290f7adb1608c4e60ec7cbc965fabbd0e4e4278e0d1",
+      "lines": [
+        "Convolutional Layer: Slide Filter Across Input",
+        "Slide Credit: http://cs231n.stanford.edu/slides/2018/cs231n_2018_lecture05.pdf"
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "9fa66eb209b499bffdb1c290f7adb1608c4e60ec7cbc965fabbd0e4e4278e0d1",
+      "lines": [
+        "Convolutional Layer: Slide Filter Across Input",
+        "Slide Credit: http://cs231n.stanford.edu/slides/2018/cs231n_2018_lecture05.pdf"
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "7ac1e3c40a8a9b6334826195152033d9b9ae48ac13b620d9c88c0a5ecd54c301",
+      "lines": [
+        "Convolutional Layer: Slide Filter Across Input",
+        "We stack these",
+        "up to get a",
+        "“new image” of",
+        "size 28x28x6!",
+        "Slide Credit: http://cs231n.stanford.edu/slides/2018/cs231n_2018_lecture05.pdf"
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "41077bf9ec3ee219a075bc51a56854ef0784bad1234d2b66ea8a3cab5a86cacd",
+      "lines": [
+        "Convolutional Layer: Parameters to Learn",
+        "Parameters: bank of filters and biases used to create the activation maps (aka – feature maps)",
+        "Slide Credit: http://cs231n.stanford.edu/slides/2018/cs231n_2018_lecture05.pdf"
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "a931d7b56d8626df842e4da707a0a1a7d57e921448703a2aedf86915886c9352",
+      "lines": [
+        "Convolutional Layers Stacked",
+        "Slide Credit: http://cs231n.stanford.edu/slides/2018/cs231n_2018_lecture05.pdf",
+        "Can then stack a sequence of convolution layers, interspersed with activation functions:"
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "94de5f2c8443170508d1b625acaf45f9e3cb535c3ba36dfef4849c1df54bbbf4",
+      "lines": [
+        "Slide Credit: http://cs231n.stanford.edu/slides/2018/cs231n_2018_lecture05.pdf",
+        "Convolutional Layers Stacked",
+        "Can then stack a sequence of convolution layers, interspersed with activation functions:"
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "286816025f6aaf45f588fdb3730f324ed0b3e6dddd446cfbc3e11d832cd5e47c",
+      "lines": [
+        "Convolutional Layers Stacked",
+        "Can then stack a sequence of convolution layers, interspersed with activation functions:",
+        "Stacking many convolutional layers leads to identifying patterns in increasingly larger",
+        "regions of the input (e.g., pixel) space.",
+        "https://www.deeplearningbook.org/contents/convnets.html"
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "2cd3e75b80dd464178acb49f037e194b191a7a4b51b05842470282f1eeb34e20",
+      "lines": [
+        "Convolution: Implementation Details",
+        "• Padding: add values at the boundaries to control output size",
+        "Image Credit: https://software.intel.com/en-us/node/586159"
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "22da67db5e3714752a1f6dd1130b27a95068612e25ef8a834edc2dae264e1a16",
+      "lines": [
+        "Convolution: Implementation Details",
+        "• Stride: how many steps taken spatially before applying a filter",
+        "• e.g., 2x2",
+        "http://deeplearning.net/software/theano/tutorial/conv_arithmetic.html",
+        "Image Filter Feature Map",
+        "4 4",
+        "2 4"
+      ]
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "5abc02fef37a83ae9eb81ecfb96e10ea814cf6c517d65a8658e4ba3cfc3e718c",
+      "lines": [
+        "Convolution: Implementation Details",
+        "• Demo:",
+        "• https://theano-pymc.readthedocs.io/en/latest/tutorial/conv_arithmetic.html"
+      ]
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "8993f7d63ebfc0511a5ba407cb5ce775451987bbb6105cb9d7cadee2e3fda4da",
+      "lines": [
+        "Parameters vs Hyperparameters In",
+        "Convolutional Layers",
+        "• Hyperparameters:",
+        "• Number of filters, including height and width of each",
+        "• Strides",
+        "• Padding type",
+        "• Parameters",
+        "• Weights",
+        "• Biases"
+      ]
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "e8d4ea29adff2daff309b7eb49697e6bd7db80b3ab2abf05eaec623423e951b7",
+      "lines": [
+        "Today’s Topics",
+        "• Neural Networks for Spatial Data",
+        "• History of Convolutional Neural Networks (CNNs)",
+        "• CNNs – Convolutional Layers",
+        "• CNNs – Pooling Layers"
+      ]
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "4ebc8c7c05ee8db6a97f82258085a112b569fff734d4e27570a60f2ddd372c37",
+      "lines": [
+        "Pooling Layer: Summarizes Neighborhood",
+        "• Max-pooling: partitions input into a set of non-overlapping rectangles",
+        "and outputs the maximum value for each chunk",
+        "http://cs231n.github.io/convolutional-networks/#pool",
+        "? ?",
+        "? ?"
+      ]
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "7855d8914e71f4841a72e1f67cc51a8de605548a806638222ec636691b25e021",
+      "lines": [
+        "Pooling Layer: Summarizes Neighborhood",
+        "• Max-pooling: partitions input into a set of non-overlapping rectangles",
+        "and outputs the maximum value for each chunk",
+        "http://cs231n.github.io/convolutional-networks/#pool"
+      ]
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "7855d8914e71f4841a72e1f67cc51a8de605548a806638222ec636691b25e021",
+      "lines": [
+        "Pooling Layer: Summarizes Neighborhood",
+        "• Max-pooling: partitions input into a set of non-overlapping rectangles",
+        "and outputs the maximum value for each chunk",
+        "http://cs231n.github.io/convolutional-networks/#pool"
+      ]
+    },
+    {
+      "number": 71,
+      "source_text_sha256": "fa5827f2163ebc414ac337182b90530dc2972be968d0a5ca64afc90d02b494dd",
+      "lines": [
+        "Pooling Layer",
+        "• Resilient to small translations",
+        "• e.g.,",
+        "• Input: all values change (shift right)",
+        "• Output: only half the values change",
+        "https://www.deeplearningbook.org/contents/convnets.html"
+      ]
+    },
+    {
+      "number": 72,
+      "source_text_sha256": "fdddc7f358c2b1e788d559541121cafd488d81b4012b8e3771a0ee3011bc78b8",
+      "lines": [
+        "Pooling Layer: Summarizes Neighborhood",
+        "• Max-pooling: partitions input into a set of non-overlapping rectangles",
+        "and outputs the maximum value for each chunk",
+        "• Average-pooling: partitions input into a set of non-overlapping",
+        "rectangles and outputs the average value for each chunk",
+        "http://cs231n.github.io/convolutional-networks/#pool",
+        "? ?",
+        "? ?",
+        "Avg"
+      ]
+    },
+    {
+      "number": 73,
+      "source_text_sha256": "f1757021653475609719c5a213773f8f37be0ff1c2d93f2dbbf292ffb6d825c2",
+      "lines": [
+        "Pooling Layer: Summarizes Neighborhood",
+        "• Max-pooling: partitions input into a set of non-overlapping rectangles",
+        "and outputs the maximum value for each chunk",
+        "• Average-pooling: partitions input into a set of non-overlapping",
+        "rectangles and outputs the average value for each chunk",
+        "http://cs231n.github.io/convolutional-networks/#pool",
+        "3.25 5.25",
+        "2 2",
+        "Avg"
+      ]
+    },
+    {
+      "number": 74,
+      "source_text_sha256": "f306883aa0e6c7bd722725a0143ca7c76d5e27ba61fb5c746e959626956b8a6c",
+      "lines": [
+        "Pooling Layer: Benefits",
+        "• How many parameters must be learned?",
+        "• None",
+        "• Benefits?",
+        "• Builds in invariance to translations of the input",
+        "• Reduces memory requirements",
+        "• Reduces computational requirements"
+      ]
+    },
+    {
+      "number": 75,
+      "source_text_sha256": "e8d4ea29adff2daff309b7eb49697e6bd7db80b3ab2abf05eaec623423e951b7",
+      "lines": [
+        "Today’s Topics",
+        "• Neural Networks for Spatial Data",
+        "• History of Convolutional Neural Networks (CNNs)",
+        "• CNNs – Convolutional Layers",
+        "• CNNs – Pooling Layers"
+      ]
+    },
+    {
+      "number": 76,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

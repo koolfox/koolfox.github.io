@@ -1,0 +1,1089 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s14",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/12-WordEmbeddings.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2022/s14.pdf",
+    "sha256": "474c8daa201a381a1972fa9e7b94d9a083fc515f77c006bc3540a766315bcb1f",
+    "page_count": 83,
+    "license_notice": "CC BY; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "5fe4dbbfd25af3c72c28ecc00dcf4c85c6b42ae56498850cb565192bd0728850",
+      "lines": [
+        "Introduction to NLP and",
+        "Word Embeddings",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2022",
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "2ebc14820687e5fdccd39572918d7fd2067bf1baba91c270c296e20cd4590ffa",
+      "lines": [
+        "Review",
+        "• Last week:",
+        "• Machine learning for sequential data",
+        "• Recurrent neural networks (RNNs)",
+        "• Gated RNNs",
+        "• Programming tutorial",
+        "• Assignments (Canvas):",
+        "• Problem set 3 due earlier today",
+        "• Lab assignment 3 due in 1.5 weeks",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "fe96119f75ff1e122093ec670ac62e9ec365c2a22324de12f7c1b2e28f7bbb2e",
+      "lines": [
+        "Today’s Topics",
+        "• Introduction to natural language processing",
+        "• Text representation",
+        "• Neural word embeddings",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "fe96119f75ff1e122093ec670ac62e9ec365c2a22324de12f7c1b2e28f7bbb2e",
+      "lines": [
+        "Today’s Topics",
+        "• Introduction to natural language processing",
+        "• Text representation",
+        "• Neural word embeddings",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "89a657af9222d54ba8479a4c5e707ec78964cef9d7af86d4e545e2eb2d24ed19",
+      "lines": [
+        "NLP: Computers that Can Understand (and",
+        "So Also Communicate in) Human Language",
+        "5",
+        "Opinion Mining Spam Detection",
+        "Language Translation",
+        "We will focus today",
+        "only on textual data"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "27e7675b8f31142997d3561d3a4db19d126a0b317acfd77426810544bc99d54b",
+      "lines": [
+        "Why Discuss NLP With RNNs?",
+        "• RNNs have a strong track record for NLP problems",
+        "• Text data’s representation (i.e., sequential data) is a natural match for RNNs"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "008b464b5e89a91656ee4cff8fa875497d9d99e48de02fcad49ea715e81663b0",
+      "lines": [
+        "Historical Context: Origins of NLP First programmable machine",
+        "2012",
+        "Machine learning",
+        "Turing test",
+        "1945",
+        "AI",
+        "1956",
+        "1950 1959",
+        "Wave 3: rise of",
+        "“deep learning”",
+        "Perceptron",
+        "1847 Gradient descent",
+        "Research community emerged mostly on",
+        "the problem of translating languages",
+        "Jones. Natural Language Processing: A Historical Review. 1994."
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "bf4b1ba3a16718174d623c290b645e8072e377d239e282ed0d100b5812e418ed",
+      "lines": [
+        "Artificial Intelligence",
+        "(machines that do “intelligent” things)",
+        "NLP in Context",
+        "Deep Learning",
+        "Computer",
+        "Vision",
+        "Natural",
+        "Language",
+        "Processing"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "a784b481cf6f92fb927cc234260da536b40cd1ff24dbad7d0f99de30251e04cf",
+      "lines": [
+        "• Text classification",
+        "• Machine translation",
+        "• Question answering",
+        "• Automatic summarization",
+        "• And more…",
+        "Key Challenge: Replicate Language",
+        "Understanding for So Many Tasks!"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "a784b481cf6f92fb927cc234260da536b40cd1ff24dbad7d0f99de30251e04cf",
+      "lines": [
+        "• Text classification",
+        "• Machine translation",
+        "• Question answering",
+        "• Automatic summarization",
+        "• And more…",
+        "Key Challenge: Replicate Language",
+        "Understanding for So Many Tasks!"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "a784b481cf6f92fb927cc234260da536b40cd1ff24dbad7d0f99de30251e04cf",
+      "lines": [
+        "• Text classification",
+        "• Machine translation",
+        "• Question answering",
+        "• Automatic summarization",
+        "• And more…",
+        "Key Challenge: Replicate Language",
+        "Understanding for So Many Tasks!"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "27fb0805cc2353db0581d3f05e9c2f0d374543336b528c06a744bd98911e841f",
+      "lines": [
+        "• Text classification",
+        "• Machine translation",
+        "• Question answering",
+        "• Automatic summarization",
+        "• And more…",
+        "Key Challenge: Replicate Language",
+        "Understanding for So Many Tasks!",
+        "e.g., Microsoft translator",
+        "https://uncubed.com/daily/best-translation-apps-for-travel-in-2019/"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "0155b0a795cf7f44b3d8329909d627720fb571e9523f2e7cdafc8ea290882166",
+      "lines": [
+        "• Text classification",
+        "• Machine translation",
+        "• Question answering",
+        "• Automatic summarization",
+        "• And more…",
+        "Key Challenge: Replicate Language",
+        "Understanding for So Many Tasks!",
+        "e.g., Google translate",
+        "https://uncubed.com/daily/best-translation-apps-for-travel-in-2019/"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "898d7ecea9edd47317e466f290ac0ac4a504e4fc5f4ba5e1b39bb0a936cf0e77",
+      "lines": [
+        "• Text classification",
+        "• Machine translation",
+        "• Question answering",
+        "• Automatic summarization",
+        "• And more…",
+        "Key Challenge: Replicate Language",
+        "Understanding for So Many Tasks!",
+        "e.g., IBM Watson question answering",
+        "system (and Jeopardy winner)",
+        "https://www.nytimes.com/2011/02/",
+        "17/science/17jeopardy-watson.html"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "a784b481cf6f92fb927cc234260da536b40cd1ff24dbad7d0f99de30251e04cf",
+      "lines": [
+        "• Text classification",
+        "• Machine translation",
+        "• Question answering",
+        "• Automatic summarization",
+        "• And more…",
+        "Key Challenge: Replicate Language",
+        "Understanding for So Many Tasks!"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "a784b481cf6f92fb927cc234260da536b40cd1ff24dbad7d0f99de30251e04cf",
+      "lines": [
+        "• Text classification",
+        "• Machine translation",
+        "• Question answering",
+        "• Automatic summarization",
+        "• And more…",
+        "Key Challenge: Replicate Language",
+        "Understanding for So Many Tasks!"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "7571181fa443ed2f27271f0119d91696cdd172d929604285f3d2eb24dfc2ea5f",
+      "lines": [
+        "Other Key Challenges: Replicate Language",
+        "Understanding for So Many Languages/Individuals!",
+        "• Need a computable characterization of all human languages that simultaneously",
+        "captures nuances from individuals; e.g., 7000+ languages spoken around the world",
+        "https://ruder.io/nlp-beyond-english/"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "fe96119f75ff1e122093ec670ac62e9ec365c2a22324de12f7c1b2e28f7bbb2e",
+      "lines": [
+        "Today’s Topics",
+        "• Introduction to natural language processing",
+        "• Text representation",
+        "• Neural word embeddings",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "bb9ae4ce5b630f7283a52a266c2e7d97e90af68bbd0c1507c416ca2b47b30202",
+      "lines": [
+        "Input: String (Collection of Characters)",
+        "• Common terms",
+        "• Corpus: dataset",
+        "• Document: example"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "15aabac0768f24004d4a90a37c05c888b8f138dc62317876519873debb084350",
+      "lines": [
+        "Input: Which “String” Feature Types Apply?",
+        "• Categorical data",
+        "• Comes from a fixed list (e.g., education level)",
+        "• Structured string data",
+        "• e.g., addresses, dates, telephone numbers,",
+        "• Text data"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "176eb97358233ca7c9c51235a097915b67850f380092dbad2058fc21415469ab",
+      "lines": [
+        "How to Describe Text to a Computer?",
+        "• Challenge: input often varies in length",
+        "• Solution: convert text to numeric format that DL algorithms can handle"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "6fb178cb5733f028c393832203972ecf5f6065615994703f602ffa911611053a",
+      "lines": [
+        "Implementation Details – Possible Pre-processing",
+        "• Lower case all letters",
+        "• Stemming: use each word’s stem; e.g., singular to plural, resolve different verb forms",
+        "• e.g.,",
+        "• Stop word removal: discard frequent words",
+        "https://dzone.com/articles/using-lucene-grails",
+        "https://github.com/topics/stopwords-removal"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "aeb8205e552216805497954bcd096c0203c3dbb3593faa3a92767eac693ce822",
+      "lines": [
+        "Converting Text to Vectors",
+        "1. Tokenize training data",
+        "2. Learn vocabulary",
+        "3. Encode data as vectors"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "3410d6d61f6bcbe8405d55169ffa3714d75ca5a7ee5345c41fe7d5b6ee7a052b",
+      "lines": [
+        "Converting Text to Vectors",
+        "1. Tokenize training data; convert data into sequence of tokens (e.g., data ->“This is tokening”)",
+        "2. Learn vocabulary",
+        "3. Encode data as vectors",
+        "Two common approaches:",
+        "https://nlpiation.medium.com/how-to-use-huggingfaces-transformers-pre-trained-tokenizers-e029e8d6d1fa"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "9196bdb7b6cf0ae751bf0feb35aeba1b5279b586d45b7de648008b1fc21b66b4",
+      "lines": [
+        "Converting Text to Vectors",
+        "1. Tokenize training data",
+        "2. Learn vocabulary by identifying all unique tokens in the training data",
+        "3. Encode data as vectors",
+        "Two common approaches:",
+        "https://nlpiation.medium.com/how-to-use-huggingfaces-transformers-pre-trained-tokenizers-e029e8d6d1fa",
+        "Token a b c *** 0 1 *** ! @ ***",
+        "Index 1 2 3 *** 27 28 *** 119 120 ***",
+        "Token a an at *** bat ball *** zipper zoo ***",
+        "Index 1 2 3 *** 527 528 *** 9,842 9,843 ***"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "ed63aa3191508a807f89f1f1eeb85f7c4a21ed5a6391e61d753171471804f24f",
+      "lines": [
+        "1. Tokenize training data",
+        "2. Learn vocabulary by identifying all unique tokens in the training data",
+        "3. Encode data as one-hot vectors",
+        "https://github.com/DipLernin/Text_Generation",
+        "One-hot encodings",
+        "Input sequence of 40 tokens",
+        "representing characters or words",
+        "Converting Text to Vectors"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "9a71ffc8b7fcc980f03995a2226e81f102930a1a7d45bb4ae84c7634832e96e4",
+      "lines": [
+        "Converting Text to Vectors",
+        "What are the pros and cons for using word tokens instead of character tokens?",
+        "- Pros: length of input/output sequences is shorter, simplifies learning semantics",
+        "- Cons: “UNK” word token needed for out of vocabulary words; vocabulary can be large",
+        "https://nlpiation.medium.com/how-to-use-huggingfaces-transformers-pre-trained-tokenizers-e029e8d6d1fa",
+        "Token a b c *** 0 1 *** ! @ ***",
+        "Index 1 2 3 *** 27 28 *** 119 120 ***",
+        "Token a an at *** bat ball *** zipper zoo ***",
+        "Index 1 2 3 *** 527 528 *** 9,842 9,843 ***"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "0c615e2c6b22ace4d16e645da64c5600f4973723724efd78278af372be41f4ff",
+      "lines": [
+        "Converting Text to Vectors",
+        "Word level representations are more commonly used",
+        "https://nlpiation.medium.com/how-to-use-huggingfaces-transformers-pre-trained-tokenizers-e029e8d6d1fa",
+        "Token a b c *** 0 1 *** ! @ ***",
+        "Index 1 2 3 *** 27 28 *** 119 120 ***",
+        "Token a an at *** bat ball *** zipper zoo ***",
+        "Index 1 2 3 *** 527 528 *** 9,842 9,843 ***"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "16cca34f7f883419939b231d680971b39eb8282aa72d0960472aae1b8d95714e",
+      "lines": [
+        "Problems with One-Hot Encoding Words?",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019.",
+        "• Huge memory burden",
+        "• Computationally expensive",
+        "Dimensionality = vocabulary size",
+        "e.g., English has ~170,000 words",
+        "with ~10,000 commonly used words"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "8c1735064b4b616ac6890481eefee50989fb576ee04c903e6e13e7560d836300",
+      "lines": [
+        "Limitation of One-Hot Encoding Words",
+        "• No notion of which words are similar, yet such understanding can improve generalization",
+        "• e.g., “walking”, “running”, and “skipping” are all suitable for “He was ____ to school.”",
+        "Walking Soap Fire Skipping",
+        "The distance between",
+        "all words is equal!"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "fe96119f75ff1e122093ec670ac62e9ec365c2a22324de12f7c1b2e28f7bbb2e",
+      "lines": [
+        "Today’s Topics",
+        "• Introduction to natural language processing",
+        "• Text representation",
+        "• Neural word embeddings",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "77e64a3a5e5349a5cd58695410d3b95edcbcc8adf9939561dfb9774dbd23c3ac",
+      "lines": [
+        "Idea: Represent Each Word Compactly in a Space",
+        "Where Vector Distance Indicates Word Similarity",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "6ba87e99833371bf68dbaaa2311aa1b3825cc3ed5aee6937af236e03796707a9",
+      "lines": [
+        "Inspiration: Distributional Semantics",
+        "“The distributional hypothesis says that the meaning of a",
+        "word is derived from the context in which it is used, and",
+        "words with similar meaning are used in similar contexts.”",
+        "- Origins: Harris in 1954 and Firth in 1957",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "9c3378d1c72769c805f96d8ec32ae70bf9ab648eb55b9c7a3c4a73bd449646c5",
+      "lines": [
+        "Inspiration: Distributional Semantics",
+        "“The distributional hypothesis says that the meaning of a",
+        "word is derived from the context in which it is used, and",
+        "words with similar meaning are used in similar contexts.”",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "486df123a3f59f0b3fa91c8ee87c1c30e33bce8f695ad63b48a48dad6fdc5220",
+      "lines": [
+        "Inspiration: Distributional Semantics",
+        "• What is the meaning of berimbau based on context?",
+        "• Idea: context makes it easier to understand a word’s meaning",
+        "Background music from a berimbau offers a beautiful escape.",
+        "Many people danced around the berimbau player.",
+        "I practiced for many years to learn how to play the berimbau.",
+        "[Adapted from slides by Lena Voita] https://capoeirasongbook.wordpress.com/instruments/berimbau/"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "9c3378d1c72769c805f96d8ec32ae70bf9ab648eb55b9c7a3c4a73bd449646c5",
+      "lines": [
+        "Inspiration: Distributional Semantics",
+        "“The distributional hypothesis says that the meaning of a",
+        "word is derived from the context in which it is used, and",
+        "words with similar meaning are used in similar contexts.”",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "84612f50f15225d0688dfa869be9cbea0953f7b5381c7f6ae3f8336c7b30f255",
+      "lines": [
+        "• What other words could fit into these context?",
+        "Inspiration: Distributional Semantics",
+        "[Adapted from slides by Lena Voita]",
+        "1. Background music from a _______ offers a beautiful escape.",
+        "2. Many people danced around the _______ player.",
+        "3. I practiced for many years to learn how to play the _______.",
+        "1 1 1",
+        "0 0 0",
+        "0 0 0",
+        "1 1 1",
+        "Berimbau",
+        "Soap",
+        "Fire",
+        "Guitar",
+        "1 if a word can appear in the context",
+        "0 otherwise",
+        "1. 2. 3. Contexts",
+        "Hypothesis is that",
+        "words with similar",
+        "row values have",
+        "similar meanings"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "9c3378d1c72769c805f96d8ec32ae70bf9ab648eb55b9c7a3c4a73bd449646c5",
+      "lines": [
+        "Inspiration: Distributional Semantics",
+        "“The distributional hypothesis says that the meaning of a",
+        "word is derived from the context in which it is used, and",
+        "words with similar meaning are used in similar contexts.”",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "424fa8b99d77772021bc3cd02233bed6a8798e2db7b1ace7f2523931866dccd0",
+      "lines": [
+        "Approach",
+        "• Learn a dense (lower-dimensional) vector for each word by characterizing its",
+        "context, which inherently will reflect similarity/differences to other words",
+        "Berimbau and guitar are the closest word pair Berimbau Soap Fire Guitar",
+        "The distance between",
+        "each pair of words differs!",
+        "Note: many ways to measure",
+        "distance (e.g., cosine distance)"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "b1a6c031c44908f115b22851e1563b3356830b307f8ab8bf51dbc3538b9fa53c",
+      "lines": [
+        "Approach",
+        "• Learn a dense (lower-dimensional) vector for each word by characterizing its",
+        "context, which inherently will reflect similarity/differences to other words",
+        "We embed words in a shared space so they can",
+        "be compared with a few features",
+        "What features would discriminate these words?",
+        "Berimbau Soap Fire Guitar"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "18d9cc37cef65e6dd24d1d4e53590d35d2954c94f5b9a9a62e5a005e69ebeaef",
+      "lines": [
+        "Approach",
+        "• Learn a dense (lower-dimensional) vector for each word by characterizing its",
+        "context, which inherently will reflect similarity/differences to other words",
+        "Berimbau Soap Fire Guitar",
+        "Wooden",
+        "Commodity",
+        "Cleaner",
+        "Food",
+        "Temperature",
+        "Noisy",
+        "Weapon",
+        "Potential, interpretable features"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "aee2b7b11b8fd3abec2207d4dd67c4c90a0994d0d48ae8f7130cc1e8f68791cc",
+      "lines": [
+        "Approach: Learn Word Embedding Space",
+        "• An embedding space represents a finite number of words, decided in training",
+        "• A word embedding is represented as a vector indicating its context",
+        "• The dimensionality of all word embeddings in an embedding space match",
+        "• What is the dimensionality for the shown example?",
+        "…"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "6550e20bf81bc4281da1c3c62eee4405cf8b3aa336c13b75b5e0a151babb1fcc",
+      "lines": [
+        "Approach: Learn Word Embedding Space",
+        "• An embedding space represents a finite number of words, defined in training",
+        "• A word embedding is represented as a vector indicating its context",
+        "• The dimensionality of all word embeddings in an embedding space match",
+        "?",
+        "?",
+        "?",
+        "?",
+        "?",
+        "?",
+        "?",
+        "In practice, the learned discriminating",
+        "features are hard to interpret"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "95649e283d8771a8e22f029cc69d3844599a9c462e52385c1361a5b0ccbf2f1b",
+      "lines": [
+        "Embedding Matrix",
+        "• The embedding matrix converts an input word into a dense vector",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019.",
+        "Size of vocabulary",
+        "Berimbau Soap Fire Guitar …",
+        "Target dimensionality",
+        "(e.g., 5)",
+        "One hot encoding dictates",
+        "the word embedding to use"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "9960a495dd58106b6e8a339a9af112301897e77d71b2645fa38fdbd4d0a52827",
+      "lines": [
+        "Embedding Matrix",
+        "• It converts an input word into a dense vector",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019.",
+        "Size of vocabulary",
+        "Berimbau Soap Fire Guitar …",
+        "Target dimensionality",
+        "(e.g., 5)",
+        "A word’s embedding can efficiently be",
+        "extracted when we know the word’s index"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "1036fb34f049ed78be5d2107726c561d09003e9abebea846b46e0ac90be795fa",
+      "lines": [
+        "Popular Word Embeddings",
+        "• Bengio method",
+        "• Word2vec (skip-gram model)",
+        "• And more…"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "1036fb34f049ed78be5d2107726c561d09003e9abebea846b46e0ac90be795fa",
+      "lines": [
+        "Popular Word Embeddings",
+        "• Bengio method",
+        "• Word2vec (skip-gram model)",
+        "• And more…"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "aad1c200b68e0921ea43b000b593e777259a5f43e7f354feab97da7690a0048c",
+      "lines": [
+        "Idea: Learn Word Embeddings That Help",
+        "Predict Viable Next Words",
+        "e.g.,",
+        "1. Background music from a _______",
+        "2. Many people danced around the _______",
+        "3. I practiced for many years to learn how to play the _______",
+        "Bengio et al. A Neural Probabilistic Language Model. JMLR 2003."
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "ebad420a36f6347d7e70c43cac0d075da06716dce0617feae33a2aca09990c59",
+      "lines": [
+        "Task: Predict Next Word",
+        "Given Previous Ones",
+        "e.g.,",
+        "1. Background music from a _______",
+        "2. Many people danced around the _______",
+        "3. I practiced for many years to learn how to play the _______"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "71ea42c7027ad8d9eea33078dd10d2bf58d2e259fb952b90c27936537a4bee87",
+      "lines": [
+        "Task: Predict Next Word",
+        "Given Previous Ones",
+        "Bengio et al. A Neural Probabilistic Language Model. JMLR 2003.",
+        "e.g., a vocabulary size of 17,000",
+        "was used in experiments",
+        "What is the dimensionality of the",
+        "output layer?"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "3cb5c93ffc2090cd140dc0a2b06053de6ac0a2e64841e2945c26b3c7727b8d31",
+      "lines": [
+        "Architecture",
+        "Bengio et al. A Neural Probabilistic Language Model. JMLR 2003.",
+        "Embedding matrix:",
+        "Word embeddings:"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "bbfb03de5cded667f19288fc83adb8fbbcbbf13f5be4b45165d9ec528a63c154",
+      "lines": [
+        "Architecture",
+        "Bengio et al. A Neural Probabilistic Language Model. JMLR 2003.",
+        "e.g., a vocabulary size of 17,000",
+        "was used with embedding sizes of",
+        "30, 60, and 100 in experiments",
+        "Assume a 30-d word embedding",
+        "- what are the dimensions of the",
+        "embedding matrix C?",
+        "30 x 17,000 (i.e., 510,000 weights)"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "f8685924097c05bd2ef2350ea786f7b013254e56f70ebc5c5ae18f5cb56b40d0",
+      "lines": [
+        "Architecture",
+        "Bengio et al. A Neural Probabilistic Language Model. JMLR 2003.",
+        "e.g., a vocabulary size of 17,000",
+        "was used with embedding sizes of",
+        "30, 60, and 100 in experiments",
+        "Assume a 30-d word embedding",
+        "- what are the dimensions of each",
+        "word embedding?",
+        "1 x 30"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "c5266c028d8592b8128e53c3a6cfcb2518e0b17f976810bc497c81ba6e64c166",
+      "lines": [
+        "Architecture",
+        "Bengio et al. A Neural Probabilistic Language Model. JMLR 2003.",
+        "Projection layer followed by a",
+        "hidden layer with non-linearity"
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "663a59a0afa000adb15f1af6197fa2bf5cb9d2094853658078000a331ad2860a",
+      "lines": [
+        "Training",
+        "Bengio et al. A Neural Probabilistic Language Model. JMLR 2003.",
+        "Input: tried 1, 3, 5, and 8 input words",
+        "and used 2 datasets with ~1 million and",
+        "~34 million words respectively",
+        "Use sliding window on input data; e.g., 3 words",
+        "Background music from a berimbau offers a",
+        "beautiful escape…"
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "663a59a0afa000adb15f1af6197fa2bf5cb9d2094853658078000a331ad2860a",
+      "lines": [
+        "Training",
+        "Bengio et al. A Neural Probabilistic Language Model. JMLR 2003.",
+        "Input: tried 1, 3, 5, and 8 input words",
+        "and used 2 datasets with ~1 million and",
+        "~34 million words respectively",
+        "Use sliding window on input data; e.g., 3 words",
+        "Background music from a berimbau offers a",
+        "beautiful escape…"
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "663a59a0afa000adb15f1af6197fa2bf5cb9d2094853658078000a331ad2860a",
+      "lines": [
+        "Training",
+        "Bengio et al. A Neural Probabilistic Language Model. JMLR 2003.",
+        "Input: tried 1, 3, 5, and 8 input words",
+        "and used 2 datasets with ~1 million and",
+        "~34 million words respectively",
+        "Use sliding window on input data; e.g., 3 words",
+        "Background music from a berimbau offers a",
+        "beautiful escape…"
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "663a59a0afa000adb15f1af6197fa2bf5cb9d2094853658078000a331ad2860a",
+      "lines": [
+        "Training",
+        "Bengio et al. A Neural Probabilistic Language Model. JMLR 2003.",
+        "Input: tried 1, 3, 5, and 8 input words",
+        "and used 2 datasets with ~1 million and",
+        "~34 million words respectively",
+        "Use sliding window on input data; e.g., 3 words",
+        "Background music from a berimbau offers a",
+        "beautiful escape…"
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "2136773b2ff9e7fca3ff868261481c7350b8e349e948e645e926a6f387c1d1aa",
+      "lines": [
+        "Training",
+        "Bengio et al. A Neural Probabilistic Language Model. JMLR 2003.",
+        "Input: tried 1, 3, 5, and 8 input words",
+        "and used 2 datasets with ~1 million and",
+        "~34 million words respectively",
+        "Cost function:",
+        "minimize cross",
+        "entropy loss plus",
+        "regularization (L2",
+        "weight decay)",
+        "Word embedding iteratively updated"
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "2ec0035ea1201d177d074d503218acb7402572f174224a74b49172b08b103129",
+      "lines": [
+        "Summary: Word Embeddings Are Learned that",
+        "Support Predicting Viable Next Words",
+        "e.g.,",
+        "1. Background music from a _______",
+        "2. Many people danced around the _______",
+        "3. I practiced for many years to learn how to play the _______"
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "1036fb34f049ed78be5d2107726c561d09003e9abebea846b46e0ac90be795fa",
+      "lines": [
+        "Popular Word Embeddings",
+        "• Bengio method",
+        "• Word2vec (skip-gram model)",
+        "• And more…"
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "5dd2bf97871c527fcb595557b6dfdfae3f46b3be32d86a7fe902178ce90c05bf",
+      "lines": [
+        "Idea: Learn Word Embeddings That Know",
+        "What Are Viable Surrounding Words",
+        "e.g.,",
+        "1. ___ ___ ___ ___ berimbau ___ ___ ___ ___",
+        "2. ___ berimbau ___",
+        "Mikolov et al. Efficient Estimation of Word Representations in Vector Space. arXiv 2013."
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "f9cd3f9d62dd36cd502fdd9dc6f786d8525fb78d5c452109d8aec52dddd63066",
+      "lines": [
+        "Task: Given Word, Predict",
+        "a Nearby Word",
+        "e.g.,",
+        "1. ___ ___ ___ ___ berimbau ___ ___ ___ ___",
+        "2. ___ berimbau ___"
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "7e7e54eebae2f31a716ff1d3abf99363a741ea8f159b019e2718bd1bbfe18b5e",
+      "lines": [
+        "Task: Given Word, Predict",
+        "a Nearby Word",
+        "https://towardsdatascience.com/word2vec-skip-gram-model-part-1-intuition-78614e4d6e0b"
+      ]
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "cf858895a79a805e74177e1cd012b3b508d3b4476d6ba24be8847fd61d68ca55",
+      "lines": [
+        "Architecture",
+        "Embedding",
+        "matrix",
+        "Word",
+        "embeddings",
+        "https://towardsdatascience.com/word2vec-skip-gram-model-part-1-intuition-78614e4d6e0b"
+      ]
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "7748eab097d52d16d47949b40cb58ae0287301ce6d1273ea96ae4c93e963afe2",
+      "lines": [
+        "Architecture",
+        "Embedding",
+        "matrix",
+        "e.g., a vocabulary size of 10,000 is",
+        "used with embedding sizes of 300",
+        "What are the dimensions of the",
+        "embedding matrix?",
+        "300 x 10,000 (i.e., 3,000,000 weights)",
+        "https://towardsdatascience.com/word2vec-skip-gram-model-part-1-intuition-78614e4d6e0b"
+      ]
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "9e2996731f5f7ed6a5861a1ce414c40c9628e8382e3e285f432a54b49713ea30",
+      "lines": [
+        "Architecture",
+        "e.g., a vocabulary size of 10,000 is",
+        "used with embedding sizes of 300",
+        "What are the dimensions of each",
+        "word embedding?",
+        "1 x 300",
+        "Word",
+        "embeddings",
+        "https://towardsdatascience.com/word2vec-skip-gram-model-part-1-intuition-78614e4d6e0b"
+      ]
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "4ffb06cce14c280cce63610682e162cf59a9def6d0eedc32d6fc2a8a5007e1aa",
+      "lines": [
+        "Architecture",
+        "A shallower, simpler architecture",
+        "than the Bengio approach (i.e.,",
+        "lacks a non-linear hidden layer)!",
+        "https://towardsdatascience.com/word2vec-skip-gram-model-part-1-intuition-78614e4d6e0b"
+      ]
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "3f6617c153db1506923cc18379a41f2c0988359ce436895ad0e8788db549da18",
+      "lines": [
+        "Training",
+        "https://towardsdatascience.com/word2vec-skip-gram-model-part-1-intuition-78614e4d6e0b",
+        "Sliding window run on input data to",
+        "sample neighbors of each target",
+        "word (e.g., using window size of 2)"
+      ]
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "b4fbde3042ba01a991618a4d0f769bc13391eaded646ef1dcdde048535613674",
+      "lines": [
+        "Extra Tricks: More Efficient Representations",
+        "1. Change output layer to hierarchical softmax",
+        "https://www.cs.princeton.edu/courses/archive/spring20/cos598C/lectures/lec2-word-embeddings.pdf",
+        "2. Reformulate problem to",
+        "perform negative sampling",
+        "Binary classification: predict for a",
+        "given word if another word is nearby",
+        "• Positive examples: observed target",
+        "and neighboring words",
+        "• Negative examples: randomly",
+        "sampled other words",
+        "Mikolov et al. Distributed Representations of Words and Phrases and their Compositionality. Neurips 2013."
+      ]
+    },
+    {
+      "number": 71,
+      "source_text_sha256": "f1375213e7e5b1aa063c88a50b15b14e42d526565851b2c984d32529481fd3c8",
+      "lines": [
+        "Hyperparameters: What Works Well?",
+        "• Word embedding dimensionality?",
+        "• Dimensionality set between 100 and 1,000",
+        "• Context window size?",
+        "• ~10",
+        "Mikolov et al. Efficient Estimation of Word Representations in Vector Space. arXiv 2013."
+      ]
+    },
+    {
+      "number": 72,
+      "source_text_sha256": "c4b558ee85f3b633fa9857f6b9da9a42873c31982a8686e7d7df75c14d62330b",
+      "lines": [
+        "Very Exciting/Surprising Finding",
+        "Mikolov et al. Efficient Estimation of Word Representations in Vector Space. arXiv 2013.",
+        "• Vector arithmetic with word embeddings can solves many analogies",
+        "(Full test list: http://download.tensorflow.org/data/questions-words.txt)",
+        "• Semantic relationships (meaning of words in a sentence):",
+        "• Italy + (Paris - France) = Rome",
+        "• Syntactic relationships (rules for words in a sentence)",
+        "• smallest + (big – small) = biggest",
+        "• think + (read – reading) = thinking",
+        "• mouse + (dollars – dollar) = mice"
+      ]
+    },
+    {
+      "number": 73,
+      "source_text_sha256": "09b7a83dec2cd05b9c8f516e295d5c59e8694c16d36cf53ff356afad49f830c8",
+      "lines": [
+        "Summary: Word Embeddings Are Learned that",
+        "Support Predicting Viable Surrounding Words!",
+        "e.g.,",
+        "1. ___ ___ ___ ___ berimbau ___ ___ ___ ___",
+        "2. ___ berimbau ___"
+      ]
+    },
+    {
+      "number": 74,
+      "source_text_sha256": "1036fb34f049ed78be5d2107726c561d09003e9abebea846b46e0ac90be795fa",
+      "lines": [
+        "Popular Word Embeddings",
+        "• Bengio method",
+        "• Word2vec (skip-gram model)",
+        "• And more…"
+      ]
+    },
+    {
+      "number": 75,
+      "source_text_sha256": "f3ce1582170e3f089a815e47ce0a804902f17ee1cde73f25712504cd47895c04",
+      "lines": [
+        "Variants for Learning Word Embeddings",
+        "• Capture global context rather than just local context of previous or",
+        "surrounding words; e.g.,",
+        "• GloVe for Global Vectors (Pennington et al., 2014)",
+        "• Capture that the same word can have different word vectors under",
+        "different contexts; e.g.,",
+        "• Elmo for embeddings from language models (Peters et al., arXiv 2018)",
+        "• Support multiple languages; e.g.,",
+        "• Fast-text (Bojanowski et al., 2016)"
+      ]
+    },
+    {
+      "number": 76,
+      "source_text_sha256": "1036fb34f049ed78be5d2107726c561d09003e9abebea846b46e0ac90be795fa",
+      "lines": [
+        "Popular Word Embeddings",
+        "• Bengio method",
+        "• Word2vec (skip-gram model)",
+        "• And more…"
+      ]
+    },
+    {
+      "number": 77,
+      "source_text_sha256": "909c69e67b01f02af983ab90b93ef59d6fb0700597ee53f0edb47baddbb85e3b",
+      "lines": [
+        "Recap of Big Picture",
+        "• Convert words into compact vectors as input to neural networks; e.g., RNNs",
+        "• Implementation detail: may need to learn extra tokens such as “UNK” and “EOS” to",
+        "represent out of vocabulary words and signify end of the string respectively",
+        "• Also, can fine-tune word embedding matrices for different applications",
+        "https://www.analyticsvidhya.com/blog/2017/12/introduction-to-recurrent-neural-networks/"
+      ]
+    },
+    {
+      "number": 78,
+      "source_text_sha256": "d49437efc004eb97dc5ea527e26b92aaef7ed3091fd1848ddb39c5e8be7ef98c",
+      "lines": [
+        "Word Embedding Limitations/Challenges",
+        "• Distinguish antonyms from synonyms",
+        "• Antonyms are learned near each other in the embedding space since they are",
+        "commonly used in similar contexts: “I hate math” vs “I love math” or “Take a",
+        "right turn” vs “Take a left turn”",
+        "• Gender bias:"
+      ]
+    },
+    {
+      "number": 79,
+      "source_text_sha256": "372903fe19ed7d639abaed86f7b26f408ef6095fddcee60aa3c86c4df915e81b",
+      "lines": [
+        "Word Embedding Limitations/Challenges",
+        "• Distinguish antonyms from synonyms",
+        "• Antonyms are learned near each other in the embedding space since they are",
+        "commonly used in similar contexts: “I hate math” vs “I love math” or “Take a",
+        "right turn” vs “Take a left turn”",
+        "• Gender bias:",
+        "Bolukbasi et al. Neurips 2016."
+      ]
+    },
+    {
+      "number": 80,
+      "source_text_sha256": "0c02665dfa33fd062d67e723dd4fde2f4d5cbf6f4535db072e1a9792cba09878",
+      "lines": [
+        "Word Embedding Limitations/Challenges",
+        "• Distinguish antonyms from synonyms",
+        "• Antonyms are learned near each other in the embedding space since they are",
+        "commonly used in similar contexts: “I hate math” vs “I love math” or “Take a",
+        "right turn” vs “Take a left turn”",
+        "• Gender bias",
+        "• What other language biases do you think could be learned?",
+        "Bolukbasi et al. Neurips 2016."
+      ]
+    },
+    {
+      "number": 81,
+      "source_text_sha256": "fe96119f75ff1e122093ec670ac62e9ec365c2a22324de12f7c1b2e28f7bbb2e",
+      "lines": [
+        "Today’s Topics",
+        "• Introduction to natural language processing",
+        "• Text representation",
+        "• Neural word embeddings",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 82,
+      "source_text_sha256": "fe96119f75ff1e122093ec670ac62e9ec365c2a22324de12f7c1b2e28f7bbb2e",
+      "lines": [
+        "Today’s Topics",
+        "• Introduction to natural language processing",
+        "• Text representation",
+        "• Neural word embeddings",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 83,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

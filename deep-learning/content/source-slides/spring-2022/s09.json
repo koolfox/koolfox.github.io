@@ -1,0 +1,1381 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s09",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/07-CV_and_ImageClassification.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2022/s09.pdf",
+    "sha256": "cc1db564e3d432a2220a094e59fe1233d64691cd856612ab919d917ecd6ed73c",
+    "page_count": 96,
+    "license_notice": "CC BY; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "a7026c5007d5258d584cbd1b2cb098512599394b772f5cd9e4d09be935143a42",
+      "lines": [
+        "Introduction to Computer Vision",
+        "and Image Classification",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2022",
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "4018b346a61f4dae814b060ae958fa9972212330a3de6b9bdc09725b912aed0d",
+      "lines": [
+        "Review",
+        "• Last lecture:",
+        "• Neural Networks for Spatial Data",
+        "• History of Convolutional Neural Networks (CNNs)",
+        "• CNNs – Convolutional Layers",
+        "• CNNs – Pooling Layers",
+        "• Assignments (Canvas)",
+        "• Lab assignment 1 grades out",
+        "• Problem set 2 due earlier today",
+        "• Lab assignment 2 due in 1.5 weeks",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "d25723e697e6f82a0c55b7516705ef310e18d4218aa65867c81cf3402a6d4fe1",
+      "lines": [
+        "Today’s Topics",
+        "• Computer vision",
+        "• Era of dataset challenges",
+        "• MNIST challenge winner: LeNet",
+        "• ImageNet challenge winners: deeper learning (AlexNet, VGG, ResNet)",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "d25723e697e6f82a0c55b7516705ef310e18d4218aa65867c81cf3402a6d4fe1",
+      "lines": [
+        "Today’s Topics",
+        "• Computer vision",
+        "• Era of dataset challenges",
+        "• MNIST challenge winner: LeNet",
+        "• ImageNet challenge winners: deeper learning (AlexNet, VGG, ResNet)",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "03a5f07cedb85f6c585491d4e9684a43eaabb8ff4f10cc4eed095d91368af6c5",
+      "lines": [
+        "Computer Vision: Computers that “See”",
+        "5",
+        "Self-driving cars Exploration on Mars Guided surgery",
+        "Visual assistance for people who are blind Security"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "8110c0ed25c7bef312a4e3d987f0d820ab5baf72436cd96d9f4131e34d08b583",
+      "lines": [
+        "Why Discuss Computer Vision With CNNs?",
+        "• CNNs have a strong track record for vision problems",
+        "• Visual data’s representation (i.e., spatial data) is naturally suited for CNNs",
+        "Image: Video:",
+        "Time 1",
+        "Time t"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "6d51f3525f5b2e4a18a1581b9cc5d0cdb974e165377b5de43f6e3ed8271e72f5",
+      "lines": [
+        "Historical Context: Origins of Computer Vision First programmable machine",
+        "2012",
+        "Machine learning",
+        "Turing test",
+        "1945",
+        "AI",
+        "1956",
+        "1950 1959",
+        "Wave 3: rise of",
+        "“deep learning”",
+        "1957 Perceptron",
+        "1847 Gradient descent",
+        "First digital image:",
+        "176 x 176 pixels"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "158b0907526ce1be6b66a63d3a7e069ef12227e29ac3954bd063912b40b7ba52",
+      "lines": [
+        "Historical Context: Origins of Computer Vision First programmable machine Machine learning Turing test",
+        "1945",
+        "AI",
+        "1956",
+        "1950 1957",
+        "1959",
+        "1847 Gradient descent",
+        "Birth of",
+        "computer",
+        "vision",
+        "1966",
+        "First digital image; Perceptron"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "d4131c09eb522d6bfef988621cc9ccaf285cb9eeb2452e698086f7caea9bd44c",
+      "lines": [
+        "Historical Context: Origins of Computer Vision First programmable machine Machine learning Turing test",
+        "1945",
+        "AI",
+        "1956",
+        "1950 1957",
+        "1959",
+        "Perceptron; First digital image",
+        "1847 Gradient descent",
+        "Birth of",
+        "computer",
+        "vision",
+        "1966",
+        "Turing test: design “computer vision” that is",
+        "indistinguishable from “human vision”"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "e2d23e2f084e8217c9d4a748137d7e819ae514c4e8ba116c226837b7d077571a",
+      "lines": [
+        "Artificial Intelligence",
+        "(machines that do “intelligent” things)",
+        "Computer Vision in Context",
+        "Deep learning",
+        "(machines that",
+        "learn to do",
+        "“intelligent”",
+        "things using",
+        "neural networks)",
+        "Computer",
+        "Vision",
+        "(machines",
+        "that “see”)",
+        "Course",
+        "scope"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "f26274a55a33b724294f00931b9c78801ccb81ee9196d4891a8b3b7eabf7b0df",
+      "lines": [
+        "• Object recognition",
+        "• Object detection",
+        "• Segmentation",
+        "• Image captioning",
+        "• Visual question answering",
+        "• Object tracking",
+        "• Subjective problems",
+        "• And more…",
+        "Key Challenge: Replicate Human Vision for",
+        "So Much Variation for So Many Tasks!"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "68e94fcab0e007fdaa509b91c5c2790c1c6e2db107042a6ab8ae891eec64d692",
+      "lines": [
+        "Key Challenge: Replicate Human Vision for",
+        "So Much Variation for So Many Tasks!",
+        "e.g., take a picture of an object and find where to buy it",
+        "• Object recognition",
+        "• Object detection",
+        "• Segmentation",
+        "• Image captioning",
+        "• Visual question answering",
+        "• Object tracking",
+        "• Subjective problems",
+        "• And more…"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "f472a497f9b5171887318af23e19d72324257d3ee756cc116e3e2685edbabaf1",
+      "lines": [
+        "e.g., detect faces to tag",
+        "Key Challenge: Replicate Human Vision for",
+        "So Much Variation for So Many Tasks!",
+        "• Object recognition",
+        "• Object detection",
+        "• Segmentation",
+        "• Image captioning",
+        "• Visual question answering",
+        "• Object tracking",
+        "• Subjective problems",
+        "• And more…"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "dd5583d5249c4f5aa35956901a2580fd41e8b858e97368fd5a1e5d3b9b36e8d2",
+      "lines": [
+        "e.g., rotoscoping",
+        "https://www.starnow.co.uk/ahmedmohammed1/photos/4",
+        "650871/before-and-after-rotoscopinggreen-screening",
+        "Key Challenge: Replicate Human Vision for",
+        "So Much Variation for So Many Tasks!",
+        "• Object recognition",
+        "• Object detection",
+        "• Segmentation",
+        "• Image captioning",
+        "• Visual question answering",
+        "• Object tracking",
+        "• Subjective problems",
+        "• And more…"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "a8a7f4bf41aa319558ba6dc18b45406bb0e7e9df70154d83e48220a6e3e86613",
+      "lines": [
+        "Key Challenge: Replicate Human Vision for",
+        "So Much Variation for So Many Tasks!",
+        "e.g., Microsoft Power Point",
+        "• Object recognition",
+        "• Object detection",
+        "• Segmentation",
+        "• Image captioning",
+        "• Visual question answering",
+        "• Object tracking",
+        "• Subjective problems",
+        "• And more…"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "62a68a9e7f8273ab0c720dccc5b5e6f5271e9a8088e127b8bb53f2895c2e56f5",
+      "lines": [
+        "Key Challenge: Replicate Human Vision for",
+        "So Much Variation for So Many Tasks!",
+        "e.g., BeSpecular",
+        "https://www.lionessesofafrica.com/blog/2015/2/",
+        "15/the-startup-story-of-stephanie-cowper",
+        "• Object recognition",
+        "• Object detection",
+        "• Segmentation",
+        "• Image captioning",
+        "• Visual question answering",
+        "• Object tracking",
+        "• Subjective problems",
+        "• And more…"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "69a54a1ead967e63d4734d208748f40d1bac8c08dce7a05a80049e8feefb4d8f",
+      "lines": [
+        "Key Challenge: Replicate Human Vision for",
+        "So Much Variation for So Many Tasks!",
+        "e.g., track bowling ball path",
+        "e.g., calculate bat speed",
+        "• Object recognition",
+        "• Object detection",
+        "• Segmentation",
+        "• Image captioning",
+        "• Visual question answering",
+        "• Object tracking",
+        "• Subjective problems",
+        "• And more…"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "52b042266312b19ab5b542e1982a0841d55bc694adfbe9c1a74a337c304c22f1",
+      "lines": [
+        "Key Challenge: Replicate Human Vision for",
+        "So Much Variation for So Many Tasks!",
+        "• Object recognition",
+        "• Object detection",
+        "• Segmentation",
+        "• Image captioning",
+        "• Visual question answering",
+        "• Object tracking",
+        "• Subjective problems",
+        "• And more…"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "52b042266312b19ab5b542e1982a0841d55bc694adfbe9c1a74a337c304c22f1",
+      "lines": [
+        "Key Challenge: Replicate Human Vision for",
+        "So Much Variation for So Many Tasks!",
+        "• Object recognition",
+        "• Object detection",
+        "• Segmentation",
+        "• Image captioning",
+        "• Visual question answering",
+        "• Object tracking",
+        "• Subjective problems",
+        "• And more…"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "93058bd98a99b467af7d30c97988afa39a82c9d0c1e3ce7c63820fa5b47768e3",
+      "lines": [
+        "Slide by Kristen Grauman",
+        "Key Challenge: Replicate Human Vision for",
+        "So Much Variation for So Many Tasks!"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "d25723e697e6f82a0c55b7516705ef310e18d4218aa65867c81cf3402a6d4fe1",
+      "lines": [
+        "Today’s Topics",
+        "• Computer vision",
+        "• Era of dataset challenges",
+        "• MNIST challenge winner: LeNet",
+        "• ImageNet challenge winners: deeper learning (AlexNet, VGG, ResNet)",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "1d9719a52be47e414c5b218a317a583606a306e7129bc27e42372558f5a2cea0",
+      "lines": [
+        "Algorithm Dataset",
+        "Through 1990s, Common Approach to",
+        "Developing Computer Vision Models:",
+        "Algorithm",
+        "Algorithm Dataset Dataset Dataset Algorithm",
+        "Datasets tended to be relatively small (e.g., 10s or 100s of examples)"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "41459baf7ee95a1d9a098d0a8d2baac33da5488df577f137bde4d75e2a1ac6d0",
+      "lines": [
+        "Since 1990s, Common Approach to",
+        "Developing Computer Vision Models:",
+        "Algorithms",
+        "Dataset",
+        "Image Source: http://larryzitnick.org/Talks/CVPR15_Dataset.pptx",
+        "Datasets tend to be large (i.e., thousands to millions of examples)"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "64a3e6df10e65df8f4a99054780fb3f19bd2056418e275118effb7e766d46a98",
+      "lines": [
+        "Since 1990s, Common Approach to",
+        "Developing Computer Vision Models:",
+        "Algorithms",
+        "Dataset",
+        "Image Source: http://larryzitnick.org/Talks/CVPR15_Dataset.pptx",
+        "Datasets tend to be large (i.e., thousands to millions of examples)",
+        "What do you think",
+        "prompted this shift to",
+        "large-scale datasets?"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "5cddf355da13e1b2b63039c0d87b76bf8d6e9c99245c0ba32b01b451168fb8d1",
+      "lines": [
+        "Progress Charted by Progress on Community",
+        "Shared Dataset Challenges: How It Works",
+        "Training Data Test Data",
+        "1. Dataset split into a “training set” and “ ” with the labels for the “test set” hidden",
+        "2. Teams design a model and submit its predictions on the test set to an evaluation server",
+        "3. A public leaderboard shows the ranking of performance for all teams’ submitted models",
+        "Label: xyz",
+        "Data:",
+        "xyz xyz xyz xyz xyz"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "77cefc4b713c5d83ae1d2b25212b349c71968074c11fd5bd5a340f92644d6a2d",
+      "lines": [
+        "Progress Charted by Progress on Community",
+        "Shared Dataset Challenges: Why Challenges?",
+        "• Provide “fair” comparison between models",
+        "• Create a community around a shared goal"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "e82012093ce984e99c254a85a39bfdc11d9b2000e24035ccb8ad791cc4bb77b5",
+      "lines": [
+        "Many Public Dataset Challenges Available; e.g.,",
+        "• Google Dataset Search",
+        "• Amazon’s AWS datasets",
+        "• Kaggle datasets",
+        "• Wikipedia’s list",
+        "• UC Irvine Machine Learning Repository",
+        "• Quora.com",
+        "• Reddit",
+        "• Dataportals.org",
+        "• Opendatamonitor.eu",
+        "• Quandl.com"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "d25723e697e6f82a0c55b7516705ef310e18d4218aa65867c81cf3402a6d4fe1",
+      "lines": [
+        "Today’s Topics",
+        "• Computer vision",
+        "• Era of dataset challenges",
+        "• MNIST challenge winner: LeNet",
+        "• ImageNet challenge winners: deeper learning (AlexNet, VGG, ResNet)",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "d62ebf6856708e6fc8da58604f40d7c8378f59243dfb3e6603fa1687c79b3379",
+      "lines": [
+        "Historical Context: Inspiration First programmable machine",
+        "2012",
+        "Turing test",
+        "1945",
+        "AI",
+        "1956",
+        "1950 1959",
+        "Neural networks with",
+        "effective learning strategy",
+        "Wave 3: rise of “deep learning”",
+        "1957 Perceptron",
+        "1847 Gradient descent",
+        "Machine learning",
+        "1986",
+        "1998",
+        "Backpropagation for CNNs",
+        "1989",
+        "MNIST, LeNet",
+        "Neocognitron",
+        "1980"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "e2a4ed0b3f96da11afd36eef583264187325b8b2b104b8f9449a2760cb894851",
+      "lines": [
+        "Key contribution: showing how to perform",
+        "backpropagation for CNNs to enable learning",
+        "thereby eliminating the need for hand-crafted filters"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "6d6e4a462eb166b70fb0bf64de09e68231ac95bb3f8db1ae4538a83069584617",
+      "lines": [
+        "MNIST Dataset Challenge",
+        "• Goal: classify digit as 0, 1, …, or 9",
+        "• Evaluation metric: accuracy (% correct)",
+        "• Dataset: 60,000 training and 10,000",
+        "test examples, pre-processed to be",
+        "centered and same dimension; writers",
+        "were different in the two sets",
+        "• Source: images collected by NIST from",
+        "a total of 500 Census Bureau",
+        "employees and high school students",
+        "Dataset location: http://yann.lecun.com/exdb/mnist/",
+        "NIST dataset: https://www.nist.gov/srd/nist-special-database-19",
+        "Figure source: https://commons.wikimedia.org/w/index.php?curid=64810040"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "c1f48d590aa9c8871f938b46031d17183217bd4c5b200ceb3e9d84e796157042",
+      "lines": [
+        "LeNet: Architecture (like Neocognitron, has",
+        "convolutional layers and pooling layers)",
+        "Y. Lecun ; L. Bottou ; Y. Bengio ; P. Haffner; Gradient-based learning applied to document recognition; 1998",
+        "Multi-layer neural network tanh is used as the activation function"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "b72ce4bf5af6d9337cd8de70fce8bb3613e7c985ddbfbc945ae7d33ccc540f2d",
+      "lines": [
+        "LeNet: Architecture (like Neocognitron, has",
+        "convolutional layers and pooling layers)",
+        "Y. Lecun ; L. Bottou ; Y. Bengio ; P. Haffner; Gradient-based learning applied to document recognition; 1998",
+        "Multi-layer neural network",
+        "How many possible output values",
+        "does this network predict?"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "2687821c4cd0f3c2283019933e6822449a82912b5e924c83b430b1f458876943",
+      "lines": [
+        "LeNet: Architecture (like Neocognitron, has",
+        "convolutional layers and pooling layers)",
+        "Y. Lecun ; L. Bottou ; Y. Bengio ; P. Haffner; Gradient-based learning applied to document recognition; 1998",
+        "How many filters are between",
+        "the input and hidden layer 1?"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "3dc433ec897474f171163ae8afad6b701505513cbf09592bc3eb716c0fd449ed",
+      "lines": [
+        "LeNet: Architecture (like Neocognitron, has",
+        "convolutional layers and pooling layers)",
+        "Y. Lecun ; L. Bottou ; Y. Bengio ; P. Haffner; Gradient-based learning applied to document recognition; 1998",
+        "What size of a neighborhood",
+        "is used for this pooling layer?"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "a18ecff77c5e59bbf0b6aa4dd4f95a6de8279cc7a39ee918cc039d85ea179339",
+      "lines": [
+        "Training Procedure Approach (Key Novelty)",
+        "• Repeat until stopping criterion met:",
+        "1. Forward pass: propagate",
+        "training data through model",
+        "to make prediction",
+        "2. Quantify the dissatisfaction",
+        "with a model’s results on the",
+        "training data",
+        "3. Backward pass: using",
+        "predicted output, calculate",
+        "gradients backward to assign",
+        "blame to each model",
+        "parameter",
+        "4. Account for weight sharing",
+        "by using average of all",
+        "connections for a parameter",
+        "5. Update each parameter",
+        "using calculated gradients",
+        "Figure from: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul,",
+        "Jeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018",
+        "Objective/loss function",
+        "used to compute error"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "550d14aa33e42542e0fd1afb579915799adb9ee4972f6f55febf7b3f41400c79",
+      "lines": [
+        "Training Procedure Approach (Key Novelty)",
+        "• Repeat until stopping criterion met:",
+        "1. Forward pass: propagate",
+        "training data through model",
+        "to make prediction",
+        "2. Quantify the dissatisfaction",
+        "with a model’s results on the",
+        "training data",
+        "3. Backward pass: using",
+        "predicted output, calculate",
+        "gradients backward to assign",
+        "blame to each model",
+        "parameter",
+        "4. Account for weight sharing",
+        "by using average of all",
+        "connections for a parameter",
+        "5. Update each parameter",
+        "using calculated gradients",
+        "Yann Lecun. Generalization and network design strategies. Technical Report, 1989",
+        "Gradient derivations found",
+        "in assigned readings"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "f765f706e7762a1f3e24aeaf400e6a865372561032182445b2ad4d4a2d906862",
+      "lines": [
+        "Training Procedure Approach (Key Novelty)",
+        "• Repeat until stopping criterion met:",
+        "1. Forward pass: propagate",
+        "training data through model",
+        "to make prediction",
+        "2. Quantify the dissatisfaction",
+        "with a model’s results on the",
+        "training data",
+        "3. Backward pass: using",
+        "predicted output, calculate",
+        "gradients backward to assign",
+        "blame to each model",
+        "parameter",
+        "4. Account for weight sharing",
+        "by using average of all",
+        "connections for a parameter",
+        "5. Update each parameter",
+        "using calculated gradients",
+        "https://www.jefkine.com/general/2016/09/05/backpropagation-in-convolutional-neural-networks/",
+        "Input Filter",
+        "(aka – Kernel)",
+        "Feature",
+        "Map"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "c619ea062a5a5865af1ee1780479449d6db3931d66fbe338b600c388d5f6955d",
+      "lines": [
+        "LeNet vs Neocognitron",
+        "Feature Extraction Prediction",
+        "9",
+        "INPUT OUTPUT",
+        "9",
+        "Feature Extraction",
+        "LeNet: Learned filters",
+        "Prediction",
+        "Neocognitron: Hand-crafted filters"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "1aa3c0e7a19335ab74fc98ced8cb97052ad4efd3a0cfa5ba25aa4c9e062d7a46",
+      "lines": [
+        "LeNet Performance Analysis",
+        "Y. Lecun ; L. Bottou ; Y. Bengio ; P. Haffner; Gradient-based learning applied to document recognition; 1998",
+        "How many epochs are needed",
+        "for training to converge?"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "c6df137f55e6aba4d49ca0092600255359dbf8a927f6f7dd8a121ce2dae56967",
+      "lines": [
+        "LeNet, designed on the MNIST Challenge, was used",
+        "to read over 10% of checks in North America in the",
+        "1990s, reading millions of checks every month"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "d25723e697e6f82a0c55b7516705ef310e18d4218aa65867c81cf3402a6d4fe1",
+      "lines": [
+        "Today’s Topics",
+        "• Computer vision",
+        "• Era of dataset challenges",
+        "• MNIST challenge winner: LeNet",
+        "• ImageNet challenge winners: deeper learning (AlexNet, VGG, ResNet)",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "b9ed6679a95147f147b42433f6837b4efb5af310c3853cc807dd61ba3e65a53b",
+      "lines": [
+        "Historical Context First programmable machine",
+        "2012",
+        "Turing test",
+        "1945",
+        "AI",
+        "1956",
+        "1950 1959",
+        "Neural networks with",
+        "effective learning strategy",
+        "Wave 3: rise of “deep learning”",
+        "1957 Perceptron",
+        "1847 Gradient descent",
+        "Machine learning",
+        "1986",
+        "1998",
+        "Backpropagation for CNNs",
+        "1989",
+        "MNIST, LeNet",
+        "Neocognitron",
+        "1980",
+        "2009",
+        "ImageNet: catalyst for 3rd wave"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "8d5b3d97964862707d3300fa805fb78d56a7049b1c7430f01c5ee03a520ea1dd",
+      "lines": [
+        "ImageNet: Predict Category from 1000 Options",
+        "J. Deng, W. Dong, R. Socher, L. Li, K. Li and L. Fei-Fei. ImageNet: A Large-Scale Hierarchical Image Database. 2009",
+        "• Evaluation metric: % correct",
+        "(top-1 and top-5 predictions)",
+        "• Dataset: ~1.5 million images",
+        "• Source: images scraped from",
+        "search engines, such as Flickr,",
+        "and labeled by crowdworkers"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "df93e6660c4fcce17bf47ba1166dc6f3c4732189c301eddac1980a102458785d",
+      "lines": [
+        "ImageNet vs MNIST",
+        "J. Deng, W. Dong, R. Socher, L. Li, K. Li and L. Fei-Fei. ImageNet: A Large-Scale Hierarchical Image Database. 2009",
+        "• 3D objects in natural",
+        "backgrounds",
+        "• Many more categories"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "52280c252e90648977f238e59dff57eafac60bc895450a413e16ba12e80dd929",
+      "lines": [
+        "Rise of “Deep Learning”",
+        "Progress of models on ImageNet (Top 5 Error)",
+        "Scaling up the dataset led to",
+        "unexpected, unprecedented",
+        "improvements from the “deep",
+        "learning” model, AlexNet",
+        "Figure Source: https://www.edge-ai-vision.com/2018/07/deep-learning-in-five-and-a-half-minutes/"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "c9632cc2f875e4ffbcdf4bc2fa30b08aa25250aeca6c85ad5740072f8a501957",
+      "lines": [
+        "Rise of “Deep Learning” Following AlexNet",
+        "Source: https://image-net.org/static_files/files/ILSVRC2017_overview.pdf",
+        "Inspired by AlexNet,",
+        "many more researchers",
+        "in the computer vision",
+        "community proposed",
+        "neural networks and",
+        "showed how to make",
+        "further progress over",
+        "the years!"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "daa18c8b24f249e948239a98c50708b97d6326608e323f2a98f1f6b517b4ec10",
+      "lines": [
+        "Rise of “Deep Learning” Following AlexNet",
+        "Source: https://image-net.org/static_files/files/ILSVRC2017_overview.pdf",
+        "• 727 entries (plus an entry",
+        "that famously was kicked",
+        "out in 2015 for cheating",
+        "from Baidu)",
+        "• Labor cost ~$110 million:",
+        "assuming 3 people",
+        "contribute to each entry",
+        "and $50k cost per person"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "cc57b8636155413d8cbb8a40986446161217a8d5120dc059b4e5a75e9e03ec99",
+      "lines": [
+        "Secret Sauce for State-of-Art: Deeper CNNs",
+        "Today’s topics",
+        "Progress of models on ImageNet (Top 5 Error)",
+        "Figure Source: https://www.edge-ai-vision.com/2018/07/deep-learning-in-five-and-a-half-minutes/"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "2b4c44823568dc0e6918c54461ab1d9e0272e42e7075720d9f55841b852e6ee6",
+      "lines": [
+        "• Repeat until stopping criterion met:",
+        "1. Forward pass: propagate",
+        "training data through model",
+        "to make prediction",
+        "2. Quantify the dissatisfaction",
+        "with a model’s results on the",
+        "training data",
+        "3. Backward pass: using",
+        "predicted output, calculate",
+        "gradients backward to assign",
+        "blame to each model",
+        "parameter",
+        "4. Update each parameter",
+        "using calculated gradients",
+        "Figure from: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul,",
+        "Jeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018",
+        "Why It Is Difficult to Achieve Better Performance",
+        "with CNNs That Are Deeper: Vanishing Gradients"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "39021271f1669073ac3479069c1a3feda280b48e4367b0ff59f40d6f6d1ff5e0",
+      "lines": [
+        "Why It Is Difficult to Achieve Better Performance",
+        "with CNNs That Are Deeper: Vanishing Gradients",
+        "https://ayearofai.com/rohan-4-the-vanishing-gradient-problem-ec68f76ffb9b",
+        "Small gradients so weights change slowly Large gradients so weights change quickly",
+        "Cost Function 1 Cost Function 2"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "e3c78fbd0a677c50b886d798c9117bb5f08465ff0f71976e2158449be991e5e9",
+      "lines": [
+        "Why It Is Difficult to Achieve Better Performance",
+        "with CNNs That Are Deeper: Vanishing Gradients",
+        "Sigmoid Tanh",
+        "Ranges from 0 to 0.25",
+        "Recall activation functions",
+        "and their derivatives:",
+        "Masi et al. Journal of the Mechanics and Physics of Solids. 2021"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "8574ee61be008c384ef0837d1b22c556ace9cbb78869cf2e480496a09b192760",
+      "lines": [
+        "Vanishing Gradient Problem (e.g., sigmoid)",
+        "• Toy example:",
+        "• Error Derivative with",
+        "respect to weight w1:",
+        "Derivative of sigmoid",
+        "activation function: (0 to 1/4]",
+        "Derivative of sigmoid",
+        "activation function: (0 to 1/4]",
+        "Problem: What happens as you multiply more numbers smaller than 1?",
+        "Gradient decreases as further from the last layer… and so weights barely change at training!",
+        "https://ayearofai.com/rohan-4-the-vanishing-gradient-problem-ec68f76ffb9b"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "291e9889668f82f985e2bfd4f65fef5cda32c20add826d4cd25b6a2465cdab2d",
+      "lines": [
+        "Vanishing Gradient Problem (e.g., sigmoid)",
+        "Smallest gradients at earliest layers make them slowest to train, yet later layers depend on those",
+        "earlier layers to do something useful; consequently, NNs struggle with garbage in means garbage out",
+        "https://towardsdatascience.com/batch-normalization-the-greatest-breakthrough-in-deep-learning-77e64909d81d"
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "5f44356bc15f896089b1b56739bb0910fd99e80e0f29c2b2a7dcb24376c0a29b",
+      "lines": [
+        "How can we avoid the vanishing gradient problem?"
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "4d2ad796e12a7656d2f0ff8176d6a440f7777eb2c6bf111e94024970e899ab5e",
+      "lines": [
+        "AlexNet: A Deeper CNN",
+        "Progress of models on ImageNet (Top 5 Error)",
+        "Figure Source: https://www.edge-ai-vision.com/2018/07/deep-learning-in-five-and-a-half-minutes/"
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "950ac5bcbf5e8c3ce2bca1ada0b2b85f493f4e41544ba95e38faadf8a6057c54",
+      "lines": [
+        "Key Idea: Non-Saturating Activation Functions",
+        "Use activation functions with derivative value equal to 1 (i.e., 1x1x1… doesn’t vanish)",
+        "Masi et al. Journal of the Mechanics and Physics of Solids. 2021",
+        "Sigmoid Tanh ReLU"
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "a5b4e7d7a4b40885f1a2b9d646adbd6d11eb4955724a64171e665ff7901efba4",
+      "lines": [
+        "AlexNet Architecture: Similar to LeNet But",
+        "With More Convolutional and Pooling Layers",
+        "Source: https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png"
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "10a1bc45561da505044f0f059d821c8c6c7d403155add412e2eda106211f2f0d",
+      "lines": [
+        "AlexNet Architecture",
+        "Source: https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png",
+        "Input: RGB image resized to fixed input size",
+        "Output: 1000 class probabilities (sums to 1)",
+        "Convolutional layers: 5 layers",
+        "Pooling Layers: 3 layers",
+        "Fully-connected layers: 3 layers"
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "99b0cdfef574b99eb8855df8fb92a2f56ef5162f6c682669ea0385925c47a45d",
+      "lines": [
+        "AlexNet Architecture",
+        "Source: https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png",
+        "How many layers have model parameters that need to be learned?"
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "4d72bc1a5da1bb0ace48abca6ebd36a77c2115bbdd0207d16918015cf22805b7",
+      "lines": [
+        "AlexNet Architecture",
+        "Source: https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png",
+        "Altogether, 60 million model parameters must be learned!"
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "66bb490e8c72925767f4f83d959d0b8baf0e1493f4a70608ed9ab66c445066a7",
+      "lines": [
+        "Implementation Detail: Input Preprocessing",
+        "Image Source: https://learnopencv.com/understanding-alexnet/",
+        "(side with smaller dimension)",
+        "227",
+        "227",
+        "(random location)",
+        "(retain center patch)",
+        "(subtract mean image from",
+        "training data to center input)"
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "d671a895cb7a38bd4b93be35b313d4a317baddd6ee4aa416950a91058e73f475",
+      "lines": [
+        "AlexNet Architecture",
+        "Source: http://www.philkr.net/cs342/lectures/computer_vision/02.pdf",
+        "Few parameters come from",
+        "the convolutional layers",
+        "Most parameters come from",
+        "the fully connected layers",
+        "Altogether, 60 million model parameters must be learned!"
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "7fe2ad21cbf335ab97c2979ca837ab878d718eae98579a8c52e141e2f51cd302",
+      "lines": [
+        "AlexNet Training: 90 Epochs",
+        "• Repeat until stopping criterion",
+        "met:",
+        "1. Forward pass: propagate",
+        "training data through",
+        "model to make prediction",
+        "2. Quantify the",
+        "dissatisfaction with a",
+        "model’s results on the",
+        "training data",
+        "3. Backward pass: using",
+        "predicted output,",
+        "calculate gradients",
+        "backward to assign blame",
+        "to each model parameter",
+        "4. Update each parameter",
+        "using calculated gradients",
+        "Figure from: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul,",
+        "Jeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018",
+        "Uses cross entropy loss"
+      ]
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "570a6784c464a211a07ab0b44aa98dad34626f4652346ed1890212b83dd80e99",
+      "lines": [
+        "AlexNet: Key Tricks for Going Deeper",
+        "• ReLU instead of sigmoid or tanh activation functions",
+        "• Regularization techniques: to be covered next lecture",
+        "1. Data augmentation",
+        "2. Dropout in fully connected layers",
+        "3. L2 parameter norm penalty",
+        "• Trained across two GPUs"
+      ]
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "cc5d0dd80dc3bc96258e33d109da74e207f115b3cb8e5e19b662523169cf907b",
+      "lines": [
+        "VGG: A Deeper CNN",
+        "Progress of models on ImageNet (Top 5 Error)",
+        "Figure Source: https://www.edge-ai-vision.com/2018/07/deep-learning-in-five-and-a-half-minutes/"
+      ]
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "d38a2098bb7476028512cbcf17c98896cdd6ad0f9039607f6d8491d4874250a0",
+      "lines": [
+        "Key Novelty: Deeper Does Better",
+        "Figure Source (edited to fix mistakes): https://medium.com/deep￾learning-g/cnn-architectures-vggnet-e09d7fe79c45",
+        "8 layers",
+        "16 layers",
+        "* Number of layers with learnable model",
+        "parameters between input and output layer",
+        "(i.e., exclude pooling layers)",
+        "19 layers",
+        "Layers with differences"
+      ]
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "925b2cb568cbb7eb9b494bf3916e9dd50a9c8b0d09f6b6e6fa686cb3ff7331d3",
+      "lines": [
+        "Figure Source (edited to fix mistakes): https://medium.com/deep￾learning-g/cnn-architectures-vggnet-e09d7fe79c45",
+        "Key Idea: Smaller Convolutional Filters",
+        "11x11 filter, 96 filters",
+        "• Replace larger filter with stack of smaller filters"
+      ]
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "046fb25cec4d61a9cd7c639650407d9b24c56e5390cc4d51622e4484583109b6",
+      "lines": [
+        "Key Idea: Smaller Convolutional Filters",
+        "• Replace larger filter with stack of smaller filters; e.g., replace 7x7 with three 3x3s",
+        "• Benefits:",
+        "• More discriminative classifier since more non-linear rectifications: 3 vs 1",
+        "• Reduces # of parameters: multiple of 27 (3 x 32) parameters vs 49 (7 x 7) parameters",
+        "https://www.deeplearningbook.org/contents/convnets.html"
+      ]
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "fe3fb53280374c28c35550b3810e83aa1dab5d2a9272f662cb7c2d569c8d6246",
+      "lines": [
+        "VGG Training (follows AlexNet): 74 Epochs",
+        "• Repeat until stopping criterion met:",
+        "1. Forward pass: propagate",
+        "training data through model",
+        "to make prediction",
+        "2. Quantify the dissatisfaction",
+        "with a model’s results on the",
+        "training data",
+        "3. Backward pass: using",
+        "predicted output, calculate",
+        "gradients backward to assign",
+        "blame to each model",
+        "parameter",
+        "4. Update each parameter using",
+        "calculated gradients",
+        "Figure from: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul,",
+        "Jeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018",
+        "Can still encounter vanishing gradients"
+      ]
+    },
+    {
+      "number": 71,
+      "source_text_sha256": "76bd8aa2bc59dc2e7510d3e37520795fa4e04bd68415c33d8f4556298bc282ea",
+      "lines": [
+        "Weight Initialization: Xavier/Glorot Approach",
+        "• Problem: vanishing gradients can occur since derivative expression contains",
+        "weight multiplication, and weights are generally initialized to < 1",
+        "• Solution: initialize weights from a normal distribution centered at 0 while",
+        "encouraging scale of signals & gradients to match in all layers",
+        "(1) Equal variance of signal before and after flowing through each layer",
+        "(2) Equal variance of gradients before and after flowing through each layer",
+        "Xavier Glorot & Yoshua Bengio. Understanding the difficulty of training deep feedforward neural networks. 2010"
+      ]
+    },
+    {
+      "number": 72,
+      "source_text_sha256": "d4904294cdc31143fd46231e59af39e9d737261756b3b505628e742dde69e71e",
+      "lines": [
+        "Weight Initialization: Xavier/Glorot Approach",
+        "https://towardsdatascience.com/hyper-parameters-in-action-part-ii-weight-initializers-35aee1a28404",
+        "Chooses weights",
+        "so gradients are",
+        "similar across",
+        "layers, z-values",
+        "are similar across",
+        "layers in range of",
+        "(1, -1), and",
+        "activations are",
+        "similar across",
+        "layers without",
+        "disappearing or",
+        "going to extreme",
+        "large/small values"
+      ]
+    },
+    {
+      "number": 73,
+      "source_text_sha256": "99d27aac11f034c4510d72b400460f889a62c7d4868f32205ab9e11803439fe9",
+      "lines": [
+        "VGG Limitation: Models Are Large!",
+        "Figure Source (edited to fix mistakes): https://medium.com/deep￾learning-g/cnn-architectures-vggnet-e09d7fe79c45",
+        "60 million",
+        "parameters",
+        "138 million",
+        "parameters",
+        "144 million",
+        "parameters"
+      ]
+    },
+    {
+      "number": 74,
+      "source_text_sha256": "e232e7f2bb6e642ed16fdaecd76eb6339d131dd8e2b6784029648d41a3be7501",
+      "lines": [
+        "VGG Limitation: Models Are Large (e.g., VGG16)",
+        "Source: http://www.philkr.net/cs342/lectures/computer_vision/03.pdf",
+        "Few parameters come from",
+        "the convolutional layers",
+        "Most parameters come from",
+        "the fully connected layers"
+      ]
+    },
+    {
+      "number": 75,
+      "source_text_sha256": "706dd20987c6415818ccbd43dccab3ea9ad39baec2e766669ad2a2aa8cc86852",
+      "lines": [
+        "VGG: Key Tricks for Going Deeper",
+        "• 3x3 filters instead of larger filters",
+        "• Weight initialization with Xavier Glorot procedure",
+        "• Regularization techniques: to be covered next lecture",
+        "1. Data augmentation",
+        "2. Dropout in fully connected layers",
+        "3. L2 parameter norm penalty",
+        "• Trained across multiple GPUs"
+      ]
+    },
+    {
+      "number": 76,
+      "source_text_sha256": "29850d9f8236c8913f69e298af0566b4d50b5276839817961e943c40b2e6f8c6",
+      "lines": [
+        "ResNet: A Deeper CNN",
+        "Progress of models on ImageNet (Top 5 Error)",
+        "Figure Source: https://www.edge-ai-vision.com/2018/07/deep-learning-in-five-and-a-half-minutes/"
+      ]
+    },
+    {
+      "number": 77,
+      "source_text_sha256": "2f47baa9e500f7cd0f37d44d605bab1205cbc76769c50af42af86db7cfe9c4c5",
+      "lines": [
+        "Motivating Observation",
+        "Source: https://medium.com/@realmichaelye/intuition-for-resnet-deep-residual-learning-for-image-recognition-39d24d173e78",
+        "Idea: a deeper network should perform as good if not better than shallower networks since they",
+        "can learn the shallower function by simply learning “identity” functions for later layers",
+        "Observation: adding more layers leads to WORSE results!",
+        "Is the problem overfitting?"
+      ]
+    },
+    {
+      "number": 78,
+      "source_text_sha256": "70a152b80d9f95818f7a22f15c96ecc5c4f842b507504067f58c3cda3f8944e1",
+      "lines": [
+        "Motivating Observation",
+        "Idea: a deeper network should perform as good if not better than shallower networks since they",
+        "can learn the shallower function by simply learning “identity” functions for later layers",
+        "Observation: adding more layers leads to WORSE results!",
+        "Is the problem overfitting? NO Training data error (and test error)",
+        "is greater with more layers",
+        "Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. “Deep Residual Learning for Image Recognition.” CVPR, 2016."
+      ]
+    },
+    {
+      "number": 79,
+      "source_text_sha256": "7d2be63bb484a4d25ec7b95fd15c73ad13e4450b7d8a14b1f8fdd8ac88ed84fb",
+      "lines": [
+        "Motivating Observation",
+        "Idea: a deeper network should perform as good if not better than shallower networks since they",
+        "can learn the shallower function by simply learning “identity” functions for later layers",
+        "Observation: adding more layers leads to WORSE results!",
+        "Is the problem overfitting? NO",
+        "Problem: It is difficult to learn for the algorithm to learn layers of identity mappings",
+        "Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. ”Deep Residual Learning for Image Recognition.\" CVPR, 2016."
+      ]
+    },
+    {
+      "number": 80,
+      "source_text_sha256": "24be0c6514ab93c75cc675fbcef8a839eebc82a2136fe83f6a67758fa3b8e318",
+      "lines": [
+        "Problem: Difficult to Perform Identity Mapping",
+        "Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. ”Deep Residual Learning for Image Recognition.\" CVPR, 2016.",
+        "e.g.,"
+      ]
+    },
+    {
+      "number": 81,
+      "source_text_sha256": "b5df3536f7d8da4656552f9c60aca6a2750dd30886db45e5e74ce7e15c319a97",
+      "lines": [
+        "Key Idea: Skip Connections that Perform",
+        "Identity Mapping",
+        "Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. ”Deep Residual Learning for Image Recognition.\" CVPR, 2016.",
+        "Residual function",
+        "to be learned",
+        "Assumption: Easier for a network to",
+        "learn parameters close to 0 than a",
+        "function that performs identity mapping",
+        "(supported by experiments in the paper)"
+      ]
+    },
+    {
+      "number": 82,
+      "source_text_sha256": "3f8305f2e55563a7517af1ca2be2f0bef7467014f0ec1492e3416e30e9c359c9",
+      "lines": [
+        "Key Idea: Skip Connections that Perform",
+        "Identity Mapping",
+        "Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. ”Deep Residual Learning for Image Recognition.\" CVPR, 2016.",
+        "Residual function",
+        "to be learned",
+        "Paper explores when number of layers",
+        "between skip connections is 2 or 3"
+      ]
+    },
+    {
+      "number": 83,
+      "source_text_sha256": "6ca9f5f871a198356a647cb73e144c4bcba4aa6932da21a282e2392cb4046f40",
+      "lines": [
+        "Key Idea: Skip Connections that Perform",
+        "Identity Mapping",
+        "Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. ”Deep Residual Learning for Image Recognition.\" CVPR, 2016.",
+        "How many model parameters need to be",
+        "learned when adding a skip connection?",
+        "- 0"
+      ]
+    },
+    {
+      "number": 84,
+      "source_text_sha256": "951aa5b70cc3d227d800e94e0a700962e45d55338ca7de21917587a0958bd740",
+      "lines": [
+        "Key Idea: Skip Connections that Perform",
+        "Identity Mapping",
+        "Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. ”Deep Residual Learning for Image Recognition.\" CVPR, 2016.",
+        "Residual connections do not go through activation functions that",
+        "“squash” the derivatives, resulting in a higher gradient for learning"
+      ]
+    },
+    {
+      "number": 85,
+      "source_text_sha256": "9819a8712421dc13059092327d7d2bf6ccb674c9283bf494349528421b092bff",
+      "lines": [
+        "Approach",
+        "VGG19 ResNet34",
+        "Deep residual learning framework using",
+        "skip connections obtains state-of-art",
+        "performance for the ImageNet object",
+        "recognition challenge and other challenges",
+        "by learning deeper models than prior work",
+        "(18, 34, 50, 101, & 152 layers!)",
+        "Additional",
+        "layers",
+        "Skip",
+        "connections",
+        "Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. ”Deep Residual Learning for Image Recognition.\" CVPR, 2016."
+      ]
+    },
+    {
+      "number": 86,
+      "source_text_sha256": "d683f5b77377cc30b11675f0f0996229436dbcecf8aa188aef7ca394a4c2b2b9",
+      "lines": [
+        "ResNet Training (follows AlexNet)",
+        "• Repeat until stopping criterion",
+        "met:",
+        "1. Forward pass: propagate",
+        "training data through",
+        "model to make prediction",
+        "2. Quantify the",
+        "dissatisfaction with a",
+        "model’s results on the",
+        "training data",
+        "3. Backward pass: using",
+        "predicted output,",
+        "calculate gradients",
+        "backward to assign blame",
+        "to each model parameter",
+        "4. Update each parameter",
+        "using calculated gradients",
+        "Figure from: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul,",
+        "Jeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018"
+      ]
+    },
+    {
+      "number": 87,
+      "source_text_sha256": "30523d7bfa43a1635fed4345086ce301034ce6d81e8ab4a71974e22ccfd28dab",
+      "lines": [
+        "Experimental Results on Validation Set",
+        "Performance improves with more layers",
+        "Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. ”Deep Residual Learning for Image Recognition.\" CVPR, 2016."
+      ]
+    },
+    {
+      "number": 88,
+      "source_text_sha256": "38107ae8b1700dcada070285c7ec9555ed56d4eb723a60376b3b36a4a0f1c6c5",
+      "lines": [
+        "ResNet Exceeds Human Performance!",
+        "Progress of models on ImageNet (Top 5 Error)",
+        "Figure Source: https://www.edge-ai-vision.com/2018/07/deep-learning-in-five-and-a-half-minutes/",
+        "Measured using annotations from human",
+        "experts of up to five target classes per image",
+        "for a random sample of 1500 test images.",
+        "[Russakovsky et al. IJCV 2015]"
+      ]
+    },
+    {
+      "number": 89,
+      "source_text_sha256": "2e2f2bff9b9fbc35365e867a0e1763faf3f0c496f87aadd8a75d7de434c8b60d",
+      "lines": [
+        "ResNet: Key Tricks for Going Deeper",
+        "• Skip connections with residual learning"
+      ]
+    },
+    {
+      "number": 90,
+      "source_text_sha256": "f9bea0ca90873687ba5e95614d297e8d4534e139f57b738b395a6c72f49b4fbb",
+      "lines": [
+        "“Deeper” Models Perform Better",
+        "Today’s topics",
+        "Progress of models on ImageNet (Top 5 Error)",
+        "Figure Source: https://www.edge-ai-vision.com/2018/07/deep-learning-in-five-and-a-half-minutes/",
+        "8 layers",
+        "19 layers",
+        "152 layers"
+      ]
+    },
+    {
+      "number": 91,
+      "source_text_sha256": "6425f918291fc2dc05f6d03b2f7783c4a768c42bc54cfe25730c2378f43c2802",
+      "lines": [
+        "ImageNet Impact Recognized in 2019",
+        "https://syncedreview.com/2019/06/18/cvpr-2019-attracts-9k￾attendees-best-papers-announced-imagenet-honoured-10-years-later/"
+      ]
+    },
+    {
+      "number": 92,
+      "source_text_sha256": "c85752013f46015289059851d0317103d573f6909496f96da3239d226b103a49",
+      "lines": [
+        "ImageNet Impact Recognized",
+        "“Suddenly people started to pay attention, not just within the",
+        "AI community but across the technology industry as a whole.”",
+        "- Economist",
+        "“From not working to neural networking\". The Economist. 25 June 2016. Retrieved July 15, 2021."
+      ]
+    },
+    {
+      "number": 93,
+      "source_text_sha256": "d5165d655252c65076d33e7ce2c3cd1548a9ae58c33b9cf1412ae43374ffd74b",
+      "lines": [
+        "ImageNet: Great Start…",
+        "Jieyu Zhao et al. Men also like shopping: Reducing gender bias amplification using corpus-level constraints. 2017.",
+        "Geographical distribution of images in the ImageNet using Flickr metadata:"
+      ]
+    },
+    {
+      "number": 94,
+      "source_text_sha256": "d25723e697e6f82a0c55b7516705ef310e18d4218aa65867c81cf3402a6d4fe1",
+      "lines": [
+        "Today’s Topics",
+        "• Computer vision",
+        "• Era of dataset challenges",
+        "• MNIST challenge winner: LeNet",
+        "• ImageNet challenge winners: deeper learning (AlexNet, VGG, ResNet)",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 95,
+      "source_text_sha256": "d25723e697e6f82a0c55b7516705ef310e18d4218aa65867c81cf3402a6d4fe1",
+      "lines": [
+        "Today’s Topics",
+        "• Computer vision",
+        "• Era of dataset challenges",
+        "• MNIST challenge winner: LeNet",
+        "• ImageNet challenge winners: deeper learning (AlexNet, VGG, ResNet)",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 96,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

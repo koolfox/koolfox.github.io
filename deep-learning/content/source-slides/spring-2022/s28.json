@@ -1,0 +1,648 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s28",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/23_Speech.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2022/s28.pdf",
+    "sha256": "733cbf23dcf43897da2b66529ccd984df1aacfdb71d1b104f811f7ecfcb47352",
+    "page_count": 57,
+    "license_notice": "CC BY; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "ad2d2a06a0a9950f6f26fcff33f15b50ffae9c47f65e5e730825aa00c95ac70f",
+      "lines": [
+        "Deep Learning for",
+        "Speech Processing",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2022",
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "57e4a3dbb3a2f68623f8f8c206ade087914c34a97cac730b2d8dcdf52a2360be",
+      "lines": [
+        "Review",
+        "• Last week:",
+        "• Efficient learning: curriculum learning",
+        "• Efficient learning: active learning",
+        "• Reinforcement learning",
+        "• Assignments (Canvas):",
+        "• Final project outline due Friday",
+        "• Final project video due in two weeks",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "1955fa9179b50a0a816d0456a09cf21001919863ad461490c0c97f9fce28ad36",
+      "lines": [
+        "Today’s Topics",
+        "• Problem",
+        "• Applications",
+        "• Speech recognition evaluation",
+        "• Speech recognition models",
+        "• Video making tutorial"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "1955fa9179b50a0a816d0456a09cf21001919863ad461490c0c97f9fce28ad36",
+      "lines": [
+        "Today’s Topics",
+        "• Problem",
+        "• Applications",
+        "• Speech recognition evaluation",
+        "• Speech recognition models",
+        "• Video making tutorial"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "fbaac387224d9183a0caadba4d495e898e785cac80c8f402e6dd76ccb1347a5b",
+      "lines": [
+        "Problem Definition",
+        "Input: spoken language Output: machine readable text",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "0b791af4411a0043f5249e75dd4a366cbba594e227283958c5d1341f8929ae84",
+      "lines": [
+        "What Is Speech?",
+        "Compression waves created by pushing",
+        "air from one’s lungs and modulating it",
+        "using one’s tongue, teeth, and lips",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "2ded2ab4322cf7f985d32308d82b059c13cac4560cce1f71fee822f9d350b970",
+      "lines": [
+        "Why Is Speech Processing Challenging?",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019.",
+        "Input can be diverse",
+        "including different accents,",
+        "volumes, pace, and cadence",
+        "Temporal data needs to be",
+        "segmented into distinct words",
+        "Technology can result in many",
+        "artifacts including varying quality,",
+        "echos, and background noise"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "48e1aa2ecd36b6a851b94bdbdb230a9f15928704b31f75d42b43abff348c2a20",
+      "lines": [
+        "Today’s Topics",
+        "• Problem",
+        "• Applications",
+        "• Speech representation",
+        "• Speech recognition models and evaluation",
+        "• Video making tutorial"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "6739042ea1cb6f3e86b5187bee56ce980ab430666c3116ea3c5f495ef0560a71",
+      "lines": [
+        "Voice Typing on Mobile Devices"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "bc72db211f391a90cf53041445a9fde5e9cd31a1ab5a47971d6d5243971e751b",
+      "lines": [
+        "Voice Typing for Productivity Applications",
+        "Demo starting at 2:00: https://www.youtube.com/watch?v=5UK4vLzU9co&t=76s"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "60e8660c71edd1f55370373ed2b7b03c2ec738fc31ad48d45e895dc53869740a",
+      "lines": [
+        "Virtual Assistant",
+        "e.g., Amazon’s Echo with Alexa e.g., Google Home e.g., Baidu DuerOS",
+        "https://dueros.baidu.com/en/html/dueros/index.html"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "ca6e57d6f8531514c974964a58b642d7236607035353b07b915f2601f3919730",
+      "lines": [
+        "Virtual",
+        "Assistant",
+        "https://dueros.baidu.com/en/html/dueros/index.html"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "b11de60e0a838abef915bffa77759f52b00651a8a339220a83bb0b78927cf2e3",
+      "lines": [
+        "Audio Transcription (e.g., for Analysis &",
+        "Situational/Permanent Hearing Impairments)",
+        "https://www.gmrtranscription.com/blog/podcast-transcription"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "e3fb0e32e234d08d9c6e62de059100a1591281ef59e7a21eac1953fe0ed673ed",
+      "lines": [
+        "Video/Movie Captioning (e.g., for Translation &",
+        "Situational/Permanent Hearing Impairments)",
+        "https://www.techsmith.com/blog/add-captions-subtitles-video/"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "e47f69249a80fcde8df16bcdcc59bae76b517860479693f9b394b943025bf1e6",
+      "lines": [
+        "Speech Emotion Recognition",
+        "(e.g., for Help Desks and Negotiators)"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "43282900412796e968ebfa64cbb117a401a4506f59f73ea52b88915224b70f29",
+      "lines": [
+        "Speaker Identification (e.g., for Security)"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "698f56c69aaba2cdeed52e9335ca792a994aa4020ec11272996f7d9e26d29d6b",
+      "lines": [
+        "Language Identification"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "859ca1be1685cc1b4d4ee1cd02b1ce2ca19fecab242c1e0af4beff518d129dc2",
+      "lines": [
+        "Speech Enhancement"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "09d5dbf791a316a326abce7199b6d121d5991a909f39bf867f3cd50205a57ead",
+      "lines": [
+        "What are other potential applications for speech processing?"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "1955fa9179b50a0a816d0456a09cf21001919863ad461490c0c97f9fce28ad36",
+      "lines": [
+        "Today’s Topics",
+        "• Problem",
+        "• Applications",
+        "• Speech recognition evaluation",
+        "• Speech recognition models",
+        "• Video making tutorial"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "a7b0917b05f07a6d7b9104e7c1311b7dfa48c5f1daa6dba7883c9ea70f94f230",
+      "lines": [
+        "Spectrum of Tasks",
+        "Commands",
+        "(brief with small vocabulary)",
+        "Discourse",
+        "(lengthy with large vocabulary)"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "7573a8cd7ca9b0c11b1d2952c96c8bd5124b8848147a35497270290a09fe403d",
+      "lines": [
+        "Word Error Rate",
+        "• Indicates edit distance between the prediction and the target as follows:",
+        "• What indicates better performance: larger or smaller values?",
+        "Substitutions + Insertions + Deletions",
+        "Number of Words Spoken",
+        "word replaced",
+        "(e.g., “goose”",
+        "transcribed as",
+        "“choose”)",
+        "word added",
+        "(e.g., “caboose”",
+        "transcribed as",
+        "“the goose”)",
+        "word omitted",
+        "(e.g., “it is a",
+        "fun” transcribed",
+        "as “it is fun”)"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "4b76ac1a6cc88f1aab1d9e02d08f2067aa2e3df5a1bb2c6d0d03a6aaebdeaf3b",
+      "lines": [
+        "Word Error Rate: Example",
+        "• Correct: The sun makes it look like uh a warm, day to go outside to adventure.",
+        "• Predicted: The son makes it to bike with a swarm to go outside to Denver today.",
+        "• Number of words spoken?",
+        "• 15",
+        "• WER?",
+        "Substitutions + Insertions + Deletions",
+        "Number of Words Spoken"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "2a18e4cf1823f4ed470c731cd6fa67d62442e3d3a1f4c9fa42f366507ea28dbf",
+      "lines": [
+        "Word Error Rate: Example",
+        "• Correct: The sun makes it look like uh a warm, day to go outside to adventure.",
+        "• Predicted: The son makes it to bike with a swarm to go outside to Denver today.",
+        "• Number of words spoken?",
+        "• 15",
+        "• WER?",
+        "6 + 1 + 1",
+        "15",
+        "= 0.53"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "808664d7a8e27b678174d2ac3bf998d4596152d33b5ee0b709c863235125dbf9",
+      "lines": [
+        "Word Error Rate: Comparison Example",
+        "https://www.rev.com/blog/resources/what-is-wer-what-does-word-error-rate-mean"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "af02a2f9fa34b6eaf6283dc10bec0d430ca1cce79832982042f322b8f479a705",
+      "lines": [
+        "Word Error Rate: What Are Its Limitations as",
+        "an Evaluation Metric?",
+        "• Does not indicate why errors occur",
+        "• Background noise (e.g., music, other talking)",
+        "• Specialized language (i.e., words reflecting domain expertise)",
+        "• Speaker pronunciations/accent",
+        "• Does not reflect whether transcription correctly captures:",
+        "• Capitalization",
+        "• Punctuation",
+        "• Numbers",
+        "• Paragraphs",
+        "• May indicate poor quality when humans could understand the content",
+        "• Weights all word errors equally"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "1955fa9179b50a0a816d0456a09cf21001919863ad461490c0c97f9fce28ad36",
+      "lines": [
+        "Today’s Topics",
+        "• Problem",
+        "• Applications",
+        "• Speech recognition evaluation",
+        "• Speech recognition models",
+        "• Video making tutorial"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "659d81021554a6fb852c504fce7e82b1b12a2edf0ed2980c06f69c6095f6b103",
+      "lines": [
+        "Popular Methods",
+        "• Connectionist Temporal Classification (CTC)",
+        "• DeepSpeech",
+        "• DeepSpeech 2",
+        "• Listen, Attend, and Spell"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "870245e9addcd51242dbb060701b834f2edd32b045e3cb1f1a835afe8ae4c117",
+      "lines": [
+        "Popular Methods",
+        "DeepSpeech DeepSpeech2 Listen, Attend, and Spell",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "e86f45fefac3024996f943e79032c46acb7d45c490d0499d41d0f81515c842f6",
+      "lines": [
+        "DeepSpeech",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019.",
+        "Encoder:",
+        "Decoder:"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "f2afadd70cdc66439de46f99ffbb3a9fc3644a90af1e2cdb4b185a46b36002bb",
+      "lines": [
+        "DeepSpeech",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019.",
+        "Input:"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "fbd799e6449f159d05b53cb9de3489984b4788ceed44d6b1b43ab4a7d3b29ca3",
+      "lines": [
+        "Spectrogram: Visual Representation of Audio",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019.",
+        "Color: amplitude of frequency at a given time point",
+        "Created by sliding a short window across the audio signal and applying a Fourier transform to each window"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "0cd3aea085e2a0ceb7b7a5af39b6b80b4c2b3252bc2b4a1102b5a9ec4fb39da6",
+      "lines": [
+        "Background: Frequency Analysis of Audio Clip",
+        "https://dev.to/trekhleb/playing-with-discrete-fourier-transform-algorithm-in-javascript-53n5",
+        "Fourier transform: represents a signal as a sum of sines and cosines (frequency-domain):"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "11bfb317f8168a09f96df06b46da58f640636ead9c82d5e3ab1d5b7668b7361f",
+      "lines": [
+        "DeepSpeech",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019.",
+        "Output: character sequence",
+        "predicted by a softmax layer"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "3ea6177a484448dc258c51d4d683c57c195d65e4855d735bfb3e8f56a7b31f36",
+      "lines": [
+        "CTC: Input-Output Representation",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "c68505310a5941c3c0fb0d9166364c7efc844021af08fc76a6cc3a55f7fc40e2",
+      "lines": [
+        "CTC: Input-Output Representation",
+        "Key idea: blank token supports silent stretches and letter repeats (e.g., “hello” vs “helo”)",
+        "https://distill.pub/2017/ctc/"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "b2c7ca91347b8b72424da4dc3ce58302a7e9ebf49a2edb125d9bc7798c2ce555",
+      "lines": [
+        "CTC: Input-Output Representation",
+        "Key idea: blank token supports silent stretches and letter repeats (e.g., “hello” vs “helo”)",
+        "Supports recognizing the same word when spoken differently!",
+        "https://distill.pub/2017/ctc/"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "220eedd3240408797c21d72abe89ac238b4c9354931151b7541b1b7fe473410a",
+      "lines": [
+        "DeepSpeech",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019.",
+        "First hidden layer looks",
+        "at context around input:"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "a776248d8a6a992a18607ce15f3d3abbfb4031fe377b7fc71cfaaa98a4c6e613",
+      "lines": [
+        "DeepSpeech",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019.",
+        "3 fully-connected layers",
+        "followed by bidirectional LSTM:",
+        "How is a bi-directional LSTM",
+        "beneficial?",
+        "How is a bi-directional LSTM",
+        "limiting?"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "37556c4cc5adc9cda4e714144e612024f366a705f7fe2ccb7c714fd827d6d4a8",
+      "lines": [
+        "DeepSpeech: Optimization Function (CTC)",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019.",
+        "The CTC loss function enables learning output alignment without a per input label"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "4944a78948e1eafa72bfcf481afbb6d374fafb363c55355e16afefaf28be0e32",
+      "lines": [
+        "DeepSpeech: Optimization Function (CTC)",
+        "https://towardsdatascience.com/intuitively-understanding-connectionist-temporal-classification-3797e43a86c",
+        "Most plausible from all possible alignments learned;",
+        "e.g., 2 time steps with 2 potential characters and a",
+        "blank token (“-”)",
+        "• Probability of “a” is sum of all “a” representations",
+        "• Probability of “aa”?",
+        "• 0.4 x 0.4 = 0.16",
+        "• Probability of “a-”?",
+        "• 0.4 x 0.6 = 0.24",
+        "• Probability of “-a”?",
+        "• 0.6 x 0.4 = 0.24",
+        "• Sum: 0.16 + 0.24 + 0.24 = 0.64"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "5bdab1982fb4affa36f4dc99844f43efb3b03878202f813ea649b29ac84826f0",
+      "lines": [
+        "DeepSpeech: Optimization Function (CTC)",
+        "https://towardsdatascience.com/intuitively-understanding-connectionist-temporal-classification-3797e43a86c",
+        "Most plausible from all possible alignments learned;",
+        "e.g., 2 time steps with 2 potential characters and a",
+        "blank token (“-”)",
+        "• Probability of “a”: 0.64",
+        "• Probability of “” is sum of all “” representations",
+        "• Probability of “--”?",
+        "• 0.6 x 0.6 = 0.36"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "577eb84b265d202feab62d2b6f42211b3fe985b509bb007a9818433a5fb473ca",
+      "lines": [
+        "DeepSpeech: Optimization Function (CTC)",
+        "https://towardsdatascience.com/intuitively-understanding-connectionist-temporal-classification-3797e43a86c",
+        "Most plausible from all possible alignments learned;",
+        "e.g., 2 time steps with 2 potential characters and a",
+        "blank token (“-”)",
+        "• Probability of “a”: 0.64",
+        "• Probability of “”: 0.36",
+        "• And so on for all possible alignments…"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "3460264c8189eb73377b61dc30b43dd28fc63851551cbba77141ddc92c18949a",
+      "lines": [
+        "DeepSpeech: Optimization Function (CTC)",
+        "https://towardsdatascience.com/intuitively-understanding-connectionist-temporal-classification-3797e43a86c",
+        "Most plausible from all possible alignments learned;",
+        "e.g., 2 time steps with 2 potential characters and a",
+        "blank token (“-”) with “best path decoding”"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "5a86dc22ec919fecb6d3b3236ac5960fcc257a8ee9ff7b821233791aabc34c69",
+      "lines": [
+        "DeepSpeech: Optimization Function (CTC)",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019.",
+        "CTC uses dynamic programming to accelerate computation and is differentiable"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "39dfacfc55db02094a3553a9419b7a5d2428366400f4a3efa7fbc4eda92e52fc",
+      "lines": [
+        "DeepSpeech: Training (Key Ideas)",
+        "• 5000 hours from 9600 speakers",
+        "• Regularization",
+        "• Dropout",
+        "• Data augmentation: audio file translated 5 ms forward and backward",
+        "• Results boosted by incorporating a language model"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "870245e9addcd51242dbb060701b834f2edd32b045e3cb1f1a835afe8ae4c117",
+      "lines": [
+        "Popular Methods",
+        "DeepSpeech DeepSpeech2 Listen, Attend, and Spell",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "b48a43f18f83ffa49572e75cc94480b41875d80772ccfc0f2191b49e1ee0d480",
+      "lines": [
+        "DeepSpeech2",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019.",
+        "Extension of DeepSpeech that",
+        "achieves a 7x speed-up and 43.4%",
+        "relative WER improvement with a",
+        "deeper architecture",
+        "Similar output:",
+        "(two architectures for",
+        "English and Mandarin)",
+        "Same input:"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "c6885dc45155b8181781645943e11ed3559268ecfe3f41ffd6d023b3b895c48b",
+      "lines": [
+        "DeepSpeech2",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019.",
+        "Training protocol difference from DeepSpeech:",
+        "• More training data (11,940 hours for English",
+        "and 9,400 hours for Mandarin)",
+        "• Curriculum learning: trains based on length",
+        "of utterances for first epoch with shorter",
+        "ones first (improves WER by over 1 point)"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "870245e9addcd51242dbb060701b834f2edd32b045e3cb1f1a835afe8ae4c117",
+      "lines": [
+        "Popular Methods",
+        "DeepSpeech DeepSpeech2 Listen, Attend, and Spell",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "8f24926899bd402b983144fc33f277e6b4e220c9695bc12ce233b3409aa87863",
+      "lines": [
+        "Listen, Attend, and Spell",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019.",
+        "Mimics original paper on sequence to",
+        "sequence learning with attention where",
+        "the decoder learns what to attend to in",
+        "the encoded representation",
+        "Pyramid structure reduces",
+        "number of input time steps"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "d743361493bbf0813e2872afd4a9dc6cbe7538a722c41ceab425bc736f0c55ed",
+      "lines": [
+        "Listen, Attend, and Spell",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019.",
+        "Input: more sophisticated hand-crafted",
+        "audio representation then spectrogram"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "5699e5a230080f02da4be3f72d27ebba9eaab6e677ce7b1175a0d1707f2794f2",
+      "lines": [
+        "Result",
+        "Chan et al. Listen, Attend and Spell. ICASSP 2016.",
+        "Attention enables",
+        "visualizing alignment",
+        "between audio signal",
+        "and characters"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "870245e9addcd51242dbb060701b834f2edd32b045e3cb1f1a835afe8ae4c117",
+      "lines": [
+        "Popular Methods",
+        "DeepSpeech DeepSpeech2 Listen, Attend, and Spell",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019."
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "1955fa9179b50a0a816d0456a09cf21001919863ad461490c0c97f9fce28ad36",
+      "lines": [
+        "Today’s Topics",
+        "• Problem",
+        "• Applications",
+        "• Speech recognition evaluation",
+        "• Speech recognition models",
+        "• Video making tutorial"
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "1955fa9179b50a0a816d0456a09cf21001919863ad461490c0c97f9fce28ad36",
+      "lines": [
+        "Today’s Topics",
+        "• Problem",
+        "• Applications",
+        "• Speech recognition evaluation",
+        "• Speech recognition models",
+        "• Video making tutorial"
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

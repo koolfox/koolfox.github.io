@@ -1,0 +1,1260 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s12",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/10-DetectionAndSegmentation.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2022/s12.pdf",
+    "sha256": "9b73a803479c56ea591c07eecc5adb961dc9bbfd6da9486914f9047a92ce86fa",
+    "page_count": 99,
+    "license_notice": "CC BY; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "89080b549dda8cffe49df743e8230b9ceff86705630e33bdd5de2168cb9e9eec",
+      "lines": [
+        "Object Detection and",
+        "Semantic Segmentation",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2022",
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "5068ae3ca7f0ac864cbba0999d618dcb0fd5a4dcc0ca321060e1878194c1be76",
+      "lines": [
+        "Review",
+        "• Last lecture:",
+        "• Representation learning",
+        "• Pretrained features",
+        "• Fine-tuning",
+        "• Training neural networks: hardware & software",
+        "• Programming tutorial",
+        "• Assignments (Canvas)",
+        "• Lab assignment 2 due earlier today",
+        "• Problem set 3 due next week",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "87af7a1d05ff74c934a84717df61b4d28794d689baef4ff78e22ac5f41e9c629",
+      "lines": [
+        "Today’s Topics",
+        "• Problems",
+        "• Applications",
+        "• PASCAL VOC detection challenge: R-CNNs",
+        "• PASCAL VOC semantic segmentation challenge: fully convolutional networks"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "87af7a1d05ff74c934a84717df61b4d28794d689baef4ff78e22ac5f41e9c629",
+      "lines": [
+        "Today’s Topics",
+        "• Problems",
+        "• Applications",
+        "• PASCAL VOC detection challenge: R-CNNs",
+        "• PASCAL VOC semantic segmentation challenge: fully convolutional networks"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "65d6bdaed023826118145a336bfd4974fe76e727b85ee313c099f26e2cf504f1",
+      "lines": [
+        "Problem Definition",
+        "• Localize content of interest",
+        "Object detection Semantic segmentation",
+        "Lin et al. Microsoft COCO: Common Objects in Context. ECCV 2014."
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "7a421342e5ebfebdfa9587e4e55ba3bd06968405c3ff2adcc2b3a76b92a7a7fd",
+      "lines": [
+        "Problem Definition",
+        "• Localize content of interest",
+        "Object detection",
+        "Lin et al. Microsoft COCO: Common Objects in Context. ECCV 2014.",
+        "Use bounding box to locate",
+        "every instance of an object",
+        "from pre-specified categories"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "4636c1133766f4073699e434a2442cdf4b8e32090ec31a902b70572054aa397f",
+      "lines": [
+        "Problem Definition",
+        "• Localize content of interest",
+        "Semantic segmentation",
+        "Lin et al. Microsoft COCO: Common Objects in Context. ECCV 2014.",
+        "Locate all pixels that belong",
+        "to pre-specified categories"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "b331651b51c1cfd658c56c3ca5a647499dcb0b1f1c4d9bc60ade34a5ae9ae03b",
+      "lines": [
+        "Problem Definition",
+        "• Localize content of interest",
+        "Image Source: Jeong, Yoon, and Park. Sensors 2018.",
+        "Note: instances of the same",
+        "class are NOT separated",
+        "Locate all pixels that belong",
+        "to pre-specified categories"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "4232f09ec9b94c70f057ea25c7ac7264b89223b4a8185bce93ee58fed26631f1",
+      "lines": [
+        "Object Segmentation vs Detection",
+        "• Why choose object “segmentation” vs “detection”?",
+        "http://mmcheng.net/msra10k/"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "87af7a1d05ff74c934a84717df61b4d28794d689baef4ff78e22ac5f41e9c629",
+      "lines": [
+        "Today’s Topics",
+        "• Problems",
+        "• Applications",
+        "• PASCAL VOC detection challenge: R-CNNs",
+        "• PASCAL VOC semantic segmentation challenge: fully convolutional networks"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "11c48528490ec6b4ec0bbf6ba9c3f319def6ea4d09932bd08827fd3fa15ea6c7",
+      "lines": [
+        "Social Media",
+        "Face detection",
+        "(e.g., Facebook)"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "73c97e456bbc00319671d5daa557f193f62268035b8b9b13121b591e5d06c6a8",
+      "lines": [
+        "Banking",
+        "Mobile check deposit",
+        "(e.g., Bank of America)"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "ca0de599e3db39ae6ef2a217a16406b4e6788c0c2798c3389a406e9d22c19cb2",
+      "lines": [
+        "Transportation",
+        "License Plate Detection (e.g., AllGoVision)"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "af17f55abe659ca29e4f5b1e889e1ea34565c01105c8145a6381a053a65339cd",
+      "lines": [
+        "Construction Safety",
+        "Pedestrian Detection",
+        "(e.g., Blaxtair)",
+        "http://media.brintex.com/Occurrence/121/Brochure/3435/brochure.pdf"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "c42cab6655d739468bf4e7ceb1d912b8c9b13a19a80d2dbabf7e64bbb08b9c13",
+      "lines": [
+        "Counting",
+        "Counting Fish (e.g., SalmonSoft)",
+        "http://www.wecountfish.com/?page_id=143",
+        "Business Traffic Analytics"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "d4bc054f5290a278be7553940f4e265416bc181b3e1ab567b830a17151e29ef9",
+      "lines": [
+        "Remodeling Inspiration",
+        "Bell et al; SIGGRAPH; 2013"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "78e0f9deb34c8a20439443745c377f612df7764b74808b6dde37baf9e3a6b542",
+      "lines": [
+        "Rotoscoping (many examples on Wikipedia)",
+        "https://www.starnow.co.uk/ahmedmohamm",
+        "ed1/photos/4650871/before-and-after￾rotoscopinggreen-screening"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "f16dbc66bde4393e12653420b24bf1f3f2740fb5c17629315b94837051c07ceb",
+      "lines": [
+        "Disease Diagnosis; e.g.,",
+        "Figure Source: https://pathology.jhu.edu/brain-tumor/grading-classification"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "a576f8fbc27befaa717814903da70a94096da35ca5237b9e946053ab7c37f62b",
+      "lines": [
+        "Face Makeover",
+        "Demo: https://www.maybelline.com/virtual-try-on-makeup-tools"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "d09402f3591ac9b5b8e78aa8c6a38b19cf83393171e27a872624830dd4555786",
+      "lines": [
+        "Self-Driving Vehicles",
+        "Figure Source: https://www.inc.com/kevin-j-ryan/self-driving-cars-powered-by-people-playing-games-mighty-ai.html"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "ffe3e7e9ddfe9e091513b2837947cb8cf26ae42cc01aa730c9ee471aa347437f",
+      "lines": [
+        "Can you think of any other applications?"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "2eb193c16dfd3b65c36840e8e27f31a8cea5cbc97b5b263ba0c11ec2eff03037",
+      "lines": [
+        "How to solve problems like these with neural networks?"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "87af7a1d05ff74c934a84717df61b4d28794d689baef4ff78e22ac5f41e9c629",
+      "lines": [
+        "Today’s Topics",
+        "• Problems",
+        "• Applications",
+        "• PASCAL VOC detection challenge: R-CNNs",
+        "• PASCAL VOC semantic segmentation challenge: fully convolutional networks"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "881ad4fe922315b436ab75c967547875eeb114f3ae23285d728210fe344fc4aa",
+      "lines": [
+        "VOC Challenge",
+        "• Goal: locate all instances of 20",
+        "object categories with BBs",
+        "• Dataset: 11,530 images collected",
+        "from Flickr and annotated by",
+        "annotators at University of Leeds",
+        "Dataset location: http://host.robots.ox.ac.uk/pascal/VOC/index.html",
+        "Mark Everingham, Luc Van Gool, Christopher K. I. Williams, John Winn, and Andrew",
+        "Zisserman. The PASCAL Visual Object Classes (VOC) Challenge. IJCV 2010.",
+        "https://cv-tricks.com/artificial-intelligence/object￾detection-using-deep-learning-for-advanced-users-part-1/"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "9b902745d67b54a0016bb01dd2014c8c819311be8f758cb1520a4681d8c618c9",
+      "lines": [
+        "MSCOCO Challenge: Evaluation Metric (IoU)",
+        "Score",
+        "Ground Truth:",
+        "Algorithm:"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "7a07027aa5f848ce3b6301b01457991166c769d286c28490911282f1fc23c1ac",
+      "lines": [
+        "MSCOCO Challenge: Evaluation Metric (IoU)",
+        "Ground Truth:",
+        "Algorithm:",
+        "28",
+        "47",
+        "(60%)",
+        "Then, threshold:",
+        "e.g., 50% or greater",
+        "means correct detection!"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "b1b18d10858a2d8426e420237d017458e30c2579e94654c074f71eb279b4b5ab",
+      "lines": [
+        "MSCOCO Challenge: Evaluation Metric (mAP)",
+        "• For each object class (e.g., cat, dog, …), compute:",
+        "• Precision: fraction of correct detections from all detections when using a 0.5 IoU",
+        "Algorithm BB + its Confidence",
+        "[Russakovsky et al; IJCV 2015]",
+        "https://jonathan-hui.medium.com/map-mean-average-precision-for-object-detection-45c121a31173"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "f5285e5bd01fcdab21daa0f058cad7d3a2b3e9c9c7a6ebffc16a687c6fc46538",
+      "lines": [
+        "MSCOCO Challenge: Evaluation Metric (mAP)",
+        "• For each object class (e.g., cat, dog, …), compute:",
+        "• Precision: fraction of correct detections from all detections when using a 0.5 IoU",
+        "[Russakovsky et al; IJCV 2015]",
+        "https://jonathan-hui.medium.com/map-mean-average-precision-for-object-detection-45c121a31173",
+        "? ? ? ?"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "0e33c78f469bd294dcd2f9dadb30378ee0ced6640aadc01a7b9e4a6bdcd48098",
+      "lines": [
+        "MSCOCO Challenge: Evaluation Metric (mAP)",
+        "• For each object class (e.g., cat, dog, …), compute:",
+        "• Precision: fraction of correct detections from all detections when using a 0.5 IoU",
+        "[Russakovsky et al; IJCV 2015]",
+        "https://jonathan-hui.medium.com/map-mean-average-precision-for-object-detection-45c121a31173"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "21e0998b1152391ab8882a6ef250730f57d0408db4182169923b2a027904899e",
+      "lines": [
+        "Naïve Solution: Sliding Window Approach",
+        "Person?",
+        "Image Source: https://yourboulder.com/boulder-neighborhood-downtown/",
+        "Person?",
+        "Person?",
+        "Person?",
+        "Person?",
+        "Person?",
+        "Person?",
+        "Person?",
+        "Person?"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "1c6de11deeab392f4d32f22b0090a5ea0c3113e74ea45fdca03b723ec1334af4",
+      "lines": [
+        "Naïve Solution: Sliding Window Approach",
+        "Car?",
+        "Image Source: https://yourboulder.com/boulder-neighborhood-downtown/",
+        "Car?",
+        "Car?",
+        "Car?",
+        "Car?",
+        "Car?",
+        "Car?",
+        "Car?",
+        "Car?"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "8a82fa1553e6ad808d7472daeef037b0a499b7c5d02f37ac9faab5778ccf4923",
+      "lines": [
+        "Naïve Solution: Sliding Window Approach",
+        "Image Source: https://yourboulder.com/boulder-neighborhood-downtown/",
+        "Would this",
+        "detect the",
+        "person?"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "adeb5a80c3aa6e89588cd388a5df43d95611b6bce65d59736cca7ee2e1aef549",
+      "lines": [
+        "Naïve Solution: Sliding Window Approach",
+        "Image Source: https://yourboulder.com/boulder-neighborhood-downtown/",
+        "Would this",
+        "detect the",
+        "car?"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "2ec8e2ac70a7135c1cafea6b4c0db300d6534a1a3ab1c520b28e69bb0d8da749",
+      "lines": [
+        "Naïve Solution: Sliding Window Approach",
+        "Image Source: https://yourboulder.com/boulder-neighborhood-downtown/",
+        "Car?",
+        "Car?",
+        "Car?",
+        "Car?",
+        "Car?",
+        "Car?",
+        "Car?",
+        "Car?",
+        "Need to test windows of different scales…",
+        "Car?",
+        "Car?",
+        "Car?"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "c67f3230a9332a80c7a77b8a222833661940b589aba0100ac763a61054d72fde",
+      "lines": [
+        "Naïve Solution: Sliding Window Approach",
+        "Image Source: https://yourboulder.com/boulder-neighborhood-downtown/",
+        "Would this",
+        "scale detect",
+        "the person?"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "4731b63dfad9ec14381ed1b2ec60d8851b5ffccce15a93f1ae96d3432bfa104f",
+      "lines": [
+        "Naïve Solution: Sliding Window Approach",
+        "Image Source: https://yourboulder.com/boulder-neighborhood-downtown/",
+        "Would this",
+        "scale detect",
+        "the car?"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "713faca3515d11ebcde91168ceca13ab85da0be56611103b5f6e2e0e4dfd58d9",
+      "lines": [
+        "Naïve Solution: Sliding Window Approach",
+        "Image Source: https://yourboulder.com/boulder-neighborhood-downtown/",
+        "Person?",
+        "Person?",
+        "Person?",
+        "Person?",
+        "Person?",
+        "Person?",
+        "Person?",
+        "Person?",
+        "Need to test windows of different aspect ratios…",
+        "Person?",
+        "Person?"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "34058b0b72506609335412be99dc6fc613c6a1b172294d86d918b0af6b4744d9",
+      "lines": [
+        "Naïve Solution: Sliding Window Approach",
+        "Image Source: https://yourboulder.com/boulder-neighborhood-downtown/",
+        "Would this",
+        "aspect ratio",
+        "detect the",
+        "person?"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "91feb6e3766d8af3beeb9b91ba2d4153fac8ee1d23514c675641015b0078ba4d",
+      "lines": [
+        "Naïve Solution: Sliding Window Approach",
+        "• Sliding window approach: must test different locations at…",
+        "• Different scales",
+        "• Different aspect ratios (e.g., person vs car or car taken at different angles)",
+        "• Number of regions to test? (e.g., 1920 x 1080 image)",
+        "• Easily can explode to hundreds of thousands or millions of windows",
+        "• Key limitation",
+        "• Very slow!"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "2cacab53ca01378348ba09ff45e2202a614c524b33febaaa144d6458ddce096d",
+      "lines": [
+        "Historical Context: R-CNN Methods First programmable machine",
+        "2012",
+        "Turing test",
+        "1945",
+        "AI",
+        "1956",
+        "1950 1959",
+        "Neural networks with",
+        "effective learning strategy",
+        "AlexNet",
+        "1957 Perceptron",
+        "1847 Gradient descent",
+        "Machine learning",
+        "1986",
+        "1998",
+        "Backpropagation for CNNs",
+        "1989",
+        "MNIST, LeNet",
+        "Neocognitron",
+        "1980",
+        "2009",
+        "ImageNet",
+        "2014-5",
+        "R-CNN, Fast R-CNN, Faster R-CNN"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "aee978cbbc2853eddc6476f31eb11ec333f9b2a4580231433635335acfc20e3c",
+      "lines": [
+        "R-CNN",
+        "• First CNN to outperform",
+        "hand-crafted features on",
+        "detection challenges",
+        "• Named after technique:",
+        "Region proposals with",
+        "CNN features",
+        "Figure Source: https://www.analyticsvidhya.com/blog/2018/10/a-step-by-step-introduction-to-the-basic-object-detection-algorithms-part-1/"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "ecab4ecd931199609cdf83a8b107b4fbbc01af7d267bd50182ef39ee5ed670a2",
+      "lines": [
+        "R-CNN",
+        "Locate “object”-like regions",
+        "using objectness methods",
+        "• Considerably fewer regions",
+        "than sliding window approach",
+        "• Regions likely contain objects",
+        "of interest (i.e., high recall)",
+        "Figure Source: https://www.analyticsvidhya.com/blog/2018/10/a-step-by-step-introduction-to-the-basic-object-detection-algorithms-part-1/"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "1f8fbecdf5f52c06d85de8ff6cf15f9ad82cec03d8e2ff023319f022568e4405",
+      "lines": [
+        "R-CNN",
+        "Figure Source: https://www.analyticsvidhya.com/blog/2018/10/a-step-by-step-introduction-to-the-basic-object-detection-algorithms-part-1/"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "3fcff74e542aa76b18891c892dcbbcbef7bd60598f40da3439c174d8b6773bbc",
+      "lines": [
+        "Describe Each Region with Fixed-length Vector",
+        "Image Source: https://www.researchgate.net/figure/Architecture-of-Alexnet￾From-left-to-right-input-to-output-five-convolutional-layers_fig2_312303454",
+        "Fine-tune: replace final layer (FC8) of pretrained AlexNet (on ImageNet) to contain the number of",
+        "categories in detection dataset and train for image classification (use max IoU class, if IoU >= 0.5)",
+        "Input: 227 x 227 x 3 image",
+        "How many classes would be predicted in fine-tuning?"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "60e9445ede3136ccd8ad413416cf1e68c30c74ee704d4d1c28393c47882764eb",
+      "lines": [
+        "Describe Each Region with Fixed-length Vector",
+        "Image Source: https://www.researchgate.net/figure/Architecture-of-Alexnet￾From-left-to-right-input-to-output-five-convolutional-layers_fig2_312303454",
+        "Input: 227 x 227 x 3 image",
+        "Use the FC7 layer from a",
+        "fine-tuned AlexNet model"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "610c006ced2f6b493c341cd24f569e65e20080b9ced92d28c664f17d83032503",
+      "lines": [
+        "Describe Each Region with Fixed-length Vector",
+        "Image Source: https://www.researchgate.net/figure/Architecture-of-Alexnet￾From-left-to-right-input-to-output-five-convolutional-layers_fig2_312303454",
+        "Challenge: how to resize a proposed",
+        "region to the required size?"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "94d316242c084c026566f5c9b525c8c4e4062ebaf7d457cc0f287afdb68cf878",
+      "lines": [
+        "Describe Each Region with Fixed-length Vector",
+        "Image Source: https://www.researchgate.net/figure/Architecture-of-Alexnet￾From-left-to-right-input-to-output-five-convolutional-layers_fig2_312303454",
+        "Region anisotropically scaled to",
+        "fit the required resolution"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "8ae92133493031ffc754d6146a17af8562db5d7412dd0763f475ce75042c1e5a",
+      "lines": [
+        "Describe Each Region with Fixed-length Vector",
+        "Image Source: https://www.researchgate.net/figure/Architecture-of-Alexnet￾From-left-to-right-input-to-output-five-convolutional-layers_fig2_312303454",
+        "Input: 227 x 227 x 3 image"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "e4bbb808c0c00a22c4799af661fa4507d9669620550d6e6f2110b1e9564700c6",
+      "lines": [
+        "R-CNN",
+        "Figure Source: https://www.analyticsvidhya.com/blog/2018/10/a-step-by-step-introduction-to-the-basic-object-detection-algorithms-part-1/",
+        "1. Classifier trained to use a",
+        "region’s CNN feature to assign a",
+        "category from pre-defined set",
+        "2. Regressor trained to refine",
+        "each region’s position, width,",
+        "and height"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "5b3278cb3f5934b69079d4533d9674b2154f3a5aca030f00575f3a6a5a5c8dcc",
+      "lines": [
+        "R-CNN: Region Refinement",
+        "Original region proposal with",
+        "center (px, py), width (pw), and",
+        "height (ph) is refined using",
+        "model parameters (dx, dy, dw, dy)",
+        "Image Source: https://lilianweng.github.io/lil-log/2017/12/31/object￾recognition-for-dummies-part-3.html#bounding-box-regression"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "0821f2dbb870496dbad1dfa3b0854ebe8ace44f26543df0e5f48969031918aea",
+      "lines": [
+        "R-CNN Limitations",
+        "Figure Source: https://www.analyticsvidhya.com/blog/2018/10/a-step-by-step-introduction-to-the-basic-object-detection-algorithms-part-1/",
+        "• Slow training procedure",
+        "• Must train three models",
+        "• Slow at test time",
+        "(~1 minute per image)"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "d6f928c2d1352f22259770264c2cff6781118454fb7171a8b1df07a8488ee530",
+      "lines": [
+        "Fast R-CNN: Single Stage Training (rather than 3)",
+        "Figure Source: https://www.analyticsvidhya.com/blog/2018/10/a-step-by-step-introduction-to-the-basic-object-detection-algorithms-part-1/",
+        "Extract feature description",
+        "per proposed region with",
+        "section of feature map",
+        "corresponding to region",
+        "For each region, assign it",
+        "to a class and refine it"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "50cc910d7f382a95b4463b8919e8ddba178fe1728adbb34d2893d065650a416e",
+      "lines": [
+        "Fast R-CNN Training: Multi-task Loss",
+        "Loss for each region proposal is sum of classification and localization losses",
+        "Softmax scores",
+        "Box coordinates (x, y, w, h)",
+        "Softmax loss",
+        "True label",
+        "L2 loss",
+        "True location (x’, y’, w’, h’)",
+        "+ Total loss"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "50cc910d7f382a95b4463b8919e8ddba178fe1728adbb34d2893d065650a416e",
+      "lines": [
+        "Fast R-CNN Training: Multi-task Loss",
+        "Loss for each region proposal is sum of classification and localization losses",
+        "Softmax scores",
+        "Box coordinates (x, y, w, h)",
+        "Softmax loss",
+        "True label",
+        "L2 loss",
+        "True location (x’, y’, w’, h’)",
+        "+ Total loss"
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "c217ec930c26f5606ae6f3b9161424c307f114e938b13bf048e98cc16614e82f",
+      "lines": [
+        "Fast R-CNN Training: Classification Loss (Recap)",
+        "Figure source: https://ljvmiranda921.github.io/notebook/2017/08/13/softmax-and-the-negative-log-likelihood/",
+        "Greater penalty when",
+        "predicted probability",
+        "of true class is",
+        "confidently wrong",
+        "Lesser penalty otherwise"
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "50cc910d7f382a95b4463b8919e8ddba178fe1728adbb34d2893d065650a416e",
+      "lines": [
+        "Fast R-CNN Training: Multi-task Loss",
+        "Loss for each region proposal is sum of classification and localization losses",
+        "Softmax scores",
+        "Box coordinates (x, y, w, h)",
+        "Softmax loss",
+        "True label",
+        "L2 loss",
+        "True location (x’, y’, w’, h’)",
+        "+ Total loss"
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "b2dfc4ce2f397a4ee5cd6fdbe57b9f507cb1649def2a8e33b6914f36ca3869b7",
+      "lines": [
+        "Fast R-CNN Training: Measure Localization Loss",
+        "Predicted location",
+        "for class u",
+        "True location for",
+        "true class “u”",
+        "Less sensitive to",
+        "outliers than SSE",
+        "Image Source: https://lilianweng.github.io/lil-log/2017/12/31/object￾recognition-for-dummies-part-3.html#bounding-box-regression"
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "ba9b1c5aecde95e26c912b1a6a36d5a0862f11941c8a9f2cc217c65c2a47861c",
+      "lines": [
+        "Fast R-CNN: Limitation",
+        "Figure Source: https://www.analyticsvidhya.com/blog/2018/10/a-step-by-step-introduction-to-the-basic-object-detection-algorithms-part-1/",
+        "Still requires slow, initial",
+        "step of generating",
+        "region proposals"
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "28612f11a939b6539a3f31241e26f2478839fb9b6c2c386bf0f0d63fdf7c165b",
+      "lines": [
+        "Faster R-CNN",
+        "Ren Shaoqing Ren et al. “Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks.” Neurips 2015.",
+        "Adds finding region proposals to",
+        "network so that all parts of model",
+        "are learned in end-to-end fashion",
+        "Convolutional layers are shared for",
+        "region proposal and detection"
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "83002dc75adbd3943680e672e0577b6eac346b84142601ca76d087e62f166da8",
+      "lines": [
+        "Faster R-CNN: Region Proposal Network",
+        "Ren Shaoqing Ren et al. “Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks.” Neurips 2015.",
+        "Based on convolution, so uses",
+        "sliding window",
+        "• At each sliding window position,",
+        "region proposals are predicted",
+        "with respect to an anchor point",
+        "(i.e., center of sliding window",
+        "position)",
+        "• At each anchor point, k = 9",
+        "anchors are used to represent 3",
+        "scales and 3 aspect ratios",
+        "Probability of",
+        "object/not object",
+        "Parameters to refine anchor box to match",
+        "GT box (center, width, and height)"
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "6392e5123989e9852c6c34dd433ca5648bf3fed3970cc6d424d9bfa93cb4d1d8",
+      "lines": [
+        "Faster R-CNN: Region Proposal Network",
+        "Ren Shaoqing Ren et al. “Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks.” Neurips 2015.",
+        "Based on convolution, so uses",
+        "sliding window",
+        "• At each sliding window position,",
+        "region proposals are predicted",
+        "with respect to an anchor point",
+        "(i.e., center of sliding window",
+        "position)",
+        "• At each anchor point, k = 9",
+        "anchors are used to represent 3",
+        "scales and 3 aspect ratios",
+        "At training, loss for each region proposal is sum of classification and localization losses"
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "39fc8f1ccc0efa1f0eb7cceac8faf2e161a7b5f832b8131c984fa4943803f730",
+      "lines": [
+        "Faster R-CNN Training",
+        "Ren Shaoqing Ren et al. “Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks.” Neurips 2015.",
+        "1. Train RPN",
+        "2. Train Fast R-CNN using",
+        "proposals from pretrained RPN",
+        "3. Fine-tune layers unique to RPN",
+        "4. Fine-tune the fully connected",
+        "layers of Fast R-CNN"
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "87af7a1d05ff74c934a84717df61b4d28794d689baef4ff78e22ac5f41e9c629",
+      "lines": [
+        "Today’s Topics",
+        "• Problems",
+        "• Applications",
+        "• PASCAL VOC detection challenge: R-CNNs",
+        "• PASCAL VOC semantic segmentation challenge: fully convolutional networks"
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "203281bf0d63b3d7df38270b516b8ffe0cadfc4d9c6ba1fefc53a7f6367df57b",
+      "lines": [
+        "VOC Challenge",
+        "• Goal: locate all pixels belonging to",
+        "20 categories (e.g., person, cat,",
+        "bus, mortorbike, potted plant,",
+        "bottle) plus background",
+        "• Dataset: 11,530 images collected",
+        "from Flickr and annotated by",
+        "annotators at University of Leeds",
+        "Dataset location: http://host.robots.ox.ac.uk/pascal/VOC/index.html",
+        "Mark Everingham, Luc Van Gool, Christopher K. I. Williams, John Winn, and Andrew",
+        "Zisserman. The PASCAL Visual Object Classes (VOC) Challenge. IJCV 2010."
+      ]
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "913cb61d8d79a09a11bf73cc3466a066a9c960fc259be2120e370321844b7235",
+      "lines": [
+        "VOC Challenge: Evaluation Metric (IoU)",
+        "Score",
+        "Ground Truth:",
+        "Algorithm:"
+      ]
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "680da3797d273ee47b3129ad3405af6edcd6c11a7535ca9370724b9ea2f9aeee",
+      "lines": [
+        "VOC Challenge: Evaluation Metric (IoU)",
+        "Ground Truth:",
+        "Algorithm:",
+        "?"
+      ]
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "d89349c0ff5ba6c6acefee12d285cfa8c2453ee7db30117fd52fa4dfb92a185d",
+      "lines": [
+        "VOC Challenge: Evaluation Metric (IoU)",
+        "Ground Truth:",
+        "Algorithm:",
+        "19",
+        "27",
+        "Mean IoU: IoU between predicted and ground-truth pixels, averaged over all 21 categories"
+      ]
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "d59205b7efdfe2ae1d82fa9af25e351444660dfff0187b97ebe6d294cbf90eb5",
+      "lines": [
+        "Architecture",
+        "Input: RGB image of ANY size",
+        "Output: Image of same size as input",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015.",
+        "For each image pixel,",
+        "the probability of",
+        "each class is predicted"
+      ]
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "469e8f97598e8fd9051b4a93ac6f0daee9d1d6675b9b3a65f41b50a8304fe283",
+      "lines": [
+        "Architecture: Output Layer",
+        "• e.g., assume a 5-class classifier",
+        "Source: https://www.jeremyjordan.me/semantic-segmentation/"
+      ]
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "4d9549455e9b9fd9ff3784c8512786e9851f093c576e3a1ec52636e732bf72ef",
+      "lines": [
+        "Architecture: Output Layer",
+        "• e.g., assume a 5-class classifier; output 1-hot encoding collapsed into single mask image",
+        "Source: https://www.jeremyjordan.me/semantic-segmentation/"
+      ]
+    },
+    {
+      "number": 71,
+      "source_text_sha256": "6e8e9899be5131a94092a3c5f586f0f0b246325ba641903d192129f496f1baaf",
+      "lines": [
+        "Architecture",
+        "Input: RGB image of ANY size",
+        "Output: Image of same size as input",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015.",
+        "How many classes",
+        "are there?",
+        "- 21",
+        "Why 21?",
+        "- 20 object classes",
+        "plus background"
+      ]
+    },
+    {
+      "number": 72,
+      "source_text_sha256": "e2fc465a8dc70f635d3d919a049fbeb59f1ffe1515f3fb4e650241a2a4d972d3",
+      "lines": [
+        "Architecture",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015.",
+        "Do you recognize",
+        "this architecture?"
+      ]
+    },
+    {
+      "number": 73,
+      "source_text_sha256": "fc5caaa03634805732abf21d8109c4eb9b993afd4ae26f4778a72c2cea432ae2",
+      "lines": [
+        "Architecture",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015.",
+        "Can use your favorite",
+        "pretrained ImageNet classifier;",
+        "AlexNet, VGG, GoogleNet"
+      ]
+    },
+    {
+      "number": 74,
+      "source_text_sha256": "6c7bb1eff1fc37850a52cd2e2124c0b097d7ea2e0c5bc3084d0c3d2ca9731923",
+      "lines": [
+        "Architecture",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015.",
+        "To make the architecture",
+        "fully convolutional, fully",
+        "connected layers are",
+        "converted to",
+        "convolutional layers.",
+        "In the absence of fully",
+        "connected layers, there",
+        "are no constraints on the",
+        "number of input nodes",
+        "(and so any input image",
+        "size can be supported)."
+      ]
+    },
+    {
+      "number": 75,
+      "source_text_sha256": "cb90c81d90e8801cab4c726d1ea9b94c89762ad38e4248806f4513ddbfbe7008",
+      "lines": [
+        "Architecture",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015.",
+        "Another result of",
+        "this change is",
+        "that, unlike for",
+        "classification, a",
+        "class can be",
+        "assigned to each",
+        "“coarse region.”"
+      ]
+    },
+    {
+      "number": 76,
+      "source_text_sha256": "5a4a0dd46793900aefcdd19d0ceba13ae91e5e85ce11fad497a39a25954fba68",
+      "lines": [
+        "Architecture: Coarse Region Classification",
+        "(Recall Intuition)",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015.",
+        "Using",
+        "VGG16",
+        "instead:"
+      ]
+    },
+    {
+      "number": 77,
+      "source_text_sha256": "67dcb72f0da357ad2beb76c5b58c7d4c9fbf539af179652f4c5ab12e5b407a51",
+      "lines": [
+        "Architecture: Coarse Region Classification",
+        "(Recall Intuition)",
+        "Grids reflect relative spatial",
+        "coarseness at each layer",
+        "Each line represents a",
+        "convolutional layer",
+        "Using",
+        "VGG16",
+        "instead:",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015."
+      ]
+    },
+    {
+      "number": 78,
+      "source_text_sha256": "3d26a17ffa5d5e1fa580bceffb4c079d6e08493c560c8c08883a35d70de4202b",
+      "lines": [
+        "Architecture: Coarse Region Classification",
+        "(Recall Intuition)",
+        "Stacking many convolutional layers leads to learning patterns in increasingly larger",
+        "regions of the input (e.g., pixel) space.",
+        "https://www.deeplearningbook.org/contents/convnets.html"
+      ]
+    },
+    {
+      "number": 79,
+      "source_text_sha256": "0c6f255edce0e4d1af420b397a0bd61cd73f9e0909edf63114bf06631e375e91",
+      "lines": [
+        "Architecture: Fully vs Convolution Layers",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015.",
+        "Each slice indicates",
+        "the likelihood each",
+        "pixel in the coarse",
+        "region belongs to",
+        "the class identified",
+        "by the filter"
+      ]
+    },
+    {
+      "number": 80,
+      "source_text_sha256": "70ae303f504e03b72d1e912d05b9332e99e10cc35340a9b5302f361e597c4554",
+      "lines": [
+        "Architecture: Fully vs Convolution Layers",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015.",
+        "If convolutionizing",
+        "ImageNet trained",
+        "classifiers, how",
+        "many classes would",
+        "be predicted for",
+        "each coarse region?"
+      ]
+    },
+    {
+      "number": 81,
+      "source_text_sha256": "b28febcf52359a96e789b458750805c18e6aad065dae456a66ebf20beba2c3d2",
+      "lines": [
+        "Architecture: Coarse Region Classification",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015.",
+        "Locates 20 object classes",
+        "plus background for VOC"
+      ]
+    },
+    {
+      "number": 82,
+      "source_text_sha256": "b90c3729c057e40e416253b386f7c6844486a29fac08c34b6d6d88e6f81a1f3c",
+      "lines": [
+        "Architecture",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015.",
+        "Challenge: how to decode from",
+        "coarse region classifications to",
+        "per pixel classification?"
+      ]
+    },
+    {
+      "number": 83,
+      "source_text_sha256": "d71930cdd59df894d1dea90062b9b6805060692084d3eeea5055b726f0450e00",
+      "lines": [
+        "Architecture: Upsampling (Many Approaches)",
+        "Source: http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture11.pdf"
+      ]
+    },
+    {
+      "number": 84,
+      "source_text_sha256": "0e4dd2b597175b7f95f87a36ad316030c9cd8b72b307c527ac72ad1c9f450f17",
+      "lines": [
+        "Architecture: Upsampling",
+        "(Transposed Convolutional Layer)",
+        "• Also called “fractional convolutional layer”, “backward convolution”, and, incorrectly,",
+        "”deconvolution layer”",
+        "• Idea: learn filters with a fractional sized stride to upsample the coarse image while refining",
+        "it based on the filter values; e.g.,",
+        "https://www.machinecurve.com/index.php/2019/09/29/understanding￾transposed-convolutions/#the-goal-reconstructing-the-original-input"
+      ]
+    },
+    {
+      "number": 85,
+      "source_text_sha256": "5f469ab6b09b39d5a08b7eb0d52c33c0f9c44ff4449bee50f0a119ea10a257d1",
+      "lines": [
+        "Architecture: Upsampling",
+        "(Transposed Convolutional Layer)",
+        "• Also called “fractional convolutional layer”, “backward convolution”, and, incorrectly,",
+        "”deconvolution layer”",
+        "• Idea: learn filters with a fractional sized stride to upsample the coarse image while refining",
+        "it based on the filter values; e.g.,",
+        "https://d2l.ai/chapter_computer-vision/transposed-conv.html",
+        "(padding is used to",
+        "intermediate values)"
+      ]
+    },
+    {
+      "number": 86,
+      "source_text_sha256": "6a84bfc100a87319412eac713fcad580a4444784e667185d6bf0b6e07fb15a72",
+      "lines": [
+        "Architecture: Upsampling",
+        "(Transposed Convolutional Layer)",
+        "• Also called “fractional convolutional layer”, “backward convolution”, and, incorrectly,",
+        "”deconvolution layer”",
+        "• Idea: learn filters with a fractional sized stride to upsample the coarse image while refining",
+        "it based on the filter values; e.g.,",
+        "https://d2l.ai/chapter_computer-vision/transposed-conv.html",
+        "(stride is used to compute intermediate values)"
+      ]
+    },
+    {
+      "number": 87,
+      "source_text_sha256": "dff7bc368ea93c1b25d6bcc5c66e9c638b07f6e73f7d61b6ec43b6453b1542a8",
+      "lines": [
+        "Architecture",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015.",
+        "Next challenge: how to decode a highly",
+        "detailed per pixel classification from",
+        "the coarse region classifications?"
+      ]
+    },
+    {
+      "number": 88,
+      "source_text_sha256": "8b26cb612e72bb93cf42bbb0a1d4f71207aac00cd87f4541bf00b21036620529",
+      "lines": [
+        "Architecture: Results",
+        "Figure source: https://www.jeremyjordan.me/semantic-segmentation/",
+        "Next challenge: how to decode a highly",
+        "detailed per pixel classification from",
+        "the coarse region classifications?"
+      ]
+    },
+    {
+      "number": 89,
+      "source_text_sha256": "4d562c63a7cf4a8af3de8c17042f4b347dff1e2f84f330a7710d9ea6add52d4b",
+      "lines": [
+        "Architecture: Update to Use Skip Connections",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015.",
+        "FCN16: Sums predictions of lower￾level, more fine-grained features",
+        "(pool4) with the predictions at the",
+        "coarser features",
+        "Trained ~1",
+        "more day to",
+        "update the",
+        "FCN-32 model"
+      ]
+    },
+    {
+      "number": 90,
+      "source_text_sha256": "02c9e5532bb34641e8559bfdc4a27fd0e608060b1b7c376f23e12df5b8d24030",
+      "lines": [
+        "Architecture: Results",
+        "Figure source: https://www.jeremyjordan.me/semantic-segmentation/",
+        "Skip connections support capturing finer-grained while retaining the correct semantic information!"
+      ]
+    },
+    {
+      "number": 91,
+      "source_text_sha256": "bebd7e07aa16bc84f9a55b9c613dc005b2edc5b3e3e88d826035967f25f72c12",
+      "lines": [
+        "Architecture: Upsampling + Skip Connections",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015.",
+        "Seems complicated… why not instead preserve the",
+        "image size and solve for per-pixel classification?",
+        "- would result in unreasonable computational",
+        "burden due to many model parameters"
+      ]
+    },
+    {
+      "number": 92,
+      "source_text_sha256": "d863556b7f22c35c2c39c0b4680438ff82b182048fa3c165575a93b060c7fef4",
+      "lines": [
+        "Architecture: Encoder Decoder Architecture",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015.",
+        "Then, the feature",
+        "map is decoded",
+        "(upsampled) into a",
+        "full-resolution",
+        "segmentation map.",
+        "For efficiency, the image is encoded",
+        "(downsampled) into a lower-resolution",
+        "feature map that effectively",
+        "discriminates between classes…"
+      ]
+    },
+    {
+      "number": 93,
+      "source_text_sha256": "8318b3020793df859ab5822aa15ed6640c41111482599a2c0e7f7fd2f2a8a2cb",
+      "lines": [
+        "Training: Took 3 days on 1 GPU",
+        "Figure from: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul,",
+        "Jeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018",
+        "• Repeat until stopping criterion met:",
+        "1. Forward pass: propagate",
+        "training data through model",
+        "to make prediction",
+        "2. Quantify the dissatisfaction",
+        "with a model’s results on the",
+        "training data",
+        "3. Backward pass: using",
+        "predicted output, calculate",
+        "gradients backward to assign",
+        "blame to each model",
+        "parameter",
+        "4. Update each parameter",
+        "using calculated gradients"
+      ]
+    },
+    {
+      "number": 94,
+      "source_text_sha256": "71ec6c6d78ba3cfde037d981274dbc64c0bbcf0e9e7e072fa56c77476f6f4a40",
+      "lines": [
+        "Training: How Neural Networks Learn",
+        "Figure from: Atilim Gunes Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul,",
+        "Jeffrey Mark Siskind; Automatic Differentiation in Machine Learning: a Survey; 2018",
+        "• Repeat until stopping criterion met:",
+        "1. Forward pass: propagate",
+        "training data through model",
+        "to make prediction",
+        "2. Quantify the dissatisfaction",
+        "with a model’s results on the",
+        "training data",
+        "3. Backward pass: using",
+        "predicted output, calculate",
+        "gradients backward to assign",
+        "blame to each model",
+        "parameter",
+        "4. Update each parameter",
+        "using calculated gradients",
+        "Sum across all pixels the distance between predicted",
+        "and true distributions using cross entropy loss",
+        "Sum of gradients for all pixels (acts like a minibatch)"
+      ]
+    },
+    {
+      "number": 95,
+      "source_text_sha256": "02c905129963fae2e4517115ae77e17de38012edfcb82eb71c0bfc395e1cbce7",
+      "lines": [
+        "Training: Cross Entropy Loss",
+        "(Multinomial Logistic Loss)",
+        "• e.g., assume a 5-class classifier",
+        "• Distance between predicted",
+        "and true distributions per pixel",
+        "with cross entropy loss"
+      ]
+    },
+    {
+      "number": 96,
+      "source_text_sha256": "39153f33a06c259cf8e0bda240442570fe7afedcd20abe338f15bdf4f13c5a7a",
+      "lines": [
+        "Architecture: Algorithm Training",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015.",
+        "Training updates weights of",
+        "pretrained network (aka, fine-tuning)"
+      ]
+    },
+    {
+      "number": 97,
+      "source_text_sha256": "17cdd16365f9f5a5659d5ed2907987c7bc6d8f18cea1c73e3a2b6a4b494c1247",
+      "lines": [
+        "Results",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015.",
+        "Compared to existing methods, produces better results at a faster speed!"
+      ]
+    },
+    {
+      "number": 98,
+      "source_text_sha256": "87af7a1d05ff74c934a84717df61b4d28794d689baef4ff78e22ac5f41e9c629",
+      "lines": [
+        "Today’s Topics",
+        "• Problems",
+        "• Applications",
+        "• PASCAL VOC detection challenge: R-CNNs",
+        "• PASCAL VOC semantic segmentation challenge: fully convolutional networks"
+      ]
+    },
+    {
+      "number": 99,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

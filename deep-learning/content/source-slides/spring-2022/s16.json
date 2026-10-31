@@ -1,0 +1,906 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s16",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/14-Transformers.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2022/s16.pdf",
+    "sha256": "d37d1fe806d9520e952069bf16b3c1e4db1994a6eb2f60c98aa6c7ad352b8f56",
+    "page_count": 73,
+    "license_notice": "CC BY; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "14937f571df385255548c040289a0e95b6c01f4d8fedb9f5304856b5fad8c68b",
+      "lines": [
+        "Transformers",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2022",
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "7d735fbf7b53ee7f7d56b18fbe679f79a385cfdcb3a6aea6958d351a036543ba",
+      "lines": [
+        "Review",
+        "• Last week:",
+        "• Motivation: machine neural translation for long sentences",
+        "• Decoder: attention",
+        "• Encoder",
+        "• Performance evaluation",
+        "• Programming tutorial",
+        "• Assignments (Canvas):",
+        "• Problem set 3 grades out",
+        "• Lab assignment 3 due next week",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "0536b15d529b469a8836fadd805cc5bb2972a9c582c43e9fbdfb41b048328be2",
+      "lines": [
+        "Today’s Topics",
+        "• Transformer overview",
+        "• Self-attention",
+        "• Multi-head attention",
+        "• Common transformer ingredients",
+        "• Pioneering transformer: machine translation"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "0536b15d529b469a8836fadd805cc5bb2972a9c582c43e9fbdfb41b048328be2",
+      "lines": [
+        "Today’s Topics",
+        "• Transformer overview",
+        "• Self-attention",
+        "• Multi-head attention",
+        "• Common transformer ingredients",
+        "• Pioneering transformer: machine translation"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "ca68a8600477a3be39a9765f8701e4173fa5d201d958b1d9e625ff817dea1ddc",
+      "lines": [
+        "Goal: Model Sequential Data (Recall RNN)",
+        "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/",
+        "Each hidden state is a function of the previous hidden state"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "5d1a46a969105f7b41e030c90c9c8fefea59a5c4a1b5644ee896a509a0ed1a9a",
+      "lines": [
+        "Problem: RNNs Use Sequential Computation",
+        "Seemingly hard for RNNs to carry information through hidden",
+        "states across many time steps and train/testing is slow",
+        "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "8b8543b6958c2afd26c0f455f6542ea05132d8f3d13b03d5a1b2ed79ece2e0e1",
+      "lines": [
+        "Idea: Model Sequential Data Without Recurrence",
+        "http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/",
+        "Replace sequential hidden states for capturing knowledge of other inputs with a new",
+        "representation of each input that shows its relationship to all other inputs (i.e., self-attention)"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "751b9377e667fdefd3d586b83dfd0139f83833d116e1aad71c4d64f5074113bd",
+      "lines": [
+        "Transformer Key Idea: Self-Attention",
+        "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#transformer_intro",
+        "New representation of each token in a sequence showing its relationship to all tokens; e.g.,"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "0d912eef6ea13a23749f0e24af5ca9e57669c8ad0765f9e8274bcde1822b5a93",
+      "lines": [
+        "Transformer Key Idea: Self-Attention",
+        "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#transformer_intro",
+        "Arrow thickness is indicative of attention weight",
+        "New representation of each token in a sequence showing its relationship to all tokens; e.g.,"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "a60e6ed39af7b69362b3075f585ce45b6e13acf0b30a546ed90134b2c2e42f6f",
+      "lines": [
+        "Transformer Key Idea: Self-Attention",
+        "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#transformer_intro",
+        "A large attention score means the other word will",
+        "strongly inform the new representation of the word",
+        "New representation of each token in a sequence showing its relationship to all tokens; e.g.,"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "a09063f2677e4494fadcfee85b18631085ef6ae5b33ae58654790d13287bc504",
+      "lines": [
+        "Transformer Intuition",
+        "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#transformer_intro",
+        "What does bank mean in this sentence?"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "abdae6d40fbbe8ffde9636dbdad6d77b306736d08fff731c3bede100994eae65",
+      "lines": [
+        "Transformer Intuition",
+        "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#transformer_intro",
+        "What does bank mean in this sentence?",
+        "- the new representation of the word disambiguates the meaning by identifying other",
+        "relevant words (e.g., high attention score with “river”)",
+        "vs"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "efa9a431ccc4068f08c0839ef70ff118dcae6b1e77bb31d360c14be093ab7403",
+      "lines": [
+        "Transformer vs RNN (Intuition)",
+        "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#transformer_intro",
+        "Meaning depends on other input words"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "efa9a431ccc4068f08c0839ef70ff118dcae6b1e77bb31d360c14be093ab7403",
+      "lines": [
+        "Transformer vs RNN (Intuition)",
+        "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#transformer_intro",
+        "Meaning depends on other input words"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "9a7d5a5ecfc9239c2fab0aeeb80da9e22b59b18f87d3e694492f9ebdcafa07ac",
+      "lines": [
+        "Transformer: A Suggested Definition",
+        "“Any architecture designed to process a connected",
+        "set of units—such as the tokens in a sequence or",
+        "the pixels in an image—where the only interaction",
+        "between units is through self-attention.”",
+        "http://peterbloem.nl/blog/transformers"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "0536b15d529b469a8836fadd805cc5bb2972a9c582c43e9fbdfb41b048328be2",
+      "lines": [
+        "Today’s Topics",
+        "• Transformer overview",
+        "• Self-attention",
+        "• Multi-head attention",
+        "• Common transformer ingredients",
+        "• Pioneering transformer: machine translation"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "ea60c969bedc618fa04ad3c21014a2c99456d7870bc21f3aafd0901a62a65070",
+      "lines": [
+        "Self-Attention: Outcome",
+        "New representation of each token in a sequence showing its relationship to all tokens",
+        "https://towardsdatascience.com/self-attention-5b95ea164f61"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "02aa4021b132438b1409f89dc22e971226c2edda25f5617462ff2ffccd657d77",
+      "lines": [
+        "Self-Attention: Outcome",
+        "New representation of each token in a sequence showing its relationship to all tokens; e.g.,",
+        "Rashonda accepted a job in deep learning because she loves the topic"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "02aa4021b132438b1409f89dc22e971226c2edda25f5617462ff2ffccd657d77",
+      "lines": [
+        "Self-Attention: Outcome",
+        "New representation of each token in a sequence showing its relationship to all tokens; e.g.,",
+        "Rashonda accepted a job in deep learning because she loves the topic"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "b11217a7fcbd01dd975ff10aaaaa075dd2f656805cb5ecee0fb1a7f1385e6101",
+      "lines": [
+        "Self-Attention: Outcome",
+        "New representation of each token in a sequence showing its relationship to all tokens; e.g.,",
+        "Rashonda accepted a job in deep learning because she loves the topic",
+        "And so on for remaining words…"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "9fa71ecabad201870a790047c1cab76fd2065f72bd70719ac5beb1c042c03df3",
+      "lines": [
+        "Self-Attention: Disambiguates Word Meanings",
+        "A better representation of “she” would",
+        "encode information about “Rashonda”",
+        "New representation of each token in a sequence showing its relationship to all tokens; e.g.,",
+        "Rashonda accepted a job in deep learning because she loves the topic"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "49a5bbc252d929c3fb3d3d65e73fcf49b7f985ed89558af5da6d94b876d26a39",
+      "lines": [
+        "Self-Attention: Disambiguates Word Meanings",
+        "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html#transformer_intro",
+        "A better representation of “bank” would",
+        "encode information about “river”",
+        "New representation of each token in a sequence showing its relationship to all tokens; e.g.,",
+        "I arrived at the bank across the river"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "6ba1cfe7f3fdf0ef015fa1472ceb4c8613a2c131d67579c43aea1c7e15d7dde7",
+      "lines": [
+        "Self-Attention vs General Attention",
+        "Input Target",
+        "General attention",
+        "Relates tokens from different sources",
+        "Self-attention",
+        "Relates tokens from the same source",
+        "t=1"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "41c8be510194b835601a7088750c855b2a61e91b8fa5267b69d4186adc819c1f",
+      "lines": [
+        "Computing Self-Attention: Similar Approach",
+        "to How We Compute General Attention",
+        "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html",
+        "Key difference 1: input for self-attention",
+        "Key difference 2: attention",
+        "score multiplied with a value",
+        "derived from the input"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "aafaa23fc2f122ed13ecbef3bc75a08f173d89d24e075fbbe069bb6f38442f8a",
+      "lines": [
+        "Weighted sum of values",
+        "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a",
+        "New representation of each input token to",
+        "reflect each one’s relationship to all tokens",
+        "Input tokens",
+        "Computing Self-Attention: Example"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "a0692f086cf508e0aeca9c41aaaf75e2b1442e16f9fc0be3cf12ee3de21b2041",
+      "lines": [
+        "Computing Self-Attention: Example",
+        "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a",
+        "- How many inputs are in this example?",
+        "- What is each one’s dimensionality?"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "e452f7a0b478949406c0de6aa0cf28eb41f33129e0a008522d94a2120e95b3f0",
+      "lines": [
+        "Computing Self-Attention: Example",
+        "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a",
+        "Three vectors are derived for",
+        "each input by multiplying",
+        "with three weight matrices",
+        "(learned during training):",
+        "query, key, and value",
+        "Query 1: Query 2: Query 3:",
+        "Key 1: Value 1: Key 2: Value 2: Key 3: Value 3:"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "382d7e546ff98b73c85333346bd7445abdc681a169829322c7a513c5d543d57b",
+      "lines": [
+        "Computing Self-Attention: Example",
+        "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a",
+        "e.g., key weights",
+        "Key 1: Value 1: Key 2: Value 2: Key 3: Value 3:",
+        "x x x"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "2cf73fe6454944e7a97907bfbad27e499925218ae4f15a170af6d9d635393e04",
+      "lines": [
+        "Computing Self-Attention: Example",
+        "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a",
+        "e.g., value weights",
+        "Key 1: Value 1: Key 2: Value 2: Key 3: Value 3:",
+        "x x x"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "36cbb6b8cae1d8124066abc0f08e53cef8ba8219bd4a8a94aa645d964f1376d9",
+      "lines": [
+        "Computing Self-Attention: Example",
+        "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a",
+        "e.g., query weights",
+        "Key 1: Value 1: Key 2: Value 2: Key 3: Value 3:",
+        "Query 1: Query 2: Query 3:"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "3b44b66e136270e5792cd31326eb9794d901e7efece5a46ce3902973110270ea",
+      "lines": [
+        "Computing Self-Attention: Example",
+        "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a",
+        "Query 1: Query 2: Query 3:",
+        "How many weight matrices",
+        "are learned in this example?",
+        "Key 1: Value 1: Key 2: Value 2: Key 3: Value 3:"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "8130da4d1868965c0710879f4985e5683a489fff24e02125e843745540fd0f9d",
+      "lines": [
+        "Computing Self-Attention: Example",
+        "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a",
+        "Query 1: Query 2: Query 3:",
+        "Key 1: Value 1: Key 2: Value 2: Key 3: Value 3:",
+        "Why do we learn the three",
+        "weight matrices?",
+        "For each input, 2 of the",
+        "derived vectors are used to",
+        "compute attention weights",
+        "(query and key) and the 3rd is",
+        "information passed on for the",
+        "new representation (value)"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "64f666ae451fcba419c89c88301b5bb04b1d2b7a7fb0c3248e37f219b2355562",
+      "lines": [
+        "Computing Self-Attention: Example",
+        "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a",
+        "Key 1: Value 1: Key 2: Value 2: Key 3: Value 3:",
+        "Query 1: Query 2: Query 3:",
+        "We now will examine how to",
+        "find the new representation",
+        "for the first input."
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "74e973107976a79771ef080a7c4eb5c455765abc463f162fb0247ed26ff5e730",
+      "lines": [
+        "Computing Self-Attention: Example",
+        "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a",
+        "Key 1: Value 1: Key 2: Value 2: Key 3: Value 3:",
+        "Query 1:",
+        "1 0 2 0",
+        "1",
+        "1",
+        "x = ?",
+        "Attention score: dot product",
+        "of query with all keys to",
+        "identify relevant tokens; e.g.,"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "9014a746f344b9030dd486a40a4575f1c9792853b7168e5aaa13d8624c201e00",
+      "lines": [
+        "Computing Self-Attention: Example",
+        "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a",
+        "Key 1: Value 1: Key 2: Value 2: Key 3: Value 3:",
+        "Query 1:",
+        "1 0 2 4",
+        "4",
+        "0",
+        "x = ?",
+        "Attention score: dot product",
+        "of query with all keys to",
+        "identify relevant tokens; e.g.,"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "e608d24968470e50c2e0a4b54bc90724a8f9346349dda70faae7f9e9a26d330c",
+      "lines": [
+        "Computing Self-Attention: Example",
+        "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a",
+        "Key 1: Value 1: Key 2: Value 2: Key 3: Value 3:",
+        "Query 1:",
+        "1 0 2 2",
+        "3",
+        "1",
+        "x = ?",
+        "Attention score: dot product",
+        "of query with all keys to",
+        "identify relevant tokens; e.g.,"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "0fef6f318d3eaf4d8cb9a950215c7407a2923cad90ad902fd534c46400100921",
+      "lines": [
+        "Computing Self-Attention: Example",
+        "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a",
+        "Key 1: Value 1: Key 2: Value 2: Key 3: Value 3:",
+        "Query 1:",
+        "Why dot product? Indicates",
+        "similarity of two vectors",
+        "- Match = 1 (i.e., cos(0))",
+        "- Opposites = -1 (i.e., cos(180))",
+        "https://towardsdatascience.com/",
+        "self-attention-5b95ea164f61"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "1cedf8e8ee663bf980eb60d593859d7ec2c303b0c949df93eafa88a08349eee1",
+      "lines": [
+        "Computing Self-Attention: Example",
+        "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a",
+        "Key 1: Value 1: Key 2: Value 2: Key 3: Value 3:",
+        "Query 1:",
+        "Can also use similarity",
+        "measures other than",
+        "the dot product"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "dd0af34dddd9db807784a6a85c3b7a6473ea7c70a96fbb019d3e35ef99606472",
+      "lines": [
+        "Computing Self-Attention: Example",
+        "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a",
+        "Key 1: Value 1: Key 2: Value 2: Key 3: Value 3:",
+        "Query 1:",
+        "= softmax([2, 4, 4])",
+        "= [0.0, 0.5, 0.5])",
+        "Attention weights: softmax",
+        "scores for all inputs to quantify",
+        "each token’s relevance; e.g., 0.0 0.5 0.5",
+        "To which input(s) is input 1",
+        "most related?"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "b9e3d9b10ed101fa47fd31c4e8e1c803ffa8fdc338de16cde2a9dd19d81fbb48",
+      "lines": [
+        "Computing Self-Attention: Example",
+        "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a",
+        "Key 1: Value 1: Key 2: Value 2: Key 3: Value 3:",
+        "Query 1:",
+        "0.0 0.5 0.5",
+        "Compute new representation",
+        "of input token that reflects",
+        "entire input:",
+        "1. Attention weights x Values",
+        "0.0 0.0 0.0 1.0 4.0 0.0 1.0 3.0 1.0"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "b94555af3d14c93e00c44f12fb5e92e966d5394e70756e41c80b6f02ce4de5f6",
+      "lines": [
+        "Computing Self-Attention: Example",
+        "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a",
+        "Key 1: Value 1: Key 2: Value 2: Key 3: Value 3:",
+        "Query 1:",
+        "0.0 0.5 0.5",
+        "Compute new representation",
+        "of input token that reflects",
+        "entire input:",
+        "1. Attention weights x Values",
+        "2. Sum all weighted vectors",
+        "0.0 0.0 0.0 1.0 4.0 0.0 1.0 3.0 1.0",
+        "2.0 7.0 1.5"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "dcde5c98c59b603d6dbc9bedd9c5d105c1751ce6e103b25d20fb31e2634e4471",
+      "lines": [
+        "Computing Self-Attention: Example",
+        "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a",
+        "Key 1: Value 1: Key 2: Value 2: Key 3: Value 3:",
+        "Query 1:",
+        "Attention weights amplify 0.0 0.5 0.5",
+        "input representations (values)",
+        "that we want to pay attention",
+        "to and repress the rest",
+        "0.0 0.0 0.0 1.0 4.0 0.0 1.0 3.0 1.0",
+        "2.0 7.0 1.5"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "de981be8293ad4dec17c43ac74380581a193c53810f6fa42bc4b691177d6924d",
+      "lines": [
+        "Computing Self-Attention: Example",
+        "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a",
+        "Key 1: Value 1: Key 2: Value 2: Key 3: Value 3:",
+        "Query 1: Query 2: Query 3:",
+        "Repeat the same process for",
+        "each remaining input token"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "16a8c0b4551aead16328a36c1f770319b4c63142b272e048d97bb6889902c8bb",
+      "lines": [
+        "Computing Self-Attention: Example",
+        "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a",
+        "Key 1: Value 1: Key 2: Value 2: Key 3: Value 3:",
+        "Query 2:",
+        "1. Compute attention weights",
+        "- Softmax resulting 3 scores",
+        "from query x keys",
+        "0.0 1.0 0.0",
+        "To which input(s) is input 2",
+        "most related?`"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "0a959c6e781fe294fb430efed9a8f402d3de4ec19c0aed1aa29c8eb2e1264b73",
+      "lines": [
+        "Computing Self-Attention: Example",
+        "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a",
+        "Key 1: Value 1: Key 2: Value 2: Key 3: Value 3:",
+        "Query 2:",
+        "1. Compute attention weights",
+        "- Softmax resulting 3 scores",
+        "from query x keys",
+        "2. Compute weighted sum of",
+        "values using attention scores",
+        "0.0 1.0 0.0",
+        "0.0 0.0 0.0 2.0 8.0 0.0 0.0 0.0 0.0",
+        "2.0 8.0 0.0"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "de981be8293ad4dec17c43ac74380581a193c53810f6fa42bc4b691177d6924d",
+      "lines": [
+        "Computing Self-Attention: Example",
+        "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a",
+        "Key 1: Value 1: Key 2: Value 2: Key 3: Value 3:",
+        "Query 1: Query 2: Query 3:",
+        "Repeat the same process for",
+        "each remaining input token"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "0b52d2d2750dbc493eb2deb42201c8d3c89092a68ae4b761cae6169592ae3818",
+      "lines": [
+        "Computing Self-Attention: Example",
+        "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a",
+        "Key 1: Value 1: Key 2: Value 2: Key 3: Value 3:",
+        "Query 3:",
+        "1. Compute attention weights",
+        "- Softmax resulting 3 scores",
+        "from query x keys",
+        "0.0 0.9 0.1",
+        "To which input(s) is input 3",
+        "most related?"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "41c4a6b6d5142487efa5c5f3d0ed80892f93eafd4d81e79a90ec6cada5011f80",
+      "lines": [
+        "Computing Self-Attention: Example",
+        "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a",
+        "Key 1: Value 1: Key 2: Value 2: Key 3: Value 3:",
+        "Query 2:",
+        "0.0 0.9 0.1",
+        "0.0 0.0 0.0 1.8 7.2 0.0 0.2 0.6 0.3",
+        "2.0 7.8 0.3",
+        "1. Compute attention weights",
+        "- Softmax resulting 3 scores",
+        "from query x keys",
+        "2. Compute weighted sum of",
+        "values using attention scores"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "5ff20a07f7cb719aea3a9f17dced0da1524afc3a97ea8e3d4028125572f85e64",
+      "lines": [
+        "Computing Self-Attention: Example",
+        "https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a",
+        "Key 1: Value 1: Key 2: Value 2: Key 3: Value 3:",
+        "Query 1: Query 2: Query 3:",
+        "2.0 7.0 1.5 2.0 8.0 0.0 2.0 7.8 0.3"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "82e8d0d2a6bf7e24641acfcaeae61c86e3e91ed4802e1037d8f8364666d579cf",
+      "lines": [
+        "http://jalammar.github.io/illustrated-transformer/",
+        "Each row is an",
+        "input token:",
+        "Step 1",
+        "Efficient Computation for Self-Attention",
+        "Each row is a query",
+        "Each row is a key",
+        "Each row is a value"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "16ecd64ac97f160de086bad9f3fd7df1934d0328d0963aee268f1aeb7257de02",
+      "lines": [
+        "http://jalammar.github.io/illustrated-transformer/",
+        "Step 1 Step 2",
+        "Implementation detail: scaling",
+        "down the size helps preserve",
+        "gradients needed for training; k is",
+        "dimensionality of the key vector",
+        "Efficient Computation for Self-Attention"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "d39d2a57913a0a8131d2b61c5f45433261ec04b53764418641d9f3f8280884f4",
+      "lines": [
+        "Self-Attention vs RNN: Propagates Information",
+        "About Other Inputs Without Recurrent Units",
+        "http://www.wildml.com/2015/09/recurrent-neural￾networks-tutorial-part-1-introduction-to-rnns/ https://towardsdatascience.com/self-attention-5b95ea164f61"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "0536b15d529b469a8836fadd805cc5bb2972a9c582c43e9fbdfb41b048328be2",
+      "lines": [
+        "Today’s Topics",
+        "• Transformer overview",
+        "• Self-attention",
+        "• Multi-head attention",
+        "• Common transformer ingredients",
+        "• Pioneering transformer: machine translation"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "9d5fe5f6044dd12ac25edfc3f596bc63c93da63238c1cf7f989559c6b1f17ea1",
+      "lines": [
+        "Multi-head Attention",
+        "• Goal: enable each token to relate",
+        "to other tokens in multiple ways",
+        "• Key idea: multiple self-attention",
+        "mechanisms, each with their own",
+        "key, value and query matrices",
+        "https://sebastianraschka.com/pdf/lecture-notes/stat453ss21/L19_seq2seq_rnn-transformers__slides.pdf"
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "c07ae16b19021470fa6a78ff4faa2f7fbc79277720f90b2ff399c8d91280fa92",
+      "lines": [
+        "Multi-head Attention",
+        "http://jalammar.github.io/illustrated-transformer/",
+        "1) Create query, key, and value",
+        "vectors for all attentions heads",
+        "2) Compute new",
+        "input representations",
+        "3) Condense all representations",
+        "into a single representation by",
+        "concatenating z-s and",
+        "multiplying by a weight matrix"
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "3b448f12c401477da8cc8b0d81dd6e9920e12cdc6e8512af647cb8b6ca48fe8d",
+      "lines": [
+        "Trained Multi-head Attention Examples",
+        "http://jalammar.github.io/illustrated-transformer/",
+        "Figure shows two columns of attention weights",
+        "for the first two attention heads",
+        "- Darker values signify larger attention scores",
+        "What does “it” focus on most in the first",
+        "attention head?",
+        "- The animal (e.g., represents what is “it”)",
+        "What does “it” focus on most in the second",
+        "attention head?",
+        "- tired (e.g., represents how “it” feels)"
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "69d2c2b7521e6e69399b3fb5aa4051bf71bf6f17635dc32df58974fd82120938",
+      "lines": [
+        "Trained Multi-head Attention Examples",
+        "http://jalammar.github.io/illustrated-transformer/",
+        "Figure shows five columns of attention weights",
+        "for five attention heads",
+        "- Darker values signify larger attention scores",
+        "Attention weights may be hard to interpret"
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "0536b15d529b469a8836fadd805cc5bb2972a9c582c43e9fbdfb41b048328be2",
+      "lines": [
+        "Today’s Topics",
+        "• Transformer overview",
+        "• Self-attention",
+        "• Multi-head attention",
+        "• Common transformer ingredients",
+        "• Pioneering transformer: machine translation"
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "f2f75a8e18ac5928fe52e65eef8fd2b90bb926fce44e9e85848ff6ae2d32ba26",
+      "lines": [
+        "http://peterbloem.nl/blog/transformers",
+        "Typical Transformer Block",
+        "Architectures often chain together multiple",
+        "transformer blocks, like that shown here"
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "8693182991d6e238d90b6871023504b878198fb3effcbfb73ef050ea513eb182",
+      "lines": [
+        "http://peterbloem.nl/blog/transformers",
+        "Typical Transformer Block",
+        "Layer normalization and residual connections",
+        "improve training (i.e., faster and better results)"
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "84841d65901834943f226491daad6efeacc81ef39a2b51469b3be62fe4847f2a",
+      "lines": [
+        "http://peterbloem.nl/blog/transformers",
+        "Typical Transformer Block",
+        "Feedforward layer per input"
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "4a7eb50103e5a25a6ee07f134fd743ca9d68936694fb2cd482edef3e16672f05",
+      "lines": [
+        "http://peterbloem.nl/blog/transformers",
+        "Typical Transformer Block",
+        "Where are non-linearities introduced in this block?"
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "cd93c78d92405410399920c960820dc6f5eb64ecd1177ebc42363e38e014b17e",
+      "lines": [
+        "http://peterbloem.nl/blog/transformers",
+        "Typical Transformer Block",
+        "Non-linearities introduced in the softmax of self￾attention, activation functions in MLP, and layer norms"
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "a6f11cbd43937daa2f504302f40989ffe51dc4857fcee2b6fc10babd2696c8ef",
+      "lines": [
+        "http://peterbloem.nl/blog/transformers",
+        "Challenge: Transformers Lack Sensitivity",
+        "to the Order of the Input Tokens",
+        "Input observed as a set and so shuffling the order of input",
+        "tokens results in the same outputs except in the same",
+        "shuffled order (i.e. self-attention is permutation equivariant)"
+      ]
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "0b3d6fd1331f8c9181a5760b186907bd9d00fdd87dd84b46d64c94bbcf8fbad6",
+      "lines": [
+        "Solution: Add Position as Input to Transformer",
+        "• Options:",
+        "• Position embeddings: created by training with sequences of every length during training",
+        "• Position encodings: a function mapping positions to vectors that the network learns to",
+        "interpret (enables generalization to lengths not observed during training)",
+        "http://jalammar.github.io/illustrated-transformer/"
+      ]
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "0536b15d529b469a8836fadd805cc5bb2972a9c582c43e9fbdfb41b048328be2",
+      "lines": [
+        "Today’s Topics",
+        "• Transformer overview",
+        "• Self-attention",
+        "• Multi-head attention",
+        "• Common transformer ingredients",
+        "• Pioneering transformer: machine translation"
+      ]
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "84139025acbd924e65348e0c6b40a89f6cb23d92eba146f1c91143f3c8af0b1e",
+      "lines": [
+        "Target Application: Machine Translation",
+        "https://jalammar.github.io/illustrated-transformer/"
+      ]
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "902e7379338682071e2349567b50f96354a3698a4f15b265bced3673b885e4be",
+      "lines": [
+        "Architecture",
+        "• Key Ingredient",
+        "• Self-Attention in the encoder and decoder",
+        "• Other ingredients",
+        "• Positional encoding",
+        "• Layer normalization",
+        "• Residual connections",
+        "• Feed forward layers",
+        "• Nx = 6 chained blocks (encoder & decoder)",
+        "Vaswani et al. Attention Is All You Need. Neurips 2017."
+      ]
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "0798b70a033f6821d10fcf546d1414c9158e6677df5825ca21e655d9602854bb",
+      "lines": [
+        "Architecture",
+        "The decoder performs multi-head",
+        "attention on the encoder output",
+        "Vaswani et al. Attention Is All You Need. Neurips 2017."
+      ]
+    },
+    {
+      "number": 71,
+      "source_text_sha256": "2b9af132b55e3bae2ca3e984de0e7ca5c792dad17568a1f5e5fbd84ab6bfcdf3",
+      "lines": [
+        "Next Lecture: Transformers Without the",
+        "Baggage of an Encoder-Decoder Architecture"
+      ]
+    },
+    {
+      "number": 72,
+      "source_text_sha256": "0536b15d529b469a8836fadd805cc5bb2972a9c582c43e9fbdfb41b048328be2",
+      "lines": [
+        "Today’s Topics",
+        "• Transformer overview",
+        "• Self-attention",
+        "• Multi-head attention",
+        "• Common transformer ingredients",
+        "• Pioneering transformer: machine translation"
+      ]
+    },
+    {
+      "number": 73,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

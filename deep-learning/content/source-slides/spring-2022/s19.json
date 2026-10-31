@@ -1,0 +1,960 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s19",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/17-VisualQuestionAnswering.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2022/s19.pdf",
+    "sha256": "ac21ac7df019144b12f66e33e7c3d6e93baf3a91b9d0a7eca80f78ddac98ea15",
+    "page_count": 81,
+    "license_notice": "CC BY; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "5a74f5da00f92dcaa3d67fb2a1b491a85d87cd27f6030e9156a067f46fcb86c4",
+      "lines": [
+        "Visual Question Answering",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2022",
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "61638948d8e63686c0eb58ea61a47dfcf8cfebbfd8835788d6f9dca5894ac707",
+      "lines": [
+        "Review",
+        "• Last week:",
+        "• Image captioning applications",
+        "• Image captioning datasets",
+        "• Image captioning evaluation",
+        "• Challenge winner: encoder decoder pipeline with attention",
+        "• Assignments (Canvas)",
+        "• Lab assignment 3 grades are out",
+        "• Problem set 4 due earlier today",
+        "• Lab assignment 4 due the week following spring break",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "e3d2b325c9237156f8ed6be0dec8330a54c96040c9ce285e4ff43842a2e792b8",
+      "lines": [
+        "Today’s Topics",
+        "• Visual question answering applications",
+        "• Visual question answering datasets",
+        "• Visual question answering evaluation",
+        "• Mainstream challenge 2015 winner: baseline approach",
+        "• Mainstream challenge 2019 winner: transformer-based approach",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "e3d2b325c9237156f8ed6be0dec8330a54c96040c9ce285e4ff43842a2e792b8",
+      "lines": [
+        "Today’s Topics",
+        "• Visual question answering applications",
+        "• Visual question answering datasets",
+        "• Visual question answering evaluation",
+        "• Mainstream challenge 2015 winner: baseline approach",
+        "• Mainstream challenge 2019 winner: transformer-based approach",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "26611360dd097bdaac327d0f13d0cd2c6daf390093d055f08921fe56988da936",
+      "lines": [
+        "Task: Answer Visual Questions (VQs)",
+        "Does this picture",
+        "look scary?",
+        "Hi there can you",
+        "please tell me",
+        "what flavor this is?",
+        "Which side of",
+        "the room is the",
+        "toilet on?",
+        "Is my",
+        "monitor on?"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "1a09b37b0039fd7b0fcda3482fe84ddfd7b4e059d67f5995f1daf2e7aa6913ba",
+      "lines": [
+        "Visual Assistance for People with Vision Loss; e.g.,"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "1a09b37b0039fd7b0fcda3482fe84ddfd7b4e059d67f5995f1daf2e7aa6913ba",
+      "lines": [
+        "Visual Assistance for People with Vision Loss; e.g.,"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "b539edbfd38ba5704ad765b87959b2cce53b32c5f5cf2f0f7d43acda15fe42b9",
+      "lines": [
+        "Medical VQA",
+        "Abacha et al. VQA-Med: Overview of the Medical Visual Question Answering Task at ImageCLEF 2019"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "a7d506e013612bf1e31c733589a60a98d6407a5a5361c3c56a5c0e7653828e91",
+      "lines": [
+        "Video Surveillance",
+        "Li et al. ISEE: An Intelligent Scene Exploration and Evaluation Platform for Large-Scale Visual Surveillance. 2019."
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "e96043f521f89036ac49641c7df3c0a8174fa81e4cb3afa714a8085b3b3614f1",
+      "lines": [
+        "Education (e.g., for Preschoolers)",
+        "He et al. An Educational Robot System of Visual Question Answering for Preschoolers. 2017.",
+        "Answers questions about",
+        "quantity and colors of",
+        "detected objects"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "064c71c0cdabb419cd0b424a64ad2b3b3db46154f0ca7b995ac03fd7dbd5f411",
+      "lines": [
+        "Audio Guide for Museums and Art Galleries",
+        "Bongini et al. Visual Question Answering for Cultural Heritage. 2020."
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "7a1e50264409f7626601f9e58b55c56f3b3ebf7ad6f23e8e4f3f8350f3e975ae",
+      "lines": [
+        "Advertising: Understanding the Messaging",
+        "and Identifying Effective Persuasion Strategies",
+        "Hussain et al. Automatic Understanding of Image and Video Advertisements. CVPR 2017."
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "ff5cf197a1ca4f21ba60dfd6358d433f5484f29faa37510b310ecc962cf4b73f",
+      "lines": [
+        "For what other applications might visual",
+        "question answering systems be useful?"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "e3d2b325c9237156f8ed6be0dec8330a54c96040c9ce285e4ff43842a2e792b8",
+      "lines": [
+        "Today’s Topics",
+        "• Visual question answering applications",
+        "• Visual question answering datasets",
+        "• Visual question answering evaluation",
+        "• Mainstream challenge 2015 winner: baseline approach",
+        "• Mainstream challenge 2019 winner: transformer-based approach",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "690cb70cc2527a24ebe665e37d6e2630f8e9a10e3a6206c33c9fc1e36f2e3a72",
+      "lines": [
+        "Status Quo (Approach to Create 14+ Datasets)",
+        "15",
+        "1. Category",
+        "Selection",
+        "1. Person",
+        "2. Car",
+        "N. Apple",
+        "Constrained set",
+        "of concepts",
+        "2. Image Collection",
+        "Pre-qualified images",
+        "(quality, privacy)",
+        "3. Question",
+        "Collection",
+        "OR",
+        "Contrived",
+        "Questions",
+        "Dataset Creation"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "46ed74a41b9fbd48e9efd7ab32dd74853c3682a91ce1892631af881f3736fbbd",
+      "lines": [
+        "e.g., Question",
+        "Generation",
+        "Agrawal et al. VQA: Visual Question Answering. CVPR 2015."
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "bb60acbb84655dc3a8ceccbf16ab8c85a6adba7bb7caa9b7db194b57229ce8f6",
+      "lines": [
+        "e.g., Answer",
+        "Generation",
+        "Agrawal et al. VQA: Visual Question Answering. CVPR 2015.",
+        "10 answers",
+        "collected from",
+        "10 crowdworkers"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "d3ed9428c423b1de89c1b2ad548b940c46e8f9a0683b1f5f0062e7721f9d00df",
+      "lines": [
+        "Mainstream VQA Challenge (held for 6 years)",
+        "https://visualqa.org/workshop.html"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "1606c5c7f1be0e40d7aede26b888614e7d765b4d3748ebfe57ab5c7c0badfeb2",
+      "lines": [
+        "VizWiz: Authentic Use Case",
+        "Jeffrey Bigham et al. VizWiz: Nearly Real-time Answers to Visual Questions. UIST 2010"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "634ea483a99788618637b631e98537639bb50ee6c2c33357d04ba6f7a5a1b8a3",
+      "lines": [
+        "VizWiz: Authentic Use Case",
+        "Image",
+        "Jeffrey Bigham et al. VizWiz: Nearly Real-time Answers to Visual Questions. UIST 2010"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "0e9ca7a78ba9f7305ec8bdd4fc70f99eece2b806e291092ffe147641c89d45e2",
+      "lines": [
+        "VizWiz: Authentic Use Case",
+        "Image",
+        "Question",
+        "+",
+        "Jeffrey Bigham et al. VizWiz: Nearly Real-time Answers to Visual Questions. UIST 2010"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "279af8fedf120a24340ab8468a21c8d44b4515438c2c421163fee59f09961100",
+      "lines": [
+        "VizWiz: Authentic Use Case",
+        "Image",
+        "+",
+        "Question",
+        "Jeffrey Bigham et al. VizWiz: Nearly Real-time Answers to Visual Questions. UIST 2010"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "2466255d1cd14ecf20bc7e607bd72325f2b1d35687f645ec6398d7f7830ecbf6",
+      "lines": [
+        "VizWiz: Authentic Use Case",
+        "Image",
+        "+",
+        "(Optionally) Question",
+        "Answer",
+        "Jeffrey Bigham et al. VizWiz: Nearly Real-time Answers to Visual Questions. UIST 2010"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "dee8fe0e0766a5640742ed61de8dd57adcd2bf66836382db57844b098d901600",
+      "lines": [
+        "VizWiz: Authentic Use Case",
+        "Users agreed to share 44,799 (62%)",
+        "of requests for dataset creation",
+        "Jeffrey Bigham et al. VizWiz: Nearly Real-time Answers to Visual Questions. UIST 2010"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "6e477971389a92984f16114bbf76fa818a9e3a42adb6fbe28e3c15110e3b2396",
+      "lines": [
+        "VizWiz: Authentic Use Case",
+        "Anonymization",
+        "1. Transcribe questions (removes voice)",
+        "2. Re-save images (removes metadata)",
+        "Gurari et al. CVPR 2018"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "3aa1d6dad1ad7d5975df713bb7c39684d8c65740b6d11543c90b5cf0be93282a",
+      "lines": [
+        "VizWiz: Authentic Use Case",
+        "Gurari et al. CVPR 2018",
+        "26",
+        "In-House Filtering",
+        "(personally identifying information)"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "03e52a28c30aa8f88bb0a0d2e84ea72b36f9ee8755758978f654947b3c9de99a",
+      "lines": [
+        "VizWiz: Authentic Use Case",
+        "Gurari et al. CVPR 2018",
+        "27",
+        "In-House Filtering Data Labeling",
+        "(high quality captions & answers)"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "14c5bf59f51a83f38c5aeb1e877a1c0631aa2426c5dd37701808dd03c4de713a",
+      "lines": [
+        "VizWiz: Authentic Use Case",
+        "Gurari et al. CVPR 2018",
+        "VQA: 32,842 image/question pairs à 328,420 answers"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "840a2b1b61b412a28050b6ac43435e3f623c87853eb52ebfe0fdd6231770810c",
+      "lines": [
+        "VizWiz: Authentic Use Case (https://vizwiz.org)"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "3f7b01d657e2ba9d91d0fd1ee0ffa99a501e9a1c99a7692ec903b809e5a6fa61",
+      "lines": [
+        "VizWiz-VQA Grand Challenge (4th year in 2022)",
+        "https://vizwiz.org"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "a0118226c05092eba3385ac10574a444de3afa8220fbf271e8568318bec4142f",
+      "lines": [
+        "Difference Between Status Quo and the",
+        "Real-World Use Case",
+        "In-House Filtering Data Labeling Widely-Used",
+        "Application"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "e3d2b325c9237156f8ed6be0dec8330a54c96040c9ce285e4ff43842a2e792b8",
+      "lines": [
+        "Today’s Topics",
+        "• Visual question answering applications",
+        "• Visual question answering datasets",
+        "• Visual question answering evaluation",
+        "• Mainstream challenge 2015 winner: baseline approach",
+        "• Mainstream challenge 2019 winner: transformer-based approach",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "65d20b854989b4e0c3066130a6626eb609ff5171e91c0085f9f1b6a94010e81a",
+      "lines": [
+        "Class Task: Answer Visual Question",
+        "Does this picture",
+        "look scary?",
+        "Hi there can you",
+        "please tell me",
+        "what flavor this is?",
+        "Which side of",
+        "the room is the",
+        "toilet on?",
+        "Is my",
+        "monitor on?",
+        "(1) (2) (3) (4)"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "e9ab2c5402a4de8cb8c7e1a673d5b44262d02c3c5228fbe6783568416176e29d",
+      "lines": [
+        "Crowdsourced Answers",
+        "(1) sweet pepper",
+        "(2) sweet pepper",
+        "(3) sweet pepper",
+        "(4) sweet pepper",
+        "(5) sweet pepper",
+        "(6) sweet pepper",
+        "(7) sweet pepper",
+        "(8) sweet pepper",
+        "(9) sweet pepper",
+        "(10) sweet pepper",
+        "Does this picture",
+        "look scary?",
+        "Hi there can you please",
+        "tell me what flavor this is?",
+        "Which side of the",
+        "Is my monitor on? room is the toilet on?",
+        "(1) yes",
+        "(2) yes",
+        "(3) yes",
+        "(4) yes",
+        "(5) yes",
+        "(6) yes",
+        "(7) yes",
+        "(8) yes",
+        "(9) yes",
+        "(10) yes",
+        "(1) yes",
+        "(2) no",
+        "(3) no",
+        "(4) yes",
+        "(5) no",
+        "(6) yes",
+        "(7) yes",
+        "(8) no",
+        "(9) no",
+        "(10) no",
+        "(1) right",
+        "(2) left",
+        "(3) right",
+        "(4) right",
+        "(5) right",
+        "(6) right",
+        "(7) right side",
+        "(8) right",
+        "(9) center",
+        "(10) right"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "11103d51e4905e8e0a84abb3b347d4fddf4b333846736cf9652024e557f5986e",
+      "lines": [
+        "Class Discussion",
+        "1. Why do different answers arise for a visual question?",
+        "2. How would you decide what answer you use when different",
+        "answers arise? Of note, a method must scale to efficiently support",
+        "large datasets.",
+        "3. All crowdworkers were restricted to US locations for many datasets.",
+        "How might different cultural backgrounds affect VQA datasets?"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "02cbb5fd6ed29eb586745e5085f6d1d3862d236197087bb482b8b53d9704e537",
+      "lines": [
+        "Evaluating Automated Predictions",
+        "https://vqa.cloudcv.org/"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "699d679e41954cd6e16d4c0f1cd3fd8ba74454b0e51ae5e0e892241f2dc2c5ba",
+      "lines": [
+        "Evaluating Automated Predictions",
+        "Does this picture",
+        "look scary?",
+        "Hi there can you",
+        "please tell me",
+        "what flavor this is?",
+        "Which side of",
+        "the room is the",
+        "toilet on?",
+        "Is my",
+        "monitor on?",
+        "(1) yes (2) chocolate (3) yes (4) right",
+        "https://vqa.cloudcv.org/"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "ac051295b07920621fac75e380f8d3bcc6995a103eefee39d9a629ef6f5b07f1",
+      "lines": [
+        "Evaluating Automated Predictions",
+        "Aishwarya Agrawal, Jiasen Lu, Stanislaw Antol, Margaret Mitchell, C. Lawrence",
+        "Zitnick, Dhruv Batra, and Devi Parikh. VQA: Visual Question Answering. CVPR 2015."
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "cbdcb420d77ef85e75807b5fd85400f6cbcfee7d4faec043edc5494185daea03",
+      "lines": [
+        "Evaluation: Example",
+        "Does this picture",
+        "look scary?",
+        "(1) yes",
+        "(2) no",
+        "(3) no",
+        "(4) yes",
+        "(5) no",
+        "(6) yes",
+        "(7) yes",
+        "(8) no",
+        "(9) no",
+        "(10) no",
+        "What is the accuracy of an algorithm prediction of",
+        "- “yes”?",
+        "- “no”?",
+        "- “maybe”?"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "85941e37fdf26efa717cb5e6b5d0c82533eb7e7df0f8f7f78d5efb8727537844",
+      "lines": [
+        "Evaluation: Example",
+        "What is the accuracy of an algorithm prediction of",
+        "- “right”?",
+        "- “left”?",
+        "- “right side”?",
+        "- “center”?",
+        "- “bottom”?",
+        "Which side of the",
+        "room is the toilet on?",
+        "(1) right",
+        "(2) left",
+        "(3) right",
+        "(4) right",
+        "(5) right",
+        "(6) right",
+        "(7) right side",
+        "(8) right",
+        "(9) center",
+        "(10) right"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "e3d2b325c9237156f8ed6be0dec8330a54c96040c9ce285e4ff43842a2e792b8",
+      "lines": [
+        "Today’s Topics",
+        "• Visual question answering applications",
+        "• Visual question answering datasets",
+        "• Visual question answering evaluation",
+        "• Mainstream challenge 2015 winner: baseline approach",
+        "• Mainstream challenge 2019 winner: transformer-based approach",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "6b0b033babaf42e27c0c01954eed42da8d4fb27bdf6fda3fbe7e104facc19d92",
+      "lines": [
+        "Architecture",
+        "Agrawal et al. VQA: Visual Question Answering. arXiv 2016.",
+        "Most common",
+        "answers in",
+        "train+val splits",
+        "Question representation: concatenates cell and hidden states of last hidden layer",
+        "Image representation"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "cf52bdb8b25be0c3aa88356f90195eaa8dd751a1bcfec11c891576a4d599c0be",
+      "lines": [
+        "Experimental Results (Fine-Grained Analysis",
+        "with Respect to Answer Type)",
+        "Agrawal et al. VQA: Visual Question Answering. arXiv 2016.",
+        "On which answer type, does the model achieve the best performance?"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "bcabf98ee5e5911dbc5012eebcc3f34cb6c9651a5c52260efd624a1856f2cfa9",
+      "lines": [
+        "Experimental Results (Fine-Grained Analysis",
+        "with Respect to Answer Type)",
+        "Agrawal et al. VQA: Visual Question Answering. arXiv 2016.",
+        "On which answer type, does the model achieve the worst performance?"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "6d628320d1c086ab6135790283bdc3c9825886bfedf6dc2a12d4db44cc2e6158",
+      "lines": [
+        "Experimental Results (Fine-Grained Analysis",
+        "with Respect to Answer Type)",
+        "Agrawal et al. VQA: Visual Question Answering. arXiv 2016.",
+        "Why might we observe the above performance trends for answer types?"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "e3d2b325c9237156f8ed6be0dec8330a54c96040c9ce285e4ff43842a2e792b8",
+      "lines": [
+        "Today’s Topics",
+        "• Visual question answering applications",
+        "• Visual question answering datasets",
+        "• Visual question answering evaluation",
+        "• Mainstream challenge 2015 winner: baseline approach",
+        "• Mainstream challenge 2019 winner: transformer-based approach",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "d901600a5199a7c87688101d19c81533b977d99fb2346128639d333def21a5a3",
+      "lines": [
+        "Key Idea: Multimodal Representation Rather",
+        "Than Single Modality Representations",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "e.g., vision representation with AlexNet e.g., language representation with BERT",
+        "https://www.researchgate.net/figure/Architecture-of-Alexnet-From￾left-to-right-input-to-output-five-convolutional-layers_fig2_312303454"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "c8ea6413d743ad5e388ff84c55093c1293ac4b990535e3e4a4eec7075f122c79",
+      "lines": [
+        "LXMERT: Learning Cross-Modality Encoder",
+        "Representations from Transformers",
+        "Tan and Bansal, EMNLP 2019.",
+        "Pretrains using language and vision input",
+        "Generates representations for image",
+        "and vision separately as well as jointly"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "4b3af6cbf878136b5fc40829120a3d12b2240d4414e683bd6672a8bc4b9f75de",
+      "lines": [
+        "LXMERT: Language Input",
+        "Tan and Bansal, EMNLP 2019.",
+        "[CLS] is added to the start of the sequence"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "29124d50d1f24eebd35d53cee88eea6724ab342b93073338884c4622082b7bd6",
+      "lines": [
+        "LXMERT: Language Input",
+        "Tan and Bansal, EMNLP 2019.",
+        "Each word is represented as sum of its",
+        "word embedding and position encoding"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "c5df183187012d938dd25a619b737437f1efb6cc243f55cb39694719a6201e45",
+      "lines": [
+        "LXMERT: Language Input",
+        "Tan and Bansal, EMNLP 2019.",
+        "Transformer encoder (i.e., BERT);",
+        "what does its output represent?"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "b67f87132e18641e96a07abe7340c43bf778696eb3f4766d1b357e1ffb40d577",
+      "lines": [
+        "LXMERT: Language Input",
+        "Tan and Bansal, EMNLP 2019.",
+        "Transformer encoder (i.e., BERT); represents",
+        "words with their relationships to all words"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "21ce6c074d7aea761ab3f529483bf8653c1fb310e11df98ffcca7b29ec939829",
+      "lines": [
+        "LXMERT: Vision Input",
+        "Tan and Bansal, EMNLP 2019.",
+        "Each image is represented as a description of m objects detected with",
+        "Faster R-CNN using features from Faster R-CNN and position encodings"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "5069dba0fdcec05a9ac31bfe297d6297b4fd5b670ea43aea7c713933266fc95b",
+      "lines": [
+        "LXMERT: Architecture",
+        "Tan and Bansal, EMNLP 2019.",
+        "Transformer encoder (i.e., BERT);",
+        "what does its output represent?"
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "10b2695cd8eb51e8d85086eae553ae835eb64ee6909827216dcb27ecade42c74",
+      "lines": [
+        "LXMERT: Architecture",
+        "Tan and Bansal, EMNLP 2019.",
+        "Transformer encoder (i.e., BERT); represents",
+        "objects with their relationships to all objects"
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "07c5b67b361a2a2d0ef9a66b0d0cef38fff0c33113121808ce80a14b48dc3ea0",
+      "lines": [
+        "LXMERT: Architecture",
+        "Tan and Bansal, EMNLP 2019.",
+        "Learns cross-modality representations",
+        "by aligning entities in the two modalities"
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "fd424e868681d63e2a0cd89998e662d433fc2cbebcc461e5a7a011730ce7eff6",
+      "lines": [
+        "LXMERT: Architecture",
+        "Tan and Bansal, EMNLP 2019.",
+        "Two cross-attention layers are functions of the “query” and",
+        "“context” vectors which are language and vision features"
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "830d26cfff4ffab3d4a2b4b39316a38b880f5cd153221f1b54c0370f3071be1f",
+      "lines": [
+        "LXMERT: Architecture",
+        "Tan and Bansal, EMNLP 2019.",
+        "Output is weighted sum of context",
+        "vectors, weighted by the attention scores"
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "4b1b322156748d7b3d07d1f64e82a14681a74747c489a794ea4058661cb9c3f1",
+      "lines": [
+        "LXMERT: Architecture",
+        "Tan and Bansal, EMNLP 2019.",
+        "Two more layers of transformer",
+        "encoders (i.e., BERT)"
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "e402ce507d3e6c2210d52e3c3118b85e09a8b065f31be0fdf0fe7e21103ac4f0",
+      "lines": [
+        "LXMERT: Output",
+        "Tan and Bansal, EMNLP 2019.",
+        "New representation of input language sequence",
+        "New representation of input detected objects"
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "4e10b44e829eba172207dda8c36d24f2e3f6ea908ec616a44c8e25a354e02bee",
+      "lines": [
+        "LXMERT: Output",
+        "Tan and Bansal, EMNLP 2019.",
+        "Cross-modality representation is the [CLS]",
+        "token appended at the start of the sentence"
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "0b83d3cce17424726a3af77cde08e5331791c2f6b27bd2d9ddc08f961a5bbd89",
+      "lines": [
+        "LXMERT: Implementation Details",
+        "Tan and Bansal, EMNLP 2019.",
+        "Pretrained Faster R-CNN can locate 1,600 categories",
+        "and only 36 object detections are kept per image",
+        "L = 9",
+        "R = 5 X = 5",
+        "Number of layers mimics the size of BERT base of 12 layers;",
+        "i.e., (5+9)/2 + 5"
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "0bb35296cec5ceeee18713652a11b1643bca904351bbc7aef48e561eff64c276",
+      "lines": [
+        "LXMERT: Architecture",
+        "What might be strengths and limitations of the resulting feature",
+        "representations based on the architecture used?",
+        "Tan and Bansal, EMNLP 2019."
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "8cc2d6a830611972b704cf432b2d29a27e6de0074b5035561333ea7760c6f1ef",
+      "lines": [
+        "LXMERT: Summary of Architecture",
+        "Tan and Bansal, EMNLP 2019."
+      ]
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "48bff000b84abba4d3127f50a97edb246f80eb2de8f3e1607861317d3f62bb53",
+      "lines": [
+        "LXMERT: Pretraining Task 1 (Language)",
+        "Tan and Bansal, EMNLP 2019.",
+        "Task used for BERT: mask 15% of input words and then predict them"
+      ]
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "926aaaf3cb8edda790b535466646c337444014d882882705711a740dd6ff0540",
+      "lines": [
+        "LXMERT: Pretraining Task 1 (Language)",
+        "Tan and Bansal, EMNLP 2019.",
+        "Unlike BERT, vision modality can resolve language ambiguity; e.g., shows what is being eaten"
+      ]
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "054844095783a10d62af6d1287bc234e2b49d8efee7d5a23c625d61b89df0c6b",
+      "lines": [
+        "LXMERT: Pretraining Tasks 2 & 3 (Vision)",
+        "Tan and Bansal, EMNLP 2019.",
+        "Mask 15% of input objects and then predict their original feature values and categories",
+        "(Goal: predict same",
+        "category predicted",
+        "by Faster R-CNN)"
+      ]
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "7ba26b34495f386ad2f6cbbdc823c9d6058c73c577a316892ed2322d558d8147",
+      "lines": [
+        "LXMERT: Pretraining Tasks 2 & 3 (Vision)",
+        "Tan and Bansal, EMNLP 2019.",
+        "Knowledge about other objects and the language should help predict masked objects",
+        "(Goal: predict same",
+        "category predicted",
+        "by Faster R-CNN)"
+      ]
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "7ecb07dd61a2b014c0194f0c0164243bc34f27d517e34c3d1d369a514a2e581d",
+      "lines": [
+        "LXMERT: Pretraining Tasks 4 & 5 (Both Modalities)",
+        "Tan and Bansal, EMNLP 2019.",
+        "Task 4: predict if caption and",
+        "image match, where 50% of",
+        "the time captions are random",
+        "A dog watching a",
+        "rabbit eat a carrot"
+      ]
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "bdef81a13c9f6734e6b91c6efbe05b5aa89638d54fd3631ad2804d8905d2e66a",
+      "lines": [
+        "LXMERT: Pretraining Tasks 4 & 5 (Both Modalities)",
+        "Tan and Bansal, EMNLP 2019.",
+        "Task 5: perform VQA"
+      ]
+    },
+    {
+      "number": 71,
+      "source_text_sha256": "dba4fd88a1441952ae9db28324d4f097133f07eefa800695794a937c374e611a",
+      "lines": [
+        "LXMERT: 5 Pretraining Tasks",
+        "Tan and Bansal, EMNLP 2019."
+      ]
+    },
+    {
+      "number": 72,
+      "source_text_sha256": "06888cf9359188c4934176d26c6d324492234c832b695a82d5d7c17669cf1ab6",
+      "lines": [
+        "LXMERT: All Pretraining Task Losses Are",
+        "Summed During Training",
+        "Tan and Bansal, EMNLP 2019.",
+        "What might be strengths and limitations of the resulting feature",
+        "representations based on the type of pretraining tasks used?"
+      ]
+    },
+    {
+      "number": 73,
+      "source_text_sha256": "3476f9d0041411d94feb0722defc6b4af2c485f2347d977437eb3ef491c773be",
+      "lines": [
+        "LXMERT: Training Data for Pretraining",
+        "Tan and Bansal, EMNLP 2019.",
+        "All images are from two image sets, MS COCO and Visual Genome, which",
+        "were collected by scraping images from the photo-sharing website Flickr",
+        "(Visual Genome includes the MS COCO images)"
+      ]
+    },
+    {
+      "number": 74,
+      "source_text_sha256": "f720b2865e92b1401f7fbbfda78906dcb886dc09f9dc30c5e3574b1e38a4b27c",
+      "lines": [
+        "LXMERT: Training Data for Pretraining",
+        "Tan and Bansal, EMNLP 2019.",
+        "Language annotations came from 2 image captioning and 3 VQA datasets,",
+        "authored by crowdworkers paid to create captions, questions, and answers"
+      ]
+    },
+    {
+      "number": 75,
+      "source_text_sha256": "9306be0dac8c66f4f04a7dc434e902f3269e11a4ae3802d7b8ffb869289c475f",
+      "lines": [
+        "LXMERT: Training Data for Pretraining",
+        "Tan and Bansal, EMNLP 2019.",
+        "A total of 9.18M image-sentence pairs are included for 180,000 images",
+        "(questions in VQA datasets are used for the image-sentence pairs)"
+      ]
+    },
+    {
+      "number": 76,
+      "source_text_sha256": "2ead98ad263f299c76e8ca0cbad6734f30cc50b29b273a3b7e1324fb7b02a69c",
+      "lines": [
+        "LXMERT: Training Data for Pretraining",
+        "Tan and Bansal, EMNLP 2019.",
+        "What might be strengths and limitations of the resulting feature",
+        "representations based on the type of training data that is used?"
+      ]
+    },
+    {
+      "number": 77,
+      "source_text_sha256": "236e9ba82697f7cdbbc45cf2263976b59586acfbbb7d87dbcd9a9705e2592681",
+      "lines": [
+        "LXMERT: Fine-Tuning Experimental Results",
+        "Tan and Bansal, EMNLP 2019.",
+        "Achieved the best performance,",
+        "with stronger gains over prior",
+        "work for questions that lead to",
+        "“binary” and “other” answers"
+      ]
+    },
+    {
+      "number": 78,
+      "source_text_sha256": "d16c0ada432fb6c33014641bf6a112e10f4f3605ec7106f919aa144d808d9e04",
+      "lines": [
+        "LXMERT: Fine-Tuning Experimental Results",
+        "Tan and Bansal, EMNLP 2019.",
+        "The representations also led to the best performance for an additional VQA dataset",
+        "and a visual reasoning task (i.e., does statement describe two images or not)"
+      ]
+    },
+    {
+      "number": 79,
+      "source_text_sha256": "e3d2b325c9237156f8ed6be0dec8330a54c96040c9ce285e4ff43842a2e792b8",
+      "lines": [
+        "Today’s Topics",
+        "• Visual question answering applications",
+        "• Visual question answering datasets",
+        "• Visual question answering evaluation",
+        "• Mainstream challenge 2015 winner: baseline approach",
+        "• Mainstream challenge 2019 winner: transformer-based approach",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 80,
+      "source_text_sha256": "e3d2b325c9237156f8ed6be0dec8330a54c96040c9ce285e4ff43842a2e792b8",
+      "lines": [
+        "Today’s Topics",
+        "• Visual question answering applications",
+        "• Visual question answering datasets",
+        "• Visual question answering evaluation",
+        "• Mainstream challenge 2015 winner: baseline approach",
+        "• Mainstream challenge 2019 winner: transformer-based approach",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 81,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

@@ -1,0 +1,918 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s01",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/01-Introduction.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2022/s01.pdf",
+    "sha256": "f6fa2ad8d6e8347ecea0e9f9c62455b98857676823421445383c9db6e5425251",
+    "page_count": 64,
+    "license_notice": "CC BY; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "2cbe2669a2e5e70be7701945859ee8741beb8b4d98cbcbb6d73cbe1198f30267",
+      "lines": [
+        "Neural Networks",
+        "and Deep Learning",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2022",
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "93be166ad020db0006505dc7ba7155a8e809f0fb64afc1dfc2f33e13791b16be",
+      "lines": [
+        "Today’s Topics",
+        "• Applications",
+        "• History of neural networks and deep learning",
+        "• How does a machine learn?",
+        "• Course logistics"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "93be166ad020db0006505dc7ba7155a8e809f0fb64afc1dfc2f33e13791b16be",
+      "lines": [
+        "Today’s Topics",
+        "• Applications",
+        "• History of neural networks and deep learning",
+        "• How does a machine learn?",
+        "• Course logistics"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "cb37288320326d69b2a3cf49758e02d4af85a994fa33f569d65454eec9f4d46c",
+      "lines": [
+        "Key Motivation",
+        "Systems that support humans by either",
+        "improving upon existing human capabilities",
+        "or providing new capabilities"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "fa96fa17a5a9264121b292fd536a149a53736fe391b277627fe5eda04ee2f96b",
+      "lines": [
+        "Neural Network and Deep Learning Solutions",
+        "Spam Detection"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "72449572ce028195bdda867e3cfdd84b67f03a097e1dc90cb749e5fdf35c3f63",
+      "lines": [
+        "Neural Network and Deep Learning Solutions",
+        "Information Retrieval"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "e720942b9aab5ca27c1c42dbd9d717899afb5bd489cc303a7c64006c3ef9eb14",
+      "lines": [
+        "Neural Network and Deep Learning Solutions",
+        "Recognition",
+        "(Face) (Speech) (Fraud)"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "0198b2d3a23df42e308cdf845e1ed4fb98ba6e1b27a3059e39b830ac99f202c7",
+      "lines": [
+        "Neural Network and Deep Learning Solutions",
+        "Robotics",
+        "(Self-driving Vehicles) (Medical Surgery) (Manufacturing)"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "b709dd811eb207261586259331c5fc6c49be4d586c19cdfb0752e8c06ba3208d",
+      "lines": [
+        "Neural Network and Deep Learning Solutions",
+        "Recommendation Systems"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "c5583c478f7c093ce74bfdda82f9065c4573f01e01aabc106e93cf2bf46b3100",
+      "lines": [
+        "Neural Network and Deep Learning Solutions",
+        "e.g., recognizing people",
+        "e.g., self-driving vehicle on Mars e.g., shopping without a cashier",
+        "Computer Vision Systems"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "928254ac6dcb88cdbd415acc979a8d034a1afc1118341aa4c2930db9806421db",
+      "lines": [
+        "Neural Network and Deep Learning Solutions",
+        "e.g., Amazon’s Echo with Alexa e.g., Google Home",
+        "Home Virtual Assistants"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "93be166ad020db0006505dc7ba7155a8e809f0fb64afc1dfc2f33e13791b16be",
+      "lines": [
+        "Today’s Topics",
+        "• Applications",
+        "• History of neural networks and deep learning",
+        "• How does a machine learn?",
+        "• Course logistics"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "35e0d3bf882163cede45d4c0a9dc4e8555a392f05cb0e6f170ea5e30f5381798",
+      "lines": [
+        "Origins: Computers",
+        "1945",
+        "First programmable",
+        "machine",
+        "ENIAC (Electronic Numerical Integrator and",
+        "Computer) created during World War II",
+        "(could compute 5,000 additions in one second)",
+        "First programmers"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "18026cab7117b432141ae0a94b515b66d3436da2ac486d6efbde8af976fbf8e4",
+      "lines": [
+        "Origins: Conceptual Framework",
+        "Turing test",
+        "1945",
+        "First programmable",
+        "machine",
+        "Turing Test: can ”C” decide whether text",
+        "responses come from a machine or human",
+        "Alan Turing",
+        "(1912-1954)",
+        "1950"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "9a946e4f149135b535c43a464284e546aeb6631358ad8d82dcf63a296979f9cc",
+      "lines": [
+        "Origins: Conceptual Framework",
+        "“Artificial intelligence” established as a field at a workshop",
+        "Turing test",
+        "1945",
+        "First programmable",
+        "machine AI birth",
+        "1950 1956"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "1f22cd043b9cbb99a325453dd893379690729088eec8e1aa619d55724a873f26",
+      "lines": [
+        "Origins: Conceptual Framework",
+        "“Artificial intelligence” established as a field at a workshop",
+        "Workshop Proposal: “… We propose that a 2 month, 10 man study of artificial intelligence be",
+        "carried out during the summer of 1956 at Dartmouth College in Hanover, New Hampshire. The",
+        "study is to proceed on the basis of the conjecture that every aspect of learning or any other",
+        "feature of intelligence can in principle be so precisely described that a machine can be made",
+        "to simulate it. An attempt will be made to find how to make machines use language, form",
+        "abstractions and concepts, solve kinds of problems now reserved for humans, and improve",
+        "themselves. We think that a significant advance can be made in one or more of these",
+        "problems if a carefully selected group of scientists work on it together for a summer…”",
+        "Turing test",
+        "1945",
+        "First programmable",
+        "machine AI birth",
+        "1950 1956"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "3cddf8787e8827ce87d5284059a1b455c0b1c26cb1f38616fc9dd8155ee209e3",
+      "lines": [
+        "Origins: Conceptual Framework",
+        "What human intelligence",
+        "might computers imitate?",
+        "Birth of fields such as speech",
+        "recognition, natural language",
+        "processing, and computer vision Turing test",
+        "1945",
+        "First programmable",
+        "machine AI birth",
+        "1950 1956"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "7d594fd57fc388d20b760e111a961c282a5043507b873690242b4c3b2ca16b97",
+      "lines": [
+        "Origins: Conceptual Framework",
+        "AI researcher Arthur Samuel coins the term",
+        "“machine learning” as:",
+        "“Field of study that gives computers the ability",
+        "to learn without being explicitly programmed.”",
+        "Machine",
+        "learning",
+        "Artificial Intelligence",
+        "(machines that do",
+        "“intelligent” things)",
+        "Machine Learning",
+        "(algorithms that “learn”",
+        "for themselves)",
+        "Turing test",
+        "1945",
+        "First programmable",
+        "machine AI",
+        "1950 1956 1959"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "d78328fd7e81b194bed8ee50252a7fdb359dc086bd342cba3eb3634fb5c50ebd",
+      "lines": [
+        "Motivation for Machines that “Learn”",
+        "• Process for hand-crafted rules:",
+        "Source: https://www.oreilly.com/library/view/hands-on-machine-learning/9781491962282/ch01.html"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "380085c1758b51b50731d59e520d0282e6eb11018b1052021de3bd93adf6035b",
+      "lines": [
+        "Motivation for Machines that “Learn”: Class Task",
+        "e.g., What rules would you use to answer: “Is a person in the image?”"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "f9bddbce472bc29921ea3dfd49d8d332fc6d6179890624f4264631137566fe87",
+      "lines": [
+        "Motivation for Machines that “Learn”",
+        "e.g., are these lines parallel?"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "f9bddbce472bc29921ea3dfd49d8d332fc6d6179890624f4264631137566fe87",
+      "lines": [
+        "Motivation for Machines that “Learn”",
+        "e.g., are these lines parallel?"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "f8f4b242f8e4727037090f95ad78ba5464fdf2d10e838da5d0a6542671ce6e45",
+      "lines": [
+        "Motivation for Machines that “Learn”",
+        "1. It is hard to hand-craft a complete set of rules",
+        "2. We, as humans, may not devise the best rules for a machine since our brains",
+        "(unconsciously) pre-process the data we sense"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "6222ca5eebcfb0cc52b509280eab3dbbc55e2cf31deb03d4837c69cf8bc0d1c1",
+      "lines": [
+        "Origins: Modern Neural Networks",
+        "Neural networks with",
+        "effective learning strategy",
+        "1986",
+        "Artificial Intelligence",
+        "(machines that do",
+        "“intelligent” things)",
+        "Machine Learning",
+        "(algorithms that “learn”",
+        "for themselves)",
+        "Neural",
+        "Networks",
+        "Machine",
+        "learning",
+        "Turing test",
+        "1945",
+        "First programmable",
+        "machine AI",
+        "1950 1956 1959"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "ce4af9c27589b4365bcd969ab89fc39eb5869b44eff1e37575602f1a53a09b34",
+      "lines": [
+        "Motivation for Neural Networks (NNs) Over",
+        "Other Machine Learning (ML) Approaches",
+        "Feature Extraction Prediction",
+        "e.g., Is a person present?",
+        "Yes",
+        "INPUT OUTPUT",
+        "OTHER ML APPROACH: HAND-CRAFTED FEATURES",
+        "What features would help predict yes/no?",
+        "e.g., corners, lines, and model of expected body parts as connected shapes",
+        "e.g., Pedro F Felzenszwalb and Daniel P Huttenlocher, IJCV 2004"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "9130053fa94a5eb40a81760865c1774796f73b3802c8f721996cb6c348917896",
+      "lines": [
+        "Motivation for Neural Networks (NNs) Over",
+        "Other Machine Learning (ML) Approaches",
+        "Feature Extraction Prediction",
+        "e.g., Is a person present?",
+        "Yes",
+        "INPUT OUTPUT",
+        "Challenging to hand-craft features!",
+        "OTHER ML APPROACH: HAND-CRAFTED FEATURES"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "47f482f710d398aa55c6f8d8cc30e82333017ad115fd2aaa74957747e7861136",
+      "lines": [
+        "Motivation for Neural Networks (NNs) Over",
+        "Other Machine Learning (ML) Approaches",
+        "Feature Extraction Prediction",
+        "e.g., Is a person present?",
+        "Yes",
+        "INPUT OUTPUT",
+        "Yes",
+        "Feature Extraction",
+        "NN APPROACH: REPRESENTATION LEARNING",
+        "Prediction",
+        "Course scope",
+        "OTHER ML APPROACH: HAND-CRAFTED FEATURES"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "d46dc4ab56e118b3210d32f319c4eeb4f43a78cc072e31be678f157825de1e68",
+      "lines": [
+        "Origins: Rises/Falls of Neural Network Popularity",
+        "Wave 1 Wave 2",
+        "(according to Google Books)",
+        "Ian Goodfellow, Yoshua Bengio, and Aaron Courville; Deep Learning, 2016",
+        "Neural networks are not new and",
+        "have been called many names:",
+        "Turing test",
+        "1945",
+        "First programmable",
+        "machine AI",
+        "1950 1956 1959",
+        "Neural networks with",
+        "effective learning strategy",
+        "1986",
+        "Machine",
+        "learning"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "7b6978e341fbe9943493812ef9440c91cf8f48f6c174fa570f3a4ea410eba47e",
+      "lines": [
+        "Origins: Rises/Falls of Neural Network Popularity",
+        "(Google Trends)",
+        "2012",
+        "Machine",
+        "learning",
+        "Turing test",
+        "1945",
+        "First programmable",
+        "machine AI",
+        "1950 1956 1959",
+        "Neural networks with",
+        "effective learning strategy",
+        "1986",
+        "Wave 3: rise of",
+        "“deep learning”",
+        "Machine learning popularity has closely matched rise of deep learning popularity"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "93be166ad020db0006505dc7ba7155a8e809f0fb64afc1dfc2f33e13791b16be",
+      "lines": [
+        "Today’s Topics",
+        "• Applications",
+        "• History of neural networks and deep learning",
+        "• How does a machine learn?",
+        "• Course logistics"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "64074483091b887c2ad55db245ca2d44b0761527d7b6d64116d14ce4edb74d19",
+      "lines": [
+        "General Idea",
+        "An algorithm learns from data",
+        "patterns that will be used to",
+        "make a prediction"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "64074483091b887c2ad55db245ca2d44b0761527d7b6d64116d14ce4edb74d19",
+      "lines": [
+        "General Idea",
+        "An algorithm learns from data",
+        "patterns that will be used to",
+        "make a prediction"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "92ec2993fc099830b106af1ba961c2c5f095ece78a7cfa77458241f9b751e53b",
+      "lines": [
+        "• Unsupervised Learning",
+        "• Identify patterns by",
+        "observing the data",
+        "Typical Algorithm Design",
+        "• Supervised Learning",
+        "• Identify patterns by studying",
+        "data with labels of expected",
+        "outputs for many examples"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "1745809b2608412aff990c7abef679d169f7865c7224e5b916015911b6d46911",
+      "lines": [
+        "Types of “Unsupervised” Learning Tasks",
+        "Hands-on Machine Learning with Scikit-Learn & TensorFlow, Aurelien Geron",
+        "Clustering Anomaly Detection"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "aaf67797bbfb3a3b0fd5af0cb375f2d026df0c2c8b219ed59a8713b3cd6c0190",
+      "lines": [
+        "Types of “Supervised” Learning Tasks",
+        "Regression",
+        "(predict continuous value)",
+        "Classification",
+        "(predict discrete value)",
+        "Hands-on Machine Learning with Scikit-Learn & TensorFlow, Aurelien Geron"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "ffbcdb8c434e67a298328e71989f73dde299bf4097e264023781a9797a11c078",
+      "lines": [
+        "• Model-based classification approach",
+        "• e.g., create model to separate x from o",
+        "Figure source: https://medium.com/greyatom/what-is-underfitting-and￾overfitting-in-machine-learning-and-how-to-deal-with-it-6803a989c76",
+        "Typical Supervised Learning Algorithm Design",
+        "Class volunteer:",
+        "1) Draw a straight line (linear equation)",
+        "2) Draw a parabola (quadratic equation)",
+        "3) Draw any curve",
+        "Models with increasing",
+        "representational capacity"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "71fabe9752e8cd923386ee9eacd285ded51d4c73764975f764a2ee16438b3fca",
+      "lines": [
+        "Algorithm Scope for Course: Last 65 Years",
+        "First programmable",
+        "machine",
+        "2012",
+        "Machine",
+        "learning",
+        "Turing test",
+        "1945",
+        "AI",
+        "1950 1956 1959",
+        "Neural networks with",
+        "effective learning strategy",
+        "1986",
+        "Wave 3: rise of",
+        "“deep learning”",
+        "Why study older algorithms? Modern deep learning algorithms",
+        "rely on techniques developed over the past 65 years.",
+        "Analogous to",
+        "understanding how",
+        "houses we live-in work:"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "a05eb690e15dbbbdf13280bef2b78220e68c374a8cc6eb29de88eb4d3f975226",
+      "lines": [
+        "Algorithm Scope for Course: Last 65 Years",
+        "First programmable",
+        "machine",
+        "2012",
+        "Machine",
+        "learning",
+        "Turing test",
+        "1945",
+        "AI",
+        "1950 1956 1959",
+        "Neural networks with",
+        "effective learning strategy",
+        "1986",
+        "Wave 3: rise of",
+        "“deep learning”"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "64074483091b887c2ad55db245ca2d44b0761527d7b6d64116d14ce4edb74d19",
+      "lines": [
+        "General Idea",
+        "An algorithm learns from data",
+        "patterns that will be used to",
+        "make a prediction"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "150b0a342cc4ddf232ac190a05a4ec2fc87663763c1e5e24374b650afc33f5e4",
+      "lines": [
+        "Data Types: What a Machine Learns From?",
+        "• Audio",
+        "• Input?",
+        "e.g.,"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "59f5018a86546671c0d4cac3f183b5bd0dfcd92ab3e6ecb893132be43a1cbacf",
+      "lines": [
+        "Data Types: What a Machine Learns From?",
+        "• Audio",
+        "• Input?",
+        "• Images",
+        "• Input?"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "77257dab3d0adef00b142a8b697cbbe421684c1f4a03306166d013fe54db4461",
+      "lines": [
+        "Data Types: What a Machine Learns From?",
+        "• Audio",
+        "• Input?",
+        "• Images",
+        "• Input?",
+        "• Video",
+        "• Input?",
+        "Time 1",
+        "1 hour",
+        "Analogous to:"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "0ba41213473612c15d8013cf8b61f9a0674e21a8fe522fdc3aafafa320a427dc",
+      "lines": [
+        "Data Types: What a Machine Learns From?",
+        "• Audio",
+        "• Input?",
+        "• Images",
+        "• Input?",
+        "• Video",
+        "• Input?",
+        "• Text",
+        "• Input?",
+        "e.g.,"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "b8cf2054eee19c46c2569bd80314f0a5fe459796f8364455d0ff5d37f5b29d1b",
+      "lines": [
+        "Data Types: What a Machine Learns From?",
+        "• Audio",
+        "• Input?",
+        "• Images",
+        "• Input?",
+        "• Video",
+        "• Input?",
+        "• Text",
+        "• Input?",
+        "• Multi-modal",
+        "• Input? - combination of the above"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "9ff69041ed5ff7a89ac5542e24d4d176382f6c9210e757de8b1bac3d8137df09",
+      "lines": [
+        "Data Types: Many Public Datasets Available",
+        "• Dataset creation is beyond the scope of this class",
+        "• We will benefit from other people’s efforts:",
+        "• Google Dataset Search",
+        "• Amazon’s AWS datasets",
+        "• Kaggle datasets",
+        "• Wikipedia’s list",
+        "• UC Irvine Machine Learning Repository",
+        "• Quora.com",
+        "• Reddit",
+        "• Dataportals.org",
+        "• Opendatamonitor.eu",
+        "• Quandl.com"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "f74a5bb2ac19186419ad6ef316a31bc652f0aee907727e245dee67a5cf1a2f25",
+      "lines": [
+        "Neural Networks: Key Ingredients for Success",
+        "Analogous to a Love Story of Partnering Up and Road Tripping Somewhere",
+        "An algorithm learns from data",
+        "on a processor the patterns that",
+        "will be used to make a prediction"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "6ca26acc59828597f5c58451ce0926f1098df15a5c2e4bbb2047ca9c222e238f",
+      "lines": [
+        "Key Challenge 1: How Long Does Learning Take?",
+        "An algorithm learns from data",
+        "on a processor the patterns that",
+        "will be used to make a prediction",
+        "Analogous to a Love Story of Partnering Up and Road Tripping Somewhere"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "ccd6865c322da49db8aae645082d1c51a8fb04042677d36bdcc43e91da286c0f",
+      "lines": [
+        "Key Challenge 1: How Long Does Learning Take?",
+        "e.g., Train Algorithms Using",
+        "GPUs (think Porsche) Instead of CPUs (think Golf Cart)"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "c861c24969cd5ff17d7039a33483c2189dc7a011b5f4736668669874c271194d",
+      "lines": [
+        "Key Challenge 2: Where Will You Go?",
+        "https://www.theverge.com/2",
+        "015/7/1/8880363/google￾apologizes-photos-app-tags￾two-black-people-gorillas",
+        "Two kids bought their mom a",
+        "camera for Mother's Day…",
+        "when they took portrait pictures",
+        "of each other, a message",
+        "flashed across the screen",
+        "asking, \"Did someone blink?\"",
+        "http://content.time.com/time/busines",
+        "s/article/0,8599,1954643,00.html"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "93be166ad020db0006505dc7ba7155a8e809f0fb64afc1dfc2f33e13791b16be",
+      "lines": [
+        "Today’s Topics",
+        "• Applications",
+        "• History of neural networks and deep learning",
+        "• How does a machine learn?",
+        "• Course logistics"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "61b5b4e705f419949dd5671c3cb030d1e7793da254d2cd7daad99007e26d8d06",
+      "lines": [
+        "Introductions",
+        "Instructor: Danna Gurari; aka, Dr. G",
+        "(preferred pronouns: she/her)",
+        "Teaching assistant: Samreen Anjum",
+        "(preferred pronouns: she/her)"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "a5d7ac722077a2c5ba70e73b494add44fe8ae8ffef88658efa8f0fef7c4c1080",
+      "lines": [
+        "Introductions",
+        "NameCoach: a way to share your",
+        "name pronunciation in Canvas",
+        "To record your name:",
+        "1. Find NameCoach in Canvas",
+        "courses page",
+        "2. Click on record button to",
+        "start",
+        "3. Check your recording by",
+        "clicking on play button",
+        "1. NameCoach 3. Play 2. Record/Edit"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "a2656633abcd0bdfb5ae1ef0441469866a07597acec0c111cc447ed180c446ba",
+      "lines": [
+        "Course Objectives",
+        "• Understand the key concepts for designing deep learning models:",
+        "1. Characterize the process to train and test deep learning algorithms",
+        "2. Identify the challenges for designing modern deep learning algorithms that",
+        "can harness today’s ‘big’ data",
+        "3. Recognize strengths and weaknesses of different deep learning algorithms",
+        "• Apply deep learning models to perform various AI tasks:",
+        "1. Experiment with deep learning libraries, including scikit-learn and Keras",
+        "2. Evaluate deep learning algorithms for tasks in various application domains,",
+        "including for analyzing text and images",
+        "3. Employ cloud computing resources in order to take advantage of modern",
+        "hardware and software platforms"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "a898f88dd67c0b45875184e6e274054ec06ac80952dae76838655ab949492cbd",
+      "lines": [
+        "Course Objectives",
+        "• Conduct and communicate original research:",
+        "1. Propose a novel research idea (this will be an iterative process)",
+        "2. Design and execute experiments to support the proposed idea",
+        "3. Write a research paper about the project",
+        "4. Create an oral presentation about the project"
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "0bc381c205c4e97d497cbca6450313ad97c756fdc408ea39dec019627f40eb98",
+      "lines": [
+        "Course Overview",
+        "• Website",
+        "• https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/Abo",
+        "utCourse.html",
+        "• Syllabus on website",
+        "• Grading :"
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "a4c698a0bfd0b541b6971e8534c933ca51350484bae55dfaba7eb193e86cbd92",
+      "lines": [
+        "Q&A: “What are the assignments?”",
+        "• 4 problem sets (first assignment due next week)",
+        "• 4 lab assignments",
+        "• Final project",
+        "• Proposal",
+        "• Outline",
+        "• Video presentation",
+        "• Peer evaluation",
+        "• Final project report",
+        "• Grading policies:",
+        "• Late policy: Penalized 1% per hour for up to 4 hours and no credit afterwards",
+        "• Regrade requests: Must be submitted within 2 weeks of receiving the grade to the TA. After",
+        "the allotted time frame, regrade requests will not be considered.",
+        "• Grading timeline",
+        "• Due to many students (108) and 1 grader, expect to receive grades ~1 week after submission"
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "325a03085fb877893f5646de5a6495572e1552b5b35e12b08ce2119342295979",
+      "lines": [
+        "Q&A: “Do I have the appropriate",
+        "pre-requisites/background?”",
+        "• You are expected to have programming competency as well as",
+        "experience with probability/statistics and linear algebra."
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "fba30e656f4e4bd3344504f4922b4a92e1e8d0ae47e5c56c4642af2493856538",
+      "lines": [
+        "Q&A: “What are required textbooks?”",
+        "Required",
+        "(available online for free) Strongly recommended"
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "7d4410be3eb520229eb4c4a359d5d48d0a951e3fab924b82f2601123cf4e38f9",
+      "lines": [
+        "Q&A: “How Do I Contact You for Questions?”",
+        "• Quick Questions: The instructor will stay after each class until 5pm.",
+        "• Piazza: We encourage you to first post any questions to Piazza. This can benefit",
+        "other students, who may have similar questions, to see the answers posted on",
+        "Piazza and it also allows peers to answer your questions. You can post",
+        "questions to Piazza from Canvas.",
+        "• Office Hours: The TA will host office hours on Tuesdays at 3pm MT, Thursdays at 5pm MT, and Fridays at 2pm MT. To attend, please enter your name on the",
+        "office hours spreadsheet shared in Canvas and Piazza and then join the video meeting link shared on Canvas.",
+        "• Appointments: Email the TA to make an appointment or solicit an answer. Please note that at least 24 hours notice will typically be needed before the TA",
+        "will be able to meet. The TA will involve the instructor for any items she is",
+        "unable to address."
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "3658794a89bbc1fd05d2f3103785f75d3c2ece8496656eb133f06cf11eb5ad37",
+      "lines": [
+        "My Experience Related to Deep Learning",
+        "2010-2015 2015-2017 2017-Present",
+        "PhD student designing",
+        "computer vision methods",
+        "to segment and track cells",
+        "in images and videos",
+        "Postdoctoral fellow",
+        "conducting research",
+        "projects related to vision",
+        "and language problems",
+        "Assistant professor",
+        "overseeing research projects",
+        "related to many vision and",
+        "language problems",
+        "e.g., image classification,",
+        "object detection, semantic",
+        "segmentation, object",
+        "tracking, image captioning,",
+        "visual question answering,",
+        "style transfer, image",
+        "inpainting, and image search",
+        "Is it edible or",
+        "poisonous?",
+        "2007-2010",
+        "Software developer and",
+        "project manager",
+        "helping to record and",
+        "analyze visible and",
+        "infrared video",
+        "Source: Boulder Imaging"
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "31b203c32159185b97696bb05aa2c627dc156c7f512db3c5bac716173501aec6",
+      "lines": [
+        "My Experience Related to Deep Learning",
+        "2010-2015 2015-2017 2017-Present",
+        "PhD student designing",
+        "computer vision methods",
+        "to segment and track cells",
+        "in images and videos",
+        "Postdoctoral fellow",
+        "conducting research",
+        "projects related to vision",
+        "and language problems",
+        "Assistant professor",
+        "overseeing research projects",
+        "related to many vision and",
+        "language problems",
+        "e.g., image classification,",
+        "object detection, semantic",
+        "segmentation, object",
+        "tracking, image captioning,",
+        "visual question answering,",
+        "style transfer, image",
+        "inpainting, and image search",
+        "Is it edible or",
+        "poisonous?",
+        "2007-2010",
+        "Software developer and",
+        "project manager",
+        "helping to record and",
+        "analyze visible and",
+        "infrared video",
+        "Source: Boulder Imaging",
+        "17 publications involving deep learning"
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "d9ee3e576b322e9afcd2dec060e52fc2d662ac46d0b944349c9cc252c58ae374",
+      "lines": [
+        "What is My “Why” for Teaching You…",
+        "WHY?",
+        "To guide and witness you",
+        "discover more about",
+        "your potential and your",
+        "passions",
+        "HOW?",
+        "By empowering you to become",
+        "proficient in one of my passions",
+        "WHAT?",
+        "Deep Learning"
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "93be166ad020db0006505dc7ba7155a8e809f0fb64afc1dfc2f33e13791b16be",
+      "lines": [
+        "Today’s Topics",
+        "• Applications",
+        "• History of neural networks and deep learning",
+        "• How does a machine learn?",
+        "• Course logistics"
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

@@ -1,0 +1,540 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s20",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/18-VisualDialog.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2022/s20.pdf",
+    "sha256": "d787fae39485e67cbad98b868dd7c6cae1b9725d84d8ddc67b0a7e942dda9caf",
+    "page_count": 50,
+    "license_notice": "CC BY; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "c40cea2c828fca68694b79a12d9de93670569077815be4f0cd98001ecab62018",
+      "lines": [
+        "Visual Dialog",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2022",
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "52522e788f68225d10400e95b863c597515ad66ef31099dc7bc7a2fe6f77a575",
+      "lines": [
+        "Review",
+        "• Last week:",
+        "• Visual question answering applications",
+        "• Visual question answering datasets",
+        "• Visual question answering evaluation",
+        "• Mainstream challenge 2015 winner: baseline approach",
+        "• Mainstream challenge 2019 winner: transformer-based approach",
+        "• Programming tutorial",
+        "• Assignments (Canvas)",
+        "• Lab assignment 4 due the week following spring break",
+        "• Final project proposal due in 3 weeks",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "3432b2face684e532fa2768c2e870f09ccf431e7ebcef8390c04a92c05dd2ce8",
+      "lines": [
+        "Today’s Topics",
+        "• Visual dialog applications",
+        "• Visual dialog dataset",
+        "• Visual dialog evaluation",
+        "• Mainstream 2017 challenges: baseline approaches"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "3432b2face684e532fa2768c2e870f09ccf431e7ebcef8390c04a92c05dd2ce8",
+      "lines": [
+        "Today’s Topics",
+        "• Visual dialog applications",
+        "• Visual dialog dataset",
+        "• Visual dialog evaluation",
+        "• Mainstream 2017 challenges: baseline approaches"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "6da5698071d3b570e93fb9910aeb27112306c086f43d4f10693ffdd08b354bc6",
+      "lines": [
+        "VQA Dialog",
+        "“hold a meaningful dialog with",
+        "humans in natural language",
+        "about visual content”",
+        "Das et al. Visual Dialog. CVPR 2017."
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "b70a0e0e49ac38c63c1dc3a012bb23ef3c75b51ccc51e3651e76916471d64ebc",
+      "lines": [
+        "VQA Dialog vs VQA and Image Descriptions",
+        "Visual dialog involves memory to answer follow-up questions",
+        "Das et al. Visual Dialog. CVPR 2017."
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "768f2393cf005284c9ff5faa1a6e3a776d980af73b12216716c60b1ce5c3a0de",
+      "lines": [
+        "Application: Visual Assistance for People with",
+        "Vision Loss"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "46e67b154776145368ee735eca171555701cca4225844f647c756c197f08c605",
+      "lines": [
+        "Applications: Medical",
+        "Kovaleva et al. Visual Dialog for Radiology: Data Curation and First Steps. 2019."
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "a1051446a3b16224ec522312ac9f24967667094232e93b308ae17ba216f92ec6",
+      "lines": [
+        "Application: Surveillance",
+        "Li et al. ISEE: An Intelligent Scene Exploration and Evaluation Platform for Large-Scale Visual Surveillance. 2019."
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "05bbf053515031cda3c623f17840ef9f32e995ac445ace4ae55ca4db5efc40b7",
+      "lines": [
+        "Application: Robotics",
+        "Singh et al. ISEE: Towards Environment Aware Social Robots using Visual Dialog",
+        "e.g., for a companion, psychologist,",
+        "and/or assistant in search and",
+        "rescue missions (e.g., fire fighters)"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "8c7a0275760a8205988d9a9e221be1aa7826dcd22a3c6fcd3c3a858d983b3500",
+      "lines": [
+        "Application: Robotics",
+        "e.g., for a companion"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "ff5cf197a1ca4f21ba60dfd6358d433f5484f29faa37510b310ecc962cf4b73f",
+      "lines": [
+        "For what other applications might visual",
+        "question answering systems be useful?"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "3432b2face684e532fa2768c2e870f09ccf431e7ebcef8390c04a92c05dd2ce8",
+      "lines": [
+        "Today’s Topics",
+        "• Visual dialog applications",
+        "• Visual dialog dataset",
+        "• Visual dialog evaluation",
+        "• Mainstream 2017 challenges: baseline approaches"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "cc569e6ded6b465145587b36fad1b83ac8af6d97ae6b362dd8c26a28a1625600",
+      "lines": [
+        "Dataset: Spectrum of Possible Tasks",
+        "Chit-chat",
+        "(want long dialogs)",
+        "Goal-oriented",
+        "(want brief dialogs that lead",
+        "to task accomplishment )"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "5648d532be696459e9d2a1a8fe4daa83cc2d46052128dbe43004240e9922087c",
+      "lines": [
+        "Popular Datasets",
+        "• GuessWhat?!",
+        "• VisDial"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "5648d532be696459e9d2a1a8fe4daa83cc2d46052128dbe43004240e9922087c",
+      "lines": [
+        "Popular Datasets",
+        "• GuessWhat?!",
+        "• VisDial"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "e85c3a3a642790aa5a88459c8823770ac2aac15561ce01b6d3d3f4a95d3dfe0e",
+      "lines": [
+        "GuessWhat!? – Crowdsourcing Task",
+        "De Vries et al. GuessWhat?! Visual object discovery through multi-modal dialogue. CVPR 2017.",
+        "2 roles filled by 2 people",
+        "Target answer",
+        "from questioner",
+        "Questioner asks yes/no/NA questions until",
+        "ready to select an answer from a list of options",
+        "Candidate images restricted to those",
+        "containing 3-20 objects “to avoid",
+        "trivial or overly complicated images”",
+        "and those larger than 500x500 pixels"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "fdd4d3baca88b0f66a85314c9c5580e76228e460cf0a50f9af36862d81b3cbf9",
+      "lines": [
+        "GuessWhat!? Statistics",
+        "• 66,537 images (from COCO)",
+        "• 821,889 QA pairs",
+        "• On average, 5.2 questions per dialog",
+        "De Vries et al. GuessWhat?! Visual object discovery through multi-modal dialogue. CVPR 2017."
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "5648d532be696459e9d2a1a8fe4daa83cc2d46052128dbe43004240e9922087c",
+      "lines": [
+        "Popular Datasets",
+        "• GuessWhat?!",
+        "• VisDial"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "8bfd6eedd040dea06c0a17178bfb4e654f2672a8b18bd5b09c404aa213021039",
+      "lines": [
+        "Crowdsourcing Task",
+        "Workers can end a conversation after 20 messages are exchanged (10 question-answer pairs)",
+        "Das et al. Visual Dialog. CVPR 2017."
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "cab1f1d9ab5f988efbc9f95248baa32492e156fa065919df0d091b48bc0c4eb7",
+      "lines": [
+        "Asking Crowdsourcing Interface",
+        "Das et al. Visual Dialog. CVPR 2017.",
+        "What is the benefit of not showing the image?",
+        "- No visual priming; questions help to create a mental model"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "8bfd6eedd040dea06c0a17178bfb4e654f2672a8b18bd5b09c404aa213021039",
+      "lines": [
+        "Crowdsourcing Task",
+        "Workers can end a conversation after 20 messages are exchanged (10 question-answer pairs)",
+        "Das et al. Visual Dialog. CVPR 2017."
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "37db86c41759fa8de21683eb1cf1b6caa0440527c7ebcc1b128f247e8bc76428",
+      "lines": [
+        "Answering Crowdsourcing Interface",
+        "Das et al. Visual Dialog. CVPR 2017."
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "a43930d9bb46931787645b53290b9280cf10baa481dde75388603ddf6ae1a9d9",
+      "lines": [
+        "Crowdsourcing Instructions",
+        "Das et al. Visual Dialog. CVPR 2017."
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "01eaa54d9e1209e10edaeeb8837d2f1922ff001b37a56720c6837b0655a154c3",
+      "lines": [
+        "VisDial Statistics",
+        "• ~140,000 images (from COCO)",
+        "• ~2.4M QA pairs with 10 QA pairs per image",
+        "Das et al. Visual Dialog. CVPR 2017."
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "5648d532be696459e9d2a1a8fe4daa83cc2d46052128dbe43004240e9922087c",
+      "lines": [
+        "Popular Datasets",
+        "• GuessWhat?!",
+        "• VisDial"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "b375bde139f349920f013ea38a4e38a4b09a31af261503de22c214d6b683918c",
+      "lines": [
+        "Popular Datasets: VisDial and GuessWhat?!",
+        "• What are biases of these datasets, and what might be the impact of",
+        "such biases on models trained and evaluated on these datasets?"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "3432b2face684e532fa2768c2e870f09ccf431e7ebcef8390c04a92c05dd2ce8",
+      "lines": [
+        "Today’s Topics",
+        "• Visual dialog applications",
+        "• Visual dialog dataset",
+        "• Visual dialog evaluation",
+        "• Mainstream 2017 challenges: baseline approaches"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "18cb1e51e147988bd3d87470e418f815b0ade42569ecd877b9ba1cf8d41b240f",
+      "lines": [
+        "GuessWhat?! Evaluation Metric",
+        "Chit-chat",
+        "(want long dialogs)",
+        "Goal-oriented",
+        "(want brief dialogs that lead",
+        "to task accomplishment )",
+        "Predict correct object, given visual",
+        "dialog and list of object options",
+        "De Vries et al. GuessWhat?! Visual object discovery through multi-modal dialogue. CVPR 2017."
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "18aee81480ee826338531e68ec16c3c7c6103e50a00e7ade47bb82a04fc9a01c",
+      "lines": [
+        "VisDial Evaluation Metric",
+        "Chit-chat",
+        "(want long dialogs)",
+        "Goal-oriented",
+        "(want brief dialogs that lead",
+        "to task accomplishment )",
+        "Evaluate for each new QA pair the predicted ranking of",
+        "answers using retrieval metrics (e.g., recall@k); 100",
+        "candidate answers are provided with the visual dialog"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "3432b2face684e532fa2768c2e870f09ccf431e7ebcef8390c04a92c05dd2ce8",
+      "lines": [
+        "Today’s Topics",
+        "• Visual dialog applications",
+        "• Visual dialog dataset",
+        "• Visual dialog evaluation",
+        "• Mainstream 2017 challenges: baseline approaches"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "9da25d5ba361be66d74d2f202a3e56ab249a0101ddab55c65daac31cd00ab239",
+      "lines": [
+        "GuessWhat?! Baseline Model",
+        "De Vries et al. GuessWhat?! Visual object discovery through multi-modal dialogue. CVPR 2017.",
+        "Input: dialog history, image, and…",
+        "Output: object",
+        "list of objects in the image"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "f90d7703601f1d6f28783a90158618b8e3f0bcebd529cd5c9761a0dc6b4b67b3",
+      "lines": [
+        "GuessWhat?! Baseline Model",
+        "De Vries et al. GuessWhat?! Visual object discovery through multi-modal dialogue. CVPR 2017.",
+        "Image representation: FC8 features from VGG16",
+        "Question representation: hidden state after",
+        "feeding all images and questions as a sequence"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "4218b1a1de3c800981ea436b28278d5b024f9784f158844b2d17ff69537c5c64",
+      "lines": [
+        "GuessWhat?! Baseline Model",
+        "De Vries et al. GuessWhat?! Visual object discovery through multi-modal dialogue. CVPR 2017.",
+        "Image and Question",
+        "representations concatenated"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "533e59203da698cb23ed357d30576e0d90611ee44cddd33a63d215e6d4a17568",
+      "lines": [
+        "GuessWhat?! Baseline Model",
+        "De Vries et al. GuessWhat?! Visual object discovery through multi-modal dialogue. CVPR 2017.",
+        "Object representation:",
+        "category and spatial features"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "1f8284ab06ec6e04adf47f7b2b8a7ed5475acd5a47f5b70a55e48679781d70b5",
+      "lines": [
+        "GuessWhat?! Baseline Model",
+        "De Vries et al. GuessWhat?! Visual object discovery through multi-modal dialogue. CVPR 2017.",
+        "Dot product taken between",
+        "concatenated I+Q representation",
+        "and all objects sent to softmax layer"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "21c461e55a1349820e87d64ddf6723ca1d1705550d76ef1dbb472be86724e735",
+      "lines": [
+        "GuessWhat?! Experimental Results",
+        "De Vries et al. GuessWhat?! Visual object discovery through multi-modal dialogue. CVPR 2017.",
+        "Ablation study that excluded image features revealed they are not helpful for prediction"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "b41dfa618ed9cf565192bc9c7c71e24c7d4b833631d0f3d3299e5af6c9c846d7",
+      "lines": [
+        "VisDial Baseline Model",
+        "Das et al. Visual Dialog. CVPR 2017.",
+        "Data Encoder Decoder Data"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "cecd1cf6c17c65b90632e0cd2098b17df865510d52a9d564f6700c8cae153416",
+      "lines": [
+        "VisDial Baseline Model",
+        "Das et al. Visual Dialog. CVPR 2017.",
+        "Encoder:",
+        "Memory",
+        "network",
+        "Decoder:",
+        "Discriminator",
+        "(softmax)",
+        "Question, image, and",
+        "GT dialog history",
+        "with image caption",
+        "Data"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "a3d033648c555524b239892b7875e473fa330bb3bff45c787915a95c6c87dc16",
+      "lines": [
+        "VisDial Baseline Model",
+        "Das et al. Visual Dialog. CVPR 2017."
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "998a7ab46164c0f7a6d0b0ea654680778fb0ac7258b61ba1ee421b1c6b4bd0a3",
+      "lines": [
+        "VisDial Baseline Model",
+        "Das et al. Visual Dialog. CVPR 2017.",
+        "Image representation: l2-activations",
+        "from penultimate layer of VGG-16"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "034e8beadd587a8ce5f59836fe3dd1d94569266864dab01c4adadb1312eb263a",
+      "lines": [
+        "VisDial Baseline Model",
+        "Das et al. Visual Dialog. CVPR 2017.",
+        "Question representation: last hidden",
+        "representation from input question"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "37de64ceaefcb0f040cb2b129f7c09acfff59cc47ee0a65395ca79a28169ad9c",
+      "lines": [
+        "VisDial Baseline Model",
+        "Das et al. Visual Dialog. CVPR 2017.",
+        "Dialog representation: each",
+        "caption and QA pair",
+        "encoded by the same LSTM",
+        "into hidden representations"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "1c1c6d30f717241b5eb24ec07535364bcc41d58c40b046024398d212fc667466",
+      "lines": [
+        "VisDial Baseline Model",
+        "Das et al. Visual Dialog. CVPR 2017.",
+        "Cross-modality representation:",
+        "concatenated features followed",
+        "by fully-connected layer with",
+        "tanh activation function"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "a145f09bc6ca571d3de6b37542c3de10211b6c9d3e6775dc9d0208b9c70452b0",
+      "lines": [
+        "VisDial Baseline Model",
+        "Das et al. Visual Dialog. CVPR 2017.",
+        "New encoder representation: attention",
+        "weight of each “fact” (i.e., caption, QA",
+        "pair) for the multimodal query used to",
+        "derive new representation"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "e4719846b20a44a64035c61e42f43c2c40887b31e05b08c66b30fb4b39bb2cd4",
+      "lines": [
+        "VisDial Baseline Model",
+        "Das et al. Visual Dialog. CVPR 2017.",
+        "Prediction: similarity between input",
+        "encoding and each candidate answer",
+        "measured using dot product; all",
+        "results passed through softmax layer"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "bc1980ebe6553f7bd184dc5b7e2fdc95fe9828e758f60cf077ecc6ed0df85e37",
+      "lines": [
+        "Qualitative Results",
+        "Das et al. Visual Dialog. CVPR 2017.",
+        "(color intensity indicates attention to the fact)"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "b4fda35afc88166d564f73254de45f385892692030429a8864d13119a2799f11",
+      "lines": [
+        "Qualitative Results",
+        "Das et al. Visual Dialog. CVPR 2017."
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "3432b2face684e532fa2768c2e870f09ccf431e7ebcef8390c04a92c05dd2ce8",
+      "lines": [
+        "Today’s Topics",
+        "• Visual dialog applications",
+        "• Visual dialog dataset",
+        "• Visual dialog evaluation",
+        "• Mainstream 2017 challenges: baseline approaches"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

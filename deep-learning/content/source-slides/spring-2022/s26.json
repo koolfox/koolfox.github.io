@@ -1,0 +1,890 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s26",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning-Spring2022/Lectures/21_ModelCompression.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2022/s26.pdf",
+    "sha256": "e33288b7459c6e52ae5711ff86decbd68b22a5186ece4857a960db951c027741",
+    "page_count": 70,
+    "license_notice": "CC BY; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "b9b9e5874d8c6bd2404037688ea0b1f3025fa6f9dc9b4eb6120a54da7fe86129",
+      "lines": [
+        "Model Compression",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2022",
+        "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "7809ce9461a8118582bd2ed153ab8d61118cbe7aacafd11262505da0f35f51e7",
+      "lines": [
+        "Review",
+        "• Last lecture topic:",
+        "• Multi-task learning",
+        "• Few-shot learning",
+        "• Zero-shot learning",
+        "• Assignments",
+        "• Final project proposal due Friday",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "8590ac22726f64c6212f2e16a7b8798458a0ae074345cb36daab92b80ea74e80",
+      "lines": [
+        "Today’s Topics",
+        "• Motivation",
+        "• Key idea: knowledge distillation",
+        "• Knowledge distillation for CNNs (vision problems)",
+        "• Knowledge distillation for Transformers (language problems)",
+        "• Latex tutorial"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "8590ac22726f64c6212f2e16a7b8798458a0ae074345cb36daab92b80ea74e80",
+      "lines": [
+        "Today’s Topics",
+        "• Motivation",
+        "• Key idea: knowledge distillation",
+        "• Knowledge distillation for CNNs (vision problems)",
+        "• Knowledge distillation for Transformers (language problems)",
+        "• Latex tutorial"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "5229f0d1b9533c1afb7d89f0cccbc5feb36377aa32f9f65c82778cb2568cad78",
+      "lines": [
+        "Trend: Parameter-Heavy Models",
+        "Vision – ImageNet classification",
+        "https://medium.com/building-the-metaverse/the￾metaverse-and-artificial-intelligence-ai-577343895411",
+        "Language – pretrained transformers"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "57c53174b05242eb1dd347c23a1fcbcfb19ac3e8b3cb14e4cec40344bf9bd611",
+      "lines": [
+        "Modern Neural Networks Are a Mismatch for",
+        "Many Real-World Applications",
+        "https://www.buzzfeednews.com/article/katienotopou",
+        "los/facebook-is-making-camera-glasses-ha-ha-oh-no",
+        "https://www.ephotozine.com/article/19-things￾to-look-out-for-in-a-smartphone-camera--31055",
+        "https://en.wikipedia.org/wiki/",
+        "Wearable_technology"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "3c3597801e3ecc264b0aad43d22352f9469063ac3f356641af4efbb2902e8e58",
+      "lines": [
+        "- Large inference time (i.e., incompatible for real-time applications)",
+        "- Large memory footprint (e.g., incompatible with limited memory on",
+        "edge devices)",
+        "- Large computational cost (e.g., incompatible with limited battery on",
+        "edge devices)",
+        "- Potential for large environmental costs",
+        "Modern Neural Networks Are a Mismatch for",
+        "Many Real-World Applications"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "e503904a0f273c1fcd8769150c4a1fae5a1bd846d2b24db0a691dc1a1de2e162",
+      "lines": [
+        "Idea: develop compact models so deep learning models",
+        "can be used more efficiently and for more applications"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "8590ac22726f64c6212f2e16a7b8798458a0ae074345cb36daab92b80ea74e80",
+      "lines": [
+        "Today’s Topics",
+        "• Motivation",
+        "• Key idea: knowledge distillation",
+        "• Knowledge distillation for CNNs (vision problems)",
+        "• Knowledge distillation for Transformers (language problems)",
+        "• Latex tutorial"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "2521cc2435cfdce8e2edd0bf8c00a0f38e1250915d2184fb13672b6247e8fef0",
+      "lines": [
+        "Popular Approach: Knowledge Distillation",
+        "Image source: https://www.waterford.org/education/teacher-student-relationships/",
+        "A student learns from a",
+        "knowledgeable teacher"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "5a41bf3abf0b44b3c9c7b4081c9493e521dad4f7e606d991e1e12604306362ec",
+      "lines": [
+        "Key Question: What is Knowledge?",
+        "http://ir.hit.edu.cn/~xiachongfeng/slides/Knowledge%20Distillation.pdf"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "695a51c86f69c18d628d838a3e7adf61360d0fa7df4171d54d42aaaaf848eaa1",
+      "lines": [
+        "Knowledge Is: Input to Output Mapping",
+        "http://ir.hit.edu.cn/~xiachongfeng/slides/Knowledge%20Distillation.pdf"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "322b90048b0fe7d4d3766aee89884286216d8dd52244c6709b2f45cf756621d2",
+      "lines": [
+        "Knowledge Is: Input to Output Mapping",
+        "Target mapping: ground truth (1-hot vector)"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "5387dfc85e7826631dc0e373bdf28459f53adc6798d0454c7b9260d101d2038c",
+      "lines": [
+        "Knowledge Is: Input to Output Mapping",
+        "Target mapping: probability distribution from a model offers",
+        "further insights into similarities and differences of categories",
+        "0 1"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "6c08a4832223ec7a11622bd3a260213acf4df5db7363c5b12ab07216330f0373",
+      "lines": [
+        "Knowledge Is: Input to Output Mapping",
+        "Target mapping: probability distribution from a model offers",
+        "further insights into similarities and differences of categories",
+        "- Attempts to identify ground truth category",
+        "- Also, shares that 2 has similar characteristics to 7 and 1",
+        "0 1",
+        "1",
+        "2",
+        "3",
+        "7",
+        "8",
+        "9"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "2cc83ee33c4e296a8c2a723d741fd5cc24672dc4efafc1a180ff3b9ad4fb136c",
+      "lines": [
+        "Knowledge Is: Input to Output Mapping",
+        "Target mapping: probability distribution from a model offers",
+        "further insights into similarities and differences of categories",
+        "- Attempts to identify ground truth category",
+        "- Also, shares that bear has similar characteristics to dog and cat",
+        "0 1",
+        "cat",
+        "bear",
+        "chair",
+        "dog",
+        "lamp",
+        "table"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "fcd47062982ca8baacb506d0c0632230d3063199d4daab0c703795f2eede3c9b",
+      "lines": [
+        "Knowledge Is: Input to Output Mapping",
+        "Target mapping: probability distribution from a model offers",
+        "further insights into similarities and differences of categories",
+        "- Attempts to identify ground truth category",
+        "- Also, shares that bear has similar characteristics to dog and cat",
+        "Idea: not only teach a compact student about the ground truth, but",
+        "also teach it about the relationships between categories",
+        "Hinton, Vinyals, and Dean. Distilling the knowledge in a neural network. arXiv 2015."
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "81178d6074b7c18b0cfffb258748a2066375816d9a40c54aa99cd47d7d4586e7",
+      "lines": [
+        "Knowledge Distillation: Teach Student the",
+        "“Dark Knowledge” of Teacher",
+        "Teacher",
+        "(pre-trained model)",
+        "Student",
+        "(to be trained)",
+        "Loss computed",
+        "to bring",
+        "student’s",
+        "distribution",
+        "closer to that of",
+        "the teacher"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "e2d54d7b13766dfd392df3d8396929c5d870da3186b0ec7721b12574baee894b",
+      "lines": [
+        "Knowledge Distillation: Teach Student the",
+        "“Dark Knowledge” of Teacher",
+        "Teacher",
+        "(pre-trained model)",
+        "Student",
+        "(to be trained)",
+        "To enhance",
+        "knowledge",
+        "transfer, enhance",
+        "the signal about",
+        "the relative",
+        "similarity of other",
+        "categories to the",
+        "predicted category"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "be000fe7500d40d988e8e4b54031f758b514cb26650f89b917898ffeab213c1c",
+      "lines": [
+        "Knowledge Distillation: Rebalance (“Soften”)",
+        "Probability Distribution Across Categories",
+        "Recall Softmax: converts vector of scores into a probability distribution that sums to 1",
+        "https://wandb.ai/authors/knowledge-distillation/reports/Distilling-Knowledge-in-Neural-Networks--VmlldzoyMjkxODk",
+        "Want to enhance",
+        "knowledge of this",
+        "relationship"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "e14089d179a1184e1ae46ff6d8823f786c370bfce5d6a4800b8974a2199df95f",
+      "lines": [
+        "Knowledge Distillation: Rebalance (“Soften”)",
+        "Probability Distribution Across Categories",
+        "Recall Softmax: converts vector of scores into a probability distribution that sums to 1",
+        "Useful tutorial: https://towardsdatascience.com/exploring-the-softmax-function-578c8b0fb15",
+        "Divide each node’s score by sum of",
+        "all entries to make them sum to 1",
+        "(normalization)",
+        "Number of classes",
+        "i = 1, …, K",
+        "Get rid of negative values while preserving original order of scores"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "b1a3156acff3d6b318993dcc6eaf59301cfa7a0271732aeae5632f35b106bb1f",
+      "lines": [
+        "Knowledge Distillation: Rebalance (“Soften”)",
+        "Probability Distribution Across Categories",
+        "What is the typical value of T used for softmax?",
+        "Idea: set the temperature to a value greater than 1",
+        "Generalized Softmax: converts vector of scores into a probability distribution that",
+        "sums to 1 with temperature"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "c183c56030461fa70f74f4c73170eefe0926dcaaf8cecab8552f5e46d6789338",
+      "lines": [
+        "Knowledge Distillation: Rebalance (“Soften”)",
+        "Probability Distribution Across Categories",
+        "Generalized Softmax: converts vector of scores into a probability distribution that",
+        "sums to 1 with temperature",
+        "https://wandb.ai/authors/knowledge-distillation/reports/Distilling-Knowledge-in-Neural-Networks--VmlldzoyMjkxODk",
+        "Larger T values means more information is available about which",
+        "categories the teacher found similar to the predicted category"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "6d288edb47f65bfb10a0b60c6562612f7aafcffad3160163f421b2b98269e1de",
+      "lines": [
+        "Knowledge Distillation: Rebalance (“Soften”)",
+        "Probability Distribution Across Categories",
+        "Generalized Softmax: converts vector of scores into a probability distribution that",
+        "sums to 1 with temperature; e.g.,",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "Larger T values means more information is available about which",
+        "categories the teacher found similar to the predicted category"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "5c8c9d533ffb3f8a0e514c7d8e97ff5e416ae0869fb2a449fd2775de295b036b",
+      "lines": [
+        "Knowledge Distillation: Rebalance (“Soften”)",
+        "Probability Distribution Across Categories",
+        "Generalized Softmax: converts vector of scores into a probability distribution that",
+        "sums to 1 with temperature; e.g., T=5",
+        "https://wandb.ai/authors/knowledge-distillation/reports/Distilling-Knowledge-in-Neural-Networks--VmlldzoyMjkxODk",
+        "Knowledge of this",
+        "relationship",
+        "enhanced from 0.01"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "9be0bffcb7ce5d58ebb7fbb38873ad4f4c17a4cb9102f31fde7f9ac53436484f",
+      "lines": [
+        "Knowledge Distillation: Teach Student the",
+        "“Dark Knowledge” of Teacher",
+        "Teacher",
+        "(pre-trained model)",
+        "Student",
+        "(to be trained)",
+        "“Distillation” loss",
+        "computed to",
+        "bring student’s",
+        "distribution closer",
+        "to that of the",
+        "teacher, using the",
+        "generalized",
+        "softmax equation"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "722bc8291261173242858cc6fd846a8261eaa967d16040c32d0e8db0186fbcba",
+      "lines": [
+        "Knowledge Distillation: Teach Student the",
+        "“Dark Knowledge” of Teacher",
+        "https://blog.csdn.net/qq_22749699/article/details/79460817",
+        "Total loss computed",
+        "during training is a",
+        "weighted sum of the",
+        "conventional cross",
+        "entropy loss and the",
+        "“distillation loss”",
+        "Teacher",
+        "(pretrained model)",
+        "Student",
+        "(to be trained)"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "c4f8829c32014005370056b0a8826f70958003a93ff59ed617d1f4366a687bb2",
+      "lines": [
+        "Knowledge Distillation: At Test Time",
+        "https://blog.csdn.net/qq_22749699/article/details/79460817",
+        "Student model"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "ebb6257868fcc079d106ce9803a5df251a79d025a5a9578ad4b0900adab181a2",
+      "lines": [
+        "Arguably, Any Neural Network Student Could",
+        "Learn from Any Neural Network Teacher",
+        "https://blog.csdn.net/qq_22749699/article/details/79460817",
+        "Teacher",
+        "(pretrained model)",
+        "Student",
+        "(to be trained)"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "247d44ab3ed3d131b1d09653fb68b9fb3ac7f9d79af7db34443381d3e2e49774",
+      "lines": [
+        "Arguably, Any Neural Network Student Could",
+        "Learn from Any Neural Network Teacher",
+        "https://blog.csdn.net/qq_22749699/article/details/79460817",
+        "Knowledge",
+        "distillation is a type",
+        "of transfer learning",
+        "Teacher",
+        "(pretrained model)",
+        "Student",
+        "(to be trained)"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "06910ac32f496f9c72ce778da7d51f840e6cedbbfd61f153120eec7885c94733",
+      "lines": [
+        "Knowledge Distillation Enhancement: Hints",
+        "Encourage student (FitNet) to mimic the teacher’s feature responses;",
+        "e.g., output of guided layer should match the output of hint layer",
+        "Romero et al. Fitnets: Hints for thin deep nets. ICLR 2015."
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "50ffaf39171f5005e1402a18bed4aa41ec28421f9569b5f2edef405557fe007d",
+      "lines": [
+        "Knowledge Distillation Enhancement: Hints",
+        "Encourage student (FitNet) to mimic the teacher’s feature responses;",
+        "e.g., output of guided layer should match the output of hint layer",
+        "Romero et al. Fitnets: Hints for thin deep nets. ICLR 2015.",
+        "Layer added to match size",
+        "of the hint’s output layer",
+        "Training conducted to learn",
+        "the intermediate feature"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "f5ad4338b35beaf9eb000c684c7501b537be1492f064641a7097edee36111f77",
+      "lines": [
+        "Knowledge Distillation Enhancement: Hints",
+        "Encourage student (FitNet) to mimic the teacher’s feature responses;",
+        "e.g., output of guided layer should match the output of hint layer",
+        "Romero et al. Fitnets: Hints for thin deep nets. ICLR 2015.",
+        "After learning the intermediate features,",
+        "the whole student network is trained"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "8590ac22726f64c6212f2e16a7b8798458a0ae074345cb36daab92b80ea74e80",
+      "lines": [
+        "Today’s Topics",
+        "• Motivation",
+        "• Key idea: knowledge distillation",
+        "• Knowledge distillation for CNNs (vision problems)",
+        "• Knowledge distillation for Transformers (language problems)",
+        "• Latex tutorial"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "a4db55d77f911ba19dc5fdb1f8b8c9f1def6b00c410786e339f2524995224ab8",
+      "lines": [
+        "Knowledge Distillation for Vision",
+        "• Object detection",
+        "• Image classification"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "a4db55d77f911ba19dc5fdb1f8b8c9f1def6b00c410786e339f2524995224ab8",
+      "lines": [
+        "Knowledge Distillation for Vision",
+        "• Object detection",
+        "• Image classification"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "e8038bb9670b89e44e3c12f720c32fea5a86a4fb58b7e7dea69b59b08a62ebaf",
+      "lines": [
+        "Recall Popular Detection Model: Faster R-CNN",
+        "Ren Shaoqing Ren et al. “Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks.” Neurips 2015."
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "ebc1e1127744e86c383e1411111a92ed49725891ef89910544deaab56ee4bfa7",
+      "lines": [
+        "Approach for Creating Compact Student Model",
+        "Chen et al. Learning efficient object detection models with knowledge distillation. Neurips 2017.",
+        "= backpropagation pathways",
+        "Faster R-CNN Predicts a category and parameters to",
+        "adjust the size and location of the input BB"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "891cd4997968b1ec4284db04e5d67709e979c0b891ec0183247696f5184bd8b6",
+      "lines": [
+        "Approach for Creating Compact Student Model",
+        "Chen et al. Learning efficient object detection models with knowledge distillation. Neurips 2017.",
+        "= backpropagation pathways",
+        "A loss is computed to encourage the student’s",
+        "intermediate features to match those of the teacher",
+        "Classification distillation loss",
+        "Regression distillation loss: computed",
+        "if the student’s distance to the GT",
+        "exceeds the teacher’s distance",
+        "Conventional loss",
+        "computed for",
+        "classification and",
+        "regression errors",
+        "compared to the GT"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "f87936c86043956fe113b3090ae3a01da77199fd0e50f74ea8ed98da1ee4775f",
+      "lines": [
+        "Experiments",
+        "Chen et al. Learning efficient object detection models with knowledge distillation. Neurips 2017.",
+        "mAP scores for 5 datasets",
+        "- means no distillation or, in other words, trained from scratch",
+        "For all student-teacher pairs, knowledge distillation not only yields more compact",
+        "and faster models but also leads to performance improvements",
+        "4 student models 3 teacher models"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "0b542bc2e24d06693ce9e57ef075fa6a98cfa60f09ae73fddd427623ac3fbad5",
+      "lines": [
+        "Experiments",
+        "Chen et al. Learning efficient object detection models with knowledge distillation. Neurips 2017.",
+        "mAP scores for 5 datasets",
+        "- means no distillation or, in other words, trained from scratch",
+        "Why do you think there are performance improvements from model compression?",
+        "4 student models 3 teacher models"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "ad82dca05a5e8629393169d21bc089fa010a7974687c1749c8a300ae8fee3d6d",
+      "lines": [
+        "Knowledge Distillation for Vision",
+        "• Object detection",
+        "• Image classification with attention transfer"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "995afe1eedd9c9cf2cb5698135e97ec675883ad12078ffa2457162382d9294d1",
+      "lines": [
+        "Recall Task: Predict Category from 1000 Options",
+        "J. Deng, W. Dong, R. Socher, L. Li, K. Li and L. Fei-Fei. ImageNet: A Large-Scale Hierarchical Image Database. 2009",
+        "• Evaluation metric: % correct",
+        "(top-1 and top-5 predictions)",
+        "• Dataset: ~1.5 million images",
+        "• Source: images scraped from",
+        "search engines, such as Flickr,",
+        "and labeled by crowdworkers"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "c92711176cff8e8e730434516dd53469449b7506d512f5b2d8923deb2f7cf600",
+      "lines": [
+        "Experiment: Do Bigger, More Accurate",
+        "Models Make Better Teachers?",
+        "Figure source: https://blog.csdn.net/qq_22749699/article/details/79460817",
+        "Cho and Hariharan. On the Efficacy of Knowledge Distillation. ICCV 2019",
+        "Tested Teachers:",
+        "ResNet18/34/50/152",
+        "Trained Student:",
+        "ResNet18"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "22383a789278e725020a1070bfc3c5010b4a3485ad45761e59b5a6ec5e34b163",
+      "lines": [
+        "Experiment: Do Bigger, More Accurate",
+        "Models Make Better Teachers?",
+        "Cho and Hariharan. On the Efficacy of Knowledge Distillation. ICCV 2019",
+        "(% = Top-1 error rates)",
+        "What is the student’s performance trend from larger, more accurate teachers?"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "63e51637c3be7fd5899661cdbdfdc73d022ed03894105d75de1efe8382911fdb",
+      "lines": [
+        "Experiment: Do Bigger, More Accurate",
+        "Models Make Better Teachers?",
+        "Cho and Hariharan. On the Efficacy of Knowledge Distillation. ICCV 2019",
+        "(% = Top-1 error rates)",
+        "Student performance not only drops for larger teachers but the models distilled",
+        "from teachers perform worse than training the student from scratch!"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "770cc795f573fa9fafe396ab59b7efa415caf7b43423609a91106025ba0d4408",
+      "lines": [
+        "Experiment: Why Might Student Performance",
+        "Drop as Teacher Size Grows?",
+        "Cho and Hariharan. On the Efficacy of Knowledge Distillation. ICCV 2019",
+        "1. More accurate models are more confident and so need higher",
+        "temperatures to learn the “dark knowledge” of category relationships",
+        "2. Student mimics teacher but the loss function is mismatched from the",
+        "evaluation metric",
+        "3. Student fails to accurately mimic teacher Experimental analysis",
+        "suggests this is the reason"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "09a94d88457112e1f190850bdd6cfc4da45855514b1a81568ffb8f0993fd8b6c",
+      "lines": [
+        "Experiment: Why Might Student Students Fail",
+        "to Mimic Teachers?",
+        "Cho and Hariharan. On the Efficacy of Knowledge Distillation. ICCV 2019",
+        "Hypothesis: student is",
+        "underfitting because of lower",
+        "capacity and so “minimizing one",
+        "loss (KD loss) at the expense of",
+        "the other (cross entropy loss)”"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "6271d1291c67a973a57df05b3095db8cc9fa304285f510ec969af827d5ed66b6",
+      "lines": [
+        "Experiment: Why Might Student Students Fail",
+        "to Mimic Teachers?",
+        "Cho and Hariharan. On the Efficacy of Knowledge Distillation. ICCV 2019",
+        "How to overcome this issue?",
+        "- Early stopping with KD loss",
+        "(ESKD) to leverage its benefit",
+        "at the start of training"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "e39e4c3a9479fdfe6699d354169635004ac415800a8df80a0c911053d65c181a",
+      "lines": [
+        "Experiments: How Does ESKD Compare To",
+        "Training A Student from Scratch?",
+        "Cho and Hariharan. On the Efficacy of Knowledge Distillation. ICCV 2019",
+        "Training a model with early stopping knowledge distillation",
+        "loss leads to better results than training from scratch!"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "8f0426006b38ce50c410087f563213c9f23bab74c900dd24ec342b9cb9b62879",
+      "lines": [
+        "Experiments: Does ESKD with Bigger, More",
+        "Accurate Models Make Better Teachers?",
+        "Cho and Hariharan. On the Efficacy of Knowledge Distillation. ICCV 2019",
+        "No; the student may still be struggling with underfitting",
+        "due to an insufficient representational capacity"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "09a02f3fb7768a41a183f8e900db123efcbaf4a51bc4773322171cd7852427c1",
+      "lines": [
+        "Experiments: To Address The Capacity Problem",
+        "Why Not Instead Distill to Intermediate Sizes?",
+        "Cho and Hariharan. On the Efficacy of Knowledge Distillation. ICCV 2019",
+        "Performs almost identically to a model that is distilled directly",
+        "from a large to small size; does not address the core problem:",
+        "The student must be in the solution space of the teacher"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "ad82dca05a5e8629393169d21bc089fa010a7974687c1749c8a300ae8fee3d6d",
+      "lines": [
+        "Knowledge Distillation for Vision",
+        "• Object detection",
+        "• Image classification with attention transfer"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "8590ac22726f64c6212f2e16a7b8798458a0ae074345cb36daab92b80ea74e80",
+      "lines": [
+        "Today’s Topics",
+        "• Motivation",
+        "• Key idea: knowledge distillation",
+        "• Knowledge distillation for CNNs (vision problems)",
+        "• Knowledge distillation for Transformers (language problems)",
+        "• Latex tutorial"
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "82ca5549e324980467a63a822d0310d32847cec7e634122d3ebf720d7449e2e5",
+      "lines": [
+        "Recall Popular Transformer Approach (e.g., BERT)",
+        "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html",
+        "Inference",
+        "Knowledge distillation needed at both",
+        "the pretraining and fine-tuning stages"
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "06af88e551031685be3c4143c0bab8610bdcfeb3a0ce28992831a3dd68c8ee6d",
+      "lines": [
+        "TinyBERT: Pre-training Knowledge Distillation",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "BERT-Base with 12",
+        "encoder layers and",
+        "12 attention heads",
+        "that produces a",
+        "768 representation:",
+        "Same architecture but",
+        "with 4 encoder layers",
+        "and it produces a 312",
+        "representation"
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "d2756a3447055b4a67a1e27ec9b8b1c7f2abe97196c1cbf666e893cb778bb819",
+      "lines": [
+        "TinyBERT: Pre-training Knowledge Distillation",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "109 million",
+        "parameters",
+        "14.5 million",
+        "parameters"
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "81d959c4e76a17b1fae22d27bc48e426aee9ffdff52c13b5b679e2c35de31797",
+      "lines": [
+        "TinyBERT: Pre-training Knowledge Distillation",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "Student learns from teacher’s output",
+        "(i.e.., logits) and intermediate layers:"
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "81d959c4e76a17b1fae22d27bc48e426aee9ffdff52c13b5b679e2c35de31797",
+      "lines": [
+        "TinyBERT: Pre-training Knowledge Distillation",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "Student learns from teacher’s output",
+        "(i.e.., logits) and intermediate layers:"
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "89d9f1c67c5bf7895e5f6e85a781222c5775d0412b6ecf69ed234618cda4e83f",
+      "lines": [
+        "TinyBERT: Pre-training Knowledge Distillation",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "Mean squared error computed",
+        "between encoded representations",
+        "with weight matrix converting",
+        "student’s 312 representation to",
+        "match teacher’s 768 representation"
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "81d959c4e76a17b1fae22d27bc48e426aee9ffdff52c13b5b679e2c35de31797",
+      "lines": [
+        "TinyBERT: Pre-training Knowledge Distillation",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "Student learns from teacher’s output",
+        "(i.e.., logits) and intermediate layers:"
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "be883bcb7f73a7dac006a6aec1d7a0b8a01d80ed32bd42812d6daf49084e00b2",
+      "lines": [
+        "TinyBERT: Pre-training Knowledge Distillation",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "Mean squared error computed",
+        "between all attention matrices",
+        "of the teacher and student"
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "2de740b2e0bbd2ea115362b310c268d2c5d72b0d47ce67b32384767517839be2",
+      "lines": [
+        "TinyBERT: Pre-training Knowledge Distillation",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "Mean squared error computed between",
+        "embedding representations with weight",
+        "matrix converting student’s representation",
+        "to match teacher’s representation",
+        "Student learns from teacher’s output",
+        "(i.e.., logits) and intermediate layers:"
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "64cfefcb3e029cd15ba15ce591669ffe68caf8dd9777a17ec5ffca4c425ad1c8",
+      "lines": [
+        "TinyBERT: Pre-training Knowledge Distillation",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "Training data matches",
+        "that used for BERT:",
+        "Wikipedia and",
+        "Toronto BookCorpus",
+        "Training run for three",
+        "epochs with errors of",
+        "intermediate layers"
+      ]
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "b509bf583ed720c7d1c902c156e514a13646a414f8084073563d55d62133e8cb",
+      "lines": [
+        "TinyBERT: Fine-tuning Knowledge Distillation",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "Fine-tuned BERT",
+        "for the target task",
+        "TinyBERT distilled",
+        "from pretrained BERT"
+      ]
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "c19f9c3625d1649cc13b3b6f0ae5a39b38ff4c805f7603d15936e8934d259046",
+      "lines": [
+        "TinyBERT: Fine-tuning Knowledge Distillation",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "Training run for 20",
+        "epochs with errors of",
+        "intermediate layers",
+        "and then for 30 epochs",
+        "using errors from the",
+        "prediction layer"
+      ]
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "46e103b437a23448a4e192b3019f0f41a4f324ea726961ad54ae5a498d4d7971",
+      "lines": [
+        "TinyBERT: Fine-tuning Knowledge Distillation",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "Compared to BERT-base, TinyBERT achieves nearly",
+        "comparable performance while containing ~13.3% of the",
+        "parameters and needing only ~10.6% of inference time"
+      ]
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "8590ac22726f64c6212f2e16a7b8798458a0ae074345cb36daab92b80ea74e80",
+      "lines": [
+        "Today’s Topics",
+        "• Motivation",
+        "• Key idea: knowledge distillation",
+        "• Knowledge distillation for CNNs (vision problems)",
+        "• Knowledge distillation for Transformers (language problems)",
+        "• Latex tutorial"
+      ]
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "8590ac22726f64c6212f2e16a7b8798458a0ae074345cb36daab92b80ea74e80",
+      "lines": [
+        "Today’s Topics",
+        "• Motivation",
+        "• Key idea: knowledge distillation",
+        "• Knowledge distillation for CNNs (vision problems)",
+        "• Knowledge distillation for Transformers (language problems)",
+        "• Latex tutorial"
+      ]
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

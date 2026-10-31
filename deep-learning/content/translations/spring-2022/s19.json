@@ -1,0 +1,4224 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s19",
+  "source_sha256": "ac21ac7df019144b12f66e33e7c3d6e93baf3a91b9d0a7eca80f78ddac98ea15",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "5a74f5da00f92dcaa3d67fb2a1b491a85d87cd27f6030e9156a067f46fcb86c4",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "دانشگاه کلرادو بولدر (University of Colorado Boulder)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "بهار ۲۰۲۲ (Spring 2022)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "61638948d8e63686c0eb58ea61a47dfcf8cfebbfd8835788d6f9dca5894ac707",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• هفتهٔ قبل:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردهای شرح تصویر (Image Captioning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌داده‌های شرح تصویر (Image Captioning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی شرح تصویر (Image Captioning)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش: خط لولهٔ رمزگذار–رمزگشا با توجه (Encoder decoder pipeline with attention)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• تکلیف‌ها (Canvas)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• نمره‌های تکلیف آزمایشگاهی 3 اعلام شده‌اند"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• موعد تحویل مجموعه‌مسئلهٔ 4 امروز، پیش از این جلسه بود"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "• موعد تحویل تکلیف آزمایشگاهی 4 هفتهٔ پس از تعطیلات بهاری است"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "bullet",
+          "fa": "• پرسشی دارید؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "e3d2b325c9237156f8ed6be0dec8330a54c96040c9ce285e4ff43842a2e792b8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردهای پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌داده‌های پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش اصلی سال 2015: رویکرد پایه (Baseline approach)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش اصلی سال 2019: رویکرد مبتنی بر ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی (Programming tutorial)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "e3d2b325c9237156f8ed6be0dec8330a54c96040c9ce285e4ff43842a2e792b8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردهای پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌داده‌های پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش اصلی سال 2015: رویکرد پایه (Baseline approach)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش اصلی سال 2019: رویکرد مبتنی بر ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی (Programming tutorial)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "26611360dd097bdaac327d0f13d0cd2c6daf390093d055f08921fe56988da936",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "وظیفه: پاسخ‌دادن به پرسش‌های بصری (Visual Questions; VQs)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "Does this picture look scary? (آیا این تصویر ترسناک به نظر می‌رسد؟)"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "Hi there can you please tell me what flavor this is? (سلام، لطفاً می‌توانید بگویید این چه طعمی است؟)"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "Which side of the room is the toilet on? (توالت کدام سمت اتاق است؟)"
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "Is my monitor on? (آیا نمایشگر من روشن است؟)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "sweet pepper",
+          "fa": "فلفل شیرین (sweet pepper)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "1a09b37b0039fd7b0fcda3482fe84ddfd7b4e059d67f5995f1daf2e7aa6913ba",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "کمک بصری برای افراد دارای کاهش بینایی (Vision Loss)؛ برای مثال،"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "aira; BeSpecular; Through the world’s eyes; Be My Eyes",
+          "fa": "aira؛ BeSpecular؛ از چشم‌های جهان (Through the world’s eyes)؛ Be My Eyes (چشم‌های من باش)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "1a09b37b0039fd7b0fcda3482fe84ddfd7b4e059d67f5995f1daf2e7aa6913ba",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "کمک بصری برای افراد دارای کاهش بینایی (Vision Loss)؛ برای مثال،"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "YouTube; vizwiz app; Home; Trending; Subscriptions; Library; History; Sign in to like videos, comment, and subscribe; SIGN IN; BEST OF YOUTUBE; Music; Sports; Gaming",
+          "fa": "YouTube؛ برنامهٔ vizwiz؛ خانه؛ پرطرفدار؛ اشتراک‌ها؛ کتابخانه؛ تاریخچه؛ برای پسندیدن ویدئوها، نظردادن و مشترک‌شدن وارد شوید؛ ورود؛ بهترین‌های YouTube؛ موسیقی؛ ورزش؛ بازی",
+          "verified": true
+        },
+        {
+          "en": "VizWiz Tutorial; UMBCHCC; 11K views; 7 years ago; In this video, we show you how to submit a question using VizWiz and the VoiceOver accessibility features on your Apple iOS ...",
+          "fa": "آموزش VizWiz؛ UMBCHCC؛ 11 هزار بازدید؛ 7 سال پیش؛ در این ویدئو نشان می‌دهیم چگونه با VizWiz و امکانات دسترس‌پذیری VoiceOver در Apple iOS خود پرسشی ارسال کنید…",
+          "verified": true
+        },
+        {
+          "en": "Identify Anything with VizWiz; The Carroll Center for the Blind; 723 views; 4 years ago; Today I’m going to show you a variety of applications I refer to as identification applications. On my Apple iPhone 4S I am going to ...",
+          "fa": "هر چیزی را با VizWiz شناسایی کنید؛ The Carroll Center for the Blind؛ 723 بازدید؛ 4 سال پیش؛ امروز برنامه‌های گوناگونی را نشان می‌دهم که آن‌ها را برنامه‌های شناسایی می‌نامم. در Apple iPhone 4S خود قرار است…",
+          "verified": true
+        },
+        {
+          "en": "VizWiz Demo - Tom Dekker; WoofManTom; 1.4K views; 7 years ago; Using VizWiz app on iPhone.",
+          "fa": "نمایش VizWiz - Tom Dekker؛ WoofManTom؛ 1.4 هزار بازدید؛ 7 سال پیش؛ استفاده از برنامهٔ VizWiz در iPhone.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "b539edbfd38ba5704ad765b87959b2cce53b32c5f5cf2f0f7d43acda15fe42b9",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پرسش‌وپاسخ بصری پزشکی (Medical VQA)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Abacha et al. VQA-Med: Overview of the Medical Visual Question Answering Task at ImageCLEF 2019"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(a) Q: what imaging method was used? A: us-d - doppler ultrasound",
+          "fa": "(a) Q: what imaging method was used? A: us-d - doppler ultrasound ((a) پرسش: از چه روش تصویربرداری استفاده شده است؟ پاسخ: us-d - سونوگرافی داپلر)",
+          "verified": true
+        },
+        {
+          "en": "(b) Q: which plane is the image shown in? A: axial",
+          "fa": "(b) Q: which plane is the image shown in? A: axial ((b) پرسش: تصویر در چه صفحه‌ای نمایش داده شده است؟ پاسخ: محوری (Axial))",
+          "verified": true
+        },
+        {
+          "en": "(e) Q: what abnormality is seen in the image? A: nodular opacity on the left#metastastic melanoma",
+          "fa": "(e) Q: what abnormality is seen in the image? A: nodular opacity on the left#metastastic melanoma ((e) پرسش: چه ناهنجاری در تصویر دیده می‌شود؟ پاسخ: کدورت ندولار در سمت چپ#ملانوم متاستاتیک (املای اصل: metastastic))",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": false,
+      "image_review_note_fa": "شرح‌های پزشکی زیر سه تصویر ترجمه شده‌اند؛ متن‌ها و تنظیمات بسیار ریز داخل تصویر دستگاه سونوگرافی هنوز برای پیاده‌سازی کامل خوانایی کافی ندارند."
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "a7d506e013612bf1e31c733589a60a98d6407a5a5361c3c56a5c0e7653828e91",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پایش ویدئویی (Video Surveillance)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Li et al. ISEE: An Intelligent Scene Exploration and Evaluation Platform for Large-Scale Visual Surveillance. 2019."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Attribute-based Query; Relationship-based Query",
+          "fa": "پرس‌وجوی مبتنی بر صفت (Attribute-based Query)؛ پرس‌وجوی مبتنی بر رابطه (Relationship-based Query)",
+          "verified": true
+        },
+        {
+          "en": "Q: Is it a person in the green bounding box? A: Yes. (Define the person as P1)",
+          "fa": "Q: Is it a person in the green bounding box? A: Yes. (Define the person as P1) (پرسش: آیا داخل جعبهٔ مرزی سبز یک شخص است؟ پاسخ: بله. (شخص را P1 تعریف کنید))",
+          "verified": true
+        },
+        {
+          "en": "Q: Is P1 female? A: Yes. Q: Does P1 hold a bag? A: Yes. Q: Does P1 has long hair and wear leather shoes? A: Yes. Q: Is P1 in padded jacket and skirt? A: No.",
+          "fa": "Q: Is P1 female? A: Yes. Q: Does P1 hold a bag? A: Yes. Q: Does P1 has long hair and wear leather shoes? A: Yes. Q: Is P1 in padded jacket and skirt? A: No. (پرسش: P1 زن است؟ پاسخ: بله. پرسش: P1 کیف دارد؟ پاسخ: بله. پرسش: P1 موی بلند و کفش چرمی دارد؟ پاسخ: بله. پرسش: P1 کاپشن پفی و دامن پوشیده است؟ پاسخ: خیر.)",
+          "verified": true
+        },
+        {
+          "en": "Q: Are they persons in both of the two red bounding boxes? A: Yes. (Define the upper one as P2, and define the lower one as P3). Q: Are P2 and P3 the same person? A: Yes.",
+          "fa": "Q: Are they persons in both of the two red bounding boxes? A: Yes. (Define the upper one as P2, and define the lower one as P3). Q: Are P2 and P3 the same person? A: Yes. (پرسش: آیا در هر دو جعبهٔ مرزی قرمز شخص وجود دارد؟ پاسخ: بله. (فرد بالا را P2 و فرد پایین را P3 تعریف کنید). پرسش: آیا P2 و P3 یک نفرند؟ پاسخ: بله.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "e96043f521f89036ac49641c7df3c0a8174fa81e4cb3afa714a8085b3b3614f1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "آموزش (برای مثال، برای کودکان پیش‌دبستانی (Preschoolers))"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "He et al. An Educational Robot System of Visual Question Answering for Preschoolers. 2017."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "به پرسش‌هایی دربارهٔ تعداد و رنگ اشیای تشخیص‌داده‌شده (Detected objects) پاسخ می‌دهد"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Tactile sensors; Front and rear microphones; Cameras; Speakers and earleds; Infrared emitter/receive and eyeleds; Chest button; 574mm",
+          "fa": "حسگرهای لمسی؛ میکروفون‌های جلو و عقب؛ دوربین‌ها؛ بلندگوها و LEDهای گوش؛ فرستنده/گیرندهٔ فروسرخ و LEDهای چشم؛ دکمهٔ سینه؛ 574 میلی‌متر",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "064c71c0cdabb419cd0b424a64ad2b3b3db46154f0ca7b995ac03fd7dbd5f411",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "راهنمای صوتی برای موزه‌ها و نگارخانه‌ها"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Bongini et al. Visual Question Answering for Cultural Heritage. 2020."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "TEXTUAL DESCRIPTION; QUESTION; IMAGE; Question Classifier; contextual; visual; Question Answering Model; Visual Question Answering Model",
+          "fa": "توصیف متنی؛ پرسش؛ تصویر؛ طبقه‌بند پرسش (Question Classifier)؛ بافتی (Contextual)؛ بصری (Visual)؛ مدل پرسش‌وپاسخ (Question Answering Model)؛ مدل پرسش‌وپاسخ بصری (Visual Question Answering Model)",
+          "verified": true
+        },
+        {
+          "en": "Bathers at Asnieres is an oil-on-canvas painting by the French artist Georges Pierre Seurat, the first of his two masterpieces on the monumental scale...",
+          "fa": "«آبتنی‌کنندگان در آنییر» (Bathers at Asnieres) نقاشی رنگ‌روغن روی بوم اثر هنرمند فرانسوی Georges Pierre Seurat و نخستین اثر از دو شاهکار عظیم اوست…",
+          "verified": true
+        },
+        {
+          "en": "Who is the author of this painting?",
+          "fa": "Who is the author of this painting? (خالق این نقاشی کیست؟)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "7a1e50264409f7626601f9e58b55c56f3b3ebf7ad6f23e8e4f3f8350f3e975ae",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "تبلیغات: درک پیام‌رسانی و شناسایی راهبردهای مؤثر متقاعدسازی (Persuasion Strategies)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Hussain et al. Automatic Understanding of Image and Video Advertisements. CVPR 2017."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "AVON; The secret is out... our new lipstick is more matte THAN MAC!; ASUS; SUMMER VIBES PROMO",
+          "fa": "AVON؛ راز برملا شده است… رژلب جدید ما مات‌تر از MAC است!؛ ASUS؛ تبلیغ حال‌وهوای تابستان (SUMMER VIBES PROMO)",
+          "verified": true
+        },
+        {
+          "en": "Physical abuse can be seen... But what about the unseen abuse? Verbal abuse hurts too.",
+          "fa": "آزار جسمی دیده می‌شود… اما آزار نادیدنی چه؟ آزار کلامی هم آسیب می‌زند.",
+          "verified": true
+        },
+        {
+          "en": "What should I do, according to this ad? I should try this lipstick. Why, according to this ad, should I take this action? Because it is better than the brand Mac.",
+          "fa": "What should I do, according to this ad? I should try this lipstick. Why, according to this ad, should I take this action? Because it is better than the brand Mac. (طبق این آگهی چه باید بکنم؟ باید این رژلب را امتحان کنم. طبق این آگهی چرا باید این کار را بکنم؟ چون از برند Mac بهتر است.)",
+          "verified": true
+        },
+        {
+          "en": "What should I do, according to this ad? I should sign up for the Asus promo. Why, according to this ad, should I take this action? Because there are free gifts.",
+          "fa": "What should I do, according to this ad? I should sign up for the Asus promo. Why, according to this ad, should I take this action? Because there are free gifts. (طبق این آگهی چه باید بکنم؟ باید برای تبلیغ Asus ثبت‌نام کنم. طبق این آگهی چرا باید این کار را بکنم؟ چون هدیهٔ رایگان دارد.)",
+          "verified": true
+        },
+        {
+          "en": "What should I do, according to this ad? I should prevent verbal abuse. Why, according to this ad, should I take this action? Because its as bad as physical abuse.",
+          "fa": "What should I do, according to this ad? I should prevent verbal abuse. Why, according to this ad, should I take this action? Because its as bad as physical abuse. (طبق این آگهی چه باید بکنم؟ باید جلوی آزار کلامی را بگیرم. طبق این آگهی چرا باید این کار را بکنم؟ چون به‌اندازهٔ آزار جسمی بد است.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "ff5cf197a1ca4f21ba60dfd6358d433f5484f29faa37510b310ecc962cf4b73f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "سامانه‌های پرسش‌وپاسخ بصری (Visual Question Answering) برای چه کاربردهای دیگری می‌توانند مفید باشند؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "e3d2b325c9237156f8ed6be0dec8330a54c96040c9ce285e4ff43842a2e792b8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردهای پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌داده‌های پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش اصلی سال 2015: رویکرد پایه (Baseline approach)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش اصلی سال 2019: رویکرد مبتنی بر ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی (Programming tutorial)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "690cb70cc2527a24ebe665e37d6e2630f8e9a10e3a6206c33c9fc1e36f2e3a72",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "وضعیت موجود (رویکرد ایجاد بیش از 14 مجموعه‌داده (Datasets))"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "math",
+          "fa": "15"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "1. انتخاب رده (Category Selection)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "1. شخص (Person)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "2. خودرو (Car)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "N. سیب (Apple)"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "مجموعهٔ محدودی از مفهوم‌ها"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "2. گردآوری تصویر (Image Collection)"
+        },
+        {
+          "source_lines": [
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "تصاویر ازپیش‌تأییدشده (کیفیت، حریم خصوصی)"
+        },
+        {
+          "source_lines": [
+            12,
+            13
+          ],
+          "kind": "text",
+          "fa": "3. گردآوری پرسش (Question Collection)"
+        },
+        {
+          "source_lines": [
+            14
+          ],
+          "kind": "text",
+          "fa": "یا (OR)"
+        },
+        {
+          "source_lines": [
+            15,
+            16
+          ],
+          "kind": "text",
+          "fa": "پرسش‌های ساختگی (Contrived Questions)"
+        },
+        {
+          "source_lines": [
+            17
+          ],
+          "kind": "text",
+          "fa": "ایجاد مجموعه‌داده (Dataset Creation)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "flickr; Google Image Search",
+          "fa": "flickr؛ جست‌وجوی تصویر Google",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "46ed74a41b9fbd48e9efd7ab32dd74853c3682a91ce1892631af881f3736fbbd",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، تولید پرسش (Question Generation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Agrawal et al. VQA: Visual Question Answering. CVPR 2015."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Stump a smart robot! Ask a question about this scene that a human can answer, but a smart robot probably can’t! Updated instructions: Please read carefully; Hide; Show",
+          "fa": "ربات هوشمند را درمانده کنید! دربارهٔ این صحنه پرسشی بپرسید که انسان بتواند پاسخ دهد، اما ربات هوشمند احتمالاً نتواند! دستورالعمل‌های به‌روزشده: لطفاً با دقت بخوانید؛ پنهان‌کردن؛ نمایش",
+          "verified": true
+        },
+        {
+          "en": "We have built a smart robot. It understands a lot about scenes. It can recognize and name all the objects, it knows where the objects are, it can recognize the scene type (e.g., kitchen, beach), people’s expressions and poses, and properties of objects (e.g., the color of objects, their texture). Your task is to stump this smart robot! In particular, it already knows answers to some questions about this scene. We will tell you what these questions are.",
+          "fa": "ما ربات هوشمندی ساخته‌ایم. چیزهای زیادی دربارهٔ صحنه‌ها می‌فهمد. می‌تواند همهٔ اشیا را تشخیص دهد و نام ببرد، می‌داند اشیا کجا هستند، نوع صحنه (برای مثال، آشپزخانه، ساحل)، حالت‌های چهره و بدن افراد و ویژگی‌های اشیا (برای مثال، رنگ و بافت آن‌ها) را تشخیص می‌دهد. وظیفهٔ شما درمانده‌کردن این ربات هوشمند است! به‌طور مشخص، از قبل پاسخ بعضی پرسش‌ها دربارهٔ این صحنه را می‌داند. به شما می‌گوییم آن پرسش‌ها چیست.",
+          "verified": true
+        },
+        {
+          "en": "Ask a question about this scene that this SMART robot probably can not answer, but any human can easily answer while looking at the scene in the image. IMPORTANT: The question should be about this scene. That is, the human should need the image to be able to answer the question - the human should not be able to answer the question without looking at the image.",
+          "fa": "دربارهٔ این صحنه پرسشی بپرسید که این ربات هوشمند احتمالاً نتواند پاسخ دهد، اما هر انسانی با نگاه‌کردن به صحنهٔ تصویر به‌آسانی پاسخ دهد. مهم: پرسش باید دربارهٔ همین صحنه باشد؛ یعنی انسان برای پاسخ‌دادن به پرسش به تصویر نیاز داشته باشد و بدون نگاه‌کردن به تصویر نتواند پاسخ دهد.",
+          "verified": true
+        },
+        {
+          "en": "Your work will get rejected if you do not follow the instructions below: Do not ask questions that are similar to the ones listed below each image. As mentioned, the robot already knows the answers to those questions for the scene in this image. Please ask about something different.",
+          "fa": "اگر از دستورالعمل‌های زیر پیروی نکنید کارتان رد می‌شود: پرسش‌هایی مشابه پرسش‌های فهرست‌شده زیر هر تصویر نپرسید. همان‌طور که گفته شد، ربات از قبل پاسخ آن پرسش‌ها را برای صحنهٔ این تصویر می‌داند. لطفاً دربارهٔ چیز متفاوتی بپرسید.",
+          "verified": true
+        },
+        {
+          "en": "Do not repeat questions. Do not ask the same questions or the same questions with minor variations over and over again across images. Think of a new question each time specific to the scene in each image. Each question should be a single question. Do not ask questions that have multiple parts or multiple sub-questions in them. Do not ask generic questions that can be asked of many other scenes. Ask questions specific to the scene in each image.",
+          "fa": "پرسش‌ها را تکرار نکنید. در تصاویر مختلف یک پرسش یا صورت‌های کمی متفاوت آن را بارها نپرسید. هر بار به پرسشی جدید و مختص صحنهٔ هر تصویر فکر کنید. هر پرسش باید یک پرسش واحد باشد. پرسش‌های دارای چند بخش یا چند زیرپرسش نپرسید. پرسش‌های عمومی که می‌توان دربارهٔ صحنه‌های بسیار دیگری پرسید نپرسید. پرسش‌های مختص صحنهٔ هر تصویر بپرسید.",
+          "verified": true
+        },
+        {
+          "en": "Below is a list of questions the smart robot can already answer. Please ask a different question about this scene that a human can answer if looking at the scene in the image (and not otherwise), but would stump this smart robot:",
+          "fa": "در زیر فهرست پرسش‌هایی آمده که ربات هوشمند از قبل می‌تواند پاسخ دهد. لطفاً پرسش متفاوتی دربارهٔ این صحنه بپرسید که انسان با نگاه به صحنهٔ تصویر (و فقط در آن صورت) بتواند پاسخ دهد، اما این ربات هوشمند را درمانده کند:",
+          "verified": true
+        },
+        {
+          "en": "Q1: What is unusual about this mustache?",
+          "fa": "Q1: What is unusual about this mustache? (پرسش 1: چه چیز این سبیل غیرعادی است؟)",
+          "verified": true
+        },
+        {
+          "en": "Q2: What is her facial expression? (The robot already knows the answer to this question.)",
+          "fa": "Q2: What is her facial expression? (The robot already knows the answer to this question.) (پرسش 2: حالت چهرهٔ او چیست؟ (ربات از قبل پاسخ این پرسش را می‌داند.))",
+          "verified": true
+        },
+        {
+          "en": "Write your question, different from the questions above, here to stump this smart robot.",
+          "fa": "پرسش خود را، متفاوت از پرسش‌های بالا، اینجا بنویسید تا این ربات هوشمند را درمانده کنید.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "bb60acbb84655dc3a8ceccbf16ab8c85a6adba7bb7caa9b7db194b57229ce8f6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، تولید پاسخ (Answer Generation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Agrawal et al. VQA: Visual Question Answering. CVPR 2015."
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "10 پاسخ از 10 مشارکت‌کنندهٔ جمع‌سپاری (Crowdworkers) گردآوری شد"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Q1: What is unusual about this mustache?",
+          "fa": "Q1: What is unusual about this mustache? (پرسش 1: چه چیز این سبیل غیرعادی است؟)",
+          "verified": true
+        },
+        {
+          "en": "Help Us Answer Questions About Images! Updated instructions: Please read carefully; Hide; Show",
+          "fa": "کمک کنید به پرسش‌های مربوط به تصاویر پاسخ دهیم! دستورالعمل‌های به‌روزشده: لطفاً با دقت بخوانید؛ پنهان‌کردن؛ نمایش",
+          "verified": true
+        },
+        {
+          "en": "Please answer some questions about images with brief answers. Your answers should be how most other people would answer the questions. If the question doesn’t make sense, please try your best to answer it and indicate via the buttons that you are unsure of your response. If you don’t follow the following instructions, your work will be rejected.",
+          "fa": "لطفاً به چند پرسش دربارهٔ تصاویر، کوتاه پاسخ دهید. پاسخ شما باید مانند پاسخ بیشتر افراد دیگر باشد. اگر پرسش بی‌معناست، لطفاً بهترین تلاشتان را برای پاسخ‌دادن بکنید و با دکمه‌ها نشان دهید که به پاسختان مطمئن نیستید. اگر از دستورالعمل‌های زیر پیروی نکنید، کارتان رد می‌شود.",
+          "verified": true
+        },
+        {
+          "en": "Answer the question based on what is going on in the scene depicted in the image. Your answer should be a brief phrase (not a complete sentence). “It is a kitchen.” → “kitchen”. For yes/no questions, please just say yes/no. “You bet it is!” → “yes”. For numerical answers, please use digits. “Ten.” → “10”.",
+          "fa": "بر اساس آنچه در صحنهٔ تصویر رخ می‌دهد به پرسش پاسخ دهید. پاسخ باید عبارتی کوتاه باشد (نه جملهٔ کامل). “It is a kitchen.” → “kitchen”. برای پرسش‌های بله/خیر، فقط yes/no بگویید. “You bet it is!” → “yes”. برای پاسخ‌های عددی از رقم استفاده کنید. “Ten.” → “10”.",
+          "verified": true
+        },
+        {
+          "en": "If you need to speculate (e.g., “What just happened?”), provide an answer that most people would agree on. If you don’t know the answer (e.g., specific dog breed), provide your best guess. Respond matter-of-factly and avoid using conversational language or inserting your opinion.",
+          "fa": "اگر لازم است حدس بزنید (برای مثال، «چه اتفاقی افتاد؟»)، پاسخی بدهید که بیشتر افراد بر آن توافق کنند. اگر پاسخ را نمی‌دانید (برای مثال، نژاد مشخص سگ)، بهترین حدستان را ارائه دهید. مستقیم و واقع‌گرایانه پاسخ دهید و از زبان محاوره‌ای یا افزودن نظر خود پرهیز کنید.",
+          "verified": true
+        },
+        {
+          "en": "Please answer the question using as few words as possible. A1: Write your answer here. Do you think you were able to answer the question correctly? (Clicking an option will take you to the next question.) no; maybe; yes; Page 1/2",
+          "fa": "لطفاً با کمترین تعداد واژهٔ ممکن پاسخ دهید. پاسخ 1: پاسختان را اینجا بنویسید. فکر می‌کنید توانسته‌اید به پرسش درست پاسخ دهید؟ (با انتخاب گزینه به پرسش بعد می‌روید.) خیر؛ شاید؛ بله؛ صفحهٔ 1/2",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "d3ed9428c423b1de89c1b2ad548b940c46e8f9a0683b1f5f0062e7721f9d00df",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چالش اصلی پرسش‌وپاسخ بصری (VQA؛ برگزارشده به‌مدت 6 سال)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://visualqa.org/workshop.html"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Visual Question Answering and Dialog Workshop; Location: Seaside Ballroom B, Long Beach Convention & Entertainment Center; at CVPR 2019, June 17, Long Beach, California, USA",
+          "fa": "کارگاه پرسش‌وپاسخ و گفت‌وگوی بصری؛ مکان: Seaside Ballroom B، مرکز همایش و سرگرمی لانگ‌بیچ؛ در CVPR 2019، روز 17 ژوئن، لانگ‌بیچ، کالیفرنیا، آمریکا",
+          "verified": true
+        },
+        {
+          "en": "Home; People; Code; Demo; Download; Evaluation; Challenge; Browse; Visualize; Sponsors; Terms; External; AI System",
+          "fa": "خانه؛ افراد؛ کد؛ نمایش؛ دریافت؛ ارزیابی؛ چالش؛ مرور؛ نمایش بصری؛ حامیان؛ شرایط؛ بیرونی؛ سامانهٔ هوش مصنوعی",
+          "verified": true
+        },
+        {
+          "en": "What is the mustache made of? bananas",
+          "fa": "What is the mustache made of? bananas (سبیل از چه ساخته شده است؟ موزها)",
+          "verified": true
+        },
+        {
+          "en": "Two zebra are walking around their pen at the zoo. Q1: Any people in the shot? A1: No, there aren’t any. Q2: Any other animal? A2: No, just zebras.",
+          "fa": "Two zebra are walking around their pen at the zoo. Q1: Any people in the shot? A1: No, there aren’t any. Q2: Any other animal? A2: No, just zebras. (دو گورخر در محوطه‌شان در باغ‌وحش راه می‌روند. پرسش 1: کسی در نما هست؟ پاسخ 1: خیر، کسی نیست. پرسش 2: جانور دیگری؟ پاسخ 2: خیر، فقط گورخرها.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "1606c5c7f1be0e40d7aede26b888614e7d765b4d3748ebfe57ab5c7c0badfeb2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "VizWiz: مورد کاربرد واقعی (Authentic Use Case)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Jeffrey Bigham et al. VizWiz: Nearly Real-time Answers to Visual Questions. UIST 2010"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "634ea483a99788618637b631e98537639bb50ee6c2c33357d04ba6f7a5a1b8a3",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "VizWiz: مورد کاربرد واقعی (Authentic Use Case)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "تصویر (Image)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Jeffrey Bigham et al. VizWiz: Nearly Real-time Answers to Visual Questions. UIST 2010"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "camera button to take a photo",
+          "fa": "دکمهٔ دوربین برای عکس‌گرفتن",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "0e9ca7a78ba9f7305ec8bdd4fc70f99eece2b806e291092ffe147641c89d45e2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "VizWiz: مورد کاربرد واقعی (Authentic Use Case)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "تصویر (Image)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "پرسش (Question)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "math",
+          "fa": "+"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Jeffrey Bigham et al. VizWiz: Nearly Real-time Answers to Visual Questions. UIST 2010"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Recording... Use the microphone button to record a question.",
+          "fa": "در حال ضبط… برای ضبط پرسش از دکمهٔ میکروفون استفاده کنید.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "279af8fedf120a24340ab8468a21c8d44b4515438c2c421163fee59f09961100",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "VizWiz: مورد کاربرد واقعی (Authentic Use Case)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "تصویر (Image)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "math",
+          "fa": "+"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "پرسش (Question)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Jeffrey Bigham et al. VizWiz: Nearly Real-time Answers to Visual Questions. UIST 2010"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "2466255d1cd14ecf20bc7e607bd72325f2b1d35687f645ec6398d7f7830ecbf6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "VizWiz: مورد کاربرد واقعی (Authentic Use Case)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "تصویر (Image)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "math",
+          "fa": "+"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "پرسش، به‌صورت اختیاری (Optionally)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "پاسخ (Answer)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "Jeffrey Bigham et al. VizWiz: Nearly Real-time Answers to Visual Questions. UIST 2010"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "dee8fe0e0766a5640742ed61de8dd57adcd2bf66836382db57844b098d901600",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "VizWiz: مورد کاربرد واقعی (Authentic Use Case)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "کاربران با اشتراک‌گذاری 44,799 درخواست (62%) برای ایجاد مجموعه‌داده (Dataset) موافقت کردند"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Jeffrey Bigham et al. VizWiz: Nearly Real-time Answers to Visual Questions. UIST 2010"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "6e477971389a92984f16114bbf76fa818a9e3a42adb6fbe28e3c15110e3b2396",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "VizWiz: مورد کاربرد واقعی (Authentic Use Case)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "ناشناس‌سازی (Anonymization)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "1. پرسش‌ها را پیاده‌سازی متنی کنید (صدا حذف می‌شود)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "2. تصاویر را دوباره ذخیره کنید (فراداده (Metadata) حذف می‌شود)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Gurari et al. CVPR 2018"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "3aa1d6dad1ad7d5975df713bb7c39684d8c65740b6d11543c90b5cf0be93282a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "VizWiz: مورد کاربرد واقعی (Authentic Use Case)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Gurari et al. CVPR 2018"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "math",
+          "fa": "26"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "پالایش داخلی (In-House Filtering؛ اطلاعات شناسایی‌کنندهٔ فرد)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Anonymization; 1. Transcribe questions; 2. Re-save images",
+          "fa": "ناشناس‌سازی (Anonymization)؛ 1. پیاده‌سازی متنی پرسش‌ها؛ 2. ذخیرهٔ دوبارهٔ تصاویر",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "03e52a28c30aa8f88bb0a0d2e84ea72b36f9ee8755758978f654947b3c9de99a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "VizWiz: مورد کاربرد واقعی (Authentic Use Case)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Gurari et al. CVPR 2018"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "math",
+          "fa": "27"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "پالایش داخلی (In-House Filtering)؛ برچسب‌گذاری داده‌ها (Data Labeling؛ شرح‌ها و پاسخ‌های باکیفیت)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Anonymization; 1. Transcribe questions; 2. Re-save images",
+          "fa": "ناشناس‌سازی (Anonymization)؛ 1. پیاده‌سازی متنی پرسش‌ها؛ 2. ذخیرهٔ دوبارهٔ تصاویر",
+          "verified": true
+        },
+        {
+          "en": "amazon mechanical turk",
+          "fa": "amazon mechanical turk",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "14c5bf59f51a83f38c5aeb1e877a1c0631aa2426c5dd37701808dd03c4de713a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "VizWiz: مورد کاربرد واقعی (Authentic Use Case)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Gurari et al. CVPR 2018"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "پرسش‌وپاسخ بصری (VQA): 32,842 جفت تصویر/پرسش ← 328,420 پاسخ"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "840a2b1b61b412a28050b6ac43435e3f623c87853eb52ebfe0fdd6231770810c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "VizWiz: مورد کاربرد واقعی (Authentic Use Case؛ https://vizwiz.org)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Browse the Dataset; Jump to page; Previous Page; Next Page; Showing images 1-50 out of 31,704 matching images. Images are displayed from Training and Validation sets only. Hover over image to zoom in.",
+          "fa": "مرور مجموعه‌داده؛ رفتن به صفحه؛ صفحهٔ قبل؛ صفحهٔ بعد؛ نمایش تصاویر 1-50 از 31,704 تصویر منطبق. فقط تصاویر بخش‌های آموزش و اعتبارسنجی نمایش داده می‌شوند. برای بزرگ‌نمایی نشانگر را روی تصویر ببرید.",
+          "verified": true
+        },
+        {
+          "en": "Search; Within visual question (e.g., shirt color); Within answers to visual question (e.g., blue); Within captions (e.g., brownie cookie); Image by filename (e.g., VizWiz_train_00000931.jpg); Expand Summary of Images",
+          "fa": "جست‌وجو؛ در پرسش بصری (برای مثال، رنگ پیراهن)؛ در پاسخ‌های پرسش بصری (برای مثال، آبی)؛ در شرح‌ها (برای مثال، کوکی براونی)؛ تصویر بر اساس نام پرونده (برای مثال، VizWiz_train_00000931.jpg)؛ بازکردن خلاصهٔ تصاویر",
+          "verified": true
+        },
+        {
+          "en": "Filter; Reasons why answers differ: LQI - Low quality image; IVE - Insufficient visual evidence - answer not present in the image; INV - Invalid question; DFF - Difficult question; AMB - Ambiguous question; SBJ - Subjective question",
+          "fa": "فیلتر؛ دلایل تفاوت پاسخ‌ها: LQI - تصویر کم‌کیفیت؛ IVE - شواهد بصری ناکافی، پاسخ در تصویر وجود ندارد؛ INV - پرسش نامعتبر؛ DFF - پرسش دشوار؛ AMB - پرسش مبهم؛ SBJ - پرسش ذهنی",
+          "verified": true
+        },
+        {
+          "en": "Image 1: Vizwiz_train_00017927.jpg; Visual question: What is in this box? Answers: 1. spaghetti; 2. spaghetti meatballs; 3. spaghetti meatballs; 4. spaghetti meatballs; 5. pasta meatballs; 6. spaghetti meatballs; 7. pasta; 8. spaghetti meatballs; 9. spaghetti meatballs; 10. spaghetti meatballs",
+          "fa": "Image 1: Vizwiz_train_00017927.jpg; Visual question: What is in this box? Answers: 1. spaghetti; 2. spaghetti meatballs; 3. spaghetti meatballs; 4. spaghetti meatballs; 5. pasta meatballs; 6. spaghetti meatballs; 7. pasta; 8. spaghetti meatballs; 9. spaghetti meatballs; 10. spaghetti meatballs (تصویر 1: Vizwiz_train_00017927.jpg؛ پرسش بصری: در این جعبه چیست؟ پاسخ‌ها: 1. اسپاگتی؛ 2. اسپاگتی و گوشت‌قلقلی؛ 3. اسپاگتی و گوشت‌قلقلی؛ 4. اسپاگتی و گوشت‌قلقلی؛ 5. پاستا و گوشت‌قلقلی؛ 6. اسپاگتی و گوشت‌قلقلی؛ 7. پاستا؛ 8. اسپاگتی و گوشت‌قلقلی؛ 9. اسپاگتی و گوشت‌قلقلی؛ 10. اسپاگتی و گوشت‌قلقلی)",
+          "verified": true
+        },
+        {
+          "en": "1. A box of Stouffer’s spaghetti and meatballs with the words “Nature Classics: Accented with spices” written on the box.",
+          "fa": "1. A box of Stouffer’s spaghetti and meatballs with the words “Nature Classics: Accented with spices” written on the box. (1. جعبهٔ اسپاگتی و گوشت‌قلقلی Stouffer’s که روی آن عبارت «Nature Classics: با طعم ادویه‌ها» نوشته شده است.)",
+          "verified": true
+        },
+        {
+          "en": "2. A frozen food box of spaghetti with meatballs.",
+          "fa": "2. A frozen food box of spaghetti with meatballs. (2. جعبهٔ غذای منجمد اسپاگتی با گوشت‌قلقلی.)",
+          "verified": true
+        },
+        {
+          "en": "3. A microwavable box of packaged spaghetti with meatballs.",
+          "fa": "3. A microwavable box of packaged spaghetti with meatballs. (3. جعبهٔ اسپاگتی بسته‌بندی‌شده با گوشت‌قلقلی، قابل‌گرم‌کردن در مایکروویو.)",
+          "verified": true
+        },
+        {
+          "en": "4. A package of Stouffer’s microwave spaghetti and meatballs.",
+          "fa": "4. A package of Stouffer’s microwave spaghetti and meatballs. (4. بستهٔ اسپاگتی و گوشت‌قلقلی مایکروویوی Stouffer’s.)",
+          "verified": true
+        },
+        {
+          "en": "5. A quick cooking box meal of spaghetti noodles and meatballs.",
+          "fa": "5. A quick cooking box meal of spaghetti noodles and meatballs. (5. غذای جعبه‌ای زودپزِ رشتهٔ اسپاگتی و گوشت‌قلقلی.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "3f7b01d657e2ba9d91d0fd1ee0ffa99a501e9a1c99a7692ec903b809e5a6fa61",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چالش بزرگ VizWiz-VQA (چهارمین سال در 2022)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://vizwiz.org"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Home; Browse Dataset; Tasks & Datasets; Workshops; Acknowledgments; 2022 VizWiz Grand Challenge Workshop; Visual Question Answering; Answering Grounding; Few-Shot Object Recognition",
+          "fa": "خانه؛ مرور مجموعه‌داده؛ وظیفه‌ها و مجموعه‌داده‌ها؛ کارگاه‌ها؛ سپاسگزاری؛ کارگاه چالش بزرگ VizWiz سال 2022؛ پرسش‌وپاسخ بصری؛ مکان‌یابی پاسخ (در اصل: Answering Grounding)؛ بازشناسی شیء کم‌نمونه (Few-Shot Object Recognition)",
+          "verified": true
+        },
+        {
+          "en": "Q: Does this foundation have any sunscreen? A: yes",
+          "fa": "Q: Does this foundation have any sunscreen? A: yes (پرسش: آیا این کرم‌پودر ضدآفتاب دارد؟ پاسخ: بله)",
+          "verified": true
+        },
+        {
+          "en": "Q: What is this? A: 10 euros. Q: What color is this? A: green",
+          "fa": "Q: What is this? A: 10 euros. Q: What color is this? A: green (پرسش: این چیست؟ پاسخ: 10 یورو. پرسش: چه رنگی است؟ پاسخ: سبز)",
+          "verified": true
+        },
+        {
+          "en": "Q: What is this? A: dog. Q: What does the package say? A: burrito",
+          "fa": "Q: What is this? A: dog. Q: What does the package say? A: burrito (پرسش: این چیست؟ پاسخ: سگ. پرسش: روی بسته چه نوشته؟ پاسخ: بوریتو)",
+          "verified": true
+        },
+        {
+          "en": "Q: What type of pills are these? A: unsuitable image. Q: What type of soup is this? A: unsuitable image. Q: Who is this mail for? A: unanswerable",
+          "fa": "Q: What type of pills are these? A: unsuitable image. Q: What type of soup is this? A: unsuitable image. Q: Who is this mail for? A: unanswerable (پرسش: این‌ها چه نوع قرصی هستند؟ پاسخ: تصویر نامناسب. پرسش: این چه نوع سوپی است؟ پاسخ: تصویر نامناسب. پرسش: این نامه برای کیست؟ پاسخ: پاسخ‌ناپذیر)",
+          "verified": true
+        },
+        {
+          "en": "Q: What is this? A: crystal. Q: How many tablets in this box? A: 8",
+          "fa": "Q: What is this? A: crystal. Q: How many tablets in this box? A: 8 (پرسش: این چیست؟ پاسخ: کریستال. پرسش: چند قرص در این جعبه است؟ پاسخ: 8)",
+          "verified": true
+        },
+        {
+          "en": "67 Blind and low-vision collectors; 486 Objects; 3,822 Videos; 2,687,934 Frames",
+          "fa": "67 گردآورندهٔ نابینا و کم‌بینا؛ 486 شیء؛ 3,822 ویدئو؛ 2,687,934 فریم",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "a0118226c05092eba3385ac10574a444de3afa8220fbf271e8568318bec4142f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "تفاوت میان وضعیت موجود و مورد کاربرد دنیای واقعی (Real-World Use Case)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "پالایش داخلی (In-House Filtering)؛ برچسب‌گذاری داده‌ها (Data Labeling)؛ برنامهٔ پرکاربرد (Widely-Used Application)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Anonymization; 1. Transcribe questions; 2. Re-save images",
+          "fa": "ناشناس‌سازی (Anonymization)؛ 1. پیاده‌سازی متنی پرسش‌ها؛ 2. ذخیرهٔ دوبارهٔ تصاویر",
+          "verified": true
+        },
+        {
+          "en": "amazon mechanical turk",
+          "fa": "amazon mechanical turk",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "e3d2b325c9237156f8ed6be0dec8330a54c96040c9ce285e4ff43842a2e792b8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردهای پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌داده‌های پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش اصلی سال 2015: رویکرد پایه (Baseline approach)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش اصلی سال 2019: رویکرد مبتنی بر ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی (Programming tutorial)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "65d20b854989b4e0c3066130a6626eb609ff5171e91c0085f9f1b6a94010e81a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "فعالیت کلاسی: به پرسش بصری (Visual Question) پاسخ دهید"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "Does this picture look scary? (آیا این تصویر ترسناک به نظر می‌رسد؟)"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "Hi there can you please tell me what flavor this is? (سلام، لطفاً می‌توانید بگویید این چه طعمی است؟)"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "Which side of the room is the toilet on? (توالت کدام سمت اتاق است؟)"
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "Is my monitor on? (آیا نمایشگر من روشن است؟)"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "math",
+          "fa": "(1) (2) (3) (4)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "sweet pepper",
+          "fa": "فلفل شیرین (sweet pepper)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "e9ab2c5402a4de8cb8c7e1a673d5b44262d02c3c5228fbe6783568416176e29d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پاسخ‌های جمع‌سپاری‌شده (Crowdsourced Answers)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "(1) sweet pepper (فلفل شیرین)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "(2) sweet pepper (فلفل شیرین)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "(3) sweet pepper (فلفل شیرین)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "(4) sweet pepper (فلفل شیرین)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "(5) sweet pepper (فلفل شیرین)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "literal",
+          "fa": "(6) sweet pepper (فلفل شیرین)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "literal",
+          "fa": "(7) sweet pepper (فلفل شیرین)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "literal",
+          "fa": "(8) sweet pepper (فلفل شیرین)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "literal",
+          "fa": "(9) sweet pepper (فلفل شیرین)"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "literal",
+          "fa": "(10) sweet pepper (فلفل شیرین)"
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "Does this picture look scary? (آیا این تصویر ترسناک به نظر می‌رسد؟)"
+        },
+        {
+          "source_lines": [
+            13,
+            14
+          ],
+          "kind": "text",
+          "fa": "Hi there can you please tell me what flavor this is? (سلام، لطفاً می‌توانید بگویید این چه طعمی است؟)"
+        },
+        {
+          "source_lines": [
+            15,
+            16
+          ],
+          "kind": "text",
+          "fa": "Which side of the room is the toilet on? (توالت کدام سمت اتاق است؟)؛ Is my monitor on? (آیا نمایشگر من روشن است؟)"
+        },
+        {
+          "source_lines": [
+            17
+          ],
+          "kind": "literal",
+          "fa": "(1) yes (بله)"
+        },
+        {
+          "source_lines": [
+            18
+          ],
+          "kind": "literal",
+          "fa": "(2) yes (بله)"
+        },
+        {
+          "source_lines": [
+            19
+          ],
+          "kind": "literal",
+          "fa": "(3) yes (بله)"
+        },
+        {
+          "source_lines": [
+            20
+          ],
+          "kind": "literal",
+          "fa": "(4) yes (بله)"
+        },
+        {
+          "source_lines": [
+            21
+          ],
+          "kind": "literal",
+          "fa": "(5) yes (بله)"
+        },
+        {
+          "source_lines": [
+            22
+          ],
+          "kind": "literal",
+          "fa": "(6) yes (بله)"
+        },
+        {
+          "source_lines": [
+            23
+          ],
+          "kind": "literal",
+          "fa": "(7) yes (بله)"
+        },
+        {
+          "source_lines": [
+            24
+          ],
+          "kind": "literal",
+          "fa": "(8) yes (بله)"
+        },
+        {
+          "source_lines": [
+            25
+          ],
+          "kind": "literal",
+          "fa": "(9) yes (بله)"
+        },
+        {
+          "source_lines": [
+            26
+          ],
+          "kind": "literal",
+          "fa": "(10) yes (بله)"
+        },
+        {
+          "source_lines": [
+            27
+          ],
+          "kind": "literal",
+          "fa": "(1) yes (بله)"
+        },
+        {
+          "source_lines": [
+            28
+          ],
+          "kind": "literal",
+          "fa": "(2) no (خیر)"
+        },
+        {
+          "source_lines": [
+            29
+          ],
+          "kind": "literal",
+          "fa": "(3) no (خیر)"
+        },
+        {
+          "source_lines": [
+            30
+          ],
+          "kind": "literal",
+          "fa": "(4) yes (بله)"
+        },
+        {
+          "source_lines": [
+            31
+          ],
+          "kind": "literal",
+          "fa": "(5) no (خیر)"
+        },
+        {
+          "source_lines": [
+            32
+          ],
+          "kind": "literal",
+          "fa": "(6) yes (بله)"
+        },
+        {
+          "source_lines": [
+            33
+          ],
+          "kind": "literal",
+          "fa": "(7) yes (بله)"
+        },
+        {
+          "source_lines": [
+            34
+          ],
+          "kind": "literal",
+          "fa": "(8) no (خیر)"
+        },
+        {
+          "source_lines": [
+            35
+          ],
+          "kind": "literal",
+          "fa": "(9) no (خیر)"
+        },
+        {
+          "source_lines": [
+            36
+          ],
+          "kind": "literal",
+          "fa": "(10) no (خیر)"
+        },
+        {
+          "source_lines": [
+            37
+          ],
+          "kind": "literal",
+          "fa": "(1) right (راست)"
+        },
+        {
+          "source_lines": [
+            38
+          ],
+          "kind": "literal",
+          "fa": "(2) left (چپ)"
+        },
+        {
+          "source_lines": [
+            39
+          ],
+          "kind": "literal",
+          "fa": "(3) right (راست)"
+        },
+        {
+          "source_lines": [
+            40
+          ],
+          "kind": "literal",
+          "fa": "(4) right (راست)"
+        },
+        {
+          "source_lines": [
+            41
+          ],
+          "kind": "literal",
+          "fa": "(5) right (راست)"
+        },
+        {
+          "source_lines": [
+            42
+          ],
+          "kind": "literal",
+          "fa": "(6) right (راست)"
+        },
+        {
+          "source_lines": [
+            43
+          ],
+          "kind": "literal",
+          "fa": "(7) right side (سمت راست)"
+        },
+        {
+          "source_lines": [
+            44
+          ],
+          "kind": "literal",
+          "fa": "(8) right (راست)"
+        },
+        {
+          "source_lines": [
+            45
+          ],
+          "kind": "literal",
+          "fa": "(9) center (وسط)"
+        },
+        {
+          "source_lines": [
+            46
+          ],
+          "kind": "literal",
+          "fa": "(10) right (راست)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "sweet pepper",
+          "fa": "فلفل شیرین (sweet pepper)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "11103d51e4905e8e0a84abb3b347d4fddf4b333846736cf9652024e557f5986e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "بحث کلاسی"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "1. چرا برای یک پرسش بصری (Visual question) پاسخ‌های متفاوتی به وجود می‌آید؟"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "2. وقتی پاسخ‌های متفاوتی به وجود می‌آید، چگونه تصمیم می‌گیرید از کدام پاسخ استفاده کنید؟ توجه کنید که روش باید مقیاس‌پذیر باشد تا مجموعه‌داده‌های بزرگ را به‌طور کارآمد پشتیبانی کند."
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "3. در بسیاری از مجموعه‌داده‌ها، همهٔ مشارکت‌کنندگان جمع‌سپاری (Crowdworkers) به محل‌های داخل آمریکا محدود بودند. پیشینه‌های فرهنگی متفاوت چگونه ممکن است بر مجموعه‌داده‌های پرسش‌وپاسخ بصری (VQA) تأثیر بگذارند؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "02cbb5fd6ed29eb586745e5085f6d1d3862d236197087bb482b8b53d9704e537",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ارزیابی پیش‌بینی‌های خودکار (Automated Predictions)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://vqa.cloudcv.org/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "VQA: Ask any question about this image; Answer; Confidence",
+          "fa": "پرسش‌وپاسخ بصری (VQA): هر پرسشی دربارهٔ این تصویر بپرسید؛ پاسخ؛ اطمینان (Confidence)",
+          "verified": true
+        },
+        {
+          "en": "Is this man thirsty? yes; no; 6; 5; pink",
+          "fa": "Is this man thirsty? yes; no; 6; 5; pink (آیا این مرد تشنه است؟ بله؛ خیر؛ 6؛ 5؛ صورتی)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "699d679e41954cd6e16d4c0f1cd3fd8ba74454b0e51ae5e0e892241f2dc2c5ba",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ارزیابی پیش‌بینی‌های خودکار (Automated Predictions)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "Does this picture look scary? (آیا این تصویر ترسناک به نظر می‌رسد؟)"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "Hi there can you please tell me what flavor this is? (سلام، لطفاً می‌توانید بگویید این چه طعمی است؟)"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "Which side of the room is the toilet on? (توالت کدام سمت اتاق است؟)"
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "Is my monitor on? (آیا نمایشگر من روشن است؟)"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "text",
+          "fa": "(1) yes (بله)؛ (2) chocolate (شکلات)؛ (3) yes (بله)؛ (4) right (راست)"
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "reference",
+          "fa": "https://vqa.cloudcv.org/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "sweet pepper",
+          "fa": "فلفل شیرین (sweet pepper)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "ac051295b07920621fac75e380f8d3bcc6995a103eefee39d9a629ef6f5b07f1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ارزیابی پیش‌بینی‌های خودکار (Automated Predictions)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "reference",
+          "fa": "Aishwarya Agrawal, Jiasen Lu, Stanislaw Antol, Margaret Mitchell, C. Lawrence Zitnick, Dhruv Batra, and Devi Parikh. VQA: Visual Question Answering. CVPR 2015."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "accuracy = min((# humans that provided that answer)/3, 1)",
+          "fa": "دقت = min((تعداد انسان‌هایی که آن پاسخ را داده‌اند)/3, 1)",
+          "verified": true,
+          "latex": "\\mathrm{accuracy}=\\min\\left(\\frac{\\#\\text{humans that provided that answer}}{3},1\\right)"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "cbdcb420d77ef85e75807b5fd85400f6cbcfee7d4faec043edc5494185daea03",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ارزیابی: مثال (Example)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "Does this picture look scary? (آیا این تصویر ترسناک به نظر می‌رسد؟)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "(1) yes (بله)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "(2) no (خیر)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "(3) no (خیر)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "literal",
+          "fa": "(4) yes (بله)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "literal",
+          "fa": "(5) no (خیر)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "literal",
+          "fa": "(6) yes (بله)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "literal",
+          "fa": "(7) yes (بله)"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "literal",
+          "fa": "(8) no (خیر)"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "literal",
+          "fa": "(9) no (خیر)"
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "literal",
+          "fa": "(10) no (خیر)"
+        },
+        {
+          "source_lines": [
+            13
+          ],
+          "kind": "text",
+          "fa": "دقت (Accuracy) پیش‌بینی الگوریتم برای موارد زیر چقدر است؟"
+        },
+        {
+          "source_lines": [
+            14
+          ],
+          "kind": "bullet",
+          "fa": "- «yes» (بله)؟"
+        },
+        {
+          "source_lines": [
+            15
+          ],
+          "kind": "bullet",
+          "fa": "- «no» (خیر)؟"
+        },
+        {
+          "source_lines": [
+            16
+          ],
+          "kind": "bullet",
+          "fa": "- «maybe» (شاید)؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "accuracy = min((# humans that provided that answer)/3, 1)",
+          "fa": "دقت = min((تعداد انسان‌هایی که آن پاسخ را داده‌اند)/3, 1)",
+          "verified": true,
+          "latex": "\\mathrm{accuracy}=\\min\\left(\\frac{\\#\\text{humans that provided that answer}}{3},1\\right)"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "85941e37fdf26efa717cb5e6b5d0c82533eb7e7df0f8f7f78d5efb8727537844",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ارزیابی: مثال (Example)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "دقت (Accuracy) پیش‌بینی الگوریتم برای موارد زیر چقدر است؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "- «right» (راست)؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "- «left» (چپ)؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "- «right side» (سمت راست)؟"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "- «center» (وسط)؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "- «bottom» (پایین)؟"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "Which side of the room is the toilet on? (توالت کدام سمت اتاق است؟)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "literal",
+          "fa": "(1) right (راست)"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "literal",
+          "fa": "(2) left (چپ)"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "literal",
+          "fa": "(3) right (راست)"
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "literal",
+          "fa": "(4) right (راست)"
+        },
+        {
+          "source_lines": [
+            13
+          ],
+          "kind": "literal",
+          "fa": "(5) right (راست)"
+        },
+        {
+          "source_lines": [
+            14
+          ],
+          "kind": "literal",
+          "fa": "(6) right (راست)"
+        },
+        {
+          "source_lines": [
+            15
+          ],
+          "kind": "literal",
+          "fa": "(7) right side (سمت راست)"
+        },
+        {
+          "source_lines": [
+            16
+          ],
+          "kind": "literal",
+          "fa": "(8) right (راست)"
+        },
+        {
+          "source_lines": [
+            17
+          ],
+          "kind": "literal",
+          "fa": "(9) center (وسط)"
+        },
+        {
+          "source_lines": [
+            18
+          ],
+          "kind": "literal",
+          "fa": "(10) right (راست)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "accuracy = min((# humans that provided that answer)/3, 1)",
+          "fa": "دقت = min((تعداد انسان‌هایی که آن پاسخ را داده‌اند)/3, 1)",
+          "verified": true,
+          "latex": "\\mathrm{accuracy}=\\min\\left(\\frac{\\#\\text{humans that provided that answer}}{3},1\\right)"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "e3d2b325c9237156f8ed6be0dec8330a54c96040c9ce285e4ff43842a2e792b8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردهای پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌داده‌های پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش اصلی سال 2015: رویکرد پایه (Baseline approach)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش اصلی سال 2019: رویکرد مبتنی بر ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی (Programming tutorial)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "6b0b033babaf42e27c0c01954eed42da8d4fb27bdf6fda3fbe7e104facc19d92",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری (Architecture)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Agrawal et al. VQA: Visual Question Answering. arXiv 2016."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "رایج‌ترین پاسخ‌ها در بخش‌های آموزش و اعتبارسنجی (Train+val splits)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "بازنمایی پرسش (Question representation): حالت سلول (Cell state) و حالت پنهان (Hidden state) آخرین لایهٔ پنهان را به هم متصل می‌کند"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "بازنمایی تصویر (Image representation)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "4096 output units from last hidden layer (VGGNet, Normalized); Convolution Layer + Non-Linearity; Pooling Layer; Fully-Connected MLP; Fully-Connected; Point-wise multiplication; Softmax; 2×2×512 LSTM",
+          "fa": "4096 واحد خروجی از آخرین لایهٔ پنهان (VGGNet، نرمال‌شده)؛ لایهٔ کانولوشن + غیرخطی‌بودن؛ لایهٔ تجمیع؛ پرسپترون چندلایهٔ تمام‌متصل؛ تمام‌متصل؛ ضرب درایه‌به‌درایه (Point-wise multiplication)؛ سافت‌مکس (Softmax)؛ LSTM با 2×2×512",
+          "verified": true
+        },
+        {
+          "en": "How many horses are in this image? “2”",
+          "fa": "How many horses are in this image? “2” (چند اسب در این تصویر هستند؟ «2»)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "cf52bdb8b25be0c3aa88356f90195eaa8dd751a1bcfec11c891576a4d599c0be",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "نتایج تجربی (تحلیل ریزدانه (Fine-Grained Analysis) برحسب نوع پاسخ)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Agrawal et al. VQA: Visual Question Answering. arXiv 2016."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "مدل در کدام نوع پاسخ بهترین عملکرد را به دست می‌آورد؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "All; Yes/No; Number; Other",
+          "fa": "همه؛ بله/خیر؛ عدد؛ سایر",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "bcabf98ee5e5911dbc5012eebcc3f34cb6c9651a5c52260efd624a1856f2cfa9",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "نتایج تجربی (تحلیل ریزدانه (Fine-Grained Analysis) برحسب نوع پاسخ)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Agrawal et al. VQA: Visual Question Answering. arXiv 2016."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "مدل در کدام نوع پاسخ بدترین عملکرد را به دست می‌آورد؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "All; Yes/No; Number; Other",
+          "fa": "همه؛ بله/خیر؛ عدد؛ سایر",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "6d628320d1c086ab6135790283bdc3c9825886bfedf6dc2a12d4db44cc2e6158",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "نتایج تجربی (تحلیل ریزدانه (Fine-Grained Analysis) برحسب نوع پاسخ)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Agrawal et al. VQA: Visual Question Answering. arXiv 2016."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "چرا ممکن است روندهای عملکردی بالا را برای انواع پاسخ مشاهده کنیم؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "All; Yes/No; Number; Other",
+          "fa": "همه؛ بله/خیر؛ عدد؛ سایر",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "e3d2b325c9237156f8ed6be0dec8330a54c96040c9ce285e4ff43842a2e792b8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردهای پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌داده‌های پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش اصلی سال 2015: رویکرد پایه (Baseline approach)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش اصلی سال 2019: رویکرد مبتنی بر ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی (Programming tutorial)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "d901600a5199a7c87688101d19c81533b977d99fb2346128639d333def21a5a3",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایدهٔ اصلی: بازنمایی چندوجهی (Multimodal Representation) به‌جای بازنمایی‌های تک‌وجهی (Single Modality Representations)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "برای مثال، بازنمایی بینایی (Vision representation) با AlexNet؛ برای مثال، بازنمایی زبان (Language representation) با BERT"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://www.researchgate.net/figure/Architecture-of-Alexnet-From￾left-to-right-input-to-output-five-convolutional-layers_fig2_312303454"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input; Token embeddings; Segment embeddings; Position embeddings; Encoder 12; Encoder 3; Encoder 2; Encoder 1; FC7",
+          "fa": "ورودی؛ بازنمایی‌های برداری توکن؛ قطعه؛ موقعیت؛ رمزگذار 12؛ رمزگذار 3؛ رمزگذار 2؛ رمزگذار 1؛ FC7",
+          "verified": true
+        },
+        {
+          "en": "[CLS] Paris is a beautiful [MASK] [SEP] I love Paris [SEP]",
+          "fa": "[CLS] Paris is a beautiful [MASK] [SEP] I love Paris [SEP] (پاریس یک [MASK] زیباست؛ من پاریس را دوست دارم)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "c8ea6413d743ad5e388ff84c55093c1293ac4b990535e3e4a4eec7075f122c79",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: یادگیری بازنمایی‌های رمزگذار میان‌وجهی از ترنسفورمرها (Learning Cross-Modality Encoder Representations from Transformers)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "با استفاده از ورودی زبان و بینایی پیش‌آموزش (Pretraining) انجام می‌دهد"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "بازنمایی‌هایی برای تصویر و بینایی، هم به‌صورت جداگانه و هم به‌صورت مشترک، تولید می‌کند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "RoI Feat; Pos Feat; Word Emb; Idx Emb; Self; FF; Cross; Object-Relationship Encoder; Language Encoder; Cross-Modality Encoder; Vision Output; Cross-Modality Output; Language Output",
+          "fa": "ویژگی ناحیهٔ موردعلاقه (RoI Feat)؛ ویژگی موقعیت (Pos Feat)؛ بازنمایی برداری واژه (Word Emb)؛ بازنمایی برداری اندیس (Idx Emb)؛ خودتوجهی (Self)؛ پیش‌خور (FF)؛ توجه متقابل (Cross)؛ رمزگذار روابط اشیا؛ رمزگذار زبان؛ رمزگذار میان‌وجهی؛ خروجی بینایی؛ خروجی میان‌وجهی؛ خروجی زبان",
+          "verified": true
+        },
+        {
+          "en": "A woman riding a bike with a dog in a basket.",
+          "fa": "A woman riding a bike with a dog in a basket. (زنی دوچرخه‌سواری می‌کند و سگی در سبد است.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "4b3af6cbf878136b5fc40829120a3d12b2240d4414e683bd6672a8bc4b9f75de",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: ورودی زبان (Language Input)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "[CLS] به آغاز دنباله اضافه می‌شود"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "RoI Feat; Pos Feat; Word Emb; Idx Emb; Self; FF; Cross; Object-Relationship Encoder; Language Encoder; Cross-Modality Encoder; Vision Output; Cross-Modality Output; Language Output",
+          "fa": "ویژگی ناحیهٔ موردعلاقه (RoI Feat)؛ ویژگی موقعیت (Pos Feat)؛ بازنمایی برداری واژه (Word Emb)؛ بازنمایی برداری اندیس (Idx Emb)؛ خودتوجهی (Self)؛ پیش‌خور (FF)؛ توجه متقابل (Cross)؛ رمزگذار روابط اشیا؛ رمزگذار زبان؛ رمزگذار میان‌وجهی؛ خروجی بینایی؛ خروجی میان‌وجهی؛ خروجی زبان",
+          "verified": true
+        },
+        {
+          "en": "A woman riding a bike with a dog in a basket.",
+          "fa": "A woman riding a bike with a dog in a basket. (زنی دوچرخه‌سواری می‌کند و سگی در سبد است.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "29124d50d1f24eebd35d53cee88eea6724ab342b93073338884c4622082b7bd6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: ورودی زبان (Language Input)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "هر واژه با مجموع بازنمایی برداری واژه (Word embedding) و کدگذاری موقعیت (Position encoding) آن نمایش داده می‌شود"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "RoI Feat; Pos Feat; Word Emb; Idx Emb; Self; FF; Cross; Object-Relationship Encoder; Language Encoder; Cross-Modality Encoder; Vision Output; Cross-Modality Output; Language Output",
+          "fa": "ویژگی ناحیهٔ موردعلاقه (RoI Feat)؛ ویژگی موقعیت (Pos Feat)؛ بازنمایی برداری واژه (Word Emb)؛ بازنمایی برداری اندیس (Idx Emb)؛ خودتوجهی (Self)؛ پیش‌خور (FF)؛ توجه متقابل (Cross)؛ رمزگذار روابط اشیا؛ رمزگذار زبان؛ رمزگذار میان‌وجهی؛ خروجی بینایی؛ خروجی میان‌وجهی؛ خروجی زبان",
+          "verified": true
+        },
+        {
+          "en": "A woman riding a bike with a dog in a basket.",
+          "fa": "A woman riding a bike with a dog in a basket. (زنی دوچرخه‌سواری می‌کند و سگی در سبد است.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "c5df183187012d938dd25a619b737437f1efb6cc243f55cb39694719a6201e45",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: ورودی زبان (Language Input)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "رمزگذار ترنسفورمر (Transformer encoder؛ یعنی BERT)؛ خروجی آن چه چیزی را بازنمایی می‌کند؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "RoI Feat; Pos Feat; Word Emb; Idx Emb; Self; FF; Cross; Object-Relationship Encoder; Language Encoder; Cross-Modality Encoder; Vision Output; Cross-Modality Output; Language Output",
+          "fa": "ویژگی ناحیهٔ موردعلاقه (RoI Feat)؛ ویژگی موقعیت (Pos Feat)؛ بازنمایی برداری واژه (Word Emb)؛ بازنمایی برداری اندیس (Idx Emb)؛ خودتوجهی (Self)؛ پیش‌خور (FF)؛ توجه متقابل (Cross)؛ رمزگذار روابط اشیا؛ رمزگذار زبان؛ رمزگذار میان‌وجهی؛ خروجی بینایی؛ خروجی میان‌وجهی؛ خروجی زبان",
+          "verified": true
+        },
+        {
+          "en": "A woman riding a bike with a dog in a basket.",
+          "fa": "A woman riding a bike with a dog in a basket. (زنی دوچرخه‌سواری می‌کند و سگی در سبد است.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "b67f87132e18641e96a07abe7340c43bf778696eb3f4766d1b357e1ffb40d577",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: ورودی زبان (Language Input)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "رمزگذار ترنسفورمر (Transformer encoder؛ یعنی BERT)؛ واژه‌ها را همراه با ارتباطشان با همهٔ واژه‌ها بازنمایی می‌کند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "RoI Feat; Pos Feat; Word Emb; Idx Emb; Self; FF; Cross; Object-Relationship Encoder; Language Encoder; Cross-Modality Encoder; Vision Output; Cross-Modality Output; Language Output",
+          "fa": "ویژگی ناحیهٔ موردعلاقه (RoI Feat)؛ ویژگی موقعیت (Pos Feat)؛ بازنمایی برداری واژه (Word Emb)؛ بازنمایی برداری اندیس (Idx Emb)؛ خودتوجهی (Self)؛ پیش‌خور (FF)؛ توجه متقابل (Cross)؛ رمزگذار روابط اشیا؛ رمزگذار زبان؛ رمزگذار میان‌وجهی؛ خروجی بینایی؛ خروجی میان‌وجهی؛ خروجی زبان",
+          "verified": true
+        },
+        {
+          "en": "A woman riding a bike with a dog in a basket.",
+          "fa": "A woman riding a bike with a dog in a basket. (زنی دوچرخه‌سواری می‌کند و سگی در سبد است.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "21ce6c074d7aea761ab3f529483bf8653c1fb310e11df98ffcca7b29ec939829",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: ورودی بینایی (Vision Input)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "هر تصویر به‌صورت توصیفی از m شیء تشخیص‌داده‌شده با Faster R-CNN بازنمایی می‌شود؛ با استفاده از ویژگی‌های Faster R-CNN و کدگذاری‌های موقعیت (Position encodings)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "RoI Feat; Pos Feat; Word Emb; Idx Emb; Self; FF; Cross; Object-Relationship Encoder; Language Encoder; Cross-Modality Encoder; Vision Output; Cross-Modality Output; Language Output",
+          "fa": "ویژگی ناحیهٔ موردعلاقه (RoI Feat)؛ ویژگی موقعیت (Pos Feat)؛ بازنمایی برداری واژه (Word Emb)؛ بازنمایی برداری اندیس (Idx Emb)؛ خودتوجهی (Self)؛ پیش‌خور (FF)؛ توجه متقابل (Cross)؛ رمزگذار روابط اشیا؛ رمزگذار زبان؛ رمزگذار میان‌وجهی؛ خروجی بینایی؛ خروجی میان‌وجهی؛ خروجی زبان",
+          "verified": true
+        },
+        {
+          "en": "A woman riding a bike with a dog in a basket.",
+          "fa": "A woman riding a bike with a dog in a basket. (زنی دوچرخه‌سواری می‌کند و سگی در سبد است.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "5069dba0fdcec05a9ac31bfe297d6297b4fd5b670ea43aea7c713933266fc95b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: معماری (Architecture)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "رمزگذار ترنسفورمر (Transformer encoder؛ یعنی BERT)؛ خروجی آن چه چیزی را بازنمایی می‌کند؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "RoI Feat; Pos Feat; Word Emb; Idx Emb; Self; FF; Cross; Object-Relationship Encoder; Language Encoder; Cross-Modality Encoder; Vision Output; Cross-Modality Output; Language Output",
+          "fa": "ویژگی ناحیهٔ موردعلاقه (RoI Feat)؛ ویژگی موقعیت (Pos Feat)؛ بازنمایی برداری واژه (Word Emb)؛ بازنمایی برداری اندیس (Idx Emb)؛ خودتوجهی (Self)؛ پیش‌خور (FF)؛ توجه متقابل (Cross)؛ رمزگذار روابط اشیا؛ رمزگذار زبان؛ رمزگذار میان‌وجهی؛ خروجی بینایی؛ خروجی میان‌وجهی؛ خروجی زبان",
+          "verified": true
+        },
+        {
+          "en": "A woman riding a bike with a dog in a basket.",
+          "fa": "A woman riding a bike with a dog in a basket. (زنی دوچرخه‌سواری می‌کند و سگی در سبد است.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "10b2695cd8eb51e8d85086eae553ae835eb64ee6909827216dcb27ecade42c74",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: معماری (Architecture)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "رمزگذار ترنسفورمر (Transformer encoder؛ یعنی BERT)؛ اشیا را همراه با ارتباطشان با همهٔ اشیا بازنمایی می‌کند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "RoI Feat; Pos Feat; Word Emb; Idx Emb; Self; FF; Cross; Object-Relationship Encoder; Language Encoder; Cross-Modality Encoder; Vision Output; Cross-Modality Output; Language Output",
+          "fa": "ویژگی ناحیهٔ موردعلاقه (RoI Feat)؛ ویژگی موقعیت (Pos Feat)؛ بازنمایی برداری واژه (Word Emb)؛ بازنمایی برداری اندیس (Idx Emb)؛ خودتوجهی (Self)؛ پیش‌خور (FF)؛ توجه متقابل (Cross)؛ رمزگذار روابط اشیا؛ رمزگذار زبان؛ رمزگذار میان‌وجهی؛ خروجی بینایی؛ خروجی میان‌وجهی؛ خروجی زبان",
+          "verified": true
+        },
+        {
+          "en": "A woman riding a bike with a dog in a basket.",
+          "fa": "A woman riding a bike with a dog in a basket. (زنی دوچرخه‌سواری می‌کند و سگی در سبد است.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "07c5b67b361a2a2d0ef9a66b0d0cef38fff0c33113121808ce80a14b48dc3ea0",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: معماری (Architecture)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "با هم‌ترازکردن موجودیت‌ها در دو وجه (Modalities)، بازنمایی‌های میان‌وجهی (Cross-modality representations) را یاد می‌گیرد"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "RoI Feat; Pos Feat; Word Emb; Idx Emb; Self; FF; Cross; Object-Relationship Encoder; Language Encoder; Cross-Modality Encoder; Vision Output; Cross-Modality Output; Language Output",
+          "fa": "ویژگی ناحیهٔ موردعلاقه (RoI Feat)؛ ویژگی موقعیت (Pos Feat)؛ بازنمایی برداری واژه (Word Emb)؛ بازنمایی برداری اندیس (Idx Emb)؛ خودتوجهی (Self)؛ پیش‌خور (FF)؛ توجه متقابل (Cross)؛ رمزگذار روابط اشیا؛ رمزگذار زبان؛ رمزگذار میان‌وجهی؛ خروجی بینایی؛ خروجی میان‌وجهی؛ خروجی زبان",
+          "verified": true
+        },
+        {
+          "en": "A woman riding a bike with a dog in a basket.",
+          "fa": "A woman riding a bike with a dog in a basket. (زنی دوچرخه‌سواری می‌کند و سگی در سبد است.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "fd424e868681d63e2a0cd89998e662d433fc2cbebcc461e5a7a011730ce7eff6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: معماری (Architecture)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "دو لایهٔ توجه متقابل (Cross-attention) تابع بردارهای «پرس‌وجو» (Query) و «بافت» (Context) هستند که ویژگی‌های زبان و بینایی‌اند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "RoI Feat; Pos Feat; Word Emb; Idx Emb; Self; FF; Cross; Object-Relationship Encoder; Language Encoder; Cross-Modality Encoder; Vision Output; Cross-Modality Output; Language Output",
+          "fa": "ویژگی ناحیهٔ موردعلاقه (RoI Feat)؛ ویژگی موقعیت (Pos Feat)؛ بازنمایی برداری واژه (Word Emb)؛ بازنمایی برداری اندیس (Idx Emb)؛ خودتوجهی (Self)؛ پیش‌خور (FF)؛ توجه متقابل (Cross)؛ رمزگذار روابط اشیا؛ رمزگذار زبان؛ رمزگذار میان‌وجهی؛ خروجی بینایی؛ خروجی میان‌وجهی؛ خروجی زبان",
+          "verified": true
+        },
+        {
+          "en": "A woman riding a bike with a dog in a basket.",
+          "fa": "A woman riding a bike with a dog in a basket. (زنی دوچرخه‌سواری می‌کند و سگی در سبد است.)",
+          "verified": true
+        },
+        {
+          "en": "a_j = score(x,y_j); α_j = exp(a_j)/Σ_k exp(a_k)",
+          "fa": "a_j = score(x,y_j)؛ α_j = exp(a_j)/Σ_k exp(a_k)",
+          "verified": true,
+          "latex": "a_j=\\mathrm{score}(x,y_j),\\qquad\\alpha_j=\\frac{\\exp(a_j)}{\\sum_k\\exp(a_k)}"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "830d26cfff4ffab3d4a2b4b39316a38b880f5cd153221f1b54c0370f3071be1f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: معماری (Architecture)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "خروجی، مجموع وزن‌دار بردارهای بافت (Context vectors) است که با امتیازهای توجه (Attention scores) وزن‌دهی شده‌اند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "RoI Feat; Pos Feat; Word Emb; Idx Emb; Self; FF; Cross; Object-Relationship Encoder; Language Encoder; Cross-Modality Encoder; Vision Output; Cross-Modality Output; Language Output",
+          "fa": "ویژگی ناحیهٔ موردعلاقه (RoI Feat)؛ ویژگی موقعیت (Pos Feat)؛ بازنمایی برداری واژه (Word Emb)؛ بازنمایی برداری اندیس (Idx Emb)؛ خودتوجهی (Self)؛ پیش‌خور (FF)؛ توجه متقابل (Cross)؛ رمزگذار روابط اشیا؛ رمزگذار زبان؛ رمزگذار میان‌وجهی؛ خروجی بینایی؛ خروجی میان‌وجهی؛ خروجی زبان",
+          "verified": true
+        },
+        {
+          "en": "A woman riding a bike with a dog in a basket.",
+          "fa": "A woman riding a bike with a dog in a basket. (زنی دوچرخه‌سواری می‌کند و سگی در سبد است.)",
+          "verified": true
+        },
+        {
+          "en": "a_j = score(x,y_j); α_j = exp(a_j)/Σ_k exp(a_k)",
+          "fa": "a_j = score(x,y_j)؛ α_j = exp(a_j)/Σ_k exp(a_k)",
+          "verified": true,
+          "latex": "a_j=\\mathrm{score}(x,y_j),\\qquad\\alpha_j=\\frac{\\exp(a_j)}{\\sum_k\\exp(a_k)}"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "4b1b322156748d7b3d07d1f64e82a14681a74747c489a794ea4058661cb9c3f1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: معماری (Architecture)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "دو لایهٔ دیگر از رمزگذارهای ترنسفورمر (Transformer encoders؛ یعنی BERT)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "RoI Feat; Pos Feat; Word Emb; Idx Emb; Self; FF; Cross; Object-Relationship Encoder; Language Encoder; Cross-Modality Encoder; Vision Output; Cross-Modality Output; Language Output",
+          "fa": "ویژگی ناحیهٔ موردعلاقه (RoI Feat)؛ ویژگی موقعیت (Pos Feat)؛ بازنمایی برداری واژه (Word Emb)؛ بازنمایی برداری اندیس (Idx Emb)؛ خودتوجهی (Self)؛ پیش‌خور (FF)؛ توجه متقابل (Cross)؛ رمزگذار روابط اشیا؛ رمزگذار زبان؛ رمزگذار میان‌وجهی؛ خروجی بینایی؛ خروجی میان‌وجهی؛ خروجی زبان",
+          "verified": true
+        },
+        {
+          "en": "A woman riding a bike with a dog in a basket.",
+          "fa": "A woman riding a bike with a dog in a basket. (زنی دوچرخه‌سواری می‌کند و سگی در سبد است.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "e402ce507d3e6c2210d52e3c3118b85e09a8b065f31be0fdf0fe7e21103ac4f0",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: خروجی (Output)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "بازنمایی جدید دنبالهٔ زبان ورودی"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "بازنمایی جدید اشیای تشخیص‌داده‌شدهٔ ورودی"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "RoI Feat; Pos Feat; Word Emb; Idx Emb; Self; FF; Cross; Object-Relationship Encoder; Language Encoder; Cross-Modality Encoder; Vision Output; Cross-Modality Output; Language Output",
+          "fa": "ویژگی ناحیهٔ موردعلاقه (RoI Feat)؛ ویژگی موقعیت (Pos Feat)؛ بازنمایی برداری واژه (Word Emb)؛ بازنمایی برداری اندیس (Idx Emb)؛ خودتوجهی (Self)؛ پیش‌خور (FF)؛ توجه متقابل (Cross)؛ رمزگذار روابط اشیا؛ رمزگذار زبان؛ رمزگذار میان‌وجهی؛ خروجی بینایی؛ خروجی میان‌وجهی؛ خروجی زبان",
+          "verified": true
+        },
+        {
+          "en": "A woman riding a bike with a dog in a basket.",
+          "fa": "A woman riding a bike with a dog in a basket. (زنی دوچرخه‌سواری می‌کند و سگی در سبد است.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "4e10b44e829eba172207dda8c36d24f2e3f6ea908ec616a44c8e25a354e02bee",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: خروجی (Output)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "بازنمایی میان‌وجهی (Cross-modality representation)، همان توکن [CLS] است که به ابتدای جمله افزوده شده است"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "RoI Feat; Pos Feat; Word Emb; Idx Emb; Self; FF; Cross; Object-Relationship Encoder; Language Encoder; Cross-Modality Encoder; Vision Output; Cross-Modality Output; Language Output",
+          "fa": "ویژگی ناحیهٔ موردعلاقه (RoI Feat)؛ ویژگی موقعیت (Pos Feat)؛ بازنمایی برداری واژه (Word Emb)؛ بازنمایی برداری اندیس (Idx Emb)؛ خودتوجهی (Self)؛ پیش‌خور (FF)؛ توجه متقابل (Cross)؛ رمزگذار روابط اشیا؛ رمزگذار زبان؛ رمزگذار میان‌وجهی؛ خروجی بینایی؛ خروجی میان‌وجهی؛ خروجی زبان",
+          "verified": true
+        },
+        {
+          "en": "A woman riding a bike with a dog in a basket.",
+          "fa": "A woman riding a bike with a dog in a basket. (زنی دوچرخه‌سواری می‌کند و سگی در سبد است.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "0b83d3cce17424726a3af77cde08e5331791c2f6b27bd2d9ddc08f961a5bbd89",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: جزئیات پیاده‌سازی (Implementation Details)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "Faster R-CNN ازپیش‌آموزش‌دیده می‌تواند 1,600 رده را مکان‌یابی کند و برای هر تصویر فقط 36 تشخیص شیء نگه داشته می‌شود"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "L = 9"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "R = 5؛ X = 5"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "تعداد لایه‌ها از اندازهٔ BERT base با 12 لایه پیروی می‌کند؛ یعنی (5+9)/2 + 5"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "RoI Feat; Pos Feat; Word Emb; Idx Emb; Self; FF; Cross; Object-Relationship Encoder; Language Encoder; Cross-Modality Encoder; Vision Output; Cross-Modality Output; Language Output",
+          "fa": "ویژگی ناحیهٔ موردعلاقه (RoI Feat)؛ ویژگی موقعیت (Pos Feat)؛ بازنمایی برداری واژه (Word Emb)؛ بازنمایی برداری اندیس (Idx Emb)؛ خودتوجهی (Self)؛ پیش‌خور (FF)؛ توجه متقابل (Cross)؛ رمزگذار روابط اشیا؛ رمزگذار زبان؛ رمزگذار میان‌وجهی؛ خروجی بینایی؛ خروجی میان‌وجهی؛ خروجی زبان",
+          "verified": true
+        },
+        {
+          "en": "A woman riding a bike with a dog in a basket.",
+          "fa": "A woman riding a bike with a dog in a basket. (زنی دوچرخه‌سواری می‌کند و سگی در سبد است.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "0bb35296cec5ceeee18713652a11b1643bca904351bbc7aef48e561eff64c276",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: معماری (Architecture)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "بر اساس معماری استفاده‌شده، نقاط قوت و محدودیت‌های بازنمایی‌های ویژگی (Feature representations) حاصل چه می‌تواند باشد؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "RoI Feat; Pos Feat; Word Emb; Idx Emb; Self; FF; Cross; Object-Relationship Encoder; Language Encoder; Cross-Modality Encoder; Vision Output; Cross-Modality Output; Language Output",
+          "fa": "ویژگی ناحیهٔ موردعلاقه (RoI Feat)؛ ویژگی موقعیت (Pos Feat)؛ بازنمایی برداری واژه (Word Emb)؛ بازنمایی برداری اندیس (Idx Emb)؛ خودتوجهی (Self)؛ پیش‌خور (FF)؛ توجه متقابل (Cross)؛ رمزگذار روابط اشیا؛ رمزگذار زبان؛ رمزگذار میان‌وجهی؛ خروجی بینایی؛ خروجی میان‌وجهی؛ خروجی زبان",
+          "verified": true
+        },
+        {
+          "en": "A woman riding a bike with a dog in a basket.",
+          "fa": "A woman riding a bike with a dog in a basket. (زنی دوچرخه‌سواری می‌کند و سگی در سبد است.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "8cc2d6a830611972b704cf432b2d29a27e6de0074b5035561333ea7760c6f1ef",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: خلاصهٔ معماری (Architecture)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ObjectRel Encoder; Cross-Modality Encoder; Language Encoder; Word Emb; Idx Emb; Mask Feat; RoI Feat; Pos Feat; RoI-Feature Regression; Detected-Label Classification; Masked Cross-Modality LM; Cross-Modality Matching & QA",
+          "fa": "رمزگذار روابط اشیا؛ رمزگذار میان‌وجهی؛ رمزگذار زبان؛ بازنمایی برداری واژه؛ بازنمایی برداری اندیس؛ ویژگی ماسک؛ ویژگی ناحیهٔ موردعلاقه؛ ویژگی موقعیت؛ رگرسیون ویژگی ناحیهٔ موردعلاقه؛ طبقه‌بندی برچسب تشخیص‌داده‌شده؛ مدل زبانی میان‌وجهی ماسک‌شده (Masked Cross-Modality LM)؛ تطبیق میان‌وجهی و پرسش‌وپاسخ",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "48bff000b84abba4d3127f50a97edb246f80eb2de8f3e1607861317d3f62bb53",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: وظیفهٔ پیش‌آموزش (Pretraining) 1 (زبان)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "وظیفهٔ استفاده‌شده برای BERT: 15% از واژه‌های ورودی را ماسک (Mask) و سپس پیش‌بینی کنید"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ObjectRel Encoder; Cross-Modality Encoder; Language Encoder; Word Emb; Idx Emb; Mask Feat; RoI Feat; Pos Feat; RoI-Feature Regression; Detected-Label Classification; Masked Cross-Modality LM; Cross-Modality Matching & QA",
+          "fa": "رمزگذار روابط اشیا؛ رمزگذار میان‌وجهی؛ رمزگذار زبان؛ بازنمایی برداری واژه؛ بازنمایی برداری اندیس؛ ویژگی ماسک؛ ویژگی ناحیهٔ موردعلاقه؛ ویژگی موقعیت؛ رگرسیون ویژگی ناحیهٔ موردعلاقه؛ طبقه‌بندی برچسب تشخیص‌داده‌شده؛ مدل زبانی میان‌وجهی ماسک‌شده (Masked Cross-Modality LM)؛ تطبیق میان‌وجهی و پرسش‌وپاسخ",
+          "verified": true
+        },
+        {
+          "en": "Who is eating the carrot? [CLS] who [MASK] eat -ing the [MASK] ? [EOS] → [CLS] who is eat -ing the carrot ? [EOS]",
+          "fa": "Who is eating the carrot? [CLS] who [MASK] eat -ing the [MASK] ? [EOS] → [CLS] who is eat -ing the carrot ? [EOS] (چه کسی هویج را می‌خورد؟ (توکن‌های انگلیسی مثال، مطابق اصل حفظ شده‌اند))",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "926aaaf3cb8edda790b535466646c337444014d882882705711a740dd6ff0540",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: وظیفهٔ پیش‌آموزش (Pretraining) 1 (زبان)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "برخلاف BERT، وجه بینایی (Vision modality) می‌تواند ابهام زبان را رفع کند؛ برای مثال، نشان می‌دهد چه چیزی خورده می‌شود"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ObjectRel Encoder; Cross-Modality Encoder; Language Encoder; Word Emb; Idx Emb; Mask Feat; RoI Feat; Pos Feat; RoI-Feature Regression; Detected-Label Classification; Masked Cross-Modality LM; Cross-Modality Matching & QA",
+          "fa": "رمزگذار روابط اشیا؛ رمزگذار میان‌وجهی؛ رمزگذار زبان؛ بازنمایی برداری واژه؛ بازنمایی برداری اندیس؛ ویژگی ماسک؛ ویژگی ناحیهٔ موردعلاقه؛ ویژگی موقعیت؛ رگرسیون ویژگی ناحیهٔ موردعلاقه؛ طبقه‌بندی برچسب تشخیص‌داده‌شده؛ مدل زبانی میان‌وجهی ماسک‌شده (Masked Cross-Modality LM)؛ تطبیق میان‌وجهی و پرسش‌وپاسخ",
+          "verified": true
+        },
+        {
+          "en": "Who is eating the carrot? [CLS] who [MASK] eat -ing the [MASK] ? [EOS] → [CLS] who is eat -ing the carrot ? [EOS]",
+          "fa": "Who is eating the carrot? [CLS] who [MASK] eat -ing the [MASK] ? [EOS] → [CLS] who is eat -ing the carrot ? [EOS] (چه کسی هویج را می‌خورد؟ (توکن‌های انگلیسی مثال، مطابق اصل حفظ شده‌اند))",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "054844095783a10d62af6d1287bc234e2b49d8efee7d5a23c625d61b89df0c6b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: وظیفه‌های پیش‌آموزش (Pretraining) 2 و 3 (بینایی)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "15% از اشیای ورودی را ماسک (Mask) و سپس مقادیر اصلی ویژگی‌ها و رده‌های آن‌ها را پیش‌بینی کنید"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "(هدف: پیش‌بینی همان رده‌ای که Faster R-CNN پیش‌بینی کرده است)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ObjectRel Encoder; Cross-Modality Encoder; Language Encoder; Word Emb; Idx Emb; Mask Feat; RoI Feat; Pos Feat; RoI-Feature Regression; Detected-Label Classification; Masked Cross-Modality LM; Cross-Modality Matching & QA",
+          "fa": "رمزگذار روابط اشیا؛ رمزگذار میان‌وجهی؛ رمزگذار زبان؛ بازنمایی برداری واژه؛ بازنمایی برداری اندیس؛ ویژگی ماسک؛ ویژگی ناحیهٔ موردعلاقه؛ ویژگی موقعیت؛ رگرسیون ویژگی ناحیهٔ موردعلاقه؛ طبقه‌بندی برچسب تشخیص‌داده‌شده؛ مدل زبانی میان‌وجهی ماسک‌شده (Masked Cross-Modality LM)؛ تطبیق میان‌وجهی و پرسش‌وپاسخ",
+          "verified": true
+        },
+        {
+          "en": "Who is eating the carrot? [CLS] who [MASK] eat -ing the [MASK] ? [EOS] → [CLS] who is eat -ing the carrot ? [EOS]",
+          "fa": "Who is eating the carrot? [CLS] who [MASK] eat -ing the [MASK] ? [EOS] → [CLS] who is eat -ing the carrot ? [EOS] (چه کسی هویج را می‌خورد؟ (توکن‌های انگلیسی مثال، مطابق اصل حفظ شده‌اند))",
+          "verified": true
+        },
+        {
+          "en": "{DOG}",
+          "fa": "{DOG} (سگ)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "7ba26b34495f386ad2f6cbbdc823c9d6058c73c577a316892ed2322d558d8147",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: وظیفه‌های پیش‌آموزش (Pretraining) 2 و 3 (بینایی)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "آگاهی دربارهٔ اشیای دیگر و زبان باید به پیش‌بینی اشیای ماسک‌شده (Masked objects) کمک کند"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "(هدف: پیش‌بینی همان رده‌ای که Faster R-CNN پیش‌بینی کرده است)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ObjectRel Encoder; Cross-Modality Encoder; Language Encoder; Word Emb; Idx Emb; Mask Feat; RoI Feat; Pos Feat; RoI-Feature Regression; Detected-Label Classification; Masked Cross-Modality LM; Cross-Modality Matching & QA",
+          "fa": "رمزگذار روابط اشیا؛ رمزگذار میان‌وجهی؛ رمزگذار زبان؛ بازنمایی برداری واژه؛ بازنمایی برداری اندیس؛ ویژگی ماسک؛ ویژگی ناحیهٔ موردعلاقه؛ ویژگی موقعیت؛ رگرسیون ویژگی ناحیهٔ موردعلاقه؛ طبقه‌بندی برچسب تشخیص‌داده‌شده؛ مدل زبانی میان‌وجهی ماسک‌شده (Masked Cross-Modality LM)؛ تطبیق میان‌وجهی و پرسش‌وپاسخ",
+          "verified": true
+        },
+        {
+          "en": "Who is eating the carrot? [CLS] who [MASK] eat -ing the [MASK] ? [EOS] → [CLS] who is eat -ing the carrot ? [EOS]",
+          "fa": "Who is eating the carrot? [CLS] who [MASK] eat -ing the [MASK] ? [EOS] → [CLS] who is eat -ing the carrot ? [EOS] (چه کسی هویج را می‌خورد؟ (توکن‌های انگلیسی مثال، مطابق اصل حفظ شده‌اند))",
+          "verified": true
+        },
+        {
+          "en": "{DOG}",
+          "fa": "{DOG} (سگ)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "7ecb07dd61a2b014c0194f0c0164243bc34f27d517e34c3d1d369a514a2e581d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: وظیفه‌های پیش‌آموزش (Pretraining) 4 و 5 (هر دو وجه (Modalities))"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "وظیفهٔ 4: پیش‌بینی کنید آیا شرح (Caption) و تصویر با هم مطابقت دارند؛ در 50% از موارد، شرح‌ها تصادفی‌اند"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "A dog watching a rabbit eat a carrot (سگی که خوردن هویج توسط یک خرگوش را تماشا می‌کند)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ObjectRel Encoder; Cross-Modality Encoder; Language Encoder; Word Emb; Idx Emb; Mask Feat; RoI Feat; Pos Feat; RoI-Feature Regression; Detected-Label Classification; Masked Cross-Modality LM; Cross-Modality Matching & QA",
+          "fa": "رمزگذار روابط اشیا؛ رمزگذار میان‌وجهی؛ رمزگذار زبان؛ بازنمایی برداری واژه؛ بازنمایی برداری اندیس؛ ویژگی ماسک؛ ویژگی ناحیهٔ موردعلاقه؛ ویژگی موقعیت؛ رگرسیون ویژگی ناحیهٔ موردعلاقه؛ طبقه‌بندی برچسب تشخیص‌داده‌شده؛ مدل زبانی میان‌وجهی ماسک‌شده (Masked Cross-Modality LM)؛ تطبیق میان‌وجهی و پرسش‌وپاسخ",
+          "verified": true
+        },
+        {
+          "en": "Who is eating the carrot? [CLS] who [MASK] eat -ing the [MASK] ? [EOS] → [CLS] who is eat -ing the carrot ? [EOS]",
+          "fa": "Who is eating the carrot? [CLS] who [MASK] eat -ing the [MASK] ? [EOS] → [CLS] who is eat -ing the carrot ? [EOS] (چه کسی هویج را می‌خورد؟ (توکن‌های انگلیسی مثال، مطابق اصل حفظ شده‌اند))",
+          "verified": true
+        },
+        {
+          "en": "Match? {YES} Answer? {RABBIT}",
+          "fa": "Match? {YES} Answer? {RABBIT} (مطابقت دارد؟ {بله} پاسخ؟ {خرگوش})",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "bdef81a13c9f6734e6b91c6efbe05b5aa89638d54fd3631ad2804d8905d2e66a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: وظیفه‌های پیش‌آموزش (Pretraining) 4 و 5 (هر دو وجه (Modalities))"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "وظیفهٔ 5: انجام پرسش‌وپاسخ بصری (VQA)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ObjectRel Encoder; Cross-Modality Encoder; Language Encoder; Word Emb; Idx Emb; Mask Feat; RoI Feat; Pos Feat; RoI-Feature Regression; Detected-Label Classification; Masked Cross-Modality LM; Cross-Modality Matching & QA",
+          "fa": "رمزگذار روابط اشیا؛ رمزگذار میان‌وجهی؛ رمزگذار زبان؛ بازنمایی برداری واژه؛ بازنمایی برداری اندیس؛ ویژگی ماسک؛ ویژگی ناحیهٔ موردعلاقه؛ ویژگی موقعیت؛ رگرسیون ویژگی ناحیهٔ موردعلاقه؛ طبقه‌بندی برچسب تشخیص‌داده‌شده؛ مدل زبانی میان‌وجهی ماسک‌شده (Masked Cross-Modality LM)؛ تطبیق میان‌وجهی و پرسش‌وپاسخ",
+          "verified": true
+        },
+        {
+          "en": "Who is eating the carrot? [CLS] who [MASK] eat -ing the [MASK] ? [EOS] → [CLS] who is eat -ing the carrot ? [EOS]",
+          "fa": "Who is eating the carrot? [CLS] who [MASK] eat -ing the [MASK] ? [EOS] → [CLS] who is eat -ing the carrot ? [EOS] (چه کسی هویج را می‌خورد؟ (توکن‌های انگلیسی مثال، مطابق اصل حفظ شده‌اند))",
+          "verified": true
+        },
+        {
+          "en": "Match? {YES} Answer? {RABBIT}",
+          "fa": "Match? {YES} Answer? {RABBIT} (مطابقت دارد؟ {بله} پاسخ؟ {خرگوش})",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 71,
+      "source_text_sha256": "dba4fd88a1441952ae9db28324d4f097133f07eefa800695794a937c374e611a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: 5 وظیفهٔ پیش‌آموزش (Pretraining)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ObjectRel Encoder; Cross-Modality Encoder; Language Encoder; Word Emb; Idx Emb; Mask Feat; RoI Feat; Pos Feat; RoI-Feature Regression; Detected-Label Classification; Masked Cross-Modality LM; Cross-Modality Matching & QA",
+          "fa": "رمزگذار روابط اشیا؛ رمزگذار میان‌وجهی؛ رمزگذار زبان؛ بازنمایی برداری واژه؛ بازنمایی برداری اندیس؛ ویژگی ماسک؛ ویژگی ناحیهٔ موردعلاقه؛ ویژگی موقعیت؛ رگرسیون ویژگی ناحیهٔ موردعلاقه؛ طبقه‌بندی برچسب تشخیص‌داده‌شده؛ مدل زبانی میان‌وجهی ماسک‌شده (Masked Cross-Modality LM)؛ تطبیق میان‌وجهی و پرسش‌وپاسخ",
+          "verified": true
+        },
+        {
+          "en": "Who is eating the carrot? [CLS] who [MASK] eat -ing the [MASK] ? [EOS] → [CLS] who is eat -ing the carrot ? [EOS]",
+          "fa": "Who is eating the carrot? [CLS] who [MASK] eat -ing the [MASK] ? [EOS] → [CLS] who is eat -ing the carrot ? [EOS] (چه کسی هویج را می‌خورد؟ (توکن‌های انگلیسی مثال، مطابق اصل حفظ شده‌اند))",
+          "verified": true
+        },
+        {
+          "en": "{DOG}",
+          "fa": "{DOG} (سگ)",
+          "verified": true
+        },
+        {
+          "en": "Match? {YES} Answer? {RABBIT}",
+          "fa": "Match? {YES} Answer? {RABBIT} (مطابقت دارد؟ {بله} پاسخ؟ {خرگوش})",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 72,
+      "source_text_sha256": "06888cf9359188c4934176d26c6d324492234c832b695a82d5d7c17669cf1ab6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: زیان‌های (Losses) همهٔ وظیفه‌های پیش‌آموزش (Pretraining) هنگام آموزش با هم جمع می‌شوند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "بر اساس نوع وظیفه‌های پیش‌آموزش (Pretraining tasks) استفاده‌شده، نقاط قوت و محدودیت‌های بازنمایی‌های ویژگی (Feature representations) حاصل چه می‌تواند باشد؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ObjectRel Encoder; Cross-Modality Encoder; Language Encoder; Word Emb; Idx Emb; Mask Feat; RoI Feat; Pos Feat; RoI-Feature Regression; Detected-Label Classification; Masked Cross-Modality LM; Cross-Modality Matching & QA",
+          "fa": "رمزگذار روابط اشیا؛ رمزگذار میان‌وجهی؛ رمزگذار زبان؛ بازنمایی برداری واژه؛ بازنمایی برداری اندیس؛ ویژگی ماسک؛ ویژگی ناحیهٔ موردعلاقه؛ ویژگی موقعیت؛ رگرسیون ویژگی ناحیهٔ موردعلاقه؛ طبقه‌بندی برچسب تشخیص‌داده‌شده؛ مدل زبانی میان‌وجهی ماسک‌شده (Masked Cross-Modality LM)؛ تطبیق میان‌وجهی و پرسش‌وپاسخ",
+          "verified": true
+        },
+        {
+          "en": "Who is eating the carrot? [CLS] who [MASK] eat -ing the [MASK] ? [EOS] → [CLS] who is eat -ing the carrot ? [EOS]",
+          "fa": "Who is eating the carrot? [CLS] who [MASK] eat -ing the [MASK] ? [EOS] → [CLS] who is eat -ing the carrot ? [EOS] (چه کسی هویج را می‌خورد؟ (توکن‌های انگلیسی مثال، مطابق اصل حفظ شده‌اند))",
+          "verified": true
+        },
+        {
+          "en": "{DOG}",
+          "fa": "{DOG} (سگ)",
+          "verified": true
+        },
+        {
+          "en": "Match? {YES} Answer? {RABBIT}",
+          "fa": "Match? {YES} Answer? {RABBIT} (مطابقت دارد؟ {بله} پاسخ؟ {خرگوش})",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 73,
+      "source_text_sha256": "3476f9d0041411d94feb0722defc6b4af2c485f2347d977437eb3ef491c773be",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: داده‌های آموزشی برای پیش‌آموزش (Pretraining)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "همهٔ تصاویر از دو مجموعهٔ تصویری MS COCO و Visual Genome هستند که با برداشت خودکار تصاویر (Scraping) از وبگاه اشتراک‌گذاری عکس Flickr گردآوری شدند (Visual Genome تصاویر MS COCO را دربرمی‌گیرد)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Image Split; Images; Sentences (or Questions); All; MS COCO − VG; MS COCO ∩ VG; VG − MS COCO; COCO-Cap; VG-Cap; VQA; GQA; VG-QA",
+          "fa": "تقسیم‌بندی تصاویر؛ تصاویر؛ جمله‌ها (یا پرسش‌ها)؛ همه؛ MS COCO − VG؛ MS COCO ∩ VG؛ VG − MS COCO؛ COCO-Cap؛ VG-Cap؛ VQA؛ GQA؛ VG-QA",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 74,
+      "source_text_sha256": "f720b2865e92b1401f7fbbfda78906dcb886dc09f9dc30c5e3574b1e38a4b27c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: داده‌های آموزشی برای پیش‌آموزش (Pretraining)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "برچسب‌های زبانی (Language annotations) از 2 مجموعه‌دادهٔ شرح تصویر (Image captioning) و 3 مجموعه‌دادهٔ پرسش‌وپاسخ بصری (VQA) به دست آمدند؛ آن‌ها را مشارکت‌کنندگان جمع‌سپاری (Crowdworkers) نوشته‌اند که برای ایجاد شرح‌ها، پرسش‌ها و پاسخ‌ها دستمزد گرفته‌اند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Image Split; Images; Sentences (or Questions); All; MS COCO − VG; MS COCO ∩ VG; VG − MS COCO; COCO-Cap; VG-Cap; VQA; GQA; VG-QA",
+          "fa": "تقسیم‌بندی تصاویر؛ تصاویر؛ جمله‌ها (یا پرسش‌ها)؛ همه؛ MS COCO − VG؛ MS COCO ∩ VG؛ VG − MS COCO؛ COCO-Cap؛ VG-Cap؛ VQA؛ GQA؛ VG-QA",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 75,
+      "source_text_sha256": "9306be0dac8c66f4f04a7dc434e902f3269e11a4ae3802d7b8ffb869289c475f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: داده‌های آموزشی برای پیش‌آموزش (Pretraining)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "در مجموع 9.18 میلیون جفت تصویر–جمله برای 180,000 تصویر وجود دارد (برای جفت‌های تصویر–جمله از پرسش‌های مجموعه‌داده‌های VQA استفاده می‌شود)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Image Split; Images; Sentences (or Questions); All; MS COCO − VG; MS COCO ∩ VG; VG − MS COCO; COCO-Cap; VG-Cap; VQA; GQA; VG-QA",
+          "fa": "تقسیم‌بندی تصاویر؛ تصاویر؛ جمله‌ها (یا پرسش‌ها)؛ همه؛ MS COCO − VG؛ MS COCO ∩ VG؛ VG − MS COCO؛ COCO-Cap؛ VG-Cap؛ VQA؛ GQA؛ VG-QA",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 76,
+      "source_text_sha256": "2ead98ad263f299c76e8ca0cbad6734f30cc50b29b273a3b7e1324fb7b02a69c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: داده‌های آموزشی برای پیش‌آموزش (Pretraining)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "بر اساس نوع داده‌های آموزشی استفاده‌شده، نقاط قوت و محدودیت‌های بازنمایی‌های ویژگی (Feature representations) حاصل چه می‌تواند باشد؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Image Split; Images; Sentences (or Questions); All; MS COCO − VG; MS COCO ∩ VG; VG − MS COCO; COCO-Cap; VG-Cap; VQA; GQA; VG-QA",
+          "fa": "تقسیم‌بندی تصاویر؛ تصاویر؛ جمله‌ها (یا پرسش‌ها)؛ همه؛ MS COCO − VG؛ MS COCO ∩ VG؛ VG − MS COCO؛ COCO-Cap؛ VG-Cap؛ VQA؛ GQA؛ VG-QA",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 77,
+      "source_text_sha256": "236e9ba82697f7cdbbc45cf2263976b59586acfbbb7d87dbcd9a9705e2592681",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: نتایج تجربی تنظیم دقیق (Fine-Tuning)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "بهترین عملکرد را به دست آورد؛ با بهبود بیشتر نسبت به کارهای پیشین برای پرسش‌هایی که به پاسخ‌های «دودویی» (Binary) و «سایر» (Other) منجر می‌شوند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Method; Human; Image Only; Language Only; State-of-the-Art; VQA; GQA; NLVR2; Binary; Number; Other; Open; Accu; Cons",
+          "fa": "روش؛ انسان؛ فقط تصویر؛ فقط زبان؛ بهترین روش‌های موجود (State-of-the-Art)؛ VQA؛ GQA؛ NLVR2؛ دودویی؛ عدد؛ سایر؛ باز؛ دقت (Accu)؛ سازگاری (Cons)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 78,
+      "source_text_sha256": "d16c0ada432fb6c33014641bf6a112e10f4f3605ec7106f919aa144d808d9e04",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LXMERT: نتایج تجربی تنظیم دقیق (Fine-Tuning)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "این بازنمایی‌ها همچنین در یک مجموعه‌دادهٔ دیگر پرسش‌وپاسخ بصری (VQA) و یک وظیفهٔ استدلال بصری (Visual reasoning؛ یعنی آیا گزاره دو تصویر را توصیف می‌کند یا نه) به بهترین عملکرد منجر شدند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Method; Human; Image Only; Language Only; State-of-the-Art; VQA; GQA; NLVR2; Binary; Number; Other; Open; Accu; Cons",
+          "fa": "روش؛ انسان؛ فقط تصویر؛ فقط زبان؛ بهترین روش‌های موجود (State-of-the-Art)؛ VQA؛ GQA؛ NLVR2؛ دودویی؛ عدد؛ سایر؛ باز؛ دقت (Accu)؛ سازگاری (Cons)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 79,
+      "source_text_sha256": "e3d2b325c9237156f8ed6be0dec8330a54c96040c9ce285e4ff43842a2e792b8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردهای پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌داده‌های پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش اصلی سال 2015: رویکرد پایه (Baseline approach)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش اصلی سال 2019: رویکرد مبتنی بر ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی (Programming tutorial)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 80,
+      "source_text_sha256": "e3d2b325c9237156f8ed6be0dec8330a54c96040c9ce285e4ff43842a2e792b8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردهای پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌داده‌های پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی پرسش‌وپاسخ بصری (Visual Question Answering)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش اصلی سال 2015: رویکرد پایه (Baseline approach)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش اصلی سال 2019: رویکرد مبتنی بر ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی (Programming tutorial)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 81,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    }
+  ]
+}

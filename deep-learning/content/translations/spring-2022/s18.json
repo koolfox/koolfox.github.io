@@ -1,0 +1,2984 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s18",
+  "source_sha256": "7b8984a19baeedd593f92a14e0aa5dcf28ea6f98b8675967a5a494f0aa785c30",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "18304c2d00c676d0cd8883b413fc73fdce103ceec2d3c021a7ba13faa11504ed",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شرح تصویر (Image Captioning)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "دانشگاه کلرادو بولدر (University of Colorado Boulder)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "بهار ۲۰۲۲ (Spring 2022)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "451212547ec3b03ec2fbcd6c56706576077e2e57e6db71e170ee421a2202880d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• هفتهٔ قبل"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• رشد انفجاری ترنسفورمرها (Transformers)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "• GPT"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "• BERT"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• محدودیت‌های مدل‌های ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی (Programming tutorial)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• تکلیف‌ها (Canvas)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• موعد تحویل مجموعه‌مسئلهٔ 4 هفتهٔ آینده است"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "• پرسشی دارید؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "ce19965e91c2b17cff2f7ba00fd1097f92c4a9de1e87c2015d499642071cf8cb",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردهای شرح تصویر (Image Captioning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌داده‌های شرح تصویر (Image Captioning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی شرح تصویر (Image Captioning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش: خط لولهٔ رمزگذار–رمزگشا با توجه (Encoder decoder pipeline with attention)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "ce19965e91c2b17cff2f7ba00fd1097f92c4a9de1e87c2015d499642071cf8cb",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردهای شرح تصویر (Image Captioning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌داده‌های شرح تصویر (Image Captioning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی شرح تصویر (Image Captioning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش: خط لولهٔ رمزگذار–رمزگشا با توجه (Encoder decoder pipeline with attention)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "ef2d0432895c35aa31c6fce46de7032418d58f501aacc7384779d85403c75ad5",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "توصیفی «انسان‌گونه» (Human-Like)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "شرح‌ها (Captions): https://www.microsoft.com/cognitive-services/en-us/computer-vision-api"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Features; Feature Name; Value; Description; Tags; Age: 28; Gender: Male; Is Adult Content: False; Categories: people_swimming",
+          "fa": "ویژگی‌ها؛ نام ویژگی؛ مقدار؛ توصیف؛ برچسب‌ها؛ سن: 28؛ جنسیت: مرد؛ محتوای بزرگسالان: False؛ رده‌ها: people_swimming (افراد در حال شنا)",
+          "verified": true
+        },
+        {
+          "en": "a man swimming in a pool of water",
+          "fa": "a man swimming in a pool of water (مردی در حال شنا در استخری از آب)",
+          "verified": true
+        },
+        {
+          "en": "water; sport; swimming; pool; water sport; confidence; hint",
+          "fa": "آب؛ ورزش؛ شنا؛ استخر؛ ورزش آبی؛ اطمینان (Confidence)؛ راهنما (Hint)",
+          "verified": true
+        },
+        {
+          "en": "Image Format: jpeg; Image Dimensions: 1500 x 1155; Clip Art Type: 0 Non-clipart; Line Drawing Type: 0 Non-LineDrawing; Black & White Image: False",
+          "fa": "قالب تصویر: jpeg؛ ابعاد تصویر: 1500 x 1155؛ نوع کلیپ‌آرت: 0، کلیپ‌آرت نیست؛ نوع ترسیم خطی: 0، ترسیم خطی نیست؛ تصویر سیاه‌وسفید: False",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "6bd71e03a680d151c3fbe91ead9f269af0090d0e228f15175b6681e9ff2fe9e8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "کمک بصری به افراد دارای آسیب بینایی (Visual Impairments)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.youtube.com/watch?v=Tjugc8a836Q"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "Facebook Microsoft"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://www.youtube.com/watch?v=R2mC-NUAmMk"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Facebook’s New AI Tool Is Helping Blind Users ‘See’ Photos - Newsy",
+          "fa": "ابزار جدید هوش مصنوعی Facebook به کاربران نابینا کمک می‌کند عکس‌ها را «ببینند» - Newsy",
+          "verified": true
+        },
+        {
+          "en": "Saqib Shaikh: Microsoft Developer Can ‘See’ Using Artificial Intelligence Headset",
+          "fa": "Saqib Shaikh: توسعه‌دهندهٔ Microsoft با استفاده از هدست هوش مصنوعی می‌تواند «ببیند»",
+          "verified": true
+        },
+        {
+          "en": "an orange Frisbee in the park",
+          "fa": "an orange Frisbee in the park (یک فریزبی نارنجی در پارک)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "071cf1c47933110cdd1b0c824e97b10da404b127e79b6deb816b1324d00c8ca3",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "متن جایگزین (Alt Text) برای افراد دارای آسیب بینایی"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "برای مثال، Microsoft Power Point (نمایش Office 365)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Alt Text; How would you describe this object and its context to someone who is blind? (1-2 sentences recommended)",
+          "fa": "متن جایگزین (Alt Text)؛ این شیء و بافت آن را برای فردی نابینا چگونه توصیف می‌کنید؟ (1-2 جمله پیشنهاد می‌شود)",
+          "verified": true
+        },
+        {
+          "en": "A group of people posing for a photo",
+          "fa": "A group of people posing for a photo (گروهی از افراد که برای عکس ژست گرفته‌اند)",
+          "verified": true
+        },
+        {
+          "en": "Description generated with very high confidence; Generate a description for me; SCHOOL of information",
+          "fa": "توصیف با اطمینان بسیار زیاد تولید شد؛ برای من توصیفی تولید کن؛ دانشکدهٔ اطلاعات",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "9ad746f516cca246e8e89cbcfae307361240ab681364842cbc8a05232cf83cdf",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شرح تصویر (Image Captioning) برای مقاله‌های روزنامه"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Feng and Lapata. Automatic Image Annotation Using Auxiliary Text Information. Proceedings of ACL-08: HLT. 2008"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "BBC NEWS UK EDITION; Last Updated: Friday, 23 September 2005, 18:00 GMT 19:00 UK; E-mail this to a friend; Printable version",
+          "fa": "BBC NEWS، نسخهٔ بریتانیا؛ آخرین به‌روزرسانی: جمعه 23 سپتامبر 2005، ساعت 18:00 گرینویچ، 19:00 بریتانیا؛ فرستادن با رایانامه برای دوست؛ نسخهٔ چاپی",
+          "verified": true
+        },
+        {
+          "en": "Apple-growing Pole feels squeeze; By Oana Lungescu; Brussels correspondent",
+          "fa": "سیب‌کار لهستانی فشار را احساس می‌کند؛ نوشتهٔ Oana Lungescu؛ خبرنگار بروکسل",
+          "verified": true
+        },
+        {
+          "en": "As part of our ongoing season “Who Runs Your World,” the BBC took a Polish apple-grower to meet the movers and shakers of Brussels.",
+          "fa": "در چارچوب فصل جاریِ «چه کسی دنیای شما را اداره می‌کند»، BBC یک سیب‌کار لهستانی را برای دیدار با افراد بانفوذ و تصمیم‌گیرندهٔ بروکسل برد.",
+          "verified": true
+        },
+        {
+          "en": "Aid for farmers has become one of the most hotly disputed issues in the European Union.",
+          "fa": "کمک به کشاورزان به یکی از بحث‌برانگیزترین مسائل اتحادیهٔ اروپا تبدیل شده است.",
+          "verified": true
+        },
+        {
+          "en": "When Poland was one of the 10 countries to join the EU last year, six million farmers feared they would be put out of business by their heavily-subsidised colleagues in western Europe.",
+          "fa": "وقتی لهستان سال گذشته یکی از 10 کشور پیوسته به اتحادیهٔ اروپا بود، شش میلیون کشاورز نگران بودند همکارانشان در اروپای غربی، که یارانه‌های فراوانی دریافت می‌کنند، آن‌ها را از کسب‌وکار خارج کنند.",
+          "verified": true
+        },
+        {
+          "en": "Marcin and Florent face intense competition from outside Europe",
+          "fa": "Marcin و Florent با رقابت شدیدی از خارج اروپا روبه‌رو هستند",
+          "verified": true
+        },
+        {
+          "en": "But it has been a good year for Polish farmers. Those who feared the worst from EU membership are now the first to harvest its fruit. With more than 1.6bn euros (£1.1bn) in subsidies so far, farmers have practically doubled their income.",
+          "fa": "اما برای کشاورزان لهستانی سال خوبی بوده است. کسانی که از بدترین پیامدهای عضویت در اتحادیهٔ اروپا می‌ترسیدند، اکنون نخستین کسانی هستند که ثمرهٔ آن را برداشت می‌کنند. با بیش از 1.6 میلیارد یورو (1.1 میلیارد پوند) یارانه تا اینجا، کشاورزان عملاً درآمدشان را دوبرابر کرده‌اند.",
+          "verified": true
+        },
+        {
+          "en": "Marcin Hermanowicz grows apples on 30 hectares of land, in a region south of Warsaw often described as Europe’s largest orchard.",
+          "fa": "Marcin Hermanowicz در 30 هکتار زمین در منطقه‌ای در جنوب ورشو سیب می‌کارد؛ منطقه‌ای که اغلب بزرگ‌ترین باغ میوهٔ اروپا توصیف می‌شود.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "ce643e181d839284f74ce7f78c7fb1cfce5678aa29c3249caecc7ea6bcf68afe",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "کمک به گردشگری با تصاویر دارای شرح (Captioned Images)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Grubinger et al. The iapr tc-12 benchmark: A new evaluation resource for visual information systems. 2006"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Figure 7: Tourists from three different tour groups at the Salt Lake of Uyuni in Bolivia",
+          "fa": "شکل 7: گردشگرانِ سه گروه گردشگری متفاوت در دریاچهٔ نمک اویونی در بولیوی",
+          "verified": true
+        },
+        {
+          "en": "Figure 3: Examples for people shots (Peruvian Children, Korean Guards, Russian Singers)",
+          "fa": "شکل 3: نمونه‌های عکس افراد (کودکان پرویی، نگهبانان کره‌ای، خوانندگان روس)",
+          "verified": true
+        },
+        {
+          "en": "Figure 8: The Cathedral of Cuzco, Peru, in different viewing angles (right, left and front)",
+          "fa": "شکل 8: کلیسای جامع کوسکو، پرو، از زاویه‌های دید متفاوت (راست، چپ و روبه‌رو)",
+          "verified": true
+        },
+        {
+          "en": "Figure 4: Examples for animal photos (Humpback Whale, Kangaroos, Galapagos Giant Turtle)",
+          "fa": "شکل 4: نمونه‌های عکس جانوران (نهنگ گوژپشت، کانگوروها، لاک‌پشت غول‌پیکر گالاپاگوس)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "dfd9f8a4a6087a0766e4c2a8ff5a02ce6a7f8d150aa27e2244ac7206d370a333",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "توصیف و پاسخ‌دادن به تصاویر منتشرشده در رسانه‌های اجتماعی با «شخصیت» (Personality)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Shuster et al. Engaging Image Captioning via Personality. 2019"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Standard captioning output; Our model with different personality traits (215 possible traits, not all shown here)",
+          "fa": "خروجی شرح تصویر استاندارد؛ مدل ما با صفت‌های شخصیتی متفاوت (215 صفت ممکن که همه اینجا نمایش داده نشده‌اند)",
+          "verified": true
+        },
+        {
+          "en": "A plate with a sandwich and salad on it.",
+          "fa": "A plate with a sandwich and salad on it. (بشقابی که ساندویچ و سالاد روی آن است.)",
+          "verified": true
+        },
+        {
+          "en": "Sweet: That is a lovely sandwich.",
+          "fa": "Sweet: That is a lovely sandwich. (مهربان: چه ساندویچ دوست‌داشتنی‌ای.)",
+          "verified": true
+        },
+        {
+          "en": "Dramatic: This sandwich looks so delicious! My goodness!",
+          "fa": "Dramatic: This sandwich looks so delicious! My goodness! (نمایشی: این ساندویچ خیلی خوش‌مزه به نظر می‌رسد! وای خدای من!)",
+          "verified": true
+        },
+        {
+          "en": "Anxious: I’m afraid this might make me sick if I eat it.",
+          "fa": "Anxious: I’m afraid this might make me sick if I eat it. (مضطرب: می‌ترسم اگر این را بخورم مریض شوم.)",
+          "verified": true
+        },
+        {
+          "en": "Sympathetic: I feel so bad for that carrot, about to be consumed.",
+          "fa": "Sympathetic: I feel so bad for that carrot, about to be consumed. (همدل: خیلی دلم برای آن هویج که قرار است خورده شود می‌سوزد.)",
+          "verified": true
+        },
+        {
+          "en": "Arrogant: I make better food than this",
+          "fa": "Arrogant: I make better food than this (متکبر: من بهتر از این غذا درست می‌کنم)",
+          "verified": true
+        },
+        {
+          "en": "Optimistic: It will taste positively wonderful!",
+          "fa": "Optimistic: It will taste positively wonderful! (خوش‌بین: مزه‌اش قطعاً فوق‌العاده خواهد بود!)",
+          "verified": true
+        },
+        {
+          "en": "Money-minded: I would totally pay $100 for this plate.",
+          "fa": "Money-minded: I would totally pay $100 for this plate. (پول‌محور: برای این بشقاب قطعاً 100 دلار می‌پردازم.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "5cbb97180ea6e95954d1db1f8d53ae2cba01bb243542b10d596b97132b2d362a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "توصیف محصولات"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Yang et al. Fashion Captioning: Towards Generating Accurate Descriptions with Semantic Rewards. ECCV 2020"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Title: Stand Collar A-Line Dress",
+          "fa": "عنوان: پیراهن فون با یقهٔ ایستاده (Stand Collar A-Line Dress)",
+          "verified": true
+        },
+        {
+          "en": "Fashion Caption: A pearly button accents the stand collar that gives this so-simple, yet so-chic A-line dress its retro flair",
+          "fa": "شرح مُد (Fashion Caption): دکمه‌ای مرواریدی یقهٔ ایستاده را برجسته می‌کند؛ یقه‌ای که به این پیراهن فونِ بسیار ساده و در عین حال بسیار شیک، جلوه‌ای قدیمی می‌دهد",
+          "verified": true
+        },
+        {
+          "en": "Color: Black and ivory; Meta: 33\" petite length (size 8P) - Hidden back-zip closure - Stand collar - Cap sleeves - Side-seam pockets - A-Lined - 63% polyester, 34% rayon, 3% spandex - Dry clean or hand wash, dry flat - Imported - Dress",
+          "fa": "رنگ: سیاه و عاجی؛ فراداده: طول 33 اینچ برای اندام کوتاه (اندازهٔ 8P)؛ زیپ مخفی پشت؛ یقهٔ ایستاده؛ آستین کوتاهِ کلاهکی؛ جیب‌های درز کناری؛ فرم فون (A-Lined)؛ 63% پلی‌استر، 34% ریون، 3% اسپندکس؛ خشک‌شویی یا شست‌وشو با دست، خشک‌کردن روی سطح صاف؛ وارداتی؛ پیراهن",
+          "verified": true
+        },
+        {
+          "en": "Image Caption: A person in a dress",
+          "fa": "Image Caption: A person in a dress (شرح تصویر: فردی با پیراهن)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "f6fee95b18fcc1890a97819ef8ffb5983bbf1a386eb87e7e4eb4db37f636218a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شرح تصویر (Image Captioning) چه کاربردهای بالقوهٔ دیگری دارد؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "ce19965e91c2b17cff2f7ba00fd1097f92c4a9de1e87c2015d499642071cf8cb",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردهای شرح تصویر (Image Captioning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌داده‌های شرح تصویر (Image Captioning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی شرح تصویر (Image Captioning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش: خط لولهٔ رمزگذار–رمزگشا با توجه (Encoder decoder pipeline with attention)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "838a9e148e7dd48dbf888ab1f447f174cfcca6c51f8e9d33654495ea2fb9a176",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نمونه‌ای از چالش‌های مجموعه‌دادهٔ موجود (Dataset Challenges)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Stefanini et al. From Show to Tell: A Survey on Deep Learning-based Image Captioning. arXiv 2021"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Woman on a horse jumping over a pole jump.",
+          "fa": "Woman on a horse jumping over a pole jump. (زنی سوار بر اسب در حال پریدن از مانع میله‌ای.)",
+          "verified": true
+        },
+        {
+          "en": "A glass bowl contains peeled tangerines and cut strawberries.",
+          "fa": "A glass bowl contains peeled tangerines and cut strawberries. (کاسه‌ای شیشه‌ای حاوی نارنگی‌های پوست‌کنده و توت‌فرنگی‌های بریده‌شده است.)",
+          "verified": true
+        },
+        {
+          "en": "A person is holding a small container of cream upside down.",
+          "fa": "A person is holding a small container of cream upside down. (فردی ظرف کوچک کرم را وارونه نگه داشته است.)",
+          "verified": true
+        },
+        {
+          "en": "The billboard displays ‘Welcome to Yakima The Palm Springs of Washington.’",
+          "fa": "The billboard displays ‘Welcome to Yakima The Palm Springs of Washington.’ (تابلوی تبلیغاتی نوشتهٔ «به یاکیما، پالم اسپرینگزِ واشینگتن خوش آمدید» را نمایش می‌دهد.)",
+          "verified": true
+        },
+        {
+          "en": "Cars are on the streets.",
+          "fa": "Cars are on the streets. (خودروها در خیابان‌ها هستند.)",
+          "verified": true
+        },
+        {
+          "en": "Small stand of trees, just visible in the distance in the previous photo.",
+          "fa": "Small stand of trees, just visible in the distance in the previous photo. (گروه کوچکی از درختان که در عکس قبلی در دوردست به‌سختی دیده می‌شد.)",
+          "verified": true
+        },
+        {
+          "en": "A decorative leather padlock on a compact bag with croc embossed leather.",
+          "fa": "A decorative leather padlock on a compact bag with croc embossed leather. (قفلی چرمی تزئینی روی کیفی کوچک با چرم طرح‌برجستهٔ کروکودیل.)",
+          "verified": true
+        },
+        {
+          "en": "This bird is blue with white on its chest and has a very short beak.",
+          "fa": "This bird is blue with white on its chest and has a very short beak. (این پرنده آبی است و روی سینه‌اش سفید است و نوکی بسیار کوتاه دارد.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "838a9e148e7dd48dbf888ab1f447f174cfcca6c51f8e9d33654495ea2fb9a176",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نمونه‌ای از چالش‌های مجموعه‌دادهٔ موجود (Dataset Challenges)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Stefanini et al. From Show to Tell: A Survey on Deep Learning-based Image Captioning. arXiv 2021"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Domain; Nb. Images; Nb. Caps (per Image); Vocab Size; Nb. Words (per Cap.); Generic; Assistive; Birds; Flowers; Fashion; News; OCR",
+          "fa": "دامنه؛ تعداد تصاویر؛ تعداد شرح‌ها به‌ازای هر تصویر؛ اندازهٔ واژگان؛ تعداد واژه‌ها به‌ازای هر شرح؛ عمومی؛ کمکی؛ پرندگان؛ گل‌ها؛ مُد؛ خبر؛ بازشناسی نوری نویسه‌ها (OCR)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "9b2d61513fda266c4c756a33db696f3b3e817e4dce32d811f9f48abd6411a2ac",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "چالش: هنگام گردآوری شرح‌ها (Captions) از برچسب‌گذاران انسانی (Human Annotators)، چه دستورالعمل‌هایی باید ارائه شود؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "a3faf48022cc259713e0e6c2ad3c39c9c922c8e135efa64c40f90ffae6aaac40",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "فعالیت کلاسی: این تصویر را چگونه توصیف می‌کنید؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "36f1204d5fe4d63b74a30bfd2fb7a3f45beab75c874f6711eca1330a1a9c4e7d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "literal",
+          "fa": "VLT2K"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "D. Elliott and F. Keller. Image description using visual dependency representations. EMNLP 2013."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Guidelines and Examples: Read these guidelines carefully. You must write exactly two sentences.",
+          "fa": "راهنما و مثال‌ها: این راهنما را با دقت بخوانید. باید دقیقاً دو جمله بنویسید.",
+          "verified": true
+        },
+        {
+          "en": "1. Describe the action being performed and mention the person performing the action and all objects involved in the action. 2. Describe any objects in the image that are not directly involved in the action.",
+          "fa": "1. عملِ در حال انجام را توصیف کنید و فرد انجام‌دهنده و همهٔ اشیای دخیل در عمل را ذکر کنید. 2. اشیای موجود در تصویر را که مستقیماً در عمل دخیل نیستند توصیف کنید.",
+          "verified": true
+        },
+        {
+          "en": "A man is reading a newspaper. It is cloudy and there are skyscrapers in the background.",
+          "fa": "A man is reading a newspaper. It is cloudy and there are skyscrapers in the background. (مردی روزنامه می‌خواند. هوا ابری است و آسمان‌خراش‌هایی در پس‌زمینه وجود دارد.)",
+          "verified": true
+        },
+        {
+          "en": "A boy is typing on a laptop. There is a brown bookshelf behind him and a bright window.",
+          "fa": "A boy is typing on a laptop. There is a brown bookshelf behind him and a bright window. (پسری روی لپ‌تاپ تایپ می‌کند. پشت او قفسهٔ کتاب قهوه‌ای و پنجره‌ای روشن وجود دارد.)",
+          "verified": true
+        },
+        {
+          "en": "A man is talking on the telephone. There is a red lampshade and three red chairs in the background.",
+          "fa": "A man is talking on the telephone. There is a red lampshade and three red chairs in the background. (مردی با تلفن صحبت می‌کند. آباژوری قرمز و سه صندلی قرمز در پس‌زمینه وجود دارد.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "669e2e802ce1b36c70180cc9884e93a087b0a28d863660c1364fc1a517123718",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "literal",
+          "fa": "Flickr8K and 30K"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Hodosh, Young, and Hockenmaier. Framing image description as a ranking task: Data, models, and evaluation metrics. JAIR 2013"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Guidelines: You must describe each of the following five images with one sentence. Please provide an accurate description of the activities, people, animals and objects you see depicted in the image. Each description must be a single sentence under 100 characters. Try to be concise. Please pay attention to grammar and spelling. We will accept your results if you provide a good description for all five images, leaving nothing blank.",
+          "fa": "راهنما: باید هر یک از پنج تصویر زیر را با یک جمله توصیف کنید. لطفاً فعالیت‌ها، افراد، جانوران و اشیایی را که در تصویر می‌بینید دقیق توصیف کنید. هر توصیف باید یک جملهٔ کمتر از 100 نویسه باشد. سعی کنید مختصر باشید. لطفاً به دستور زبان و املا توجه کنید. اگر برای هر پنج تصویر توصیف خوبی ارائه دهید و هیچ موردی را خالی نگذارید، نتایجتان را می‌پذیریم.",
+          "verified": true
+        },
+        {
+          "en": "Examples of good and bad descriptions.",
+          "fa": "نمونه‌های توصیف خوب و بد.",
+          "verified": true
+        },
+        {
+          "en": "(1) The dog is wearing a red sombrero. Very Good: This describes the two main objects concisely and accurately.",
+          "fa": "(1) The dog is wearing a red sombrero. Very Good: This describes the two main objects concisely and accurately. ((1) سگ کلاه سومبررو قرمز به سر دارد. بسیار خوب: دو شیء اصلی را مختصر و دقیق توصیف می‌کند.)",
+          "verified": true
+        },
+        {
+          "en": "(2) White dog wearing a red hat. Good: Incomplete sentences like this are fine.",
+          "fa": "(2) White dog wearing a red hat. Good: Incomplete sentences like this are fine. ((2) سگ سفید با کلاه قرمز. خوب: جمله‌های ناقص مانند این قابل‌قبول‌اند.)",
+          "verified": true
+        },
+        {
+          "en": "(3) The white dog is wearing a pink collar. Okay: This describes the dog, but it ignores the hat.",
+          "fa": "(3) The white dog is wearing a pink collar. Okay: This describes the dog, but it ignores the hat. ((3) سگ سفید قلادهٔ صورتی دارد. قابل‌قبول: سگ را توصیف می‌کند، اما کلاه را نادیده می‌گیرد.)",
+          "verified": true
+        },
+        {
+          "en": "(4) The red hat is adorned with gold sequins. Bad: This ignores the dog.",
+          "fa": "(4) The red hat is adorned with gold sequins. Bad: This ignores the dog. ((4) کلاه قرمز با پولک‌های طلایی آراسته شده است. بد: سگ را نادیده می‌گیرد.)",
+          "verified": true
+        },
+        {
+          "en": "(5) The dog is angry because he is hungry. Bad: This is speculation.",
+          "fa": "(5) The dog is angry because he is hungry. Bad: This is speculation. ((5) سگ عصبانی است چون گرسنه است. بد: این حدس‌وگمان است.)",
+          "verified": true
+        },
+        {
+          "en": "(6) The dog. Very Bad: This could describe any image of any dog.",
+          "fa": "(6) The dog. Very Bad: This could describe any image of any dog. ((6) سگ. بسیار بد: می‌تواند هر تصویری از هر سگی را توصیف کند.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "cd3a6f1fc8b17576fce14fafe90364e4e2b13221c834fe0a7a281f33c1a083e6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "literal",
+          "fa": "MSCOCO"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Chen et al. Microsoft COCO Captions: Data Collection and Evaluation Server. arXiv 2015."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Instructions: Describe all the important parts of the scene. Do not start the sentences with “There is”. Do not describe unimportant details. Do not describe things that might have happened in the future or past. Do not describe what a person might say. Do not give people proper names. The sentence should contain at least 8 words.",
+          "fa": "دستورالعمل‌ها: همهٔ بخش‌های مهم صحنه را توصیف کنید. جمله‌ها را با “There is” آغاز نکنید. جزئیات بی‌اهمیت را توصیف نکنید. چیزهایی را که ممکن است در آینده یا گذشته رخ داده باشند توصیف نکنید. آنچه ممکن است فردی بگوید توصیف نکنید. برای افراد نام خاص تعیین نکنید. جمله باید دست‌کم 8 واژه داشته باشد.",
+          "verified": true
+        },
+        {
+          "en": "Please describe the image: Enter description here; prev; next",
+          "fa": "لطفاً تصویر را توصیف کنید: توصیف را اینجا وارد کنید؛ قبلی؛ بعدی",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "a54c333781164871673b98794ebeba388b2e5d3fced13f80c5151616b135dab5",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "literal",
+          "fa": "VizWiz"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Gurari et al. Captioning Images Taken by People Who Are Blind. ECCV 2020"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Step 1: Please describe the image in one sentence. Describe all parts of the image that may be important to a person who is blind. E.g., imagine how you would describe this image on the phone to a friend.",
+          "fa": "گام 1: لطفاً تصویر را در یک جمله توصیف کنید. همهٔ بخش‌های تصویر را که ممکن است برای فرد نابینا مهم باشند توصیف کنید. برای مثال، تصور کنید این تصویر را تلفنی برای دوستی چگونه توصیف می‌کنید.",
+          "verified": true
+        },
+        {
+          "en": "DO NOT speculate about what people in the image might be saying or thinking. DO NOT describe things that may have happened in the future or past. DO NOT use more than one sentence.",
+          "fa": "دربارهٔ آنچه افراد تصویر ممکن است بگویند یا فکر کنند حدس نزنید. چیزهایی را که ممکن است در آینده یا گذشته رخ داده باشند توصیف نکنید. بیش از یک جمله ننویسید.",
+          "verified": true
+        },
+        {
+          "en": "If text is in the image, and is important, then you can summarize what it says. DO NOT use all the specific phrases that you see in the image as your description of the image.",
+          "fa": "اگر متنی در تصویر هست و اهمیت دارد، می‌توانید گفتهٔ آن را خلاصه کنید. همهٔ عبارت‌های مشخصی را که در تصویر می‌بینید به‌عنوان توصیف تصویر استفاده نکنید.",
+          "verified": true
+        },
+        {
+          "en": "DO NOT describe the image quality issues. This is covered in Step 3. If the image quality issues make it impossible to recognize the visual content (e.g., image is totally black or white), then use the following description (you can copy-paste): Quality issues are too severe to recognize visual content. Copy to description",
+          "fa": "مشکلات کیفیت تصویر را توصیف نکنید؛ این موضوع در گام 3 پوشش داده می‌شود. اگر مشکلات کیفیت تصویر تشخیص محتوای بصری را ناممکن می‌کنند (برای مثال، تصویر کاملاً سیاه یا سفید است)، از توصیف زیر استفاده کنید (می‌توانید کپی و جای‌گذاری کنید): مشکلات کیفیت آن‌قدر شدیدند که محتوای بصری قابل‌شناسایی نیست. کپی به توصیف",
+          "verified": true
+        },
+        {
+          "en": "Your description should contain at least 8 words. Type here. Do not start the description with: “There is/are ...”; “This is / These are ...”; “The/This image/picture ...”; “It is/ It’s ...”",
+          "fa": "توصیف شما باید دست‌کم 8 واژه داشته باشد. اینجا بنویسید. توصیف را با این عبارت‌ها آغاز نکنید: “There is/are ...”؛ “This is / These are ...”؛ “The/This image/picture ...”؛ “It is/ It’s ...”",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": false,
+      "image_review_note_fa": "متن کامل دستورالعمل ترجمه شده است؛ نام‌های ریز و وارونه روی عطف کتاب‌های عکس هنوز کامل خوانا/پیاده نشده‌اند."
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "857e4e1e20b818bbe7e7f2df653691442aa0b46b8b703bb010f32ef4b3738e16",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "literal",
+          "fa": "Personality-Captions"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "K. Shuster, S. Humeau, H. Hu, A. Bordes, and J. Weston. Engaging image captioning via personality. CVPR 2019."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "215 شخصیت از این فهرست انتخاب شد: http://ideonomy.mit.edu/essays/traits.html"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Comment on an Image; Image; Description; In this task, you will be shown 5 images, and will write a comment about each image. The goal of this task is to write something about an image that someone else would find engaging.",
+          "fa": "دربارهٔ تصویر نظر بنویسید؛ تصویر؛ شرح؛ در این وظیفه 5 تصویر به شما نمایش داده می‌شود و دربارهٔ هر تصویر نظری می‌نویسید. هدف این است که چیزی دربارهٔ تصویر بنویسید که فرد دیگری آن را جذاب بداند.",
+          "verified": true
+        },
+        {
+          "en": "STEP 1: With each new photo, you will be given a personality trait that you will try to emulate in your comment. For example, you might be given “snarky” or “glamorous”. The personality describes YOU, not the picture. It is you who is snarky or glamorous, not the contents of the image.",
+          "fa": "گام 1: همراه هر عکس جدید، صفتی شخصیتی به شما داده می‌شود که باید در نظرتان تقلید کنید. برای مثال، ممکن است «طعنه‌زن» (Snarky) یا «پرزرق‌وبرق» (Glamorous) باشد. شخصیت، شما را توصیف می‌کند، نه تصویر را. شما طعنه‌زن یا پرزرق‌وبرق هستید، نه محتوای تصویر.",
+          "verified": true
+        },
+        {
+          "en": "STEP 2: You will then be shown an image, for which you will write a comment in the context of your given personality trait. Please make sure your comment has at least three words. Note that these are comments, not captions.",
+          "fa": "گام 2: سپس تصویری به شما نمایش داده می‌شود که باید در چارچوب صفت شخصیتی داده‌شده دربارهٔ آن نظر بنویسید. لطفاً مطمئن شوید نظرتان دست‌کم سه واژه دارد. توجه کنید این‌ها نظرند (Comments)، نه شرح تصویر (Captions).",
+          "verified": true
+        },
+        {
+          "en": "E.g., you may be shown an image of a tree. If you are “snarky”, you might write “What a boring tree, I bet it has bad wood;” or, if you were “glamorous”, you might write “What an absolutely beautiful tree! I would put this in my living room it’s so extravagent!”",
+          "fa": "برای مثال، ممکن است تصویر درختی به شما نشان داده شود. اگر «طعنه‌زن» هستید، می‌توانید بنویسید «چه درخت کسل‌کننده‌ای، شرط می‌بندم چوب بدی دارد»؛ یا اگر «پرزرق‌وبرق» هستید، می‌توانید بنویسید «چه درخت کاملاً زیبایی! آن را در اتاق نشیمنم می‌گذارم، خیلی تجملی است!»",
+          "verified": true
+        },
+        {
+          "en": "Your assigned personality is: Adventurous. Reminder - please do not write anything that involves any level of discrimination, racism, sexism and offensive religious/politics comments, otherwise the submission will be rejected.",
+          "fa": "شخصیت تعیین‌شدهٔ شما: ماجراجو (Adventurous). یادآوری: لطفاً هیچ چیزی که شامل هر میزانی از تبعیض، نژادپرستی، جنسیت‌زدگی یا نظر توهین‌آمیز دینی/سیاسی باشد ننویسید، وگرنه ارسال رد می‌شود.",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "ce19965e91c2b17cff2f7ba00fd1097f92c4a9de1e87c2015d499642071cf8cb",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردهای شرح تصویر (Image Captioning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌داده‌های شرح تصویر (Image Captioning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی شرح تصویر (Image Captioning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش: خط لولهٔ رمزگذار–رمزگشا با توجه (Encoder decoder pipeline with attention)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "f97a0de1c901b1613252989c642f81bb6621a9b2c74865e6f7e9028c168b8770",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "بحث گروهی: شرح‌های (Captions) تولیدشده به‌وسیلهٔ یک الگوریتم را چگونه ارزیابی می‌کنید؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "FEATURE NAME; VALUE; Description; tags; captions; text; confidence",
+          "fa": "نام ویژگی؛ مقدار؛ توصیف؛ برچسب‌ها؛ شرح‌ها؛ متن؛ اطمینان",
+          "verified": true
+        },
+        {
+          "en": "outdoor, giraffe, animal, mammal, standing, field, top, branch, bird, eating, head, grazing, neck, water, large, man, grassy, tall, group, dirt, zoo",
+          "fa": "فضای باز، زرافه، جانور، پستاندار، ایستاده، دشت، بالا، شاخه، پرنده، خوردن، سر، چریدن، گردن، آب، بزرگ، مرد، پوشیده از چمن، بلند، گروه، خاک، باغ‌وحش",
+          "verified": true
+        },
+        {
+          "en": "a giraffe standing in the dirt",
+          "fa": "a giraffe standing in the dirt (زرافه‌ای ایستاده در خاک)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "539749180feabf6f669ed9480edb7bec0dab33ad5a78cd7d496dd74396f87fd3",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ارزیابی: داوری‌های انسانی (Human Judgments)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• توصیف، تصویر را به‌درستی شرح می‌دهد (Kulkarni et al., 2011; Li et al., 2011; Mitchell et al., 2012; Kuznetsova et al., 2012; Elliott & Keller, 2013; Hodosh et al., 2013)."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• توصیف از نظر دستوری درست است (Yang et al., 2011; Mitchell et al., 2012; Kuznetsova et al., 2012; Elliott & Keller, 2013)."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• توصیف هیچ اطلاعات نادرستی ندارد (Mitchell et al., 2012)."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• توصیف به این تصویر مرتبط است (Li et al., 2011; Yang et al., 2011)."
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• توصیف به‌صورتی خلاقانه ساخته شده است (Li et al., 2011)."
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• توصیف انسان‌گونه (Human-like) است (Mitchell et al., 2012)."
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "reference",
+          "fa": "Raffaella Bernardi, Ruket Cakici, Desmond Elliott, Aykut Erdem, Erkut Erdem, Nazli Ikizler-Cinbis, Frank Keller, Adrian Muscat, and Barbara Plank. Automatic Description from Images: A Survey of Models, Datasets, and Measures. JAIR 2016."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Strongly Disagree; Disagree; Slightly Disagree; Slightly Agree; Agree; Strongly Agree",
+          "fa": "کاملاً مخالفم؛ مخالفم؛ کمی مخالفم؛ کمی موافقم؛ موافقم؛ کاملاً موافقم",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "afd3a3d02408ce5c12a8f03c2ad85db9141e2fc683f312675191687500dad2bb",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ارزیابی: خودکار (Automated)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "• BLEU"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• METEOR"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "• Rouge"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "• CIDEr"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "• SPICE"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "a1e59c3ef0bbb89f47cbfd0cf4ad3c9e57c2b7619ffade09a99c113ffba66757",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ارزیابی: خودکار (Automated)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "• BLEU"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• METEOR"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "• Rouge"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "• CIDEr"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "• SPICE"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "ایده: محاسبهٔ شباهت‌های ان‌گرام‌ها (n-grams) میان شرح پیش‌بینی‌شده (Predicted caption) و هر شرح مرجع (Ground truth caption)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "http://recognize-speech.com/language-model/n-gram-model/comparison"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "N=1: This is a sentence — unigrams: this, is, a, sentence; N=2: bigrams: this is, is a, a sentence; N=3: trigrams: this is a, is a sentence",
+          "fa": "N=1: This is a sentence — تک‌گرام‌ها (Unigrams): this, is, a, sentence؛ N=2: دوگرام‌ها (Bigrams): this is, is a, a sentence؛ N=3: سه‌گرام‌ها (Trigrams): this is a, is a sentence (جملهٔ مثال: «این یک جمله است»)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "72edf27dad3194ed3d88766a935156e92cdd1029ded57c50a6d8a624d4bf3b4a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ارزیابی: خودکار (Automated)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "• BLEU"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• METEOR"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "• Rouge"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "• CIDEr"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "• SPICE"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "R. Vedantam, C. L. Zitnick, and D. Parikh. CIDEr: Consensus-based Image Description Evaluation. CVPR 2015."
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "ایده: سنجش شباهت شرح پیش‌بینی‌شده (Predicted caption) به شیوه‌ای که بیشتر افراد تصویر را توصیف می‌کنند، بر اساس ان‌گرام‌های (n-grams) منحصربه‌فردِ آن تصویر"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "A cow is standing in a field.",
+          "fa": "A cow is standing in a field. (گاوی در مزرعه ایستاده است.)",
+          "verified": true
+        },
+        {
+          "en": "A cow with horns and long hair covering its face stands in a field.",
+          "fa": "A cow with horns and long hair covering its face stands in a field. (گاوی شاخ‌دار با موهای بلندی که صورتش را پوشانده در مزرعه ایستاده است.)",
+          "verified": true
+        },
+        {
+          "en": "A cow with hair over its eyes stands in a field.",
+          "fa": "A cow with hair over its eyes stands in a field. (گاوی با موهای ریخته روی چشم‌هایش در مزرعه ایستاده است.)",
+          "verified": true
+        },
+        {
+          "en": "This horned creature is getting his picture taken.",
+          "fa": "This horned creature is getting his picture taken. (از این موجود شاخ‌دار عکس گرفته می‌شود.)",
+          "verified": true
+        },
+        {
+          "en": "A furry animal with horns roams on the range.",
+          "fa": "A furry animal with horns roams on the range. (جانوری پشمالو و شاخ‌دار در چراگاه پرسه می‌زند.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "85472c39d87f409089a3dd7b1b798cc41d2892c7410f6b869f8baf557ed3208f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ارزیابی: خودکار (Automated)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "• BLEU"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• METEOR"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "• Rouge"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "• CIDEr"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "• SPICE"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "R. Vedantam, C. L. Zitnick, and D. Parikh. CIDEr: Consensus-based Image Description Evaluation. CVPR 2015."
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "بیشتر افراد چه محتوایی را در این تصویر توصیف می‌کنند؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "A cow is standing in a field.",
+          "fa": "A cow is standing in a field. (گاوی در مزرعه ایستاده است.)",
+          "verified": true
+        },
+        {
+          "en": "A cow with horns and long hair covering its face stands in a field.",
+          "fa": "A cow with horns and long hair covering its face stands in a field. (گاوی شاخ‌دار با موهای بلندی که صورتش را پوشانده در مزرعه ایستاده است.)",
+          "verified": true
+        },
+        {
+          "en": "A cow with hair over its eyes stands in a field.",
+          "fa": "A cow with hair over its eyes stands in a field. (گاوی با موهای ریخته روی چشم‌هایش در مزرعه ایستاده است.)",
+          "verified": true
+        },
+        {
+          "en": "This horned creature is getting his picture taken.",
+          "fa": "This horned creature is getting his picture taken. (از این موجود شاخ‌دار عکس گرفته می‌شود.)",
+          "verified": true
+        },
+        {
+          "en": "A furry animal with horns roams on the range.",
+          "fa": "A furry animal with horns roams on the range. (جانوری پشمالو و شاخ‌دار در چراگاه پرسه می‌زند.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "a98ff0c7b7261e485ab1de6360d1307cdd2b11cfc2779a0cf1a7343ebd95f65c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ارزیابی: خودکار (Automated)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "• BLEU"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• METEOR"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "• Rouge"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "• CIDEr"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "• SPICE"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "فکر می‌کنید این دو شرح (Captions) یک تصویر یکسان را توصیف می‌کنند؟"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "reference",
+          "fa": "P. Anderson, B. Fernando, M. Johnson, and S. Gould. SPICE: Semantic Propositional Image Caption Evaluation. ECCV 2016."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(a) A young girl standing on top of a tennis court.",
+          "fa": "(a) A young girl standing on top of a tennis court. ((a) دختر جوانی روی زمین تنیس ایستاده است.)",
+          "verified": true
+        },
+        {
+          "en": "(b) A giraffe standing on top of a green field.",
+          "fa": "(b) A giraffe standing on top of a green field. ((b) زرافه‌ای روی مزرعه‌ای سبز ایستاده است.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "623dde3674279f9e8c48f51fc77d3f658277a350d5c8010c800888b9b3e15973",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ارزیابی: خودکار (Automated)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "• BLEU"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• METEOR"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "• Rouge"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "• CIDEr"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "• SPICE"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "مسئله: روش‌های ان‌گرام (n-gram) به این‌ها امتیاز شباهت بسیار بالایی می‌دهند"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "reference",
+          "fa": "P. Anderson, B. Fernando, M. Johnson, and S. Gould. SPICE: Semantic Propositional Image Caption Evaluation. ECCV 2016."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(a) A young girl standing on top of a tennis court.",
+          "fa": "(a) A young girl standing on top of a tennis court. ((a) دختر جوانی روی زمین تنیس ایستاده است.)",
+          "verified": true
+        },
+        {
+          "en": "(b) A giraffe standing on top of a green field.",
+          "fa": "(b) A giraffe standing on top of a green field. ((b) زرافه‌ای روی مزرعه‌ای سبز ایستاده است.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "a98ff0c7b7261e485ab1de6360d1307cdd2b11cfc2779a0cf1a7343ebd95f65c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ارزیابی: خودکار (Automated)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "• BLEU"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• METEOR"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "• Rouge"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "• CIDEr"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "• SPICE"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "فکر می‌کنید این دو شرح (Captions) یک تصویر یکسان را توصیف می‌کنند؟"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "reference",
+          "fa": "P. Anderson, B. Fernando, M. Johnson, and S. Gould. SPICE: Semantic Propositional Image Caption Evaluation. ECCV 2016."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(c) A shiny metal pot filled with some diced veggies.",
+          "fa": "(c) A shiny metal pot filled with some diced veggies. ((c) قابلمهٔ فلزی براقی پر از سبزیجات نگینی‌شده.)",
+          "verified": true
+        },
+        {
+          "en": "(d) The pan on the stove has chopped vegetables in it.",
+          "fa": "(d) The pan on the stove has chopped vegetables in it. ((d) تابهٔ روی اجاق، سبزیجات خردشده درون خود دارد.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "94f1fbdf400bece5c95cae8c8de5ae64cb1ac5a164a969682429192a44ecb456",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ارزیابی: خودکار (Automated)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "• BLEU"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• METEOR"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "• Rouge"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "• CIDEr"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "• SPICE"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "مسئله: روش‌های ان‌گرام (n-gram) این‌ها را بسیار متفاوت ارزیابی می‌کنند"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "reference",
+          "fa": "P. Anderson, B. Fernando, M. Johnson, and S. Gould. SPICE: Semantic Propositional Image Caption Evaluation. ECCV 2016."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(c) A shiny metal pot filled with some diced veggies.",
+          "fa": "(c) A shiny metal pot filled with some diced veggies. ((c) قابلمهٔ فلزی براقی پر از سبزیجات نگینی‌شده.)",
+          "verified": true
+        },
+        {
+          "en": "(d) The pan on the stove has chopped vegetables in it.",
+          "fa": "(d) The pan on the stove has chopped vegetables in it. ((d) تابهٔ روی اجاق، سبزیجات خردشده درون خود دارد.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "f04101b23c8da68e361f58773217f1df7af753eb91cbf21e42ab43b08b38b9f2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ارزیابی: خودکار (Automated)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "• BLEU"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• METEOR"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "• Rouge"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "• CIDEr"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "• SPICE"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "ایده: مقایسهٔ گراف صحنهٔ (Scene graph) پیش‌بینی با گراف صحنهٔ مرجع (Ground truth)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "reference",
+          "fa": "P. Anderson, B. Fernando, M. Johnson, and S. Gould. SPICE: Semantic Propositional Image Caption Evaluation. ECCV 2016."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "two women are sitting at a white table",
+          "fa": "two women are sitting at a white table (دو زن پشت میزی سفید نشسته‌اند)",
+          "verified": true
+        },
+        {
+          "en": "two women sit at a table in a small store",
+          "fa": "two women sit at a table in a small store (دو زن پشت میزی در فروشگاهی کوچک می‌نشینند)",
+          "verified": true
+        },
+        {
+          "en": "two women sit across each other at a table smile for the photograph",
+          "fa": "two women sit across each other at a table smile for the photograph (دو زن روبه‌روی یکدیگر پشت میز می‌نشینند و برای عکس لبخند می‌زنند)",
+          "verified": true
+        },
+        {
+          "en": "two women sitting in a small store like business",
+          "fa": "two women sitting in a small store like business (دو زن نشسته در کسب‌وکاری شبیه فروشگاه کوچک)",
+          "verified": true
+        },
+        {
+          "en": "two woman are sitting at a table",
+          "fa": "two woman are sitting at a table (دو زن پشت میزی نشسته‌اند)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "d571c7cd7570a17c1b73726879c18d4f4ecf2161ae44872183bb079b50ff2afd",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ارزیابی: خودکار (Automated)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "• BLEU"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• METEOR"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "• Rouge"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "• CIDEr"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "• SPICE"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "محتوای معنایی معنادار در این شرح‌ها (Captions) چیست؟"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "reference",
+          "fa": "P. Anderson, B. Fernando, M. Johnson, and S. Gould. SPICE: Semantic Propositional Image Caption Evaluation. ECCV 2016."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "two women are sitting at a white table",
+          "fa": "two women are sitting at a white table (دو زن پشت میزی سفید نشسته‌اند)",
+          "verified": true
+        },
+        {
+          "en": "two women sit at a table in a small store",
+          "fa": "two women sit at a table in a small store (دو زن پشت میزی در فروشگاهی کوچک می‌نشینند)",
+          "verified": true
+        },
+        {
+          "en": "two women sit across each other at a table smile for the photograph",
+          "fa": "two women sit across each other at a table smile for the photograph (دو زن روبه‌روی یکدیگر پشت میز می‌نشینند و برای عکس لبخند می‌زنند)",
+          "verified": true
+        },
+        {
+          "en": "two women sitting in a small store like business",
+          "fa": "two women sitting in a small store like business (دو زن نشسته در کسب‌وکاری شبیه فروشگاه کوچک)",
+          "verified": true
+        },
+        {
+          "en": "two woman are sitting at a table",
+          "fa": "two woman are sitting at a table (دو زن پشت میزی نشسته‌اند)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "69a3a8c749e64446885b959fc2b126d08ae7141511d60264604a0345f4a88185",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ارزیابی: خودکار (Automated)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "• BLEU"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• METEOR"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "• Rouge"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "• CIDEr"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "• SPICE"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "P. Anderson, B. Fernando, M. Johnson, and S. Gould. SPICE: Semantic Propositional Image Caption Evaluation. ECCV 2016."
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "محتوای معنایی معنادار در این شرح‌ها (Captions):"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "two women are sitting at a white table",
+          "fa": "two women are sitting at a white table (دو زن پشت میزی سفید نشسته‌اند)",
+          "verified": true
+        },
+        {
+          "en": "two women sit at a table in a small store",
+          "fa": "two women sit at a table in a small store (دو زن پشت میزی در فروشگاهی کوچک می‌نشینند)",
+          "verified": true
+        },
+        {
+          "en": "two women sit across each other at a table smile for the photograph",
+          "fa": "two women sit across each other at a table smile for the photograph (دو زن روبه‌روی یکدیگر پشت میز می‌نشینند و برای عکس لبخند می‌زنند)",
+          "verified": true
+        },
+        {
+          "en": "two women sitting in a small store like business",
+          "fa": "two women sitting in a small store like business (دو زن نشسته در کسب‌وکاری شبیه فروشگاه کوچک)",
+          "verified": true
+        },
+        {
+          "en": "two woman are sitting at a table",
+          "fa": "two woman are sitting at a table (دو زن پشت میزی نشسته‌اند)",
+          "verified": true
+        },
+        {
+          "en": "white; table; in; sit at; two; woman; sit in; sit across; store; small; like; business; smile; other; for; photograph",
+          "fa": "سفید؛ میز؛ در؛ نشستن پشتِ؛ دو؛ زن؛ نشستن در؛ نشستن روبه‌رو؛ فروشگاه؛ کوچک؛ مانند؛ کسب‌وکار؛ لبخند؛ دیگری؛ برای؛ عکس",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "ce19965e91c2b17cff2f7ba00fd1097f92c4a9de1e87c2015d499642071cf8cb",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردهای شرح تصویر (Image Captioning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌داده‌های شرح تصویر (Image Captioning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی شرح تصویر (Image Captioning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش: خط لولهٔ رمزگذار–رمزگشا با توجه (Encoder decoder pipeline with attention)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "Show, Attend and Tell: Neural Image Caption Generation with Visual Attention",
+          "fa": "نشان بده، توجه کن و بگو (Show, Attend and Tell): تولید عصبی شرح تصویر (Neural Image Caption Generation) با توجه بصری (Visual Attention)",
+          "verified": true
+        },
+        {
+          "en": "Kelvin Xu; Jimmy Lei Ba; Ryan Kiros; Kyunghyun Cho; Aaron Courville; Ruslan Salakhutdinov; Richard S. Zemel; Yoshua Bengio",
+          "fa": "Kelvin Xu؛ Jimmy Lei Ba؛ Ryan Kiros؛ Kyunghyun Cho؛ Aaron Courville؛ Ruslan Salakhutdinov؛ Richard S. Zemel؛ Yoshua Bengio",
+          "verified": true
+        },
+        {
+          "en": "Université de Montréal; University of Toronto; CIFAR",
+          "fa": "دانشگاه مونترآل (Université de Montréal)؛ دانشگاه تورنتو (University of Toronto)؛ CIFAR",
+          "verified": true
+        },
+        {
+          "en": "KELVIN.XU@UMONTREAL.CA; JIMMY@PSI.UTORONTO.CA; RKIROS@CS.TORONTO.EDU; KYUNGHYUN.CHO@UMONTREAL.CA; AARON.COURVILLE@UMONTREAL.CA; RSALAKHU@CS.TORONTO.EDU; ZEMEL@CS.TORONTO.EDU; YOSHUA.BENGIO@UMONTREAL.CA",
+          "fa": "KELVIN.XU@UMONTREAL.CA؛ JIMMY@PSI.UTORONTO.CA؛ RKIROS@CS.TORONTO.EDU؛ KYUNGHYUN.CHO@UMONTREAL.CA؛ AARON.COURVILLE@UMONTREAL.CA؛ RSALAKHU@CS.TORONTO.EDU؛ ZEMEL@CS.TORONTO.EDU؛ YOSHUA.BENGIO@UMONTREAL.CA",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "f0be8b0cc70f4c6eba47bc493dacb42e148faed71092a22acc3833a24c0317ab",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ایده: مسئله را مانند ترجمهٔ ماشینی (Machine Translation) در نظر بگیرید"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "داده (Data)؛ رمزگذار (Encoder)؛ رمزگشا (Decoder)؛ داده"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "3f2f3d1833c72ca8ee94f7685926cd627f06192acf9e75a018d4669709578113",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ایده: مسئله را مانند ترجمهٔ ماشینی (Machine Translation) در نظر بگیرید"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "رمزگذار (Encoder)؛ رمزگشا (Decoder)؛ A bird flying over a body of water. (پرنده‌ای در حال پرواز بر فراز پهنه‌ای از آب.)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "تصویر (Image)؛ شرح (Caption)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "85301e258f975b20ece0248309fe6f74637980bee71785454f6cffc4669730cd",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "راه‌حل را به یاد آورید:"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "2. در هر گام زمانی رمزگشا (Decoder)، وزن‌های توجه (Attention weights) محاسبه می‌شوند که میزان ارتباط هر ورودی با پیش‌بینی را تعیین می‌کنند"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "3. در هر گام زمانی رمزگشا (Decoder)، بر اساس مجموع وزن‌دار ورودی‌ها پیش‌بینی انجام می‌شود"
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "1. رمزگذار (Encoder) برای هر ورودی یک حالت پنهان (Hidden state) تولید می‌کند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "GRU; BiGRU; concat; Attention layer; addition; context vector; multiplication; alignment; softmax; score; hidden state; Encoder; Decoder",
+          "fa": "GRU؛ BiGRU؛ به‌هم‌پیوستن (Concat)؛ لایهٔ توجه (Attention layer)؛ جمع؛ بردار بافت (Context vector)؛ ضرب؛ هم‌ترازی (Alignment)؛ سافت‌مکس (Softmax)؛ امتیاز؛ حالت پنهان (Hidden state)؛ رمزگذار (Encoder)؛ رمزگشا (Decoder)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "e2f9ba07ee87ec30ce0b38b2217d5200f724cddaf96469497aa43b4e05fc9411",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "رمزگشا (Decoder) تصمیم می‌گیرد در هر گام زمانی کدام ورودی‌ها برای پیش‌بینی لازم‌اند؛ برای مثال، «توجه نرم» (Soft attention) از ترکیب وزن‌دار ورودی استفاده می‌کند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "درک شهودی را به یاد آورید"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "ورودی (Input)؛ هدف (Target)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "math",
+          "fa": "t = 1 t = 2 t = 3 t = 4"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "مدل یاد می‌گیرد چگونه به هر ورودی وزن بدهد!"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "He loved to eat; Er liebte zu essen",
+          "fa": "He loved to eat; Er liebte zu essen (او دوست داشت غذا بخورد؛ او دوست داشت غذا بخورد)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "00b8559ce2bb845bf2612172915bf58700e5a8129209c2c07284ab46ae261022",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "رویکرد: تفاوت اصلی (Key Difference)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "1. ورودی نمایندهٔ یک تصویر است"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "GRU; BiGRU; concat; Attention layer; addition; context vector; multiplication; alignment; softmax; score; hidden state; Encoder; Decoder",
+          "fa": "GRU؛ BiGRU؛ به‌هم‌پیوستن (Concat)؛ لایهٔ توجه (Attention layer)؛ جمع؛ بردار بافت (Context vector)؛ ضرب؛ هم‌ترازی (Alignment)؛ سافت‌مکس (Softmax)؛ امتیاز؛ حالت پنهان (Hidden state)؛ رمزگذار (Encoder)؛ رمزگشا (Decoder)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "3f4bde8f01601df387cfddcc523243f60f8a42539af32b6fe43c2c5b48b49708",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "رمزگشا (Decoder) تصمیم می‌گیرد در هر گام زمانی کدام ورودی‌ها برای پیش‌بینی لازم‌اند؛ برای مثال، «توجه نرم» (Soft attention) از ترکیب وزن‌دار ورودی استفاده می‌کند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "درک شهودی (Intuition)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "ورودی (Input)؛ هدف (Target)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "A bird is flying… (پرنده‌ای در حال پرواز است…)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "math",
+          "fa": "t = 1 t = 2 t = 3 t = 4"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "c007b33da73fbffed59bf3208701781d76a46af056c52e2605572d10dd56e181",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "رمزگشا (Decoder) تصمیم می‌گیرد در هر گام زمانی کدام ورودی‌ها برای پیش‌بینی لازم‌اند؛ برای مثال، «توجه نرم» (Soft attention) از ترکیب وزن‌دار ورودی استفاده می‌کند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "درک شهودی (Intuition)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "ورودی (Input)؛ هدف (Target)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "A (حرف تعریف نامعین)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "math",
+          "fa": "t = 1"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "7a2e366da03b1c93a9c582004f550f1aaecdf233ebf3e9c143ccf75b4cb61487",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "رمزگشا (Decoder) تصمیم می‌گیرد در هر گام زمانی کدام ورودی‌ها برای پیش‌بینی لازم‌اند؛ برای مثال، «توجه نرم» (Soft attention) از ترکیب وزن‌دار ورودی استفاده می‌کند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "درک شهودی (Intuition)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "ورودی (Input)؛ هدف (Target)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "A (حرف تعریف نامعین)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "math",
+          "fa": "t = 1 t = 2"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "bird (پرنده)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "fe8f5938794cdd5ed4519250da18a1522f1af256186f6bdabe93cbc57dc9fd10",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "رمزگشا (Decoder) تصمیم می‌گیرد در هر گام زمانی کدام ورودی‌ها برای پیش‌بینی لازم‌اند؛ برای مثال، «توجه نرم» (Soft attention) از ترکیب وزن‌دار ورودی استفاده می‌کند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "درک شهودی (Intuition)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "ورودی (Input)؛ هدف (Target)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "A (حرف تعریف نامعین)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "math",
+          "fa": "t = 1 t = 2"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "bird (پرنده)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "math",
+          "fa": "t = 3"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "is (است)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "cfd55ecfeaa7a90e91b87b2ef6348256cb5448905120972410084cc518aa06cb",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "رمزگشا (Decoder) تصمیم می‌گیرد در هر گام زمانی کدام ورودی‌ها برای پیش‌بینی لازم‌اند؛ برای مثال، «توجه نرم» (Soft attention) از ترکیب وزن‌دار ورودی استفاده می‌کند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "درک شهودی (Intuition)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "ورودی (Input)؛ هدف (Target)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "A (حرف تعریف نامعین)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "math",
+          "fa": "t = 1 t = 2"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "bird (پرنده)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "math",
+          "fa": "t = 3"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "is (است)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "math",
+          "fa": "t = 4"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "flying (در حال پرواز)"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "math",
+          "fa": "…"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "263ba9a8d598eb999cf160ad90fb8cb33d4827b1d7b06cc25297db95cf6b42d8",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "بازنمایی ورودی (Input Representation): ایده"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "از لایهٔ کانولوشنی (Convolutional layer) استفاده کنید که به ناحیه‌هایی از فضای ورودی (برای مثال پیکسل) نگاشت می‌شود؛ برای مثال، لایهٔ اول با مقادیر h"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.deeplearningbook.org/contents/convnets.html"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "0598965a04411980ecb2acc8639dd331116d19cec0962473ff8cb9dc8d9d0422",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "بازنمایی ورودی (Input Representation): پیاده‌سازی"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "شبکه‌ها میزان درشتی مکانی نسبی در هر لایه را نشان می‌دهند"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "هر خط نمایندهٔ یک لایهٔ کانولوشنی (Convolutional layer) است"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "VGG16:"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015."
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "نقشه‌های ویژگی (Feature maps) با ابعاد 14×14×512 تغییرشکل داده می‌شوند تا ورودی‌ها را تشکیل دهند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "image; conv1; pool1; conv2; pool2; conv3; pool3; conv4; pool4; conv5; pool5; conv6-7",
+          "fa": "تصویر؛ conv1؛ pool1؛ conv2؛ pool2؛ conv3؛ pool3؛ conv4؛ pool4؛ conv5؛ pool5؛ conv6-7 (لایه‌های کانولوشن و تجمیع)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "6c47a82834d5c076c998d58546f784c58beb3572e78871019070922f04953baa",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "بازنمایی ورودی (Input Representation): پیاده‌سازی"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "شبکه‌ها میزان درشتی مکانی نسبی در هر لایه را نشان می‌دهند"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "هر خط نمایندهٔ یک لایهٔ کانولوشنی (Convolutional layer) است"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "VGG16:"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015."
+        },
+        {
+          "source_lines": [
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "بنابراین اندازهٔ هر ناحیهٔ مورد توجه (Attended to region)، برابر اندازهٔ بخشِ مشاهده‌شده از تصویر اصلی در این لایه است"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "image; conv1; pool1; conv2; pool2; conv3; pool3; conv4; pool4; conv5; pool5; conv6-7",
+          "fa": "تصویر؛ conv1؛ pool1؛ conv2؛ pool2؛ conv3؛ pool3؛ conv4؛ pool4؛ conv5؛ pool5؛ conv6-7 (لایه‌های کانولوشن و تجمیع)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "3c1829539e5d2c1ad991bfc12b3c90ebdcb753758326e71af437961761c8ffa2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نتایج تجربی (Experimental Results)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Xu et al. Show, Attend and Tell: Neural Image Caption Generation with Visual Attention. ICML 2015"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "عملکردی در سطح بهترین روش‌های موجود (State-of-the-art) در سه چالش مجموعه‌داده (Flickr8k، Flicker30k و MS COCO)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "d90851104bddd9edfbed1b478e78a7d0389588f15108a10f4f1d0ab816ada31b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نتایج تجربی: نمایش‌های بصری (Visualizations)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Xu et al. Show, Attend and Tell: Neural Image Caption Generation with Visual Attention. ICML 2015"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "نمونه‌هایی که هنگام پیش‌بینی واژه، به محتوای درست توجه شده است:"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "A woman is throwing a frisbee in a park.",
+          "fa": "A woman is throwing a frisbee in a park. (زنی در پارک فریزبی پرتاب می‌کند.)",
+          "verified": true
+        },
+        {
+          "en": "A dog is standing on a hardwood floor.",
+          "fa": "A dog is standing on a hardwood floor. (سگی روی کف چوبی ایستاده است.)",
+          "verified": true
+        },
+        {
+          "en": "A stop sign is on a road with a mountain in the background.",
+          "fa": "A stop sign is on a road with a mountain in the background. (تابلوی ایست در جاده‌ای است و کوهی در پس‌زمینه است.)",
+          "verified": true
+        },
+        {
+          "en": "A little girl sitting on a bed with a teddy bear.",
+          "fa": "A little girl sitting on a bed with a teddy bear. (دختربچه‌ای روی تخت با خرس عروسکی نشسته است.)",
+          "verified": true
+        },
+        {
+          "en": "A group of people sitting on a boat in the water.",
+          "fa": "A group of people sitting on a boat in the water. (گروهی از افراد روی قایقی در آب نشسته‌اند.)",
+          "verified": true
+        },
+        {
+          "en": "A giraffe standing in a forest with trees in the background.",
+          "fa": "A giraffe standing in a forest with trees in the background. (زرافه‌ای در جنگلی ایستاده است و درختانی در پس‌زمینه هستند.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "69bef1a8d0e6f7c4a466b963ae397758ea4d14db33a498c043d3ceec365c9af2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نتایج تجربی: نمایش‌های بصری (Visualizations)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Xu et al. Show, Attend and Tell: Neural Image Caption Generation with Visual Attention. ICML 2015"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "نمونه‌هایی که هنگام پیش‌بینی واژه، به محتوای نادرست توجه شده است:"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "A large white bird standing in a forest.",
+          "fa": "A large white bird standing in a forest. (پرندهٔ سفید بزرگی در جنگل ایستاده است.)",
+          "verified": true
+        },
+        {
+          "en": "A woman holding a clock in her hand.",
+          "fa": "A woman holding a clock in her hand. (زنی ساعت را در دست گرفته است.)",
+          "verified": true
+        },
+        {
+          "en": "A man wearing a hat and a hat on a skateboard.",
+          "fa": "A man wearing a hat and a hat on a skateboard. (مردی با کلاه و یک کلاه روی اسکیت‌بورد.)",
+          "verified": true
+        },
+        {
+          "en": "A person is standing on a beach with a surfboard.",
+          "fa": "A person is standing on a beach with a surfboard. (فردی در ساحل با تختهٔ موج‌سواری ایستاده است.)",
+          "verified": true
+        },
+        {
+          "en": "A woman is sitting at a table with a large pizza.",
+          "fa": "A woman is sitting at a table with a large pizza. (زنی پشت میزی با پیتزای بزرگ نشسته است.)",
+          "verified": true
+        },
+        {
+          "en": "A man is talking on his cell phone while another man watches.",
+          "fa": "A man is talking on his cell phone while another man watches. (مردی با تلفن همراه صحبت می‌کند و مرد دیگری نگاه می‌کند.)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "ce19965e91c2b17cff2f7ba00fd1097f92c4a9de1e87c2015d499642071cf8cb",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• کاربردهای شرح تصویر (Image Captioning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌داده‌های شرح تصویر (Image Captioning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• ارزیابی شرح تصویر (Image Captioning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• برندهٔ چالش: خط لولهٔ رمزگذار–رمزگشا با توجه (Encoder decoder pipeline with attention)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    }
+  ]
+}

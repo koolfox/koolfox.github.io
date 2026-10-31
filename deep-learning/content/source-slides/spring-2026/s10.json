@@ -1,0 +1,948 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s10",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/10-Dense-Prediction.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2026/s10.pdf",
+    "sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
+    "page_count": 71,
+    "license_notice": "CC BY-NC-SA; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "366ff5b006f34ac0bfb8dcedb6b83d7d3a8e1516de5ac9046dd96ccf71dc5e0f",
+      "lines": [
+        "From Image Classification",
+        "to Dense Prediction",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2026",
+        "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "6fae5ac9d4a96ed32bb8e2a48aac659602d32b510f7732b5dfe227e1787c545d",
+      "lines": [
+        "Review",
+        "• Last lecture:",
+        "• The quest for more data and faster machines",
+        "• Paradigm shift: learned representations thrive with large labelled datasets",
+        "• Lucky break: gradient descent meets gaming hardware",
+        "• Tipping point: open-source platforms catalyze widespread engagement",
+        "• Programming tutorial",
+        "• Assignments (Canvas)",
+        "• Problem set 1 grades were released on Friday",
+        "• Lab assignment 2 due Friday",
+        "• For clarifications about common questions, review the Canvas assignment page",
+        "• Questions?",
+        "• Beyond questions for me, please post them to Piazza and/or attend office hours"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "698a05a4b59ffa90101b80aa6e0fa108c0fd8be5e3e64b92ec023325505c7365",
+      "lines": [
+        "Today’s Topics",
+        "• Motivation: when vision asks not just “what”, but also “where”",
+        "• Redesigning neural networks to predict densely, rather than just classify",
+        "• Freeing dense prediction networks from fixed input sizes",
+        "• Pivotal insights: pretrained features + design tricks to boost spatial precision",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "698a05a4b59ffa90101b80aa6e0fa108c0fd8be5e3e64b92ec023325505c7365",
+      "lines": [
+        "Today’s Topics",
+        "• Motivation: when vision asks not just “what”, but also “where”",
+        "• Redesigning neural networks to predict densely, rather than just classify",
+        "• Freeing dense prediction networks from fixed input sizes",
+        "• Pivotal insights: pretrained features + design tricks to boost spatial precision",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "08a3368efce5b1f1825c90b45e3359b07639561557f2995b8f8f0f7427c767d6",
+      "lines": [
+        "Note: instances of",
+        "same category",
+        "NOT separated",
+        "Unifies semantic",
+        "segmentation and",
+        "object detection",
+        "Locate all pixels belonging",
+        "to pre-specified categories",
+        "Locate all instances belonging to",
+        "pre-specified categories with",
+        "rectangles (aka, bounding boxes)",
+        "Dense Prediction Tasks",
+        "https://ai-pool.com/d/could-you-explain-me-how-instance-segmentation-works"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "c235ab15c90665f5558b074fff9801aa0be79fab2e1017c59fc4f9cc8d3afb58",
+      "lines": [
+        "Object Recognition vs Dense Prediction",
+        "https://ai-pool.com/d/could-you-explain-me-how-instance-segmentation-works",
+        "How does dense",
+        "prediction differ from",
+        "object recognition?"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "7e793ca78672513e4412ec6d1b67d99559bf500b4e10fea0588966c9ef1249e2",
+      "lines": [
+        "Object Recognition vs Dense Prediction",
+        "How do failure modes of dense prediction differ from those of object recognition? e.g.,",
+        "MUST learn objects’ appearances, rather than only image context;",
+        "e.g., common bias: if see savannah-like landscape, predict “giraffe”"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "5b8470c7d987178f30b884d3bf03db8ea2099cb08fc598a9cd6376a7747d2378",
+      "lines": [
+        "Many Motivating Applications; e.g.,",
+        "https://www.starnow.co.uk/ahmedmohammed1/photos/46",
+        "50871/before-and-after-rotoscopinggreen-screening",
+        "Rotoscoping",
+        "Bell et al; SIGGRAPH; 2013",
+        "Remodeling",
+        "https://pathology.jhu.edu/brain-tumor/grading-classification",
+        "Disease Diagnosis",
+        "https://www.inc.com/kevin-j-ryan/self-driving-cars￾powered-by-people-playing-games-mighty-ai.html",
+        "Self-driving Cars",
+        "Automatic License Plate Recognition"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "fcf77553e763c4151b2830616921e159b67b6254a349851359a18699b34c18c8",
+      "lines": [
+        "Common Pre-NN Approach: Inefficient Sliding",
+        "Window (Repeated for Each Size/Scale)",
+        "Person?",
+        "https://yourboulder.com/boulder-neighborhood-downtown/",
+        "Person?",
+        "Person?",
+        "Person?",
+        "Person?",
+        "Person?",
+        "Person?",
+        "Person?",
+        "Person?"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "8e594b1aea628a3637c63333478122b8de03a158dbcfccdfc8336d3349fc38b2",
+      "lines": [
+        "FCN in 2015",
+        "Pioneering Neural Networks for Dense Prediction",
+        "(All Achieved State-of-the-Art Performance)",
+        "https://ai-pool.com/d/could-you-explain-me-how-instance-segmentation-works",
+        "Faster R-CNN in 2015",
+        "Mask R-CNN in 2015"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "698a05a4b59ffa90101b80aa6e0fa108c0fd8be5e3e64b92ec023325505c7365",
+      "lines": [
+        "Today’s Topics",
+        "• Motivation: when vision asks not just “what”, but also “where”",
+        "• Redesigning neural networks to predict densely, rather than just classify",
+        "• Freeing dense prediction networks from fixed input sizes",
+        "• Pivotal insights: pretrained features + design tricks to boost spatial precision",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "1cacb5d018d1f7e311d1555b13600394944f2fe2dbbb7bb5baa3d5f29f3960a4",
+      "lines": [
+        "FCN in 2015",
+        "Ways to Change Networks’ Outputs",
+        "https://ai-pool.com/d/could-you-explain-me-how-instance-segmentation-works",
+        "Faster R-CNN in 2015",
+        "Mask R-CNN in 2015"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "a62a59fd0ce9e6405f2f7c8f6a5bca6cf11a3312052d4d009d27dc003d79df24",
+      "lines": [
+        "Key Idea (1 of 2): Output Layer",
+        "with Per-Pixel Classification",
+        "• Architecture: softmax generates",
+        "a probability distribution over",
+        "all categories for EVERY pixel",
+        "• In this example, what is the",
+        "category for the:",
+        "• upper left pixel?",
+        "• bottom right pixel?",
+        "• Training: sums cross-entropy",
+        "loss for EVERY pixel (acts like",
+        "mini-batch for learning)",
+        "https://www.jeremyjordan.me/semantic-segmentation/"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "f48d6e7ad55ffba6eebe94ceb1027692707108e90e597bb92fc3015b396efd5b",
+      "lines": [
+        "Key Idea (1 of 2): Output Layer",
+        "with Per-Pixel Classification",
+        "https://www.jeremyjordan.me/semantic-segmentation/",
+        "Why include",
+        "this category?",
+        "• Architecture: softmax generates",
+        "a probability distribution over",
+        "all categories for EVERY pixel",
+        "• How many categories can be",
+        "predicted in this example?"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "b059a1eecb688fea11da32c752d0b9abeabdb4f9054a8e7100e0e1b633f3d397",
+      "lines": [
+        "Key Idea (2 of 2): Image Translation",
+        "with Encoder-Decoder Architecture",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015.",
+        "How is image resolution maintained?"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "f853838727b3caf883a3a224da12384551e9f5cd1d146b22beae1d9c990b999a",
+      "lines": [
+        "Key Idea (2 of 2): Image Translation",
+        "with Encoder-Decoder Architecture",
+        "Feature map decoded (upsampled)",
+        "to full-resolution segmentation",
+        "Image encoded (downsampled)",
+        "to lower-resolution feature map",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015."
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "c48d4a23630daf04aef90dcbba44a5d59689698aa02b97542cf76112d947a5fb",
+      "lines": [
+        "Key Idea (2 of 2): Image Translation",
+        "with Encoder-Decoder Architecture",
+        "Fully connected layers requiring",
+        "fixed number of weights replaced",
+        "with convolutional layers to",
+        "output a slice/heatmap per class",
+        "for coarse image regions",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015."
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "8a1f22dae5fdabb5ea445f2c76282744af6055db8a5e5df7dfc9a5ca126a01b6",
+      "lines": [
+        "Key Idea (2 of 2): Image Translation",
+        "with Encoder-Decoder Architecture",
+        "Why is this coarse region classification?",
+        "Recall stacked convolutions learn patterns over progressively larger regions of the input (e.g., pixel) space",
+        "https://www.deeplearningbook.org/contents/convnets.html"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "e9bafc4f5404ce23223f20b99398a0f2af7226ccceeca7bbd7d35aeafb1b350e",
+      "lines": [
+        "Key Idea (2 of 2): Image Translation",
+        "with Encoder-Decoder Architecture",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015.",
+        "How many categories can be",
+        "predicted in this architecture?"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "5c5a8dee256e7b119625cd1f45b9a5e91a638fa52df7338f75fbd447ba16f277",
+      "lines": [
+        "http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture11.pdf",
+        "Key Idea (2 of 2): Image Translation",
+        "with Encoder-Decoder Architecture",
+        "Many options for upsampling; e.g.,"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "64226ad9bc661a5e503b6062e6c7907392599dcdb4bd191ce9063c05b36a426a",
+      "lines": [
+        "Key Idea (2 of 2): Image Translation",
+        "with Encoder-Decoder Architecture",
+        "Many options for upsampling; e.g., transposed convolutional layer that learn filters that upsample the input",
+        "with “fractional” sized steps",
+        "- also called “fractional convolutional layer”, “backward convolution”, and, incorrectly, ”deconvolution layer”",
+        "https://www.machinecurve.com/index.php/2019/09/29/understanding-transposed-convolutions/#the-goal-reconstructing-the-original-input"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "217ceb50a767fee2672d4d1f7754f02794a4340a63dd0849e45c3af596252626",
+      "lines": [
+        "Key Idea (2 of 2): Image Translation",
+        "with Encoder-Decoder Architecture",
+        "Many options for upsampling; e.g., transposed convolutional layer that learn filters that upsample the input",
+        "with “fractional” sized steps",
+        "https://d2l.ai/chapter_computer-vision/transposed-conv.html",
+        "(padding is used for",
+        "intermediate values)"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "4a732eb26d4c35c92e7b098d6f6f41d72b40df3095054f9059c720a6c6c824d0",
+      "lines": [
+        "Key Idea (2 of 2): Image Translation",
+        "with Encoder-Decoder Architecture",
+        "Many options for upsampling; e.g., transposed convolutional layer that learn filters that upsample the input",
+        "with “fractional” sized steps",
+        "(stride used to compute intermediate values)",
+        "https://d2l.ai/chapter_computer-vision/transposed-conv.html"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "1cacb5d018d1f7e311d1555b13600394944f2fe2dbbb7bb5baa3d5f29f3960a4",
+      "lines": [
+        "FCN in 2015",
+        "Ways to Change Networks’ Outputs",
+        "https://ai-pool.com/d/could-you-explain-me-how-instance-segmentation-works",
+        "Faster R-CNN in 2015",
+        "Mask R-CNN in 2015"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "1cf04525971d309a004ab4652d994375a66c5e95c3b34a8b62005f558f98d6f1",
+      "lines": [
+        "1. Bounding box regression: identifies adjustments to each object “region proposal”",
+        "(px",
+        ",py",
+        ",ph",
+        ",pw) to arrive to the correct location, by shifting its centroid (dx",
+        ", dy",
+        ") and",
+        "scaling the width (dw) and height (dh",
+        ")",
+        "- how many neurons are in the output layer?",
+        "- while predicted values are unbounded,",
+        "training restricts them to a small range",
+        "2. Classification: assigns a class to each region proposal; uses a fully connected layer",
+        "that outputs class scores (after softmax)",
+        "Architecture: Performs Two Tasks in Parallel",
+        "https://lilianweng.github.io/lil-log/2017/12/31/object-recognition-for-dummies-part-3.html#bounding-box-regression"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "eba735924e391093172bdd9c5f4abec75b44760a70fe32c08466d1516c343b6b",
+      "lines": [
+        "1. Bounding box regression: identifies adjustments to each object “region proposal”",
+        "(px",
+        ",py",
+        ",ph",
+        ",pw) to arrive to the correct location, by shifting its centroid (dx",
+        ", dy",
+        ") and",
+        "scaling the width (dw) and height (dh",
+        ")",
+        "Architecture: Performs Two Tasks in Parallel",
+        "Ren et al. Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks. Neurips 2015.",
+        "Idea: predicts manageable number of “object”-like",
+        "regions rather than sliding window across entire image"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "9518862a420b68001b7e293ea35a0980f6f2b5c463c5075943e3cc562d835829",
+      "lines": [
+        "Objective Function: Multi-task Loss",
+        "Sum classification and localization losses (also used for region proposal network):",
+        "Predicted class (softmax scores)",
+        "Predicted location adjustments (dx",
+        ", dy",
+        ", dw, dh",
+        ")",
+        "Cross-entropy loss",
+        "True class (one-hot encoding)",
+        "L1 loss",
+        "+ Total",
+        "True location adjustments (dx",
+        ", dy",
+        ", dw, dh",
+        ")",
+        "https://lilianweng.github.io/lil-log/2017/12/31/object-recognition-for-dummies-part-3.html#bounding-box-regression"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "1cacb5d018d1f7e311d1555b13600394944f2fe2dbbb7bb5baa3d5f29f3960a4",
+      "lines": [
+        "FCN in 2015",
+        "Ways to Change Networks’ Outputs",
+        "https://ai-pool.com/d/could-you-explain-me-how-instance-segmentation-works",
+        "Faster R-CNN in 2015",
+        "Mask R-CNN in 2015"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "93c6015f7422216decbf094b08228174fd48331bf37ce1fecc50dab2410fbb11",
+      "lines": [
+        "Architecture: Performs Three Tasks",
+        "He et al. Mask R-CNN. ICCV 2017",
+        "Faster R-CNN: object detection,",
+        "predicting for each ROI",
+        "regression values and class label",
+        "Fully Convolutional Network: segmentation, predicting for",
+        "each ROI K m x m binary segmentation masks (i.e., for each",
+        "of the K classes, applies per-pixel sigmoid followed by 0.5",
+        "thresholding to classify as foreground vs background)",
+        "From K predicted masks, only the",
+        "mask for the predicted class is used"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "b5e2f74ba9c13c5c561414d1460caec3adb56ce83205dccb5f458559510f86e7",
+      "lines": [
+        "Objective Function: Multi-task Loss",
+        "https://towardsdatascience.com/multi-task-learning-with-pytorch-and-fastai-6d10dc7ce855",
+        "Same as Faster R-CNN",
+        "For each predicted mask of each ROI’s target class,",
+        "average binary cross-entropy loss is computed",
+        "across all pixels"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "7e8be42e50684b93838172f26e13a6e7e9672cb63cdb510912200de3a18a71a3",
+      "lines": [
+        "FCN in 2015",
+        "Summary: Different Tasks Have Different",
+        "Network Outputs and Learning Objectives",
+        "https://ai-pool.com/d/could-you-explain-me-how-instance-segmentation-works",
+        "Faster R-CNN in 2015",
+        "Mask R-CNN in 2015"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "698a05a4b59ffa90101b80aa6e0fa108c0fd8be5e3e64b92ec023325505c7365",
+      "lines": [
+        "Today’s Topics",
+        "• Motivation: when vision asks not just “what”, but also “where”",
+        "• Redesigning neural networks to predict densely, rather than just classify",
+        "• Freeing dense prediction networks from fixed input sizes",
+        "• Pivotal insights: pretrained features + design tricks to boost spatial precision",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "42c59248f12ff6a9b66d53627420c4f5e09058379834a2269e54f18ad68629be",
+      "lines": [
+        "FCN in 2015",
+        "Ways to Support Arbitrary Input Dimensions",
+        "https://ai-pool.com/d/could-you-explain-me-how-instance-segmentation-works",
+        "Faster R-CNN in 2015",
+        "Mask R-CNN in 2015"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "cf53a381d65d594cc077e63b1fe517af5e69e26d178b40ec51c9f46d57a9dfd4",
+      "lines": [
+        "Architecture: All Convolutional Layers",
+        "Transposed convolutional layers",
+        "proportionally restore encoded",
+        "features to the original resolution.",
+        "Convolutional layers can apply",
+        "filters across any sized input",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015."
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "42c59248f12ff6a9b66d53627420c4f5e09058379834a2269e54f18ad68629be",
+      "lines": [
+        "FCN in 2015",
+        "Ways to Support Arbitrary Input Dimensions",
+        "https://ai-pool.com/d/could-you-explain-me-how-instance-segmentation-works",
+        "Faster R-CNN in 2015",
+        "Mask R-CNN in 2015"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "8d5554cda3163f1511fe4f8ff5ec994c95d8b09027f75a975b59b63675066365",
+      "lines": [
+        "ROI Pooling: Quantization + Pooling",
+        "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling",
+        "Ren et al. Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks. Neurips 2015.",
+        "Pools any sized input into a target size;",
+        "e.g., [6, 4] -> [3, 3]",
+        "- What discrete integer would convert 6 columns into 3",
+        "6/3 = 2",
+        "- What discrete integer would convert 4 rows into 3",
+        "4/3 = 1.3 -> 1"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "698a05a4b59ffa90101b80aa6e0fa108c0fd8be5e3e64b92ec023325505c7365",
+      "lines": [
+        "Today’s Topics",
+        "• Motivation: when vision asks not just “what”, but also “where”",
+        "• Redesigning neural networks to predict densely, rather than just classify",
+        "• Freeing dense prediction networks from fixed input sizes",
+        "• Pivotal insights: pretrained features + design tricks to boost spatial precision",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "3f68b6a40ed4a8d098506aa08c034c066c62c87e3f589d4a617e706d328da03e",
+      "lines": [
+        "Key Challenge (1 of 2):",
+        "Train Large Capacity Models",
+        "• VERY challenging to collect large-scale annotated datasets",
+        "• How long do you think it would take to draw a:",
+        "• bounding box? (a) 5-15 seconds, (b) 16-45 seconds, (c) 46-75 seconds",
+        "• segmentation?",
+        "Avg time from",
+        "101 annotators:",
+        "Jain and Grauman. Predicting Sufficient Annotation Strength for Interactive Foreground Segmentation. ICCV 2013",
+        "7 seconds per bounding box 54 seconds per segmentation"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "96c548ea9e8fd34e2822a18154bfad723b5e02281ddfb595b6a5cc2d8b26d3f4",
+      "lines": [
+        "Key Idea: Transfer Learning",
+        "https://www.datacamp.com/community/tutorials/neural-network-models-r",
+        "How to extract features characterizing data How to predict",
+        "Use a pretrained backbone to bypass",
+        "needing a large-scale training dataset"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "801bf12864d6f63144fca912fd35b74832d7aed509b7e096ab3df91892027610",
+      "lines": [
+        "Key Idea: Transfer Learning",
+        "Use pretrained network as a starting point to train for a different dataset and/or task;",
+        "e.g.,",
+        "https://www.mathworks.com/help/deeplearning/ug/transfer-learning-using-alexnet.html"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "4e499e57be628247bbdb529209753b2ef14a3a813aebb32dd4c747a61c08604a",
+      "lines": [
+        "Key Idea: Transfer Learning",
+        "Low-level",
+        "features",
+        "Mid-level",
+        "features",
+        "High-level",
+        "features",
+        "Critical Questions:",
+        "1. Which pretrained network?",
+        "2. Which layers from the network?",
+        "3. Freeze vs train transferred layers",
+        "(latter is called “fine-tuning”)",
+        "Deep Learning, Ian Goodfellow, Yoshua Bengio, and Aaron Courville"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "196d7477da5da42671a2af6eb78b523d72862cbaa1a3f881e997008ae3a2d703",
+      "lines": [
+        "FCN (Semantic Segmentation) Backbone",
+        "Do you recognize this architecture?",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015.",
+        "Evaluated with three ImageNet classifiers:",
+        "AlexNet, VGG, and GoogLeNet"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "d0d97ac3180540de0a606d4ccd260223b6a1d045c2af370784e3adc9c3afca1f",
+      "lines": [
+        "Faster R-CNN (Object Detection) Backbone",
+        "Evaluated with two ImageNet classifiers:",
+        "Zeiler and Fergus model and VGG-16",
+        "Ren et al. Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks. Neurips 2015."
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "5dd42b47e87ace8b0614b83e1536863c1be087ed5b3b969e1fd68035e39c52e6",
+      "lines": [
+        "Mask R-CNN (Instance Segmentation) Backbone",
+        "He et al. Mask R-CNN. ICCV 2017",
+        "Embedded in the Faster R-CNN module,",
+        "three ImageNet classifiers evaluated:",
+        "ResNet, ResNeXt, & Feature Pyramid Network"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "99e1b3f836f0fb59c5654b620a4c427c7def6abc15bc2fbfc5aa4c072271d61a",
+      "lines": [
+        "Key Challenge (2 of 2): Moving Beyond",
+        "Coarse Accuracy for Segmentation",
+        "Long, Shelhamer, and Darrell. Fully Convolutional",
+        "Networks for Semantic Segmentation. CVPR 2015.",
+        "FCN Results",
+        "He et al. Mask R-CNN. ICCV 2017",
+        "Mask R-CNN Results (BB vs Segmentation)"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "f0141d5d689166fb6b003e540888f89e141dc409846827d2d2a4ba8443118482",
+      "lines": [
+        "FCN: Add Skip Connections to Fuse Coarse",
+        "Features with Finer-Grained Features",
+        "FCN16: Fuses lower-level, more fine-grained",
+        "features with coarser features",
+        "FCN8: Fuses even lower-level, more fine￾grained features with coarser features",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015."
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "4fbaf50f80af5902893e9da69b090f0a0bddee0fbdd13fa428b26e7b816feb9f",
+      "lines": [
+        "FCN: Add Skip Connections to Fuse Coarse",
+        "Features with Finer-Grained Features",
+        "Long, Shelhamer, and Darrell. Fully Convolutional Networks for Semantic Segmentation. CVPR 2015."
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "c4410b038d277f611107c8940f55c14cb9d490bf1e9f3fe7feb86d1b62e90208",
+      "lines": [
+        "Mask R-CNN: Replace ROI-Pool with ROI-Align",
+        "He et al. Mask R-CNN. ICCV 2017"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "7db5722b49a94d9492d60b2968fcdbdff11bc54541b3fe65a85dd6d5e1bb4a05",
+      "lines": [
+        "ROI-Pool Limitation",
+        "Ren Shaoqing Ren et al. Neurips 2015",
+        "Problem 1: quantizing ROIs in downsized feature map"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "3d7494a6c8894aca057ddb65282b2d46e768d4e92773fe5f1b3505f863da2c18",
+      "lines": [
+        "ROI-Pool Limitation",
+        "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling",
+        "192x296",
+        "Width: ?",
+        "Height: ?",
+        "Upper-left X: ?",
+        "Upper-left Y: ?",
+        "What are the values for the region in the original image in the downsampled feature map?",
+        "(1/32 of original size)"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "59973536620ac9f92f0aaaa542897fdac7758d8fd88369b71ba150b249cc6c25",
+      "lines": [
+        "ROI-Pool Limitation",
+        "192x296",
+        "What are the values for the region in the original image in the downsampled feature map?",
+        "Width: 200/32 = 6.25",
+        "Height: 145/32 = ~4.53",
+        "Upper-left X: 192/32 = 9.25",
+        "Upper-left Y: 145/32 = 6",
+        "(1/32 of original size)",
+        "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "bac0932c7a4596d5128075700c96725e2c1f1094d496911c9edff4987eaaffd6",
+      "lines": [
+        "ROI-Pool Limitation",
+        "Original region on feature map",
+        "Quantized variant:values rounded down to discrete set",
+        "of integers to match the grid",
+        "- Original information preserved",
+        "- Information added",
+        "- Information lost",
+        "Quantization changes the information utilized from the",
+        "original image, losing information about the object and",
+        "adding extra image context (recall, the original image is",
+        "orders of magnitude larger than the feature map!)",
+        "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "e9986ffa2aa180aaf6136d9b9733632b940043a1f3abe0eba478fbb037eae61b",
+      "lines": [
+        "ROI-Pool Limitation",
+        "Problem 2: Quantization when pooling ROIs of various",
+        "sizes to target size required for fully connected layer",
+        "Ren Shaoqing Ren et al. Neurips 2015"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "2f2fc8cb046a9696675608cd348d280d88c60e438ad79f689e6782d9ea0531f3",
+      "lines": [
+        "ROI-Pool Limitation",
+        "e.g., convert quantized 4x6 region into a 3x3 feature",
+        "Quantized approach: identify discrete integers for",
+        "pooling to result in the target size",
+        "e.g., 4/3 = 1.3 -> 1 and 6/3 = 2",
+        "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "ae98ffab92524e8d4e47bf7e87c6c444c8b9e493b22791331c75c2d006465955",
+      "lines": [
+        "ROI-Pool Limitation",
+        "e.g., convert quantized 4x6 region into a 3x3 feature",
+        "Quantized approach: identify discrete integers for",
+        "pooling to result in the target size",
+        "e.g., 1x2 vector using max pooling",
+        "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "6cfe3dae08afca760ecbce1524f1efb6474eaeccde2458e6dd3fe172c31c19ff",
+      "lines": [
+        "ROI-Pool Limitation",
+        "e.g., convert quantized 4x6 region into a 3x3 feature",
+        "Quantized approach: identify discrete integers for",
+        "pooling to result in the target size",
+        "e.g., 1x2 vector using max pooling",
+        "Again, quantization discards",
+        "information about the object",
+        "from the original image",
+        "(recall, the original image is",
+        "orders of magnitude larger",
+        "than the feature map!)",
+        "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "c396ee952529b112e34aae205444cb33e27190ef78664f9d3b2314772f16a33b",
+      "lines": [
+        "ROI-Pool Limitation",
+        "e.g., convert quantized 4x6 region into a 3x3 feature",
+        "Quantized approach: identify discrete integers for",
+        "pooling to result in the target size",
+        "e.g., 1x2 vector using max pooling",
+        "Information is lost for all channels",
+        "for every region proposal (each of",
+        "which is used to predict a class",
+        "and bounding box)!",
+        "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "13faf70f1f00c75266b8663bf7b2738092dd1915120b32b5f9e9dc142db9eb74",
+      "lines": [
+        "ROI-Pool Limitations Summary",
+        "Original region on feature map",
+        "Quantization changes the information utilized from the",
+        "original image, losing information about the object and",
+        "adding extra image context (recall, the original image is",
+        "orders of magnitude larger than the feature map!)",
+        "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "d090721539b787f598914a3f882737f2b28e8482b806eb116b8c23ad90cfeb34",
+      "lines": [
+        "ROIAlign: Pooling Without Quantization",
+        "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "5d28e708f78576da1f4c2e4b6a0c212935b4740220bc40d98fb247d3b252ed2f",
+      "lines": [
+        "ROIAlign: Pooling Without Quantization",
+        "Divide region into 9 equal sized boxes; what is the",
+        "size of each box?",
+        "- 6.25/3 x 4.53/3 = 2.08 x 1.51",
+        "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "1476f789d72c167eba151e709c44de855dacb4f73ec3a0676a31256f2292d164",
+      "lines": [
+        "ROIAlign: Pooling Without Quantization",
+        "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling",
+        "Perform pooling on sampled values in each box"
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "397339b565adcfcb93fb1d33f36d16a29295576da506c4e33337bfbfe674127b",
+      "lines": [
+        "ROIAlign: Pooling Without Quantization",
+        "Perform pooling on sampled values in each box",
+        "- e.g., max(0.14, 0.21, 0.51, 0.43) = ?",
+        "How do we find the four sample values?",
+        "?",
+        "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "04aa3c396afce49288c6c7e34d14c529b2c3055bbe9cc876e35f988a9089398c",
+      "lines": [
+        "ROIAlign: Pooling Without Quantization",
+        "Compute each sample value with interpolation",
+        "between 4 points",
+        "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "379fea7814d7357c50930c4a12ccb37c26e51714b3cd4ac29df56db93c9ad2bb",
+      "lines": [
+        "ROIAlign: Pooling Without Quantization",
+        "Compute each sample value with interpolation between 4 points:",
+        "1. Identify sample location",
+        "2. Identify 4 points for interpolation, using the middle of each closest",
+        "neighboring box in each direction",
+        "3. Calculate value using bilinear interpolation (= 0.14)",
+        "X = X_box + (width/3) * 1 = 9.25 + (2.08/3) = 9.94",
+        "Y = Y_box + (height/3) * 1 = 6 + (1.51/3) = 6.50",
+        "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+      ]
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "df3e0267840f0b3d32a00272ecc2531da2673c7788e9a25780bba0f9d94ed65b",
+      "lines": [
+        "ROIAlign: Pooling Without Quantization",
+        "Compute each sample value with interpolation",
+        "between 4 points:",
+        "1. Identify sample location",
+        "2. Identify 4 points for interpolation, using the",
+        "middle of each closest neighboring box in",
+        "each direction",
+        "3. Calculate value using bilinear interpolation",
+        "(=0.21)",
+        "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+      ]
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "c2e8b4f6b115c96f87e097a2487c79eb3ff641cd3f289ed973665d5a37d93f6f",
+      "lines": [
+        "ROIAlign: Pooling Without Quantization",
+        "Compute each sample value with interpolation",
+        "between 4 points:",
+        "1. Identify sample location",
+        "2. Identify 4 points for interpolation, using the",
+        "middle of each closest neighboring box in",
+        "each direction",
+        "3. Calculate value using bilinear interpolation",
+        "(=0.51)",
+        "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+      ]
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "243fbe28dfde378ac3e2a8dd75fc18c1533a204128ab65551e593669d36bcb97",
+      "lines": [
+        "ROIAlign: Pooling Without Quantization",
+        "Compute each sample value with interpolation",
+        "between 4 points:",
+        "1. Identify sample location",
+        "2. Identify 4 points for interpolation, using the",
+        "middle of each closest neighboring box in",
+        "each direction",
+        "3. Calculate value using bilinear interpolation",
+        "(=0.43)",
+        "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+      ]
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "3facd743e25abf6a02c3cf8110e334de38052b4d7affa5ac980f28e859baacb8",
+      "lines": [
+        "ROIAlign vs ROI Pooling",
+        "Original region on feature map",
+        "Both methods add extra image",
+        "context",
+        "Only ROI pooling loses",
+        "information about the object",
+        "from the original image",
+        "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling"
+      ]
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "698a05a4b59ffa90101b80aa6e0fa108c0fd8be5e3e64b92ec023325505c7365",
+      "lines": [
+        "Today’s Topics",
+        "• Motivation: when vision asks not just “what”, but also “where”",
+        "• Redesigning neural networks to predict densely, rather than just classify",
+        "• Freeing dense prediction networks from fixed input sizes",
+        "• Pivotal insights: pretrained features + design tricks to boost spatial precision",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "698a05a4b59ffa90101b80aa6e0fa108c0fd8be5e3e64b92ec023325505c7365",
+      "lines": [
+        "Today’s Topics",
+        "• Motivation: when vision asks not just “what”, but also “where”",
+        "• Redesigning neural networks to predict densely, rather than just classify",
+        "• Freeing dense prediction networks from fixed input sizes",
+        "• Pivotal insights: pretrained features + design tricks to boost spatial precision",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 71,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

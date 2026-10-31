@@ -1,0 +1,3045 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2022",
+  "session_id": "s17",
+  "source_sha256": "25facc81397c9c1040925d617e84296f7fe386838e1255f794fd66e16be24994",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "90f31fed3f9bff22281ba3100455214e71830ab5ba195041d25401e7949428c5",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ترنسفورمرهای پرکاربرد (Popular Transformers)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "دانشگاه کلرادو بولدر (University of Colorado Boulder)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "بهار ۲۰۲۲ (Spring 2022)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://home.cs.colorado.edu/~DrG/Courses/NeuralNetworksAndDeepLearning/AboutCourse.html"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "6c62647f27f3e5a562c5da876830516c7a17dbb7c07eef95003749adbf661b4a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• جلسهٔ قبل:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مروری بر ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• خودتوجهی (Self-attention)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• توجه چندسری (Multi-head attention)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• اجزای مشترک ترنسفورمرها (Transformers)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• ترنسفورمر پیشگام: ترجمهٔ ماشینی (Machine translation)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• تکلیف‌ها (Canvas):"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• موعد تحویل تکلیف آزمایشگاهی 3 امروز، پیش از این جلسه بود"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "• موعد تحویل مجموعه‌مسئلهٔ 4 هفتهٔ آینده است"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "bullet",
+          "fa": "• پرسشی دارید؟"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "4a9cc33b6cf3c9b1f93c45fc7009f4560066cdb14e05cf706d67b1af55c83f24",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• رشد انفجاری ترنسفورمرها (Transformers)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• GPT"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "• BERT"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• محدودیت‌های مدل‌های ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی (Programming tutorial)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "4a9cc33b6cf3c9b1f93c45fc7009f4560066cdb14e05cf706d67b1af55c83f24",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• رشد انفجاری ترنسفورمرها (Transformers)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• GPT"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "• BERT"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• محدودیت‌های مدل‌های ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی (Programming tutorial)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "5cf4de0f856a47e4920bfbbc3b29c3e3996b9cb662b7f498d217311aa0614542",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رشد انفجاری ترنسفورمرها (Transformers) در جامعه"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://www.pinterest.com/pin/521784306804400819/"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "99f02b859409931cfd480992f5da16cf74642def99a8c53274b35af8f7819d85",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "محبوبیت ترنسفورمرها (Transformers) در جامعه"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://trends.google.com/trends/explore"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Note; “Transformer AI”; Search term; Jan 1, 2004; Jun 1, 2009; Nov 1, 2014; Apr 1, 2020",
+          "fa": "یادداشت؛ «Transformer AI»؛ عبارت جست‌وجو (Search term)؛ 1 ژانویهٔ 2004؛ 1 ژوئن 2009؛ 1 نوامبر 2014؛ 1 آوریل 2020",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "2194d9af4a26668eb679516a97d377163e9b749d71923572ffc01bde59b687d4",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "تمرکز امروز: روش‌هایی که ابتدا پیش‌آموزش (Pretraining) و سپس تنظیم دقیق (Fine-tuning) انجام می‌دهند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "استنتاج (Inference)"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "ترنسفورمرها (Transformers) می‌توانند برای وظیفه‌های پایین‌دستی (Downstream tasks) بازنمایی‌های برداری (Embeddings) بهتری فراهم کنند، زیرا بافت (Context) را لحاظ می‌کنند (برخلاف بازنمایی‌های مستقل از بافت مانند word2vec)."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pre-Training; Large unlabelled datasets (e.g. Wikipedia, BookCorpus); Self-supervised training (hours to days); Pre-Trained Weights",
+          "fa": "پیش‌آموزش (Pre-Training)؛ مجموعه‌داده‌های بزرگ بدون برچسب (برای مثال، Wikipedia و BookCorpus)؛ آموزش خودنظارتی (Self-supervised training؛ ساعت‌ها تا روزها)؛ وزن‌های ازپیش‌آموزش‌دیده (Pre-Trained Weights)",
+          "verified": true
+        },
+        {
+          "en": "Fine-Tuning; Smaller labelled datasets (SQuAD, MNLI/CMNLI, Similarity); Task-specific fine tuning (minutes to hours); Fine-Tuned Weights",
+          "fa": "تنظیم دقیق (Fine-Tuning)؛ مجموعه‌داده‌های کوچک‌تر برچسب‌دار (SQuAD، MNLI/CMNLI، شباهت)؛ تنظیم دقیق مختص وظیفه (دقیقه‌ها تا ساعت‌ها)؛ وزن‌های تنظیم‌دقیق‌شده (Fine-Tuned Weights)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "4a9cc33b6cf3c9b1f93c45fc7009f4560066cdb14e05cf706d67b1af55c83f24",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• رشد انفجاری ترنسفورمرها (Transformers)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• GPT"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "• BERT"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• محدودیت‌های مدل‌های ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی (Programming tutorial)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "d7fdc6ab11a2c2dce10e29b5b8ee5efc44d1742caae239b061925d55d6a93bb0",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "GPT: پیش‌آموزش مولد (Generative Pre-Training)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "استنتاج (Inference)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pre-Training; Large unlabelled datasets (e.g. Wikipedia, BookCorpus); Self-supervised training (hours to days); Pre-Trained Weights",
+          "fa": "پیش‌آموزش (Pre-Training)؛ مجموعه‌داده‌های بزرگ بدون برچسب (برای مثال، Wikipedia و BookCorpus)؛ آموزش خودنظارتی (Self-supervised training؛ ساعت‌ها تا روزها)؛ وزن‌های ازپیش‌آموزش‌دیده (Pre-Trained Weights)",
+          "verified": true
+        },
+        {
+          "en": "Fine-Tuning; Smaller labelled datasets (SQuAD, MNLI/CMNLI, Similarity); Task-specific fine tuning (minutes to hours); Fine-Tuned Weights",
+          "fa": "تنظیم دقیق (Fine-Tuning)؛ مجموعه‌داده‌های کوچک‌تر برچسب‌دار (SQuAD، MNLI/CMNLI، شباهت)؛ تنظیم دقیق مختص وظیفه (دقیقه‌ها تا ساعت‌ها)؛ وزن‌های تنظیم‌دقیق‌شده (Fine-Tuned Weights)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "4e9ca7bca8b561e542f3855f5e1fd121f0cbfff95585fc220ddbd16b3bdeae7b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "وظیفه: پیش‌بینی واژهٔ بعدی با داشتن واژه‌های پیشین"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "برای مثال،"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "1. Background music from a _______ (موسیقی پس‌زمینه از یک _______)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "2. Many people danced around the _______ (افراد زیادی دورِ _______ رقصیدند)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "3. I practiced for many years to learn how to play the _______ (سال‌های زیادی تمرین کردم تا یاد بگیرم چگونه _______ بنوازم)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "b72a3c505760798659f897eb0899590bf1dea8889111b935c832a30f9cda95ee",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "Vaswani et al. Attention Is All You Need. Neurips 2017."
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "معماری: رمزگشای (Decoder) ترنسفورمر (Transformer) پیشگام"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Inputs; Input Embedding; Positional Encoding; Add & Norm; Multi-Head Attention; Feed Forward; Outputs (shifted right); Output Embedding; Masked Multi-Head Attention; Linear; Softmax; Output Probabilities; N×",
+          "fa": "ورودی‌ها؛ بازنمایی برداری ورودی (Input Embedding)؛ کدگذاری موقعیت (Positional Encoding)؛ جمع و نرمال‌سازی (Add & Norm)؛ توجه چندسری (Multi-Head Attention)؛ پیش‌خور (Feed Forward)؛ خروجی‌ها (انتقال‌یافته به راست)؛ بازنمایی برداری خروجی؛ توجه چندسری ماسک‌شده (Masked Multi-Head Attention)؛ خطی (Linear)؛ سافت‌مکس (Softmax)؛ احتمال‌های خروجی؛ N×",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "2c40ff8a8cb0678aa36eb6836d545d7b8861720f02c77f03225fcba89ab44695",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری (Architecture)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Text Prediction; Layer Norm; Feed Forward; Masked Multi Self Attention; Text & Position Embed; 12×",
+          "fa": "پیش‌بینی متن (Text Prediction)؛ نرمال‌سازی لایه (Layer Norm)؛ پیش‌خور (Feed Forward)؛ خودتوجهی چندگانهٔ ماسک‌شده (Masked Multi Self Attention)؛ بازنمایی برداری متن و موقعیت (Text & Position Embed)؛ 12×",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "1da137b619d4c0d907c4b17feae8448443b6bd6e863e062a2b9b4aed0eb7465f",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری: ورودی و خروجی (Input & Output)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "لایهٔ سافت‌مکس (Softmax) در هر گام زمانی، واژهٔ پیش‌بینی‌شدهٔ بعدی را تعیین می‌کند"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "http://jalammar.github.io/illustrated-transformer/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Text Prediction; Layer Norm; Feed Forward; Masked Multi Self Attention; Text & Position Embed; 12×",
+          "fa": "پیش‌بینی متن (Text Prediction)؛ نرمال‌سازی لایه (Layer Norm)؛ پیش‌خور (Feed Forward)؛ خودتوجهی چندگانهٔ ماسک‌شده (Masked Multi Self Attention)؛ بازنمایی برداری متن و موقعیت (Text & Position Embed)؛ 12×",
+          "verified": true
+        },
+        {
+          "en": "EMBEDDING WITH TIME SIGNAL; POSITIONAL ENCODING; EMBEDDINGS; INPUT",
+          "fa": "بازنمایی برداری با سیگنال زمان؛ کدگذاری موقعیت (Positional Encoding)؛ بازنمایی‌های برداری (Embeddings)؛ ورودی",
+          "verified": true
+        },
+        {
+          "en": "Je suis étudiant",
+          "fa": "Je suis étudiant (من دانشجو هستم)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "75a0902c3ed4cb69f4407aa288020c9eba649b02cd23e28116fc94790c7665c2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری: توجه ماسک‌شده (Masked Attention)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "بازنمایی جدید هر واژه را محدود کنید تا فقط واژه‌های پیشین را منعکس کند (این کار زمان استنتاج (Inference) را تقلید می‌کند که فقط توکن‌های پیشین دیده می‌شوند):"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://stackoverflow.com/questions/64799622/how-is-the￾gpts-masked-self-attention-is-utilized-on-fine-tuning-inference"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجو (Query)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجو × کلید (Query x Key)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "برای مثال، در توکن <sos> هیچ ورودی پیشینی وجود ندارد"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "برای مثال، در توکن سوم، دو ورودی پیشین داریم"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Text Prediction; Layer Norm; Feed Forward; Masked Multi Self Attention; Text & Position Embed; 12×",
+          "fa": "پیش‌بینی متن (Text Prediction)؛ نرمال‌سازی لایه (Layer Norm)؛ پیش‌خور (Feed Forward)؛ خودتوجهی چندگانهٔ ماسک‌شده (Masked Multi Self Attention)؛ بازنمایی برداری متن و موقعیت (Text & Position Embed)؛ 12×",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "34fcc7d724c737f9f7b939cd15f0cd9177de5b8456ee4cb6ca44498c1e78f18e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری: توجه ماسک‌شده (Masked Attention)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "بازنمایی جدید هر واژه را محدود کنید تا فقط واژه‌های پیشین را منعکس کند (این کار زمان استنتاج (Inference) را تقلید می‌کند که فقط توکن‌های پیشین دیده می‌شوند):"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://stackoverflow.com/questions/64799622/how-is-the￾gpts-masked-self-attention-is-utilized-on-fine-tuning-inference"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجو (Query)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "پرس‌وجو × کلید (Query x Key)"
+        },
+        {
+          "source_lines": [
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "امتیازهای ماسک‌شده با منفی بی‌نهایت نمایش داده می‌شوند تا خروجی سافت‌مکس (Softmax)، یعنی وزن توجه (Attention weight)، برابر 0 شود"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Text Prediction; Layer Norm; Feed Forward; Masked Multi Self Attention; Text & Position Embed; 12×",
+          "fa": "پیش‌بینی متن (Text Prediction)؛ نرمال‌سازی لایه (Layer Norm)؛ پیش‌خور (Feed Forward)؛ خودتوجهی چندگانهٔ ماسک‌شده (Masked Multi Self Attention)؛ بازنمایی برداری متن و موقعیت (Text & Position Embed)؛ 12×",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "97445ccad5d1aba50f1017b01f69354267315dac7de80f231044765609a8950a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "آموزش (Training)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌داده (Dataset): 800 میلیون واژه از BooksCorpus (بیش از 7,000 کتاب)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• بهینه‌ساز (Optimizer): Adam"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• مدت آموزش: 100 دوره (Epochs)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Text Prediction; Layer Norm; Feed Forward; Masked Multi Self Attention; Text & Position Embed; 12×",
+          "fa": "پیش‌بینی متن (Text Prediction)؛ نرمال‌سازی لایه (Layer Norm)؛ پیش‌خور (Feed Forward)؛ خودتوجهی چندگانهٔ ماسک‌شده (Masked Multi Self Attention)؛ بازنمایی برداری متن و موقعیت (Text & Position Embed)؛ 12×",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "e6484fa15ce3854bba98e4a155143e9e5608051f74f8cfc731aa3bc4a6cecf6e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "جزئیات پیاده‌سازی (Implementation Details)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "تابع فعال‌سازی (Activation function): واحد خطی خطای گاوسی (Gaussian error linear unit; GELU)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://datascience.stackexchange.com/questions/49522/what-is-gelu-activation"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Text Prediction",
+          "fa": "پیش‌بینی متن (Text Prediction)",
+          "verified": true
+        },
+        {
+          "en": "Layer Norm",
+          "fa": "نرمال‌سازی لایه (Layer Norm)",
+          "verified": true
+        },
+        {
+          "en": "Feed Forward",
+          "fa": "پیش‌خور (Feed Forward)",
+          "verified": true
+        },
+        {
+          "en": "Masked Multi Self Attention",
+          "fa": "خودتوجهی چندگانهٔ ماسک‌شده (Masked Multi Self Attention)",
+          "verified": true
+        },
+        {
+          "en": "Text & Position Embed",
+          "fa": "بازنمایی برداری متن و موقعیت (Text & Position Embed)",
+          "verified": true
+        },
+        {
+          "en": "12x",
+          "fa": "12x",
+          "verified": true
+        },
+        {
+          "en": "Text Prediction; Layer Norm; Feed Forward; Masked Multi Self Attention; Text & Position Embed; 12×",
+          "fa": "پیش‌بینی متن (Text Prediction)؛ نرمال‌سازی لایه (Layer Norm)؛ پیش‌خور (Feed Forward)؛ خودتوجهی چندگانهٔ ماسک‌شده (Masked Multi Self Attention)؛ بازنمایی برداری متن و موقعیت (Text & Position Embed)؛ 12×",
+          "verified": true
+        },
+        {
+          "en": "g = 0.5x(1 + (2/√π) ∫₀^(x/√2) e^(−t²) dt)",
+          "fa": "g = 0.5x(1 + (2/√π) ∫₀^(x/√2) e^(−t²) dt)",
+          "verified": true,
+          "latex": "g=0.5x\\left(1+\\frac{2}{\\sqrt\\pi}\\int_0^{x/\\sqrt2}e^{-t^2}\\,dt\\right)"
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "651d645aabcfc81eb27787ef743b847ed4338ce5eb0823d0ecee7cbfcadb1f5a",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "جزئیات پیاده‌سازی (Implementation Details)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "با توکن‌سازی زیرواژه‌ای (Subword tokenization)، یعنی کدگذاری جفت‌بایتی (Byte pair encoding)، از توکن‌های خارج از واژگان جلوگیری کنید:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "1. همهٔ توکن‌های داده‌های آموزشی را همراه با فراوانی‌شان شناسایی کنید"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "2. اندازهٔ واژگان (Vocabulary size) را تعیین کنید؛ برای مثال 14"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "3. همهٔ نویسه‌های ورودیِ توکن‌سازی‌شده را به واژگان اضافه کنید؛ برای مثال،"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Text Prediction",
+          "fa": "پیش‌بینی متن (Text Prediction)",
+          "verified": true
+        },
+        {
+          "en": "Layer Norm",
+          "fa": "نرمال‌سازی لایه (Layer Norm)",
+          "verified": true
+        },
+        {
+          "en": "Feed Forward",
+          "fa": "پیش‌خور (Feed Forward)",
+          "verified": true
+        },
+        {
+          "en": "Masked Multi Self Attention",
+          "fa": "خودتوجهی چندگانهٔ ماسک‌شده (Masked Multi Self Attention)",
+          "verified": true
+        },
+        {
+          "en": "Text & Position Embed",
+          "fa": "بازنمایی برداری متن و موقعیت (Text & Position Embed)",
+          "verified": true
+        },
+        {
+          "en": "12x",
+          "fa": "12x",
+          "verified": true
+        },
+        {
+          "en": "Character sequence; Cost",
+          "fa": "دنبالهٔ نویسه‌ها (Character sequence)؛ هزینه (Cost)",
+          "verified": true
+        },
+        {
+          "en": "C o s t 2; b e s t 2; m e n u 1; m e n 1; c a m e l 1",
+          "fa": "C o s t 2؛ b e s t 2؛ m e n u 1؛ m e n 1؛ c a m e l 1",
+          "verified": true
+        },
+        {
+          "en": "Text Prediction; Layer Norm; Feed Forward; Masked Multi Self Attention; Text & Position Embed; 12×",
+          "fa": "پیش‌بینی متن (Text Prediction)؛ نرمال‌سازی لایه (Layer Norm)؛ پیش‌خور (Feed Forward)؛ خودتوجهی چندگانهٔ ماسک‌شده (Masked Multi Self Attention)؛ بازنمایی برداری متن و موقعیت (Text & Position Embed)؛ 12×",
+          "verified": true
+        },
+        {
+          "en": "Character sequence; Cost; C o s t: 2; b e s t: 2; m e n u: 1; m e n: 1; c a m e l: 1",
+          "fa": "دنبالهٔ نویسه‌ها (Character sequence)؛ هزینه (Cost)؛ C o s t: 2؛ b e s t: 2؛ m e n u: 1؛ m e n: 1؛ c a m e l: 1",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "2276fad5f60ba0f20fd29da84d972ff8be22b59ac54ea93cf8a3fbcc6292f36b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "جزئیات پیاده‌سازی (Implementation Details)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "برای مثال، کدام جفت‌نمادها بیشترین فراوانی را دارند؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "با توکن‌سازی زیرواژه‌ای (Subword tokenization)، یعنی کدگذاری جفت‌بایتی (Byte pair encoding)، از توکن‌های خارج از واژگان جلوگیری کنید:"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "1. همهٔ توکن‌های داده‌های آموزشی را همراه با فراوانی‌شان شناسایی کنید"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "2. اندازهٔ واژگان (Vocabulary size) را تعیین کنید؛ برای مثال 14"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "3. همهٔ نویسه‌های ورودیِ توکن‌سازی‌شده را به واژگان اضافه کنید؛ برای مثال،"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "4. تا زمانی که واژگان کامل شود، جفت‌نمادهای دارای بیشترین فراوانی را ادغام و اضافه کنید"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Text Prediction; Layer Norm; Feed Forward; Masked Multi Self Attention; Text & Position Embed; 12×",
+          "fa": "پیش‌بینی متن (Text Prediction)؛ نرمال‌سازی لایه (Layer Norm)؛ پیش‌خور (Feed Forward)؛ خودتوجهی چندگانهٔ ماسک‌شده (Masked Multi Self Attention)؛ بازنمایی برداری متن و موقعیت (Text & Position Embed)؛ 12×",
+          "verified": true
+        },
+        {
+          "en": "Character sequence; Cost; C o s t: 2; b e s t: 2; m e n u: 1; m e n: 1; c a m e l: 1",
+          "fa": "دنبالهٔ نویسه‌ها (Character sequence)؛ هزینه (Cost)؛ C o s t: 2؛ b e s t: 2؛ m e n u: 1؛ m e n: 1؛ c a m e l: 1",
+          "verified": true
+        },
+        {
+          "en": "Vocabulary: a, b, c, e, l, m, n, o, s, t, u",
+          "fa": "واژگان (Vocabulary): a, b, c, e, l, m, n, o, s, t, u",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "2276fad5f60ba0f20fd29da84d972ff8be22b59ac54ea93cf8a3fbcc6292f36b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "جزئیات پیاده‌سازی (Implementation Details)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "برای مثال، کدام جفت‌نمادها بیشترین فراوانی را دارند؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "با توکن‌سازی زیرواژه‌ای (Subword tokenization)، یعنی کدگذاری جفت‌بایتی (Byte pair encoding)، از توکن‌های خارج از واژگان جلوگیری کنید:"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "1. همهٔ توکن‌های داده‌های آموزشی را همراه با فراوانی‌شان شناسایی کنید"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "2. اندازهٔ واژگان (Vocabulary size) را تعیین کنید؛ برای مثال 14"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "3. همهٔ نویسه‌های ورودیِ توکن‌سازی‌شده را به واژگان اضافه کنید؛ برای مثال،"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "4. تا زمانی که واژگان کامل شود، جفت‌نمادهای دارای بیشترین فراوانی را ادغام و اضافه کنید"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Text Prediction; Layer Norm; Feed Forward; Masked Multi Self Attention; Text & Position Embed; 12×",
+          "fa": "پیش‌بینی متن (Text Prediction)؛ نرمال‌سازی لایه (Layer Norm)؛ پیش‌خور (Feed Forward)؛ خودتوجهی چندگانهٔ ماسک‌شده (Masked Multi Self Attention)؛ بازنمایی برداری متن و موقعیت (Text & Position Embed)؛ 12×",
+          "verified": true
+        },
+        {
+          "en": "Character sequence; Cost; C o s t: 2; b e s t: 2; m e n u: 1; m e n: 1; c a m e l: 1",
+          "fa": "دنبالهٔ نویسه‌ها (Character sequence)؛ هزینه (Cost)؛ C o s t: 2؛ b e s t: 2؛ m e n u: 1؛ m e n: 1؛ c a m e l: 1",
+          "verified": true
+        },
+        {
+          "en": "Vocabulary: a, b, c, e, l, m, n, o, s, t, u, st",
+          "fa": "واژگان (Vocabulary): a, b, c, e, l, m, n, o, s, t, u, st",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "2276fad5f60ba0f20fd29da84d972ff8be22b59ac54ea93cf8a3fbcc6292f36b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "جزئیات پیاده‌سازی (Implementation Details)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "برای مثال، کدام جفت‌نمادها بیشترین فراوانی را دارند؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "با توکن‌سازی زیرواژه‌ای (Subword tokenization)، یعنی کدگذاری جفت‌بایتی (Byte pair encoding)، از توکن‌های خارج از واژگان جلوگیری کنید:"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "1. همهٔ توکن‌های داده‌های آموزشی را همراه با فراوانی‌شان شناسایی کنید"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "2. اندازهٔ واژگان (Vocabulary size) را تعیین کنید؛ برای مثال 14"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "3. همهٔ نویسه‌های ورودیِ توکن‌سازی‌شده را به واژگان اضافه کنید؛ برای مثال،"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "4. تا زمانی که واژگان کامل شود، جفت‌نمادهای دارای بیشترین فراوانی را ادغام و اضافه کنید"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Text Prediction; Layer Norm; Feed Forward; Masked Multi Self Attention; Text & Position Embed; 12×",
+          "fa": "پیش‌بینی متن (Text Prediction)؛ نرمال‌سازی لایه (Layer Norm)؛ پیش‌خور (Feed Forward)؛ خودتوجهی چندگانهٔ ماسک‌شده (Masked Multi Self Attention)؛ بازنمایی برداری متن و موقعیت (Text & Position Embed)؛ 12×",
+          "verified": true
+        },
+        {
+          "en": "Character sequence; Cost; C o s t: 2; b e s t: 2; m e n u: 1; m e n: 1; c a m e l: 1",
+          "fa": "دنبالهٔ نویسه‌ها (Character sequence)؛ هزینه (Cost)؛ C o s t: 2؛ b e s t: 2؛ m e n u: 1؛ m e n: 1؛ c a m e l: 1",
+          "verified": true
+        },
+        {
+          "en": "Vocabulary: a, b, c, e, l, m, n, o, s, t, u, st, me, men",
+          "fa": "واژگان (Vocabulary): a, b, c, e, l, m, n, o, s, t, u, st, me, men",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "708eb8107173ebd81dd23b255b24fd6049ad909df45d64285e15dd9899ebf2e4",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "جزئیات پیاده‌سازی (Implementation Details):"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "با توکن‌سازی زیرواژه‌ای (Subword tokenization)، یعنی کدگذاری جفت‌بایتی (Byte pair encoding)، از توکن‌های خارج از واژگان جلوگیری کنید:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "- از 40,000 ادغام استفاده شد"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Text Prediction; Layer Norm; Feed Forward; Masked Multi Self Attention; Text & Position Embed; 12×",
+          "fa": "پیش‌بینی متن (Text Prediction)؛ نرمال‌سازی لایه (Layer Norm)؛ پیش‌خور (Feed Forward)؛ خودتوجهی چندگانهٔ ماسک‌شده (Masked Multi Self Attention)؛ بازنمایی برداری متن و موقعیت (Text & Position Embed)؛ 12×",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "d7fdc6ab11a2c2dce10e29b5b8ee5efc44d1742caae239b061925d55d6a93bb0",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "GPT: پیش‌آموزش مولد (Generative Pre-Training)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "استنتاج (Inference)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pre-Training; Large unlabelled datasets (e.g. Wikipedia, BookCorpus); Self-supervised training (hours to days); Pre-Trained Weights",
+          "fa": "پیش‌آموزش (Pre-Training)؛ مجموعه‌داده‌های بزرگ بدون برچسب (برای مثال، Wikipedia و BookCorpus)؛ آموزش خودنظارتی (Self-supervised training؛ ساعت‌ها تا روزها)؛ وزن‌های ازپیش‌آموزش‌دیده (Pre-Trained Weights)",
+          "verified": true
+        },
+        {
+          "en": "Fine-Tuning; Smaller labelled datasets (SQuAD, MNLI/CMNLI, Similarity); Task-specific fine tuning (minutes to hours); Fine-Tuned Weights",
+          "fa": "تنظیم دقیق (Fine-Tuning)؛ مجموعه‌داده‌های کوچک‌تر برچسب‌دار (SQuAD، MNLI/CMNLI، شباهت)؛ تنظیم دقیق مختص وظیفه (دقیقه‌ها تا ساعت‌ها)؛ وزن‌های تنظیم‌دقیق‌شده (Fine-Tuned Weights)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "c03f9564bbd97a925c401715fdb5cdc28ea6530193bb44e16d3337af9c18fa0b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تنظیم دقیق (Fine-Tuning؛ لایه‌های خروجی سافت‌مکس (Softmax))"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Classification; Entailment; Similarity; Multiple Choice",
+          "fa": "طبقه‌بندی (Classification)؛ استلزام (Entailment)؛ شباهت (Similarity)؛ چندگزینه‌ای (Multiple Choice)",
+          "verified": true
+        },
+        {
+          "en": "Start; Text; Extract; Transformer; Linear",
+          "fa": "آغاز (Start)؛ متن (Text)؛ استخراج (Extract)؛ ترنسفورمر (Transformer)؛ خطی (Linear)",
+          "verified": true
+        },
+        {
+          "en": "Premise; Delim; Hypothesis",
+          "fa": "مقدمه (Premise)؛ جداکننده (Delim)؛ فرضیه (Hypothesis)",
+          "verified": true
+        },
+        {
+          "en": "Text 1; Text 2; Context; Answer 1; Answer 2; Answer N",
+          "fa": "متن 1؛ متن 2؛ بافت (Context)؛ پاسخ 1؛ پاسخ 2؛ پاسخ N",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "e0d086fade28fd4cc5956ba2343345d837c3c216d7c0d3d7f9b854b546f07623",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یافته‌های تجربی (Experimental Findings)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "در 9 چالش مجموعه‌دادهٔ پردازش زبان طبیعی (NLP) بهترین عملکرد را به دست آورد"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "d7fdc6ab11a2c2dce10e29b5b8ee5efc44d1742caae239b061925d55d6a93bb0",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "GPT: پیش‌آموزش مولد (Generative Pre-Training)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "استنتاج (Inference)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pre-Training; Large unlabelled datasets (e.g. Wikipedia, BookCorpus); Self-supervised training (hours to days); Pre-Trained Weights",
+          "fa": "پیش‌آموزش (Pre-Training)؛ مجموعه‌داده‌های بزرگ بدون برچسب (برای مثال، Wikipedia و BookCorpus)؛ آموزش خودنظارتی (Self-supervised training؛ ساعت‌ها تا روزها)؛ وزن‌های ازپیش‌آموزش‌دیده (Pre-Trained Weights)",
+          "verified": true
+        },
+        {
+          "en": "Fine-Tuning; Smaller labelled datasets (SQuAD, MNLI/CMNLI, Similarity); Task-specific fine tuning (minutes to hours); Fine-Tuned Weights",
+          "fa": "تنظیم دقیق (Fine-Tuning)؛ مجموعه‌داده‌های کوچک‌تر برچسب‌دار (SQuAD، MNLI/CMNLI، شباهت)؛ تنظیم دقیق مختص وظیفه (دقیقه‌ها تا ساعت‌ها)؛ وزن‌های تنظیم‌دقیق‌شده (Fine-Tuned Weights)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "4a9cc33b6cf3c9b1f93c45fc7009f4560066cdb14e05cf706d67b1af55c83f24",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• رشد انفجاری ترنسفورمرها (Transformers)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• GPT"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "• BERT"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• محدودیت‌های مدل‌های ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی (Programming tutorial)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "10e241cbd3791ab0049d4312baf0550ca658595c3e10635a230f08e3118e0c1e",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "انگیزه: انتخاب یک وظیفهٔ پیش‌آموزش (Pretraining) که یک‌جهته (Unidirectional) نباشد"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "پیش‌بینی واژهٔ بعدی با داشتن واژه‌های پیشین در GPT، یک‌جهته (Unidirectional؛ از چپ به راست) است"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "1. Background music from a _______ (موسیقی پس‌زمینه از یک _______)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "2. Many people danced around the _______ (افراد زیادی دورِ _______ رقصیدند)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "3. I practiced for many years to learn how to play the _______ (سال‌های زیادی تمرین کردم تا یاد بگیرم چگونه _______ بنوازم)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "699fe45a3c08e817f53e5445949b94250955bfa134454062b24be613971240b6",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "BERT: بازنمایی رمزگذار دوسویهٔ ترنسفورمر (Bidirectional Encoder Representation from Transformer)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "استنتاج (Inference)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pre-Training; Large unlabelled datasets (e.g. Wikipedia, BookCorpus); Self-supervised training (hours to days); Pre-Trained Weights",
+          "fa": "پیش‌آموزش (Pre-Training)؛ مجموعه‌داده‌های بزرگ بدون برچسب (برای مثال، Wikipedia و BookCorpus)؛ آموزش خودنظارتی (Self-supervised training؛ ساعت‌ها تا روزها)؛ وزن‌های ازپیش‌آموزش‌دیده (Pre-Trained Weights)",
+          "verified": true
+        },
+        {
+          "en": "Fine-Tuning; Smaller labelled datasets (SQuAD, MNLI/CMNLI, Similarity); Task-specific fine tuning (minutes to hours); Fine-Tuned Weights",
+          "fa": "تنظیم دقیق (Fine-Tuning)؛ مجموعه‌داده‌های کوچک‌تر برچسب‌دار (SQuAD، MNLI/CMNLI، شباهت)؛ تنظیم دقیق مختص وظیفه (دقیقه‌ها تا ساعت‌ها)؛ وزن‌های تنظیم‌دقیق‌شده (Fine-Tuned Weights)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "bbca82e603486c6bcc2bc79c72367eeb862443291bee509d434cb750bcfe14b2",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "دو وظیفه"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "1. پیش‌بینی توکن ماسک‌شده (Masked token؛ نوآوری اصلی)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "2. پیش‌بینی اینکه آیا یک جمله پس از جملهٔ دوم می‌آید (درک ارتباط میان جمله‌ها را تقویت می‌کند)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "df7873740c70aac79284b948fd213b8b480d45a6753a8dde2ce758d6a1001bad",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "Vaswani et al. Attention Is All You Need. Neurips 2017."
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "معماری: رمزگذار (Encoder) ترنسفورمر (Transformer) پیشگام"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Inputs; Input Embedding; Positional Encoding; Add & Norm; Multi-Head Attention; Feed Forward; Outputs (shifted right); Output Embedding; Masked Multi-Head Attention; Linear; Softmax; Output Probabilities; N×",
+          "fa": "ورودی‌ها؛ بازنمایی برداری ورودی (Input Embedding)؛ کدگذاری موقعیت (Positional Encoding)؛ جمع و نرمال‌سازی (Add & Norm)؛ توجه چندسری (Multi-Head Attention)؛ پیش‌خور (Feed Forward)؛ خروجی‌ها (انتقال‌یافته به راست)؛ بازنمایی برداری خروجی؛ توجه چندسری ماسک‌شده (Masked Multi-Head Attention)؛ خطی (Linear)؛ سافت‌مکس (Softmax)؛ احتمال‌های خروجی؛ N×",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "2fcf664b3d51261c58267146ad4dbc99331e8fff37720ed020224b2dd2447873",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری: گونه‌ها (Variants)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• L = تعداد رمزگذارهای روی‌هم‌قرارگرفته (Stacked encoders)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• H = تعداد واحدهای پنهان در لایهٔ پیش‌خور (Feedforward layer)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "BERT-large (H = 1024)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Representation; Encoder 24; Encoder 4; Encoder 3; Encoder 2; Encoder 1; Input sentence",
+          "fa": "بازنمایی (Representation)؛ رمزگذار (Encoder) 24؛ رمزگذار 4؛ رمزگذار 3؛ رمزگذار 2؛ رمزگذار 1؛ جملهٔ ورودی",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "32b9bf690cf11c6a645407edd505238b8817420d11eb2df38032758f5dfc7bf4",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری: BERT-Base (هم‌اندازهٔ GPT)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder 12; Encoder 3; Encoder 2; Encoder 1",
+          "fa": "رمزگذار (Encoder) 12؛ رمزگذار 3؛ رمزگذار 2؛ رمزگذار 1",
+          "verified": true
+        },
+        {
+          "en": "Input; Token embeddings; Segment embeddings; Position embeddings",
+          "fa": "ورودی؛ بازنمایی‌های برداری توکن (Token embeddings)؛ بازنمایی‌های برداری قطعه (Segment embeddings)؛ بازنمایی‌های برداری موقعیت (Position embeddings)",
+          "verified": true
+        },
+        {
+          "en": "[CLS] Paris is a beautiful [MASK] [SEP] I love Paris [SEP]",
+          "fa": "[CLS] Paris is a beautiful [MASK] [SEP] I love Paris [SEP] (پاریس یک [MASK] زیباست؛ من پاریس را دوست دارم)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "643938454c98011e34279ca93e9ad9e9fae7d5e24cc2caec0f50f87359f53b91",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری: ورودی (Input)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "دو جملهٔ ورودی با [CLS] در آغاز و [SEP] میان جمله‌ها"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder 12; Encoder 3; Encoder 2; Encoder 1",
+          "fa": "رمزگذار (Encoder) 12؛ رمزگذار 3؛ رمزگذار 2؛ رمزگذار 1",
+          "verified": true
+        },
+        {
+          "en": "Input; Token embeddings; Segment embeddings; Position embeddings",
+          "fa": "ورودی؛ بازنمایی‌های برداری توکن (Token embeddings)؛ بازنمایی‌های برداری قطعه (Segment embeddings)؛ بازنمایی‌های برداری موقعیت (Position embeddings)",
+          "verified": true
+        },
+        {
+          "en": "[CLS] Paris is a beautiful [MASK] [SEP] I love Paris [SEP]",
+          "fa": "[CLS] Paris is a beautiful [MASK] [SEP] I love Paris [SEP] (پاریس یک [MASK] زیباست؛ من پاریس را دوست دارم)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "c7285bc393f6b8e3a108c1b3bd317463b02d221b4bfa695b9662ae2483b26e03",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری: ورودی (Input)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "ورودی از جمع بازنمایی برداری قطعه (Segment embedding) با بازنمایی‌های برداری توکن و موقعیت (Token and position embeddings) ساخته می‌شود (کمک می‌کند مشخص شود هر توکن متعلق به کدام جمله است)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder 12; Encoder 3; Encoder 2; Encoder 1",
+          "fa": "رمزگذار (Encoder) 12؛ رمزگذار 3؛ رمزگذار 2؛ رمزگذار 1",
+          "verified": true
+        },
+        {
+          "en": "Input; Token embeddings; Segment embeddings; Position embeddings",
+          "fa": "ورودی؛ بازنمایی‌های برداری توکن (Token embeddings)؛ بازنمایی‌های برداری قطعه (Segment embeddings)؛ بازنمایی‌های برداری موقعیت (Position embeddings)",
+          "verified": true
+        },
+        {
+          "en": "[CLS] Paris is a beautiful [MASK] [SEP] I love Paris [SEP]",
+          "fa": "[CLS] Paris is a beautiful [MASK] [SEP] I love Paris [SEP] (پاریس یک [MASK] زیباست؛ من پاریس را دوست دارم)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "5add8d5b4ba8406da3ccdc9677b3c8b9f924b2b1d3158b1cdefbd3d2d6b86ab1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری: خروجی (Output)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "بازنمایی جدید هر ورودی که بافت (Context) را در نظر می‌گیرد"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder 12; Encoder 3; Encoder 2; Encoder 1",
+          "fa": "رمزگذار (Encoder) 12؛ رمزگذار 3؛ رمزگذار 2؛ رمزگذار 1",
+          "verified": true
+        },
+        {
+          "en": "Input; Token embeddings; Segment embeddings; Position embeddings",
+          "fa": "ورودی؛ بازنمایی‌های برداری توکن (Token embeddings)؛ بازنمایی‌های برداری قطعه (Segment embeddings)؛ بازنمایی‌های برداری موقعیت (Position embeddings)",
+          "verified": true
+        },
+        {
+          "en": "[CLS] Paris is a beautiful [MASK] [SEP] I love Paris [SEP]",
+          "fa": "[CLS] Paris is a beautiful [MASK] [SEP] I love Paris [SEP] (پاریس یک [MASK] زیباست؛ من پاریس را دوست دارم)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "cb8b7ce5e7c1b1c2be44778f164d19b7c4d5d05bdbcd8b9e249d7679a5ae00d1",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری: وظیفهٔ پیش‌بینی توکن ماسک‌شده (Masked Token)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "15% از توکن‌های دنباله به‌صورت تصادفی انتخاب و ماسک می‌شوند"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "- در 80% از [MASK] استفاده می‌شود"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "- در 10% از یک توکن تصادفی استفاده می‌شود"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "- 10% بدون تغییر می‌مانند"
+        },
+        {
+          "source_lines": [
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "گزینه‌های متعدد ماسک‌گذاری (Masking) مدل را ترغیب می‌کنند به هر توکن جداگانه توجه کند"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "توزیع احتمال روی واژگان خروجی (Output vocabulary)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Feed forward network + softmax",
+          "fa": "شبکهٔ پیش‌خور (Feed forward network) + سافت‌مکس (Softmax)",
+          "verified": true
+        },
+        {
+          "en": "Encoder 1; Encoder 2; Encoder 3; Encoder 12",
+          "fa": "رمزگذار (Encoder) 1؛ رمزگذار 2؛ رمزگذار 3؛ رمزگذار 12",
+          "verified": true
+        },
+        {
+          "en": "[CLS] Paris is a beautiful [MASK] [SEP] I love Paris [SEP]",
+          "fa": "[CLS] Paris is a beautiful [MASK] [SEP] I love Paris [SEP] (پاریس یک [MASK] زیباست؛ من پاریس را دوست دارم)",
+          "verified": true
+        },
+        {
+          "en": "Encoder 12; Encoder 3; Encoder 2; Encoder 1",
+          "fa": "رمزگذار (Encoder) 12؛ رمزگذار 3؛ رمزگذار 2؛ رمزگذار 1",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "89c094dbe985c43595fac41e62669e96e3c87c7ba603ab1c1579bc75b51ed1d4",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری: وظیفهٔ پیش‌بینی جملهٔ بعدی (Next Sentence)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "50% از جمله‌های دوم، جملهٔ بعدیِ اصلی هستند و بقیه تصادفی‌اند"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "پیش‌بینی با بازنمایی توکنی انجام می‌شود که بازنمایی همهٔ توکن‌های هر دو جمله را تجمیع می‌کند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder 12; Encoder 3; Encoder 2; Encoder 1",
+          "fa": "رمزگذار (Encoder) 12؛ رمزگذار 3؛ رمزگذار 2؛ رمزگذار 1",
+          "verified": true
+        },
+        {
+          "en": "Feed forward network + softmax",
+          "fa": "شبکهٔ پیش‌خور (Feed forward network) + سافت‌مکس (Softmax)",
+          "verified": true
+        },
+        {
+          "en": "isNext: 0.9; NotNext: 0.1",
+          "fa": "جملهٔ بعدی است (isNext): 0.9؛ جملهٔ بعدی نیست (NotNext): 0.1",
+          "verified": true
+        },
+        {
+          "en": "[CLS] She cooked pasta [SEP] It was delicious [SEP]",
+          "fa": "[CLS] She cooked pasta [SEP] It was delicious [SEP] (او پاستا پخت؛ خوش‌مزه بود)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "0efc21fadf0c9c95774f9ae69548b505f1f88ce2c9ff8a361d950892c659869b",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "آموزش (Training)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Devlin et al. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. arXiv 2018."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌داده (Dataset): 2,500 میلیون واژه از ویکی‌پدیا + 800 میلیون واژه از BooksCorpus که برای GPT استفاده شد"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• بهینه‌ساز (Optimizer): Adam"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• زیان آموزش (Training loss): مجموع زیان‌های پیش‌بینی واژه‌های ماسک‌شده و تشخیص جملهٔ بعدی"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "a1cc175bf9eeb6e017dd6e84b88a6069fc90fd49cb9e3c1db37b4cd1e239d0de",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "• واحد خطی خطای گاوسی (Gaussian error linear unit; GELU) به‌عنوان تابع فعال‌سازی در لایه‌های پیش‌خور (Feedforward layers) استفاده می‌شود"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• با گونهٔ دیگری از توکن‌سازی زیرواژه‌ای (Subword tokenization)، به نام توکن‌سازی WordPiece، از توکن‌های خارج از واژگان جلوگیری می‌کند"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "جزئیات پیاده‌سازی: از GPT تقلید می‌کند"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://datascience.stackexchange.com/questions/49522/what-is-gelu-activation"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "039cba9a03d834134b66f2d3da4cb8bf2afc87c7fd5c883ef4c930917adecead",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "BERT: بازنمایی رمزگذار دوسویهٔ ترنسفورمر (Bidirectional Encoder Representation from Transformer)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "استنتاج (Inference)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pre-Training; Large unlabelled datasets (e.g. Wikipedia, BookCorpus); Self-supervised training (hours to days); Pre-Trained Weights",
+          "fa": "پیش‌آموزش (Pre-Training)؛ مجموعه‌داده‌های بزرگ بدون برچسب (برای مثال، Wikipedia و BookCorpus)؛ آموزش خودنظارتی (Self-supervised training؛ ساعت‌ها تا روزها)؛ وزن‌های ازپیش‌آموزش‌دیده (Pre-Trained Weights)",
+          "verified": true
+        },
+        {
+          "en": "Fine-Tuning; Smaller labelled datasets (SQuAD, MNLI/CMNLI, Similarity); Task-specific fine tuning (minutes to hours); Fine-Tuned Weights",
+          "fa": "تنظیم دقیق (Fine-Tuning)؛ مجموعه‌داده‌های کوچک‌تر برچسب‌دار (SQuAD، MNLI/CMNLI، شباهت)؛ تنظیم دقیق مختص وظیفه (دقیقه‌ها تا ساعت‌ها)؛ وزن‌های تنظیم‌دقیق‌شده (Fine-Tuned Weights)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "49f8b28ee5098f45644919401e635c265ad30490c316f7ab4ef16fa83d19e577",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تنظیم دقیق (Fine-Tuning) برای طبقه‌بندی (Classification)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "تفاوت تنظیم دقیق (Fine-tuning) با استفاده از بازنمایی برداریِ ازپیش‌آموزش‌دیدهٔ واژه (Pre-trained word embedding) به‌عنوان ورودی طبقه‌بند چیست؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Feed forward network + softmax",
+          "fa": "شبکهٔ پیش‌خور (Feed forward network) + سافت‌مکس (Softmax)",
+          "verified": true
+        },
+        {
+          "en": "Pre-trained BERT",
+          "fa": "BERT ازپیش‌آموزش‌دیده (Pre-trained)",
+          "verified": true
+        },
+        {
+          "en": "positive: 0.9; negative: 0.1",
+          "fa": "مثبت (Positive): 0.9؛ منفی (Negative): 0.1",
+          "verified": true
+        },
+        {
+          "en": "[CLS] I love Paris [SEP]",
+          "fa": "[CLS] I love Paris [SEP] (من پاریس را دوست دارم)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "ac6680b27ed48b1b0b5a206fa18cbf293d45cb3236e117d384a44d98e431edd7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تنظیم دقیق (Fine-Tuning) برای استنتاج زبان طبیعی (Natural Language Inference)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Premise; Hypothesis; Label; Contradiction; Entailment; Neutral",
+          "fa": "مقدمه (Premise)؛ فرضیه (Hypothesis)؛ برچسب (Label)؛ تناقض (Contradiction)؛ استلزام (Entailment)؛ خنثی (Neutral)",
+          "verified": true
+        },
+        {
+          "en": "He is playing; He is sleeping",
+          "fa": "He is playing; He is sleeping (او بازی می‌کند؛ او خوابیده است)",
+          "verified": true
+        },
+        {
+          "en": "A soccer game with multiple males playing; Some men are playing sport",
+          "fa": "A soccer game with multiple males playing; Some men are playing sport (بازی فوتبال با چند مرد در حال بازی؛ چند مرد ورزش می‌کنند)",
+          "verified": true
+        },
+        {
+          "en": "An older and a younger man smiling; Two men are smiling at the dogs playing on the floor",
+          "fa": "An older and a younger man smiling; Two men are smiling at the dogs playing on the floor (مردی مسن‌تر و مردی جوان‌تر در حال لبخندزدن؛ دو مرد به سگ‌های در حال بازی روی زمین لبخند می‌زنند)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "ac6680b27ed48b1b0b5a206fa18cbf293d45cb3236e117d384a44d98e431edd7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تنظیم دقیق (Fine-Tuning) برای استنتاج زبان طبیعی (Natural Language Inference)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Feed forward network + softmax",
+          "fa": "شبکهٔ پیش‌خور (Feed forward network) + سافت‌مکس (Softmax)",
+          "verified": true
+        },
+        {
+          "en": "Pre-trained BERT",
+          "fa": "BERT ازپیش‌آموزش‌دیده (Pre-trained)",
+          "verified": true
+        },
+        {
+          "en": "contradiction 1.0; entrailment 0.0; neutral 0.0",
+          "fa": "تناقض (Contradiction) 1.0؛ استلزام (در اصل: entrailment) 0.0؛ خنثی (Neutral) 0.0",
+          "verified": true
+        },
+        {
+          "en": "[CLS] He is playing [SEP] He is sleeping [SEP]",
+          "fa": "[CLS] He is playing [SEP] He is sleeping [SEP] (او بازی می‌کند؛ او خوابیده است)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "b06ff9159189b9d9ba544d1b60ab69fd465bd71d7e02adf8428725d9dc26aae4",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تنظیم دقیق (Fine-Tuning) برای پرسش‌وپاسخ (Question Answering)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "برای یافتن اندیس واژه‌های آغاز و پایان در بند، دو بازنمایی برداری آموخته می‌شود که ضرب داخلیِ آن‌ها با هر توکن، خروجی تقریبی سافت‌مکس (Softmax) را به دست می‌دهد"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pre-trained BERT",
+          "fa": "BERT ازپیش‌آموزش‌دیده (Pre-trained)",
+          "verified": true
+        },
+        {
+          "en": "Probability of start/end word; Dot product + softmax; question; paragraph",
+          "fa": "احتمال واژهٔ آغاز/پایان؛ ضرب داخلی (Dot product) + سافت‌مکس (Softmax)؛ پرسش؛ بند (Paragraph)",
+          "verified": true
+        },
+        {
+          "en": "[CLS] What ... system [SEP] the immune ... tissue [SEP]",
+          "fa": "[CLS] What ... system [SEP] the immune ... tissue [SEP] (What ... system؛ the immune ... tissue (چه … سامانه؛ ایمنی … بافت))",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "32a954a7ae881cb36dedcc5cf336b3c62e7d79c9ca317e3b5dc511d0b433c1f4",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تنظیم دقیق (Fine-Tuning) برای تشخیص موجودیت نام‌دار (Named Entity Recognition)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "بازنمایی جدید هر توکن به یک طبقه‌بند (Classifier) داده می‌شود"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pre-trained BERT",
+          "fa": "BERT ازپیش‌آموزش‌دیده (Pre-trained)",
+          "verified": true
+        },
+        {
+          "en": "Person; Location; Classifier",
+          "fa": "شخص (Person)؛ مکان (Location)؛ طبقه‌بند (Classifier)",
+          "verified": true
+        },
+        {
+          "en": "[CLS] Jeremy lives in Paris [SEP]",
+          "fa": "[CLS] Jeremy lives in Paris [SEP] (جرمی در پاریس زندگی می‌کند)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "46c552d53c73145f2d0b56d48eb54a7f80176e9b271043fd6b4526d489401983",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "جزئیات پیاده‌سازی (Implementation Detail)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• پرکردن (Padding) امکان استفاده از ورودی‌هایی با طول متغیر را فراهم می‌کند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• از بردار توجه (Attention vector) شامل 1 و 0 استفاده می‌کند؛ 0 در اندیس توکن‌های [PAD] قرار می‌گیرد"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "http://juditacs.github.io/2018/12/27/masked-attention.html"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Padded sequences; Length; Attention weights after softmax",
+          "fa": "دنباله‌های پرشده (Padded sequences)؛ طول (Length)؛ وزن‌های توجه پس از سافت‌مکس (Attention weights after softmax)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "fcd4f0c48394fae5b5624083b4b843ead060fd39d09bb73218a0072f20cdb300",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یافته‌های تجربی (Experimental Findings)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Devlin et al. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. arXiv 2018."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "در 11 چالش مجموعه‌دادهٔ پردازش زبان طبیعی (NLP) بهترین عملکرد را به دست آورد"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "0886c0396a589ab81c34cffbcda18e2f6c4e76f808eec67b87d51202c19cb55d",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یافته‌های تجربی (Experimental Findings)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Devlin et al. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. arXiv 2018."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "از این نتایج چه استنباطی می‌توانیم بکنیم؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Tasks; Dev Set; MNLI-m; QNLI; MRPC; SST-2; SQuAD; Acc; F1; BERT_BASE; No NSP; LTR & No NSP; + BiLSTM",
+          "fa": "وظیفه‌ها؛ مجموعهٔ توسعه (Dev Set)؛ MNLI-m؛ QNLI؛ MRPC؛ SST-2؛ SQuAD؛ دقت (Acc)؛ F1؛ BERT_BASE؛ بدون پیش‌بینی جملهٔ بعدی (No NSP)؛ چپ‌به‌راست و بدون NSP؛ + BiLSTM",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "5297783b1ac960ef8cab486c64ede177c5b4f46f559f1b79400fe2966f85f3c4",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یافته‌های تجربی (Experimental Findings)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Devlin et al. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. arXiv 2018."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "پیش‌بینی جملهٔ بعدی (Next sentence prediction; NSP) بهبودهای اندکی ایجاد می‌کند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Tasks; Dev Set; MNLI-m; QNLI; MRPC; SST-2; SQuAD; Acc; F1; BERT_BASE; No NSP; LTR & No NSP; + BiLSTM",
+          "fa": "وظیفه‌ها؛ مجموعهٔ توسعه (Dev Set)؛ MNLI-m؛ QNLI؛ MRPC؛ SST-2؛ SQuAD؛ دقت (Acc)؛ F1؛ BERT_BASE؛ بدون پیش‌بینی جملهٔ بعدی (No NSP)؛ چپ‌به‌راست و بدون NSP؛ + BiLSTM",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "a92c9b6cbb7c0b0dabf8c9cb4b218359f2733d6bff66b52453d61ace68a6caaf",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یافته‌های تجربی (Experimental Findings)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Devlin et al. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. arXiv 2018."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "با استفاده از پیش‌آموزش دوسویه (Bidirectional pretraining) به‌جای پیش‌آموزش یک‌جهته (Unidirectional pretraining؛ LTR)، بهبود عملکرد مشاهده می‌کنیم"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Tasks; Dev Set; MNLI-m; QNLI; MRPC; SST-2; SQuAD; Acc; F1; BERT_BASE; No NSP; LTR & No NSP; + BiLSTM",
+          "fa": "وظیفه‌ها؛ مجموعهٔ توسعه (Dev Set)؛ MNLI-m؛ QNLI؛ MRPC؛ SST-2؛ SQuAD؛ دقت (Acc)؛ F1؛ BERT_BASE؛ بدون پیش‌بینی جملهٔ بعدی (No NSP)؛ چپ‌به‌راست و بدون NSP؛ + BiLSTM",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "039cba9a03d834134b66f2d3da4cb8bf2afc87c7fd5c883ef4c930917adecead",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "BERT: بازنمایی رمزگذار دوسویهٔ ترنسفورمر (Bidirectional Encoder Representation from Transformer)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "استنتاج (Inference)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pre-Training; Large unlabelled datasets (e.g. Wikipedia, BookCorpus); Self-supervised training (hours to days); Pre-Trained Weights",
+          "fa": "پیش‌آموزش (Pre-Training)؛ مجموعه‌داده‌های بزرگ بدون برچسب (برای مثال، Wikipedia و BookCorpus)؛ آموزش خودنظارتی (Self-supervised training؛ ساعت‌ها تا روزها)؛ وزن‌های ازپیش‌آموزش‌دیده (Pre-Trained Weights)",
+          "verified": true
+        },
+        {
+          "en": "Fine-Tuning; Smaller labelled datasets (SQuAD, MNLI/CMNLI, Similarity); Task-specific fine tuning (minutes to hours); Fine-Tuned Weights",
+          "fa": "تنظیم دقیق (Fine-Tuning)؛ مجموعه‌داده‌های کوچک‌تر برچسب‌دار (SQuAD، MNLI/CMNLI، شباهت)؛ تنظیم دقیق مختص وظیفه (دقیقه‌ها تا ساعت‌ها)؛ وزن‌های تنظیم‌دقیق‌شده (Fine-Tuned Weights)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "4a9cc33b6cf3c9b1f93c45fc7009f4560066cdb14e05cf706d67b1af55c83f24",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• رشد انفجاری ترنسفورمرها (Transformers)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• GPT"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "• BERT"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• محدودیت‌های مدل‌های ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی (Programming tutorial)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "On the Dangers of Stochastic Parrots: Can Language Models Be Too Big?",
+          "fa": "دربارهٔ خطرهای طوطی‌های تصادفی (Stochastic Parrots): آیا ممکن است مدل‌های زبانی بیش‌ازحد بزرگ باشند؟",
+          "verified": true
+        },
+        {
+          "en": "Emily M. Bender; Timnit Gebru; Angelina McMillan-Major; Shmargaret Shmitchell",
+          "fa": "Emily M. Bender؛ Timnit Gebru؛ Angelina McMillan-Major؛ Shmargaret Shmitchell",
+          "verified": true
+        },
+        {
+          "en": "University of Washington; Seattle, WA, USA",
+          "fa": "دانشگاه واشینگتن؛ سیاتل، واشینگتن، آمریکا",
+          "verified": true
+        },
+        {
+          "en": "Black in AI; Palo Alto, CA, USA",
+          "fa": "Black in AI؛ پالو آلتو، کالیفرنیا، آمریکا",
+          "verified": true
+        },
+        {
+          "en": "The Aether",
+          "fa": "The Aether",
+          "verified": true
+        },
+        {
+          "en": "ebender@uw.edu; timnit@blackinai.org; aymm@uw.edu; shmargaret.shmitchell@gmail.com",
+          "fa": "ebender@uw.edu؛ timnit@blackinai.org؛ aymm@uw.edu؛ shmargaret.shmitchell@gmail.com",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "c7c3b28f1052619136677cc614b754a2962a6da84820465865cbb67716e7efe7",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "زمینه: مقالهٔ اصلی ترنسفورمر (Transformer) و BERT را گوگل منتشر کرد"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.wired.com/story/google￾timnit-gebru-ai-what-really-happened/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "WIRED; Timnit Gebru warned that big, messy AI systems would generate racist, unfair results. Google brought her in to prevent that fate. Then it forced her out. Can Big Tech handle criticism from within? By Tom Simonite",
+          "fa": "WIRED؛ تیمنیت گبرو (Timnit Gebru) هشدار داد که سامانه‌های بزرگ و آشفتهٔ هوش مصنوعی نتایج نژادپرستانه و ناعادلانه تولید می‌کنند. گوگل او را آورد تا از آن سرنوشت جلوگیری کند. سپس او را مجبور به خروج کرد. آیا شرکت‌های بزرگ فناوری می‌توانند انتقاد از درون را تحمل کنند؟ نوشتهٔ Tom Simonite",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "76337b8c84e869a22f13e73e1f847d4440bea96c839acd252684d9fa9ab207c3",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "هزینهٔ مالی ترنسفورمرها (Transformers)؛ برای مثال، فکر می‌کنید آموزش BERT چند دلار آمریکا هزینه دارد؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "The Cost of Training NLP Models — A Concise Overview",
+          "fa": "هزینهٔ آموزش مدل‌های پردازش زبان طبیعی (NLP) — مروری مختصر",
+          "verified": true
+        },
+        {
+          "en": "Or Sharir; Barak Peleg; Yoav Shoham; AI21 Labs; ors@ai21.com; barakp@ai21.com; yoavs@ai21.com",
+          "fa": "Or Sharir؛ Barak Peleg؛ Yoav Shoham؛ AI21 Labs؛ ors@ai21.com؛ barakp@ai21.com؛ yoavs@ai21.com",
+          "verified": true
+        },
+        {
+          "en": "$2.5k - $50k (110 million parameter model); $10k - $200k (340 million parameter model); $80k - $1.6m (1.5 billion parameter model)",
+          "fa": "2.5 تا 50 هزار دلار (مدل 110 میلیون پارامتری)؛ 10 تا 200 هزار دلار (مدل 340 میلیون پارامتری)؛ 80 هزار تا 1.6 میلیون دلار (مدل 1.5 میلیارد پارامتری)",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "86aa927eabf2b3f07e33dd825592ff8f9eef7486ca6369cf6fb9debbec9c9a39",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "هزینهٔ زیست‌محیطی ترنسفورمرها (Transformers)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• آیا آموزش مدل BERT base به‌اندازهٔ موارد زیر انرژی نیاز دارد:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "الف) گرم‌کردن غذا در مایکروویو به‌مدت 7 دقیقه"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "ب) گرم‌کردن خانه به‌مدت یک روز"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "ج) رانندگی به‌مسافت 100 مایل"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "د) یک پرواز سراسری در آمریکا"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "Bender et al. On the Dangers of Stochastic Parrots: Can Language Models Be Too Big. FAT 2021."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "f56c3921bdf83de3f642bc913261b1c1e2a7a74a6b44950567f505837bfea76c",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ترنسفورمرها (Transformers): بزرگ و در حال بزرگ‌ترشدن"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://medium.com/building-the-metaverse/the-metaverse-and-artificial-intelligence-ai-577343895411"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "BILLIONS OF PARAMETERS; DEEP LEARNING TRANSFORMERS GREW >1,000,000% FROM 2018–2021; GPT-4 (Estimated)",
+          "fa": "میلیارد پارامتر؛ ترنسفورمرهای یادگیری عمیق (Deep Learning Transformers) از 2018 تا 2021 بیش از 1,000,000% رشد کردند؛ GPT-4 (برآوردی)",
+          "verified": true
+        },
+        {
+          "en": "GPT; GPT-2; GPT-3; Google BERT-Large; NVIDIA Megatron LM; Microsoft Turing NLG; Google Brain; Jun-18; Dec-18; Jun-19; Dec-19; Jun-20; Dec-20; Jun-21",
+          "fa": "GPT؛ GPT-2؛ GPT-3؛ Google BERT-Large؛ NVIDIA Megatron LM؛ Microsoft Turing NLG؛ Google Brain؛ ژوئن 2018؛ دسامبر 2018؛ ژوئن 2019؛ دسامبر 2019؛ ژوئن 2020؛ دسامبر 2020؛ ژوئن 2021",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "610468c22134564ce4e6012ae44faf8fc9cac9eb3e555a446d619ccc4ef711cd",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "هزینهٔ اجتماعی ترنسفورمرها (Transformers)؛ برای مثال، BERT"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• تأثیر داده‌های آموزشی: 2,500 میلیون واژه در ویکی‌پدیا + 800 میلیون واژه در BooksCorpus"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• چه کسانی در چنین مخزن‌های داده‌ای مشارکت می‌کنند و چه کسانی مشارکت نمی‌کنند؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• برای مثال، «پیمایش‌های اخیر کاربران ویکی‌پدیا نشان می‌دهند که فقط 8.8–15% از آن‌ها زن یا دختر هستند»"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• برای مثال، «خودِ دسترسی به اینترنت نیز یکنواخت توزیع نشده است؛ در نتیجه، کاربران جوان‌تر و کاربران کشورهای توسعه‌یافته در داده‌های اینترنتی بیش‌ازحد بازنمایی می‌شوند»"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• چه نوع سوگیری‌هایی (Biases) ممکن است در چنین مخزن‌های داده‌ای وجود داشته باشد؟"
+        },
+        {
+          "source_lines": [
+            7,
+            8,
+            9
+          ],
+          "kind": "bullet",
+          "fa": "• برای مثال، «BERT عبارت‌های اشاره‌کننده به افراد دارای معلولیت را به واژه‌هایی با احساس منفی‌تر مرتبط می‌کند؛ و خشونت با سلاح، بی‌خانمانی و اعتیاد به مواد مخدر در متن‌هایی که دربارهٔ بیماری روانی بحث می‌کنند بیش‌ازحد بازنمایی می‌شوند»"
+        },
+        {
+          "source_lines": [
+            10,
+            11
+          ],
+          "kind": "bullet",
+          "fa": "• با توجه به اینکه «پیش‌آموزش بدون نظارت (Unsupervised pre-training) بخش جدایی‌ناپذیر بسیاری از سامانه‌های درک زبان است» (مقالهٔ BERT: Devlin et al. arXiv 2018)، چگونه این کار را مسئولانه انجام دهیم؟"
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "reference",
+          "fa": "Bender et al. On the Dangers of Stochastic Parrots: Can Language Models Be Too Big. FAT 2021."
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "4a9cc33b6cf3c9b1f93c45fc7009f4560066cdb14e05cf706d67b1af55c83f24",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• رشد انفجاری ترنسفورمرها (Transformers)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• GPT"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "• BERT"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• محدودیت‌های مدل‌های ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی (Programming tutorial)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "4a9cc33b6cf3c9b1f93c45fc7009f4560066cdb14e05cf706d67b1af55c83f24",
+      "text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• رشد انفجاری ترنسفورمرها (Transformers)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• GPT"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "• BERT"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• محدودیت‌های مدل‌های ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش برنامه‌نویسی (Programming tutorial)"
+        }
+      ],
+      "image_text": [],
+      "image_text_reviewed": true
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ],
+      "image_text_reviewed": true
+    }
+  ]
+}

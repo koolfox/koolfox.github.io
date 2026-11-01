@@ -239,3 +239,11 @@ test('source links appear only once in the end sources slide, including direct p
   await page.emulateMedia({media:'screen'});await page.locator('[data-page-select]').selectOption('1');await readerReady(page,1);
   await expect(page.locator('#reader-references')).toBeHidden();await expect(page.locator('#source-canvas')).toBeVisible();
 });
+
+test('translation shows slide content without image review notes',async({page})=>{
+  await page.goto(sourceDeck('s01')+'#page=6');await readerReady(page,6);
+  await expect(page.locator('#persian-page')).not.toBeEmpty();
+  await expect(page.locator('.reader-limits:not(.reader-editorial)')).toHaveCount(0);
+  await expect(page.locator('#persian-page')).not.toContainText('نویسه‌های ریز کد');
+  await expect(page.locator('#persian-page')).not.toContainText('یادداشت تصویر مرجع');
+});

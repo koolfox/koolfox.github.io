@@ -79,6 +79,8 @@ test('downloaded bundle runs representative Python without any external network'
     writeFileSync(archive,await response.body());
     execFileSync('python3',['-m','zipfile','-e',archive,directory]);
     server=spawn('python3',['-u','-m','http.server','0','--bind','127.0.0.1','--directory',directory],{stdio:['ignore','pipe','pipe']});
+    // Drain access logs: Linux's stderr pipe otherwise fills during the 21-reader sweep.
+    server.stderr.resume();
     const port=await new Promise((resolve,reject)=>{const timeout=setTimeout(()=>reject(Error('Bundle server did not start')),10000);server.once('error',reject);server.stdout.on('data',d=>{const n=d.toString().match(/port (\d+)/);if(n){clearTimeout(timeout);resolve(n[1]);}});});
     const origin=`http://127.0.0.1:${port}`;const external=[];
     await page.route('**/*',route=>{if(new URL(route.request().url()).origin!==origin){external.push(route.request().url());return route.abort();}return route.continue();});
@@ -193,6 +195,8 @@ test('downloaded2026bundle serves readers and every authored workshop under a pr
     expect(manifest.pages).toBe(sourceRows.filter(row=>readerSessions.includes(row.id)).reduce((n,row)=>n+row.slides[0].page_count,0));
     for(const record of manifest.files){const bytes=readFileSync(join(prefix,record.path));expect(bytes.length).toBe(record.bytes);expect(sha256(bytes)).toBe(record.sha256);}
     server=spawn('python3',['-u','-m','http.server','0','--bind','127.0.0.1','--directory',directory],{stdio:['ignore','pipe','pipe']});
+    // A full source/workshop sweep emits enough access logs to fill an unread pipe.
+    server.stderr.resume();
     const port=await new Promise((resolve,reject)=>{const timeout=setTimeout(()=>reject(Error('Bundle server did not start')),10000);server.once('error',reject);server.stdout.on('data',data=>{const match=data.toString().match(/port (\d+)/);if(match){clearTimeout(timeout);resolve(match[1]);}});});
     const origin=`http://127.0.0.1:${port}`,base=origin+'/portable';const external=[],errors=readerErrors(page);
     await page.route('**/*',route=>{const url=new URL(route.request().url());if(url.protocol==='http:'||url.protocol==='https:'){if(url.origin!==origin||!url.pathname.startsWith('/portable/')){external.push(url.href);return route.abort();}}return route.continue();});
@@ -205,7 +209,11 @@ test('downloaded2026bundle serves readers and every authored workshop under a pr
     }
     for(const id of manifest.workshop_sessions){
       await page.goto(base+sourceLesson(id)+'practice/#code');await expect(page.locator('[data-notebook-code]').first()).toBeVisible();
-      await page.locator('[data-notebook-run-all]').click();await page.waitForFunction(()=>window.studentNotebook?.record?.ok,{},{timeout:65000});const actual=await page.evaluate(()=>window.studentNotebook.record.outputs.at(-1).result);
+      await page.locator('[data-notebook-run-all]').click();
+      await page.waitForFunction(()=>window.studentNotebook?.record||document.querySelector('.nb-status[data-error="true"]'),{},{timeout:65000});
+      const record=await page.evaluate(()=>window.studentNotebook.record);
+      expect(record?.ok,id+': '+await page.locator('.nb-status').first().textContent()).toBe(true);
+      const actual=record.outputs.at(-1).result;
       const reference=await page.locator('#practice-config').evaluate(node=>JSON.parse(node.textContent).reference);
       expectReference(actual,reference);expect(await page.evaluate(()=>document.fonts.check('17px Arad'))).toBeTruthy();
     }

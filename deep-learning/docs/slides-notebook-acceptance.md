@@ -118,6 +118,15 @@ was added to make findings disappear; no UI repair is authorized by this pass.
 
 ## Publication and scientific limits
 
+Follow-up CI diagnosis: the 21-reader/workshop offline test's temporary HTTP
+server left stderr unread. Its access-log pipe filled and the final workshop's
+worker request stalled. A standalone probe reproduced blocking after 2,149
+requests and recovered immediately when stderr was drained. Both temporary
+bundle servers now drain stderr; the source-workshop assertion also reports
+the session and actual Python status on failure. Readiness limits and expected
+numerical results were retained. This is a test-harness change; the reviewed
+public artifact and visual-system files are unchanged.
+
 The earlier slide release at
 `88864b4e1a883e86d0a578de9c8c008b6a47ebfa` was publicly verified (704 matched
 files and 45 download-hash checks). That evidence does not publish this later

@@ -268,7 +268,7 @@ app_ui = ui.page_fluid(
                 )
             ),
         ),
-        ui.tags.footer("محاسبهٔ زندهٔ پایتون · تصویر مصنوعی و تمرین تألیفی مستقل"),
+        ui.tags.footer("تصویر مصنوعی"),
         class_="lab-shell",
         dir="rtl",
         lang="fa",

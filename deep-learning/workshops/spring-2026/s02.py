@@ -1,9 +1,4 @@
-"""Independent perceptron update; source pages 25–30 explain this rule.
-
-All data here are a deliberately small synthetic example. No third-party
-framework is needed. Modify target and learning_rate to inspect one update.
-"""
-
+# داده‌های این مثال ساختگی‌اند.
 # وزن‌های اولیه صفرند؛ یکی را تغییر بده و اثرش را بر امتیاز اولیه ببین.
 weights = [0.0, 0.0]
 # بایاس مستقل از ورودی به امتیاز اضافه می‌شود.

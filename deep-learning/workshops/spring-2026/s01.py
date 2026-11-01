@@ -1,9 +1,4 @@
-"""Independent toy for the train/test split on source pages 39–43.
-
-The numbers are invented features, not the photographs or labels in the PDF.
-Edit threshold, then compare errors on the two disjoint groups.
-"""
-
+# ویژگی‌ها و برچسب‌های این مثال ساختگی‌اند.
 # آستانه را به 0.7 تغییر بده؛ ممکن است دقت آموزش و آزمون در دو جهت متفاوت تغییر کنند.
 threshold = 0.5
 # چهار نمونهٔ ساختگی برای انتخاب قاعده؛ از برچسب‌های آزمون برای انتخاب آستانه استفاده نکن.

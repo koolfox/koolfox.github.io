@@ -67,3 +67,10 @@ Notebook cells use readable comments and the same real numerical engine. Full
 source, saved versions, errors, stop/recovery and exact Jupyter exports remain
 findable without stacking a long page. All authored graded prompts are choice
 questions; explained code tips replace essays. Source pages remain unchanged.
+
+The owner subsequently requested Jupyter-style vertical cells, explicitly
+removing the cell-selection dropdown. The notebook uses one scroll region with
+every cell's labeled editor and actual output in order; run/stop and version
+tools stay outside that region. Local Python highlighting, indentation and
+name completion support editing. Ctrl+Space opens suggestions, Ctrl+Enter runs
+through the focused cell, and Shift+Enter runs then focuses the next cell.

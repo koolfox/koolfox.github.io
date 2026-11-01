@@ -25,6 +25,10 @@ output steps, saved code versions, exact-source exports for Jupyter, and actual
 Python output. Notebook execution must drive the existing real model and plots.
 A changed earlier cell recomputes its prefix; no hidden state is carried across
 runs. Existing blue/light/Arad/RTL design and university identity are pinned.
+Cells are stacked in Jupyter order, each with its own code, run control and
+output. There is no cell-selection dropdown. Locally bundled Python syntax
+highlighting, line numbers, indentation and built-in/notebook-name completion
+must also work in the portable source bundle. Completion never executes code.
 Activation options appear only for architectures that use them. Do not add
 features to unrelated lessons or claim unavailable model capabilities.
 

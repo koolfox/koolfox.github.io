@@ -1,3 +1,5 @@
+import {createPythonEditor} from './vendor/python-editor/editor.mjs';
+
 let notebookCount = 0;
 
 function node(tag, className, text) {
@@ -85,33 +87,30 @@ export function mountNotebook(root, options) {
     panel.setAttribute('aria-labelledby', button.id); modes.append(button);
   }
   quizMode.hidden = questions.length === 0;
-  const navigation = node('div', 'nb-navigation'), picker = node('select'), add = node('button', '', 'افزودن سلول');
-  picker.setAttribute('aria-label', 'انتخاب سلول'); add.type = 'button'; add.dataset.notebookAdd = '';
-  navigation.append(picker, add);
-  const editorLabel = node('label', 'nb-editor-label', 'کد این سلول · Python');
-  const editor = node('textarea', 'nb-editor'); editor.id = identity + '-editor'; editorLabel.htmlFor = editor.id;
-  editor.dir = 'ltr'; editor.spellcheck = false; editor.wrap = 'off'; editor.autocapitalize = 'off';
-  editor.setAttribute('aria-label', 'کد سلول پایتون'); editor.dataset.notebookCode = '';
+  const list = node('div', 'nb-cells'), add = node('button', '', 'افزودن سلول');
+  add.type = 'button'; add.dataset.notebookAdd = '';
+  let editors = [], cellRows = [];
   const actions = node('div', 'nb-actions'), runAll = node('button', 'primary', 'اجرای همهٔ سلول‌ها');
-  const runHere = node('button', '', 'اجرا تا این سلول'), stop = node('button', '', 'توقف پایتون');
+  const stop = node('button', '', 'توقف پایتون');
   const capture = node('button', '', 'کنترل‌ها به تنظیمات'), restart = node('button', '', 'راه‌اندازی پایتون');
-  for (const button of [runAll, runHere, stop, capture, restart]) { button.type = 'button'; actions.append(button); }
-  runAll.dataset.notebookRunAll = ''; runHere.dataset.notebookRunCell = '';
+  for (const button of [runAll, capture, add, stop, restart]) { button.type = 'button'; actions.append(button); }
+  runAll.dataset.notebookRunAll = '';
   capture.hidden = !options.capture; stop.hidden = true; restart.hidden = true;
   const status = node('p', 'nb-status', 'هر اجرا، سلول‌های قبلی را از ابتدا محاسبه می‌کند؛ نتیجهٔ پنهان از اجرای قبل باقی نمی‌ماند.');
   status.setAttribute('role', 'status'); status.setAttribute('aria-live', 'polite');
-  const output = node('pre', 'nb-output'); output.dir = 'ltr'; output.hidden = true; output.dataset.notebookOutput = '';
+  const hint = node('p', 'nb-editor-help', 'تکمیل کد: Ctrl+Space · اجرای سلول: Ctrl+Enter · اجرا و سلول بعد: Shift+Enter');
+  const errorOutput = node('pre', 'nb-output nb-error'); errorOutput.dir = 'ltr'; errorOutput.hidden = true;
   const tools = node('details', 'nb-tools'), summary = node('summary', '', 'نسخه‌ها و دریافت نوت‌بوک');
   const versionRow = node('div', 'nb-version-tools'), versionName = node('input');
   versionName.type = 'text'; versionName.maxLength = 60; versionName.placeholder = 'نام نسخه، اختیاری';
   versionName.setAttribute('aria-label', 'نام نسخه');
   const saveVersion = node('button', '', 'ذخیرهٔ نسخه'), versionPicker = node('select');
   versionPicker.setAttribute('aria-label', 'نسخه‌های ذخیره‌شده');
-  const exportBook = node('button', '', 'دریافت برای Jupyter'), reset = node('button', '', 'بازگرداندن این سلول');
-  for (const button of [saveVersion, exportBook, reset]) button.type = 'button';
+  const exportBook = node('button', '', 'دریافت برای Jupyter');
+  for (const button of [saveVersion, exportBook]) button.type = 'button';
   exportBook.dataset.notebookDownload = ''; saveVersion.dataset.notebookSave = '';
-  versionRow.append(versionName, saveVersion, versionPicker, exportBook, reset); tools.append(summary, versionRow);
-  code.append(navigation, editorLabel, editor, actions, status, output, tools);
+  versionRow.append(versionName, saveVersion, versionPicker, exportBook); tools.append(summary, versionRow);
+  code.append(actions, status, hint, errorOutput, list, tools);
   root.append(modes, code, quiz);
 
   function message(text, error = false) { status.textContent = text; status.dataset.error = String(error); }
@@ -120,28 +119,57 @@ export function mountNotebook(root, options) {
     catch { message('ذخیرهٔ مرورگر ممکن نیست؛ پیش از بستن صفحه، نوت‌بوک را دریافت کن.', true); }
   }
   function controls() {
-    runAll.disabled = runHere.disabled = !ready || busy;
-    editor.readOnly = busy; picker.disabled = add.disabled = busy;
-    capture.disabled = !ready || busy; saveVersion.disabled = reset.disabled = busy;
+    runAll.disabled = !ready || busy;
+    editors.forEach(editor => editor.setReadOnly(busy));
+    cellRows.forEach(row => { row.run.disabled = !ready || busy; row.reset.disabled = busy; });
+    add.disabled = busy || cells.length >= 12;
+    capture.disabled = !ready || busy; saveVersion.disabled = busy;
+    versionPicker.disabled = busy || versions.length === 0;
     stop.hidden = !busy; restart.hidden = !paused;
-    add.disabled ||= cells.length >= 12;
   }
   function showOutput() {
-    const value = record?.outputs?.find(item => item.index === selected);
-    const pieces = value ? [value.stdout, value.error, value.result === null || value.result === undefined ? '' : JSON.stringify(value.result, null, 2)] : [];
-    if (record?.error) pieces.push(record.error);
-    const text = pieces.filter(Boolean).join('\n');
-    output.textContent = text; output.hidden = !text;
+    cellRows.forEach((row, index) => {
+      const value = record?.outputs?.find(item => item.index === index);
+      const pieces = value ? [value.stdout, value.error, value.result === null || value.result === undefined ? '' : JSON.stringify(value.result, null, 2)] : [];
+      const text = pieces.filter(Boolean).join('\n');
+      row.output.textContent = text; row.output.hidden = !text;
+      row.execution.textContent = value ? (value.error ? 'خطا' : 'اجرا شد') : 'اجرا نشده';
+    });
+    errorOutput.textContent = record?.error || ''; errorOutput.hidden = !record?.error;
   }
+  function focusCell(index) { selected = index; editors[index]?.focus(); }
   function draw() {
-    picker.replaceChildren();
-    cells.forEach((cell, index) => { const option = node('option', '', `${index + 1} · ${cell.title}`); option.value = String(index); picker.append(option); });
-    selected = Math.min(selected, cells.length - 1); picker.value = String(selected); editor.value = cells[selected].source;
+    editors.forEach(editor => editor.destroy()); editors = []; cellRows = []; list.replaceChildren();
+    cells.forEach((cell, index) => {
+      const number = new Intl.NumberFormat('fa-IR').format(index + 1);
+      const section = node('section', 'nb-cell'), bar = node('div', 'nb-cell-bar');
+      section.dataset.notebookCell = String(index);
+      const title = node('h3', '', `${number} · ${cell.title}`); title.id = identity + '-cell-' + index;
+      section.setAttribute('aria-labelledby', title.id);
+      const execution = node('span', 'nb-execution'), runCell = node('button', '', 'اجرا');
+      runCell.type = 'button'; runCell.dataset.notebookRunCell = String(index);
+      runCell.setAttribute('aria-label', `اجرا تا سلول ${number}`);
+      runCell.addEventListener('click', () => run(index));
+      const resetCell = node('button', '', 'کد اولیه'); resetCell.type = 'button';
+      resetCell.setAttribute('aria-label', `بازگرداندن سلول ${number}`);
+      resetCell.addEventListener('click', () => { cells[index].source = defaults[index]?.source || '# آزمایش من\n'; changed(); draw(); focusCell(index); });
+      bar.append(title, execution, runCell, resetCell);
+      const editorHost = node('div', 'nb-cell-editor'), output = node('pre', 'nb-output');
+      output.dir = 'ltr'; output.hidden = true; output.dataset.notebookOutput = String(index);
+      section.append(bar, editorHost, output); list.append(section);
+      const editor = createPythonEditor(editorHost, {source: cell.source, label: `کد سلول ${number} پایتون`,
+        getSource: () => cells.map(item => item.source).join('\n'),
+        onFocus: () => { selected = index; },
+        onChange: source => { cells[index].source = source; selected = index; changed(); },
+        onRun: async advance => { if (await run(index) && advance && index + 1 < cells.length) focusCell(index + 1); },
+      });
+      editors.push(editor); cellRows.push({run: runCell, reset: resetCell, execution, output});
+    });
     showOutput(); controls();
   }
   function changed() {
-    record = null; output.hidden = true; output.textContent = ''; save();
-    message('کد تغییر کرده؛ نمودار و مقدارهای آزمایش هنوز متعلق به آخرین اجرای موفق‌اند.');
+    record = null; showOutput(); save();
+    message(options.capture ? 'کد تغییر کرده؛ نمودار و مقدارهای آزمایش هنوز متعلق به آخرین اجرای موفق‌اند.' : 'کد تغییر کرده؛ برای دیدن خروجی، سلول را اجرا کن.');
   }
   function mode(name) {
     code.hidden = name !== 'code'; quiz.hidden = name !== 'quiz';
@@ -156,30 +184,24 @@ export function mountNotebook(root, options) {
   }
   async function run(until) {
     if (!ready || busy) return;
-    save(); busy = true; record = null; output.hidden = true; controls();
+    save(); busy = true; record = null; showOutput(); controls();
     const id = crypto.randomUUID(); activeRequest = id;
     message(`در حال اجرای سلول‌های ۱ تا ${until + 1}…`);
     try {
       const result = await options.execute({id, cells: structuredClone(cells), until}, message);
       if (activeRequest !== id) return;
-      record = result; selected = result.outputs?.at(-1)?.index ?? selected; draw();
+      record = result; showOutput();
       if (!result.ok) message('پایتون خطا داد؛ شمارهٔ سلول و خط را در خروجی بخوان، اصلاح کن و دوباره اجرا کن.', true);
       else message(`سلول‌های ۱ تا ${until + 1} اجرا شدند${result.python ? ' · Python ' + result.python : ''}. ${result.applied_to_lab === false ? 'مدل با اجرای سلول ساخت و محاسبه به‌روز می‌شود.' : 'خروجی از همین کد محاسبه شده است.'}`);
+      return result.ok;
     } catch (error) { if (activeRequest === id) message(String(error.message || error), true); }
     finally { if (activeRequest === id) { busy = false; activeRequest = null; controls(); } }
   }
-  picker.addEventListener('change', () => { selected = Number(picker.value); draw(); });
-  editor.addEventListener('input', () => { cells[selected].source = editor.value; changed(); });
-  editor.addEventListener('keydown', event => {
-    if (event.key === 'Tab') { event.preventDefault(); editor.setRangeText('    ', editor.selectionStart, editor.selectionEnd, 'end'); editor.dispatchEvent(new Event('input')); }
-    if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') { event.preventDefault(); run(selected); }
-  });
-  add.addEventListener('click', () => { if (cells.length >= 12) return; cells.push({title: 'آزمایش من', source: '# یک تغییر کوچک را اینجا بررسی کن.\n'}); selected = cells.length - 1; changed(); draw(); editor.focus(); });
-  runAll.addEventListener('click', () => run(cells.length - 1)); runHere.addEventListener('click', () => run(selected));
+  add.addEventListener('click', () => { if (cells.length >= 12) return; cells.push({title: 'آزمایش من', source: '# یک تغییر کوچک را اینجا بررسی کن.\n'}); selected = cells.length - 1; changed(); draw(); focusCell(selected); });
+  runAll.addEventListener('click', () => run(cells.length - 1));
   stop.addEventListener('click', () => { activeRequest = null; busy = false; controls(); options.stop?.(); message('اجرا متوقف شد؛ کدها حفظ شده‌اند.'); });
   restart.addEventListener('click', () => options.restart?.());
   capture.addEventListener('click', () => { try { cells[0].source = options.capture(cells[0].source); selected = 0; changed(); draw(); } catch (error) { message(error.message, true); } });
-  reset.addEventListener('click', () => { cells[selected].source = defaults[selected]?.source || '# آزمایش من\n'; changed(); draw(); });
   codeMode.addEventListener('click', () => mode('code')); quizMode.addEventListener('click', () => mode('quiz'));
   modes.addEventListener('keydown', event => { if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key) || quizMode.hidden) return; event.preventDefault(); const next = event.key === 'Home' ? 'code' : event.key === 'End' ? 'quiz' : code.hidden ? 'code' : 'quiz'; mode(next); (next === 'code' ? codeMode : quizMode).focus(); });
   saveVersion.addEventListener('click', () => {
@@ -247,5 +269,6 @@ export function mountNotebook(root, options) {
     get record() { return structuredClone(record); },
     showQuiz() { mode('quiz'); },
     showCode() { mode('code'); },
+    focusCell,
   };
 }

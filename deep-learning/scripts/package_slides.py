@@ -38,7 +38,7 @@ def read_regular(path):
 
 def declared_vendor_files(root, vendor):
     """Validate the declared distribution; never sweep arbitrary vendor files."""
-    if vendor not in {"pdfjs", "katex"}:
+    if vendor not in {"pdfjs", "katex", "python-editor"}:
         raise ValueError("Unknown reader vendor")
     folder = root / "assets/vendor" / vendor
     manifest = json.loads(read_regular(folder / "files.json"))
@@ -167,7 +167,7 @@ def package_source_readers(output, term_id, sessions, root=ROOT):
                  "notebook.js", "notebook.css", "notebook_kernel.py", "notebook-worker.mjs", "practice.js", "practice.css", "knowledge.js"):
         add("deep-learning/assets/" + name, output / "assets" / name)
     add("deep-learning/knowledge/index.html", output / "knowledge/index.html")
-    for vendor in ("pdfjs", "katex"):
+    for vendor in ("pdfjs", "katex", "python-editor"):
         for name in declared_vendor_files(root, vendor):
             add(f"deep-learning/assets/vendor/{vendor}/{name}", root / "assets/vendor" / vendor / name)
     for name in NOTICES:

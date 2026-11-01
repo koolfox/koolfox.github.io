@@ -79,6 +79,12 @@ def export(output):
     if output.exists() and any(output.iterdir()):
         raise ValueError("Choose an empty export directory")
     output.mkdir(parents=True, exist_ok=True)
+    editor = ROOT / "assets/vendor/python-editor"
+    editor_files = json.loads((editor / "files.json").read_text())["files"]
+    for entry in editor_files:
+        name = entry["path"]
+        if Path(name).name != name or hashlib.sha256((editor / name).read_bytes()).hexdigest() != entry["sha256"]:
+            raise ValueError("Python editor differs from the pinned vendor manifest")
     executable = shutil.which("shinylive")
     if not executable:
         raise RuntimeError("Run with uv run --project deep-learning/playgrounds")
@@ -108,10 +114,14 @@ def export(output):
                 shutil.copyfile(shared / filename, output / lab / filename)
             for filename in ("notebook.js", "notebook.css"):
                 shutil.copyfile(ROOT / "assets" / filename, output / lab / filename)
+            editor_target = output / lab / "vendor/python-editor"
+            editor_target.mkdir(parents=True)
+            for name in ["files.json", *[entry["path"] for entry in editor_files]]:
+                shutil.copyfile(editor / name, editor_target / name)
             notebook = {**notebook_for_lab(lab, source), "license_text": (ROOT / "LICENSE").read_text()}
             (output / lab / "notebook.json").write_text(json.dumps(notebook, ensure_ascii=False, indent=2))
             version = hashlib.sha256(b"".join((output / lab / name).read_bytes() for name in
-                ("app.json", "notebook.json", "host.js", "host.css", "notebook.js", "notebook.css"))).hexdigest()[:16]
+                ("app.json", "notebook.json", "host.js", "host.css", "notebook.js", "notebook.css", "vendor/python-editor/editor.mjs"))).hexdigest()[:16]
             host = output / lab / "index.html"
             host.write_text(host.read_text().replace('./host.js', './host.js?v=' + version)
                             .replace('./host.css', './host.css?v=' + version)

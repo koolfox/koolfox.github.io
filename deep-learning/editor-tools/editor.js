@@ -38,7 +38,7 @@ export function createPythonEditor(parent, options) {
     extensions: [
       python(), lineNumbers(), history(), drawSelection(), indentOnInput(), bracketMatching(), closeBrackets(),
       syntaxHighlighting(highlights),
-      autocompletion({override: [localCompletionSource, globalCompletion, notebookNames(options.getSource)],
+      autocompletion({activateOnTyping: true, override: [localCompletionSource, globalCompletion, notebookNames(options.getSource)],
         icons: false, maxRenderedOptions: 12}),
       keymap.of([
         {key: 'Mod-Enter', run: () => { options.onRun(false); return true; }},

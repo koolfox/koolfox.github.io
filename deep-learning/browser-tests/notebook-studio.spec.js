@@ -7,7 +7,7 @@ async function openBook(page, lab='network-playground') {
   await page.waitForFunction(()=>window.labWorkspace?.liveState()&&window.labNotebook,null,{timeout:90000});
   await page.locator('[data-code-toggle]').click();
   await expect(page.locator('[data-notebook-mode]')).toHaveAttribute('aria-pressed','true');
-  await expect(page.locator('[data-notebook-code]')).toBeVisible();
+  await expect(page.locator('[data-notebook-code]').first()).toBeVisible();
   return page.frames().find(frame=>frame!==page.mainFrame());
 }
 async function run(page) {
@@ -47,13 +47,13 @@ test('all three notebooks compute the actual plotted model with short commented 
 
 test('earlier-cell edits drive controls, failed prefixes preserve the plot, and saved versions export to real Jupyter',async({page})=>{
   test.setTimeout(150000);await openBook(page);
-  const editor=page.locator('[data-notebook-code]');
-  await editor.fill((await editor.inputValue()).replace('"learning_rate": 0.03','"learning_rate": 0.07'));
+  const editor=page.locator('[data-notebook-code]').first();
+  await editor.fill((await page.evaluate(()=>window.labNotebook.cells[0].source)).replace('"learning_rate": 0.03','"learning_rate": 0.07'));
   await page.locator('.nb-tools summary').click();await page.getByLabel('نام نسخه',{exact:true}).fill('نرخ ۰٫۰۷');await page.locator('[data-notebook-save]').click();
   await run(page);await expect.poll(()=>page.evaluate(()=>window.labWorkspace.liveState()?.config.learning_rate)).toBe(.07);
   const before=await page.evaluate(()=>window.labWorkspace.liveState().weights);
-  await page.getByLabel('انتخاب سلول',{exact:true}).selectOption('3');await editor.fill('raise ValueError("check cell four")\n');
-  await page.locator('[data-notebook-run-all]').click();await expect(page.locator('.nb-output')).toContainText('cell_4.py');
+  await page.locator('[data-notebook-code]').nth(3).fill('raise ValueError("check cell four")\n');
+  await page.locator('[data-notebook-run-all]').click();await expect(page.locator('[data-notebook-output="3"]')).toContainText('cell_4.py');
   expect(await page.evaluate(()=>window.labWorkspace.liveState().weights)).toEqual(before);
   await page.getByLabel('نسخه‌های ذخیره‌شده',{exact:true}).selectOption('0');await run(page);
   const pending=page.waitForEvent('download');await page.locator('[data-notebook-download]').click();const zip=await(await pending).path();
@@ -84,13 +84,13 @@ with tempfile.TemporaryDirectory() as folder:
 test('notebook stop preserves a phone draft and restart never repeats an infinite cell automatically',async({page})=>{
   test.setTimeout(150000);await page.setViewportSize({width:390,height:844});await openBook(page,'neuron-xor');
   await expect(page.locator('.host-view')).toBeHidden();
-  await page.getByLabel('انتخاب سلول',{exact:true}).selectOption('3');await page.locator('[data-notebook-code]').fill('while True:\n    pass\n');
+  await page.locator('[data-notebook-code]').nth(3).fill('while True:\n    pass\n');
   await page.locator('[data-notebook-run-all]').click();await page.getByRole('button',{name:'توقف پایتون',exact:true}).click();
   await expect(page.getByRole('button',{name:'راه‌اندازی پایتون',exact:true})).toBeVisible();
-  await page.getByLabel('انتخاب سلول',{exact:true}).selectOption('3');await expect(page.locator('[data-notebook-code]')).toHaveValue('while True:\n    pass\n');
+  expect(await page.evaluate(()=>window.labNotebook.cells[3].source)).toBe('while True:\n    pass\n');
   await page.getByRole('button',{name:'راه‌اندازی پایتون',exact:true}).click();await page.waitForFunction(()=>window.labWorkspace?.liveState(),null,{timeout:90000});
   expect(await page.evaluate(()=>window.labWorkspace.liveState().epoch)).toBe(0);
-  await page.getByLabel('انتخاب سلول',{exact:true}).selectOption('3');await page.locator('.nb-tools summary').click();await page.getByRole('button',{name:'بازگرداندن این سلول',exact:true}).click();
+  await page.getByRole('button',{name:'بازگرداندن سلول ۴',exact:true}).click();
   await run(page);await expect.poll(()=>page.evaluate(()=>window.labWorkspace.liveState().epoch)).toBe(5);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBeTruthy();
 });
@@ -120,4 +120,24 @@ test('presentation mode fits the whole original slide in a shorter desktop viewp
   })).toBe(true);
   await page.locator('[data-source-only-toggle]').click();
   await expect(page.locator('#translation-panel')).toBeVisible();
+});
+
+test('notebook cells stack in document order with highlighted Python and working local completion',async({page})=>{
+  await page.goto('/deep-learning/terms/spring-2026/s01/practice/');
+  const cells=page.locator('[data-notebook-cell]');
+  await expect(cells).toHaveCount(3);
+  await expect(page.getByLabel('انتخاب سلول',{exact:true})).toHaveCount(0);
+  const positions=await cells.evaluateAll(items=>items.map(item=>item.getBoundingClientRect().top));
+  expect(positions.every((top,index)=>index===0||top>positions[index-1])).toBe(true);
+  const tokens=page.locator('.cm-line span');expect(await tokens.count()).toBeGreaterThan(0);
+  const colors=await tokens.evaluateAll(items=>[...new Set(items.map(item=>getComputedStyle(item).color))]);
+  expect(colors.length).toBeGreaterThan(1);
+  await page.locator('[data-notebook-add]').click();
+  const editor=page.locator('[data-notebook-code]').last();await editor.fill('');
+  await editor.pressSequentially('pri');
+  await expect(page.getByRole('listbox')).toBeVisible();
+  await page.getByRole('option').filter({hasText:/^print/}).first().click();
+  expect((await page.evaluate(()=>window.studentNotebook.cells)).at(-1).source).toBe('print');
+  await page.reload();
+  expect((await page.evaluate(()=>window.studentNotebook?.cells)).at(-1).source).toBe('print');
 });

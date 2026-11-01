@@ -816,7 +816,7 @@ def build(output, root=ROOT):
     from package_slides import declared_vendor_files, package_slides, package_source_readers
 
     if readers:
-        for vendor in ("pdfjs", "katex"):
+        for vendor in ("pdfjs", "katex", "python-editor"):
             for name in declared_vendor_files(root, vendor):
                 source = root / "assets/vendor" / vendor / name
                 target = assets / "vendor" / vendor / name

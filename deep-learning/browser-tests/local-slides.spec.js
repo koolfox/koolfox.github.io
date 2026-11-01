@@ -163,7 +163,7 @@ test('registered2026readers align original and Persian pages, math, download and
     await page.emulateMedia({media:'print'});await expect(page.locator('#source-canvas')).toBeVisible();await expect(page.locator('#persian-page')).toBeVisible();await expect(page.locator('[data-print]')).toBeHidden();
     await page.emulateMedia({media:'screen'});
     const workshop=page.locator('[data-session-workshop]');
-    if(await workshop.count()){await expect(workshop).toHaveAttribute('href',sourceLesson(id)+'practice/#code');await workshop.click();await expect(page.frameLocator('[data-reader-tools-frame]').locator('[data-notebook-code]')).toBeVisible();}
+    if(await workshop.count()){await expect(workshop).toHaveAttribute('href',sourceLesson(id)+'practice/#code');await workshop.click();await expect(page.frameLocator('[data-reader-tools-frame]').locator('[data-notebook-code]').first()).toBeVisible();}
   }
   expect(errors).toEqual([]);
 });
@@ -204,7 +204,7 @@ test('downloaded2026bundle serves readers and every authored workshop under a pr
       await page.locator('[data-page-select]').selectOption('2');await readerReady(page,2);
     }
     for(const id of manifest.workshop_sessions){
-      await page.goto(base+sourceLesson(id)+'practice/#code');await expect(page.locator('[data-notebook-code]')).toBeVisible();
+      await page.goto(base+sourceLesson(id)+'practice/#code');await expect(page.locator('[data-notebook-code]').first()).toBeVisible();
       await page.locator('[data-notebook-run-all]').click();await page.waitForFunction(()=>window.studentNotebook?.record?.ok,{},{timeout:65000});const actual=await page.evaluate(()=>window.studentNotebook.record.outputs.at(-1).result);
       const reference=await page.locator('#practice-config').evaluate(node=>JSON.parse(node.textContent).reference);
       expectReference(actual,reference);expect(await page.evaluate(()=>document.fonts.check('17px Arad'))).toBeTruthy();

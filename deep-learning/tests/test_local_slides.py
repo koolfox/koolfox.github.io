@@ -164,7 +164,8 @@ class RegisteredSourceReaderTests(unittest.TestCase):
         self.write(self.output / "assets/workshops.js", "new Worker('/deep-learning/assets/workshop-worker.mjs', {type:'module'});")
         self.write(self.output / "assets/workshop-worker.mjs", "new URL('/deep-learning/runtime/neuron-xor/shinylive/pyodide/', self.location);")
         for vendor, files in {"pdfjs": ("pdf.min.mjs", "pdf.worker.min.mjs", "standard_fonts/LICENSE_FOXIT"),
-                              "katex": ("katex.mjs", "katex.min.css", "LICENSE.txt", "fonts/KaTeX_Main-Regular.woff2")}.items():
+                              "katex": ("katex.mjs", "katex.min.css", "LICENSE.txt", "fonts/KaTeX_Main-Regular.woff2"),
+                              "python-editor": ("editor.mjs", "LICENSE.txt")}.items():
             records = []
             for name in files:
                 self.write(self.root / "assets/vendor" / vendor / name, name)

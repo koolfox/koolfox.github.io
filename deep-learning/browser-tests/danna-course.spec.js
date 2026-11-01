@@ -74,7 +74,7 @@ test('slides lead and optional tools open only when requested',async({page})=>{
  await expect(page.locator('[data-reader-tools-frame]')).not.toHaveAttribute('src',/./);
  expect(python).toEqual([]);
  await page.locator('.reader-sections [data-reader-section=lab]').click();
- await expect(page.frameLocator('[data-reader-tools-frame]').locator('[data-notebook-code]')).toBeVisible();
+ await expect(page.frameLocator('[data-reader-tools-frame]').locator('[data-notebook-code]').first()).toBeVisible();
  await expect(page.locator('#source-canvas')).toBeVisible();
  await page.locator('.reader-sections [data-reader-section=slides]').click();
  await expect(page.locator('#translation-panel')).toBeVisible();

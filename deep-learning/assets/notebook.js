@@ -1,4 +1,4 @@
-import {createPythonEditor} from './vendor/python-editor/editor.mjs';
+import {createPythonEditor, highlightPythonCode} from './vendor/python-editor/editor.mjs?v=bce236fe0a347c65';
 import {pythonTools} from './python-tools.js';
 import {renderNotebookResult} from './notebook-results.js';
 
@@ -308,7 +308,7 @@ export function mountNotebook(root, options) {
     const tip = node('article', 'nb-question nb-code-tip');
     tip.append(node('h3', '', 'نکته با کد'), node('p', '', options.tip.explanation));
     const details = node('details'), summary = node('summary', '', 'کد این نکته');
-    const sample = node('pre', 'nb-output', options.tip.code); sample.dir = 'ltr';
+    const sample = node('pre', 'nb-output'); sample.dir = 'ltr'; highlightPythonCode(sample, options.tip.code);
     details.append(summary, sample); tip.append(details); quiz.append(tip);
   }
   mode('code'); drawVersions(); draw(); showPackages();

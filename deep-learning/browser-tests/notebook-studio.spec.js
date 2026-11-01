@@ -202,3 +202,12 @@ test('only mapped slide pages offer exploration, and plotted weights respond to 
   await expect(page.locator('body')).toHaveAttribute('data-reader-section','slides');
   await expect(page.locator('[data-page-experiment]')).toBeHidden();
 });
+
+test('code tips highlight actual Python while preserving every source character',async({page})=>{
+  await page.goto('/deep-learning/terms/spring-2026/s13/practice/#questions');
+  await page.locator('.nb-code-tip summary').click();
+  const code=page.locator('.nb-code-tip pre');
+  await expect(code.locator('.tok-keyword').first()).toBeVisible();
+  expect(await code.textContent()).toBe(await page.locator('#practice-config').evaluate(node=>JSON.parse(node.textContent).tip.code));
+  await expect(page.locator('.nb-quiz textarea')).toHaveCount(0);
+});

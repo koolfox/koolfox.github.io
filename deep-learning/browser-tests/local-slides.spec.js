@@ -108,8 +108,12 @@ function expectReference(actual,reference){
   else expect(actual).toEqual(reference);
 }
 async function readerReady(page,number=1){
-  await expect.poll(()=>page.evaluate(()=>window.sourceSlideReader?.ready),{timeout:45000}).toBeTruthy();
-  expect(await page.evaluate(()=>[window.sourceSlideReader.page,window.sourceSlideReader.renderedPage])).toEqual([number,number]);
+  // A ResizeObserver may start another render between two browser evaluations.
+  // Read readiness and page identity together, including during zoom/navigation.
+  await expect.poll(()=>page.evaluate(()=>{
+    const reader=window.sourceSlideReader;
+    return [reader?.ready,reader?.page,reader?.renderedPage];
+  }),{timeout:45000}).toEqual([true,number,number]);
   await expect(page.locator('[data-page-select]')).toHaveValue(String(number));
   await expect(page.locator('#persian-page')).toHaveAttribute('data-page',String(number));
 }

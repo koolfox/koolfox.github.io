@@ -145,3 +145,24 @@ verification remain pending at this acceptance boundary. Original scientific
 source is unchanged; the full independent scientific-claim review is not
 complete. Neither local design acceptance nor source preservation claims that
 broader audit is complete.
+
+## Final source-citation and copy refinement
+
+The source-citation finish reviewer returned **ship** for v14, with no material
+fixes across all 14 captures in
+`../../.impeccable/review/source-references-only/`. The subsequent frozen v15
+artifact, `/private/tmp/danna-student-studio-v15`, retains that layout and narrows
+the authored copy: catalog and source-page UI and displayed Python omit build
+and review chatter, slide labels read «اسلاید», and the application's source
+citation appears once in the concluding «منابع». Teaching comments and
+synthetic-data assumptions remain. Original PDFs and Persian translation are
+unchanged. These copy changes introduce no new visual-system rule;
+`DESIGN.md` and `.impeccable/design.json` retain the hashes recorded above.
+
+The final copy passed 133 native tests. The earlier full browser result remains
+73 passing tests on v11. Separately, the latest head's full deep-learning check
+(57 tests) and Pages PR check succeeded (runs `41297571512` and `41297571539`); this does not
+establish a v15 browser result. Focused browser checks for v15 have not yet been
+reported at this update. PR #70 deployment and current live publication remain
+pending. The v14 visual verdict, v15 native result, PR checks and publication
+boundary are distinct evidence layers.

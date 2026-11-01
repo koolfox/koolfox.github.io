@@ -193,19 +193,19 @@ def package_source_readers(output, term_id, sessions, root=ROOT):
     count = sum(len(p["pages"]) for p in payloads.values())
     files["index.html"] = (
         '<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
-        '<title>اصل اسلاید و ترجمهٔ فارسی</title><link rel="stylesheet" href="/deep-learning/assets/course.css">'
-        f'<main class="standalone"><h1>{escape(term["title_fa"])} · اصل اسلاید و ترجمهٔ فارسی</h1>'
-        f'<p>{count} صفحه در {len(payloads)} جلسهٔ ترجمه‌شده؛ {len(rows)} PDF اصلی بدون تغییر.</p>'
+        '<title>اسلاید و ترجمهٔ فارسی</title><link rel="stylesheet" href="/deep-learning/assets/course.css">'
+        f'<main class="standalone"><h1>{escape(term["title_fa"])} · اسلاید و ترجمهٔ فارسی</h1>'
+        f'<p>{count} صفحه در {len(payloads)} جلسهٔ ترجمه‌شده؛ {len(rows)} PDF.</p>'
         '<p>پس از استخراج ZIP، این پوشه را با <code dir="ltr">python3 -m http.server 8871</code> باز کن و به localhost:8871 برو.</p>'
         + '<ol>' + ''.join(links) + '</ol></main></html>'
     ).encode()
     files["README.txt"] = (
-        f"اصل اسلاید و ترجمهٔ فارسی — {term['title_fa']}\n\n"
+        f"اسلاید و ترجمهٔ فارسی — {term['title_fa']}\n\n"
         "ZIP را استخراج کن و در پوشهٔ index.html اجرا کن:\npython3 -m http.server 8871\n"
         "سپس http://localhost:8871 را باز کن؛ file:// مناسب نیست.\n"
-        f"این بسته شامل {len(rows)} PDF اصلی، {count} صفحهٔ ترجمه در {len(payloads)} جلسه، "
+        f"این بسته شامل {len(rows)} PDF، {count} صفحهٔ ترجمه در {len(payloads)} جلسه، "
         f"نمایشگر اسلاید، کتابخانهٔ دانش و {len(workshop_sessions)} کارگاه پایتون تألیف‌شده با سؤال‌های تستی است. "
-        "نمایش اصل و ترجمه و اجرای مثال‌های کتابخانهٔ استاندارد پایتون به اینترنت نیاز ندارند.\n"
+        "نمایش اسلاید و ترجمه و اجرای مثال‌های کتابخانهٔ استاندارد پایتون به اینترنت نیاز ندارند.\n"
         "اصل اسلایدهای دانا گوراری و حقوق تصاویر و منابع شخص ثالث محفوظ‌اند. "
         "برای بهار ۲۰۲۶ نشان CC BY-NC-SA در منبع دیده می‌شود؛ نسخهٔ مجوز روی اسلاید چاپ نشده است. "
         "ترجمه اقتباس از منبع است؛ مجوز MIT کد تألیفی، PDFهای اصلی یا ترجمه را دوباره مجوزدهی نمی‌کند. "

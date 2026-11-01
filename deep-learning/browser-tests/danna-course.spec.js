@@ -19,7 +19,7 @@ test('five calendars retain only slide links and compact historical notes',async
   await expect(page.locator('.session-row, .calendar-note')).toHaveCount(count);
   await expect(page.locator('.calendar-note a, .calendar-note button, .calendar-note [data-session-key]')).toHaveCount(0);
   await page.locator('.session-row h2 a').first().click();
-  if(term==='spring-2026')await expect(page.locator('[data-original-download]')).toHaveAttribute('href','/deep-learning/assets/danna/spring-2026/s01.pdf');
+  if(term==='spring-2026')await expect(page.locator('[data-source-citation]')).toHaveAttribute('href',/colorado.edu/);
   else await expect(page.locator('.source-link')).toHaveAttribute('href',/colorado.edu/);
   await expect(page.locator('.concept')).toHaveCount(0);
   for(const href of new Set(await page.locator('a[href]').evaluateAll(nodes=>nodes.map(a=>a.href)))){

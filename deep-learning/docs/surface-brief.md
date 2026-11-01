@@ -14,7 +14,7 @@ when useful, without losing their source-page context.
 
 OWN-WORLD: Local Arad, Persian RTL, the existing quiet blue and neutral light
 palette. Plain reading columns, visible section navigation, technical expressions
-isolated LTR. Source references occupy the margin, not the prose column.
+isolated LTR. Application-added source citations appear once in the final «منابع» view.
 
 STORY: Enter the current slide, move through its original and translation, then
 optionally inspect code, answer a choice question or look up a term and return.
@@ -83,3 +83,8 @@ exists only where the independently authored workshop has an exact source-page
 reference. Its vector/matrix/table views are drawn from actual Python results;
 selecting a value reveals its full number. The original remains untouched and
 moving to another page closes this page-bound exploration.
+
+Source citations now occupy one final «منابع» view per session, reachable from
+page navigation after the last PDF page. Repeated PDF/source links and attribution
+chrome are removed. Learner copy uses «اسلاید» and contains no authoring/review
+chatter. Code comments explain calculations and relevant data assumptions.

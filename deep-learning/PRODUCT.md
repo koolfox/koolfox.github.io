@@ -39,6 +39,12 @@ the selected value. No invented interactive facsimile of a source figure.
 Activation options appear only for architectures that use them. Do not add
 features to unrelated lessons or claim unavailable model capabilities.
 
+Application-added source links appear once in each session’s final «منابع» view.
+Use «اسلاید» in the interface; remove repeated original/source qualifications
+and build/review commentary from learner pages and displayed Python. Retain
+comments that teach the calculation, relevant data assumptions and licensing
+in resources and downloads.
+
 Source questions and source media remain unchanged. Our own numeric questions
 are multiple choice; our essay prompts become explained code tips. Source
 translation, independent scientific review, CI, merge and public release remain

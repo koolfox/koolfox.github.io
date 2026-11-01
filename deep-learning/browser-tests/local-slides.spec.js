@@ -133,7 +133,7 @@ test('2026 catalog preserves all21originals and1303pages, registry names actual 
   expect(readerSessions.every(id=>sourceRows.some(row=>row.id===id))).toBeTruthy();
 });
 
-test('registered2026readers align original and Persian pages, math, download and keyboard',async({page,request})=>{
+test('registered2026readers align original and Persian pages, math, a single source citation and keyboard',async({page,request})=>{
   test.skip(!readerSessions.length,'No complete2026translation is registered yet.');
   test.setTimeout(Math.max(90000,readerSessions.length*50000));
   const errors=readerErrors(page);
@@ -144,8 +144,8 @@ test('registered2026readers align original and Persian pages, math, download and
     const payload=await response.json();
     expect(config.pageCount).toBe(payload.pages.length);
     expect(config.sourceSha256).toBe(payload.source.sha256);
-    await expect(page.locator('[data-page-select] option')).toHaveCount(payload.pages.length);
-    await expect(page.locator('[data-original-download]')).toHaveAttribute('href',payload.source.local_url);
+    await expect(page.locator('[data-page-select] option')).toHaveCount(payload.pages.length+1);
+    await expect(page.locator('[data-source-citation]')).toHaveAttribute('href',payload.source.url);
     const pdf=await request.get(payload.source.local_url);expect(pdf.ok()).toBeTruthy();
     const bytes=await pdf.body();expect(bytes.subarray(0,5).toString()).toBe('%PDF-');expect(sha256(bytes)).toBe(payload.source.sha256);
     const target=Math.min(4,payload.pages.length);
@@ -164,6 +164,10 @@ test('registered2026readers align original and Persian pages, math, download and
     await page.locator('[data-print]').click();expect(await page.evaluate(()=>window.__printCalls)).toBe(1);
     await page.emulateMedia({media:'print'});await expect(page.locator('#source-canvas')).toBeVisible();await expect(page.locator('#persian-page')).toBeVisible();await expect(page.locator('[data-print]')).toBeHidden();
     await page.emulateMedia({media:'screen'});
+    await page.locator('[data-next-page]').click();await expect(page.locator('#reader-references')).toBeVisible();
+    await expect(page.locator('#source-canvas')).toBeHidden();
+    await expect(page.locator('#reader-references a')).toHaveCount(1);
+    await page.locator('[data-prev-page]').click();await readerReady(page,payload.pages.length);
     const workshop=page.locator('[data-session-workshop]');
     if(await workshop.count()){await expect(workshop).toHaveAttribute('href',sourceLesson(id)+'practice/#code');await workshop.click();await expect(page.frameLocator('[data-reader-tools-frame]').locator('[data-notebook-code]').first()).toBeVisible();}
   }
@@ -200,7 +204,7 @@ test('downloaded2026bundle serves readers and every authored workshop under a pr
     const port=await new Promise((resolve,reject)=>{const timeout=setTimeout(()=>reject(Error('Bundle server did not start')),10000);server.once('error',reject);server.stdout.on('data',data=>{const match=data.toString().match(/port (\d+)/);if(match){clearTimeout(timeout);resolve(match[1]);}});});
     const origin=`http://127.0.0.1:${port}`,base=origin+'/portable';const external=[],errors=readerErrors(page);
     await page.route('**/*',route=>{const url=new URL(route.request().url());if(url.protocol==='http:'||url.protocol==='https:'){if(url.origin!==origin||!url.pathname.startsWith('/portable/')){external.push(url.href);return route.abort();}}return route.continue();});
-    await page.goto(base+'/');await expect(page.locator('h1')).toContainText('اصل اسلاید و ترجمه');
+    await page.goto(base+'/');await expect(page.locator('h1')).toContainText('اسلاید و ترجمه');
     for(const id of manifest.sessions){
       await page.goto(base+sourceDeck(id));await readerReady(page);
       const config=await page.locator('#source-reader-config').evaluate(node=>JSON.parse(node.textContent));
@@ -219,4 +223,19 @@ test('downloaded2026bundle serves readers and every authored workshop under a pr
     }
     expect(external).toEqual([]);expect(errors).toEqual([]);
   }finally{if(server){server.kill();await new Promise(resolve=>server.once('exit',resolve));}rmSync(directory,{recursive:true,force:true});}
+});
+
+
+test('source links appear only once in the end sources slide, including direct phone entry and print',async({page})=>{
+  await page.setViewportSize({width:390,height:844});
+  await page.goto(sourceDeck(readerSessions[0])+'#sources');
+  await expect(page.locator('#reader-references')).toBeVisible();
+  await expect(page.locator('#reader-references a')).toHaveCount(1);
+  await expect(page.locator('.reader-attribution,[data-original-download],.source-pdf-fallback')).toHaveCount(0);
+  await expect(page.locator('#source-canvas')).toBeHidden();
+  await expect(page.locator('[data-next-page]')).toBeDisabled();
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
+  await page.emulateMedia({media:'print'});await expect(page.locator('#reader-references')).toBeVisible();await expect(page.locator('#source-canvas')).toBeHidden();
+  await page.emulateMedia({media:'screen'});await page.locator('[data-page-select]').selectOption('1');await readerReady(page,1);
+  await expect(page.locator('#reader-references')).toBeHidden();await expect(page.locator('#source-canvas')).toBeVisible();
 });

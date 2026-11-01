@@ -69,7 +69,7 @@ def practice_page(term, row, license_text=""):
     return f'''<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>کارگاه آموزشی دیپ لرنینگ · {escape(row['title_fa'])}</title><link rel="stylesheet" href="{BASE}/assets/course.css"><link rel="stylesheet" href="{BASE}/assets/notebook.css"><link rel="stylesheet" href="{BASE}/assets/practice.css"><script type="module" src="{BASE}/assets/practice.js"></script></head>
 <body class="practice-page"><header><h1>{escape(unit['title_fa'])}</h1><nav data-related-labs></nav></header>
-<main id="practice-notebook"></main><footer><a href="{config['reader']}#page={unit['source_page']}" data-return-slide>بازگشت به اسلاید</a><span>کد و سؤال تألیفی مستقل · MIT</span></footer>
+<main id="practice-notebook"></main><footer><a href="{config['reader']}#page={unit['source_page']}" data-return-slide>بازگشت به اسلاید</a></footer>
 <script type="application/json" id="practice-config">{encoded}</script></body></html>'''
 
 

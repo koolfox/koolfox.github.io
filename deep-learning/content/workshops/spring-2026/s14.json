@@ -1,0 +1,98 @@
+{
+  "session_id": "s14",
+  "source_sha256": "65bdebcbbe5ecca3e9dfa4ecbaaf5a78e79a4d10ce00c8a007801d062cefeda6",
+  "source_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/14-Pioneering-Transformers.pdf",
+  "source_page_count": 62,
+  "title_fa": "چرا ViT تصویر را به وصله تقسیم می‌کند؟",
+  "prediction_fa": "برای تصویر ۱۶۰×۱۶۰ و وصلهٔ ۱۶×۱۶، چند توکن و چند زوج توجه داریم؟ افزودن CLS چند زوج اضافه می‌کند؟",
+  "steps_fa": [
+    "پیش از اجرا تعداد وصله‌ها را مانند صفحهٔ ۵۴ دستی حساب کن.",
+    "نتیجه را با هزینهٔ یک توکن برای هر پیکسل مقایسه کن؛ سپس محاسبهٔ صفحهٔ ۵۳ را بررسی کن.",
+    "patch_side را به 8 یا 32 تغییر بده؛ پیش‌بینی کن شمار زوج‌ها چند برابر می‌شود و دوباره اجرا کن."
+  ],
+  "source_page": 54,
+  "starter_sha256": "f055c3f1359be4e84fe7a43e4745427b80bf7971571e7e02ea3b081c91c8d40e",
+  "reference": {
+    "pixel_tokens": 25600,
+    "patch_tokens": 100,
+    "pixel_pairs": 655360000,
+    "patch_pairs": 10000,
+    "reduction_factor_without_cls": 65536,
+    "with_cls_pairs": 10201,
+    "full_hd_pixel_pairs": 4299816960000
+  },
+  "question_pages": [
+    11,
+    16,
+    17,
+    25,
+    27,
+    34,
+    41,
+    47,
+    53,
+    54
+  ],
+  "class_activity_pages": [
+    11,
+    16,
+    17,
+    25,
+    27,
+    34,
+    41,
+    47,
+    53,
+    54
+  ],
+  "programming_tutorial_pages": [],
+  "reference_python": "3.14.3",
+  "limits_fa": "این کارگاه مستقل، شمار امتیازهای زوجی یک سر توجه را می‌شمارد. آموزش ViT، محاسبهٔ FLOPs کل، بُعد ویژگی و حافظهٔ پیاده‌سازی را شبیه‌سازی نمی‌کند. شمار وصله‌های منبع بدون CLS و شمار توکن‌های مدل با CLS جدا گزارش می‌شوند.",
+  "source_retrieved_at_utc": "2026-10-25T08:44:55.722691+00:00",
+  "related_labs": [],
+  "questions": [
+    {
+      "id": "patches",
+      "source_kind": "original",
+      "source_page": 54,
+      "prompt_fa": "تصویر ۱۶۰×۱۶۰ چند وصلهٔ ۱۶×۱۶ دارد؟",
+      "solution_fa": "(160÷16)×(160÷16)=100.",
+      "answer": {
+        "kind": "number",
+        "value": 100,
+        "tolerance": 0
+      }
+    },
+    {
+      "id": "quadratic",
+      "source_kind": "original",
+      "source_page": 53,
+      "prompt_fa": "اگر تعداد توکن‌ها دو برابر شود، شمار زوج‌های توجه چه تغییری می‌کند؟",
+      "solution_fa": "از n² به (2n)²=4n² می‌رسد.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "دو برابر",
+          "چهار برابر",
+          "نصف"
+        ],
+        "correct_index": 1
+      }
+    },
+    {
+      "id": "cls",
+      "source_kind": "original",
+      "source_page": 54,
+      "prompt_fa": "چرا شمار زوج‌های توجه با CLS برابر ۱۰٬۲۰۱ است، در حالی که ۱۰۰ وصله داریم؟",
+      "solution_fa": "توکن CLS یک ورودی اضافی است؛ ۱۰۱ توکن داریم و هرکدام به هر ۱۰۱ توکن توجه می‌کند، پس 101²=10201.",
+      "answer": {
+        "kind": "manual",
+        "criteria_fa": [
+          "افزودن یک توکن CLS",
+          "شمارش همهٔ زوج‌های مرتب",
+          "محاسبهٔ 101²"
+        ]
+      }
+    }
+  ]
+}

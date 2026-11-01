@@ -11,11 +11,25 @@ from course_content import check_exercise
 from source_catalog import ROOT, require
 
 
-def load_workshops(term_id, root=ROOT, execute=False):
-    path = root / f"content/workshops/{term_id}.json"
-    if not path.exists():
+def load_workshops(term_id, root=ROOT, execute=False, session_ids=None):
+    selected = None if session_ids is None else set(session_ids)
+    if selected == set():
         return {}
-    document = json.loads(path.read_text())
+    path = root / f"content/workshops/{term_id}.json"
+    complete_document = path.exists()
+    if complete_document:
+        document = json.loads(path.read_text())
+    else:
+        fragments = sorted(p for p in (root / f'content/workshops/{term_id}').glob('s*.json')
+                           if selected is None or p.stem in selected)
+        if not fragments:
+            registry = root / 'data/metadata/source-readers.json'
+            if registry.exists():
+                registered = json.loads(registry.read_text()).get('terms', {}).get(term_id, [])
+                require(not registered, 'Every enabled source reader needs its own workshop')
+            return {}
+        document = {'schema_version': 1, 'term_id': term_id,
+                    'sessions': [json.loads(p.read_text()) for p in fragments]}
     require(document["schema_version"] == 1, "Unknown workshop schema")
     require(document["term_id"] == term_id, "Wrong workshop term")
     term = json.loads((root / f"data/metadata/{term_id}.json").read_text())["term"]
@@ -23,6 +37,8 @@ def load_workshops(term_id, root=ROOT, execute=False):
     result = {}
     for unit in document["sessions"]:
         identity = unit["session_id"]
+        if selected is not None and identity not in selected:
+            continue
         require(identity in rows and identity not in result, "Invalid workshop session")
         source = rows[identity]["slides"][0]
         for key, original in (
@@ -89,13 +105,22 @@ def load_workshops(term_id, root=ROOT, execute=False):
                 text=True,
                 timeout=5,
             )
-            actual = json.loads(run.stdout)
+            # A learner-facing example may print its intermediate values. The
+            # appended final JSON is the authoritative result for this check.
+            actual = json.loads(run.stdout.splitlines()[-1])
             require(
                 equal_results(actual, unit["reference"]),
                 f"{identity}: reference differs from Python",
             )
         result[identity] = {**unit, "code": code}
-    require(set(result) == set(rows), "Every slide session needs its own workshop")
+    if selected is not None:
+        require(set(result) == selected, 'Requested workshop is missing')
+    elif complete_document:
+        require(set(result) == set(rows), "Every slide session needs its own workshop")
+    registry = root / 'data/metadata/source-readers.json'
+    if registry.exists() and selected is None:
+        registered = json.loads(registry.read_text()).get('terms', {}).get(term_id, [])
+        require(set(registered) <= set(result), 'Every enabled source reader needs its own workshop')
     return result
 
 
@@ -117,8 +142,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--term", default="spring-2022")
     parser.add_argument("--execute", action="store_true")
+    parser.add_argument("--session", action="append", help="Validate only these session units")
     args = parser.parse_args()
-    units = load_workshops(args.term, execute=args.execute)
+    units = load_workshops(args.term, execute=args.execute, session_ids=args.session)
     print(
         json.dumps(
             {

@@ -14,7 +14,8 @@ test('five calendars retain historical notes while only slide lessons are linked
     await expect(page.locator('.session-row, .calendar-note')).toHaveCount(count);
     await expect(page.locator('.calendar-note a, .calendar-note button, .calendar-note [data-session-key]')).toHaveCount(0);
     const first=page.locator('.session-row h2 a').first();await first.click();
-    await expect(page.locator('.source-link')).toHaveAttribute('href',/colorado.edu/);
+    await expect(page.locator('.source-link')).toHaveAttribute('href',term==='spring-2026'
+      ? '/deep-learning/assets/danna/spring-2026/s01.pdf' : /colorado.edu/);
     await expect(page.locator('.concept')).not.toHaveCount(0);
     const links=await page.locator('a[href]').evaluateAll(nodes=>nodes.map(a=>a.href));
     for(const href of new Set(links)){
@@ -76,9 +77,17 @@ test('the historical supplementary URL redirects without bundling sibling code',
 
 test('original source is linked immediately and embedded only on request',async({page})=>{
   await page.goto(lesson);await expect(page.locator('iframe')).toHaveCount(0);
+  await expect(page.locator('.local-slide-link')).toBeVisible();
   await page.route('https://home.cs.colorado.edu/**',route=>route.abort());
   await page.locator('[data-show-source]').click();await expect(page.locator('iframe')).toHaveCount(1);
-  await expect(page.locator('.source-link')).toBeVisible();await page.locator('[data-show-source]').click();
+  const reader=page.frameLocator('iframe');
+  await expect(reader.locator('#source-canvas')).toBeVisible();
+  await expect.poll(async()=>{
+    const frame=page.frames().find(f=>f!==page.mainFrame());
+    return frame?.evaluate(()=>window.sourceSlideReader?.renderedPage).catch(()=>0);
+  },{timeout:30000}).toBe(1);
+  await expect(page.locator('.source-link')).toHaveAttribute('href','/deep-learning/assets/danna/spring-2026/s02.pdf');
+  await page.locator('[data-show-source]').click();
   await expect(page.locator('iframe')).toHaveCount(0);
 });
 

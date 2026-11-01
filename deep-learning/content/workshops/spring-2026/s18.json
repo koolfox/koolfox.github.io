@@ -1,0 +1,104 @@
+{
+  "session_id": "s18",
+  "source_sha256": "b6b2cb5e1740f6dd3534e0f35ddd4a88e7c2607560cb628e1f742eed1c9d6585",
+  "source_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/17-Post-Training-Foundation-Models.pdf",
+  "source_page_count": 64,
+  "title_fa": "ادغام LoRA را با دو مسیر محاسبه آزمایش کن",
+  "prediction_fa": "آیا W0x+B(Ax) و (W0+BA)x در هر ورودی یکسان می‌شوند؟",
+  "steps_fa": [
+    "پیش از اجرا تعداد پارامترهای افزوده و دو خروجی را با دست حساب کن.",
+    "ضریب دوم A را به 0.5 تغییر بده؛ خروجی پایه و خروجی سازگارشده را مقایسه کن.",
+    "B را صفر کن و بازیابی مدل پایه را نشان بده؛ توضیح بده چرا بعد از ادغام باید W0 یا delta را نگه داشت."
+  ],
+  "source_page": 16,
+  "starter_sha256": "3d040d587667083f3942d9efb195b04853a9f48a0d75521128467e2689b1a593",
+  "reference": {
+    "base_output": [
+      -1.0,
+      2.0
+    ],
+    "separate_output": [
+      3.0,
+      0.0
+    ],
+    "merged_output": [
+      3.0,
+      0.0
+    ],
+    "max_merge_error": 0.0,
+    "adapter_parameters": 5,
+    "base_parameters": 6
+  },
+  "questions": [
+    {
+      "id": "calculate",
+      "source_kind": "original",
+      "source_page": 16,
+      "prompt_fa": "در سازگارکنندهٔ رتبهٔ 1 این کد، A و B روی‌هم چند پارامتر دارند؟",
+      "solution_fa": "A سه و B دو درایه دارد؛ مجموع 5 است. شش درایهٔ W0 ثابت‌اند.",
+      "answer": {
+        "kind": "number",
+        "value": 5,
+        "tolerance": 1e-06
+      }
+    },
+    {
+      "id": "interpret",
+      "source_kind": "original",
+      "source_page": 16,
+      "prompt_fa": "برای بازیابی دقیق W0 از وزن ادغام‌شده، کدام اطلاعات کافی است؟",
+      "solution_fa": "اگر BA معلوم باشد از W0+BA کم می‌شود؛ نگه‌داشتن W0 نیز بازیابی را مستقیم ممکن می‌کند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "فقط نام مدل",
+          "خود W0 یا به‌روزرسانی دقیق BA",
+          "فقط ابعاد ماتریس"
+        ],
+        "correct_index": 1
+      }
+    },
+    {
+      "id": "explain",
+      "source_kind": "original",
+      "source_page": 16,
+      "prompt_fa": "پس از تغییر A، با سه خروجی کد نشان بده چه چیزی ثابت و چه چیزی تغییر کرد. این مثال چه چیزی دربارهٔ کیفیت زبانی مدل ثابت نمی‌کند؟",
+      "solution_fa": "W0 ثابت می‌ماند و خروجی پایه تغییر نمی‌کند؛ دو مسیر سازگارشده همچنان برابرند. این مثال فقط هم‌ارزی جبری را نشان می‌دهد، نه عملکرد زبانی یا کیفیت آموزش.",
+      "answer": {
+        "kind": "manual",
+        "criteria_fa": [
+          "خروجی عددی پایه و هر دو مسیر",
+          "توضیح هم‌ارزی ادغام",
+          "تفکیک حساب ماتریسی از کیفیت یک مدل زبانی"
+        ]
+      }
+    }
+  ],
+  "question_pages": [
+    6,
+    11,
+    14,
+    15,
+    16,
+    18,
+    24,
+    25,
+    31,
+    35,
+    45,
+    46,
+    47,
+    53,
+    62
+  ],
+  "class_activity_pages": [
+    24,
+    31,
+    62
+  ],
+  "programming_tutorial_pages": [],
+  "reference_python": "3.14.3",
+  "limits_fa": "این کد، دادهٔ کوچک و پرسش‌ها تألیف مستقل برای تمرین سازوکارند؛ بازتولید آزمایش مقاله یا تکلیف رسمی Canvas نیستند. فقط محاسبه‌های صریح کد اجرا می‌شوند. اصل اسلایدها مجوز CC BY-NC-SA خود را حفظ می‌کند؛ این کارگاه مستقل MIT است.",
+  "source_retrieved_at_utc": "2026-10-25T08:44:58.909538+00:00",
+  "related_labs": []
+}

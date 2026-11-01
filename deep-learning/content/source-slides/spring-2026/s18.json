@@ -1,0 +1,790 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s18",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/17-Post-Training-Foundation-Models.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2026/s18.pdf",
+    "sha256": "b6b2cb5e1740f6dd3534e0f35ddd4a88e7c2607560cb628e1f742eed1c9d6585",
+    "page_count": 64,
+    "license_notice": "CC BY-NC-SA; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "b42237ce5863274526c26d370f6ef094d18cfd834580dff6af31e06ac3d3e070",
+      "lines": [
+        "Post-Training for",
+        "Foundation Models",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2026",
+        "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "7e1847458b790cfb1f75c8769bbcb0bb5d418ae025df87cb78ffcae0764b5590",
+      "lines": [
+        "Review",
+        "• Last lecture:",
+        "• From specialists to generalists: birth of “foundation” models",
+        "• Generalizing to any task: the art of prompting",
+        "• Thinking slower: reasoning for better outcomes",
+        "• Beyond text: prompting in other modalities",
+        "• Prompting activity",
+        "• Assignments (Canvas):",
+        "• Problem set 3 grades out (172 submissions: mean = 25.93 which is 103.7%, std dev: 1.87)",
+        "• Email all regrade requests to our TA, Nick Cooper (e.g., a comment in Canvas is not sufficient)",
+        "• Review session today at 2:30pm viz zoom (recording will be shared afterwards)",
+        "• Lab assignment 3 due Friday",
+        "• Final project starts after spring break",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "25cc18ee9752aea18e3a013c61f214daa6dfbdb5907e15d53d315be4921f6acb",
+      "lines": [
+        "Outline",
+        "• The challenge: making foundation models useful",
+        "• Adapting models efficiently: parameter-efficient transfer learning",
+        "• Teaching models to follow human intent: instruction tuning",
+        "• Aligning models with human preferences: reinforcement learning from human feedback",
+        "• The shock: rapid societal adoption of foundation models"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "25cc18ee9752aea18e3a013c61f214daa6dfbdb5907e15d53d315be4921f6acb",
+      "lines": [
+        "Outline",
+        "• The challenge: making foundation models useful",
+        "• Adapting models efficiently: parameter-efficient transfer learning",
+        "• Teaching models to follow human intent: instruction tuning",
+        "• Aligning models with human preferences: reinforcement learning from human feedback",
+        "• The shock: rapid societal adoption of foundation models"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "5f348d03c6e245111c2ae04bfe5eb6e07b2256905d07ba476230da6eb18b664f",
+      "lines": [
+        "Challenge: Harnessing Foundation Models’",
+        "Intelligence for Real-World Impact"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "e27cb130070cdf8a53a1ddd817b77105309710218fff99cf4592f9ecf402fca5",
+      "lines": [
+        "Massive Potential, Minimal Control: Why Raw",
+        "Intelligence Needs Infrastructure (By Analogy)",
+        "What’s needed for this transition?",
+        "New energy source that",
+        "generates enormous amounts",
+        "of electricity discovered",
+        "New power source benefits society",
+        "Infrastructure",
+        "Stabilizes irregular voltage flow",
+        "Manages electricity flow to ensure its",
+        "safe, stable, and consistent",
+        "Delivers electricity from generator to",
+        "users with transformers and power line"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "7d6ffde6136339a46afeba527a39d3c652d91f8b48aa4d9571084da8263a50a2",
+      "lines": [
+        "Massive Potential, Minimal Control: Why Raw",
+        "Intelligence Needs Infrastructure (By Analogy)",
+        "Infrastructure",
+        "Shaping how a model behaves with its acquired pretrained knowledge,",
+        "typically over several stages rather than just with one fine-tuning step"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "25cc18ee9752aea18e3a013c61f214daa6dfbdb5907e15d53d315be4921f6acb",
+      "lines": [
+        "Outline",
+        "• The challenge: making foundation models useful",
+        "• Adapting models efficiently: parameter-efficient transfer learning",
+        "• Teaching models to follow human intent: instruction tuning",
+        "• Aligning models with human preferences: reinforcement learning from human feedback",
+        "• The shock: rapid societal adoption of foundation models"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "b469debe3c2603d014eb27c19b41717c146f8c44378d0ef71e746d0b6325375c",
+      "lines": [
+        "Idea: Post-Training As Infrastructure",
+        "Tweak the output without modifying the model itself!"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "c6c1c28a8bb56a71a649e20d681c28a8ab37b415ba3b246335b269d052f2a400",
+      "lines": [
+        "Recall: Models Learn Representations",
+        "that Can be Reused for Many Tasks",
+        "https://www.facebook.com/1rvanisrisaravanan/posts/pincer-graspthe-pincer￾grasp-is-the-coordination-of-the-index-finger-and-thumb-t/2833183393596559/"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "1c542c18d0c9631a725e38574d79eaf3365783510c8482cedeff42e7bc3966e5",
+      "lines": [
+        "Why Not Just Fine-Tune the Foundation Model?",
+        "https://www.facebook.com/1rvanisrisaravanan/posts/pincer-graspthe-pincer￾grasp-is-the-coordination-of-the-index-finger-and-thumb-t/2833183393596559/",
+        "• Catastrophic forgetting: knowledge lost when learning",
+        "new tasks (noted by Michael McCloskey and Neal Cohen",
+        "in 1989)",
+        "• Costly HW requirements: for 50B parameter model (32",
+        "bit precision) trained with Adam, need >1 T𝐵 of VRAM",
+        "(GPU’s memory)"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "013b9a5df48bb9e2e4316899af8864e0e7fad961053ebe2675eb60c9ccf0858d",
+      "lines": [
+        "Idea: Add Small Adaptor Modules that Help",
+        "Models Perform Better for Downstream Tasks",
+        "https://www.facebook.com/1rvanisrisaravanan/posts/pincer-graspthe-pincer￾grasp-is-the-coordination-of-the-index-finger-and-thumb-t/2833183393596559/"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "588f0e45d0ee5116cc934e1e54f3118f4598396621584de19cb96cf69a418876",
+      "lines": [
+        "He et al. Towards a Unified View of Parameter-Efficient Transfer Learning. ICLR 2022.",
+        "Approach:",
+        "Freeze Model and Train",
+        "Only Added Parameters",
+        "(e.g., Three Key Types of Methods for",
+        "Adding Parameters to Transformers)"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "e53b7e10eae41a83cf2e5f31b2016c78db2ef64eda5431923284e58bc903570f",
+      "lines": [
+        "Prefix Tuning: Recall This Entails Training",
+        "Extra Parameters as Continuous Prompts",
+        "Li and Liang. ACL 2021",
+        "How can the original",
+        "model be recovered?"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "1f5ab7d31a5b02a5f8d4e24e3675abab4729de937d2d7bdd379318a06bc92684",
+      "lines": [
+        "Adapter: Adds to Transformer Blocks",
+        "Trainable Parameters (e.g., 3-5% More)",
+        "[Houlsby, MLR19]",
+        "How can the original",
+        "model be recovered?"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "52632dac3d0d2efd3f308179409cde1a894752d41d06139858e1f5cf8733c9e4",
+      "lines": [
+        "LoRA",
+        "[Hu, ICLR22]",
+        "https://huggingface.co/docs/peft/main/en/conceptual_guides/lora",
+        "Training: trains low-rank matrices",
+        "added to certain layers (typically",
+        "attention), aka Low Rank Adaption",
+        "Inference: unlike prior two methods, no",
+        "extra parameters and so compute/storage",
+        "are needed because adapter weights are",
+        "merged with original weights",
+        "How can the",
+        "original model",
+        "be recovered?"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "0a98dcc702b380a5b098084b8684e66decb0581160691d888ae30504c8c463cc",
+      "lines": [
+        "PEFT Methods Achieve",
+        "Competitive Performance with",
+        "Full Fine-Tuning While Training",
+        "15% or Less Parameters",
+        "He et al. Towards a Unified View of Parameter-Efficient Transfer Learning. ICLR 2022."
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "3dc37cbab5804ccfbe5d6ba22778af07d8d78cfdc76d372310ce1168c166b488",
+      "lines": [
+        "PEFT Options — When to Prefer Each",
+        "(Pre-Fix Fine Tuning, Adapter, LoRA)?",
+        "• Goal: inject task-specific context such as what style or personality",
+        "to adopt when responding to a request.",
+        "• Prefix tuning",
+        "• Goal: switch between related tasks easily such as text classification,",
+        "summarization, and responding across many languages",
+        "• Adapter",
+        "• Goal: perform better for a new target task",
+        "• LoRA",
+        "• Note: LoRA (or a quantized variant QLoRA) is most common, and is",
+        "regularly combined with other methods"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "25cc18ee9752aea18e3a013c61f214daa6dfbdb5907e15d53d315be4921f6acb",
+      "lines": [
+        "Outline",
+        "• The challenge: making foundation models useful",
+        "• Adapting models efficiently: parameter-efficient transfer learning",
+        "• Teaching models to follow human intent: instruction tuning",
+        "• Aligning models with human preferences: reinforcement learning from human feedback",
+        "• The shock: rapid societal adoption of foundation models"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "158592bde6c833c5d4760142ccdfa79e35b0d4074608057ea5f36bf5db8af608",
+      "lines": [
+        "Idea: Post-Training As Infrastructure",
+        "Tweak the output to align with users’ intentions!"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "72e058c9d5b598bf6b6e8e4563f68dceb4c03db5f1c6073fecae1ec3ef52dd82",
+      "lines": [
+        "“We show that instruction tuning—finetuning language models on a collection of datasets",
+        "described via instructions—substantially improves zero-shot performance on unseen tasks.”",
+        "(Coined the phrase “instruction tuning”)"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "743f585996f53c45afb64766c5a0eb3a19ce6941ae0d04fb2aef84ee35231f30",
+      "lines": [
+        "Approach",
+        "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html",
+        "Large-Scale Inference",
+        "Instruction Tuning",
+        "Dataset",
+        "Goal: respond well to users’",
+        "prompts/instructions",
+        "Default objective learned,",
+        "such as predict next token VS"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "5d1df72b7413b492bf4967687d82d892223e8546bc481676c0d6068be7979e6f",
+      "lines": [
+        "Approach: Creating Instruction Tuning Dataset",
+        "[Wei et al., ICLR22]",
+        "Adapts 62 text datasets",
+        "to instructional formats:",
+        "10 hand-crafted templates per dataset",
+        "of instructional formats anticipated for",
+        "the target task at inference time:",
+        "At most 30k training examples",
+        "generated per dataset to account",
+        "for discrepancies in dataset sizes"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "f8a7c95bc45f18ed28f82a243a19ffa2dc1d37239e656aff2aa07983e853924d",
+      "lines": [
+        "Examples: Creating Instructions",
+        "• Which represents generic SFT vs instruction tuning",
+        "1. Input: Translate to French: \"Good morning\"",
+        "Output: Bonjour",
+        "2. Input: Write a professional email declining a meeting.",
+        "Response: ...",
+        "• Which instruction do you think is better for training and why?",
+        "• Explain blockchain",
+        "• Explain blockchain in one sentence",
+        "• Explain blockchain to a skeptical economist"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "ff9811c12ccd28ac73a4d69fb24d35f5c59177a9f3913b34cecd4304b472b96a",
+      "lines": [
+        "Experiments",
+        "• Pretrained model: 137B parameter decoder-only transformer language model,",
+        "trained on web documents, dialog data, and Wikipedia",
+        "• Fine-tuning: optimized with Adafactor (per-parameter method) for 30k gradient",
+        "steps; took ~60 hours on a TPUv3",
+        "• Evaluation split: tested on held-out dataset clusters (zero-shot)",
+        "• Results:",
+        "• Better zero-shot performance than 175B-parameter GPT-3 for 20 of 25 tested datasets",
+        "• Better performance than GPT-3 used in few-shot settings for numerous datasets",
+        "• Better performance when using continuous prompts",
+        "• Performance gains are greater for larger models",
+        "• Why might performance be worse for smaller models?",
+        "[Wei et al., ICLR22]"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "cbe300b16dd73d212818412a02b84b0f1e7804b4ccf3d29254f0410b9bb53ed5",
+      "lines": [
+        "Instruction Tuning Also Benefits Multimodal",
+        "Reasoning; e.g.,",
+        "[Liu et al., NeurIPS23]",
+        "Given: caption and bounding",
+        "box object detections as",
+        "descriptors of an image",
+        "Generate instruction tuning data:",
+        "three types generated by GPT-4"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "25cc18ee9752aea18e3a013c61f214daa6dfbdb5907e15d53d315be4921f6acb",
+      "lines": [
+        "Outline",
+        "• The challenge: making foundation models useful",
+        "• Adapting models efficiently: parameter-efficient transfer learning",
+        "• Teaching models to follow human intent: instruction tuning",
+        "• Aligning models with human preferences: reinforcement learning from human feedback",
+        "• The shock: rapid societal adoption of foundation models"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "0aa446b78dfe99db13882677c112d801b88ce86a0a66a415fac23172e435d38d",
+      "lines": [
+        "Idea: Post-Training As Infrastructure",
+        "Ensure generated outputs align with human preferences",
+        "(e.g., be truthful and do no harm)"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "35a3f4a8edd639bd79ebae8a2a853bb8d3d43eae707b067a349f3834d9964785",
+      "lines": [
+        "(NeurIPS 2017)",
+        "“Recent success in scaling reinforcement learning (RL) to large problems has been driven in domains that have a well￾specified reward function... Unfortunately, many tasks involve goals that are complex, poorly-defined, or hard to specify…",
+        "An alternative approach is to allow a human to provide feedback on our system’s current behavior and to use this feedback",
+        "to define the task… but using human feedback directly as a reward function is prohibitively expensive for RL systems that",
+        "require hundreds or thousands of hours of experience… We overcome this difficulty by asking humans to compare possible",
+        "trajectories of the agent, using that data to learn a reward function, and optimizing the learned reward function with RL...”"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "a4b35e8d45d74ef02e39d3cfb7df1801d23ebceed445e673693032ce3fd0169a",
+      "lines": [
+        "Deep",
+        "Learning",
+        "Background: Reinforcement Learning",
+        "http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/intro_RL.pdf",
+        "Unsupervised learning involves least",
+        "amount of human effort followed by,",
+        "supervised learning the most with",
+        "labels, and reinforcement learning",
+        "strikes a middle ground with rewards"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "e0123130637847662ea61a4d258977e547292c391f6f4e176430a5dd31e8ba30",
+      "lines": [
+        "• e.g.,",
+        "• Let’s try it! Please find what I want without me providing detailed instructions",
+        "• Need: 1 volunteer",
+        "• Your goal: Find the location in the room I am thinking of!",
+        "• Rewards: I will indicate hot (near the target), cold (further from the target),",
+        "and found after each ~5 seconds",
+        "Motivation: Less Human Supervision, Including",
+        "for When Explicit Instruction is Impractical",
+        "VS"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "d1326fd3361de3521f9850b6193f3ad05c44660ac4c5c39ddf8a9e95a884de6a",
+      "lines": [
+        "Approach",
+        "Agent takes actions in an environment to maximize the total reward",
+        "https://towardsdatascience.com/applications-of-reinforcement-learning-in-real-world-1a94955bcd12"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "7861246a8b8c890158a16d7a14e7085afd11d27c04828349455bf917c2177319",
+      "lines": [
+        "Approach",
+        "by Example",
+        "https://www.youtube.com/watch?v=W_gxLKSsSIE&list=PL5nBAYUyJTrM48dViibyi68urttMlUv7e"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "706eb94186899777b8402d9a2fa27d90faebbfed9f7f2542759b99bb19a6d38e",
+      "lines": [
+        "Theoretical Foundation of RL:",
+        "Markov Decision Processes (MDP)",
+        "MDP consists of:",
+        "Markov process + Markov reward process + Actions"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "19f8c8a9decd1bde9ad543de30740149fa38a23ddb8cedff9ed2470a4266c756",
+      "lines": [
+        "Markov Process (aka – Markov Chain)",
+        "• A set of states with transition probabilities defining system dynamics",
+        "e.g.,",
+        "• How many states are in the above example?",
+        "• Markov property: only current state dictates future system dynamics",
+        "https://en.wikipedia.org/wiki/Markov_chain"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "706eb94186899777b8402d9a2fa27d90faebbfed9f7f2542759b99bb19a6d38e",
+      "lines": [
+        "Theoretical Foundation of RL:",
+        "Markov Decision Processes (MDP)",
+        "MDP consists of:",
+        "Markov process + Markov reward process + Actions"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "aeb4fda1fe4683b671bb3b3abfa990ee8b11d32d23382d103c2151986f8ec633",
+      "lines": [
+        "Markov Reward Process",
+        "• Additional variable accumulated over time to reflect the reward",
+        "e.g.,",
+        "• A discount factor between 0 and 1, gamma, indicates how far in the",
+        "future rewards are considered to estimate a state’s expected reward",
+        "https://en.wikipedia.org/wiki/Markov_chain"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "706eb94186899777b8402d9a2fa27d90faebbfed9f7f2542759b99bb19a6d38e",
+      "lines": [
+        "Theoretical Foundation of RL:",
+        "Markov Decision Processes (MDP)",
+        "MDP consists of:",
+        "Markov process + Markov reward process + Actions"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "5d8a275fc0e1b467ed7ea4338768e31a8a1f76873a562153ad21d49c3db112cb",
+      "lines": [
+        "Actions",
+        "• At each time step, the chosen",
+        "action influences what will",
+        "become the next state",
+        "• Probability allows for",
+        "randomness (e.g., turn car wheel",
+        "to go right on icy patch but car",
+        "slips and continues straight)",
+        "https://en.wikipedia.org/wiki/Markov_chain"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "d1033bec51d45a64d81de2e24eceba6db708be527cab906d1f6465d51a841800",
+      "lines": [
+        "Policy",
+        "• Rules that dictate how an agent behaves",
+        "• Defined using a probability distribution over potential",
+        "actions so there is randomness in the agent’s behavior",
+        "• RL goal: find a good policy"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "b789a82d762e929dfc2c94bdd160a87e215040fb83c83707644cccb585042e1d",
+      "lines": [
+        "Basic Ingredients for RL Methods",
+        "1. Observations of environment",
+        "2. Possible actions",
+        "3. Rewards"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "6c085f45677a482db5ce6332e774f6f03e111c18d764c28e8e2dd52f7e51057b",
+      "lines": [
+        "Basic Ingredients for RL Methods; e.g., Pong",
+        "1. Observations of environment:",
+        "2. Possible actions: “up” and “down” paddle movements",
+        "3. Rewards: -1 if missed the ball; +1 reward if ball goes past opponent;",
+        "0 otherwise",
+        "Goal: Maximize rewards computing optimal “up” and “down” paddle movements"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "e1af9a0fe35b3d391fa9f46a86761c450f2bee818bc8e80e412d6dd5c59c3535",
+      "lines": [
+        "Policy Gradients: Approach",
+        "0 1",
+        "up",
+        "down",
+        "e.g., Pong Actions",
+        "Policies (i.e., rules for agent behavior) represented with a probability for each possible action",
+        "Neural network trained to increase probability of actions leading to a good total reward and",
+        "decrease probability of actions leading to a bad total reward"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "b5c086f8f557c42863cd5ea3b3dbfe3d22412b99140c6d5f0aa17db2cef74632",
+      "lines": [
+        "e.g., Learning Pong",
+        "(2-layer NN with 200 hidden units)",
+        "Given game state (as image), decide if to move paddle up (vs down)",
+        "http://karpathy.github.io/2016/05/31/rl/"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "7f2253bdaa891bb9e66ae0a9faa6486aa46b263482bd057d5de09b6c11afd599",
+      "lines": [
+        "e.g., Learning Pong",
+        "(2-layer NN with 200 hidden units)",
+        "How to capture motion in game state (i.e., image)?",
+        "Use difference image",
+        "(i.e., subtract frame current from last frame)",
+        "http://karpathy.github.io/2016/05/31/rl/"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "d023890f352dd31c89a506fa44da40e1d48660b2efa5b08c6e25df2db6d96415",
+      "lines": [
+        "e.g., Learning Pong: Training Protocol",
+        "Assume 100 games played with 200 images/game",
+        "How many (action) decisions were made?",
+        "- 100x199",
+        "http://karpathy.github.io/2016/05/31/rl/"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "18f727eef31d6d9a8ccb7515ef78445e4d6a73586cd0d4b151b1811838ce361a",
+      "lines": [
+        "e.g., Learning Pong: Training Protocol",
+        "Assume 100 games played with 200 images/game; 12 games won & 88 lost",
+        "• How many winning decisions were made?",
+        "• 2,388 (i.e., 12 x 199)",
+        "• How many losing decisions were made?",
+        "• 17,512 (i.e., 88 x 199)",
+        "http://karpathy.github.io/2016/05/31/rl/"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "98264a355fd3550a5c21c2d8c0987ccd15f46dbb5f4526e3cd0f8b26f005a801",
+      "lines": [
+        "e.g., Learning Pong: Training Protocol",
+        "After 100 games, gradient updated to encourage actions that led to good outcomes (i.e., 2,388",
+        "winning up/downs) and discourage actions that led to bad outcomes (17,512 losing up/downs)",
+        "http://karpathy.github.io/2016/05/31/rl/"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "f472821d48aab9fc75b453f19c51bd6c13ea291fb0f917b79ba6e7ad15a4e3ac",
+      "lines": [
+        "e.g., Pong Model: RL Model vs Pong’s AI Model",
+        "https://www.youtube.com/watch?v=YOW8m2YGtRg&t=16s"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "5621e8deb9d81ec8ebd277622fe6bb29eeaeb98fd98d22cc50804e7a1c7dcb25",
+      "lines": [
+        "Why Reinforcement Learning is Difficult",
+        "• Agent must infer what it did wrong/right and so how performance can be",
+        "maintained/improved based on (delayed) rewards; e.g., win/lose pong",
+        "• Agent needs to strike the appropriate balance between exploration and exploitation;",
+        "e.g., order one’s favorite food vs something new",
+        "• Agent must learn for non-verifiable tasks; e.g., human preferences, such as what is",
+        "funny and what is harmful",
+        "https://huggingface.co/learn/deep￾rl-course/unit1/exp-exp-tradeoff"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "ae7c724fdfe8ac1c625d14b5b33ae92ff05f043d2b1eb50164abb2f9a5e4c6df",
+      "lines": [
+        "Reinforcement Learning with Human Feedback",
+        "• Idea: train with most preferred solution; e.g.,",
+        "User: “My internet is not",
+        "working right now”"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "46b7387af4a3ba42dfec0a7ed1f326be0c7292c3db94a9daea34ee19689f206c",
+      "lines": [
+        "Reinforcement Learning with Human Feedback",
+        "• Idea: train with most preferred solution; human feedback address that reward",
+        "functions are hard to specify (instead reinforces humans’ preferences)",
+        "• Approach:",
+        "1. Enable large-scale training by training a reward model to simulate humans’ ranking",
+        "preferences from a small amount of human input (using a ranking loss function)",
+        "2. Fine-tune base model with reinforcement learning using the human-simulated preferences",
+        "for the entire generated prediction (e.g., all predicted tokens in the sequence)",
+        "Prompt: “Give advice for dealing with stress”",
+        "Reward model scores:",
+        "Human ordering: 3 1 2 4",
+        "0.2 0.6 0.15 0.05"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "1ea0e6bc8d00933ad0c26d761e91cca8b0942f7f4ad16650c854f1dcec0e5850",
+      "lines": [
+        "RLHF Challenge:",
+        "Specification Gaming/Reward Hacking",
+        "• Example: training a robot to clean a room, with the reward provided for each",
+        "piece of trash removed.",
+        "• What is the problem with this learned behavior: break objects to increase the trash count",
+        "• How might this issue look with LLMs?",
+        "• Mitigating solutions:",
+        "• Post-train only briefly with RLHF",
+        "• Add loss term that encourages the model to stay close to original prediction distributions"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "54ef790721aee1d3536e89d407e2f42e28f9bbd054d83cc11e13ead9ee66aa20",
+      "lines": [
+        "Note: Conversational Tasks Bypass What is",
+        "Supported in Many Evaluation Benchmarks",
+        "Commands",
+        "(brief with small vocabulary)",
+        "Conversations",
+        "(lengthy with large vocabulary)"
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "bc3221cab54185e64c32ca5910bcb9c74fef71aefdba7e953c9737d44643c0a6",
+      "lines": [
+        "https://lmarena.ai/"
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "fc88dc3bea39566cd7872a7f45fb4ff771295a53a5612d930c10354e7793d40a",
+      "lines": [
+        "Want to Learn More About RL at CU?",
+        "• Deep Reinforcement Learning — CSCI 7000",
+        "• Alessandro Roncone",
+        "• Typically offered in Fall",
+        "• Decision Making Under Uncertainty — ASEN 5264",
+        "• Zachary Sunberg — https://github.com/CU-ADCL/CU-DMU-Materials",
+        "• Typically offered in Spring"
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "25cc18ee9752aea18e3a013c61f214daa6dfbdb5907e15d53d315be4921f6acb",
+      "lines": [
+        "Outline",
+        "• The challenge: making foundation models useful",
+        "• Adapting models efficiently: parameter-efficient transfer learning",
+        "• Teaching models to follow human intent: instruction tuning",
+        "• Aligning models with human preferences: reinforcement learning from human feedback",
+        "• The shock: rapid societal adoption of foundation models"
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "6e75d342df63c29cbc87ed53c1fcf6798774502cfa9e8ec8290cbcc1c3d4b49c",
+      "lines": [
+        "What Happened When ChatGPT (GPT 3.5)",
+        "Bridged Raw Intelligence with Infrastructure?"
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "7247d6451f6655914573e2e3d1cae448d61219c14f37b8f692d44b3ba8cf02d7",
+      "lines": [
+        "Nov 2022: The Release of ChatGPT Changed",
+        "the World’s Expectations from AI…",
+        "And helped NVIDIA, OpenAI’s GPU provider, get much richer ☺",
+        "(market value of ~$4.3 TRILLION in March 2026)",
+        "~8-fold rise",
+        "in value",
+        "- 1M+ users within five days",
+        "- ~10% of global adult population by July 2025",
+        "https://cdn.openai.com/pdf/a253471f-8260-40c6-a2cc-aa93fe9f142e/economic-research-chatgpt-usage-paper.pdf",
+        "https://news.fsu.edu/news/education-society/2025/08/26/on-screen-and-now-irl-fsu-researchers-find-evidence-suggesting-chatgpt-influences-how-we-speak/"
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "5990450586c1120bceac7f517678eb582266e4a1a39af6405718059876855513",
+      "lines": [
+        "Debate: What Post-Training Steps to Include?",
+        "https://www.youtube.com/watch?v=7xTGNNLPyMI",
+        "(starts at approximately 2:12:00)",
+        "ChatGPT: instruction tuning + RLHF + hidden prompts",
+        "Llama extensions, such as Vicuna and Koala (2023):",
+        "instruction tuning with LoRA",
+        "DeepSeek",
+        "RHLF without instruction tuning",
+        "DeepSeek-R1 (2026): RLHF, with LoRA-based variants",
+        "(permits going beyond human reasoning)"
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "5778232ead6d1ab862bcc1a877c30ff491feeaebdb9e1fc1beb021bfe0f36a2b",
+      "lines": [
+        "To Help With Leveraging These Huge Models,",
+        "Many Companies Provide Access to Them; e.g.,"
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "cfea87a4d1cb3346c0e18c46b309a7f375a3096a9a4f67ed5c1edc63023357cc",
+      "lines": [
+        "Activity: Use What You Have Learned to",
+        "Hypothesize and Analyze Models’ Behaviors"
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "25cc18ee9752aea18e3a013c61f214daa6dfbdb5907e15d53d315be4921f6acb",
+      "lines": [
+        "Outline",
+        "• The challenge: making foundation models useful",
+        "• Adapting models efficiently: parameter-efficient transfer learning",
+        "• Teaching models to follow human intent: instruction tuning",
+        "• Aligning models with human preferences: reinforcement learning from human feedback",
+        "• The shock: rapid societal adoption of foundation models"
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

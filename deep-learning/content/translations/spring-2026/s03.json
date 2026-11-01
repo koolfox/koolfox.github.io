@@ -1,0 +1,5709 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s03",
+  "source_sha256": "92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "6c8977230001710a5095b31f0814a98a904f5b97dca0180a625ddf2125605bb4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "از جرقه به شعله: شبکه‌های عصبی (Neural Networks) که یاد می‌گیرند"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)؛ دانشگاه کلرادو بولدر (University of Colorado Boulder)؛ بهار 2026"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "4544921747d18808b5c990cc7d584d2cfa755f0125df556e37d8395d3d671f92",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "مرور\n• سخنرانی گذشته:\n• الهام زیستی (اواخر دهه‌های 1800 و اوایل دهه‌های 1900): کشف نورون‌ها (Neurons)\n• مدل‌سازی زیستی (1957): تقلید «هوش» برای فهم آن\n• بحران (1969): اثبات ناتوانی مدل‌ها در بسیاری از شکل‌های «هوش»\n• آموزش برنامه‌نویسی: مبانی PyTorch\n• تکلیف‌ها (Canvas): موعد تکلیف آزمایشگاهی 1 در یک هفتهٔ آینده است.\n• پرسشی دارید؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "1d3838ef5880e2a72216250d03f4f9c577d7009867b981b0a2159efe58a3c020",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• چشم‌انداز: شبکه‌های چندلایه قدرت بازنمایی (Representational Power) کافی فراهم می‌کنند.\n• دستاورد: گرادیان‌ها (Gradients) شبکه‌های چندلایه را آموزش‌پذیر می‌کنند.\n• انتزاع ماشین: شبکه‌های عصبی به‌صورت گراف‌های محاسباتی (Computational Graphs).\n• آموزش برنامه‌نویسی: توسعهٔ شبکه‌های عصبی در PyTorch."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "1d3838ef5880e2a72216250d03f4f9c577d7009867b981b0a2159efe58a3c020",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• چشم‌انداز: شبکه‌های چندلایه قدرت بازنمایی (Representational Power) کافی فراهم می‌کنند.\n• دستاورد: گرادیان‌ها (Gradients) شبکه‌های چندلایه را آموزش‌پذیر می‌کنند.\n• انتزاع ماشین: شبکه‌های عصبی به‌صورت گراف‌های محاسباتی (Computational Graphs).\n• آموزش برنامه‌نویسی: توسعهٔ شبکه‌های عصبی در PyTorch."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "7223ce84f8bda3a3f91278b27d701d9882a532dba5b6959f918a45133a92646e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "چرا جرقهٔ پرسپترون (Perceptron) زنده ماند؟\nشبکه‌های تک‌لایهٔ ناکافی، تنها پله‌ای برای رسیدن به شبکه‌های چندلایه بودند؛ برای مثال،\nانسان‌ها: ~100,000,000,000 نورون."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://www.britannica.com/science/human-nervous-system"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Brain; Spinal cord; Nerve cell; Central nervous system; Peripheral nervous system; Cleveland Clinic ©2023",
+          "fa": "مغز؛ نخاع؛ سلول عصبی؛ دستگاه عصبی مرکزی؛ دستگاه عصبی محیطی؛ Cleveland Clinic ©2023",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "9f3222dba016e54a25a87152cb0429d3cd26ba7339a8432ee0cd27127d8ef5c2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "چرا جرقهٔ پرسپترون (Perceptron) زنده ماند؟\n«… پرسپترون ساده نخست مطالعه شد… زیرا نشان داد شبکه‌های عصبی سازگارشونده، در ساده‌ترین شکل‌هایشان، در اصل می‌توانند بهبود یابند. این نشان می‌داد که شبکه‌های پیچیده‌تر شاید رفتار جالب‌تری نشان دهند… آنچه طرفداران پرسپترون تکیه‌گاهی موقت می‌دانستند، مینسکی و پاپرت ساختار نهایی تفسیر می‌کنند.»\n— صفحهٔ 514؛ (1970).\nشبکه‌های تک‌لایهٔ ناکافی، تنها پله‌ای برای رسیدن به شبکه‌های چندلایه بودند؛ برای مثال،\n"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "A Review of “Perceptrons: An Introduction to Computational Geometry” by Marvin Minsky and Seymour Papert. The M.I.T. Press, Cambridge, Mass., 1969. 112 pages. Price: Hardcover $12.00; Paperback $4.95. H. D. Block. Department of Theoretical and Applied Mechanics, Cornell University, Ithaca, New York 14850",
+          "fa": "مروری بر «پرسپترون‌ها: مقدمه‌ای بر هندسهٔ محاسباتی» نوشتهٔ Marvin Minsky و Seymour Papert. انتشارات MIT، کمبریج، ماساچوست، 1969؛ 112 صفحه؛ قیمت جلد سخت $12.00 و جلد کاغذی $4.95. H. D. Block، گروه مکانیک نظری و کاربردی، دانشگاه کرنل، ایتاکا، نیویورک 14850.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "3a19a7bf5d6ff9befd79e500ab2466ed8ff84a5e2831b0cd1d4709b94eee2e9e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "kind": "text",
+          "fa": "چرا جرقهٔ پرسپترون (Perceptron) زنده ماند؟\nشبکه‌های تک‌لایهٔ ناکافی، تنها پله‌ای برای رسیدن به شبکه‌های چندلایه بودند؛ برای مثال،\n1961: مقالهٔ IRE هاوکینز (Hawkin): «[محدودیت‌های شبکه‌های تک‌لایه] بسیار شدیدند… [با استفاده از] آرایش‌های مدار منطقی چندلایه… می‌توان هر تابعی را محقق کرد.»\n1962: کتاب نورودینامیک (Neurodynamics) روزنبلات: «افزودن لایهٔ چهارمی از واحدهای انتقال سیگنال… حل مسئله‌های تعمیم را بر گروه‌های تبدیل دلخواه ممکن می‌کند.»\nمقالهٔ سامانه‌های خودسامان‌ده (Self-Organizing Systems) ویدرو (Widrow): 2 لایهٔ پنهان (Hidden Layers).\n1965: کتاب ماشین‌های یادگیرنده (Learning Machines) نیلسون (Nilsson).\n1969: کتاب مینسکی و پاپرت."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "6 LAYERED MACHINES; 6.1 Layered networks of TLUs, 95; 6.2 Committee machines, 97; Fast adapting layer; Slow adapting layer; inputs; outputs; JOB ASSIGNER",
+          "fa": "6 ماشین‌های لایه‌ای؛ 6.1 شبکه‌های لایه‌ایِ TLUها، 95؛ 6.2 ماشین‌های کمیته‌ای، 97؛ لایهٔ سازگارشوندهٔ سریع؛ لایهٔ سازگارشوندهٔ آهسته؛ ورودی‌ها؛ خروجی‌ها؛ تخصیص‌دهندهٔ کار",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "d2b3197385ac54cba5e2883e08b575286ecb53ec32490248714c327d28b2f53b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            18
+          ],
+          "kind": "text",
+          "fa": "چرا جرقهٔ پرسپترون (Perceptron) زنده ماند؟\nبرای مثال، حل مسئلهٔ XOR با شبکهٔ چندلایه و آستانه‌گذاری (اگر کمتر از 0 باشد، 0؛ وگرنه 1).\n"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "literal",
+          "fa": "A B A XOR B\n0 0 0\n0 1 1\n1 0 1\n1 1 0"
+        },
+        {
+          "source_lines": [
+            6,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "kind": "text",
+          "fa": "ورودی (Input)؛ خروجی (Output)؛ 1.\nبایاس‌ها (Bias): -0.5؛ -0.5؛ -1.5."
+        },
+        {
+          "source_lines": [
+            7,
+            8,
+            9,
+            10,
+            17
+          ],
+          "kind": "literal",
+          "fa": "1\n1\n1\n-2\n1"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "0c34d94aedceba75167565b32f6a1aef6444728377f7c21ad3a0701f165a4e00",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "چرا جرقهٔ پرسپترون (Perceptron) زنده ماند؟\nبرای مثال، حل مسئلهٔ XOR با شبکهٔ چندلایه و آستانه‌گذاری (اگر کمتر از 0 باشد، 0؛ وگرنه 1).\n"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "literal",
+          "fa": "A B A XOR B\n0 0 0\n0 1 1\n1 0 1\n1 1 0"
+        },
+        {
+          "source_lines": [
+            7,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "kind": "text",
+          "fa": "ورودی (Input)؛ خروجی (Output)؛ 1.\nبایاس‌ها (Bias): -0.5؛ -0.5؛ -1.5."
+        },
+        {
+          "source_lines": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            23,
+            24,
+            25,
+            26
+          ],
+          "kind": "literal",
+          "fa": "1\n1\n1\n-2\n0\n0\n1\n?\n?\n?"
+        },
+        {
+          "source_lines": [
+            14,
+            15,
+            16
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "verified": true,
+          "reason_fa": "خروجی دو گرهٔ پنهان و گرهٔ نهایی با علامت پرسش پوشانده شده است؛ پاسخ‌های لایهٔ متنی در شکل این صفحه دیده نمی‌شوند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "edce9583e309c4b00d27b9eb6c32488fde269855a22643f14037c23501079a6c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "چرا جرقهٔ پرسپترون (Perceptron) زنده ماند؟\nبرای مثال، حل مسئلهٔ XOR با شبکهٔ چندلایه و آستانه‌گذاری (اگر کمتر از 0 باشد، 0؛ وگرنه 1).\n"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "literal",
+          "fa": "A B A XOR B\n0 0 0\n0 1 1\n1 0 1\n1 1 0"
+        },
+        {
+          "source_lines": [
+            7,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "kind": "text",
+          "fa": "ورودی (Input)؛ خروجی (Output)؛ 1.\nبایاس‌ها (Bias): -0.5؛ -0.5؛ -1.5."
+        },
+        {
+          "source_lines": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            23,
+            24,
+            25,
+            26
+          ],
+          "kind": "literal",
+          "fa": "1\n1\n1\n-2\n0\n1\n1\n?\n?\n?"
+        },
+        {
+          "source_lines": [
+            14,
+            15,
+            16
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "verified": true,
+          "reason_fa": "خروجی دو گرهٔ پنهان و گرهٔ نهایی با علامت پرسش پوشانده شده است؛ پاسخ‌های لایهٔ متنی در شکل این صفحه دیده نمی‌شوند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "3a52b8b9d36531075480f1da0f27608e5ebeaed2eb5df0a7d20fd1b21d03a652",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "چرا جرقهٔ پرسپترون (Perceptron) زنده ماند؟\nبرای مثال، حل مسئلهٔ XOR با شبکهٔ چندلایه و آستانه‌گذاری (اگر کمتر از 0 باشد، 0؛ وگرنه 1).\n"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "literal",
+          "fa": "A B A XOR B\n0 0 0\n0 1 1\n1 0 1\n1 1 0"
+        },
+        {
+          "source_lines": [
+            7,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "kind": "text",
+          "fa": "ورودی (Input)؛ خروجی (Output)؛ 1.\nبایاس‌ها (Bias): -0.5؛ -0.5؛ -1.5."
+        },
+        {
+          "source_lines": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            23,
+            24,
+            25,
+            26
+          ],
+          "kind": "literal",
+          "fa": "1\n1\n1\n-2\n1\n0\n1\n?\n?\n?"
+        },
+        {
+          "source_lines": [
+            14,
+            15,
+            16
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "verified": true,
+          "reason_fa": "خروجی دو گرهٔ پنهان و گرهٔ نهایی با علامت پرسش پوشانده شده است؛ پاسخ‌های لایهٔ متنی در شکل این صفحه دیده نمی‌شوند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "624022a61eacf81b47635f2c0dfe811c12ce9d5544b8aa8325b78e07d3400159",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "چرا جرقهٔ پرسپترون (Perceptron) زنده ماند؟\nبرای مثال، حل مسئلهٔ XOR با شبکهٔ چندلایه و آستانه‌گذاری (اگر کمتر از 0 باشد، 0؛ وگرنه 1).\n"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "literal",
+          "fa": "A B A XOR B\n0 0 0\n0 1 1\n1 0 1\n1 1 0"
+        },
+        {
+          "source_lines": [
+            7,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "kind": "text",
+          "fa": "ورودی (Input)؛ خروجی (Output)؛ 1.\nبایاس‌ها (Bias): -0.5؛ -0.5؛ -1.5."
+        },
+        {
+          "source_lines": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            23,
+            24,
+            25,
+            26
+          ],
+          "kind": "literal",
+          "fa": "1\n1\n1\n-2\n1\n1\n1\n?\n?\n?"
+        },
+        {
+          "source_lines": [
+            14,
+            15,
+            16
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "verified": true,
+          "reason_fa": "خروجی دو گرهٔ پنهان و گرهٔ نهایی با علامت پرسش پوشانده شده است؛ پاسخ‌های لایهٔ متنی در شکل این صفحه دیده نمی‌شوند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "e3f542d201f4ef52ca74def54f48381efd2b79a51cbcc849d9d1da802e289cc1",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "چرا جرقهٔ پرسپترون (Perceptron) زنده ماند؟\nاصطلاح‌های رایج برای مدل‌های چندلایه: شبکه‌های عصبی مصنوعی (Artificial Neural Networks)، شبکه‌های پیوندگرا (Connectionist Networks)، سامانه‌های توزیع‌شدهٔ موازی (Parallel Distributed Systems) و سامانه‌های محاسبات عصبی (Neural Computing Systems)."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "6e17855c66104cb103869e9a81bf71f6b9dcbaef4d24ff5725e90c1f52819912",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "مبانی شبکهٔ چندلایه (Multi-Layer Network)\nاین یک شبکهٔ عصبی 5 لایه‌ای است؛ یعنی تعداد لایه‌های پنهان (Hidden Layers) به‌علاوهٔ لایهٔ خروجی را می‌شماریم. هر لایهٔ پنهان چهار نورون دارد.\nپیش‌بینی؛ ورودی.\n«پنهان» نامیده می‌شوند زیرا یادگیری تعیین می‌کند چگونه این لایه‌ها، ورودی را به ویژگی‌های سودمند برای پیش‌بینی تبدیل کنند!"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "eaabb71e7fe8a9f5736dbf8be6e206e41db8e728029bcd1ca46fefde4350d525",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "مبانی شبکهٔ چندلایه (Multi-Layer Network)\nاین شبکه چند لایه دارد؟\n• 3\nدر هر لایهٔ پنهان (Hidden Layer) چند نورون هست؟\n• 3"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "6508d4651512caadebed2f3b950de4ae10858f035dfb081b39a6ea2eaa03e8a0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "مبانی شبکهٔ چندلایه (Multi-Layer Network)\nارتباط این ساختار با یک پرسپترون (Perceptron):\nوزن‌هایی که باید یاد گرفته شوند.\nبایاسی (Bias) که باید یاد گرفته شود، ترسیم نشده است."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Python Machine Learning; Raschka & Mirjalili"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Net input function; Threshold function; Output; 1; w₀; w₁; w₂; wₘ; x₁; x₂; xₘ",
+          "fa": "تابع ورودی خالص؛ تابع آستانه؛ خروجی؛ 1؛ w₀؛ w₁؛ w₂؛ wₘ؛ x₁؛ x₂؛ xₘ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "6508d4651512caadebed2f3b950de4ae10858f035dfb081b39a6ea2eaa03e8a0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "مبانی شبکهٔ چندلایه (Multi-Layer Network)\nارتباط این ساختار با یک پرسپترون (Perceptron):\nوزن‌هایی که باید یاد گرفته شوند.\nبایاسی (Bias) که باید یاد گرفته شود، ترسیم نشده است."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Python Machine Learning; Raschka & Mirjalili"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Net input function; Threshold function; Output; 1; w₀; w₁; w₂; wₘ; x₁; x₂; xₘ",
+          "fa": "تابع ورودی خالص؛ تابع آستانه؛ خروجی؛ 1؛ w₀؛ w₁؛ w₂؛ wₘ؛ x₁؛ x₂؛ xₘ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "6508d4651512caadebed2f3b950de4ae10858f035dfb081b39a6ea2eaa03e8a0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "مبانی شبکهٔ چندلایه (Multi-Layer Network)\nارتباط این ساختار با یک پرسپترون (Perceptron):\nوزن‌هایی که باید یاد گرفته شوند.\nبایاسی (Bias) که باید یاد گرفته شود، ترسیم نشده است."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Python Machine Learning; Raschka & Mirjalili"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Net input function; Threshold function; Output; 1; w₀; w₁; w₂; wₘ; x₁; x₂; xₘ",
+          "fa": "تابع ورودی خالص؛ تابع آستانه؛ خروجی؛ 1؛ w₀؛ w₁؛ w₂؛ wₘ؛ x₁؛ x₂؛ xₘ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "6508d4651512caadebed2f3b950de4ae10858f035dfb081b39a6ea2eaa03e8a0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "مبانی شبکهٔ چندلایه (Multi-Layer Network)\nارتباط این ساختار با یک پرسپترون (Perceptron):\nوزن‌هایی که باید یاد گرفته شوند.\nبایاسی (Bias) که باید یاد گرفته شود، ترسیم نشده است."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Python Machine Learning; Raschka & Mirjalili"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Net input function; Threshold function; Output; 1; w₀; w₁; w₂; wₘ; x₁; x₂; xₘ",
+          "fa": "تابع ورودی خالص؛ تابع آستانه؛ خروجی؛ 1؛ w₀؛ w₁؛ w₂؛ wₘ؛ x₁؛ x₂؛ xₘ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "6508d4651512caadebed2f3b950de4ae10858f035dfb081b39a6ea2eaa03e8a0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "مبانی شبکهٔ چندلایه (Multi-Layer Network)\nارتباط این ساختار با یک پرسپترون (Perceptron):\nوزن‌هایی که باید یاد گرفته شوند.\nبایاسی (Bias) که باید یاد گرفته شود، ترسیم نشده است."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Python Machine Learning; Raschka & Mirjalili"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Net input function; Threshold function; Output; 1; w₀; w₁; w₂; wₘ; x₁; x₂; xₘ",
+          "fa": "تابع ورودی خالص؛ تابع آستانه؛ خروجی؛ 1؛ w₀؛ w₁؛ w₂؛ wₘ؛ x₁؛ x₂؛ xₘ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "6508d4651512caadebed2f3b950de4ae10858f035dfb081b39a6ea2eaa03e8a0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "مبانی شبکهٔ چندلایه (Multi-Layer Network)\nارتباط این ساختار با یک پرسپترون (Perceptron):\nوزن‌هایی که باید یاد گرفته شوند.\nبایاسی (Bias) که باید یاد گرفته شود، ترسیم نشده است."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Python Machine Learning; Raschka & Mirjalili"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Net input function; Threshold function; Output; 1; w₀; w₁; w₂; wₘ; x₁; x₂; xₘ",
+          "fa": "تابع ورودی خالص؛ تابع آستانه؛ خروجی؛ 1؛ w₀؛ w₁؛ w₂؛ wₘ؛ x₁؛ x₂؛ xₘ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "6508d4651512caadebed2f3b950de4ae10858f035dfb081b39a6ea2eaa03e8a0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "مبانی شبکهٔ چندلایه (Multi-Layer Network)\nارتباط این ساختار با یک پرسپترون (Perceptron):\nوزن‌هایی که باید یاد گرفته شوند.\nبایاسی (Bias) که باید یاد گرفته شود، ترسیم نشده است."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Python Machine Learning; Raschka & Mirjalili"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Net input function; Threshold function; Output; 1; w₀; w₁; w₂; wₘ; x₁; x₂; xₘ",
+          "fa": "تابع ورودی خالص؛ تابع آستانه؛ خروجی؛ 1؛ w₀؛ w₁؛ w₂؛ wₘ؛ x₁؛ x₂؛ xₘ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "89c08c49c3e7bb9eaddf42a3bf087d552752d44b37187c2d676b8a9832d58b33",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "مبانی شبکهٔ چندلایه (Multi-Layer Network)\nهدف: یادگیری پارامترهای شبکه.\nاین شبکه چند پارامتر دارد؟\n• وزن‌های ورودی به لایهٔ پنهان (Hidden Layer) 1: 2x3 = 6\n• وزن‌های لایهٔ پنهان 1 به لایهٔ پنهان 2: 3x3 = 9\n• وزن‌های لایهٔ پنهان 2 به لایهٔ خروجی (Output Layer): 3x1 = 3\n• تعداد جمله‌های بایاس (Bias): 3 + 3 + 1 = 7\n• مجموع: 6 + 9 + 3 + 7 = 25"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "2122eb5c5573331881a7e3edd7f30c665856aa1096635bb85ba519879da54041",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "مبانی شبکهٔ چندلایه: شبکهٔ تمام‌متصل (Fully Connected) و پیش‌خور (Feedforward)\n• تمام‌متصل: هر واحد به همهٔ واحدهای لایهٔ بعد ورودی می‌دهد.\n• پیش‌خور: هر لایه، بدون حلقه، ورودی لایهٔ بعد است."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "b7f21a8953abe540ddf19a5d8417d6bf096b30b0599a94994cbf83dd86cd0c93",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "موانع شبکه‌های چندلایه در دههٔ 1970\n• دشواری مسئله: تلاش برای یافتن رویکرد یادگیری تعمیم‌پذیر (Generalizable) برای آموزش شبکه‌های عصبی چندلایه.\n• به‌رسمیت‌شناخته‌شدن: پژوهشگران به مسئله‌هایی با مقاومت کمتر و بازخورد مثبت بیشتر رفتند؛ برای مثال هوش مصنوعی نمادین (Symbolic AI) و پردازش سیگنال.\n• تأمین مالی: نهادها حمایت را به رویکرد کمترشناخته‌شدهٔ هوش مصنوعی با نام منطق نمادین (Symbolic Logic) منتقل کردند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "c28428154a1b18f3a976cac0ccd29eedfc8f9cf07be95b9c2dd50b139e9c782c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "kind": "text",
+          "fa": "تلاش‌ها برای آموزش شبکه‌های چندلایه؛ برای مثال،\n• فرانک روزنبلات (Frank Rosenblatt)؛ کتاب 1962:\n• «روش تصحیح خطای پس‌انتشاری» (Back-Propagating Error Correction Procedure) را پیشنهاد کرد: «اگر مقدار اتصال‌های S [واحدهای حسی] به A [واحدهای تداعی] به‌نحوی با فرایند یادگیری بهینه شوند، شاید بهبود چشمگیری در عملکرد حاصل شود… اثر این قواعد، تلاش برای خاموش‌کردن هر واحد A است… که خروجی‌اش اکنون در خطای یک واحد R نقش دارد، و تلاش برای روشن‌کردن هر واحد A… که اکنون خاموش است اما اگر روشن بود، سیگنال‌های خروجی آن به تصحیح خطا در یک یا چند واحد R کمک می‌کردند.»\n• پل وربوس (Paul Werbos)؛ رسالهٔ دکتری 1974:\n• نخستین توصیف آموزش شبکهٔ عصبی با تندترین نزول (Steepest Descent) همراه «بازخورد پویا» (Dynamic Feedback)، که پیش‌تر در نظریهٔ کنترل استفاده می‌شد و اکنون «پس‌انتشار» (Backpropagation) نام دارد.\n• زمان و/یا زمینه مناسب نبود… اما سرانجام ایده‌ها یک دهه بعد دوباره پدیدار شدند.\n• لوکان و پارکر (LeCun and Parker)؛ مقاله‌های 1985:\n• هر دو، مستقل از هم و بی‌خبر از کار وربوس، پس‌انتشار را کشف کردند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "1d3838ef5880e2a72216250d03f4f9c577d7009867b981b0a2159efe58a3c020",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• چشم‌انداز: شبکه‌های چندلایه قدرت بازنمایی (Representational Power) کافی فراهم می‌کنند.\n• دستاورد: گرادیان‌ها (Gradients) شبکه‌های چندلایه را آموزش‌پذیر می‌کنند.\n• انتزاع ماشین: شبکه‌های عصبی به‌صورت گراف‌های محاسباتی (Computational Graphs).\n• آموزش برنامه‌نویسی: توسعهٔ شبکه‌های عصبی در PyTorch."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "54f6575979fcf155fd709f8b1d1f738e28dc6b794b6928bd02897b3893ca7fc2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "«نشان می‌دهیم که روشی عمومی و نسبتاً ساده به‌اندازهٔ کافی قدرتمند است…»\nبحث گسترده‌تر در کتاب «پردازش توزیع‌شدهٔ موازی: کاوش‌هایی در ریزساختار شناخت» (Parallel Distributed Processing: Explorations in the Microstructure of Cognition).\nالگوریتم پس‌انتشار (Backpropagation) برای آموزش شبکه‌های عصبی چندلایه رواج یافت."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "nature; Explore content; About the journal; Publish with us; letters; article; Letter; Published: 09 October 1986; Learning representations by back-propagating errors; David E. Rumelhart; Geoffrey E. Hinton; Ronald J. Williams",
+          "fa": "nature؛ کاوش محتوا؛ دربارهٔ مجله؛ انتشار با ما؛ نامه‌ها؛ مقاله؛ نامه؛ انتشار: 09 اکتبر 1986؛ یادگیری بازنمایی‌ها با پس‌انتشار خطاها؛ David E. Rumelhart؛ Geoffrey E. Hinton؛ Ronald J. Williams",
+          "verified": true
+        },
+        {
+          "en": "CHAPTER 8; Learning Internal Representations by Error Propagation; D. E. RUMELHART, G. E. HINTON and R. J. WILLIAMS",
+          "fa": "فصل 8؛ یادگیری بازنمایی‌های درونی با انتشار خطا؛ D. E. RUMELHART، G. E. HINTON و R. J. WILLIAMS",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "08b4daf98865199666ef2bb42bae78086980c1340faa25e9e219f80c42dd7bcf",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "https://www.npr.org/2024/10/08/g-s1-26848/nobel-prize-in-physics-awarded-to-scientists-machine-learning"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "heading",
+          "fa": "جنبشی که با گذر زمان به جایزهٔ نوبل 2024 رسید"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "THE NOBEL PRIZE IN PHYSICS 2024; John J. Hopfield; Princeton University, NJ, USA; Geoffrey E. Hinton; University of Toronto, Canada; for foundational discoveries and inventions that enable machine learning with artificial neural networks; THE ROYAL SWEDISH ACADEMY OF SCIENCES",
+          "fa": "جایزهٔ نوبل فیزیک 2024؛ John J. Hopfield؛ دانشگاه پرینستون، نیوجرسی، آمریکا؛ Geoffrey E. Hinton؛ دانشگاه تورنتو، کانادا؛ برای کشف‌ها و اختراع‌های بنیادی که یادگیری ماشین با شبکه‌های عصبی مصنوعی را ممکن می‌کنند؛ آکادمی سلطنتی علوم سوئد",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "26fceaaa40b6d7aad160c365a342806082d09eb6893c0f397cd48b1ca2d02069",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "بنیاد حیاتی: بازنمایی شبکه‌های چندلایه به‌صورت تابع‌های غیرخطی و مشتق‌پذیر\nچرا غیرخطی (Non-linear)؟ ببینید اگر تابع‌های خطی را زنجیروار ترکیب کنیم چه می‌شود:"
+        },
+        {
+          "source_lines": [
+            14
+          ],
+          "kind": "text",
+          "fa": "تابع h1 چیست؟"
+        },
+        {
+          "source_lines": [
+            15
+          ],
+          "kind": "math",
+          "fa": "h1 = w1x1 + w3x2 + b1",
+          "latex": "h_1=w_1x_1+w_3x_2+b_1"
+        },
+        {
+          "source_lines": [
+            16
+          ],
+          "kind": "text",
+          "fa": "تابع h2 چیست؟"
+        },
+        {
+          "source_lines": [
+            17
+          ],
+          "kind": "math",
+          "fa": "h2 = w2x1 + w4x2 + b2",
+          "latex": "h_2=w_2x_1+w_4x_2+b_2"
+        },
+        {
+          "source_lines": [
+            18
+          ],
+          "kind": "text",
+          "fa": "تابع o1 چیست؟"
+        },
+        {
+          "source_lines": [
+            19
+          ],
+          "kind": "math",
+          "fa": "o1 = h1w5 + h2w6 + b3",
+          "latex": "o_1=h_1w_5+h_2w_6+b_3"
+        },
+        {
+          "source_lines": [
+            20,
+            21
+          ],
+          "kind": "math",
+          "fa": "• o1 = (w1x1 + w3x2 + b1 )w5 + (w2x1 + w4x2 + b2\n)w6 + b3",
+          "latex": "o_1=(w_1x_1+w_3x_2+b_1)w_5+(w_2x_1+w_4x_2+b_2)w_6+b_3"
+        },
+        {
+          "source_lines": [
+            22
+          ],
+          "kind": "math",
+          "fa": "• o1 = w1w5x1 + w3w5x2 + w5b1 + w2w6 x1 + w4w6x2 + w6b2 + b3",
+          "latex": "o_1=w_1w_5x_1+w_3w_5x_2+w_5b_1+w_2w_6x_1+w_4w_6x_2+w_6b_2+b_3"
+        },
+        {
+          "source_lines": [
+            23
+          ],
+          "kind": "text",
+          "fa": "زنجیره‌ای از تابع‌های خطی در هر عمقی را می‌توان به یک تابع خطی واحد کاهش داد!"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "kind": "literal",
+          "fa": "W1\nW2\nW3\nW4\nW5\nW6\nx1\nx2\nh1\nh2\no1"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "a6e45ab6bd80f457cafc9d7d27553c0c35c5f30491eda974f28b6a48f2e5a16a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "بنیاد حیاتی: بازنمایی شبکه‌های چندلایه به‌صورت تابع‌های غیرخطی و مشتق‌پذیر\nچرا غیرخطی (Non-linear)؟ ببینید اگر تابع‌های خطی را زنجیروار ترکیب کنیم چه می‌شود:"
+        },
+        {
+          "source_lines": [
+            3,
+            5,
+            7
+          ],
+          "kind": "text",
+          "fa": "تابع h1 چیست؟\nتابع h2 چیست؟\nتابع o1 چیست؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "math",
+          "fa": "• h1 = w1x1 + w3x2 + b1",
+          "latex": "h_1=w_1x_1+w_3x_2+b_1"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "math",
+          "fa": "• h2 = w2x1 + w4x2 + b2",
+          "latex": "h_2=w_2x_1+w_4x_2+b_2"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "math",
+          "fa": "• o1 = h1w5 + h2w6 + b3",
+          "latex": "o_1=h_1w_5+h_2w_6+b_3"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "ثابت × تابع خطی = تابع خطی"
+        },
+        {
+          "source_lines": [
+            21
+          ],
+          "kind": "text",
+          "fa": "زنجیره‌ای از تابع‌های خطی در هر عمقی را می‌توان به یک تابع خطی واحد کاهش داد!"
+        },
+        {
+          "source_lines": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "kind": "literal",
+          "fa": "W1\nW2\nW3\nW4\nW5\nW6\nx1\nx2\nh1\nh2\no1"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "b201815716b1b07e7d6c081dbccc009402b464ec963270656759e5bf555b703f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "بنیاد حیاتی: بازنمایی شبکه‌های چندلایه به‌صورت تابع‌های غیرخطی و مشتق‌پذیر\nچرا مشتق‌پذیر (Differentiable)؟ می‌توان از یادگیری به‌عنوان یک «قاعده» به «بهینه‌سازی» (Optimization) هدف‌محور رفت.\n• یعنی از سطح خطا پایین برویم تا پیش‌بینی‌های مدل به‌تدریج با هدف‌ها سازگارتر شوند."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Louis Augustin Cauchy: Compte Rendu `a l’Acad´emie des Sciences of October 18, 1847"
+        },
+        {
+          "source_lines": [
+            5,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "kind": "text",
+          "fa": "چه هدفی را می‌توانیم بهینه کنیم؟\nاین مثال چند پارامتر مدل w دارد؟\n• 2؛ هر جفت ممکن از مقدار وزن‌ها (صفحهٔ افقی) برای محاسبهٔ مقدارهای خطا (محور عمودی) استفاده می‌شود.\n• کدام پارامترهای مدل بهینه‌اند؟\n• نزول گرادیان (Gradient Descent): «قدم‌زدن» به پایین این کاسه.\nبرای مثال، کمینه‌کردن مجموع مربع خطاها بین هدف و پیش‌بینی:"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "math",
+          "fa": "𝐸 𝐰 =\n1\n2\n෍\n𝑖\n𝑦𝑖 − 𝐰⊤𝐱𝐢\n2",
+          "latex": "E(\\mathbf w)=\\frac12\\sum_i(y_i-\\mathbf w^T\\mathbf x_i)^2"
+        },
+        {
+          "source_lines": [
+            13
+          ],
+          "kind": "reference",
+          "fa": "medium.com/@kritikajaiswal48/convex-vs-non-convex-functions￾why-it-is-important-for-optimization-in-machine-learning￾b290403a44cd"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "f593ca5fc89ad22365917dedd237abf53a9df79e3b0b570ff9f4b3f166d5f364",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "بنیاد حیاتی: بازنمایی شبکه‌های چندلایه به‌صورت تابع‌های غیرخطی و مشتق‌پذیر\nچرا مشتق‌پذیر (Differentiable)؟ می‌توان از یادگیری به‌عنوان یک «قاعده» به «بهینه‌سازی» (Optimization) هدف‌محور رفت.\n• یعنی از سطح خطا پایین برویم تا پیش‌بینی‌های مدل به‌تدریج با هدف‌ها سازگارتر شوند.\nتمثیل: پیاده‌روی از کوه‌ها به MBE 155 در بولدر (هدف)، در تاریکی یا مه غلیظ؛ هر کدام را ترجیح می‌دهید!\nرویکرد («نزول گرادیان» (Gradient Descent)): شیب محلی را حس کنید تا جهت سرازیری را پیدا کنید. قدم بردارید. تکرار کنید.\nآغاز (ارتفاع زیاد)؛ نقطهٔ پایان (ارتفاع کم)."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "242be6d9fe4be8a170b56c26609dc5df411b1d94e2222729ee2c4b95a447d6a0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "بنیاد حیاتی: بازنمایی شبکه‌های چندلایه به‌صورت تابع‌های غیرخطی و مشتق‌پذیر\nارتباط شبکه‌های چندلایه با پرسپترون (Perceptron) را به یاد آورید:\nمشتق تابع پله‌ای چیست؟\n— بی‌نهایت/تعریف‌نشده."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Python Machine Learning; Raschka & Mirjalili"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Net input function; Threshold function; Output; x₁; x₂; xₘ; w₀; w₁; w₂; wₘ; 1",
+          "fa": "تابع ورودی خالص؛ تابع آستانه؛ خروجی؛ x₁؛ x₂؛ xₘ؛ w₀؛ w₁؛ w₂؛ wₘ؛ 1",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "e6d3066d47654ed74877afa0c3edafdfde89c8b07fa9c0f4b1da908f6c83fe51",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "بنیاد حیاتی: بازنمایی شبکه‌های چندلایه به‌صورت تابع‌های غیرخطی و مشتق‌پذیر\nبه معادله‌ای مشتق‌پذیر تغییر یافته است.\nچرا نامیدن این‌ها به‌عنوان «پرسپترون‌های چندلایه» (Multi-layer Perceptrons) نادرست است؟\nارتباط شبکه‌های چندلایه با پرسپترون را به یاد آورید:\n«تابع فعال‌سازی» (Activation Function)؛ برای مثال،"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Python Machine Learning; Raschka & Mirjalili"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "σ(x) = 1/(1+e⁻ˣ)",
+          "fa": "تابع سیگموید (Sigmoid)",
+          "verified": true,
+          "latex": "\\sigma(x)=\\frac{1}{1+e^{-x}}"
+        },
+        {
+          "en": "Net input function; Threshold function; Output; x₁; x₂; xₘ; w₀; w₁; w₂; wₘ; 1",
+          "fa": "تابع ورودی خالص؛ تابع آستانه؛ خروجی؛ x₁؛ x₂؛ xₘ؛ w₀؛ w₁؛ w₂؛ wₘ؛ 1",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "7e2cf7b861544b3000267aae41bc4f93e2332fc61afa0270b599d0e227133780",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): پیاده‌سازی\n• تا برآورده‌شدن معیار توقف تکرار کنید:\n1. دادهٔ آموزش را در مدل به جلو منتشر کنید تا خروجی پیش‌بینی شود.\n2. خطای پیش‌بینی‌ها را با تابع زیان (Loss Function)، مثلاً مجموع مربع خطاها، اندازه بگیرید.\n3. گرادیان‌های تابع زیان را محاسبه کنید تا مشخص شود هر پارامتر مدل چگونه در خطا نقش داشته است.\n4. هر پارامتر را با گرادیان‌های محاسبه‌شده به‌روزرسانی کنید.\nتوجه: این روش یادگیری از نظر زیستی باورپذیر نیست.\nایده: فرایند رسیدن به دمای مطلوب آب دوش."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "d8ac0d1ace97fed0c17091f911cb8d2b26f1ddc62a551f6be92047e8a3184e24",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): شهود پیاده‌سازی\n• تکرار کنید:\n1. حدس بزنید.\n2. خطا را حساب کنید.\n• برای مثال، ضریب ثابتی برای تبدیل دلار آمریکا به شِکِل اسرائیل یاد بگیرید، درحالی‌که فقط ورودی «دلار» و خروجی «شِکِل» را می‌بینید.\n$10؛ شِکِل = دلار × ثابت.\nشِکِل."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "7bbb9f55c321ca229bfe0670ccaf7df2b99f03f22a8aeb6ceea5f06aeeaa409f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): شهود پیاده‌سازی\n• تکرار کنید:\n1. حدس بزنید.\n2. خطا را حساب کنید.\n• برای مثال، ضریب ثابتی برای تبدیل دلار آمریکا به شِکِل اسرائیل یاد بگیرید، درحالی‌که فقط ورودی «دلار» و خروجی «شِکِل» را می‌بینید.\n$10؛ شِکِل = دلار × ثابت.\nخطا = حدس − مقدار درست."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "e99475b68b4d829815dc80e4ff71d0bd1f2ab3dac640d392fd945288a6303f4b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): شهود پیاده‌سازی\n• تکرار کنید:\n1. حدس بزنید.\n2. خطا را حساب کنید.\n• برای مثال، ضریب ثابتی برای تبدیل دلار آمریکا به شِکِل اسرائیل یاد بگیرید، درحالی‌که فقط ورودی «دلار» و خروجی «شِکِل» را می‌بینید.\n$10؛ شِکِل = دلار × ثابت.\nشِکِل."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "764cf46efc021ad48a92db78891affa2b6a5a3bd9292cb4d2f98dcc3d7346b30",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): شهود پیاده‌سازی\n• تکرار کنید:\n1. حدس بزنید.\n2. خطا را حساب کنید.\n• برای مثال، ضریب ثابتی برای تبدیل دلار آمریکا به شِکِل اسرائیل یاد بگیرید، درحالی‌که فقط ورودی «دلار» و خروجی «شِکِل» را می‌بینید.\n$10؛ شِکِل = دلار × ثابت.\nخطا = حدس − مقدار درست."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "e99475b68b4d829815dc80e4ff71d0bd1f2ab3dac640d392fd945288a6303f4b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): شهود پیاده‌سازی\n• تکرار کنید:\n1. حدس بزنید.\n2. خطا را حساب کنید.\n• برای مثال، ضریب ثابتی برای تبدیل دلار آمریکا به شِکِل اسرائیل یاد بگیرید، درحالی‌که فقط ورودی «دلار» و خروجی «شِکِل» را می‌بینید.\n$10؛ شِکِل = دلار × ثابت.\nشِکِل."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "24fc7b83ba2cd24db3a2e54bfc710cf1647bc2967f2e4cf01eaaca8c51208a54",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): شهود پیاده‌سازی\n• تکرار کنید:\n1. حدس بزنید.\n2. خطا را حساب کنید.\n• برای مثال، ضریب ثابتی برای تبدیل دلار آمریکا به شِکِل اسرائیل یاد بگیرید، درحالی‌که فقط ورودی «دلار» و خروجی «شِکِل» را می‌بینید.\n$10؛ شِکِل = دلار × ثابت.\nخطا = حدس − مقدار درست.\n• ایده: برای کاهش خطا، ثابت (یعنی پارامتر مدل) را تکراروار تنظیم کنید."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "28498cbb49917a7a3cb90646c4047ed8851de8ee5585e8633f242d3c2f2bf56b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): پیاده‌سازی\n• تا برآورده‌شدن معیار توقف تکرار کنید:\n1. دادهٔ آموزش را در مدل به جلو منتشر کنید تا خروجی پیش‌بینی شود.\n2. خطای پیش‌بینی‌ها را با تابع زیان (Loss Function)، مثلاً مجموع مربع خطاها، اندازه بگیرید.\n3. گرادیان‌های تابع زیان را محاسبه کنید تا مشخص شود هر پارامتر مدل چگونه در خطا نقش داشته است.\n4. هر پارامتر را با گرادیان‌های محاسبه‌شده به‌روزرسانی کنید.\nاین گام را زیر نظر می‌گیریم تا ببینیم یادگیری چگونه پیش می‌رود؛ آنچه انتظار داریم:\nتعداد حدس‌ها؛ خطا."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "7a321ee0a41f17f13f61f7911b8234739af74cc0a998a69bf8f1436c68473c38",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): تعریف‌ها\n• گرادیان (Gradient): برداری که نشان می‌دهد تغییری کوچک در هر متغیر تابع در x، چگونه خروجی f(x) را افزایش می‌دهد؛ یعنی مشتق‌های جزئی برای چند متغیر.\n• مشتق (Derivative): شیب (تغییر عمودی/تغییر افقی) تابع را در هر نقطه نشان می‌دهد.\n"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "math",
+          "fa": "f(x) = 2 - 3x + 4x²",
+          "latex": "f(x)=2-3x+4x^2"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "آیا این تابع محدب (Convex) است یا نامحدب (Non-convex)؟\nمقدار تابع در x = 2 چقدر است؟\nمقدار x در کمینهٔ f(x) چقدر است؟\nمحورها: x؛ f(x).\nf(2) = 12؛ x = 0.38."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "a41b327bd27511add6a6604c8255cebd4f8bd71cadaa36f75d7a9faf23a042df",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): تعریف‌ها\n• گرادیان (Gradient): برداری که نشان می‌دهد تغییری کوچک در هر متغیر تابع در x، چگونه خروجی f(x) را افزایش می‌دهد؛ یعنی مشتق‌های جزئی برای چند متغیر.\n• مشتق (Derivative): شیب (تغییر عمودی/تغییر افقی) تابع را در هر نقطه نشان می‌دهد.\n"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "math",
+          "fa": "f(x) = 2 - 3x + 4x²",
+          "latex": "f(x)=2-3x+4x^2"
+        },
+        {
+          "source_lines": [
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "kind": "math",
+          "fa": "شیب = تغییر عمودی / تغییر افقی = (f(x+h) − f(x))/h",
+          "latex": "\\mathrm{slope}=\\frac{\\mathrm{rise}}{\\mathrm{run}}=\\frac{f(x+h)-f(x)}h"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "محورها: x؛ f(x).\nf(2) = 12. اگر h مقداری اندک و مثبت باشد، در x=2 مقدار f(x+h) از 12 بیشتر است یا کمتر؟\nچقدر؟\nچگونه تغییر اندک h در x، خروجی را تغییر می‌دهد:"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "47e24f2200d0ffc5f7ab419fe28035b2caa8bb70db69481d8bba12a68241b62b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): تعریف‌ها\n• گرادیان (Gradient): برداری که نشان می‌دهد تغییری کوچک در هر متغیر تابع در x، چگونه خروجی f(x) را افزایش می‌دهد؛ یعنی مشتق‌های جزئی برای چند متغیر.\n• مشتق (Derivative): شیب (تغییر عمودی/تغییر افقی) تابع را در هر نقطه نشان می‌دهد.\n"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "math",
+          "fa": "f(x) = 2 - 3x + 4x²",
+          "latex": "f(x)=2-3x+4x^2"
+        },
+        {
+          "source_lines": [
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "kind": "math",
+          "fa": "شیب = تغییر عمودی / تغییر افقی = (f(x+h) − f(x))/h",
+          "latex": "\\mathrm{slope}=\\frac{\\mathrm{rise}}{\\mathrm{run}}=\\frac{f(x+h)-f(x)}h"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            14,
+            15,
+            16,
+            17
+          ],
+          "kind": "text",
+          "fa": "محورها: x؛ f(x).\nf(2) = 12.\nچگونه تغییر اندک h در x، خروجی را تغییر می‌دهد:\nبرای مثال، در x = 2:\n- برای h = 0.01: مقدار f(x+h) = 12.1304 و شیب = 13.04.\nافزایش x به‌اندازهٔ h=0.01 باعث افزایشی حدود ~13.04 برابر آن مقدار می‌شود (13.04 * .01)."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "6d80a5e0824a451c2b95a6e52d38ea78895a9a6d9d43b02de94ed05d0c9622b9",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): تعریف‌ها\n• گرادیان (Gradient): برداری که نشان می‌دهد تغییری کوچک در هر متغیر تابع در x، چگونه خروجی f(x) را افزایش می‌دهد؛ یعنی مشتق‌های جزئی برای چند متغیر.\n• مشتق (Derivative): شیب (تغییر عمودی/تغییر افقی) تابع را در هر نقطه نشان می‌دهد.\n"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "math",
+          "fa": "f(x) = 2 - 3x + 4x²",
+          "latex": "f(x)=2-3x+4x^2"
+        },
+        {
+          "source_lines": [
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "kind": "math",
+          "fa": "شیب = تغییر عمودی / تغییر افقی = (f(x+h) − f(x))/h",
+          "latex": "\\mathrm{slope}=\\frac{\\mathrm{rise}}{\\mathrm{run}}=\\frac{f(x+h)-f(x)}h"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "kind": "text",
+          "fa": "محورها: x؛ f(x).\nf(2) = 12.\nچگونه تغییر اندک h در x، خروجی را تغییر می‌دهد:\nبرای مثال، در x = 2:\n- برای h = 0.01: مقدار f(x+h) = 12.1304 و شیب = 13.04.\n- برای h = 0.001: مقدار f(x+h) = 12.013004 و شیب = 13.004.\n- برای h = 0.0001: مقدار f(x+h) = 12.0013004 و شیب = 13.0004.\nبا نزدیک‌شدن h به 0، شیب به چه مقداری نزدیک می‌شود؟\nاز نظر ریاضی، f′(x) = -3 + 8x؛ f′(2) = -3 + 16 = 13."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "d1cd555e1f477e529f92ebdd06bed212c088786083ffb777569d497858d8fde3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): تعریف‌ها\n• گرادیان (Gradient): برداری که نشان می‌دهد تغییری کوچک در هر متغیر تابع در x، چگونه خروجی f(x) را افزایش می‌دهد؛ یعنی مشتق‌های جزئی برای چند متغیر.\n• مشتق (Derivative): شیب (تغییر عمودی/تغییر افقی) تابع را در هر نقطه نشان می‌دهد.\n"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "math",
+          "fa": "f(x) = 2 - 3x + 4x²",
+          "latex": "f(x)=2-3x+4x^2"
+        },
+        {
+          "source_lines": [
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "kind": "math",
+          "fa": "شیب = تغییر عمودی / تغییر افقی = (f(x+h) − f(x))/h",
+          "latex": "\\mathrm{slope}=\\frac{\\mathrm{rise}}{\\mathrm{run}}=\\frac{f(x+h)-f(x)}h"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "kind": "text",
+          "fa": "محورها: x؛ f(x).\nf(2) = 12.\nچگونه تغییر اندک h در x، خروجی را تغییر می‌دهد:\nبرای مثال، در x = 2؛ f′(x) = 13.\nبا گام‌برداشتن در خلاف جهت مشتق، به نقطهٔ کمینه نزدیک شوید؛ مثلاً نرخ یادگیری (Learning Rate) = 0.01 فرض شود.\n- مقدار تازهٔ x باید چه باشد؟\n2 − (0.01 * 13) = 1.87\nx = 1.87"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "7b90a3de66d4a1351e0c1837ad80cc720dccf89399ea358a94fc843d727c023e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): تعریف‌ها\n• گرادیان (Gradient): برداری که نشان می‌دهد تغییری کوچک در هر متغیر تابع در x، چگونه خروجی f(x) را افزایش می‌دهد؛ یعنی مشتق‌های جزئی برای چند متغیر.\n• مشتق (Derivative): شیب (تغییر عمودی/تغییر افقی) تابع را در هر نقطه نشان می‌دهد.\n"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "math",
+          "fa": "f(x) = 2 - 3x + 4x²",
+          "latex": "f(x)=2-3x+4x^2"
+        },
+        {
+          "source_lines": [
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "math",
+          "fa": "شیب = تغییر عمودی / تغییر افقی = (f(x+h) − f(x))/h",
+          "latex": "\\mathrm{slope}=\\frac{\\mathrm{rise}}{\\mathrm{run}}=\\frac{f(x+h)-f(x)}h"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "kind": "text",
+          "fa": "محورها: x؛ f(x).\nچگونه تغییر اندک h در x، خروجی را تغییر می‌دهد:\nبرای مثال، در x = -1:\n- برای h = 0.01: مقدار f(x+h) = 8.8904 و شیب = -10.96.\n- برای h = 0.001: مقدار f(x+h) = 8.989004 و شیب = -10.996.\n- برای h = 0.0001: مقدار f(x+h) = 8.99890004 و شیب = -10.9996.\nبا نزدیک‌شدن h به 0، شیب به چه مقداری نزدیک می‌شود؟\nاز نظر ریاضی، f′(x) = -3 + 8x؛ f′(-1) = -3 + 8*-1 = -11.\nf(-1) = 9"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "9b1159eaf0b4f8e7ac4765945a5e6c574af195dc0cd4bcf277df51fd37d65671",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): تعریف‌ها\n• گرادیان (Gradient): برداری که نشان می‌دهد تغییری کوچک در هر متغیر تابع در x، چگونه خروجی f(x) را افزایش می‌دهد؛ یعنی مشتق‌های جزئی برای چند متغیر.\n• مشتق (Derivative): شیب (تغییر عمودی/تغییر افقی) تابع را در هر نقطه نشان می‌دهد.\n"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "math",
+          "fa": "f(x) = 2 - 3x + 4x²",
+          "latex": "f(x)=2-3x+4x^2"
+        },
+        {
+          "source_lines": [
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "math",
+          "fa": "شیب = تغییر عمودی / تغییر افقی = (f(x+h) − f(x))/h",
+          "latex": "\\mathrm{slope}=\\frac{\\mathrm{rise}}{\\mathrm{run}}=\\frac{f(x+h)-f(x)}h"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "kind": "text",
+          "fa": "محورها: x؛ f(x).\nچگونه تغییر اندک h در x، خروجی را تغییر می‌دهد:\nبرای مثال، در x = -1؛ f′(x) = -11.\nبا گام‌برداشتن در خلاف جهت مشتق، به نقطهٔ کمینه نزدیک شوید؛ مثلاً نرخ یادگیری (Learning Rate) = 0.01 فرض شود.\n- مقدار تازهٔ x باید چه باشد؟\n-1 − (0.01 * -11) = -0.89\nx = -0.89\nf(-1) = 9"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "83ef9251a81ba3c2e79637b8925140d9fed01924a897f388fde6bfb34bf9b9a0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): تعریف‌ها\n• گرادیان (Gradient): برداری که نشان می‌دهد تغییری کوچک در هر متغیر تابع در x، چگونه خروجی f(x) را افزایش می‌دهد؛ یعنی مشتق‌های جزئی برای چند متغیر.\n"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "برای مثال، f(x) = a + bc؛ x برداری شامل همهٔ پارامترهاست.\nچگونه تغییر اندک h در هر ورودی x، خروجی را تغییر می‌دهد:"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "math",
+          "fa": "شیب = تغییر عمودی / تغییر افقی = (f(x+h) − f(x))/h",
+          "latex": "\\mathrm{slope}=\\frac{\\mathrm{rise}}{\\mathrm{run}}=\\frac{f(x+h)-f(x)}h"
+        },
+        {
+          "source_lines": [
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "وقتی a = 1، b = -2 و c = 3 است، مقدار تابع چقدر است؟\nاگر فقط a را به‌اندازهٔ h اندکی مثبت تغییر دهیم، f(x+h) از -5 بیشتر می‌شود یا کمتر؟ چقدر؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "b4c2b434f454b9053166ae44cf9c2e3b312d5f6ef39cc09902e63456f0e06577",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): تعریف‌ها\n• گرادیان (Gradient): برداری که نشان می‌دهد تغییری کوچک در هر متغیر تابع در x، چگونه خروجی f(x) را افزایش می‌دهد؛ یعنی مشتق‌های جزئی برای چند متغیر.\n"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "برای مثال، f(x) = a + bc؛ x برداری شامل همهٔ پارامترهاست.\nچگونه تغییر اندک h در هر ورودی x، خروجی را تغییر می‌دهد:"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "math",
+          "fa": "شیب = تغییر عمودی / تغییر افقی = (f(x+h) − f(x))/h",
+          "latex": "\\mathrm{slope}=\\frac{\\mathrm{rise}}{\\mathrm{run}}=\\frac{f(x+h)-f(x)}h"
+        },
+        {
+          "source_lines": [
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "kind": "text",
+          "fa": "برای مثال، در a = 1، b = -2 و c = 3، فقط مقدار a را تغییر می‌دهیم:\n- برای h = 0.01: مقدار f(x+h) = (1+.01) + -2*3 = -4.99 و شیب = 1.000.\n- برای h = 0.001: مقدار f(x+h) = (1+.001) + -2*3 = -4.999 و شیب = 1.000.\nبا نزدیک‌شدن h به 0، شیب به 1 نزدیک می‌شود.\nاز نظر ریاضی، df/da = 1."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "90e52a21b7767a382af635712ac2fb7e199c5724d928e2b07f5ce430403bf3fc",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): تعریف‌ها\n• گرادیان (Gradient): برداری که نشان می‌دهد تغییری کوچک در هر متغیر تابع در x، چگونه خروجی f(x) را افزایش می‌دهد؛ یعنی مشتق‌های جزئی برای چند متغیر.\n"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "برای مثال، f(x) = a + bc؛ x برداری شامل همهٔ پارامترهاست.\nچگونه تغییر اندک h در هر ورودی x، خروجی را تغییر می‌دهد:"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "math",
+          "fa": "شیب = تغییر عمودی / تغییر افقی = (f(x+h) − f(x))/h",
+          "latex": "\\mathrm{slope}=\\frac{\\mathrm{rise}}{\\mathrm{run}}=\\frac{f(x+h)-f(x)}h"
+        },
+        {
+          "source_lines": [
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "به یاد آورید که در a = 1، b = -2 و c = 3، مقدار تابع -5 است.\nاگر فقط b را به‌اندازهٔ h اندکی مثبت تغییر دهیم، f(x+h) از -5 بیشتر می‌شود یا کمتر؟ چقدر؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "6e06e3b19a0a2cc0800cd66e6497fb93d1c9cb29d925dd0cc0f64c7689512853",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): تعریف‌ها\n• گرادیان (Gradient): برداری که نشان می‌دهد تغییری کوچک در هر متغیر تابع در x، چگونه خروجی f(x) را افزایش می‌دهد؛ یعنی مشتق‌های جزئی برای چند متغیر.\n"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "برای مثال، f(x) = a + bc؛ x برداری شامل همهٔ پارامترهاست.\nچگونه تغییر اندک h در هر ورودی x، خروجی را تغییر می‌دهد:"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "math",
+          "fa": "شیب = تغییر عمودی / تغییر افقی = (f(x+h) − f(x))/h",
+          "latex": "\\mathrm{slope}=\\frac{\\mathrm{rise}}{\\mathrm{run}}=\\frac{f(x+h)-f(x)}h"
+        },
+        {
+          "source_lines": [
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "kind": "text",
+          "fa": "برای مثال، در a = 1، b = -2 و c = 3، فقط مقدار b را تغییر می‌دهیم (گردکردن تا 3 رقم اعشار):\n- برای h = 0.01: مقدار f(x+h) = 1 + (-2 +.01)*3 = -4.970 و شیب = 3.000.\n- برای h = 0.001: مقدار f(x+h) = 1 + (-2 +.001)*3 = -4.997 و شیب = 3.000.\nبا نزدیک‌شدن h به 0، شیب به 3 نزدیک می‌شود.\nاز نظر ریاضی، df/db = c؛ که آن را 3 قرار داده‌ایم."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "3c3a2f8628da11335238165089aae910cea4b0af41ac7fdb550f6b4f65ff87cf",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): تعریف‌ها\n• گرادیان (Gradient): برداری که نشان می‌دهد تغییری کوچک در هر متغیر تابع در x، چگونه خروجی f(x) را افزایش می‌دهد؛ یعنی مشتق‌های جزئی برای چند متغیر.\n"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "برای مثال، f(x) = a + bc؛ x برداری شامل همهٔ پارامترهاست.\nچگونه تغییر اندک h در هر ورودی x، خروجی را تغییر می‌دهد:"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "math",
+          "fa": "شیب = تغییر عمودی / تغییر افقی = (f(x+h) − f(x))/h",
+          "latex": "\\mathrm{slope}=\\frac{\\mathrm{rise}}{\\mathrm{run}}=\\frac{f(x+h)-f(x)}h"
+        },
+        {
+          "source_lines": [
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "به یاد آورید که در a = 1، b = -2 و c = 3، مقدار تابع -5 است.\nاگر فقط c را به‌اندازهٔ h اندکی مثبت تغییر دهیم، f(x+h) از -5 بیشتر می‌شود یا کمتر؟ چقدر؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "8207a8e15d77bd59d50f46d6b44516e28085d025efdfeca5209d6f45d70160ae",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): تعریف‌ها\n• گرادیان (Gradient): برداری که نشان می‌دهد تغییری کوچک در هر متغیر تابع در x، چگونه خروجی f(x) را افزایش می‌دهد؛ یعنی مشتق‌های جزئی برای چند متغیر.\n"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "برای مثال، f(x) = a + bc؛ x برداری شامل همهٔ پارامترهاست.\nچگونه تغییر اندک h در هر ورودی x، خروجی را تغییر می‌دهد:"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "math",
+          "fa": "شیب = تغییر عمودی / تغییر افقی = (f(x+h) − f(x))/h",
+          "latex": "\\mathrm{slope}=\\frac{\\mathrm{rise}}{\\mathrm{run}}=\\frac{f(x+h)-f(x)}h"
+        },
+        {
+          "source_lines": [
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "kind": "text",
+          "fa": "برای مثال، در a = 1، b = -2 و c = 3، فقط مقدار c را تغییر می‌دهیم (گردکردن تا 3 رقم اعشار):\n- برای h = 0.01: مقدار f(x+h) = 1 + -2*(3 +.01) = -5.02 و شیب = -2.000.\n- برای h = 0.001: مقدار f(x+h) = 1 + -2*(3 +.001) = -5.002 و شیب = -2.000.\nبا نزدیک‌شدن h به 0، شیب به -2 نزدیک می‌شود.\nاز نظر ریاضی، df/dc = b؛ که آن را -2 قرار داده‌ایم."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "d6ccf81183c0b740541f28cded267fd56cb15fa67916e7871a03e68ab2535037",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): تعریف‌ها\n• گرادیان (Gradient): برداری که نشان می‌دهد تغییری کوچک در هر متغیر تابع در x، چگونه خروجی f(x) را افزایش می‌دهد؛ یعنی مشتق‌های جزئی برای چند متغیر.\n"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "برای مثال، f(x) = a + bc؛ x برداری شامل همهٔ پارامترهاست.\nچگونه تغییر اندک h در هر ورودی x، خروجی را تغییر می‌دهد:"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "math",
+          "fa": "شیب = تغییر عمودی / تغییر افقی = (f(x+h) − f(x))/h",
+          "latex": "\\mathrm{slope}=\\frac{\\mathrm{rise}}{\\mathrm{run}}=\\frac{f(x+h)-f(x)}h"
+        },
+        {
+          "source_lines": [
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "kind": "text",
+          "fa": "در جمع‌بندی، گرادیان برای هر ورودی با این معادله‌ها محاسبه می‌شود:\ndf/da = 1؛ df/db = c؛ df/dc = b.\nمی‌توان با گام‌برداشتن در خلاف جهت مشتق، مثلاً با نرخ یادگیری (Learning Rate) 0.01، به نقطهٔ کمینه نزدیک شد؛ برای مثال، در a = 1، b = -2 و c = 3:\na - 0.01*1 = 0.99؛ b - 0.01*c = -2.03؛ c - 0.01*b = 3.02؛ f(x) = -5.14."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "831d09b75c2c8dcd52b456e13b7977ef9e06b216926d5b640ad48dde4491ad17",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): تعریف‌ها\n• گرادیان (Gradient): برداری که نشان می‌دهد تغییری کوچک در هر متغیر تابع در x، چگونه خروجی f(x) را افزایش می‌دهد؛ یعنی مشتق‌های جزئی برای چند متغیر.\n• نزول گرادیان (Gradient Descent): برای کمینه‌کردن تابع، از هر نقطهٔ آغاز، تکراروار در خلاف جهت گرادیان قدم بردارید؛ یعنی نزول به‌جای صعود.\nمحورها: x؛ f(x).\n1؛ 2؛ 3."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "07a2ffba0928c478e8b4a5df99545b350f3ef07d65f898b396edb517d99d9837",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): حالت‌های ممکن\nتابع‌های محدب (Convex Functions): یک کمینه.\nتابع‌های نامحدب (Non-Convex Functions): چند کمینه.\nمسئلهٔ ارز؛ تمرکز ما: یادگیری شبکهٔ عصبی.\n(نمودارهای سادهٔ تک‌پارامتری)\nمحورهای هر دو نمودار: x؛ f(x)."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "ec6e9672bf1581071b0b8f77f511a8def1f5cd5b07d0593d22b6c7c36b75f175",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "نزول گرادیان (Gradient Descent): پیاده‌سازی\n• تا برآورده‌شدن معیار توقف تکرار کنید:\n1. دادهٔ آموزش را در مدل به جلو منتشر کنید تا خروجی پیش‌بینی شود.\n2. خطای پیش‌بینی‌ها را با تابع زیان (Loss Function)، مثلاً مجموع مربع خطاها، اندازه بگیرید.\n3. گرادیان‌های تابع زیان را محاسبه کنید تا مشخص شود هر پارامتر مدل چگونه در خطا نقش داشته است.\n4. هر پارامتر را با گرادیان‌های محاسبه‌شده به‌روزرسانی کنید.\nدستاورد اصلی: «پس‌انتشار» (Backpropagation)."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "06188b318d3e9e1a9dd0b0fe40ac1af55dc34b4fe987ce900b5a650a42bdab9f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            4
+          ],
+          "kind": "text",
+          "fa": "مبانی پس‌انتشار (Backpropagation)\n• مشاهدهٔ اصلی: تابع زیان (Loss Function)، تابعی ریاضی است که به‌صورت زنجیره متصل شده است.\n• آنچه می‌خواهیم: مشتق‌های جزئی نسبت به متغیرهای تابع، برای دانستن چگونگی کمینه‌کردن تابع زیان.\n• پس‌انتشار این کار را با قاعدهٔ زنجیره‌ای (Chain Rule) حساب دیفرانسیل انجام می‌دهد که تنها بر مشتق‌های محلی تکیه دارد؛ برای مثال،\n"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Ian Goodfellow, Yoshua Bengio, and Aaron Courville; Deep Learning, 2016."
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "نشان می‌دهد تغییری کوچک در هر متغیر، خروجی تابع را چه‌قدر تغییر می‌دهد."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "z=f(y); y=f(x); x=f(w); f; f′; dz/dy; dy/dx; dx/dw; dz/dx; dz/dw",
+          "fa": "z=f(y)؛ y=f(x)؛ x=f(w)؛ f؛ f′؛ dz/dy؛ dy/dx؛ dx/dw؛ dz/dx؛ dz/dw",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "1fa899071e795df2d199e6aaf772fa2709f8444c733276461e183273c5a99920",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            4
+          ],
+          "kind": "text",
+          "fa": "مبانی پس‌انتشار (Backpropagation)\n• مشاهدهٔ اصلی: تابع زیان (Loss Function)، تابعی ریاضی است که به‌صورت زنجیره متصل شده است.\n• آنچه می‌خواهیم: مشتق‌های جزئی نسبت به متغیرهای تابع، برای دانستن چگونگی کمینه‌کردن تابع زیان.\n• پس‌انتشار این کار را با قاعدهٔ زنجیره‌ای (Chain Rule) حساب دیفرانسیل انجام می‌دهد که تنها بر مشتق‌های محلی تکیه دارد؛ برای مثال،\n"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Ian Goodfellow, Yoshua Bengio, and Aaron Courville; Deep Learning, 2016."
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "dz/dx چیست؟\n(تغییرات x چگونه خروجی z را تغییر خواهند داد.)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "z=f(y); y=f(x); x=f(w); f; f′; dz/dy; dy/dx; dx/dw; dz/dx; dz/dw",
+          "fa": "z=f(y)؛ y=f(x)؛ x=f(w)؛ f؛ f′؛ dz/dy؛ dy/dx؛ dx/dw؛ dz/dx؛ dz/dw",
+          "verified": true
+        },
+        {
+          "en": "dz/dx = (dz/dy)(dy/dx)",
+          "fa": "قاعدهٔ زنجیره‌ای",
+          "verified": true,
+          "latex": "\\frac{dz}{dx}=\\frac{dz}{dy}\\frac{dy}{dx}"
+        }
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "c086f521869ce0981ba8883f29eda2224c78c61af56c7493e3deda61940d50e9",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            4
+          ],
+          "kind": "text",
+          "fa": "مبانی پس‌انتشار (Backpropagation)\n• مشاهدهٔ اصلی: تابع زیان (Loss Function)، تابعی ریاضی است که به‌صورت زنجیره متصل شده است.\n• آنچه می‌خواهیم: مشتق‌های جزئی نسبت به متغیرهای تابع، برای دانستن چگونگی کمینه‌کردن تابع زیان.\n• پس‌انتشار این کار را با قاعدهٔ زنجیره‌ای (Chain Rule) حساب دیفرانسیل انجام می‌دهد که تنها بر مشتق‌های محلی تکیه دارد؛ برای مثال،\n"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Ian Goodfellow, Yoshua Bengio, and Aaron Courville; Deep Learning, 2016."
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "dz/dx چیست؟\nمثال شهودی: شوهرم نسبت به دخترم چه‌قدر سریع‌تر است؟ (dz/dx)\ndz/dy: شوهرم 2 برابر سریع‌تر از پسرم است.\ndy/dx: پسرم 3 برابر سریع‌تر از دخترم است."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "z=f(y); y=f(x); x=f(w); f; f′; dz/dy; dy/dx; dx/dw; dz/dx; dz/dw",
+          "fa": "z=f(y)؛ y=f(x)؛ x=f(w)؛ f؛ f′؛ dz/dy؛ dy/dx؛ dx/dw؛ dz/dx؛ dz/dw",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "c9e59abfcde630f2884f23f1631ef0ba6d47bca4ed04aa2f44ff35dce377beb0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "مثال\n• طبقه‌بندی دودویی (Binary Classification): پیش‌بینی اینکه آیا دانشجو نمرهٔ B یا بهتر می‌گیرد؛ حداقل لازم برای دانشجوی تحصیلات تکمیلی علوم رایانه در این درس.\n• ورودی‌ها:\n• نسبت تکلیف‌های انجام‌شده\n• نسبت متن‌های خواندنیِ مطالعه‌شده\n• نسبت سخنرانی‌های تماشاشده"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "cc8e377ae6fa5d6317a0d2e5716bfd5af4be3f870de5f353cd7aacfcc51b2f1f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "kind": "text",
+          "fa": "مثال: انتخاب معماری شبکهٔ عصبی\nتابع فعال‌سازی (Activation Function) سیگموید (Sigmoid).\n(نسبت تکلیف‌های انجام‌شده)؛ (نسبت متن‌های خواندنیِ مطالعه‌شده)؛ (نسبت سخنرانی‌های تماشاشده)."
+        },
+        {
+          "source_lines": [
+            14
+          ],
+          "kind": "reference",
+          "fa": "Example from: Jiawei Han and Micheline Kamber; Data Mining."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "literal",
+          "fa": "x1\nx2\nx3\nn4\nn5\nn6 o6"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "σ(x) = 1/(1+e⁻ˣ)",
+          "fa": "سیگموید",
+          "verified": true,
+          "latex": "\\sigma(x)=\\frac{1}{1+e^{-x}}"
+        }
+      ]
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "85b5cd12d938abb13a3065dcce5e4067561ae1f8a35b730152e3290157e9cd9f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "مثال: انتخاب معماری شبکهٔ عصبی\nشبکهٔ عصبی 2 لایه‌ای.\nچند وزن یاد خواهیم گرفت؟\n• ورودی به لایهٔ پنهان (Hidden Layer) 1: 3x2 = 6\n• لایهٔ پنهان 1 به لایهٔ پنهان 2: 2x1 = 2\nچند بایاس (Bias) یاد خواهیم گرفت؟\n• 3"
+        },
+        {
+          "source_lines": [
+            30
+          ],
+          "kind": "reference",
+          "fa": "Example from: Jiawei Han and Micheline Kamber; Data Mining."
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29
+          ],
+          "kind": "literal",
+          "fa": "o6\nx1\nx2\nx3\nn4\nn5\nn6\nW1,4\nW4,6\nW1,5\nW2,4\nW2,5\nW3,4\nW3,5\nb4\nb5\n1\n1\n1\nb6\nW5,6"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "2704ad0e04773c4b92c82ef3569323a9f01c6502dd7b48e70d7e9de1df8f2e11",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            9
+          ],
+          "kind": "text",
+          "fa": "مثال: انتخاب تابع زیان (Loss Function)\nمربع خطا (Squared Error).\nمقدار واقعی؛ مقدار پیش‌بینی‌شده."
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "reference",
+          "fa": "Example from: Jiawei Han and Micheline Kamber; Data Mining."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "literal",
+          "fa": "o6\nx1\nx2\nx3\nn4\nn5\nn6"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(Yᵢ − Ŷᵢ)²",
+          "fa": "مربع اختلاف مقدار واقعی و پیش‌بینی‌شده",
+          "verified": true,
+          "latex": "(Y_i-\\hat Y_i)^2"
+        }
+      ]
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "0beddac5e7b760ff523246a66085e6d623d5fdc222a1ad777c5962ba287822d6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: مقداردهی اولیهٔ پارامترهای مدل"
+        },
+        {
+          "source_lines": [
+            22
+          ],
+          "kind": "reference",
+          "fa": "Example from: Jiawei Han and Micheline Kamber; Data Mining."
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21
+          ],
+          "kind": "literal",
+          "fa": "W1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\no6\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\nx1\nx2\nx3\nn4\nn5\nn6\n1\n1\n1"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "491c703aac13a514d196df5e28cb938fabe31813bad54fa2e66ca5b2c0aa21fb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: ورود نمونهٔ آموزش"
+        },
+        {
+          "source_lines": [
+            22
+          ],
+          "kind": "reference",
+          "fa": "Example from: Jiawei Han and Micheline Kamber; Data Mining."
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21
+          ],
+          "kind": "literal",
+          "fa": "1 W1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\n0\n1\no6\nn4\nn5\nn6\n1\n1\nt1 = 1\n1"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "3a1232a4d1223dbeaa99ff7663c5c423d83ac5e03b7b933179740786c4dc4772",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 1 — گذر رو به جلو (Forward Pass)"
+        },
+        {
+          "source_lines": [
+            15
+          ],
+          "kind": "text",
+          "fa": "جمع وزن‌دارِ ورودیِ گرهٔ 4:"
+        },
+        {
+          "source_lines": [
+            16,
+            17
+          ],
+          "kind": "math",
+          "fa": "i4 = (1 x 0.2 + 0 x 0.4 + 1 x -0.5) – 0.4\ni4 = -0.7"
+        },
+        {
+          "source_lines": [
+            18
+          ],
+          "kind": "text",
+          "fa": "نتیجهٔ فعال‌سازیِ گرهٔ 4:"
+        },
+        {
+          "source_lines": [
+            19,
+            20,
+            21
+          ],
+          "kind": "math",
+          "fa": "o4 = sigmoid(-0.7)\no4 = 1/(1+e-(-0.7))\no4 = 0.332",
+          "latex": "o_4=\\operatorname{sigmoid}(-0.7)=\\frac{1}{1+e^{-(-0.7)}}=0.332"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "kind": "literal",
+          "fa": "W1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\nt1 = 1\no4 = ?\no6\n1\n0\n1\nn4\nn5\nn6\n1\n1\n1"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 71,
+      "source_text_sha256": "5fa7bcbd0c15641182b4a053359066ceaa310150257d08d2f4825e9572e6c022",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 1 — گذر رو به جلو (Forward Pass)"
+        },
+        {
+          "source_lines": [
+            16
+          ],
+          "kind": "text",
+          "fa": "جمع وزن‌دارِ ورودیِ گرهٔ 5:"
+        },
+        {
+          "source_lines": [
+            17,
+            18
+          ],
+          "kind": "math",
+          "fa": "i5 = (1 x -0.3 + 0 x 0.1 + 1 x 0.2) + 0.2\ni5 = 0.1"
+        },
+        {
+          "source_lines": [
+            19
+          ],
+          "kind": "text",
+          "fa": "نتیجهٔ فعال‌سازیِ گرهٔ 5:"
+        },
+        {
+          "source_lines": [
+            20,
+            21,
+            22
+          ],
+          "kind": "math",
+          "fa": "o5 = sigmoid(0.1)\no5 = 1/(1+e-0.1)\no5 = 0.525",
+          "latex": "o_5=\\operatorname{sigmoid}(0.1)=\\frac{1}{1+e^{-(0.1)}}=0.525"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "kind": "literal",
+          "fa": "W1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\nt1 = 1\no4 = 0.332\no5 = ?\no6\n1\n0\n1\nn4\nn5\nn6\n1\n1\n1"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 72,
+      "source_text_sha256": "113b46ba4e57416d0f613715ba5c7d54dd5fa197fe5afef9f74f458a0a4462fe",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 1 — گذر رو به جلو (Forward Pass)"
+        },
+        {
+          "source_lines": [
+            16
+          ],
+          "kind": "text",
+          "fa": "جمع وزن‌دارِ ورودیِ گرهٔ 6:"
+        },
+        {
+          "source_lines": [
+            17,
+            18
+          ],
+          "kind": "math",
+          "fa": "i6 = (0.332 x -0.3 + 0.525 x -0.2) + 0.1\ni6 = -0.105"
+        },
+        {
+          "source_lines": [
+            19
+          ],
+          "kind": "text",
+          "fa": "نتیجهٔ فعال‌سازیِ گرهٔ 6:"
+        },
+        {
+          "source_lines": [
+            20,
+            21,
+            22
+          ],
+          "kind": "math",
+          "fa": "o6 = sigmoid(-0.105)\no6 = 1/(1+e-(-0.105))\no6 = 0.474",
+          "latex": "o_6=\\operatorname{sigmoid}(-0.105)=\\frac{1}{1+e^{-(-0.105)}}=0.474"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "kind": "literal",
+          "fa": "W1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\nt1 = 1\no4 = 0.332\no6 = ?\no5 = 0.525\n1\n0\n1\nn4\nn5\nn6\n1\n1\n1"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 73,
+      "source_text_sha256": "959ec19aace2d6c7b36c0c570cd9f58464243e07163be98f36fc7ef0eca1a01f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 2 — محاسبهٔ خطا (زیان؛ Loss)"
+        },
+        {
+          "source_lines": [
+            16,
+            17
+          ],
+          "kind": "math",
+          "fa": "= (1-0.474)2\n= 0.277",
+          "latex": "(1-0.474)^2=0.277"
+        },
+        {
+          "source_lines": [
+            21,
+            28,
+            29,
+            30
+          ],
+          "kind": "text",
+          "fa": "مربع خطا (Squared Error).\nآیا هنگام تغییر پارامترهای مدل در آموزش، می‌خواهیم این مقدار را افزایش دهیم یا کاهش؟"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            18,
+            19,
+            20,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "kind": "literal",
+          "fa": "W1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\n1\n0\n1\nn4\nn5\nn6\n1\n1\n1"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 74,
+      "source_text_sha256": "8c05b1a1b1b00b35554823afe419db7a3bc30c4e38b6f80811776e4be8a73ba7",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 3 — گذر رو به عقب (Backward Pass)"
+        },
+        {
+          "source_lines": [
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "kind": "text",
+          "fa": "به یاد آورید که هر گره 2 تابع پیاپی دارد:\n1. جمع وزن‌دار\n2. تابع فعال‌سازی (Activation Function)\nبرای گرهٔ 6، ابتدا این را محاسبه می‌کنیم:"
+        },
+        {
+          "source_lines": [
+            31,
+            32,
+            33,
+            34
+          ],
+          "kind": "math",
+          "fa": "z𝑗 = ෍\n𝑖=1\n𝑛\n𝑤𝑖j𝑥𝑖 + 𝑏𝑗",
+          "latex": "z_j=\\sum_{i=1}^n w_{ij}x_i+b_j"
+        },
+        {
+          "source_lines": [
+            35,
+            36,
+            37,
+            38
+          ],
+          "kind": "math",
+          "fa": "o𝑗 =\n1\n1 + 𝑒\n−z",
+          "latex": "o_j=\\frac1{1+e^{-z}}"
+        },
+        {
+          "source_lines": [
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕z6\n=\n𝜕E\n𝜕o6\nx\n𝜕o6\n𝜕z6",
+          "latex": "\\frac{\\partial E}{\\partial z_6}=\\frac{\\partial E}{\\partial o_6}\\times\\frac{\\partial o_6}{\\partial z_6}"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            29,
+            30
+          ],
+          "kind": "literal",
+          "fa": "W1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\nt1 = 1\no4 = 0.332\no5 = 0.525\n1\n0\n1\nn4\nn5\nn6\n1\n1\n1\no6 = 0.474\ne6 = ?"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 75,
+      "source_text_sha256": "aa0444ffd1299b3931fcd6eef83cddbca2c19d5faf227c7e51cc2d8130eea21f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 3 — گذر رو به عقب (Backward Pass)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "به یاد آورید که هر گره 2 تابع پیاپی دارد:\n1. جمع وزن‌دار\n2. تابع فعال‌سازی (Activation Function)\nبرای گرهٔ 6، ابتدا این را محاسبه می‌کنیم:"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕z6\n=\n𝜕E\n𝜕o6\nx\n𝜕o6\n𝜕z6",
+          "latex": "\\frac{\\partial E}{\\partial z_6}=\\frac{\\partial E}{\\partial o_6}\\times\\frac{\\partial o_6}{\\partial z_6}"
+        },
+        {
+          "source_lines": [
+            14,
+            15,
+            16,
+            17
+          ],
+          "kind": "math",
+          "fa": "z𝑗 = ෍\n𝑖=1\n𝑛\n𝑤𝑖j𝑥𝑖 + 𝑏𝑗",
+          "latex": "z_j=\\sum_{i=1}^n w_{ij}x_i+b_j"
+        },
+        {
+          "source_lines": [
+            18,
+            19
+          ],
+          "kind": "text",
+          "fa": "مقدار ثابت؛ تابع زیان (Loss Function):"
+        },
+        {
+          "source_lines": [
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕o6\n=\n𝜕\n𝜕o6\nt − o6\n2 = −2(t − o6)",
+          "latex": "\\frac{\\partial E}{\\partial o_6}=\\frac{\\partial}{\\partial o_6}(t-o_6)^2=-2(t-o_6)"
+        },
+        {
+          "source_lines": [
+            27
+          ],
+          "kind": "text",
+          "fa": "تابع فعال‌سازی سیگموید (Sigmoid):"
+        },
+        {
+          "source_lines": [
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36
+          ],
+          "kind": "math",
+          "fa": "𝜕o6\n𝜕z6\n=\n𝜕\n𝜕z6\n1\n1+𝑒\n−z6\n= (1- o6)o6",
+          "latex": "\\frac{\\partial o_6}{\\partial z_6}=\\frac{\\partial}{\\partial z_6}\\frac1{1+e^{-z_6}}=(1-o_6)o_6"
+        },
+        {
+          "source_lines": [
+            37,
+            38,
+            39,
+            40
+          ],
+          "kind": "math",
+          "fa": "o𝑗 =\n1\n1 + 𝑒\n−z",
+          "latex": "o_j=\\frac1{1+e^{-z}}"
+        },
+        {
+          "source_lines": [
+            41
+          ],
+          "kind": "text",
+          "fa": "ترکیب آن‌ها:"
+        },
+        {
+          "source_lines": [
+            42,
+            43,
+            44
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕z6\n= −2(t − o6) x (1- o6)o6",
+          "latex": "\\frac{\\partial E}{\\partial z_6}=-2(t-o_6)\\times(1-o_6)o_6"
+        },
+        {
+          "source_lines": [
+            45
+          ],
+          "kind": "text",
+          "fa": "می‌توان ثابت را حذف کرد (بر یادگیری اثر نمی‌گذارد)."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 76,
+      "source_text_sha256": "e6e4748473481fe44c2270271b86f31b52e6acebdca4fc81ddfd6495b7d2c939",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 3 — گذر رو به عقب (Backward Pass)"
+        },
+        {
+          "source_lines": [
+            26,
+            27,
+            28
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕z6\n= −(t − o6) x (1- o6)o6",
+          "latex": "\\frac{\\partial E}{\\partial z_6}=-(t-o_6)\\times(1-o_6)o_6"
+        },
+        {
+          "source_lines": [
+            29,
+            30,
+            31
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕z6\n= −(1 − 0.474) x (1-0.474)x0.474",
+          "latex": "\\frac{\\partial E}{\\partial z_6}=-(1-0.474)\\times(1-0.474)\\times0.474"
+        },
+        {
+          "source_lines": [
+            32,
+            33,
+            34
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕z6\n= −0.1311",
+          "latex": "\\frac{\\partial E}{\\partial z_6}=-0.1311"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25
+          ],
+          "kind": "literal",
+          "fa": "W1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\n1\n0\n1\nn4\nn5\nn6\n1\n1\n1\ne6 = ?"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 77,
+      "source_text_sha256": "2252eb710c6cd3758bc7a1ab58124712ad2465c587da9e622d123256c10017f7",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 3 — گذر رو به عقب (Backward Pass)"
+        },
+        {
+          "source_lines": [
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕wi,6\n=\n𝜕E\n𝜕o6\nx\n𝜕o6\n𝜕z6\nx\n𝜕z6\n𝜕wi,6",
+          "latex": "\\frac{\\partial E}{\\partial w_{i,6}}=\\frac{\\partial E}{\\partial o_6}\\times\\frac{\\partial o_6}{\\partial z_6}\\times\\frac{\\partial z_6}{\\partial w_{i,6}}"
+        },
+        {
+          "source_lines": [
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45
+          ],
+          "kind": "math",
+          "fa": "𝜕z6\n𝜕wi,6\n=\n𝜕\nwi,6\n(oi wi,6 + ojwj,6 + b6\n) = oi",
+          "latex": "\\frac{\\partial z_6}{\\partial w_{i,6}}=\\frac{\\partial}{w_{i,6}}(o_iw_{i,6}+o_jw_{j,6}+b_6)=o_i"
+        },
+        {
+          "source_lines": [
+            46,
+            47,
+            48
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕w4,6\n= e6 x o4 = −0.0435",
+          "latex": "\\frac{\\partial E}{\\partial w_{4,6}}=e_6\\times o_4=-0.0435"
+        },
+        {
+          "source_lines": [
+            49,
+            50,
+            51
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕w5,6\n= e6 x o5 = −0.0688",
+          "latex": "\\frac{\\partial E}{\\partial w_{5,6}}=e_6\\times o_5=-0.0688"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "kind": "literal",
+          "fa": "W1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = -0.1311\n1\n0\n1\nn4\nn5\nn6\n1\n1\n1\ndw4,6 = -0.0435\ndw5,6 = -0.0688"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 78,
+      "source_text_sha256": "6e6008d861992f9b5c29a244733a3e3da69fcfcafc8eaf4a72227897f8012a0e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 3 — گذر رو به عقب (Backward Pass)"
+        },
+        {
+          "source_lines": [
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕b6\n=\n𝜕E\n𝜕o6\nx\n𝜕o6\n𝜕z6\nx\n𝜕z6\n𝜕b6",
+          "latex": "\\frac{\\partial E}{\\partial b_6}=\\frac{\\partial E}{\\partial o_6}\\times\\frac{\\partial o_6}{\\partial z_6}\\times\\frac{\\partial z_6}{\\partial b_6}"
+        },
+        {
+          "source_lines": [
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45
+          ],
+          "kind": "math",
+          "fa": "𝜕z6\n𝜕wi,6\n=\n𝜕\nwi,6\n(oi wi,6 + oj wj,6 + b6\n) = 1",
+          "latex": "\\frac{\\partial z_6}{\\partial w_{i,6}}=\\frac{\\partial}{w_{i,6}}(o_iw_{i,6}+o_jw_{j,6}+b_6)=1"
+        },
+        {
+          "source_lines": [
+            47,
+            48,
+            49
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕b6\n= e6 x 1 = −0.1311",
+          "latex": "\\frac{\\partial E}{\\partial b_6}=e_6\\times1=-0.1311"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            46
+          ],
+          "kind": "literal",
+          "fa": "W1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = -0.1311\n1\n0\n1\nn4\nn5\nn6\n1\n1\n1\ndw4,6 = -0.0435\ndw5,6 = -0.0688\ndb6 = -0.1311"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 79,
+      "source_text_sha256": "9f12e1c714f05fa9512f5807de07fceab9147bc9e3ed090319f4ac9f086e0cd2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 3 — گذر رو به عقب (Backward Pass)"
+        },
+        {
+          "source_lines": [
+            26
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "verified": true,
+          "reason_fa": "ارجاع متنی «Image source» در لایهٔ استخراج باقی مانده، اما در صفحهٔ نهاییِ نمودار و معادله‌ها هیچ متن خوانایی از این ارجاع دیده نمی‌شود."
+        },
+        {
+          "source_lines": [
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "kind": "text",
+          "fa": "به یاد آورید که هر گره 2 تابع پیاپی دارد:\n1. جمع وزن‌دار\n2. تابع فعال‌سازی (Activation Function)\nبرای گرهٔ 5، این را محاسبه می‌کنیم:"
+        },
+        {
+          "source_lines": [
+            32,
+            33,
+            34,
+            35
+          ],
+          "kind": "math",
+          "fa": "z𝑗 = ෍\n𝑖=1\n𝑛\n𝑤𝑖j𝑥𝑖 + 𝑏𝑗",
+          "latex": "z_j=\\sum_{i=1}^n w_{ij}x_i+b_j"
+        },
+        {
+          "source_lines": [
+            36,
+            37,
+            38,
+            39
+          ],
+          "kind": "math",
+          "fa": "o𝑗 =\n1\n1 + 𝑒\n−z",
+          "latex": "o_j=\\frac1{1+e^{-z}}"
+        },
+        {
+          "source_lines": [
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕z5\n=\n𝜕E\n𝜕o6\nx\n𝜕o6\n𝜕z6\nx\n𝜕z6\n𝜕o5\nx\n𝜕o5\n𝜕z5",
+          "latex": "\\frac{\\partial E}{\\partial z_5}=\\frac{\\partial E}{\\partial o_6}\\times\\frac{\\partial o_6}{\\partial z_6}\\times\\frac{\\partial z_6}{\\partial o_5}\\times\\frac{\\partial o_5}{\\partial z_5}"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            40,
+            41,
+            42,
+            43
+          ],
+          "kind": "literal",
+          "fa": "W1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne5 = ?\n1\n0\n1\nn4\nn5\nn6\n1\n1\n1\ne6 = -0.1311\ndw4,6 = -0.0435\ndw5,6 = -0.0688\ndb6 = -0.1311"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 80,
+      "source_text_sha256": "d6fe3cc483f16ecd35629de79108891cc65676bab550785e477d4dc882d47652",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 3 — گذر رو به عقب (Backward Pass)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "verified": true,
+          "reason_fa": "ارجاع متنی «Image source» در لایهٔ استخراج باقی مانده، اما در صفحهٔ نهاییِ نمودار و معادله‌ها هیچ متن خوانایی از این ارجاع دیده نمی‌شود."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "به یاد آورید که هر گره 2 تابع پیاپی دارد:\n1. جمع وزن‌دار\n2. تابع فعال‌سازی (Activation Function)\nبرای گرهٔ 5، این را محاسبه می‌کنیم:"
+        },
+        {
+          "source_lines": [
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "math",
+          "fa": "z𝑗 = ෍\n𝑖=1\n𝑛\n𝑤𝑖j𝑥𝑖 + 𝑏𝑗",
+          "latex": "z_j=\\sum_{i=1}^n w_{ij}x_i+b_j"
+        },
+        {
+          "source_lines": [
+            11,
+            12,
+            13,
+            14
+          ],
+          "kind": "math",
+          "fa": "o𝑗 =\n1\n1 + 𝑒\n−z",
+          "latex": "o_j=\\frac1{1+e^{-z}}"
+        },
+        {
+          "source_lines": [
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕z5\n=\n𝜕E\n𝜕o6\nx\n𝜕o6\n𝜕z6\nx\n𝜕z6\n𝜕o5\nx\n𝜕o5\n𝜕z5",
+          "latex": "\\frac{\\partial E}{\\partial z_5}=\\frac{\\partial E}{\\partial o_6}\\times\\frac{\\partial o_6}{\\partial z_6}\\times\\frac{\\partial z_6}{\\partial o_5}\\times\\frac{\\partial o_5}{\\partial z_5}"
+        },
+        {
+          "source_lines": [
+            29,
+            30,
+            31
+          ],
+          "kind": "text",
+          "fa": "گرهٔ والد:\nتابع فعال‌سازی سیگموید (Sigmoid):\nترکیب آن‌ها:"
+        },
+        {
+          "source_lines": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38
+          ],
+          "kind": "math",
+          "fa": "𝜕z6\n𝜕o5\n=\n𝜕\no5\n(o4 w4,6 +o5w5,6 + b6\n) = w5,6",
+          "latex": "\\frac{\\partial z_6}{\\partial o_5}=\\frac{\\partial}{o_5}(o_4w_{4,6}+o_5w_{5,6}+b_6)=w_{5,6}"
+        },
+        {
+          "source_lines": [
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47
+          ],
+          "kind": "math",
+          "fa": "𝜕o5\n𝜕z5\n=\n𝜕\n𝜕z5\n1\n1+𝑒\n−z5\n= (1- o5)o5",
+          "latex": "\\frac{\\partial o_5}{\\partial z_5}=\\frac{\\partial}{\\partial z_5}\\frac1{1+e^{-z_5}}=(1-o_5)o_5"
+        },
+        {
+          "source_lines": [
+            48,
+            49,
+            50
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕z5\n= e6 x w5,6 x (1− o5)o5",
+          "latex": "\\frac{\\partial E}{\\partial z_5}=e_6\\times w_{5,6}\\times(1-o_5)o_5"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 81,
+      "source_text_sha256": "742672a83dd85d4844a68627186596692ad2a34ad7e660e057214f2e9fe08fd9",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 3 — گذر رو به عقب (Backward Pass)"
+        },
+        {
+          "source_lines": [
+            26
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "verified": true,
+          "reason_fa": "ارجاع متنی «Image source» در لایهٔ استخراج باقی مانده، اما در صفحهٔ نهاییِ نمودار و معادله‌ها هیچ متن خوانایی از این ارجاع دیده نمی‌شود."
+        },
+        {
+          "source_lines": [
+            31,
+            32,
+            33
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕z5\n= e6 x w5,6 x (1− o5)o5",
+          "latex": "\\frac{\\partial E}{\\partial z_5}=e_6\\times w_{5,6}\\times(1-o_5)o_5"
+        },
+        {
+          "source_lines": [
+            34,
+            35,
+            36
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕z5\n= −0.1311 x −0.2 x (1− 0.525)0.525",
+          "latex": "\\frac{\\partial E}{\\partial z_5}=-0.1311\\times-0.2\\times(1-0.525)0.525"
+        },
+        {
+          "source_lines": [
+            37,
+            38,
+            39
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕z5\n= 0.0065",
+          "latex": "\\frac{\\partial E}{\\partial z_5}=0.0065"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            27,
+            28,
+            29,
+            30
+          ],
+          "kind": "literal",
+          "fa": "W1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne5 = ?\n1\n0\n1\nn4\nn5\nn6\n1\n1\n1\ne6 = -0.1311\ndw4,6 = -0.0435\ndw5,6 = -0.0688\ndb6 = -0.1311"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 82,
+      "source_text_sha256": "8b8d985635a018bc636329b6227ed2fc8768a0ed768fed4da7e1082842510b37",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 3 — گذر رو به عقب (Backward Pass)"
+        },
+        {
+          "source_lines": [
+            25
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "verified": true,
+          "reason_fa": "ارجاع متنی «Image source» در لایهٔ استخراج باقی مانده، اما در صفحهٔ نهاییِ نمودار و معادله‌ها هیچ متن خوانایی از این ارجاع دیده نمی‌شود."
+        },
+        {
+          "source_lines": [
+            31
+          ],
+          "kind": "text",
+          "fa": "به‌طور مشابه، برای گرهٔ 4 محاسبه می‌کنیم:"
+        },
+        {
+          "source_lines": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕z4\n=\n𝜕E\n𝜕o6\nx\n𝜕o6\n𝜕z4\nx\n𝜕z6\n𝜕o4\nx\n𝜕o4\n𝜕z4",
+          "latex": "\\frac{\\partial E}{\\partial z_4}=\\frac{\\partial E}{\\partial o_6}\\times\\frac{\\partial o_6}{\\partial z_4}\\times\\frac{\\partial z_6}{\\partial o_4}\\times\\frac{\\partial o_4}{\\partial z_4}"
+        },
+        {
+          "source_lines": [
+            46,
+            47,
+            48
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕z4\n= e6 x w4,6 x (1− o4)o4",
+          "latex": "\\frac{\\partial E}{\\partial z_4}=e_6\\times w_{4,6}\\times(1-o_4)o_4"
+        },
+        {
+          "source_lines": [
+            49,
+            50,
+            51
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕z4\n= −0.1311 x −0.3 x (1− 0.332)0.332",
+          "latex": "\\frac{\\partial E}{\\partial z_4}=-0.1311\\times-0.3\\times(1-0.332)0.332"
+        },
+        {
+          "source_lines": [
+            52,
+            53,
+            54
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕z4\n= 0.0087",
+          "latex": "\\frac{\\partial E}{\\partial z_4}=0.0087"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            26,
+            27,
+            28,
+            29,
+            30,
+            55
+          ],
+          "kind": "literal",
+          "fa": "W1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\n1\n0\n1\nn4\nn5\nn6\n1\n1\n1\ne6 = -0.1311\ndw4,6 = -0.0435\ndw5,6 = -0.0688\ndb6 = -0.1311\ne4 = ?\ne5 = 0.0065"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 83,
+      "source_text_sha256": "5ac640ad4f410a3ad9892a98e06c5760565ca4e74e2fb65efde56cea54fa4a33",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 3 — گذر رو به عقب (Backward Pass)"
+        },
+        {
+          "source_lines": [
+            25
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "verified": true,
+          "reason_fa": "ارجاع متنی «Image source» در لایهٔ استخراج باقی مانده، اما در صفحهٔ نهاییِ نمودار و معادله‌ها هیچ متن خوانایی از این ارجاع دیده نمی‌شود."
+        },
+        {
+          "source_lines": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕wi,4/5\n=\n𝜕E\n𝜕o6\nx\n𝜕o6\n𝜕z6\nx\n𝜕z6\n𝜕o4/5\nx\n𝜕o4/5\n𝜕z4/5\nx\n𝜕z4/5\n𝜕wi,4/5",
+          "latex": "\\frac{\\partial E}{\\partial w_{i,4/5}}=\\frac{\\partial E}{\\partial o_6}\\times\\frac{\\partial o_6}{\\partial z_6}\\times\\frac{\\partial z_6}{\\partial o_{4/5}}\\times\\frac{\\partial o_{4/5}}{\\partial z_{4/5}}\\times\\frac{\\partial z_{4/5}}{\\partial w_{i,4/5}}"
+        },
+        {
+          "source_lines": [
+            49,
+            50,
+            51
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕w1,4\n= e4 x1",
+          "latex": "\\frac{\\partial E}{\\partial w_{1,4}}=e_4x_1"
+        },
+        {
+          "source_lines": [
+            52,
+            53,
+            54
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕w2,4\n= e4 x2",
+          "latex": "\\frac{\\partial E}{\\partial w_{2,4}}=e_4x_2"
+        },
+        {
+          "source_lines": [
+            55,
+            56,
+            57
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕w3,4\n= e4 x3",
+          "latex": "\\frac{\\partial E}{\\partial w_{3,4}}=e_4x_3"
+        },
+        {
+          "source_lines": [
+            58,
+            59,
+            60
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕w1,5\n= e5 x1",
+          "latex": "\\frac{\\partial E}{\\partial w_{1,5}}=e_5x_1"
+        },
+        {
+          "source_lines": [
+            61,
+            62,
+            63
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕w2,5\n= e5 x2",
+          "latex": "\\frac{\\partial E}{\\partial w_{2,5}}=e_5x_2"
+        },
+        {
+          "source_lines": [
+            64,
+            65,
+            66
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕w3,5\n= e5 x3",
+          "latex": "\\frac{\\partial E}{\\partial w_{3,5}}=e_5x_3"
+        },
+        {
+          "source_lines": [
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78
+          ],
+          "kind": "math",
+          "fa": "dw3,5 = 0.0065 𝜕z4/5\n𝜕wi,4/5\n=\n𝜕\n𝜕wi,4/5\n(x1w1,4/5+ x2w2,4/5+ x3w3,4/5+ b4/5\n) = xi",
+          "latex": "dw_{3,5}=0.0065\\qquad\\frac{\\partial z_{4/5}}{\\partial w_{i,4/5}}=\\frac{\\partial}{\\partial w_{i,4/5}}(x_1w_{1,4/5}+x_2w_{2,4/5}+x_3w_{3,4/5}+b_{4/5})=x_i"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            67,
+            68,
+            69,
+            70,
+            71
+          ],
+          "kind": "literal",
+          "fa": "W1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\n1\n0\n1\nn4\nn5\nn6\n1\n1\n1\ne6 = -0.1311\ndw4,6 = -0.0435\ndw5,6 = -0.0688\ndb6 = -0.1311\ne4 = 0.0087\ne5 = 0.0065\ndw1,4 = 0.0087\ndw1,5 = 0.0065\ndw2,4 = 0\ndw2,5 = 0\ndw3,4 = 0.0087"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 84,
+      "source_text_sha256": "3ce0dace29d65d1b06257173f6b9fcf71f1c976c7a29c63d69b06e0d0c4e3a93",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 3 — گذر رو به عقب (Backward Pass)"
+        },
+        {
+          "source_lines": [
+            25
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "verified": true,
+          "reason_fa": "ارجاع متنی «Image source» در لایهٔ استخراج باقی مانده، اما در صفحهٔ نهاییِ نمودار و معادله‌ها هیچ متن خوانایی از این ارجاع دیده نمی‌شود."
+        },
+        {
+          "source_lines": [
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕b4/5\n=\n𝜕E\n𝜕o6\nx\n𝜕o6\n𝜕z6\nx\n𝜕z6\n𝜕o4/5\nx\n𝜕o4/5\n𝜕z4/5\nx\n𝜕z4/5\n𝜕b4/5",
+          "latex": "\\frac{\\partial E}{\\partial b_{4/5}}=\\frac{\\partial E}{\\partial o_6}\\times\\frac{\\partial o_6}{\\partial z_6}\\times\\frac{\\partial z_6}{\\partial o_{4/5}}\\times\\frac{\\partial o_{4/5}}{\\partial z_{4/5}}\\times\\frac{\\partial z_{4/5}}{\\partial b_{4/5}}"
+        },
+        {
+          "source_lines": [
+            49,
+            50,
+            51
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕b4\n= e4",
+          "latex": "\\frac{\\partial E}{\\partial b_4}=e_4"
+        },
+        {
+          "source_lines": [
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63
+          ],
+          "kind": "math",
+          "fa": "dw3,5 = 0.0065 𝜕z4/5\n𝜕b4/5\n=\n𝜕\n𝜕b4/5\n(x1w1,4/5+ x2w2,4/5+ x3w3,4/5+ b4/5\n) = 1",
+          "latex": "dw_{3,5}=0.0065\\qquad\\frac{\\partial z_{4/5}}{\\partial b_{4/5}}=\\frac{\\partial}{\\partial b_{4/5}}(x_1w_{1,4/5}+x_2w_{2,4/5}+x_3w_{3,4/5}+b_{4/5})=1"
+        },
+        {
+          "source_lines": [
+            64,
+            65,
+            66
+          ],
+          "kind": "math",
+          "fa": "𝜕E\n𝜕b5\n= e5",
+          "latex": "\\frac{\\partial E}{\\partial b_5}=e_5"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            52,
+            53,
+            54,
+            55,
+            56,
+            67,
+            68
+          ],
+          "kind": "literal",
+          "fa": "W1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\n1\n0\n1\nn4\nn5\nn6\n1\n1\n1\ne6 = -0.1311\ndw4,6 = -0.0435\ndw5,6 = -0.0688\ndb6 = -0.1311\ne4 = 0.0087\ne5 = 0.0065\ndw1,4 = 0.0087\ndw1,5 = 0.0065\ndw2,4 = 0\ndw2,5 = 0\ndw3,4 = 0.0087\ndb4 = 0.0087\ndb5 = 0.0065"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 85,
+      "source_text_sha256": "9c3aa7996db091ab047d2743c7456dcf810b782791ed7f12d949c1abfa27cffa",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 4 — به‌روزرسانی وزن‌ها"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37
+          ],
+          "kind": "literal",
+          "fa": "W1,4 = ?\nW4,6 = ?\nW5,6 = ?\nW1,5 = ?\nW2,4 = ?\nW2,5 = ?\nW3,4 = ?\nW3,5 = ?\nb4 = ?\nb5 = ?\nb6 = ?\nt1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = -0.1311 e4 = 0.0087\ne5 = 0.0065\n1\n0\n1\ndw4,6 = -0.0435\ndw5,6 = -0.0688\ndb6 = -0.1311\ndw1,4 = 0.0087\ndw1,5 = 0.0065\ndw2,4 = 0\ndw2,5 = 0\ndw3,4 = 0.0087\ndw3,5 = 0.0065\ndb4 = 0.0087\ndb5 = 0.0065\nn4\nn5\nn6\n1\n1\n1"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 86,
+      "source_text_sha256": "677ef30e430098d8abc449ef7ba245ba50b0585c828114c8820d6deea9a81f4c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 4 — به‌روزرسانی وزن‌ها"
+        },
+        {
+          "source_lines": [
+            27
+          ],
+          "kind": "text",
+          "fa": "پارامترهای تازه (نرخ یادگیری (Learning Rate) = 0.9):"
+        },
+        {
+          "source_lines": [
+            28,
+            29
+          ],
+          "kind": "math",
+          "fa": "w4,6 = -0.3 - 0.9 * -0.0435\nw4,6 = -0.261"
+        },
+        {
+          "source_lines": [
+            41
+          ],
+          "kind": "text",
+          "fa": "آیا w4,6 باید افزایش یابد یا کاهش؟"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "kind": "literal",
+          "fa": "t1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = -0.1311 e4 = 0.0087\ne5 = 0.0065\n1\n0\n1\ndw4,6 = -0.0435\ndw5,6 = -0.0688\ndb6 = -0.1311\ndw1,4 = 0.0087\ndw1,5 = 0.0065\ndw2,4 = 0\ndw2,5 = 0\ndw3,4 = 0.0087\ndw3,5 = 0.0065\ndb4 = 0.0087\ndb5 = 0.0065\nn4\nn5\nn6\n1\n1\n1\nW1,4 = 0.2\nW4,6 = -0.3\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 87,
+      "source_text_sha256": "c8ffd768ad84f25f2918462bf8f28f35a183614c92d705768444b0c4eab01284",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 4 — به‌روزرسانی وزن‌ها"
+        },
+        {
+          "source_lines": [
+            27
+          ],
+          "kind": "text",
+          "fa": "پارامترهای تازه (نرخ یادگیری (Learning Rate) = 0.9):"
+        },
+        {
+          "source_lines": [
+            28,
+            29
+          ],
+          "kind": "math",
+          "fa": "w5,6 = -0.2 - 0.9 * -0.0688\nw5,6 = -0.138"
+        },
+        {
+          "source_lines": [
+            41
+          ],
+          "kind": "text",
+          "fa": "آیا w5,6 باید افزایش یابد یا کاهش؟"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "kind": "literal",
+          "fa": "t1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = -0.1311 e4 = 0.0087\ne5 = 0.0065\n1\n0\n1\ndw4,6 = -0.0435\ndw5,6 = -0.0688\ndb6 = -0.1311\ndw1,4 = 0.0087\ndw1,5 = 0.0065\ndw2,4 = 0\ndw2,5 = 0\ndw3,4 = 0.0087\ndw3,5 = 0.0065\ndb4 = 0.0087\ndb5 = 0.0065\nn4\nn5\nn6\n1\n1\n1\nW1,4 = 0.2\nW4,6 = -0.261\nW5,6 = -0.2\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 88,
+      "source_text_sha256": "20f2656a0583c47fb16500f23526a78ee42eb22cd38b5b8ad364e16e27b2dbd0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 4 — به‌روزرسانی وزن‌ها"
+        },
+        {
+          "source_lines": [
+            27
+          ],
+          "kind": "text",
+          "fa": "پارامترهای تازه (نرخ یادگیری (Learning Rate) = 0.9):"
+        },
+        {
+          "source_lines": [
+            28,
+            29
+          ],
+          "kind": "math",
+          "fa": "b6 = 0.1 - 0.9 * -0.1311\nb6 = 0.218"
+        },
+        {
+          "source_lines": [
+            41
+          ],
+          "kind": "text",
+          "fa": "آیا b6 باید افزایش یابد یا کاهش؟"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "kind": "literal",
+          "fa": "t1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = -0.1311 e4 = 0.0087\ne5 = 0.0065\n1\n0\n1\ndw4,6 = -0.0435\ndw5,6 = -0.0688\ndb6 = -0.1311\ndw1,4 = 0.0087\ndw1,5 = 0.0065\ndw2,4 = 0\ndw2,5 = 0\ndw3,4 = 0.0087\ndw3,5 = 0.0065\ndb4 = 0.0087\ndb5 = 0.0065\nn4\nn5\nn6\n1\n1\n1\nW1,4 = 0.2\nW4,6 = -0.261\nW5,6 = -0.138\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.1"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 89,
+      "source_text_sha256": "753c5b6ce877f4c05058bf8f82e79a524631173c1e217ff736139f379b8ab131",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 4 — به‌روزرسانی وزن‌ها"
+        },
+        {
+          "source_lines": [
+            27
+          ],
+          "kind": "text",
+          "fa": "پارامترهای تازه (نرخ یادگیری (Learning Rate) = 0.9):"
+        },
+        {
+          "source_lines": [
+            28,
+            29
+          ],
+          "kind": "math",
+          "fa": "w1,4 = 0.2 - 0.9 * 0.0087\nw1,4 = 0.192"
+        },
+        {
+          "source_lines": [
+            41
+          ],
+          "kind": "text",
+          "fa": "آیا w1,4 باید افزایش یابد یا کاهش؟"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "kind": "literal",
+          "fa": "t1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = -0.1311 e4 = 0.0087\ne5 = 0.0065\n1\n0\n1\ndw4,6 = -0.0435\ndw5,6 = -0.0688\ndb6 = -0.1311\ndw1,4 = 0.0087\ndw1,5 = 0.0065\ndw2,4 = 0\ndw2,5 = 0\ndw3,4 = 0.0087\ndw3,5 = 0.0065\ndb4 = 0.0087\ndb5 = 0.0065\nn4\nn5\nn6\n1\n1\n1\nW1,4 = 0.2\nW4,6 = -0.261\nW5,6 = -0.138\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.218"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 90,
+      "source_text_sha256": "b6ba3f0a29e7df954c06c3eb85704211734134b1b087251354f9d20abd3aae12",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 4 — به‌روزرسانی وزن‌ها"
+        },
+        {
+          "source_lines": [
+            27
+          ],
+          "kind": "text",
+          "fa": "پارامترهای تازه (نرخ یادگیری (Learning Rate) = 0.9):"
+        },
+        {
+          "source_lines": [
+            28,
+            29
+          ],
+          "kind": "math",
+          "fa": "w1,5 = -0.3 - 0.9 * 0.0065\nw1,5 = -0.306"
+        },
+        {
+          "source_lines": [
+            41
+          ],
+          "kind": "text",
+          "fa": "آیا w1,5 باید افزایش یابد یا کاهش؟"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "kind": "literal",
+          "fa": "t1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = -0.1311 e4 = 0.0087\ne5 = 0.0065\n1\n0\n1\ndw4,6 = -0.0435\ndw5,6 = -0.0688\ndb6 = -0.1311\ndw1,4 = 0.0087\ndw1,5 = 0.0065\ndw2,4 = 0\ndw2,5 = 0\ndw3,4 = 0.0087\ndw3,5 = 0.0065\ndb4 = 0.0087\ndb5 = 0.0065\nn4\nn5\nn6\n1\n1\n1\nW1,4 = 0.192\nW4,6 = -0.261\nW5,6 = -0.138\nW1,5 = -0.3\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.218"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 91,
+      "source_text_sha256": "cba139827d5580d3e17b3839dd982978d91bebde1c7c7563a890b927f08217e6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 4 — به‌روزرسانی وزن‌ها"
+        },
+        {
+          "source_lines": [
+            27
+          ],
+          "kind": "text",
+          "fa": "پارامترهای تازه (نرخ یادگیری (Learning Rate) = 0.9):"
+        },
+        {
+          "source_lines": [
+            28,
+            29
+          ],
+          "kind": "math",
+          "fa": "w2,4 = 0.4 - 0.9 * 0\nw2,4 = 0.4"
+        },
+        {
+          "source_lines": [
+            41
+          ],
+          "kind": "text",
+          "fa": "آیا w2,4 باید افزایش یابد یا کاهش؟"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "kind": "literal",
+          "fa": "t1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = -0.1311 e4 = 0.0087\ne5 = 0.0065\n1\n0\n1\ndw4,6 = -0.0435\ndw5,6 = -0.0688\ndb6 = -0.1311\ndw1,4 = 0.0087\ndw1,5 = 0.0065\ndw2,4 = 0\ndw2,5 = 0\ndw3,4 = 0.0087\ndw3,5 = 0.0065\ndb4 = 0.0087\ndb5 = 0.0065\nn4\nn5\nn6\n1\n1\n1\nW1,4 = 0.192\nW4,6 = -0.261\nW5,6 = -0.138\nW1,5 = -0.306\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.218"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 92,
+      "source_text_sha256": "3b04a2f354f65e6681ae469526a9dc2e1f0581a32897316e4cd2c5d17a5c3436",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 4 — به‌روزرسانی وزن‌ها"
+        },
+        {
+          "source_lines": [
+            27
+          ],
+          "kind": "text",
+          "fa": "پارامترهای تازه (نرخ یادگیری (Learning Rate) = 0.9):"
+        },
+        {
+          "source_lines": [
+            28,
+            29
+          ],
+          "kind": "math",
+          "fa": "w2,5 = 0.1 - 0.9 * 0\nw2,5 = 0.1"
+        },
+        {
+          "source_lines": [
+            41
+          ],
+          "kind": "text",
+          "fa": "آیا w2,5 باید افزایش یابد یا کاهش؟"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "kind": "literal",
+          "fa": "t1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = -0.1311 e4 = 0.0087\ne5 = 0.0065\n1\n0\n1\ndw4,6 = -0.0435\ndw5,6 = -0.0688\ndb6 = -0.1311\ndw1,4 = 0.0087\ndw1,5 = 0.0065\ndw2,4 = 0\ndw2,5 = 0\ndw3,4 = 0.0087\ndw3,5 = 0.0065\ndb4 = 0.0087\ndb5 = 0.0065\nn4\nn5\nn6\n1\n1\n1\nW1,4 = 0.192\nW4,6 = -0.261\nW5,6 = -0.138\nW1,5 = -0.306\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.218"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 93,
+      "source_text_sha256": "02bd12af3d32dd1ff9762ffb9bbb3c908a8a8ae126d47e98ac4e8b5955e39950",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 4 — به‌روزرسانی وزن‌ها"
+        },
+        {
+          "source_lines": [
+            27
+          ],
+          "kind": "text",
+          "fa": "پارامترهای تازه (نرخ یادگیری (Learning Rate) = 0.9):"
+        },
+        {
+          "source_lines": [
+            28,
+            29
+          ],
+          "kind": "math",
+          "fa": "w3,4 = -0.5 - 0.9 * 0.0087\nw3,4 = -0.508"
+        },
+        {
+          "source_lines": [
+            41
+          ],
+          "kind": "text",
+          "fa": "آیا w3,4 باید افزایش یابد یا کاهش؟"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "kind": "literal",
+          "fa": "t1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = -0.1311 e4 = 0.0087\ne5 = 0.0065\n1\n0\n1\ndw4,6 = -0.0435\ndw5,6 = -0.0688\ndb6 = -0.1311\ndw1,4 = 0.0087\ndw1,5 = 0.0065\ndw2,4 = 0\ndw2,5 = 0\ndw3,4 = 0.0087\ndw3,5 = 0.0065\ndb4 = 0.0087\ndb5 = 0.0065\nn4\nn5\nn6\n1\n1\n1\nW1,4 = 0.192\nW4,6 = -0.261\nW5,6 = -0.138\nW1,5 = -0.306\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.5\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.218"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 94,
+      "source_text_sha256": "13d1265c17527de34d760c418de4073445056b3690b57dfe130ef62d7c792acf",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 4 — به‌روزرسانی وزن‌ها"
+        },
+        {
+          "source_lines": [
+            27
+          ],
+          "kind": "text",
+          "fa": "پارامترهای تازه (نرخ یادگیری (Learning Rate) = 0.9):"
+        },
+        {
+          "source_lines": [
+            28,
+            29
+          ],
+          "kind": "math",
+          "fa": "w3,5 = 0.2 - 0.9 * 0.0065\nw3,5 = 0.194"
+        },
+        {
+          "source_lines": [
+            41
+          ],
+          "kind": "text",
+          "fa": "آیا w3,5 باید افزایش یابد یا کاهش؟"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "kind": "literal",
+          "fa": "t1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = -0.1311 e4 = 0.0087\ne5 = 0.0065\n1\n0\n1\ndw4,6 = -0.0435\ndw5,6 = -0.0688\ndb6 = -0.1311\ndw1,4 = 0.0087\ndw1,5 = 0.0065\ndw2,4 = 0\ndw2,5 = 0\ndw3,4 = 0.0087\ndw3,5 = 0.0065\ndb4 = 0.0087\ndb5 = 0.0065\nn4\nn5\nn6\n1\n1\n1\nW1,4 = 0.192\nW4,6 = -0.261\nW5,6 = -0.138\nW1,5 = -0.306\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.508\nW3,5 = 0.2\nb4 = -0.4\nb5 = 0.2\nb6 = 0.218"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 95,
+      "source_text_sha256": "8aecdb95bf16e5ad06bd81f87595fc413dd409879c013ca8e673b558c123ca9a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 4 — به‌روزرسانی وزن‌ها"
+        },
+        {
+          "source_lines": [
+            27
+          ],
+          "kind": "text",
+          "fa": "پارامترهای تازه (نرخ یادگیری (Learning Rate) = 0.9):"
+        },
+        {
+          "source_lines": [
+            28,
+            29
+          ],
+          "kind": "math",
+          "fa": "b5 = 0.2 - 0.9 * 0.0065\nb5 = 0.194"
+        },
+        {
+          "source_lines": [
+            41
+          ],
+          "kind": "text",
+          "fa": "آیا b5 باید افزایش یابد یا کاهش؟"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "kind": "literal",
+          "fa": "t1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = -0.1311 e4 = 0.0087\ne5 = 0.0065\n1\n0\n1\ndw4,6 = -0.0435\ndw5,6 = -0.0688\ndb6 = -0.1311\ndw1,4 = 0.0087\ndw1,5 = 0.0065\ndw2,4 = 0\ndw2,5 = 0\ndw3,4 = 0.0087\ndw3,5 = 0.0065\ndb4 = 0.0087\ndb5 = 0.0065\nn4\nn5\nn6\n1\n1\n1\nW1,4 = 0.192\nW4,6 = -0.261\nW5,6 = -0.138\nW1,5 = -0.306\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.508\nW3,5 = 0.194\nb4 = -0.4\nb5 = 0.2\nb6 = 0.218"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 96,
+      "source_text_sha256": "80ac9c31ab1c010cfc963103944802666ae58396f8d57118ac44329f93ae7a52",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: گام 4 — به‌روزرسانی وزن‌ها"
+        },
+        {
+          "source_lines": [
+            27
+          ],
+          "kind": "text",
+          "fa": "پارامترهای تازه (نرخ یادگیری (Learning Rate) = 0.9):"
+        },
+        {
+          "source_lines": [
+            28,
+            29
+          ],
+          "kind": "math",
+          "fa": "b4 = -0.4 - 0.9 * 0.0087\nb4 = -0.408"
+        },
+        {
+          "source_lines": [
+            41
+          ],
+          "kind": "text",
+          "fa": "آیا b4 باید افزایش یابد یا کاهش؟"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "kind": "literal",
+          "fa": "t1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = -0.1311 e4 = 0.0087\ne5 = 0.0065\n1\n0\n1\ndw4,6 = -0.0435\ndw5,6 = -0.0688\ndb6 = -0.1311\ndw1,4 = 0.0087\ndw1,5 = 0.0065\ndw2,4 = 0\ndw2,5 = 0\ndw3,4 = 0.0087\ndw3,5 = 0.0065\ndb4 = 0.0087\ndb5 = 0.0065\nn4\nn5\nn6\n1\n1\n1\nW1,4 = 0.192\nW4,6 = -0.261\nW5,6 = -0.138\nW1,5 = -0.306\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.508\nW3,5 = 0.194\nb4 = -0.4\nb5 = 0.194\nb6 = 0.218"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 97,
+      "source_text_sha256": "5d130880940361037d66f950f53dc6dd159cd5c11fbecdb96d24d75030b6b6f2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال: تکرار گام‌های 1-4 با نمونه‌های تازه"
+        },
+        {
+          "source_lines": [
+            38,
+            39
+          ],
+          "kind": "text",
+          "fa": "مقدار پارامترها با مشتق جزئی منفی افزایش می‌یابد (کمتر منفی می‌شود) و با مشتق جزئی مثبت کاهش می‌یابد (کمتر مثبت می‌شود)."
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37
+          ],
+          "kind": "literal",
+          "fa": "t1 = 1\no4 = 0.332\no6 = 0.474\no5 = 0.525\ne6 = -0.1311 e4 = 0.0087\ne5 = 0.0065\n1\n0\n1\ndw4,6 = -0.0435\ndw5,6 = -0.0688\ndb6 = -0.1311\ndw1,4 = 0.0087\ndw1,5 = 0.0065\ndw2,4 = 0\ndw2,5 = 0\ndw3,4 = 0.0087\ndw3,5 = 0.0065\ndb4 = 0.0087\ndb5 = 0.0065\nn4\nn5\nn6\n1\n1\n1\nW1,4 = 0.192\nW4,6 = -0.261\nW5,6 = -0.138\nW1,5 = -0.306\nW2,4 = 0.4\nW2,5 = 0.1\nW3,4 = -0.508\nW3,5 = 0.194\nb4 = -0.408\nb5 = 0.194\nb6 = 0.218"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 98,
+      "source_text_sha256": "45bcb77d9191e37a74700cd404908738ed20125c78b31fb8ee64a53980b37255",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "مثال: پایانِ مثال آموزش برای…\n• طبقه‌بندی دودویی (Binary Classification): پیش‌بینی اینکه آیا دانشجو نمرهٔ B یا بهتر می‌گیرد؛ حداقل لازم برای دانشجوی تحصیلات تکمیلی علوم رایانه در این درس.\n• ورودی‌ها:\n• نسبت تکلیف‌های انجام‌شده\n• نسبت متن‌های خواندنیِ مطالعه‌شده\n• نسبت سخنرانی‌های تماشاشده"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 99,
+      "source_text_sha256": "baf0c6c184e6fcd54f83a44caef077746147f053f468ee0b00cfcd6cd82fac5b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "برای مثال، وزن‌ها و بایاس‌های (Biases) موفقِ یادگرفته‌شده برای مسئلهٔ XOR.\n(و مسئله‌های حل‌شدهٔ بسیار دیگر که در فصل 8 کتاب PDP در 1986 بررسی شده‌اند.)\nآزمایش‌های 1986: شبکه‌های عصبی یاد گرفتند!"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 100,
+      "source_text_sha256": "23853e2e827cf3c8c614e363e866fa2a2813268a05808fe0e82c434ed11c122b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مقاله‌ای خواندنی دربارهٔ رویدادها تا این نقطه"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Advances in computers. 1993."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "A Sociological History of the Neural Network Controversy; MIKEL OLAZARAN; Universidad Pública de Navarra; Departamento de Sociología; Campus de Arrosadia; Pamplona, Spain",
+          "fa": "تاریخ جامعه‌شناختیِ مناقشهٔ شبکهٔ عصبی؛ MIKEL OLAZARAN؛ دانشگاه دولتی ناوارا؛ گروه جامعه‌شناسی؛ پردیس آروسادیا؛ پامپلونا، اسپانیا",
+          "verified": true
+        },
+        {
+          "en": "1. Introduction: A Sociological View of Scientific Controversies 335; 2. The Controversy of the Perceptron 338; 3. The Problems of Early Neural Networks 346; 4. Training Multilayer Networks: A “Reverse Salient” of Neural Network Research 350; 5. Interpretative Flexibility 355; 6. Closure of the Controversy 1: Widrow’s Group 368; 7. Closure of the Controversy 2: The SRI Group 370; 8. Closure of the Controversy 3: Rosenblatt 375; 9. The 1980s: A Changing Context 386; 10. History of Back-Propagation 390; 11. Back-Propagation: Learning in Multilayer Perceptrons 396; 12. The Neural Network Explosion 406; 13. The Current Debate: Conclusions 411; 13.1 Debate Continues 411; 13.2 Conclusions 416",
+          "fa": "1. مقدمه: دیدگاه جامعه‌شناختی دربارهٔ مناقشه‌های علمی، 335؛ 2. مناقشهٔ پرسپترون، 338؛ 3. مسئله‌های شبکه‌های عصبی اولیه، 346؛ 4. آموزش شبکه‌های چندلایه: «بخش عقب‌مانده» در پژوهش شبکهٔ عصبی، 350؛ 5. انعطاف تفسیری، 355؛ 6. پایان مناقشه 1: گروه ویدرو، 368؛ 7. پایان مناقشه 2: گروه SRI، 370؛ 8. پایان مناقشه 3: روزنبلات، 375؛ 9. دههٔ 1980: زمینه‌ای در حال تغییر، 386؛ 10. تاریخ پس‌انتشار، 390؛ 11. پس‌انتشار: یادگیری در پرسپترون‌های چندلایه، 396؛ 12. انفجار شبکهٔ عصبی، 406؛ 13. بحث کنونی: نتیجه‌گیری‌ها، 411؛ 13.1 بحث ادامه دارد، 411؛ 13.2 نتیجه‌گیری‌ها، 416",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 101,
+      "source_text_sha256": "aba9fc706d29ee93512a0394f25c036afbf5a0a79d2e7301e488d58c8e4ccfdc",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "دوباره یک «تابستان هوش مصنوعی» (AI Summer) آغاز شد\n• پژوهشگران علاقه‌مند شدند و به حوزه پیوستند.\n• برای مثال، تعداد نویسندگان این موضوع از 200 در 1986 به 1,200 در 1988 رسید [Rappa & Debackere; 1989].\n• نهادهای تأمین مالی علاقه‌مند شدند؛ برای مثال دولت‌های آمریکا، اروپا و ژاپن."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 102,
+      "source_text_sha256": "5541a31eb5768dfe1ca6515afe5c148d2dbfae7fc15d9e4ca73cbe6c01ae4772",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "دوباره نظریه از جنبش پشتیبانی کرد\n• انتشارهای نظری در اواخر دههٔ 1980 و اوایل دههٔ 1990 در پشتیبانی از قضیهٔ تقریب همگانی (Universal Approximation Theorem) پدید آمدند.\n• برای مثال: Hornik, Stinchcombe and White. Multilayer feedforward networks are universal approximators. Neural Networks, 1989.\n• «قضیهٔ تقریب همگانی یعنی صرف‌نظر از اینکه می‌کوشیم چه تابعی را یاد بگیریم، می‌دانیم که یک MLP [پرسپترون چندلایه] بزرگ قادر به بازنمایی این تابع خواهد بود.»\n— Goodfellow, Bengio, and Courville؛ کتاب Deep Learning، 2016."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 103,
+      "source_text_sha256": "1d3838ef5880e2a72216250d03f4f9c577d7009867b981b0a2159efe58a3c020",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• چشم‌انداز: شبکه‌های چندلایه قدرت بازنمایی (Representational Power) کافی فراهم می‌کنند.\n• دستاورد: گرادیان‌ها (Gradients) شبکه‌های چندلایه را آموزش‌پذیر می‌کنند.\n• انتزاع ماشین: شبکه‌های عصبی به‌صورت گراف‌های محاسباتی (Computational Graphs).\n• آموزش برنامه‌نویسی: توسعهٔ شبکه‌های عصبی در PyTorch."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 104,
+      "source_text_sha256": "8e3bcd80521f7447d652e6bff329a6f04da8d18046f6a876eaa832f7b864af13",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "زمینهٔ تاریخی\nدهه‌های 1960 و 1970: حوزهٔ «مشتق‌گیری خودکار» (Automatic Differentiation) پدید آمد و نشان داد چگونه مشتق‌های تابع‌های پیچیده را کارآمد محاسبه کنیم.\nدههٔ 1980: این ایده‌ها که اکنون مشتق‌گیری با حالت معکوس (Reverse-mode Differentiation) نام دارند، برای پشتیبانی از «پس‌انتشار» (Backpropagation) در آموزش شبکه‌های عصبی به‌کار گرفته شدند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 105,
+      "source_text_sha256": "9cfd57c543dbe83396610804bf2ba0188988faf0823e2f875d4c088a034bccaf",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "انتزاعی برای آموزش شبکه‌های عصبی: گراف‌های محاسباتی (Computational Graphs)\n• گرافی جهت‌دار که یک عبارت ریاضی را بیان می‌کند.\n• گره‌ها: متغیرها، مانند مقدارهای ورودی، یا تابع‌ها که بر یال‌های ورودی اعمال می‌شوند.\n• یال‌ها: مقدارهای خروجی تابع‌ها.\n• برای مثال،"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "math",
+          "fa": "a = b + c یا a = d*(b + c)",
+          "latex": "a=b+c\\quad\\mathrm{OR}\\quad a=d(b+c)"
+        },
+        {
+          "source_lines": [
+            18
+          ],
+          "kind": "text",
+          "fa": "مقدار میانی در متغیری تازه ذخیره می‌شود."
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "kind": "literal",
+          "fa": "b\nc\n+\na\nb\nc\n+\nz\n*\nd\na"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 106,
+      "source_text_sha256": "e4cd47bae4488eb1a29a84bf6ded51fad990aed147622705f919a6a8db3de5a9",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "چگونه از گراف محاسباتی (Computational Graph) استفاده کنیم؟\n• گذر رو به جلو (Forward Pass): برای ارزیابی عبارت، متغیرهای ورودی را تعیین کنید و سپس همهٔ گام‌های محاسباتی پیاپی را در گراف انجام دهید.\n• گذر رو به عقب (Backward Pass): گرادیان محلی هر یال را حساب کنید و سپس همهٔ گرادیان‌های مرتبط با هر متغیر تابع را ترکیب کنید.\n• برای مثال، با b=2 و c=3:"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "math",
+          "fa": "f(b,c) = b + c",
+          "latex": "f(b,c)=b+c"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "text",
+          "fa": "از حساب دیفرانسیل می‌دانیم:"
+        },
+        {
+          "source_lines": [
+            12,
+            13,
+            14
+          ],
+          "kind": "math",
+          "fa": "- df/df = 1\n- df/db = 1\n- df/dc = 1",
+          "latex": "\\frac{df}{df}=1,\\qquad\\frac{df}{db}=1,\\qquad\\frac{df}{dc}=1"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8,
+            9,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "kind": "literal",
+          "fa": "b\nc\n+\na\n2\n3\n5\n1\n1\n1"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 107,
+      "source_text_sha256": "0de89f8dc94095fbd0e07d7bd43f9155c0d65a7e73f31286c972f643821b212a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "چگونه از گراف محاسباتی (Computational Graph) استفاده کنیم؟\n• گذر رو به جلو (Forward Pass): برای ارزیابی عبارت، متغیرهای ورودی را تعیین کنید و سپس همهٔ گام‌های محاسباتی پیاپی را در گراف انجام دهید.\n• گذر رو به عقب (Backward Pass): گرادیان محلی هر یال را حساب کنید و سپس همهٔ گرادیان‌های مرتبط با هر متغیر تابع را ترکیب کنید.\n• برای مثال، با b=2، c=3 و d=4:"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "از حساب دیفرانسیل می‌دانیم:"
+        },
+        {
+          "source_lines": [
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "math",
+          "fa": "- df/df = 1\n- df/dz = d - df/dd = z\n- df/db = df/dz * dz/db - dz/db = 1\n- df/dc = df/dz * dz/dc - df/dc = 1"
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "جمع، گرادیان ورودی را عبور می‌دهد؛ ضرب، مقدار دیگر را عبور می‌دهد."
+        },
+        {
+          "source_lines": [
+            13
+          ],
+          "kind": "math",
+          "fa": "f(b,c,d) = d*(b + c)",
+          "latex": "f(b,c,d)=d(b+c)"
+        },
+        {
+          "source_lines": [
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "kind": "literal",
+          "fa": "b\nc\n+\nz\n*\nd\na\n2\n3\n5\n4\n20\n1\n5\n4\n4\n4"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 108,
+      "source_text_sha256": "9d1100f78fc5694e7688a1ffbd47153a29fd4b6b93882e0f17a015973614aedd",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "انگیزهٔ گراف‌های محاسباتی (Computational Graphs)\n• بسیاری از چارچوب‌های یادگیری عمیق (Deep Learning) بر گراف‌های محاسباتی تکیه دارند؛ چرا؟\n• محاسبهٔ کارآمد: مشتق‌ها را می‌توان از مشتق‌های «محلی» تابع‌های ابتداییِ گراف محاسبه کرد؛ در نتیجه می‌توان آن‌ها را موازی محاسبه و برای استفادهٔ مجدد ذخیره کرد.\n• بازنمایی کارآمد: تابع‌های ابتدایی و پیمانه‌ای را می‌توان دوباره استفاده و ترکیب کرد تا مدل‌های پیچیده ساخته شوند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 109,
+      "source_text_sha256": "1d3838ef5880e2a72216250d03f4f9c577d7009867b981b0a2159efe58a3c020",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• چشم‌انداز: شبکه‌های چندلایه قدرت بازنمایی (Representational Power) کافی فراهم می‌کنند.\n• دستاورد: گرادیان‌ها (Gradients) شبکه‌های چندلایه را آموزش‌پذیر می‌کنند.\n• انتزاع ماشین: شبکه‌های عصبی به‌صورت گراف‌های محاسباتی (Computational Graphs).\n• آموزش برنامه‌نویسی: توسعهٔ شبکه‌های عصبی در PyTorch."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 110,
+      "source_text_sha256": "1d3838ef5880e2a72216250d03f4f9c577d7009867b981b0a2159efe58a3c020",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• چشم‌انداز: شبکه‌های چندلایه قدرت بازنمایی (Representational Power) کافی فراهم می‌کنند.\n• دستاورد: گرادیان‌ها (Gradients) شبکه‌های چندلایه را آموزش‌پذیر می‌کنند.\n• انتزاع ماشین: شبکه‌های عصبی به‌صورت گراف‌های محاسباتی (Computational Graphs).\n• آموزش برنامه‌نویسی: توسعهٔ شبکه‌های عصبی در PyTorch."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 111,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2734 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s16",
+  "source_sha256": "8436fe7f45d440d6dc2f48656ad28215ba5e47686e78ab3d762790d076b31c5c",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "cec93204b2fbdd25a6b6ac010e3c4e53f7b502fc4be7ec71d70508fcb78b2b92",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "heading",
+          "fa": "قدرت مقیاس (Scale): دادهٔ آموزشیِ گردآوری‌شده از اینترنت (Internet-Scraped Training Data) و یادگیری بدون نمونه (Zero-Shot Learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "دانشگاه کلرادو بولدر (University of Colorado Boulder)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "بهار ۲۰۲۶"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CC BY NC SA",
+          "fa": "CC BY NC SA (نسبت‌دهی، غیرتجاری، اشتراک‌همسان)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "a1d60a64a82cef3f16df6fa408a49dc448a62459270a9381748da7170d3f7f66",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "جلسهٔ قبل"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "بازنگری یادگیری: از حل وظیفه‌ها تا ساخت بازنمایی‌هایی (Representations) که تعمیم می‌یابند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "دستور کار: پیش‌آموزش در مقیاس بزرگ (Large-Scale Pretraining) + تنظیم دقیق سبک (Lightweight Fine-Tuning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "آزمون چندوجهی (Multimodal): آیا این دستور کار می‌تواند جای راه‌حل‌های CNN-RNN را در وظیفه‌های بینایی–زبان بگیرد؟"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آزمون گفتار: آیا این دستور کار می‌تواند جای راه‌حل‌های مهندسی‌شدهٔ بازشناسی گفتار بگیرد؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "آزمون بینایی: آیا این دستور کار می‌تواند جای CNNها را در دسته‌بندی تصویر بگیرد؟"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "تکالیف (Canvas)"
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "bullet",
+          "fa": "تکلیف آزمایشگاهی ۳ (آخرین تکلیف!) تا ۱٫۵ هفتهٔ دیگر مهلت دارد؛ پیشنهاد می‌کنیم هرچه زودتر شروع کنید… این یکی کار زیادی دارد!"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "bullet",
+          "fa": "پرسشی دارید؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "b1a8bb5426e1db1f8f11d8d455c68b38ca3544b2b41d3ce38484d486b2b94bb0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "جست‌وجوی رشد: چاشنی مخفیِ موفقیت"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "قوانین مقیاس‌پذیری (Scaling Laws): بهبودهای پیش‌بینی‌پذیر از اندازهٔ مدل، داده و محاسبات (Compute)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "سوخت‌رسانی به مقیاس: استفاده از اینترنت به‌عنوان دادهٔ آموزش"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "آشکارشدن توانایی‌های چندنمونه‌ای (Few-Shot) و بدون نمونه (Zero-Shot)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "b1a8bb5426e1db1f8f11d8d455c68b38ca3544b2b41d3ce38484d486b2b94bb0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "جست‌وجوی رشد: چاشنی مخفیِ موفقیت"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "قوانین مقیاس‌پذیری (Scaling Laws): بهبودهای پیش‌بینی‌پذیر از اندازهٔ مدل، داده و محاسبات (Compute)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "سوخت‌رسانی به مقیاس: استفاده از اینترنت به‌عنوان دادهٔ آموزش"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "آشکارشدن توانایی‌های چندنمونه‌ای (Few-Shot) و بدون نمونه (Zero-Shot)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "70ed87d52374dfbef8c5415c915b3b0219229833cbfbaae1fa35aaf4f5cf9213",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "زمینه: ترنسفورمرهای تنظیم‌دقیق‌شده (Fine-Tuned Transformers) مسلط شدند."
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://www.facebook.com/GuinnessWorldRecords/posts/the-largest-collection-of-transformers-memorabilia-is-2111-items-and-was-achieve/10157236275629032/"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "رکورد جهانی گینس برای بیشترین تعداد ترنسفورمر: ۲٬۱۱۱"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "9d3dabe0700d7598ccc1dcc6277740451c22f2c04fef45a0fc4666724909d615",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "روند: مدل بزرگ‌تر، چاشنی مخفیِ رسیدن به عملکرد پیشرو (State-of-the-Art) بود."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://epoch.ai/data/ai-models"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Notable AI models; Graph Settings; Speculative data; Results; Domain; Language; Vision; Multimodal; Speech; Biology; Image generation; Games; Video; Robotics; Other; Deep Learning Era; Publication date",
+          "fa": "مدل‌های شاخص هوش مصنوعی؛ تنظیمات نمودار؛ دادهٔ حدسی (Speculative Data)؛ نتیجه‌ها؛ حوزه: زبان، بینایی، چندوجهی، گفتار، زیست‌شناسی، تولید تصویر، بازی، ویدیو، رباتیک، سایر؛ دوران یادگیری عمیق؛ تاریخ انتشار",
+          "verified": true
+        },
+        {
+          "en": "Number of trainable parameters; 646 Results; 1e4 1e5 1e6 1e7 1e8 1e9 1e10 1e11; 2012 2013 2014 2015 2016 2017 2018 2019",
+          "fa": "تعداد پارامترهای آموزش‌پذیر؛ ۶۴۶ نتیجه؛ محور تعداد از 10⁴ تا 10¹¹ با گام توان ده؛ سال‌های ۲۰۱۲ تا ۲۰۱۹",
+          "verified": true
+        },
+        {
+          "en": "Deep Autoencoders; High Performance CNN (NORB); Vector Space Model; DNN EM segmentation; Word2Vec (large); RNN for 1B words; SPN-4+kN5; NPD; AdaRNN; CFSS; 3DDFA; LRR-4X; MoE-Multi; BiDAF; ISS; GPT-1; Megatron-LM (1.2B); M4-50B; ALBERT; LSTM+NeuralCache; TCN (P-MNIST); DL scaling 2.3x/year; 2.1x/year",
+          "fa": "برچسب‌های مدل عین نمودار: Deep Autoencoders (خودرمزگذارهای عمیق)، High Performance CNN (NORB)، Vector Space Model (مدل فضای برداری)، DNN EM segmentation، Word2Vec (large)، RNN for 1B words، SPN-4+kN5، NPD، AdaRNN، CFSS، 3DDFA، LRR-4X، MoE-Multi، BiDAF، ISS، GPT-1، Megatron-LM (1.2B)، M4-50B، ALBERT، LSTM+NeuralCache، TCN (P-MNIST)؛ رشد سالانهٔ چاپ‌شده: 2.3 برابر و 2.1 برابر.",
+          "verified": true
+        }
+      ],
+      "image_text_limits": [
+        {
+          "reason_fa": "در خود تصویر نمودار، برچسب Variational (untied weights, MC) LSTM (L… با نقطه‌ها و برچسب‌های همسایه هم‌پوشان و در انتها کوتاه شده است؛ ادامهٔ پوشیده حتی در رندر ۱۵۰۰ پیکسلی قابل بازیابی نیست."
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "e851e986a6e75fabe17b5e1630cfacb6934f9de2794de88dc375f356b1eedb6d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "شواهد تجربی: موفقیت با محاسبات (Compute) کافی پدیدار شد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://epoch.ai/data/ai-models"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Notable AI models; Graph Settings; Speculative data; Results; Domain; Language; Vision; Multimodal; Speech; Biology; Image generation; Games; Video; Robotics; Other; Deep Learning Era; Publication date",
+          "fa": "مدل‌های شاخص هوش مصنوعی؛ تنظیمات نمودار؛ دادهٔ حدسی (Speculative Data)؛ نتیجه‌ها؛ حوزه: زبان، بینایی، چندوجهی، گفتار، زیست‌شناسی، تولید تصویر، بازی، ویدیو، رباتیک، سایر؛ دوران یادگیری عمیق؛ تاریخ انتشار",
+          "verified": true
+        },
+        {
+          "en": "Training compute (FLOP); 543 Results; 1e4 1e6 1e8 1e10 1e12 1e14 1e16 1e18 1e20 1e22 1e24; 2011 2012 2013 2014 2015 2016 2017 2018 2019; RNN LM; AlexNet; TransE; RCTM; SNM-skip; TA-CNN; HR-ResNet101; GNMT; JFT; GPT-2 (124M); XLNet; QRNN; AlphaX-1; LSTM+NeuralCache; 2.6x/year; 2.5x/year",
+          "fa": "محاسبات آموزش برحسب عملیات ممیز شناور (FLOP)؛ ۵۴۳ نتیجه؛ محور عمودی از 10⁴ تا 10²⁴ با گام دو در توان؛ سال‌های ۲۰۱۱ تا ۲۰۱۹؛ نام مدل‌ها: RNN LM، AlexNet، TransE، RCTM، SNM-skip، TA-CNN، HR-ResNet101، GNMT، JFT، GPT-2 (124M)، XLNet، QRNN، AlphaX-1، LSTM+NeuralCache؛ رشد سالانه: 2.6 برابر و 2.5 برابر.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "f225f4d795310d532e12d2bb6dc431df1076287089910bc12d3c931ae10ed179",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "شواهد تجربی: موفقیت با محاسبات و دادهٔ آموزشی (Training Data) کافی پدیدار شد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://epoch.ai/data/ai-models"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Notable AI models; Graph Settings; Speculative data; Results; Domain; Language; Vision; Multimodal; Speech; Biology; Image generation; Games; Video; Robotics; Other; Deep Learning Era; Publication date",
+          "fa": "مدل‌های شاخص هوش مصنوعی؛ تنظیمات نمودار؛ دادهٔ حدسی (Speculative Data)؛ نتیجه‌ها؛ حوزه: زبان، بینایی، چندوجهی، گفتار، زیست‌شناسی، تولید تصویر، بازی، ویدیو، رباتیک، سایر؛ دوران یادگیری عمیق؛ تاریخ انتشار",
+          "verified": true
+        },
+        {
+          "en": "Training dataset size; 570 Results; 1e2 1e3 1e4 1e5 1e6 1e7 1e8 1e9 1e10 1e11 1e12 1e13; 2011 2012 2013 2014 2015 2016 2017 2018 2019; Deep Autoencoders; Deep rectifier networks; iCCCP; Adaptive Subgrad; Word2Vec (large); DeViSE; Paragraph Vector; SNM-skip; NPD; AdaRNN; CFSS; LF-MMI; CCL; GNMT; Mask R-CNN; GPipe (Transformer); RoBERTa Large; GPT-1; YOLOv3; PhraseCond; AlphaX-1; 4.3x/year",
+          "fa": "اندازهٔ مجموعه‌دادهٔ آموزش؛ ۵۷۰ نتیجه؛ محور عمودی از 10² تا 10¹³ با گام توان ده؛ سال‌های ۲۰۱۱ تا ۲۰۱۹؛ نام مدل‌ها: Deep Autoencoders، Deep rectifier networks، iCCCP، Adaptive Subgrad، Word2Vec (large)، DeViSE، Paragraph Vector، SNM-skip، NPD، AdaRNN، CFSS، LF-MMI، CCL، GNMT، Mask R-CNN، GPipe (Transformer)، RoBERTa Large، GPT-1، YOLOv3، PhraseCond، AlphaX-1؛ رشد سالانهٔ 4.3 برابر.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "b1a8bb5426e1db1f8f11d8d455c68b38ca3544b2b41d3ce38484d486b2b94bb0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "جست‌وجوی رشد: چاشنی مخفیِ موفقیت"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "قوانین مقیاس‌پذیری (Scaling Laws): بهبودهای پیش‌بینی‌پذیر از اندازهٔ مدل، داده و محاسبات (Compute)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "سوخت‌رسانی به مقیاس: استفاده از اینترنت به‌عنوان دادهٔ آموزش"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "آشکارشدن توانایی‌های چندنمونه‌ای (Few-Shot) و بدون نمونه (Zero-Shot)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "4014049baad87312fd80e7a7f3c6c428a2466ca7fa40ee464307e141d6260f0c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "(arXiv، ۲۰۲۰)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "«… با افزایش مناسبِ اندازهٔ مدل، داده و محاسبات، عملکرد مدل‌سازی زبان (Language Modeling) به‌شکلی هموار و پیش‌بینی‌پذیر بهبود می‌یابد… زیان آزمون (Test Loss) ترنسفورمری که برای مدل‌سازی خودرگرسیوِ زبان آموزش دیده است را می‌توان با قانون توانی (Power Law) پیش‌بینی کرد…»"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "(arXiv، ۲۰۱۷)"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "kind": "text",
+          "fa": "«می‌خواهیم رابطه‌های میان مقیاس مجموعهٔ آموزش، مقیاس محاسباتی و بهبود دقت مدل را بهتر تحلیل کنیم… [ما] رابطه‌های مقیاس‌پذیری را برای شش مدل شبکهٔ عصبی عمیق در چهار حوزهٔ کاربردی برآورد می‌کنیم: ترجمهٔ ماشینی، مدل‌سازی زبان، دسته‌بندی تصویر و بازشناسی گفتار. نتایج ما نشان می‌دهد منحنی‌های یادگیری قانون توانی در همهٔ حوزه‌های آزموده‌شده وجود دارند. اگرچه کاربردهای مختلف، توان‌ها و عرض از مبدأهای متفاوتی دارند، این منحنی‌های یادگیری در طیف گسترده‌ای از مدل‌ها، بهینه‌سازها، منظم‌سازها و توابع زیان وجود دارند.»"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Deep Learning Scaling is Predictable, Empirically; Joel Hestness; Sharan Narang; Newsha Ardalani; Gregory Diamos; Heewoo Jun; Hassan Kianinejad; Md. Mostofa Ali Patwary; Yang Yang; Yanqi Zhou",
+          "fa": "مقیاس‌پذیری یادگیری عمیق از نظر تجربی پیش‌بینی‌پذیر است (Deep Learning Scaling is Predictable, Empirically)؛ Joel Hestness، Sharan Narang، Newsha Ardalani، Gregory Diamos، Heewoo Jun، Hassan Kianinejad، Md. Mostofa Ali Patwary، Yang Yang، Yanqi Zhou",
+          "verified": true
+        },
+        {
+          "en": "Scaling Laws for Neural Language Models; Jared Kaplan*; Sam McCandlish*; Tom Henighan; Tom B. Brown; Benjamin Chess; Rewon Child; Scott Gray; Alec Radford; Jeffrey Wu; Dario Amodei; Johns Hopkins University, OpenAI; OpenAI; jaredk@jhu.edu; sam@openai.com; henighan@openai.com; tom@openai.com; bchess@openai.com; rewon@openai.com; scott@openai.com; alec@openai.com; jeffwu@openai.com; damodei@openai.com",
+          "fa": "قوانین مقیاس‌پذیری برای مدل‌های زبانی عصبی (Scaling Laws for Neural Language Models)؛ Jared Kaplan*، Sam McCandlish*، Tom Henighan، Tom B. Brown، Benjamin Chess، Rewon Child، Scott Gray، Alec Radford، Jeffrey Wu، Dario Amodei؛ دانشگاه جانز هاپکینز و OpenAI؛ نشانی‌ها به‌ترتیب: jaredk@jhu.edu، sam@openai.com، henighan@openai.com، tom@openai.com، bchess@openai.com، rewon@openai.com، scott@openai.com، alec@openai.com، jeffwu@openai.com، damodei@openai.com",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "91c1e599647ecf979fa5d82e5bca7419ad84e4e2f6d8714297a7e81951f1331c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پیش‌زمینه: قانون توانی (Power Law)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "math",
+          "fa": "y = Cx^α",
+          "latex": "y=Cx^\\alpha"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "ثابت (Constant)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "خروجی (Output)؛ ورودی (Input)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "مثلاً اگر…، چه اتفاقی برای y می‌افتد؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "math",
+          "fa": "α = 0.5؟"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "اگر x چهار برابر شود، y چند برابر افزایش می‌یابد؟"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "۲"
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "bullet",
+          "fa": "به‌طور کلی برای 0 < α < 1، افزایش مقیاس ورودی، بهبودهای پیش‌بینی‌پذیر ولی کوچک‌تری برای خروجی ایجاد می‌کند."
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "bullet",
+          "fa": "اگر این رابطه میان تعداد ساعت‌های مطالعهٔ شما و نمرهٔ حاصل برقرار بود، چه احساسی داشتید؟"
+        },
+        {
+          "source_lines": [
+            13,
+            14
+          ],
+          "kind": "math",
+          "fa": "y = Cx^0.5 = C√x",
+          "latex": "y=Cx^{0.5}=C\\sqrt{x}"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "2efe5c27a2363fe881cb1e379624fe4e2559b40fd9c0ed95ff403bef0e3bd28f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پیش‌زمینه: قانون توانی با توان منفی (Negative Exponent)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "math",
+          "fa": "y = Cx^(−α)",
+          "latex": "y=Cx^{-\\alpha}"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "ثابت (Constant)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "خروجی (Output)؛ ورودی (Input)"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "مثلاً اگر داده‌های اصلی را روی مقیاس لگاریتمی–لگاریتمی (Log-Log) نمایش دهیم، چه می‌شود؟"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "math",
+          "fa": "log y = log C − α log x",
+          "latex": "\\log y=\\log C-\\alpha\\log x"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "Newman. \"Power laws, Pareto distributions and Zipf's law.\" Contemporary Physics, 2005."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "خطی مستقیم با شیب برابر −α به دست می‌آید!"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "percentage of cities; population of city; 0 0.001 0.002 0.003 0.004; 0 2×10⁵ 4×10⁵; 10⁻² 10⁻³ 10⁻⁴ 10⁻⁵ 10⁻⁶ 10⁻⁷ 10⁻⁸; 10⁴ 10⁵ 10⁶ 10⁷",
+          "fa": "درصد شهرها؛ جمعیت شهر؛ نمودار خطی: ۰، ۰٫۰۰۱، ۰٫۰۰۲، ۰٫۰۰۳، ۰٫۰۰۴ و جمعیت ۰، ۲×10⁵، ۴×10⁵؛ نمودار لگاریتمی: محور عمودی 10⁻² تا 10⁻⁸ و افقی 10⁴ تا 10⁷",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "0c3febe978b7edcc5bf5e0ce072f7926d2ba6822c7244e10f9f5e6eedf085b88",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "نتایج تجربی مدل‌های زبانی عصبی (Neural Language Models) که توکن بعدی را خودرگرسیو (Autoregressively) پیش‌بینی می‌کنند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "کدام قانون توضیح می‌دهد که زیان آزمون (L) با تغییر مقیاس فقط یکی از عوامل زیر چگونه تغییر می‌کند؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "محاسبات: C"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "دادهٔ آموزش: D"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "پارامترهای مدل: N"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "رابطه‌های قانون توانی (Power Law)؛ خط‌های مستقیم در مقیاس‌های لگاریتمی–لگاریتمی"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "مقدار توان‌ها چیست؟ به یاد آورید:"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "Kaplan et al. Scaling Laws for Neural Language Models. arXiv 2020"
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "math",
+          "fa": "y = Cx^(−α)",
+          "latex": "y=Cx^{-\\alpha}"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "text",
+          "fa": "مقیاس‌های لگاریتمی–لگاریتمی (Log-Log):"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Test Loss; Compute; PF-days, non-embedding; Dataset Size; tokens; Parameters; non-embedding; L = (C_min/2.3·10⁸)^−0.050; L = (D/5.4·10¹³)^−0.095; L = (N/8.8·10¹³)^−0.076",
+          "fa": "زیان آزمون؛ محاسبات برحسب پتافلاپ‌روز بدون تعبیه؛ اندازهٔ مجموعه‌داده برحسب توکن؛ پارامترهای بدون تعبیه؛ سه رابطهٔ چاپ‌شده در نمودار",
+          "verified": true,
+          "latex": "L=\\left(\\frac{C_{\\min}}{2.3\\cdot10^8}\\right)^{-0.050};\\quad L=\\left(\\frac{D}{5.4\\cdot10^{13}}\\right)^{-0.095};\\quad L=\\left(\\frac{N}{8.8\\cdot10^{13}}\\right)^{-0.076}"
+        },
+        {
+          "en": "Compute ticks 10⁻⁹ 10⁻⁷ 10⁻⁵ 10⁻³ 10⁻¹ 10¹; Test Loss 2 3 4 5 6 7; Dataset Size 10⁸ 10⁹, loss 2.7 3.0 3.3 3.6 3.9 4.2; Parameters 10⁵ 10⁷ 10⁹, loss 2.4 3.2 4.0 4.8 5.6",
+          "fa": "درجات محور محاسبات: 10⁻⁹، 10⁻⁷، 10⁻⁵، 10⁻³، 10⁻¹، 10¹؛ زیان: ۲ تا ۷. محور اندازهٔ داده: 10⁸ و 10⁹؛ زیان‌ها 2.7، 3.0، 3.3، 3.6، 3.9، 4.2. محور پارامترها: 10⁵، 10⁷، 10⁹؛ زیان‌ها 2.4، 3.2، 4.0، 4.8، 5.6.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "4790bdfd8fd839a63804000b8d8146fd340f2c7a7ad3f4b8368484ad20792d65",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "نتایج تجربی مدل‌های زبانی عصبی که توکن بعدی را خودرگرسیو (Autoregressively) پیش‌بینی می‌کنند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "هر عامل تا چه مقیاسی آزموده شد؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "مقدار محاسبات؟ ۱۰ پتافلاپ‌روز = 86.4 × 10¹⁹ عملیات ممیز شناور",
+          "latex": "10\\;\\text{PF-days}=86.4\\times10^{19}\\;\\text{FLOP}"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "اندازهٔ دادهٔ آموزش؟ حدود یک میلیارد توکن"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "تعداد پارامترهای مدل؟ حدود یک میلیارد"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "bullet",
+          "fa": "رابطهٔ کشف‌شدهٔ قانون توانی میان زیان آزمون و مقیاس محاسبات، دادهٔ آموزش و اندازهٔ مدل چه پیامدهایی برای آینده دارد؟"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "Kaplan et al. Scaling Laws for Neural Language Models. arXiv 2020"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "مقیاس‌های لگاریتمی–لگاریتمی (Log-Log):"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Test Loss; Compute; PF-days, non-embedding; Dataset Size; tokens; Parameters; non-embedding; L = (C_min/2.3·10⁸)^−0.050; L = (D/5.4·10¹³)^−0.095; L = (N/8.8·10¹³)^−0.076",
+          "fa": "زیان آزمون؛ محاسبات برحسب پتافلاپ‌روز بدون تعبیه؛ اندازهٔ مجموعه‌داده برحسب توکن؛ پارامترهای بدون تعبیه؛ سه رابطهٔ چاپ‌شده در نمودار",
+          "verified": true,
+          "latex": "L=\\left(\\frac{C_{\\min}}{2.3\\cdot10^8}\\right)^{-0.050};\\quad L=\\left(\\frac{D}{5.4\\cdot10^{13}}\\right)^{-0.095};\\quad L=\\left(\\frac{N}{8.8\\cdot10^{13}}\\right)^{-0.076}"
+        },
+        {
+          "en": "Compute ticks 10⁻⁹ 10⁻⁷ 10⁻⁵ 10⁻³ 10⁻¹ 10¹; Test Loss 2 3 4 5 6 7; Dataset Size 10⁸ 10⁹, loss 2.7 3.0 3.3 3.6 3.9 4.2; Parameters 10⁵ 10⁷ 10⁹, loss 2.4 3.2 4.0 4.8 5.6",
+          "fa": "درجات محور محاسبات: 10⁻⁹، 10⁻⁷، 10⁻⁵، 10⁻³، 10⁻¹، 10¹؛ زیان: ۲ تا ۷. محور اندازهٔ داده: 10⁸ و 10⁹؛ زیان‌ها 2.7، 3.0، 3.3، 3.6، 3.9، 4.2. محور پارامترها: 10⁵، 10⁷، 10⁹؛ زیان‌ها 2.4، 3.2، 4.0، 4.8، 5.6.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "0fb131a69aa0f21f306e4a30dc9fd2cbbd2d7ad7586db4e6245ab33a8127364b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "نتایج تجربی مدل‌های زبانی عصبی که توکن بعدی را خودرگرسیو (Autoregressively) پیش‌بینی می‌کنند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "هر عامل تا چه مقیاسی آزموده شد؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "مقدار محاسبات؟ ۱۰ پتافلاپ‌روز = 86.4 × 10¹⁹ عملیات ممیز شناور",
+          "latex": "10\\;\\text{PF-days}=86.4\\times10^{19}\\;\\text{FLOP}"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "اندازهٔ دادهٔ آموزش؟ حدود یک میلیارد توکن"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "تعداد پارامترهای مدل؟ حدود یک میلیارد"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "bullet",
+          "fa": "رابطهٔ کشف‌شدهٔ قانون توانی میان زیان آزمون و مقیاس محاسبات، دادهٔ آموزش و اندازهٔ مدل چه پیامدهایی برای آینده دارد؟"
+        },
+        {
+          "source_lines": [
+            8,
+            9
+          ],
+          "kind": "bullet",
+          "fa": "افزایش مقیاس با اطمینان: فقط با افزایش مقیاس محاسبات، دادهٔ آموزش و اندازهٔ مدل می‌توانیم عملکرد را پیش‌بینی‌پذیر بهبود دهیم!"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "reference",
+          "fa": "Kaplan et al. Scaling Laws for Neural Language Models. arXiv 2020"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "0cdd44853defe164cbf906988aa4d1f2f7e2026a3dcf0b64390fdf8937d6374e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پژوهش‌های بعدی نشان دادند قوانین مقیاس‌پذیری (Scaling Laws) در حوزه‌ها و وظیفه‌های بسیار برقرارند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "b1a8bb5426e1db1f8f11d8d455c68b38ca3544b2b41d3ce38484d486b2b94bb0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "جست‌وجوی رشد: چاشنی مخفیِ موفقیت"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "قوانین مقیاس‌پذیری (Scaling Laws): بهبودهای پیش‌بینی‌پذیر از اندازهٔ مدل، داده و محاسبات (Compute)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "سوخت‌رسانی به مقیاس: استفاده از اینترنت به‌عنوان دادهٔ آموزش"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "آشکارشدن توانایی‌های چندنمونه‌ای (Few-Shot) و بدون نمونه (Zero-Shot)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "3b87571326a9711dc1362ee2892436ce256e6eb09e3d2d0d3ddaa43ae61f4b9b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "(GPT-3؛ Neurips، ۲۰۲۰)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "(GPT-2؛ وبلاگ OpenAI، ۲۰۱۹)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Language Models are Unsupervised Multitask Learners; Alec Radford*¹; Jeffrey Wu*¹; Rewon Child¹; David Luan¹; Dario Amodei**¹; Ilya Sutskever**¹",
+          "fa": "مدل‌های زبانی یادگیرنده‌های چندوظیفه‌ایِ بدون نظارت‌اند (Language Models are Unsupervised Multitask Learners)؛ Alec Radford*¹، Jeffrey Wu*¹، Rewon Child¹، David Luan¹، Dario Amodei**¹، Ilya Sutskever**¹",
+          "verified": true
+        },
+        {
+          "en": "Language Models are Few-Shot Learners; Tom B. Brown*; Benjamin Mann*; Nick Ryder*; Melanie Subbiah*; Jared Kaplan*; Prafulla Dhariwal; Arvind Neelakantan; Pranav Shyam; Girish Sastry; Amanda Askell; Sandhini Agarwal; Ariel Herbert-Voss; Gretchen Krueger; Tom Henighan; Rewon Child; Aditya Ramesh; Daniel M. Ziegler; Jeffrey Wu; Clemens Winter; Christopher Hesse; Mark Chen; Eric Sigler; Mateusz Litwin; Scott Gray; Benjamin Chess; Jack Clark; Christopher Berner; Sam McCandlish; Alec Radford; Ilya Sutskever; Dario Amodei; OpenAI",
+          "fa": "مدل‌های زبانی یادگیرنده‌های چندنمونه‌ای‌اند (Language Models are Few-Shot Learners)؛ نویسندگان به‌ترتیب تصویر: Tom B. Brown*، Benjamin Mann*، Nick Ryder*، Melanie Subbiah*، Jared Kaplan*، Prafulla Dhariwal، Arvind Neelakantan، Pranav Shyam، Girish Sastry، Amanda Askell، Sandhini Agarwal، Ariel Herbert-Voss، Gretchen Krueger، Tom Henighan، Rewon Child، Aditya Ramesh، Daniel M. Ziegler، Jeffrey Wu، Clemens Winter، Christopher Hesse، Mark Chen، Eric Sigler، Mateusz Litwin، Scott Gray، Benjamin Chess، Jack Clark، Christopher Berner، Sam McCandlish، Alec Radford، Ilya Sutskever، Dario Amodei؛ OpenAI",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "df503c2b3bdf5da56b5d32738593b5e4d38612a593f1f8e272fe805b2b60e409",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری (Architecture): اندازه‌های بزرگ‌شده"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "GPT-2: تغییرات جزئی در GPT؛ مثلاً:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "لایه‌های بیشتر؛ ۴۸ در برابر ۱۲"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "پارامترهای بیشتر؛ ۱٫۵ میلیارد در برابر ۱۲۴ میلیون*"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "جابه‌جایی و افزودن لایه‌های نرمال‌سازی (Layer Norm)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "تغییر مقداردهی اولیهٔ پارامترها (Parameter Initialization)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "گسترش واژگان به ۵۰٬۲۵۷ توکن"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "پذیرش تا ۱٬۰۲۴ توکن به‌جای ۵۱۲"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "GPT-3: تغییرات جزئی در GPT-2؛ مثلاً:"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "لایه‌های بیشتر؛ ۹۶ در برابر ۴۸"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "bullet",
+          "fa": "پارامترهای بیشتر؛ ۱۷۵ میلیارد در برابر ۱٫۵ میلیارد"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "bullet",
+          "fa": "پذیرش تا ۲٬۰۴۸ توکن ورودی به‌جای ۱٬۰۲۴؛ تقریباً معادل کدام است؟"
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "text",
+          "fa": "الف) یک‌سوم صفحه با فاصلهٔ تک‌خطی"
+        },
+        {
+          "source_lines": [
+            13
+          ],
+          "kind": "text",
+          "fa": "ب) یک صفحه با فاصلهٔ تک‌خطی"
+        },
+        {
+          "source_lines": [
+            14
+          ],
+          "kind": "text",
+          "fa": "ج) سه صفحه با فاصلهٔ تک‌خطی"
+        },
+        {
+          "source_lines": [
+            15
+          ],
+          "kind": "reference",
+          "fa": "* عدد نادرست در مقاله گزارش شده است. منبع تصویر: Radford et al. Technical Report 2018."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Text Prediction; Layer Norm; Feed Forward; Masked Multi Self Attention; Text & Position Embed; 12×; +",
+          "fa": "پیش‌بینی متن (Text Prediction)؛ نرمال‌سازی لایه (Layer Norm)؛ پیش‌خور (Feed Forward)؛ خودتوجهی چندسریِ ماسک‌شده (Masked Multi Self Attention)؛ تعبیهٔ متن و جایگاه؛ ۱۲ بار؛ جمع (+)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "e3a42e93061fef787f5327ec2400f7a3cddb946a1ee0ba6ca222622920f40f8d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "روش آموزش (Training Protocol)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "رویکرد و هدف همان GPT است: پیش‌بینی واژهٔ بعدی."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "GPT-3: فکر می‌کنید هزینهٔ آموزش چقدر بود؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "الف) حدود $5,00 (همین‌گونه در منبع چاپ شده است)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "ب) حدود $50,000"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "ج) حدود $500,000"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "د) حدود $5,000,000"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "* حدود ۱٫۳ گیگاوات‌ساعت برق لازم داشت؛ کافی برای تأمین برق ۱۲۱ خانه در آمریکا برای یک سال."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "reference",
+          "fa": "منبع تصویر: Radford et al. Technical Report 2018."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Text Prediction; Layer Norm; Feed Forward; Masked Multi Self Attention; Text & Position Embed; 12×; +",
+          "fa": "پیش‌بینی متن (Text Prediction)؛ نرمال‌سازی لایه (Layer Norm)؛ پیش‌خور (Feed Forward)؛ خودتوجهی چندسریِ ماسک‌شده (Masked Multi Self Attention)؛ تعبیهٔ متن و جایگاه؛ ۱۲ بار؛ جمع (+)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "b0e1a2feb121f12c8c7ce0cccf1a8e71550e1aa611b595ec50d0d4faea702a92",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "دادهٔ آموزش: مقیاس اینترنت (Internet-Scale)، نوآوری"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "ایده: زبان طبیعی در اینترنت، حوزه‌ها و وظیفه‌های بسیاری را نمایندگی می‌کند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "heading",
+          "fa": "GPT-2: WebText"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "منبع:"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "کنترل کیفیت: پیوندهای خروجی با امتیاز «3 karma» که تکرارهایشان حذف و پیش‌پردازش می‌شوند."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "نتیجه: ۴۵ میلیون پیوند تا دسامبر ۲۰۱۷"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "اندازه: ۸ میلیون سند = ۴۰ گیگابایت"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "heading",
+          "fa": "GPT-3: چند مجموعه‌داده، از جمله داده‌های اینترنت"
+        },
+        {
+          "source_lines": [
+            9,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "داده‌های پرنویز و کم‌کیفیت‌تر Common Crawl از ۴۱ خزش ماهانهٔ اینترنت در سال‌های ۲۰۱۶ تا ۲۰۱۹، به‌اضافهٔ چهار مجموعه‌دادهٔ باکیفیت"
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "text",
+          "fa": "چند گیگابایت؟ حدود الف) ۶، ب) ۶۰، ج) ۶۰۰، د) ۶٬۰۰۰"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "reddit",
+          "fa": "ردیت (reddit)",
+          "verified": true
+        },
+        {
+          "en": "Dataset | Quantity (tokens) | Weight in training mix; Common Crawl (filtered) | 410 billion | 60%; WebText2 | 19 billion | 22%; Books1 | 12 billion | 8%; Books2 | 55 billion | 8%; Wikipedia | 3 billion | 3%",
+          "fa": "مجموعه‌داده؛ مقدار برحسب توکن؛ وزن در ترکیب آموزش. Common Crawl پالایش‌شده: ۴۱۰ میلیارد، ۶۰٪؛ WebText2: ۱۹ میلیارد، ۲۲٪؛ Books1: ۱۲ میلیارد، ۸٪؛ Books2: ۵۵ میلیارد، ۸٪؛ Wikipedia: سه میلیارد، ۳٪.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "a4e8d05e663e833b2250e9505bbcc9ef17114d8988b8a69c5426de18cc36442f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "bullet",
+          "fa": "سازمان غیرانتفاعی از کالیفرنیا که از ۲۰۰۸، خزش‌های رایگان ماهانه ارائه می‌کند."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "bullet",
+          "fa": "بایگانی وب بدون نشانه‌گذاری HTML و محتوای غیرمتنی؛ https://commoncrawl.org/)"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "bullet",
+          "fa": "برای مفیدترشدن در آموزش به پیش‌پردازش نیاز دارد؛ مثلاً در مورد هرزنامه، پیوندهای خراب و محتوای سوگیرانه."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "COMMON CRAWL; The Data; Resources; Common Crawl is a 501(c)(3) non-profit founded in 2007.; We make wholesale extraction, transformation and analysis of open web data accessible to researchers.; Overview; Over 250 billion pages spanning 17 years.; Free and open corpus since 2007.; Cited in over 10,000 research papers.; 3–5 billion new pages added each month.",
+          "fa": "Common Crawl؛ داده‌ها؛ منابع؛ Common Crawl سازمان غیرانتفاعی 501(c)(3) تأسیس‌شده در ۲۰۰۷ است؛ استخراج، تبدیل و تحلیل انبوه داده‌های وب باز را در دسترس پژوهشگران قرار می‌دهیم؛ نمای کلی؛ بیش از ۲۵۰ میلیارد صفحه در ۱۷ سال؛ پیکرهٔ رایگان و باز از ۲۰۰۷؛ ارجاع در بیش از ۱۰٬۰۰۰ مقالهٔ پژوهشی؛ هر ماه سه تا پنج میلیارد صفحهٔ تازه اضافه می‌شود.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "475f1d8b1c2f94c07e5ed1e304413bfd417dd3c9405d59833e47acf22078bfbd",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یافته‌های تجربی (Experimental Findings)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "GPT-2: عملکرد قوی در ۷ مورد از ۸ چالش مجموعه‌دادهٔ NLP آزموده‌شده"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "قدردانی آن‌ها: «از همهٔ کسانی که متن را نوشتند، پیوندها را به اشتراک گذاشتند و به محتوای WebText رأی مثبت دادند، سپاسگزاریم. میلیون‌ها نفر در تولید داده‌ای که GPT-2 روی آن آموزش دید، نقش داشتند.»"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "GPT-3: عملکرد رقابتی و گاهی پیشرو در ده‌ها چالش مجموعه‌دادهٔ NLP"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "6641002522b5b392d8682a355e52ec59ab0d3cb00f0acea7c77dfb3892d5f432",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "(CLIP؛ ICML، ۲۰۲۱)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "نوآوری: آموزش مدل‌های تحلیل تصویر با نظارت زبان طبیعی (Natural Language Supervision)، با استفاده از حجم عظیم داده‌های عمومیِ موجود در اینترنت"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Learning Transferable Visual Models From Natural Language Supervision; Alec Radford*¹; Jong Wook Kim*¹; Chris Hallacy¹; Aditya Ramesh¹; Gabriel Goh¹; Sandhini Agarwal¹; Girish Sastry¹; Amanda Askell¹; Pamela Mishkin¹; Jack Clark¹; Gretchen Krueger¹; Ilya Sutskever¹",
+          "fa": "یادگیری مدل‌های دیداری انتقال‌پذیر از نظارت زبان طبیعی (Learning Transferable Visual Models From Natural Language Supervision)؛ Alec Radford*¹، Jong Wook Kim*¹، Chris Hallacy¹، Aditya Ramesh¹، Gabriel Goh¹، Sandhini Agarwal¹، Girish Sastry¹، Amanda Askell¹، Pamela Mishkin¹، Jack Clark¹، Gretchen Krueger¹، Ilya Sutskever¹",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "c7ad96ab686b224ceb500b0caac92bb522c5942691dc7941ba0f375547fc7733",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "معماری و جزئیات آموزش (Architecture and Training Details)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Learning Transferable Visual Models From Natural Language Supervision. ICML 2021"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "GPT-2؛ بدون پیش‌آموزش"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "سه گونهٔ ViT و پنج گونهٔ ResNet آزمایش شدند؛ بدون پیش‌آموزش."
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "وظیفه: پیش‌بینی اینکه کدام زوج‌های تصویر–متن تطابق دارند."
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "داده: ۴۰۰ میلیون زوج تصویر–متن از اینترنت"
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "اندازهٔ مدل: از حدود ۱۰۰ میلیون تا نزدیک به یک میلیارد پارامتر در گونه‌های مختلف"
+        },
+        {
+          "source_lines": [
+            13,
+            14,
+            15
+          ],
+          "kind": "text",
+          "fa": "تابع زیان (Loss Function): جمع آنتروپی متقاطع (Cross Entropy) برای دسته‌بندی‌های تصویر و متنِ زوج‌هایشان"
+        },
+        {
+          "source_lines": [
+            16
+          ],
+          "kind": "text",
+          "fa": "بهینه‌ساز: آدام (Adam)"
+        },
+        {
+          "source_lines": [
+            17,
+            18,
+            19,
+            20
+          ],
+          "kind": "text",
+          "fa": "مدت آموزش: بزرگ‌ترین ResNet، هجده روز با ۵۹۲ GPU مدل V100؛ بزرگ‌ترین ViT، دوازده روز با ۲۵۶ GPU مدل V100"
+        },
+        {
+          "source_lines": [
+            21,
+            22
+          ],
+          "kind": "text",
+          "fa": "چند زوج تصویر–متن در دسته (Batch) برای مقایسه وجود دارد؟"
+        },
+        {
+          "source_lines": [
+            23
+          ],
+          "kind": "text",
+          "fa": "بازنمایی توکن EOT برای متن استفاده می‌شود."
+        },
+        {
+          "source_lines": [
+            24,
+            25,
+            26
+          ],
+          "kind": "text",
+          "fa": "توکن‌های SOT و EOT پیش و پس از متن اضافه می‌شوند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pepper the aussie pup; Text Encoder; Image Encoder; T₁ T₂ T₃ … T_N; I₁ I₂ I₃ ⋮ I_N; I₁·T₁ I₁·T₂ I₁·T₃ … I₁·T_N; …; I_N·T₁ I_N·T₂ I_N·T₃ … I_N·T_N",
+          "fa": "متن نمونه عین منبع: Pepper the aussie pup (پپر، توله‌سگ استرالیایی)؛ رمزگذار متن (Text Encoder)؛ رمزگذار تصویر (Image Encoder)؛ بردارهای متن T₁، T₂، T₃، …، T_N و تصویر I₁، I₂، I₃، …، I_N؛ هر خانه ضرب داخلی I_i·T_j را نشان می‌دهد و قطر، زوج‌های منطبق را مشخص می‌کند.",
+          "verified": true,
+          "latex": "S_{ij}=I_i\\cdot T_j\\qquad i,j\\in\\{1,\\ldots,N\\}"
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "fb1ff0c6a6d7cb74c961aaabe66eef5721ad6456ee903dc9b1a199a5b2ca1000",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یافته‌های تجربی: CLIP"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "عملکرد رقابتی در بیش از ۳۰ چالش مجموعه‌دادهٔ بینایی ماشین (Computer Vision)!"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "f5880f8b6f4254d26aa4b8a06e436a4f1c5d0314cc32ea75277140f046bac71a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "امروزه مجموعه‌داده‌های زیادی در مقیاس اینترنت وجود دارند؛ مثلاً:"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://cerebras.ai/blog/slimpajama-a-627b-token-cleaned-and-deduplicated-version-of-redpajama"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://huggingface.co/datasets/HuggingFaceFW/fineweb"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Tokens | Open source; SlimPajama | 627B | Yes; RedPajama | 1.21T | Yes; RefinedWeb-600B | 600B | Yes; RefinedWeb-5T | 5T | No; LLaMA | 1.4T | No; MPT | 1T | No; MassiveText | 1.4T | No; FineWeb; The finest collection of data the web has to offer",
+          "fa": "توکن‌ها؛ متن‌باز (Open Source). SlimPajama: 627B، بله؛ RedPajama: 1.21T، بله؛ RefinedWeb-600B: 600B، بله؛ RefinedWeb-5T: 5T، خیر؛ LLaMA: 1.4T، خیر؛ MPT: 1T، خیر؛ MassiveText: 1.4T، خیر. B یعنی میلیارد و T یعنی تریلیون؛ FineWeb: بهترین مجموعهٔ داده‌ای که وب برای ارائه دارد.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "b1a8bb5426e1db1f8f11d8d455c68b38ca3544b2b41d3ce38484d486b2b94bb0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "جست‌وجوی رشد: چاشنی مخفیِ موفقیت"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "قوانین مقیاس‌پذیری (Scaling Laws): بهبودهای پیش‌بینی‌پذیر از اندازهٔ مدل، داده و محاسبات (Compute)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "سوخت‌رسانی به مقیاس: استفاده از اینترنت به‌عنوان دادهٔ آموزش"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "آشکارشدن توانایی‌های چندنمونه‌ای (Few-Shot) و بدون نمونه (Zero-Shot)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "0edfbe26476ba9cdae2a09d9d50a8e6c0f7bac036878440e46f822cb81e2577b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "متوجه شدید؟ مدل‌های پیشگامِ آموزش‌دیده با اینترنت، تمرکزشان بر پیشرو بودن (State-of-the-Art) نبود."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "این مدل‌ها مهم بودند، چون تغییر الگویی را آغاز کردند که وظیفه‌های پایین‌دستی (Downstream Tasks) را در وضعیت چندنمونه‌ای/بدون نمونه (Few-Shot/Zero-Shot) حل می‌کند!"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "استنتاج (Inference)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pre-Training; Large unlabelled datasets (e.g. Wikipedia, BookCorpus); Self-supervised training (hours to days); Pre-Trained Weights; Fine-Tuned Weights",
+          "fa": "پیش‌آموزش؛ مجموعه‌داده‌های بزرگِ بدون برچسب، مثلاً ویکی‌پدیا و BookCorpus؛ آموزش خودنظارتی، چند ساعت تا چند روز؛ وزن‌های پیش‌آموخته؛ وزن‌های تنظیم‌دقیق‌شده",
+          "verified": true
+        },
+        {
+          "en": "Fine-Tuning; Smaller labelled datasets; SQuAD; Similarity; minutes to hours",
+          "fa": "بخش‌های خوانای کادر خط‌خورده: تنظیم دقیق (Fine-Tuning)؛ مجموعه‌داده‌های کوچک‌ترِ برچسب‌دار؛ SQuAD؛ شباهت؛ چند دقیقه تا چند ساعت",
+          "verified": true
+        }
+      ],
+      "image_text_limits": [
+        {
+          "reason_fa": "ضربدر بنفش روی کادر Fine-Tuning، بخش‌هایی از عنوان، نام مجموعه‌داده‌ها و عبارت task-specific fine tuning را می‌پوشاند؛ حروف پوشیده بازسازی نشده‌اند."
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "c1830b0d9ceabf1c957d0ca8d72daf78f985814c9b339706a9e3209728e204bc",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "شهود: آیا می‌توانید با چند مثال، تشخیص چیزی را یاد بگیرید؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.youtube.com/watch?v=9j4iH9TPTd8"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "با داشتن یک مثال برای هر دسته، دستهٔ پرس‌وجو (Query) را مشخص کنید."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "a); b); Lake et al, 2013, 2015",
+          "fa": "الف؛ ب؛ Lake و همکاران، ۲۰۱۳، ۲۰۱۵. خانه‌های جدول، نمونه‌های دست‌نویس برای مقایسهٔ شکل‌اند.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "e346299fcb2523194284e313f797cb24bc7a379311ba9ed61f8e557731ecc6b9",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "شهود: برای تشخیص اینکه این چیست، لازم است چند مثال ببینید؟"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "صفر؛ فقط تشخیص دهید شبیه اسبی با راه‌راه‌های سیاه و سفید است."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "3bbcfdbf60dcdfa015dd8c4ecb538ce69e95d3731ac72e94b9d1357edea7c01a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "شهود: برای تشخیص اینکه این چیست، لازم است چند مثال ببینید؟"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "صفر؛ فقط تشخیص دهید بالاتنهٔ انسان به بدن و پاهای اسب وصل شده است."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "217b6137163c9b8d997e3bc603d4b83b0a0b48090bbd8af6e272a52d43ddcfc2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ورودی هنگام استنتاج (Inference): دستورالعمل‌ها (Instructions) + در صورت نیاز مثال‌ها؛ مورد دوم «یادگیری درون‌بافتی» (In-Context Learning) نامیده می‌شود."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Brown et al. Language Models are Few-Shot Learners. Neurips 2020."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Zero-shot; The model predicts the answer given only a natural language description of the task. No gradient updates are performed.; One-shot; In addition to the task description, the model sees a single example of the task. No gradient updates are performed.; Few-shot; In addition to the task description, the model sees a few examples of the task. No gradient updates are performed.",
+          "fa": "بدون نمونه (Zero-Shot): مدل فقط با توصیف وظیفه به زبان طبیعی پاسخ را پیش‌بینی می‌کند؛ به‌روزرسانی گرادیان انجام نمی‌شود. تک‌نمونه‌ای (One-Shot): علاوه بر توصیف وظیفه، مدل یک مثال از آن می‌بیند؛ به‌روزرسانی گرادیان انجام نمی‌شود. چندنمونه‌ای (Few-Shot): علاوه بر توصیف وظیفه، مدل چند مثال می‌بیند؛ به‌روزرسانی گرادیان انجام نمی‌شود.",
+          "verified": true
+        },
+        {
+          "en": "Translate English to French:\ncheese =>\n\nTranslate English to French:\nsea otter => loutre de mer\ncheese =>\n\nTranslate English to French:\nsea otter => loutre de mer\npeppermint => menthe poivrée\nplush girafe => girafe peluche\ncheese =>",
+          "fa": "رشته‌های ورودی به همان ترتیب سه کادر: Translate English to French: (انگلیسی را به فرانسوی ترجمه کن)؛ cheese => (پنیر). در کادر تک‌نمونه‌ای یک زوج sea otter => loutre de mer (سمور دریایی) پیش از cheese => آمده است. در کادر چندنمونه‌ای، sea otter => loutre de mer (سمور دریایی)، peppermint => menthe poivrée (نعناع فلفلی)، plush girafe => girafe peluche (زرافهٔ عروسکی؛ املای girafe عین تصویر) پیش از cheese => آمده‌اند.",
+          "verified": true
+        },
+        {
+          "en": "task description; prompt; example; examples; 1 2 3 4 5",
+          "fa": "توصیف وظیفه؛ پرامپت (Prompt)؛ یک مثال؛ چند مثال؛ شماره‌های خطوط ۱ تا ۵",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "b8a35ec128ef9202744a91195e915482a0ee8d13a87d194009c7e27cc7197d43",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نتایج تجربی GPT-2: وضعیت بدون نمونه (Zero-Shot)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Language Models are Unsupervised Multitask Learners. OpenAI Blog 2019."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "GPT-1:"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "هم‌اندازهٔ BERT:"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "بزرگ‌تر:"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "GPT-2:"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "در ۷ مورد از ۸ مجموعه‌داده، در وضعیت بدون نمونه به عملکرد پیشرو رسید."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "LAMBADA (PPL); LAMBADA (ACC); CBT-CN (ACC); CBT-NE (ACC); WikiText2 (PPL); PTB (PPL); enwik8 (BPB); text8 (BPC); WikiText103 (PPL); 1BW (PPL)",
+          "fa": "ستون‌ها به‌ترتیب: LAMBADA (سرگشتگی، PPL)، LAMBADA (دقت، ACC)، CBT-CN (دقت)، CBT-NE (دقت)، WikiText2 (PPL)، PTB (PPL)، enwik8 (بیت بر بایت، BPB)، text8 (بیت بر نویسه، BPC)، WikiText103 (PPL)، 1BW (PPL)",
+          "verified": true
+        },
+        {
+          "en": "SOTA | 99.8 59.23 85.7 82.3 39.14 46.54 0.99 1.08 18.3 21.8",
+          "fa": "روش پیشرو (SOTA): 99.8، 59.23، 85.7، 82.3، 39.14، 46.54، 0.99، 1.08، 18.3، 21.8",
+          "verified": true
+        },
+        {
+          "en": "117M | 35.13 45.99 87.65 83.4 29.41 65.85 1.16 1.17 37.50 75.20",
+          "fa": "مدل 117M: 35.13، 45.99، 87.65، 83.4، 29.41، 65.85، 1.16، 1.17، 37.50، 75.20",
+          "verified": true
+        },
+        {
+          "en": "345M | 15.60 55.48 92.35 87.1 22.76 47.33 1.01 1.06 26.37 55.72",
+          "fa": "مدل 345M: 15.60، 55.48، 92.35، 87.1، 22.76، 47.33، 1.01، 1.06، 26.37، 55.72",
+          "verified": true
+        },
+        {
+          "en": "762M | 10.87 60.12 93.45 88.0 19.93 40.31 0.97 1.02 22.05 44.575",
+          "fa": "مدل 762M: 10.87، 60.12، 93.45، 88.0، 19.93، 40.31، 0.97، 1.02، 22.05، 44.575",
+          "verified": true
+        },
+        {
+          "en": "1542M | 8.63 63.24 93.30 89.05 18.34 35.76 0.93 0.98 17.48 42.16",
+          "fa": "مدل 1542M: 8.63، 63.24، 93.30، 89.05، 18.34، 35.76، 0.93، 0.98، 17.48، 42.16",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "906f72ba9993897218b1e76419ec193592e9960b8d3edc73bb6ca8e41117129f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "آیا ورودی بدون نمونه (Zero-Shot) است یا چندنمونه‌ای (Few-Shot)؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Language Models are Unsupervised Multitask Learners. OpenAI Blog 2019."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Context (passage and previous question/answer pairs)",
+          "fa": "بافت (Context): متن و زوج‌های پرسش/پاسخ قبلی",
+          "verified": true
+        },
+        {
+          "en": "Tom goes everywhere with Catherine Green, a 54-year-old secretary. He moves around her office at work and goes shopping with her. \"Most people don’t seem to mind Tom,\" says Catherine, who thinks he is wonderful. \"He’s my fourth child,\" she says. She may think of him and treat him that way as her son. He moves around buying his food, paying his health bills and his taxes, but in fact Tom is a dog.",
+          "fa": "تام همه‌جا با کاترین گرین، منشی ۵۴ساله، می‌رود. او در دفتر محل کار کاترین می‌گردد و با او خرید می‌رود. کاترین که فکر می‌کند او فوق‌العاده است می‌گوید: «به نظر می‌رسد بیشتر مردم با تام مشکلی ندارند.» می‌گوید: «او فرزند چهارم من است.» شاید او را پسر خود بداند و همان‌گونه با او رفتار کند. او برای خرید غذایش، پرداخت صورت‌حساب‌های درمانی و مالیاتش رفت‌وآمد می‌کند، اما در واقع تام یک سگ است. ضمیرهای متن نمونه عین منبع حفظ شده‌اند.",
+          "verified": true
+        },
+        {
+          "en": "Catherine and Tom live in Sweden, a country where everyone is expected to lead an orderly life according to rules laid down by the government, which also provides a high level of care for its people. This level of care costs money.",
+          "fa": "کاترین و تام در سوئد زندگی می‌کنند؛ کشوری که انتظار می‌رود همه مطابق مقررات دولت زندگی منظمی داشته باشند. دولت همچنین سطح بالایی از مراقبت برای مردم فراهم می‌کند. این سطح از مراقبت هزینه دارد.",
+          "verified": true
+        },
+        {
+          "en": "People in Sweden pay taxes on everything, so aren’t surprised to find that owning a dog means more taxes. Some people are paying as much as 500 Swedish kronor in taxes a year for the right to keep their dog, which is spent by the government on dog hospitals and sometimes medical treatment for a dog that falls ill. However, most such treatment is expensive, so owners often decide to offer health and even life - for their dog.",
+          "fa": "مردم سوئد برای همه‌چیز مالیات می‌پردازند، پس تعجب نمی‌کنند که داشتن سگ به معنای مالیات بیشتر است. بعضی‌ها برای حق نگهداری سگ خود سالانه تا ۵۰۰ کرون سوئد مالیات می‌پردازند؛ دولت آن را صرف بیمارستان‌های سگ‌ها و گاهی درمان سگی می‌کند که بیمار می‌شود. بااین‌حال، بیشتر چنین درمان‌هایی گران‌اند، پس صاحبان اغلب تصمیم می‌گیرند سلامت و حتی زندگی را برای سگشان عرضه کنند. عبارت پایانیِ نامعمول، همان معنای لفظیِ متن نمونه است.",
+          "verified": true
+        },
+        {
+          "en": "In Sweden dog owners must pay for any damage their dog does. A Swedish Kennel Club official explains what this means: if your dog runs out on the road and gets hit by a passing car, you, as the owner, have to pay for any damage done to the car, even if your dog has been killed in the accident.",
+          "fa": "در سوئد صاحبان سگ باید هزینهٔ هر خسارتی را که سگشان ایجاد می‌کند بپردازند. یکی از مسئولان باشگاه سگ‌داری سوئد توضیح می‌دهد: اگر سگ شما به جاده بدود و خودرویی گذری به آن بزند، شما به‌عنوان صاحب باید هزینهٔ هر آسیبی به خودرو را بپردازید، حتی اگر سگتان در تصادف کشته شده باشد.",
+          "verified": true
+        },
+        {
+          "en": "Q: How old is Catherine?\nA: 54\nQ: where does she live?\nA:\nModel answer: Stockholm\nTurker answers: Sweden, Sweden, in Sweden, Sweden",
+          "fa": "پرسش: کاترین چند سال دارد؟ پاسخ: ۵۴. پرسش: او کجا زندگی می‌کند؟ پاسخ: [خالی]. پاسخ مدل (Model Answer): استکهلم. پاسخ‌های ارزیابان ترک (Turker Answers): سوئد، سوئد، در سوئد، سوئد. رشتهٔ پرسش و پاسخ انگلیسی در کنار ترجمه حفظ شده است.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "c1ab9543a887c8aa3fbe24449e2769cd8e6c6ea356b7fa85a72929fc5c3e58c8",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Language Models are Unsupervised Multitask Learners. OpenAI Blog 2019."
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "آیا ورودی بدون نمونه (Zero-Shot) است یا چندنمونه‌ای (Few-Shot)؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "پیش‌بینی‌های کوچک‌ترین و بزرگ‌ترین مدل"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Context (WebText test); Outfit 1: Typical",
+          "fa": "بافت (Context)، آزمون WebText؛ پوشش ۱: معمولی (Typical)",
+          "verified": true
+        },
+        {
+          "en": "This pairing was the first outfit I thought of when I bought the shoes. It's like a summer version of this Jake Grantham outfit; in fact, my shoes are close to the colors of his Nike Racers! Instead of a heavy Harris Tweed jacket and denim shirt, I'm wearing a cotton DB jacket and and a linen shirt. Both fabrics (in these colors) are an absolute must for summer, as they go with both dark and and light pants! As you can see, they pair wonderfully with the dark jeans and shoes. It's a pseudo menswear/prep outfit.",
+          "fa": "وقتی کفش‌ها را خریدم، این ترکیب اولین پوششی بود که به ذهنم رسید. شبیه نسخهٔ تابستانی این پوشش جیک گرنتام است؛ در واقع رنگ کفش‌های من به Nike Racers او نزدیک است! به‌جای کت سنگین Harris Tweed و پیراهن جین، یک کت نخیِ دو ردیف دکمه (DB) و و یک پیراهن کتان می‌پوشم. هر دو پارچه در این رنگ‌ها برای تابستان کاملاً ضروری‌اند، چون هم با شلوارهای تیره و و هم روشن هماهنگ می‌شوند! همان‌طور که می‌بینید، با جین تیره و کفش‌ها عالی جور می‌شوند. این یک پوشش شبه‌مردانه/پرپ (Prep) است. تکرارهای «and and» عین متن ورودی‌اند.",
+          "verified": true
+        },
+        {
+          "en": "Overall, this is a very casual outfit which is why I paired my sneakers with it. I'm not about wearing a full wool suit with sneakers (as GQ shows a lot) but I'm definitely open to keeping things casual, like this cotton DB. Casual fabrics are key to pulling off your sneakers in a dressed down menswear outfit. I'd even suggest to wear these sneakers with a khaki chino suit or a white linen suit. Just be sure to ditch the tie or wear a tee or polo; wearing a tie with sneakers is a bit too much",
+          "fa": "در مجموع، این پوشش خیلی غیررسمی است و به همین دلیل کفش کتانی را با آن جفت کردم. اهل پوشیدن کت‌وشلوار تمام‌پشمی با کتانی نیستم، آن‌گونه که GQ زیاد نشان می‌دهد، اما کاملاً از غیررسمی نگه‌داشتن ظاهر، مثل این کت نخی DB، استقبال می‌کنم. پارچه‌های غیررسمی کلید جورکردن کتانی با یک پوشش مردانهٔ کم‌رسمیت‌اند. حتی پیشنهاد می‌کنم این کتانی‌ها را با کت‌وشلوار چینوی خاکی یا کت‌وشلوار کتان سفید بپوشید. فقط حتماً کراوات را کنار بگذارید یا تی‌شرت یا پولوشرت بپوشید؛ کراوات با کتانی کمی زیادی است",
+          "verified": true
+        },
+        {
+          "en": "Small model completion; .; Outfit 2: High End",
+          "fa": "ادامهٔ مدل کوچک (Small Model Completion)؛ نقطه؛ پوشش ۲: رده‌بالا (High End)",
+          "verified": true
+        },
+        {
+          "en": "This outfit was just in the eye of the storm. It's a hybrid of what ASICS does with streetwear (like J. Crew) and what J. Crew does with casual pieces that are a bit more traditional. Again, as I mentioned before, it's a low budget item and they can be very expensive. These will definitely be an issue if you're trying to work as a casual sneakermaker, and that's OK but don't hesitate if you want to try the lower price versions of their outfits!",
+          "fa": "این پوشش درست در چشم توفان بود. ترکیبی است از کاری که ASICS با پوشاک خیابانی می‌کند، مثل J. Crew، و کاری که J. Crew با قطعات غیررسمیِ کمی سنتی‌تر می‌کند. باز هم، همان‌طور که قبلاً گفتم، این یک قلم کم‌هزینه است و می‌توانند خیلی گران باشند. اگر بخواهید به‌عنوان یک سازندهٔ کتانیِ غیررسمی کار کنید، این‌ها قطعاً مسئله می‌شوند؛ اشکالی هم ندارد، اما اگر می‌خواهید نسخه‌های ارزان‌تر پوشش‌هایشان را امتحان کنید، تردید نکنید!",
+          "verified": true
+        },
+        {
+          "en": "This version features a very low cut-cut neckline (which is not a bad thing), slightly longer legs, and a pair of long legs to keep things nice. My preferred color of color these items are blue-gray (which is my first colors, as they are a light white), or black (which is my favorite of my designs). As always, my pick of colors from this store have nothing to do with that other than the design. For a high end, I would recommend this to everyone!",
+          "fa": "این نسخه یقه‌ای با برشِ برشِ بسیار پایین دارد، که چیز بدی نیست، پاهای کمی بلندتر و یک جفت پای بلند برای خوب نگه‌داشتن اوضاع. رنگ ترجیحی من از رنگِ این اقلام آبی‌خاکستری است، که اولین رنگ‌های من‌اند چون سفیدِ روشن‌اند، یا سیاه که محبوب من در طراحی‌هایم است. مثل همیشه، انتخاب رنگ من از این فروشگاه، جز طراحی هیچ ارتباطی با آن ندارد. برای چیزی رده‌بالا، این را به همه توصیه می‌کنم! ناهماهنگی‌های معناییِ ادامهٔ مدل کوچک حفظ شده‌اند.",
+          "verified": true
+        },
+        {
+          "en": "Outfit 3: High Light This was a \"high light\" look while I had a chance to get some color. I think the color is based on",
+          "fa": "پوشش ۳: نورِ بالا (High Light). وقتی فرصت داشتم کمی رنگ بگیرم، این یک ظاهر «high light» بود. فکر می‌کنم رنگ بر پایهٔ… [جمله در تصویر همین‌جا تمام می‌شود].",
+          "verified": true
+        },
+        {
+          "en": "GPT-2 completion; for me!; Outfit 2: Casual Jacket",
+          "fa": "ادامهٔ GPT-2؛ برای من!؛ پوشش ۲: کت غیررسمی (Casual Jacket)",
+          "verified": true
+        },
+        {
+          "en": "I know that some people might be opposed to wearing sneakers in a turtleneck, but I wanted to be true to myself, so I went with a slim fitting turtleneck in a color more similar to my favorite color of the day. Overall, it's a classic turtleneck, with nothing too flashy. I did swap my shoes for these ASICS Tiger Killshots and I wish I hadn't did that. The shoe itself is very comfortable, however, I found that wearing them in these sneakers made my feet look a bit larger. I'd wear them with denim, chinos, whatever, but would never recommend wearing them alone. There are just too many variables involved.",
+          "fa": "می‌دانم بعضی‌ها ممکن است با پوشیدن کتانی همراه یقه‌اسکی مخالف باشند، اما می‌خواستم به خودم وفادار بمانم، پس یقه‌اسکیِ جذب با رنگی نزدیک‌تر به رنگ محبوب آن روزم انتخاب کردم. در مجموع، یقه‌اسکی کلاسیکی است و چیز خیلی پرزرق‌وبرقی ندارد. کفش‌هایم را با این ASICS Tiger Killshots عوض کردم و کاش این کار را نکرده بودم. خود کفش خیلی راحت است، اما فهمیدم پوشیدن آن‌ها در این کتانی‌ها پاهایم را کمی بزرگ‌تر نشان می‌دهد. با جین، چینو یا هر چیز دیگری می‌پوشیدمشان، اما هرگز توصیه نمی‌کردم به‌تنهایی پوشیده شوند. متغیرهای دخیل خیلی زیادند.",
+          "verified": true
+        },
+        {
+          "en": "Outfit 3: Dress This is the final outfit I wore the ASICS Tiger Killshots. This version of the ASICS is a much more modern and streamlined version. The shoe has the most modern and minimal design that I can think of! With a lot of black, these sneakers look very cool. They'll definitely be very comfortable for summer.",
+          "fa": "پوشش ۳: رسمی (Dress). این آخرین پوششی است که ASICS Tiger Killshots را با آن پوشیدم. این نسخهٔ ASICS خیلی مدرن‌تر و ساده‌تر است. کفش، مدرن‌ترین و کمینه‌ترین طراحی‌ای را دارد که به ذهنم می‌رسد! با مقدار زیادی رنگ سیاه، این کتانی‌ها خیلی جذاب‌اند. قطعاً برای تابستان بسیار راحت خواهند بود.",
+          "verified": true
+        },
+        {
+          "en": "To me, wearing them with a suit is the easiest way to have a good pair of sneaker shoes. That's pretty much it! If",
+          "fa": "به نظر من، پوشیدنشان با کت‌وشلوار ساده‌ترین راه داشتن یک جفت کتانی خوب است. تقریباً همین است! اگر… [ادامه در تصویر وجود ندارد].",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "9bbf1a0138193479593b025490d9aecc106779b1d6c494e258a14f70f3bebd2f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "text",
+          "fa": "قالب چندنمونه‌ای (Few-Shot):"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "زوجِ جملهٔ انگلیسی = جملهٔ فرانسوی، سپس"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "جملهٔ انگلیسی ="
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "موفقیت مدل دربارهٔ دادهٔ آموزشیِ گردآوری‌شده از اینترنت چه چیزی به ما می‌گوید؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Language Models are Unsupervised Multitask Learners. OpenAI Blog 2019."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "English reference; This re-release, titled The Next Day Extra, was presented in the form of three disks: the original album, unpublished studio sessions and remixes, plus a DVD containing the four clips that have already been unveiled.",
+          "fa": "مرجع انگلیسی (English Reference): این بازانتشار با عنوان The Next Day Extra به‌شکل سه دیسک ارائه شد: آلبوم اصلی، جلسه‌های استودیویی منتشرنشده و ریمیکس‌ها، به‌اضافهٔ DVD شامل چهار کلیپی که قبلاً رونمایی شده‌اند.",
+          "verified": true
+        },
+        {
+          "en": "GPT-2 French translation; Les nouvelles re-releases, tout en premier disc, nécessaire de l’album, un studio session et remixes, plus une DVD de l’écran de quelques clips qui ont été déjà échappés.",
+          "fa": "ترجمهٔ فرانسوی GPT-2؛ ترجمهٔ لفظیِ متنِ دارای خطا: «بازانتشارهای جدید، همه در دیسک نخست، ضروریِ آلبوم، یک جلسهٔ استودیو و ریمیکس‌ها، به‌اضافهٔ یک DVD از صفحهٔ چند کلیپ که قبلاً گریخته‌اند.» نادرستی دستوری و واژگانیِ خروجی فرانسوی به متن اصلی اصلاح نشده است.",
+          "verified": true
+        },
+        {
+          "en": "French reference; Un homme expliquait que le fonctionnement de la hernia fonctionnelle qu’il avait reconnaît avant de faire, le fonctionnement de la hernia fonctionnelle que j’ai réussi, j’ai réussi.",
+          "fa": "مرجع فرانسوی (French Reference)، ترجمهٔ لفظیِ متن نامعمول: «مردی توضیح می‌داد که کارکرد فتقِ عملکردی که او پیش از انجام‌دادن تشخیص داده بود، کارکرد فتقِ عملکردی که موفق شدم، موفق شدم.» تکرار و ناهماهنگی متن نمونه حفظ شده‌اند.",
+          "verified": true
+        },
+        {
+          "en": "GPT-2 English translation; This release, originally released on three discs: the original album, sessions studio inédites and remixes, a DVD containing the four clips that were released on the previous day.",
+          "fa": "ترجمهٔ انگلیسی GPT-2: این انتشار، که در اصل روی سه دیسک منتشر شده بود: آلبوم اصلی، جلسه‌های استودیویی منتشرنشده و ریمیکس‌ها، یک DVD شامل چهار کلیپی که روز قبل منتشر شده بودند. عبارت فرانسوی sessions studio inédites در خروجی انگلیسی باقی مانده است.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "3e85096baddc58285b715f956f60c1b518c6f8c925088bbeb530afe45e68a360",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "یافته‌های تجربی GPT-3: می‌توانست با مدل‌های پیشروی تنظیم‌دقیق‌شده (Fine-Tuned State-of-the-Art) رقابت کند؛ مثلاً:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Brown et al. Language Models are Few-Shot Learners. Neurips 2020."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Setting | PTB; SOTA (Zero-Shot) 35.8ᵃ; GPT-3 Zero-Shot 20.5",
+          "fa": "وضعیت (Setting)؛ PTB: روش پیشروِ بدون نمونه 35.8ᵃ؛ GPT-3 بدون نمونه 20.5؛ نشانهٔ بالانویس a عین جدول است و توضیح آن در این برش نیامده است.",
+          "verified": true
+        },
+        {
+          "en": "Setting | LAMBADA (acc) LAMBADA (ppl) StoryCloze (acc) HellaSwag (acc); SOTA 68.0ᵃ 8.63ᵇ 91.8ᶜ 85.6ᵈ; GPT-3 Zero-Shot 76.2 3.00 83.2 78.9; GPT-3 One-Shot 72.5 3.35 84.7 78.1; GPT-3 Few-Shot 86.4 1.92 87.7 79.3",
+          "fa": "وضعیت؛ ستون‌های LAMBADA (دقت)، LAMBADA (سرگشتگی)، StoryCloze (دقت)، HellaSwag (دقت). روش پیشرو: 68.0ᵃ، 8.63ᵇ، 91.8ᶜ، 85.6ᵈ؛ GPT-3 بدون نمونه: 76.2، 3.00، 83.2، 78.9؛ تک‌نمونه‌ای: 72.5، 3.35، 84.7، 78.1؛ چندنمونه‌ای: 86.4، 1.92، 87.7، 79.3. توضیح نشانه‌های بالانویس در این برش وجود ندارد.",
+          "verified": true
+        },
+        {
+          "en": "Setting | NaturalQS WebQs TriviaQA; RAG (Fine-tuned, Open-Domain) [LPP+20] 44.5 45.5 68.0; T5-11B+SSM (Fine-tuned, Closed-Book) [RRS20] 36.6 44.7 60.5; T5-11B (Fine-tuned, Closed-Book) 34.5 37.4 50.1; GPT-3 Zero-Shot 14.6 14.4 64.3; GPT-3 One-Shot 23.0 25.3 68.0; GPT-3 Few-Shot 29.9 41.5 71.2",
+          "fa": "وضعیت؛ ستون‌های NaturalQS، WebQs، TriviaQA. RAG، تنظیم‌دقیق‌شده با دامنهٔ باز (Open-Domain) [LPP+20]: 44.5، 45.5، 68.0. T5-11B+SSM، تنظیم‌دقیق‌شده و کتاب‌بسته (Closed-Book) [RRS20]: 36.6، 44.7، 60.5. T5-11B کتاب‌بسته: 34.5، 37.4، 50.1. GPT-3 بدون نمونه: 14.6، 14.4، 64.3؛ تک‌نمونه‌ای: 23.0، 25.3، 68.0؛ چندنمونه‌ای: 29.9، 41.5، 71.2.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "44049b0b20e852039d04e5422524d2687a8af2f8dbb4e9fc6bde106d080ee6bf",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گفت‌وگوی گروهی: روندهای تجربی GPT-3"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "۴۲ چالش پردازش زبان طبیعی (NLP)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "با تغییر تعداد مثال‌های درون‌بافتی (In-Context) میان صفر، یک و چند، عملکرد چگونه تغییر می‌کند؟"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "اندازهٔ مدل چه اثری بر این رابطه دارد؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "Brown et al. Language Models are Few-Shot Learners. Neurips 2020."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Aggregate Performance Across Benchmarks; Few Shot; One Shot; Zero Shot; Accuracy; Parameters in LM (Billions); 0 20 40 60 80 100; 0.1B 0.4B 0.8B 1.3B 2.6B 6.7B 13B 175B",
+          "fa": "عملکرد تجمیعی در معیارها؛ چندنمونه‌ای؛ تک‌نمونه‌ای؛ بدون نمونه؛ دقت؛ پارامترهای مدل زبانی (LM) برحسب میلیارد؛ درجات دقت ۰، ۲۰، ۴۰، ۶۰، ۸۰، ۱۰۰؛ اندازه‌ها 0.1B، 0.4B، 0.8B، 1.3B، 2.6B، 6.7B، 13B، 175B.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "17277ea95f46dec686aa21540faf8aca699c2cecaafdb84d3293f6052b19ea30",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "استنتاج (Inference) در CLIP"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "مثلاً دسته‌بندی بدون نمونه (Zero-Shot Classification):"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "۱. ویژگی‌ها را برای همهٔ دسته‌های نامزد رمزگذاری کنید."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "۲. ویژگی تصویر را رمزگذاری کنید."
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "۳. شباهت کسینوسی (Cosine Similarity) را میان ویژگی تصویر و همهٔ نامزدهای متنی حساب کنید."
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "۴. سافت‌مکس (Softmax) را اعمال کنید تا محتمل‌ترین تطابق، یعنی بیشترین امتیاز، مشخص شود."
+        },
+        {
+          "source_lines": [
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "چرا این قالب ورودی؟"
+        },
+        {
+          "source_lines": [
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "جمله‌های دادهٔ آموزش را تقلید می‌کند."
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Learning Transferable Visual Models From Natural Language Supervision. ICML 2021"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(2) Create dataset classifier from label text; plane; car; dog; ⋮; bird; A photo of a {object}.; Text Encoder; T₁ T₂ T₃ … T_N; (3) Use for zero-shot prediction; Image Encoder; I₁; I₁·T₁ I₁·T₂ I₁·T₃ … I₁·T_N; A photo of a dog.",
+          "fa": "۲) دسته‌بند مجموعه‌داده را از متن برچسب بسازید؛ plane (هواپیما)، car (خودرو)، dog (سگ)، …، bird (پرنده)؛ قالب ورودی عین منبع: A photo of a {object}. (عکسی از یک {شیء})؛ رمزگذار متن؛ T₁، T₂، T₃، …، T_N. ۳) برای پیش‌بینی بدون نمونه استفاده کنید؛ رمزگذار تصویر؛ I₁؛ ضرب‌های داخلی I₁·T₁ تا I₁·T_N؛ متن منتخب: A photo of a dog. (عکسی از یک سگ).",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "a375ec9462163a0297ef8832a02e1a7b6183456a0065b9123e013b1283ec9848",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پیش‌بینی‌های دسته‌بندی ریزدانه (Fine-Grained Classification)؛ مثلاً:"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Learning Transferable Visual Models From Natural Language Supervision. ICML 2021"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Oxford-IIIT Pets; correct label: Maine Coon; correct rank: 1/37; correct probability: 99.99%; Maine Coon; a photo of a maine coon, a type of pet.; a photo of a persian, a type of pet.; a photo of a ragdoll, a type of pet.; a photo of a birman, a type of pet.; a photo of a siamese, a type of pet.; 0 20 40 60 80 100",
+          "fa": "Oxford-IIIT Pets؛ برچسب درست: مین‌کون (Maine Coon)؛ رتبهٔ درست ۱ از ۳۷؛ احتمال درست ۹۹٫۹۹٪؛ نام روی تصویر: Maine Coon. قالب‌های متنی به‌ترتیب: عکسی از مین‌کون، پرشین، رگدال، بیرمن و سیامی؛ هرکدام «نوعی حیوان خانگی». متن انگلیسی هر پنج ورودی حفظ شده است؛ محور ۰ تا ۱۰۰ با گام ۲۰.",
+          "verified": true
+        },
+        {
+          "en": "FGVC Aircraft; correct label: Boeing 717; correct rank: 2/100; correct probability: 9.91%; a photo of a mcdonnell douglas md-90, a type of aircraft.; a photo of a boeing 717, a type of aircraft.; a photo of a fokker 100, a type of aircraft.; a photo of a mcdonnell douglas dc-9-30, a type of aircraft.; a photo of a boeing 727-200, a type of aircraft.; 0 20 40 60 80 100; OLYMPIC",
+          "fa": "FGVC Aircraft؛ برچسب درست: Boeing 717؛ رتبهٔ درست ۲ از ۱۰۰؛ احتمال درست ۹٫۹۱٪. قالب‌های متنی به‌ترتیب: عکسی از McDonnell Douglas MD-90، Boeing 717، Fokker 100، McDonnell Douglas DC-9-30، Boeing 727-200؛ هرکدام «نوعی هواپیما». ورودی‌های انگلیسی حفظ شده‌اند؛ محور ۰ تا ۱۰۰ با گام ۲۰؛ نوشتهٔ روی بدنه: OLYMPIC (المپیک).",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "45c214b09bc036c4d918f8478860794c61c723a28f518f79361c63c5592326a8",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "مجموعه‌داده‌های معیار (Benchmark) CLIP"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "زیرمجموعه‌ای از مجموعه‌داده‌ها اینجا نشان داده شده است:"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "ارزیابی دسته‌بندی شامل دسته‌بندی ریزدانه (Fine-Grained)، مثلاً دسته‌های غذا، پرنده، هواپیما و خودرو، تغییر توزیع (Distribution Shift) برای دسته‌های ImageNet، مثلاً تصاویر خراب‌شده، و موارد دیگر بود."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Learning Transferable Visual Models From Natural Language Supervision. ICML 2021"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Dataset | Classes | Train size | Test size | Evaluation metric",
+          "fa": "مجموعه‌داده؛ تعداد دسته‌ها؛ اندازهٔ آموزش؛ اندازهٔ آزمون؛ معیار ارزیابی. مقدارها همان ارقام چاپ‌شدهٔ جدول‌اند.",
+          "verified": true
+        },
+        {
+          "en": "Food-101|102|75,750|25,250|accuracy",
+          "fa": "Food-101: دسته‌ها 102؛ آموزش 75,750؛ آزمون 25,250؛ معیار: دقت.",
+          "verified": true
+        },
+        {
+          "en": "CIFAR-10|10|50,000|10,000|accuracy",
+          "fa": "CIFAR-10: دسته‌ها 10؛ آموزش 50,000؛ آزمون 10,000؛ معیار: دقت.",
+          "verified": true
+        },
+        {
+          "en": "CIFAR-100|100|50,000|10,000|accuracy",
+          "fa": "CIFAR-100: دسته‌ها 100؛ آموزش 50,000؛ آزمون 10,000؛ معیار: دقت.",
+          "verified": true
+        },
+        {
+          "en": "Birdsnap|500|42,283|2,149|accuracy",
+          "fa": "Birdsnap: دسته‌ها 500؛ آموزش 42,283؛ آزمون 2,149؛ معیار: دقت.",
+          "verified": true
+        },
+        {
+          "en": "SUN397|397|19,850|19,850|accuracy",
+          "fa": "SUN397: دسته‌ها 397؛ آموزش 19,850؛ آزمون 19,850؛ معیار: دقت.",
+          "verified": true
+        },
+        {
+          "en": "Stanford Cars|196|8,144|8,041|accuracy",
+          "fa": "Stanford Cars: دسته‌ها 196؛ آموزش 8,144؛ آزمون 8,041؛ معیار: دقت.",
+          "verified": true
+        },
+        {
+          "en": "FGVC Aircraft|100|6,667|3,333|mean per class",
+          "fa": "FGVC Aircraft: دسته‌ها 100؛ آموزش 6,667؛ آزمون 3,333؛ معیار: میانگین بر دسته.",
+          "verified": true
+        },
+        {
+          "en": "Pascal VOC 2007 Classification|20|5,011|4,952|11-point mAP",
+          "fa": "Pascal VOC 2007 Classification: دسته‌ها 20؛ آموزش 5,011؛ آزمون 4,952؛ معیار: میانگین دقت متوسطِ ۱۱نقطه‌ای (11-point mAP).",
+          "verified": true
+        },
+        {
+          "en": "Describable Textures|47|3,760|1,880|accuracy",
+          "fa": "Describable Textures: دسته‌ها 47؛ آموزش 3,760؛ آزمون 1,880؛ معیار: دقت.",
+          "verified": true
+        },
+        {
+          "en": "Oxford-IIIT Pets|37|3,680|3,669|mean per class",
+          "fa": "Oxford-IIIT Pets: دسته‌ها 37؛ آموزش 3,680؛ آزمون 3,669؛ معیار: میانگین بر دسته.",
+          "verified": true
+        },
+        {
+          "en": "Caltech-101|102|3,060|6,085|mean-per-class",
+          "fa": "Caltech-101: دسته‌ها 102؛ آموزش 3,060؛ آزمون 6,085؛ معیار: میانگین بر دسته.",
+          "verified": true
+        },
+        {
+          "en": "Oxford Flowers 102|102|2,040|6,149|mean per class",
+          "fa": "Oxford Flowers 102: دسته‌ها 102؛ آموزش 2,040؛ آزمون 6,149؛ معیار: میانگین بر دسته.",
+          "verified": true
+        },
+        {
+          "en": "MNIST|10|60,000|10,000|accuracy",
+          "fa": "MNIST: دسته‌ها 10؛ آموزش 60,000؛ آزمون 10,000؛ معیار: دقت.",
+          "verified": true
+        },
+        {
+          "en": "Facial Emotion Recognition 2013|8|32,140|3,574|accuracy",
+          "fa": "Facial Emotion Recognition 2013: دسته‌ها 8؛ آموزش 32,140؛ آزمون 3,574؛ معیار: دقت.",
+          "verified": true
+        },
+        {
+          "en": "STL-10|10|1000|8000|accuracy",
+          "fa": "STL-10: دسته‌ها 10؛ آموزش 1000؛ آزمون 8000؛ معیار: دقت.",
+          "verified": true
+        },
+        {
+          "en": "EuroSAT|10|10,000|5,000|accuracy",
+          "fa": "EuroSAT: دسته‌ها 10؛ آموزش 10,000؛ آزمون 5,000؛ معیار: دقت.",
+          "verified": true
+        },
+        {
+          "en": "RESISC45|45|3,150|25,200|accuracy",
+          "fa": "RESISC45: دسته‌ها 45؛ آموزش 3,150؛ آزمون 25,200؛ معیار: دقت.",
+          "verified": true
+        },
+        {
+          "en": "GTSRB|43|26,640|12,630|accuracy",
+          "fa": "GTSRB: دسته‌ها 43؛ آموزش 26,640؛ آزمون 12,630؛ معیار: دقت.",
+          "verified": true
+        },
+        {
+          "en": "KITTI|4|6,770|711|accuracy",
+          "fa": "KITTI: دسته‌ها 4؛ آموزش 6,770؛ آزمون 711؛ معیار: دقت.",
+          "verified": true
+        },
+        {
+          "en": "Country211|211|43,200|21,100|accuracy",
+          "fa": "Country211: دسته‌ها 211؛ آموزش 43,200؛ آزمون 21,100؛ معیار: دقت.",
+          "verified": true
+        },
+        {
+          "en": "PatchCamelyon|2|294,912|32,768|accuracy",
+          "fa": "PatchCamelyon: دسته‌ها 2؛ آموزش 294,912؛ آزمون 32,768؛ معیار: دقت.",
+          "verified": true
+        },
+        {
+          "en": "UCF101|101|9,537|1,794|accuracy",
+          "fa": "UCF101: دسته‌ها 101؛ آموزش 9,537؛ آزمون 1,794؛ معیار: دقت.",
+          "verified": true
+        },
+        {
+          "en": "Kinetics700|700|494,801|31,669|mean(top1, top5)",
+          "fa": "Kinetics700: دسته‌ها 700؛ آموزش 494,801؛ آزمون 31,669؛ معیار: میانگین دقت رتبهٔ اول و پنج رتبهٔ اول.",
+          "verified": true
+        },
+        {
+          "en": "CLEVR Counts|8|2,000|500|accuracy",
+          "fa": "CLEVR Counts: دسته‌ها 8؛ آموزش 2,000؛ آزمون 500؛ معیار: دقت.",
+          "verified": true
+        },
+        {
+          "en": "Hateful Memes|2|8,500|500|ROC AUC",
+          "fa": "Hateful Memes: دسته‌ها 2؛ آموزش 8,500؛ آزمون 500؛ معیار: مساحت زیر منحنی ROC (ROC AUC).",
+          "verified": true
+        },
+        {
+          "en": "Rendered SST2|2|7,792|1,821|accuracy",
+          "fa": "Rendered SST2: دسته‌ها 2؛ آموزش 7,792؛ آزمون 1,821؛ معیار: دقت.",
+          "verified": true
+        },
+        {
+          "en": "ImageNet|1000|1,281,167|50,000|accuracy",
+          "fa": "ImageNet: دسته‌ها 1000؛ آموزش 1,281,167؛ آزمون 50,000؛ معیار: دقت.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "17a64880736b272c6cc4ef6ef5817e6dd5c3d7f04ac2ae4702d1afa27d6a41fe",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "اینترنت محیطی مناسب برای یادگیری چندوظیفه‌ای (Multi-Task Learning) فراهم کرد که ذاتاً گسترهٔ وسیعی از حوزه‌ها و وظیفه‌ها را برای یادگیری چنین بازنمایی‌هایی نمایندگی می‌کرد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "دیدگاه مقالهٔ ۲۰۰۷ از بنجیو و لکان (Bengio and LeCun) اکنون واقعیت یافت:"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "«… نباید تنوع بزرگ وظیفه‌های [هوش مصنوعی] را جدا از هم دید، بلکه باید آن‌ها را جنبه‌های مختلف مسئله‌ای عمومی‌تر دانست: یادگیری ساختار پایهٔ جهان، مثلاً آن‌گونه که از چشم و گوش حیوانی در حال رشد یا کودکی خردسال دیده می‌شود. این نمونه‌ای از یادگیری چندوظیفه‌ای است… پس از آموزش چنین سامانه‌ای بر طیف گسترده‌ای از وظیفه‌ها در مجموعهٔ هوش مصنوعی (AI-set)، سامانه ممکن است تنها از چند مثال برچسب‌دار به وظیفه‌ای تازه تعمیم یابد. فرض می‌کنیم بسیاری از وظیفه‌ها در مجموعهٔ هوش مصنوعی ممکن است بر بازنمایی‌های مشترکی بنا شده باشند…»"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "7942fe1c15794fe6f4000060768697d4541385fb8563a1f569a009a8a8d38d22",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "جمع‌بندی: الگویی تازهٔ چندنمونه‌ای/بدون نمونه (Few-Shot/Zero-Shot)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "استنتاج (Inference)"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "در GPT-2، GPT-3 و CLIP، مدل‌های عظیم، مثلاً حدود ۰٫۵ میلیارد تا ۱۷۵ میلیارد پارامتر، همراه با دادهٔ آموزش در مقیاس اینترنت، یادگیری چندنمونه‌ای و بدون نمونه را ممکن کردند!"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pre-Training; Large unlabelled datasets (e.g. Wikipedia, BookCorpus); Self-supervised training (hours to days); Pre-Trained Weights; Fine-Tuned Weights",
+          "fa": "پیش‌آموزش؛ مجموعه‌داده‌های بزرگِ بدون برچسب، مثلاً ویکی‌پدیا و BookCorpus؛ آموزش خودنظارتی، چند ساعت تا چند روز؛ وزن‌های پیش‌آموخته؛ وزن‌های تنظیم‌دقیق‌شده",
+          "verified": true
+        },
+        {
+          "en": "Fine-Tuning; Smaller labelled datasets; SQuAD; Similarity; minutes to hours",
+          "fa": "بخش‌های خوانای کادر خط‌خورده: تنظیم دقیق (Fine-Tuning)؛ مجموعه‌داده‌های کوچک‌ترِ برچسب‌دار؛ SQuAD؛ شباهت؛ چند دقیقه تا چند ساعت",
+          "verified": true
+        }
+      ],
+      "image_text_limits": [
+        {
+          "reason_fa": "ضربدر قرمز روی کادر Fine-Tuning، بخش‌هایی از نام مجموعه‌داده‌ها و عبارت task-specific fine tuning را می‌پوشاند؛ قسمت‌های پوشیده بازسازی نشده‌اند."
+        }
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "b1a8bb5426e1db1f8f11d8d455c68b38ca3544b2b41d3ce38484d486b2b94bb0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "جست‌وجوی رشد: چاشنی مخفیِ موفقیت"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "قوانین مقیاس‌پذیری (Scaling Laws): بهبودهای پیش‌بینی‌پذیر از اندازهٔ مدل، داده و محاسبات (Compute)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "سوخت‌رسانی به مقیاس: استفاده از اینترنت به‌عنوان دادهٔ آموزش"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "آشکارشدن توانایی‌های چندنمونه‌ای (Few-Shot) و بدون نمونه (Zero-Shot)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "b1a8bb5426e1db1f8f11d8d455c68b38ca3544b2b41d3ce38484d486b2b94bb0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "جست‌وجوی رشد: چاشنی مخفیِ موفقیت"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "قوانین مقیاس‌پذیری (Scaling Laws): بهبودهای پیش‌بینی‌پذیر از اندازهٔ مدل، داده و محاسبات (Compute)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "سوخت‌رسانی به مقیاس: استفاده از اینترنت به‌عنوان دادهٔ آموزش"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "آشکارشدن توانایی‌های چندنمونه‌ای (Few-Shot) و بدون نمونه (Zero-Shot)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ]
+    }
+  ]
+}

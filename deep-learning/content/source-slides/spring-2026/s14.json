@@ -1,0 +1,786 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s14",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/14-Pioneering-Transformers.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2026/s14.pdf",
+    "sha256": "65bdebcbbe5ecca3e9dfa4ecbaaf5a78e79a4d10ce00c8a007801d062cefeda6",
+    "page_count": 62,
+    "license_notice": "CC BY-NC-SA; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "bbc113b73fb9bd5c5fd3052d1a0b1cbd31183159351ac7448f04d00828f2aea4",
+      "lines": [
+        "Pioneering Transformers:",
+        "Pretraining + Fine-Tuning",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2026",
+        "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "50e6786c108e7b3a466761453ec27468dc2a65170be283ba9074787ff8bcea55",
+      "lines": [
+        "Review",
+        "• Last lecture:",
+        "• Attention transformed: birth of a new architecture",
+        "• Key idea: self-attention",
+        "• Building a transformer",
+        "• Pioneering model for machine translation",
+        "• Assignments (Canvas):",
+        "• Problem set 3 (last one!) due Friday",
+        "• Lab assignment 3 (last one!) to be released on Thursday (no class that day)",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "180dedeef9b8de686d0c141b0faf9827931a2fa5592513c2cabd9c70473e66b3",
+      "lines": [
+        "Today’s Topics",
+        "• Revisiting learning: from solving tasks to building representations that generalize",
+        "• The recipe: large-scale pretraining + lightweight fine-tuning",
+        "• Multimodal test: can the recipe replace CNN-RNN solutions for vision-language tasks?",
+        "• Speech test: can the recipe replace engineered solutions for speech recognition?",
+        "• Vision test: can the recipe replace CNNs for image classification?",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "180dedeef9b8de686d0c141b0faf9827931a2fa5592513c2cabd9c70473e66b3",
+      "lines": [
+        "Today’s Topics",
+        "• Revisiting learning: from solving tasks to building representations that generalize",
+        "• The recipe: large-scale pretraining + lightweight fine-tuning",
+        "• Multimodal test: can the recipe replace CNN-RNN solutions for vision-language tasks?",
+        "• Speech test: can the recipe replace engineered solutions for speech recognition?",
+        "• Vision test: can the recipe replace CNNs for image classification?",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "1237eca0a889820f9b05c479655ef92ff07a1c75a24b29cf2292eae494416a9f",
+      "lines": [
+        "Learning Evolution: Basic Skills to Tasks",
+        "e.g., from birth, your hands learn general coordination, building a foundation for later adaption to many tasks",
+        "https://www.facebook.com/1rvanisrisaravanan/posts/pincer-graspthe-pincer￾grasp-is-the-coordination-of-the-index-finger-and-thumb-t/2833183393596559/"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "7fa7d32ab0b7e6169c8b44465968e171dedacd0c458c23a3d408352f1657df5b",
+      "lines": [
+        "Deep Learning Status Quo: Task-Specific",
+        "Focus",
+        "https://www.facebook.com/1rvanisrisaravanan/posts/pincer-graspthe-pincer￾grasp-is-the-coordination-of-the-index-finger-and-thumb-t/2833183393596559/"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "4ea7539dc2ab697d1d2ad31137db30bda0438c5831500303c980a77652c10a2f",
+      "lines": [
+        "Idea: Focus on Building Representations",
+        "that Can Be Reused for Many Tasks",
+        "https://www.facebook.com/1rvanisrisaravanan/posts/pincer-graspthe-pincer￾grasp-is-the-coordination-of-the-index-finger-and-thumb-t/2833183393596559/"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "81d8e70c9d56ff863913f5ab86068baf36d61882ac10ebe2948d30fc113f50a4",
+      "lines": [
+        "Idea: Focus on Building Representations",
+        "that Can Be Reused for Many Tasks",
+        "https://www.datacamp.com/community/tutorials/neural-network-models-r"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "180dedeef9b8de686d0c141b0faf9827931a2fa5592513c2cabd9c70473e66b3",
+      "lines": [
+        "Today’s Topics",
+        "• Revisiting learning: from solving tasks to building representations that generalize",
+        "• The recipe: large-scale pretraining + lightweight fine-tuning",
+        "• Multimodal test: can the recipe replace CNN-RNN solutions for vision-language tasks?",
+        "• Speech test: can the recipe replace engineered solutions for speech recognition?",
+        "• Vision test: can the recipe replace CNNs for image classification?",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "48af2972673c7f53042f6f5dcc27afb4176b717f8dd9bf9e4a9acce99fb20bff",
+      "lines": [
+        "(Technical Report, 2018)",
+        "(NAACL, 2019)",
+        "Pioneering Methods: GPT and BERT"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "7b407f8a4f17cdb350c51965136e0673e175cf1d8d866658556ce7e152a439ec",
+      "lines": [
+        "Vaswani et al. Neurips 2017.",
+        "GPT",
+        "(decoder)",
+        "BERT",
+        "(encoder)",
+        "Both makes these changes from original transfomer:",
+        "• GELU activation functions in feedforward layers",
+        "• Subword tokenization (with WordPiece)",
+        "Activation function: Gaussian error linear unit (GELU)",
+        "https://datascience.stackexchange.com/questions/49522/what-is-gelu-activation",
+        "What architecture is this?"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "c064ab33418cbddbcbe9cc07d1ca7038ce54d941ebcc860194763be70c0208d7",
+      "lines": [
+        "Vaswani et al. Neurips 2017.",
+        "GPT",
+        "(decoder)",
+        "Implementation details:",
+        "- Input encoding: byte-pair for 40,000 token vocabulary",
+        "- Position embeddings learned",
+        "- 12 layers (Nx)",
+        "- 12 heads in masked attention",
+        "- GELU activation function in feed forward layer",
+        "https://datascience.stackexchange.com/questions/49522/what-is-gelu-activation"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "6f88ed0555cabdfa431887612bc909120274fd7072e818e9c6eea684ff5965e6",
+      "lines": [
+        "Vaswani et al. Neurips 2017.",
+        "BERT",
+        "(encoder)",
+        "Implementation details:",
+        "- Input encoding: WordPiece for 30,000 token vocabulary",
+        "- Position embeddings learned",
+        "- 12 and 24 layers tested (Nx)",
+        "- 12 and 16 attention heads tested",
+        "- GELU activation function in feed forward layer"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "82c0616ab252c3b52a4a6c9b0c89d9e205493ce7176abc9f055741f5a460001d",
+      "lines": [
+        "Approach",
+        "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html",
+        "Inference",
+        "Since VERY challenging to collect large-scale",
+        "human-annotated datasets, we don’t!"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "d95809c057f45dd2d5988af2e0a432a18a09e97d807ee0a08223352cea433e98",
+      "lines": [
+        "Approach",
+        "https://www.facebook.com/1rvanisrisaravanan/posts/pincer-graspthe-pincer￾grasp-is-the-coordination-of-the-index-finger-and-thumb-t/2833183393596559/",
+        "The new insight: a large transformer, trained on massive data, can achieve",
+        "state-of-the-art results on many downstream tasks with minimal fine-tuning!",
+        "Self-supervised pretraining was not a new idea",
+        "(e.g., predict self with autoencoder to learn visual features; learn word embeddings)"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "33d4e2cb99d5f73044b89c26cbaf858729c8ce9bc9af6479ddafb2c1472f8e84",
+      "lines": [
+        "Key Question: What Learning Objective",
+        "Yields the Best Representation? E.g.,",
+        "GPT = Generative Pre-Training",
+        "- predict next word given previous",
+        "ones (unidirectional, left to right)",
+        "e.g., I arrived at the bank after",
+        "crossing the _______",
+        "BERT = Bidirectional Encoder",
+        "Representation from Transformer",
+        "- predict masked token AND predict if",
+        "one sentence follows a second sentence",
+        "e.g., I arrived at the bank [MASK]",
+        "crossing the river. My pants were wet."
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "355db2be204f689815f0b1333ca1506d5beae297c8d11483a405d76668f9cadf",
+      "lines": [
+        "BERT Implementation Details",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "Two tokens introduced for 2",
+        "nd task:",
+        "• CLS: representation of ENTIRE input",
+        "• SEP: separates two input sequences",
+        "Additional segment embedding signifies to",
+        "which of two sentences a token belongs",
+        "2 tasks:",
+        "- predict if one sentence follows",
+        "a second sentence",
+        "- predict masked token",
+        "What is captured in the CLS token?",
+        "What is predicted?",
+        "What is predicted?"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "b17eea927c9197448a901350fc9bdfdbd11ae3f8510ea44fab469ee6e913d23a",
+      "lines": [
+        "Pretraining Details",
+        "BERT Modifications",
+        "• Dataset: Extra 2.5B words in English Wikipedia",
+        "• Batch size: 256 sequences (two “sentences”)",
+        "of 128 tokens",
+        "GPT",
+        "• Dataset: 800M words in BooksCorpus (>7,000 books)",
+        "• Weight initialization: Gaussian distribution for (0, 0.02)",
+        "• Optimizer: Adam",
+        "• Regularization: dropout and L2 norm penalty",
+        "• Batch size: 64 sequences of 512 tokens each"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "eff9cfa04e0be9799a58310e109be3cc43a449da0c9dfba85e82eb9316adedf8",
+      "lines": [
+        "Approach",
+        "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html",
+        "Inference"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "08b65ccd60d98d05ae85f88f0a846a869f823c5dce4dcc35db6f88fef39336a3",
+      "lines": [
+        "GPT: Fine-Tuning to Four Types of Tasks",
+        "(Discriminative Instead of Generative Tasks)",
+        "Append to pretrained",
+        "transformer a small",
+        "number of parameters",
+        "(with softmax output),",
+        "then perform supervised",
+        "fine-tuning to task-specific",
+        "datasets",
+        "Achieved state-of-the-art",
+        "performance on 9 of 12",
+        "NLP dataset challenges!",
+        "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "850d71cf18c37a8ab8d534fed9b8fadebc806c6eed0d2c7e1573adc3638dc717",
+      "lines": [
+        "GPT: Fine-Tuning",
+        "e.g., predict whether a sentence from movie",
+        "review has a positive vs negative sentiment",
+        "Start",
+        "token",
+        "End",
+        "token",
+        "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "8a4558aba9adc1b80e2115bb0a385e06c3850472846a4d04866a7f7d6dfccbfb",
+      "lines": [
+        "GPT: Fine-Tuning",
+        "e.g., classify relationship of hypothesis to premise into three options;",
+        "Relationship Premise Hypothesis",
+        "Entailment Students quietly listen to the lecture The lecturer is speaking.",
+        "Neutral Students quietly listen to the lecture The projector equipment is broken.",
+        "Contradict Students quietly listen to the lecture The students are lecturing.",
+        "Start",
+        "token",
+        "$",
+        "token",
+        "End",
+        "token",
+        "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "edbecd6a016b1208da56198f3ba2293d91be7ffa224749a5848e2f2814264cba",
+      "lines": [
+        "GPT: Fine-Tuning",
+        "Start",
+        "tokens",
+        "$",
+        "tokens",
+        "End",
+        "tokens",
+        "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018.",
+        "e.g., decide if two sentences are similar (given no inherent",
+        "ordering of the two sentences, both orders are used)"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "fb9438d6e7e309334448cdc155c3f87ec4572540d33b09f35cb7d8ae433254c0",
+      "lines": [
+        "GPT: Fine-Tuning",
+        "Start",
+        "tokens",
+        "$",
+        "tokens",
+        "End",
+        "tokens",
+        "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018.",
+        "e.g., decide which answer results from the context (e.g., question about a",
+        "document, concatenated); softmax layer gives probabilities for all options"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "a4a0f5d5d1354ab1ff9a6822e0b85ddd086764adbe0c761e38829ee40c39245c",
+      "lines": [
+        "• How many pretrained layers should be fine-tuned?",
+        "• Does using a transformer rather than an LSTM help?",
+        "• Does pre-training help?",
+        "GPT: Analysis of Design Choices",
+        "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "3c00035e8f83f3dbaa9b8066dfc598a049f5a0434324c3f51371af655590e63e",
+      "lines": [
+        "BERT: Fine-Tuning to",
+        "Three Types of Tasks",
+        "Devlin et al. BERT: Pre-Training of Deep Bidirectional Transformers for Language Understanding. ACL 2019.",
+        "Achieved state-of-the-art performance",
+        "on 11 NLP benchmark datasets!"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "d6a06a90aeecc0f21d4c435cc1fdde5a04407dde785f267e0096c56c20f42483",
+      "lines": [
+        "BERT: Fine-Tuning for Classification",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf",
+        "Predicts using the token",
+        "representing ENTIRE input",
+        "Only new parameters",
+        "What is predicted?"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "a5bd3324627e9780cc8258d234b0856d4d896d795433b0a71395c0d3f79c3738",
+      "lines": [
+        "BERT: Fine-Tuning for Question Answering",
+        "Predicts indices of start and end words",
+        "in the input paragraph",
+        "- dot product comparing both learned vector",
+        "representations with each input token",
+        "Two new parameters:",
+        "start and end vector",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "40e01c24d7c3f437c905d4e0cb89fa8bd2a73c149fef1beed961268660eb700d",
+      "lines": [
+        "BERT: Fine-Tuning for Single Sentence Tagging",
+        "Each token’s new representation is passed",
+        "to classifier (e.g., named entity recognition)",
+        "Only new parameters",
+        "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "6833b79e3b6e515cb19dd5d9f44fb35f8ee5e527203b29f1b891dd782019b7d1",
+      "lines": [
+        "• Does including next sentence prediction in pretraining help?",
+        "• Yes",
+        "• Does including masked token prediction in pretraining help?",
+        "(versus using GPT’s left-to-right approach instead)",
+        "• Yes; worse results from unidirectional than bidirectional pretraining",
+        "BERT: Analysis of Design Choices",
+        "Devlin et al. BERT: Pre-Training of Deep Bidirectional Transformers for Language Understanding. NAACL 2019."
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "ac3c067215fbf785ff2314def6760d3346baca098e9ced3cb8b7627ce39163f4",
+      "lines": [
+        "Summary: General-Purpose Representation",
+        "Pre-Training Outperforms Task-Focused Learning",
+        "https://www.facebook.com/1rvanisrisaravanan/posts/pincer-graspthe-pincer￾grasp-is-the-coordination-of-the-index-finger-and-thumb-t/2833183393596559/"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "180dedeef9b8de686d0c141b0faf9827931a2fa5592513c2cabd9c70473e66b3",
+      "lines": [
+        "Today’s Topics",
+        "• Revisiting learning: from solving tasks to building representations that generalize",
+        "• The recipe: large-scale pretraining + lightweight fine-tuning",
+        "• Multimodal test: can the recipe replace CNN-RNN solutions for vision-language tasks?",
+        "• Speech test: can the recipe replace engineered solutions for speech recognition?",
+        "• Vision test: can the recipe replace CNNs for image classification?",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "847220d800d72f31dd20ffc2a825c1d9080bb8a56a1955f09d6e2c2e941dcbcd",
+      "lines": [
+        "(EMNLP, 2019)"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "0bc06d409fb5bad3349b5ae33dd61c9106c3a940d986bfa8e7d51834d6b84f37",
+      "lines": [
+        "Architecture: Embeds BERT",
+        "WordPiece subword",
+        "tokenization plus [CLS]",
+        "Tan and Bansal, EMNLP 2019.",
+        "What is captured in",
+        "representations for:",
+        "- Vision?",
+        "- Language?",
+        "- Cross-modality",
+        "BERT (Encoder)",
+        "([CLS] token)?",
+        "L = 9",
+        "R = 5 X = 5",
+        "Faster R-CNN features for 36 objects",
+        "detected from 1,600 categories",
+        "What do the new representations",
+        "capture for: Vision? Language?",
+        "What is captured in the new representations from",
+        "cross-attention (i.e., “query” from one modality with",
+        "“keys” and “values” from the other)?"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "ae3f975c57245a2ba07a84f1afc5d00c901c26e5caf4b986f911874b05c51f25",
+      "lines": [
+        "Pretraining: Data (Larger Scale)",
+        "Tan and Bansal, EMNLP 2019.",
+        "9.18M image-sentence pairs for 180,000 images (questions in VQA datasets used for",
+        "image-sentence pairs) coming from 2 image captioning and 3 VQA datasets"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "2ccb1c168e3538ef3fb4fc8150dba398adcfd46251fc8e16f57b9e989c7a5d6f",
+      "lines": [
+        "Pretraining: Objective (5 Losses Summed)",
+        "(Faster R-CNN detector",
+        "frozen during training)",
+        "Training took 10 days on 4 Titan Xp GPUs",
+        "Tan and Bansal, EMNLP 2019.",
+        "Masks 15% of input objects",
+        "Masks 15% of input words",
+        "* 50% of language responses",
+        "are chosen at random"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "bddea813ddc7cfd18c05eaf782660dff90ebf3c95f3bc43febf28ffc137f98f1",
+      "lines": [
+        "Fine-Tuning: Experimental Results",
+        "State-of-the-art performance for 2 VQA datasets and 1 visual reasoning dataset",
+        "(i.e., does statement describe two images or not?)",
+        "Tan and Bansal, EMNLP 2019."
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "ac3c067215fbf785ff2314def6760d3346baca098e9ced3cb8b7627ce39163f4",
+      "lines": [
+        "Summary: General-Purpose Representation",
+        "Pre-Training Outperforms Task-Focused Learning",
+        "https://www.facebook.com/1rvanisrisaravanan/posts/pincer-graspthe-pincer￾grasp-is-the-coordination-of-the-index-finger-and-thumb-t/2833183393596559/"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "180dedeef9b8de686d0c141b0faf9827931a2fa5592513c2cabd9c70473e66b3",
+      "lines": [
+        "Today’s Topics",
+        "• Revisiting learning: from solving tasks to building representations that generalize",
+        "• The recipe: large-scale pretraining + lightweight fine-tuning",
+        "• Multimodal test: can the recipe replace CNN-RNN solutions for vision-language tasks?",
+        "• Speech test: can the recipe replace engineered solutions for speech recognition?",
+        "• Vision test: can the recipe replace CNNs for image classification?",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "1bf4a8963b370c0df1bcbca146a5890b5fada78040ffbf41613c526831ddfc92",
+      "lines": [
+        "(NeurIPS, 2020)"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "f689f87808bb6ab55bf077a451cbb12700796479fee96b03546312072a4f173b",
+      "lines": [
+        "Architecture: Embeds BERT",
+        "Baevski et al. NeurIPS 2002.",
+        "Input representation for transformer",
+        "learned from raw audio; captures",
+        "short durations for input",
+        "What happens to the number of",
+        "inputs if the CNN’s stride increases?",
+        "Representations",
+        "discretized to finite set",
+        "What do the new",
+        "representations capture?"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "aabe30eba4669072df8f2cce985e1160a32a1818ed22980b900d2b737d318c4b",
+      "lines": [
+        "Pre-Training: Masked Token Prediction",
+        "(from a Set of Candidates)",
+        "Baevski et al. NeurIPS 2002.",
+        "Masks these tokens",
+        "Training data: 2 datasets of 960 hours",
+        "and 53.2k hours of audio respectively"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "ba9c4846f1bc262d95c6d9c54a40bac6b0bc8d384e6fa65fb6e65b603ab52c48",
+      "lines": [
+        "Fine-Tuning: Experimental Design and Results",
+        "• Adds a linear layer for predicting target categories (e.g., 30 tokens for Librispeech)",
+        "• Achieved state-of-the-art performance for speech recognition (Librispeech",
+        "benchmark) and phoneme recognition (TIMIT benchmark), including when using",
+        "100 times less labeled data",
+        "• Achieved word error rate of 4.8 when using only 10 minutes of labeled data",
+        "• Relevant for many of the ~7,000 languages spoken worldwide, which often lack thousands of",
+        "hours of transcribed speech"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "ac3c067215fbf785ff2314def6760d3346baca098e9ced3cb8b7627ce39163f4",
+      "lines": [
+        "Summary: General-Purpose Representation",
+        "Pre-Training Outperforms Task-Focused Learning",
+        "https://www.facebook.com/1rvanisrisaravanan/posts/pincer-graspthe-pincer￾grasp-is-the-coordination-of-the-index-finger-and-thumb-t/2833183393596559/"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "180dedeef9b8de686d0c141b0faf9827931a2fa5592513c2cabd9c70473e66b3",
+      "lines": [
+        "Today’s Topics",
+        "• Revisiting learning: from solving tasks to building representations that generalize",
+        "• The recipe: large-scale pretraining + lightweight fine-tuning",
+        "• Multimodal test: can the recipe replace CNN-RNN solutions for vision-language tasks?",
+        "• Speech test: can the recipe replace engineered solutions for speech recognition?",
+        "• Vision test: can the recipe replace CNNs for image classification?",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "2bfe95801892fb6160910529acb61e475a0f64d1d60e8465d7c711b35a7ffd24",
+      "lines": [
+        "(ICLR, 2021)"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "32ea892ea21dfb765c754764839bb084e19f5a8f7fd207a8139781d5590c97ef",
+      "lines": [
+        "Architecture: BERT",
+        "Dosovitskiy et al. An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale. ICLR 2021.",
+        "Image decomposed into 16x16 patches",
+        "(example simplified); representations",
+        "include “flattened” and ResNet features",
+        "Why not use the raw pixels as input?"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "8954f988c501aff24726a0616d0b6e65c09820a1cd7b31c0403ff392f9a8d684",
+      "lines": [
+        "Recall Self-Attention: Idea",
+        "New representation of each pixel showing its relationship to all pixels; e.g., assume this 3x3 image"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "c75db886017b8f1a69e30953ddb7f48df9ffacbefe0642ea212c98358379d4e4",
+      "lines": [
+        "Recall Self-Attention: Idea",
+        "New representation of each pixel showing its relationship to all pixels; e.g., assume this 3x3 image",
+        "Learned new representation indicates which global information clarifies a pixel’s meaning",
+        "(e.g., include in the representation of a pixel of an eye context of what animal it belongs to)"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "c75db886017b8f1a69e30953ddb7f48df9ffacbefe0642ea212c98358379d4e4",
+      "lines": [
+        "Recall Self-Attention: Idea",
+        "New representation of each pixel showing its relationship to all pixels; e.g., assume this 3x3 image",
+        "Learned new representation indicates which global information clarifies a pixel’s meaning",
+        "(e.g., include in the representation of a pixel of an eye context of what animal it belongs to)"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "8954f988c501aff24726a0616d0b6e65c09820a1cd7b31c0403ff392f9a8d684",
+      "lines": [
+        "Recall Self-Attention: Idea",
+        "New representation of each pixel showing its relationship to all pixels; e.g., assume this 3x3 image"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "a2f4619d521175b42310be0c58a4c5c0959c4be71fcb0c21de4468e9386f1b29",
+      "lines": [
+        "Recall Self-Attention: Idea",
+        "New representation of each pixel showing its relationship to all pixels; e.g., assume this 3x3 image",
+        "And so on for remaining image pixels…"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "6cc96fd8f4bfd4af081b3ab445e2b3ec6064bca3ac96e79bad88b228063ce071",
+      "lines": [
+        "Rationale for Patches:",
+        "Computational Cost of Self-Attention",
+        "e.g., instead of using 3x3 image, what if a 1920 x 1080 image was used? How many self￾attention computations would be needed?",
+        "- (1920 x 1080) 2 = 4,299,816,960,000 (i.e., ~4.3 trillion)",
+        "Quadratic cost of self-attention is often impractical for pixels!"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "f11da215408901c70ab15feaaa4a3259f35e291c0a5a06aa4ffa724e8bfd6ca9",
+      "lines": [
+        "Architecture: BERT",
+        "Dosovitskiy et al. An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale. ICLR 2021.",
+        "Image decomposed into 16x16 patches",
+        "For a 160 x 160 pixel image, how many",
+        "patches (inputs) would be extracted?",
+        "- 100",
+        "What does the CLS token represent,",
+        "after passing through the transformer?"
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "3eb9b17e1b7e88f78410d7eaedf265da2257047d06593b0e29e8165146591823",
+      "lines": [
+        "Pre-Training: Supervised Learning Beats",
+        "Self-Supervised Masked Prediction",
+        "Dosovitskiy et al. An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale. ICLR 2021.",
+        "• Dataset: JFT, 303M labeled images",
+        "(proprietary at Google)",
+        "• Task: classification",
+        "• Optimizer: Adam"
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "c6b05bb8652790cacd7184b6f2ae814021914a3434870831fa1376e00d57138e",
+      "lines": [
+        "Fine-Tuning: Other Image Classification Tasks",
+        "Dosovitskiy et al. An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale. ICLR 2021.",
+        "MLP replaced with a linear layer",
+        "for new classification categories",
+        "Achieved strong results on five",
+        "image classification datasets!",
+        "Pretraining dataset size was",
+        "critical, regardless of model size",
+        "(ImageNet fine-tuning results)"
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "a0de51d6eb2cfc48a49e349036a792a5c0040a9f27108281907e827c744d3348",
+      "lines": [
+        "Finding: Large-Scale Pretraining Enables",
+        "Transformers to Compete with CNNs",
+        "https://www.deeplearningbook.org/contents/convnets.html",
+        "Convolutional layers: deeper layers have",
+        "increasingly more global receptive fields",
+        "https://towardsdatascience.com/self-attention-5b95ea164f61",
+        "Self-attention: each layer",
+        "has a global receptive field"
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "ac3c067215fbf785ff2314def6760d3346baca098e9ced3cb8b7627ce39163f4",
+      "lines": [
+        "Summary: General-Purpose Representation",
+        "Pre-Training Outperforms Task-Focused Learning",
+        "https://www.facebook.com/1rvanisrisaravanan/posts/pincer-graspthe-pincer￾grasp-is-the-coordination-of-the-index-finger-and-thumb-t/2833183393596559/"
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "180dedeef9b8de686d0c141b0faf9827931a2fa5592513c2cabd9c70473e66b3",
+      "lines": [
+        "Today’s Topics",
+        "• Revisiting learning: from solving tasks to building representations that generalize",
+        "• The recipe: large-scale pretraining + lightweight fine-tuning",
+        "• Multimodal test: can the recipe replace CNN-RNN solutions for vision-language tasks?",
+        "• Speech test: can the recipe replace engineered solutions for speech recognition?",
+        "• Vision test: can the recipe replace CNNs for image classification?",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "8a238c6e2495576c379171ea5de192dc8d2ea6093ffafddf1d9836d8ea181d4a",
+      "lines": [
+        "What’s Next: Explosion of Transformers in Society",
+        "https://www.pinterest.com/pin/521784306804400819/"
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "180dedeef9b8de686d0c141b0faf9827931a2fa5592513c2cabd9c70473e66b3",
+      "lines": [
+        "Today’s Topics",
+        "• Revisiting learning: from solving tasks to building representations that generalize",
+        "• The recipe: large-scale pretraining + lightweight fine-tuning",
+        "• Multimodal test: can the recipe replace CNN-RNN solutions for vision-language tasks?",
+        "• Speech test: can the recipe replace engineered solutions for speech recognition?",
+        "• Vision test: can the recipe replace CNNs for image classification?",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

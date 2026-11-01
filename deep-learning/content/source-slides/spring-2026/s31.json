@@ -1,0 +1,412 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s31",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/28-Course-Summary.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2026/s31.pdf",
+    "sha256": "447b6796f437ba722b2c07cbbc71fd194bc8576ad071bd1b1cdcf2ea78b8f592",
+    "page_count": 27,
+    "license_notice": "CC BY-NC-SA; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "a685713b35c2ed6153436af9026c440f47112ac0c6e9076b8430cd4e0a29b1c6",
+      "lines": [
+        "Course Summary",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2026",
+        "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "8d911228ad3ad98da348deea60156e242d8939b56805d7dc80ef5dca858ca904",
+      "lines": [
+        "Review",
+        "• Last few lectures:",
+        "• Guest lectures from industry",
+        "• Assignments (Canvas):",
+        "• Final project presentation and peer evaluation grades out",
+        "• Send regrade requests to Nick Cooper",
+        "• 5922 students: final project report due next Wednesday",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "0bd3ab4b0812a85f63e9fe5d30641566d39e9c3f278295c734ff866af15ade5d",
+      "lines": [
+        "Today’s Topics",
+        "• Reflections: what we have done over the semester",
+        "• Key takeaways: lessons from the past century",
+        "• Looking ahead: how to continue with NN and DL",
+        "• Open Q&A with instructor",
+        "• Closing remarks"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "0bd3ab4b0812a85f63e9fe5d30641566d39e9c3f278295c734ff866af15ade5d",
+      "lines": [
+        "Today’s Topics",
+        "• Reflections: what we have done over the semester",
+        "• Key takeaways: lessons from the past century",
+        "• Looking ahead: how to continue with NN and DL",
+        "• Open Q&A with instructor",
+        "• Closing remarks"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "2907602276c794d0b8f62a6f00caf08f564e81346839861a527a1454d76147cb",
+      "lines": [
+        "Artificial",
+        "Neurons",
+        "(lecture 2)",
+        "Gradient Descent",
+        "Classical Neural Networks",
+        "and Shallow Learning",
+        "(lectures 3-6)",
+        "Fully Connected",
+        "Feedforward,",
+        "Recurrent, and",
+        "Convolutional",
+        "Neural Networks",
+        "Sustainable,",
+        "Responsible,",
+        "and Future",
+        "Models",
+        "Neural Networks",
+        "in Society",
+        "(lectures 20-26)",
+        "Industry",
+        "Perspectives",
+        "Residual Learning,",
+        "Batch Normalization,",
+        "Hardware Acceleration,",
+        "Fine Tuning, Big Data",
+        "Deep Learning and",
+        "Transformers",
+        "(lectures 7-19)",
+        "Applications with",
+        "Visual, Textual, Audio,",
+        "and Multimodal Data",
+        "Three key breakthroughs:",
+        "\"A spark can become a",
+        "flame, a flame a fire.\"",
+        "- Kathryn Lasky",
+        "Recall Course Schedule"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "f82c933fa33dbfad6688be8c966205011fef9b77a4401d9c2f90d276986c7ec6",
+      "lines": [
+        "Recall Course Learning Objective 1: Recognize and",
+        "Analyze Common Neural Network Architectures",
+        "https://medium.com/data-science/the-mostly-complete-chart-of-neural-networks-explained-3fb6f2367464; Vaswani et al. Attention Is All You Need. Neurips 2017",
+        "Key “Wave 2” Architectures Key “Wave 3” Architectures",
+        "Transformer",
+        "Architectures are designed to encode assumptions about data"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "4b73581f4d2e48952a818d7c7905efba67334e9b589ed11005f557835d9a909e",
+      "lines": [
+        "Recall Course Learning Objective 1: Recognize and",
+        "Analyze Common Neural Network Architectures",
+        "https://medium.com/data-science/the-mostly-complete-chart-of-neural-networks-explained-3fb6f2367464; Vaswani et al. Attention Is All You Need. Neurips 2017",
+        "Key “Wave 2” Architectures Key “Wave 3” Architectures",
+        "Transformer",
+        "Dominant architectures changed, suggesting new one will emerge (if not yet here)"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "6417d9206f5b0da843fd21a02a4687bef95d1f83b80b9dcceb8148b1d4ad50f5",
+      "lines": [
+        "Recall Course Learning Objective 2:",
+        "Recognize and Analyze Common Techniques",
+        "for Training Deep Neural Networks",
+        "Deep learning success = optimization breakthroughs + compute + data",
+        "Key “Wave 2” Innovations",
+        "(gradient descent, with proper",
+        "initialization and optimization tricks)",
+        "Key “Wave 3” Innovations",
+        "x",
+        "f(x)",
+        "Pretraining +",
+        "Fine-Tuning",
+        "e.g.,",
+        "unsupervised",
+        "+ task-specific",
+        "learning",
+        "Internet-Scale",
+        "Training +",
+        "Zero-/Few￾Shot Learning",
+        "Post-Training",
+        "e.g., instruction",
+        "tuning, RLHF",
+        "Task-specific",
+        "e.g., big data,",
+        "GPUs, residual",
+        "learning",
+        "1986"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "d3468b1377d0acee5d77e6f94e5e52be55227e5d35e428b934ca3fd13a8f8d5f",
+      "lines": [
+        "Recall Course Learning Objective 2:",
+        "Recognize and Analyze Common Techniques",
+        "for Training Deep Neural Networks",
+        "Key “Wave 2” Innovations",
+        "(gradient descent, with proper",
+        "initialization and optimization tricks)",
+        "Key “Wave 3” Innovations",
+        "x",
+        "f(x)",
+        "Pretraining +",
+        "Fine-Tuning",
+        "e.g.,",
+        "unsupervised",
+        "+ task-specific",
+        "learning",
+        "Internet-Scale",
+        "Training +",
+        "Zero-/Few￾Shot Learning",
+        "Post-Training",
+        "e.g., instruction",
+        "tuning, RLHF",
+        "Task-specific",
+        "e.g., big data,",
+        "GPUs, residual",
+        "learning",
+        "1986",
+        "Dominant learning strategies changed,",
+        "suggesting new one will emerge (if not yet here)"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "6b418686d3fef7d8fc2515b7b1a3b9261a4056113ee5b4014c343be8dc6eb854",
+      "lines": [
+        "Recall Course Objective 3: Gain Hands-on",
+        "Experience with Neural Networks and Deep",
+        "Learning for Various Artificial Intelligence Tasks",
+        "A. Experimented with established deep learning libraries",
+        "• 13 coding tutorials focused mostly on PyTorch, but covered more (e.g., Hugging Face)",
+        "B. Developed deep learning models from scratch",
+        "• 3 lab assignments covering single and multi-modality tasks , including working with",
+        "“deep” architectures and “big data”",
+        "C. Evaluated deep learning models for diverse tasks, especially for analyzing text and images"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "71b04d130a372c3ad24689536a6adab9980a65ff6d3c742178ffc5c4eafab0cc",
+      "lines": [
+        "Recall Course Objective 4: Explore Responsible AI",
+        "Practices to Both Reduce Environmental Harm and",
+        "Promote Ethical Behavior in AI Systems",
+        "2 lectures on sustainable AI with one from guest speaker (Dr. Eric Hersh)",
+        "3 lectures on AI ethics with one from guest speaker (Dr. Mehrnoosh Sameki)"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "a56369ea486e07b3e06b6593195ffa4c3dd4f041bde3583f35d2997835a9b1ed",
+      "lines": [
+        "Recall Course Objective 5: Apply What is Learned",
+        "to Propose and Critique Novel Projects Involving",
+        "Neural Networks and Deep Learning"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "0bd3ab4b0812a85f63e9fe5d30641566d39e9c3f278295c734ff866af15ade5d",
+      "lines": [
+        "Today’s Topics",
+        "• Reflections: what we have done over the semester",
+        "• Key takeaways: lessons from the past century",
+        "• Looking ahead: how to continue with NN and DL",
+        "• Open Q&A with instructor",
+        "• Closing remarks"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "80a04c61f55fed30794ba5c9fa1188572a6ec589e072084278f0e5c38348ea46",
+      "lines": [
+        "Given History of AI, Will There be a 3rd “AI Winter”?",
+        "If Yes, Will the AI Bubble Pop or Deflate?",
+        "https://www.linkedin.com/pulse/we-ai-bubble-100-billion-answer-habib-baluwala-ph-d-0jqgc/"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "f73edc41e8297e3ca89d0347285f7b8661da3d513e12f18710d3d437b2b87eaa",
+      "lines": [
+        "Recall AI as a Field Was Born 70 Years Ago",
+        "Turing test",
+        "1945",
+        "First programmable",
+        "machine AI birth",
+        "1950 1956"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "41281248b12e65fd4a5dc7dffd89e9108d508d1eb6a0c78f41db13780f48e1fc",
+      "lines": [
+        "AI is Evolving Relatively Fast (70 Years Old)",
+        "and Shaping Our Society; Context:",
+        "Open Question: How Will AI Continue to Evolve and Shape Our World?",
+        "https://www.visualcapitalist.com/path-of-human-evolution/",
+        "It took 4 billion years to",
+        "evolve into modern humans!",
+        "In that time, we continuously",
+        "shaped our surroundings; e.g.,",
+        "https://www.usbr.gov/uc/rm/crsp/gc/ https://ocj.com/2023/08/202",
+        "3-ohio-crop-tour-north-leg/"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "34230348302c0eb665d591d33b7d9c1807e742745757e25f2808876cb4d2ceb4",
+      "lines": [
+        "What’s Next: Choosing How to Evolve with AI",
+        "Source: Kristen Grauman",
+        "As an educator, researcher, and mother,",
+        "I champion responsible, sustainable AI",
+        "that underpins a society I would want",
+        "the next generation to inherit"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "f126da19c9ea1664833b9b58f045953ee6a6d3f6b3da7beedc201c3a45d33069",
+      "lines": [
+        "What’s Next: Choosing How to Evolve with AI",
+        "• For you:",
+        "• What do you find acceptable versus unacceptable from AI?",
+        "• How will you engage with AI - Today? In 5 years? In 10 years?",
+        "• How will you differentiate yourself from AI - Today? In 5 years? In 10 years?",
+        "• For society:",
+        "• How will you raise awareness about AI?",
+        "• Which AI initiatives will you fund with your money?",
+        "• Which AI companies will you reward with your time?",
+        "• Which government representatives will you support?"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "0bd3ab4b0812a85f63e9fe5d30641566d39e9c3f278295c734ff866af15ade5d",
+      "lines": [
+        "Today’s Topics",
+        "• Reflections: what we have done over the semester",
+        "• Key takeaways: lessons from the past century",
+        "• Looking ahead: how to continue with NN and DL",
+        "• Open Q&A with instructor",
+        "• Closing remarks"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "ade159416f91c7f16b887da4b8bffd0457cb174ac46971e39ffb216fbfd6ad45",
+      "lines": [
+        "Ways to Stay Connected with NN & DL",
+        "• Many courses at CU Boulder",
+        "• Read research papers: e.g., on arXiv and Google Scholar",
+        "• Attend workshops and conferences: e.g., best paper awardees at",
+        "NeurIPS, ICML, CVPR, EMNLP",
+        "• Follow relevant social media feeds: e.g., public AI leaders",
+        "• Follow leading organizations, such as:",
+        "• Epoch AI (https://epoch.ai/)",
+        "• AI Future Project (https://www.aifutures.org/)",
+        "• Anthropic (https://www.anthropic.com/research)",
+        "• Follow AI news sources; e.g., There’s an AI For That",
+        "(https://theresanaiforthat.com/)"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "71536c3d43fa18a6993f1186014fdaaa0e87a50761a97bd783aa9d9fd6fae504",
+      "lines": [
+        "Get Involved at CU Boulder",
+        "• Apply to join research efforts… see Canvas announcements"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "0bd3ab4b0812a85f63e9fe5d30641566d39e9c3f278295c734ff866af15ade5d",
+      "lines": [
+        "Today’s Topics",
+        "• Reflections: what we have done over the semester",
+        "• Key takeaways: lessons from the past century",
+        "• Looking ahead: how to continue with NN and DL",
+        "• Open Q&A with instructor",
+        "• Closing remarks"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "b402fcd24bf96b4798a418c5e68abaeb5215a21d957a52f7bd3042099182f399",
+      "lines": [
+        "Any questions for me?"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "0bd3ab4b0812a85f63e9fe5d30641566d39e9c3f278295c734ff866af15ade5d",
+      "lines": [
+        "Today’s Topics",
+        "• Reflections: what we have done over the semester",
+        "• Key takeaways: lessons from the past century",
+        "• Looking ahead: how to continue with NN and DL",
+        "• Open Q&A with instructor",
+        "• Closing remarks"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "7dfb803dc2fbc93e1257753b6fc75725ca880ec65c94f7568e3fbdf118b23c45",
+      "lines": [
+        "Recall My “Why” for Teaching You…",
+        "WHY?",
+        "To guide and witness you",
+        "discover more about",
+        "your potential and your",
+        "passions",
+        "HOW?",
+        "By empowering you to become",
+        "proficient in one of my passions",
+        "WHAT?",
+        "Neural Networks & Deep Learning"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "fd2662ab495d563311a2a09b420dd43cc4560ddc36ddadb5ebf69989f6cb6e33",
+      "lines": [
+        "It’s been a pleasure teaching each of you.",
+        "Thank you for choosing to take this course.",
+        "Feel free to stay connected via LinkedIn ☺"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

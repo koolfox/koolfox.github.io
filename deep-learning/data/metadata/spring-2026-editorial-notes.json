@@ -1,0 +1,303 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "notes": [
+    {
+      "session_id": "s10",
+      "page": 51,
+      "source_sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
+      "kind": "arithmetic_correction",
+      "verified": true,
+      "fa": "در دو عبارت آخرِ اسلاید، تقسیم‌های چاپ‌شده ناسازگارند: 192/32 = 6 و 145/32 = 4.53125. اگر مختصات نقطهٔ بالاچپ x=296 و y=192 در نظر گرفته شود، خروجی‌های 9.25 و 6 به‌ترتیب درست‌اند. این یادداشت محاسبه را روشن می‌کند؛ اصل تصویر و ترجمهٔ عبارت‌های منبع بدون تغییر مانده‌اند.",
+      "verification": "Actual original page visually inspected; printed arithmetic independently recomputed."
+    },
+    {
+      "session_id": "s23",
+      "page": 15,
+      "source_sha256": "7df036e4818ec92852c2ade2ca95a95c427eaaa46e25b1553e8b9971cb1ffd9f",
+      "kind": "arithmetic_correction",
+      "verified": true,
+      "fa": "با مفروضات نوشته‌شده در اسلاید، 11000/250 = 44 صفحه است، نه حدود 20 صفحه. برای 20 صفحه، تراکم 550 کلمه در هر صفحه لازم است. این یادداشت حساب عددی را تصحیح می‌کند؛ متن و نمودار اصلی حفظ شده‌اند.",
+      "verification": "Actual original page visually inspected; printed arithmetic independently recomputed."
+    },
+    {
+      "session_id": "s07",
+      "page": 43,
+      "source_sha256": "ac4446d8edc7398cf4e6c6601b30c6d842c6e1d9a656eb243d841a982ee75d1a",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "در صورت‌بندی معمول حذف تصادفی (Dropout) این اسلاید، وزن‌های خروجی در زمان آزمون باید در احتمال نگه‌داشتن واحد ضرب شوند، نه احتمال حذف آن. اگر احتمال حذف q باشد، ضریب آزمون 1-q است. مقالهٔ اصلی ماسک برنولی را با احتمال نگه‌داشتن p تعریف می‌کند و W_test=pW را به کار می‌برد. در صورت‌بندی معادلِ حذف تصادفی وارون (Inverted dropout)، فعال‌سازی‌های باقی‌مانده هنگام آموزش بر p تقسیم می‌شوند و در آزمون مقیاس‌دهی تازه لازم نیست.",
+      "references": [
+        {
+          "label_fa": "مقالهٔ اصلی Dropout، شکل۲ و بخش۴",
+          "url": "https://jmlr.org/papers/volume15/srivastava14a/srivastava14a.pdf"
+        }
+      ],
+      "verification": "Visible original page inspected and original primary publications checked independently."
+    },
+    {
+      "session_id": "s08",
+      "page": 42,
+      "source_sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "مقدار 0.0001 برای افت وزن (Weight decay) در ResNet با مقالهٔ اصلی سازگار است؛ اما مقدار مقایسه‌ای AlexNet برابر 0.0005 است، نه 0.005 چاپ‌شده در اسلاید. بنابراین ضریب در مقایسهٔ این دو تنظیم آموزشی پنج برابر کوچک‌تر شده است.",
+      "references": [
+        {
+          "label_fa": "مقالهٔ ResNet، بخش۳.۴",
+          "url": "https://arxiv.org/pdf/1512.03385"
+        },
+        {
+          "label_fa": "مقالهٔ AlexNet، بخش۵",
+          "url": "https://papers.nips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf"
+        }
+      ],
+      "verification": "Visible original page inspected and original primary publications checked independently."
+    },
+    {
+      "session_id": "s10",
+      "page": 10,
+      "source_sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "برچسب «Mask R-CNN in 2015» در این شکل از نظر سال نادرست است: مقالهٔ Mask R-CNN نخست در مارس 2017 منتشر شد و در ICCV 2017 ارائه شد. این یادداشت فقط سال معرفی Mask R-CNN را تصحیح می‌کند؛ شکل و ترجمهٔ عبارت چاپ‌شدهٔ منبع حفظ شده‌اند.",
+      "references": [
+        {
+          "label_fa": "مقالهٔ اصلی در arXiv",
+          "url": "https://arxiv.org/abs/1703.06870"
+        },
+        {
+          "label_fa": "انتشار ICCV 2017",
+          "url": "https://openaccess.thecvf.com/content_iccv_2017/html/He_Mask_R-CNN_ICCV_2017_paper.html"
+        }
+      ],
+      "verification": "Visible original page inspected and original primary publications checked independently."
+    },
+    {
+      "session_id": "s10",
+      "page": 12,
+      "source_sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "برچسب «Mask R-CNN in 2015» در این شکل از نظر سال نادرست است: مقالهٔ Mask R-CNN نخست در مارس 2017 منتشر شد و در ICCV 2017 ارائه شد. این یادداشت فقط سال معرفی Mask R-CNN را تصحیح می‌کند؛ شکل و ترجمهٔ عبارت چاپ‌شدهٔ منبع حفظ شده‌اند.",
+      "references": [
+        {
+          "label_fa": "مقالهٔ اصلی در arXiv",
+          "url": "https://arxiv.org/abs/1703.06870"
+        },
+        {
+          "label_fa": "انتشار ICCV 2017",
+          "url": "https://openaccess.thecvf.com/content_iccv_2017/html/He_Mask_R-CNN_ICCV_2017_paper.html"
+        }
+      ],
+      "verification": "Visible original page inspected and original primary publications checked independently."
+    },
+    {
+      "session_id": "s10",
+      "page": 24,
+      "source_sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "برچسب «Mask R-CNN in 2015» در این شکل از نظر سال نادرست است: مقالهٔ Mask R-CNN نخست در مارس 2017 منتشر شد و در ICCV 2017 ارائه شد. این یادداشت فقط سال معرفی Mask R-CNN را تصحیح می‌کند؛ شکل و ترجمهٔ عبارت چاپ‌شدهٔ منبع حفظ شده‌اند.",
+      "references": [
+        {
+          "label_fa": "مقالهٔ اصلی در arXiv",
+          "url": "https://arxiv.org/abs/1703.06870"
+        },
+        {
+          "label_fa": "انتشار ICCV 2017",
+          "url": "https://openaccess.thecvf.com/content_iccv_2017/html/He_Mask_R-CNN_ICCV_2017_paper.html"
+        }
+      ],
+      "verification": "Visible original page inspected and original primary publications checked independently."
+    },
+    {
+      "session_id": "s10",
+      "page": 28,
+      "source_sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "برچسب «Mask R-CNN in 2015» در این شکل از نظر سال نادرست است: مقالهٔ Mask R-CNN نخست در مارس 2017 منتشر شد و در ICCV 2017 ارائه شد. این یادداشت فقط سال معرفی Mask R-CNN را تصحیح می‌کند؛ شکل و ترجمهٔ عبارت چاپ‌شدهٔ منبع حفظ شده‌اند.",
+      "references": [
+        {
+          "label_fa": "مقالهٔ اصلی در arXiv",
+          "url": "https://arxiv.org/abs/1703.06870"
+        },
+        {
+          "label_fa": "انتشار ICCV 2017",
+          "url": "https://openaccess.thecvf.com/content_iccv_2017/html/He_Mask_R-CNN_ICCV_2017_paper.html"
+        }
+      ],
+      "verification": "Visible original page inspected and original primary publications checked independently."
+    },
+    {
+      "session_id": "s10",
+      "page": 31,
+      "source_sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "برچسب «Mask R-CNN in 2015» در این شکل از نظر سال نادرست است: مقالهٔ Mask R-CNN نخست در مارس 2017 منتشر شد و در ICCV 2017 ارائه شد. این یادداشت فقط سال معرفی Mask R-CNN را تصحیح می‌کند؛ شکل و ترجمهٔ عبارت چاپ‌شدهٔ منبع حفظ شده‌اند.",
+      "references": [
+        {
+          "label_fa": "مقالهٔ اصلی در arXiv",
+          "url": "https://arxiv.org/abs/1703.06870"
+        },
+        {
+          "label_fa": "انتشار ICCV 2017",
+          "url": "https://openaccess.thecvf.com/content_iccv_2017/html/He_Mask_R-CNN_ICCV_2017_paper.html"
+        }
+      ],
+      "verification": "Visible original page inspected and original primary publications checked independently."
+    },
+    {
+      "session_id": "s10",
+      "page": 33,
+      "source_sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "برچسب «Mask R-CNN in 2015» در این شکل از نظر سال نادرست است: مقالهٔ Mask R-CNN نخست در مارس 2017 منتشر شد و در ICCV 2017 ارائه شد. این یادداشت فقط سال معرفی Mask R-CNN را تصحیح می‌کند؛ شکل و ترجمهٔ عبارت چاپ‌شدهٔ منبع حفظ شده‌اند.",
+      "references": [
+        {
+          "label_fa": "مقالهٔ اصلی در arXiv",
+          "url": "https://arxiv.org/abs/1703.06870"
+        },
+        {
+          "label_fa": "انتشار ICCV 2017",
+          "url": "https://openaccess.thecvf.com/content_iccv_2017/html/He_Mask_R-CNN_ICCV_2017_paper.html"
+        }
+      ],
+      "verification": "Visible original page inspected and original primary publications checked independently."
+    },
+    {
+      "session_id": "s10",
+      "page": 35,
+      "source_sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "برچسب «Mask R-CNN in 2015» در این شکل از نظر سال نادرست است: مقالهٔ Mask R-CNN نخست در مارس 2017 منتشر شد و در ICCV 2017 ارائه شد. این یادداشت فقط سال معرفی Mask R-CNN را تصحیح می‌کند؛ شکل و ترجمهٔ عبارت چاپ‌شدهٔ منبع حفظ شده‌اند.",
+      "references": [
+        {
+          "label_fa": "مقالهٔ اصلی در arXiv",
+          "url": "https://arxiv.org/abs/1703.06870"
+        },
+        {
+          "label_fa": "انتشار ICCV 2017",
+          "url": "https://openaccess.thecvf.com/content_iccv_2017/html/He_Mask_R-CNN_ICCV_2017_paper.html"
+        }
+      ],
+      "verification": "Visible original page inspected and original primary publications checked independently."
+    },
+    {
+      "session_id": "s11",
+      "page": 6,
+      "source_sha256": "1a830b8863b5802c424e6499aa57c3f8cbdd741d608c3c1e347d7fad8b817727",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "برچسب «Mask R-CNN in 2015» در این شکل از نظر سال نادرست است: مقالهٔ Mask R-CNN نخست در مارس 2017 منتشر شد و در ICCV 2017 ارائه شد. این یادداشت فقط سال معرفی Mask R-CNN را تصحیح می‌کند؛ شکل و ترجمهٔ عبارت چاپ‌شدهٔ منبع حفظ شده‌اند.",
+      "references": [
+        {
+          "label_fa": "مقالهٔ اصلی در arXiv",
+          "url": "https://arxiv.org/abs/1703.06870"
+        },
+        {
+          "label_fa": "انتشار ICCV 2017",
+          "url": "https://openaccess.thecvf.com/content_iccv_2017/html/He_Mask_R-CNN_ICCV_2017_paper.html"
+        }
+      ],
+      "verification": "Visible original page inspected and original primary publications checked independently."
+    },
+    {
+      "session_id": "s13",
+      "page": 28,
+      "source_sha256": "a475a840420824879aa29003895f15cfec4c16e35654ff5a289617d8d17b35de",
+      "kind": "arithmetic_correction",
+      "verified": true,
+      "fa": "سافت‌مکس (Softmax) بردار [2,4,4] با محاسبهٔ کامل برابر [0.063378938333,0.468310530833,0.468310530833] است. [0,0.5,0.5] در تصویر، تقریب آموزشی است؛ گردکردن معمول به یک رقم اعشار [0.1,0.5,0.5] می‌دهد. برای اجرای عددی، مقدارهای کامل را به کار ببر؛ متن و تصویر منبع حفظ شده‌اند.",
+      "verification": "Original PDF visually checked; arithmetic independently recomputed from source vectors where applicable; bibliographic or dataset corrections verified against the linked primary source."
+    },
+    {
+      "session_id": "s13",
+      "page": 36,
+      "source_sha256": "a475a840420824879aa29003895f15cfec4c16e35654ff5a289617d8d17b35de",
+      "kind": "arithmetic_correction",
+      "verified": true,
+      "fa": "خروجی اول در تصویر این صفحه [2,7,1.0] چاپ شده، اما با وزن‌های تقریبی خود مثال [0,0.5,0.5] و بردارهای مقدار (Value) صفحهٔ ۲۱، نتیجه [2,7,1.5] است؛ صفحهٔ ۲۹ نیز همین مقدار را نشان می‌دهد. با سافت‌مکس کامل و بدون مقیاس‌گذاری، خروجی [1.936621061667,6.683105308335,1.595068407500] است.",
+      "verification": "Original PDF visually checked; arithmetic independently recomputed from source vectors where applicable; bibliographic or dataset corrections verified against the linked primary source."
+    },
+    {
+      "session_id": "s14",
+      "page": 26,
+      "source_sha256": "65bdebcbbe5ecca3e9dfa4ecbaaf5a78e79a4d10ce00c8a007801d062cefeda6",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "محل انتشار دقیق مقالهٔ BERT، کنفرانس NAACL-HLT 2019 است. ACL نام انجمن ناشر هم هست؛ ارجاع کوتاه «ACL 2019» روی اسلاید نام دقیق کنفرانس را مشخص نمی‌کند. اصل ارجاع بدون تغییر نگه داشته شده است.",
+      "verification": "Original PDF visually checked; arithmetic independently recomputed from source vectors where applicable; bibliographic or dataset corrections verified against the linked primary source.",
+      "references": [
+        {
+          "label_fa": "منبع اولیهٔ بررسی اصلاح",
+          "url": "https://aclanthology.org/N19-1423/"
+        }
+      ]
+    },
+    {
+      "session_id": "s14",
+      "page": 41,
+      "source_sha256": "65bdebcbbe5ecca3e9dfa4ecbaaf5a78e79a4d10ce00c8a007801d062cefeda6",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "سال «NeurIPS 2002» در ارجاع wav2vec 2.0 خطای تایپی است؛ مقاله در NeurIPS 2020 منتشر شده است. سال چاپ‌شده در اصل اسلاید و ترجمهٔ وفادار آن حفظ شده و اصلاح در این یادداشت آمده است.",
+      "verification": "Original PDF visually checked; arithmetic independently recomputed from source vectors where applicable; bibliographic or dataset corrections verified against the linked primary source.",
+      "references": [
+        {
+          "label_fa": "منبع اولیهٔ بررسی اصلاح",
+          "url": "https://proceedings.neurips.cc/paper_files/paper/2020/hash/92d1e1eb1cd6f9fba3227870bb6d7f07-Abstract.html"
+        }
+      ]
+    },
+    {
+      "session_id": "s14",
+      "page": 42,
+      "source_sha256": "65bdebcbbe5ecca3e9dfa4ecbaaf5a78e79a4d10ce00c8a007801d062cefeda6",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "سال «NeurIPS 2002» در ارجاع wav2vec 2.0 خطای تایپی است؛ مقاله در NeurIPS 2020 منتشر شده است. سال چاپ‌شده در اصل اسلاید و ترجمهٔ وفادار آن حفظ شده و اصلاح در این یادداشت آمده است.",
+      "verification": "Original PDF visually checked; arithmetic independently recomputed from source vectors where applicable; bibliographic or dataset corrections verified against the linked primary source.",
+      "references": [
+        {
+          "label_fa": "منبع اولیهٔ بررسی اصلاح",
+          "url": "https://proceedings.neurips.cc/paper_files/paper/2020/hash/92d1e1eb1cd6f9fba3227870bb6d7f07-Abstract.html"
+        }
+      ]
+    },
+    {
+      "session_id": "s16",
+      "page": 42,
+      "source_sha256": "8436fe7f45d440d6dc2f48656ad28215ba5e47686e78ab3d762790d076b31c5c",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "مجموعه‌دادهٔ Food-101 دارای ۱۰۱ دسته است؛ عدد ۱۰۲ در ستون Classes این جدول خطای تایپی است. تعدادهای ۷۵٬۷۵۰ تصویر آموزش و ۲۵٬۲۵۰ تصویر آزمونِ خود جدول نیز با ۱۰۱ دسته و به‌ترتیب ۷۵۰ و ۲۵۰ تصویر در هر دسته سازگارند.",
+      "verification": "Original PDF visually checked; arithmetic independently recomputed from source vectors where applicable; bibliographic or dataset corrections verified against the linked primary source.",
+      "references": [
+        {
+          "label_fa": "منبع اولیهٔ بررسی اصلاح",
+          "url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/"
+        }
+      ]
+    },
+    {
+      "session_id": "s24",
+      "page": 27,
+      "source_sha256": "b75d180b537431afa7bfa6b041e85efea5d74053e2db8620e788f1fde2a88ff2",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "سال ۲۰۱۶ در ارجاع Navigli و همکاران اشتباه است. مقالهٔ «Biases in Large Language Models: Origins, Inventory and Discussion» در سال ۲۰۲۳ در Journal of Data and Information Quality منتشر شده است؛ شناسهٔ DOI آن 10.1145/3597307 است. اصل اسلاید و ترجمهٔ ارجاع دست‌نخورده‌اند.",
+      "verification": "Original PDF visually checked; arithmetic independently recomputed from source vectors where applicable; bibliographic or dataset corrections verified against the linked primary source.",
+      "references": [
+        {
+          "label_fa": "منبع اولیهٔ بررسی اصلاح",
+          "url": "https://www.research.ed.ac.uk/en/publications/biases-in-large-language-models-origins-inventory-and-discussion/"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "session_id": "s02",
+  "source_sha256": "fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477",
+  "source_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/02-Artificial-Neurons.pdf",
+  "source_page_count": 51,
+  "title_fa": "یک به‌روزرسانی واقعی پرسپترون",
+  "prediction_fa": "وقتی پیش‌بینی درست است، وزن‌ها چقدر تغییر می‌کنند؟",
+  "steps_fa": [
+    "پیش از اجرا، پیش‌بینی در امتیاز صفر و مقدار delta را حساب کن.",
+    "target را از -1 به 1 تغییر بده؛ سپس قرارداد آستانه را از >= به > تغییر بده و خروجی را مقایسه کن.",
+    "با خود همین قانون توضیح بده کدام حالت باعث به‌روزرسانی صفر می‌شود."
+  ],
+  "source_page": 26,
+  "starter_sha256": "7a76d2a9ba4e402313171522d3b2c7485ea428e4e26e68ccdd392ea06a079c5d",
+  "reference": {
+    "before": 1,
+    "delta": -0.2,
+    "weights": [
+      -0.2,
+      -0.4
+    ],
+    "bias": -0.2,
+    "after": -1
+  },
+  "questions": [
+    {
+      "id": "calculate",
+      "source_kind": "original",
+      "prompt_fa": "در نسخهٔ اولیه مقدار delta چند است؟",
+      "solution_fa": "0.1 × (-1 - 1) = -0.2.",
+      "answer": {
+        "kind": "number",
+        "value": -0.2,
+        "tolerance": 1e-06
+      },
+      "source_page": 27
+    },
+    {
+      "id": "interpret",
+      "source_kind": "original",
+      "prompt_fa": "اگر برچسب و پیش‌بینی برابر باشند، کدام درست است؟",
+      "solution_fa": "اختلاف برچسب و پیش‌بینی صفر است؛ وزن و بایاس ثابت می‌مانند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "وزن‌ها دوبرابر می‌شوند",
+          "به‌روزرسانی صفر می‌شود",
+          "بایاس حتماً کم می‌شود"
+        ],
+        "correct_index": 1
+      },
+      "source_page": 20
+    },
+    {
+      "id": "explain",
+      "source_kind": "original",
+      "prompt_fa": "چرا قاعدهٔ پرسپترون برای پیش‌بینی درست، وزن و بایاس را تغییر نمی‌دهد؟ یک مثال از همین کد بیاور.",
+      "solution_fa": "اگر target با before برابر باشد، اختلاف آن‌ها صفر است؛ بنابراین delta و همهٔ افزایش‌های وزن و بایاس صفر می‌شوند. با target=1 در نسخهٔ اولیه این حالت دیده می‌شود.",
+      "answer": {
+        "kind": "manual",
+        "criteria_fa": [
+          "نوشتن target-before",
+          "صفرشدن delta",
+          "مثال مشخص از کد"
+        ]
+      },
+      "source_page": 20
+    }
+  ],
+  "question_pages": [
+    5,
+    12,
+    13,
+    17,
+    19,
+    21,
+    22,
+    23,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    43,
+    44
+  ],
+  "class_activity_pages": [
+    44
+  ],
+  "programming_tutorial_pages": [
+    49
+  ],
+  "reference_python": "3.14.3",
+  "limits_fa": "این کد و دادهٔ کوچک، تألیف مستقل برای بررسی سازوکار است؛ بازتولید آزمایش مقاله یا تکلیف رسمی Canvas نیست. فقط فرمول‌ها و پارامترهایی که در کد می‌بینی محاسبه می‌شوند.",
+  "source_retrieved_at_utc": "2026-10-25T08:44:45.533801+00:00",
+  "related_labs": [
+    {
+      "id": "neuron-xor",
+      "goal_fa": "پرسپترون را انتخاب کن و تغییر وزن روی جدول درستی را ببین."
+    }
+  ]
+}

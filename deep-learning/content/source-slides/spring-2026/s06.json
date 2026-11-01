@@ -1,0 +1,1084 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s06",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/06-Shallow-Learning.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2026/s06.pdf",
+    "sha256": "7bd61705af1c530c6af3f7d1fa8c27be24635466812ba5d935e1155189218170",
+    "page_count": 62,
+    "license_notice": "CC BY-NC-SA; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "d5af1221a469a845af9394b945862572e8bd2e7a4ce7b1eef4071d022ae3da3f",
+      "lines": [
+        "Making Shallow Learning Work:",
+        "Achieving Convergence and Generalization",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2026",
+        "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "5894a0134ca533d46aaf4cb342a459f4b365b6ec951b9c2cb963052359c7801f",
+      "lines": [
+        "Review",
+        "• Last lecture:",
+        "• Issue: input shifts cause fully connected networks to fail",
+        "• Idea: convolutional neural networks (CNNs) designed for translation invariance",
+        "• Implementation: training CNNs end-to-end with gradient descent",
+        "• Real-world success: LeNet-5 for check reading",
+        "• Programming tutorial: convolutional neural networks in PyTorch",
+        "• Assignments (Canvas):",
+        "• Problem set 1 due Friday",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "161bd9ca196031c92f065b930a945d067d9d63e679c6faf34f9ab612e44bce94",
+      "lines": [
+        "Today’s Topics",
+        "• Shallow learning: why doesn’t it work?",
+        "• Navigating the loss landscape: how to make learning converge",
+        "• Generalizing to the real world: avoiding overfitting and underfitting",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "161bd9ca196031c92f065b930a945d067d9d63e679c6faf34f9ab612e44bce94",
+      "lines": [
+        "Today’s Topics",
+        "• Shallow learning: why doesn’t it work?",
+        "• Navigating the loss landscape: how to make learning converge",
+        "• Generalizing to the real world: avoiding overfitting and underfitting",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "f09592dd0375afbfc8e73d17555346faf679a6626b7c4337017418506b6bcdd8",
+      "lines": [
+        "Context: Shallow Learning",
+        "• Architecture: typically 1 hidden layer with ~5-100 neurons",
+        "and occasionally 2 layers; e.g.,",
+        "• Dataset: typically constrained to toy datasets (e.g., XOR) or",
+        "relatively small, task-specific datasets (e.g., MNIST)",
+        "• Hardware: memory-constrained (e.g., KBs vs today’s GBs);",
+        "slow data loading (e.g., from floppy disks)",
+        "• Software: no tailored programming language (e.g., C or",
+        "Fortran); often no parallel computing",
+        "• Training duration: regularly took days",
+        "A B A XOR B",
+        "0 0 0",
+        "0 1 1",
+        "1 0 1",
+        "1 1 0",
+        "Input Output",
+        "e.g., floppy disk e.g., SUN-3 workstation"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "4cf3c6325ef14e3c6deef90535c50a1d62b6e2c8851f9569aa2a4c14d75e582b",
+      "lines": [
+        "Gap Between Theory and Practice",
+        "• In theory, neural networks can learn any function (with a single hidden layer)",
+        "• In practice, training often fails to converge or produce useful solutions",
+        "(Technical Report, 1998)",
+        "“Backpropagation… can seem more an art than a science. Designing and training a",
+        "network using backprop requires making many seemingly arbitrary choices such as the",
+        "number and type of nodes, layers, learning rates, training and test sets, and so forth…",
+        "there are heuristics… that can help guide a practitioner to make better choices.”"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "fe9c8690f7cd95e6d1716b4f0a5bd18543f296ea8b579449f243369a978ea54a",
+      "lines": [
+        "What Are Reasonable Strategies?",
+        "- Empirical Regularities",
+        "Parameters (learned)",
+        "• Weights",
+        "• Biases",
+        "• …",
+        "Hyperparameters (selected); e.g.,",
+        "• Number of layers",
+        "• Number of units in each layer",
+        "• Activation function",
+        "• Learning rate",
+        "• Batch size",
+        "• …",
+        "Challenge: how to choose hyperparameters without",
+        "repeatedly observing the test data (which is cheating)?"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "3ae264d5550726d5310f2a7582d4b7239f8b0ea2487bf0ce979c8d99b64a69c3",
+      "lines": [
+        "Hyperparameters Evaluated with Validation Set",
+        "• Dataset divided into three splits; e.g., using a 60%/20%/20% train/val/test split",
+        "• Hyperparameter analysis: evaluate using validation set",
+        "• Final model: train on training AND validation splits",
+        "https://github.com/amueller/introduction_to_ml_with_python/blob/master/05-model-evaluation-and-improvement.ipynb"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "75e0a002c0fb8560a42769895e0a6e76583792be673c9a04ad174b4a0ff0ed9a",
+      "lines": [
+        "Hyperparameter Tuning Approaches",
+        "• Automatic: extensive and so computationally costly; e.g.,",
+        "• Manual: leverages “art” of knowing how to effectively train",
+        "• understanding relationship between hyperparameters, training error,",
+        "generalization error, and computational constraints (e.g., GPUs, memory)",
+        "As exemplified, grid search is inferior when",
+        "selecting multiple hyperparameters since fewer",
+        "values are tested for each (in this example, two",
+        "hyperparameters); random search better",
+        "supports identifying impactful hyperparameters",
+        "Bergstra et al; Random Search for Hyper-Parameter Optimization, 2012"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "161bd9ca196031c92f065b930a945d067d9d63e679c6faf34f9ab612e44bce94",
+      "lines": [
+        "Today’s Topics",
+        "• Shallow learning: why doesn’t it work?",
+        "• Navigating the loss landscape: how to make learning converge",
+        "• Generalizing to the real world: avoiding overfitting and underfitting",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "b26a46488d74ed2afdc9174bb31567f89086c849fd2212b96285dd7ba53f85d8",
+      "lines": [
+        "Training Entails Babysitting Loss Curves…",
+        "https://cs231n.github.io/neural-networks-3/#update",
+        "Practitioners ask themselves “How is learning",
+        "going based on the training loss curve?”",
+        "From the four curves, which represents",
+        "learning progressing the worst? best?",
+        "- Curve 1",
+        "- Curve 2",
+        "- Curve 3",
+        "- Curve 4"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "4337ad57a921a4f6b15abe81b9c8ab02522861c8b586dc16ae5c51202abe09bc",
+      "lines": [
+        "• 0… no error ☺",
+        "• In practice, a value better than the expected one for the loss function",
+        "• e.g., What would be expected for cross-entropy loss? When assuming equal",
+        "probability per class for K classes, random guessing gives: Loss = - ln (1/K) = ln (K)",
+        "What is a Good Loss Value?"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "144376bf0ad1d956f0f9f5b6a0d7e4d5cee25c2db6e5385c4c0d7bb9457f2b78",
+      "lines": [
+        "Key Issues for Effective Learning:",
+        "Dataset, Architecture, & Training",
+        "1. Input data",
+        "W1",
+        "W2",
+        "W3",
+        "W4",
+        "W5",
+        "W6",
+        "x1",
+        "x2",
+        "h1",
+        "h2",
+        "o1",
+        "0 1",
+        "0",
+        "1",
+        "x1",
+        "x2",
+        "2. Model design 3. Initial weights",
+        "4. Gradient-based updates"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "563afa8c05b2a9558480accc3ba140bf6f87867f416e3b250bce2cf83861949d",
+      "lines": [
+        "Issue 1: Input Data’s Impact on Learning",
+        "https://www.reddit.com/r/BMW/co",
+        "mments/zkkef1/before_and_after/",
+        "Intuition: imagine driving down a road",
+        "with a car that has a steering wheel",
+        "that only takes “hard” rights and lefts",
+        "and is capped at 5 miles per hour;",
+        "how would the journey look?",
+        "https://texomaexcavationandconstruction.com/gravel",
+        "-roads-construction-forest-wooded-remote-areas/"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "5ab809f7ec339bdb8c33aadccc733e1be7f8884b5102b6854ac28c4c0c6d4dcc",
+      "lines": [
+        "Issue 1: Input Data’s Impact on Learning",
+        "Extreme case illustrating issue: all inputs of the same sign",
+        "- slow learning can stem from inefficient, zig-zagging from shared gradient sign;",
+        "e.g.,",
+        "Forward pass: sigmoid(0.1 x 2 + 0.1 x 10) = 0.77",
+        "Backward pass:",
+        "(recall derivation",
+        "from lecture 3) 𝜕E",
+        "𝜕wi",
+        "= −(t − o6) x (1- o6)o6 x xi",
+        "𝜕E",
+        "𝜕wi",
+        "=",
+        "𝜕E",
+        "𝜕o",
+        "x",
+        "𝜕o",
+        "𝜕z",
+        "x",
+        "𝜕z",
+        "𝜕wi",
+        "= −(0 − 0.77) x (1- 0.77)0.77 x xi = 0.14 x xi",
+        "𝜕E",
+        "𝜕w1",
+        "= 0.28",
+        "𝜕E",
+        "𝜕w2",
+        "= 1.4",
+        "Parameter updates: What direction will the weight updates move?",
+        "Parameter updates: If all inputs are instead negative, what will be the direction?",
+        "Will these update trends change with additional inputs that share the same sign?",
+        "- No; updates must zig-zag between two directions to arrive at the optimal direction",
+        "Input sign drives",
+        "gradient direction",
+        "2",
+        "10",
+        "0.1",
+        "0.1",
+        "(Targe value = 0)",
+        "Additional inputs:",
+        "[5, 24]",
+        "[10, 31]"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "c1fc7465ee3668a6ae73646ec9cf0746d8cf50790bb2e89a974436dde14e2dec",
+      "lines": [
+        "Issue 1: Input Data’s Impact on Learning",
+        "Extreme case illustrating issue: all inputs of the same sign",
+        "- slow learning can stem from inefficient, zig-zagging from shared gradient sign and small gradients",
+        "https://medium.com/@irenemarkelic/the￾sigmoid-and-its-derivative-40b44485ca48",
+        "What are ideal weighted sums for the activation function?",
+        "Why?",
+        "What are expected weight sums when all inputs share the",
+        "same sign?"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "e39d16551e416d9393bd82c5813dc12938f36fbc9dea0a057f85c7582cb394b8",
+      "lines": [
+        "Idea: Preprocess Input to Accelerate Learning",
+        "Extreme case illustrating issue: all inputs of the same sign",
+        "- slow learning can stem from inefficient, zig-zagging from shared gradient sign and small gradients",
+        "General case: non-zero-centered inputs slow learning by biasing weighted sums and parameter updates’ direction",
+        "Solution: zero center the input; i.e., calculate mean for every feature in the training set and then subtract resulting",
+        "values from every input feature (causes every feature to have no directional bias across training set)",
+        "e.g.,",
+        "(LeCun et al, Technical Report, 1998)"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "1827f76109b4598bb3375030f88257f41634f3eb9e217bb96714bc7d72d9702d",
+      "lines": [
+        "Idea: Preprocess Input to Accelerate Learning",
+        "Extreme case illustrating issue: all inputs of the same sign",
+        "- slow learning can stem from inefficient, zig-zagging from shared gradient sign and small gradients",
+        "General case: non-zero-centered inputs slow learning by biasing weighted sums and parameter updates’ direction",
+        "Solution: zero center the input; i.e., calculate mean for every feature in the training set and then subtract resulting",
+        "values from every input feature (causes every feature to have no directional bias across training set)",
+        "e.g.,",
+        "2",
+        "10",
+        "How many features are in the input?",
+        "• 2",
+        "What is the mean of feature 1?",
+        "• (2+5+10)/3 = 5.7",
+        "What are zero-centered values for feature 1?",
+        "• [2-5.7, 5-5.7, 10-5.7] = [-3.7, -0.7, 4.3]",
+        "What are zero-centered values for feature 2?",
+        "• [10-21.7, 24-21.7, 31-21.7] = [-11.7, 2.3, 9.3]",
+        "Additional inputs:",
+        "[5, 24]",
+        "[10, 31]"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "fccb2d5124c259c66e7c6db2926a5f2365098153fbf8f55ab7ae5e1336c8625d",
+      "lines": [
+        "Idea: Preprocess Input to Accelerate Learning",
+        "Extreme case illustrating issue: all inputs of the same sign",
+        "- slow learning can stem from inefficient, zig-zagging from shared gradient sign and small gradients",
+        "General case: non-zero-centered inputs slow learning by biasing weighted sums and parameter updates’ direction",
+        "Solution: zero center the input; i.e., calculate mean for every feature in the training set and then subtract resulting",
+        "values from every input feature (causes every feature to have no directional bias across training set)",
+        "e.g.,",
+        "https://medium.com/@irenemarkelic/the￾sigmoid-and-its-derivative-40b44485ca48",
+        "Which inputs moved closer to the ideal 0 region?",
+        "• 1: [2, 10] vs [-3.7, -11.7]",
+        "weighted sum: 1.2 vs -1.54",
+        "• 2: [5, 4] vs [-0.7, 2.3]",
+        "weighted sum: 0.9 vs 0.16",
+        "• 3: [10, 31] vs [4.3, 9.3]",
+        "weighted sum: 4.1 vs 1.36"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "10dee75712044ffa07e94e19bdbd54b305958b9f513f6c1d4f8e0ec6a06ab014",
+      "lines": [
+        "Idea: Preprocess Input to Accelerate Learning",
+        "Extreme case illustrating issue: all inputs of the same sign",
+        "- slow learning can stem from inefficient, zig-zagging from shared gradient sign and small gradients",
+        "General case: non-zero-centered inputs slow learning by biasing weighted sums and parameter updates’ direction",
+        "Solution: zero center the input; i.e., calculate mean for every feature in the training set and then subtract resulting",
+        "values from every input feature (causes every feature to have no directional bias across training set)",
+        "e.g.,",
+        "Given the three centered inputs, will all parameter updates move in the same direction?",
+        "• 1: [-3.7 -11.7]",
+        "• 2: [-0.7, 2.3])",
+        "• 3: [4.3, 9.3]",
+        "No! e.g., input 1 will increase all weights, input 3 will decrease all weights, and input 2",
+        "will move in both directions"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "83a9fb48b650f66c7e2194e3d3c99b29239e2344fbc109e4f1fb31f5c8ac9482",
+      "lines": [
+        "Idea: Preprocess Input to Accelerate Learning",
+        "General case: non-zero-centered inputs slow learning by biasing weighted sums and parameter updates’ direction",
+        "Solution: zero center the input; i.e., calculate mean for every feature in the training set and then subtract resulting",
+        "values from every input feature (causes every feature to have no directional bias across training set)",
+        "Another Problem: different feature scales cause differently scaled gradients, which translates to inefficient learning",
+        "where parameter updates can overshoot in some cases and crawl in others (when using the same learning rate)",
+        "x1",
+        "f(x1)",
+        "x2",
+        "f(x2)"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "5920ad02f0f47c6af4c2ee0862ccd64b46a4542daeef48d2b1dca7dc4b9dff66",
+      "lines": [
+        "Idea: Preprocess Input to Accelerate Learning",
+        "General case: non-zero-centered inputs slow learning by biasing weighted sums and parameter updates’ direction",
+        "Solution: zero center the input; i.e., calculate mean for every feature in the training set and then subtract resulting",
+        "values from every input feature (causes every feature to have no directional bias across training set)",
+        "Another Problem: different feature scales cause differently scaled gradients, which translates to inefficient learning",
+        "where parameter updates can overshoot in some cases and crawl in others (when using the same learning rate)",
+        "https://towardsdatascience.com/batch-norm-explained-visually￾how-it-works-and-why-neural-networks-need-it-b18919692739",
+        "Loss landscape:"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "da52ae2636f936539e24359f94c840ef685169428ecb3281e71cee2f70bee580",
+      "lines": [
+        "Idea: Preprocess Input to Accelerate Learning",
+        "General case: non-zero-centered inputs slow learning by biasing weighted sums and parameter updates’ direction",
+        "Solution: zero center the input; i.e., calculate mean for every feature in the training set and then subtract resulting",
+        "values from every input feature (causes every feature to have no directional bias across training set)",
+        "Another Problem: different feature scales cause differently scaled gradients, which translates to inefficient learning",
+        "where parameter updates can overshoot in some cases and crawl in others (when using the same learning rate)",
+        "Next Solution: scale features to the same scale",
+        "i.e., then all features can update more efficiently",
+        "(when choosing a good learning rate)",
+        "x",
+        "f(x)"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "f022e28f08a712e37eaba54ff79f777e1d8bc502725d86afa1d9bd85a5124e9f",
+      "lines": [
+        "Idea: Preprocess Input to Accelerate Learning",
+        "General case: non-zero-centered inputs slow learning by biasing weighted sums and parameter updates’ direction",
+        "Solution: zero center the input; i.e., calculate mean for every feature in the training set and then subtract resulting",
+        "values from every input feature (causes every feature to have no directional bias across training set)",
+        "Another Problem: different feature scales cause differently scaled gradients, which translates to inefficient learning",
+        "where parameter updates can overshoot in some cases and crawl in others (when using the same learning rate)",
+        "Next Solution: scale features to the same scale",
+        "i.e., then all features can update more efficiently",
+        "(when choosing a good learning rate)",
+        "https://towardsdatascience.com/batch-norm-explained-visually￾how-it-works-and-why-neural-networks-need-it-b18919692739",
+        "Loss landscape:"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "4e0cdf8297d06e52414cc432d24c23aa26e06db3debdc7217df2b15501fabdca",
+      "lines": [
+        "Idea: Preprocess Input to Accelerate Learning",
+        "General case: non-zero-centered inputs slow learning by biasing weighted sums and parameter updates’ direction",
+        "Solution: zero center the input; i.e., calculate mean for every feature in the training set and then subtract resulting",
+        "values from every input feature (causes every feature to have no directional bias across training set)",
+        "Another Problem: different feature scales cause differently scaled gradients, which translates to inefficient learning",
+        "where parameter updates can overshoot in some cases and crawl in others (when using the same learning rate)",
+        "Next Solution: scale features to the same scale by dividing each by its standard deviation in the training data",
+        "Original: Standardized:",
+        "https://github.com/amueller/introduction_to_ml_with_python/blob/master/03-unsupervised-learning.ipynb",
+        "Note: standardization is often",
+        "called “normalization” for",
+        "training neural networks",
+        "https://github.com/amueller/introduction_to_ml_with_p",
+        "ython/blob/main/03-unsupervised-learning.ipynb",
+        "Note: test features also should",
+        "be scaled using the values",
+        "learned on the training data"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "0b45df9c6f76621c187efd5554e47ead64d91b457302b94ba92e5c606eab135c",
+      "lines": [
+        "Idea: Preprocess Input to Accelerate Learning",
+        "General case: non-zero-centered inputs slow learning by biasing weighted sums and parameter updates’ direction",
+        "Solution: zero center the input; i.e., calculate mean for every feature in the training set and then subtract resulting",
+        "values from every input feature (causes every feature to have no directional bias across training set)",
+        "Another Problem: different feature scales cause differently scaled gradients, which translates to inefficient learning",
+        "where parameter updates can overshoot in some cases and crawl in others (when using the same learning rate)",
+        "Next Solution: scale features to the same scale by dividing each by its standard deviation in the training data",
+        "e.g.,",
+        "How many features are in the input?",
+        "• 2",
+        "What is the standard deviation of input feature 1?",
+        "What is the standard deviation of input feature 2?",
+        "𝜎 = ( −3.7",
+        "2+ −0.7",
+        "2 + 4.3",
+        "2)/3 = 3.3",
+        "Centered inputs",
+        "• 1: [-3.7 -11.7]",
+        "• 2: [-0.7, 2.3])",
+        "• 3: [4.3, 9.3]",
+        "What are the inputs’ standardized values?",
+        "• 1: [-3.7/3.3, -11.7/8.7] -> [1.1, 1.3]",
+        "• 2: [-0.7/3.3, 2.3/8.7] -> [-0.2, 0.26]",
+        "• 3: [4.3/3.3, 9.3/8.7] -> [1.3, 1.1]",
+        "𝜎 = ( −11.7",
+        "2+ 2.3",
+        "2 + 9.3",
+        "2)/3 = 8.7"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "650958705fd174b42ff6930bc284b977ed775c50fd8caef70682026d87ac0f69",
+      "lines": [
+        "Summary: Preprocessing",
+        "Input Accelerates Learning",
+        "https://www.reddit.com/r/BMW/co",
+        "mments/zkkef1/before_and_after/",
+        "Intuition: enables driving down",
+        "a road with a car that can go",
+        "fast with a steering wheel that",
+        "can go in the optimal direction",
+        "https://texomaexcavationandconstruction.com/gravel",
+        "-roads-construction-forest-wooded-remote-areas/"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "144376bf0ad1d956f0f9f5b6a0d7e4d5cee25c2db6e5385c4c0d7bb9457f2b78",
+      "lines": [
+        "Key Issues for Effective Learning:",
+        "Dataset, Architecture, & Training",
+        "1. Input data",
+        "W1",
+        "W2",
+        "W3",
+        "W4",
+        "W5",
+        "W6",
+        "x1",
+        "x2",
+        "h1",
+        "h2",
+        "o1",
+        "0 1",
+        "0",
+        "1",
+        "x1",
+        "x2",
+        "2. Model design 3. Initial weights",
+        "4. Gradient-based updates"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "f3ba9db2a43a6e1ffbf988ece938910e1fbf4ae360edbc10a84c5c8f73c0acef",
+      "lines": [
+        "Issue 2: Activation Function Can Slow Learning",
+        "https://www.reddit.com/r/BMW/co",
+        "mments/zkkef1/before_and_after/",
+        "Recall intuition: imagine driving down",
+        "a road with a car that has a steering",
+        "wheel that only takes “hard” rights",
+        "and lefts and is capped at 5 miles per",
+        "hour; how would the journey look?",
+        "https://texomaexcavationandconstruction.com/gravel",
+        "-roads-construction-forest-wooded-remote-areas/"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "98ceac71466cd030b5e6328bbe2544c1ecb83aeb32c7dbf48fdaa4752093c8f2",
+      "lines": [
+        "• Sigmoid and tanh mimic neurons’",
+        "“firing” behavior; how do they differ?",
+        "• What is the sign of:",
+        "• sigmoid activations?",
+        "• tanh activations?",
+        "• Which is better for learning (recall, neuron",
+        "inputs with all the same sign cause",
+        "inefficient, zig-zagging learning)",
+        "• What is the range of gradient values for:",
+        "• sigmoid?",
+        "• tanh?",
+        "• Which has values better for learning?",
+        "Idea: Choose Activation Function",
+        "that Accelerates Learning",
+        "Sigmoid Tanh",
+        "Masi et al. Journal of the Mechanics and Physics of Solids. 2021"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "144376bf0ad1d956f0f9f5b6a0d7e4d5cee25c2db6e5385c4c0d7bb9457f2b78",
+      "lines": [
+        "Key Issues for Effective Learning:",
+        "Dataset, Architecture, & Training",
+        "1. Input data",
+        "W1",
+        "W2",
+        "W3",
+        "W4",
+        "W5",
+        "W6",
+        "x1",
+        "x2",
+        "h1",
+        "h2",
+        "o1",
+        "0 1",
+        "0",
+        "1",
+        "x1",
+        "x2",
+        "2. Model design 3. Initial weights",
+        "4. Gradient-based updates"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "d27f08cdf343aec99bd369a162b1d012df7663ca19c8ffd66a5427267cee241c",
+      "lines": [
+        "Issue 3: Initial Parameter Values",
+        "Can Slow or Block Learning",
+        "Sigmoid Tanh",
+        "Neurons receiving very large or small",
+        "“z” values have slow/no learning; why?",
+        "- small derivatives limit amount model",
+        "parameters can change",
+        "Ideal: weighted sums cause derivatives",
+        "that lie in the “good range”",
+        "Masi et al. Journal of the Mechanics and Physics of Solids. 2021"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "6f1a28f74961477bc0e0ee5bbaf8b1ad7ca1e6b4b3dac3ddc655c77a05334d99",
+      "lines": [
+        "Idea: Initialize Parameters to Accelerate Learning",
+        "Approach: establish weighted sums with good gradients for learning",
+        "• Weights set to random, small, where the scale of “small” is key",
+        "• Biases set to 0",
+        "Weight initialization heuristics:",
+        "• 1986 backprop paper: randomly draw from uniform distribution between -0.3 and 0.3",
+        "• 1998 “Efficient backprop” paper: randomly draw from uniform distribution with mean 0 and",
+        "standard deviation determine by the number of incoming connections to a neuron (“fan-in”):",
+        "e.g., what is m for this?",
+        "Recall from lab assignment 1:",
+        "• Uniform vs Gaussian distribution?",
+        "1",
+        "𝑚",
+        "https://deepdatascience.wordpress.com/2017/03/13/normal-vs-uniform-distribution/"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "a97393e1d25ab3e04e33272d5d0aeec39eedfa225e241fd16e3bffd138726bbc",
+      "lines": [
+        "Idea: Initialize Parameters to Accelerate Learning",
+        "x",
+        "f(x)",
+        "1",
+        "2",
+        "3",
+        "Practical note: we often repeat initialization",
+        "to try to arrive closer to a better solution"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "144376bf0ad1d956f0f9f5b6a0d7e4d5cee25c2db6e5385c4c0d7bb9457f2b78",
+      "lines": [
+        "Key Issues for Effective Learning:",
+        "Dataset, Architecture, & Training",
+        "1. Input data",
+        "W1",
+        "W2",
+        "W3",
+        "W4",
+        "W5",
+        "W6",
+        "x1",
+        "x2",
+        "h1",
+        "h2",
+        "o1",
+        "0 1",
+        "0",
+        "1",
+        "x1",
+        "x2",
+        "2. Model design 3. Initial weights",
+        "4. Gradient-based updates"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "4208c66beecf703a822a5eba7f2be67f54285b520b32f182e66989697e27091f",
+      "lines": [
+        "Issue 3: Learning is Inefficient or Fails",
+        "x",
+        "f(x)",
+        "x",
+        "f(x)",
+        "x",
+        "f(x)"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "80dd8919d81117bb5fe9b4be0b3a894197287e03e5b23afdb6abe29bd5b493b9",
+      "lines": [
+        "Issue 3: Learning is Inefficient or Fails",
+        "What can go wrong with",
+        "gradient descent for",
+        "models with 2 parameters?",
+        "(e.g., imagine descending error",
+        "surface-vertical axis values-for",
+        "all possible weight pair values in",
+        "the horizontal plane)",
+        "Li et al. Visualizing the Loss Landscape of Neural Nets. NeurIPS 2018.",
+        "- get stuck in a ditch (local optimum)",
+        "- zig-zag on a ravine (little gradient)",
+        "- arrive at a flat plateau (no gradient)",
+        "- fail to arrive at a global minimum; this",
+        "initially limited excitement about NNs"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "fadbf1fdda93fb4cfb0481575e4b57f151085232c8402cbbac25a4553a586072",
+      "lines": [
+        "Idea: Change Optimization Approach",
+        "W ← W − 𝜂",
+        "𝜕𝐿",
+        "𝜕W",
+        "How can we change the learning rate?",
+        "Increase if loss declines slowly",
+        "x",
+        "f(x)",
+        "x",
+        "f(x)",
+        "Decrease if loss oscillates, is stuck, or increases",
+        "x",
+        "f(x)",
+        "How many steps would it take to arrive at the minimum if we had the optimal learning rate?",
+        "Often, we decrease (anneal) the rate as more training epochs pass (e.g., linearly, exponentially)"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "6488e2d6b952cacb340afdcb0bdeec82dad2cc197223044b0148cf6fe6af86f0",
+      "lines": [
+        "Idea: Change Optimization Approach",
+        "Li et al. Visualizing the Loss Landscape of Neural Nets. NeurIPS 2018.",
+        "W ← W − 𝜂",
+        "𝜕𝐿",
+        "𝜕W",
+        "What else might we change?",
+        "Assign a learning rate per parameter",
+        "(e.g., larger for earlier layers, which",
+        "receive smaller gradients)",
+        "“It can be significantly improved, without sacrificing",
+        "the simplicity and locality, by using an acceleration",
+        "method in which the current gradient is used to",
+        "modify the velocity of the point in weight space",
+        "instead of its position.”",
+        "Ranges from 0 to 1 with larger values",
+        "reflecting greater friction; need to be careful",
+        "not to roll past and oscillate around minima",
+        "Use gradient for acceleration (not speed),",
+        "giving momentum to avoid local minima",
+        "(e.g., imagine rolling a ball down a hill; the",
+        "new velocity vector, v, captures cumulative",
+        "direction of previous gradients)",
+        "Accumulate gradients across a batch of",
+        "examples before updating parameters",
+        "- loss bounces less erratically than with",
+        "stochastic learning (i.e., one example)"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "2b023510a0a7d67350ca06793e2cc899c72600d1ebe4443349b711a2dfdb2224",
+      "lines": [
+        "Discussion: From These Learning Curves, What Do",
+        "You Think Is Happening and What Might Be a Fix?",
+        "https://cs231n.github.io/ne",
+        "ural-networks-3/#update",
+        "Training loss",
+        "(b)",
+        "(b)",
+        "Training loss",
+        "Validation loss",
+        "(a)",
+        "(c) (d)"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "39c5eddbfc6cf56c4171055249fa322c195ced9b5987cf9e1308b883bd5012eb",
+      "lines": [
+        "Feeling Bewildered By Your Learning Curves?",
+        "You may feel better when looking at this link:",
+        "https://lossfunctions.tumblr.com/"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "161bd9ca196031c92f065b930a945d067d9d63e679c6faf34f9ab612e44bce94",
+      "lines": [
+        "Today’s Topics",
+        "• Shallow learning: why doesn’t it work?",
+        "• Navigating the loss landscape: how to make learning converge",
+        "• Generalizing to the real world: avoiding overfitting and underfitting",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "91fa18341a2cbbf04452c2667d78cde657978b82d717d279f8314f1b2c09af0f",
+      "lines": [
+        "• Model-based approach: separate x from o",
+        "https://medium.com/greyatom/what-is-underfitting-and-overfitting-in-machine-learning-and-how-to-deal-with-it-6803a989c76",
+        "Model Capacity: Recall Class Exercise",
+        "Class volunteer:",
+        "1) Draw a straight line (linear equation)",
+        "2) Draw a parabola (quadratic equation)",
+        "3) Draw any curve",
+        "Models with increasing",
+        "representational capacity"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "293ba7cadeab812500a1443817aa99e06c1062d7288e0696344ccac6800b7eb4",
+      "lines": [
+        "Model Capacity",
+        "https://towardsdatascience.com/underfitting-and-overfitting-in-machine-learning-and-how-to-deal-with-it-6fe4a8a49dbf",
+        "Which model would you choose to separate x from o?",
+        "(a) (b) (c)",
+        "Underfits: too simple",
+        "to explain the data",
+        "Overfits: too complex to",
+        "generalize to a test set"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "09f5f16557ec85ae5a731dcdedc617a7b8209f696f9ce599cdf90bdddcc7911f",
+      "lines": [
+        "Model Capacity: Overfitting vs Underfitting",
+        "Often discussed with respect to a bias-variance trade-off",
+        "Ian Goodfellow, Yoshua Bengio, and Aaron Courville; Deep Learning, 2016",
+        "high for complex model",
+        "that misses simpler",
+        "patterns in the data",
+        "high for simple model",
+        "that assumes simple",
+        "patterns in the data",
+        "(unrelated to “bias”",
+        "parameter):"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "5973fae51f4a0ce6165ad94e383f80c177b588c7d6db814f00081c0f59852f79",
+      "lines": [
+        "Model Capacity: Overfitting vs Underfitting",
+        "Can shift between underfitting and overfitting by adding/removing parameters",
+        "Ian Goodfellow, Yoshua Bengio, and Aaron Courville; Deep Learning, 2016"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "495d688650e4246af12abe003bcad142b6795738c7b01d3d395e54148569a6d3",
+      "lines": [
+        "Model Capacity: Detecting Underfitting",
+        "Analyze learning curves for models tested",
+        "on training data",
+        "• What happens to training data error as",
+        "number of training steps increases?",
+        "• Error remains high",
+        "• What happens to test data error as",
+        "number of training steps increases?",
+        "• Error remains high",
+        "Training error",
+        "Test error",
+        "Epochs",
+        "Loss"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "cf27e320645af1678f9c5057522654d986a8b5e0d3270da46af57d4a1fe6f2b4",
+      "lines": [
+        "Model Capacity: Detecting Overfitting",
+        "Analyze learning curves on training data and test data",
+        "• What happens to training data loss as number of",
+        "training steps increases?",
+        "• Error shrinks",
+        "• What happens to test data loss as number of training",
+        "steps increases?",
+        "• Error shrinks and then grows",
+        "• Why does training loss shrink and test loss grow?",
+        "• Models noise in the training data (i.e., “overfitting”)",
+        "at the expense of knowledge that generalizes",
+        "• What can cause noise in a dataset?",
+        "• e.g., incorrect data entry/labeling, hardware",
+        "measurement error (caution: some outliers are data",
+        "points we want models to learn)",
+        "Epochs",
+        "Training error",
+        "Test error",
+        "Epochs",
+        "Loss",
+        "Often, we err on over-parameterized models capable of overfitting and then regularize them"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "1f4e98e03745a89e83aeb3b2e5f38e8e149df17666333425593c26b8f9c9bc85",
+      "lines": [
+        "Regularization",
+        "“any modification we make to a learning algorithm that is intended",
+        "to reduce its generalization error but not its training error.”",
+        "- Ch. 5.2 of Goodfellow Deep Learning book"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "3bd412116defeb7dfcc66ef83d16fa242ba83c42eb59dba04cd75c2a340fe7f4",
+      "lines": [
+        "Regularizing Over-Parameterized Model:",
+        "Early Stopping",
+        "Use This Model",
+        "Training error",
+        "Test error",
+        "Epochs",
+        "Loss"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "9d918df47f2278b406ca752fd018fb9369657e68691dbf7bda374b6158784fcb",
+      "lines": [
+        "Regularizing Over-Parameterized Model:",
+        "Weight Decay (Parameter Norm Penalty)",
+        "Smooth a model’s decision boundaries",
+        "by incentivizing against large weights",
+        "(models can learn to represent noise with",
+        "correlated large positive and negative weights",
+        "that usually just cancel each other out)",
+        "https://towardsdatascience.com/underfitting-and-overfitting-in-machine-learning-and-how-to-deal-with-it-6fe4a8a49dbf"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "8b80149eff23e08235004af284655e75c920c46feb2a697449d18953cc098863",
+      "lines": [
+        "Regularizing Over-Parameterized Model:",
+        "Weight Decay (Parameter Norm Penalty)",
+        "Add penalty term to objective function; e.g., when minimizing sum of squared errors",
+        "• L2 norm: penalize squared weight values",
+        "• L1 norm: penalize absolute weight values",
+        "• Note: penalizes only weight (not biases) and can apply per layer or globally",
+        "Analogy: Belt for Big Pants"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "43f8f5e3a608d52ea074e044e97fcc536726069b64c6828ba59b9cd1052c18b8",
+      "lines": [
+        "Regularizing Over-Parameterized Model:",
+        "Weight Decay (Parameter Norm Penalty)",
+        "Add penalty term to objective function; e.g., when minimizing sum of squared errors",
+        "• L2 norm: penalize squared weight values",
+        "• L1 norm: penalize absolute weight values",
+        "• Alpha determines contribution of norm penalty term (e.g., belt tightness)",
+        "Analogy: Belt for Big Pants"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "729cb41debdbacc4fd64e96705e26358aab8c665ae142573b11f8ccb20d79b96",
+      "lines": [
+        "Regularizing Over-Parameterized Model:",
+        "Weight Decay (Parameter Norm Penalty)",
+        "Add penalty term to objective function; e.g., when minimizing sum of squared errors",
+        "• L2 norm: penalize squared weight values",
+        "• L1 norm: penalize absolute weight values",
+        "• Alpha determines contribution of norm penalty term (e.g., belt tightness)",
+        "Intuitively, larger alpha values prioritizes",
+        "having weights closer to 0 instead of",
+        "minimizing sum of squared errors"
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "757af94d4b32857c4453846c518e2d5610514fcfbaf21f1c85e8ba54084eeb3b",
+      "lines": [
+        "Regularizing Over-Parameterized Model:",
+        "Weight Decay (Parameter Norm Penalty)",
+        "Add penalty term to objective function; e.g., when minimizing sum of squared errors",
+        "• L2 norm: penalize squared weight values",
+        "• L1 norm: penalize absolute weight values",
+        "• Learning impact: need gradient for weight penalty"
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "c5a8f5be74e39d76d75febb440d7612550425b9f33853ab27bd982a28d31213a",
+      "lines": [
+        "Regularizing Over-Parameterized Model:",
+        "Weight Decay (Parameter Norm Penalty)",
+        "Which model had the largest value for alpha (i.e., norm penalty contribution),",
+        "given that this value was the only difference when training the models?",
+        "(a) (b) (c)",
+        "https://cs231n.github.io/neural-networks-1/"
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "592a8aad65ab83593e27c3a508302d753f77f9d7332b0a5e3225b2489abb182c",
+      "lines": [
+        "https://web.stanford.edu/~hastie/Papers/ESLII.pdf",
+        "Contour of least",
+        "square error function",
+        "Contour of regularization",
+        "constraint functions",
+        "shown below both plots",
+        "L1 L2",
+        "Minimizes sum of",
+        "squared errors cost",
+        "Minimizes penalty term",
+        "Minimizes",
+        "cost + penalty",
+        "Note: L2 commonly used in practice",
+        "Regularizing Over-Parameterized Model:",
+        "Weight Decay (Parameter Norm Penalty)"
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "b73db0006a9309c3b10b7b8e79d6f10cb0715e3e44e7a44100555e27aca94256",
+      "lines": [
+        "Regularizing Over-Parameterized Model:",
+        "Early Stopping vs Parameter Norm Penalties",
+        "https://www.deeplearningbook.org/contents/regularization.html",
+        "Similar behavior when model parameters initialized around origin; e.g.,",
+        "Early Stopping Parameter Norm Penalty (L2)"
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "17a8a8c4b0c4ee2275b8ee3204ba40c7e6123557fc63879450eabb0baa7c0524",
+      "lines": [
+        "Famous Success Stories for Shallow Learning",
+        "e.g.,",
+        "LeNet-5 reading millions of",
+        "checks per month for banks",
+        "https://pirg.org/edfund/resources/how-to-fill-out-a-check-from-your-bank-account/",
+        "NETtalk popularized by the Today Show",
+        "for its ability to speak written text",
+        "Summary: while new learning techniques from the 2nd NN wave improved performance,",
+        "neural networks still remained largely confined to research settings",
+        "https://www.youtube.com/watch?v=gakJlr3GecE"
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "161bd9ca196031c92f065b930a945d067d9d63e679c6faf34f9ab612e44bce94",
+      "lines": [
+        "Today’s Topics",
+        "• Shallow learning: why doesn’t it work?",
+        "• Navigating the loss landscape: how to make learning converge",
+        "• Generalizing to the real world: avoiding overfitting and underfitting",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "161bd9ca196031c92f065b930a945d067d9d63e679c6faf34f9ab612e44bce94",
+      "lines": [
+        "Today’s Topics",
+        "• Shallow learning: why doesn’t it work?",
+        "• Navigating the loss landscape: how to make learning converge",
+        "• Generalizing to the real world: avoiding overfitting and underfitting",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

@@ -31,6 +31,7 @@ jobs:
           python3 -m unittest discover -s deep-learning/tests -v
           python3 deep-learning/scripts/course_content.py --examples
           python3 deep-learning/scripts/workshops.py --execute
+          python3 deep-learning/scripts/workshops.py --term spring-2026 --execute
           python3 deep-learning/scripts/mnist_reference.py
       - uses: astral-sh/setup-uv@v10.3.0
         with:
@@ -45,6 +46,8 @@ jobs:
           cache: npm
           cache-dependency-path: deep-learning/browser-tests/package-lock.json
       - run: npm ci --prefix deep-learning/browser-tests
+      - name: Verify source formula rendering and local reader assets
+        run: node deep-learning/math-tools/check_source_math.mjs
       - run: npx --prefix deep-learning/browser-tests playwright install --with-deps chromium
       - name: Check independent public component
         run: |

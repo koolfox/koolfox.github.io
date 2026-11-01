@@ -1,0 +1,628 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s16",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/15-Scaling.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2026/s16.pdf",
+    "sha256": "8436fe7f45d440d6dc2f48656ad28215ba5e47686e78ab3d762790d076b31c5c",
+    "page_count": 47,
+    "license_notice": "CC BY-NC-SA; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "cec93204b2fbdd25a6b6ac010e3c4e53f7b502fc4be7ec71d70508fcb78b2b92",
+      "lines": [
+        "The Power of Scale:",
+        "Internet-Scraped Training Data",
+        "and Zero-Shot Learning",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2026",
+        "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "a1d60a64a82cef3f16df6fa408a49dc448a62459270a9381748da7170d3f7f66",
+      "lines": [
+        "Review",
+        "• Last lecture",
+        "• Revisiting learning: from solving tasks to building representations that generalize",
+        "• The recipe: large-scale pretraining + lightweight fine-tuning",
+        "• Multimodal test: can the recipe replace CNN-RNN solutions for vision-language tasks?",
+        "• Speech test: can the recipe replace engineered solutions for speech recognition?",
+        "• Vision test: can the recipe replace CNNs for image classification?",
+        "• Programming tutorial",
+        "• Assignments (Canvas)",
+        "• Lab assignment 3 (last one!) due in 1.5 weeks; we recommend starting ASAP... this one is",
+        "involved!",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "b1a8bb5426e1db1f8f11d8d455c68b38ca3544b2b41d3ce38484d486b2b94bb0",
+      "lines": [
+        "Today’s Topics",
+        "• The quest for growth: the secret sauce for success",
+        "• Scaling laws: predictable gains from model size, data, & compute",
+        "• Fueling scale: harnessing the Internet as training data",
+        "• Revelation: few-shot and zero-shot abilities emerge",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "b1a8bb5426e1db1f8f11d8d455c68b38ca3544b2b41d3ce38484d486b2b94bb0",
+      "lines": [
+        "Today’s Topics",
+        "• The quest for growth: the secret sauce for success",
+        "• Scaling laws: predictable gains from model size, data, & compute",
+        "• Fueling scale: harnessing the Internet as training data",
+        "• Revelation: few-shot and zero-shot abilities emerge",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "70ed87d52374dfbef8c5415c915b3b0219229833cbfbaae1fa35aaf4f5cf9213",
+      "lines": [
+        "Context: Fine-Tuned Transformers Took Over",
+        "https://www.facebook.com/GuinnessWorldRecords/posts/the-largest-collection-of-transformers-memorabilia-is-2111-items-and-was-achieve/10157236275629032/",
+        "(Guiness World Record for most Transformers: 2,111)"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "9d3dabe0700d7598ccc1dcc6277740451c22f2c04fef45a0fc4666724909d615",
+      "lines": [
+        "Trend: Bigger Model Was Secret Sauce for",
+        "Achieving State-of-the-Art Performance",
+        "https://epoch.ai/data/ai-models"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "e851e986a6e75fabe17b5e1630cfacb6934f9de2794de88dc375f356b1eedb6d",
+      "lines": [
+        "Empirical Evidence: Success Emerged with",
+        "Sufficient Compute",
+        "https://epoch.ai/data/ai-models"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "f225f4d795310d532e12d2bb6dc431df1076287089910bc12d3c931ae10ed179",
+      "lines": [
+        "Empirical Evidence: Success Emerged with",
+        "Sufficient Compute and Training Data",
+        "https://epoch.ai/data/ai-models"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "b1a8bb5426e1db1f8f11d8d455c68b38ca3544b2b41d3ce38484d486b2b94bb0",
+      "lines": [
+        "Today’s Topics",
+        "• The quest for growth: the secret sauce for success",
+        "• Scaling laws: predictable gains from model size, data, & compute",
+        "• Fueling scale: harnessing the Internet as training data",
+        "• Revelation: few-shot and zero-shot abilities emerge",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "4014049baad87312fd80e7a7f3c6c428a2466ca7fa40ee464307e141d6260f0c",
+      "lines": [
+        "(arXiv 2020)",
+        "“… language modeling performance improves smoothly and",
+        "predictably as we appropriately scale up model size, data, and",
+        "compute… The test loss of a Transformer trained to autoregressively",
+        "model language can be predicted using a power-law…”",
+        "(arXiv 2017)",
+        "“We would like to better analyze the relationships",
+        "between training set scale, computational scale, and",
+        "model accuracy improvements… [we] estimate scaling",
+        "relationships for six deep neural network models",
+        "across four application domains: machine translation,",
+        "language modeling, image classification, and speech",
+        "recognition Our results show that power-law learning",
+        "curves exist across all tested domains. Although",
+        "different applications yield different power-law",
+        "exponents and intercepts, these learning curves exist",
+        "across a broad range of models, optimizers,",
+        "regularizers, and loss functions.”"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "91c1e599647ecf979fa5d82e5bca7419ad84e4e2f6d8714297a7e81951f1331c",
+      "lines": [
+        "Background: Power-Law",
+        "𝑦 = 𝐶𝑥",
+        "𝛼",
+        "constant",
+        "output input",
+        "e.g., what happens to y if …",
+        "- 𝛼 = 0.5?",
+        "- If 𝑥 increases by 4-fold, 𝑦 increases by how much?",
+        "2",
+        "- More generally, for 0 < 𝛼 < 1, scaling up the input",
+        "yields predictable (smaller) gains for the output",
+        "- How would you feel if this relationship held for the number",
+        "of hours you put into studying versus your resulting grade?",
+        "𝑦 = 𝐶𝑥",
+        "0.5 = 𝐶 𝑥"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "2efe5c27a2363fe881cb1e379624fe4e2559b40fd9c0ed95ff403bef0e3bd28f",
+      "lines": [
+        "Background: Power-Law (Negative Exponent)",
+        "𝑦 = 𝐶𝑥",
+        "−𝛼",
+        "constant",
+        "output input",
+        "e.g., what happens when visualizing the",
+        "original data instead on a log-log scale?",
+        "(log 𝑦 = log 𝐶 − 𝛼 log 𝑥)",
+        "Newman. \"Power laws, Pareto distributions and Zipf's law.\" Contemporary Physics, 2005.",
+        "We get a straight line, with slope equal to −𝛼!"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "0c3febe978b7edcc5bf5e0ce072f7926d2ba6822c7244e10f9f5e6eedf085b88",
+      "lines": [
+        "Empirical Results for Neural Language Models",
+        "Autoregressively Predicting Next Token",
+        "• What law describes how test loss (L) is impacted by only changing the scale of:",
+        "• Compute: C",
+        "• Training data: D",
+        "• Model parameters: N",
+        "• Power law relationships (straight lines on log-log scales)",
+        "• What are the exponent values? Recall:",
+        "Kaplan et al. Scaling Laws for Neural Language Models. arXiv 2020",
+        "𝑦 = 𝐶𝑥",
+        "−𝛼",
+        "Log-log scales:"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "4790bdfd8fd839a63804000b8d8146fd340f2c7a7ad3f4b8368484ad20792d65",
+      "lines": [
+        "Empirical Results for Neural Language Models",
+        "Autoregressively Predicting Next Token",
+        "• Up to what scale was tested for each factor…",
+        "• Compute amount? – 10 PetaFLOP days = 86.4 x 1019 floating point operations",
+        "• Training data size? – ~1B tokens",
+        "• Number of model parameters? – ~1B",
+        "• What are future implications from the discovered power law relationship",
+        "between test loss and scale of compute, training data, and model size?",
+        "Kaplan et al. Scaling Laws for Neural Language Models. arXiv 2020",
+        "Log-log scales:"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "0fb131a69aa0f21f306e4a30dc9fd2cbbd2d7ad7586db4e6245ab33a8127364b",
+      "lines": [
+        "Empirical Results for Neural Language Models",
+        "Autoregressively Predicting Next Token",
+        "• Up to what scale was tested for each factor…",
+        "• Compute amount? – 10 PetaFLOP days = 86.4 x 1019 floating point operations",
+        "• Training data size? – ~1B tokens",
+        "• Number of model parameters? – ~1B",
+        "• What are future implications from the discovered power law relationship",
+        "between test loss and scale of compute, training data, and model size?",
+        "• Scaling with confidence: we can improve performance predictably by just",
+        "scaling up compute, training data, and model size!",
+        "Kaplan et al. Scaling Laws for Neural Language Models. arXiv 2020"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "0cdd44853defe164cbf906988aa4d1f2f7e2026a3dcf0b64390fdf8937d6374e",
+      "lines": [
+        "Subsequent Work Showed Scaling Laws",
+        "Apply Across Many Domains and Tasks"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "b1a8bb5426e1db1f8f11d8d455c68b38ca3544b2b41d3ce38484d486b2b94bb0",
+      "lines": [
+        "Today’s Topics",
+        "• The quest for growth: the secret sauce for success",
+        "• Scaling laws: predictable gains from model size, data, & compute",
+        "• Fueling scale: harnessing the Internet as training data",
+        "• Revelation: few-shot and zero-shot abilities emerge",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "3b87571326a9711dc1362ee2892436ce256e6eb09e3d2d0d3ddaa43ae61f4b9b",
+      "lines": [
+        "(GPT-3; Neurips 2020)",
+        "(GPT-2; OpenAI Blog 2019)"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "df503c2b3bdf5da56b5d32738593b5e4d38612a593f1f8e272fe805b2b60e409",
+      "lines": [
+        "Architecture: Scaled-Up Sizes",
+        "GPT-2: minor modifications to GPT; e.g.,",
+        "- More layers (i.e., 48 vs 12)",
+        "- More parameters (1.5B vs 124M*)",
+        "- Layer norm layers re-positioned and added",
+        "- Parameter initialization modified",
+        "- Vocabulary expanded to 50,257 tokens",
+        "- Accepts up to 1,024 tokens instead of 512",
+        "GPT-3: minor modifications to GPT-2; e.g.,",
+        "- More layers (96 vs 48)",
+        "- More parameters (175B vs 1.5B)",
+        "- Accepts up to 2,048 input tokens instead of 1,024; is this equivalent to roughly:",
+        "(a) 1/3 single-space page",
+        "(b) 1 single-space page",
+        "(c) 3 single-space pages",
+        "* Incorrect # reported in paper Image source: Radford et al. Technical Report 2018."
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "e3a42e93061fef787f5327ec2400f7a3cddb946a1ee0ba6ca222622920f40f8d",
+      "lines": [
+        "Training Protocol",
+        "Same approach and objective as GPT (predict next word)",
+        "GPT-3: What do you think the training cost was?",
+        "(a) ~$5,00",
+        "(b) ~$50,000",
+        "(c) ~$500,000",
+        "(d) ~$5,000,000",
+        "* Required ~1.3 Gigawatt-hours of electricity (enough to",
+        "power 121 homes in America for a year)",
+        "Image source: Radford et al. Technical Report 2018."
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "b0e1a2feb121f12c8c7ce0cccf1a8e71550e1aa611b595ec50d0d4faea702a92",
+      "lines": [
+        "Training Data: Internet-Scale (Novelty)",
+        "Idea: natural language on the Internet represents many domains and tasks",
+        "GPT-2: WebText",
+        "Source:",
+        "Quality control: “3 karma” rated outbound links",
+        "that are de-duplicated and pre-processed",
+        "Result: 45M links through Dec 2017",
+        "Size: 8M documents = 40 GB",
+        "GPT-3: Multiple Datasets Including from Internet",
+        "Noisy, lower quality Common Crawl data spanning",
+        "41 monthly Internet crawls from 2016 to 2019,",
+        "supplemented with 4 high-quality datasets",
+        "How many GB? ~(a) 6, (b) 60, (c) 600, (d) 6,000"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "a4e8d05e663e833b2250e9505bbcc9ef17114d8988b8a69c5426de18cc36442f",
+      "lines": [
+        "• Non-profit organization from California providing",
+        "free monthly scrapes since 2008",
+        "• Web archives without HTML markup and non-text",
+        "content https://commoncrawl.org/)",
+        "• Needs pre-processing to be more useful for",
+        "training (e.g., spam, broken links, biased content)"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "475f1d8b1c2f94c07e5ed1e304413bfd417dd3c9405d59833e47acf22078bfbd",
+      "lines": [
+        "Experimental Findings",
+        "GPT-2: strong performance on 7 of 8 tested NLP dataset challenges",
+        "- Their acknowledgments: “Thanks to everyone who wrote the text,",
+        "shared the links, and upvoted the content in WebText. Many millions of",
+        "people were involved in creating the data that GPT-2 was trained on.”",
+        "GPT-3: competitive and occasionally state-of-the-art performance for",
+        "10s of NLP dataset challenges"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "6641002522b5b392d8682a355e52ec59ab0d3cb00f0acea7c77dfb3892d5f432",
+      "lines": [
+        "(CLIP; ICML 2021)",
+        "Novelty: image analysis models trained with natural language supervision",
+        "using the vast amounts of publicly available data on the Internet"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "c7ad96ab686b224ceb500b0caac92bb522c5942691dc7941ba0f375547fc7733",
+      "lines": [
+        "Architecture and",
+        "Training Details",
+        "Radford et al. Learning Transferable Visual Models From Natural Language Supervision. ICML 2021",
+        "GPT-2",
+        "(not pretrained)",
+        "3 ViT & 5 ResNet variants",
+        "tested (not pretrained)",
+        "Task: predict which image-text",
+        "pairs match",
+        "Data: 400 million image-text",
+        "pairs from Internet",
+        "Model Size: ~100M to nearly",
+        "1B parameters across variants",
+        "Loss Function: sum of cross",
+        "entropy for image and text",
+        "classifications of their pairs",
+        "Optimizer: Adam",
+        "Training Duration: with largest",
+        "ResNet, 18 days on 592 V100",
+        "GPUs; with largest ViT, 12 days",
+        "on 256 V100 GPUs",
+        "How many image-text pairs are in the",
+        "batch for comparison?",
+        "(EOT token representations used for text)",
+        "SOT and EOT",
+        "tokens added",
+        "before and after"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "fb1ff0c6a6d7cb74c961aaabe66eef5721ad6456ee903dc9b1a199a5b2ca1000",
+      "lines": [
+        "Experimental Findings: CLIP",
+        "Competitive performance on over 30 computer vision dataset challenges!"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "f5880f8b6f4254d26aa4b8a06e436a4f1c5d0314cc32ea75277140f046bac71a",
+      "lines": [
+        "Many Internet-Scale Datasets Exist Today; e.g.,",
+        "https://cerebras.ai/blog/slimpajama-a-627b-token￾cleaned-and-deduplicated-version-of-redpajama",
+        "https://huggingface.co/datasets/HuggingFaceFW/fineweb"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "b1a8bb5426e1db1f8f11d8d455c68b38ca3544b2b41d3ce38484d486b2b94bb0",
+      "lines": [
+        "Today’s Topics",
+        "• The quest for growth: the secret sauce for success",
+        "• Scaling laws: predictable gains from model size, data, & compute",
+        "• Fueling scale: harnessing the Internet as training data",
+        "• Revelation: few-shot and zero-shot abilities emerge",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "0edfbe26476ba9cdae2a09d9d50a8e6c0f7bac036878440e46f822cb81e2577b",
+      "lines": [
+        "Did You Notice? Pioneering Internet-Trained",
+        "Models Did Not Center on Being State-of-the-Art",
+        "These models were important because they kicked off a paradigm shift to",
+        "tackle downstream tasks in few-shot/zero-shot settings!",
+        "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html",
+        "Inference"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "c1830b0d9ceabf1c957d0ca8d72daf78f985814c9b339706a9e3209728e204bc",
+      "lines": [
+        "Intuition: Can You Learn to Recognize",
+        "Something With a Few Examples?",
+        "https://www.youtube.com/watch?v=9j4iH9TPTd8",
+        "Given one example per category, identify the category of the query"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "e346299fcb2523194284e313f797cb24bc7a379311ba9ed61f8e557731ecc6b9",
+      "lines": [
+        "Intuition: How Many Examples Do You",
+        "Need to See to Recognize What This Is?",
+        "0; just recognize it looks like a",
+        "horse with black and white stripes"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "3bbcfdbf60dcdfa015dd8c4ecb538ce69e95d3731ac72e94b9d1357edea7c01a",
+      "lines": [
+        "Intuition: How Many Examples Do You",
+        "Need to See to Recognize What This Is?",
+        "0; just recognize it is the upper body of a person",
+        "attached to the body and legs of a horse"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "217b6137163c9b8d997e3bc603d4b83b0a0b48090bbd8af6e272a52d43ddcfc2",
+      "lines": [
+        "Inference Time Input: Instructions + Optionally",
+        "Examples (Latter Called “In-Context Learning”)",
+        "Brown et al. Language Models are Few-Shot Learners. Neurips 2020."
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "b8a35ec128ef9202744a91195e915482a0ee8d13a87d194009c7e27cc7197d43",
+      "lines": [
+        "GPT-2 Experimental Results: Zero-Shot Setting",
+        "Radford et al. Language Models are Unsupervised Multitask Learners. OpenAI Blog 2019.",
+        "GPT-1:",
+        "BERT-sized:",
+        "Larger:",
+        "GPT-2:",
+        "Achieved state-of-the-art for zero-shot setting on 7 out of the 8 datasets"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "906f72ba9993897218b1e76419ec193592e9960b8d3edc73bb6ca8e41117129f",
+      "lines": [
+        "Is a zero-shot or few-shot",
+        "input used?",
+        "Radford et al. Language Models are Unsupervised Multitask Learners. OpenAI Blog 2019."
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "c1ab9543a887c8aa3fbe24449e2769cd8e6c6ea356b7fa85a72929fc5c3e58c8",
+      "lines": [
+        "Radford et al. Language Models are Unsupervised Multitask Learners. OpenAI Blog 2019.",
+        "Is a zero-shot or few-shot input used?",
+        "(predictions from smallest & largest models)"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "9bbf1a0138193479593b025490d9aecc106779b1d6c494e258a14f70f3bebd2f",
+      "lines": [
+        "Few-shot format:",
+        "- english sentence = french sentence pair, followed by",
+        "- english sentence =",
+        "What does the model’s success tell us about the Internet-scraped training data?",
+        "Radford et al. Language Models are Unsupervised Multitask Learners. OpenAI Blog 2019."
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "3e85096baddc58285b715f956f60c1b518c6f8c925088bbeb530afe45e68a360",
+      "lines": [
+        "GPT-3 Experimental Findings: Could Compete",
+        "with Fine-Tuned State-of-the-Art Models; e.g.,",
+        "Brown et al. Language Models are Few-Shot Learners. Neurips 2020."
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "44049b0b20e852039d04e5422524d2687a8af2f8dbb4e9fc6bde106d080ee6bf",
+      "lines": [
+        "Group Discussion: Empirical Trends for GPT-3",
+        "(42 NLP challenges)",
+        "How does performance change",
+        "as we vary the number of in￾context examples (0, 1, few)?",
+        "How does model size affect",
+        "that relationship?",
+        "Brown et al. Language Models are Few-Shot Learners. Neurips 2020."
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "17277ea95f46dec686aa21540faf8aca699c2cecaafdb84d3293f6052b19ea30",
+      "lines": [
+        "CLIP Inference",
+        "e.g., zero-shot classification:",
+        "1. Encode features for all candidate classes",
+        "2. Encode feature for image",
+        "3. Compute cosine similarity between features",
+        "for image and all text candidates",
+        "4. Apply softmax to identify most probable",
+        "match (i.e., highest score)",
+        "Why this",
+        "input format?",
+        "Mimics sentences",
+        "in training data",
+        "Radford et al. Learning Transferable Visual Models From Natural Language Supervision. ICML 2021"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "a375ec9462163a0297ef8832a02e1a7b6183456a0065b9123e013b1283ec9848",
+      "lines": [
+        "Fine-Grained Classification Predictions; e.g.,",
+        "Radford et al. Learning Transferable Visual Models From Natural Language Supervision. ICML 2021"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "45c214b09bc036c4d918f8478860794c61c723a28f518f79361c63c5592326a8",
+      "lines": [
+        "CLIP Benchmark",
+        "Datasets",
+        "Subset of datasets shown here:",
+        "Classification evaluation spanned",
+        "fine-grained classification (e.g.,",
+        "food, bird, aircraft, and car",
+        "categories), distribution shifts for",
+        "ImageNet categories (e.g.,",
+        "corrupted images), and more",
+        "Radford et al. Learning Transferable Visual Models From Natural Language Supervision. ICML 2021"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "17a64880736b272c6cc4ef6ef5817e6dd5c3d7f04ac2ae4702d1afa27d6a41fe",
+      "lines": [
+        "The Internet offered offered a suitable multi-task learning environment, inherently",
+        "representing a wide range of domains and tasks, for learning such representations.",
+        "The vision from 2007 paper (from Bengio and LeCun) now became a reality:",
+        "“... one should not consider the large variety of [AI] tasks separately, but as different",
+        "aspects of a more general problem: that of learning the basic structure of the world, as",
+        "seen say through the eyes and ears of a growing animal or a young child. This is an",
+        "instance of multi-task learning… after training such a system on a large variety of tasks",
+        "in the AI-set, the system may generalize to a new task from only a few labeled",
+        "examples. We hypothesize that many tasks in the AI-set may be built around common",
+        "representations...”"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "7942fe1c15794fe6f4000060768697d4541385fb8563a1f569a009a8a8d38d22",
+      "lines": [
+        "Summary: A New Few-Shot/Zero-Shot Paradigm",
+        "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html",
+        "Inference",
+        "Across GPT-2, GPT-3, and CLIP, massive models (e.g., ~0.5B to 175B parameters)",
+        "plus internet-scale training data enabled few-shot and zero-shot learning!"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "b1a8bb5426e1db1f8f11d8d455c68b38ca3544b2b41d3ce38484d486b2b94bb0",
+      "lines": [
+        "Today’s Topics",
+        "• The quest for growth: the secret sauce for success",
+        "• Scaling laws: predictable gains from model size, data, & compute",
+        "• Fueling scale: harnessing the Internet as training data",
+        "• Revelation: few-shot and zero-shot abilities emerge",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "b1a8bb5426e1db1f8f11d8d455c68b38ca3544b2b41d3ce38484d486b2b94bb0",
+      "lines": [
+        "Today’s Topics",
+        "• The quest for growth: the secret sauce for success",
+        "• Scaling laws: predictable gains from model size, data, & compute",
+        "• Fueling scale: harnessing the Internet as training data",
+        "• Revelation: few-shot and zero-shot abilities emerge",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

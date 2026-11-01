@@ -1,0 +1,2242 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s07",
+  "source_sha256": "ac4446d8edc7398cf4e6c6601b30c6d842c6e1d9a656eb243d841a982ee75d1a",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "2995739a6046e72452bcff46a24f39ffc7bf014ba1c62cd13646d797b379cebf",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "از شعله‌ای تا آتش: تولد یادگیری «عمیق» (Deep Learning)"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)؛ دانشگاه کلرادو بولدر (University of Colorado Boulder)؛ بهار 2026"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "6c3a4c1fdc40c0cf9babc3c8dc3ef13b49f6fcfedb9bda14339fe1b2451bf531",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "مرور\n• جلسهٔ قبل: یادگیری کم‌عمق (Shallow Learning): چرا کار نمی‌کند؟ پیمایش چشم‌انداز زیان (Loss Landscape): چگونه یادگیری را همگرا کنیم؟ تعمیم (Generalization) به دنیای واقعی: جلوگیری از بیش‌برازش (Overfitting) و کم‌برازش (Underfitting)؛ آموزش برنامه‌نویسی.\n• تکالیف در Canvas: مهلت مجموعه‌مسئلهٔ 1 فرداست؛ مهلت تکلیف آزمایشگاهی 2، دو هفتهٔ دیگر است.\n• پرسشی دارید؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "9a41865e3388545152a3947c0ba2a607c08ffc07248e226bcb5ad55acc734dba",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• بی‌توجهی به شبکه‌های عصبی (NN): دومین زمستان هوش مصنوعی (AI Winter) و عقب‌نشینی به مدل‌های کم‌عمق با ویژگی‌های مهندسی‌شده.\n• امید به شبکه‌های عصبی باقی می‌ماند: جست‌وجوی نامتداولِ عمق.\n• شبکه‌های عصبی مسلط می‌شوند: AlexNet انقلابی را آغاز می‌کند که در آن «یادگیری عمیق» (Deep Learning) غالب می‌شود.\n• آموزش برنامه‌نویسی: AlexNet در PyTorch."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "9a41865e3388545152a3947c0ba2a607c08ffc07248e226bcb5ad55acc734dba",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• بی‌توجهی به شبکه‌های عصبی (NN): دومین زمستان هوش مصنوعی (AI Winter) و عقب‌نشینی به مدل‌های کم‌عمق با ویژگی‌های مهندسی‌شده.\n• امید به شبکه‌های عصبی باقی می‌ماند: جست‌وجوی نامتداولِ عمق.\n• شبکه‌های عصبی مسلط می‌شوند: AlexNet انقلابی را آغاز می‌کند که در آن «یادگیری عمیق» (Deep Learning) غالب می‌شود.\n• آموزش برنامه‌نویسی: AlexNet در PyTorch."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "cba3b22b7737ba1e1f4505b7c690d67006ef7ffb1eb8180e320018493ac283a4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "دومین «زمستان هوش مصنوعی» (AI Winter)، از اواخر دههٔ 1980 تا اواخر دههٔ 1990\n• رویکرد غالب و پرهیاهوی سیستم‌های خبرهٔ قاعده‌محور (Rule-Based Expert Systems) انتظارات را برآورده نکرد.\n• نهادهای تأمین مالی علاقهٔ خود را از دست دادند.\n• پژوهشگران به موضوع‌های دیگر رفتند."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://medium.com/@bergholz/proclaimed-dead-twice-the-ai-winters-5848c7f8a29f"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "73fb8bf3fef69cd2e45aa09e73acca14c9b3cdc5727319a08310ec3338f8539d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "یادگیری ماشین (Machine Learning) باقی ماند و امید تازه‌ای برای هوش مصنوعی (AI) ایجاد کرد.\nورودی (INPUT) ← استخراج ویژگی (Feature Extraction) ← پیش‌بینی (Prediction) ← خروجی (OUTPUT). مثال: آیا فردی در تصویر حضور دارد؟ بله؛ بله.\nرویکرد شبکهٔ عصبی (NN): یادگیری بازنمایی (Representation Learning). رویکرد دیگر یادگیری ماشین: ویژگی‌های دست‌ساز (Hand-Crafted Features). رویکرد غالب: معماری‌های کم‌عمق (Shallow Architectures)."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "05842d75dfecf9001c87502c59f9dd9e8f2b19fc935ad978581e27c209e12153",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "یادگیری ماشین (Machine Learning) باقی ماند و امید تازه‌ای برای هوش مصنوعی (AI) ایجاد کرد. ماشین‌های بردار پشتیبان (SVMs) به‌ویژه انتخابی کلیدی بودند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Support-Vector Networks",
+          "fa": "شبکه‌های بردار پشتیبان (Support-Vector Networks)",
+          "verified": true
+        },
+        {
+          "en": "Machine Learning, 20, 273–297 (1995); © 1995 Kluwer Academic Publishers, Boston. Manufactured in The Netherlands.",
+          "fa": "Machine Learning, 20, 273–297 (1995)؛ © 1995 Kluwer Academic Publishers، بوستون؛ تولیدشده در هلند.",
+          "verified": true
+        },
+        {
+          "en": "CORINNA CORTES; VLADIMIR VAPNIK; AT&T Bell Labs., Holmdel, NJ 07733, USA; corinna@neural.att.com; vlad@neural.att.com",
+          "fa": "کورینا کورتس (CORINNA CORTES)؛ ولادیمیر واپنیک (VLADIMIR VAPNIK)؛ AT&T Bell Labs., Holmdel, NJ 07733, USA؛ corinna@neural.att.com؛ vlad@neural.att.com",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "9a41865e3388545152a3947c0ba2a607c08ffc07248e226bcb5ad55acc734dba",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• بی‌توجهی به شبکه‌های عصبی (NN): دومین زمستان هوش مصنوعی (AI Winter) و عقب‌نشینی به مدل‌های کم‌عمق با ویژگی‌های مهندسی‌شده.\n• امید به شبکه‌های عصبی باقی می‌ماند: جست‌وجوی نامتداولِ عمق.\n• شبکه‌های عصبی مسلط می‌شوند: AlexNet انقلابی را آغاز می‌کند که در آن «یادگیری عمیق» (Deep Learning) غالب می‌شود.\n• آموزش برنامه‌نویسی: AlexNet در PyTorch."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "f5ca52d758e05a8995f0ca4bfc964e1f9ed161f21f00adc01fd0181e0e3ad57a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "معماری‌های کم‌عمق در برابر عمیق (Shallow vs Deep Architectures)\nمنتشرشده در سال 2007 در کتاب Large-scale Kernel Machines. یان لکون (Yann LeCun)، 1960 تا اکنون: استاد و دانشمند ارشد سابق هوش مصنوعی Meta. یوشوا بنجیو (Yoshua Bengio)، 1964 تا اکنون: استاد و رئیس مشترک LawZero.\n«استدلال می‌کنیم که معماری‌های عمیق… برای پیشرفت در آن دسته از وظایف پیچیده‌ای که هوش مصنوعی به آن‌ها نیاز دارد، حیاتی‌اند.»"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Scaling Learning Algorithms towards AI; Yoshua Bengio (1) and Yann LeCun (2)",
+          "fa": "گسترش مقیاس الگوریتم‌های یادگیری به‌سوی هوش مصنوعی (Scaling Learning Algorithms towards AI)؛ Yoshua Bengio (1) و Yann LeCun (2)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "fadac5940afeabc5d2766eeab2137be851b614e9da6e9f9ad5fd5a3920ed72f7",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "معماری‌های کم‌عمق در برابر عمیق (Shallow vs Deep Architectures)\nورودی (INPUT) ← رویکرد دیگر یادگیری ماشین: ویژگی‌های دست‌ساز (Hand-Crafted Features) ← استخراج ویژگی (Feature Extraction) ← پیش‌بینی (Prediction) ← خروجی (OUTPUT). مثال: آیا فردی حضور دارد؟ بله.\nآن‌ها استدلال می‌کنند که رویکردهای دست‌ساز، راهبرد بلندمدت کارآمدی نیستند؛ برای مثال:\n• «در کوتاه‌مدت بسیار جذاب‌اند، زیرا اغلب برای پیشرفت در یک وظیفهٔ خاص، نتایج سریعی می‌دهند.»\n• نقص بنیادی دارند: «اگر برای هر وظیفهٔ جدید، طراحی‌های ویژهٔ همان وظیفه باید با دست ساخته شوند، دستیابی به هوش مصنوعی به مقدار بسیار زیادی تلاش انسانی نیاز خواهد داشت.»"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "03d939a8b7f08552222e5d1efffbb4b0b21512383e4b8768cae04480378840af",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "kind": "text",
+          "fa": "معماری‌های کم‌عمق در برابر عمیق (Shallow vs Deep Architectures)\n• بینش کلیدی: هرچند معماری‌های کم‌عمق می‌توانند هر تابعی را بازنمایی کنند، بازنمایی‌های آن‌ها از معماری‌های عمیق ناکارآمدتر است.\n• مثال: برای تصویر، یکی از این 9 دسته را پیش‌بینی کنید: کامیون قرمز، خودرو قرمز، پرندهٔ قرمز، کامیون سبز، خودرو سبز، پرندهٔ سبز، کامیون آبی، خودرو آبی، پرندهٔ آبی.\nاین مسئله را چگونه می‌توان به شکل دیگری بازنمایی کرد؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "34acdeadfe43f9c97b5323da71c011c5c80f9dc3aec9ba266c7ce8fb82eddd8e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "معماری‌های کم‌عمق در برابر عمیق (Shallow vs Deep Architectures)\n• بینش کلیدی: هرچند معماری‌های کم‌عمق می‌توانند هر تابعی را بازنمایی کنند، بازنمایی‌های آن‌ها از معماری‌های عمیق ناکارآمدتر است.\n• مثال: برای تصویر، یکی از 9 دسته را پیش‌بینی کنید.\nقرمز (Red)، سبز (Green)، آبی (Blue)؛ کامیون (Truck)، خودرو (Car)، پرنده (Bird).\nبازنمایی کارآمدتر: نخست رنگ و سپس اشیا را ثبت کنید!"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "867060795aa2194fe41b79c238ae4428982a843b745debfdf0ff06c57b9affb0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "معماری‌های کم‌عمق در برابر عمیق (Shallow vs Deep Architectures)\n• بینش کلیدی: هرچند معماری‌های کم‌عمق می‌توانند هر تابعی را بازنمایی کنند، بازنمایی‌های آن‌ها از معماری‌های عمیق ناکارآمدتر است.\n• مسئله: شبکه‌های عصبی عمیق‌تر اغلب با روش‌های یادگیری کم‌عمق شکست می‌خوردند.\n• تشبیه: اگر اندازهٔ مورچه را به اندازهٔ فیل بزرگ کنید، چه می‌شود؟ زیر وزن خودش فرو می‌ریزد؛ به پایه‌های متفاوتی، مانند پاهای متفاوت، نیاز دارد."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "961b638e61b52d8a2e074cee7052d4aa6f98bcfd648f237672ca75a7ee3ad163",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "معماری‌های کم‌عمق در برابر عمیق (Shallow vs Deep Architectures)\n• بینش کلیدی: هرچند معماری‌های کم‌عمق می‌توانند هر تابعی را بازنمایی کنند، بازنمایی‌های آن‌ها از معماری‌های عمیق ناکارآمدتر است.\n• مسئله: شبکه‌های عصبی عمیق‌تر اغلب با روش‌های یادگیری کم‌عمق شکست می‌خوردند.\n• امید دوباره: پس از LeNet-5 لکون، موفقیت بنجیو در سال 2006 از راه رسید (NeurIPS)."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Greedy Layer-Wise Training of Deep Networks; Yoshua Bengio, Pascal Lamblin, Dan Popovici, Hugo Larochelle",
+          "fa": "آموزش حریصانهٔ لایه‌به‌لایهٔ شبکه‌های عمیق (Greedy Layer-Wise Training of Deep Networks)؛ Yoshua Bengio، Pascal Lamblin، Dan Popovici، Hugo Larochelle",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "b722e876d355f242047823a9ef4892fdf17f395fccc7b5b7d3c54bfe047a4281",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "ایده: مقداردهی اولیهٔ پارامترها در نزدیکی کمینه‌های خوب\n• روش: 1. آموزش بدون نظارت (Unsupervised Training) هر لایه به‌ترتیب، با افزایش تدریجی عمق. 2. تنظیم دقیق با نظارت (Supervised Fine-Tuning) برای وظیفهٔ هدف: لایهٔ خروجی را اضافه کنید و سپس آموزش دهید.\n• چرا یادگیری بدون نظارت؟ دادهٔ فراوانی برای نظارت وجود دارد؛ برای مثال، خودرمزگذار (Autoencoder) یاد می‌گیرد خودش را پیش‌بینی کند: ورودی را رمزگذاری می‌کند و سپس آن را به یک پیش‌بینی رمزگشایی می‌کند.\n• برای این ورودی 620 × 426، یک خودرمزگذار کامل چه چیزی پیش‌بینی می‌کند؟ همان 264,120 پیکسلِ تخت‌شدهٔ تصویر ورودی.\n• شهود خودرمزگذارها: به‌خاطرسپردن کدام آسان‌تر است؟\nA: 30, 27, 22, 11, 6, 8, 7, 2\nB: 30, 15, 46, 23, 70, 35, 106, 53, 160, 80, 40, 20, 10, 5\nپاسخ B است؛ فقط به مجموعهٔ فشرده‌ای از قواعد نیاز داریم: اگر زوج بود بر 2 تقسیم کنید؛ در غیر این صورت در 3 ضرب کنید و 1 بیفزایید.\nورودی (Input)؛ آموزش (Train)، آموزش، آموزش."
+        },
+        {
+          "source_lines": [
+            13,
+            14
+          ],
+          "kind": "reference",
+          "fa": "https://lazyprogrammer.me/\na-tutorial-on-autoencoders/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "z",
+          "fa": "کد میانی z",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "c8c5b987c8c3dba406e892d48e00bf1d1405531f1f22d656292455fd7fdd68ac",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "آزمایش‌ها: «یادگیری عمیق» (Deep Learning) امیدبخش است!\nخودرمزگذار (Autoencoder) برای MNIST از این گزینه‌ها بهتر عمل می‌کند: 1. شبکهٔ کم‌عمق، 2. آموزش بدون پیش‌آموزش حریصانه (Greedy Pre-Training)، و 3. پیش‌آموزش حریصانه با یادگیری با نظارت (Supervised Learning)."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "train. | valid. | test",
+          "fa": "آموزش (train.) | اعتبارسنجی (valid.) | آزمون (test)",
+          "verified": true
+        },
+        {
+          "en": "DBN, unsupervised pre-training | 0% | 1.2% | 1.2%",
+          "fa": "DBN، پیش‌آموزش بدون نظارت | 0% | 1.2% | 1.2%",
+          "verified": true
+        },
+        {
+          "en": "Deep net, auto-associator pre-training | 0% | 1.4% | 1.4%",
+          "fa": "شبکهٔ عمیق، پیش‌آموزش با خودتداعی‌گر (Auto-Associator) | 0% | 1.4% | 1.4%",
+          "verified": true
+        },
+        {
+          "en": "Deep net, supervised pre-training | 0% | 1.7% | 2.0%",
+          "fa": "شبکهٔ عمیق، پیش‌آموزش با نظارت | 0% | 1.7% | 2.0%",
+          "verified": true
+        },
+        {
+          "en": "Deep net, no pre-training | .004% | 2.1% | 2.4%",
+          "fa": "شبکهٔ عمیق، بدون پیش‌آموزش | .004% | 2.1% | 2.4%",
+          "verified": true
+        },
+        {
+          "en": "Shallow net, no pre-training | .004% | 1.8% | 1.9%",
+          "fa": "شبکهٔ کم‌عمق، بدون پیش‌آموزش | .004% | 1.8% | 1.9%",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "bf72232d4e65ab9838cbc4e2a703e7c8a4f3ea0d4c771664ac8a37e81018d936",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "چشم‌انداز مقالهٔ سال 2007 برای یادگیری عمیق (Deep Learning)؛ منتظر دههٔ 2020 باشید:\n«… نباید تنوع فراوان وظایف [هوش مصنوعی] را جداگانه در نظر گرفت؛ بلکه باید آن‌ها را جنبه‌های متفاوتِ مسئله‌ای عمومی‌تر دانست: یادگیری ساختار بنیادی جهان، مثلاً آن‌گونه که از چشم‌ها و گوش‌های حیوانی در حال رشد یا کودکی خردسال دیده و شنیده می‌شود. این نمونه‌ای از یادگیری چندوظیفه‌ای (Multi-Task Learning) است… پس از آموزش چنین سیستمی بر طیف وسیعی از وظایفِ مجموعهٔ هوش مصنوعی (AI-set)، ممکن است سیستم تنها با چند نمونهٔ برچسب‌دار به وظیفه‌ای جدید تعمیم یابد. فرضیهٔ ما این است که بسیاری از وظایف AI-set ممکن است حول بازنمایی‌های مشترک ساخته شده باشند…»"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "8b128210ee0790c936ba106dbb57b3c6356c14f2a458cae8cc3084ac67370384",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "با وجود پیشرفت، مقاومت در برابر شبکه‌های عصبی (NNs) ادامه داشت.\nنامهٔ مشهور یان لکون (Yann LeCun) به برگزارکنندگان CVPR دربارهٔ مقالهٔ ارسالی سال 2012؛ امتیازهای مقاله: «قطعاً رد شود»، «مرزی»، «با تردید رد شود».\n«… بسیار مطمئن بودم که این مقاله داوری‌های خوبی می‌گیرد، زیرا:\n1) دو ایدهٔ ساده و با کاربرد عمومی برای بخش‌بندی (Segmentation) دارد: «درخت خلوص» (Purity Tree) و «پوشش بهینه» (Optimal Cover).\n2) هیچ ویژگی دست‌سازی به کار نمی‌برد؛ همه‌چیز از ابتدا تا انتها یاد گرفته می‌شود. باورنکردنی است که داوران این را نکته‌ای منفی تلقی کردند!\n3) از تمام نتایج منتشرشده روی 3 مجموعه‌دادهٔ استانداردِ تجزیهٔ صحنه (Scene Parsing) بهتر است.\n4) یک مرتبهٔ بزرگی از روش‌های رقیب سریع‌تر است.\nاگر این‌ها برای گرفتن داوری‌های خوب کافی نیست، واقعاً نمی‌دانم چه چیزی کافی است.»\nمقالهٔ «تجزیهٔ صحنه با یادگیری ویژگی در چند مقیاس، درخت‌های خلوص و پوشش‌های بهینه» با عنوان اصلی “Scene Parsing with Multiscale Feature Learning, Purity Trees, and Optimal Covers” در CVPR رد، اما در ICML’12 پذیرفته شد."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "9a41865e3388545152a3947c0ba2a607c08ffc07248e226bcb5ad55acc734dba",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• بی‌توجهی به شبکه‌های عصبی (NN): دومین زمستان هوش مصنوعی (AI Winter) و عقب‌نشینی به مدل‌های کم‌عمق با ویژگی‌های مهندسی‌شده.\n• امید به شبکه‌های عصبی باقی می‌ماند: جست‌وجوی نامتداولِ عمق.\n• شبکه‌های عصبی مسلط می‌شوند: AlexNet انقلابی را آغاز می‌کند که در آن «یادگیری عمیق» (Deep Learning) غالب می‌شود.\n• آموزش برنامه‌نویسی: AlexNet در PyTorch."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "96e70ab4f15cb40a6630ee7801ed09926dfcf5c0ffe6a08b0d5ad35a2134374d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "مدل AlexNet، نام‌گذاری‌شده بر اساس نویسندهٔ اول؛ 2012، NeurIPS.\n1947 تا اکنون؛ استاد، Google Brain؛ برندهٔ جایزهٔ نوبل 2024."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ImageNet Classification with Deep Convolutional Neural Networks",
+          "fa": "طبقه‌بندی ImageNet با شبکه‌های عصبی کانولوشنی عمیق (ImageNet Classification with Deep Convolutional Neural Networks)",
+          "verified": true
+        },
+        {
+          "en": "Alex Krizhevsky, University of Toronto, kriz@cs.utoronto.ca; Ilya Sutskever, University of Toronto, ilya@cs.utoronto.ca; Geoffrey E. Hinton, University of Toronto, hinton@cs.utoronto.ca",
+          "fa": "الکس کریژفسکی (Alex Krizhevsky)، دانشگاه تورنتو، kriz@cs.utoronto.ca؛ ایلیا سوتسکور (Ilya Sutskever)، دانشگاه تورنتو، ilya@cs.utoronto.ca؛ جفری ای. هینتون (Geoffrey E. Hinton)، دانشگاه تورنتو، hinton@cs.utoronto.ca",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "2e4f28356201ac9ccb749d493760b9f5b33cc3892a1f9cc710410adb8947814b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "text",
+          "fa": "معماری AlexNet: «عمیق‌تر» شدن"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "227 × 227 × 3; CONV 11×11, stride=4, 96 kernels; 55 × 55 × 96",
+          "fa": "ورودی 227 × 227 × 3؛ کانولوشن (CONV) با هستهٔ 11×11، گام (stride) برابر 4 و 96 هسته (kernels)؛ خروجی 55 × 55 × 96",
+          "verified": true
+        },
+        {
+          "en": "(227−11)/4 + 1 = 55",
+          "fa": "محاسبهٔ اندازهٔ خروجی: (227−11)/4 + 1 = 55",
+          "verified": true,
+          "latex": "\\frac{227-11}{4}+1=55"
+        },
+        {
+          "en": "Overlapping Max POOL 3×3, stride=2; (55−3)/2 + 1 = 27; 27 × 27 × 96",
+          "fa": "تجمیع بیشینهٔ هم‌پوشان (Overlapping Max POOL)، 3×3 با گام 2؛ (55−3)/2 + 1 = 27؛ خروجی 27 × 27 × 96",
+          "verified": true,
+          "latex": "\\frac{55-3}{2}+1=27"
+        },
+        {
+          "en": "CONV 5×5, pad=2, 256 kernels; (27+2*2−5)/1 + 1 = 27",
+          "fa": "کانولوشن (CONV) با هستهٔ 5×5، حاشیه‌گذاری (pad) برابر 2 و 256 هسته؛ (27+2*2−5)/1 + 1 = 27",
+          "verified": true,
+          "latex": "\\frac{27+2\\cdot2-5}{1}+1=27"
+        },
+        {
+          "en": "Overlapping Max POOL 3×3, stride=2; (27−3)/2 + 1 = 13; 13 × 13 × 256",
+          "fa": "تجمیع بیشینهٔ هم‌پوشان (Overlapping Max POOL)، 3×3 با گام 2؛ (27−3)/2 + 1 = 13؛ خروجی 13 × 13 × 256",
+          "verified": true,
+          "latex": "\\frac{27-3}{2}+1=13"
+        },
+        {
+          "en": "CONV 3×3, pad=1, 384 kernels; (13+2*1−3)/1 + 1 = 13",
+          "fa": "کانولوشن (CONV)، 3×3 با حاشیه‌گذاری 1 و 384 هسته؛ (13+2*1−3)/1 + 1 = 13؛ خروجی 13 × 13 × 384",
+          "verified": true,
+          "latex": "\\frac{13+2\\cdot1-3}{1}+1=13"
+        },
+        {
+          "en": "CONV 3×3, pad=1, 384 kernels; CONV 3×3, pad=1, 256 kernels",
+          "fa": "کانولوشن (CONV)، 3×3 با حاشیه‌گذاری 1 و 384 هسته، سپس کانولوشن 3×3 با حاشیه‌گذاری 1 و 256 هسته؛ اندازهٔ فضایی هر دو خروجی 13 × 13 است.",
+          "verified": true
+        },
+        {
+          "en": "Overlapping Max POOL 3×3, stride=2; (13−3)/2 + 1 = 6; 6 × 6 × 256; 9216",
+          "fa": "تجمیع بیشینهٔ هم‌پوشان (Overlapping Max POOL)، 3×3 با گام 2؛ (13−3)/2 + 1 = 6؛ خروجی 6 × 6 × 256؛ 9216 مؤلفه",
+          "verified": true,
+          "latex": "\\frac{13-3}{2}+1=6"
+        },
+        {
+          "en": "FC 4096 → FC 4096 → 1000 Softmax",
+          "fa": "لایهٔ تمام‌متصل (FC) با 4096 واحد ← لایهٔ تمام‌متصل با 4096 واحد ← سافت‌مکس (Softmax) با 1000 خروجی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "87d657122086bb0e7d32d105dd073131e10c230d1a8a431cb298bbcec3054a35",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "معماری AlexNet\nورودی: تصویر RGB که به اندازهٔ ورودی ثابت تغییر اندازه یافته است. خروجی: احتمال‌های 1000 کلاس، با مجموع 1.\nلایه‌های کانولوشنی (Convolutional Layers): 5 لایه؛ لایه‌های تجمیع (Pooling Layers): 3 لایه؛ لایه‌های تمام‌متصل (Fully-Connected Layers): 3 لایه.\nجزئیات پیاده‌سازی: برای مرکزکردن ورودی، تصویر میانگین را از داده‌ها کم کنید."
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "227 × 227 × 3; CONV 11×11, stride=4, 96 kernels; 55 × 55 × 96",
+          "fa": "ورودی 227 × 227 × 3؛ کانولوشن (CONV) با هستهٔ 11×11، گام (stride) برابر 4 و 96 هسته (kernels)؛ خروجی 55 × 55 × 96",
+          "verified": true
+        },
+        {
+          "en": "(227−11)/4 + 1 = 55",
+          "fa": "محاسبهٔ اندازهٔ خروجی: (227−11)/4 + 1 = 55",
+          "verified": true,
+          "latex": "\\frac{227-11}{4}+1=55"
+        },
+        {
+          "en": "Overlapping Max POOL 3×3, stride=2; (55−3)/2 + 1 = 27; 27 × 27 × 96",
+          "fa": "تجمیع بیشینهٔ هم‌پوشان (Overlapping Max POOL)، 3×3 با گام 2؛ (55−3)/2 + 1 = 27؛ خروجی 27 × 27 × 96",
+          "verified": true,
+          "latex": "\\frac{55-3}{2}+1=27"
+        },
+        {
+          "en": "CONV 5×5, pad=2, 256 kernels; (27+2*2−5)/1 + 1 = 27",
+          "fa": "کانولوشن (CONV) با هستهٔ 5×5، حاشیه‌گذاری (pad) برابر 2 و 256 هسته؛ (27+2*2−5)/1 + 1 = 27",
+          "verified": true,
+          "latex": "\\frac{27+2\\cdot2-5}{1}+1=27"
+        },
+        {
+          "en": "Overlapping Max POOL 3×3, stride=2; (27−3)/2 + 1 = 13; 13 × 13 × 256",
+          "fa": "تجمیع بیشینهٔ هم‌پوشان (Overlapping Max POOL)، 3×3 با گام 2؛ (27−3)/2 + 1 = 13؛ خروجی 13 × 13 × 256",
+          "verified": true,
+          "latex": "\\frac{27-3}{2}+1=13"
+        },
+        {
+          "en": "CONV 3×3, pad=1, 384 kernels; (13+2*1−3)/1 + 1 = 13",
+          "fa": "کانولوشن (CONV)، 3×3 با حاشیه‌گذاری 1 و 384 هسته؛ (13+2*1−3)/1 + 1 = 13؛ خروجی 13 × 13 × 384",
+          "verified": true,
+          "latex": "\\frac{13+2\\cdot1-3}{1}+1=13"
+        },
+        {
+          "en": "CONV 3×3, pad=1, 384 kernels; CONV 3×3, pad=1, 256 kernels",
+          "fa": "کانولوشن (CONV)، 3×3 با حاشیه‌گذاری 1 و 384 هسته، سپس کانولوشن 3×3 با حاشیه‌گذاری 1 و 256 هسته؛ اندازهٔ فضایی هر دو خروجی 13 × 13 است.",
+          "verified": true
+        },
+        {
+          "en": "Overlapping Max POOL 3×3, stride=2; (13−3)/2 + 1 = 6; 6 × 6 × 256; 9216",
+          "fa": "تجمیع بیشینهٔ هم‌پوشان (Overlapping Max POOL)، 3×3 با گام 2؛ (13−3)/2 + 1 = 6؛ خروجی 6 × 6 × 256؛ 9216 مؤلفه",
+          "verified": true,
+          "latex": "\\frac{13-3}{2}+1=6"
+        },
+        {
+          "en": "FC 4096 → FC 4096 → 1000 Softmax",
+          "fa": "لایهٔ تمام‌متصل (FC) با 4096 واحد ← لایهٔ تمام‌متصل با 4096 واحد ← سافت‌مکس (Softmax) با 1000 خروجی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "5e2bf85a367d5059644bd7ffb7a0b52b28e9683f29db50123a777ce24f51f6d5",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            3
+          ],
+          "kind": "text",
+          "fa": "معماری AlexNet\nچند لایه دارای پارامترهای مدل هستند که باید یاد گرفته شوند؟\nدر مجموع باید 60 میلیون پارامتر مدل یاد گرفته شود!"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "227 × 227 × 3; CONV 11×11, stride=4, 96 kernels; 55 × 55 × 96",
+          "fa": "ورودی 227 × 227 × 3؛ کانولوشن (CONV) با هستهٔ 11×11، گام (stride) برابر 4 و 96 هسته (kernels)؛ خروجی 55 × 55 × 96",
+          "verified": true
+        },
+        {
+          "en": "(227−11)/4 + 1 = 55",
+          "fa": "محاسبهٔ اندازهٔ خروجی: (227−11)/4 + 1 = 55",
+          "verified": true,
+          "latex": "\\frac{227-11}{4}+1=55"
+        },
+        {
+          "en": "Overlapping Max POOL 3×3, stride=2; (55−3)/2 + 1 = 27; 27 × 27 × 96",
+          "fa": "تجمیع بیشینهٔ هم‌پوشان (Overlapping Max POOL)، 3×3 با گام 2؛ (55−3)/2 + 1 = 27؛ خروجی 27 × 27 × 96",
+          "verified": true,
+          "latex": "\\frac{55-3}{2}+1=27"
+        },
+        {
+          "en": "CONV 5×5, pad=2, 256 kernels; (27+2*2−5)/1 + 1 = 27",
+          "fa": "کانولوشن (CONV) با هستهٔ 5×5، حاشیه‌گذاری (pad) برابر 2 و 256 هسته؛ (27+2*2−5)/1 + 1 = 27",
+          "verified": true,
+          "latex": "\\frac{27+2\\cdot2-5}{1}+1=27"
+        },
+        {
+          "en": "Overlapping Max POOL 3×3, stride=2; (27−3)/2 + 1 = 13; 13 × 13 × 256",
+          "fa": "تجمیع بیشینهٔ هم‌پوشان (Overlapping Max POOL)، 3×3 با گام 2؛ (27−3)/2 + 1 = 13؛ خروجی 13 × 13 × 256",
+          "verified": true,
+          "latex": "\\frac{27-3}{2}+1=13"
+        },
+        {
+          "en": "CONV 3×3, pad=1, 384 kernels; (13+2*1−3)/1 + 1 = 13",
+          "fa": "کانولوشن (CONV)، 3×3 با حاشیه‌گذاری 1 و 384 هسته؛ (13+2*1−3)/1 + 1 = 13؛ خروجی 13 × 13 × 384",
+          "verified": true,
+          "latex": "\\frac{13+2\\cdot1-3}{1}+1=13"
+        },
+        {
+          "en": "CONV 3×3, pad=1, 384 kernels; CONV 3×3, pad=1, 256 kernels",
+          "fa": "کانولوشن (CONV)، 3×3 با حاشیه‌گذاری 1 و 384 هسته، سپس کانولوشن 3×3 با حاشیه‌گذاری 1 و 256 هسته؛ اندازهٔ فضایی هر دو خروجی 13 × 13 است.",
+          "verified": true
+        },
+        {
+          "en": "Overlapping Max POOL 3×3, stride=2; (13−3)/2 + 1 = 6; 6 × 6 × 256; 9216",
+          "fa": "تجمیع بیشینهٔ هم‌پوشان (Overlapping Max POOL)، 3×3 با گام 2؛ (13−3)/2 + 1 = 6؛ خروجی 6 × 6 × 256؛ 9216 مؤلفه",
+          "verified": true,
+          "latex": "\\frac{13-3}{2}+1=6"
+        },
+        {
+          "en": "FC 4096 → FC 4096 → 1000 Softmax",
+          "fa": "لایهٔ تمام‌متصل (FC) با 4096 واحد ← لایهٔ تمام‌متصل با 4096 واحد ← سافت‌مکس (Softmax) با 1000 خروجی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "ab4d3df2a78fac0e69164d23a2e84306acfa4bbbc99834f3fbc58163fca55f59",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "پیش‌فرض: برای پیچیدگی دنیای واقعی، مدلی با ظرفیت زیاد (Large Capacity Model) لازم است.\n• وظیفه: پیش‌بینی دسته از میان 1000 گزینه.\n• مجموعه‌داده: حدود 1.5 میلیون تصویر از اشیا در پس‌زمینه‌های طبیعی.\n• منبع: تصاویر از موتورهای جست‌وجو، مانند Flickr، گردآوری و توسط جمع‌سپاران برچسب‌گذاری شده‌اند.\n• معیار ارزیابی: درصد پاسخ درست در پیش‌بینی‌های اول (top-1) و پنج‌تای اول (top-5)."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Deng et al. ImageNet: A Large-Scale Hierarchical Image Database. 2009"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ImageNet Large Scale Visual Recognition Challenges",
+          "fa": "چالش‌های بازشناسی بصری در مقیاس بزرگ ImageNet (ImageNet Large Scale Visual Recognition Challenges)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "000496e3f4d9ff1d25eb6b3286a121dba3ec06e56d08655ac6e680d98343ae78",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "پیش‌فرض: برای پیچیدگی دنیای واقعی، مدلی با ظرفیت زیاد (Large Capacity Model) لازم است. پیچیدگی را حتی برای فقط یک دستهٔ شیء در نظر بگیرید. منبع: کریستن گرومن (Kristen Grauman)."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Illumination; Object pose; Clutter; Occlusions; Intra-class appearance; Viewpoint",
+          "fa": "نورپردازی (Illumination)؛ حالت شیء (Object Pose)؛ شلوغی صحنه (Clutter)؛ پوشیدگی‌ها (Occlusions)؛ ظاهر درون‌کلاسی (Intra-Class Appearance)؛ زاویهٔ دید (Viewpoint)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "1e7b1998b8b1c11a7a326e43afe96694c3d7eb619b0ed352c90b84f65bc3d72f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "آموزش AlexNet: چه مشکلی ممکن است پیش بیاید؟\n• یادگیری ممکن نیست: محوشدن گرادیان‌ها (Vanishing Gradients).\n• یادگیری تعمیم (Generalization) نمی‌یابد: بیش‌برازش (Overfitting).\n• یادگیری عملی نیست: آموزش تا رسیدن به همگرایی بیش از حد طول می‌کشد."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "bd388025e229020dab34296195fd754face4a7341eac2ad0fcb5ed36f96daeff",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "آموزش AlexNet: ایده‌های کلیدی برای یادگیری عمیق (Deep Learning)\n• ممکن‌کردن یادگیری: استفاده از تابع‌های فعال‌سازی غیر اشباع‌شونده (Non-Saturating Activation Functions).\n• جلوگیری از بیش‌برازش (Overfitting): استفاده از روش‌های منظم‌سازی (Regularization).\n• عملی‌کردن آموزش: افزایش سرعت با سخت‌افزار بهتر."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "b07e240ff376860aa2ecf866717d40884186eb9a7faf9f1e0b5a43762fb88973",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "یادآوری مسئلهٔ محوشدن گرادیان (Vanishing Gradient)\nورودی نامناسب = خروجی نامناسب (Garbage In = Garbage Out): لایه‌های ابتدایی برای دریافت گرادیان‌هایی که به آن‌ها امکان یادگیری چیزی مفید بدهد، مشکل دارند؛ بااین‌حال، همین لایه‌ها پایهٔ پیش‌بینی لایه‌های بعدی هستند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/batch-normalization-the-greatest-breakthrough-in-deep-learning-77e64909d81d"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Backpropagation Signal in Neural Networks (gradually diminishes)",
+          "fa": "سیگنال پس‌انتشار (Backpropagation) در شبکه‌های عصبی؛ به‌تدریج ضعیف می‌شود.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "04a366875b71675d29ecb7d2602188734747dc5e36d16a800c20c5dcadf7ec54",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "ایده: استفاده از تابع فعال‌سازی (Activation Function) که گرادیان‌ها را در پس‌انتشار (Backpropagation) حفظ کند.\nتابع فعال‌سازی ReLU. مقدارهای ممکن گرادیان چیست؟\nیادداشت: ReLU پیش‌تر در شبکه‌های عصبی به کار رفته بود؛ از جمله فوکوشیما (Fukushima) آن را در Neocognitron سال 1980 و نمونهٔ پیشینِ سال 1969 به کار برده بود؛ هینتون (Hinton) نیز در سال 2010 آن را در RBMها به کار برد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Masi et al. Journal of the Mechanics and Physics of Solids. 2021"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "A(z); max(0,z)",
+          "fa": "تابع فعال‌سازی A(z)؛ بیشینهٔ 0 و z",
+          "verified": true,
+          "latex": "A(z)=\\max(0,z)"
+        },
+        {
+          "en": "A′(z); max(0,1); z; −1, 1; 0.5, 1",
+          "fa": "نمودار مشتق A′(z) با برچسبِ چاپ‌شدهٔ max(0,1)؛ محور z؛ مقدارهای −1 و 1 و 0.5 و 1",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "25397ccd86feee24ffc33cd3ddf6c0f744efe4992558331be287468d583b3991",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "ایده: استفاده از تابع فعال‌سازی (Activation Function) که گرادیان‌ها را در پس‌انتشار (Backpropagation) حفظ کند.\nتابع فعال‌سازی ReLU:\n• گرادیان محو نمی‌شود؛ یعنی 1×1×1×… .\n• محاسبه سریع است! 0 یا 1.\nنقطهٔ مشتق‌ناپذیر در z=0 را چگونه مدیریت کنیم؟ مقدار را به‌صورت ثابت در کد تعیین کنید، یعنی 0 یا 1.\nوقتی بسیاری از نورون‌ها فاقد گرادیان‌اند، یعنی «مرده» هستند، مشکل پدید می‌آید؛ تشبیه: آسیب مغزی."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Masi et al. Journal of the Mechanics and Physics of Solids. 2021"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "A(z); max(0,z)",
+          "fa": "تابع فعال‌سازی A(z)؛ بیشینهٔ 0 و z",
+          "verified": true,
+          "latex": "A(z)=\\max(0,z)"
+        },
+        {
+          "en": "A′(z); max(0,1); z; −1, 1; 0.5, 1",
+          "fa": "نمودار مشتق A′(z) با برچسبِ چاپ‌شدهٔ max(0,1)؛ محور z؛ مقدارهای −1 و 1 و 0.5 و 1",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "04b9d894d96408eebe18785620cdff5a538b70b13418b26a1e9870f384033024",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "تحلیل آزمایشی برای اعتبارسنجی\n• مجموعه‌داده: CIFAR-10.\n• معماری: شبکهٔ کانولوشنی (Convolutional Network) با 4 لایه.\n• معیار ارزیابی: درصد پاسخ درست.\nیافتهٔ کلیدی چیست؟ ReLU بسیار سریع‌تر از تانژانت هذلولوی (tanh) یاد می‌گیرد و تابع دوم برای یادگیری نامناسب است! برای مثال، ReLU در رسیدن به نرخ خطای 25%، شش برابر (6×) سریع‌تر است. ReLU: خط پیوسته؛ tanh: خط‌چین."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "Krizhevsky et al. ImageNet Classification with Deep Convolutional Neural Networks. NeurIPS 2012."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Training error rate; Epochs; 0, 0.25, 0.5, 0.75; 0–40",
+          "fa": "نرخ خطای آموزش (Training Error Rate)؛ دوره‌های آموزش (Epochs)؛ 0، 0.25، 0.5، 0.75؛ 0 تا 40",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "bd388025e229020dab34296195fd754face4a7341eac2ad0fcb5ed36f96daeff",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "آموزش AlexNet: ایده‌های کلیدی برای یادگیری عمیق (Deep Learning)\n• ممکن‌کردن یادگیری: استفاده از تابع‌های فعال‌سازی غیر اشباع‌شونده (Non-Saturating Activation Functions).\n• جلوگیری از بیش‌برازش (Overfitting): استفاده از روش‌های منظم‌سازی (Regularization).\n• عملی‌کردن آموزش: افزایش سرعت با سخت‌افزار بهتر."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "e7f72ed197176edc68d5075528cda1a2df617ca70c09ea553480d5e7d4900720",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "روش‌های منظم‌سازی (Regularization)\n• یادآوری: منظم‌سازی «هر تغییری است که در الگوریتم یادگیری ایجاد می‌کنیم و هدف آن کاهش خطای تعمیم (Generalization Error) آن است.» — کتاب گودفلو (Goodfellow).\n• دو روش به‌کاررفته در AlexNet: افزایش داده (Data Augmentation) و حذف تصادفی (Dropout)."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "5a0465967bae5f06ba8a755bb0ebcb3b435318428752de952497051311d8c097",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "افزایش داده (Data Augmentation): شهود\nافزودن دادهٔ آموزشی."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "751f26a20addcf62de1701f6afb06bf1b6aa05ee16ec62a1a7370ba733ca67fa",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "افزایش داده (Data Augmentation): روش\n• وصله‌های تصادفی و تصاویر آینه‌ای آن‌ها: 2048 برابر دادهٔ بیشتر.\n• تنظیم کانال‌های RGB با روشی مبتنی بر تحلیل مؤلفه‌های اصلی (PCA).\nبه‌طور کلی باید مطمئن شویم که طرح افزایش داده با کاربرد هدف هماهنگ است."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://learnopencv.com/understanding-alexnet/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Random Crops; Mirror Image; 256 × 256; 227 × 227",
+          "fa": "برش‌های تصادفی (Random Crops)؛ تصویر آینه‌ای (Mirror Image)؛ 256 × 256؛ 227 × 227",
+          "verified": true
+        },
+        {
+          "en": "9 → 6; d → b",
+          "fa": "نمونه‌های دست‌نویسِ تبدیل بر اثر بازتاب: 9 → 6؛ d → b",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "395a221cc2a16ea0e98620ec041f3bc1397012452e1b78b205fc772da7855edd",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "حذف تصادفی (Dropout)؛ 2012، arXiv."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Improving neural networks by preventing co-adaptation of feature detectors",
+          "fa": "بهبود شبکه‌های عصبی با جلوگیری از هم‌سازگاریِ آشکارسازهای ویژگی (Improving Neural Networks by Preventing Co-Adaptation of Feature Detectors)",
+          "verified": true
+        },
+        {
+          "en": "G. E. Hinton*, N. Srivastava, A. Krizhevsky, I. Sutskever and R. R. Salakhutdinov; Department of Computer Science, University of Toronto, 6 King’s College Rd, Toronto, Ontario M5S 3G4, Canada",
+          "fa": "G. E. Hinton*، N. Srivastava، A. Krizhevsky، I. Sutskever و R. R. Salakhutdinov؛ دانشکدهٔ علوم کامپیوتر، دانشگاه تورنتو؛ 6 King’s College Rd, Toronto, Ontario M5S 3G4, Canada",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "1a1810879255a7148a56b0071544b1a29fedef2c27fe9275049649c5585fa1fb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "حذف تصادفی (Dropout): ایده\nاز مجموعه‌ای از مدل‌ها (Ensemble) استفاده کنید."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "d24f174cec545c2e52ff6f931ef27842f40b812b0de13c0daf0d0d87659b08a4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "حذف تصادفی (Dropout): ایده\n• استفاده از مجموعه‌ای از مدل‌ها (Ensemble)، احتمال پیش‌بینی نادرست را کاهش می‌دهد.\n• فرض کنید n طبقه‌بند (Classifier) برای یک وظیفهٔ طبقه‌بندی دودویی داریم؛ هر طبقه‌بند نرخ خطای یکسان ε دارد؛ طبقه‌بندها مستقل‌اند، که در عمل درست نیست!\n• تابع جرم احتمال (Probability Mass Function)، احتمال خطای مجموعه را نشان می‌دهد.\n• مثال: n = 11، ε = 0.25 و k = 6؛ احتمال خطا حدود 0.034 است که از احتمال خطای یک الگوریتم منفرد، یعنی 0.25، بسیار کمتر است.\nبرچسب‌های فرمول: تعداد طبقه‌بندها؛ نرخ خطای طبقه‌بند؛ تعداد راه‌های انتخاب زیرمجموعه‌های k عضوی از مجموعه‌ای به اندازهٔ n؛ احتمال خطا."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "P(y ≥ k) = Σₖⁿ (n choose k) εᵏ(1−ε)ⁿ⁻ᵏ = εensemble",
+          "fa": "احتمال خطای مجموعه، مطابق فرمول چاپ‌شده:",
+          "verified": true,
+          "latex": "P(y\\ge k)=\\sum_{k}^{n}\\binom{n}{k}\\varepsilon^{k}(1-\\varepsilon)^{n-k}=\\varepsilon_{\\mathrm{ensemble}}"
+        }
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "ded6240b44020ce1deb81e1d3949624f23b1cdf936002d56b4515cbe477afb16",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "حذف تصادفی (Dropout): پیشینه\nتجمیع بوت‌استرپ (Bootstrap Aggregation)، 1994: الگوریتم را بارها روی زیرمجموعه‌های تصادفی متفاوت از مجموعهٔ آموزش، آموزش دهید."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Raschka & Mirjalili, Python Machine Learning."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Training set; Bootstrap samples T₁, T₂, …, Tₘ; Classification models C₁, C₂, …, Cₘ; New data; Predictions P₁, P₂, …, Pₘ; Voting; Final prediction P𝒇",
+          "fa": "مجموعهٔ آموزش (Training Set)؛ نمونه‌های بوت‌استرپ (Bootstrap Samples) T₁، T₂، …، Tₘ؛ مدل‌های طبقه‌بندی (Classification Models) C₁، C₂، …، Cₘ؛ دادهٔ جدید (New Data)؛ پیش‌بینی‌ها (Predictions) P₁، P₂، …، Pₘ؛ رأی‌گیری (Voting)؛ پیش‌بینی نهایی (Final Prediction) P𝒇",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "b22a7b5a7b92b02f5881e54f15989cd6515073b6369e22edae985c3880937652",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "حذف تصادفی (Dropout): پیشینه\nالگوریتم را بارها روی زیرمجموعه‌های تصادفی متفاوت از مجموعهٔ آموزش، آموزش دهید.\nچرا بگینگ (Bagging) رویکرد ضعیفی برای شبکه‌های عصبی است؟\n• یافتن ابرپارامترهای (Hyperparameters) بهینه برای هر معماری زمان‌بر است.\n• به‌کارگیری چندین شبکهٔ عصبی اغلب عملی نیست، زیرا مدل‌ها حافظهٔ فراوان می‌خواهند و اجرای آن‌ها از نظر محاسباتی پرهزینه است."
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "reference",
+          "fa": "Raschka & Mirjalili, Python Machine Learning."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Training set; Bootstrap samples T₁, T₂, …, Tₘ; Classification models C₁, C₂, …, Cₘ; New data; Predictions P₁, P₂, …, Pₘ; Voting; Final prediction P𝒇",
+          "fa": "مجموعهٔ آموزش (Training Set)؛ نمونه‌های بوت‌استرپ (Bootstrap Samples) T₁، T₂، …، Tₘ؛ مدل‌های طبقه‌بندی (Classification Models) C₁، C₂، …، Cₘ؛ دادهٔ جدید (New Data)؛ پیش‌بینی‌ها (Predictions) P₁، P₂، …، Pₘ؛ رأی‌گیری (Voting)؛ پیش‌بینی نهایی (Final Prediction) P𝒇",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "b97414a0480328b1f49640a761ba5aa5adfec7950359e8910f4f5c1d2e3aa240",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "حذف تصادفی (Dropout): روش\nبگینگ (Bagging) را با حذف تصادفی هنگام آموزش تقریب می‌زند تا زیرمدل‌های متفاوت شبکه با داده‌های آموزشی متفاوت آموزش ببینند.\nبرای مثال، 20% از واحدهای لایه‌های ورودی و 50% از واحدهای لایه‌های پنهان (Hidden Layers) حذف می‌شوند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(a) Standard Neural Net; (b) After applying dropout.",
+          "fa": "(a) شبکهٔ عصبی استاندارد (Standard Neural Net)؛ (b) پس از اعمال حذف تصادفی (Dropout).",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "fa097bc96a216477b36dd9499610daee9f83a4fde39f7f29d8dde92d56e43199",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "حذف تصادفی (Dropout): روش\nبگینگ (Bagging) را با حذف تصادفی هنگام آموزش تقریب می‌زند تا زیرمدل‌های متفاوت شبکه با داده‌های آموزشی متفاوت آموزش ببینند.\nبرای آموزش، گذر رو به جلو (Forward Pass) و پس‌انتشار (Backpropagation) فقط از زیرشبکه عبور می‌کنند؛ در هر دستهٔ کوچک (Minibatch)، حذف تصادفی متفاوت است.\nچه اتفاقی ممکن است برای منحنی‌های زیان (Loss) بیفتد؟ پرنوسان‌تر می‌شوند، زیرا شبکهٔ زیرین پیوسته تغییر می‌کند."
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(b) After applying dropout.",
+          "fa": "(b) پس از اعمال حذف تصادفی (Dropout).",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "c162b6f6dd69bd9d2ef14c3bec09eea93ac7e7cf1eb37db09055413cce4554e5",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "حذف تصادفی (Dropout): روش\nبگینگ (Bagging) را با حذف تصادفی هنگام آموزش تقریب می‌زند تا زیرمدل‌های متفاوت شبکه با داده‌های آموزشی متفاوت آموزش ببینند.\nدر زمان آزمون، با به‌کارگیری شبکه بدون حذف تصادفی، مجموعهٔ مدل‌ها (Ensemble) شبیه‌سازی می‌شود.\nانتظار شبکه برای دریافت سیگنال فعال‌سازی کوچک‌تر از چیزی را که در آزمون می‌بیند، چگونه مدیریت کنیم؟ برای مثال، ورودی از 2 نورون در برابر 5 نورون. وزن‌های خروجی هر واحد را در احتمال حذف‌شدن در زمان آموزش ضرب کنید."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "reference",
+          "fa": "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(b) After applying dropout.",
+          "fa": "(b) پس از اعمال حذف تصادفی (Dropout).",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "58fa77d878db13e0d3f7e71052c1bc62136409fdd723df7304c4ddfb437ec4ce",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "حذف تصادفی (Dropout): مقایسه با بگینگ (Bagging)\n• حذف تصادفی، بگینگ با مدل‌های متعدد را با هزینهٔ کم تقریب می‌زند: الگوریتم را بارها روی زیرمجموعه‌های تصادفی مجموعهٔ آموزش، آموزش می‌دهد.\n• تفاوت این است که زیرشبکه‌ها تا همگرایی آموزش نمی‌بینند، بلکه فقط یک گام آموزش می‌بینند؛ و مستقل نیستند، بلکه همگی پارامترهای مشترک دارند."
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "reference",
+          "fa": "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(b) After applying dropout.",
+          "fa": "(b) پس از اعمال حذف تصادفی (Dropout).",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "f792a7bacdb6d43d4e90db2dbfe71da10fb810e7e979d1c4e5374718f31c4589",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "kind": "text",
+          "fa": "حذف تصادفی (Dropout): انگیزه\nانگیزهٔ این روش از نقش جنسیت در تکامل آمده است: «… نقش تولیدمثل جنسی فقط این نیست که اجازه دهد ژن‌های جدید مفید در سراسر جمعیت پخش شوند؛ بلکه باید این فرایند را با کاهش هم‌سازگاری‌های پیچیده‌ای تسهیل کند که احتمالِ بهبود برازندگی یک فرد توسط ژنی جدید را کاهش می‌دهند.»\n«به‌همین‌ترتیب، هر واحد پنهان در شبکهٔ عصبی آموزش‌دیده با حذف تصادفی باید یاد بگیرد با نمونه‌ای تصادفی از واحدهای دیگر کار کند. این باید هر واحد پنهان را مقاوم‌تر سازد و آن را به‌سوی ساخت ویژگی‌های مفید به‌تنهایی هدایت کند، بدون آنکه برای اصلاح اشتباه‌های خود به سایر واحدهای پنهان متکی باشد.»"
+        },
+        {
+          "source_lines": [
+            23
+          ],
+          "kind": "reference",
+          "fa": "Srivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(b) After applying dropout.",
+          "fa": "(b) پس از اعمال حذف تصادفی (Dropout).",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "b81887520348643d5ad1c628adc598b2bb993a039da3a534281558b9f67c25e5",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "حذف تصادفی (Dropout): انگیزه\nنورون‌ها یاد می‌گیرند به‌تنهایی مفید باشند، به‌جای آنکه با نورون‌های دیگر شراکت کنند؛ برای مثال، وزن‌های مثبت و منفی بزرگی را که یکدیگر را خنثی می‌کنند، کاهش می‌دهد؛ این خنثی‌سازی نشانهٔ بیش‌برازش (Overfitting) است."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/techniques-for-handling￾underfitting-and-overfitting-in-machine-learning-348daa2380b9\nSrivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(b) After applying dropout.",
+          "fa": "(b) پس از اعمال حذف تصادفی (Dropout).",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "0d57e077227d041a7b4b6150cd12f051f744ecc645a9c0607edcdfeedd6d8b8b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "حذف تصادفی (Dropout): رویکرد جایگزین\nتعمیمِ صفرکردن واحدها این است که به‌جای آن، واحدها را در نویز (Noise) ضرب کنیم.\nمقاله‌های مرتبط:"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "reference",
+          "fa": "*https://towardsdatascience.com/dropout-on￾convolutional-layers-is-weird-5c6ab14f19b2\n*Wu and Gu. “Towards dropout training for\nconvolutional neural networks.” Neural Networks, 2015.\nSrivastava et al. Dropout: A Simple Way to Prevent Neural Networks from Overfitting. Journal of Machine Learning Research. 2014"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "(b) After applying dropout.",
+          "fa": "(b) پس از اعمال حذف تصادفی (Dropout).",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "e8c29d5d51927b118c7449c7a6258c153cabe5a025429a945cad803e5b7e26fc",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "حذف تصادفی (Dropout): پیاده‌سازی\n• فقط در لایه‌های تمام‌متصل (Fully-Connected Layers) به کار رفته است.\n• چرا در لایه‌های کانولوشنی (Convolutional Layers) به کار نرود؟ اشتراک پارامترها (Parameter Tying) از پیش تعداد پارامتر را کاهش می‌دهد و بنابراین منظم‌سازی (Regularization) کافی فراهم می‌کند."
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png\nhttps://www.researchgate.net/figure/Architecture-of-Alexnet-From-left-to-right-input-to-output-five-convolutional-layers_fig2_312303454"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "C1, C2, C3, C4, C5; FC6, FC7, FC8; 96, 256, 384, 384, 256; 4096, 4096, 1000; 55, 27, 13; 5, 3",
+          "fa": "لایه‌های کانولوشنی C1 تا C5 و تمام‌متصل FC6 تا FC8؛ تعداد کانال‌ها 96، 256، 384، 384، 256؛ تعداد واحدها 4096، 4096، 1000؛ اندازه‌های فضایی 55، 27 و 13؛ اندازهٔ هسته‌ها 5 و 3",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "2b41ef94578ee2ac3890028917cb2f68394d1cd429c51770a1cea5ff121660a3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "حذف تصادفی (Dropout): پیاده‌سازی\nدر لایه‌های کانولوشنی (Convolutional Layers) اعمال نشده است؛ هرکدام کمتر از 1% ظرفیت مدل را تشکیل می‌دهند. در لایه‌های تمام‌متصل (Fully-Connected Layers)، که بیشتر پارامترها را دارند، اعمال شده است."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "http://www.philkr.net/cs342/lectures/computer_vision/02.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Parameters (M); conv1 0.0; conv2 0.3; conv3 0.9; conv4 0.7; conv5 0.4; fc6 37.8; fc7 16.8; fc8 4.1; 0, 10, 20, 30, 40",
+          "fa": "پارامترها بر حسب میلیون (Parameters (M))؛ conv1: 0.0؛ conv2: 0.3؛ conv3: 0.9؛ conv4: 0.7؛ conv5: 0.4؛ fc6: 37.8؛ fc7: 16.8؛ fc8: 4.1؛ درجات محور: 0، 10، 20، 30، 40",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "bd388025e229020dab34296195fd754face4a7341eac2ad0fcb5ed36f96daeff",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "آموزش AlexNet: ایده‌های کلیدی برای یادگیری عمیق (Deep Learning)\n• ممکن‌کردن یادگیری: استفاده از تابع‌های فعال‌سازی غیر اشباع‌شونده (Non-Saturating Activation Functions).\n• جلوگیری از بیش‌برازش (Overfitting): استفاده از روش‌های منظم‌سازی (Regularization).\n• عملی‌کردن آموزش: افزایش سرعت با سخت‌افزار بهتر."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "109ca09c023f4e5632879efefd6a8ad1c9f7379593017e1d4e8af2b49346a035",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "text",
+          "fa": "با 60 میلیون پارامتر، آموزش AlexNet بسیار زمان‌بر بود."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://hanlab.mit.edu/files/course/slides/MIT-TinyML-Lec13-Distributed-Training-I.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Boss: What did you do last month? You: Trained the model for one epoch. Boss: Umm, fine, what is your plan for next month? You: Train… train the model for one more epoch?",
+          "fa": "رئیس: ماه قبل چه کار کردی؟ شما: مدل را برای یک دوره (Epoch) آموزش دادم. رئیس: اممم، خوب، برنامه‌ات برای ماه بعد چیست؟ شما: آموزش… مدل را برای یک دورهٔ دیگر آموزش بدهم؟",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "76e02539afb70719f12e50b81cb2674dfe3dbc02027d9dda9681b9e038e0524e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "آموزش: از روش‌های یادگیری کم‌عمق (Shallow Learning) استفاده شد.\n• مقداردهی اولیهٔ پارامترها (Parameter Initialization): مقدارهای وزن از توزیع گاوسی با میانگین صفر و انحراف معیار 0.01 نمونه‌گیری شدند.\n• اندازهٔ دسته (Batch Size): 128 نمونه.\n• افت وزن (Weight Decay): 0.0005.\n• بهینه‌سازی با تکانه (Momentum): نرخ یادگیری را از مقدار اولیهٔ 0.01، سه بار به‌صورت دستی تنظیم کردند؛ هر بار که خطای اعتبارسنجی دیگر کاهش نمی‌یافت، نرخ را بر 10 تقسیم کردند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "4a46704c0d1570db972098c9c1dc202495497910d36e82e3fbcfbd1b83ae183a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "افزایش سرعت: محاسبات روی 2 واحد پردازش گرافیکی (GPUs) اجرا شد تا آموزش برای حدود 90 دوره (Epochs)، به 5 تا 6 روز برسد.\nواحدهای پردازش گرافیکی (Graphics Processing Units, GPUs)؛ واحد پردازش مرکزی (Central Processing Unit, CPU)."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "http://cs231n.stanford.edu/slides/2018/cs231n_2018_lecture08.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "This image is licensed under CC-BY 2.0; This image is in the public domain",
+          "fa": "این تصویر با مجوز CC-BY 2.0 منتشر شده است؛ این تصویر در مالکیت عمومی (Public Domain) است.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "cf8deabe502a8436fa9f0535002d9216ba28d94382dc458fe3b61d31a7305963",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "مرور: ایده‌های کلیدی یادگیری عمیق (Deep Learning)\n• ممکن‌کردن یادگیری: استفاده از تابع‌های فعال‌سازی غیر اشباع‌شونده (Non-Saturating Activation Functions)، یعنی ReLUها.\n• جلوگیری از بیش‌برازش (Overfitting): استفاده از روش‌های منظم‌سازی (Regularization)، یعنی افزایش داده (Data Augmentation) و حذف تصادفی (Dropout).\n• عملی‌کردن آموزش: افزایش سرعت با سخت‌افزار بهتر، یعنی واحدهای پردازش گرافیکی (GPUs)."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "7b718fde411a55eb66beecf451f1fafa084ea9c9f9e2873463367624e28ee640",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "آزمایش‌ها: یادگیری عمیق (Deep Learning) غالب شد!\nروی ImageNet به بهبودهایی غیرمنتظره و بی‌سابقه رسید: کاهش 9.6 واحد درصدی خطای پنج‌تای اول (Top-5 Error) تا 16.4% در مقایسه با بهترین مدل سال 2011."
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://www.pinecone.io/learn/series/image-search/imagenet/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Top-5 error rate; #1 result / year; NEC 2010 28.3%; XRCE 2011 25.8%; 2012; SuperVision 16.4%; ISI 26.2%; OXFORD_VGG 27.0%; XRCE/INRIA 27.1%; Univ. Amsterdam 29.6%; LEAR-XRCE 34.5%; 2012 Results; AlexNet (15.3% after extra training)",
+          "fa": "نرخ خطای پنج‌تای اول (Top-5 Error Rate)؛ نتیجهٔ رتبهٔ اول هر سال: NEC در 2010 با 28.3% و XRCE در 2011 با 25.8%؛ نتایج 2012: SuperVision با 16.4%، ISI با 26.2%، OXFORD_VGG با 27.0%، XRCE/INRIA با 27.1%، دانشگاه آمستردام با 29.6% و LEAR-XRCE با 34.5%؛ AlexNet پس از آموزش بیشتر: 15.3%.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "66e651857d3ca4bf68f6edac98bf804e88ff9c5a57b7cb6ed0cf6a942fd16e2a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "تحلیل: خطاها\n8 نمونه از پیش‌بینی‌های درست و نادرست.\nچه وقت و چرا ممکن است موفق شود؟ یک شیء منفرد و مشخص، حتی اگر از مرکز تصویر دور باشد.\nچه وقت و چرا ممکن است شکست بخورد؟ ابهام؛ دسته‌های مشابه."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "reference",
+          "fa": "Krizhevsky et al. ImageNet Classification with Deep Convolutional Neural Networks. NeurIPS 2012."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "mite; black widow; cockroach; tick; starfish",
+          "fa": "کنهٔ ریز (mite)؛ عنکبوت بیوهٔ سیاه (black widow)؛ سوسک (cockroach)؛ کنه (tick)؛ ستارهٔ دریایی (starfish)",
+          "verified": true
+        },
+        {
+          "en": "container ship; lifeboat; amphibian; fireboat; drilling platform",
+          "fa": "کشتی کانتینربر (container ship)؛ قایق نجات (lifeboat)؛ وسیلهٔ دوزیست (amphibian)؛ قایق آتش‌نشانی (fireboat)؛ سکوی حفاری (drilling platform)",
+          "verified": true
+        },
+        {
+          "en": "motor scooter; go-kart; moped; bumper car; golfcart",
+          "fa": "موتور اسکوتر (motor scooter)؛ کارتینگ (go-kart)؛ موتور پدالی (moped)؛ ماشین برقی برخوردی (bumper car)؛ خودروی گلف (golfcart)",
+          "verified": true
+        },
+        {
+          "en": "leopard; jaguar; cheetah; snow leopard; Egyptian cat",
+          "fa": "پلنگ (leopard)؛ جگوار (jaguar)؛ یوزپلنگ (cheetah)؛ پلنگ برفی (snow leopard)؛ گربهٔ مصری (Egyptian cat)",
+          "verified": true
+        },
+        {
+          "en": "grille; convertible; pickup; beach wagon; fire engine",
+          "fa": "جلوپنجرهٔ خودرو (grille)؛ خودروی سقف‌بازشو (convertible)؛ وانت (pickup)؛ استیشن (beach wagon)؛ ماشین آتش‌نشانی (fire engine)",
+          "verified": true
+        },
+        {
+          "en": "mushroom; agaric; jelly fungus; gill fungus; dead-man’s-fingers",
+          "fa": "قارچ (mushroom)؛ قارچ آگاریک (agaric)؛ قارچ ژله‌ای (jelly fungus)؛ قارچ تیغه‌دار (gill fungus)؛ قارچ انگشت مرد مرده (dead-man’s-fingers)",
+          "verified": true
+        },
+        {
+          "en": "cherry; dalmatian; grape; elderberry; …ffordshire bullterrier; currant",
+          "fa": "گیلاس (cherry)؛ سگ دالماسین (dalmatian)؛ انگور (grape)؛ میوهٔ آقطی (elderberry)؛ … بول‌تریر (…ffordshire bullterrier)؛ انگورفرنگی (currant)",
+          "verified": true
+        },
+        {
+          "en": "Madagascar cat; squirrel monkey; spider monkey; titi; indri; howler monkey",
+          "fa": "لمور ماداگاسکار (Madagascar cat)؛ میمون سنجابی (squirrel monkey)؛ میمون عنکبوتی (spider monkey)؛ میمون تیتی (titi)؛ ایندری (indri)؛ میمون زوزه‌کش (howler monkey)",
+          "verified": true
+        }
+      ],
+      "image_text_limits": [
+        {
+          "reason_fa": "در تصویر اصلی، ابتدای برچسب …ffordshire bullterrier و لبهٔ پایینی برخی برچسب‌های ردیف دوم بریده شده است؛ متن خارج از قاب به ترجمه افزوده نشده است.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "3e0edd69ebf735ac1852b18232bc287a866bf756fc35cd164d5e18ee42f088f5",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "text",
+          "fa": "تحلیل: چه چیزی یاد گرفته شد؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "227 × 227 × 3; CONV 11×11, stride=4, 96 kernels; 55 × 55 × 96",
+          "fa": "ورودی 227 × 227 × 3؛ کانولوشن (CONV) با هستهٔ 11×11، گام (stride) برابر 4 و 96 هسته (kernels)؛ خروجی 55 × 55 × 96",
+          "verified": true
+        },
+        {
+          "en": "(227−11)/4 + 1 = 55",
+          "fa": "محاسبهٔ اندازهٔ خروجی: (227−11)/4 + 1 = 55",
+          "verified": true,
+          "latex": "\\frac{227-11}{4}+1=55"
+        },
+        {
+          "en": "Overlapping Max POOL 3×3, stride=2; (55−3)/2 + 1 = 27; 27 × 27 × 96",
+          "fa": "تجمیع بیشینهٔ هم‌پوشان (Overlapping Max POOL)، 3×3 با گام 2؛ (55−3)/2 + 1 = 27؛ خروجی 27 × 27 × 96",
+          "verified": true,
+          "latex": "\\frac{55-3}{2}+1=27"
+        },
+        {
+          "en": "CONV 5×5, pad=2, 256 kernels; (27+2*2−5)/1 + 1 = 27",
+          "fa": "کانولوشن (CONV) با هستهٔ 5×5، حاشیه‌گذاری (pad) برابر 2 و 256 هسته؛ (27+2*2−5)/1 + 1 = 27",
+          "verified": true,
+          "latex": "\\frac{27+2\\cdot2-5}{1}+1=27"
+        },
+        {
+          "en": "Overlapping Max POOL 3×3, stride=2; (27−3)/2 + 1 = 13; 13 × 13 × 256",
+          "fa": "تجمیع بیشینهٔ هم‌پوشان (Overlapping Max POOL)، 3×3 با گام 2؛ (27−3)/2 + 1 = 13؛ خروجی 13 × 13 × 256",
+          "verified": true,
+          "latex": "\\frac{27-3}{2}+1=13"
+        },
+        {
+          "en": "CONV 3×3, pad=1, 384 kernels; (13+2*1−3)/1 + 1 = 13",
+          "fa": "کانولوشن (CONV)، 3×3 با حاشیه‌گذاری 1 و 384 هسته؛ (13+2*1−3)/1 + 1 = 13؛ خروجی 13 × 13 × 384",
+          "verified": true,
+          "latex": "\\frac{13+2\\cdot1-3}{1}+1=13"
+        },
+        {
+          "en": "CONV 3×3, pad=1, 384 kernels; CONV 3×3, pad=1, 256 kernels",
+          "fa": "کانولوشن (CONV)، 3×3 با حاشیه‌گذاری 1 و 384 هسته، سپس کانولوشن 3×3 با حاشیه‌گذاری 1 و 256 هسته؛ اندازهٔ فضایی هر دو خروجی 13 × 13 است.",
+          "verified": true
+        },
+        {
+          "en": "Overlapping Max POOL 3×3, stride=2; (13−3)/2 + 1 = 6; 6 × 6 × 256; 9216",
+          "fa": "تجمیع بیشینهٔ هم‌پوشان (Overlapping Max POOL)، 3×3 با گام 2؛ (13−3)/2 + 1 = 6؛ خروجی 6 × 6 × 256؛ 9216 مؤلفه",
+          "verified": true,
+          "latex": "\\frac{13-3}{2}+1=6"
+        },
+        {
+          "en": "FC 4096 → FC 4096 → 1000 Softmax",
+          "fa": "لایهٔ تمام‌متصل (FC) با 4096 واحد ← لایهٔ تمام‌متصل با 4096 واحد ← سافت‌مکس (Softmax) با 1000 خروجی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "9e3d11831ceef03ba9b317551ce18da6fda12796c5e1a77195915cc69419bbbe",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "تحلیل: چه چیزی یاد گرفته شد؟ 96 فیلتر (Filters).\nفیلترهای یادگرفته‌شدهٔ مدل بر اساس بسامد (Frequency)، جهت (Orientation) و رنگ (Color) گزینش می‌کنند! این با یافته‌های هوبل و وایزل (Hubel & Weisel) دربارهٔ چگونگی کارکرد دستگاه‌های بینایی هم‌راستاست."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Krizhevsky et al. ImageNet Classification with Deep Convolutional Neural Networks. NeurIPS 2012."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "403df5ce68d34ee8a9eecc02080af8dfa5eb38bb4fe57f02827b4a323845c431",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "text",
+          "fa": "تحلیل: چه چیزی آشکار شد؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://www.learnopencv.com/wp-content/uploads/2018/05/AlexNet-1.png"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "227 × 227 × 3; CONV 11×11, stride=4, 96 kernels; 55 × 55 × 96",
+          "fa": "ورودی 227 × 227 × 3؛ کانولوشن (CONV) با هستهٔ 11×11، گام (stride) برابر 4 و 96 هسته (kernels)؛ خروجی 55 × 55 × 96",
+          "verified": true
+        },
+        {
+          "en": "(227−11)/4 + 1 = 55",
+          "fa": "محاسبهٔ اندازهٔ خروجی: (227−11)/4 + 1 = 55",
+          "verified": true,
+          "latex": "\\frac{227-11}{4}+1=55"
+        },
+        {
+          "en": "Overlapping Max POOL 3×3, stride=2; (55−3)/2 + 1 = 27; 27 × 27 × 96",
+          "fa": "تجمیع بیشینهٔ هم‌پوشان (Overlapping Max POOL)، 3×3 با گام 2؛ (55−3)/2 + 1 = 27؛ خروجی 27 × 27 × 96",
+          "verified": true,
+          "latex": "\\frac{55-3}{2}+1=27"
+        },
+        {
+          "en": "CONV 5×5, pad=2, 256 kernels; (27+2*2−5)/1 + 1 = 27",
+          "fa": "کانولوشن (CONV) با هستهٔ 5×5، حاشیه‌گذاری (pad) برابر 2 و 256 هسته؛ (27+2*2−5)/1 + 1 = 27",
+          "verified": true,
+          "latex": "\\frac{27+2\\cdot2-5}{1}+1=27"
+        },
+        {
+          "en": "Overlapping Max POOL 3×3, stride=2; (27−3)/2 + 1 = 13; 13 × 13 × 256",
+          "fa": "تجمیع بیشینهٔ هم‌پوشان (Overlapping Max POOL)، 3×3 با گام 2؛ (27−3)/2 + 1 = 13؛ خروجی 13 × 13 × 256",
+          "verified": true,
+          "latex": "\\frac{27-3}{2}+1=13"
+        },
+        {
+          "en": "CONV 3×3, pad=1, 384 kernels; (13+2*1−3)/1 + 1 = 13",
+          "fa": "کانولوشن (CONV)، 3×3 با حاشیه‌گذاری 1 و 384 هسته؛ (13+2*1−3)/1 + 1 = 13؛ خروجی 13 × 13 × 384",
+          "verified": true,
+          "latex": "\\frac{13+2\\cdot1-3}{1}+1=13"
+        },
+        {
+          "en": "CONV 3×3, pad=1, 384 kernels; CONV 3×3, pad=1, 256 kernels",
+          "fa": "کانولوشن (CONV)، 3×3 با حاشیه‌گذاری 1 و 384 هسته، سپس کانولوشن 3×3 با حاشیه‌گذاری 1 و 256 هسته؛ اندازهٔ فضایی هر دو خروجی 13 × 13 است.",
+          "verified": true
+        },
+        {
+          "en": "Overlapping Max POOL 3×3, stride=2; (13−3)/2 + 1 = 6; 6 × 6 × 256; 9216",
+          "fa": "تجمیع بیشینهٔ هم‌پوشان (Overlapping Max POOL)، 3×3 با گام 2؛ (13−3)/2 + 1 = 6؛ خروجی 6 × 6 × 256؛ 9216 مؤلفه",
+          "verified": true,
+          "latex": "\\frac{13-3}{2}+1=6"
+        },
+        {
+          "en": "FC 4096 → FC 4096 → 1000 Softmax",
+          "fa": "لایهٔ تمام‌متصل (FC) با 4096 واحد ← لایهٔ تمام‌متصل با 4096 واحد ← سافت‌مکس (Softmax) با 1000 خروجی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "55f9a34bc3750b7aa6a78a47bd93e99f8d4b74e9ce71ae5b7cd55052eb055bc1",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "تحلیل: چه چیزی آشکار شد؟ تصاویر (Images).\nنقشه‌های ویژگی (Feature Maps) نشان می‌دهند که بسامدها (Frequencies)، جهت‌ها (Orientations) و رنگ‌ها (Colors) آشکار می‌شوند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Krizhevsky et al. ImageNet Classification with Deep Convolutional Neural Networks. NeurIPS 2012."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "4892bf5979e45d61304f4eeac413cb954ad602ab8162e6fb85a9c7a0775f5b85",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "تحلیل: اثر عمق (Depth)\n«… اگر حتی یک لایهٔ کانولوشنی (Convolutional Layer) حذف شود، عملکرد شبکهٔ ما افت می‌کند… عمق واقعاً برای دستیابی به نتایج ما مهم است.»"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "ec54a9eae4d43757bd0a28c96d11c89df1b1bd81acddaae30ee706c1e89f46ad",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "اثر: به انقلاب امروزِ یادگیری عمیق (Deep Learning) شتاب بخشید.\nپژوهشگران بسیار بیشتری الهام گرفتند و برای مسئله‌های بسیار بیشتری بر شبکه‌های عصبی متمرکز شدند؛ برای مثال، در جامعهٔ بینایی کامپیوتر (Computer Vision)!"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "https://www.slideshare.net/xavigiro/saliency-prediction-using-deep-learning-techniques"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Deep-learning paper percentage in vision; CVPR2013; ICCV2013; CVPR2014; CVPR2015; 0, 4, 8, 12, 16",
+          "fa": "درصد مقاله‌های یادگیری عمیق در بینایی (Deep-Learning Paper Percentage in Vision)؛ CVPR2013، ICCV2013، CVPR2014، CVPR2015؛ درجات محور: 0، 4، 8، 12، 16",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "16dd1739d92c79577420f889991efa718936600cf134809c8711163f1623e1c8",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "قدردانیِ بازنگرانه در سال 2018 از پیشگامان یادگیری عمیق (Deep Learning):"
+        },
+        {
+          "source_lines": [
+            0,
+            1,
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.nytimes.com\n/2019/03/27/technology/t\nuring-award-ai.html"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Turing Award Won by 3 Pioneers in Artificial Intelligence",
+          "fa": "جایزهٔ تورینگ (Turing Award) به 3 پیشگام هوش مصنوعی رسید.",
+          "verified": true
+        },
+        {
+          "en": "Share full article",
+          "fa": "اشتراک‌گذاری متن کامل مقاله",
+          "verified": true
+        },
+        {
+          "en": "From left, Yann LeCun, Geoffrey Hinton and Yoshua Bengio. The researchers worked on key developments for neural networks, which are reshaping how computer systems are built. From left, Facebook, via Associated Press; Aaron Vincent Elkaim for The New York Times; Chad Buchanan/Getty Images",
+          "fa": "از چپ: یان لکون (Yann LeCun)، جفری هینتون (Geoffrey Hinton) و یوشوا بنجیو (Yoshua Bengio). این پژوهشگران روی پیشرفت‌های کلیدی شبکه‌های عصبی کار کردند؛ پیشرفت‌هایی که در حال تغییر شیوهٔ ساخت سیستم‌های کامپیوتری‌اند. اعتبار عکس‌ها از چپ: Facebook، از طریق Associated Press؛ Aaron Vincent Elkaim برای The New York Times؛ Chad Buchanan/Getty Images.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "32e5bd583b841d692820f6d0cf63254bf1625c60475a4aeb20ff7e7eb8603c45",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "https://www.youtube.com/watch?v=HzilDIhWhrE&t=24s"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Yoshua Bengio; Geoffrey Hinton; Yann LeCun",
+          "fa": "یوشوا بنجیو (Yoshua Bengio)؛ جفری هینتون (Geoffrey Hinton)؛ یان لکون (Yann LeCun)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "9a41865e3388545152a3947c0ba2a607c08ffc07248e226bcb5ad55acc734dba",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• بی‌توجهی به شبکه‌های عصبی (NN): دومین زمستان هوش مصنوعی (AI Winter) و عقب‌نشینی به مدل‌های کم‌عمق با ویژگی‌های مهندسی‌شده.\n• امید به شبکه‌های عصبی باقی می‌ماند: جست‌وجوی نامتداولِ عمق.\n• شبکه‌های عصبی مسلط می‌شوند: AlexNet انقلابی را آغاز می‌کند که در آن «یادگیری عمیق» (Deep Learning) غالب می‌شود.\n• آموزش برنامه‌نویسی: AlexNet در PyTorch."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "9a41865e3388545152a3947c0ba2a607c08ffc07248e226bcb5ad55acc734dba",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "موضوع‌های امروز\n• بی‌توجهی به شبکه‌های عصبی (NN): دومین زمستان هوش مصنوعی (AI Winter) و عقب‌نشینی به مدل‌های کم‌عمق با ویژگی‌های مهندسی‌شده.\n• امید به شبکه‌های عصبی باقی می‌ماند: جست‌وجوی نامتداولِ عمق.\n• شبکه‌های عصبی مسلط می‌شوند: AlexNet انقلابی را آغاز می‌کند که در آن «یادگیری عمیق» (Deep Learning) غالب می‌شود.\n• آموزش برنامه‌نویسی: AlexNet در PyTorch."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,904 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s12",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/12-Attention.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2026/s12.pdf",
+    "sha256": "0bb7c2b97ad00b01e8c2f5642256d8af0e35da627ca25828862f1109f7396aca",
+    "page_count": 66,
+    "license_notice": "CC BY-NC-SA; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "402c113eaf9db8d0c685487e21fbdb7c5b7eb7d0a2dd9be2c87b8584f8c4b89d",
+      "lines": [
+        "Attention:",
+        "Teaching Models Where to Look",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2026",
+        "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "0518d2582a8ba32822694deaecc429bcc6ff29829120eab09a32823833eab7f6",
+      "lines": [
+        "Review",
+        "• Last lecture:",
+        "• Isolated successes: CNNs for vision and RNNs for language",
+        "• The next challenge: describing visual scenes with natural language",
+        "• Early vision-language pioneers: connecting pixels and words",
+        "• Programming tutorial",
+        "• Assignments (Canvas):",
+        "• Problem set 2 due Friday (answers to common questions on assignment page)",
+        "• Final project: find a partner (our 3-stage process to assist you)",
+        "• Questions? (can also post these to Piazza or attend office hours)"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "59446604a0b6fae75dd2dc724b31d6b2c24ea16b2dce1089a946efd2bc9ffa09",
+      "lines": [
+        "Today’s Topics",
+        "• Mystery: why did neural networks struggle to translate long sentences?",
+        "• Idea: instead of summarizing everything, attend to relevant inputs",
+        "• Beyond text: attention for image captioning",
+        "• Beyond vision-language problems: attention for speech recognition"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "59446604a0b6fae75dd2dc724b31d6b2c24ea16b2dce1089a946efd2bc9ffa09",
+      "lines": [
+        "Today’s Topics",
+        "• Mystery: why did neural networks struggle to translate long sentences?",
+        "• Idea: instead of summarizing everything, attend to relevant inputs",
+        "• Beyond text: attention for image captioning",
+        "• Beyond vision-language problems: attention for speech recognition"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "de5fc5ac070b3f4fe95b666ce0d4738ac6c86f3bf32f9816d2c306b7fa911328",
+      "lines": [
+        "Motivating Task: Machine Translation",
+        "Which type of sequence problem is this: one-to-many, many-to-one, or many-to-many?"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "36600e8dd0c0136edc67c7940f5a68a094ce5ae7b28184a4ad320520931c1c6a",
+      "lines": [
+        "Recall: Pioneering Neural Network Approach",
+        "Input encoded into",
+        "a fixed-size vector",
+        "Vector decoded into a translation",
+        "Image source: https://smerity.com/articles/2016/google_nmt_arch.html",
+        "seq2seq: Sutskever et al. Sequence to Sequence Learning with Neural Networks. Neurips 2014.",
+        "Stops at",
+        "<EOS> token"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "cbd01a977cd89f54ce63502ff82413d4f3723ad8d95a8617fb2ae86a1780657f",
+      "lines": [
+        "Analysis of Two Models",
+        "Cho et al. On the Properties of Neural Machine Translation: Encoder–Decoder Approaches. SSST 2014",
+        "What performance trend is observed for inputs (source) and outputs",
+        "(reference) as the number of words in each sentence grows?",
+        "(larger scores",
+        "are better)"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "c837da8a50578d1942a21f304e2afdd5a431c7804f897eb2a887124b75cf05f2",
+      "lines": [
+        "Analysis of Two Models",
+        "Performance drops for longer sentences!",
+        "(larger scores",
+        "are better)",
+        "Cho et al. On the Properties of Neural Machine Translation: Encoder–Decoder Approaches. SSST 2014"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "25785cad6382d110b0c2cf35d916fb5009da334b97cdcc83d62da253544878a9",
+      "lines": [
+        "Hypothesis: Insufficient Capacity in Fixed-Length",
+        "Vector for All Relevant Information in Long Sentences",
+        "Image source: https://smerity.com/articles/2016/google_nmt_arch.html",
+        "seq2seq: Sutskever et al. Sequence to Sequence Learning with Neural Networks. Neurips 2014."
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "59446604a0b6fae75dd2dc724b31d6b2c24ea16b2dce1089a946efd2bc9ffa09",
+      "lines": [
+        "Today’s Topics",
+        "• Mystery: why did neural networks struggle to translate long sentences?",
+        "• Idea: instead of summarizing everything, attend to relevant inputs",
+        "• Beyond text: attention for image captioning",
+        "• Beyond vision-language problems: attention for speech recognition"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "9b2097ca9189847a5324cf6f22b60d02dd3b332b186f2aadd48a99eb0dd24ada",
+      "lines": [
+        "Idea to Preserve Performance",
+        "for Long Sentences: Attention",
+        "Don’t require encoder",
+        "to summarize input",
+        "Image source: https://smerity.com/articles/2016/google_nmt_arch.html"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "0dd83f102ca7d6f4a4c1b0354bf7db13f956153e8db89b657eb6aefd4ed33034",
+      "lines": [
+        "Idea to Preserve Performance",
+        "for Long Sentences: Attention",
+        "Instead, pass all hidden states",
+        "of the encoder to the decoder",
+        "Image source: https://smerity.com/articles/2016/google_nmt_arch.html"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "c7180fa2edf1c165e33f32545fee397329ac54219294e2f74012cf0b98ab3842",
+      "lines": [
+        "Idea to Preserve Performance",
+        "for Long Sentences: Attention",
+        "Decoder decides which inputs are needed for prediction at each time step;",
+        "e.g., “hard attention” focuses on one input",
+        "Input Target",
+        "t = 1 t = 2 t = 3 t = 4",
+        "Note: while word order between the input and target align in this example, it can differ",
+        "https://deeplearning.cs.cmu.edu/F21/document/slides/lec18.attention.pdf"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "216cf7300ec850d09b74750baf84f190fece0e33f6c4c1f428a75a4dc790a41c",
+      "lines": [
+        "Idea to Preserve Performance",
+        "for Long Sentences: Attention",
+        "Decoder decides which inputs are needed for prediction at each time step;",
+        "e.g., “hard attention” focuses on one input",
+        "Input Target",
+        "t = 1 t = 2 t = 3 t = 4",
+        "Limitations: a target word relies on information about",
+        "one input word and “hard attention” is not differentiable",
+        "https://deeplearning.cs.cmu.edu/F21/document/slides/lec18.attention.pdf"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "177138947d893d18e79cc0b04c2e91834f5f24e3cd32f3aabbc8c5f54a569a36",
+      "lines": [
+        "Idea to Preserve Performance",
+        "for Long Sentences: Attention",
+        "Input Target",
+        "t = 1",
+        "Decoder decides which inputs are needed for prediction at each time step;",
+        "e.g., “soft attention” uses a weighted combination of the input"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "5b74a1247a44ffdbcd9b6339b8d14a40bf26700fc09d2a48af5095a24f36ee9e",
+      "lines": [
+        "Idea to Preserve Performance",
+        "for Long Sentences: Attention",
+        "Input Target",
+        "t = 1",
+        "Decoder decides which inputs are needed for prediction at each time step;",
+        "e.g., “soft attention” uses a weighted combination of the input",
+        "t = 2"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "4ee700d9a32809c76a33af5eda5d8f843bcc58763565bd6e2b9049f59ea8d57b",
+      "lines": [
+        "Idea to Preserve Performance",
+        "for Long Sentences: Attention",
+        "Input Target",
+        "t = 1",
+        "Decoder decides which inputs are needed for prediction at each time step;",
+        "e.g., “soft attention” uses a weighted combination of the input",
+        "t = 2 t = 3"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "5d8511a8e7783dc43f8fd6d95a68196a863382faad6622e85279f7c669dc70ed",
+      "lines": [
+        "Idea to Preserve Performance",
+        "for Long Sentences: Attention",
+        "Input Target",
+        "t = 1",
+        "Decoder decides which inputs are needed for prediction at each time step;",
+        "e.g., “soft attention” uses a weighted combination of the input",
+        "t = 2 t = 3 t = 4"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "8c2132b2f1fe08a1d3df1ea81efe0028316ec148fa33eb38ca36e5be3bcfa750",
+      "lines": [
+        "“Soft” Attention: Challenge",
+        "Input Target",
+        "t = 1",
+        "Decoder decides which inputs are needed for prediction at each time step;",
+        "e.g., “soft attention” uses a weighted combination of the input",
+        "t = 2 t = 3 t = 4",
+        "How should weights be chosen for each input?"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "00e7a70d0f289e23fd5a37f47f038c2eb409c5db47e35977ba22c4a9856fa5d9",
+      "lines": [
+        "“Soft” Attention: Challenge",
+        "Input Target",
+        "t = 1",
+        "Decoder decides which inputs are needed for prediction at each time step;",
+        "e.g., “soft attention” uses a weighted combination of the input",
+        "t = 2 t = 3 t = 4",
+        "Collect manual annotations and then supervised learning to match ground truth parameters?",
+        "- This is impractical"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "7bf0d2b0670b9a3639918280db57518b7fc50cd51341b68a3e9b684201088332",
+      "lines": [
+        "“Soft” Attention: Challenge",
+        "Input Target",
+        "t = 1",
+        "Decoder decides which inputs are needed for prediction at each time step;",
+        "e.g., “soft attention” uses a weighted combination of the input",
+        "t = 2 t = 3 t = 4",
+        "Instead, have the model learn",
+        "how to weight each input!"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "b37eec2c8fc1633dc6e2d7a07b3b4d9179faefb6e25453555041b7d39cd82905",
+      "lines": [
+        "Idea: Modify",
+        "Encoder-Decoder",
+        "Architecture",
+        "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3",
+        "Attention module:",
+        "determines each input’s",
+        "relevance for prediction",
+        "Decoder: predicts",
+        "word at each time step",
+        "Encoder: converts each",
+        "input into hidden states"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "7ec119b2fb9d2ffcd5576547a8f78d6f747805f271225a7f1747dcaf80af746f",
+      "lines": [
+        "Decoder:",
+        "Word",
+        "Prediction",
+        "Standard for RNNs: predict from",
+        "- output at previous time step",
+        "- previous hidden state",
+        "Novelty: also predict using",
+        "- context vector",
+        "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "f1fec1581986ae81b2d448129e8e9bc212c67c5da3565a85561c6aa961662b57",
+      "lines": [
+        "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3",
+        "Attention:",
+        "Creates Context",
+        "Vector Used for",
+        "Word Prediction",
+        "How many inputs enter the",
+        "attention layer in this example?",
+        "A context vector is just the",
+        "weighted sum of all inputs",
+        "at a given time step"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "910529d08946931fb01234fe948d331c64d06c1556770b0307769af32965cb22",
+      "lines": [
+        "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3",
+        "Attention:",
+        "Creates Context",
+        "Vector Used for",
+        "Word Prediction",
+        "A context vector is just the",
+        "weighted sum of all inputs",
+        "at a given time step:",
+        "What is the sum of all 4 weights?",
+        "What is the impact of a larger",
+        "attention weight on an input’s",
+        "influence on a prediction:",
+        "- Amplification?",
+        "- Repression?"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "258f893a9d0269c4e23d8e5039ceeb353f8c1c99c1fc648995f0617e94f2e7a6",
+      "lines": [
+        "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3",
+        "Attention:",
+        "Computing an",
+        "Input’s Influence",
+        "For each input at each time step,",
+        "compare the hidden states of the",
+        "decoder (“what I am looking for”)",
+        "and input (“what I have”)",
+        "e.g., dot product (uses 2 vectors)",
+        "- Match = 1 (i.e., cos(0))",
+        "https://towardsdatascience.com/self-attention-5b95ea164f61"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "3b3d7eb3826cbb38967717ea6f4b5b3b63895fd7487a2690c38e29ba0c829644",
+      "lines": [
+        "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3",
+        "Attention:",
+        "Computing an",
+        "Input’s Influence",
+        "For each input at each time step,",
+        "compare the hidden states of the",
+        "decoder (“what I am looking for”)",
+        "and input (“what I have”)",
+        "e.g., dot product (uses 2 vectors)",
+        "1 0 0 2 0",
+        "0",
+        "1",
+        "1",
+        "x = ?"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "9f1c285a18a3e767e77b307f4fe58eade96d8627630fa8df159a93c19dc9ebb8",
+      "lines": [
+        "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3",
+        "Attention:",
+        "Computing an",
+        "Input’s Influence",
+        "For each input at each time step,",
+        "compare the hidden states of the",
+        "decoder (“what I am looking for”)",
+        "and input (“what I have”)",
+        "e.g., dot product (uses 2 vectors)",
+        "1 0 0 2 0",
+        "1",
+        "0",
+        "0",
+        "x = ?"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "589247eebda2fb8d885c13e297d0090f88e9e7230c5d5ef1e22f51ddfb147d44",
+      "lines": [
+        "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3",
+        "Attention:",
+        "Computing an",
+        "Input’s Influence",
+        "For each input at each time step,",
+        "compare the hidden states of the",
+        "decoder (“what I am looking for”)",
+        "and input (“what I have”)",
+        "e.g., dot product (uses 2 vectors)",
+        "1 0 0 2 1",
+        "1",
+        "0",
+        "1",
+        "x = ?"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "09d0947e8a15da7b0e98ddf22f4ede7bf0d066b56b0ab21287f0d852dfb0481b",
+      "lines": [
+        "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3",
+        "Attention:",
+        "Computing an",
+        "Input’s Influence",
+        "For each input at each time step,",
+        "compare the hidden states of the",
+        "decoder (“what I am looking for”)",
+        "and input (“what I have”)",
+        "e.g., dot product (uses 2 vectors)",
+        "1 0 0 2 1",
+        "0",
+        "0",
+        "1",
+        "x = ?"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "e155efbd662d4b2795b2e29e0233363134cffb4d011c367f3a4dcab666045ecb",
+      "lines": [
+        "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3",
+        "Attention:",
+        "Computing an",
+        "Input’s Influence",
+        "Then, softmax scores to quantify",
+        "each input’s relevance; e.g.,",
+        "= softmax([2, 0, 3, 3])",
+        "= [0.15, 0.02, 0.41, 0.41])",
+        "Which input(s) are most influential?",
+        "Which input(s) are least influential?"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "2e2d451df2a6d6a782f07e64d7945316364e0cc7630b19731e1e1b48a7737122",
+      "lines": [
+        "Measures: Many (Differentiable) Options",
+        "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html",
+        "What model parameters must be learned for each?",
+        "(no parameters)"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "c22814d5e30a0b3be3792ded16236bab28f20a0d0b888506a6b24e4cf6466f15",
+      "lines": [
+        "Attention Layer Summary",
+        "https://lena-voita.github.io/nlp_course/seq2seq_and_attention.html",
+        "(all steps are differentiable)"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "6add800216d221f4f471b36577fa3c7f81c55a56fee0648a02833ac030b07625",
+      "lines": [
+        "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3",
+        "Encoder:",
+        "Preparing",
+        "the Input",
+        "Converting input",
+        "sequence to hidden",
+        "state representations"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "6b0d7464b28d5810e0be7e58ca433925148afb4edc7bc404acae7fe8d2c86175",
+      "lines": [
+        "Encoder: Preparing the Input",
+        "• Bidirectional GRUs (types of RNNs), where input is fed forward and backward",
+        "and then their hidden states are concatenated into a final hidden state",
+        "• Note: each hidden state tends to summarize only closer inputs",
+        "• What advantages do bi-directional RNNs have to uni-directional RNNs?",
+        "• Information from the past and future contribute to predictions: e.g., can resolve for",
+        "\"Teddy is a …?” if Teddy refers to a “bear” or “former US President Roosevelt”",
+        "• What are disadvantages of bi-directional RNNs?",
+        "• Entire sequence must be observed (e.g., unsuitable for text prediction)",
+        "https://towardsdatascience.com/understanding-bidirectional-rnn-in-pytorch-5bd25a5dd66"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "5038936b9db82bf75a680c41e82a2652330371fcad3c6bd4a39cc51c447695d7",
+      "lines": [
+        "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3",
+        "Encoder:",
+        "Preparing",
+        "the Input",
+        "Note: includes embedding",
+        "matrix to condense",
+        "dimensionality of inputs",
+        "to bi-directional RNN"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "cc4bab1423282e1431f60105d0e00f1ac9d02241daf07766a9024edc8f9483a8",
+      "lines": [
+        "What stays the same at",
+        "each time step?",
+        "- input’s hidden state",
+        "What changes at each",
+        "time step?",
+        "- decoder’s hidden state",
+        "- (and so) attention weights",
+        "and context vector",
+        "- decoder’s prediction at",
+        "the previous time step",
+        "Computational",
+        "Analysis",
+        "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "f2e1ec1c61cee899f63c109689b329e7ac27496bf5e94673b808bb31581f2608",
+      "lines": [
+        "Training",
+        "• Dataset: English-to-French translation with 348M words",
+        "• Uses 30,000 most frequent words from each language and [UNK] for the rest",
+        "• Weight initialization: Gaussian distributions with 0 mean and 0.01/0.001",
+        "variances",
+        "• Optimizer: adapts learning per parameter (Adadelta)",
+        "• Batch size: 80 sentences",
+        "• Decoding with beam search"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "e91a3338049730124c1c8607072929cc3678d71771d3a0e1d93c4f1d7a76ab40",
+      "lines": [
+        "Experiments: Attention Improves Performance!",
+        "[Bahdanau, Cho, and Bengio]. ICLR 2015]",
+        "• Compared to encoder-decoder",
+        "baseline, with sentences of lengths",
+        "up to 30 and 50 respectively",
+        "• For which source sentence lengths",
+        "does the model achieve the greatest",
+        "performance gain over the baseline?"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "1cd464ff87ec07f359db10ca48bb19f7b5237fbbc63471dcd9541d2b2117629f",
+      "lines": [
+        "Visualizing Attention: Group Discussion",
+        "(Values are 0 to 1, with whiter pixels indicating larger attention weights)",
+        "What insights can we glean from these two examples?",
+        "Input sentence",
+        "Output sentence",
+        "Input sentence",
+        "Output sentence",
+        "[Bahdanau, Cho, and Bengio]. ICLR 2015]"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "d90b8f48020f0fbc99f942f6b7de304b9deb544674e17fb731f0558fd9350f15",
+      "lines": [
+        "Visualizing Attention: Interpretable",
+        "Input sentence",
+        "Output sentence",
+        "Input sentence",
+        "Output sentence",
+        "While a linear alignment between input and output sentences is common,",
+        "there are exceptions (e.g., order of adjectives and nouns can differ)",
+        "[Bahdanau, Cho, and Bengio]. ICLR 2015]"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "39dddffc1c66f5d1f828ce0ed8565383f424f172b4d91a9807deaa47100b1c0f",
+      "lines": [
+        "Visualizing Attention: Interpretable",
+        "Input sentence",
+        "Output sentence",
+        "Input sentence",
+        "Output sentence",
+        "Output words are often informed by more than one input word;",
+        "e.g., “man” indicates translation of “the” to l’ instead of le, la, or les",
+        "[Bahdanau, Cho, and Bengio]. ICLR 2015]"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "2aa222812d2b33f7d4ca556da35930a234dd7dda19a2476ac400177209c06977",
+      "lines": [
+        "Visualizing Attention: Interpretable",
+        "Input sentence",
+        "Output sentence",
+        "Input sentence",
+        "Output sentence",
+        "The model accounts for different input and output lengths",
+        "(e.g., 1 extra output word for both examples)",
+        "[Bahdanau, Cho, and Bengio]. ICLR 2015]"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "48cb2063a714a85b537cf6abfe2415f3407dc80878e635d80fbdd8a990b08246",
+      "lines": [
+        "Many Variants Followed",
+        "https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3",
+        "(Luong et al, EMNLP 2015)",
+        "2-layer",
+        "stacked LSTM",
+        "(Wu et al., arXiv 2016)",
+        "8 layers: more layers",
+        "and skip connections",
+        "between layers",
+        "(greater level of",
+        "abstraction for input)",
+        "Introduces",
+        "feedforward",
+        "neural network",
+        "Introduces MANY",
+        "hidden layers",
+        "(Google introduced",
+        "and used this for a",
+        "production machine",
+        "translation service)"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "e06011181773e9dcbb4f802851f0c62b9e68f1a6f5de3e17af54de547397b9dc",
+      "lines": [
+        "Summary: RNN Encoding vs Attention",
+        "Image source: https://smerity.com/articles/2016/google_nmt_arch.html",
+        "Decoder only sees summary of input Decoder directly attends to (weighted) inputs",
+        "“One of challenges left for the future is to",
+        "better handle unknown, or rare words.”",
+        "[Bahdanau, Cho, and Bengio]. ICLR 2015]"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "59446604a0b6fae75dd2dc724b31d6b2c24ea16b2dce1089a946efd2bc9ffa09",
+      "lines": [
+        "Today’s Topics",
+        "• Mystery: why did neural networks struggle to translate long sentences?",
+        "• Idea: instead of summarizing everything, attend to relevant inputs",
+        "• Beyond text: attention for image captioning",
+        "• Beyond vision-language problems: attention for speech recognition"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "b2b50bd479cc564edd511f1bd3ec0ad4b7ee96ae582ed02c63207694f644d0be",
+      "lines": [
+        "Recall Captioning Model: Fixed Length Vector",
+        "Summarizing Input Image Fed to Decoder",
+        "Vinyals et al. Show and Tell: A Neural Image Caption Generator. CVPR 2015."
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "458280354ab8580271ddf8ccd8868df23957c9031dc8d2696c68e349c6a63532",
+      "lines": [
+        "(ICML, 2015)",
+        "“Encouraged by recent advances in caption generation and inspired by recent success in employing attention",
+        "in machine translation (Bahdanau et al., 2014) and object recognition (Ba et al., 2014; Mnih et al., 2014), we",
+        "investigate models that can attend to salient part of an image while generating its caption.”"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "7d0f5977038cd0302c5217145130f726a81a8dfe14321f2e3cf6d8639d4b1c8e",
+      "lines": [
+        "Idea: Decoder Selects Relevant Input Regions",
+        "Xu et al. ICML 2015.",
+        "Attention weights operate on feature vectors corresponding to",
+        "coarse image regions (coming from stacked convolution layers)"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "4cb9eb7a8c6fcfc9c70e4a61d506991826d7eb5b63637c0d19383e8f934f2527",
+      "lines": [
+        "Recall: Coarse Image Regions Emerge",
+        "from Stacked Convolutional Layers",
+        "https://www.deeplearningbook.org/contents/convnets.html"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "deb048cc9f49e3195e89ee077ca185949c91844325823c722d8a27472b24a964",
+      "lines": [
+        "Implementation: Trained Similar to Pioneering",
+        "Paper for Nearly 3 Days (on Titan Black GPU)",
+        "Xu et al. ICML 2015.",
+        "Features: extracted from 4th convolutional",
+        "layer of 2014 ImageNet challenge winner, VGG",
+        "Vocabulary",
+        "size: 10,000"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "43070d532e6111d48b0e3adcf9eac457b04c25a4b7be32269abf3ea53dee2c97",
+      "lines": [
+        "Achieved state-of-the-art performance on three benchmark datasets",
+        "(Flickr8k, Flickr30k and MS COCO)"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "9c5c1f28e0f2164517e24e60de68a8a84c999ba2a8e6bc8d7161234bc0d743e1",
+      "lines": [
+        "Interpretability: Visualizing Attention",
+        "Xu et al. ICML 2015."
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "59446604a0b6fae75dd2dc724b31d6b2c24ea16b2dce1089a946efd2bc9ffa09",
+      "lines": [
+        "Today’s Topics",
+        "• Mystery: why did neural networks struggle to translate long sentences?",
+        "• Idea: instead of summarizing everything, attend to relevant inputs",
+        "• Beyond text: attention for image captioning",
+        "• Beyond vision-language problems: attention for speech recognition"
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "e6be4d9e88cc95640a3083a2b08afd8064d19778ae9c7cbe7f928c941e8a1823",
+      "lines": [
+        "Speech Recognition: Task Definition",
+        "Input: spoken language Output: machine readable text",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019.",
+        "(Compression waves from pushing air",
+        "from one’s lungs and modulating it",
+        "using one’s tongue, teeth, and lips)"
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "bdb512e6c316ea3e07ffdca39089d53dbf5b4001186d119d5899893878714725",
+      "lines": [
+        "Speech Recognition: Task Difficulties",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019.",
+        "- Diverse speakers: accents, volumes, pace, and cadence",
+        "- Diverse recording quality",
+        "- Background noise",
+        "- Segmenting signal into distinct words"
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "30dbc407255d50201d3a306d197ff91a8ce07164bd3055093d3aa2033e837b86",
+      "lines": [
+        "(ICASSP, 2016)"
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "2ecf5e4242fc5412c9363504068633cec7beea13197151adabdf955e31c50f43",
+      "lines": [
+        "Architecture",
+        "Attention module:",
+        "determines each input’s",
+        "relevance for prediction",
+        "Decoder: at each",
+        "time step, 2-layer",
+        "LSTM used to",
+        "predict a character",
+        "Encoder: converts feature vector sampled from",
+        "the input (40-d log-mel filter bank features",
+        "computed every 10ms) into hidden states;",
+        "much longer speech sequences necessitated",
+        "innovation (e.g., pyramid) to compress input"
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "71dd6e63720b1219fa4c0e1718cc95a23504a6cdfb4cd4b609c34f6f7e2f4517",
+      "lines": [
+        "Training (Took ~2 Weeks)",
+        "• Dataset: ~3M Google voice search examples/utterances (~2000 hours of data)",
+        "• Weight initialization: Uniform distribution from -0.1 to 0.1",
+        "• Optimizer: SGD with learning weight decay throughout training",
+        "• Batch size: 32 utterances",
+        "• Data augmentation: 20x increase by introducing various noise sources",
+        "• Decoding with beam search: beam width of 32"
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "4b70005ffd2f06e7584177caee37b42f9da29aa8ecfb4aaaa2be18505187a32c",
+      "lines": [
+        "Experiments: Close to State-of-the-Art Using",
+        "Just a Single, End-to-End Trained Model",
+        "• Evaluation metric: edit distance between the prediction and the target as follows:",
+        "• What indicates better performance: larger or smaller values?",
+        "Substitutions + Insertions + Deletions",
+        "Number of Words Spoken",
+        "word replaced",
+        "(e.g., “goose”",
+        "transcribed as",
+        "“choose”)",
+        "word added",
+        "(e.g., “caboose”",
+        "transcribed as",
+        "“the goose”)",
+        "word omitted",
+        "(e.g., “it is a",
+        "fun” transcribed",
+        "as “it is fun”)"
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "29022102c39eabe93c963a4a47588203f34cd00a7b6842c5b1caa09ce6b19c13",
+      "lines": [
+        "Word Error Rate: Example",
+        "• Correct: The sun makes it look like uh a warm, day to go outside to adventure.",
+        "• Predicted: The son makes it to bike with a swarm to go outside to Denver today.",
+        "• Number of words spoken?",
+        "• 15",
+        "• WER?",
+        "Substitutions + Insertions + Deletions",
+        "Number of Words Spoken",
+        "6 + 1 + 1",
+        "15",
+        "= 0.53"
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "7aa789596c365d2489c7b31deadcc14c8536aa04072b2f9563e394ceaa8136b3",
+      "lines": [
+        "Word Error Rate: Limitations",
+        "• Does not indicate why errors occur",
+        "• Background noise (e.g., music, other talking)",
+        "• Specialized language (i.e., words reflecting domain expertise)",
+        "• Speaker pronunciations/accent",
+        "• Does not reflect whether transcription correctly captures:",
+        "• Capitalization",
+        "• Punctuation",
+        "• Numbers",
+        "• Paragraphs",
+        "• May indicate poor quality when humans could understand the content",
+        "• Weights all word errors equally"
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "ad34c2e7211f6386c72438a0fbbef2c815c8954d81fd7df0d1ba31e9fe001cc4",
+      "lines": [
+        "Visualizing",
+        "Attention",
+        "Chan et al. Listen, Attend and Spell. ICASSP 2016.",
+        "Alignment between audio",
+        "signal and characters:"
+      ]
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "59446604a0b6fae75dd2dc724b31d6b2c24ea16b2dce1089a946efd2bc9ffa09",
+      "lines": [
+        "Today’s Topics",
+        "• Mystery: why did neural networks struggle to translate long sentences?",
+        "• Idea: instead of summarizing everything, attend to relevant inputs",
+        "• Beyond text: attention for image captioning",
+        "• Beyond vision-language problems: attention for speech recognition"
+      ]
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

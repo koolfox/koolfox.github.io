@@ -1,0 +1,124 @@
+{
+  "session_id": "s08",
+  "source_sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
+  "source_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/08-Quest-for-Depth.pdf",
+  "source_page_count": 46,
+  "title_fa": "نگاشت همانی با یادگیری مسیر باقیمانده",
+  "prediction_fa": "در خروجی x + weight*x، برای برابرشدن خروجی با x، وزن مسیر باقیمانده باید به کدام مقدار نزدیک شود؟",
+  "steps_fa": [
+    "با x=2 و weight=0.5، پیش‌بینی و زیان اولیه را دستی حساب کن؛ سپس history را ببین.",
+    "weight را از ابتدا صفر بگذار؛ بررسی کن که بدون به‌روزرسانی هم پیش‌بینی برابر هدف است.",
+    "learning_rate را به 0.3 تغییر بده و روند زیان را با حالت 0.1 مقایسه کن؛ ثابت‌بودن مسیر میان‌بُر به‌تنهایی هر اندازهٔ گامی را مناسب نمی‌کند."
+  ],
+  "source_page": 40,
+  "starter_sha256": "7815e5c9ad11fad02d6b15b3a60832a558535f6516a054d434e7abbdcf493cba",
+  "reference": {
+    "input": 2.0,
+    "identity_target": 2.0,
+    "history": [
+      {
+        "step": 0,
+        "weight": 0.5,
+        "prediction": 3.0,
+        "loss": 1.0
+      },
+      {
+        "step": 1,
+        "weight": 0.09999999999999998,
+        "prediction": 2.2,
+        "loss": 0.04000000000000007
+      },
+      {
+        "step": 2,
+        "weight": 0.019999999999999907,
+        "prediction": 2.04,
+        "loss": 0.001600000000000003
+      },
+      {
+        "step": 3,
+        "weight": 0.0039999999999998925,
+        "prediction": 2.008,
+        "loss": 6.400000000000012e-05
+      },
+      {
+        "step": 4,
+        "weight": 0.0007999999999998893,
+        "prediction": 2.0016,
+        "loss": 2.559999999999436e-06
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "calculate",
+      "source_kind": "original",
+      "prompt_fa": "برای x=2 و weight=0.5، زیان مربعیِ اولیهٔ (x+weight*x−x)² چند است؟",
+      "solution_fa": "مسیر باقیمانده 1 و خروجی 3 است؛ هدف 2 و زیان (3−2)²=1 می‌شود.",
+      "answer": {
+        "kind": "number",
+        "value": 1,
+        "tolerance": 1e-06
+      },
+      "source_page": 40
+    },
+    {
+      "id": "interpret",
+      "source_kind": "original",
+      "prompt_fa": "برای نگاشت همانیِ همین مثال، وزن مسیر باقیمانده باید چه باشد؟",
+      "solution_fa": "با weight=0، تابع باقیمانده صفر است و مسیر میان‌بُر همان x را به خروجی می‌رساند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "0",
+          "1",
+          "برابر تعداد گام‌های آموزش"
+        ],
+        "correct_index": 0
+      },
+      "source_page": 40
+    },
+    {
+      "id": "explain",
+      "source_kind": "original",
+      "prompt_fa": "چرا افزودن مسیر میان‌بُر همانی در این کد به وزن تازه‌ای نیاز ندارد؟",
+      "solution_fa": "مسیر میان‌بُر فقط x را بدون ضریبِ یادگرفتنی به خروجی اضافه می‌کند؛ تنها وزنِ آموزش‌پذیر در این مثال متعلق به مسیر F(x) است.",
+      "answer": {
+        "kind": "manual",
+        "criteria_fa": [
+          "تشخیص جمع مستقیم x",
+          "نبود پارامتر آموزش‌پذیر در مسیر همانی",
+          "تمایز مسیر باقیمانده و مسیر میان‌بُر"
+        ]
+      },
+      "source_page": 39
+    }
+  ],
+  "question_pages": [
+    2,
+    3,
+    4,
+    7,
+    8,
+    13,
+    16,
+    18,
+    20,
+    23,
+    31,
+    33,
+    34,
+    35,
+    39,
+    40,
+    44,
+    45
+  ],
+  "class_activity_pages": [],
+  "programming_tutorial_pages": [
+    44
+  ],
+  "reference_python": "3.14.3",
+  "limits_fa": "کد و داده‌های کوچک، تألیف مستقل برای بررسی همین سازوکارند؛ بازتولید آزمایش مقاله یا تکلیف رسمی Canvas نیستند. نتیجه فقط به محاسبات و پارامترهای همین کد مربوط است.",
+  "source_retrieved_at_utc": "2026-10-25T08:44:49.791468+00:00",
+  "related_labs": []
+}

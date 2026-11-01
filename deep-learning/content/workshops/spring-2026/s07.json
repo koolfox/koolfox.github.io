@@ -1,0 +1,89 @@
+{
+  "session_id": "s07",
+  "source_sha256": "ac4446d8edc7398cf4e6c6601b30c6d842c6e1d9a656eb243d841a982ee75d1a",
+  "source_url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/07-Deep-Learning-Birth.pdf",
+  "source_page_count": 67,
+  "title_fa": "رأی اکثریت با فرض خطاهای مستقل",
+  "prediction_fa": "آیا خطای رأی اکثریت 11 طبقه‌بند با خطای 0.25 از خطای یک طبقه‌بند کمتر می‌شود؟",
+  "steps_fa": [
+    "آستانهٔ اکثریت را پیش از اجرا تعیین کن و ensemble_error را با 0.034 مقایسه کن.",
+    "classifiers را به 3 و سپس 5 تغییر بده؛ با ثابت‌بودن individual_error اثر تعداد رأی‌دهنده‌ها را ببین.",
+    "individual_error را به 0.5 و سپس 0.6 تغییر بده؛ توضیح بده چرا نتیجهٔ مثال قبلی را نمی‌توان به هر طبقه‌بندی تعمیم داد."
+  ],
+  "source_page": 38,
+  "starter_sha256": "a9f7e9f12f329f4a919e8453ff4f02bd4fef157b5cd677a075b672c2218d0d32",
+  "reference": {
+    "classifiers": 11,
+    "majority": 6,
+    "individual_error": 0.25,
+    "ensemble_error": 0.03432750701904297
+  },
+  "questions": [
+    {
+      "id": "calculate",
+      "source_kind": "original",
+      "prompt_fa": "برای 11 طبقه‌بند، چند خطای هم‌زمان برای خطای اکثریت لازم است؟",
+      "solution_fa": "بیش از نصف 11، یعنی حداقل 6 خطا لازم است.",
+      "answer": {
+        "kind": "number",
+        "value": 6,
+        "tolerance": 0
+      },
+      "source_page": 38
+    },
+    {
+      "id": "interpret",
+      "source_kind": "original",
+      "prompt_fa": "محاسبهٔ این احتمال در کد به کدام فرض مثال اسلاید وابسته است؟",
+      "solution_fa": "ضرب احتمال‌های درست و غلط بر فرض استقلال طبقه‌بندها تکیه دارد؛ اسلاید می‌گوید این فرض در عمل برقرار نیست.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "استقلال خطای طبقه‌بندها با نرخ خطای یکسان",
+          "همیشه یکسان‌بودن پیش‌بینی همهٔ مدل‌ها",
+          "بی‌خطابودن تک‌تک طبقه‌بندها"
+        ],
+        "correct_index": 0
+      },
+      "source_page": 38
+    },
+    {
+      "id": "explain",
+      "source_kind": "original",
+      "prompt_fa": "چرا این محاسبه به‌تنهایی میزان بهبود واقعی Dropout را پیش‌بینی نمی‌کند؟",
+      "solution_fa": "زیرشبکه‌های Dropout پارامترهای مشترک دارند و مستقل نیستند؛ بنابراین فرض مجموعهٔ مستقل، تضمینی برای مقدار خطای آن‌ها نیست.",
+      "answer": {
+        "kind": "manual",
+        "criteria_fa": [
+          "بیان فرض استقلال مثال",
+          "اشتراک پارامترهای زیرشبکه‌ها",
+          "تفکیک احتمال محاسبه‌شده از نتیجهٔ واقعی Dropout"
+        ]
+      },
+      "source_page": 44
+    }
+  ],
+  "question_pages": [
+    2,
+    11,
+    15,
+    23,
+    26,
+    29,
+    30,
+    31,
+    40,
+    42,
+    43,
+    48,
+    56
+  ],
+  "class_activity_pages": [],
+  "programming_tutorial_pages": [
+    65
+  ],
+  "reference_python": "3.14.3",
+  "limits_fa": "کد و داده‌های کوچک، تألیف مستقل برای بررسی همین سازوکارند؛ بازتولید آزمایش مقاله یا تکلیف رسمی Canvas نیستند. نتیجه فقط به محاسبات و پارامترهای همین کد مربوط است.",
+  "source_retrieved_at_utc": "2026-10-25T08:44:49.277620+00:00",
+  "related_labs": []
+}

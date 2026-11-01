@@ -1,0 +1,3401 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s11",
+  "source_sha256": "1a830b8863b5802c424e6499aa57c3f8cbdd741d608c3c1e347d7fad8b817727",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "77868801be8916a6fd21f55f5ef51fb9e195b3bae224d83947cd148c25cc792f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ظهور یادگیری چندوجهی (Multimodal Learning): پیوند بینایی و زبان"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "دانشگاه کلرادو بولدر (University of Colorado Boulder)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "بهار ۲۰۲۶"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CC BY NC SA",
+          "fa": "CC BY NC SA (نسبت‌دهی، غیرتجاری، اشتراک‌همسان)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "d47ec21816721ae1a6c115f3d7a09185246dc2292e7bdd91fb9a0eaaf099776e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "جلسهٔ قبل"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "انگیزه: وقتی بینایی علاوه بر «چه چیزی؟»، «کجا؟» را هم می‌پرسد."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "بازطراحی شبکه‌های عصبی برای پیش‌بینی متراکم (Dense Prediction)، به‌جای صرفاً طبقه‌بندی (Classification)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "رهاکردن شبکه‌های پیش‌بینی متراکم از اندازه‌های ثابت ورودی"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "بینش‌های کلیدی: ویژگی‌های پیش‌آموزش‌دیده (Pretrained Features) و ترفندهای طراحی برای افزایش دقت مکانی (Spatial Precision)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "تکالیف (Canvas)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "مهلت تحویل تکلیف آزمایشگاهی ۲، جمعه است؛ پاسخ پرسش‌های رایج در صفحهٔ تکلیف آمده است."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "مهلت تحویل مجموعه‌مسئلهٔ ۲، یک هفتهٔ دیگر است."
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "bullet",
+          "fa": "پرسشی دارید؟ می‌توانید پرسش‌ها را در Piazza نیز بنویسید یا در ساعت‌های ملاقات شرکت کنید."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "4dd3e8aae00829fdf7c4af47433534a31cb055fe0f7569d0fec972358b0fc2c2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "موفقیت‌های جداگانه: شبکه‌های عصبی کانولوشنی (CNNs) برای بینایی و شبکه‌های عصبی بازگشتی (RNNs) برای زبان"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "چالش بعدی: توصیف صحنه‌های دیداری با زبان طبیعی (Natural Language)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "پیشگامان اولیهٔ بینایی–زبان (Vision-Language): پیوند پیکسل‌ها و واژه‌ها"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "4dd3e8aae00829fdf7c4af47433534a31cb055fe0f7569d0fec972358b0fc2c2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "موفقیت‌های جداگانه: شبکه‌های عصبی کانولوشنی (CNNs) برای بینایی و شبکه‌های عصبی بازگشتی (RNNs) برای زبان"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "چالش بعدی: توصیف صحنه‌های دیداری با زبان طبیعی (Natural Language)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "پیشگامان اولیهٔ بینایی–زبان (Vision-Language): پیوند پیکسل‌ها و واژه‌ها"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "885e27b76f80d7bd74ae37c47a40a3f0f3b0cc15eddd6f86274e6fadbebd52ac",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "شبکه‌های عصبی (Neural Networks) به‌عنوان راه‌حل غالب برای مسائل بینایی و زبان تثبیت شدند… هر کدام به‌طور جداگانه"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "66444118a94f89607e8d81324999cb28c24a18423e4a15a9a84e3388f9148599",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "شبکه‌های عصبی کانولوشنی (CNNs) بر وظایف بیناییِ «دسته‌بندی‌شده در حوزه‌های جدا» مسلط شدند؛ و این موفقیت‌ها به کاربردهای دنیای واقعی راه یافتند!"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://ai-pool.com/d/could-you-explain-me-how-instance-segmentation-works"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "FCN در سال ۲۰۱۵"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "Faster R-CNN در سال ۲۰۱۵؛ Mask R-CNN در سال ۲۰۱۵"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "ResNet در سال ۲۰۱۵"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Image Recognition; Semantic Segmentation; Object Detection; Instance Segmentation",
+          "fa": "بازشناسی تصویر (Image Recognition)؛ بخش‌بندی معنایی (Semantic Segmentation)؛ تشخیص شیء (Object Detection)؛ بخش‌بندی نمونه‌ای (Instance Segmentation)",
+          "verified": true
+        },
+        {
+          "en": "P 0.6 sheep; P 0.3 dog; P 0.1 cat; P 0.0 horse",
+          "fa": "P 0.6 sheep (گوسفند)؛ P 0.3 dog (سگ)؛ P 0.1 cat (گربه)؛ P 0.0 horse (اسب)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "aaeb6bef79f6c8cf6045b921f144d4c7da07acf91c6b28a7e336e25fd87f389e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "شبکهٔ عصبی بازگشتی (RNN) بر وظایف زبان مسلط شد؛ برای مثال، ترجمهٔ ماشینی (Machine Translation) با Seq2Seq"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Image source: https://smerity.com/articles/2016/google_nmt_arch.html"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "seq2seq: Sutskever et al. Sequence to Sequence Learning with Neural Networks. Neurips 2014."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; Embed; S; Decoder; Softmax; NULL",
+          "fa": "رمزگذار (Encoder)؛ تعبیه (Embed)؛ S؛ رمزگشا (Decoder)؛ سافت‌مکس (Softmax)؛ NULL",
+          "verified": true
+        },
+        {
+          "en": "He loved to eat .; Er liebte zu essen .; NULL Er liebte zu essen",
+          "fa": "«He loved to eat .» (او غذاخوردن را دوست داشت.)؛ «Er liebte zu essen .» (او غذاخوردن را دوست داشت.)؛ دنبالهٔ ورودی رمزگشا: «NULL Er liebte zu essen»",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "4dd3e8aae00829fdf7c4af47433534a31cb055fe0f7569d0fec972358b0fc2c2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "موفقیت‌های جداگانه: شبکه‌های عصبی کانولوشنی (CNNs) برای بینایی و شبکه‌های عصبی بازگشتی (RNNs) برای زبان"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "چالش بعدی: توصیف صحنه‌های دیداری با زبان طبیعی (Natural Language)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "پیشگامان اولیهٔ بینایی–زبان (Vision-Language): پیوند پیکسل‌ها و واژه‌ها"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "592a8ca5269095b6f175037d37c9d135bf0c05259d110651796252dfbd257a07",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "وظایف چندوجهی (Multimodal Tasks): استفاده از ۲ یا چند وجه (Modalities)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "برای مثال، وظایف بینایی کامپیوتر (Computer Vision) همراه با پردازش زبان طبیعی (Natural Language Processing)، با پاسخ‌های باز!"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "پاسخ به پرسش تصویری (Visual Question):"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "پرسش: «Is it edible or poisonous?» (خوراکی است یا سمی؟)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "پاسخ: «Poisonous» (سمی)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "شرح تصویر (Caption):"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "«A bunch of small light brown mushrooms in a green field.» (دسته‌ای از قارچ‌های کوچکِ قهوه‌ای روشن در زمینی سبز.)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "c72d25d7aac039b8ceeff756003902c30dd7a99dd313ca65576055669b0576f9",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "کاربردهای انگیزه‌بخش فراوان؛ برای مثال،"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "تفسیر دیداری برای افراد نابینا (Visual Interpretation)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "توصیف تصاویر و پاسخ‌گویی به آن‌ها با «شخصیت» (Personality)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Shuster et al. Engaging Image Captioning via Personality. 2019"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "دستیار شخصی (Personal Assistant)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Seeing AI; Lookout by Google; envision; TapTapSee; ORCAM; be my eyes",
+          "fa": "Seeing AI؛ Lookout از Google؛ envision؛ TapTapSee؛ ORCAM؛ be my eyes",
+          "verified": true
+        },
+        {
+          "en": "Standard captioning output: A plate with a sandwich and salad on it.",
+          "fa": "خروجی استاندارد شرح تصویر (Captioning): «A plate with a sandwich and salad on it.» (بشقابی که ساندویچ و سالاد روی آن است.)",
+          "verified": true
+        },
+        {
+          "en": "Our model with different personality traits (215 possible traits, not all shown here):",
+          "fa": "مدل ما با ویژگی‌های شخصیتی گوناگون (۲۱۵ ویژگی ممکن؛ همهٔ آن‌ها اینجا نشان داده نشده‌اند):",
+          "verified": true
+        },
+        {
+          "en": "Sweet: That is a lovely sandwich.",
+          "fa": "شیرین (Sweet): «That is a lovely sandwich.» (چه ساندویچ دوست‌داشتنی‌ای.)",
+          "verified": true
+        },
+        {
+          "en": "Dramatic: This sandwich looks so delicious! My goodness!",
+          "fa": "نمایشی (Dramatic): «This sandwich looks so delicious! My goodness!» (این ساندویچ خیلی خوشمزه به نظر می‌رسد! وای خدای من!)",
+          "verified": true
+        },
+        {
+          "en": "Anxious: I’m afraid this might make me sick if I eat it.",
+          "fa": "مضطرب (Anxious): «I’m afraid this might make me sick if I eat it.» (می‌ترسم اگر این را بخورم، مریضم کند.)",
+          "verified": true
+        },
+        {
+          "en": "Sympathetic: I feel so bad for that carrot, about to be consumed.",
+          "fa": "همدل (Sympathetic): «I feel so bad for that carrot, about to be consumed.» (خیلی دلم برای آن هویج می‌سوزد که قرار است خورده شود.)",
+          "verified": true
+        },
+        {
+          "en": "Arrogant: I make better food than this",
+          "fa": "متکبر (Arrogant): «I make better food than this» (من غذای بهتری از این درست می‌کنم.)",
+          "verified": true
+        },
+        {
+          "en": "Optimistic: It will taste positively wonderful!",
+          "fa": "خوش‌بین (Optimistic): «It will taste positively wonderful!» (مزه‌اش قطعاً فوق‌العاده خواهد بود!)",
+          "verified": true
+        },
+        {
+          "en": "Money-minded: I would totally pay $100 for this plate.",
+          "fa": "پول‌محور (Money-minded): «I would totally pay $100 for this plate.» (من قطعاً برای این بشقاب ۱۰۰ دلار می‌پرداختم.)",
+          "verified": true
+        },
+        {
+          "en": "Live; Based on the colors; Results for illustrative purposes and may vary. Screen images simulated.",
+          "fa": "زنده (Live)؛ بر پایهٔ رنگ‌ها؛ نتایج برای نمایش نمونه‌اند و ممکن است متفاوت باشند. تصاویر صفحه شبیه‌سازی شده‌اند.",
+          "verified": true
+        }
+      ],
+      "image_text_limits": [
+        {
+          "reason_fa": "ادامهٔ ریزنوشتهٔ تبلیغاتیِ زیر تصویر تلفن، پس از عبارت Screen images simulated، در تصویر نهفتهٔ اصلی با اندازهٔ ۹۹۶×۵۶۳ پیکسل تار است و رونویسی کامل و قطعی ندارد؛ متن خواندنیِ رابط و مثال‌های شرح تصویر کامل ترجمه شده‌اند.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "702ef46901154b6d8d30ab957ce0365a2ab256731165bff35e40e33ec90da3a1",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پیشگامان جنبش یادگیری چندوجهی (Multimodal Learning)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "(ICCV, 2015)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "دِوی پاریک (Devi Parikh)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "پیش‌تر استاد و مدیر پژوهشی Meta"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "هم‌بنیان‌گذار و مدیرعامل (CEO) شرکت Yutori"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "(arXiv, 2015)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "لَری زیتنیک (Larry Zitnick)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "پیش‌تر پژوهشگر Microsoft"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "مدیر پژوهشی Meta"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Microsoft COCO Captions: Data Collection and Evaluation Server",
+          "fa": "شرح‌تصویرهای Microsoft COCO: گردآوری داده و سرور ارزیابی (Data Collection and Evaluation Server)",
+          "verified": true
+        },
+        {
+          "en": "Xinlei Chen, Hao Fang, Tsung-Yi Lin, Ramakrishna Vedantam; Saurabh Gupta, Piotr Dollár, C. Lawrence Zitnick",
+          "fa": "Xinlei Chen، Hao Fang، Tsung-Yi Lin، Ramakrishna Vedantam؛ Saurabh Gupta، Piotr Dollár، C. Lawrence Zitnick",
+          "verified": true
+        },
+        {
+          "en": "VQA: Visual Question Answering; www.visualqa.org",
+          "fa": "VQA: پاسخ‌گویی به پرسش تصویری (Visual Question Answering)؛ www.visualqa.org",
+          "verified": true
+        },
+        {
+          "en": "Aishwarya Agrawal*, Jiasen Lu*, Stanislaw Antol*; Margaret Mitchell, C. Lawrence Zitnick, Dhruv Batra, Devi Parikh",
+          "fa": "Aishwarya Agrawal*، Jiasen Lu*، Stanislaw Antol*؛ Margaret Mitchell، C. Lawrence Zitnick، Dhruv Batra، Devi Parikh",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "ec4957ed65fab8f67ba15f5edf0faae04e1642a4fa2c695dd57704488b15e9b0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "روش: چالش‌های مجموعه‌داده در مقیاس بزرگ (Large-Scale Dataset Challenges)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "اجزای هر چالش:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "۱. نمونه‌هایی با نتایج هدف برای آموزش، اعتبارسنجی و آزمون (Training, Validation, Testing)"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "۲. معیاری (Metric) برای سنجش شباهت میان پیش‌بینی هر مدل و نتیجهٔ هدف"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "۳. سرورهای ارزیابی (Evaluation Servers) با جدول‌های رتبه‌بندی (Leaderboards)، برای استانداردکردن ارزیابی و امکان‌پذیرکردن رقابت جهانی"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "۴. چالش‌های جدید برای پرداختنِ جامعهٔ پژوهشی به آن‌ها، که تحلیل مجموعه‌داده و معیارسنجی مدل‌ها شواهدشان را فراهم می‌کنند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "1e81de3fbe233ff94a24f8f10a9624baaf6e17883e558a02bc3b79f7722fb15c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شرح‌نویسی تصویر (Image Captioning)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "۱٬۰۲۶٬۴۵۹ شرح برای ۱۶۴٬۰۶۲ تصویر، از کارکنان AMT جمع‌آوری شد."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "فکر می‌کنید جمع‌آوری داده چقدر طول کشید؟"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "bullet",
+          "fa": "حدود ۸٬۵۰۰ ساعت؛ معادل حدود ۴ سال کار یک نفر، با ۴۰ ساعت در هفته و ۵۲ هفته در سال."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "فکر می‌کنید هزینه چقدر بود؟"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "bullet",
+          "fa": "حدود ۱۲۸ هزار دلار؛ با فرض ۳۰ ثانیه برای هر شرح و ۱۵ دلار در ساعت، که برای یک نفر ۳۲٬۰۰۰ دلار در سال درآمد ایجاد می‌کرد."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "reference",
+          "fa": "Chen et al. Microsoft COCO Captions: Data Collection and Evaluation Server. arXiv 2015."
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "heading",
+          "fa": "پاسخ‌گویی به پرسش تصویری (VQA)"
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "bullet",
+          "fa": "۶۱۴٬۱۶۳ پرسش برای ۲۰۴٬۷۲۱ تصویر از کارکنان AMT جمع‌آوری شد."
+        },
+        {
+          "source_lines": [
+            13,
+            14
+          ],
+          "kind": "bullet",
+          "fa": "۱٬۴۶۳٬۵۱۰ پاسخ برای ۱۴۵٬۳۵۱ تصویر از کارکنان AMT جمع‌آوری شد."
+        },
+        {
+          "source_lines": [
+            15
+          ],
+          "kind": "reference",
+          "fa": "Agrawal et al. VQA: Visual Question Answering. ICCV 2015."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "9505a5ae6fe41def64da84aa1381d2e87ff939ca48fb97b9c2e086682b97b55b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "Chen et al. Microsoft COCO Captions: Data Collection and Evaluation Server. arXiv 2015."
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "heading",
+          "fa": "تولید شرح تصویر (Caption Generation):"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "۵ شرح از ۵ نیروی جمع‌سپاری (Crowdworkers) جمع‌آوری شد."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Instructions: Describe all the important parts of the scene.",
+          "fa": "دستورها: همهٔ بخش‌های مهم صحنه را توصیف کنید.",
+          "verified": true
+        },
+        {
+          "en": "Do not start the sentences with “There is”.",
+          "fa": "جمله‌ها را با «There is» (وجود دارد) شروع نکنید.",
+          "verified": true
+        },
+        {
+          "en": "Do not describe unimportant details. Do not describe things that might have happened in the future or past.",
+          "fa": "جزئیات بی‌اهمیت را توصیف نکنید. چیزهایی را توصیف نکنید که ممکن است در آینده یا گذشته رخ داده باشند.",
+          "verified": true
+        },
+        {
+          "en": "Do not describe what a person might say. Do not give people proper names. The sentence should contain at least 8 words.",
+          "fa": "توصیف نکنید که شخص ممکن است چه بگوید. به افراد نام خاص ندهید. جمله باید دست‌کم ۸ واژه داشته باشد.",
+          "verified": true
+        },
+        {
+          "en": "Please describe the image: Enter description here; prev; next",
+          "fa": "لطفاً تصویر را توصیف کنید؛ توصیف را اینجا وارد کنید؛ قبلی؛ بعدی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "a10967fe59de062436bf490d37341ad36a96fb267b3df6d6bb9cc90ab05152d3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "تولید پرسش (Question Generation):"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Agrawal et al. VQA: Visual Question Answering. ICCV 2015."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Stump a smart robot! Ask a question about this scene that a human can answer, but a smart robot probably can’t!",
+          "fa": "یک ربات هوشمند را به چالش بکشید! دربارهٔ این صحنه پرسشی بپرسید که انسان بتواند پاسخ دهد، اما ربات هوشمند احتمالاً نتواند!",
+          "verified": true
+        },
+        {
+          "en": "Updated instructions: Please read carefully; Hide; Show",
+          "fa": "دستورهای به‌روزشده: لطفاً با دقت بخوانید؛ پنهان‌کردن؛ نمایش",
+          "verified": true
+        },
+        {
+          "en": "We have built a smart robot. It understands a lot about scenes. It can recognize and name all the objects, it knows where the objects are, it can recognize the scene type (e.g., kitchen, beach), people’s expressions and poses, and properties of objects (e.g., the color of objects, their texture). Your task is to stump this smart robot! In particular, it already knows answers to some questions about this scene. We will tell you what these questions are.",
+          "fa": "ما یک ربات هوشمند ساخته‌ایم. این ربات چیزهای زیادی دربارهٔ صحنه‌ها می‌فهمد. می‌تواند همهٔ اشیا را بازشناسد و نام ببرد، جای اشیا را می‌داند و می‌تواند نوع صحنه، مانند آشپزخانه و ساحل، حالت چهره و وضعیت بدن افراد و ویژگی‌های اشیا، مانند رنگ و بافت آن‌ها، را تشخیص دهد. وظیفهٔ شما این است که این ربات هوشمند را به چالش بکشید! به‌ویژه، پاسخ برخی پرسش‌ها دربارهٔ این صحنه را از پیش می‌داند. به شما خواهیم گفت این پرسش‌ها کدام‌اند.",
+          "verified": true
+        },
+        {
+          "en": "Ask a question about this scene that this SMART robot probably cannot answer, but any human can easily answer while looking at the scene in the image. IMPORTANT: The question should be about this scene. That is, the human should need the image to be able to answer the question — the human should not be able to answer the question without looking at the image.",
+          "fa": "دربارهٔ این صحنه پرسشی بپرسید که این ربات هوشمند احتمالاً نتواند پاسخ دهد، اما هر انسانی با نگاه‌کردن به صحنهٔ داخل تصویر به‌آسانی پاسخ دهد. مهم: پرسش باید دربارهٔ همین صحنه باشد؛ یعنی انسان برای پاسخ‌دادن به پرسش به تصویر نیاز داشته باشد و نتواند بدون نگاه‌کردن به تصویر پاسخ دهد.",
+          "verified": true
+        },
+        {
+          "en": "Your work will get rejected if you do not follow the instructions below:",
+          "fa": "اگر دستورهای زیر را رعایت نکنید، کار شما رد خواهد شد:",
+          "verified": true
+        },
+        {
+          "en": "Do not ask questions that are similar to the ones listed below each image. As mentioned, the robot already knows the answers to these questions for the scene in this image. Please ask about something different.",
+          "fa": "پرسش‌هایی شبیه پرسش‌های فهرست‌شده زیر هر تصویر نپرسید. همان‌طور که گفته شد، ربات پاسخ این پرسش‌ها را برای صحنهٔ داخل این تصویر از پیش می‌داند. لطفاً دربارهٔ چیز دیگری بپرسید.",
+          "verified": true
+        },
+        {
+          "en": "Do not repeat questions. Do not ask the same questions or the same questions with minor variations over and over again across images. Think of a new question each time specific to the scene in each image.",
+          "fa": "پرسش‌ها را تکرار نکنید. در تصویرهای مختلف بارها همان پرسش‌ها یا پرسش‌هایی با تغییرات جزئی نپرسید. هر بار به پرسشی تازه و ویژهٔ صحنهٔ هر تصویر فکر کنید.",
+          "verified": true
+        },
+        {
+          "en": "Each question should be a single question. Do not ask questions that have multiple parts or multiple sub-questions in them.",
+          "fa": "هر پرسش باید یک پرسش واحد باشد. پرسش‌هایی نپرسید که چند بخش یا چند زیرپرسش دارند.",
+          "verified": true
+        },
+        {
+          "en": "Do not ask generic questions that can be asked of many other scenes. Ask questions specific to the scene in each image.",
+          "fa": "پرسش‌های عمومی که دربارهٔ بسیاری از صحنه‌های دیگر هم قابل طرح‌اند نپرسید. پرسش‌هایی ویژهٔ صحنهٔ هر تصویر بپرسید.",
+          "verified": true
+        },
+        {
+          "en": "Below is a list of questions the smart robot can already answer. Please ask a different question about this scene that a human can answer *if* looking at the scene in the image (and not otherwise), but would stump this smart robot:",
+          "fa": "پایین، فهرستی از پرسش‌هایی آمده است که ربات هوشمند از پیش می‌تواند پاسخ دهد. لطفاً دربارهٔ این صحنه پرسشی متفاوت بپرسید که انسان فقط در صورت نگاه‌کردن به صحنهٔ داخل تصویر بتواند پاسخ دهد، اما این ربات هوشمند را به چالش بکشد:",
+          "verified": true
+        },
+        {
+          "en": "Q1: What is unusual about this mustache? (The robot already knows the answer to this question.)",
+          "fa": "پرسش ۱: «What is unusual about this mustache?» (چه چیز این سبیل غیرعادی است؟)؛ ربات پاسخ این پرسش را از پیش می‌داند.",
+          "verified": true
+        },
+        {
+          "en": "Q2: What is her facial expression? (The robot already knows the answer to this question.)",
+          "fa": "پرسش ۲: «What is her facial expression?» (حالت چهرهٔ او چیست؟)؛ ربات پاسخ این پرسش را از پیش می‌داند.",
+          "verified": true
+        },
+        {
+          "en": "Q3: Write your question, different from the questions above, here to stump this smart robot.",
+          "fa": "پرسش ۳: پرسش خود را که با پرسش‌های بالا متفاوت است، اینجا بنویسید تا این ربات هوشمند را به چالش بکشید.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "818e1601b25a62b512435631f96b6567d015931c3689ad579432deaf4b226681",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "تولید پاسخ (Answer Generation):"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "۱۰ پاسخ از ۱۰ نیروی جمع‌سپاری (Crowdworkers) جمع‌آوری شد."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "Agrawal et al. VQA: Visual Question Answering. ICCV 2015."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Help Us Answer Questions About Images! Updated instructions: Please read carefully; Hide; Show",
+          "fa": "در پاسخ‌دادن به پرسش‌های مربوط به تصاویر به ما کمک کنید! دستورهای به‌روزشده: لطفاً با دقت بخوانید؛ پنهان‌کردن؛ نمایش",
+          "verified": true
+        },
+        {
+          "en": "Please answer some questions about images with brief answers. Your answers should be how most other people would answer the questions. If the question doesn’t make sense, please try your best to answer it and indicate via the buttons that you are unsure of your response.",
+          "fa": "لطفاً به چند پرسش دربارهٔ تصاویر، پاسخ کوتاه بدهید. پاسخ شما باید همان‌گونه باشد که بیشتر افراد دیگر پاسخ می‌دهند. اگر پرسش معنای روشنی ندارد، بهترین تلاش خود را برای پاسخ‌دادن انجام دهید و با دکمه‌ها مشخص کنید که از پاسخ خود مطمئن نیستید.",
+          "verified": true
+        },
+        {
+          "en": "If you don’t follow the following instructions, your work will be rejected. Your work will get rejected if you do not follow the instructions below:",
+          "fa": "اگر دستورهای زیر را رعایت نکنید، کار شما رد خواهد شد. اگر دستورهای زیر را دنبال نکنید، کارتان رد می‌شود:",
+          "verified": true
+        },
+        {
+          "en": "Answer the question based on what is going on in the scene depicted in the image. Your answer should be a brief phrase (not a complete sentence). “It is a kitchen.” -> “kitchen”",
+          "fa": "پرسش را بر پایهٔ آنچه در صحنهٔ داخل تصویر رخ می‌دهد پاسخ دهید. پاسخ باید عبارتی کوتاه باشد، نه یک جملهٔ کامل. «It is a kitchen.» (این یک آشپزخانه است.) → «kitchen» (آشپزخانه)",
+          "verified": true
+        },
+        {
+          "en": "For yes/no questions, please just say yes/no. “You bet it is!” -> “yes”",
+          "fa": "برای پرسش‌های بله/خیر، فقط yes/no بگویید. «You bet it is!» (معلوم است که هست!) → «yes» (بله)",
+          "verified": true
+        },
+        {
+          "en": "For numerical answers, please use digits. “Ten.” -> “10”",
+          "fa": "برای پاسخ‌های عددی، از رقم استفاده کنید. «Ten.» (ده.) → «10» (۱۰)",
+          "verified": true
+        },
+        {
+          "en": "If you need to speculate (e.g., “What just happened?”), provide an answer that most people would agree on. If you don’t know the answer (e.g., specific dog breed), provide your best guess.",
+          "fa": "اگر لازم است حدس بزنید، مثلاً در پاسخ به «What just happened?» (چه اتفاقی افتاد؟)، پاسخی بدهید که بیشتر مردم بر آن توافق داشته باشند. اگر پاسخ را نمی‌دانید، برای مثال نژاد دقیق سگ، بهترین حدس خود را بنویسید.",
+          "verified": true
+        },
+        {
+          "en": "Respond matter-of-factly and avoid using conversational language or inserting your opinion.",
+          "fa": "به‌صورت واقع‌گرایانه پاسخ دهید و از زبان محاوره‌ای یا واردکردن نظر خود پرهیز کنید.",
+          "verified": true
+        },
+        {
+          "en": "Please answer the question using as few words as possible: Q1: What is unusual about this mustache? A1: Write your answer here",
+          "fa": "لطفاً با کمترین تعداد واژهٔ ممکن پاسخ دهید. پرسش ۱: «What is unusual about this mustache?» (چه چیز این سبیل غیرعادی است؟) پاسخ ۱: پاسخ خود را اینجا بنویسید.",
+          "verified": true
+        },
+        {
+          "en": "Do you think you were able to answer the question correctly? (Clicking an option will take you to the next question.) no; maybe; yes; Page 1/2",
+          "fa": "فکر می‌کنید توانستید به پرسش درست پاسخ دهید؟ با کلیک روی یک گزینه به پرسش بعدی می‌روید. خیر (no)؛ شاید (maybe)؛ بله (yes)؛ صفحهٔ ۱ از ۲",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "ec4957ed65fab8f67ba15f5edf0faae04e1642a4fa2c695dd57704488b15e9b0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "روش: چالش‌های مجموعه‌داده در مقیاس بزرگ (Large-Scale Dataset Challenges)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "اجزای هر چالش:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "۱. نمونه‌هایی با نتایج هدف برای آموزش، اعتبارسنجی و آزمون (Training, Validation, Testing)"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "۲. معیاری (Metric) برای سنجش شباهت میان پیش‌بینی هر مدل و نتیجهٔ هدف"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "۳. سرورهای ارزیابی (Evaluation Servers) با جدول‌های رتبه‌بندی (Leaderboards)، برای استانداردکردن ارزیابی و امکان‌پذیرکردن رقابت جهانی"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "۴. چالش‌های جدید برای پرداختنِ جامعهٔ پژوهشی به آن‌ها، که تحلیل مجموعه‌داده و معیارسنجی مدل‌ها شواهدشان را فراهم می‌کنند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "32b0b42b57f6c980e6bd0bad9c91ed7965a249fd9f2e88e507a95bc763023052",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "شرح‌نویسی تصویر (Image Captioning): به‌ارث‌بردن معیارهای ترجمه و خلاصه‌سازی زبان"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "BLEU، مبتنی بر دقت (Precision)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "METEOR"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "Rouge، مبتنی بر بازخوانی (Recall)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "توجه: همهٔ این معیارها بر یک واقعیت مبنا (Ground Truth) تکیه دارند."
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "ایده: شباهت n-گرم‌ها (N-Grams) را میان یک شرح پیش‌بینی‌شده و هر شرح واقعیت مبنا محاسبه کنید."
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "http://recognize-speech.com/language-model/n-gram-model/comparison"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "N = 1; This is a sentence; unigrams: this, is, a, sentence",
+          "fa": "N = 1؛ «This is a sentence» (این یک جمله است)؛ تک‌گرم‌ها (Unigrams): «this» (این)، «is» (است)، «a» (یک)، «sentence» (جمله)",
+          "verified": true
+        },
+        {
+          "en": "N = 2; This is a sentence; bigrams: this is, is a, a sentence",
+          "fa": "N = 2؛ «This is a sentence» (این یک جمله است)؛ دوگرم‌ها (Bigrams): «this is» (این است)، «is a» (یک … است)، «a sentence» (یک جمله)",
+          "verified": true
+        },
+        {
+          "en": "N = 3; This is a sentence; trigrams: this is a, is a sentence",
+          "fa": "N = 3؛ «This is a sentence» (این یک جمله است)؛ سه‌گرم‌ها (Trigrams): «this is a» (این یک … است)، «is a sentence» (یک جمله است)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "c3df346550e2e8ae3e0307d104745daaeff14ed205c069bbbcbe5cdb21185cd3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "شرح‌نویسی تصویر (Image Captioning): معیار جدید CIDEr"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Vedantam et al. CIDEr: Consensus-based Image Description Evaluation. CVPR 2015."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "ایده: با استفاده از n-گرم‌های (N-Grams) ویژهٔ تصویر، شباهت شرح پیش‌بینی‌شده را به شیوه‌ای بسنجید که بیشتر مردم تصویر را توصیف می‌کنند."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "از گروه دِوی پاریک (Devi Parikh)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "A cow is standing in a field.",
+          "fa": "«A cow is standing in a field.» (گاوی در یک زمین ایستاده است.)",
+          "verified": true
+        },
+        {
+          "en": "A cow with horns and long hair covering its face stands in a field.",
+          "fa": "«A cow with horns and long hair covering its face stands in a field.» (گاوی شاخ‌دار با موهای بلندی که صورتش را پوشانده‌اند، در یک زمین ایستاده است.)",
+          "verified": true
+        },
+        {
+          "en": "A cow with hair over its eyes stands in a field.",
+          "fa": "«A cow with hair over its eyes stands in a field.» (گاوی که موهایش روی چشم‌هایش است، در یک زمین ایستاده است.)",
+          "verified": true
+        },
+        {
+          "en": "This horned creature is getting his picture taken.",
+          "fa": "«This horned creature is getting his picture taken.» (از این جانور شاخ‌دار عکس گرفته می‌شود.)",
+          "verified": true
+        },
+        {
+          "en": "A furry animal with horns roams on the range.",
+          "fa": "«A furry animal with horns roams on the range.» (حیوانی پشمالو و شاخ‌دار در چراگاه پرسه می‌زند.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "c436273c21c3a2d076517ca9e222af655e157df436c0772a3af8ebf5b604c028",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "VQA: معیار جدیدِ درستی (Accuracy)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Vedantam et al. CIDEr: Consensus-based Image Description Evaluation. CVPR 2015."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "ایده: شباهت یک پاسخ پیش‌بینی‌شده را با تعداد افرادی بسنجید که به پرسش همان پاسخ را می‌دهند؛ «با کمترین تعداد واژهٔ ممکن»."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "از گروه دِوی پاریک (Devi Parikh)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "accuracy; # humans that provided that answer",
+          "fa": "درستی (Accuracy)؛ تعداد انسان‌هایی که آن پاسخ را داده‌اند",
+          "verified": true
+        },
+        {
+          "en": "accuracy = min((# humans that provided that answer)/3, 1)",
+          "fa": "accuracy = min((# humans that provided that answer)/3, 1)",
+          "verified": true,
+          "latex": "\\mathrm{accuracy}=\\min\\left(\\frac{\\text{\\# humans that provided that answer}}{3},1\\right)"
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "14101f81dd161d97bc6aac417a6883d2f77080892a5c75d3553bebc740c355ee",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "VQA: معیار جدیدِ درستی (Accuracy)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "«Does this picture look scary?» (آیا این تصویر ترسناک به نظر می‌رسد؟)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "۱) «yes» (بله)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "۲) «no» (خیر)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "۳) «no» (خیر)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "۴) «yes» (بله)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "۵) «no» (خیر)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "۶) «yes» (بله)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "۷) «yes» (بله)"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "۸) «no» (خیر)"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "text",
+          "fa": "۹) «no» (خیر)"
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "text",
+          "fa": "۱۰) «no» (خیر)"
+        },
+        {
+          "source_lines": [
+            13
+          ],
+          "kind": "text",
+          "fa": "درستیِ پیش‌بینی الگوریتم برای هر پاسخ چقدر است:"
+        },
+        {
+          "source_lines": [
+            14
+          ],
+          "kind": "bullet",
+          "fa": "«yes» (بله)؟"
+        },
+        {
+          "source_lines": [
+            15
+          ],
+          "kind": "bullet",
+          "fa": "«no» (خیر)؟"
+        },
+        {
+          "source_lines": [
+            16
+          ],
+          "kind": "bullet",
+          "fa": "«maybe» (شاید)؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "accuracy; # humans that provided that answer",
+          "fa": "درستی (Accuracy)؛ تعداد انسان‌هایی که آن پاسخ را داده‌اند",
+          "verified": true
+        },
+        {
+          "en": "accuracy = min((# humans that provided that answer)/3, 1)",
+          "fa": "accuracy = min((# humans that provided that answer)/3, 1)",
+          "verified": true,
+          "latex": "\\mathrm{accuracy}=\\min\\left(\\frac{\\text{\\# humans that provided that answer}}{3},1\\right)"
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "f47d11ed560414d72117b1545e4f1048202e2c689275a0e0c0d27ff670559b75",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "VQA: معیار جدیدِ درستی (Accuracy)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "درستیِ پیش‌بینی الگوریتم برای هر پاسخ چقدر است:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "«right» (راست)؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "«left» (چپ)؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "«right side» (سمت راست)؟"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "«center» (مرکز)؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "«bottom» (پایین)؟"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "«Which side of the room is the toilet on?» (توالت در کدام سمت اتاق قرار دارد؟)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "۱) «right» (راست)"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "۲) «left» (چپ)"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "text",
+          "fa": "۳) «right» (راست)"
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "text",
+          "fa": "۴) «right» (راست)"
+        },
+        {
+          "source_lines": [
+            13
+          ],
+          "kind": "text",
+          "fa": "۵) «right» (راست)"
+        },
+        {
+          "source_lines": [
+            14
+          ],
+          "kind": "text",
+          "fa": "۶) «right» (راست)"
+        },
+        {
+          "source_lines": [
+            15
+          ],
+          "kind": "text",
+          "fa": "۷) «right side» (سمت راست)"
+        },
+        {
+          "source_lines": [
+            16
+          ],
+          "kind": "text",
+          "fa": "۸) «right» (راست)"
+        },
+        {
+          "source_lines": [
+            17
+          ],
+          "kind": "text",
+          "fa": "۹) «center» (مرکز)"
+        },
+        {
+          "source_lines": [
+            18
+          ],
+          "kind": "text",
+          "fa": "۱۰) «right» (راست)"
+        },
+        {
+          "source_lines": [
+            19,
+            20
+          ],
+          "kind": "text",
+          "fa": "جزئیات پیاده‌سازی: برای مقایسهٔ منصفانه با انسان‌ها، ۱۰ دور مقایسه انجام می‌شود؛ در هر دور، پیش‌بینی با یکی از همهٔ مجموعه‌های ممکنِ ۹تاییِ پاسخ‌های انسانی مقایسه می‌شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "accuracy; # humans that provided that answer",
+          "fa": "درستی (Accuracy)؛ تعداد انسان‌هایی که آن پاسخ را داده‌اند",
+          "verified": true
+        },
+        {
+          "en": "accuracy = min((# humans that provided that answer)/3, 1)",
+          "fa": "accuracy = min((# humans that provided that answer)/3, 1)",
+          "verified": true,
+          "latex": "\\mathrm{accuracy}=\\min\\left(\\frac{\\text{\\# humans that provided that answer}}{3},1\\right)"
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "b7e32566cb2f6b39e58d535d2ac98f4342a3cea3bcc7fe1ced9475d9da070009",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "جزئیات پیاده‌سازی ارزیابی (Evaluation): پیش‌پردازش متن (Preprocess Text) رایج است."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "همهٔ حروف را به حروف کوچک (Lower Case) تبدیل کنید."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "از «ریشهٔ» (Stem) هر واژه استفاده کنید؛ برای مثال، مفرد و جمع یا شکل‌های مختلف فعل را یکسان‌سازی کنید."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "برای مثال، ریشه‌یابی (Stemming)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "برای مثال، بن‌واژه‌یابی (Lemmatizing) برای رسیدن به واژهٔ پایهٔ موردنظر: تبدیل «caring» به «care» (مراقبت‌کردن)، نه «car» (خودرو)."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "حذف واژه‌های توقف (Stop Word Removal): واژه‌های پرتکرار را کنار بگذارید."
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "reference",
+          "fa": "https://dzone.com/articles/using-lucene-grails"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "https://github.com/topics/stopwords-removal"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "consign; consigned; consigning; consignment; Porter Stem Filter; consign",
+          "fa": "«consign» (سپردن / ارسال‌کردن)؛ «consigned» (سپرد / ارسال کرد)؛ «consigning» (در حال سپردن / ارسال‌کردن)؛ «consignment» (محموله / واگذاری)؛ فیلتر ریشه‌یابی Porter (Porter Stem Filter)؛ «consign»",
+          "verified": true
+        },
+        {
+          "en": "and; to; of; the; that; for; it; you; her; was; is; in; a; he; she; have; with; not; said; as; from; his; on; were; him; up; my; Ben; Henchard",
+          "fa": "واژه‌های ابر واژگان: and (و)؛ to (به)؛ of (از)؛ the (حرف تعریف معین)؛ that (آن / که)؛ for (برای)؛ it (آن)؛ you (تو / شما)؛ her (او، مؤنث / مال او)؛ was (بود)؛ is (است)؛ in (در)؛ a (یک / حرف تعریف نامعین)؛ he (او، مذکر)؛ she (او، مؤنث)؛ have (داشتن)؛ with (با)؛ not (نه)؛ said (گفت)؛ as (به‌عنوان / چنان‌که)؛ from (از)؛ his (مال او، مذکر)؛ on (روی)؛ were (بودند)؛ him (او، مفعولی مذکر)؛ up (بالا)؛ my (مال من)؛ Ben و Henchard (نام خاص)",
+          "verified": true
+        }
+      ],
+      "image_text_limits": [
+        {
+          "reason_fa": "در ابر واژگان تزئینیِ گوشهٔ راست، کوچک‌ترین واژه‌ها در تصویر اصلیِ ۵۹۶×۳۶۰ پیکسل نیز تفکیک‌پذیر نیستند؛ واژه‌های خوانا ثبت شده‌اند و تصویر اصلی حفظ شده است.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "ec4957ed65fab8f67ba15f5edf0faae04e1642a4fa2c695dd57704488b15e9b0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "روش: چالش‌های مجموعه‌داده در مقیاس بزرگ (Large-Scale Dataset Challenges)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "اجزای هر چالش:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "۱. نمونه‌هایی با نتایج هدف برای آموزش، اعتبارسنجی و آزمون (Training, Validation, Testing)"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "۲. معیاری (Metric) برای سنجش شباهت میان پیش‌بینی هر مدل و نتیجهٔ هدف"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "۳. سرورهای ارزیابی (Evaluation Servers) با جدول‌های رتبه‌بندی (Leaderboards)، برای استانداردکردن ارزیابی و امکان‌پذیرکردن رقابت جهانی"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "۴. چالش‌های جدید برای پرداختنِ جامعهٔ پژوهشی به آن‌ها، که تحلیل مجموعه‌داده و معیارسنجی مدل‌ها شواهدشان را فراهم می‌کنند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "7c53ea4da8a00fc747583406ac67970263ddf0bf417359cf4fe199b0a980327e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "توصیف تصویر (Image Captioning)؛ پاسخ‌گویی به پرسش تصویری (VQA)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "از تیم دوی پاریک (Devi Parikh)، سامانهٔ EvalAI"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "برای وظایف تازه با معیارهای ارزیابی (Evaluation Metrics) تازه، زیرساخت جدید لازم بود."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "قالب‌های ارسال پیش‌بینی‌ها را تعریف می‌کند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CodaLab; Competition; Microsoft COCO Image Captioning Challenge; Organized by tl483; Current server time: Feb. 10, 2026, 10:36 p.m. UTC",
+          "fa": "CodaLab؛ مسابقه؛ چالش توصیف تصویر Microsoft COCO؛ برگزارکننده: tl483؛ زمان کنونی سرور: ۱۰ فوریهٔ ۲۰۲۶، ساعت ۱۰:۳۶ شب به وقت UTC",
+          "verified": true
+        },
+        {
+          "en": "Current; Challenge; March 15, 2015, midnight UTC; End; Competition Ends; Never",
+          "fa": "جاری؛ چالش؛ ۱۵ مارس ۲۰۱۵، نیمه‌شب UTC؛ پایان؛ پایان مسابقه؛ هرگز",
+          "verified": true
+        },
+        {
+          "en": "Learn the Details; Phases; Participate; Results; Forums; Overview; Evaluation; Terms and Conditions",
+          "fa": "اطلاع از جزئیات؛ مرحله‌ها؛ شرکت در مسابقه؛ نتایج؛ انجمن‌ها؛ مرور کلی؛ ارزیابی؛ شرایط و ضوابط",
+          "verified": true
+        },
+        {
+          "en": "The MS COCO Caption Evaluation API; captions, applies sentence tokenization; BLEU-4, ROUGE-L, METEOR and CIDEr-D; Collection and Evaluation Server",
+          "fa": "قطعه‌های قابل‌مشاهدهٔ متنِ بریده‌شده: رابط ارزیابی توصیف MS COCO؛ توصیف‌ها، توکن‌بندی جمله را اعمال می‌کند؛ BLEU-4، ROUGE-L، METEOR و CIDEr-D؛ سرور گردآوری و ارزیابی",
+          "verified": true
+        },
+        {
+          "en": "All Challenges; Documentation; VQA Real Image Challenge (Open-Ended) 2017; Organized by: VQA Team; Starts on: Apr 26, 2017 1:00:00 PM MST (GMT - 7:00); Ends on: Mar 20, 2018 2:00:00 PM MST (GMT - 7:00)",
+          "fa": "همهٔ چالش‌ها؛ مستندات؛ چالش تصاویر واقعی VQA، پاسخ‌باز، ۲۰۱۷؛ برگزارکننده: تیم VQA؛ آغاز: ۲۶ آوریل ۲۰۱۷، ساعت ۱:۰۰:۰۰ بعدازظهر MST (GMT − 7:00)؛ پایان: ۲۰ مارس ۲۰۱۸، ساعت ۲:۰۰:۰۰ بعدازظهر MST (GMT − 7:00)",
+          "verified": true
+        }
+      ],
+      "image_text_limits": [
+        {
+          "reason_fa": "پاراگراف پایینِ نماگرفت CodaLab در لبهٔ راست خودِ تصویر اصلی بریده شده است؛ فقط قطعه‌های واقعاً قابل‌مشاهده ثبت شده‌اند و ادامهٔ جملات بازسازی نشده است.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "c1f46098b8c3bb45b63ce35a2df3d62d4bc1282c0482afd51e70f18572f314e2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "اعلام برندگان در کارگاه سالانه به اشتراک گذاشته شد؛ به مدت ۶ سال"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://visualqa.org/workshop.html"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "VQA Visual Question Answering; Virginia Tech Invent the Future; Georgia Tech",
+          "fa": "VQA: پاسخ‌گویی به پرسش تصویری (Visual Question Answering)؛ ویرجینیا تک: آینده را بسازید؛ جورجیا تک",
+          "verified": true
+        },
+        {
+          "en": "Home; People; Code; Demo; Download; Evaluation; Challenge; Browse; Visualize; Workshop; Sponsors; Terms; External",
+          "fa": "خانه؛ افراد؛ کد؛ نمایش آزمایشی؛ بارگیری؛ ارزیابی؛ چالش؛ مرور؛ نمایش دیداری؛ کارگاه؛ حامیان؛ شرایط؛ بیرونی",
+          "verified": true
+        },
+        {
+          "en": "Visual Question Answering and Dialog Workshop; Location: Seaside Ballroom B, Long Beach Convention & Entertainment Center; at CVPR 2019, June 17, Long Beach, California, USA",
+          "fa": "کارگاه پاسخ‌گویی به پرسش تصویری و گفت‌وگو؛ مکان: Seaside Ballroom B، مرکز همایش و سرگرمی لانگ بیچ؛ در CVPR 2019، روز ۱۷ ژوئن، لانگ بیچ، کالیفرنیا، ایالات متحده",
+          "verified": true
+        },
+        {
+          "en": "What is the mustache made of?; AI System; bananas",
+          "fa": "«What is the mustache made of?» (سبیل از چه چیزی ساخته شده است؟)؛ سامانهٔ هوش مصنوعی (AI System)؛ «bananas» (موزها)",
+          "verified": true
+        },
+        {
+          "en": "Two zebra are walking around their pen at the zoo.; Q1: Any people in the shot? A1: No, there aren't any.; Q2: Any other animal? A2: No, just zebras.",
+          "fa": "«Two zebra are walking around their pen at the zoo.» (دو گورخر در محوطهٔ خود در باغ‌وحش قدم می‌زنند.)؛ Q1: «Any people in the shot?» (کسی در تصویر هست؟)؛ A1: «No, there aren’t any.» (نه، کسی نیست.)؛ Q2: «Any other animal?» (حیوان دیگری هست؟)؛ A2: «No, just zebras.» (نه، فقط گورخرها.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "ec4957ed65fab8f67ba15f5edf0faae04e1642a4fa2c695dd57704488b15e9b0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "روش: چالش‌های مجموعه‌داده در مقیاس بزرگ (Large-Scale Dataset Challenges)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "اجزای هر چالش:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "۱. نمونه‌هایی با نتایج هدف برای آموزش، اعتبارسنجی و آزمون (Training, Validation, Testing)"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "۲. معیاری (Metric) برای سنجش شباهت میان پیش‌بینی هر مدل و نتیجهٔ هدف"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "۳. سرورهای ارزیابی (Evaluation Servers) با جدول‌های رتبه‌بندی (Leaderboards)، برای استانداردکردن ارزیابی و امکان‌پذیرکردن رقابت جهانی"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "۴. چالش‌های جدید برای پرداختنِ جامعهٔ پژوهشی به آن‌ها، که تحلیل مجموعه‌داده و معیارسنجی مدل‌ها شواهدشان را فراهم می‌کنند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "4dd3e8aae00829fdf7c4af47433534a31cb055fe0f7569d0fec972358b0fc2c2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "موفقیت‌های جداگانه: شبکه‌های عصبی کانولوشنی (CNNs) برای بینایی و شبکه‌های عصبی بازگشتی (RNNs) برای زبان"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "چالش بعدی: توصیف صحنه‌های دیداری با زبان طبیعی (Natural Language)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "پیشگامان اولیهٔ بینایی–زبان (Vision-Language): پیوند پیکسل‌ها و واژه‌ها"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "5467e2dcd25e0dd6e90041ecae65f38c7d1a5efe4caf9869ecf129d777dffdbc",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "https://smerity.com/articles/2016/google_nmt_arch.html"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "heading",
+          "fa": "چالش: دو وجه (Modalities) در یک چارچوب"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "برای مثال، بازنمایی بینایی (Vision Representation) با AlexNet؛ برای مثال، بازنمایی زبان (Language Representation) با شبکه‌های عصبی بازگشتی (RNNs)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "https://www.researchgate.net/figure/Architecture-of-Alexnet-From-left-to-right-input-to-output-five-convolutional-layers_fig2_312303454",
+          "visible_en": "https://www.researchgate.net/figure/Architecture-of-Alexnet-From-left-to-right-input-to-output-five-convolutional-layers_fig2_312303454",
+          "verified": true,
+          "reason_fa": "نشانهٔ کنترلی U+FFFE در متن استخراج‌شده، به‌جای محل شکستن URL آمده است؛ در اسلاید خودِ نشانی با خط تیرهٔ معمول دیده می‌شود."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "C1; C2; C3; C4; C5; FC6; FC7; 96; 256; 384; 384; 256; 4096; 4096",
+          "fa": "برچسب‌های خوانای نمودار AlexNet: C1؛ C2؛ C3؛ C4؛ C5؛ FC6؛ FC7؛ 96؛ 256؛ 384؛ 384؛ 256؛ 4096؛ 4096",
+          "verified": true
+        },
+        {
+          "en": "He loved to eat .; Er liebte zu essen .; Embed; S; Decoder; Softmax; NULL",
+          "fa": "«He loved to eat .» (او غذاخوردن را دوست داشت.)؛ «Er liebte zu essen .» (او غذاخوردن را دوست داشت.)؛ تعبیه (Embed)؛ S؛ رمزگشا (Decoder)؛ سافت‌مکس (Softmax)؛ NULL",
+          "verified": true
+        }
+      ],
+      "image_text_limits": [
+        {
+          "reason_fa": "علامت ضربدر قرمزِ روی دو نمودار، بخشی از برچسب‌ها و ابعاد را در خود اسلاید می‌پوشاند؛ متن پنهان پشت آن بازسازی نشده است.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "8552041e8f38715d0803ab6ce6632d1617775407ba095231c5286838f3e3d158",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "(CVPR, 2015)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "«می‌خواهیم در این کار یک مدل مشترک واحد ارائه کنیم…»، به‌جای وضع موجود که توسعه‌دهندگان چند مؤلفه را در یک راه‌حل مهندسی‌شده «به هم وصله می‌کنند»."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Show and Tell: A Neural Image Caption Generator; Oriol Vinyals; Alexander Toshev; Samy Bengio; Dumitru Erhan; Google",
+          "fa": "Show and Tell: مولد عصبی توصیف تصویر؛ اوریول وینیالس (Oriol Vinyals)؛ الکساندر توشف (Alexander Toshev)؛ سامی بنجیو (Samy Bengio)؛ دیمیترو ارهان (Dumitru Erhan)؛ گوگل",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "ecad3a75bae0e2cf848cffb8dca2b7f82ca964bc9147c5838ef474f42e344616",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مدل عصبی توصیف تصویر (Neural Image Caption Model)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Vinyals et al. Show and Tell: A Neural Image Caption Generator. CVPR 2015."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "الهام از ترجمهٔ ماشینی (Machine Translation) می‌آید:"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "ایده: در مدلی که به‌صورت سرتاسری (End-to-End) آموزش دیده است، تصویر را به متن ترجمه کنید."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://smerity.com/articles/2016/google_nmt_arch.html"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Encoder; Embed; S; Decoder; Softmax; NULL",
+          "fa": "رمزگذار (Encoder)؛ تعبیه (Embed)؛ S؛ رمزگشا (Decoder)؛ سافت‌مکس (Softmax)؛ NULL",
+          "verified": true
+        },
+        {
+          "en": "He loved to eat .; Er liebte zu essen .; NULL Er liebte zu essen",
+          "fa": "«He loved to eat .» (او غذاخوردن را دوست داشت.)؛ «Er liebte zu essen .» (او غذاخوردن را دوست داشت.)؛ دنبالهٔ ورودی رمزگشا: «NULL Er liebte zu essen»",
+          "verified": true
+        },
+        {
+          "en": "Vision Deep CNN; Language Generating RNN",
+          "fa": "بینایی: شبکهٔ عصبی کانولوشنی عمیق (Deep CNN)؛ زبان: شبکهٔ عصبی بازگشتی مولد (Generating RNN)",
+          "verified": true
+        },
+        {
+          "en": "A group of people shopping at an outdoor market.; There are many vegetables at the fruit stand.",
+          "fa": "«A group of people shopping at an outdoor market.» (گروهی از مردم در بازاری روباز خرید می‌کنند.)؛ «There are many vegetables at the fruit stand.» (سبزیجات زیادی در غرفهٔ میوه وجود دارد.)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "0bfe253e7713a78a2fff1d8a17e41bb659ebff277a022a6663c14037b7a291db",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مدل عصبی توصیف تصویر (Neural Image Caption Model)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "شبکهٔ LSTM، واژهٔ بعدی را پیش‌بینی می‌کند؛ مدل شبکهٔ عصبی کانولوشنی (CNN) برندهٔ ImageNet در سال ۲۰۱۴"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Vinyals et al. Show and Tell: A Neural Image Caption Generator. CVPR 2015."
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "* ماتریس تعبیه (Embedding Matrix) یاد گرفته می‌شود تا واژه‌ها را به همان فضای ۵۱۲بعدیِ تصاویر نگاشت کند؛ برای واژه‌های توکن‌بندی‌شده‌ای که دست‌کم ۵ بار در دادهٔ آموزشی دیده شده‌اند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "image; LSTM; S₀; S₁; Sₙ₋₁; WₑS₀; WₑS₁; WₑSₙ₋₁; p₁; p₂; pₙ; log p₁(S₁); log p₂(S₂); log pₙ(Sₙ)",
+          "fa": "تصویر (image)؛ LSTM؛ نمادهای نمودار: S₀؛ S₁؛ Sₙ₋₁؛ WₑS₀؛ WₑS₁؛ WₑSₙ₋₁؛ p₁؛ p₂؛ pₙ؛ log p₁(S₁)؛ log p₂(S₂)؛ log pₙ(Sₙ)",
+          "verified": true,
+          "latex": "S_0,\\ S_1,\\ S_{N-1};\\quad W_eS_0,\\ W_eS_1,\\ W_eS_{N-1};\\quad p_1,\\ p_2,\\ p_N;\\quad \\log p_1(S_1),\\ \\log p_2(S_2),\\ \\log p_N(S_N)"
+        },
+        {
+          "en": "Vision Deep CNN; Language Generating RNN; A group of people shopping at an outdoor market.; There are many vegetables at the fruit stand.",
+          "fa": "بینایی: شبکهٔ عصبی کانولوشنی عمیق (Deep CNN)؛ زبان: شبکهٔ عصبی بازگشتی مولد (Generating RNN)؛ «A group of people shopping at an outdoor market.» (گروهی از مردم در بازاری روباز خرید می‌کنند.)؛ «There are many vegetables at the fruit stand.» (سبزیجات زیادی در غرفهٔ میوه وجود دارد.)",
+          "verified": true
+        }
+      ],
+      "image_text_limits": [
+        {
+          "reason_fa": "ریزبرچسب‌های داخل شمای بسیار کوچکِ CNN در سمت چپ حتی در تصویر تعبیه‌شدهٔ اصلی ۸۰۸×۶۴۰ پیکسل نیز محو هستند؛ برچسب‌های خوانای نمودار LSTM ثبت شده‌اند.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "cf45d0bf644e37d89b71fa7e3b360f040014e66eb08c873a63747f5d293cd635",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "انگیزهٔ تعبیهٔ واژه (Word Embedding)، بخش ۱ از ۲"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "کدگذاری تک‌فعال (One-Hot Encoding) واژه‌ها چه مشکلاتی دارد؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "بار بسیار زیاد بر حافظه"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "از نظر محاسباتی پرهزینه است."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "تعداد ابعاد = اندازهٔ واژگان (Vocabulary Size)"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "برای مثال، زبان انگلیسی به‌تنهایی حدود ۱۷۰٬۰۰۰ واژه دارد که حدود ۱۰٬۰۰۰ واژهٔ آن پرکاربرد است."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "0, 0, 1, 0, 0, 0, …, 0, 0",
+          "fa": "بردار تک‌فعال (One-Hot): 0, 0, 1, 0, 0, 0, …, 0, 0",
+          "verified": true,
+          "latex": "\\begin{bmatrix}0&0&1&0&0&0&\\cdots&0&0\\end{bmatrix}^{\\mathsf T}"
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "a6496ca5160eab4f62fb28eed878a3ce702675834d79e070d49fa1803e596f19",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "انگیزهٔ تعبیهٔ واژه (Word Embedding)، بخش ۲ از ۲"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "همچنین، هیچ برداشتی از شباهت واژه‌ها وجود ندارد؛ فاصلهٔ میان همهٔ واژه‌ها برابر است!"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "برای مثال، آیا واژه‌هایی که در این بافت می‌گنجند نباید شبیه‌تر باشند؟ «He was ____ to school.» (او داشت ____ به مدرسه می‌رفت.)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "Walking (راه‌رفتن)؛ Soap (صابون)؛ Fire (آتش)؛ Skipping (لی‌لی‌کردن)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "5850a52ff3de1c9ab41edcbe3d808abd75e8884021eb698d22e2f4241b61549a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پیاده‌سازی ماتریس تعبیهٔ واژه (Word Embedding Matrix)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "واژهٔ ورودی را به برداری چگال (Dense Vector) تبدیل می‌کند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "اندازهٔ واژگان (Vocabulary)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "Berimbau (بریمباو، ساز)؛ Soap (صابون)؛ Fire (آتش)؛ Guitar (گیتار)؛ …"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "تعداد ابعاد هدف؛ برای مثال، ۵"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "کدگذاری تک‌فعال (One-Hot Encoding) مشخص می‌کند کدام تعبیهٔ واژه به کار رود؛ با استفاده از اندیس واژهٔ تک‌فعال، به‌طور کارآمد استخراج می‌شود."
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "0.23; -0.41; -0.33; 0.01; 0.56",
+          "fa": "بردار تعبیهٔ انتخاب‌شده: 0.23؛ −0.41؛ −0.33؛ 0.01؛ 0.56",
+          "verified": true,
+          "latex": "\\begin{bmatrix}0.23\\\\-0.41\\\\-0.33\\\\0.01\\\\0.56\\end{bmatrix}"
+        },
+        {
+          "en": "0; 0; 1; 0; 0; 0; …; 0; 0",
+          "fa": "بردار تک‌فعالِ انتخاب‌گر ستون: 0؛ 0؛ 1؛ 0؛ 0؛ 0؛ …؛ 0؛ 0",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "80ef382094d9918c81f0a8c94cac75deb8a8c19fb20c3d2d2b449e92a25f116d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نتایج تعبیهٔ واژه (Word Embedding)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "فضای مشترک و چگالِ تعبیه (Dense Shared Embedding Space) امکان مقایسهٔ واژه‌ها با چند ویژگی را فراهم می‌کند، به‌گونه‌ای که فاصلهٔ هر جفت واژه متفاوت باشد!"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "چه ویژگی‌هایی می‌توانند این واژه‌ها را از هم متمایز کنند؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "Piano (پیانو)؛ Soap (صابون)؛ Fire (آتش)؛ Guitar (گیتار)"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "literal",
+          "fa": "؟؛ ؟؛ ؟؛ ؟؛ ؟؛ ؟؛ ؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "b8fcefaef43c930191e971b82459fcb59ec2027d05f050c2d845bbc6ce9d5462",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "نتایج تعبیهٔ واژه (Word Embedding)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "فضای مشترک و چگالِ تعبیه (Dense Shared Embedding Space) امکان مقایسهٔ واژه‌ها با چند ویژگی را فراهم می‌کند، به‌گونه‌ای که فاصلهٔ هر جفت واژه متفاوت باشد!"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "چه ویژگی‌هایی می‌توانند این واژه‌ها را از هم متمایز کنند؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "Piano (پیانو)؛ Soap (صابون)؛ Fire (آتش)؛ Guitar (گیتار)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "چوبی (Wooden)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "کالا (Commodity)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "پاک‌کننده (Cleaner)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "غذا (Food)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "دما (Temperature)"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "پرسروصدا (Noisy)"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "text",
+          "fa": "سلاح (Weapon)"
+        },
+        {
+          "source_lines": [
+            12,
+            13,
+            14
+          ],
+          "kind": "text",
+          "fa": "ویژگی‌های احتمالی و تفسیرپذیر؛ در عمل، تفسیر ویژگی‌های آموخته‌شده دشوار است."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "af6d89ade5007681a6c896cf7218321b06cc79b5956715583ef47f12429b8f2c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "جمع‌بندی تعبیهٔ واژه (Word Embedding)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "یک فضای تعبیه (Embedding Space)، تعداد متناهی واژه را بازنمایی می‌کند که هنگام آموزش تعیین می‌شوند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "تعبیهٔ یک واژه به‌صورت برداری بازنمایی می‌شود که بافت (Context) آن را نشان می‌دهد."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "تعداد ابعاد همهٔ تعبیه‌های واژه در یک فضای تعبیه یکسان است."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "تعداد ابعاد تعبیهٔ واژه در مثال نشان‌داده‌شده چند است؟"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "…"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "f3c88c1f45218813b437cf4e1817eeebc7d8df5c6c6ea38ccf5e9f80ddc9144b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مدل عصبی توصیف تصویر (Neural Image Caption Model): آموزش"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Vinyals et al. Show and Tell: A Neural Image Caption Generator. CVPR 2015."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "bullet",
+          "fa": "پارامترهای شبکهٔ عصبی کانولوشنی (CNN) برای ۵۰۰ هزار گام ثابت نگه داشته شدند و سپس همهٔ پارامترها برای ۱۰۰ هزار گام آموزش دیدند."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "آموزش روی یک پردازندهٔ گرافیکی K20، بیش از ۳ هفته طول کشید."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "مجموعه‌داده‌های استفاده‌شده برای توسعهٔ مدل:"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "image; LSTM; S₀; S₁; Sₙ₋₁; WₑS₀; WₑS₁; WₑSₙ₋₁; p₁; p₂; pₙ; log p₁(S₁); log p₂(S₂); log pₙ(Sₙ)",
+          "fa": "تصویر (image)؛ LSTM؛ نمادهای نمودار: S₀؛ S₁؛ Sₙ₋₁؛ WₑS₀؛ WₑS₁؛ WₑSₙ₋₁؛ p₁؛ p₂؛ pₙ؛ log p₁(S₁)؛ log p₂(S₂)؛ log pₙ(Sₙ)",
+          "verified": true,
+          "latex": "S_0,\\ S_1,\\ S_{N-1};\\quad W_eS_0,\\ W_eS_1,\\ W_eS_{N-1};\\quad p_1,\\ p_2,\\ p_N;\\quad \\log p_1(S_1),\\ \\log p_2(S_2),\\ \\log p_N(S_N)"
+        },
+        {
+          "en": "Dataset name | size: train | valid. | test; Pascal VOC 2008 [2] | - | - | 1,000; Flickr8k [42] | 6,000 | 1,000 | 1,000; Flickr30k [43] | 28,000 | 1,000 | 1,000; MSCOCO [44] | 82,783 | 40,504 | 40,775; SBU [18] | 1M | - | -",
+          "fa": "نام مجموعه‌داده | اندازه: آموزش (train) | اعتبارسنجی (valid.) | آزمون (test)؛ Pascal VOC 2008 [2]: — | — | 1,000؛ Flickr8k [42]: 6,000 | 1,000 | 1,000؛ Flickr30k [43]: 28,000 | 1,000 | 1,000؛ MSCOCO [44]: 82,783 | 40,504 | 40,775؛ SBU [18]: یک میلیون | — | —",
+          "verified": true
+        }
+      ],
+      "image_text_limits": [
+        {
+          "reason_fa": "ریزبرچسب‌های داخل شمای بسیار کوچکِ CNN در سمت چپ حتی در تصویر تعبیه‌شدهٔ اصلی ۸۰۸×۶۴۰ پیکسل نیز محو هستند؛ برچسب‌های خوانای نمودار LSTM ثبت شده‌اند.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "9a04edc4255e3d2e1b765a2745eaf74e6e186c23a4fdb115335a9b1f77749a47",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مدل عصبی توصیف تصویر (Neural Image Caption Model): استفاده از جست‌وجوی پرتویی (Beam Search)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "حالت پیش‌فرض: در هر گام زمانی، بهترین پیش‌بینی واژه را به‌صورت حریصانه (Greedily) انتخاب کنید."
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "bullet",
+          "fa": "ایده: محتمل‌ترین مورد را از میان بهترین پیش‌بینی‌های واژهٔ جاری به‌همراه واژه‌های پیشین، با طول N، انتخاب کنید."
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "bullet",
+          "fa": "پهنای پرتو (Beam Width): تعداد بهترین پیش‌بینی‌هایی که در هر گام نگه داشته می‌شوند."
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "در مثال:"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "پهنای پرتو چند است؟"
+        },
+        {
+          "source_lines": [
+            10,
+            11,
+            12
+          ],
+          "kind": "bullet",
+          "fa": "پس از هر پیش‌بینی، مدل چند بار اجرا می‌شود؟"
+        },
+        {
+          "source_lines": [
+            13
+          ],
+          "kind": "bullet",
+          "fa": "برای مدل NIC، پهنای پرتو برابر ۲۰ است."
+        },
+        {
+          "source_lines": [
+            14
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/foundations-of-nlp-explained-visually-beam-search-how-it-works-1586b9849a24/"
+        },
+        {
+          "source_lines": [
+            15,
+            16,
+            17
+          ],
+          "kind": "text",
+          "fa": "احتمال هر دنباله را چگونه محاسبه کنیم؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "<START>; A 0.5; B; C 0.4; D; E; END; AA; AB 0.2; AC; AD; AE 0.25; A-END; CA; CB; CC; CD; CE; C-END; ABA; ABB; ABC 0.16; ABD; ABE; AB-END; AEA; AEB; AEC; AED 0.2; AEE; AE-END; <END>",
+          "fa": "نمادهای نمودار، بدون تغییر رشته‌ها: <START> (آغاز)؛ A 0.5؛ B؛ C 0.4؛ D؛ E؛ END (پایان)؛ AA؛ AB 0.2؛ AC؛ AD؛ AE 0.25؛ A-END؛ CA؛ CB؛ CC؛ CD؛ CE؛ C-END؛ ABA؛ ABB؛ ABC 0.16؛ ABD؛ ABE؛ AB-END؛ AEA؛ AEB؛ AEC؛ AED 0.2؛ AEE؛ AE-END؛ <END> (پایان)",
+          "verified": true
+        },
+        {
+          "en": "Candidate Sequences; Position 1: A, C; Position 2: AB, AE; Position 3: ABC, AED",
+          "fa": "دنباله‌های نامزد (Candidate Sequences)؛ موقعیت ۱: A, C؛ موقعیت ۲: AB, AE؛ موقعیت ۳: ABC, AED",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "99a8843c49662e9cb2f8ce1c2a42c39014b9830a291b2c8aca2a35d9461a5910",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مدل عصبی توصیف تصویر (Neural Image Caption Model): جست‌وجوی پرتویی (Beam Search)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/foundations-of-nlp-explained-visually-beam-search-how-it-works-1586b9849a24/"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "خروجی‌های سافت‌مکس (Softmax):"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Step t = 1; t = 2; Combined; A 0.5; B; C 0.4; D; E; END; A; B 0.4; C; D; E 0.5; END; AA; AB 0.20; AC; AD; AE 0.25; A-END",
+          "fa": "گام t = 1؛ t = 2؛ ترکیب‌شده (Combined)؛ نمادهای دنباله و احتمال: A 0.5؛ B؛ C 0.4؛ D؛ E؛ END (پایان)؛ A؛ B 0.4؛ C؛ D؛ E 0.5؛ END؛ AA؛ AB 0.20؛ AC؛ AD؛ AE 0.25؛ A-END",
+          "verified": true
+        },
+        {
+          "en": "Prob (AB | input) = Prob (A | input) * Prob (B | A, input)",
+          "fa": "احتمال AB به شرط ورودی، برابر احتمال A به شرط ورودی، ضرب‌در احتمال B به شرط A و ورودی است.",
+          "verified": true,
+          "latex": "\\operatorname{Prob}(AB\\mid\\mathrm{input})=\\operatorname{Prob}(A\\mid\\mathrm{input})\\,\\operatorname{Prob}(B\\mid A,\\mathrm{input})"
+        },
+        {
+          "en": "Prob (AB) = Prob (A) * Prob (B | A) = 0.5 * 0.4 = 0.20",
+          "fa": "احتمال AB = احتمال A × احتمال B به شرط A = 0.5 × 0.4 = 0.20",
+          "verified": true,
+          "latex": "\\operatorname{Prob}(AB)=\\operatorname{Prob}(A)\\,\\operatorname{Prob}(B\\mid A)=0.5\\times0.4=0.20"
+        }
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "c9acf09ed56e3826ac506f5b6065621d47f7f82dcd2ac72755d879d294f717bb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مدل عصبی توصیف تصویر (Neural Image Caption Model): جست‌وجوی پرتویی (Beam Search)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "حالت پیش‌فرض: در هر گام زمانی، بهترین پیش‌بینی واژه را به‌صورت حریصانه (Greedily) انتخاب کنید."
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "bullet",
+          "fa": "ایده: محتمل‌ترین مورد را از میان بهترین پیش‌بینی‌های واژهٔ جاری به‌همراه واژه‌های پیشین، با طول N، انتخاب کنید."
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "bullet",
+          "fa": "پهنای پرتو (Beam Width): تعداد بهترین پیش‌بینی‌هایی که در هر گام نگه داشته می‌شوند."
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/foundations-of-nlp-explained-visually-beam-search-how-it-works-1586b9849a24/"
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "احتمال‌ها را چگونه محاسبه کنیم؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "<START>; A 0.5; B; C 0.4; D; E; END; AA; AB 0.2; AC; AD; AE 0.25; A-END; CA; CB; CC; CD; CE; C-END; ABA; ABB; ABC 0.16; ABD; ABE; AB-END; AEA; AEB; AEC; AED 0.2; AEE; AE-END; <END>",
+          "fa": "نمادهای نمودار، بدون تغییر رشته‌ها: <START> (آغاز)؛ A 0.5؛ B؛ C 0.4؛ D؛ E؛ END (پایان)؛ AA؛ AB 0.2؛ AC؛ AD؛ AE 0.25؛ A-END؛ CA؛ CB؛ CC؛ CD؛ CE؛ C-END؛ ABA؛ ABB؛ ABC 0.16؛ ABD؛ ABE؛ AB-END؛ AEA؛ AEB؛ AEC؛ AED 0.2؛ AEE؛ AE-END؛ <END> (پایان)",
+          "verified": true
+        },
+        {
+          "en": "Candidate Sequences; Position 1: A, C; Position 2: AB, AE; Position 3: ABC, AED",
+          "fa": "دنباله‌های نامزد (Candidate Sequences)؛ موقعیت ۱: A, C؛ موقعیت ۲: AB, AE؛ موقعیت ۳: ABC, AED",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "99a8843c49662e9cb2f8ce1c2a42c39014b9830a291b2c8aca2a35d9461a5910",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مدل عصبی توصیف تصویر (Neural Image Caption Model): جست‌وجوی پرتویی (Beam Search)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/foundations-of-nlp-explained-visually-beam-search-how-it-works-1586b9849a24/"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "خروجی‌های سافت‌مکس (Softmax):"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Step t = 2; t = 3; Combined; AA; AB 0.20; AC; AD; AE 0.25; A-END; A; B; C 0.8; D; E; END; ABA; ABB; ABC 0.16; ABD; ABE; AB-END; A; B; C; D 0.8; E; END; AEA; AEB; AEC; AED 0.2; AEE; AE-END",
+          "fa": "گام t = 2؛ t = 3؛ ترکیب‌شده (Combined)؛ نمادهای دنباله و احتمال: AA؛ AB 0.20؛ AC؛ AD؛ AE 0.25؛ A-END؛ A؛ B؛ C 0.8؛ D؛ E؛ END (پایان)؛ ABA؛ ABB؛ ABC 0.16؛ ABD؛ ABE؛ AB-END؛ A؛ B؛ C؛ D 0.8؛ E؛ END؛ AEA؛ AEB؛ AEC؛ AED 0.2؛ AEE؛ AE-END",
+          "verified": true
+        },
+        {
+          "en": "Prob (ABC) = Prob (AB) * Prob (C | AB) = 0.2 * 0.8 = 0.16",
+          "fa": "احتمال ABC = احتمال AB × احتمال C به شرط AB = 0.2 × 0.8 = 0.16",
+          "verified": true,
+          "latex": "\\operatorname{Prob}(ABC)=\\operatorname{Prob}(AB)\\,\\operatorname{Prob}(C\\mid AB)=0.2\\times0.8=0.16"
+        },
+        {
+          "en": "Prob (AED) = Prob (AE) * Prob (D | AE) = 0.25 * 0.8 = 0.2",
+          "fa": "احتمال AED = احتمال AE × احتمال D به شرط AE = 0.25 × 0.8 = 0.2",
+          "verified": true,
+          "latex": "\\operatorname{Prob}(AED)=\\operatorname{Prob}(AE)\\,\\operatorname{Prob}(D\\mid AE)=0.25\\times0.8=0.2"
+        }
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "977cebc82c72210cc5ee1977f2ade8df2b6faf4df1c42866d70ac449a0f7faf6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مدل عصبی توصیف تصویر (Neural Image Caption Model): نتایج"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Vinyals et al. Show and Tell: A Neural Image Caption Generator. CVPR 2015."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "به نتایجی پیشرو در زمان خود (State-of-the-Art)، اما ناکامل، رسید؛ فرضیه این است که دادهٔ آموزشی بیشتر عملکرد را افزایش می‌دهد."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "نزدیک‌ترین واژه‌های همسایه در فضای تعبیهٔ آموخته‌شده (Learned Embedding Space)، واژه‌های مشابه را نزدیک یکدیگر داشتند:"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "A herd of elephants walking across a dry grass field.; Describes without errors",
+          "fa": "«A herd of elephants walking across a dry grass field.» (گله‌ای فیل در چمنزاری خشک قدم می‌زنند.)؛ توصیف بدون خطا",
+          "verified": true
+        },
+        {
+          "en": "A close up of a cat laying on a couch.; Describes with minor errors",
+          "fa": "«A close up of a cat laying on a couch.» (نمای نزدیک گربه‌ای که روی کاناپه دراز کشیده است.)؛ توصیف با خطاهای جزئی",
+          "verified": true
+        },
+        {
+          "en": "A red motorcycle parked on the side of the road.; Somewhat related to the image",
+          "fa": "«A red motorcycle parked on the side of the road.» (موتورسیکلتی قرمز در کنار جاده پارک شده است.)؛ تا حدودی مرتبط با تصویر",
+          "verified": true
+        },
+        {
+          "en": "A yellow school bus parked in a parking lot.; Unrelated to the image",
+          "fa": "«A yellow school bus parked in a parking lot.» (اتوبوس مدرسه‌ای زرد در پارکینگ پارک شده است.)؛ نامرتبط با تصویر",
+          "verified": true
+        },
+        {
+          "en": "Word | Neighbors; car | van, cab, suv, vehicule, jeep",
+          "fa": "واژه (Word) | همسایه‌ها (Neighbors)؛ car (خودرو) | van (ون)، cab (تاکسی)، suv (شاسی‌بلند)، vehicule (واژهٔ منبع برای وسیلهٔ نقلیه)، jeep (جیپ)",
+          "verified": true
+        },
+        {
+          "en": "boy | toddler, gentleman, daughter, son; street | road, streets, highway, freeway",
+          "fa": "boy (پسر) | toddler (کودک نوپا)، gentleman (آقا)، daughter (دخترِ خانواده)، son (پسرِ خانواده)؛ street (خیابان) | road (جاده)، streets (خیابان‌ها)، highway (بزرگراه)، freeway (آزادراه)",
+          "verified": true
+        },
+        {
+          "en": "horse | pony, donkey, pig, goat, mule; computer | computers, pc, crt, chip, compute",
+          "fa": "horse (اسب) | pony (اسب کوچک)، donkey (الاغ)، pig (خوک)، goat (بز)، mule (قاطر)؛ computer (رایانه) | computers (رایانه‌ها)، pc (رایانهٔ شخصی)، crt (لولهٔ پرتو کاتدی)، chip (تراشه)، compute (محاسبه‌کردن)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "1010ca5e6da3094cc6fdd60f814a0f9892e0f80bc90e0ba3e6339e357f11cd7f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "(ICCV, 2015)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "VQA: Visual Question Answering; www.visualqa.org",
+          "fa": "VQA: پاسخ‌گویی به پرسش تصویری (Visual Question Answering)؛ www.visualqa.org",
+          "verified": true
+        },
+        {
+          "en": "Aishwarya Agrawal*; Jiasen Lu*; Stanislaw Antol*; Margaret Mitchell; C. Lawrence Zitnick; Dhruv Batra; Devi Parikh",
+          "fa": "آیشواریا آگراوال* (Aishwarya Agrawal*)؛ جیاسن لو* (Jiasen Lu*)؛ استانیسلاو آنتول* (Stanislaw Antol*)؛ مارگارت میچل (Margaret Mitchell)؛ سی. لارنس زیتنیک (C. Lawrence Zitnick)؛ درو باترا (Dhruv Batra)؛ دوی پاریک (Devi Parikh)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "bfd9503fc27ab0d8aff45b1ba8f69cddb7140b21b2575bc21e5670d91a8f4e67",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مدل پیشنهادی (Proposed Model)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Agrawal et al. VQA: Visual Question Answering. ICCV 2015."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "۱٬۰۰۰ پاسخ پرتکرار در بخش‌های آموزش و اعتبارسنجی (Training and Validation Splits)؛ حدود ۸۳٪ پاسخ‌ها را پوشش می‌دهد."
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "ادغام (Fusion) دو وجه (Modalities)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "لایه‌ها به ۱۰۲۴ بعد تبدیل شده‌اند."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "واژه‌های ورودی به تعبیه‌های ۳۰۰بعدی (Embeddings) نگاشت شده‌اند."
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "با زیان آنتروپی متقاطع (Cross-Entropy Loss)، به‌صورت سرتاسری (End-to-End) آموزش داده شد، در حالی که پارامترهای VGGNet ثابت نگه داشته شدند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "4096 output units from last hidden layer (VGGNet, Normalized); Convolution Layer + Non-Linearity; Pooling Layer; Convolution Layer + Non-Linearity; Pooling Layer; Fully-Connected MLP",
+          "fa": "۴۰۹۶ واحد خروجی از آخرین لایهٔ پنهان (Hidden Layer)، در VGGNet با نرمال‌سازی (Normalized)؛ لایهٔ کانولوشن (Convolution Layer) به‌همراه غیرخطی‌بودن (Non-Linearity)؛ لایهٔ تجمیع (Pooling Layer)؛ لایهٔ کانولوشن به‌همراه غیرخطی‌بودن؛ لایهٔ تجمیع؛ پرسپترون چندلایهٔ تمام‌متصل (Fully-Connected MLP)",
+          "verified": true
+        },
+        {
+          "en": "2×2×512 LSTM; Fully-Connected; 1024; 1024; 1024; Point-wise multiplication; Fully-Connected; 1000; Softmax; 1000; “2”",
+          "fa": "LSTM با 2×2×512؛ تمام‌متصل (Fully-Connected)؛ 1024؛ 1024؛ 1024؛ ضرب مؤلفه‌به‌مؤلفه (Point-wise Multiplication)؛ تمام‌متصل؛ 1000؛ سافت‌مکس (Softmax)؛ 1000؛ خروجی «2» (دو)",
+          "verified": true
+        },
+        {
+          "en": "How many horses are in this image?",
+          "fa": "«How many horses are in this image?» (چند اسب در این تصویر وجود دارد؟)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "3fbd0db00020d2eb923e105635651413daeb5f25ce43030ee6da3cd9b9f98a6f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تحلیل مدل (Model Analysis)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "مبنای مقایسه (Baseline): یک LSTM با یک لایهٔ پنهان (Hidden Layer) و فعال‌سازی‌های تصویر (Image Activations)، بدون نرمال‌سازی (Normalization)"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "مبنای مقایسه: پرتکرارترین پاسخ در بخش‌های آموزش و اعتبارسنجی (Train/Val Splits)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "مدل پیشنهادی"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "عملکرد مدل در مقایسه با مبناهای ساده‌تر چگونه است؟"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "reference",
+          "fa": "Agrawal et al. VQA: Visual Question Answering. ICCV 2015."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "All; prior (“yes”) 29.66; LSTM Q + I 53.74; deeper LSTM Q + norm I 57.75",
+          "fa": "همه (All)؛ پیشین (prior)، «yes» (بله): 29.66؛ LSTM Q + I (پرسش و تصویر): 53.74؛ deeper LSTM Q + norm I (LSTM عمیق‌ترِ پرسش و تصویر نرمال‌شده): 57.75",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "c837b0eba964c3697ee92793db370a988cec99f0358a5c4db86d2371a9aee26f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تحلیل مدل (Model Analysis)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "مبنای مقایسه (Baseline): یک LSTM با یک لایهٔ پنهان (Hidden Layer) و فعال‌سازی‌های تصویر (Image Activations)، بدون نرمال‌سازی (Normalization)"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "مبنای مقایسه: پرتکرارترین پاسخ در بخش‌های آموزش و اعتبارسنجی (Train/Val Splits)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "مدل پیشنهادی"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "در انواع مختلف پرسش چه روندهایی مشاهده می‌شود؟"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "Agrawal et al. VQA: Visual Question Answering. ICCV 2015."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "All | Yes/No | Number | Other; prior (“yes”) | 29.66 | 70.81 | 00.39 | 01.15; LSTM Q + I | 53.74 | 78.94 | 35.24 | 36.42; deeper LSTM Q + norm I | 57.75 | 80.50 | 36.77 | 43.08",
+          "fa": "ستون‌ها: همه (All) | بله/خیر (Yes/No) | عدد (Number) | سایر (Other)؛ پیشین (prior)، «yes» (بله): 29.66 | 70.81 | 00.39 | 01.15؛ LSTM Q + I (پرسش و تصویر): 53.74 | 78.94 | 35.24 | 36.42؛ deeper LSTM Q + norm I (LSTM عمیق‌ترِ پرسش و تصویر نرمال‌شده): 57.75 | 80.50 | 36.77 | 43.08",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "04238dd4cefb7e357591b6ea6ea55cc32556a1c0441d8b0b5ff485a520fea67c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تحلیل مدل (Model Analysis)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "فقط پرسش"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "فقط تصویر"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "کدام وجه (Modality) بیشترین قدرت پیش‌بینی را دارد؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "هر یک از وجه‌های بینایی و زبان چگونه بر عملکرد اثر می‌گذارد؟"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "فقط پرسش"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "Agrawal et al. VQA: Visual Question Answering. ICCV 2015."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "All | Yes/No | Number | Other; prior (“yes”) | 29.66 | 70.81 | 00.39 | 01.15; I | 28.13 | 64.01 | 00.42 | 03.77",
+          "fa": "ستون‌ها: همه (All) | بله/خیر (Yes/No) | عدد (Number) | سایر (Other)؛ پیشین (prior)، «yes» (بله): 29.66 | 70.81 | 00.39 | 01.15؛ I (تصویر): 28.13 | 64.01 | 00.42 | 03.77",
+          "verified": true
+        },
+        {
+          "en": "LSTM Q | 48.76 | 78.20 | 35.68 | 26.59; LSTM Q + I | 53.74 | 78.94 | 35.24 | 36.42; deeper LSTM Q | 50.39 | 78.41 | 34.68 | 30.03; deeper LSTM Q + norm I | 57.75 | 80.50 | 36.77 | 43.08",
+          "fa": "LSTM Q (پرسش): 48.76 | 78.20 | 35.68 | 26.59؛ LSTM Q + I (پرسش و تصویر): 53.74 | 78.94 | 35.24 | 36.42؛ deeper LSTM Q (LSTM عمیق‌ترِ پرسش): 50.39 | 78.41 | 34.68 | 30.03؛ deeper LSTM Q + norm I (LSTM عمیق‌ترِ پرسش و تصویر نرمال‌شده): 57.75 | 80.50 | 36.77 | 43.08",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "64f5fca788f0814a279038743275ae90a6b4b35928a5814cb13b09c74d6cfe4a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "کار پیشگامانهٔ چندوجهی (Multimodal)، الگوی بسیاری از چالش‌های تازه را تعیین کرد؛ از جمله کارهای تیم من"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "معیارهای ارزیابی (Evaluation Metrics)، سرورهای ارزیابی (Evaluation Servers)، سامانه‌های برچسب‌گذاری (Annotation Systems)، کارگاه سالانه (Annual Workshop)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "توصیف (Caption):"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "«A bunch of small light brown mushrooms in a green field.» (دسته‌ای قارچ کوچکِ قهوه‌ای روشن در چمنزاری سبز.)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "پاسخ به پرسش تصویری (Visual Question):"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "پرسش: «Is it edible or poisonous?» (خوراکی است یا سمی؟)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "پاسخ: «Poisonous» (سمی)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "VizWiz: نخستین مجموعه‌داده‌های در دسترس عموم که از موارد استفادهٔ واقعی سرچشمه گرفته‌اند."
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "گسترش‌یافته از ۴۴٬۷۹۹ مورد ارسال‌شده توسط ۱۱٬۰۴۵ فردی که در سال‌های ۲۰۱۱ تا ۲۰۱۵ کمک دیداری می‌خواستند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "a516a67adf1c98446a264e254d8381a093747e53da6034b09a389d55eb67314b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "۱۰ سال بعد، تأثیر VQA گرامی داشته شد"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "PAMI Everingham Prize Winner 2025; The VQA Series of Challenges",
+          "fa": "برندهٔ جایزهٔ Everingham انجمن PAMI در سال ۲۰۲۵؛ مجموعهٔ چالش‌های VQA",
+          "verified": true
+        },
+        {
+          "en": "Yash Goyal; Dhruv Batra",
+          "fa": "نام‌های خوانای روی پرده: یاش گویال (Yash Goyal)؛ درو باترا (Dhruv Batra)",
+          "verified": true
+        }
+      ],
+      "image_text_limits": [
+        {
+          "reason_fa": "در عکس مراسم، بدن و سر افراد بخشی از سطر نام‌ها و نوشته‌های پایین پرده را می‌پوشاند؛ در تصویر تعبیه‌شدهٔ اصلی ۵۶۳×۲۵۹ پیکسل نیز دیگر حروف کامل و قابل تفکیک نیستند. فقط نوشته‌های خوانا ثبت شده‌اند.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "4dd3e8aae00829fdf7c4af47433534a31cb055fe0f7569d0fec972358b0fc2c2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "موفقیت‌های جداگانه: شبکه‌های عصبی کانولوشنی (CNNs) برای بینایی و شبکه‌های عصبی بازگشتی (RNNs) برای زبان"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "چالش بعدی: توصیف صحنه‌های دیداری با زبان طبیعی (Natural Language)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "پیشگامان اولیهٔ بینایی–زبان (Vision-Language): پیوند پیکسل‌ها و واژه‌ها"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "4dd3e8aae00829fdf7c4af47433534a31cb055fe0f7569d0fec972358b0fc2c2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "موفقیت‌های جداگانه: شبکه‌های عصبی کانولوشنی (CNNs) برای بینایی و شبکه‌های عصبی بازگشتی (RNNs) برای زبان"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "چالش بعدی: توصیف صحنه‌های دیداری با زبان طبیعی (Natural Language)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "پیشگامان اولیهٔ بینایی–زبان (Vision-Language): پیوند پیکسل‌ها و واژه‌ها"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ]
+    }
+  ]
+}

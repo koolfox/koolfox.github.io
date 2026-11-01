@@ -1,0 +1,944 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s09",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/09-Labeled-Datasets-and-Hardware-Acceleration.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2026/s09.pdf",
+    "sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
+    "page_count": 71,
+    "license_notice": "CC BY-NC-SA; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "c4e7a3993594a096a635e6b21c6ada580d793f145dfbd6674c307678c7595a82",
+      "lines": [
+        "Foundation for Progress:",
+        "Large Labeled Datasets and",
+        "Hardware Acceleration",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2026",
+        "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "d5c187881f707d197c3966cf38dbee0850962df042c181199e7bb73bb24b4a3f",
+      "lines": [
+        "Review",
+        "• Last lecture:",
+        "• The quest for deeper neural networks: why do they fail?",
+        "• Convergence is hard: He initialization, batch normalization, Adam optimization",
+        "• More is needed: residual learning with skip connections (ResNet)",
+        "• Programming tutorial",
+        "• Assignments (Canvas)",
+        "• Lab assignment 1 due in 1 week",
+        "• For clarifications about common questions, review the Canvas assignment page",
+        "• Questions?",
+        "• Beyond questions for me, please post them to Piazza and/or attend office hours"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "b6d7e5dcd902c0ff98b5fa6553a129627092243d612c0799979d7c0e335d044b",
+      "lines": [
+        "Today’s Topics",
+        "• The quest for more data and faster machines",
+        "• Paradigm shift: learned representations thrive with large labelled datasets",
+        "• Lucky break: gradient descent meets gaming hardware",
+        "• Tipping point: open-source platforms catalyze widespread engagement",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "b6d7e5dcd902c0ff98b5fa6553a129627092243d612c0799979d7c0e335d044b",
+      "lines": [
+        "Today’s Topics",
+        "• The quest for more data and faster machines",
+        "• Paradigm shift: learned representations thrive with large labelled datasets",
+        "• Lucky break: gradient descent meets gaming hardware",
+        "• Tipping point: open-source platforms catalyze widespread engagement",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "75b0661c4f5f29e34f446826964512298a89c6ab72dde08f8a998013d7aae044",
+      "lines": [
+        "Context: Early Acknowledgments",
+        "of Data and Compute Bottlenecks",
+        "2007",
+        "LeCun & Bengio paper",
+        "“The last quarter century has given us flexible",
+        "non-parametric learning algorithms that can learn",
+        "any continuous input-output mapping, provided",
+        "enough computing resources and training data.”",
+        "CNN backprop paper (LeNet-v1)",
+        "“Because training time was prohibitive (18 days on",
+        "an Alliant mini-supercomputer)… our training times",
+        "were \"only\" 3 days on a Sun workstation.”",
+        "1989"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "9f6271ffd8d557e58daf4254217f2a1d8415f8214408668cd2c57ff725764a90",
+      "lines": [
+        "2025: Retrospective Thoughts",
+        "“In 1986, we showed that the backpropagation algorithm",
+        "could learn the senses of words in a very simple toy example.",
+        "We were very optimistic. We thought we had figured out how",
+        "to make systems learn layers of features, how to make them",
+        "learn to do vision, and that we would be able to make them",
+        "learn to do language. We believed we had solved it and that",
+        "everything would be wonderful…",
+        "That was in the 1980s and early 1990s. However, it would not",
+        "scale up to recognizing real objects in real images, such as",
+        "identifying a bird whether it was a seagull in the distance or",
+        "an ostrich up close… We did not know at that time what the",
+        "problem was. The problem was mainly that we did not have",
+        "enough data or enough compute power… In fact, what we",
+        "really needed was a million times as much data and a million",
+        "times as much compute, and then it worked very well.”",
+        "1947 – Present",
+        "Professor; Google Brain",
+        "2024 Nobel Prize winner",
+        "https://www.persuasion.community/p/geoffrey-hinton"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "b6d7e5dcd902c0ff98b5fa6553a129627092243d612c0799979d7c0e335d044b",
+      "lines": [
+        "Today’s Topics",
+        "• The quest for more data and faster machines",
+        "• Paradigm shift: learned representations thrive with large labelled datasets",
+        "• Lucky break: gradient descent meets gaming hardware",
+        "• Tipping point: open-source platforms catalyze widespread engagement",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "6fa30eaadd3d02c1e4f2fb028cb5d181acc5d7eb976a6420fb98df7a3854edd5",
+      "lines": [
+        "Recall: Learned Representations Overtook",
+        "Feature Engineering in ImageNet Challenge",
+        "Large amounts of ImageNet supervision was critical for neural networks to dominate",
+        "ImageNet, Top 5 Error",
+        "https://www.edge-ai-vision.com/2018/07/deep-learning-in-five-and-a-half-minutes/"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "bda667d94f61a34eaed38858f0cde293a4dc9ea0951b9fe501ef6e8b70d5607a",
+      "lines": [
+        "(CVPR, 2009)"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "1ecbe5da7b6162de21cddf7615428f77d6384963d526249fbd8ee6f1c5851950",
+      "lines": [
+        "ImageNet Context",
+        "Model Dataset",
+        "Model Dataset",
+        "Model Dataset",
+        "Model Dataset",
+        "Dataset",
+        "Models",
+        "Wave 1 of AI: Author Generated",
+        "(Very Small Scale Due to Very Limited HW)",
+        "Waves 2 and 3 of AI: Standardized Benchmarks",
+        "(Larger Scale with Greater Diversity)"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "8666b0167abecb5d4fa268ed46081e4e6212f151a91c38809ec65dd706935327",
+      "lines": [
+        "ImageNet Context",
+        "Essential ingredients for each benchmark:",
+        "1. Test examples that includes target results",
+        "2. Metric for assessing the similarity between each model",
+        "prediction and the target result",
+        "3. New challenges for the community to tackle, evidenced",
+        "by dataset analysis and model benchmarking"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "2344892ec715cfe84b793fa4f1dbf3937446c234991403359d9c78544d046f7f",
+      "lines": [
+        "ImageNet Context",
+        "(Analogous to Tests with, Optionally, School Lessons)",
+        "Shutterstock"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "5b8777ed905f0c8877c7c37c571c7629592d533f6fadad7aa2045ac93a49f083",
+      "lines": [
+        "ImageNet Context",
+        "1945 1963",
+        "Deng et al. 2009",
+        "MNIST",
+        "70,000 28x28 images",
+        "1994",
+        "ImageNet",
+        "2009",
+        "4 256x256 images could be stored to memory;",
+        "scanning each to the computer took ~3 minutes",
+        "3,200,000 images of varying resolution (e.g., 640 x 480)",
+        "Roberts. Machine perception of three-dimensional solids. 1963"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "5abd9a6b367ff1c24405bdf9fc27b80271b065a70f43b58e4774f9f1182a1efe",
+      "lines": [
+        "ImageNet: Much Bigger with More Diversity",
+        "Hear from pioneer, Fei-Fei Li, about her gamble as an early career Assistant Professor to create ImageNet:",
+        "Video (5:44 – 10:10): https://youtu.be/40riCqvRoMs?feature=shared&t=343"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "bf9f4b8eb18c930899378e444aa495d51855d34b96caef5d29b4f5e48149c40c",
+      "lines": [
+        "Paradigm Shift Following ImageNet: Mimickry",
+        "A surge of of new large labeled datasets emerged for many tasks,",
+        "followed by neural networks overtaking feature engineered SOTA for each",
+        "https://3dvision.princeton.edu/projects/2010/SUN/",
+        "Scene Type Classification (2010) Object Localization (2014)",
+        "https://cocodataset.org/#home",
+        "https://visualqa.org/",
+        "Visual Question Answering (2015) Multi-Object Tracking (2015)",
+        "https://motchallenge.net/"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "c8d0c1967cd8f5571dc936ef7ac51ff08e223f094644ff54616a063371d1f046",
+      "lines": [
+        "Paradigm Shift Following ImageNet: Mimickry",
+        "This includes from my research team, which has created over 20 public benchmarks"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "6891727582f1a9c1e1dbb9c0b52c4fe8d348b3275c61cedde5c7db04db78ef1c",
+      "lines": [
+        "Key Ingredients Enabling Big Labeled Datasets",
+        "1. Increasing amounts of data posted to the Internet; e.g.,",
+        "2. Greater hardware capacity; RAM (e.g., GBs) and storage (e.g., TBs)",
+        "3. Data annotation platforms providing on-demand workforce online",
+        "AltaVista",
+        "Picsearch - the search",
+        "engine for pictures and",
+        "images"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "17d0d46d331a15f579e9cb7fec3b7b0a640a1684efb134ffc04c58352ac3f27a",
+      "lines": [
+        "Data Annotation: Give it a Try!",
+        "• What object is in the image? (i.e., object recognition task)"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "85efa090b7669171e184a5315e10f8ce3442b1a686ce16a05c1caecc431a19d3",
+      "lines": [
+        "Chittilappilly et al. A Survey of General-Purpose Crowdsourcing Techniques. IEEE TKDE 2016.",
+        "Pre-Task",
+        "• Instructions",
+        "• Incentives",
+        "• Required qualification criteria",
+        "• Training/Qualification tests",
+        "Data Annotation: How To Collect",
+        "High Quality Annotations?",
+        "Post-Task",
+        "• Honey pot tasks",
+        "• Aggregate redundant responses",
+        "• Manual review",
+        "• Automated review"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "9454c28e9afade6d48c04e96777c32877b4a4cd0e92a0ad2814dee2725b97ff7",
+      "lines": [
+        "Data Annotation: How to Recruit Annotators?",
+        "• Security Questions",
+        "• Gamification",
+        "• Citizen Science",
+        "• Pay"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "9454c28e9afade6d48c04e96777c32877b4a4cd0e92a0ad2814dee2725b97ff7",
+      "lines": [
+        "Data Annotation: How to Recruit Annotators?",
+        "• Security Questions",
+        "• Gamification",
+        "• Citizen Science",
+        "• Pay"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "8af9e76f694cc381b2f40d57cc20ee4caa50f80cadaf8b2734b093360543533b",
+      "lines": [
+        "Data Annotation: How to Recruit Annotators?",
+        "• Security Questions",
+        "• Gamification",
+        "• Citizen Science",
+        "• Pay",
+        "[von Ahn &",
+        "Dabbish; 2004]"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "9454c28e9afade6d48c04e96777c32877b4a4cd0e92a0ad2814dee2725b97ff7",
+      "lines": [
+        "Data Annotation: How to Recruit Annotators?",
+        "• Security Questions",
+        "• Gamification",
+        "• Citizen Science",
+        "• Pay"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "9454c28e9afade6d48c04e96777c32877b4a4cd0e92a0ad2814dee2725b97ff7",
+      "lines": [
+        "Data Annotation: How to Recruit Annotators?",
+        "• Security Questions",
+        "• Gamification",
+        "• Citizen Science",
+        "• Pay"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "9454c28e9afade6d48c04e96777c32877b4a4cd0e92a0ad2814dee2725b97ff7",
+      "lines": [
+        "Data Annotation: How to Recruit Annotators?",
+        "• Security Questions",
+        "• Gamification",
+        "• Citizen Science",
+        "• Pay"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "b0974eea78781312335b716d7aa152d193a1fa8aec3b78d4daf987958cf29d40",
+      "lines": [
+        "Which Annotators Would You Use When?",
+        "• Security Questions",
+        "• Gamification",
+        "• Citizen Science",
+        "• Pay"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "55d775460844d120b0b235dbe4f870678bb0fc31a07688a017e98577181e86d0",
+      "lines": [
+        "How to Find Dataset Challenges",
+        "(Which Include Evaluation Servers)"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "2f8f0bdd71c8c8af6fba40ba685f7b88dab932678111c3d9c2b235629962e605",
+      "lines": [
+        "How to Find Dataset Challenges",
+        "(Without Evaluation Servers); e.g.,"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "661a3daf728414a2de9f9d2441c56c357491ca371e3f9a0d4f77632d133e9875",
+      "lines": [
+        "ImageNet Impact Celebrated 10 Years Later",
+        "https://syncedreview.com/2019/06/18/cvpr-2019-attracts-9k-attendees￾best-papers-announced-imagenet-honoured-10-years-later/",
+        "“In 2009, ImageNet was not the most mainstream",
+        "work, but all of us who did this project believed",
+        "that it would have a big impact, so we put in a lot",
+        "of efforts. One of the revelations it gives me is that",
+        "you don’t have to do the most popular things, but",
+        "do what you believe will have an impact.”",
+        "- First author, Jia Deng"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "b6d7e5dcd902c0ff98b5fa6553a129627092243d612c0799979d7c0e335d044b",
+      "lines": [
+        "Today’s Topics",
+        "• The quest for more data and faster machines",
+        "• Paradigm shift: learned representations thrive with large labelled datasets",
+        "• Lucky break: gradient descent meets gaming hardware",
+        "• Tipping point: open-source platforms catalyze widespread engagement",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "57f28ff5c992e366c65459cad50c30c6b5e6a5009a834170fb660b9bc8b35658",
+      "lines": [
+        "ImageNet: Necessitated",
+        "New Breed of Hardware",
+        "• ImageNet’s (inconveniently) large size: ~130 GB",
+        "• Typical HW in 2010 meant deep learning needed to shift away from local machines",
+        "• RAM: 2-4 GB (stored less than 5% of ImageNet)",
+        "• Consequence: MUST stream to disk and so bottleneck shifts to disk I/O",
+        "• Storage: 160 - 500 GB (26% to 81% consumed by ImageNet)",
+        "• Consequence: inconvenient local storage normalized a shift to external hard drives and",
+        "institutional servers",
+        "• Compute efficiency: high-end research machines had dual quad-core CPUs;",
+        "researchers mainly used CPUs; cloud computing was emerging with CPUs",
+        "• Consequence: training ImageNet on CPUs was prohibitively slow",
+        "• Does training deep neural networks make sense with your computer?",
+        "• Does your computer have less than 40GB of RAM?",
+        "• Does your computer have less than 1 TB?"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "75b303c15607d1974b0937994a7f9028dccc009da91134e5e53198fd5b0cc81c",
+      "lines": [
+        "(ICML, 2009)",
+        "“We argue that modern graphics processors far surpass the computational capabilities of multicore CPUs, and have the",
+        "potential to revolutionize the applicability of deep unsupervised learning methods. We develop general principles for",
+        "massively parallelizing unsupervised learning tasks using graphics processors… Our implementation of DBN learning is",
+        "up to 70 times faster than a dual-core CPU implementation for large models. For example, we are able to reduce the",
+        "time required to learn a four-layer DBN with 100 million free parameters from several weeks to around a single day.”",
+        "Key Insight:"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "fc1cc0f029d074eb313cf2178de4a124103237f06148c00039c595e87c18e1ca",
+      "lines": [
+        "Key Insight: Repurpose GPUs",
+        "http://cs231n.stanford.edu/slides/2018/cs231n_2018_lecture08.pdf",
+        "Graphics Processing Units (GPUs)",
+        "Central Processing Unit",
+        "(CPU)"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "c1bbaf49d27e0e79021d48741c38cb49617b48153dfa90f3cf9caf8b91780ff6",
+      "lines": [
+        "Key Insight: Repurpose GPUs",
+        "Source: Tsung Tai Yeh, National Yang Ming Chiao Tung University; The Economist ; September 21, 2024",
+        "What are key architecture differences between CPUs and GPUS and their implications?",
+        "- Many more parallel processing cores accelerates workload",
+        "- Easier access to cache memory speeds up storing/retrieving intermediate computed results",
+        "- Simplified control focuses on scheduling parallel operations instead of managing everything"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "332d3e35c4793f228adda99ece26d545df055c4ce3d2a3d853e3cfe6e5c56576",
+      "lines": [
+        "Historical Context",
+        "First silicon-based",
+        "“chip”: silicon",
+        "components wired",
+        "together on a single",
+        "“integrated circuit” (IC)",
+        "1959",
+        "https://epoch.ai/blog/compute-trends; https://en.wikipedia.org/wiki/Invention_of_the_integrated_circuit",
+        "2010",
+        "Computing for training AI",
+        "models exceeded progress",
+        "from Moore’s law",
+        "(ENIAC’s vacuum",
+        "tubes being changed)",
+        "1945",
+        "First machine:",
+        "room-sized since",
+        "components were",
+        "based on large",
+        "vacuum tubes",
+        "1965",
+        "Moore’s law established: # of transistors",
+        "on IC doubles every 2 (initially 1) years",
+        "The transistors switch on and off to",
+        "generate the 0s and 1s of binary notation",
+        "(e.g., 200 per mm2 vs 150M per mm2",
+        "in",
+        "1971 vs 2023 for Intel’s MI300)"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "541fcb12b484df05f3cf683de3b16c5fdfc9a9d1cd5296fe8aeda2a1d37c3ae8",
+      "lines": [
+        "The Demand",
+        "for Better HW",
+        "By 2012, the amount of",
+        "computing needed to train AI",
+        "models doubled every 6 months!"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "84414c3cb737d2738ca21308eb91c127eb978a1336663f22c30822dc64a3a00a",
+      "lines": [
+        "Rise of Specialized HW for Deep Learning; e.g.,",
+        "Source: Tsung Tai Yeh, National Yang Ming Chiao Tung University; The Economist ; September 21, 2024",
+        "Introduced by Google for internal",
+        "use in 2015 and public use in 2018",
+        "How do TPUs differ from GPUs and what are the implications?"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "5c48cf28d7ec836e456cfac2d3849ca0f204f8a49e5a808e3e44c0fc74ee4ba7",
+      "lines": [
+        "Rise of Specialized HW for Deep Learning; e.g.,",
+        "Source: Tsung Tai Yeh, National Yang Ming Chiao Tung University; The Economist ; September 21, 2024",
+        "Flexibility Efficiency (Faster &",
+        "Less Energy Hungry)"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "01d943e7940dcef38f84fed2663aad0c6469c7f206259b9c4edc4a966eb2f08f",
+      "lines": [
+        "Rise of Specialized HW for Deep Learning; e.g.,",
+        "https://apple.fandom.com/wiki/Neural_Engine?file=Apple_M1_simplified_schematic.jpg",
+        "• Alternatively, one chip can do it all (e.g., “Neural Processing Unit” or NPU)",
+        "Added by Apple in 2017 to their",
+        "chips, a dedicated block for NN",
+        "operations to benefit users of their",
+        "devices (e.g., phones, iPads, laptops)"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "3199c1a65a35b367ca1d34daeac5ef056eb0af816d83d48fd0c897d12a7523e3",
+      "lines": [
+        "Rise of Specialized HW for Deep Learning",
+        "• Many companies are innovating to address the next key challenges:",
+        "• Getting more transistors on a chip while minimizing energy consumption and waste heat",
+        "• Less expensive factories to build chips (e.g., $20bn for one to be built in Arizona by TSMC)",
+        "The Economist; September 21, 2024",
+        "Issue: current leaks in small transistors",
+        "(e.g., 90 nm) from quantum effects,",
+        "even when they are off",
+        "Introduced in 2011 by Intel,",
+        "channels embedded in gates on",
+        "3 sides achieved better control of",
+        "current flow and so less leakage",
+        "Introduced in 2022 by Samsung, gates",
+        "surrounded channels on all sides to",
+        "achieve better control of current flow"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "1d0c744d0f0a12ac43216d2423f2b9b72121674e700246f69d6603fc51761cc4",
+      "lines": [
+        "State-of-the-Art for Single Chip (in the",
+        "World!)",
+        "https://cerebras.ai/product-chip/",
+        "Cerebras WSE-3:",
+        "• Approximately size of a dinner plate, so",
+        "all components can be on a single chip",
+        "• 900,000 cores",
+        "• 4 trillion transistors",
+        "• 44 GB of on-chip memory",
+        "• Rumored to cost $2-3 million"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "e490a26d9cf5ead453d0609f093996355d9caf5b4af2b913f219905af489537f",
+      "lines": [
+        "Blackwell: Nvidia’s Best Chip, Released in 2025",
+        "• 208 billion transistors on 2 connected dies",
+        "• Each die surrounded by 4 blocks of memory,",
+        "totaling at 192 GB",
+        "• Over 1 year, it would consume ~1/2 the energy",
+        "of an average American household (5.2 MWhrs)",
+        "https://nvidianews.nvidia.com/news/nvidia-blackwell-platform-arrives-to-power-a-new-era-of-computing",
+        "Do you think a Blackwell costs (A) $4,000, (B) $40,000, or (C) $400,000"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "48439121a14eb779b88dfdf2bcd8cdedfef6697b31512fda5793b068a51706f0",
+      "lines": [
+        "Compute Cost for Training Models from Scratch",
+        "Interactive Demo: https://epoch.ai/data/notable-ai-models#explore-the-data",
+        "e.g., $1000"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "960fcf89cdbcd6566c47aea567d06b928a02b461d24b7e7f9e68a1a5537a3189",
+      "lines": [
+        "How to Leverage GPUs? – Rent Versus Buy",
+        "HARDWARE",
+        "(e.g., Nvidia, AMD, Intel, Groq, Cerebras, Alphabet, Microsoft)",
+        "CLOUD-COMPUTING (since ~2012 for GPUs)",
+        "(e.g., Alphabet, Amazon, Microsoft,",
+        "CoreWeave, Lambda, Crusoe Energy, Nebius)",
+        "LOCAL MODEL DEVELOPMENT",
+        "(e.g., you ☺)",
+        "e.g., in 2026, buy Nvidia’s Blackwell at ~$40k versus rent at ~$20 per hour (~$13,440 for 4 weeks of 24/7 use)"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "665e7f4d12e196cc6f3381cb811427e85a31607514d520f601695e3dc3dcaeb6",
+      "lines": [
+        "Congratulations!",
+        "• By taking this class, you receive gifts of cloud credits worth over:",
+        "• Thanks to:"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "b6d7e5dcd902c0ff98b5fa6553a129627092243d612c0799979d7c0e335d044b",
+      "lines": [
+        "Today’s Topics",
+        "• The quest for more data and faster machines",
+        "• Paradigm shift: learned representations thrive with large labelled datasets",
+        "• Lucky break: gradient descent meets gaming hardware",
+        "• Tipping point: open-source platforms catalyze widespread engagement",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "e99d25999b43800f501747df4e9af9e105c05bdf1e972683a2096b4ba68e4872",
+      "lines": [
+        "Rise of “Deep Learning” Open Source Platforms",
+        "2011 2012 2014 2015",
+        "(Paszke et al.)",
+        "2013",
+        "(Bastien et al.) (Jia et al.) (Abadi et al.)",
+        "2016 2017",
+        "(Collobert et al.)",
+        "Popular Options Today"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "ab1dd1adf494696cf7c657cea10386b6c3867f654f21f5a09ae8729b5d3d52a4",
+      "lines": [
+        "Rise of “Deep Learning” Open Source Platforms",
+        "2011 2012 2014 2015",
+        "(Paszke et al.)",
+        "2013",
+        "(Bastien et al.) (Jia et al.) (Abadi et al.)",
+        "2016 2017",
+        "(Collobert et al.)",
+        "Course focus for",
+        "programming tutorials"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "18c18e144a7c0358001a3e861e8fff8765d0e73d0182f8b29effd4737b5a6dc0",
+      "lines": [
+        "Platform Features Enabling Faster,",
+        "More Efficient GPU Training",
+        "• Quantization: reduce precision",
+        "• Operator fusion: reduce memory read/writes",
+        "• Distributed optimization: parallelize computation"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "18c18e144a7c0358001a3e861e8fff8765d0e73d0182f8b29effd4737b5a6dc0",
+      "lines": [
+        "Platform Features Enabling Faster,",
+        "More Efficient GPU Training",
+        "• Quantization: reduce precision",
+        "• Operator fusion: reduce memory read/writes",
+        "• Distributed optimization: parallelize computation"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "be27550f7f336996db4e894cf8ba82da8ce43e839586a24fc4fa34ef92696fb8",
+      "lines": [
+        "Quantization: Reduce Precision",
+        "• Which precision and ranges do different data types offer?",
+        "• 32 bits: e.g., ~ ±3.4×10³⁸ with 2",
+        "32 or ~4 billion values (default PyTorch type)",
+        "• 8 bits: [-127, 127]",
+        "• 4 bits: [-8, 7]",
+        "https://medium.com/@dillipprasad60/qlora-explained-a-deep-dive-into-parametric-efficient-fine-tuning-in-large-language-models-llms-c1a4794b1766"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "667c6e0ec066bf41df0df14f4d9523a5d3d00618dc69cd08b7cc91f7e2edbc9f",
+      "lines": [
+        "Quantization: Reduce Precision",
+        "• e.g.,",
+        "• what number of bits are used in this example?",
+        "• what bin value should be used for each of the 9 quantized values?",
+        "https://xailient.com/blog/4-popular-model-compression-techniques-explained/",
+        "0.2 1 0.3",
+        "0.1 -0.6 -0.07",
+        "1.2 0.4 0"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "dfe0d170b8e83bed700182a376813d354e816992dd27193a13a13907dc9929fa",
+      "lines": [
+        "Quantization at Training",
+        "How much precision is",
+        "needed for training?",
+        "e.g., recall batch",
+        "normalization causes",
+        "values to center on 0",
+        "and range roughly",
+        "between -1 and 1",
+        "https://towardsdatascience.com/hyper-parameters-in-action-part-ii-weight-initializers-35aee1a28404"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "553ba6661d0baf82e05ded0288473cf355814ef5d969ccaede147505aa0b41a5",
+      "lines": [
+        "Quantization at Training",
+        "How much precision is",
+        "needed for training?",
+        "e.g., recall batch",
+        "normalization causes",
+        "values to center on 0",
+        "and range roughly",
+        "between -1 and 1",
+        "e.g., 4 bits means values mapped to 16 floating point bins (i.e., 2",
+        "4 possible values)",
+        "https://medium.com/@dillipprasad60/qlora-explained-a-deep-dive-into-parametric-efficient-fine-tuning-in-large-language-models-llms-c1a4794b1766"
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "8e8d7f8fd507b5c94f9649cbf5360ebd1c43ba36d4fa0b31da0e7ea707a3ad45",
+      "lines": [
+        "Quantization at Training",
+        "How much precision is",
+        "needed for training?",
+        "e.g., recall batch",
+        "normalization causes",
+        "values to center on 0",
+        "and range roughly",
+        "between -1 and 1",
+        "[Dietke, CVPR25]",
+        "What are risks of using fewer bits?"
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "ef2792b73c95fe57e48ac2d318403e12adbae0e22f913e71976d4a7e66bc6255",
+      "lines": [
+        "Quantization at Training",
+        "What are risks and benefits of using fewer bits (e.g., when done with pruning)?",
+        "How much precision is",
+        "needed for training?",
+        "e.g., recall batch",
+        "normalization causes",
+        "values to center on 0",
+        "and range roughly",
+        "between -1 and 1",
+        "https://xailient.com/blog/4-popular-model-compression-techniques-explained/"
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "6e9976c2f192bc2375f9c6a76522b4b46b68c30354e146cd1a74a6e8b900637b",
+      "lines": [
+        "Quantization Options",
+        "https://www.nvidia.com/en-us/data-center/a100/",
+        "• e.g.,",
+        "(Exceeds default)",
+        "(Exceeds default)",
+        "(default) How much is the speed-up?",
+        "(without *sparsity)"
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "60eab9e00dad6ba9fda0fbdfc1c6e80bbf7ba0592ed2d1c019c072770cee5b42",
+      "lines": [
+        "Quantization Options",
+        "Greater speed-ups from",
+        "greater precision cuts!",
+        "https://images.nvidia.com/aem-dam/en-zz/Solutions/data-center/nvidia-ampere-architecture-whitepaper.pdf",
+        "• e.g.,"
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "586f5b8239ecd57b4a06ecfeb8df61322490555d330d1d221b40e76cccd13194",
+      "lines": [
+        "Quantization Options: A100 vs H200",
+        "https://www.fibermall.com/blog/why-gpu-require-hbm.htm; https://www.nvidia.com/en-us/data-center/a100/",
+        "Use for",
+        "training?"
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "3936f639dab32540b0b3e4890891a1ea5e9716deb3537b55bc0d74bd0db26388",
+      "lines": [
+        "Quantization at Inference",
+        "https://developer.nvidia.com/blog/achieving-fp32-accuracy-for-int8-inference-using-quantization-aware-training-with-tensorrt/",
+        "e.g., scale to [-128, 127] with 8 bits",
+        "• Outliers set to minimum and maximum"
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "18c18e144a7c0358001a3e861e8fff8765d0e73d0182f8b29effd4737b5a6dc0",
+      "lines": [
+        "Platform Features Enabling Faster,",
+        "More Efficient GPU Training",
+        "• Quantization: reduce precision",
+        "• Operator fusion: reduce memory read/writes",
+        "• Distributed optimization: parallelize computation"
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "a54099301e1c5ba7cc223568d68b9b91b851d3696e0691c41634eb26f6a160b4",
+      "lines": [
+        "Idea: Fuse Tasks to Reduce Overhead",
+        "(e.g., go to school and then buy groceries)",
+        "https://quadric.io/2023/09/13/how-to-unlock-the-power-of-operator-fusion-to-accelerate-ai/",
+        "(e.g., go to school, return home, buy groceries)"
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "1060363a32493fc7d81bc0dfe86bb201d00c1c1cab6af3f29f694ea58d628f1a",
+      "lines": [
+        "Approach: Fuse Tasks to Reduce Overhead",
+        "Avoid shuttling data back-and-forth to",
+        "external memory by determining what",
+        "operations to fuse so relevant information",
+        "stays in limited memory close to the GPU",
+        "- When would you prefer L2 cache versus",
+        "Load Register Memory?",
+        "https://quadric.io/2023/09/13/how-to-unlock-the-power-of-operator-fusion-to-accelerate-ai/"
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "c3d64b6b5f3efa7274b0e8bf3853b0699b5c61487f4b32d2c0a0c89278155e99",
+      "lines": [
+        "Approach: Fuse Tasks to Reduce Overhead",
+        "Especially important given HW trends: processor",
+        "performance (tripling every two years) exceeds",
+        "that of memory access speed (~half as much)",
+        "(Economist, Sep 21, 2024) https://quadric.io/2023/09/13/how-to-unlock-the-power-of-operator-fusion-to-accelerate-ai/"
+      ]
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "18c18e144a7c0358001a3e861e8fff8765d0e73d0182f8b29effd4737b5a6dc0",
+      "lines": [
+        "Platform Features Enabling Faster,",
+        "More Efficient GPU Training",
+        "• Quantization: reduce precision",
+        "• Operator fusion: reduce memory read/writes",
+        "• Distributed optimization: parallelize computation"
+      ]
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "f7aed02fad62d60afb7495eb66d0232ed6b22d8cb5dbd816230668b6b6a7b296",
+      "lines": [
+        "Recall Multi-Thread Programming",
+        "https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/4_Threads.html"
+      ]
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "63e8d312af1eba6042e36e924ee00db9acd9454d6570cd8bf5bbd989e53cb233",
+      "lines": [
+        "Distribute Neural Network Computations",
+        "Across Multiple Devices (e.g., GPUs, CPUs)",
+        "• Key questions:",
+        "• What tasks to delegate to each device?",
+        "• What communication to facilitate across devices and how to do this?",
+        "• Popular Methods:",
+        "• Distributed Data Parallel (DDP): each “machine” holds copy of model to perform forward and",
+        "backward passes on different data subsets, with cross-machine communication (i.e., check-pointing)",
+        "to identify average gradients across machines",
+        "• If you had 4 GPUs, approximately what amount of speed-up might you expect?",
+        "• Distributed Lower-Communication Training (DiLoCo): distributes training to multiple “islands” of a",
+        "massive cluster (e.g., 100,000 GPUs), with regular checkpointing in each and less checkpointing",
+        "across them, enabling devices to come from different sources (e.g., locations, companies, countries)",
+        "• Zero Redundancy Optimizer (ZeRO): supports parallelism without code changes; partitions model",
+        "training states (e.g., weights, gradients) across devices, enabling training of very large models (e.g.,",
+        "trillions of parameters)"
+      ]
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "c7e5208f04e6525c269846290885bc5bab58bc60c32f198d932df8f4bfeae41b",
+      "lines": [
+        "Summary: Platform Features Enabling",
+        "Faster, More Efficient GPU Training",
+        "• Quantization: reduce precision",
+        "• Operator fusion: reduce memory read/writes",
+        "• Distributed optimization: parallelize computation"
+      ]
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "b6d7e5dcd902c0ff98b5fa6553a129627092243d612c0799979d7c0e335d044b",
+      "lines": [
+        "Today’s Topics",
+        "• The quest for more data and faster machines",
+        "• Paradigm shift: learned representations thrive with large labelled datasets",
+        "• Lucky break: gradient descent meets gaming hardware",
+        "• Tipping point: open-source platforms catalyze widespread engagement",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "b6d7e5dcd902c0ff98b5fa6553a129627092243d612c0799979d7c0e335d044b",
+      "lines": [
+        "Today’s Topics",
+        "• The quest for more data and faster machines",
+        "• Paradigm shift: learned representations thrive with large labelled datasets",
+        "• Lucky break: gradient descent meets gaming hardware",
+        "• Tipping point: open-source platforms catalyze widespread engagement",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 71,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

@@ -1,0 +1,3120 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s14",
+  "source_sha256": "65bdebcbbe5ecca3e9dfa4ecbaaf5a78e79a4d10ce00c8a007801d062cefeda6",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "bbc113b73fb9bd5c5fd3052d1a0b1cbd31183159351ac7448f04d00828f2aea4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ترنسفورمرهای پیشگام (Pioneering Transformers): پیش‌آموزش (Pretraining) + تنظیم دقیق (Fine-Tuning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "دانشگاه کلرادو بولدر (University of Colorado Boulder)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "بهار ۲۰۲۶"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CC BY NC SA",
+          "fa": "CC BY NC SA (نسبت‌دهی، غیرتجاری، اشتراک‌همسان)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "50e6786c108e7b3a466761453ec27468dc2a65170be283ba9074787ff8bcea55",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "جلسهٔ قبل:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "دگرگونی توجه (Attention): تولد یک معماری تازه"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "ایدهٔ کلیدی: خودتوجهی (Self-Attention)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "ساختن یک ترنسفورمر (Transformer)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "مدل پیشگام برای ترجمهٔ ماشینی (Machine Translation)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "تکالیف (Canvas):"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "مجموعه‌مسئلهٔ ۳ (آخرین مجموعه!): مهلت تحویل جمعه"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "تکلیف آزمایشگاهی ۳ (آخرین تکلیف!) پنجشنبه منتشر می‌شود؛ آن روز کلاس نداریم."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "پرسشی دارید؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "180dedeef9b8de686d0c141b0faf9827931a2fa5592513c2cabd9c70473e66b3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "بازنگری یادگیری: از حل وظیفه‌ها تا ساخت بازنمایی‌هایی (Representations) که تعمیم می‌یابند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "دستور کار: پیش‌آموزش در مقیاس بزرگ (Large-Scale Pretraining) + تنظیم دقیق سبک (Lightweight Fine-Tuning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "آزمون چندوجهی (Multimodal): آیا این دستور کار می‌تواند جای راه‌حل‌های CNN-RNN را در وظیفه‌های بینایی–زبان (Vision-Language) بگیرد؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "آزمون گفتار: آیا این دستور کار می‌تواند جای راه‌حل‌های مهندسی‌شدهٔ بازشناسی گفتار (Speech Recognition) را بگیرد؟"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آزمون بینایی: آیا این دستور کار می‌تواند جای CNNها را در دسته‌بندی تصویر (Image Classification) بگیرد؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "180dedeef9b8de686d0c141b0faf9827931a2fa5592513c2cabd9c70473e66b3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "بازنگری یادگیری: از حل وظیفه‌ها تا ساخت بازنمایی‌هایی (Representations) که تعمیم می‌یابند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "دستور کار: پیش‌آموزش در مقیاس بزرگ (Large-Scale Pretraining) + تنظیم دقیق سبک (Lightweight Fine-Tuning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "آزمون چندوجهی (Multimodal): آیا این دستور کار می‌تواند جای راه‌حل‌های CNN-RNN را در وظیفه‌های بینایی–زبان (Vision-Language) بگیرد؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "آزمون گفتار: آیا این دستور کار می‌تواند جای راه‌حل‌های مهندسی‌شدهٔ بازشناسی گفتار (Speech Recognition) را بگیرد؟"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آزمون بینایی: آیا این دستور کار می‌تواند جای CNNها را در دسته‌بندی تصویر (Image Classification) بگیرد؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "1237eca0a889820f9b05c479655ef92ff07a1c75a24b29cf2292eae494416a9f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تحول یادگیری: از مهارت‌های پایه تا وظیفه‌ها"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "مثلاً دست‌های شما از بدو تولد هماهنگی عمومی را یاد می‌گیرند و پایه‌ای برای سازگارشدن بعدی با وظیفه‌های بسیار می‌سازند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.facebook.com/1rvanisrisaravanan/posts/pincer-graspthe-pincer-grasp-is-the-coordination-of-the-index-finger-and-thumb-t/2833183393596559/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pincer Grasp; 7 months; 8 months; 9 months; 10 months",
+          "fa": "گرفتن با شست و انگشت اشاره (Pincer Grasp)؛ ۷ ماهگی؛ ۸ ماهگی؛ ۹ ماهگی؛ ۱۰ ماهگی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "7fa7d32ab0b7e6169c8b44465968e171dedacd0c458c23a3d408352f1657df5b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "وضع موجود یادگیری عمیق (Deep Learning): تمرکز بر وظیفه‌ای خاص (Task-Specific)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.facebook.com/1rvanisrisaravanan/posts/pincer-graspthe-pincer-grasp-is-the-coordination-of-the-index-finger-and-thumb-t/2833183393596559/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pincer Grasp; 7 months; 8 months; 9 months; 10 months",
+          "fa": "گرفتن با شست و انگشت اشاره (Pincer Grasp)؛ ۷ ماهگی؛ ۸ ماهگی؛ ۹ ماهگی؛ ۱۰ ماهگی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "4ea7539dc2ab697d1d2ad31137db30bda0438c5831500303c980a77652c10a2f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایده: بر ساخت بازنمایی‌هایی (Representations) تمرکز کنید که بتوان دوباره برای وظیفه‌های بسیار به کار برد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.facebook.com/1rvanisrisaravanan/posts/pincer-graspthe-pincer-grasp-is-the-coordination-of-the-index-finger-and-thumb-t/2833183393596559/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pincer Grasp; 7 months; 8 months; 9 months; 10 months",
+          "fa": "گرفتن با شست و انگشت اشاره (Pincer Grasp)؛ ۷ ماهگی؛ ۸ ماهگی؛ ۹ ماهگی؛ ۱۰ ماهگی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "81d8e70c9d56ff863913f5ab86068baf36d61882ac10ebe2948d30fc113f50a4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایده: بر ساخت بازنمایی‌هایی (Representations) تمرکز کنید که بتوان دوباره برای وظیفه‌های بسیار به کار برد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.datacamp.com/community/tutorials/neural-network-models-r"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input Layer; Hidden Layers; Output Layer",
+          "fa": "لایهٔ ورودی (Input Layer)؛ لایه‌های پنهان (Hidden Layers)؛ لایهٔ خروجی (Output Layer)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "180dedeef9b8de686d0c141b0faf9827931a2fa5592513c2cabd9c70473e66b3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "بازنگری یادگیری: از حل وظیفه‌ها تا ساخت بازنمایی‌هایی (Representations) که تعمیم می‌یابند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "دستور کار: پیش‌آموزش در مقیاس بزرگ (Large-Scale Pretraining) + تنظیم دقیق سبک (Lightweight Fine-Tuning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "آزمون چندوجهی (Multimodal): آیا این دستور کار می‌تواند جای راه‌حل‌های CNN-RNN را در وظیفه‌های بینایی–زبان (Vision-Language) بگیرد؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "آزمون گفتار: آیا این دستور کار می‌تواند جای راه‌حل‌های مهندسی‌شدهٔ بازشناسی گفتار (Speech Recognition) را بگیرد؟"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آزمون بینایی: آیا این دستور کار می‌تواند جای CNNها را در دسته‌بندی تصویر (Image Classification) بگیرد؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "48af2972673c7f53042f6f5dcc27afb4176b717f8dd9bf9e4a9acce99fb20bff",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "(گزارش فنی، ۲۰۱۸)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "(NAACL، ۲۰۱۹)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "heading",
+          "fa": "روش‌های پیشگام: GPT و BERT"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Improving Language Understanding by Generative Pre-Training; Alec Radford; Karthik Narasimhan; Tim Salimans; Ilya Sutskever; OpenAI",
+          "fa": "بهبود درک زبان با پیش‌آموزش مولد (Improving Language Understanding by Generative Pre-Training)؛ الک ردفورد (Alec Radford)؛ کارتیک ناراسیمهان (Karthik Narasimhan)؛ تیم سالیمانس (Tim Salimans)؛ ایلیا سوتسکِوِر (Ilya Sutskever)؛ OpenAI",
+          "verified": true
+        },
+        {
+          "en": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding; Jacob Devlin; Ming-Wei Chang; Kenton Lee; Kristina Toutanova; Google AI Language",
+          "fa": "BERT: پیش‌آموزش ترنسفورمرهای عمیق دوسویه برای درک زبان (BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding)؛ جیکوب دولین (Jacob Devlin)؛ مینگ‌وی چانگ (Ming-Wei Chang)؛ کنتون لی (Kenton Lee)؛ کریستینا توتانوا (Kristina Toutanova)؛ Google AI Language",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "7b407f8a4f17cdb350c51965136e0673e175cf1d8d866658556ce7e152a439ec",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "Vaswani et al. Neurips 2017."
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "GPT (رمزگشا؛ Decoder)"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "BERT (رمزگذار؛ Encoder)"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "not_visible",
+          "fa": "",
+          "verified": true,
+          "reason_fa": "پس از رندر کامل صفحه با عرض ۱۵۰۰ پیکسل، خطوط مربوط به تغییرات هر دو مدل، GELU و نشانی نمودار که در متن PDF باقی مانده‌اند در تصویر قابل‌دیدن نیستند؛ ناحیهٔ مربوطه با شکل بزرگ معماری و زمینهٔ سیاه پوشانده شده است."
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "این چه معماری‌ای است؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Output Probabilities; Softmax; Linear; Add & Norm; Feed Forward; Multi-Head Attention; Masked Multi-Head Attention; N×; Positional Encoding; Input Embedding; Output Embedding; Inputs; Outputs (shifted right)",
+          "fa": "احتمال‌های خروجی؛ سافت‌مکس (Softmax)؛ خطی (Linear)؛ جمع و نرمال‌سازی (Add & Norm)؛ پیش‌خور (Feed Forward)؛ توجه چندسری (Multi-Head Attention)؛ توجه چندسری ماسک‌شده؛ N بار؛ رمزگذاری جایگاه (Positional Encoding)؛ تعبیهٔ ورودی؛ تعبیهٔ خروجی؛ ورودی‌ها؛ خروجی‌ها (یک جایگاه به راست جابه‌جا شده‌اند)",
+          "verified": true
+        }
+      ],
+      "image_text_limits": [
+        {
+          "reason_fa": "ضربدر قرمز روی بلوک توجه متقاطعِ رمزگشا بخشی از حروف و اتصال‌های همان بلوک را می‌پوشاند؛ متنِ زیر ضربدر بازسازی نشده است."
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "c064ab33418cbddbcbe9cc07d1ca7038ce54d941ebcc860194763be70c0208d7",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "Vaswani et al. Neurips 2017."
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "GPT (رمزگشا؛ Decoder)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "جزئیات پیاده‌سازی (Implementation Details):"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "رمزگذاری ورودی: زوج‌بایت (Byte-Pair) برای واژگان ۴۰٬۰۰۰ توکنی"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "تعبیه‌های جایگاه (Position Embeddings) یاد گرفته می‌شوند."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "۱۲ لایه (Nx)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "۱۲ سر در توجه ماسک‌شده (Masked Attention)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "تابع فعال‌سازی GELU در لایهٔ پیش‌خور (Feed Forward)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "reference",
+          "fa": "https://datascience.stackexchange.com/questions/49522/what-is-gelu-activation"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Output Probabilities; Softmax; Linear; Add & Norm; Feed Forward; Masked Multi-Head Attention; N×; Positional Encoding; Output Embedding; Outputs (shifted right)",
+          "fa": "احتمال‌های خروجی؛ سافت‌مکس؛ خطی؛ جمع و نرمال‌سازی؛ پیش‌خور؛ توجه چندسری ماسک‌شده؛ N بار؛ رمزگذاری جایگاه؛ تعبیهٔ خروجی؛ خروجی‌ها (یک جایگاه به راست جابه‌جا شده‌اند)",
+          "verified": true
+        },
+        {
+          "en": "y = 0.5x(1 + 2/√π ∫₀ˣ/√² e^(−t²) dt); x; y; −4 −2 0 2 4",
+          "fa": "نمودار تابع فعال‌سازی GELU با محورهای x و y؛ نشانه‌های محور x: −۴، −۲، ۰، ۲، ۴",
+          "verified": true,
+          "latex": "y=0.5x\\left(1+\\frac{2}{\\sqrt\\pi}\\int_0^{x/\\sqrt2}e^{-t^2}\\,dt\\right)"
+        }
+      ],
+      "image_text_limits": [
+        {
+          "reason_fa": "ضربدر قرمز روی بلوک توجه متقاطعِ رمزگشا بخشی از حروف و اتصال‌های همان بلوک را می‌پوشاند؛ متنِ زیر ضربدر بازسازی نشده است."
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "6f88ed0555cabdfa431887612bc909120274fd7072e818e9c6eea684ff5965e6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "Vaswani et al. Neurips 2017."
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "BERT (رمزگذار؛ Encoder)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "جزئیات پیاده‌سازی (Implementation Details):"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "رمزگذاری ورودی: WordPiece برای واژگان ۳۰٬۰۰۰ توکنی"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "تعبیه‌های جایگاه (Position Embeddings) یاد گرفته می‌شوند."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "۱۲ و ۲۴ لایه آزمایش شده‌اند (Nx)."
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "۱۲ و ۱۶ سرِ توجه (Attention Heads) آزمایش شده‌اند."
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "تابع فعال‌سازی GELU در لایهٔ پیش‌خور (Feed Forward)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Add & Norm; Feed Forward; Multi-Head Attention; N×; Positional Encoding; Input Embedding; Inputs",
+          "fa": "جمع و نرمال‌سازی؛ پیش‌خور؛ توجه چندسری؛ N بار؛ رمزگذاری جایگاه؛ تعبیهٔ ورودی؛ ورودی‌ها",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "82c0616ab252c3b52a4a6c9b0c89d9e205493ce7176abc9f055741f5a460001d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکرد (Approach)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "استنتاج (Inference)"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "چون گردآوری مجموعه‌داده‌های بزرگ با برچسب‌گذاری انسانی بسیار دشوار است، این کار را انجام نمی‌دهیم!"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pre-Training; Large unlabelled datasets (e.g. Wikipedia, BookCorpus); Self-supervised training (hours to days); Pre-Trained Weights; Fine-Tuning; Smaller labelled datasets (SQuAD, MNLI/CMNLI, Similarity); Task-specific fine tuning (minutes to hours); Fine-Tuned Weights",
+          "fa": "پیش‌آموزش (Pre-Training)؛ مجموعه‌داده‌های بزرگِ بدون برچسب، مثلاً ویکی‌پدیا و BookCorpus؛ آموزش خودنظارتی (Self-Supervised) از چند ساعت تا چند روز؛ وزن‌های پیش‌آموخته؛ تنظیم دقیق (Fine-Tuning)؛ مجموعه‌داده‌های کوچک‌ترِ برچسب‌دار (SQuAD، MNLI/CMNLI، شباهت)؛ تنظیم دقیق برای وظیفهٔ خاص، از چند دقیقه تا چند ساعت؛ وزن‌های تنظیم‌دقیق‌شده",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "d95809c057f45dd2d5988af2e0a432a18a09e97d807ee0a08223352cea433e98",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکرد (Approach)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://www.facebook.com/1rvanisrisaravanan/posts/pincer-graspthe-pincer-grasp-is-the-coordination-of-the-index-finger-and-thumb-t/2833183393596559/"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "بینش تازه: یک ترنسفورمر بزرگ که روی داده‌های عظیم آموزش دیده باشد، می‌تواند با کمترین تنظیم دقیق (Fine-Tuning) به نتایج پیشرو (State-of-the-Art) در وظیفه‌های پایین‌دستی (Downstream Tasks) بسیار برسد!"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "پیش‌آموزش خودنظارتی (Self-Supervised Pretraining) ایدهٔ تازه‌ای نبود."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "مثلاً پیش‌بینی خودِ ورودی با خودرمزگذار (Autoencoder) برای یادگیری ویژگی‌های دیداری، یا یادگیری تعبیهٔ واژه‌ها (Word Embeddings)."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pincer Grasp; 7 months; 8 months; 9 months; 10 months",
+          "fa": "گرفتن با شست و انگشت اشاره (Pincer Grasp)؛ ۷ ماهگی؛ ۸ ماهگی؛ ۹ ماهگی؛ ۱۰ ماهگی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "33d4e2cb99d5f73044b89c26cbaf858729c8ce9bc9af6479ddafb2c1472f8e84",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پرسش کلیدی: کدام هدف یادگیری (Learning Objective) بهترین بازنمایی (Representation) را تولید می‌کند؟ مثلاً:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "GPT = پیش‌آموزش مولد (Generative Pre-Training)"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "پیش‌بینی واژهٔ بعدی با داشتن واژه‌های قبلی؛ یک‌سویه (Unidirectional)، از چپ به راست."
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "literal",
+          "fa": "مثال: I arrived at the bank after crossing the _______ (پس از عبور از _______ به کنارهٔ رود/بانک رسیدم.)"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "BERT = بازنمایی رمزگذار دوسویه از ترنسفورمر (Bidirectional Encoder Representation from Transformer)"
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "bullet",
+          "fa": "پیش‌بینی توکن ماسک‌شده (Masked Token) و نیز پیش‌بینی اینکه آیا یک جمله در ادامهٔ جملهٔ دوم می‌آید."
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "literal",
+          "fa": "مثال: I arrived at the bank [MASK] crossing the river. My pants were wet. (من به کنارهٔ رود/بانک رسیدم [MASK] عبور از رود. شلوارم خیس بود.) توکن ماسک در ترجمه نیز پُر نشده است."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "355db2be204f689815f0b1333ca1506d5beae297c8d11483a405d76668f9cadf",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "جزئیات پیاده‌سازی BERT"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "دو توکن برای وظیفهٔ دوم معرفی شده‌اند:"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "CLS: بازنمایی کل ورودی"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "SEP: دو دنبالهٔ ورودی را از هم جدا می‌کند."
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "یک تعبیهٔ قطعه (Segment Embedding) اضافی مشخص می‌کند که هر توکن به کدام‌یک از دو جمله تعلق دارد."
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "دو وظیفه:"
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "bullet",
+          "fa": "پیش‌بینی اینکه آیا یک جمله در ادامهٔ جملهٔ دوم می‌آید."
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "bullet",
+          "fa": "پیش‌بینی توکن ماسک‌شده (Masked Token)"
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "text",
+          "fa": "چه چیزی در توکن CLS ثبت می‌شود؟"
+        },
+        {
+          "source_lines": [
+            13
+          ],
+          "kind": "text",
+          "fa": "چه چیزی پیش‌بینی می‌شود؟"
+        },
+        {
+          "source_lines": [
+            14
+          ],
+          "kind": "text",
+          "fa": "چه چیزی پیش‌بینی می‌شود؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Input [CLS] Paris is a beautiful [MASK] [SEP] I love Paris [SEP]; Token embeddings E_[CLS] E_Paris E_is E_a E_beautiful E_city E_[SEP] E_I E_love E_Paris E_[SEP]; Segment embeddings E_A E_A E_A E_A E_A E_A E_A E_B E_B E_B E_B; Position embeddings E₀ E₁ E₂ E₃ E₄ E₅ E₆ E₇ E₈ E₉ E₁₀",
+          "fa": "ورودی (Input) عین منبع: [CLS] Paris is a beautiful [MASK] [SEP] I love Paris [SEP] (پاریس یک [ماسک] زیباست؛ من پاریس را دوست دارم). تعبیه‌های توکن (Token Embeddings): E_[CLS]، E_Paris، E_is، E_a، E_beautiful، E_city، E_[SEP]، E_I، E_love، E_Paris، E_[SEP]؛ تعبیه‌های قطعه: هفت E_A و چهار E_B؛ تعبیه‌های جایگاه: E₀ تا E₁₀ به ترتیب.",
+          "verified": true
+        },
+        {
+          "en": "Encoder 1; Encoder 2; Encoder 3; ⋮; Encoder 12; R_[CLS] R_Paris R_is R_a R_beautiful R_[MASK] R_[SEP] R_I R_love R_Paris R_[SEP]; Feedforward network + softmax; isNext 0.9; NotNext 0.1; beautiful 0.0; city 0.9; paris 0.0; love 0.1; and 0.0",
+          "fa": "رمزگذار (Encoder) ۱، ۲، ۳، …، ۱۲؛ بازنمایی‌های خروجی R برای تک‌تک توکن‌ها به همان ترتیب ورودی؛ شبکهٔ پیش‌خور + سافت‌مکس (Feedforward Network + Softmax)؛ جملهٔ بعدی هست (isNext): 0.9، نیست (NotNext): 0.1؛ پیش‌بینی واژهٔ ماسک‌شده: beautiful (زیبا) 0.0، city (شهر) 0.9، paris (پاریس) 0.0، love (دوست‌داشتن) 0.1، and (و) 0.0؛ نقطه‌چین، گزینه‌های نمایش‌داده‌نشده را نشان می‌دهد.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "b17eea927c9197448a901350fc9bdfdbd11ae3f8510ea44fab469ee6e913d23a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "جزئیات پیش‌آموزش (Pretraining)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "heading",
+          "fa": "تغییرات BERT"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "مجموعه‌داده: ۲٫۵ میلیارد واژهٔ اضافه از ویکی‌پدیای انگلیسی"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "اندازهٔ دسته (Batch Size): ۲۵۶ دنباله (دو «جمله») با ۱۲۸ توکن"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "heading",
+          "fa": "GPT"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "مجموعه‌داده: ۸۰۰ میلیون واژه در BooksCorpus؛ بیش از ۷٬۰۰۰ کتاب"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "مقداردهی اولیهٔ وزن: توزیع گاوسی (Gaussian Distribution) برای (0, 0.02)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "بهینه‌ساز (Optimizer): آدام (Adam)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "منظم‌سازی (Regularization): رهاسازی (Dropout) و جریمهٔ هنجار L2"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "bullet",
+          "fa": "اندازهٔ دسته: ۶۴ دنباله، هرکدام با ۵۱۲ توکن"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "eff9cfa04e0be9799a58310e109be3cc43a449da0c9dfba85e82eb9316adedf8",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکرد (Approach)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "استنتاج (Inference)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pre-Training; Large unlabelled datasets (e.g. Wikipedia, BookCorpus); Self-supervised training (hours to days); Pre-Trained Weights; Fine-Tuning; Smaller labelled datasets (SQuAD, MNLI/CMNLI, Similarity); Task-specific fine tuning (minutes to hours); Fine-Tuned Weights",
+          "fa": "پیش‌آموزش (Pre-Training)؛ مجموعه‌داده‌های بزرگِ بدون برچسب، مثلاً ویکی‌پدیا و BookCorpus؛ آموزش خودنظارتی (Self-Supervised) از چند ساعت تا چند روز؛ وزن‌های پیش‌آموخته؛ تنظیم دقیق (Fine-Tuning)؛ مجموعه‌داده‌های کوچک‌ترِ برچسب‌دار (SQuAD، MNLI/CMNLI، شباهت)؛ تنظیم دقیق برای وظیفهٔ خاص، از چند دقیقه تا چند ساعت؛ وزن‌های تنظیم‌دقیق‌شده",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "08b65ccd60d98d05ae85f88f0a846a869f823c5dce4dcc35db6f88fef39336a3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "GPT: تنظیم دقیق (Fine-Tuning) برای چهار نوع وظیفه؛ وظیفه‌های تمایزی (Discriminative) به‌جای مولد (Generative)"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "تعداد کمی پارامتر با خروجی سافت‌مکس (Softmax) به ترنسفورمر پیش‌آموخته اضافه کنید؛ سپس روی مجموعه‌داده‌های ویژهٔ هر وظیفه، تنظیم دقیق نظارت‌شده (Supervised Fine-Tuning) انجام دهید."
+        },
+        {
+          "source_lines": [
+            9,
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "در ۹ مورد از ۱۲ چالش مجموعه‌دادهٔ پردازش زبان طبیعی (NLP)، به عملکرد پیشرو (State-of-the-Art) رسید!"
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Classification; Entailment; Similarity; Multiple Choice; Start; Text; Extract; Transformer; Linear; Premise; Delim; Hypothesis; Text 1; Text 2; Context; Answer 1; Answer 2; Answer N",
+          "fa": "دسته‌بندی (Classification)؛ استلزام (Entailment)؛ شباهت (Similarity)؛ چندگزینه‌ای (Multiple Choice)؛ آغاز (Start)؛ متن (Text)؛ استخراج (Extract)؛ ترنسفورمر (Transformer)؛ خطی (Linear)؛ مقدمه (Premise)؛ جداکننده (Delim)؛ فرضیه (Hypothesis)؛ متن ۱ و ۲؛ بافت (Context)؛ پاسخ ۱، ۲، …، N",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "850d71cf18c37a8ab8d534fed9b8fadebc806c6eed0d2c7e1573adc3638dc717",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "GPT: تنظیم دقیق (Fine-Tuning)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "مثلاً پیش‌بینی اینکه یک جمله از نقد فیلم، احساس (Sentiment) مثبت دارد یا منفی."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "توکن آغاز (Start Token)"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "توکن پایان (End Token)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Classification; Start; Text; Extract; Transformer; Linear",
+          "fa": "دسته‌بندی؛ آغاز؛ متن؛ استخراج؛ ترنسفورمر؛ خطی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "8a4558aba9adc1b80e2115bb0a385e06c3850472846a4d04866a7f7d6dfccbfb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "GPT: تنظیم دقیق (Fine-Tuning)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "مثلاً دسته‌بندی رابطهٔ فرضیه (Hypothesis) با مقدمه (Premise) به سه گزینه:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "رابطه (Relationship)؛ مقدمه (Premise)؛ فرضیه (Hypothesis)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "استلزام (Entailment): مقدمهٔ ورودی «Students quietly listen to the lecture» (دانشجویان بی‌صدا به درس گوش می‌دهند)؛ فرضیه «The lecturer is speaking.» (مدرس در حال صحبت است)."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "خنثی (Neutral): مقدمهٔ ورودی «Students quietly listen to the lecture» (دانشجویان بی‌صدا به درس گوش می‌دهند)؛ فرضیه «The projector equipment is broken.» (تجهیزات پروژکتور خراب است)."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "تناقض (Contradict): مقدمهٔ ورودی «Students quietly listen to the lecture» (دانشجویان بی‌صدا به درس گوش می‌دهند)؛ فرضیه «The students are lecturing.» (دانشجویان در حال تدریس‌اند)."
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "توکن آغاز (Start Token)"
+        },
+        {
+          "source_lines": [
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "توکن $ (جداکننده)"
+        },
+        {
+          "source_lines": [
+            10,
+            11
+          ],
+          "kind": "text",
+          "fa": "توکن پایان (End Token)"
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Entailment; Start; Premise; Delim; Hypothesis; Extract; Transformer; Linear",
+          "fa": "استلزام؛ آغاز؛ مقدمه؛ جداکننده؛ فرضیه؛ استخراج؛ ترنسفورمر؛ خطی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "edbecd6a016b1208da56198f3ba2293d91be7ffa224749a5848e2f2814264cba",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "GPT: تنظیم دقیق (Fine-Tuning)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "توکن‌های آغاز (Start Tokens)"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "توکن‌های $ (جداکننده)"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "توکن‌های پایان (End Tokens)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+        },
+        {
+          "source_lines": [
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "مثلاً تصمیم بگیرید آیا دو جمله مشابه‌اند؛ چون ترتیب ذاتی بین دو جمله وجود ندارد، هر دو ترتیب استفاده می‌شوند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Similarity; Start; Text 1; Delim; Text 2; Extract; Transformer; +; Linear",
+          "fa": "شباهت؛ آغاز؛ متن ۱؛ جداکننده؛ متن ۲؛ استخراج؛ ترنسفورمر؛ جمع (+)؛ خطی. دو سطر جای متن ۱ و ۲ را عوض می‌کنند.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "fb9438d6e7e309334448cdc155c3f87ec4572540d33b09f35cb7d8ae433254c0",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "GPT: تنظیم دقیق (Fine-Tuning)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "توکن‌های آغاز (Start Tokens)"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "توکن‌های $ (جداکننده)"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "توکن‌های پایان (End Tokens)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+        },
+        {
+          "source_lines": [
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "مثلاً تصمیم بگیرید کدام پاسخ از بافت (Context)، مانند پرسش دربارهٔ سندِ به‌هم‌پیوسته، حاصل می‌شود؛ لایهٔ سافت‌مکس برای همهٔ گزینه‌ها احتمال می‌دهد."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Multiple Choice; Start; Context; Delim; Answer 1; Answer 2; Answer N; Extract; Transformer; Linear",
+          "fa": "چندگزینه‌ای؛ آغاز؛ بافت؛ جداکننده؛ پاسخ ۱، ۲، …، N؛ استخراج؛ ترنسفورمر؛ خطی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "a4a0f5d5d1354ab1ff9a6822e0b85ddd086764adbe0c761e38829ee40c39245c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "bullet",
+          "fa": "چند لایهٔ پیش‌آموخته باید تنظیم دقیق (Fine-Tune) شوند؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "آیا استفاده از ترنسفورمر (Transformer) به‌جای LSTM کمک می‌کند؟"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "آیا پیش‌آموزش (Pre-Training) کمک می‌کند؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "heading",
+          "fa": "GPT: تحلیل انتخاب‌های طراحی (Design Choices)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Radford et al. Improving Language Understanding by Generative Pre-Training. Technical Report 2018."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "# of layers transferred; RACE Dev Accuracy; RACE Dev; RACE Train; MultiNLI Dev; MultiNLI Train; 0 2 4 6 8 10 12; 30 40 50 60 70 80 90 100; 70 75 80 85 90 95 100",
+          "fa": "تعداد لایه‌های منتقل‌شده؛ دقت مجموعهٔ توسعهٔ RACE؛ منحنی‌های توسعه و آموزش RACE و MultiNLI؛ محور افقی: ۰، ۲، ۴، ۶، ۸، ۱۰، ۱۲؛ محور چپ: ۳۰ تا ۱۰۰ با گام ۱۰؛ محور راست: ۷۰ تا ۱۰۰ با گام ۵.",
+          "verified": true
+        },
+        {
+          "en": "Method | Avg. Score | CoLA (mc) | SST2 (acc) | MRPC (F1) | STSB (pc) | QQP (F1) | MNLI (acc) | QNLI (acc) | RTE (acc)",
+          "fa": "روش؛ امتیاز میانگین؛ ستون‌های CoLA (mc)، SST2 (دقت)، MRPC (F1)، STSB (pc)، QQP (F1)، MNLI (دقت)، QNLI (دقت)، RTE (دقت)",
+          "verified": true
+        },
+        {
+          "en": "Transformer w/ aux LM (full) | 74.7 45.4 91.3 82.3 82.0 70.3 81.8 88.1 56.0",
+          "fa": "ترنسفورمر با مدل زبانی کمکی (نسخهٔ کامل): 74.7، 45.4، 91.3، 82.3، 82.0، 70.3، 81.8، 88.1، 56.0",
+          "verified": true
+        },
+        {
+          "en": "Transformer w/o pre-training | 59.9 18.9 84.0 79.4 30.9 65.5 75.7 71.2 53.8",
+          "fa": "ترنسفورمر بدون پیش‌آموزش: 59.9، 18.9، 84.0، 79.4، 30.9، 65.5، 75.7، 71.2، 53.8",
+          "verified": true
+        },
+        {
+          "en": "Transformer w/o aux LM | 75.0 47.9 92.0 84.9 83.2 69.8 81.1 86.9 54.4",
+          "fa": "ترنسفورمر بدون مدل زبانی کمکی: 75.0، 47.9، 92.0، 84.9، 83.2، 69.8، 81.1، 86.9، 54.4",
+          "verified": true
+        },
+        {
+          "en": "LSTM w/ aux LM | 69.1 30.3 90.5 83.2 71.8 68.1 73.7 81.1 54.6",
+          "fa": "LSTM با مدل زبانی کمکی: 69.1، 30.3، 90.5، 83.2، 71.8، 68.1، 73.7، 81.1، 54.6",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "3c00035e8f83f3dbaa9b8066dfc598a049f5a0434324c3f51371af655590e63e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "BERT: تنظیم دقیق (Fine-Tuning) برای سه نوع وظیفه"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Devlin et al. BERT: Pre-Training of Deep Bidirectional Transformers for Language Understanding. ACL 2019."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "در ۱۱ مجموعه‌دادهٔ معیار (Benchmark) پردازش زبان طبیعی (NLP)، به عملکرد پیشرو رسید!"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Class Label; Start/End Span; B-PER; O; O; C; T₁ … Tₙ T_[SEP] T′₁ … T′ₘ; E_[CLS] E₁ … Eₙ E_[SEP] E′₁ … E′ₘ; [CLS] Tok 1 … Tok N [SEP] Tok 1 … Tok M; Sentence 1; Sentence 2; Single Sentence; Question; Paragraph; BERT",
+          "fa": "برچسب دسته؛ بازهٔ آغاز/پایان؛ برچسب‌های توکن B-PER (آغاز نام شخص) و O (خارج از موجودیت)؛ C و Tها: بازنمایی خروجی توکن‌ها، Eها: تعبیهٔ ورودی؛ [CLS]، Tok 1 تا Tok N، [SEP]، Tok 1 تا Tok M؛ جملهٔ ۱؛ جملهٔ ۲؛ تک‌جمله؛ پرسش؛ بند؛ BERT",
+          "verified": true
+        },
+        {
+          "en": "(a) Sentence Pair Classification Tasks: MNLI, QQP, QNLI, STS-B, MRPC, RTE, SWAG; (b) Single Sentence Classification Tasks: SST-2, CoLA; (c) Question Answering Tasks: SQuAD v1.1; (d) Single Sentence Tagging Tasks: CoNLL-2003 NER",
+          "fa": "الف) دسته‌بندی زوج‌جمله: MNLI، QQP، QNLI، STS-B، MRPC، RTE، SWAG؛ ب) دسته‌بندی تک‌جمله: SST-2، CoLA؛ ج) پاسخ به پرسش: SQuAD v1.1؛ د) برچسب‌گذاری تک‌جمله: CoNLL-2003 NER",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "d6a06a90aeecc0f21d4c435cc1fdde5a04407dde785f267e0096c56c20f42483",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "BERT: تنظیم دقیق برای دسته‌بندی (Classification)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "با استفاده از توکنِ نمایندهٔ کل ورودی پیش‌بینی می‌کند."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "تنها پارامترهای جدید"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "چه چیزی پیش‌بینی می‌شود؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "[CLS] He is playing [SEP] He is sleeping [SEP]; R_[CLS] R_He R_is R_playing R_[SEP] R_He R_is R_sleeping R_[SEP]; Pre-trained BERT; Feed forward network + softmax; contradiction 1.0; entailment 0.0; neutral 0.0",
+          "fa": "ورودی عین منبع: [CLS] He is playing [SEP] He is sleeping [SEP] (او در حال بازی است؛ او خواب است)؛ Rهای بالای هر توکن: بازنمایی همان توکن؛ BERT پیش‌آموخته؛ شبکهٔ پیش‌خور + سافت‌مکس؛ تناقض (Contradiction): 1.0، استلزام (Entailment): 0.0، خنثی (Neutral): 0.0",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "a5bd3324627e9780cc8258d234b0856d4d896d795433b0a71395c0d3f79c3738",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "BERT: تنظیم دقیق برای پاسخ به پرسش (Question Answering)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "اندیس‌های واژه‌های آغاز و پایان را در بندِ ورودی پیش‌بینی می‌کند."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "ضرب داخلی (Dot Product)، هر دو بازنمایی برداریِ یادگرفته‌شده را با هر توکن ورودی مقایسه می‌کند."
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "دو پارامتر جدید: بردار آغاز و بردار پایان (Start and End Vector)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "[CLS] What … system [SEP] the immune … tissue [SEP]; R_[CLS] R_What … R_system R_[SEP] R_the R_immune … R_tissue R_[SEP]; question; paragraph; Pre-trained BERT; Dot product + softmax; Probability of start/end word",
+          "fa": "ورودی نمونه عین منبع: [CLS] What … system [SEP] the immune … tissue [SEP] (What: چه؛ system: دستگاه؛ the immune: ایمنی؛ tissue: بافت)؛ بازنمایی‌های R متناظر با هر توکن؛ پرسش (Question)؛ بند (Paragraph)؛ BERT پیش‌آموخته؛ ضرب داخلی + سافت‌مکس؛ احتمال واژهٔ آغاز/پایان",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "40e01c24d7c3f437c905d4e0cb89fa8bd2a73c149fef1beed961268660eb700d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "BERT: تنظیم دقیق برای برچسب‌گذاری تک‌جمله (Single Sentence Tagging)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "بازنمایی تازهٔ هر توکن به دسته‌بند (Classifier) داده می‌شود؛ مثلاً برای بازشناسی موجودیت نام‌دار (Named Entity Recognition)."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "تنها پارامترهای جدید"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "https://static.packt-cdn.com/downloads/9781838821593_ColorImages.pdf"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "[CLS] Jeremy lives in Paris [SEP]; R_[CLS] R_Jeremy R_lives R_in R_Paris R_[SEP]; Pre-trained BERT; Classifier; Person; Location",
+          "fa": "ورودی: [CLS] Jeremy lives in Paris [SEP] (جرمی در پاریس زندگی می‌کند)؛ Rهای متناظر: بازنمایی هر توکن؛ BERT پیش‌آموخته؛ دسته‌بند؛ شخص (Person)؛ مکان (Location)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "6833b79e3b6e515cb19dd5d9f44fb35f8ee5e527203b29f1b891dd782019b7d1",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "bullet",
+          "fa": "آیا گنجاندن پیش‌بینی جملهٔ بعدی (Next Sentence Prediction) در پیش‌آموزش کمک می‌کند؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "بله"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "bullet",
+          "fa": "آیا گنجاندن پیش‌بینی توکن ماسک‌شده (Masked Token Prediction) در پیش‌آموزش، در مقایسه با رویکرد چپ‌به‌راست GPT، کمک می‌کند؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "بله؛ پیش‌آموزش یک‌سویه نسبت به دوسویه نتیجهٔ بدتری دارد."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "heading",
+          "fa": "BERT: تحلیل انتخاب‌های طراحی (Design Choices)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "Devlin et al. BERT: Pre-Training of Deep Bidirectional Transformers for Language Understanding. NAACL 2019."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Dev Set; Tasks | MNLI-m (Acc) QNLI (Acc) MRPC (Acc) SST-2 (Acc) SQuAD (F1); BERT_BASE 84.4 88.4 86.7 92.7 88.5; No NSP 83.9 84.9 86.5 92.6 87.9; LTR & No NSP 82.1 84.3 77.5 92.1 77.8",
+          "fa": "مجموعهٔ توسعه (Dev Set)؛ وظیفه‌ها: MNLI-m (دقت)، QNLI (دقت)، MRPC (دقت)، SST-2 (دقت)، SQuAD (F1). BERT پایه: 84.4، 88.4، 86.7، 92.7، 88.5؛ بدون پیش‌بینی جملهٔ بعدی (No NSP): 83.9، 84.9، 86.5، 92.6، 87.9؛ چپ‌به‌راست و بدون NSP: 82.1، 84.3، 77.5، 92.1، 77.8",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "ac3c067215fbf785ff2314def6760d3346baca098e9ced3cb8b7627ce39163f4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "جمع‌بندی: پیش‌آموزش بازنمایی همه‌منظوره (General-Purpose Representation Pre-Training) از یادگیری متمرکز بر وظیفه بهتر عمل می‌کند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.facebook.com/1rvanisrisaravanan/posts/pincer-graspthe-pincer-grasp-is-the-coordination-of-the-index-finger-and-thumb-t/2833183393596559/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pincer Grasp; 7 months; 8 months; 9 months; 10 months",
+          "fa": "گرفتن با شست و انگشت اشاره (Pincer Grasp)؛ ۷ ماهگی؛ ۸ ماهگی؛ ۹ ماهگی؛ ۱۰ ماهگی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "180dedeef9b8de686d0c141b0faf9827931a2fa5592513c2cabd9c70473e66b3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "بازنگری یادگیری: از حل وظیفه‌ها تا ساخت بازنمایی‌هایی (Representations) که تعمیم می‌یابند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "دستور کار: پیش‌آموزش در مقیاس بزرگ (Large-Scale Pretraining) + تنظیم دقیق سبک (Lightweight Fine-Tuning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "آزمون چندوجهی (Multimodal): آیا این دستور کار می‌تواند جای راه‌حل‌های CNN-RNN را در وظیفه‌های بینایی–زبان (Vision-Language) بگیرد؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "آزمون گفتار: آیا این دستور کار می‌تواند جای راه‌حل‌های مهندسی‌شدهٔ بازشناسی گفتار (Speech Recognition) را بگیرد؟"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آزمون بینایی: آیا این دستور کار می‌تواند جای CNNها را در دسته‌بندی تصویر (Image Classification) بگیرد؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "847220d800d72f31dd20ffc2a825c1d9080bb8a56a1955f09d6e2c2e941dcbcd",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "(EMNLP، ۲۰۱۹)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "LXMERT: Learning Cross-Modality Encoder Representations from Transformers; Hao Tan; Mohit Bansal; UNC Chapel Hill",
+          "fa": "LXMERT: یادگیری بازنمایی‌های رمزگذار بین‌وجهی از ترنسفورمرها (LXMERT: Learning Cross-Modality Encoder Representations from Transformers)؛ هائو تان (Hao Tan)؛ موهیت بانسال (Mohit Bansal)؛ دانشگاه کارولینای شمالی در چپل‌هیل (UNC Chapel Hill)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "0bc06d409fb5bad3349b5ae33dd61c9106c3a940d986bfa8e7d51834d6b84f37",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری (Architecture): BERT را در خود جای می‌دهد."
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "توکن‌سازی زیرواژهٔ WordPiece به‌اضافهٔ [CLS]"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            10
+          ],
+          "kind": "text",
+          "fa": "بازنمایی‌ها چه چیزی را برای بینایی (Vision)، زبان (Language) و بین‌وجهی (Cross-Modality؛ توکن [CLS]) ثبت می‌کنند؟"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "BERT (رمزگذار؛ Encoder)"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "text",
+          "fa": "L = 9"
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "text",
+          "fa": "R = 5؛ X = 5"
+        },
+        {
+          "source_lines": [
+            13,
+            14
+          ],
+          "kind": "text",
+          "fa": "ویژگی‌های Faster R-CNN برای ۳۶ شیء شناسایی‌شده از ۱٬۶۰۰ دسته"
+        },
+        {
+          "source_lines": [
+            15,
+            16
+          ],
+          "kind": "text",
+          "fa": "بازنمایی‌های تازه برای بینایی و زبان چه چیزی ثبت می‌کنند؟"
+        },
+        {
+          "source_lines": [
+            17,
+            18,
+            19
+          ],
+          "kind": "text",
+          "fa": "در بازنمایی‌های تازهٔ توجه متقاطع (Cross-Attention)، که پرس‌وجو (Query) از یک وجه و کلیدها (Keys) و مقدارها (Values) از وجه دیگر می‌آیند، چه چیزی ثبت می‌شود؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "A woman riding a bike with a dog in a basket.; RoI Feat; Pos Feat; Word Emb; Idx Emb; N_R×; N_L×; N_X×; Self; Cross; FF; +; Object-Relationship Encoder; Language Encoder; Cross-Modality Encoder; Vision Output; Cross-Modality Output; Language Output",
+          "fa": "متن ورودی عین منبع: A woman riding a bike with a dog in a basket. (زنی دوچرخه‌سواری می‌کند و سگی در سبد دارد). ویژگی ناحیهٔ مورد علاقه (RoI Feat)؛ ویژگی جایگاه (Pos Feat)؛ تعبیهٔ واژه (Word Emb)؛ تعبیهٔ اندیس (Idx Emb)؛ تکرارهای N_R، N_L و N_X؛ خودتوجهی (Self)؛ توجه متقاطع (Cross)؛ پیش‌خور (FF)؛ جمع (+)؛ رمزگذار روابط اشیاء؛ رمزگذار زبان؛ رمزگذار بین‌وجهی؛ خروجی بینایی؛ خروجی بین‌وجهی؛ خروجی زبان",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "ae3f975c57245a2ba07a84f1afc5d00c901c26e5caf4b986f911874b05c51f25",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پیش‌آموزش (Pretraining): داده‌ها در مقیاس بزرگ‌تر"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "۹٫۱۸ میلیون زوج تصویر–جمله برای ۱۸۰٬۰۰۰ تصویر؛ پرسش‌های مجموعه‌داده‌های VQA به‌عنوان زوج تصویر–جمله به کار رفته‌اند. داده‌ها از دو مجموعه‌دادهٔ توصیف تصویر (Image Captioning) و سه مجموعه‌دادهٔ پاسخ به پرسش دیداری (VQA) آمده‌اند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Image Split | Images | Sentences (or Questions): COCO-Cap VG-Cap VQA GQA VG-QA All; MS COCO - VG | 72K | 361K - 387K - - 0.75M; MS COCO ∩ VG | 51K | 256K 2.54M 271K 515K 724K 4.30M; VG - MS COCO | 57K | - 2.85M - 556K 718K 4.13M",
+          "fa": "بخش تصاویر (Image Split)؛ تعداد تصاویر؛ جمله‌ها یا پرسش‌ها در ستون‌های COCO-Cap، VG-Cap، VQA، GQA، VG-QA، کل (All). MS COCO منهای VG: 72K تصویر؛ 361K، —، 387K، —، —، 0.75M. اشتراک MS COCO و VG: 51K تصویر؛ 256K، 2.54M، 271K، 515K، 724K، 4.30M. VG منهای MS COCO: 57K تصویر؛ —، 2.85M، —، 556K، 718K، 4.13M. K یعنی هزار و M یعنی میلیون.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "2ccb1c168e3538ef3fb4fc8150dba398adcfd46251fc8e16f57b9e989c7a5d6f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "پیش‌آموزش (Pretraining): هدف؛ جمع پنج زیان (Loss)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "آشکارساز Faster R-CNN هنگام آموزش ثابت (Frozen) می‌ماند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "آموزش ۱۰ روز با چهار GPU مدل Titan Xp طول کشید."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "۱۵٪ اشیای ورودی را ماسک می‌کند."
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "۱۵٪ واژه‌های ورودی را ماسک می‌کند."
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "* ۵۰٪ پاسخ‌های زبانی به‌طور تصادفی انتخاب می‌شوند."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Who is eating the carrot?; [CLS] who [MASK] eat -ing the [MASK] ? [EOS]; [CLS] who is eat -ing the carrot ? [EOS]",
+          "fa": "پرسش عین منبع: Who is eating the carrot? (چه کسی دارد هویج را می‌خورد؟)؛ ورودی ماسک‌شده: [CLS] who [MASK] eat -ing the [MASK] ? [EOS]؛ بازسازی: [CLS] who is eat -ing the carrot ? [EOS] (همان پرسش).",
+          "verified": true
+        },
+        {
+          "en": "RoI Feat; Mask Feat; Pos Feat; Word Emb; Idx Emb; ObjectRel Encoder; Language Encoder; Cross Modality Encoder; RoI-Feature Regression; {DOG} Detected-Label Classification; Match? {YES} Answer? {RABBIT}; Cross-Modality Matching & QA; Masked Cross-Modality LM",
+          "fa": "ویژگی ناحیه (RoI Feat)؛ ویژگی ماسک (Mask Feat)؛ ویژگی جایگاه؛ تعبیهٔ واژه؛ تعبیهٔ اندیس؛ رمزگذار روابط اشیاء؛ رمزگذار زبان؛ رمزگذار بین‌وجهی؛ رگرسیون ویژگی ناحیه (RoI-Feature Regression)؛ دسته‌بندی برچسب شناسایی‌شده: {DOG} (سگ)؛ تطابق؟ {YES} (بله)، پاسخ؟ {RABBIT} (خرگوش)؛ تطبیق بین‌وجهی و پاسخ به پرسش؛ مدل زبانی ماسک‌شدهٔ بین‌وجهی (Masked Cross-Modality LM)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "bddea813ddc7cfd18c05eaf782660dff90ebf3c95f3bc43febf28ffc137f98f1",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تنظیم دقیق (Fine-Tuning): نتایج آزمایش‌ها"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "عملکرد پیشرو برای دو مجموعه‌دادهٔ پاسخ به پرسش دیداری (VQA) و یک مجموعه‌دادهٔ استدلال دیداری؛ یعنی آیا گزاره، دو تصویر را توصیف می‌کند یا نه؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "Tan and Bansal, EMNLP 2019."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Method | VQA: Binary Number Other Accu | GQA: Binary Open Accu | NLVR²: Cons Accu",
+          "fa": "روش؛ VQA: دودویی، عدد، سایر، دقت؛ GQA: دودویی، باز، دقت؛ NLVR²: سازگاری (Cons)، دقت (Accu)",
+          "verified": true
+        },
+        {
+          "en": "Human | - - - - | 91.2 87.4 89.3 | - 96.3",
+          "fa": "انسان: —، —، —، —؛ 91.2، 87.4، 89.3؛ —، 96.3",
+          "verified": true
+        },
+        {
+          "en": "Image Only | - - - - | 36.1 1.74 17.8 | 7.40 51.9",
+          "fa": "فقط تصویر: —، —، —، —؛ 36.1، 1.74، 17.8؛ 7.40، 51.9",
+          "verified": true
+        },
+        {
+          "en": "Language Only | 66.8 31.8 27.6 44.3 | 61.9 22.7 41.1 | 4.20 51.1",
+          "fa": "فقط زبان: 66.8، 31.8، 27.6، 44.3؛ 61.9، 22.7، 41.1؛ 4.20، 51.1",
+          "verified": true
+        },
+        {
+          "en": "State-of-the-Art | 85.8 53.7 60.7 70.4 | 76.0 40.4 57.1 | 12.0 53.5",
+          "fa": "روش پیشرو: 85.8، 53.7، 60.7، 70.4؛ 76.0، 40.4، 57.1؛ 12.0، 53.5",
+          "verified": true
+        },
+        {
+          "en": "LXMERT | 88.2 54.2 63.1 72.5 | 77.8 45.0 60.3 | 42.1 76.2",
+          "fa": "LXMERT: 88.2، 54.2، 63.1، 72.5؛ 77.8، 45.0، 60.3؛ 42.1، 76.2",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "ac3c067215fbf785ff2314def6760d3346baca098e9ced3cb8b7627ce39163f4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "جمع‌بندی: پیش‌آموزش بازنمایی همه‌منظوره (General-Purpose Representation Pre-Training) از یادگیری متمرکز بر وظیفه بهتر عمل می‌کند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.facebook.com/1rvanisrisaravanan/posts/pincer-graspthe-pincer-grasp-is-the-coordination-of-the-index-finger-and-thumb-t/2833183393596559/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pincer Grasp; 7 months; 8 months; 9 months; 10 months",
+          "fa": "گرفتن با شست و انگشت اشاره (Pincer Grasp)؛ ۷ ماهگی؛ ۸ ماهگی؛ ۹ ماهگی؛ ۱۰ ماهگی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "180dedeef9b8de686d0c141b0faf9827931a2fa5592513c2cabd9c70473e66b3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "بازنگری یادگیری: از حل وظیفه‌ها تا ساخت بازنمایی‌هایی (Representations) که تعمیم می‌یابند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "دستور کار: پیش‌آموزش در مقیاس بزرگ (Large-Scale Pretraining) + تنظیم دقیق سبک (Lightweight Fine-Tuning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "آزمون چندوجهی (Multimodal): آیا این دستور کار می‌تواند جای راه‌حل‌های CNN-RNN را در وظیفه‌های بینایی–زبان (Vision-Language) بگیرد؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "آزمون گفتار: آیا این دستور کار می‌تواند جای راه‌حل‌های مهندسی‌شدهٔ بازشناسی گفتار (Speech Recognition) را بگیرد؟"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آزمون بینایی: آیا این دستور کار می‌تواند جای CNNها را در دسته‌بندی تصویر (Image Classification) بگیرد؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "1bf4a8963b370c0df1bcbca146a5890b5fada78040ffbf41613c526831ddfc92",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "(NeurIPS، ۲۰۲۰)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "wav2vec 2.0: A Framework for Self-Supervised Learning of Speech Representations; Alexei Baevski; Henry Zhou; Abdelrahman Mohamed; Michael Auli; {abaevski,henryzhou7,abdo,michaelauli}@fb.com; Facebook AI",
+          "fa": "wav2vec 2.0: چارچوبی برای یادگیری خودنظارتی بازنمایی‌های گفتار (wav2vec 2.0: A Framework for Self-Supervised Learning of Speech Representations)؛ الکسی بایوسکی (Alexei Baevski)؛ هنری ژو (Henry Zhou)؛ عبدالرحمن محمد (Abdelrahman Mohamed)؛ مایکل اولی (Michael Auli)؛ {abaevski,henryzhou7,abdo,michaelauli}@fb.com؛ Facebook AI",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "f689f87808bb6ab55bf077a451cbb12700796479fee96b03546312072a4f173b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری (Architecture): BERT را در خود جای می‌دهد."
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Baevski et al. NeurIPS 2002."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "بازنمایی ورودی ترنسفورمر از صدای خام یاد گرفته می‌شود؛ بازه‌های زمانی کوتاه را برای ورودی ثبت می‌کند."
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "اگر گام حرکت (Stride) در CNN افزایش یابد، تعداد ورودی‌ها چه تغییری می‌کند؟"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "بازنمایی‌ها به مجموعه‌ای متناهی گسسته می‌شوند (Discretized)."
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "بازنمایی‌های تازه چه چیزی را ثبت می‌کنند؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Contrastive loss; L; Context representations C; Transformer; Masked; Quantized representations Q; q; Latent speech representations Z; CNN; raw waveform X",
+          "fa": "زیان تقابلی (Contrastive Loss)، L؛ بازنمایی‌های بافتی C؛ ترنسفورمر؛ ماسک‌شده؛ بازنمایی‌های کوانتیزه (Quantized) Q، q؛ بازنمایی‌های نهفتهٔ گفتار Z؛ شبکهٔ کانولوشنی (CNN)؛ شکل موج خام X",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "aabe30eba4669072df8f2cce985e1160a32a1818ed22980b900d2b737d318c4b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پیش‌آموزش (Pre-Training): پیش‌بینی توکن ماسک‌شده از میان مجموعه‌ای از نامزدها (Candidates)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Baevski et al. NeurIPS 2002."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "این توکن‌ها را ماسک می‌کند."
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "دادهٔ آموزش: دو مجموعه‌داده با به‌ترتیب ۹۶۰ ساعت و ۵۳٫۲ هزار ساعت صدا"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Contrastive loss; L; Context representations C; Transformer; Masked; Quantized representations Q; q; Latent speech representations Z; CNN; raw waveform X",
+          "fa": "زیان تقابلی (Contrastive Loss)، L؛ بازنمایی‌های بافتی C؛ ترنسفورمر؛ ماسک‌شده؛ بازنمایی‌های کوانتیزه (Quantized) Q، q؛ بازنمایی‌های نهفتهٔ گفتار Z؛ شبکهٔ کانولوشنی (CNN)؛ شکل موج خام X",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "ba9c4846f1bc262d95c6d9c54a40bac6b0bc8d384e6fa65fb6e65b603ab52c48",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تنظیم دقیق (Fine-Tuning): طراحی آزمایش و نتایج"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "یک لایهٔ خطی برای پیش‌بینی دسته‌های هدف اضافه می‌کند؛ مثلاً ۳۰ توکن برای Librispeech."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "در بازشناسی گفتار با معیار Librispeech و بازشناسی واج (Phoneme Recognition) با معیار TIMIT به عملکرد پیشرو رسید؛ حتی با دادهٔ برچسب‌دارِ ۱۰۰ برابر کمتر."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "با فقط ۱۰ دقیقه دادهٔ برچسب‌دار، به نرخ خطای واژه (Word Error Rate) ۴٫۸ رسید."
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "bullet",
+          "fa": "برای بسیاری از حدود ۷٬۰۰۰ زبان رایج جهان مرتبط است؛ زبان‌هایی که اغلب هزاران ساعت گفتارِ پیاده‌سازی‌شده ندارند."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "ac3c067215fbf785ff2314def6760d3346baca098e9ced3cb8b7627ce39163f4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "جمع‌بندی: پیش‌آموزش بازنمایی همه‌منظوره (General-Purpose Representation Pre-Training) از یادگیری متمرکز بر وظیفه بهتر عمل می‌کند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.facebook.com/1rvanisrisaravanan/posts/pincer-graspthe-pincer-grasp-is-the-coordination-of-the-index-finger-and-thumb-t/2833183393596559/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pincer Grasp; 7 months; 8 months; 9 months; 10 months",
+          "fa": "گرفتن با شست و انگشت اشاره (Pincer Grasp)؛ ۷ ماهگی؛ ۸ ماهگی؛ ۹ ماهگی؛ ۱۰ ماهگی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "180dedeef9b8de686d0c141b0faf9827931a2fa5592513c2cabd9c70473e66b3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "بازنگری یادگیری: از حل وظیفه‌ها تا ساخت بازنمایی‌هایی (Representations) که تعمیم می‌یابند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "دستور کار: پیش‌آموزش در مقیاس بزرگ (Large-Scale Pretraining) + تنظیم دقیق سبک (Lightweight Fine-Tuning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "آزمون چندوجهی (Multimodal): آیا این دستور کار می‌تواند جای راه‌حل‌های CNN-RNN را در وظیفه‌های بینایی–زبان (Vision-Language) بگیرد؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "آزمون گفتار: آیا این دستور کار می‌تواند جای راه‌حل‌های مهندسی‌شدهٔ بازشناسی گفتار (Speech Recognition) را بگیرد؟"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آزمون بینایی: آیا این دستور کار می‌تواند جای CNNها را در دسته‌بندی تصویر (Image Classification) بگیرد؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "2bfe95801892fb6160910529acb61e475a0f64d1d60e8465d7c711b35a7ffd24",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "(ICLR، ۲۰۲۱)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "AN IMAGE IS WORTH 16X16 WORDS: TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE; Alexey Dosovitskiy*†; Lucas Beyer*; Alexander Kolesnikov*; Dirk Weissenborn*; Xiaohua Zhai*; Thomas Unterthiner; Mostafa Dehghani; Matthias Minderer; Georg Heigold; Sylvain Gelly; Jakob Uszkoreit; Neil Houlsby*†; *equal technical contribution, †equal advising; Google Research, Brain Team",
+          "fa": "یک تصویر به‌اندازهٔ ۱۶×۱۶ واژه می‌ارزد: ترنسفورمرها برای بازشناسی تصویر در مقیاس بزرگ (An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale)؛ Alexey Dosovitskiy*†، Lucas Beyer*، Alexander Kolesnikov*، Dirk Weissenborn*، Xiaohua Zhai*، Thomas Unterthiner، Mostafa Dehghani، Matthias Minderer، Georg Heigold، Sylvain Gelly، Jakob Uszkoreit، Neil Houlsby*†؛ *مشارکت فنی برابر؛ †راهنمایی برابر؛ پژوهش گوگل، تیم برین (Google Research, Brain Team)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "32ea892ea21dfb765c754764839bb084e19f5a8f7fd207a8139781d5590c97ef",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری (Architecture): BERT"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Dosovitskiy et al. An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale. ICLR 2021."
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "تصویر به وصله‌های (Patches) ۱۶×۱۶ تجزیه می‌شود؛ مثال ساده شده است. بازنمایی‌ها شامل ویژگی‌های تخت‌شده (Flattened) و ویژگی‌های ResNet هستند."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "چرا پیکسل‌های خام را به‌عنوان ورودی استفاده نکنیم؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Class Bird Ball Car …; MLP Head; Transformer Encoder; Patch + Position Embedding; * Extra learnable [class] embedding; 0* 1 2 3 4 5 6 7 8 9; Linear Projection of Flattened Patches",
+          "fa": "دسته (Class): پرنده، توپ، خودرو، …؛ سرِ پرسپترون چندلایه (MLP Head)؛ رمزگذار ترنسفورمر؛ تعبیهٔ وصله + جایگاه (Patch + Position Embedding)؛ *تعبیهٔ یادگرفتنیِ اضافیِ [class]؛ جایگاه‌های 0*، 1، 2، 3، 4، 5، 6، 7، 8، 9؛ تصویر خطیِ وصله‌های تخت‌شده (Linear Projection of Flattened Patches)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "8954f988c501aff24726a0616d0b6e65c09820a1cd7b31c0403ff392f9a8d684",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یادآوری ایدهٔ خودتوجهی (Self-Attention)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "بازنمایی تازهٔ هر پیکسل، رابطهٔ آن با همهٔ پیکسل‌ها را نشان می‌دهد؛ مثلاً این تصویر ۳×۳ را فرض کنید."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "c75db886017b8f1a69e30953ddb7f48df9ffacbefe0642ea212c98358379d4e4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یادآوری ایدهٔ خودتوجهی (Self-Attention)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "بازنمایی تازهٔ هر پیکسل، رابطهٔ آن با همهٔ پیکسل‌ها را نشان می‌دهد؛ مثلاً این تصویر ۳×۳ را فرض کنید."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "بازنمایی تازهٔ یادگرفته‌شده مشخص می‌کند کدام اطلاعات سراسری، معنای یک پیکسل را روشن می‌کند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "مثلاً در بازنمایی یک پیکسل از چشم، بافت (Context) مربوط به اینکه چشم به چه حیوانی تعلق دارد نیز گنجانده شود."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "c75db886017b8f1a69e30953ddb7f48df9ffacbefe0642ea212c98358379d4e4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یادآوری ایدهٔ خودتوجهی (Self-Attention)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "بازنمایی تازهٔ هر پیکسل، رابطهٔ آن با همهٔ پیکسل‌ها را نشان می‌دهد؛ مثلاً این تصویر ۳×۳ را فرض کنید."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "بازنمایی تازهٔ یادگرفته‌شده مشخص می‌کند کدام اطلاعات سراسری، معنای یک پیکسل را روشن می‌کند."
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "مثلاً در بازنمایی یک پیکسل از چشم، بافت (Context) مربوط به اینکه چشم به چه حیوانی تعلق دارد نیز گنجانده شود."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "8954f988c501aff24726a0616d0b6e65c09820a1cd7b31c0403ff392f9a8d684",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یادآوری ایدهٔ خودتوجهی (Self-Attention)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "بازنمایی تازهٔ هر پیکسل، رابطهٔ آن با همهٔ پیکسل‌ها را نشان می‌دهد؛ مثلاً این تصویر ۳×۳ را فرض کنید."
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "a2f4619d521175b42310be0c58a4c5c0959c4be71fcb0c21de4468e9386f1b29",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یادآوری ایدهٔ خودتوجهی (Self-Attention)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "بازنمایی تازهٔ هر پیکسل، رابطهٔ آن با همهٔ پیکسل‌ها را نشان می‌دهد؛ مثلاً این تصویر ۳×۳ را فرض کنید."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "و به همین ترتیب برای دیگر پیکسل‌های تصویر…"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "6cc96fd8f4bfd4af081b3ab445e2b3ec6064bca3ac96e79bad88b228063ce071",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "دلیل استفاده از وصله‌ها (Patches): هزینهٔ محاسباتیِ خودتوجهی (Self-Attention)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "مثلاً به‌جای تصویر ۳×۳، اگر تصویر ۱۹۲۰×۱۰۸۰ به کار رود، چند محاسبهٔ خودتوجهی لازم است؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "math",
+          "fa": "(1920 × 1080)² = 4,299,816,960,000؛ یعنی حدود ۴٫۳ تریلیون.",
+          "latex": "(1920\\times1080)^2=4{,}299{,}816{,}960{,}000"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "هزینهٔ درجه‌دوم (Quadratic Cost) خودتوجهی برای پیکسل‌ها اغلب غیرعملی است!"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "f11da215408901c70ab15feaaa4a3259f35e291c0a5a06aa4ffa724e8bfd6ca9",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "معماری (Architecture): BERT"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Dosovitskiy et al. An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale. ICLR 2021."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "تصویر به وصله‌های (Patches) ۱۶×۱۶ تجزیه می‌شود."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "برای تصویری با ۱۶۰×۱۶۰ پیکسل، چند وصله (ورودی) استخراج می‌شود؟"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "۱۰۰"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "توکن CLS پس از عبور از ترنسفورمر نمایندهٔ چیست؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Class Bird Ball Car …; MLP Head; Transformer Encoder; Patch + Position Embedding; * Extra learnable [class] embedding; 0* 1 2 3 4 5 6 7 8 9; Linear Projection of Flattened Patches",
+          "fa": "دسته (Class): پرنده، توپ، خودرو، …؛ سرِ پرسپترون چندلایه (MLP Head)؛ رمزگذار ترنسفورمر؛ تعبیهٔ وصله + جایگاه (Patch + Position Embedding)؛ *تعبیهٔ یادگرفتنیِ اضافیِ [class]؛ جایگاه‌های 0*، 1، 2، 3، 4، 5، 6، 7، 8، 9؛ تصویر خطیِ وصله‌های تخت‌شده (Linear Projection of Flattened Patches)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "3eb9b17e1b7e88f78410d7eaedf265da2257047d06593b0e29e8165146591823",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پیش‌آموزش (Pre-Training): یادگیری نظارت‌شده (Supervised Learning) از پیش‌بینی ماسک‌شدهٔ خودنظارتی بهتر عمل می‌کند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Dosovitskiy et al. An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale. ICLR 2021."
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "مجموعه‌داده: JFT با ۳۰۳ میلیون تصویر برچسب‌دار؛ اختصاصیِ گوگل"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "وظیفه: دسته‌بندی (Classification)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "بهینه‌ساز (Optimizer): آدام (Adam)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Class Bird Ball Car …; MLP Head; Transformer Encoder; Patch + Position Embedding; * Extra learnable [class] embedding; 0* 1 2 3 4 5 6 7 8 9; Linear Projection of Flattened Patches",
+          "fa": "دسته (Class): پرنده، توپ، خودرو، …؛ سرِ پرسپترون چندلایه (MLP Head)؛ رمزگذار ترنسفورمر؛ تعبیهٔ وصله + جایگاه (Patch + Position Embedding)؛ *تعبیهٔ یادگرفتنیِ اضافیِ [class]؛ جایگاه‌های 0*، 1، 2، 3، 4، 5، 6، 7، 8، 9؛ تصویر خطیِ وصله‌های تخت‌شده (Linear Projection of Flattened Patches)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "c6b05bb8652790cacd7184b6f2ae814021914a3434870831fa1376e00d57138e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "تنظیم دقیق (Fine-Tuning): دیگر وظیفه‌های دسته‌بندی تصویر (Image Classification)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "Dosovitskiy et al. An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale. ICLR 2021."
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "MLP با یک لایهٔ خطی برای دسته‌های جدیدِ دسته‌بندی جایگزین می‌شود."
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "در پنج مجموعه‌دادهٔ دسته‌بندی تصویر به نتایج قوی رسید!"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "اندازهٔ مجموعه‌دادهٔ پیش‌آموزش، مستقل از اندازهٔ مدل، حیاتی بود."
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "نتایج تنظیم دقیق روی ImageNet"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Class Bird Ball Car …; MLP Head; Transformer Encoder; Patch + Position Embedding; * Extra learnable [class] embedding; 0* 1 2 3 4 5 6 7 8 9; Linear Projection of Flattened Patches",
+          "fa": "دسته (Class): پرنده، توپ، خودرو، …؛ سرِ پرسپترون چندلایه (MLP Head)؛ رمزگذار ترنسفورمر؛ تعبیهٔ وصله + جایگاه (Patch + Position Embedding)؛ *تعبیهٔ یادگرفتنیِ اضافیِ [class]؛ جایگاه‌های 0*، 1، 2، 3، 4، 5، 6، 7، 8، 9؛ تصویر خطیِ وصله‌های تخت‌شده (Linear Projection of Flattened Patches)",
+          "verified": true
+        },
+        {
+          "en": "ImageNet Top1 Accuracy [%]; Pre-training dataset; ImageNet; ImageNet-21k; JFT-300M; BiT; ViT-B/32; ViT-B/16; ViT-L/32; ViT-L/16; ViT-H/14; 70 75 80 85 90",
+          "fa": "دقت رتبهٔ اول ImageNet برحسب درصد؛ مجموعه‌دادهٔ پیش‌آموزش: ImageNet، ImageNet-21k، JFT-300M؛ روش‌های BiT، ViT-B/32، ViT-B/16، ViT-L/32، ViT-L/16، ViT-H/14؛ درجات محور: ۷۰، ۷۵، ۸۰، ۸۵، ۹۰",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "a0de51d6eb2cfc48a49e349036a792a5c0040a9f27108281907e827c744d3348",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "یافته: پیش‌آموزش در مقیاس بزرگ (Large-Scale Pretraining) به ترنسفورمرها امکان رقابت با CNNها را می‌دهد."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.deeplearningbook.org/contents/convnets.html"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "لایه‌های کانولوشنی (Convolutional Layers): لایه‌های عمیق‌تر، میدان پذیرش (Receptive Field) سراسری‌تری دارند."
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/self-attention-5b95ea164f61"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "خودتوجهی (Self-Attention): هر لایه یک میدان پذیرش سراسری دارد."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Attention; x₁ x₂ x₃ x₄ x₅; z₁ z₂ z₃ z₄ z₅",
+          "fa": "توجه (Attention)؛ ورودی‌های x₁، x₂، x₃، x₄، x₅ و خروجی‌های z₁، z₂، z₃، z₄، z₅",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "ac3c067215fbf785ff2314def6760d3346baca098e9ced3cb8b7627ce39163f4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "جمع‌بندی: پیش‌آموزش بازنمایی همه‌منظوره (General-Purpose Representation Pre-Training) از یادگیری متمرکز بر وظیفه بهتر عمل می‌کند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.facebook.com/1rvanisrisaravanan/posts/pincer-graspthe-pincer-grasp-is-the-coordination-of-the-index-finger-and-thumb-t/2833183393596559/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pincer Grasp; 7 months; 8 months; 9 months; 10 months",
+          "fa": "گرفتن با شست و انگشت اشاره (Pincer Grasp)؛ ۷ ماهگی؛ ۸ ماهگی؛ ۹ ماهگی؛ ۱۰ ماهگی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "180dedeef9b8de686d0c141b0faf9827931a2fa5592513c2cabd9c70473e66b3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "بازنگری یادگیری: از حل وظیفه‌ها تا ساخت بازنمایی‌هایی (Representations) که تعمیم می‌یابند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "دستور کار: پیش‌آموزش در مقیاس بزرگ (Large-Scale Pretraining) + تنظیم دقیق سبک (Lightweight Fine-Tuning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "آزمون چندوجهی (Multimodal): آیا این دستور کار می‌تواند جای راه‌حل‌های CNN-RNN را در وظیفه‌های بینایی–زبان (Vision-Language) بگیرد؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "آزمون گفتار: آیا این دستور کار می‌تواند جای راه‌حل‌های مهندسی‌شدهٔ بازشناسی گفتار (Speech Recognition) را بگیرد؟"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آزمون بینایی: آیا این دستور کار می‌تواند جای CNNها را در دسته‌بندی تصویر (Image Classification) بگیرد؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "8a238c6e2495576c379171ea5de192dc8d2ea6093ffafddf1d9836d8ea181d4a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گام بعدی: انفجار ترنسفورمرها (Transformers) در جامعه"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://www.pinterest.com/pin/521784306804400819/"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "180dedeef9b8de686d0c141b0faf9827931a2fa5592513c2cabd9c70473e66b3",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "موضوع‌های امروز"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "بازنگری یادگیری: از حل وظیفه‌ها تا ساخت بازنمایی‌هایی (Representations) که تعمیم می‌یابند."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "دستور کار: پیش‌آموزش در مقیاس بزرگ (Large-Scale Pretraining) + تنظیم دقیق سبک (Lightweight Fine-Tuning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "آزمون چندوجهی (Multimodal): آیا این دستور کار می‌تواند جای راه‌حل‌های CNN-RNN را در وظیفه‌های بینایی–زبان (Vision-Language) بگیرد؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "آزمون گفتار: آیا این دستور کار می‌تواند جای راه‌حل‌های مهندسی‌شدهٔ بازشناسی گفتار (Speech Recognition) را بگیرد؟"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "آزمون بینایی: آیا این دستور کار می‌تواند جای CNNها را در دسته‌بندی تصویر (Image Classification) بگیرد؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "آموزش برنامه‌نویسی"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ]
+    }
+  ]
+}

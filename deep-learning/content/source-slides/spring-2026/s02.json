@@ -1,0 +1,758 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s02",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/02-Artificial-Neurons.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2026/s02.pdf",
+    "sha256": "fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477",
+    "page_count": 51,
+    "license_notice": "CC BY-NC-SA; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "51bf4efc0fbcc06209909fbb5e90aa2c2ad1b22dadfa3693e88af33c13926334",
+      "lines": [
+        "The Spark:",
+        "Artificial Neurons Fire Up AI",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2026",
+        "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "a9a67f6e81b05125d6e74f2676bd4180b7f015dabc06ab3ea8cdda2167c89c35",
+      "lines": [
+        "Review",
+        "• Last lecture:",
+        "• Deep learning applications",
+        "• History of neural networks and deep learning",
+        "• How does a machine learn?",
+        "• Course logistics",
+        "• Assignments (Canvas)",
+        "• Lab assignment 1 due in 1.5 weeks",
+        "• Questions?"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "f10f15723e5a9398fe5aac522d18cc8252d563c7d620555b27f915a536854f43",
+      "lines": [
+        "Today’s Topics",
+        "• Biological inspiration (late 1800s & early 1900s): discovery of neurons",
+        "• Biological modeling (1957): mimicking “intelligence” to understand it",
+        "• Crisis (1969): models proven incapable of many forms of “intelligence”",
+        "• Programming tutorial: basics of PyTorch"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "f10f15723e5a9398fe5aac522d18cc8252d563c7d620555b27f915a536854f43",
+      "lines": [
+        "Today’s Topics",
+        "• Biological inspiration (late 1800s & early 1900s): discovery of neurons",
+        "• Biological modeling (1957): mimicking “intelligence” to understand it",
+        "• Crisis (1969): models proven incapable of many forms of “intelligence”",
+        "• Programming tutorial: basics of PyTorch"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "5d6d62f85f51e8f013d9bf97a37e97e3fec95116b24016eb92226ca052fcbd6a",
+      "lines": [
+        "Motivation: How Do We Sense",
+        "and Respond to the World?",
+        "“hot”",
+        "https://www.clipart.email/clipart/dont￾touch-hot-stove-clipart-73647.html",
+        "“loud”",
+        "https://kisselpaso.com/if-the-sun-city￾music-fest-gets-too-loud-there-is-a-phone￾number-you-can-call-to-complain/",
+        "“spicy”",
+        "https://www.babycenter.com/404_when￾can-my-baby-eat-spicy-foods_1368539.bc",
+        "What is that enables us to have such experiences?",
+        "Who has experienced something that is:"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "f6f11ea7d4965b4c5f5be9dd187202f219133da7b01eba95d2dd2d0728688852",
+      "lines": [
+        "Discovery: Neurons Are the Basic Unit",
+        "for Sensing and Responding to the World",
+        "Santiago Ramón y Cajal",
+        "1852-1934",
+        "“Father of modern neuroscience”",
+        "Awarded 1906 Nobel Prize for discovering in the late",
+        "1880s organisms’ nervous systems consist of independent",
+        "cells (called neurons) that communicate across small gaps",
+        "Edgar Adrian",
+        "1889-1977",
+        "A “father” of modern neurophysiology",
+        "Awarded 1932 Nobel Prize for using his new recording",
+        "device to reveal how neurons communicate, including",
+        "the all-or-none firing behavior of neurons"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "8b11b7ea0307482bb13cc03c5b7201a3c374838a70d1ac3a6bce4fd2a317aeff",
+      "lines": [
+        "Santiago Ramón y Cajal",
+        "1852-1934",
+        "“Father of modern neuroscience”",
+        "Awarded 1906 Nobel Prize for discovering in the late",
+        "1880s organisms’ nervous systems consist of independent",
+        "cells (called neurons) that communicate across small gaps",
+        "Discovery: Neurons Are the Basic Unit",
+        "for Sensing and Responding to the World",
+        "Edgar Adrian",
+        "1889-1977",
+        "A “father” of modern neurophysiology",
+        "Awarded 1932 Nobel Prize for using his new recording",
+        "device to reveal how neurons communicate, including",
+        "the all-or-none firing behavior of neurons",
+        "If incoming signals exceed a",
+        "certain threshold within a short",
+        "period of time, the neuron “fires”",
+        "Analogous to turning on a light switch!"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "5fe7e43e304598fdd8f19b618a43e0e1e164b9d0aa28408b08f2d2dc1d9a3b09",
+      "lines": [
+        "Basics of Biological Neurons",
+        "0:08-1:12 minutes of https://youtu.be/oa6rvUJlg7o?si=HIVHkOMvHEWo7Mr2&t=8"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "f10f15723e5a9398fe5aac522d18cc8252d563c7d620555b27f915a536854f43",
+      "lines": [
+        "Today’s Topics",
+        "• Biological inspiration (late 1800s & early 1900s): discovery of neurons",
+        "• Biological modeling (1957): mimicking “intelligence” to understand it",
+        "• Crisis (1969): models proven incapable of many forms of “intelligence”",
+        "• Programming tutorial: basics of PyTorch"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "7486dbcc6c89a18b80591440d4c6acf94edabab3efdecaaad11b904f69b2a9b4",
+      "lines": [
+        "Frank Rosenblatt",
+        "1928-1971",
+        "Psychologist",
+        "“new research program... objective of designing, fabricating, and evaluating an electronic brain",
+        "model… capable of “learning” responses… capable of concept formation, language translation,",
+        "collation of military intelligence, and the solution of problems through inductive logic.”",
+        "Biological Modeling"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "c28695f15f907b74514e7097378eee67bd4f5348f708379d1fc7c34bda60b7da",
+      "lines": [
+        "Context: Availability of Architecture,",
+        "Hardware, and Learning Concepts",
+        "• 1943: model of biological neuron invented",
+        "• 1945: first digital computer created",
+        "• 1949: learning paradigm where \"neurons that fire together, wire",
+        "together” introduced in Hebb’s “The Organization of Behavior”"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "6e968bc91ce539b3b39add82476a1d1c322f309b89c4935a38b35664df816d29",
+      "lines": [
+        "Architecture Background: Neuron Model",
+        "Walter Pitts",
+        "1923-1969",
+        "Mathematician",
+        "Warren McCulloch",
+        "1898-1969",
+        "Neurophysiologist",
+        "Warren McCulloch and Walter Pitts, A Logical Calculus of Ideas Immanent in Nervous Activity, 1943",
+        "• All-or-none neuron firing = propositional logic",
+        "• The study of relationships between statements",
+        "(propositions) to decide if they are true or false",
+        "• Truth tables exemplify how statements combine to",
+        "create logical operations; e.g., what are these?",
+        "And many more here: https://sites.millersville.edu/bikenaga/math￾proof/truth-tables/truth-tables.html"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "faa6a39540825108d5432a3596d6c0183876b5d0a738af123515a321bb2f6e78",
+      "lines": [
+        "Architecture Background: Key Ideas",
+        "“… our knowledge of the world, including ourselves, is incomplete as to space and indefinite as to time. This",
+        "ignorance, implicit in all our brains, is the counterpart of the abstraction which renders our knowledge useful.",
+        "The role of brains in determining the epistemic relations of our theories to our observations and of these to",
+        "the facts is all too clear, for it is apparent that every idea and every sensation is realized by activity within that",
+        "net… There is no theory we may hold and no observation we can make that will retain so much as its old",
+        "defective reference to the facts if the net be altered… With determination of the net, the unknowable object",
+        "of knowledge, the “thing in itself,” ceases to be unknowable.”",
+        "Do you agree with the authors’ following conclusions?",
+        "1. Brains don’t sense everything",
+        "2. Our brains, instead, compress and abstract information into useful patterns (e.g., for deciding how to act)",
+        "3. Thinking and experiences are just neural computation between many simple computational devices",
+        "4. Specification of a brain’s computational network dictates reality (e.g., brain damage changes facts)",
+        "Warren McCulloch and Walter Pitts, A Logical Calculus of Ideas Immanent in Nervous Activity, 1943"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "ea0f2d1cf3fad3cd038d3957f552026ffabc0e2fbb8bf8bd40489a59303ef502",
+      "lines": [
+        "Architecture: Key Ideas",
+        "• It is not feasible to perform brute-force search, comparing a new example against",
+        "everything else in the world for a match, since computers’ memory is finite",
+        "• Learning is necessary in order to generate compact, generalizable patterns that can",
+        "fit into finite memory (just like humans)"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "dffe4bb69b14983d8729a87dcc3356ef967552dc549aa166f1c1bfe9ad3f68f7",
+      "lines": [
+        "Architecture: Mimics Biological Neuron",
+        "( “fires” only if",
+        "aggregate value",
+        "exceeds threshold)",
+        "[Ghasemian, Razminia, and Rostami. Quantum Information Processing 2023]",
+        "Extends McCulloch￾Pitts neuron by",
+        "letting inputs and",
+        "weights be any value",
+        "and modifiable"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "92ebeaf9627cb289ee35656e664ee26cb08116aee10cf6caba64d756550fe2eb",
+      "lines": [
+        "Architecture: Mathematical Representation",
+        "• Function deciding output value (“fire” or not):",
+        "• Rewriting function:",
+        "• Where:",
+        "Bias 1",
+        "Note: output values of {-1, 1} and {0, 1}",
+        "are both used, including in Ch 2.5 and 4 of",
+        "the Kamath book. These are paired with",
+        "thresholds of 0 and 0.5 respectively.",
+        "(indicates how easy/hard it is to get the",
+        "perceptron to “fire”; this value is learned)"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "957326fb8e021185076aa7cdfc672eb0e219a8358f2f462e66729c67a3fb6f93",
+      "lines": [
+        "Architecture: Simple Graphical Example",
+        "Binary classification: decision boundary separates orange and blue dots",
+        "Kamath et al. Deep Learning for NLP and Speech Recognition. 2019.",
+        "What errors does",
+        "the model make?",
+        "Feature 1",
+        "Feature 2",
+        "Mathematically, the bias",
+        "term enables the model to",
+        "NOT pass through the origin"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "1a08b317928f1a09b6cf619d027edadf96f40be3f15838adbf1327e7a15a6929",
+      "lines": [
+        "Learning Algorithm: Recall Motivation",
+        "• Rather than storing all experiences, the algorithm abstracts useful",
+        "patterns from them as changes to neural network parameters"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "7a6eb9e84aafb5aef3adefcb2ce8d3b9308b736058d2b8c61b7059adc048a3c9",
+      "lines": [
+        "Learning Algorithm: Mistake-Driven Rule",
+        "• Approach: for each example, the model makes a prediction. After an error, its",
+        "weights are updated to try to place the misclassified example on the correct side.",
+        "https://en.wikipedia.org/wiki/Perceptron",
+        "Would old model make a mistake?",
+        "- Yes; model changed",
+        "Would old model make a mistake?",
+        "- No; model didn’t change",
+        "Would old model make a mistake?",
+        "- Yes; model changed",
+        "Assume this",
+        "learned model"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "51c21430a260eb3982d4b11ea5fcfc837b9ed629e162530c6ff066409c6ddd41",
+      "lines": [
+        "Learning Algorithm: Mistake-Driven Rule",
+        "• Approach: for each example, the model makes a prediction. After an error, its",
+        "weights are updated to try to place the misclassified example on the correct side.",
+        "• Implementation, which can run on hardware (bridges theory with application):",
+        "• Repeat until stopping criterion met:",
+        "• For each input example, x, compute model’s prediction:",
+        "• Update all model weights as follows:",
+        "• Convergence guarantees provided; correct solution will be found in some conditions",
+        "𝑤 ← 𝑤 + 𝜂 𝑦true − 𝑦pred 𝑥",
+        "Learning Rate (set a priori)",
+        "𝑦ො =",
+        "1 if 𝐰⊤𝐱 ≥ 0",
+        "−1 otherwise"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "4785a25c64c3b8fd958cd111aac59c3b7944d41eb04459eff0f473e81e03a0dd",
+      "lines": [
+        "Example: True Model",
+        "• Y is 1 if at least 2 of the 3 inputs are 1, and -1 otherwise",
+        "?",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "4785a25c64c3b8fd958cd111aac59c3b7944d41eb04459eff0f473e81e03a0dd",
+      "lines": [
+        "Example: True Model",
+        "• Y is 1 if at least 2 of the 3 inputs are 1, and -1 otherwise",
+        "?",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "4785a25c64c3b8fd958cd111aac59c3b7944d41eb04459eff0f473e81e03a0dd",
+      "lines": [
+        "Example: True Model",
+        "• Y is 1 if at least 2 of the 3 inputs are 1, and -1 otherwise",
+        "?",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "09c172c38702e9a7227a2cfffac02cc546764644901af081073c0e6135815481",
+      "lines": [
+        "Example: True Model",
+        "• Y is 1 if at least 2 of the 3 inputs are 1, and -1 otherwise",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "2cad152c61a38d12e6a4731bef915519043cc4e3cfcc15ff0e08aac823119df6",
+      "lines": [
+        "Example: Training with 1rst Sample",
+        "• Compute predicted value:",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf",
+        "𝑦",
+        "ො",
+        "=",
+        "1 if 𝐰⊤𝐱 ≥ 0",
+        "−1 otherwise",
+        "What does the model predict?",
+        "Predicted",
+        "?",
+        "𝐰⊤𝐱 = 1 x 𝑤0 + x1 x 𝑤1 + x2 x 𝑤2 + x3 x 𝑤3 = 1x0 + 1x0 + 0x0 + 0x0 = 0"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "aa6ce1e48e27e1a092afb455c357e4fba3a684b194ca8aa5cb39533fd1cffa24",
+      "lines": [
+        "Example: Training with 1rst Sample",
+        "• Update parameters:",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf",
+        "𝑤 ← 𝑤 + 𝜂 𝑦true − 𝑦pred 𝑥",
+        "𝑤1 ← 𝑤1 + 𝜂 𝑦true − 𝑦pred 𝑥1",
+        "𝑤0 ← 𝑤0 + 𝜂 𝑦true − 𝑦pred",
+        "𝑤2 ← 𝑤2 + 𝜂 𝑦true − 𝑦pred 𝑥2",
+        "𝑤3 ← 𝑤3 + 𝜂 𝑦true − 𝑦pred 𝑥3",
+        "Predicted",
+        "1",
+        "Will the model parameters get updated?"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "acdf48d99db30f58775e656099087d394641548e5b00a128e1af063e75f83247",
+      "lines": [
+        "Example: Training with 1rst Sample",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf",
+        "𝑤1 = 0 + 0.1 −1 − 1 x 1 = −0.2",
+        "𝑤0 = 0 + 0.1 −1 − 1 = −0.2",
+        "𝑤2 = 0 + 0.1 −1 − 1 x 0 = 0",
+        "𝑤3 = 0 + 0.1 −1 − 1 x 0 = 0",
+        "Assume learning rate = 0.1:",
+        "Predicted",
+        "1",
+        "? ? ? ?",
+        "• Update parameters: 𝑤 ← 𝑤 + 𝜂 𝑦true − 𝑦pred 𝑥"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "8b2400cf470e8ddd46a4c7b622788970f16fa12104f0f5d919f6b742f5f2ddee",
+      "lines": [
+        "Example: Training with 2nd Sample",
+        "• Compute predicted value:",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf",
+        "𝑦",
+        "ො",
+        "=",
+        "1 if 𝐰⊤𝐱 ≥ 0",
+        "−1 otherwise",
+        "What does the model predict?",
+        "Predicted",
+        "1",
+        "?",
+        "𝐰⊤𝐱 = 1 x 𝑤0 + x1 x 𝑤1 + x2 x 𝑤2 + x3 x 𝑤3 = 1x − 0.2 + 1x − 0.2 + 0x0 + 1x0 = − 0.4"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "a98650e960cb99d33876a8b47dbdbcd4f036bb396a70b5c47bbb4638691f3bbb",
+      "lines": [
+        "Example: Training with 2nd Sample",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf",
+        "𝑤1 ← 𝑤1 + 𝜂 𝑦true − 𝑦pred 𝑥1",
+        "𝑤0 ← 𝑤0 + 𝜂 𝑦true − 𝑦pred",
+        "𝑤2 ← 𝑤2 + 𝜂 𝑦true − 𝑦pred 𝑥2",
+        "𝑤3 ← 𝑤3 + 𝜂 𝑦true − 𝑦pred 𝑥3",
+        "Will the model parameters get updated?",
+        "Predicted",
+        "1",
+        "-1",
+        "• Update parameters: 𝑤 ← 𝑤 + 𝜂 𝑦true − 𝑦pred 𝑥"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "022d53bce28d324c6003bccb7c1d4bb189d4a44047d9d5a65b1f914dfe85a12b",
+      "lines": [
+        "Example: Training with 2",
+        "nd Sample",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf",
+        "Predicted",
+        "1",
+        "-1",
+        "𝑤1 = −0.2 + 0.1 1 − −1 x 1 = 0",
+        "𝑤0 = −0.2 + 0.1 1 − −1 = 0",
+        "𝑤2 = 0 + 0.1 1 − −1 x 0 = 0",
+        "𝑤3 = 0 + 0.1 1 − −1 x 1 = 0.2",
+        "? ? ? ?",
+        "• Update parameters: 𝑤 ← 𝑤 + 𝜂 𝑦true − 𝑦pred 𝑥"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "02884c1541d33e758c5508a19464f4d15eca023a013c72b9d8e76548382d6027",
+      "lines": [
+        "• For every training example:",
+        "• Predict value",
+        "• Update parameters",
+        "• How many examples are in",
+        "this training dataset?",
+        "• Why might the weights not",
+        "change for examples 2-4?",
+        "Example: Training for One Epoch",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "9ac38f48004dd5998ff5642f5f2b907bf68b527e395b4d2cd601732be8f46391",
+      "lines": [
+        "Example: Training for Multiple Epochs",
+        "• Continue repeatedly applying these two steps with every example",
+        "https://www-users.cs.umn.edu/~kumar001/dmbook/slides/chap4_ann.pdf"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "abbf1196293ace9df43ff5f4fadfee253d93a8a02858f87764455c621f7ecf55",
+      "lines": [
+        "e.g., Learning curve for 26 letters in the",
+        "alphabet, presented in fixed positions",
+        "(and many more in Rosenblatt’s 1962 book)",
+        "Experiments: Rosenblatt’s Perceptron Learned!",
+        "Mark I Perceptron built in 1960 for more",
+        "experiments (e.g., camera sees “C”)",
+        "(machine now at the Smithsonian museum)",
+        "https://en.wikipedia.org/wiki/Perceptron"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "fcc1d6b4edf7711202471af906a40b0be01dfda1b1baa2799ecd1291d20dbfa0",
+      "lines": [
+        "Rosenblatt’s Motivations",
+        "“For this writer, the perceptron program is not primarily concerned with the",
+        "invention of devices for ‘artificial intelligence’, but rather with investigating the",
+        "physical structures and neurodynamic principles which underlie ‘natural",
+        "intelligence’. A perceptron is first and foremost a brain model, not an invention",
+        "for pattern recognition. As a brain model, its utility is in enabling us to determine",
+        "the physical conditions for the emergence of various psychological properties. It",
+        "is by no means a \"complete\" model, and we are fully aware of the simplifications",
+        "which have been made from biological systems…”",
+        "[Rosenblatt. Spartan books 1962]"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "b97544e601ee854e01a65de63b54c46ee0f8c7fc81079f10ff3cacfc0deac74c",
+      "lines": [
+        "Others Had Other",
+        "Aspirations; e.g.,",
+        "New York Times article, July 8, 1958 :",
+        "https://www.nytimes.com/1958/07/08/arc",
+        "hives/new-navy-device-learns-by-doing￾psychologist-shows-embryo-of.html"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "b374626a2e5c03f5d4e6d5d4ad9564e2fe9f82f1d9cd82851079da0e7ab800bb",
+      "lines": [
+        "Some Achieved Commercial Success…",
+        "e.g.,",
+        "https://www.ebay.ca/itm/335521091499#"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "7d0e1385360f7dbc13695b23d3722c295f594c2d58bbcfb6e870b16af434ba2f",
+      "lines": [
+        "And Many Expressed Fear…",
+        "“In from three to eight years we will have a machine with the general intelligence",
+        "of an average human being. I mean a machine that will be able to read",
+        "Shakespeare, grease a car, play office politics, tell a joke, have a fight. At that point",
+        "the machine will begin to educate itself with fantastic speed. In a few months it",
+        "will be at genius level and a few months after that its powers will be incalculable...",
+        "Once the computers got control, we might never get it back. We would survive at",
+        "their sufferance. If we're lucky, they might decide to keep us as pets... I have",
+        "warned [people in the Pentagon] again and again that we are getting into very",
+        "dangerous country. They don’t seem to understand.”",
+        "– attributed to Marvin Minsky, controversially; “Father of AI”",
+        "“When I checked Minsky’s prophecy with other people working on Artificial",
+        "Intelligence, however, many of them said that Minsky’s timetable might be",
+        "somewhat wishful—‘‘give us 15 years,” was a common remark—but all agreed that",
+        "there would be such a machine and that it could precipitate the third Industrial",
+        "Revolution, wipe out war and poverty and roll up centuries of growth in science,",
+        "education and the arts. At the same time a number of computer scientists fear",
+        "that the godsend may become a Golem [an uncontrollable creation].”",
+        "- Journalist",
+        "https://gwern.net/doc/reinforcement￾learning/robot/1970-darrach.pdf",
+        "1970 LIFE article"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "f10f15723e5a9398fe5aac522d18cc8252d563c7d620555b27f915a536854f43",
+      "lines": [
+        "Today’s Topics",
+        "• Biological inspiration (late 1800s & early 1900s): discovery of neurons",
+        "• Biological modeling (1957): mimicking “intelligence” to understand it",
+        "• Crisis (1969): models proven incapable of many forms of “intelligence”",
+        "• Programming tutorial: basics of PyTorch"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "58ccbab42c7bec48abd230b06de28b7663667df2e405bd517c6e4c264bc98409",
+      "lines": [
+        "Main Instigator",
+        "Marvin Minsky",
+        "1927-2016",
+        "MIT Professor",
+        "1969 Turing Award for co-founding the AI field",
+        "https://www.wyso.org/2016-08-05/remembering-a-thinker-who-thought-about-thinking",
+        "Seymore Papert",
+        "1928-2016",
+        "MIT Professor"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "36ef0d5b06b6c4f913e02a68df8f5a061ecfc722b4d6e1282cb3a203001ae49e",
+      "lines": [
+        "Main Instigator",
+        "“… first to show that there are fundamental",
+        "limitations on the kinds of patterns that",
+        "perceptrons can ever learn to recognize.”",
+        "“Our collaboration began in 1963 when we were",
+        "brought together by Warren S. McCulloch.”"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "13b7e29ff24fef2edffe12ce54d7ba54d434537a541d7ecd319cc34d5c7f9310",
+      "lines": [
+        "Motivation: Act of Service",
+        "“Rosenblatt’s (1958a) schemes quickly took root,",
+        "and soon there were perhaps as many as a hundred",
+        "groups, large and small, experimenting with the",
+        "model... The results… were generally disappointing…",
+        "Both of the present authors (first independently and",
+        "later together) became involved with a somewhat",
+        "therapeutic compulsion: to dispel what we feared to",
+        "be the first shadows of a ‘holistic’ or ‘Gestalt’",
+        "misconception that would threaten to haunt the",
+        "fields of engineering and artificial intelligence as it",
+        "had earlier haunted biology and psychology.”",
+        "– pg. 18-20"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "7b67d25d5a025f811ae28c89eed9c6fe23421b58264486f7df049dd79e681305",
+      "lines": [
+        "Context",
+        "• Working generalizable perceptrons at the time had a single layer; e.g.,",
+        "• Their analysis excluded incomplete visions from Rosenblatt and others",
+        "for “multilayer perceptrons” (e.g., see [Rosenblatt. Spartan books 1962])",
+        "[Ghasemian, Razminia, and Rostami. Quantum Information Processing 2023]"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "2cdfc2a4514b5e955bea58af1c5a6da21a72c5c6d76475de75eded3f64e4f934",
+      "lines": [
+        "Example: XOR for Single Layer Perceptron",
+        "XOR = “Exclusive Or”",
+        "- Input: two binary values x1 and x2",
+        "- Output:",
+        "- 1, when exactly one input equals 1",
+        "- 0, otherwise",
+        "x1 x2 x1 XOR x2",
+        "0 0",
+        "0 1",
+        "1 0",
+        "1 1",
+        "0",
+        "1",
+        "1",
+        "0",
+        "?",
+        "?",
+        "?",
+        "?"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "b2d62cf2778b077bbf87a91d6df2ecdc732366dcec06c0a8628478c527037999",
+      "lines": [
+        "Example: XOR Problem Visualized Graphically",
+        "x1 x2 x1 XOR x2",
+        "0 0",
+        "0 1",
+        "1 0",
+        "1 1",
+        "0",
+        "1",
+        "1",
+        "0",
+        "Any volunteers for drawing a line (decision boundary from",
+        "a perceptron for 2 features) to separate the two classes?",
+        "0 1",
+        "0",
+        "1",
+        "x1",
+        "x2"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "e6a1cd42063ff8e2a9ffe805d8a0f434201629bdeeb295ef73342265b0b7581a",
+      "lines": [
+        "Many more problems were",
+        "also shown impossible to solve",
+        "with a single layer perceptron",
+        "[Minsky and Papert. 1969]"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "b9e9c21f5700b8a6d2e7fdf31710ec221de393d1cee4c86946448ddd4775180a",
+      "lines": [
+        "Helped Start an “AI Winter” (1970s to mid-1980s)",
+        "• Funding agencies lost interest",
+        "• Researchers lost interest and",
+        "left for other topics",
+        "https://medium.com/@bergholz/proclaimed-dead-twice-the-ai-winters-5848c7f8a29f"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "8586d2b7414ae644105a506666c4d782224c365e4bea2579025183b27a61f57a",
+      "lines": [
+        "Retrospective Thoughts",
+        "“How did the scientists involved with such matters react to this?",
+        "One popular version is that the publication of our book so",
+        "discouraged research on learning in network machines that a",
+        "promising line of research was interrupted. Our version is that",
+        "progress had already come to a virtual halt because of the lack of",
+        "adequate basic theories, and the lessons in this book provided the",
+        "field with new momentum-albeit, paradoxically, by redirecting its",
+        "immediate concerns. To understand the situation, one must recall",
+        "that by the mid 1960s there had been a great many experiments",
+        "with perceptrons, but no one had been able to explain why they",
+        "were able to learn to recognize certain kinds of patterns and not",
+        "others. Was this in the nature of the learning procedures? Did it",
+        "depend on the sequences in which the patterns were presented?",
+        "Were the machines simply too small in capacity?”"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "f10f15723e5a9398fe5aac522d18cc8252d563c7d620555b27f915a536854f43",
+      "lines": [
+        "Today’s Topics",
+        "• Biological inspiration (late 1800s & early 1900s): discovery of neurons",
+        "• Biological modeling (1957): mimicking “intelligence” to understand it",
+        "• Crisis (1969): models proven incapable of many forms of “intelligence”",
+        "• Programming tutorial: basics of PyTorch"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "08a245281a6684133e9041e76e7b78b26955aa9beb0c431eb262501e39422390",
+      "lines": [
+        "Context: Preparation for Lab Assignments",
+        "• Lab assignment 1 manual (released at 1:45pm on Canvas): programming skills",
+        "needed will be covered in the programming tutorials",
+        "• Assigned readings: covers basic ideas addressed in the lab assignments, including",
+        "Thursday’s assigned reading for assignment 1"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "f10f15723e5a9398fe5aac522d18cc8252d563c7d620555b27f915a536854f43",
+      "lines": [
+        "Today’s Topics",
+        "• Biological inspiration (late 1800s & early 1900s): discovery of neurons",
+        "• Biological modeling (1957): mimicking “intelligence” to understand it",
+        "• Crisis (1969): models proven incapable of many forms of “intelligence”",
+        "• Programming tutorial: basics of PyTorch"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

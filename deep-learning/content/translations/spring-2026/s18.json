@@ -1,0 +1,3124 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s18",
+  "source_sha256": "b6b2cb5e1740f6dd3534e0f35ddd4a88e7c2607560cb628e1f742eed1c9d6585",
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "b42237ce5863274526c26d370f6ef094d18cfd834580dff6af31e06ac3d3e070",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "پس‌آموزش (Post-Training) برای مدل‌های بنیادین (Foundation Models)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "دانا گوراری (Danna Gurari)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "دانشگاه کلرادو بولدر (University of Colorado Boulder)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "بهار ۲۰۲۶ (Spring 2026)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "CC BY NC SA",
+          "fa": "CC BY-NC-SA (انتساب؛ غیرتجاری؛ اشتراک‌گذاری همسان)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "7e1847458b790cfb1f75c8769bbcb0bb5d418ae025df87cb78ffcae0764b5590",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مرور"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• جلسهٔ قبل:"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• از متخصص‌ها به عمومی‌ها: پیدایش مدل‌های «بنیادین» (Foundation)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• تعمیم به هر وظیفه: هنر پرامپت‌دهی (Prompting)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• آهسته‌تر فکرکردن: استدلال (Reasoning) برای نتایج بهتر"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• فراتر از متن: پرامپت‌دهی (Prompting) در وجه‌های دیگر (Modalities)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• فعالیت پرامپت‌دهی (Prompting)"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• تکلیف‌ها (Canvas):"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• نمره‌های مجموعه‌مسئلهٔ 3 اعلام شده‌اند (172 ارسال: میانگین = 25.93، معادل 103.7%، انحراف معیار: 1.87)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "• همهٔ درخواست‌های بازبینی نمره را برای دستیار آموزشی ما، Nick Cooper، رایانامه کنید (برای مثال، نوشتن نظر در Canvas کافی نیست)"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "bullet",
+          "fa": "• جلسهٔ مرور امروز ساعت 2:30 بعدازظهر از طریق Zoom است (فایل ضبط‌شده بعداً به اشتراک گذاشته می‌شود)"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "bullet",
+          "fa": "• موعد تحویل تکلیف آزمایشگاهی 3 جمعه است"
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "bullet",
+          "fa": "• پروژهٔ نهایی پس از تعطیلات بهاری آغاز می‌شود"
+        },
+        {
+          "source_lines": [
+            13
+          ],
+          "kind": "bullet",
+          "fa": "• پرسشی دارید؟"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "25cc18ee9752aea18e3a013c61f214daa6dfbdb5907e15d53d315be4921f6acb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "طرح کلی (Outline)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• چالش: سودمندکردن مدل‌های بنیادین (Foundation models)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• سازگارکردن کارآمد مدل‌ها: انتقال یادگیری با پارامترهای کم (Parameter-efficient transfer learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش مدل‌ها برای پیروی از نیت انسان: تنظیم با دستور (Instruction tuning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• هم‌راستاسازی مدل‌ها با ترجیح‌های انسانی: یادگیری تقویتی از بازخورد انسانی (Reinforcement learning from human feedback)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• شوک: پذیرش سریع مدل‌های بنیادین (Foundation models) در جامعه"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "25cc18ee9752aea18e3a013c61f214daa6dfbdb5907e15d53d315be4921f6acb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "طرح کلی (Outline)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• چالش: سودمندکردن مدل‌های بنیادین (Foundation models)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• سازگارکردن کارآمد مدل‌ها: انتقال یادگیری با پارامترهای کم (Parameter-efficient transfer learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش مدل‌ها برای پیروی از نیت انسان: تنظیم با دستور (Instruction tuning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• هم‌راستاسازی مدل‌ها با ترجیح‌های انسانی: یادگیری تقویتی از بازخورد انسانی (Reinforcement learning from human feedback)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• شوک: پذیرش سریع مدل‌های بنیادین (Foundation models) در جامعه"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "5f348d03c6e245111c2ae04bfe5eb6e07b2256905d07ba476230da6eb18b664f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "چالش: به‌کارگیری هوش مدل‌های بنیادین (Foundation Models) برای اثرگذاری در دنیای واقعی"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "42",
+          "fa": "42 (عدد خوانای تصویر تزئینی)",
+          "verified": true
+        }
+      ],
+      "image_text_limits": [
+        {
+          "reason_fa": "فرمول‌نماها و حروف کوچک تصویر تزئینی مغز در وضوح اصلی نیز نویسه‌های ساختگی و مبهم دارند؛ معادلهٔ علمی قابل‌اتکایی از آن‌ها قابل استخراج نیست. عدد خوانای 42 ثبت شده و اصل تصویر حفظ شده است."
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "e27cb130070cdf8a53a1ddd817b77105309710218fff99cf4592f9ecf402fca5",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ظرفیت بالقوهٔ عظیم، کنترل حداقلی: چرا هوش خام به زیرساخت (Infrastructure) نیاز دارد (با قیاس)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "برای این گذار چه لازم است؟"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "منبع انرژی جدیدی کشف می‌شود که مقدار عظیمی برق تولید می‌کند"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "text",
+          "fa": "منبع توان جدید به جامعه سود می‌رساند"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "زیرساخت (Infrastructure)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "جریان نامنظم ولتاژ را پایدار می‌کند"
+        },
+        {
+          "source_lines": [
+            9,
+            10
+          ],
+          "kind": "text",
+          "fa": "جریان برق را مدیریت می‌کند تا ایمن، پایدار و یکنواخت باشد"
+        },
+        {
+          "source_lines": [
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "برق را با ترانسفورماتورها و خط انتقال از مولد به کاربران می‌رساند"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Voltage Regulation; Power Distribution; Control Systems",
+          "fa": "تنظیم ولتاژ؛ توزیع برق؛ سامانه‌های کنترل",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "7d6ffde6136339a46afeba527a39d3c652d91f8b48aa4d9571084da8263a50a2",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ظرفیت بالقوهٔ عظیم، کنترل حداقلی: چرا هوش خام به زیرساخت (Infrastructure) نیاز دارد (با قیاس)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "زیرساخت (Infrastructure)"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "شکل‌دادن به رفتار مدل با دانشِ کسب‌شده در پیش‌آموزش (Pretrained knowledge)، معمولاً طی چند مرحله به‌جای فقط یک گام تنظیم دقیق (Fine-tuning)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Voltage Regulation; Power Distribution; Control Systems",
+          "fa": "تنظیم ولتاژ؛ توزیع برق؛ سامانه‌های کنترل",
+          "verified": true
+        },
+        {
+          "en": "PEFT; Efficient Adaptation",
+          "fa": "تنظیم دقیق کارآمد از نظر پارامتر (PEFT)؛ سازگارسازی کارآمد",
+          "verified": true
+        },
+        {
+          "en": "Instruction Tuning; Learning to Follow Intent",
+          "fa": "تنظیم با دستور (Instruction Tuning)؛ یادگیری پیروی از نیت",
+          "verified": true
+        },
+        {
+          "en": "RLHF; Aligning with Human Preferences",
+          "fa": "یادگیری تقویتی از بازخورد انسانی (RLHF)؛ هم‌راستاشدن با ترجیحات انسان",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "25cc18ee9752aea18e3a013c61f214daa6dfbdb5907e15d53d315be4921f6acb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "طرح کلی (Outline)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• چالش: سودمندکردن مدل‌های بنیادین (Foundation models)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• سازگارکردن کارآمد مدل‌ها: انتقال یادگیری با پارامترهای کم (Parameter-efficient transfer learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش مدل‌ها برای پیروی از نیت انسان: تنظیم با دستور (Instruction tuning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• هم‌راستاسازی مدل‌ها با ترجیح‌های انسانی: یادگیری تقویتی از بازخورد انسانی (Reinforcement learning from human feedback)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• شوک: پذیرش سریع مدل‌های بنیادین (Foundation models) در جامعه"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "b469debe3c2603d014eb27c19b41717c146f8c44378d0ef71e746d0b6325375c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ایده: پس‌آموزش (Post-Training) به‌عنوان زیرساخت (Infrastructure)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "خروجی را بدون تغییردادن خودِ مدل تنظیم کنید!"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Voltage Regulation; Power Distribution; Control Systems",
+          "fa": "تنظیم ولتاژ؛ توزیع برق؛ سامانه‌های کنترل",
+          "verified": true
+        },
+        {
+          "en": "PEFT; Efficient Adaptation",
+          "fa": "تنظیم دقیق کارآمد از نظر پارامتر (PEFT)؛ سازگارسازی کارآمد",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "c6c1c28a8bb56a71a649e20d681c28a8ab37b415ba3b246335b269d052f2a400",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "یادآوری: مدل‌ها بازنمایی‌هایی (Representations) یاد می‌گیرند که می‌توان دوباره برای وظیفه‌های فراوان استفاده کرد"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.facebook.com/1rvanisrisaravanan/posts/pincer-graspthe-pincer￾grasp-is-the-coordination-of-the-index-finger-and-thumb-t/2833183393596559/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pincer Grasp; 7 months; 8 months; 9 months; 10 months",
+          "fa": "گرفتن با دو انگشت (Pincer Grasp)؛ 7 ماهگی؛ 8 ماهگی؛ 9 ماهگی؛ 10 ماهگی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "1c542c18d0c9631a725e38574d79eaf3365783510c8482cedeff42e7bc3966e5",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چرا فقط مدل بنیادین (Foundation Model) را تنظیم دقیق (Fine-Tune) نکنیم؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://www.facebook.com/1rvanisrisaravanan/posts/pincer-graspthe-pincer￾grasp-is-the-coordination-of-the-index-finger-and-thumb-t/2833183393596559/"
+        },
+        {
+          "source_lines": [
+            2,
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• فراموشی فاجعه‌بار (Catastrophic forgetting): از دست‌رفتن دانش هنگام یادگیری وظیفه‌های جدید (که Michael McCloskey و Neal Cohen در 1989 به آن اشاره کردند)"
+        },
+        {
+          "source_lines": [
+            5,
+            6,
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• نیازهای سخت‌افزاری (HW) پرهزینه: برای مدل 50 میلیارد پارامتری (دقت 32بیتی) که با Adam آموزش می‌بیند، به بیش از 1 ترابایت VRAM (حافظهٔ GPU) نیاز است"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pincer Grasp; 7 months; 8 months; 9 months; 10 months",
+          "fa": "گرفتن با دو انگشت (Pincer Grasp)؛ 7 ماهگی؛ 8 ماهگی؛ 9 ماهگی؛ 10 ماهگی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "013b9a5df48bb9e2e4316899af8864e0e7fad961053ebe2675eb60c9ccf0858d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "ایده: افزودن واحدهای سازگارکنندهٔ کوچک (Adaptor Modules) که به عملکرد بهتر مدل‌ها در وظیفه‌های پایین‌دستی (Downstream Tasks) کمک کنند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.facebook.com/1rvanisrisaravanan/posts/pincer-graspthe-pincer￾grasp-is-the-coordination-of-the-index-finger-and-thumb-t/2833183393596559/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pincer Grasp; 7 months; 8 months; 9 months; 10 months",
+          "fa": "گرفتن با دو انگشت (Pincer Grasp)؛ 7 ماهگی؛ 8 ماهگی؛ 9 ماهگی؛ 10 ماهگی",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "588f0e45d0ee5116cc934e1e54f3118f4598396621584de19cb96cf69a418876",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "He et al. Towards a Unified View of Parameter-Efficient Transfer Learning. ICLR 2022."
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "رویکرد: مدل را ثابت (Freeze) کنید و فقط پارامترهای افزوده‌شده را آموزش دهید (برای مثال، سه نوع اصلی روش افزودن پارامتر به ترنسفورمرها (Transformers))"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Adapter; Add & Layer Norm; Feed Forward; Attention; Hidden States; Multi-Head; Nonlinear; Prefix Tuning; LoRA; × L",
+          "fa": "سازگارکننده (Adapter)؛ جمع و نرمال‌سازی لایه؛ پیش‌خور؛ توجه (Attention)؛ حالت‌های پنهان؛ چندسر؛ غیرخطی؛ تنظیم پیشوند (Prefix Tuning)؛ LoRA؛ × L",
+          "verified": true
+        },
+        {
+          "en": "Q; K; V; Pk; Pv; Wq; Wk; Wv; Wdown; Wup; Wdown × Wup",
+          "fa": "نمادهای نمودار مطابق اصل: Q؛ K؛ V؛ Pk؛ Pv؛ Wq؛ Wk؛ Wv؛ Wdown؛ Wup؛ Wdown × Wup",
+          "verified": true,
+          "latex": "Q,K,V,P_k,P_v,W_q,W_k,W_v,W_{\\mathrm{down}},W_{\\mathrm{up}},\\quad W_{\\mathrm{down}}\\times W_{\\mathrm{up}}"
+        },
+        {
+          "en": "Figure 1: Illustration of the transformer architecture and several state-of-the-art parameter-efficient tuning methods. We use blocks with dashed borderlines to represent the added modules by those methods.",
+          "fa": "شکل 1: نمایش معماری ترنسفورمر (Transformer) و چند روش تنظیم کارآمد از نظر پارامتر در سطح بهترین روش‌های موجود. بلوک‌های با حاشیهٔ خط‌چین، ماژول‌های افزوده‌شده توسط این روش‌ها را نشان می‌دهند.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "e53b7e10eae41a83cf2e5f31b2016c78db2ef64eda5431923284e58bc903570f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "تنظیم پیشوند (Prefix Tuning): به یاد آورید که این روش مستلزم آموزش پارامترهای اضافی به‌صورت پرامپت‌های پیوسته (Continuous Prompts) است"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "Li and Liang. ACL 2021"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "چگونه می‌توان مدل اصلی را بازیابی کرد؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Prefix (Translation); Prefix (Summarization); Prefix (Table-to-text); Transformer (Pretrained); Input (table-to-text); Output (table-to-text)",
+          "fa": "پیشوندِ ترجمه؛ پیشوندِ خلاصه‌سازی؛ پیشوندِ جدول‌به‌متن؛ ترنسفورمر پیش‌آموزش‌دیده؛ ورودیِ جدول‌به‌متن؛ خروجیِ جدول‌به‌متن",
+          "verified": true
+        },
+        {
+          "en": "name Starbucks type coffee shop [SEP] Starbucks serves coffee",
+          "fa": "عین توکن‌های مثال: name Starbucks type coffee shop [SEP] Starbucks serves coffee؛ برگردان: نام Starbucks، نوع کافی‌شاپ [SEP] Starbucks قهوه سرو می‌کند.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "1f5ab7d31a5b02a5f8d4e24e3675abab4729de937d2d7bdd379318a06bc92684",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "سازگارکننده (Adapter): پارامترهای آموزش‌پذیر به بلوک‌های ترنسفورمر (Transformer Blocks) اضافه می‌کند (برای مثال، 3-5% بیشتر)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "[Houlsby, MLR19]"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "چگونه می‌توان مدل اصلی را بازیابی کرد؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Transformer Layer; Layer Norm; Adapter; 2× Feed-forward layer; Feed-forward layer; Multi-headed attention; Adapter Layer; Feedforward up-project; Nonlinearity; Feedforward down-project",
+          "fa": "لایهٔ ترنسفورمر؛ نرمال‌سازی لایه؛ سازگارکننده؛ 2× لایهٔ پیش‌خور؛ لایهٔ پیش‌خور؛ توجه چندسر؛ لایهٔ سازگارکننده؛ نگاشت پیش‌خور به بُعد بالا؛ غیرخطی‌بودن؛ نگاشت پیش‌خور به بُعد پایین",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "52632dac3d0d2efd3f308179409cde1a894752d41d06139858e1f5cf8733c9e4",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "LoRA (سازگارسازی کم‌رتبه)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "[Hu, ICLR22]"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://huggingface.co/docs/peft/main/en/conceptual_guides/lora"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "آموزش: ماتریس‌های کم‌رتبهٔ (Low-rank matrices) افزوده‌شده به لایه‌های مشخص (معمولاً توجه (Attention)) را آموزش می‌دهد؛ معروف به سازگارسازی کم‌رتبه (Low Rank Adaption)"
+        },
+        {
+          "source_lines": [
+            6,
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "استنتاج (Inference): برخلاف دو روش پیشین، پارامتر اضافی و در نتیجه محاسبه/ذخیره‌سازی اضافی لازم نیست، زیرا وزن‌های سازگارکننده (Adapter weights) با وزن‌های اصلی ادغام می‌شوند"
+        },
+        {
+          "source_lines": [
+            10,
+            11,
+            12
+          ],
+          "kind": "text",
+          "fa": "چگونه می‌توان مدل اصلی را بازیابی کرد؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "During training; After training; Pretrained Weights; Merged Weights; h; x; r",
+          "fa": "هنگام آموزش؛ پس از آموزش؛ وزن‌های پیش‌آموزش‌دیده؛ وزن‌های ادغام‌شده؛ h؛ x؛ r",
+          "verified": true
+        },
+        {
+          "en": "W ∈ R^(d×d); B = 0; A = N(0, σ²); Wmerged ∈ R^(d×d)",
+          "fa": "نمادهای وزن‌ها و مقداردهی اولیه مطابق اصل: W ∈ R^(d×d)؛ B = 0؛ A = N(0, σ²)؛ Wmerged ∈ R^(d×d)",
+          "verified": true,
+          "latex": "W\\in\\mathbb R^{d\\times d},\\quad B=0,\\quad A=\\mathcal N(0,\\sigma^2),\\quad W_{\\mathrm{merged}}\\in\\mathbb R^{d\\times d}"
+        },
+        {
+          "en": "h = Wx + BAx; h = (W + BA)x; Wmerged",
+          "fa": "h = Wx + BAx؛ h = (W + BA)x؛ Wmerged",
+          "verified": true,
+          "latex": "h=Wx+BAx,\\qquad h=\\underbrace{(W+BA)}_{W_{\\mathrm{merged}}}x"
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "0a98dcc702b380a5b098084b8684e66decb0581160691d888ae30504c8c463cc",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "kind": "heading",
+          "fa": "روش‌های انتقال یادگیری با پارامترهای کم (PEFT) با آموزش 15% یا کمتر از پارامترها، عملکردی قابل‌رقابت با تنظیم دقیق کامل (Full Fine-Tuning) به دست می‌آورند"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "He et al. Towards a Unified View of Parameter-Efficient Transfer Learning. ICLR 2022."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "ROUGE-2; Fine-tuned Parameters (%); Full Fine-tuning 21.94; Prefix Tuning 20.46; Ours 21.90; Adapter 20.98; LoRA 20.50; BitFit 17.32",
+          "fa": "ROUGE-2؛ پارامترهای تنظیم‌شده (درصد)؛ تنظیم دقیق کامل 21.94؛ تنظیم پیشوند 20.46؛ روش ما 21.90؛ سازگارکننده 20.98؛ LoRA 20.50؛ BitFit 17.32",
+          "verified": true
+        },
+        {
+          "en": "Figure 2: Performance of different methods on the XSum (Narayan et al., 2018) summarization task. The number of fine-tuned parameters is relative to the tuned parameters in full fine-tuning.",
+          "fa": "شکل 2: عملکرد روش‌های مختلف روی وظیفهٔ خلاصه‌سازی XSum (Narayan و همکاران، 2018). تعداد پارامترهای تنظیم‌شده نسبت به پارامترهای تنظیم‌شده در تنظیم دقیق کامل محاسبه شده است.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "3dc37cbab5804ccfbe5d6ba22778af07d8d78cfdc76d372310ce1168c166b488",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "گزینه‌های انتقال یادگیری با پارامترهای کم (PEFT) — چه زمانی هر کدام را ترجیح دهیم (تنظیم دقیق پیشوند (Pre-Fix Fine Tuning)، سازگارکننده (Adapter)، LoRA)؟"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• هدف: تزریق بافت مختص وظیفه (Task-specific context)، مانند اینکه هنگام پاسخ به درخواست چه سبک یا شخصیتی اتخاذ شود."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• تنظیم پیشوند (Prefix tuning)"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• هدف: جابه‌جایی آسان میان وظیفه‌های مرتبط مانند طبقه‌بندی متن، خلاصه‌سازی و پاسخ‌گویی در زبان‌های فراوان"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• سازگارکننده (Adapter)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• هدف: عملکرد بهتر در یک وظیفهٔ هدف جدید"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "• LoRA (سازگارسازی کم‌رتبه)"
+        },
+        {
+          "source_lines": [
+            10,
+            11
+          ],
+          "kind": "bullet",
+          "fa": "• توجه: LoRA (یا گونهٔ کوانتیزه‌شدهٔ QLoRA) رایج‌ترین است و مرتب با روش‌های دیگر ترکیب می‌شود"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "25cc18ee9752aea18e3a013c61f214daa6dfbdb5907e15d53d315be4921f6acb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "طرح کلی (Outline)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• چالش: سودمندکردن مدل‌های بنیادین (Foundation models)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• سازگارکردن کارآمد مدل‌ها: انتقال یادگیری با پارامترهای کم (Parameter-efficient transfer learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش مدل‌ها برای پیروی از نیت انسان: تنظیم با دستور (Instruction tuning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• هم‌راستاسازی مدل‌ها با ترجیح‌های انسانی: یادگیری تقویتی از بازخورد انسانی (Reinforcement learning from human feedback)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• شوک: پذیرش سریع مدل‌های بنیادین (Foundation models) در جامعه"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "158592bde6c833c5d4760142ccdfa79e35b0d4074608057ea5f36bf5db8af608",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ایده: پس‌آموزش (Post-Training) به‌عنوان زیرساخت (Infrastructure)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "خروجی را تنظیم کنید تا با نیت‌های کاربران هم‌راستا شود!"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Instruction Tuning; Learning to Follow Intent",
+          "fa": "تنظیم با دستور (Instruction Tuning)؛ یادگیری پیروی از نیت",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "72e058c9d5b598bf6b6e8e4563f68dceb4c03db5f1c6073fecae1ec3ef52dd82",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "«نشان می‌دهیم تنظیم با دستور (Instruction tuning) — تنظیم دقیق مدل‌های زبانی روی مجموعه‌ای از مجموعه‌داده‌ها که از طریق دستورها توصیف شده‌اند — عملکرد بی‌نمونه (Zero-shot) در وظیفه‌های دیده‌نشده را به‌طور چشمگیری بهتر می‌کند.»"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "(عبارت «تنظیم با دستور» (Instruction tuning) را ابداع کرد)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Published as a conference paper at ICLR 2022; FINETUNED LANGUAGE MODELS ARE ZERO-SHOT LEARNERS",
+          "fa": "منتشرشده به‌صورت مقالهٔ همایش ICLR 2022؛ مدل‌های زبانی تنظیم‌دقیق‌شده یادگیرنده‌های بی‌نمونه‌اند (Zero-Shot Learners)",
+          "verified": true
+        },
+        {
+          "en": "Jason Wei; Maarten Bosma; Vincent Y. Zhao; Kelvin Guu; Adams Wei Yu; Brian Lester; Nan Du; Andrew M. Dai; Quoc V. Le; Google Research",
+          "fa": "Jason Wei؛ Maarten Bosma؛ Vincent Y. Zhao؛ Kelvin Guu؛ Adams Wei Yu؛ Brian Lester؛ Nan Du؛ Andrew M. Dai؛ Quoc V. Le؛ پژوهش گوگل",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "743f585996f53c45afb64766c5a0eb3a19ce6941ae0d04fb2aef84ee35231f30",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکرد (Approach)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://docs.graphcore.ai/projects/bert-training/en/latest/bert.html"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "استنتاج در مقیاس بزرگ (Large-Scale Inference)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "تنظیم با دستور (Instruction Tuning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "مجموعه‌داده (Dataset)"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "هدف: پاسخ‌گویی خوب به پرامپت‌ها/دستورهای کاربران (Prompts/instructions)"
+        },
+        {
+          "source_lines": [
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "هدف پیش‌فرض یادگرفته‌شده، مانند پیش‌بینی توکن بعدی، در مقایسه با (VS)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Pre-Training; Large unlabelled datasets (e.g. Wikipedia, BookCorpus); Self-supervised training (hours to days); Pre-Trained Weights; Fine-Tuning; Large-Scale Instruction Tuning Dataset; Fine-Tuned Weights; Inference",
+          "fa": "پیش‌آموزش؛ مجموعه‌داده‌های بزرگ بدون برچسب (مانند Wikipedia و BookCorpus)؛ آموزش خودنظارتی (ساعت‌ها تا روزها)؛ وزن‌های پیش‌آموزش‌دیده؛ تنظیم دقیق؛ مجموعه‌دادهٔ بزرگ‌مقیاس تنظیم با دستور؛ وزن‌های تنظیم‌دقیق‌شده؛ استنتاج",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "5d1df72b7413b492bf4967687d82d892223e8546bc481676c0d6068be7979e6f",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکرد: ایجاد مجموعه‌دادهٔ تنظیم با دستور (Instruction Tuning Dataset)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "[Wei et al., ICLR22]"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "62 مجموعه‌دادهٔ متنی را به قالب‌های دستوری (Instructional formats) تبدیل می‌کند:"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6
+          ],
+          "kind": "text",
+          "fa": "برای هر مجموعه‌داده، 10 الگوی دست‌ساخت از قالب‌های دستوریِ مورد انتظار برای وظیفهٔ هدف هنگام استنتاج (Inference):"
+        },
+        {
+          "source_lines": [
+            7,
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "برای درنظرگرفتن تفاوت اندازهٔ مجموعه‌داده‌ها، برای هر مجموعه‌داده حداکثر 30 هزار نمونهٔ آموزشی تولید می‌شود"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Natural language inference (7 datasets); Commonsense (4 datasets); Sentiment (4 datasets); Paraphrase (4 datasets); Closed-book QA (3 datasets); Struct to text (4 datasets); Translation (8 datasets); Reading comp. (5 datasets); Read. comp. w/ commonsense (2 datasets); Coreference (3 datasets); Misc. (7 datasets); Summarization (11 datasets)",
+          "fa": "استنتاج زبان طبیعی (7 مجموعه‌داده)؛ عقل سلیم (4)؛ احساسات (4)؛ بازگویی (4)؛ پرسش‌وپاسخ کتاب‌بسته (3)؛ ساختار به متن (4)؛ ترجمه (8)؛ درک مطلب (5)؛ درک مطلب با عقل سلیم (2)؛ هم‌مرجعی (3)؛ متفرقه (7)؛ خلاصه‌سازی (11)",
+          "verified": true
+        },
+        {
+          "en": "ANLI (R1-R3); RTE; CB; SNLI; MNLI; WNLI; QNLI; CoPA; HellaSwag; PiQA; StoryCloze; IMDB; Sent140; SST-2; Yelp; MRPC; QQP; PAWS; STS-B; ARC (easy/chal.); NQ; TQA; CommonGen; DART; E2ENLG; WEBNLG",
+          "fa": "نام مجموعه‌داده‌ها مطابق اصل: ANLI (R1-R3)؛ RTE؛ CB؛ SNLI؛ MNLI؛ WNLI؛ QNLI؛ CoPA؛ HellaSwag؛ PiQA؛ StoryCloze؛ IMDB؛ Sent140؛ SST-2؛ Yelp؛ MRPC؛ QQP؛ PAWS؛ STS-B؛ ARC (آسان/چالشی)؛ NQ؛ TQA؛ CommonGen؛ DART؛ E2ENLG؛ WEBNLG",
+          "verified": true
+        },
+        {
+          "en": "ParaCrawl EN/DE; ParaCrawl EN/ES; ParaCrawl EN/FR; WMT-16 EN/CS; WMT-16 EN/DE; WMT-16 EN/FI; WMT-16 EN/RO; WMT-16 EN/RU; WMT-16 EN/TR; BoolQ; OBQA; DROP; SQuAD; MultiRC; CosmosQA; ReCoRD; DPR; Winogrande; WSC273; CoQA; TREC; QuAC; CoLA; WiC; Math; Fix Punctuation (NLG); AESLC; Multi-News; SamSum; AG News; Newsroom; Wiki Lingua EN; CNN-DM; Opin-Abs: iDebate; XSum; Gigaword; Opin-Abs: Movie",
+          "fa": "نام‌ها و جفت‌زبان‌ها مطابق اصل: ParaCrawl EN/DE؛ ParaCrawl EN/ES؛ ParaCrawl EN/FR؛ WMT-16 EN/CS؛ WMT-16 EN/DE؛ WMT-16 EN/FI؛ WMT-16 EN/RO؛ WMT-16 EN/RU؛ WMT-16 EN/TR؛ BoolQ؛ OBQA؛ DROP؛ SQuAD؛ MultiRC؛ CosmosQA؛ ReCoRD؛ DPR؛ Winogrande؛ WSC273؛ CoQA؛ TREC؛ QuAC؛ CoLA؛ WiC؛ Math (ریاضی)؛ Fix Punctuation (NLG) (اصلاح نشانه‌گذاری)؛ AESLC؛ Multi-News؛ SamSum؛ AG News؛ Newsroom؛ Wiki Lingua EN؛ CNN-DM؛ Opin-Abs: iDebate؛ XSum؛ Gigaword؛ Opin-Abs: Movie",
+          "verified": true
+        },
+        {
+          "en": "Premise; Russian cosmonaut Valery Polyakov set the record for the longest continuous amount of time spent in space, a staggering 438 days, between 1994 and 1995.; Hypothesis; Russians hold the record for the longest stay in space.; Target; Entailment; Not entailment; Options: - yes - no",
+          "fa": "مقدمه: کیهان‌نورد روس والری پولیاکوف بین 1994 و 1995 با 438 روزِ شگفت‌انگیز، رکورد طولانی‌ترین زمان پیوستهٔ حضور در فضا را ثبت کرد.؛ فرضیه: روس‌ها رکورد طولانی‌ترین اقامت در فضا را دارند.؛ هدف؛ استلزام؛ عدم استلزام؛ گزینه‌ها: yes (بله)، no (خیر). اصل توکن‌های مثال انگلیسی حفظ شده است.",
+          "verified": true
+        },
+        {
+          "en": "Template 1: <premise> Based on the paragraph above, can we conclude that <hypothesis>? <options>; Template 2: <premise> Can we infer the following? <hypothesis> <options>; Template 3: Read the following and determine if the hypothesis can be inferred from the premise: Premise: <premise> Hypothesis: <hypothesis> <options>; Template 4, …",
+          "fa": "الگوی 1: <premise> بر اساس بند بالا، آیا می‌توان نتیجه گرفت <hypothesis>؟ <options>؛ الگوی 2: <premise> آیا می‌توان عبارت زیر را استنتاج کرد؟ <hypothesis> <options>؛ الگوی 3: متن زیر را بخوانید و تعیین کنید آیا می‌توان فرضیه را از مقدمه استنتاج کرد: مقدمه: <premise> فرضیه: <hypothesis> <options>؛ الگوی 4، …؛ اصل انگلیسی الگوها حفظ شده است.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "f8a7c95bc45f18ed28f82a243a19ffa2dc1d37239e656aff2aa07983e853924d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "مثال‌ها: ساخت دستورها (Instructions)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• کدام‌یک نشان‌دهندهٔ تنظیم دقیق نظارت‌شدهٔ عمومی (SFT) و کدام‌یک تنظیم با دستور (Instruction tuning) است؟"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "1. ورودی (Input): Translate to French: \"Good morning\"؛ خروجی (Output): Bonjour (به فرانسوی ترجمه کن: «صبح‌بخیر»؛ خروجی: صبح‌بخیر)"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "2. ورودی (Input): Write a professional email declining a meeting.؛ پاسخ (Response): ... (رایانامه‌ای حرفه‌ای برای ردکردن شرکت در جلسه بنویس.)"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• فکر می‌کنید کدام دستور (Instruction) برای آموزش بهتر است و چرا؟"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• Explain blockchain (زنجیرهٔ بلوکی را توضیح بده)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• Explain blockchain in one sentence (زنجیرهٔ بلوکی را در یک جمله توضیح بده)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "• Explain blockchain to a skeptical economist (زنجیرهٔ بلوکی را برای اقتصاددانی شکاک توضیح بده)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "ff9811c12ccd28ac73a4d69fb24d35f5c59177a9f3913b34cecd4304b472b96a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "آزمایش‌ها (Experiments)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• مدل ازپیش‌آموزش‌دیده: مدل زبانی ترنسفورمرِ فقط‌رمزگشا (Decoder-only transformer) با 137 میلیارد پارامتر، آموزش‌دیده روی اسناد وب، داده‌های گفت‌وگو و Wikipedia"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• تنظیم دقیق (Fine-tuning): بهینه‌سازی با Adafactor (روش به‌ازای هر پارامتر) برای 30 هزار گام گرادیان؛ حدود 60 ساعت روی TPUv3 طول کشید"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• تقسیم‌بندی ارزیابی: آزمون روی خوشه‌های مجموعه‌دادهٔ کنارگذاشته‌شده (Held-out؛ بی‌نمونه (Zero-shot))"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• نتایج:"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• عملکرد بی‌نمونه (Zero-shot) بهتر از GPT-3 با 175 میلیارد پارامتر در 20 مورد از 25 مجموعه‌دادهٔ آزموده‌شده"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• عملکرد بهتر از GPT-3 استفاده‌شده در حالت کم‌نمونه (Few-shot) در مجموعه‌داده‌های متعدد"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "bullet",
+          "fa": "• عملکرد بهتر هنگام استفاده از پرامپت‌های پیوسته (Continuous prompts)"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "bullet",
+          "fa": "• بهبود عملکرد برای مدل‌های بزرگ‌تر بیشتر است"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "bullet",
+          "fa": "• چرا ممکن است عملکرد برای مدل‌های کوچک‌تر بدتر باشد؟"
+        },
+        {
+          "source_lines": [
+            12
+          ],
+          "kind": "reference",
+          "fa": "[Wei et al., ICLR22]"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Performance on held-out tasks; Average zero-shot accuracy on 13 held-out tasks (%); Instruction tuning; Untuned model; Model Size (# parameters)",
+          "fa": "عملکرد روی وظیفه‌های کنارگذاشته‌شده؛ میانگین دقت بی‌نمونه روی 13 وظیفهٔ کنارگذاشته‌شده (درصد)؛ تنظیم با دستور؛ مدل تنظیم‌نشده؛ اندازهٔ مدل (تعداد پارامترها)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "cbe300b16dd73d212818412a02b84b0f1e7804b4ccf3d29254f0410b9bb53ed5",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "تنظیم با دستور (Instruction Tuning) به استدلال چندوجهی (Multimodal Reasoning) نیز سود می‌رساند؛ برای مثال،"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "[Liu et al., NeurIPS23]"
+        },
+        {
+          "source_lines": [
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "داده‌شده: شرح (Caption) و تشخیص اشیا با جعبهٔ مرزی (Bounding box object detections) به‌عنوان توصیفگرهای تصویر"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "تولید دادهٔ تنظیم با دستور (Instruction tuning): سه نوع که GPT-4 تولید کرده است"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Context type 1: Captions; A group of people standing outside of a black vehicle with various luggage.; Luggage surrounds a vehicle in an underground parking area; People try to fit all of their luggage in an SUV.; The sport utility vehicle is parked in the public garage, being packed for a trip; Some people with luggage near a van that is transporting it.",
+          "fa": "نوع زمینهٔ 1: شرح‌ها؛ گروهی از مردم با بارهای گوناگون بیرون یک خودروی سیاه ایستاده‌اند.؛ بارها دور یک خودرو در پارکینگ زیرزمینی‌اند.؛ مردم تلاش می‌کنند همهٔ بارشان را در یک شاسی‌بلند جا دهند.؛ خودروی شاسی‌بلند در پارکینگ عمومی پارک شده و برای سفر بارگیری می‌شود.؛ چند نفر با بار نزدیک ونی هستند که آن را حمل می‌کند. اصل شرح‌های انگلیسی حفظ شده است.",
+          "verified": true
+        },
+        {
+          "en": "Context type 2: Boxes; person: [0.681, 0.242, 0.774, 0.694], backpack: [0.384, 0.696, 0.485, 0.914], suitcase: …<omitted>",
+          "fa": "نوع زمینهٔ 2: جعبه‌ها؛ person (شخص): [0.681, 0.242, 0.774, 0.694]؛ backpack (کوله‌پشتی): [0.384, 0.696, 0.485, 0.914]؛ suitcase (چمدان): …<omitted> (حذف‌شده در خود مثال)",
+          "verified": true
+        },
+        {
+          "en": "Response type 1: conversation; Question: What type of vehicle is featured in the image? Answer: The image features a black sport utility vehicle (SUV) …<omitted>",
+          "fa": "نوع پاسخ 1: گفت‌وگو؛ پرسش: چه نوع خودرویی در تصویر دیده می‌شود؟ پاسخ: تصویر یک خودروی شاسی‌بلند سیاه (SUV) را نشان می‌دهد…<omitted> (باقی در خود مثال حذف شده است).",
+          "verified": true
+        },
+        {
+          "en": "Response type 2: detailed description; The image is an underground parking area with a black sport utility vehicle (SUV) parked. There are three people in the scene, with one person standing closer to the left side of the vehicle, another person in the middle, and the third person on the right side. They are all working together to pack their luggage into the SUV for a trip. …<omitted>",
+          "fa": "نوع پاسخ 2: شرح تفصیلی؛ تصویر پارکینگی زیرزمینی با یک شاسی‌بلند سیاه پارک‌شده است. سه نفر در صحنه‌اند: یک نفر نزدیک‌تر به سمت چپ خودرو، دیگری در میانه و نفر سوم در سمت راست. همگی برای قراردادن بارشان در شاسی‌بلند به‌منظور سفر همکاری می‌کنند. …<omitted> (حذف‌شده در اصل)",
+          "verified": true
+        },
+        {
+          "en": "Response type 3: complex reasoning; Question: What challenges do these people face? Answer: In the image, a group of people is standing outside a black SUV in a parking area, surrounded by various pieces of luggage, including suitcases and backpacks. They are facing the challenge of fitting all their luggage into the black SUV. There are multiple suitcases and backpacks to be packed, which suggests that the group has a significant amount of belongings …<omitted>",
+          "fa": "نوع پاسخ 3: استدلال پیچیده؛ پرسش: این افراد با چه چالش‌هایی روبه‌رو هستند؟ پاسخ: در تصویر گروهی بیرون یک شاسی‌بلند سیاه در پارکینگ ایستاده‌اند و بارهای گوناگون از جمله چمدان و کوله‌پشتی دورشان است. چالش آن‌ها جا دادن همهٔ بار در شاسی‌بلند سیاه است. چندین چمدان و کوله باید بسته‌بندی شود که نشان می‌دهد گروه مقدار زیادی وسیله دارد…<omitted> (حذف‌شده در اصل)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "25cc18ee9752aea18e3a013c61f214daa6dfbdb5907e15d53d315be4921f6acb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "طرح کلی (Outline)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• چالش: سودمندکردن مدل‌های بنیادین (Foundation models)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• سازگارکردن کارآمد مدل‌ها: انتقال یادگیری با پارامترهای کم (Parameter-efficient transfer learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش مدل‌ها برای پیروی از نیت انسان: تنظیم با دستور (Instruction tuning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• هم‌راستاسازی مدل‌ها با ترجیح‌های انسانی: یادگیری تقویتی از بازخورد انسانی (Reinforcement learning from human feedback)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• شوک: پذیرش سریع مدل‌های بنیادین (Foundation models) در جامعه"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "0aa446b78dfe99db13882677c112d801b88ce86a0a66a415fac23172e435d38d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "ایده: پس‌آموزش (Post-Training) به‌عنوان زیرساخت (Infrastructure)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "اطمینان از هم‌راستایی خروجی‌های تولیدشده با ترجیح‌های انسانی (Human preferences) (برای مثال، راستگو باشند و آسیب نرسانند)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "RLHF; Aligning with Human Preferences",
+          "fa": "یادگیری تقویتی از بازخورد انسانی (RLHF)؛ هم‌راستاشدن با ترجیحات انسان",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "35a3f4a8edd639bd79ebae8a2a853bb8d3d43eae707b067a349f3834d9964785",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "(NeurIPS 2017)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "«موفقیت اخیر در مقیاس‌دادن یادگیری تقویتی (Reinforcement learning; RL) به مسائل بزرگ، در حوزه‌هایی حاصل شده که تابع پاداش (Reward function) به‌خوبی مشخصی دارند… متأسفانه بسیاری از وظیفه‌ها هدف‌هایی پیچیده، بدتعریف یا دشوار برای مشخص‌کردن دارند… رویکرد جایگزین این است که انسان بتواند دربارهٔ رفتار کنونی سامانهٔ ما بازخورد بدهد و از آن برای تعریف وظیفه استفاده شود… اما استفادهٔ مستقیم از بازخورد انسانی به‌عنوان تابع پاداش، برای سامانه‌های یادگیری تقویتی که به صدها یا هزاران ساعت تجربه نیاز دارند، به‌شدت پرهزینه است… این دشواری را با درخواست از انسان‌ها برای مقایسهٔ مسیرهای ممکن عامل (Trajectories)، استفاده از آن داده برای یادگیری تابع پاداش، و بهینه‌سازی تابع پاداش یادگرفته‌شده با RL برطرف می‌کنیم…»"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Deep Reinforcement Learning from Human Preferences; Paul F Christiano; Jan Leike; Tom B Brown; Miljan Martic; Shane Legg; Dario Amodei; OpenAI; DeepMind; Google Brain; paul@openai.com; leike@google.com; tombbrown@google.com; miljanm@google.com; legg@google.com; damodei@openai.com",
+          "fa": "یادگیری تقویتی عمیق از ترجیحات انسان؛ Paul F Christiano؛ Jan Leike؛ Tom B Brown؛ Miljan Martic؛ Shane Legg؛ Dario Amodei؛ OpenAI؛ DeepMind؛ Google Brain؛ paul@openai.com؛ leike@google.com؛ tombbrown@google.com؛ miljanm@google.com؛ legg@google.com؛ damodei@openai.com",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "a4b35e8d45d74ef02e39d3cfb7df1801d23ebceed445e673693032ce3fd0169a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "یادگیری عمیق (Deep Learning)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "پیش‌زمینه: یادگیری تقویتی (Reinforcement Learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/intro_RL.pdf"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "kind": "text",
+          "fa": "یادگیری بدون نظارت (Unsupervised learning) کمترین تلاش انسانی را نیاز دارد، یادگیری نظارت‌شده (Supervised learning) با برچسب‌ها بیشترین را، و یادگیری تقویتی (Reinforcement learning) با پاداش‌ها در میانه قرار می‌گیرد"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Supervised Learning; Unsupervised Learning; Reinforcement Learning; Deep Learning",
+          "fa": "یادگیری نظارت‌شده؛ یادگیری بدون نظارت؛ یادگیری تقویتی؛ یادگیری عمیق",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "e0123130637847662ea61a4d258977e547292c391f6f4e176430a5dd31e8ba30",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "• برای مثال،"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• بیایید امتحان کنیم! لطفاً بدون آنکه دستورهای مفصل بدهم، چیزی را که می‌خواهم پیدا کنید"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• نیاز: 1 داوطلب"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• هدف شما: مکانی در اتاق را که در ذهن دارم پیدا کنید!"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• پاداش‌ها (Rewards): تقریباً هر 5 ثانیه، گرم (نزدیک هدف)، سرد (دورتر از هدف) و پیداشده را اعلام می‌کنم"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "انگیزه: نظارت انسانی کمتر، از جمله زمانی که دستور صریح (Explicit Instruction) عملی نیست"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "در مقایسه با (VS)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "GOOD WORK; REJECTED",
+          "fa": "آفرین، کار خوب؛ رد شد",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "d1326fd3361de3521f9850b6193f3ad05c44660ac4c5c39ddf8a9e95a884de6a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "رویکرد (Approach)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "عامل (Agent) در محیط (Environment) عمل‌هایی انجام می‌دهد تا پاداش کل (Total reward) را بیشینه کند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://towardsdatascience.com/applications-of-reinforcement-learning-in-real-world-1a94955bcd12"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Agent; Environment; state St; reward Rt; action At; Rt+1; St+1",
+          "fa": "عامل؛ محیط؛ حالت St؛ پاداش Rt؛ عمل At؛ Rt+1؛ St+1",
+          "verified": true,
+          "latex": "S_t,\\quad R_t,\\quad A_t,\\quad R_{t+1},\\quad S_{t+1}"
+        }
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "7861246a8b8c890158a16d7a14e7085afd11d27c04828349455bf917c2177319",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "رویکرد با مثال"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "reference",
+          "fa": "https://www.youtube.com/watch?v=W_gxLKSsSIE&list=PL5nBAYUyJTrM48dViibyi68urttMlUv7e"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Reinforcement Learning; First trial…; THC",
+          "fa": "یادگیری تقویتی (Reinforcement Learning)؛ تلاش اول…؛ THC (نوشتهٔ تصویر)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "706eb94186899777b8402d9a2fa27d90faebbfed9f7f2542759b99bb19a6d38e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "بنیان نظری یادگیری تقویتی (RL): فرایندهای تصمیم‌گیری مارکوف (Markov Decision Processes; MDP)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "فرایند تصمیم‌گیری مارکوف (MDP) تشکیل می‌شود از: فرایند مارکوف (Markov process) + فرایند پاداش مارکوف (Markov reward process) + عمل‌ها (Actions)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "19f8c8a9decd1bde9ad543de30740149fa38a23ddb8cedff9ed2470a4266c756",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "فرایند مارکوف (Markov Process؛ معروف به زنجیرهٔ مارکوف (Markov Chain))"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• مجموعه‌ای از حالت‌ها با احتمال‌های گذار (Transition probabilities) که پویایی سامانه (System dynamics) را تعریف می‌کنند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "برای مثال،"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• در مثال بالا چند حالت وجود دارد؟"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• خاصیت مارکوف (Markov property): فقط حالت کنونی، پویایی آیندهٔ سامانه را تعیین می‌کند"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://en.wikipedia.org/wiki/Markov_chain"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "E; A; 0.3; 0.7; 0.4; 0.6",
+          "fa": "برچسب حالت‌ها و احتمال‌ها مطابق اصل: E؛ A؛ 0.3؛ 0.7؛ 0.4؛ 0.6",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "706eb94186899777b8402d9a2fa27d90faebbfed9f7f2542759b99bb19a6d38e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "بنیان نظری یادگیری تقویتی (RL): فرایندهای تصمیم‌گیری مارکوف (Markov Decision Processes; MDP)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "فرایند تصمیم‌گیری مارکوف (MDP) تشکیل می‌شود از: فرایند مارکوف (Markov process) + فرایند پاداش مارکوف (Markov reward process) + عمل‌ها (Actions)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "aeb4fda1fe4683b671bb3b3abfa990ee8b11d32d23382d103c2151986f8ec633",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "فرایند پاداش مارکوف (Markov Reward Process)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• متغیری اضافی که با گذر زمان انباشته می‌شود تا پاداش (Reward) را منعکس کند"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "برای مثال،"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• ضریب تنزیل (Discount factor) گاما، میان 0 و 1، نشان می‌دهد برای برآورد پاداش مورد انتظار یک حالت، پاداش‌ها تا چه فاصله‌ای در آینده در نظر گرفته می‌شوند"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "https://en.wikipedia.org/wiki/Markov_chain"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "E; A; 0.3; 0.7; 0.4; 0.6",
+          "fa": "برچسب حالت‌ها و احتمال‌ها مطابق اصل: E؛ A؛ 0.3؛ 0.7؛ 0.4؛ 0.6",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "706eb94186899777b8402d9a2fa27d90faebbfed9f7f2542759b99bb19a6d38e",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "بنیان نظری یادگیری تقویتی (RL): فرایندهای تصمیم‌گیری مارکوف (Markov Decision Processes; MDP)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "فرایند تصمیم‌گیری مارکوف (MDP) تشکیل می‌شود از: فرایند مارکوف (Markov process) + فرایند پاداش مارکوف (Markov reward process) + عمل‌ها (Actions)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "5d8a275fc0e1b467ed7ea4338768e31a8a1f76873a562153ad21d49c3db112cb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "عمل‌ها (Actions)"
+        },
+        {
+          "source_lines": [
+            1,
+            2,
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• در هر گام زمانی، عمل انتخاب‌شده بر حالت بعدی اثر می‌گذارد"
+        },
+        {
+          "source_lines": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• احتمال امکان تصادفی‌بودن را فراهم می‌کند (برای مثال، فرمان خودرو را روی سطح یخی به راست بچرخانید، اما خودرو بلغزد و مستقیم ادامه دهد)"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "https://en.wikipedia.org/wiki/Markov_chain"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "S0; S1; S2; a0; a1; +5; -1; 0.5; 1.0; 0.4; 0.6; 0.70; 0.10; 0.20; 0.95; 0.05; 0.30; 0.40",
+          "fa": "برچسب حالت‌ها، عمل‌ها، پاداش‌ها و احتمال‌ها مطابق اصل: S0؛ S1؛ S2؛ a0؛ a1؛ +5؛ -1؛ 0.5؛ 1.0؛ 0.4؛ 0.6؛ 0.70؛ 0.10؛ 0.20؛ 0.95؛ 0.05؛ 0.30؛ 0.40",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "d1033bec51d45a64d81de2e24eceba6db708be527cab906d1f6465d51a841800",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "سیاست (Policy)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• قواعدی که رفتار عامل (Agent) را تعیین می‌کنند"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• با توزیع احتمال روی عمل‌های ممکن تعریف می‌شود تا رفتار عامل (Agent) تصادفی باشد"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• هدف یادگیری تقویتی (RL): یافتن سیاست (Policy) خوب"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "b789a82d762e929dfc2c94bdd160a87e215040fb83c83707644cccb585042e1d",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "اجزای پایهٔ روش‌های یادگیری تقویتی (RL)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "1. مشاهده‌های محیط (Environment)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "2. عمل‌های ممکن (Actions)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "3. پاداش‌ها (Rewards)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "6c085f45677a482db5ce6332e774f6f03e111c18d764c28e8e2dd52f7e51057b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "اجزای پایهٔ روش‌های یادگیری تقویتی (RL)؛ برای مثال، پونگ (Pong)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "1. مشاهده‌های محیط (Environment):"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "2. عمل‌های ممکن: حرکت‌های «بالا» (Up) و «پایین» (Down) راکت"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "3. پاداش‌ها (Rewards): -1 اگر توپ از دست برود؛ پاداش +1 اگر توپ از حریف بگذرد؛"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "در غیر این صورت، 0"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "هدف: بیشینه‌کردن پاداش‌ها (Rewards) با محاسبهٔ حرکت‌های بهینهٔ «بالا» و «پایین» راکت"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "e1af9a0fe35b3d391fa9f46a86761c450f2bee818bc8e80e412d6dd5c59c3535",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "گرادیان‌های سیاست (Policy Gradients): رویکرد"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "literal",
+          "fa": "0 1"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "بالا (up)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "پایین (down)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "برای مثال، عمل‌های پونگ (Pong Actions)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "سیاست‌ها (Policies؛ یعنی قواعد رفتار عامل) با یک احتمال برای هر عمل ممکن بازنمایی می‌شوند"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "شبکهٔ عصبی آموزش می‌بیند تا احتمال عمل‌های منجر به پاداش کل خوب را افزایش دهد و احتمال عمل‌های منجر به پاداش کل بد را کاهش دهد"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "b5c086f8f557c42863cd5ea3b3dbfe3d22412b99140c6d5f0aa17db2cef74632",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، یادگیری پونگ (Pong) (شبکهٔ عصبی 2لایه با 200 واحد پنهان)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "با داشتن حالت بازی (Game state) به‌صورت تصویر، تصمیم بگیرید آیا راکت به بالا (در برابر پایین) حرکت کند"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "http://karpathy.github.io/2016/05/31/rl/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "raw pixels",
+          "fa": "پیکسل‌های خام",
+          "verified": true
+        },
+        {
+          "en": "hidden layer; probability of moving UP",
+          "fa": "لایهٔ پنهان؛ احتمال حرکت به بالا (UP)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "7f2253bdaa891bb9e66ae0a9faa6486aa46b263482bd057d5de09b6c11afd599",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، یادگیری پونگ (Pong) (شبکهٔ عصبی 2لایه با 200 واحد پنهان)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "چگونه حرکت را در حالت بازی (یعنی تصویر) ثبت کنیم؟"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "text",
+          "fa": "از تصویر اختلاف (Difference image) استفاده کنید (یعنی فریم کنونی را از فریم آخر کم کنید)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "http://karpathy.github.io/2016/05/31/rl/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "raw pixels",
+          "fa": "پیکسل‌های خام",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "d023890f352dd31c89a506fa44da40e1d48660b2efa5b08c6e25df2db6d96415",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، یادگیری پونگ (Pong): پروتکل آموزش (Training Protocol)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "فرض کنید 100 بازی با 200 تصویر در هر بازی انجام شده است"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "چند تصمیم (عمل) گرفته شد؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "literal",
+          "fa": "- 100x199",
+          "latex": "100\\times199"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "reference",
+          "fa": "http://karpathy.github.io/2016/05/31/rl/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "UP; DOWN; WIN; LOSE",
+          "fa": "UP (بالا)؛ DOWN (پایین)؛ WIN (برد)؛ LOSE (باخت). توکن‌های عمل و نتیجهٔ نمونه مطابق اصل حفظ شده‌اند.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "18f727eef31d6d9a8ccb7515ef78445e4d6a73586cd0d4b151b1811838ce361a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، یادگیری پونگ (Pong): پروتکل آموزش (Training Protocol)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "text",
+          "fa": "فرض کنید 100 بازی با 200 تصویر در هر بازی انجام شده است؛ 12 بازی برده و 88 بازی باخته شده است"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• چند تصمیم برنده گرفته شد؟"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• 2,388 (یعنی 12 x 199)",
+          "latex": "2388=12\\times199"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• چند تصمیم بازنده گرفته شد؟"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• 17,512 (یعنی 88 x 199)",
+          "latex": "17512=88\\times199"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "reference",
+          "fa": "http://karpathy.github.io/2016/05/31/rl/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "UP; DOWN; WIN; LOSE",
+          "fa": "UP (بالا)؛ DOWN (پایین)؛ WIN (برد)؛ LOSE (باخت). توکن‌های عمل و نتیجهٔ نمونه مطابق اصل حفظ شده‌اند.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "98264a355fd3550a5c21c2d8c0987ccd15f46dbb5f4526e3cd0f8b26f005a801",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، یادگیری پونگ (Pong): پروتکل آموزش (Training Protocol)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "text",
+          "fa": "پس از 100 بازی، گرادیان (Gradient) برای تشویق عمل‌های منجر به نتایج خوب (یعنی 2,388 بالا/پایینِ برنده) و تضعیف عمل‌های منجر به نتایج بد (17,512 بالا/پایینِ بازنده) به‌روزرسانی می‌شود"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "reference",
+          "fa": "http://karpathy.github.io/2016/05/31/rl/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "UP; DOWN; WIN; LOSE",
+          "fa": "UP (بالا)؛ DOWN (پایین)؛ WIN (برد)؛ LOSE (باخت). توکن‌های عمل و نتیجهٔ نمونه مطابق اصل حفظ شده‌اند.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "f472821d48aab9fc75b453f19c51bd6c13ea291fb0f917b79ba6e7ad15a4e3ac",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "برای مثال، مدل پونگ (Pong): مدل یادگیری تقویتی (RL) در مقایسه با مدل هوش مصنوعی بازی پونگ"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://www.youtube.com/watch?v=YOW8m2YGtRg&t=16s"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "5621e8deb9d81ec8ebd277622fe6bb29eeaeb98fd98d22cc50804e7a1c7dcb25",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "چرا یادگیری تقویتی (Reinforcement Learning) دشوار است"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• عامل (Agent) باید از پاداش‌های (احتمالاً با تأخیر) استنباط کند چه کاری را درست/نادرست انجام داده و بنابراین چگونه عملکرد را حفظ/بهتر کند؛ برای مثال، برد/باخت پونگ"
+        },
+        {
+          "source_lines": [
+            3,
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• عامل (Agent) باید میان اکتشاف (Exploration) و بهره‌برداری (Exploitation) تعادل مناسب برقرار کند؛ برای مثال، سفارش غذای محبوب در مقایسه با غذایی جدید"
+        },
+        {
+          "source_lines": [
+            5,
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• عامل (Agent) باید وظیفه‌های غیرقابل‌راستی‌آزمایی (Non-verifiable tasks) را یاد بگیرد؛ برای مثال، ترجیح‌های انسانی مانند اینکه چه چیزی خنده‌دار و چه چیزی آسیب‌زا است"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "reference",
+          "fa": "https://huggingface.co/learn/deep-rl-course/unit1/exp-exp-tradeoff",
+          "visible_en": "https://huggingface.co/learn/deep-rl-course/unit1/exp-exp-tradeoff",
+          "verified": true,
+          "reason_fa": "در پیوند زیر تصویر رستوران‌ها، خط تیرهٔ deep-rl در رندر اصلی دیده می‌شود؛ لایهٔ استخراج‌شده به‌جای آن نویسهٔ نامعتبر U+FFFE دارد."
+        }
+      ],
+      "image_text": [
+        {
+          "en": "The Usual Place; GRAND OPENING",
+          "fa": "جای همیشگی؛ افتتاح بزرگ",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "ae7c724fdfe8ac1c625d14b5b33ae92ff05f043d2b1eb50164abb2f9a5e4c6df",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یادگیری تقویتی از بازخورد انسانی (Reinforcement Learning with Human Feedback; RLHF)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• ایده: آموزش با ترجیح‌داده‌شده‌ترین راه‌حل؛ برای مثال،"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "کاربر (User): “My internet is not working right now” (اینترنت من اکنون کار نمی‌کند)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Response; Human Preference Score; “Restart your router.” ★★★; “Restart your router and check for service outages in your area.” ★★★★; “Restart your router, check cables, and verify your service status. If that doesn’t work, contact support.” ★★★★★",
+          "fa": "پاسخ؛ امتیاز ترجیح انسان؛ «مسیریاب را راه‌اندازی مجدد کنید.» 3 ستاره؛ «مسیریاب را راه‌اندازی مجدد کنید و قطعی سرویس در منطقهٔ خود را بررسی کنید.» 4 ستاره؛ «مسیریاب را راه‌اندازی مجدد کنید، کابل‌ها را بررسی کنید و وضعیت سرویس را تأیید کنید. اگر مؤثر نبود، با پشتیبانی تماس بگیرید.» 5 ستاره. اصل پاسخ‌های انگلیسی حفظ شده است.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "46b7387af4a3ba42dfec0a7ed1f326be0c7292c3db94a9daea34ee19689f206c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "یادگیری تقویتی از بازخورد انسانی (Reinforcement Learning with Human Feedback; RLHF)"
+        },
+        {
+          "source_lines": [
+            1,
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• ایده: آموزش با ترجیح‌داده‌شده‌ترین راه‌حل؛ بازخورد انسانی دشواری مشخص‌کردن تابع‌های پاداش (Reward functions) را برطرف می‌کند (در عوض ترجیح‌های انسان‌ها را تقویت می‌کند)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• رویکرد:"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "1. با آموزش مدل پاداش (Reward model) برای شبیه‌سازی ترجیح‌های رتبه‌بندی انسان‌ها از مقدار کمی ورودی انسانی (با تابع زیان رتبه‌بندی (Ranking loss function))، آموزش در مقیاس بزرگ را ممکن کنید"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "2. مدل پایه را با یادگیری تقویتی (Reinforcement learning)، با استفاده از ترجیح‌های شبیه‌سازی‌شدهٔ انسان برای کل پیش‌بینی تولیدشده (برای مثال، همهٔ توکن‌های پیش‌بینی‌شدهٔ دنباله)، تنظیم دقیق کنید"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "پرامپت (Prompt): “Give advice for dealing with stress” (برای مقابله با استرس توصیه بده)"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "text",
+          "fa": "امتیازهای مدل پاداش (Reward model):"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "text",
+          "fa": "ترتیب انسانی (Human ordering): 3 1 2 4"
+        },
+        {
+          "source_lines": [
+            11
+          ],
+          "kind": "literal",
+          "fa": "0.2 0.6 0.15 0.05"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "1ea0e6bc8d00933ad0c26d761e91cca8b0942f7f4ad16650c854f1dcec0e5850",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "چالش یادگیری تقویتی از بازخورد انسانی (RLHF): بازی‌دادن مشخصات/دست‌کاری پاداش (Specification Gaming/Reward Hacking)"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• مثال: آموزش رباتی برای تمیزکردن اتاق، با پاداشی برای هر تکهٔ زبالهٔ برداشته‌شده."
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• مشکل این رفتار یادگرفته‌شده چیست: شکستن اشیا برای افزایش تعداد زباله‌ها"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• این مسئله در مدل‌های زبانی بزرگ (LLMs) چه شکلی می‌تواند داشته باشد؟"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• راه‌حل‌های کاهش مشکل:"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "• پس‌آموزش (Post-train) با RLHF را فقط مدت کوتاهی انجام دهید"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "bullet",
+          "fa": "• جمله‌ای به زیان (Loss term) اضافه کنید که مدل را به نزدیک‌ماندن به توزیع‌های پیش‌بینی اصلی تشویق کند"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "54ef790721aee1d3536e89d407e2f42e28f9bbd054d83cc11e13ead9ee66aa20",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "توجه: وظیفه‌های گفت‌وگویی (Conversational Tasks) از محدودهٔ پشتیبانی بسیاری از محک‌های ارزیابی (Evaluation Benchmarks) فراتر می‌روند"
+        },
+        {
+          "source_lines": [
+            2,
+            3
+          ],
+          "kind": "text",
+          "fa": "فرمان‌ها (Commands؛ کوتاه با واژگان محدود)"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "گفت‌وگوها (Conversations؛ طولانی با واژگان گسترده)"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "bc3221cab54185e64c32ca5910bcb9c74fef71aefdba7e953c9737d44643c0a6",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "reference",
+          "fa": "https://lmarena.ai/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Arena (battle); Arena (side-by-side); Direct Chat; Leaderboard; Prompt-to-Leaderboard; Arena Explorer; About Us; Chatbot Arena (formerly LMSYS): Free AI Chat to Compare & Test Best AI Chatbots",
+          "fa": "آرنا (نبرد)؛ آرنا (کنارهم)؛ گفت‌وگوی مستقیم؛ جدول رتبه‌بندی؛ پرامپت به جدول رتبه‌بندی؛ کاوشگر آرنا؛ دربارهٔ ما؛ Chatbot Arena (پیش‌تر LMSYS): گفت‌وگوی رایگان هوش مصنوعی برای مقایسه و آزمایش بهترین چت‌بات‌ها",
+          "verified": true
+        },
+        {
+          "en": "Discord; Twitter; 小红书; Blog; GitHub; Paper; Dataset; Kaggle Competition; Join us in our NEW Discord server: discord.gg/LMArena!; How It Works",
+          "fa": "Discord؛ Twitter؛ 小红书 (Xiaohongshu)؛ وبلاگ؛ GitHub؛ مقاله؛ مجموعه‌داده؛ مسابقهٔ Kaggle؛ در سرور جدید Discord به ما بپیوندید: discord.gg/LMArena!؛ چگونه کار می‌کند",
+          "verified": true
+        },
+        {
+          "en": "Blind Test: Ask any question to two anonymous AI chatbots (ChatGPT, Gemini, Claude, Llama, and more).; Vote for the Best: Choose the best response. You can keep chatting until you find a winner.; Play Fair: If AI identity reveals, your vote won’t count.",
+          "fa": "آزمون کور: هر پرسشی را از دو چت‌بات هوش مصنوعی بی‌نام (ChatGPT، Gemini، Claude، Llama و غیره) بپرسید.؛ به بهترین رأی بدهید: بهترین پاسخ را انتخاب کنید. می‌توانید تا یافتن برنده گفت‌وگو را ادامه دهید.؛ منصفانه بازی کنید: اگر هویت هوش مصنوعی آشکار شود، رأی شما شمرده نمی‌شود.",
+          "verified": true
+        },
+        {
+          "en": "NEW features: Upload an image and chat, or use Text-to-Image models like DALL-E 3, Flux, Ideogram to generate images! Use RepoChat tab to chat with Github repos.; Chatbot Arena LLM Leaderboard; Backed by over 1,000,000+ community votes, our platform ranks the best LLM and AI chatbots. Explore the top AI models on our LLM leaderboard!; Chat now!; Expand to see the descriptions of 88 models; Model A; Model B",
+          "fa": "قابلیت‌های جدید: تصویر بارگذاری کنید و گفت‌وگو کنید یا از مدل‌های متن‌به‌تصویر مانند DALL-E 3، Flux و Ideogram برای تولید تصویر استفاده کنید! برای گفت‌وگو با مخزن‌های Github از زبانهٔ RepoChat استفاده کنید.؛ جدول رتبه‌بندی مدل‌های زبانی بزرگ Chatbot Arena؛ پلتفرم ما با بیش از 1,000,000 رأی جامعه، بهترین مدل‌های زبانی بزرگ و چت‌بات‌ها را رتبه‌بندی می‌کند. مدل‌های برتر را در جدول ما بررسی کنید!؛ اکنون گفت‌وگو کنید!؛ باز کنید تا توضیح 88 مدل را ببینید؛ مدل A؛ مدل B",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "fc88dc3bea39566cd7872a7f45fb4ff771295a53a5612d930c10354e7793d40a",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "می‌خواهید در CU دربارهٔ یادگیری تقویتی (RL) بیشتر یاد بگیرید؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• یادگیری تقویتی عمیق (Deep Reinforcement Learning) — CSCI 7000"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "literal",
+          "fa": "• Alessandro Roncone"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• معمولاً در پاییز ارائه می‌شود"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• تصمیم‌گیری در شرایط عدم‌قطعیت (Decision Making Under Uncertainty) — ASEN 5264"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "reference",
+          "fa": "• Zachary Sunberg — https://github.com/CU-ADCL/CU-DMU-Materials"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "• معمولاً در بهار ارائه می‌شود"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "25cc18ee9752aea18e3a013c61f214daa6dfbdb5907e15d53d315be4921f6acb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "طرح کلی (Outline)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• چالش: سودمندکردن مدل‌های بنیادین (Foundation models)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• سازگارکردن کارآمد مدل‌ها: انتقال یادگیری با پارامترهای کم (Parameter-efficient transfer learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش مدل‌ها برای پیروی از نیت انسان: تنظیم با دستور (Instruction tuning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• هم‌راستاسازی مدل‌ها با ترجیح‌های انسانی: یادگیری تقویتی از بازخورد انسانی (Reinforcement learning from human feedback)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• شوک: پذیرش سریع مدل‌های بنیادین (Foundation models) در جامعه"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "6e75d342df63c29cbc87ed53c1fcf6798774502cfa9e8ec8290cbcc1c3d4b49c",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "وقتی ChatGPT (GPT 3.5) میان هوش خام و زیرساخت (Infrastructure) پل زد، چه رخ داد؟"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "Voltage Regulation; Power Distribution; Control Systems",
+          "fa": "تنظیم ولتاژ؛ توزیع برق؛ سامانه‌های کنترل",
+          "verified": true
+        },
+        {
+          "en": "PEFT; Efficient Adaptation",
+          "fa": "تنظیم دقیق کارآمد از نظر پارامتر (PEFT)؛ سازگارسازی کارآمد",
+          "verified": true
+        },
+        {
+          "en": "Instruction Tuning; Learning to Follow Intent",
+          "fa": "تنظیم با دستور (Instruction Tuning)؛ یادگیری پیروی از نیت",
+          "verified": true
+        },
+        {
+          "en": "RLHF; Aligning with Human Preferences",
+          "fa": "یادگیری تقویتی از بازخورد انسانی (RLHF)؛ هم‌راستاشدن با ترجیحات انسان",
+          "verified": true
+        },
+        {
+          "en": "Electricity; Foundation Models; Raw Electricity; Pretraining; Raw Model Capabilities; Electrified Society; Usable AI; Adopted Across Society",
+          "fa": "برق؛ مدل‌های بنیادین؛ برق خام؛ پیش‌آموزش؛ توانایی‌های خام مدل؛ جامعهٔ برق‌رسانی‌شده؛ هوش مصنوعی قابل‌استفاده؛ پذیرفته‌شده در سراسر جامعه",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "7247d6451f6655914573e2e3d1cae448d61219c14f37b8f692d44b3ba8cf02d7",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "نوامبر 2022: انتشار ChatGPT انتظارهای جهان از هوش مصنوعی (AI) را تغییر داد…"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "و به NVIDIA، تأمین‌کنندهٔ GPU برای OpenAI، کمک کرد بسیار ثروتمندتر شود ☺"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "(ارزش بازار حدود 4.3 تریلیون دلار در مارس 2026)"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "افزایش حدود 8برابری ارزش"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "bullet",
+          "fa": "- بیش از 1 میلیون کاربر در پنج روز"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "bullet",
+          "fa": "- حدود 10% جمعیت بزرگسال جهان تا ژوئیهٔ 2025"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "reference",
+          "fa": "https://cdn.openai.com/pdf/a253471f-8260-40c6-a2cc-aa93fe9f142e/economic-research-chatgpt-usage-paper.pdf"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "reference",
+          "fa": "https://news.fsu.edu/news/education-society/2025/08/26/on-screen-and-now-irl-fsu-researchers-find-evidence-suggesting-chatgpt-influences-how-we-speak/"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "OpenAI; Research; API; ChatGPT; Safety; Blog; Introducing ChatGPT",
+          "fa": "OpenAI؛ پژوهش؛ API؛ ChatGPT؛ ایمنی؛ وبلاگ؛ معرفی ChatGPT",
+          "verified": true
+        },
+        {
+          "en": "We’ve trained a model called ChatGPT which interacts in a conversational way. The dialogue format makes it possible for ChatGPT to answer followup questions, admit its mistakes, challenge incorrect premises, and reject inappropriate requests.; Try ChatGPT; Read about ChatGPT Plus",
+          "fa": "مدلی به نام ChatGPT آموزش داده‌ایم که به‌شکل گفت‌وگویی تعامل می‌کند. قالب گفت‌وگو به ChatGPT امکان می‌دهد پرسش‌های پیگیرانه را پاسخ دهد، اشتباه‌هایش را بپذیرد، مقدمه‌های نادرست را به چالش بکشد و درخواست‌های نامناسب را رد کند.؛ ChatGPT را امتحان کنید؛ دربارهٔ ChatGPT Plus بخوانید",
+          "verified": true
+        },
+        {
+          "en": "2000; 2005; 2010; 2015; 2020; 2025; 0; 50; 100; 150; 200",
+          "fa": "برچسب‌های سال و مقیاس نمودار مطابق اصل: 2000؛ 2005؛ 2010؛ 2015؛ 2020؛ 2025؛ 0؛ 50؛ 100؛ 150؛ 200",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "5990450586c1120bceac7f517678eb582266e4a1a39af6405718059876855513",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "بحث: کدام گام‌های پس‌آموزش (Post-Training) گنجانده شوند؟"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "reference",
+          "fa": "https://www.youtube.com/watch?v=7xTGNNLPyMI"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "(از حدود 2:12:00 آغاز می‌شود)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "ChatGPT: تنظیم با دستور (Instruction tuning) + یادگیری تقویتی از بازخورد انسانی (RLHF) + پرامپت‌های پنهان"
+        },
+        {
+          "source_lines": [
+            4,
+            5
+          ],
+          "kind": "text",
+          "fa": "گسترش‌های Llama، مانند Vicuna و Koala (2023): تنظیم با دستور (Instruction tuning) با LoRA"
+        },
+        {
+          "source_lines": [
+            6
+          ],
+          "kind": "literal",
+          "fa": "DeepSeek"
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "RHLF بدون تنظیم با دستور (Instruction tuning)"
+        },
+        {
+          "source_lines": [
+            8,
+            9
+          ],
+          "kind": "text",
+          "fa": "DeepSeek-R1 (2026): RLHF، با گونه‌های مبتنی بر LoRA (فراتررفتن از استدلال انسانی را ممکن می‌کند)"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "exposition ⇔ pretraining (background knowledge); worked problems ⇔ supervised finetuning (problem + demonstrated solution, for imitation); practice problems ⇔ reinforcement learning (prompts to practice, trial & error until you reach the correct answer)",
+          "fa": "شرح درس ⇔ پیش‌آموزش (دانش زمینه‌ای)؛ مسائل حل‌شده ⇔ تنظیم دقیق نظارت‌شده (مسئله + راه‌حل نمایش‌داده‌شده برای تقلید)؛ مسائل تمرینی ⇔ یادگیری تقویتی (پرامپت‌هایی برای تمرین، آزمون‌وخطا تا رسیدن به پاسخ درست)",
+          "verified": true
+        },
+        {
+          "en": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning; DeepSeek-AI",
+          "fa": "DeepSeek-R1: ایجاد انگیزه برای توانایی استدلال در مدل‌های زبانی بزرگ از طریق یادگیری تقویتی؛ DeepSeek-AI",
+          "verified": true
+        },
+        {
+          "en": "LLaMA: Open and Efficient Foundation Language Models; Hugo Touvron; Thibaut Lavril; Gautier Izacard; Xavier Martinet; Marie-Anne Lachaux; Timothée Lacroix; Baptiste Rozière; Naman Goyal; Eric Hambro; Faisal Azhar; Aurelien Rodriguez; Armand Joulin; Edouard Grave; Guillaume Lample; Meta AI",
+          "fa": "LLaMA: مدل‌های زبانی بنیادین باز و کارآمد؛ Hugo Touvron؛ Thibaut Lavril؛ Gautier Izacard؛ Xavier Martinet؛ Marie-Anne Lachaux؛ Timothée Lacroix؛ Baptiste Rozière؛ Naman Goyal؛ Eric Hambro؛ Faisal Azhar؛ Aurelien Rodriguez؛ Armand Joulin؛ Edouard Grave؛ Guillaume Lample؛ Meta AI",
+          "verified": true
+        }
+      ],
+      "image_text_limits": [
+        {
+          "reason_fa": "نوشته‌ها و فرمول‌های داخل صفحه‌های کتاب شیمی در عکس 572×428 پیکسلی اصلی خارج از فوکوس و بسیار ریزند و قابل پیاده‌سازی مطمئن نیستند؛ برچسب‌های آموزشی روی عکس کامل خوانده و ترجمه شده‌اند و اصل عکس حفظ شده است."
+        }
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "5778232ead6d1ab862bcc1a877c30ff491feeaebdb9e1fc1beb021bfe0f36a2b",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "برای کمک به استفاده از این مدل‌های عظیم، شرکت‌های فراوانی دسترسی به آن‌ها فراهم می‌کنند؛ برای مثال،"
+        }
+      ],
+      "image_text": [
+        {
+          "en": "together.ai; Products; For Business; For Developers; Pricing; Research; Company; Docs; Contact; Get Started; Hyperbolic; About; Blog; Careers; Schedule a Call; Launch App; Azure AI model catalog",
+          "fa": "together.ai؛ محصولات؛ برای کسب‌وکار؛ برای توسعه‌دهندگان؛ قیمت‌گذاری؛ پژوهش؛ شرکت؛ مستندات؛ تماس؛ شروع کنید؛ Hyperbolic؛ درباره؛ وبلاگ؛ فرصت‌های شغلی؛ تماس زمان‌بندی کنید؛ برنامه را اجرا کنید؛ فهرست مدل‌های Azure AI",
+          "verified": true
+        },
+        {
+          "en": "Models; Docs; Blog; Enterprise; LM Link New; Download; Introducing: LM Link; Connect to remote instances of LM Studio, load your models, and use them as if they were local. Get started",
+          "fa": "مدل‌ها؛ مستندات؛ وبلاگ؛ سازمانی؛ LM Link جدید؛ دریافت؛ معرفی: LM Link؛ به نمونه‌های راه‌دور LM Studio وصل شوید، مدل‌هایتان را بارگذاری کنید و مانند مدل‌های محلی از آن‌ها استفاده کنید. شروع کنید",
+          "verified": true
+        },
+        {
+          "en": "Run AI models, locally and privately.; Use local LLMs like gpt-oss, Qwen3, Gemma3, DeepSeek and many more, locally on your own hardware.; Download for Mac (M series) 0.4.6; LM Studio is free for home and work use • terms",
+          "fa": "مدل‌های هوش مصنوعی را محلی و خصوصی اجرا کنید.؛ مدل‌های زبانی بزرگی مانند gpt-oss، Qwen3، Gemma3، DeepSeek و بسیاری دیگر را محلی روی سخت‌افزار خود اجرا کنید.؛ دریافت برای Mac (سری M)، نسخهٔ 0.4.6؛ LM Studio برای استفادهٔ خانگی و کاری رایگان است؛ شرایط",
+          "verified": true
+        },
+        {
+          "en": "Discov…",
+          "fa": "کشف… (باقی زیر تصویر جلویی پوشیده است)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "cfea87a4d1cb3346c0e18c46b309a7f375a3096a9a4f67ed5c1edc63023357cc",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0,
+            1
+          ],
+          "kind": "heading",
+          "fa": "فعالیت: از آموخته‌ها برای فرضیه‌سازی و تحلیل رفتارهای مدل‌ها استفاده کنید"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "25cc18ee9752aea18e3a013c61f214daa6dfbdb5907e15d53d315be4921f6acb",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [
+        {
+          "source_lines": [
+            0
+          ],
+          "kind": "heading",
+          "fa": "طرح کلی (Outline)"
+        },
+        {
+          "source_lines": [
+            1
+          ],
+          "kind": "bullet",
+          "fa": "• چالش: سودمندکردن مدل‌های بنیادین (Foundation models)"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "bullet",
+          "fa": "• سازگارکردن کارآمد مدل‌ها: انتقال یادگیری با پارامترهای کم (Parameter-efficient transfer learning)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "bullet",
+          "fa": "• آموزش مدل‌ها برای پیروی از نیت انسان: تنظیم با دستور (Instruction tuning)"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "bullet",
+          "fa": "• هم‌راستاسازی مدل‌ها با ترجیح‌های انسانی: یادگیری تقویتی از بازخورد انسانی (Reinforcement learning from human feedback)"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "bullet",
+          "fa": "• شوک: پذیرش سریع مدل‌های بنیادین (Foundation models) در جامعه"
+        }
+      ],
+      "image_text": []
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text_reviewed": true,
+      "image_text_reviewed": true,
+      "blocks": [],
+      "image_text": [
+        {
+          "en": "The End",
+          "fa": "پایان",
+          "verified": true
+        }
+      ]
+    }
+  ]
+}

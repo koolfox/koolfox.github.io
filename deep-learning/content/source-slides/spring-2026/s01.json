@@ -1,0 +1,1132 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s01",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/01-Introduction.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2026/s01.pdf",
+    "sha256": "33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593",
+    "page_count": 87,
+    "license_notice": "CC BY-NC-SA; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "c7a3f94597e9fcf0b36ceea393004034742e29f1737386e69c7e5f147053a4ca",
+      "lines": [
+        "Fundamentals of Neural Networks",
+        "and Deep Learning: Introduction",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2026",
+        "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "93be166ad020db0006505dc7ba7155a8e809f0fb64afc1dfc2f33e13791b16be",
+      "lines": [
+        "Today’s Topics",
+        "• Applications",
+        "• History of neural networks and deep learning",
+        "• How does a machine learn?",
+        "• Course logistics"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "93be166ad020db0006505dc7ba7155a8e809f0fb64afc1dfc2f33e13791b16be",
+      "lines": [
+        "Today’s Topics",
+        "• Applications",
+        "• History of neural networks and deep learning",
+        "• How does a machine learn?",
+        "• Course logistics"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "cb37288320326d69b2a3cf49758e02d4af85a994fa33f569d65454eec9f4d46c",
+      "lines": [
+        "Key Motivation",
+        "Systems that support humans by either",
+        "improving upon existing human capabilities",
+        "or providing new capabilities"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "d63d4b5c01249f0dd295bd5ab96bfdba336fdaf5da802ebce1fea51264725914",
+      "lines": [
+        "Personal Assistants; e.g.,"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "54b822b737f3a34ef6cc599bf9919c7e348900d49d62c72a87cfd38fc35506c2",
+      "lines": [
+        "Coding Assistants; e.g.,",
+        "https://azure.microsoft.com/en-us/products/github/copilot"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "3d4e3a1b6181f4af554a89968295cc2694d87716a35eef5d824fddfae1e23a14",
+      "lines": [
+        "Writing Assistants; e.g.,",
+        "https://www.sudowrite.com/"
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "612229f89f94d28bbd69eab27a2fb1a89ab36a740e36ab47370affa774e8521d",
+      "lines": [
+        "Legal Research Assistants"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "434e82ab1b169fea82a230f936eae28f8b5e87fb8f9b85a19d6b14fd4086e701",
+      "lines": [
+        "Developer Assistants"
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "872bff1955f2607d81954fc8c98cba5d588656411a0531fd803e8f38568f4294",
+      "lines": [
+        "Doctor Assistants"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "d36c30e80c8a929e9f3c5db555427aa977dc964e078dc2969e26c48d7081b43b",
+      "lines": [
+        "Personalized Educational Tutor",
+        "https://www.vertechacademy.com/"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "b7cc17bf5d49370743e9e69086e9f4f6d0998b11e7b2189a5d83216cf1f05ad0",
+      "lines": [
+        "Speech-Based Text Messaging",
+        "https://play.google.com/store/apps/details"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "a446f994291fe2033fe08f7ebffd845639d0ba5a4f14fe5ea71abc743c0feebf",
+      "lines": [
+        "Notetakers to Summarize Meetings; e.g., Zoom",
+        "https://news.zoom.us/zoom-iq-meeting-summary-chat-compose-free-trial/"
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "766169dcca47dd0f8949d0481e883b01b40ea73afd686cc4c7f6f2a7de71e6eb",
+      "lines": [
+        "Notetakers to Summarize Meetings; e.g., Dr Visits",
+        "https://www.deepscribe.ai/"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "f90f891345d9cd95c26fcce71426da921128bb43db4ef0edb0b800677298ca74",
+      "lines": [
+        "Self-Driving Vehicles; e.g.,",
+        "Waymo Self-Driving Taxi",
+        "https://www.nbcnews.com/tech/innovation/self-driving-car-sf-taxi-waymo-cruise-california-vote-cpuc-rcna97540"
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "f39a4db60396e44d6b59c10c606887936c89b2b5b529f1b4ea0366c1a17b7527",
+      "lines": [
+        "Appearance Editor; e.g., for Movies",
+        "https://theresanaiforthat.com/ai/vanity-ai/"
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "0d8d9f5bc6fec33c8708fb7f8f1f036acc6898d27ab4a67ed476541941c50dd2",
+      "lines": [
+        "Accent Editor; e.g., for Customer Support",
+        "https://tomato.ai/"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "ddc26038990fd2091ed657b198748b11e3ae5964514fa9ca9e4c10c92d4c6227",
+      "lines": [
+        "Therapists"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "a2e55bbba08b55ea9c01ab2d28267bedaf666acd16d3f971a809ca68b67fde8b",
+      "lines": [
+        "AI Companions"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "2e37398adde30d4ea9d1eb093600f809eea2d545f558149912581637fd7d32de",
+      "lines": [
+        "Coloring Page Generators"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "6f488bfb122db5e22972cf3cc92e0f4afcbbf41f3e0c76cb2fd12682484b19c4",
+      "lines": [
+        "Video Generation; Demo with Adobe FireFly",
+        "https://firefly.adobe.com/generate/video",
+        "Result from this prompt:",
+        "“Inspirational video for students",
+        "taking a class on \"Fundamentals in",
+        "Neural Networks and Deep Learning\"",
+        "Result from this prompt:",
+        "“Create a video that will inspire students",
+        "who are taking a course on \"Fundamentals",
+        "in Neural Networks and Deep Learning\""
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "31a9bd085b6372b79164cbf9ebe1b3ecc8068386387b093c24e4129e27f23de9",
+      "lines": [
+        "Presentation Generation; Demo with Gamma",
+        "https://gamma.app/create/paste",
+        "Outline for lecture on \"Fundamentals in Neural Networks and Deep Learning\":",
+        "•Applications",
+        "•History of neural networks and deep learning",
+        "•How does a machine learn?",
+        "•Course logistics",
+        "Result from prompt:",
+        "https://gamma.app/docs/Fun",
+        "damentals-of-Neural￾Networks-and-Deep-Learning￾lft1mgc4zvg380u?mode=doc"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "e03f422e81122e7dfebf399af8b23c94a3540c69dd265b1b3ea02e65dcfb9563",
+      "lines": [
+        "Music Composer; Demo with Suno",
+        "https://suno.com/"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "205729b9df702d6717ee7cbb22da6fc6750b429556cd93badd695b34766b4715",
+      "lines": [
+        "Podcast Generation; Demo with NotebookLLM",
+        "https://notegpt.io/ai-podcast-generator",
+        "Result from this prompt: “Create a podcast that will inspire students who are taking a course",
+        "on \"Fundamentals in Neural Networks and Deep Learning. The following is the lecture outline:",
+        "* Applications",
+        "* History of neural networks and deep learning",
+        "* How does a machine learn?",
+        "* Course logistics"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "68debbf4debc0ae2c854947f5282e6981366589653fea3325664ef1d3cb6aabc",
+      "lines": [
+        "And Many More Applications…"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "12e7f4d50b25e3ebaeeaed061df4ba576dae8c35dcfaa3ce714a67cc77bd4ef0",
+      "lines": [
+        "Much of AI in society today is based on neural networks.",
+        "Neural networks are not magic.",
+        "They are (flawed) human-made systems, shaped by our",
+        "inventions, lived experiences, and imagination.",
+        "Goal: You become better equipped to question, engage with,",
+        "and influence neural networks – both in your life and in society."
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "93be166ad020db0006505dc7ba7155a8e809f0fb64afc1dfc2f33e13791b16be",
+      "lines": [
+        "Today’s Topics",
+        "• Applications",
+        "• History of neural networks and deep learning",
+        "• How does a machine learn?",
+        "• Course logistics"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "35e0d3bf882163cede45d4c0a9dc4e8555a392f05cb0e6f170ea5e30f5381798",
+      "lines": [
+        "Origins: Computers",
+        "1945",
+        "First programmable",
+        "machine",
+        "ENIAC (Electronic Numerical Integrator and",
+        "Computer) created during World War II",
+        "(could compute 5,000 additions in one second)",
+        "First programmers"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "18026cab7117b432141ae0a94b515b66d3436da2ac486d6efbde8af976fbf8e4",
+      "lines": [
+        "Origins: Conceptual Framework",
+        "Turing test",
+        "1945",
+        "First programmable",
+        "machine",
+        "Turing Test: can ”C” decide whether text",
+        "responses come from a machine or human",
+        "Alan Turing",
+        "(1912-1954)",
+        "1950"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "9a946e4f149135b535c43a464284e546aeb6631358ad8d82dcf63a296979f9cc",
+      "lines": [
+        "Origins: Conceptual Framework",
+        "“Artificial intelligence” established as a field at a workshop",
+        "Turing test",
+        "1945",
+        "First programmable",
+        "machine AI birth",
+        "1950 1956"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "1f22cd043b9cbb99a325453dd893379690729088eec8e1aa619d55724a873f26",
+      "lines": [
+        "Origins: Conceptual Framework",
+        "“Artificial intelligence” established as a field at a workshop",
+        "Workshop Proposal: “… We propose that a 2 month, 10 man study of artificial intelligence be",
+        "carried out during the summer of 1956 at Dartmouth College in Hanover, New Hampshire. The",
+        "study is to proceed on the basis of the conjecture that every aspect of learning or any other",
+        "feature of intelligence can in principle be so precisely described that a machine can be made",
+        "to simulate it. An attempt will be made to find how to make machines use language, form",
+        "abstractions and concepts, solve kinds of problems now reserved for humans, and improve",
+        "themselves. We think that a significant advance can be made in one or more of these",
+        "problems if a carefully selected group of scientists work on it together for a summer…”",
+        "Turing test",
+        "1945",
+        "First programmable",
+        "machine AI birth",
+        "1950 1956"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "5245c95343e51082e743c6062dbc388ee26aa8c2e6b35f56da2b6fe61fd385bb",
+      "lines": [
+        "Origins: Conceptual Framework",
+        "What human intelligence",
+        "might computers imitate?",
+        "Turing test",
+        "1945",
+        "First programmable",
+        "machine AI birth",
+        "1950 1956"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "7d594fd57fc388d20b760e111a961c282a5043507b873690242b4c3b2ca16b97",
+      "lines": [
+        "Origins: Conceptual Framework",
+        "AI researcher Arthur Samuel coins the term",
+        "“machine learning” as:",
+        "“Field of study that gives computers the ability",
+        "to learn without being explicitly programmed.”",
+        "Machine",
+        "learning",
+        "Artificial Intelligence",
+        "(machines that do",
+        "“intelligent” things)",
+        "Machine Learning",
+        "(algorithms that “learn”",
+        "for themselves)",
+        "Turing test",
+        "1945",
+        "First programmable",
+        "machine AI",
+        "1950 1956 1959"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "b52364a06033fe1870847d084611c5451a3a10e528ac69c2f03a2791c4f4bde0",
+      "lines": [
+        "Motivation for Machines that “Learn”",
+        "• Process for hand-crafted rules:",
+        "https://www.oreilly.com/library/view/hands-on-machine-learning/9781491962282/ch01.html"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "efc0923f436c82584b9db85ed1c90b05f982abe15c81a7238ffccb98b8bb66a3",
+      "lines": [
+        "Motivation for Machines that “Learn”",
+        "e.g., What rules would you use to answer: “Is a person in the image?”"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "bf119a1b44cb38fbc17a4645735ce8302e5d0bcce05945396234a4374e628cd1",
+      "lines": [
+        "Motivation for Machines that “Learn”",
+        "e.g., are the horizontal lines parallel?"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "bf119a1b44cb38fbc17a4645735ce8302e5d0bcce05945396234a4374e628cd1",
+      "lines": [
+        "Motivation for Machines that “Learn”",
+        "e.g., are the horizontal lines parallel?"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "305e6f3140aab0e77845dbbed6711d925d1c949fb16c385ae4f0530ed268b232",
+      "lines": [
+        "Motivation for Machines that “Learn”",
+        "1. It is hard to hand-craft a complete set of rules",
+        "2. We, as humans, may not devise the best rules for a machine",
+        "since our brains (unconsciously) pre-process the data we sense"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "21f0e8cd989bb18d4ef7a8388ec73b00de7fafd0103bda05b8acf4c256eee569",
+      "lines": [
+        "Learning Algorithm: ML Basics Recap",
+        "Developing machine learning models: choose data; e.g.,",
+        "Example:",
+        "Label: Hairy Hairy Not Hairy Hairy"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "7f793820f417d38fab16ffb8114d6fc8847387a90602edb55117f3e2e4fabc30",
+      "lines": [
+        "Learning Algorithm: ML Basics Recap",
+        "Training Data Test Data",
+        "Example:",
+        "Label: Hairy Hairy Not Hairy Hairy",
+        "Developing machine learning models: choose data, split it; e.g.,"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "a5bb65667c1620f728c5c6092307cd4a32a64444907fab33e8f14b122723944c",
+      "lines": [
+        "Learning Algorithm: ML Basics Recap",
+        "Training Data",
+        "Example:",
+        "Label: Hairy Hairy Not Hairy",
+        "Developing machine learning models: choose data, split it, train model to minimize",
+        "prediction error; e.g.,"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "680a1d770209b136648e4d79c698ca9c2a7dc9a62a6f34a269c70755d748e39d",
+      "lines": [
+        "Learning Algorithm: ML Basics Recap",
+        "Developing machine learning models: choose data, split it, train model to minimize",
+        "prediction error, and measure generalization error; e.g.,",
+        "Test Data",
+        "?"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "fae88c0963edb328116d7b7203e91d93ec9f4d7b9f7d1bde7b5280906aa917aa",
+      "lines": [
+        "Learning Algorithm: ML Basics Recap",
+        "Developing machine learning models: choose data, split it, train model to minimize",
+        "prediction error, and measure generalization error; e.g.,",
+        "Test Data",
+        "Not Hairy"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "113f6c87814d610d9d9b3b61a3f73db25daef0742b113d2bd17ecc4ce01b9460",
+      "lines": [
+        "Origins: Neural Networks with Deep Learning",
+        "Neural networks with",
+        "effective learning strategy",
+        "1986",
+        "Artificial Intelligence",
+        "(machines that do",
+        "“intelligent” things)",
+        "Machine Learning",
+        "(algorithms that “learn”",
+        "for themselves)",
+        "Neural",
+        "Networks",
+        "Machine",
+        "learning",
+        "Turing test",
+        "1945",
+        "First programmable",
+        "machine AI",
+        "1950 1956 1959"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "3d9aaca8c08f5f9b04fe5e7bc92c86bb2900592d2114d717cd65d8ac63dd7a76",
+      "lines": [
+        "Motivation for Neural Networks (NNs) Over",
+        "Other Machine Learning (ML) Approaches",
+        "Feature Extraction Prediction",
+        "e.g., Is a person present?",
+        "Yes",
+        "INPUT OTHER ML APPROACH: HAND-CRAFTED FEATURES OUTPUT",
+        "Features that may help predict yes/no:",
+        "e.g., corners, lines, and model of expected body parts as connected shapes",
+        "e.g., Pedro F Felzenszwalb and Daniel P Huttenlocher, IJCV 2004"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "af1b02a052e6b8bbbe94af7bf001510d5f2459b3b04b7324ef3fa97a27dcb19c",
+      "lines": [
+        "Motivation for Neural Networks (NNs) Over",
+        "Other Machine Learning (ML) Approaches",
+        "Feature Extraction Prediction",
+        "e.g., Is a person present?",
+        "Yes",
+        "Challenging to hand-craft features!",
+        "INPUT OTHER ML APPROACH: HAND-CRAFTED FEATURES OUTPUT"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "02026ec9c63b9d49faa8df6262de038b5ee3a9b76a5e26ca32e0b3714ded4480",
+      "lines": [
+        "Motivation for Neural Networks (NNs) Over",
+        "Other Machine Learning (ML) Approaches",
+        "Feature Extraction Prediction",
+        "e.g., Is a person present?",
+        "Yes",
+        "Yes",
+        "Feature Extraction",
+        "NN APPROACH: REPRESENTATION LEARNING",
+        "Prediction",
+        "Course scope",
+        "INPUT OTHER ML APPROACH: HAND-CRAFTED FEATURES OUTPUT"
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "03323390cdbb63782ad0d60397ee6a3fa9ecb06d015b2df341f101464d9df968",
+      "lines": [
+        "Origins: Rises/Falls of Neural Network Popularity",
+        "Wave 1 Wave 2",
+        "Ian Goodfellow, Yoshua Bengio, and Aaron Courville; Deep Learning, 2016",
+        "Many names for",
+        "the study of",
+        "neural networks:",
+        "Turing test",
+        "1945",
+        "First programmable",
+        "machine AI",
+        "1950 1956 1959 1986",
+        "Machine",
+        "learning",
+        "2006",
+        "Wave 3: start of",
+        "“deep learning”",
+        "Neural networks with",
+        "effective learning strategy"
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "605f4ada3f9709e71ff46ac3f55558a286f82fc76f264d572ed971893e51ef6e",
+      "lines": [
+        "Why Are Neural Networks and Deep Learning",
+        "So Popular Now? – Their Success in Practice!"
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "93be166ad020db0006505dc7ba7155a8e809f0fb64afc1dfc2f33e13791b16be",
+      "lines": [
+        "Today’s Topics",
+        "• Applications",
+        "• History of neural networks and deep learning",
+        "• How does a machine learn?",
+        "• Course logistics"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "c13c8b12f2c82f6f39911df9250e21a438ec4e5d816c296f0d8c1124191359bb",
+      "lines": [
+        "Neural Networks: Key Ingredients for Success",
+        "Analogous to a Love Story of Partnering Up and Road Tripping Somewhere",
+        "An architecture trained on data with a processor",
+        "learns to extract useful patterns for prediction"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "c13c8b12f2c82f6f39911df9250e21a438ec4e5d816c296f0d8c1124191359bb",
+      "lines": [
+        "Neural Networks: Key Ingredients for Success",
+        "Analogous to a Love Story of Partnering Up and Road Tripping Somewhere",
+        "An architecture trained on data with a processor",
+        "learns to extract useful patterns for prediction"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "e5e1a922388ef1ec4e11a7c24977341806b1a435cd9a818985fe447d230efce4",
+      "lines": [
+        "• e.g., create model to separate x from o",
+        "Architecture Design: Model-Based",
+        "Class volunteer:",
+        "1) Draw a straight line (linear equation)",
+        "2) Draw a parabola (quadratic equation)",
+        "3) Draw any curve",
+        "Models with increasing",
+        "representational capacity",
+        "https://medium.com/greyatom/what-is-underfitting-and-overfitting-in-machine-learning-and-how-to-deal-with-it-6803a989c76"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "9be4d2205c47a68510fb464d9458ebee9b8d5257952a206299aade47dbeb2202",
+      "lines": [
+        "Architecture Scope for Course: Last 70 Years",
+        "First programmable",
+        "machine",
+        "2006",
+        "Machine",
+        "learning",
+        "Turing test",
+        "1945",
+        "AI",
+        "1950 1956 1959 1986",
+        "We will cover the history because progress has been cumulative,",
+        "with each breakthrough extending the one before it",
+        "Wave 3: start of",
+        "“deep learning”",
+        "Neural networks with",
+        "effective learning strategy"
+      ]
+    },
+    {
+      "number": 55,
+      "source_text_sha256": "c13c8b12f2c82f6f39911df9250e21a438ec4e5d816c296f0d8c1124191359bb",
+      "lines": [
+        "Neural Networks: Key Ingredients for Success",
+        "Analogous to a Love Story of Partnering Up and Road Tripping Somewhere",
+        "An architecture trained on data with a processor",
+        "learns to extract useful patterns for prediction"
+      ]
+    },
+    {
+      "number": 56,
+      "source_text_sha256": "150b0a342cc4ddf232ac190a05a4ec2fc87663763c1e5e24374b650afc33f5e4",
+      "lines": [
+        "Data Types: What a Machine Learns From?",
+        "• Audio",
+        "• Input?",
+        "e.g.,"
+      ]
+    },
+    {
+      "number": 57,
+      "source_text_sha256": "45ca887e0c2f1867237c0090b08578ec9abc19f4f0e32701b7f22fcd0d2a5780",
+      "lines": [
+        "Data Types: What a Machine Learns From?",
+        "• Audio",
+        "• Input?",
+        "• Images",
+        "• Input?",
+        "https://ai.stanford.edu/~syyeung/cvweb/tutorial1.html"
+      ]
+    },
+    {
+      "number": 58,
+      "source_text_sha256": "77257dab3d0adef00b142a8b697cbbe421684c1f4a03306166d013fe54db4461",
+      "lines": [
+        "Data Types: What a Machine Learns From?",
+        "• Audio",
+        "• Input?",
+        "• Images",
+        "• Input?",
+        "• Video",
+        "• Input?",
+        "Time 1",
+        "1 hour",
+        "Analogous to:"
+      ]
+    },
+    {
+      "number": 59,
+      "source_text_sha256": "0ba41213473612c15d8013cf8b61f9a0674e21a8fe522fdc3aafafa320a427dc",
+      "lines": [
+        "Data Types: What a Machine Learns From?",
+        "• Audio",
+        "• Input?",
+        "• Images",
+        "• Input?",
+        "• Video",
+        "• Input?",
+        "• Text",
+        "• Input?",
+        "e.g.,"
+      ]
+    },
+    {
+      "number": 60,
+      "source_text_sha256": "e51ec96b4f9dc65cca1731342b1867987d26a6542ebb57b3d064583bb482a99a",
+      "lines": [
+        "Data Types: What a Machine Learns From?",
+        "• Audio",
+        "• Input?",
+        "• Images",
+        "• Input?",
+        "• Video",
+        "• Input?",
+        "• Text",
+        "• Input?",
+        "• And more modalities",
+        "• Multi-modal: combines above"
+      ]
+    },
+    {
+      "number": 61,
+      "source_text_sha256": "f92e1020b35113df95396c2386c8ef9dc5f91910f03de1a7e8a5263f8603f1d9",
+      "lines": [
+        "Data Types: Many Public Datasets Available",
+        "• Dataset creation is beyond the scope of this class",
+        "• We will benefit from other people’s efforts:",
+        "• Google Dataset Search",
+        "• Kaggle datasets",
+        "• Amazon’s AWS datasets",
+        "• Wikipedia’s list",
+        "• UC Irvine Machine Learning Repository",
+        "• Quora.com",
+        "• Reddit",
+        "• Dataportals.org",
+        "• Opendatamonitor.eu"
+      ]
+    },
+    {
+      "number": 62,
+      "source_text_sha256": "c13c8b12f2c82f6f39911df9250e21a438ec4e5d816c296f0d8c1124191359bb",
+      "lines": [
+        "Neural Networks: Key Ingredients for Success",
+        "Analogous to a Love Story of Partnering Up and Road Tripping Somewhere",
+        "An architecture trained on data with a processor",
+        "learns to extract useful patterns for prediction"
+      ]
+    },
+    {
+      "number": 63,
+      "source_text_sha256": "a9d9b07431fc0137cb6b4915cdb80797483e32d04ba01e0a38c7280f79ddc9a9",
+      "lines": [
+        "Neural Networks: Key Ingredients for Success",
+        "e.g., train models using",
+        "GPUs (think Porsche) instead of CPUs (think Golf Cart)"
+      ]
+    },
+    {
+      "number": 64,
+      "source_text_sha256": "f3b579608cc56b76492d61f0acfd4c501e7499886745ffff5b456474b69afa29",
+      "lines": [
+        "Summary",
+        "Analogous to a Love Story of Partnering Up and Road Tripping Somewhere",
+        "An architecture trained on data with a processor",
+        "learns to extract useful patterns for prediction"
+      ]
+    },
+    {
+      "number": 65,
+      "source_text_sha256": "87184ba5fe22dd971a7e5cc2ab5b52164ef16c24a0b20052fa26c0226c6b5198",
+      "lines": [
+        "Key Challenge: Where Will You Go?",
+        "https://www.theverge.com/2015/7/1/8880363/google￾apologizes-photos-app-tags-two-black-people-gorillas",
+        "“Two kids bought their mom a",
+        "camera for Mother's Day… when",
+        "they took portrait pictures of",
+        "each other, a message flashed",
+        "across the screen asking, `Did",
+        "someone blink?’\"",
+        "http://content.time.com/time/busin",
+        "ess/article/0,8599,1954643,00.html"
+      ]
+    },
+    {
+      "number": 66,
+      "source_text_sha256": "93be166ad020db0006505dc7ba7155a8e809f0fb64afc1dfc2f33e13791b16be",
+      "lines": [
+        "Today’s Topics",
+        "• Applications",
+        "• History of neural networks and deep learning",
+        "• How does a machine learn?",
+        "• Course logistics"
+      ]
+    },
+    {
+      "number": 67,
+      "source_text_sha256": "ccfb4c3eb76569bb8cc7550feb3a236d8b67364a366804e8a7c16293450432b1",
+      "lines": [
+        "Course Resources",
+        "• Website with Syllabus:",
+        "• https://dannagurari.colorado.edu/course/neural￾networks-and-deep-learning-spring-2026/",
+        "• Lecture Slides: hyperlinked from course website",
+        "• Lecture Recordings: available on Canvas",
+        "immediately after each lecture"
+      ]
+    },
+    {
+      "number": 68,
+      "source_text_sha256": "1e9cdf51784b231bc58345d0e14ef690dab785761d0029bdfa4c41e2d02dddca",
+      "lines": [
+        "Course Objectives (1 of 5)",
+        "• Recognize and analyze common neural network architectures.",
+        "Towards this aim, students will:",
+        "• Identify popular architectures — including fully connected, recurrent,",
+        "convolutional, and transformer-based networks — and implement their core",
+        "mathematical operations by hand",
+        "• Compare and contrast their design principles as well as their strengths and",
+        "limitations for various tasks"
+      ]
+    },
+    {
+      "number": 69,
+      "source_text_sha256": "385ea9aeff7b0289ead82ddcc8d754bfccf78306d32de8ee462b478e64d44023",
+      "lines": [
+        "Course Objectives (2 of 5)",
+        "• Recognize and analyze common techniques for training neural",
+        "networks. Towards this aim, students will:",
+        "• Identify key challenges with training neural networks of various depths and",
+        "capacities",
+        "• Compare and contrast techniques for overcoming learning challenges",
+        "including training from scratch as well as performing transfer learning with",
+        "frozen pretrained features, fine-tuning, and parameter-efficient methods",
+        "(e.g., LoRA)"
+      ]
+    },
+    {
+      "number": 70,
+      "source_text_sha256": "56ca95300265c1c9bd33285be236e973fb3f70b2212a4fe190a22a7eb4d0d86f",
+      "lines": [
+        "Course Objectives (3 of 5)",
+        "• Gain hands-on experience with neural networks and deep learning for",
+        "various artificial intelligence tasks. Towards this aim, students will:",
+        "• Implement basic neural networks and learning algorithms from scratch",
+        "• Design, train, deploy, and evaluate neural networks models with multiple data",
+        "types using the deep learning library PyTorch and modern hardware (GPUs)"
+      ]
+    },
+    {
+      "number": 71,
+      "source_text_sha256": "b62fb7107fbff1a02b50d502c26435b417ff24e883e9c664806ce9eb04c24479",
+      "lines": [
+        "Course Objectives (4 of 5)",
+        "• Explore responsible AI practices to both reduce environmental harm and",
+        "promote ethical behavior in AI systems. Towards this aim, students will:",
+        "• Experiment with sustainable techniques for model development including to",
+        "speed up model inference and learning",
+        "• Identify unethical behaviors of modern models, technical strategies to mitigate",
+        "those behaviors, and societal frameworks to promote models’ ethical use"
+      ]
+    },
+    {
+      "number": 72,
+      "source_text_sha256": "40d0645e91a1dc4ce7cf6f9565703a9f4f71015229f70aa899ada821358efba6",
+      "lines": [
+        "Course Objectives (5 of 5)",
+        "• Apply what is learned to propose and critique novel projects involving",
+        "neural networks and deep learning. Towards this aim, students will:",
+        "• Propose a project idea involving neural networks and deep learning",
+        "• Design and execute experiments or analyses supporting the proposed idea",
+        "• Create a presentation about the project",
+        "• Write a report about the project",
+        "• Review fellow students’ project presentations and provide constructive feedback"
+      ]
+    },
+    {
+      "number": 73,
+      "source_text_sha256": "6394af000becea9f3069c1f012e74a54d5ac596791dff971780bf7ba6cf3ab21",
+      "lines": [
+        "Artificial",
+        "Neurons",
+        "(lecture 2)",
+        "Gradient Descent",
+        "Classical Neural Networks",
+        "and Shallow Learning",
+        "(lectures 3-6)",
+        "Fully Connected",
+        "Feedforward,",
+        "Recurrent, and",
+        "Convolutional",
+        "Neural Networks",
+        "Sustainable,",
+        "Responsible,",
+        "and Future",
+        "Models",
+        "Neural Networks",
+        "in Society",
+        "(lectures 20-26)",
+        "Industry",
+        "Perspectives",
+        "Residual Learning,",
+        "Batch Normalization,",
+        "Hardware Acceleration,",
+        "Fine Tuning, Big Data",
+        "Deep Learning and",
+        "Transformers",
+        "(lectures 7-19)",
+        "Applications with",
+        "Visual, Textual, Audio,",
+        "and Multimodal Data",
+        "Three key breakthroughs:",
+        "\"A spark can become a",
+        "flame, a flame a fire.\"",
+        "- Kathryn Lasky",
+        "Course Schedule"
+      ]
+    },
+    {
+      "number": 74,
+      "source_text_sha256": "ed741ff36dff50fb7349c0a091133d102183c38a3ec39aa28778d96a278eeb0c",
+      "lines": [
+        "Q&A: “How does this course",
+        "differ from other courses?”",
+        "• Other courses also cover neural networks and deep learning; e.g.,",
+        "• Computer vision",
+        "• Natural language processing",
+        "• Reinforcement learning",
+        "• Unique benefit of this course:",
+        "• Focus is on the fundamentals"
+      ]
+    },
+    {
+      "number": 75,
+      "source_text_sha256": "db1c702981c2eede9bcbc6310baa916c16cf9c33aaa93e580223c07b336aec95",
+      "lines": [
+        "Q&A: “Do I have the appropriate",
+        "pre-requisites/background?”",
+        "• Programming competency",
+        "• Experience with probability/statistics and linear algebra",
+        "• Basic understanding of machine learning"
+      ]
+    },
+    {
+      "number": 76,
+      "source_text_sha256": "b38ccde06ed46820c245a7e33621daa298644dd44bc9f0ac937a828b553fee55",
+      "lines": [
+        "Q&A: “What are required textbooks?”",
+        "(available online for free) (available online for free when connected",
+        "to CU Boulder’s network or VPN)"
+      ]
+    },
+    {
+      "number": 77,
+      "source_text_sha256": "dcb9f23d0a259de3a1e44ac53604692e94099e470588e5fbe0b5d28c1f08910f",
+      "lines": [
+        "Q&A: “What are the assignments?”",
+        "• 3 lab assignments (first assignment due in ~2 weeks)",
+        "• 3 problem sets",
+        "• Final project",
+        "• Outline",
+        "• Presentation",
+        "• Peer evaluation",
+        "• Final report",
+        "• Importantly: follow the assigned readings posted to the course website"
+      ]
+    },
+    {
+      "number": 78,
+      "source_text_sha256": "3e6672c8e90af769505a90237127f2bc27368343fc4a4d4291e6c38c66310f52",
+      "lines": [
+        "Q&A: “How is my final grade determined?”"
+      ]
+    },
+    {
+      "number": 79,
+      "source_text_sha256": "89e5a1f84262047589124d433a72dc39bcde3571bd8c3ad248287d67d5abac7c",
+      "lines": [
+        "Q&A: “What can I expect for grading?”",
+        "• Timeline",
+        "• Due to many students (~200), grades will be released up to 5 days after submission",
+        "• Policies:",
+        "• Late policy: penalty of 1% of the grade per hour up to 12 hours, rounded up to the",
+        "nearest hour; then 25% for up to 24 hours late; and then 50% for up to 48 hours",
+        "late. After 48 hours, no credit will be given.",
+        "• Regrade requests: must submit to TA within 2 weeks of receiving the grade"
+      ]
+    },
+    {
+      "number": 80,
+      "source_text_sha256": "2a75a6c7431570b58c363f94ad10828cb82846f1ecebd9904f7a5d31bd7b1b75",
+      "lines": [
+        "Introductions",
+        "Instructor: Danna Gurari; aka, Dr. G (she/her)",
+        "Teaching assistants (will hold office hours):",
+        "Everley Tseng (she/her) Nick Cooper (he/him) Jarek Reynolds (he/him) Nolan Brady (he/him)"
+      ]
+    },
+    {
+      "number": 81,
+      "source_text_sha256": "2e5b2c6330ea9f9fa04ff3c15e9c59982c160d9b3e1fd08f84cafdae82640ca9",
+      "lines": [
+        "Q&A: “How Do I Get Answers to my Questions?”",
+        "• Questions for Instructor: I will stay after each class lecture to answer questions.",
+        "• Piazza: We encourage you to first post any questions to Piazza. This approach",
+        "can benefit other students who have similar questions, as they can view the",
+        "answers on Piazza. It also provides an opportunity for peers to answer your",
+        "questions.",
+        "• Office Hours: The TAs will host office hours every business day of the week at",
+        "times posted on the course website and Canvas. Instructions for how to attend",
+        "are provided on the home page of Canvas.",
+        "• Appointments: If you have concerns that cannot be addressed during regular",
+        "office hours, please email either Everley Tseng or Nick Cooper (course TAs) to",
+        "request an appointment. They will check email Monday to Friday between 9am",
+        "and 4pm. You can expect a response within one business day; if you do not",
+        "receive a reply within that window, feel free to send a follow-up message. The",
+        "TAs will involve the instructor for any items they are unable to address."
+      ]
+    },
+    {
+      "number": 82,
+      "source_text_sha256": "22cc55db37c12fa4676d512c967a3742b529ceed0fb14801a55114f216f9ff91",
+      "lines": [
+        "Q&A: “How Do I Get Involved with Research?”",
+        "• At the end of course, you will receive an announcement about",
+        "how to apply to participate in research (with myself and my peers)"
+      ]
+    },
+    {
+      "number": 83,
+      "source_text_sha256": "098a2c262a1750acbe89fab828e45aa2a9283f3636e09211315038664fdf3415",
+      "lines": [
+        "My Experience",
+        "2010-2015 2015-2017 2017-Present",
+        "PhD student designing",
+        "computer vision methods",
+        "to segment and track cells",
+        "in images and videos",
+        "Postdoctoral fellow",
+        "conducting research",
+        "projects related to vision",
+        "and language problems",
+        "Assistant professor",
+        "overseeing research projects",
+        "related to many vision and",
+        "language problems",
+        "e.g., image classification,",
+        "object detection, semantic",
+        "segmentation, object",
+        "tracking, image captioning,",
+        "visual question answering,",
+        "style transfer, image",
+        "inpainting, and image search",
+        "Is it edible or",
+        "poisonous?",
+        "2007-2010",
+        "Software developer and",
+        "project manager",
+        "helping to record and",
+        "analyze visible and",
+        "infrared video",
+        "Source: Boulder Imaging"
+      ]
+    },
+    {
+      "number": 84,
+      "source_text_sha256": "4b7a025a50e7266f0a49745a66375e3c610514152d0810865b5185f7264533c5",
+      "lines": [
+        "My Experience",
+        "2010-2015 2015-2017 2017-Present",
+        "PhD student designing",
+        "computer vision methods",
+        "to segment and track cells",
+        "in images and videos",
+        "Postdoctoral fellow",
+        "conducting research",
+        "projects related to vision",
+        "and language problems",
+        "Assistant professor",
+        "overseeing research projects",
+        "related to many vision and",
+        "language problems",
+        "e.g., image classification,",
+        "object detection, semantic",
+        "segmentation, object",
+        "tracking, image captioning,",
+        "visual question answering,",
+        "style transfer, image",
+        "inpainting, and image search",
+        "Is it edible or",
+        "poisonous?",
+        "2007-2010",
+        "Software developer and",
+        "project manager",
+        "helping to record and",
+        "analyze visible and",
+        "infrared video",
+        "Source: Boulder Imaging",
+        "41 publications involving",
+        "deep learning"
+      ]
+    },
+    {
+      "number": 85,
+      "source_text_sha256": "2f9bf15d27e4a50bfc77bf40d29e55d186172146802daa7f20e916a74f8298cc",
+      "lines": [
+        "What is My “Why” for Teaching You…",
+        "WHY?",
+        "To guide and witness you",
+        "discover more about",
+        "your potential and your",
+        "passions",
+        "HOW?",
+        "By empowering you to become",
+        "proficient in one of my passions",
+        "WHAT?",
+        "Neural Networks & Deep Learning"
+      ]
+    },
+    {
+      "number": 86,
+      "source_text_sha256": "93be166ad020db0006505dc7ba7155a8e809f0fb64afc1dfc2f33e13791b16be",
+      "lines": [
+        "Today’s Topics",
+        "• Applications",
+        "• History of neural networks and deep learning",
+        "• How does a machine learn?",
+        "• Course logistics"
+      ]
+    },
+    {
+      "number": 87,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

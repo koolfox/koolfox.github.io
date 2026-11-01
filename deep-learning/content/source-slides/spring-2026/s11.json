@@ -1,0 +1,731 @@
+{
+  "schema_version": 1,
+  "term_id": "spring-2026",
+  "session_id": "s11",
+  "source": {
+    "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/11-Multimodal-Vision-And-Language.pdf",
+    "local_url": "/deep-learning/assets/danna/spring-2026/s11.pdf",
+    "sha256": "1a830b8863b5802c424e6499aa57c3f8cbdd741d608c3c1e347d7fad8b817727",
+    "page_count": 54,
+    "license_notice": "CC BY-NC-SA; version not printed on cover"
+  },
+  "extractor": {
+    "name": "pypdfium2",
+    "version": "5.14.0"
+  },
+  "pages": [
+    {
+      "number": 1,
+      "source_text_sha256": "77868801be8916a6fd21f55f5ef51fb9e195b3bae224d83947cd148c25cc792f",
+      "lines": [
+        "The Rise of Multimodal Learning:",
+        "Vision and Language Meet",
+        "Danna Gurari",
+        "University of Colorado Boulder",
+        "Spring 2026",
+        "https://dannagurari.colorado.edu/course/neural-networks-and-deep-learning-spring-2026/"
+      ]
+    },
+    {
+      "number": 2,
+      "source_text_sha256": "d47ec21816721ae1a6c115f3d7a09185246dc2292e7bdd91fb9a0eaaf099776e",
+      "lines": [
+        "Review",
+        "• Last lecture",
+        "• Motivation: when vision asks not just “what”, but also “where”",
+        "• Redesigning neural networks to predict densely, rather than just classify",
+        "• Freeing dense prediction networks from fixed input sizes",
+        "• Pivotal insights: pretrained features + design tricks to boost spatial precision",
+        "• Programming tutorial",
+        "• Assignments (Canvas)",
+        "• Lab assignment 2 due Friday (answers to common questions on assignment page)",
+        "• Problem set 2 due in a week",
+        "• Questions? (can also post these to Piazza or attend office hours)"
+      ]
+    },
+    {
+      "number": 3,
+      "source_text_sha256": "4dd3e8aae00829fdf7c4af47433534a31cb055fe0f7569d0fec972358b0fc2c2",
+      "lines": [
+        "Today’s Topics",
+        "• Isolated successes: CNNs for vision and RNNs for language",
+        "• The next challenge: describing visual scenes with natural language",
+        "• Early vision-language pioneers: connecting pixels and words",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 4,
+      "source_text_sha256": "4dd3e8aae00829fdf7c4af47433534a31cb055fe0f7569d0fec972358b0fc2c2",
+      "lines": [
+        "Today’s Topics",
+        "• Isolated successes: CNNs for vision and RNNs for language",
+        "• The next challenge: describing visual scenes with natural language",
+        "• Early vision-language pioneers: connecting pixels and words",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 5,
+      "source_text_sha256": "885e27b76f80d7bd74ae37c47a40a3f0f3b0cc15eddd6f86274e6fadbebd52ac",
+      "lines": [
+        "Neural Networks Solidified As Dominant Solution",
+        "for Vision and Language Problems… In Isolation"
+      ]
+    },
+    {
+      "number": 6,
+      "source_text_sha256": "66444118a94f89607e8d81324999cb28c24a18423e4a15a9a84e3388f9148599",
+      "lines": [
+        "CNNs Dominated “Bucketed” Vision Tasks (and",
+        "Successes Translated to Real-World Applications!)",
+        "https://ai-pool.com/d/could-you-explain-me-how-instance-segmentation-works",
+        "FCN in 2015",
+        "Faster R-CNN in 2015 Mask R-CNN in 2015",
+        "ResNet in 2015"
+      ]
+    },
+    {
+      "number": 7,
+      "source_text_sha256": "aaeb6bef79f6c8cf6045b921f144d4c7da07acf91c6b28a7e336e25fd87f389e",
+      "lines": [
+        "RNN Dominated Language Tasks;",
+        "e.g., Machine Translation by Seq2Seq",
+        "Image source: https://smerity.com/articles/2016/google_nmt_arch.html",
+        "seq2seq: Sutskever et al. Sequence to Sequence Learning with Neural Networks. Neurips 2014."
+      ]
+    },
+    {
+      "number": 8,
+      "source_text_sha256": "4dd3e8aae00829fdf7c4af47433534a31cb055fe0f7569d0fec972358b0fc2c2",
+      "lines": [
+        "Today’s Topics",
+        "• Isolated successes: CNNs for vision and RNNs for language",
+        "• The next challenge: describing visual scenes with natural language",
+        "• Early vision-language pioneers: connecting pixels and words",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 9,
+      "source_text_sha256": "592a8ca5269095b6f175037d37c9d135bf0c05259d110651796252dfbd257a07",
+      "lines": [
+        "Multimodal Tasks: Uses 2+ Modalities",
+        "e.g., computer vision + natural language processing tasks (open-ended responses!)",
+        "Answer Visual Question:",
+        "Q: Is it edible or poisonous?",
+        "A: Poisonous",
+        "Caption:",
+        "A bunch of small light brown",
+        "mushrooms in a green field."
+      ]
+    },
+    {
+      "number": 10,
+      "source_text_sha256": "c72d25d7aac039b8ceeff756003902c30dd7a99dd313ca65576055669b0576f9",
+      "lines": [
+        "Many Motivating Applications; e.g.,",
+        "Visual Interpretation for Blind People",
+        "Describing and Responding to Images with “Personality”",
+        "Shuster et al. Engaging Image Captioning via Personality. 2019",
+        "Personal Assistant"
+      ]
+    },
+    {
+      "number": 11,
+      "source_text_sha256": "702ef46901154b6d8d30ab957ce0365a2ab256731165bff35e40e33ec90da3a1",
+      "lines": [
+        "Pioneers of Multimodal Learning Movement",
+        "(ICCV, 2015)",
+        "Devi Parikh",
+        "Formerly, Professor & Meta Research Director",
+        "Co-Founder/CEO of Yutori",
+        "(arXiv, 2015)",
+        "Larry Zitnick",
+        "Formerly, Microsoft Researcher",
+        "Meta Research Director"
+      ]
+    },
+    {
+      "number": 12,
+      "source_text_sha256": "ec4957ed65fab8f67ba15f5edf0faae04e1642a4fa2c695dd57704488b15e9b0",
+      "lines": [
+        "Approach: Large-Scale Dataset Challenges",
+        "Ingredients for each challenge:",
+        "1. Examples with target results for training, validation, & testing",
+        "2. Metric for assessing the similarity between each model",
+        "prediction and the target result",
+        "3. Evaluation servers with leaderboards for standardizing",
+        "evaluation and enabling world-wide competition",
+        "4. New challenges for the community to tackle, evidenced by",
+        "dataset analysis and model benchmarking"
+      ]
+    },
+    {
+      "number": 13,
+      "source_text_sha256": "1e81de3fbe233ff94a24f8f10a9624baaf6e17883e558a02bc3b79f7722fb15c",
+      "lines": [
+        "Image Captioning",
+        "• 1,026,459 captions collected for 164,062",
+        "images from AMT workers",
+        "• How long do you think data collection took?",
+        "• ~8,500 hours, equivalent to ~4 years for one",
+        "person (40 hrs per week, 52 weeks per year)",
+        "• How much do you think it cost?",
+        "• ~$128k (assumes 30 sec/caption and $15/hour;",
+        "would yield for one person $32,000 per year)",
+        "Chen et al. Microsoft COCO Captions: Data Collection and Evaluation Server. arXiv 2015.",
+        "VQA",
+        "• 614,163 questions collected for",
+        "204,721 images from AMT workers",
+        "• 1,463,510 answers collected for",
+        "145,351 images from AMT workers",
+        "Agrawal et al. VQA: Visual Question Answering. ICCV 2015."
+      ]
+    },
+    {
+      "number": 14,
+      "source_text_sha256": "9505a5ae6fe41def64da84aa1381d2e87ff939ca48fb97b9c2e086682b97b55b",
+      "lines": [
+        "Chen et al. Microsoft COCO Captions: Data Collection and Evaluation Server. arXiv 2015.",
+        "Caption",
+        "Generation:",
+        "5 captions collected from",
+        "5 crowdworkers"
+      ]
+    },
+    {
+      "number": 15,
+      "source_text_sha256": "a10967fe59de062436bf490d37341ad36a96fb267b3df6d6bb9cc90ab05152d3",
+      "lines": [
+        "Question",
+        "Generation:",
+        "Agrawal et al. VQA: Visual Question Answering. ICCV 2015."
+      ]
+    },
+    {
+      "number": 16,
+      "source_text_sha256": "818e1601b25a62b512435631f96b6567d015931c3689ad579432deaf4b226681",
+      "lines": [
+        "Answer",
+        "Generation:",
+        "10 answers",
+        "collected from 10",
+        "crowdworkers",
+        "Agrawal et al. VQA: Visual Question Answering. ICCV 2015."
+      ]
+    },
+    {
+      "number": 17,
+      "source_text_sha256": "ec4957ed65fab8f67ba15f5edf0faae04e1642a4fa2c695dd57704488b15e9b0",
+      "lines": [
+        "Approach: Large-Scale Dataset Challenges",
+        "Ingredients for each challenge:",
+        "1. Examples with target results for training, validation, & testing",
+        "2. Metric for assessing the similarity between each model",
+        "prediction and the target result",
+        "3. Evaluation servers with leaderboards for standardizing",
+        "evaluation and enabling world-wide competition",
+        "4. New challenges for the community to tackle, evidenced by",
+        "dataset analysis and model benchmarking"
+      ]
+    },
+    {
+      "number": 18,
+      "source_text_sha256": "32b0b42b57f6c980e6bd0bad9c91ed7965a249fd9f2e88e507a95bc763023052",
+      "lines": [
+        "Image Captioning: Inherit Language",
+        "Translation and Summarization Metrics",
+        "• BLEU (precision–based)",
+        "• METEOR",
+        "• Rouge (recall–based)",
+        "• Note: all these metrics are predicated on ONE ground truth",
+        "Idea: compute similarities of n-grams between a",
+        "predicted caption and each ground truth caption",
+        "http://recognize-speech.com/language-model/n-gram-model/comparison"
+      ]
+    },
+    {
+      "number": 19,
+      "source_text_sha256": "c3df346550e2e8ae3e0307d104745daaeff14ed205c069bbbcbe5cdb21185cd3",
+      "lines": [
+        "Image Captioning: New CIDEr Metric",
+        "Vedantam et al. CIDEr: Consensus-based Image Description Evaluation. CVPR 2015.",
+        "Idea: measure similarity of a predicted caption to how most",
+        "people describe an image based on n-grams unique to the image",
+        "From Devi Parikh’s team"
+      ]
+    },
+    {
+      "number": 20,
+      "source_text_sha256": "c436273c21c3a2d076517ca9e222af655e157df436c0772a3af8ebf5b604c028",
+      "lines": [
+        "VQA: New Accuracy Metric",
+        "Vedantam et al. CIDEr: Consensus-based Image Description Evaluation. CVPR 2015.",
+        "Idea: measure similarity of a predicted answer to how many",
+        "people answer the question (“using as few words as possible”)",
+        "From Devi Parikh’s team"
+      ]
+    },
+    {
+      "number": 21,
+      "source_text_sha256": "14101f81dd161d97bc6aac417a6883d2f77080892a5c75d3553bebc740c355ee",
+      "lines": [
+        "VQA: New Accuracy Metric",
+        "Does this picture",
+        "look scary?",
+        "(1) yes",
+        "(2) no",
+        "(3) no",
+        "(4) yes",
+        "(5) no",
+        "(6) yes",
+        "(7) yes",
+        "(8) no",
+        "(9) no",
+        "(10) no",
+        "What is the accuracy of an algorithm prediction of",
+        "- “yes”?",
+        "- “no”?",
+        "- “maybe”?"
+      ]
+    },
+    {
+      "number": 22,
+      "source_text_sha256": "f47d11ed560414d72117b1545e4f1048202e2c689275a0e0c0d27ff670559b75",
+      "lines": [
+        "VQA: New Accuracy Metric",
+        "What is the accuracy of an algorithm prediction of",
+        "- “right”?",
+        "- “left”?",
+        "- “right side”?",
+        "- “center”?",
+        "- “bottom”?",
+        "Which side of the",
+        "room is the toilet on?",
+        "(1) right",
+        "(2) left",
+        "(3) right",
+        "(4) right",
+        "(5) right",
+        "(6) right",
+        "(7) right side",
+        "(8) right",
+        "(9) center",
+        "(10) right",
+        "Implementation detail: for fair comparison to humans, there are 10 rounds of",
+        "comparing a prediction with each possible set of 9 human-supplied answers"
+      ]
+    },
+    {
+      "number": 23,
+      "source_text_sha256": "b7e32566cb2f6b39e58d535d2ac98f4342a3cea3bcc7fe1ced9475d9da070009",
+      "lines": [
+        "Evaluation Implementation Detail:",
+        "Common to Preprocess Text",
+        "• Lower case all letters",
+        "• Use each word’s “stem”; e.g., singular vs plural, reconcile different verb forms",
+        "• e.g., stemming",
+        "• e.g., lemmatizing to get intended based word (e.g., caring -> care, not “car”)",
+        "• Stop word removal: discard frequent words",
+        "https://dzone.com/articles/using-lucene-grails",
+        "https://github.com/topics/stopwords-removal"
+      ]
+    },
+    {
+      "number": 24,
+      "source_text_sha256": "ec4957ed65fab8f67ba15f5edf0faae04e1642a4fa2c695dd57704488b15e9b0",
+      "lines": [
+        "Approach: Large-Scale Dataset Challenges",
+        "Ingredients for each challenge:",
+        "1. Examples with target results for training, validation, & testing",
+        "2. Metric for assessing the similarity between each model",
+        "prediction and the target result",
+        "3. Evaluation servers with leaderboards for standardizing",
+        "evaluation and enabling world-wide competition",
+        "4. New challenges for the community to tackle, evidenced by",
+        "dataset analysis and model benchmarking"
+      ]
+    },
+    {
+      "number": 25,
+      "source_text_sha256": "7c53ea4da8a00fc747583406ac67970263ddf0bf417359cf4fe199b0a980327e",
+      "lines": [
+        "Image Captioning VQA",
+        "From Devi Parikh’s team (EvalAI)",
+        "New infrastructure was necessary for the novel tasks with novel evaluation metrics",
+        "(defines submission formats for predictions)"
+      ]
+    },
+    {
+      "number": 26,
+      "source_text_sha256": "c1f46098b8c3bb45b63ce35a2df3d62d4bc1282c0482afd51e70f18572f314e2",
+      "lines": [
+        "Winner Announcements Shared at",
+        "an Annual Workshop (for 6 Years)",
+        "https://visualqa.org/workshop.html"
+      ]
+    },
+    {
+      "number": 27,
+      "source_text_sha256": "ec4957ed65fab8f67ba15f5edf0faae04e1642a4fa2c695dd57704488b15e9b0",
+      "lines": [
+        "Approach: Large-Scale Dataset Challenges",
+        "Ingredients for each challenge:",
+        "1. Examples with target results for training, validation, & testing",
+        "2. Metric for assessing the similarity between each model",
+        "prediction and the target result",
+        "3. Evaluation servers with leaderboards for standardizing",
+        "evaluation and enabling world-wide competition",
+        "4. New challenges for the community to tackle, evidenced by",
+        "dataset analysis and model benchmarking"
+      ]
+    },
+    {
+      "number": 28,
+      "source_text_sha256": "4dd3e8aae00829fdf7c4af47433534a31cb055fe0f7569d0fec972358b0fc2c2",
+      "lines": [
+        "Today’s Topics",
+        "• Isolated successes: CNNs for vision and RNNs for language",
+        "• The next challenge: describing visual scenes with natural language",
+        "• Early vision-language pioneers: connecting pixels and words",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 29,
+      "source_text_sha256": "5467e2dcd25e0dd6e90041ecae65f38c7d1a5efe4caf9869ecf129d777dffdbc",
+      "lines": [
+        "https://smerity.com/articles/2016/google_nmt_arch.html",
+        "Challenge: Two Modalities in One Framework",
+        "e.g., vision representation with AlexNet e.g., language representation with RNNs",
+        "https://www.researchgate.net/figure/Architecture-of-Alexnet-From￾left-to-right-input-to-output-five-convolutional-layers_fig2_312303454"
+      ]
+    },
+    {
+      "number": 30,
+      "source_text_sha256": "8552041e8f38715d0803ab6ce6632d1617775407ba095231c5286838f3e3d158",
+      "lines": [
+        "(CVPR, 2015)",
+        "“we would like to present in this work a single joint model…”,",
+        "rather than the status quo that developers “stitch together”",
+        "multiple components in an engineered solution"
+      ]
+    },
+    {
+      "number": 31,
+      "source_text_sha256": "ecad3a75bae0e2cf848cffb8dca2b7f82ca964bc9147c5838ef474f42e344616",
+      "lines": [
+        "Neural Image Caption Model",
+        "Vinyals et al. Show and Tell: A Neural Image Caption Generator. CVPR 2015.",
+        "Inspiration is machine translation:",
+        "Idea: translate image to text in an",
+        "end-to-end trained model:",
+        "https://smerity.com/articles/2016/google_nmt_arch.html"
+      ]
+    },
+    {
+      "number": 32,
+      "source_text_sha256": "0bfe253e7713a78a2fff1d8a17e41bb659ebff277a022a6663c14037b7a291db",
+      "lines": [
+        "Neural Image Caption Model",
+        "LSTM, predicts next word 2014 ImageNet",
+        "winner’s CNN model",
+        "Vinyals et al. Show and Tell: A Neural Image Caption Generator. CVPR 2015.",
+        "* Embedding matrix learned to map words to the same 512-d space",
+        "as images (for tokenized words seen 5+ times in the training data)"
+      ]
+    },
+    {
+      "number": 33,
+      "source_text_sha256": "cf45d0bf644e37d89b71fa7e3b360f040014e66eb08c873a63747f5d293cd635",
+      "lines": [
+        "Word Embedding Motivation (1 of 2)",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019",
+        "What are problems with one-hot encoding words?",
+        "• Huge memory burden",
+        "• Computationally expensive",
+        "Dimensionality = vocabulary size",
+        "e.g., English alone has ~170,000 words",
+        "with ~10,000 commonly used words"
+      ]
+    },
+    {
+      "number": 34,
+      "source_text_sha256": "a6496ca5160eab4f62fb28eed878a3ce702675834d79e070d49fa1803e596f19",
+      "lines": [
+        "Word Embedding Motivation (2 of 2)",
+        "• Also, no notion of which words are similar; the distance between all words is equal!",
+        "• e.g., Shouldn’t words that would fit into this context be more similar: “He was ____ to school.”",
+        "Walking Soap Fire Skipping"
+      ]
+    },
+    {
+      "number": 35,
+      "source_text_sha256": "5850a52ff3de1c9ab41edcbe3d808abd75e8884021eb698d22e2f4241b61549a",
+      "lines": [
+        "Word Embedding Matrix Implementation",
+        "• Converts input word into a dense vector",
+        "Size of vocabulary",
+        "Berimbau Soap Fire Guitar …",
+        "Target dimensionality",
+        "(e.g., 5)",
+        "One hot encoding indicates word embedding to use",
+        "- efficiently extracted using the one-hot word’s index",
+        "Kamath, Liu, and Whitaker. Deep Learning for NLP and Speech Recognition. 2019"
+      ]
+    },
+    {
+      "number": 36,
+      "source_text_sha256": "80ef382094d9918c81f0a8c94cac75deb8a8c19fb20c3d2d2b449e92a25f116d",
+      "lines": [
+        "Word Embedding Results",
+        "• Dense shared embedding space enables comparing words with a few features,",
+        "such that the distance between each pair of words differs!",
+        "• What features would discriminate these words?",
+        "Piano Soap Fire Guitar",
+        "?",
+        "?",
+        "?",
+        "?",
+        "?",
+        "?",
+        "?"
+      ]
+    },
+    {
+      "number": 37,
+      "source_text_sha256": "b8fcefaef43c930191e971b82459fcb59ec2027d05f050c2d845bbc6ce9d5462",
+      "lines": [
+        "Word Embedding Results",
+        "• Dense shared embedding space enables comparing words with a few features,",
+        "such that the distance between each pair of words differs!",
+        "• What features would discriminate these words?",
+        "Piano Soap Fire Guitar",
+        "Wooden",
+        "Commodity",
+        "Cleaner",
+        "Food",
+        "Temperature",
+        "Noisy",
+        "Weapon",
+        "Potential, interpretable features;",
+        "in practice, learned features are",
+        "hard to interpret"
+      ]
+    },
+    {
+      "number": 38,
+      "source_text_sha256": "af6d89ade5007681a6c896cf7218321b06cc79b5956715583ef47f12429b8f2c",
+      "lines": [
+        "Word Embedding Summary",
+        "• An embedding space represents a finite number of words, decided in training",
+        "• A word embedding is represented as a vector indicating its context",
+        "• The dimensionality of all word embeddings in an embedding space match",
+        "• What is the word embedding dimensionality for the shown example?",
+        "…"
+      ]
+    },
+    {
+      "number": 39,
+      "source_text_sha256": "f3c88c1f45218813b437cf4e1817eeebc7d8df5c6c6ea38ccf5e9f80ddc9144b",
+      "lines": [
+        "Neural Image Caption Model: Training",
+        "Vinyals et al. Show and Tell: A Neural Image Caption Generator. CVPR 2015.",
+        "- CNN parameters frozen for 500K steps, and then all",
+        "parameters trained for 100K steps",
+        "- Training took over 3 weeks on a K20 GPU",
+        "- Datasets used for model development:"
+      ]
+    },
+    {
+      "number": 40,
+      "source_text_sha256": "9a04edc4255e3d2e1b765a2745eaf74e6e186c23a4fdb115335a9b1f77749a47",
+      "lines": [
+        "Neural Image Caption Model: Used Beam Search",
+        "• Default: greedily take best word",
+        "prediction at each time step",
+        "• Idea: choose most probable",
+        "from top predictions of current",
+        "plus preceding words (length N)",
+        "• Beam width: number of top",
+        "predictions to keep at each step",
+        "• In the example:",
+        "• What is the beam width?",
+        "• How many times is the",
+        "model run after each",
+        "prediction?",
+        "• For NIC model, beam width=20",
+        "https://towardsdatascience.com/foundations-of-nlp-explained-visually-beam-search-how-it-works-1586b9849a24/",
+        "How to compute",
+        "probabilities for",
+        "each sequence?"
+      ]
+    },
+    {
+      "number": 41,
+      "source_text_sha256": "99a8843c49662e9cb2f8ce1c2a42c39014b9830a291b2c8aca2a35d9461a5910",
+      "lines": [
+        "Neural Image Caption Model: Beam Search",
+        "https://towardsdatascience.com/foundations-of-nlp-explained-visually-beam-search-how-it-works-1586b9849a24/",
+        "Softmax outputs:"
+      ]
+    },
+    {
+      "number": 42,
+      "source_text_sha256": "c9acf09ed56e3826ac506f5b6065621d47f7f82dcd2ac72755d879d294f717bb",
+      "lines": [
+        "Neural Image Caption Model: Beam Search",
+        "• Default: greedily take best word",
+        "prediction at each time step",
+        "• Idea: choose most probable",
+        "from top predictions of current",
+        "plus preceding words (length N)",
+        "• Beam width: number of top",
+        "predictions to keep at each step",
+        "https://towardsdatascience.com/foundations-of-nlp-explained-visually-beam-search-how-it-works-1586b9849a24/",
+        "How to compute",
+        "probabilities?"
+      ]
+    },
+    {
+      "number": 43,
+      "source_text_sha256": "99a8843c49662e9cb2f8ce1c2a42c39014b9830a291b2c8aca2a35d9461a5910",
+      "lines": [
+        "Neural Image Caption Model: Beam Search",
+        "https://towardsdatascience.com/foundations-of-nlp-explained-visually-beam-search-how-it-works-1586b9849a24/",
+        "Softmax outputs:"
+      ]
+    },
+    {
+      "number": 44,
+      "source_text_sha256": "977cebc82c72210cc5ee1977f2ade8df2b6faf4df1c42866d70ac449a0f7faf6",
+      "lines": [
+        "Neural Image Caption Model: Results",
+        "Vinyals et al. Show and Tell: A Neural Image Caption Generator. CVPR 2015.",
+        "Achieved state-of-the-art, yet imperfect results; hypothesis is more training data would boost performance",
+        "Nearest neighbor words in learned embedding",
+        "space had similar words close to each other:"
+      ]
+    },
+    {
+      "number": 45,
+      "source_text_sha256": "1010ca5e6da3094cc6fdd60f814a0f9892e0f80bc90e0ba3e6339e357f11cd7f",
+      "lines": [
+        "(ICCV, 2015)"
+      ]
+    },
+    {
+      "number": 46,
+      "source_text_sha256": "bfd9503fc27ab0d8aff45b1ba8f69cddb7140b21b2575bc21e5670d91a8f4e67",
+      "lines": [
+        "Proposed Model",
+        "Agrawal et al. VQA: Visual Question Answering. ICCV 2015.",
+        "1,000 most common",
+        "answers in training and",
+        "validation splits",
+        "(covers ~83% of answers)",
+        "Fusion of 2",
+        "modalities",
+        "layers transformed to 1024d",
+        "Input words mapped to 300-d embeddings",
+        "Trained end-to-end with cross-entropy loss, freezing VGGNet parameters"
+      ]
+    },
+    {
+      "number": 47,
+      "source_text_sha256": "3fbd0db00020d2eb923e105635651413daeb5f25ce43030ee6da3cd9b9f98a6f",
+      "lines": [
+        "Model Analysis",
+        "Baseline: 1-hidden layer",
+        "LSTM and image activations",
+        "without normalization",
+        "Baseline: most popular",
+        "answer from train/val splits",
+        "Proposed model",
+        "How does the model’s performance",
+        "compare to the simpler baselines?",
+        "Agrawal et al. VQA: Visual Question Answering. ICCV 2015."
+      ]
+    },
+    {
+      "number": 48,
+      "source_text_sha256": "c837b0eba964c3697ee92793db370a988cec99f0358a5c4db86d2371a9aee26f",
+      "lines": [
+        "Model Analysis",
+        "Baseline: 1-hidden layer",
+        "LSTM and image activations",
+        "without normalization",
+        "Baseline: most popular",
+        "answer from train/val splits",
+        "Proposed model",
+        "What trends are observed across different question types?",
+        "Agrawal et al. VQA: Visual Question Answering. ICCV 2015."
+      ]
+    },
+    {
+      "number": 49,
+      "source_text_sha256": "04238dd4cefb7e357591b6ea6ea55cc32556a1c0441d8b0b5ff485a520fea67c",
+      "lines": [
+        "Model Analysis",
+        "Only question",
+        "Only image",
+        "Which modality is most predictive?",
+        "How does each modality, vision and language, influence performance?",
+        "Only question",
+        "Agrawal et al. VQA: Visual Question Answering. ICCV 2015."
+      ]
+    },
+    {
+      "number": 50,
+      "source_text_sha256": "64f5fca788f0814a279038743275ae90a6b4b35928a5814cb13b09c74d6cfe4a",
+      "lines": [
+        "The Pioneering Multimodal Work Set Blueprint for",
+        "Many New Challenges, Including from My Team",
+        "(Evaluation Metrics, Evaluation Servers, Annotation Systems, Annual Workshop)",
+        "Caption:",
+        "A bunch of small light brown",
+        "mushrooms in a green field.",
+        "Answer Visual Question:",
+        "Q: Is it edible or poisonous?",
+        "A: Poisonous",
+        "VizWiz: first publicly-available datasets originating from authentic use cases",
+        "(extended 44,799 submissions from 11,045 people seeking visual assistance in 2011-2015)"
+      ]
+    },
+    {
+      "number": 51,
+      "source_text_sha256": "a516a67adf1c98446a264e254d8381a093747e53da6034b09a389d55eb67314b",
+      "lines": [
+        "VQA Impact Celebrated 10 Years Later"
+      ]
+    },
+    {
+      "number": 52,
+      "source_text_sha256": "4dd3e8aae00829fdf7c4af47433534a31cb055fe0f7569d0fec972358b0fc2c2",
+      "lines": [
+        "Today’s Topics",
+        "• Isolated successes: CNNs for vision and RNNs for language",
+        "• The next challenge: describing visual scenes with natural language",
+        "• Early vision-language pioneers: connecting pixels and words",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 53,
+      "source_text_sha256": "4dd3e8aae00829fdf7c4af47433534a31cb055fe0f7569d0fec972358b0fc2c2",
+      "lines": [
+        "Today’s Topics",
+        "• Isolated successes: CNNs for vision and RNNs for language",
+        "• The next challenge: describing visual scenes with natural language",
+        "• Early vision-language pioneers: connecting pixels and words",
+        "• Programming tutorial"
+      ]
+    },
+    {
+      "number": 54,
+      "source_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": []
+    }
+  ]
+}

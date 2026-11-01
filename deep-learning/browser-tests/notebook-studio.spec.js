@@ -106,3 +106,17 @@ test('knowledge lookup and a question source reference keep the original slide i
   const expected=await tools.locator('#practice-config').evaluate(node=>JSON.parse(node.textContent).questions[0].source_page);
   await expect.poll(()=>page.evaluate(()=>window.sourceSlideReader.page)).toBe(expected);await expect(tools.locator('.nb-quiz')).toBeVisible();
 });
+
+test('presentation mode fits the whole original slide in a shorter desktop viewport',async({page})=>{
+  await page.setViewportSize({width:1280,height:720});
+  await page.goto('/deep-learning/terms/spring-2026/s13/slides/#page=28');
+  await page.locator('[data-source-only-toggle]').click();
+  await expect(page.locator('#translation-panel')).toBeHidden();
+  await expect.poll(()=>page.evaluate(()=>{
+    const canvas=document.querySelector('#source-canvas').getBoundingClientRect();
+    const pane=document.querySelector('#original-panel').getBoundingClientRect();
+    return window.sourceSlideReader.ready&&canvas.width>500&&canvas.bottom<=pane.bottom+1;
+  })).toBe(true);
+  await page.locator('[data-source-only-toggle]').click();
+  await expect(page.locator('#translation-panel')).toBeVisible();
+});

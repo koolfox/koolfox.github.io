@@ -415,7 +415,7 @@ def source_reader_page(term, row, identity, payload):
         for n in range(1, count + 1)
     )
     workshop_link = (
-        f'<a href="{lesson}practice/#code" data-reader-section="lab" data-session-workshop aria-pressed="false">آزمایشگاه</a><a href="{lesson}practice/#questions" data-reader-section="questions" aria-pressed="false">سؤال‌ها</a>'
+        f'<a href="{lesson}practice/#code" role="button" data-reader-section="lab" data-session-workshop aria-pressed="false">آزمایشگاه</a><a href="{lesson}practice/#questions" role="button" data-reader-section="questions" aria-pressed="false">سؤال‌ها</a>'
         if row.get("workshop") else ""
     )
     return f'''<!doctype html>
@@ -435,7 +435,7 @@ def source_reader_page(term, row, identity, payload):
 <p>{e(term.get('title_fa', TERM_TITLES[term_id]))}</p><h1>{e(title)}</h1>
 <p class="reader-instructor">استاد: دکتر نگار مجمع</p></div>
 <img class="deck-logo" src="{BASE}/assets/university-logo.png" alt="نشان مؤسسه آموزش عالی نقش جهان" width="100" height="104">
-<nav class="reader-sections" aria-label="بخش‌های درس"><button type="button" data-reader-section="slides" aria-pressed="true">اسلاید</button>{workshop_link}<a href="{BASE}/knowledge/" data-reader-section="knowledge" aria-pressed="false">کتابخانهٔ دانش</a></nav>
+<nav class="reader-sections" aria-label="بخش‌های درس"><button type="button" data-reader-section="slides" aria-pressed="true">اسلاید</button>{workshop_link}<a href="{BASE}/knowledge/" role="button" data-reader-section="knowledge" aria-pressed="false">کتابخانهٔ دانش</a></nav>
 </header>
 <main id="reader">
 <div class="reader-toolbar" aria-label="کنترل‌های مطالعه">

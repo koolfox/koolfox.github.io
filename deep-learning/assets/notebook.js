@@ -181,7 +181,7 @@ export function mountNotebook(root, options) {
   capture.addEventListener('click', () => { try { cells[0].source = options.capture(cells[0].source); selected = 0; changed(); draw(); } catch (error) { message(error.message, true); } });
   reset.addEventListener('click', () => { cells[selected].source = defaults[selected]?.source || '# آزمایش من\n'; changed(); draw(); });
   codeMode.addEventListener('click', () => mode('code')); quizMode.addEventListener('click', () => mode('quiz'));
-  modes.addEventListener('keydown', event => { if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key) || quizMode.hidden) return; event.preventDefault(); const next = code.hidden ? 'code' : 'quiz'; mode(next); (next === 'code' ? codeMode : quizMode).focus(); });
+  modes.addEventListener('keydown', event => { if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key) || quizMode.hidden) return; event.preventDefault(); const next = event.key === 'Home' ? 'code' : event.key === 'End' ? 'quiz' : code.hidden ? 'code' : 'quiz'; mode(next); (next === 'code' ? codeMode : quizMode).focus(); });
   saveVersion.addEventListener('click', () => {
     versions.push({name: versionName.value.trim() || `نسخهٔ ${versions.length + 1}`, cells: structuredClone(cells), saved_at_utc: new Date().toISOString()});
     versions = versions.slice(-8); save(); drawVersions(); message('نسخهٔ کد ذخیره شد؛ بازیابی آن اجرای خودکار ندارد.');
@@ -211,7 +211,7 @@ export function mountNotebook(root, options) {
   });
   questions.forEach((question, index) => {
     const form = node('form', 'nb-question'), title = node('legend', '', question.prompt), fieldset = node('fieldset'); fieldset.append(title);
-    question.options.forEach((option, choice) => { const label = node('label', 'choice'), input = node('input'); input.type = 'radio'; input.name = 'answer'; input.value = String(choice); input.required = true; input.checked = answers[index] === choice; label.append(input, node('span', '', option)); fieldset.append(label); });
+    question.options.forEach((option, choice) => { const label = node('label', 'choice'), input = node('input'); input.type = 'radio'; input.name = 'answer'; input.value = String(choice); input.required = true; input.checked = answers[index] === choice; const text=node('span','',option);text.dir=/^[+-]?(?:\d+\.?\d*|\.\d+)(?:e[+-]?\d+)?$/i.test(option)?'ltr':'auto';label.append(input,text);fieldset.append(label); });
     const check = node('button', '', 'بررسی پاسخ'), feedback = node('p', 'feedback'); check.type = 'submit'; feedback.setAttribute('role', 'status');
     form.append(fieldset, check, feedback); form.dataset.notebookQuestion = String(index);
     form.addEventListener('submit', event => { event.preventDefault(); const answer = new FormData(form).get('answer'); if (answer === null) return; answers[index] = Number(answer); save(); const correct = Number(answer) === question.correct; feedback.textContent = (correct ? 'درست است. ' : 'دوباره مقایسه کن. ') + question.explanation; feedback.dataset.state = correct ? 'correct' : 'incorrect'; });

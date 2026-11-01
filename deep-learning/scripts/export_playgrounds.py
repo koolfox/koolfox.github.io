@@ -108,7 +108,16 @@ def export(output):
                 shutil.copyfile(shared / filename, output / lab / filename)
             for filename in ("notebook.js", "notebook.css"):
                 shutil.copyfile(ROOT / "assets" / filename, output / lab / filename)
-            (output / lab / "notebook.json").write_text(json.dumps(notebook_for_lab(lab, source), ensure_ascii=False, indent=2))
+            notebook = {**notebook_for_lab(lab, source), "license_text": (ROOT / "LICENSE").read_text()}
+            (output / lab / "notebook.json").write_text(json.dumps(notebook, ensure_ascii=False, indent=2))
+            version = hashlib.sha256(b"".join((output / lab / name).read_bytes() for name in
+                ("app.json", "notebook.json", "host.js", "host.css", "notebook.js", "notebook.css"))).hexdigest()[:16]
+            host = output / lab / "index.html"
+            host.write_text(host.read_text().replace('./host.js', './host.js?v=' + version)
+                            .replace('./host.css', './host.css?v=' + version)
+                            .replace('./notebook.css', './notebook.css?v=' + version))
+            script = output / lab / "host.js"
+            script.write_text(script.read_text().replace("'./notebook.js'", "'./notebook.js?v=" + version + "'"))
             shutil.copyfile(
                 ROOT.parent / "assets/fonts/arad.woff2", output / lab / "arad.woff2"
             )

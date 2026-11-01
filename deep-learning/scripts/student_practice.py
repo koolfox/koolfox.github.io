@@ -45,7 +45,7 @@ def code_cells(code):
     return cells
 
 
-def practice_page(term, row):
+def practice_page(term, row, license_text=""):
     unit = row["workshop"]
     questions, tip = [], None
     for original in unit["questions"]:
@@ -59,15 +59,16 @@ def practice_page(term, row):
                           "source_page": question["source_page"]})
     config = {"key": term["id"] + "/" + row["id"], "cells": code_cells(unit["code"]),
               "questions": questions, "tip": tip, "filename": term["id"] + "-" + row["id"],
-              "starter": unit["code"], "starter_sha256": unit["starter_sha256"],
+              "starter": unit["code"], "starter_sha256": unit["starter_sha256"], "license_text": license_text,
               "source_url": unit["source_url"], "source_sha256": unit["source_sha256"],
               "source_page": unit["source_page"], "reference": unit["reference"],
+              "source_pages": unit["question_pages"], "activity_pages": unit["class_activity_pages"],
               "related_labs": [{**lab, "url": f"{BASE}/runtime/{lab['id']}/?term={term['id']}&session={row['id']}&page={unit['source_page']}"} for lab in unit.get("related_labs", [])],
               "reader": f"{BASE}/terms/{term['id']}/{row['id']}/slides/"}
     encoded = json.dumps(config, ensure_ascii=False).replace("<", "\\u003c")
     return f'''<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>کارگاه آموزشی دیپ لرنینگ · {escape(row['title_fa'])}</title><link rel="stylesheet" href="{BASE}/assets/course.css"><link rel="stylesheet" href="{BASE}/assets/notebook.css"><link rel="stylesheet" href="{BASE}/assets/practice.css"><script type="module" src="{BASE}/assets/practice.js"></script></head>
-<body class="practice-page"><header><h1>{escape(unit['title_fa'])}</h1><p>{escape(unit['prediction_fa'])}</p><nav data-related-labs></nav></header>
+<body class="practice-page"><header><h1>{escape(unit['title_fa'])}</h1><nav data-related-labs></nav></header>
 <main id="practice-notebook"></main><footer><a href="{config['reader']}#page={unit['source_page']}" data-return-slide>بازگشت به اسلاید</a><span>کد و سؤال تألیفی مستقل · MIT</span></footer>
 <script type="application/json" id="practice-config">{encoded}</script></body></html>'''
 

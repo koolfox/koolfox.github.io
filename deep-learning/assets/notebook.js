@@ -198,6 +198,7 @@ export function mountNotebook(root, options) {
         notebook.cells.push({cell_type: 'code', id: 'cell-' + (index + 1), metadata: {title: cell.title}, execution_count: actual ? index + 1 : null, source: cell.source.match(/[^\n]*\n|[^\n]+$/g) || [], outputs});
       }
       const name = options.filename || 'learning-notebook', files = {...(await options.getFiles?.() || {})};
+      if (options.license_text) files['LICENSE.txt'] = options.license_text;
       files[name + '.ipynb'] = JSON.stringify(notebook, null, 2);
       const sourceHashes = {};
       for (const [filename, source] of Object.entries(files)) {
@@ -205,10 +206,20 @@ export function mountNotebook(root, options) {
         sourceHashes[filename] = [...new Uint8Array(hash)].map(byte => byte.toString(16).padStart(2, '0')).join('');
       }
       files['notebook-execution.json'] = JSON.stringify({schema_version: 1, notebook: options.key, execution: record, source_files_sha256: sourceHashes, exported_at_utc: new Date().toISOString()}, null, 2);
-      files['README.txt'] = 'Extract this folder, open the .ipynb in Jupyter, and run the cells in order. Keep the supplied Python modules beside it. Native examples use the Python standard library. A changed cell has no saved execution output until it is run again.\n';
+      files['README.txt'] = 'پوشه را استخراج کن و فایل .ipynb را با Jupyter باز کن. فایل‌های .py را کنار آن نگه دار و سلول‌ها را از ابتدا به ترتیب اجرا کن. مثال‌های پایه فقط به کتابخانهٔ استاندارد Python 3.11 یا جدیدتر نیاز دارند. سلول ویرایش‌شده تا اجرای دوباره خروجی ذخیره‌شده ندارد. مجوز کد در LICENSE.txt است.\n';
       const zip = storedZip(files); download(name + '.zip', zip, 'application/zip');
     } catch (error) { message('دریافت نوت‌بوک انجام نشد: ' + error.message, true); }
   });
+  if (options.source_pages?.length && options.goToSource) {
+    const sources = node('details', 'nb-source-questions'), summary = node('summary', '', 'پرسش‌ها و فعالیت‌های خود اسلایدها');
+    const links = node('div', 'nb-actions');
+    for (const page of options.source_pages) {
+      const activity = options.activity_pages?.includes(page);
+      const button = node('button', '', `${activity ? 'فعالیت' : 'صفحهٔ'} ${new Intl.NumberFormat('fa-IR').format(page)}`);
+      button.type = 'button'; button.addEventListener('click', () => options.goToSource(page)); links.append(button);
+    }
+    sources.append(summary, links); quiz.append(sources);
+  }
   questions.forEach((question, index) => {
     const form = node('form', 'nb-question'), title = node('legend', '', question.prompt), fieldset = node('fieldset'); fieldset.append(title);
     question.options.forEach((option, choice) => { const label = node('label', 'choice'), input = node('input'); input.type = 'radio'; input.name = 'answer'; input.value = String(choice); input.required = true; input.checked = answers[index] === choice; const text=node('span','',option);text.dir=/^[+-]?(?:\d+\.?\d*|\.\d+)(?:e[+-]?\d+)?$/i.test(option)?'ltr':'auto';label.append(input,text);fieldset.append(label); });
@@ -216,7 +227,7 @@ export function mountNotebook(root, options) {
     form.append(fieldset, check, feedback); form.dataset.notebookQuestion = String(index);
     form.addEventListener('submit', event => { event.preventDefault(); const answer = new FormData(form).get('answer'); if (answer === null) return; answers[index] = Number(answer); save(); const correct = Number(answer) === question.correct; feedback.textContent = (correct ? 'درست است. ' : 'دوباره مقایسه کن. ') + question.explanation; feedback.dataset.state = correct ? 'correct' : 'incorrect'; });
     if (question.source_page && options.goToSource) {
-      const source = node('button', '', `اصل مسئله · صفحهٔ ${question.source_page}`); source.type = 'button';
+      const source = node('button', '', `اسلاید مرتبط · صفحهٔ ${question.source_page}`); source.type = 'button';
       source.addEventListener('click', () => options.goToSource(question.source_page)); form.append(source);
     }
     quiz.append(form);

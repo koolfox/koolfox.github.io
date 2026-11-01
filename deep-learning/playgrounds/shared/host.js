@@ -1,5 +1,6 @@
 import {mountNotebook} from './notebook.js';
 import {runApp} from './shinylive/shinylive.js';
+const assetQuery=new URL(import.meta.url).search;
 const lab=document.body.dataset.lab,$=s=>document.querySelector(s),editor=$('#source-code'),picker=$('#code-section'),status=$('[data-host-status]');
 const key=`deep-learning:workspace:v1:${lab}`;
 const topicSets={
@@ -73,7 +74,7 @@ editor.addEventListener('input',()=>{lines();persist();$('[data-code-state]').te
 editor.addEventListener('keydown',event=>{if(event.key==='Tab'){event.preventDefault();editor.setRangeText('    ',editor.selectionStart,editor.selectionEnd,'end');editor.dispatchEvent(new Event('input'));}if((event.ctrlKey||event.metaKey)&&event.key==='Enter'){event.preventDefault();restart(false);}});
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!$('.code-panel').hidden)showCode(false);});
 async function boot(){
- const response=await fetch('./app.json');if(!response.ok)throw Error('فایل‌های آزمایشگاه دریافت نشدند؛ اتصال را بررسی و صفحه را دوباره باز کن.');original=await response.json();files=structuredClone(original);stored=readStorage();
+ const response=await fetch('./app.json'+assetQuery);if(!response.ok)throw Error('فایل‌های آزمایشگاه دریافت نشدند؛ اتصال را بررسی و صفحه را دوباره باز کن.');original=await response.json();files=structuredClone(original);stored=readStorage();
  for(const file of files){const draft=stored.drafts?.[file.name];if(file.type==='text'&&typeof draft==='string'&&draft.length<=500000)file.content=draft;}
  topics.forEach((t,i)=>{const option=document.createElement('option');option.value=String(i);option.textContent=t[0];picker.append(option);});picker.value=String(Math.min(Number(stored.topic)||0,topics.length-1));selectTopic();
  for(const selector of ['#code-section','#source-code','[data-apply]','[data-download]','[data-reset]'])$(selector).disabled=false;
@@ -81,7 +82,7 @@ async function boot(){
  const applied=structuredClone(original);for(const file of applied){const code=stored.applied?.[file.name];if(file.type==='text'&&typeof code==='string'&&code.length<=500000)file.content=code;}
  appliedFiles=applied;
  try{
-  const response=await fetch('./notebook.json');if(!response.ok)throw Error();notebookSpec=await response.json();
+  const response=await fetch('./notebook.json'+assetQuery);if(!response.ok)throw Error();notebookSpec=await response.json();
   notebook=mountNotebook($('[data-notebook-pane]'),{...notebookSpec,key:'lab/'+lab,filename:lab,
    execute:runNotebook,capture:notebookConfig,stop:()=>restart(true),restart:()=>restart(false),
    getFiles:()=>Object.fromEntries(appliedFiles.filter(file=>notebookSpec.source_files.includes(file.name)).map(file=>[file.name,file.content]))});

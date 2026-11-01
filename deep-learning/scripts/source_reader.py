@@ -360,7 +360,7 @@ def load_source_translation(session_id, root=ROOT, require_reviewed=True, term_i
     }
 
 
-def source_reader_page(term, row, identity, payload):
+def source_reader_page(term, row, identity, payload, asset_revision=""):
     """Render a JS-enhanced reader shell; original PDF links work without JS."""
     term_id = _validated_term(term.get("id"))
     session = row.get("id")
@@ -409,6 +409,8 @@ def source_reader_page(term, row, identity, payload):
     encoded = encoded.replace("\u2028", "\\u2028").replace("\u2029", "\\u2029")
     def e(value):
         return escape(str(value), quote=True)
+    require(not asset_revision or re.fullmatch(r"[a-f0-9]{16}", asset_revision), "Invalid reader asset revision")
+    asset_query = "?v=" + asset_revision if asset_revision else ""
     title = row.get("title_fa", row.get("title_en", session))
     options = "".join(
         f'<option value="{n}"{" selected" if n == 1 else ""}>{n}</option>'
@@ -424,10 +426,10 @@ def source_reader_page(term, row, identity, payload):
 <title>{e(title)} · اسلاید اصلی و ترجمهٔ فارسی</title>
 <meta name="description" content="اصل اسلایدهای دانا گوراری در کنار ترجمهٔ صفحه‌به‌صفحهٔ فارسی">
 <link rel="stylesheet" href="{BASE}/assets/course.css">
-<link rel="stylesheet" href="{BASE}/assets/source-reader.css">
+<link rel="stylesheet" href="{BASE}/assets/source-reader.css{asset_query}">
 <link rel="stylesheet" href="{BASE}/assets/vendor/katex/katex.min.css">
-<link rel="stylesheet" href="{BASE}/assets/practice.css">
-<script type="module" src="{BASE}/assets/source-reader.js"></script></head>
+<link rel="stylesheet" href="{BASE}/assets/practice.css{asset_query}">
+<script type="module" src="{BASE}/assets/source-reader.js{asset_query}"></script></head>
 <body class="source-reader" data-mobile-view="source" data-reader-section="slides">
 <a class="skip" href="#reader">رفتن به اسلاید و ترجمه</a>
 <header class="reader-header">

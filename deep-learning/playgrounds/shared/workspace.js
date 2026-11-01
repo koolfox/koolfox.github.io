@@ -10,7 +10,7 @@
   controls.setAttribute('aria-label','داده و تنظیمات مدل');controls.append(element('h2','',convolution?'تصویر و فیلتر':'داده و مدل'));
   const settingsButton=element('button','btn settings-toggle','داده و تنظیمات');settingsButton.type='button';settingsButton.setAttribute('aria-expanded','false');bar.append(settingsButton);
   settingsButton.addEventListener('click',()=>{const open=layout.classList.toggle('settings-open');settingsButton.setAttribute('aria-expanded',String(open));});
-  const ids=['model','results','guide'],names=convolution?['تصویر و فیلتر','محاسبه و خروجی','راهنما و تمرین']:['شبکه و ورودی','مرز، زیان و مقدارها','راهنما و آزمون'];
+  const ids=['model','results','guide'],names=convolution?['تصویر و فیلتر','محاسبه و خروجی','روش محاسبه']:['شبکه و ورودی','مرز، زیان و مقدارها','روش محاسبه'];
   const panels=Object.fromEntries(ids.map(id=>[id,element('section','workspace-panel')]));
   tabs.setAttribute('role','tablist');tabs.setAttribute('aria-label','نمای آزمایشگاه');
   function show(id,focus=false){ids.forEach(key=>{const on=key===id;panels[key].hidden=!on;const button=tabs.querySelector(`[data-panel="${key}"]`);button.setAttribute('aria-selected',String(on));button.tabIndex=on?0:-1;});if(focus)tabs.querySelector(`[data-panel="${id}"]`).focus();window.deepLearningTopology?.redraw();}

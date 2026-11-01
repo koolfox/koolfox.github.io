@@ -63,6 +63,7 @@ from pathlib import Path
 with tempfile.TemporaryDirectory() as folder:
     with zipfile.ZipFile(sys.argv[1]) as archive:
         assert archive.testzip() is None
+        assert 'MIT License' in archive.read('LICENSE.txt').decode()
         archive.extractall(folder)
     root=Path(folder)
     record=json.loads((root/'notebook-execution.json').read_text())
@@ -102,7 +103,7 @@ test('knowledge lookup and a question source reference keep the original slide i
   await expect(tools.locator('[data-knowledge-entry]:visible')).not.toHaveCount(0);
   expect(await page.evaluate(()=>window.sourceSlideReader.page)).toBe(28);await expect(page.locator('#source-canvas')).toBeVisible();
   await page.locator('.reader-sections [data-reader-section=questions]').click();
-  await tools.locator('[data-notebook-question]').first().getByRole('button',{name:/اصل مسئله/}).click();
+  await tools.locator('[data-notebook-question]').first().getByRole('button',{name:/اسلاید مرتبط/}).click();
   const expected=await tools.locator('#practice-config').evaluate(node=>JSON.parse(node.textContent).questions[0].source_page);
   await expect.poll(()=>page.evaluate(()=>window.sourceSlideReader.page)).toBe(expected);await expect(tools.locator('.nb-quiz')).toBeVisible();
 });

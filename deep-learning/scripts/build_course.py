@@ -485,7 +485,7 @@ def workshop_html(term, row, include_sources=True, include_questions=True):
 <textarea id="workshop-code" data-workshop-code dir="ltr" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="python-help">{e(unit["code"])}</textarea>
 <div class="workshop-actions"><button type="button" class="primary" data-workshop-run>اجرای پایتون</button><button type="button" data-workshop-stop disabled>توقف اجرا</button>
 <button type="button" data-workshop-reset>کد اولیه</button><button type="button" data-workshop-download>دریافت کد</button></div></div>
-<div class="workshop-result"><h3>خروجی کد شما</h3><p data-workshop-status role="status" aria-live="polite">پیش‌بینی‌ات را بنویس و سپس کد را اجرا کن؛ اجرای خودکار انجام نمی‌شود.</p>
+<div class="workshop-result"><h3>خروجی کد شما</h3><p data-workshop-status role="status" aria-live="polite">پیش از اجرا خروجی را حدس بزن؛ اجرای خودکار انجام نمی‌شود.</p>
 <div data-workshop-result></div><pre data-workshop-console dir="ltr" hidden></pre>
 <button type="button" data-workshop-record disabled>دریافت کد و نتیجه</button></div></div>
 <details id="python-help"><summary>راهنمای خواندن و تغییر کد</summary><p>متغیرهای بالای کد ورودی‌اند؛ تابع‌ها روش محاسبه‌اند. <bdi dir="ltr"><code>int</code></bdi> عدد صحیح، <bdi dir="ltr"><code>float</code></bdi> عدد اعشاری و <bdi dir="ltr"><code>str</code></bdi> متن است. فهرست داخل <bdi dir="ltr"><code>[]</code></bdi> چند مقدار را کنار هم نگه می‌دارد؛ اندیس‌ها از صفر شروع می‌شوند.</p>
@@ -719,6 +719,7 @@ def build(output, root=ROOT):
     output.mkdir(parents=True, exist_ok=True)
     registry_path = root / 'data/metadata/source-readers.json'
     registered_terms = json.loads(registry_path.read_text()).get('terms', {}) if registry_path.exists() else {}
+    reader_version = hashlib.sha256(b"".join((root / "assets" / name).read_bytes() for name in ("source-reader.js", "source-reader.css", "practice.css", "notebook.js"))).hexdigest()[:16]
     pages = {"catalog/index.html": hub(course), "sources/index.html": sources_page(course),
              "knowledge/index.html": knowledge_page(course["concepts"])}
     initial = BASE + "/terms/spring-2026/s01/slides/"
@@ -739,8 +740,8 @@ def build(output, root=ROOT):
             row["source_reader"] = readers.get(term["id"], {}).get(row["id"])
             if row["source_reader"]:
                 payload = row["source_reader"]
-                pages[f"terms/{term['id']}/{row['id']}/practice/index.html"] = practice_page(term, row)
-                pages[f"terms/{term['id']}/{row['id']}/slides/index.html"] = source_reader_page(term, row, reader_identity, payload)
+                pages[f"terms/{term['id']}/{row['id']}/practice/index.html"] = practice_page(term, row, (root / "LICENSE").read_text())
+                pages[f"terms/{term['id']}/{row['id']}/slides/index.html"] = source_reader_page(term, row, reader_identity, payload, asset_revision=reader_version)
                 destination = output / f"source-translations/{term['id']}/{row['id']}.json"
                 destination.parent.mkdir(parents=True, exist_ok=True)
                 destination.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")

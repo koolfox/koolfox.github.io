@@ -127,6 +127,16 @@ the session and actual Python status on failure. Readiness limits and expected
 numerical results were retained. This is a test-harness change; the reviewed
 public artifact and visual-system files are unchanged.
 
+The subsequent v13 candidate changes only the optional package loader: Pyodide
+0.27.7's normal dependency/integrity loader temporarily uses the matching CDN
+channel, including shared-library ZIPs such as OpenBLAS, and restores the local
+offline base on success or failure. Both restoration paths have regression
+tests (133 native tests passed). The online package browser test passed for
+NumPy in practice and the native lab. A separate real-browser scikit-learn 1.6.1
+installation trained LogisticRegression on four synthetic OR training rows and
+returned `[0,1,1,1]`, training accuracy 1, under Python 3.12.7. This is a package
+execution check, not a generalization result. Visual composition is unchanged.
+
 The earlier slide release at
 `88864b4e1a883e86d0a578de9c8c008b6a47ebfa` was publicly verified (704 matched
 files and 45 download-hash checks). That evidence does not publish this later

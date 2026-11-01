@@ -34,7 +34,10 @@ async def install_packages(requirements):
     """Use the pinned Pyodide channel, then micropip for compatible PyPI wheels."""
     requirements = validate_packages(requirements)
     from pyodide.ffi import to_js
-    from pyodide_js import loadPackage
+    from pyodide_js import loadPackage, version, _api
+
+    if version != "0.27.7":
+        raise RuntimeError("نصب بسته به محیط قفل‌شدهٔ Pyodide 0.27.7 نیاز دارد.")
 
     catalog = json.loads(Path(__file__).with_name("notebook-package-index.json").read_text())["packages"]
     needed = set()
@@ -53,8 +56,16 @@ async def install_packages(requirements):
         if name in catalog and (not version or version == catalog[name]["version"]):
             add(name)
     base = "https://cdn.jsdelivr.net/pyodide/v0.27.7/full/"
-    await loadPackage(to_js([base + catalog[name]["file_name"] for name in sorted(needed)]))
-    import micropip
+    # In pinned 0.27.7, package URLs accept wheels but not shared-library ZIPs
+    # such as OpenBLAS. Use the normal name/dependency/integrity loader with
+    # its channel temporarily pointed at the matching CDN; restore on failure.
+    previous_base = _api.config.indexURL
+    try:
+        _api.config.indexURL = base
+        await loadPackage(to_js(sorted(needed)))
+        import micropip
 
-    await micropip.install(requirements)
+        await micropip.install(requirements)
+    finally:
+        _api.config.indexURL = previous_base
     return [item.split("==")[0] + "==" + importlib.metadata.version(item.split("==")[0]) for item in requirements]

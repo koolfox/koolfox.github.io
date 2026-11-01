@@ -14,6 +14,7 @@ if engine_path.is_dir():
 
 from experiment import CONFIG, create_run, train_epochs
 from source_record import source_record
+from notebook_runtime import register_notebook, equivalent_configuration
 
 shared_path = HERE.parent / "shared"
 if shared_path.is_dir():
@@ -80,11 +81,12 @@ app_ui = ui.page_fluid(
             ),
             ui.panel_conditional(
                 "input.layers >= 1",
-                ui.input_select(
+                ui.input_radio_buttons(
                     "activation",
                     "تابع فعال‌سازی پنهان",
                     {"tanh": "tanh", "relu": "ReLU", "sigmoid": "sigmoid"},
                     selected=CONFIG["activation"],
+                    inline=True,
                 ),
             ),
             ui.panel_conditional(
@@ -257,13 +259,13 @@ app_ui = ui.page_fluid(
             ui.h2("سه آزمایش پیشنهادی"),
             ui.tags.ol(
                 ui.tags.li(
-                    "حلقه‌ها را بدون لایه پنهان و با x₁ و x₂ آموزش بده. سپس x₁² و x₂² را جایگزین کن؛ چرا مرز مدل تغییر می‌کند؟"
+                    "حلقه‌ها را بدون لایه پنهان و با x₁ و x₂ آموزش بده. سپس x₁² و x₂² را جایگزین کن و تغییر مرز را ببین."
                 ),
                 ui.tags.li(
                     "بذر و معماری را ثابت نگه دار و SGD را با Adam مقایسه کن. نرخ یادگیری یکسان، الزاماً مقایسهٔ منصفانه‌ای نیست؛ منحنی هر دو را ثبت کن."
                 ),
                 ui.tags.li(
-                    "نویز را بیشتر کن و شبکهٔ بزرگ‌تر بساز. آیا کاهش خطای آموزش، همراه کاهش خطای اعتبارسنجی است؟ اثر L2 را بررسی کن."
+                    "نویز را بیشتر کن و شبکهٔ بزرگ‌تر بساز. تغییر خطای آموزش و اعتبارسنجی را جدا ثبت کن و اثر L2 را مقایسه کن."
                 ),
             ),
         ),
@@ -290,7 +292,7 @@ app_ui = ui.page_fluid(
             ),
         ),
         ui.tags.footer(
-            "محاسبه زنده پایتون · داده مصنوعی و آزمایش تألیفی مستقل · بدون ارسال داده به سرور آموزشی"
+            "دادهٔ مصنوعی"
         ),
         class_="lab-shell",
         dir="rtl",
@@ -308,10 +310,41 @@ def server(input, output, session):
     )
     message = reactive.value("آماده اجرای آزمایش")
     started = [0.0]
+    notebook_pending = [None]
 
     def changed():
         with reactive.isolate():
             revision.set(revision.get() + 1)
+
+    def adopt_notebook(scope):
+        if "experiment" not in scope:
+            return False
+        state = scope["experiment"]
+        # Validate before replacing the plotted model; failed prefixes leave it intact.
+        validated = create_run(**state.config)
+        if not isinstance(state, type(validated)):
+            raise ValueError("Use the laboratory model returned by create_run")
+        state.snapshot()
+        running.set(False)
+        config = state.config
+        notebook_pending[0] = (state, time.monotonic() + 2)
+        run.set(state)
+        changed()
+        ui.update_select("dataset", selected=config["dataset"])
+        ui.update_numeric("layers", value=len(config["hidden"]))
+        for index, width in enumerate(config["hidden"]):
+            ui.update_numeric(f"width{index + 1}", value=width)
+        ui.update_radio_buttons("activation", selected=config["activation"])
+        ui.update_checkbox_group("features", selected=config["feature_names"])
+        for key in ("optimizer", "regularization"):
+            ui.update_select(key, selected=config[key])
+        for key in ("size", "noise", "seed", "learning_rate", "batch_size", "regularization_rate", "max_epochs"):
+            ui.update_numeric(key, value=config[key])
+        message.set("نمودار از سلول‌های همین دفترچه به‌روز شد.")
+        return True
+
+    notebook_record = register_notebook(input, session,
+        lambda: run.get().config if run.get() else CONFIG, adopt_notebook)
 
     @reactive.effect
     def configure():
@@ -356,6 +389,16 @@ def server(input, output, session):
                 "تنظیمات معتبر نیست؛ بازهٔ عددها و انتخاب دست‌کم یک ویژگی را بررسی کن."
             )
             return
+        if notebook_pending[0] is not None:
+            pending, deadline = notebook_pending[0]
+            if equivalent_configuration("network-playground", pending.config, state.config):
+                state = pending
+                notebook_pending[0] = None
+            elif time.monotonic() < deadline:
+                reactive.invalidate_later(0.05)
+                return
+            else:
+                notebook_pending[0] = None
         run.set(state)
         message.set("اجرای تازه آماده است؛ شکل مرز تصمیم را پیش‌بینی کن.")
         changed()
@@ -531,7 +574,7 @@ def server(input, output, session):
 
     @render.download_button(filename="network-experiment.json")
     def experiment():
-        yield json.dumps(source_record(snapshot(), HERE), ensure_ascii=False, indent=2)
+        yield json.dumps({**source_record(snapshot(), HERE), "notebook_execution": notebook_record.get()}, ensure_ascii=False, indent=2)
 
 
 app = App(app_ui, server, static_assets=HERE / "www")

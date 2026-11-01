@@ -87,7 +87,7 @@
     const localDeck=/^\/deep-learning\/terms\/(?:spring|fall)-20\d{2}\/s\d{2}\/slides\/$/.test(source);
     const localPdf=/^\/deep-learning\/assets\/danna\/(?:spring|fall)-20\d{2}\/s\d{2}\.pdf$/.test(source);
     if(local?!localDeck:!(localPdf||/^https?:\/\//.test(source)))return;
-    frame=document.createElement('iframe');frame.src=source;frame.title=local?'اسلاید و متن فارسی همین جلسه':'اسلاید اصلی درس';frame.className=local?'local-slide-preview':'source-preview';frame.loading='lazy';frame.referrerPolicy='no-referrer';frame.allowFullscreen=true;
+    frame=document.createElement('iframe');frame.src=source;frame.title=local?'اسلاید و متن فارسی همین جلسه':'اسلاید درس';frame.className=local?'local-slide-preview':'source-preview';frame.loading='lazy';frame.referrerPolicy='no-referrer';frame.allowFullscreen=true;
     container.append(frame);button.textContent='بستن نمایش اسلاید';button.setAttribute('aria-expanded','true');
     if(local)container.scrollIntoView({block:'start',behavior:'instant'});
   }));

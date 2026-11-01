@@ -38,7 +38,7 @@ def read_regular(path):
 
 def declared_vendor_files(root, vendor):
     """Validate the declared distribution; never sweep arbitrary vendor files."""
-    if vendor not in {"pdfjs", "katex"}:
+    if vendor not in {"pdfjs", "katex", "python-editor", "python-tools"}:
         raise ValueError("Unknown reader vendor")
     folder = root / "assets/vendor" / vendor
     manifest = json.loads(read_regular(folder / "files.json"))
@@ -53,6 +53,7 @@ def declared_vendor_files(root, vendor):
                 or "\\" in name or str(path) != name or name in names
                 or any(part.startswith(".") for part in path.parts)
                 or (path.suffix not in {".bcmap", ".js", ".mjs", ".pfb", ".ttf", ".txt", ".wasm", ".css", ".woff2"}
+                    and not (vendor == "python-tools" and path.suffix in {".whl", ".json"})
                     and not path.name.startswith("LICENSE"))):
             raise ValueError(f"Unsafe or duplicate vendor path: {name}")
         data = read_regular(folder / name)
@@ -84,11 +85,14 @@ def _bundle_html(text, name, names):
     )
     def config(match):
         value = json.loads(match[2])
-        for key in ("pdfUrl", "translationUrl"):
-            value[key] = _bundle_url(value[key], name, names)
+        for key in ("pdfUrl", "translationUrl", "practiceUrl", "knowledgeUrl", "reader", "source_url"):
+            if key in value:
+                value[key] = _bundle_url(value[key], name, names)
+        for lab in value.get("related_labs", []):
+            lab["url"] = _bundle_url(lab["url"], name, names)
         return match[1] + json.dumps(value, ensure_ascii=False).replace("<", "\\u003c") + match[3]
     return re.sub(
-        r'(<script\b[^>]*\bid="source-reader-config"[^>]*>)(.*?)(</script>)',
+        r'(<script\b[^>]*\bid="(?:source-reader-config|practice-config)"[^>]*>)(.*?)(</script>)',
         config, text, flags=re.DOTALL,
     )
 
@@ -150,6 +154,9 @@ def package_source_readers(output, term_id, sessions, root=ROOT):
     for session, payload in payloads.items():
         route = f"terms/{term_id}/{session}/slides/index.html"
         add("deep-learning/" + route, output / route)
+        practice = f"terms/{term_id}/{session}/practice/index.html"
+        if (output / practice).exists():
+            add("deep-learning/" + practice, output / practice)
         translated = f"source-translations/{term_id}/{session}.json"
         add("deep-learning/" + translated, output / translated)
         if json.loads(files["deep-learning/" + translated]) != payload:
@@ -157,9 +164,12 @@ def package_source_readers(output, term_id, sessions, root=ROOT):
         links.append(f'<li><a href="/deep-learning/{route}">{escape(rows[session]["title_fa"])}</a></li>')
     for name in ("course.css", "course.js", "workshops.js", "workshop-worker.mjs",
                  "source-reader.js", "source-reader.css", "university-logo.png",
-                 "university-logo.source.json", "vendor/pyodide.mjs", "vendor/pyodide-LICENSE.json"):
+                 "university-logo.source.json", "vendor/pyodide.mjs", "vendor/pyodide-LICENSE.json",
+                 "notebook.js", "notebook.css", "notebook_kernel.py", "notebook-worker.mjs", "practice.js", "practice.css", "knowledge.js",
+                 "python-tools.js", "python-tools-worker.mjs", "notebook_support.py", "notebook-results.js"):
         add("deep-learning/assets/" + name, output / "assets" / name)
-    for vendor in ("pdfjs", "katex"):
+    add("deep-learning/knowledge/index.html", output / "knowledge/index.html")
+    for vendor in ("pdfjs", "katex", "python-editor", "python-tools"):
         for name in declared_vendor_files(root, vendor):
             add(f"deep-learning/assets/vendor/{vendor}/{name}", root / "assets/vendor" / vendor / name)
     for name in NOTICES:
@@ -183,19 +193,19 @@ def package_source_readers(output, term_id, sessions, root=ROOT):
     count = sum(len(p["pages"]) for p in payloads.values())
     files["index.html"] = (
         '<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
-        '<title>اصل اسلاید و ترجمهٔ فارسی</title><link rel="stylesheet" href="/deep-learning/assets/course.css">'
-        f'<main class="standalone"><h1>{escape(term["title_fa"])} · اصل اسلاید و ترجمهٔ فارسی</h1>'
-        f'<p>{count} صفحه در {len(payloads)} جلسهٔ ترجمه‌شده؛ {len(rows)} PDF اصلی بدون تغییر.</p>'
+        '<title>اسلاید و ترجمهٔ فارسی</title><link rel="stylesheet" href="/deep-learning/assets/course.css">'
+        f'<main class="standalone"><h1>{escape(term["title_fa"])} · اسلاید و ترجمهٔ فارسی</h1>'
+        f'<p>{count} صفحه در {len(payloads)} جلسهٔ ترجمه‌شده؛ {len(rows)} PDF.</p>'
         '<p>پس از استخراج ZIP، این پوشه را با <code dir="ltr">python3 -m http.server 8871</code> باز کن و به localhost:8871 برو.</p>'
         + '<ol>' + ''.join(links) + '</ol></main></html>'
     ).encode()
     files["README.txt"] = (
-        f"اصل اسلاید و ترجمهٔ فارسی — {term['title_fa']}\n\n"
+        f"اسلاید و ترجمهٔ فارسی — {term['title_fa']}\n\n"
         "ZIP را استخراج کن و در پوشهٔ index.html اجرا کن:\npython3 -m http.server 8871\n"
         "سپس http://localhost:8871 را باز کن؛ file:// مناسب نیست.\n"
-        f"این بسته شامل {len(rows)} PDF اصلی، {count} صفحهٔ ترجمه در {len(payloads)} جلسه، "
-        f"درس‌های ترم و {len(workshop_sessions)} کارگاه پایتون تألیف‌شده است. "
-        "نمایش اصل و ترجمه و اجرای مثال‌های کتابخانهٔ استاندارد پایتون به اینترنت نیاز ندارند.\n"
+        f"این بسته شامل {len(rows)} PDF، {count} صفحهٔ ترجمه در {len(payloads)} جلسه، "
+        f"نمایشگر اسلاید، کتابخانهٔ دانش و {len(workshop_sessions)} کارگاه پایتون تألیف‌شده با سؤال‌های تستی است. "
+        "نمایش اسلاید و ترجمه و اجرای مثال‌های کتابخانهٔ استاندارد پایتون به اینترنت نیاز ندارند.\n"
         "اصل اسلایدهای دانا گوراری و حقوق تصاویر و منابع شخص ثالث محفوظ‌اند. "
         "برای بهار ۲۰۲۶ نشان CC BY-NC-SA در منبع دیده می‌شود؛ نسخهٔ مجوز روی اسلاید چاپ نشده است. "
         "ترجمه اقتباس از منبع است؛ مجوز MIT کد تألیفی، PDFهای اصلی یا ترجمه را دوباره مجوزدهی نمی‌کند. "

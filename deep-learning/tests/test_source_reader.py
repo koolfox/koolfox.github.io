@@ -445,6 +445,8 @@ class SourceReaderTests(unittest.TestCase):
                 "session": "s01",
                 "pdfUrl": payload["source"]["local_url"],
                 "translationUrl": f"/deep-learning/source-translations/{self.term_id}/s01.json",
+                "practiceUrl": f"/deep-learning/terms/{self.term_id}/s01/practice/",
+                "knowledgeUrl": "/deep-learning/knowledge/",
                 "pageCount": 2,
                 "sourceSha256": payload["source"]["sha256"],
             },
@@ -458,7 +460,7 @@ class SourceReaderTests(unittest.TestCase):
         self.assertNotIn("HIDDEN EXTRACTION MUST NOT BE RENDERED", html)
         self.assertNotIn("VISIBLE ORIGINAL", html)
         for attr in (
-            "data-original-download", "data-session-workshop", "data-source-text",
+            "data-source-citation", "data-session-workshop", "data-source-text",
             "data-reader-status", "data-pdf-progress", "data-prev-page", "data-next-page",
             "data-page-select", "data-page-count", "data-view-source", "data-view-translation",
             "data-fullscreen", "data-print", "data-zoom-in", "data-zoom-out",
@@ -466,13 +468,16 @@ class SourceReaderTests(unittest.TestCase):
             self.assertEqual(len(parser.attr(attr)), 1, attr)
         self.assertEqual(parser.attr("data-view-source")[0][1]["aria-pressed"], "true")
         self.assertEqual(parser.attr("data-view-translation")[0][1]["aria-pressed"], "false")
-        self.assertEqual(parser.attr("data-original-download")[0][1]["href"], payload["source"]["local_url"])
-        self.assertEqual(parser.attr("data-session-workshop")[0][1]["href"], f"/deep-learning/terms/{self.term_id}/s01/#workshop")
+        self.assertEqual(parser.attr("data-source-citation")[0][1]["href"], payload["source"]["url"])
+        self.assertEqual(parser.attr("data-session-workshop")[0][1]["href"], f"/deep-learning/terms/{self.term_id}/s01/practice/#code")
         classes = {c for _, attrs in parser.elements for c in attrs.get("class", "").split()}
         self.assertTrue({"source-reader", "reader-header", "reader-layout", "reader-original", "reader-translation", "source-page"} <= classes)
         ids = {attrs.get("id") for _, attrs in parser.elements}
         self.assertTrue({"source-canvas", "source-links", "persian-page"} <= ids)
         self.assertIn("<noscript>", html)
+        self.assertNotIn("data-original-download", html)
+        self.assertNotIn("reader-attribution", html)
+        self.assertNotIn("بازکردن اصل PDF", html)
         for path in ("course.css", "source-reader.css", "vendor/katex/katex.min.css", "source-reader.js"):
             self.assertIn(f"/deep-learning/assets/{path}", html)
 
@@ -517,8 +522,8 @@ class SourceReaderTests(unittest.TestCase):
         parser = ReaderParser(); parser.feed(html)
         self.assertFalse(parser.attr("data-session-workshop"))
         self.assertNotIn("#workshop", html)
-        self.assertTrue(parser.attr("data-original-download"))
-        self.assertIn(self.license_notice, html)
+        self.assertTrue(parser.attr("data-source-citation"))
+        self.assertIn(self.license_notice.split(";")[0], html)
         self.assertEqual(json.loads(parser.config)["term"], self.term_id)
         self.assertIn(f"/deep-learning/terms/{self.term_id}/s01/", html)
 

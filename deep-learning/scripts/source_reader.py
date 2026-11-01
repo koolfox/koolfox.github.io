@@ -360,7 +360,7 @@ def load_source_translation(session_id, root=ROOT, require_reviewed=True, term_i
     }
 
 
-def source_reader_page(term, row, identity, payload):
+def source_reader_page(term, row, identity, payload, asset_revision=""):
     """Render a JS-enhanced reader shell; original PDF links work without JS."""
     term_id = _validated_term(term.get("id"))
     session = row.get("id")
@@ -402,72 +402,85 @@ def source_reader_page(term, row, identity, payload):
         "translationUrl": f"{BASE}/source-translations/{term_id}/{session}.json",
         "pageCount": count,
         "sourceSha256": source["sha256"],
+        "practiceUrl": lesson + "practice/",
+        "knowledgeUrl": BASE + "/knowledge/",
     }
+    if row.get("workshop"):
+        unit = row["workshop"]
+        pages = sorted({n for n in [unit.get("source_page"), *[q.get("source_page") for q in unit.get("questions", [])]] if type(n) is int and 1 <= n <= count})
+        if pages:
+            config["interactivePages"] = pages
     encoded = json.dumps(config, ensure_ascii=False).replace("<", "\\u003c")
     encoded = encoded.replace("\u2028", "\\u2028").replace("\u2029", "\\u2029")
     def e(value):
         return escape(str(value), quote=True)
+    require(not asset_revision or re.fullmatch(r"[a-f0-9]{16}", asset_revision), "Invalid reader asset revision")
+    asset_query = "?v=" + asset_revision if asset_revision else ""
     title = row.get("title_fa", row.get("title_en", session))
+    license_label = source.get("license_notice", "").removesuffix("; version not printed on cover")
     options = "".join(
         f'<option value="{n}"{" selected" if n == 1 else ""}>{n}</option>'
         for n in range(1, count + 1)
     )
     workshop_link = (
-        f'<a href="{lesson}#workshop" data-session-workshop>کارگاه پایتون و پرسش‌وپاسخ</a>'
+        f'<a href="{lesson}practice/#code" role="button" data-reader-section="lab" data-session-workshop aria-pressed="false">آزمایشگاه</a><a href="{lesson}practice/#questions" role="button" data-reader-section="questions" aria-pressed="false">سؤال‌ها</a>'
         if row.get("workshop") else ""
     )
     return f'''<!doctype html>
 <html lang="fa" dir="rtl"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{e(title)} · اسلاید اصلی و ترجمهٔ فارسی</title>
-<meta name="description" content="اصل اسلایدهای دانا گوراری در کنار ترجمهٔ صفحه‌به‌صفحهٔ فارسی">
+<title>{e(title)} · اسلاید و ترجمهٔ فارسی</title>
+<meta name="description" content="اسلایدهای دانا گوراری با ترجمهٔ فارسی">
 <link rel="stylesheet" href="{BASE}/assets/course.css">
-<link rel="stylesheet" href="{BASE}/assets/source-reader.css">
+<link rel="stylesheet" href="{BASE}/assets/source-reader.css{asset_query}">
 <link rel="stylesheet" href="{BASE}/assets/vendor/katex/katex.min.css">
-<script type="module" src="{BASE}/assets/source-reader.js"></script></head>
-<body class="source-reader" data-mobile-view="source">
+<link rel="stylesheet" href="{BASE}/assets/practice.css{asset_query}">
+<script type="module" src="{BASE}/assets/source-reader.js{asset_query}"></script></head>
+<body class="source-reader" data-mobile-view="source" data-reader-section="slides">
 <a class="skip" href="#reader">رفتن به اسلاید و ترجمه</a>
 <header class="reader-header">
-<div class="reader-heading"><a href="{lesson}">بازگشت به درس</a>
+<div class="reader-heading"><a href="{BASE}/terms/{term_id}/">فهرست اسلایدها</a>
 <p>{e(term.get('title_fa', TERM_TITLES[term_id]))}</p><h1>{e(title)}</h1>
 <p class="reader-instructor">استاد: دکتر نگار مجمع</p></div>
 <img class="deck-logo" src="{BASE}/assets/university-logo.png" alt="نشان مؤسسه آموزش عالی نقش جهان" width="100" height="104">
-<nav aria-label="منابع و تمرین جلسه"><a href="{pdf}" download="{session}.pdf" data-original-download>دریافت PDF اصلی</a>
-{workshop_link}</nav>
+<nav class="reader-sections" aria-label="بخش‌های درس"><button type="button" data-reader-section="slides" aria-pressed="true">اسلاید</button>{workshop_link}<a href="{BASE}/knowledge/" role="button" data-reader-section="knowledge" aria-pressed="false">کتابخانهٔ دانش</a></nav>
 </header>
 <main id="reader">
 <div class="reader-toolbar" aria-label="کنترل‌های مطالعه">
 <button type="button" data-prev-page aria-label="صفحهٔ قبل" disabled>قبلی</button>
-<label>صفحه <select data-page-select aria-label="انتخاب صفحه">{options}</select></label>
-<span>از <bdi data-page-count>{count}</bdi></span>
+<label>صفحه <select data-page-select aria-label="انتخاب صفحه">{options}<option value="sources">منابع</option></select></label>
+<span data-page-total>از <bdi data-page-count>{count}</bdi></span>
 <button type="button" data-next-page aria-label="صفحهٔ بعد">بعدی</button>
 <button type="button" data-zoom-out aria-label="کوچک‌نمایی">−</button>
 <button type="button" data-zoom-in aria-label="بزرگ‌نمایی">+</button>
 <button type="button" data-fullscreen>تمام‌صفحه</button>
 <button type="button" data-print>چاپ</button>
+<button type="button" data-source-only-toggle aria-pressed="false">نمای ارائه</button>
+<button type="button" data-page-experiment hidden>کاوش این اسلاید</button>
+<button type="button" data-retry-load hidden>تلاش دوباره</button>
 <div class="reader-view-controls" role="group" aria-label="نمایش در صفحهٔ کوچک">
-<button type="button" data-view-source aria-pressed="true" aria-controls="original-panel">اصل اسلاید</button>
+<button type="button" data-view-source aria-pressed="true" aria-controls="original-panel">اسلاید</button>
 <button type="button" data-view-translation aria-pressed="false" aria-controls="translation-panel">ترجمهٔ فارسی</button>
 </div></div>
-<p role="status" aria-live="polite" data-reader-status>در انتظار بارگیری PDF اصلی و ترجمهٔ همین صفحه.</p>
-<progress data-pdf-progress max="100" value="0" aria-label="پیشرفت بارگیری PDF اصلی"></progress>
+<p role="status" aria-live="polite" data-reader-status>در حال بارگیری اسلاید و ترجمه…</p>
+<progress data-pdf-progress max="100" value="0" aria-label="پیشرفت بارگیری اسلاید"></progress>
 <div class="reader-layout">
-<section id="original-panel" class="reader-original" aria-labelledby="original-heading">
-<h2 id="original-heading">اسلاید اصلی <bdi lang="en" dir="ltr">Danna Gurari</bdi></h2>
-<div class="source-page"><canvas id="source-canvas" width="960" height="540" role="img" aria-label="صفحهٔ اسلاید اصلی"></canvas>
-<div id="source-links" aria-label="پیوندهای صفحهٔ اصلی"></div></div>
-<p class="source-pdf-fallback"><a href="{pdf}" target="_blank" rel="noopener noreferrer">بازکردن اصل PDF</a></p>
+<section id="original-panel" class="reader-original" aria-label="اسلاید">
+<div class="source-page"><canvas id="source-canvas" width="960" height="540" role="img" aria-label="صفحهٔ اسلاید"></canvas>
+<div id="source-links" aria-label="پیوندهای اسلاید"></div></div>
 </section>
-<section id="translation-panel" class="reader-translation" aria-labelledby="translation-heading">
-<h2 id="translation-heading">ترجمهٔ فارسی همین صفحه</h2><div id="persian-page" dir="rtl"></div>
-<details class="reader-source-text"><summary>متن انگلیسی قابل مشاهده در این صفحه</summary>
+<section id="translation-panel" class="reader-translation" aria-label="ترجمهٔ فارسی">
+<div id="persian-page" dir="rtl"></div>
+<details class="reader-source-text"><summary>متن انگلیسی</summary>
 <div data-source-text lang="en" dir="ltr"></div></details>
-</section></div>
-<noscript><p>برای نمایش هم‌زمان صفحات و ترجمه، جاوااسکریپت لازم است. <a href="{pdf}">اصل PDF را باز کنید</a>.</p></noscript>
+</section><section class="reader-tools-panel" aria-label="ابزار کنار اسلاید" hidden><iframe title="ابزار انتخابی درس" data-reader-tools-frame></iframe></section></div>
+<section id="reader-references" class="reader-references" aria-labelledby="references-heading" hidden>
+<h2 id="references-heading">منابع</h2>
+<p>دانا گوراری (<bdi lang="en" dir="ltr">Danna Gurari</bdi>) · دانشگاه کلرادو بولدر · {e(term.get('title_fa', TERM_TITLES[term_id]))}</p>
+<p><a href="{e(source['url'])}" data-source-citation target="_blank" rel="noopener noreferrer">{e(title)}</a></p>
+<p class="reader-reference-license">{e(license_label)}</p><p class="reader-reference-license">کد و تمرین‌ها: MIT</p>
+</section>
+<noscript><p>برای نمایش اسلایدها، جاوااسکریپت را فعال کن.</p></noscript>
 </main>
-<footer class="reader-attribution"><p>اسلایدهای اصلی: دانا گوراری (<bdi lang="en" dir="ltr">Danna Gurari</bdi>)، دانشگاه کلرادو بولدر.</p>
-<p>{e(source.get('license_notice', ''))} · اعتبارها و ارجاع‌های اصلی در خود PDF حفظ شده‌اند.</p>
-<a href="{e(source['url'])}" target="_blank" rel="noopener noreferrer">منبع رسمی PDF اصلی</a>
-<span aria-hidden="true"> · </span><a href="{BASE}/sources/">منابع و وضعیت بررسی</a></footer>
 <script id="source-reader-config" type="application/json">{encoded}</script>
 </body></html>'''

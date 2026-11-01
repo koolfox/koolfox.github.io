@@ -5,10 +5,13 @@ import hashlib
 import json
 import shutil
 import subprocess
+import sys
 import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "playgrounds/shared"))
+from notebook_examples import notebook_for_lab
 LABS = ("neuron-xor", "network-playground", "convolution")
 
 
@@ -46,6 +49,10 @@ def stage(lab, destination):
     shutil.copyfile(
         ROOT / "playgrounds/shared/source_record.py", destination / "source_record.py"
     )
+    shutil.copyfile(ROOT / "playgrounds/shared/notebook_runtime.py", destination / "notebook_runtime.py")
+    shutil.copyfile(ROOT / "assets/notebook_kernel.py", destination / "notebook_kernel.py")
+    shutil.copyfile(ROOT / "assets/notebook_support.py", destination / "notebook_support.py")
+    shutil.copyfile(ROOT / "assets/vendor/python-tools/pyodide-lock.json", destination / "notebook-package-index.json")
     for filename in ("workspace.js", "workspace.css"):
         shutil.copyfile(
             ROOT / "playgrounds/shared" / filename, destination / "www" / filename
@@ -74,6 +81,14 @@ def export(output):
     if output.exists() and any(output.iterdir()):
         raise ValueError("Choose an empty export directory")
     output.mkdir(parents=True, exist_ok=True)
+    vendors = {}
+    for vendor in ("python-editor", "python-tools"):
+        folder = ROOT / "assets/vendor" / vendor
+        vendors[vendor] = json.loads((folder / "files.json").read_text())["files"]
+        for entry in vendors[vendor]:
+            name = entry["path"]
+            if Path(name).name != name or hashlib.sha256((folder / name).read_bytes()).hexdigest() != entry["sha256"]:
+                raise ValueError("Python tools differ from the pinned vendor manifest")
     executable = shutil.which("shinylive")
     if not executable:
         raise RuntimeError("Run with uv run --project deep-learning/playgrounds")
@@ -101,6 +116,27 @@ def export(output):
             )
             for filename in ("host.js", "host.css"):
                 shutil.copyfile(shared / filename, output / lab / filename)
+            for filename in ("notebook.js", "notebook.css", "notebook-results.js", "python-tools.js", "python-tools-worker.mjs", "notebook_kernel.py", "notebook_support.py"):
+                shutil.copyfile(ROOT / "assets" / filename, output / lab / filename)
+            for vendor, entries in vendors.items():
+                target = output / lab / "vendor" / vendor
+                target.mkdir(parents=True)
+                for name in ["files.json", *[entry["path"] for entry in entries]]:
+                    shutil.copyfile(ROOT / "assets/vendor" / vendor / name, target / name)
+            worker = output / lab / "python-tools-worker.mjs"
+            worker.write_text(worker.read_text().replace("'../runtime/neuron-xor/shinylive/pyodide/'", "'./shinylive/pyodide/'"))
+            loader = output / lab / "vendor/pyodide.mjs"
+            shutil.copyfile(ROOT / "assets/vendor/pyodide.mjs", loader)
+            notebook = {**notebook_for_lab(lab, source), "license_text": (ROOT / "LICENSE").read_text()}
+            (output / lab / "notebook.json").write_text(json.dumps(notebook, ensure_ascii=False, indent=2))
+            version = hashlib.sha256(b"".join((output / lab / name).read_bytes() for name in
+                ("app.json", "notebook.json", "host.js", "host.css", "notebook.js", "notebook.css", "python-tools.js", "vendor/python-editor/editor.mjs"))).hexdigest()[:16]
+            host = output / lab / "index.html"
+            host.write_text(host.read_text().replace('./host.js', './host.js?v=' + version)
+                            .replace('./host.css', './host.css?v=' + version)
+                            .replace('./notebook.css', './notebook.css?v=' + version))
+            script = output / lab / "host.js"
+            script.write_text(script.read_text().replace("'./notebook.js'", "'./notebook.js?v=" + version + "'"))
             shutil.copyfile(
                 ROOT.parent / "assets/fonts/arad.woff2", output / lab / "arad.woff2"
             )

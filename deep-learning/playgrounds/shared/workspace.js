@@ -10,7 +10,7 @@
   controls.setAttribute('aria-label','داده و تنظیمات مدل');controls.append(element('h2','',convolution?'تصویر و فیلتر':'داده و مدل'));
   const settingsButton=element('button','btn settings-toggle','داده و تنظیمات');settingsButton.type='button';settingsButton.setAttribute('aria-expanded','false');bar.append(settingsButton);
   settingsButton.addEventListener('click',()=>{const open=layout.classList.toggle('settings-open');settingsButton.setAttribute('aria-expanded',String(open));});
-  const ids=['model','results','guide'],names=convolution?['تصویر و فیلتر','محاسبه و خروجی','راهنما و تمرین']:['شبکه و ورودی','مرز، زیان و مقدارها','راهنما و آزمون'];
+  const ids=['model','results','guide'],names=convolution?['تصویر و فیلتر','محاسبه و خروجی','روش محاسبه']:['شبکه و ورودی','مرز، زیان و مقدارها','روش محاسبه'];
   const panels=Object.fromEntries(ids.map(id=>[id,element('section','workspace-panel')]));
   tabs.setAttribute('role','tablist');tabs.setAttribute('aria-label','نمای آزمایشگاه');
   function show(id,focus=false){ids.forEach(key=>{const on=key===id;panels[key].hidden=!on;const button=tabs.querySelector(`[data-panel="${key}"]`);button.setAttribute('aria-selected',String(on));button.tabIndex=on?0:-1;});if(focus)tabs.querySelector(`[data-panel="${id}"]`).focus();window.deepLearningTopology?.redraw();}
@@ -30,13 +30,19 @@
    if(child.tagName==='DETAILS'&&child.querySelector('#parameters')){panels.results.append(child);continue;}
    panels.guide.append(child);
   }
+  // Keep the size of the learning step beside model/activation selection.
+  const primarySettings=controls.querySelector('.configuration');
+  for(const id of ['learning_rate','optimizer']){
+   const field=document.getElementById(id)?.closest('.shiny-input-container');
+   if(field&&primarySettings)primarySettings.append(field);
+  }
   const help=element('p','control-help','یک عامل را تغییر بده و نتیجه را مقایسه کن. تغییر تنظیمات، اجرای تازه‌ای از دورهٔ صفر می‌سازد.');help.id='control-help';const fields=element('div','workspace-control-fields');[...controls.children].slice(1).forEach(child=>fields.append(child));controls.append(fields,help);
   const hints={dataset:'شکل داده عوض می‌شود. با بذر ثابت، تغییر معماری داده‌ها و تقسیم آن‌ها را عوض نمی‌کند.',gate:'برچسب هدف چهار ورودی عوض می‌شود. XOR را با AND مقایسه کن.',model:'پرسپترون و نورون سیگموید لایهٔ پنهان ندارند. MLP می‌تواند مرز غیرخطی بسازد.',layers:'صفر یعنی بدون لایهٔ پنهان. لایهٔ بیشتر همیشه تعمیم بهتر نمی‌دهد.',activation:'این تابع فقط برای لایهٔ پنهان است. خروجی طبقه‌بندی همچنان سیگموید است.',learning_rate:'اندازهٔ گام وزن‌هاست. افزایش زیاد ممکن است زیان را ناپایدار کند؛ منحنی را ببین.',seed:'برای مقایسهٔ دو تغییر، بذر را ثابت نگه دار تا وزن و دادهٔ آغازین قابل مقایسه باشند.',max_epochs:'سقف دوره است؛ افزایش آن محدودیت یک مرز خطی را حل نمی‌کند.',features:'مختصات ورودی شبکه را انتخاب می‌کنی. ویژگی‌های مربع می‌توانند جداسازی حلقه‌ها را آسان‌تر کنند.',optimizer:'SGD، مومنتوم و Adam جهت/اندازهٔ گام را از گرادیان می‌سازند؛ قاعدهٔ واقعی در پنل کد باز می‌شود.',regularization:'فقط وزن‌ها جریمه می‌شوند. none یعنی ضریب جریمه غیرفعال است.',regularization_rate:'قدرت جریمهٔ وزن‌ها؛ زیادکردن آن الزاماً خطای اعتبارسنجی را کم نمی‌کند.',noise:'نویز به مختصات افزوده می‌شود؛ برچسب عوض نمی‌شود.',batch_size:'نمونه‌های هر گام وزن؛ با یک دورهٔ کامل داده یکی نیست.',size:'تعداد کل نمونه‌ها پیش از تقسیم آموزش، اعتبارسنجی و آزمون.',pattern:'جدول عددهای تصویر مصنوعی را عوض می‌کند؛ فیلتر ثابت می‌ماند.',filter:'۹ وزن اولیه را پر می‌کند؛ بعد هر وزن را می‌توانی جدا تغییر بدهی.',stride:'فاصلهٔ حرکت پنجره. گام بزرگ‌تر معمولاً خروجی کوچک‌تری می‌سازد.',padding:'صفرهای اطراف تصویر؛ اندازهٔ خروجی تغییر می‌کند، تعداد وزن‌ها ثابت است.',bias:'بعد از جمع ضرب‌ها به هر خانهٔ خروجی اضافه می‌شود.',pooling:'پس از فعال‌سازی، بیشینه یا میانگین پنجرهٔ ۲×۲ گرفته می‌شود.',relu:'منفی‌ها پس از فیلتر صفر می‌شوند؛ محاسبهٔ خام پیش از آن در دسترس است.',flip:'هسته ۱۸۰ درجه می‌چرخد؛ با هستهٔ نامتقارن تفاوت دیده می‌شود.'};
   controls.addEventListener('focusin',event=>{const id=event.target.id||event.target.closest('.shiny-input-container')?.id||'';help.textContent=hints[id]||(/^width|^hidden/.test(id)?'تعداد نورون‌های این لایه؛ اندازهٔ شبکه و تعداد وزن‌ها تغییر می‌کند.':/^w\d/.test(id)?'همین وزن در همهٔ جایگاه‌های تصویر مشترک است؛ سهم آن در جدول ضرب‌ها دیده می‌شود.':'یک عامل را تغییر بده و با بذر ثابت نتیجه را مقایسه کن.');});
   controls.querySelectorAll('input,select').forEach(input=>input.setAttribute('aria-describedby','control-help'));
   stage.append(tabs,...ids.map(id=>panels[id]));layout.append(controls,stage);main.replaceChildren(bar,layout);main.dataset.workspaceReady='true';
   const charts=$('.workspace-charts'),boundary=charts?.children[0],network=$('#network-structure');
-  function resize(){const wide=innerWidth>=1180;if(boundary&&network){if(wide)overview.append(boundary);else charts.insertBefore(boundary,charts.firstChild);}overview.classList.toggle('two-up',Boolean(wide&&network));}
+  function resize(){const wide=innerWidth>=900;if(boundary&&network){if(wide)overview.append(boundary);else charts.insertBefore(boundary,charts.firstChild);}overview.classList.toggle('two-up',Boolean(wide&&network));}
   new ResizeObserver(resize).observe(main);resize();
   if(network){
    const info=element('details','network-explanation'),summary=element('summary','','راهنمای خطوط و همهٔ مقدارها');info.append(summary);
@@ -63,4 +69,18 @@
   show('model');
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup,{once:true});else setup();
+})();
+
+// The host can execute notebook cells in this same browser Python session.
+(function notebookBridge(){
+ if(!window.Shiny){setTimeout(notebookBridge,50);return;}
+ const origin=parent.location.origin;
+ window.Shiny.addCustomMessageHandler('danna_notebook',value=>parent.postMessage({type:'danna-notebook-result',value},origin));
+ window.Shiny.addCustomMessageHandler('danna_packages',value=>parent.postMessage({type:'danna-packages-result',value},origin));
+ window.addEventListener('message',event=>{
+  if(event.source!==parent||event.origin!==origin)return;
+  if(event.data?.type==='danna-notebook-run')window.Shiny.setInputValue('notebook_run',event.data.request,{priority:'event'});
+  if(event.data?.type==='danna-packages-install')window.Shiny.setInputValue('notebook_install',event.data.request,{priority:'event'});
+ });
+ window.Shiny.initializedPromise.then(()=>{window.deepLearningNotebookReady=true;});
 })();

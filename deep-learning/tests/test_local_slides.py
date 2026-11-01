@@ -157,13 +157,17 @@ class RegisteredSourceReaderTests(unittest.TestCase):
         self.write(self.root / "data/metadata/source-readers.json", {"schema_version": 1, "terms": {self.term: ["s01", "s02"]}})
         self.write(self.root / "content/slide-reader-identity.json", {"supervisor_fa": "دکتر نگار مجمع"})
         for name in ("course.css", "course.js", "workshops.js", "workshop-worker.mjs", "source-reader.js", "source-reader.css",
-                     "university-logo.png", "university-logo.source.json", "vendor/pyodide.mjs", "vendor/pyodide-LICENSE.json"):
+                     "university-logo.png", "university-logo.source.json", "vendor/pyodide.mjs", "vendor/pyodide-LICENSE.json",
+                     "notebook.js", "notebook.css", "notebook_kernel.py", "notebook-worker.mjs", "practice.js", "practice.css", "knowledge.js",
+                     "python-tools.js", "python-tools-worker.mjs", "notebook_support.py", "notebook-results.js"):
             self.write(self.output / "assets" / name, "fixture")
         self.write(self.output / "assets/course.css", "@font-face{src:url('/assets/fonts/arad.woff2')}")
         self.write(self.output / "assets/workshops.js", "new Worker('/deep-learning/assets/workshop-worker.mjs', {type:'module'});")
         self.write(self.output / "assets/workshop-worker.mjs", "new URL('/deep-learning/runtime/neuron-xor/shinylive/pyodide/', self.location);")
         for vendor, files in {"pdfjs": ("pdf.min.mjs", "pdf.worker.min.mjs", "standard_fonts/LICENSE_FOXIT"),
-                              "katex": ("katex.mjs", "katex.min.css", "LICENSE.txt", "fonts/KaTeX_Main-Regular.woff2")}.items():
+                              "katex": ("katex.mjs", "katex.min.css", "LICENSE.txt", "fonts/KaTeX_Main-Regular.woff2"),
+                              "python-editor": ("editor.mjs", "LICENSE.txt"),
+                              "python-tools": ("jedi.whl", "pyodide-lock.json", "LICENSE.txt")}.items():
             records = []
             for name in files:
                 self.write(self.root / "assets/vendor" / vendor / name, name)
@@ -176,6 +180,7 @@ class RegisteredSourceReaderTests(unittest.TestCase):
         self.write(self.base / "assets/fonts/arad.woff2", b"font bytes")
         for name in CORE:
             self.write(self.root / "results/shinylive/neuron-xor/shinylive/pyodide" / name, b"runtime bytes")
+        self.write(self.output / "knowledge/index.html", "<h1>Knowledge</h1>")
         self.write(self.output / "private.pdf", "untracked forbidden input")
         self.write(self.root / "assets/vendor/pdfjs/untracked.js", "untracked forbidden input")
 

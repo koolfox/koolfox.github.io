@@ -59,10 +59,17 @@ class Network:
             raise ValueError("Expected two finite inputs.")
         activations, logits = [list(inputs)], []  # ورودی و مقدار پیش از سیگموید را برای پس‌انتشار نگه می‌داریم
         for weights, biases in zip(self.weights, self.biases):
-            z = [sum(w * x for w, x in zip(row, activations[-1])) + b
-                 for row, b in zip(weights, biases)]
+            z = []  # یک جمع وزن‌دار برای هر نورونِ این لایه
+            for row, bias in zip(weights, biases):
+                products = []
+                for weight, value in zip(row, activations[-1]):
+                    products.append(weight * value)  # سهم هر ورودی
+                z.append(sum(products) + bias)  # بایاس پس از جمع سهم‌ها اضافه می‌شود
             logits.append(z)
-            activations.append([sigmoid(v) for v in z])  # این تابع خروجی نورون‌هاست؛ با تغییرش مشتق را هم سازگار کن
+            output = []
+            for value in z:
+                output.append(sigmoid(value))  # فعال‌سازی این مدل سیگموید است
+            activations.append(output)
         return activations, logits
 
     def predict(self, inputs):

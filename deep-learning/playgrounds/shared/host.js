@@ -1,4 +1,6 @@
+import {mountNotebook} from './notebook.js';
 import {runApp} from './shinylive/shinylive.js';
+const assetQuery=new URL(import.meta.url).search;
 const lab=document.body.dataset.lab,$=s=>document.querySelector(s),editor=$('#source-code'),picker=$('#code-section'),status=$('[data-host-status]');
 const key=`deep-learning:workspace:v1:${lab}`;
 const topicSets={
@@ -8,6 +10,47 @@ const topicSets={
 };
 let original=[],files=[],selection='',stored={},ready=false,wasReady=false,deadline,interval;
 const topics=topicSets[lab];
+let notebook=null,notebookSpec=null,appliedFiles=[],notebookRequest=null;
+let packageRequest=null;
+function installPackages(packages){
+ return new Promise((resolve,reject)=>{
+  const frame=liveFrame();if(!frame?.contentWindow.deepLearningNotebookReady){reject(Error('پایتون هنوز آماده نیست.'));return;}
+  const id=crypto.randomUUID(),timer=setTimeout(()=>{packageRequest=null;reject(Error('دریافت بسته طول کشید؛ اتصال یا پیام‌های پایتون را بررسی کن.'));},120000);
+  packageRequest={id,resolve,reject,timer};frame.contentDocument.getElementById('pause')?.click();
+  frame.contentWindow.postMessage({type:'danna-packages-install',request:{id,packages}},location.origin);
+ });
+}
+window.addEventListener('message',event=>{
+ if(event.origin!==location.origin||event.source!==liveFrame()?.contentWindow||event.data?.type!=='danna-packages-result'||event.data.value?.id!==packageRequest?.id)return;
+ const waiting=packageRequest;packageRequest=null;clearTimeout(waiting.timer);
+ event.data.value.ok?waiting.resolve(event.data.value.packages):waiting.reject(Error(event.data.value.error));
+});
+function editorMode(mode,persistChoice=true){
+ $('[data-notebook-pane]').hidden=mode!=='notebook';$('[data-source-pane]').hidden=mode!=='source';
+ $('[data-notebook-mode]').setAttribute('aria-pressed',String(mode==='notebook'));$('[data-source-mode]').setAttribute('aria-pressed',String(mode==='source'));
+ if(persistChoice){stored.codeView=mode;save();}
+}
+$('[data-notebook-mode]').addEventListener('click',()=>editorMode('notebook'));
+$('[data-source-mode]').addEventListener('click',()=>editorMode('source'));
+function notebookConfig(previous){
+ const config=liveState()?.config;if(!config)throw Error('ابتدا تنظیمات آزمایش را معتبر کن.');
+ if(!/^CONFIG\s*=\s*\{/m.test(previous))throw Error('برای دریافت کنترل‌ها، تعریف CONFIG را در سلول اول نگه دار.');
+ const comments=Object.fromEntries(previous.split('\n').flatMap(line=>{const m=line.match(/^\s*"([a-z_]+)"\s*:.*?,\s*(#.*)$/);return m?[[m[1],m[2]]]:[];}));
+ return '# تنظیمات همین کنترل‌ها؛ یک عامل را تغییر بده.\nCONFIG = {\n'+Object.entries(config).map(([k,v])=>'    '+JSON.stringify(k)+': '+python(v)+','+(comments[k]?'  '+comments[k]:'')).join('\n')+'\n}\n';
+}
+function runNotebook(request,onStatus){
+ return new Promise((resolve,reject)=>{
+  const frame=liveFrame();if(!frame?.contentWindow.deepLearningNotebookReady){reject(Error('پایتون هنوز آماده نیست.'));return;}
+  const timer=setTimeout(()=>onStatus('اجرای سلول طول کشیده است؛ برای قطع حلقهٔ طولانی، «توقف پایتون» را بزن.'),10000);
+  notebookRequest={id:request.id,resolve,reject,timer};
+  frame.contentDocument.getElementById('pause')?.click();
+  frame.contentWindow.postMessage({type:'danna-notebook-run',request},location.origin);
+ });
+}
+window.addEventListener('message',event=>{
+ if(event.origin!==location.origin||event.source!==liveFrame()?.contentWindow||event.data?.type!=='danna-notebook-result'||event.data.value?.id!==notebookRequest?.id)return;
+ const waiting=notebookRequest;notebookRequest=null;clearTimeout(waiting.timer);waiting.resolve(event.data.value);
+});
 function message(text,error=false){status.textContent=text;status.dataset.error=String(error);}
 function readStorage(){try{const r=JSON.parse(sessionStorage.getItem(key)||'{}');if(r&&typeof r==='object'&&!Array.isArray(r))return r;}catch{}return {};}
 function save(){try{sessionStorage.setItem(key,JSON.stringify(stored));return true;}catch{message('ذخیرهٔ موقت در این مرورگر ممکن نیست؛ پیش از بستن صفحه، فایل کد را دریافت کن.',true);return false;}}
@@ -15,7 +58,7 @@ function currentFile(){return files.find(f=>f.name===selection);}
 function changedFiles(){return Object.fromEntries(files.filter(f=>f.type==='text'&&f.content!==original.find(o=>o.name===f.name)?.content).map(f=>[f.name,f.content]));}
 function persist(){if(currentFile())currentFile().content=editor.value;stored.drafts=changedFiles();stored.topic=picker.value;stored.codeOpen=!$('.code-panel').hidden;stored.scroll=editor.scrollTop;save();}
 function lines(){const count=editor.value.split('\n').length;$('[data-lines]').textContent=Array.from({length:count},(_,i)=>i+1).join('\n');$('[data-lines]').scrollTop=editor.scrollTop;}
-function showCode(open,focus=true){$('.code-panel').hidden=!open;$('.host-layout').classList.toggle('code-open',open);$('[data-code-toggle]').setAttribute('aria-expanded',String(open));stored.codeOpen=open;save();if(open){try{liveFrame()?.contentDocument.getElementById('pause')?.click();}catch{}}if(open)requestAnimationFrame(()=>{editor.scrollTop=Number(editor.dataset.targetScroll||0);$('[data-lines]').scrollTop=editor.scrollTop;});if(focus&&open&&editor.disabled===false)picker.focus();else if(focus&&!open)$('[data-code-toggle]').focus();}
+function showCode(open,focus=true){$('.code-panel').hidden=!open;$('.host-layout').classList.toggle('code-open',open);$('[data-code-toggle]').setAttribute('aria-expanded',String(open));stored.codeOpen=open;save();if(open){try{liveFrame()?.contentDocument.getElementById('pause')?.click();}catch{}}if(open)requestAnimationFrame(()=>{editor.scrollTop=Number(editor.dataset.targetScroll||0);$('[data-lines]').scrollTop=editor.scrollTop;});if(focus&&open&&editor.disabled===false)(stored.codeView==='source'?picker:$('[data-notebook-pane] [data-notebook-code]'))?.focus();else if(focus&&!open)$('[data-code-toggle]').focus();}
 function selectTopic(scroll=true){
  const t=topics[Number(picker.value)||0];selection=t[1];editor.value=currentFile().content;$('[data-code-file]').textContent=selection;$('[data-code-explanation]').textContent=t[3];lines();
  if(scroll){const pos=editor.value.indexOf(t[2]);const line=editor.value.slice(0,Math.max(0,pos)).split('\n').length;editor.dataset.targetScroll=String(Math.max(0,(line-3)*22));if(!$('.code-panel').hidden){editor.scrollTop=Number(editor.dataset.targetScroll);$('[data-lines]').scrollTop=editor.scrollTop;}}
@@ -43,19 +86,31 @@ $('[data-reset]').addEventListener('click',()=>{currentFile().content=original.f
 picker.addEventListener('change',()=>{persist();selectTopic();stored.topic=picker.value;save();});
 editor.addEventListener('input',()=>{lines();persist();$('[data-code-state]').textContent='کد تغییر کرده؛ هنوز اجرا نشده';});editor.addEventListener('scroll',()=>{$('[data-lines]').scrollTop=editor.scrollTop;if(!$('.code-panel').hidden)editor.dataset.targetScroll=String(editor.scrollTop);});
 editor.addEventListener('keydown',event=>{if(event.key==='Tab'){event.preventDefault();editor.setRangeText('    ',editor.selectionStart,editor.selectionEnd,'end');editor.dispatchEvent(new Event('input'));}if((event.ctrlKey||event.metaKey)&&event.key==='Enter'){event.preventDefault();restart(false);}});
-document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!$('.code-panel').hidden)showCode(false);});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!event.defaultPrevented&&!$('.code-panel').hidden)showCode(false);});
 async function boot(){
- const response=await fetch('./app.json');if(!response.ok)throw Error('فایل‌های آزمایشگاه دریافت نشدند؛ اتصال را بررسی و صفحه را دوباره باز کن.');original=await response.json();files=structuredClone(original);stored=readStorage();
+ const response=await fetch('./app.json'+assetQuery);if(!response.ok)throw Error('فایل‌های آزمایشگاه دریافت نشدند؛ اتصال را بررسی و صفحه را دوباره باز کن.');original=await response.json();files=structuredClone(original);stored=readStorage();
  for(const file of files){const draft=stored.drafts?.[file.name];if(file.type==='text'&&typeof draft==='string'&&draft.length<=500000)file.content=draft;}
  topics.forEach((t,i)=>{const option=document.createElement('option');option.value=String(i);option.textContent=t[0];picker.append(option);});picker.value=String(Math.min(Number(stored.topic)||0,topics.length-1));selectTopic();
  for(const selector of ['#code-section','#source-code','[data-apply]','[data-download]','[data-reset]'])$(selector).disabled=false;
  showCode(Boolean(stored.codeOpen),false);
  const applied=structuredClone(original);for(const file of applied){const code=stored.applied?.[file.name];if(file.type==='text'&&typeof code==='string'&&code.length<=500000)file.content=code;}
+ appliedFiles=applied;
+ try{
+  const response=await fetch('./notebook.json'+assetQuery);if(!response.ok)throw Error();notebookSpec=await response.json();
+  notebook=mountNotebook($('[data-notebook-pane]'),{...notebookSpec,key:'lab/'+lab,filename:lab,
+   execute:runNotebook,installPackages,capture:notebookConfig,stop:()=>restart(true),restart:()=>restart(false),
+   getFiles:()=>Object.fromEntries(appliedFiles.filter(file=>notebookSpec.source_files.includes(file.name)).map(file=>[file.name,file.content]))});
+  window.labNotebook=notebook;
+ }catch(error){ $('[data-notebook-mode]').disabled=true;message('دفترچه دریافت نشد؛ کد کامل در دسترس است.',true);console.error('Notebook initialization:',error); }
+ editorMode(!notebook||stored.codeView==='source'?'source':'notebook',false);
+ const context=new URLSearchParams(location.search),term=context.get('term'),session=context.get('session'),sourcePage=Number(context.get('page'));
+ if(term==='spring-2026'&&/^s\d{2}$/.test(session||'')&&Number.isInteger(sourcePage)&&sourcePage>0){const back=$('.host-title>a');back.href='/deep-learning/terms/'+term+'/'+session+'/slides/#page='+sourcePage;back.textContent='بازگشت به اسلاید';}
  const customized=applied.some((f,i)=>f.content!==original[i].content);$('[data-code-state]').textContent=customized?'اجرای کد ویرایش‌شده':'اجرای کد اولیه';
- if(stored.paused){$('[data-stop]').disabled=true;$('[data-code-state]').textContent='اجرای پایتون متوقف است';$('#root').replaceChildren();const p=document.createElement('p');p.className='stopped-view';p.textContent='اجرای پایتون متوقف شد. کد را اصلاح کن و «اجرای کد» را بزن؛ با «کد اولیه» می‌توانی فایل انتخابی را برگردانی.';$('#root').append(p);message('محیط اجرا بسته شد؛ کد در پنل کناری حفظ شده است.');showCode(true);return;}
+ if(stored.paused){notebook?.setPaused(true);$('[data-stop]').disabled=true;$('[data-code-state]').textContent='اجرای پایتون متوقف است';$('#root').replaceChildren();const p=document.createElement('p');p.className='stopped-view';p.textContent='اجرای پایتون متوقف شد. کد را اصلاح کن و «اجرای کد» را بزن؛ با «کد اولیه» می‌توانی فایل انتخابی را برگردانی.';$('#root').append(p);message('محیط اجرا بسته شد؛ کد در پنل کناری حفظ شده است.');showCode(true);return;}
  runApp($('#root'),'editor-terminal-viewer',{startFiles:applied,showHeaderBar:false,setWindowTitle:false},'python');
  deadline=setTimeout(()=>{if(!wasReady){message('راه‌اندازی طول کشید؛ پیام‌های پایتون را ببین. برای بازیابی از خطا یا حلقهٔ بی‌پایان، توقف اجرای پایتون را بزن.',true);}},65000);
  interval=setInterval(()=>{
+  notebook?.setReady(Boolean(liveFrame()?.contentWindow.deepLearningNotebookReady));
   ready=Boolean(liveState());$('[data-capture]').disabled=!ready;const terminal=$('.shinylive-terminal');if(terminal){terminal.inert=!document.body.classList.contains('show-console');terminal.setAttribute('aria-hidden',String(terminal.inert));}
   if(!ready && /Traceback|SyntaxError/.test(document.querySelector('.shinylive-terminal')?.textContent||'')){message('پایتون خطا داد؛ شمارهٔ خط را در پیام‌ها ببین، کد را اصلاح و دوباره اجرا کن.',true);document.body.classList.add('show-console');$('[data-console-toggle]').setAttribute('aria-pressed','true');}
   if(ready&&!wasReady){wasReady=true;clearTimeout(deadline);message(customized?'آزمایش از کد ویرایش‌شده اجرا شد؛ تعریف فرمول و زیان را هنگام تغییر سازگار نگه دار.':'پایتون آماده است. یک عامل را تغییر بده، یک گام اجرا کن و نتیجه را مقایسه کن.');}
@@ -63,4 +118,4 @@ async function boot(){
 }
 window.labWorkspace={liveState,getFiles:()=>{persist();return structuredClone(files);},openCode:()=>showCode(true)};
 boot().catch(error=>message(error.message,true));
-window.addEventListener('pagehide',()=>{clearInterval(interval);clearTimeout(deadline);});
+window.addEventListener('pagehide',()=>{clearInterval(interval);clearTimeout(deadline);clearTimeout(notebookRequest?.timer);clearTimeout(packageRequest?.timer);});

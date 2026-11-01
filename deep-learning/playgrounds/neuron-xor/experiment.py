@@ -19,7 +19,7 @@ def create_run(**config):  # **config تنظیمات کنترل‌ها را به
 
 
 def train_epochs(experiment, count=1):  # experiment مدل فعلی و count تعداد دوره‌هاست
-    experiment.step(count)  # یکسان برای «یک گام» و آموزش پیوسته؛ وزن‌ها واقعاً عوض می‌شوند
+    experiment.step(count)  # اجرای تعداد گام مشخص‌شده
 
 # برای تغییر فرمول‌ها، از فهرست کد «عبور نورون» یا «گرادیان» را باز کن.
 # در logic_gates.py، forward خروجی، gradients مشتق و step به‌روزرسانی را می‌سازد.

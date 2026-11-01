@@ -36,7 +36,7 @@ for (const unit of document.sessions) {
     const runtimeRequests=[];page.on('request',r=>{if(r.url().includes('/runtime/'))runtimeRequests.push(r.url());});
     await page.goto(lesson(unit.session_id));
     await expect(page.locator('[data-workshop]')).toHaveCount(1);
-    await expect(page.locator('#questions form[data-exercise]')).toHaveCount(3);
+    await expect(page.locator('#questions form[data-exercise]')).toHaveCount(2);
     await expect(page.locator('[data-workshop-result]')).toBeEmpty();
     expect(runtimeRequests).toEqual([]);
     const source=await request.get(`/deep-learning/workshops/spring-2022/${unit.session_id}.py`);
@@ -79,22 +79,17 @@ test('syntax errors, timeout and manual stop clear results and permit recovery',
   await run(page);expect((await result(page)).ctc_probability_a).toBeCloseTo(0.51,12);
 });
 
-test('questions give feedback, retain Persian answers and keep source activities available',async({page})=>{
-  await page.goto(lesson('s19'));
-  const numeric=page.locator('#questions form[data-exercise]').nth(0);
-  await numeric.locator('input').fill('۰٫۹');await numeric.locator('button').click();
-  await expect(numeric.locator('.feedback')).toHaveAttribute('data-state','correct');
-  const choice=page.locator('#questions form[data-exercise]').nth(1);
-  await choice.locator('input').first().check();await choice.locator('button').click();
-  await expect(choice.locator('.feedback')).toHaveAttribute('data-state','correct');
-  const reasoning=page.locator('#questions form[data-exercise]').nth(2);
-  await reasoning.locator('textarea').fill('شاهد تصویر و اطمینان را برای هر نمونه جدا ثبت می‌کنم.');
-  await reasoning.locator('button').click();
-  await expect(reasoning.locator('.feedback')).toContainText('تصحیح خودکار انجام نمی‌شود');
-  await page.reload();await expect(numeric.locator('input')).toHaveValue('۰٫۹');
-  await expect(reasoning.locator('textarea')).toHaveValue('شاهد تصویر و اطمینان را برای هر نمونه جدا ثبت می‌کنم.');
-  await expect(page.locator('#source-activities a[href$="#page=33"]')).toHaveCount(2);
-  await expect(page.locator('#source-activities a[href$="#page=35"]')).toHaveCount(2);
+test('multiple choice feedback persists and reasoning becomes an explained code tip',async({page})=>{
+ await page.goto(lesson('s19'));
+ for(const form of await page.locator('#questions form[data-exercise]').all()){
+  const answer=JSON.parse(await form.getAttribute('data-answer'));await form.locator(`input[value="${answer.correct_index}"]`).check();await form.locator('button').click();
+  await expect(form.locator('.feedback')).toHaveAttribute('data-state','correct');
+ }
+ await expect(page.locator('#questions textarea')).toHaveCount(0);await expect(page.locator('#questions .code-tip')).toHaveCount(1);
+ await page.locator('#questions .code-tip summary').click();await expect(page.locator('#questions .code-tip pre')).toContainText('result');
+ await page.reload();await expect(page.locator('#questions input:checked')).toHaveCount(2);
+ await expect(page.locator('#source-activities a[href$="#page=33"]')).toHaveCount(2);
+ await expect(page.locator('#source-activities a[href$="#page=35"]')).toHaveCount(2);
 });
 
 test('failed runtime loading leaves questions, source and code download usable',async({page})=>{
@@ -104,7 +99,7 @@ test('failed runtime loading leaves questions, source and code download usable',
   await expect(page.locator('[data-workshop-record]')).toBeDisabled();await expect(editor(page)).toBeEditable();
   const pending=page.waitForEvent('download');await page.locator('[data-workshop-download]').click();
   expect(readFileSync(await (await pending).path(),'utf8')).toBe(await editor(page).inputValue());
-  const form=page.locator('#questions form[data-exercise]').first();await form.locator('input').fill('-0.4');await form.locator('button').click();
+  const form=page.locator('#questions form[data-exercise]').first();const answer=JSON.parse(await form.getAttribute('data-answer'));await form.locator(`input[value="${answer.correct_index}"]`).check();await form.locator('button').click();
   await expect(form.locator('.feedback')).toHaveAttribute('data-state','correct');
 });
 

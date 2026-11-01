@@ -4,7 +4,7 @@ import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import katex from '../assets/vendor/katex/katex.mjs';
 const root=fileURLToPath(new URL('../',import.meta.url));
-for(const name of ['katex','pdfjs','python-editor']){
+for(const name of ['katex','pdfjs','python-editor','python-tools']){
  const base=root+'assets/vendor/'+name+'/';
  const manifest=JSON.parse(readFileSync(base+'files.json'));
  if(name==='pdfjs'&&manifest.build!=='legacy')throw Error('PDF reader requires the legacy worker feature shims for faithful font rendering');

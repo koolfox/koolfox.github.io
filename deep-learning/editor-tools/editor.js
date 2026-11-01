@@ -31,6 +31,22 @@ function notebookNames(getSource) {
   };
 }
 
+function pythonAnalysis(options) {
+  return async context => {
+    const token = syntaxTree(context.state).resolveInner(context.pos, -1);
+    if (/Comment|String/.test(token.name)) return null;
+    const word = context.matchBefore(/[\p{L}\p{N}_]*/u);
+    if (!context.explicit && !word?.text && context.state.sliceDoc(context.pos - 1, context.pos) !== '.') return null;
+    const line = context.state.doc.lineAt(context.pos);
+    try {
+      const result = await options.complete(context.state.doc.toString(), line.number,
+        [...context.state.sliceDoc(line.from, context.pos)].length);
+      if (context.aborted) return null;
+      return {from: word?.from ?? context.pos, options: result, validFor: /^[\p{L}\p{N}_]*$/u};
+    } catch { return null; } // Immediate built-in/local suggestions still work offline on failure.
+  };
+}
+
 export function createPythonEditor(parent, options) {
   const editable = new Compartment();
   const view = new EditorView({parent, state: EditorState.create({
@@ -38,7 +54,7 @@ export function createPythonEditor(parent, options) {
     extensions: [
       python(), lineNumbers(), history(), drawSelection(), indentOnInput(), bracketMatching(), closeBrackets(),
       syntaxHighlighting(highlights),
-      autocompletion({activateOnTyping: true, override: [localCompletionSource, globalCompletion, notebookNames(options.getSource)],
+      autocompletion({activateOnTyping: true, override: [localCompletionSource, globalCompletion, notebookNames(options.getSource), pythonAnalysis(options)],
         icons: false, maxRenderedOptions: 12}),
       keymap.of([
         {key: 'Mod-Enter', run: () => { options.onRun(false); return true; }},

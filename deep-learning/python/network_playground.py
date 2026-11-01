@@ -122,18 +122,20 @@ class DenseNetwork:
     def forward(self, values):
         activations, logits = [list(values)], []  # بازنمایی ورودی و مقدارهای پیش از فعال‌سازی را نگه می‌داریم
         for l, layer in enumerate(self.layers):  # وزن‌های هر لایه روی خروجی لایهٔ قبلی اعمال می‌شوند
-            z = [
-                sum(self.params[k] * x for k, x in zip(weights, activations[-1]))
-                + self.params[bias]
-                for weights, bias in layer
-            ]
+            z = []  # مقدار پیش از فعال‌سازی برای هر نورون
+            for weights, bias in layer:
+                products = []
+                for index, value in zip(weights, activations[-1]):
+                    products.append(self.params[index] * value)  # وزن × ورودی
+                z.append(sum(products) + self.params[bias])  # جمع سهم‌ها + بایاس
             logits.append(z)  # logit را برای زیان پایدار و مشتق ذخیره می‌کنیم
-            activations.append(
-                [
-                    sigmoid(v) if l == len(self.layers) - 1 else self.activate(v)
-                    for v in z
-                ]
-            )
+            output = []
+            for value in z:
+                if l == len(self.layers) - 1:
+                    output.append(sigmoid(value))  # خروجی طبقه‌بندی، سیگموید است
+                else:
+                    output.append(self.activate(value))  # انتخابِ فعال‌سازی فقط برای لایهٔ پنهان
+            activations.append(output)
         return activations, logits
 
     def loss_gradient(self, rows, names, regularization="none", rate=0.0):

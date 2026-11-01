@@ -26,13 +26,17 @@ def calculate(config):  # ورودی تابع، تنظیمات فعلی کنتر
         config["padding"],  # حاشیهٔ صفر؛ تعداد وزن‌ها را عوض نمی‌کند
         config["flip"],  # قرارداد چرخاندن هسته
     )
-    activated = [  # جدول خروجیِ بعد از تابع فعال‌سازی
-        [max(0, value) if config["relu"] else value for value in row]  # ReLU یا عبور بدون تغییر
-        for row in raw["output"]  # for سطرهای خروجیِ پیش از فعال‌سازی را پیمایش می‌کند
-    ]
-    pooled = (  # تجمیع بعد از فعال‌سازی انجام می‌شود؛ ترتیب عملیات مهم است
-        pool(activated, mode=config["pooling"]) if config["pooling"] != "none" else None
-    )
+    activated = []  # جدول خروجیِ بعد از فعال‌سازی
+    for row in raw["output"]:
+        output_row = []
+        for value in row:
+            if config["relu"]:
+                value = max(0, value)  # ReLU مقدار منفی را صفر می‌کند
+            output_row.append(value)
+        activated.append(output_row)
+    pooled = None  # بدون تجمیع، همین خروجی نگه داشته می‌شود
+    if config["pooling"] != "none":
+        pooled = pool(activated, mode=config["pooling"])  # تجمیع بعد از فعال‌سازی است
     return {"image": image, "raw": raw, "activated": activated, "pooled": pooled}  # نتیجهٔ همین کد برای نمودارها
 
 # «جمع ضرب‌ها»: در correlate می‌توان خود value * weight و جمع + bias را تغییر داد.

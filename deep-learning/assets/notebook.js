@@ -58,15 +58,17 @@ function validCells(value) {
 }
 
 export function mountNotebook(root, options) {
+  const questions = options.questions || [];
   const defaults = structuredClone(options.cells), storageKey = 'danna:notebook:v1:' + options.key;
   const identity = 'notebook-' + (++notebookCount);
-  let cells = structuredClone(defaults), selected = 0, versions = [], record = null;
+  let cells = structuredClone(defaults), selected = 0, versions = [], answers = [], record = null;
   let ready = false, busy = false, activeRequest = null, paused = false;
   try {
     const raw = localStorage.getItem(storageKey);
     const saved = raw && raw.length <= 1000000 ? JSON.parse(raw) : null;
     if (saved?.schema_version === 1 && validCells(saved.cells)) {
       cells = saved.cells;
+      answers = Array.isArray(saved.answers) ? saved.answers.map((value,index)=>Number.isInteger(value)&&value>=0&&value<(questions[index]?.options.length||0)?value:null) : [];
       versions = Array.isArray(saved.versions) ? saved.versions.filter(v => validCells(v.cells)).slice(-8) : [];
     }
   } catch { /* Download remains available when browser storage is blocked. */ }
@@ -82,7 +84,7 @@ export function mountNotebook(root, options) {
     button.setAttribute('aria-controls', panel.id); panel.setAttribute('role', 'tabpanel');
     panel.setAttribute('aria-labelledby', button.id); modes.append(button);
   }
-  const questions = options.questions || []; quizMode.hidden = questions.length === 0;
+  quizMode.hidden = questions.length === 0;
   const navigation = node('div', 'nb-navigation'), picker = node('select'), add = node('button', '', 'افزودن سلول');
   picker.setAttribute('aria-label', 'انتخاب سلول'); add.type = 'button'; add.dataset.notebookAdd = '';
   navigation.append(picker, add);
@@ -114,7 +116,7 @@ export function mountNotebook(root, options) {
 
   function message(text, error = false) { status.textContent = text; status.dataset.error = String(error); }
   function save() {
-    try { localStorage.setItem(storageKey, JSON.stringify({schema_version: 1, cells, versions})); }
+    try { localStorage.setItem(storageKey, JSON.stringify({schema_version: 1, cells, versions, answers})); }
     catch { message('ذخیرهٔ مرورگر ممکن نیست؛ پیش از بستن صفحه، نوت‌بوک را دریافت کن.', true); }
   }
   function controls() {
@@ -126,7 +128,9 @@ export function mountNotebook(root, options) {
   }
   function showOutput() {
     const value = record?.outputs?.find(item => item.index === selected);
-    const text = value ? [value.stdout, value.error, value.result === null || value.result === undefined ? '' : JSON.stringify(value.result, null, 2)].filter(Boolean).join('\n') : '';
+    const pieces = value ? [value.stdout, value.error, value.result === null || value.result === undefined ? '' : JSON.stringify(value.result, null, 2)] : [];
+    if (record?.error) pieces.push(record.error);
+    const text = pieces.filter(Boolean).join('\n');
     output.textContent = text; output.hidden = !text;
   }
   function draw() {
@@ -207,10 +211,10 @@ export function mountNotebook(root, options) {
   });
   questions.forEach((question, index) => {
     const form = node('form', 'nb-question'), title = node('legend', '', question.prompt), fieldset = node('fieldset'); fieldset.append(title);
-    question.options.forEach((option, choice) => { const label = node('label', 'choice'), input = node('input'); input.type = 'radio'; input.name = 'answer'; input.value = String(choice); input.required = true; label.append(input, node('span', '', option)); fieldset.append(label); });
+    question.options.forEach((option, choice) => { const label = node('label', 'choice'), input = node('input'); input.type = 'radio'; input.name = 'answer'; input.value = String(choice); input.required = true; input.checked = answers[index] === choice; label.append(input, node('span', '', option)); fieldset.append(label); });
     const check = node('button', '', 'بررسی پاسخ'), feedback = node('p', 'feedback'); check.type = 'submit'; feedback.setAttribute('role', 'status');
     form.append(fieldset, check, feedback); form.dataset.notebookQuestion = String(index);
-    form.addEventListener('submit', event => { event.preventDefault(); const answer = new FormData(form).get('answer'); if (answer === null) return; const correct = Number(answer) === question.correct; feedback.textContent = (correct ? 'درست است. ' : 'دوباره مقایسه کن. ') + question.explanation; feedback.dataset.state = correct ? 'correct' : 'incorrect'; });
+    form.addEventListener('submit', event => { event.preventDefault(); const answer = new FormData(form).get('answer'); if (answer === null) return; answers[index] = Number(answer); save(); const correct = Number(answer) === question.correct; feedback.textContent = (correct ? 'درست است. ' : 'دوباره مقایسه کن. ') + question.explanation; feedback.dataset.state = correct ? 'correct' : 'incorrect'; });
     if (question.source_page && options.goToSource) {
       const source = node('button', '', `اصل مسئله · صفحهٔ ${question.source_page}`); source.type = 'button';
       source.addEventListener('click', () => options.goToSource(question.source_page)); form.append(source);

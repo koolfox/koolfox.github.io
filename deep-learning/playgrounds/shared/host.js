@@ -1,3 +1,4 @@
+import {mountNotebook} from './notebook.js';
 import {runApp} from './shinylive/shinylive.js';
 const lab=document.body.dataset.lab,$=s=>document.querySelector(s),editor=$('#source-code'),picker=$('#code-section'),status=$('[data-host-status]');
 const key=`deep-learning:workspace:v1:${lab}`;
@@ -8,6 +9,33 @@ const topicSets={
 };
 let original=[],files=[],selection='',stored={},ready=false,wasReady=false,deadline,interval;
 const topics=topicSets[lab];
+let notebook=null,notebookSpec=null,appliedFiles=[],notebookRequest=null;
+function editorMode(mode,persistChoice=true){
+ $('[data-notebook-pane]').hidden=mode!=='notebook';$('[data-source-pane]').hidden=mode!=='source';
+ $('[data-notebook-mode]').setAttribute('aria-pressed',String(mode==='notebook'));$('[data-source-mode]').setAttribute('aria-pressed',String(mode==='source'));
+ if(persistChoice){stored.codeView=mode;save();}
+}
+$('[data-notebook-mode]').addEventListener('click',()=>editorMode('notebook'));
+$('[data-source-mode]').addEventListener('click',()=>editorMode('source'));
+function notebookConfig(previous){
+ const config=liveState()?.config;if(!config)throw Error('ابتدا تنظیمات آزمایش را معتبر کن.');
+ if(!/^CONFIG\s*=\s*\{/m.test(previous))throw Error('برای دریافت کنترل‌ها، تعریف CONFIG را در سلول اول نگه دار.');
+ const comments=Object.fromEntries(previous.split('\n').flatMap(line=>{const m=line.match(/^\s*"([a-z_]+)"\s*:.*?,\s*(#.*)$/);return m?[[m[1],m[2]]]:[];}));
+ return '# تنظیمات همین کنترل‌ها؛ یک عامل را تغییر بده.\nCONFIG = {\n'+Object.entries(config).map(([k,v])=>'    '+JSON.stringify(k)+': '+python(v)+','+(comments[k]?'  '+comments[k]:'')).join('\n')+'\n}\n';
+}
+function runNotebook(request,onStatus){
+ return new Promise((resolve,reject)=>{
+  const frame=liveFrame();if(!frame?.contentWindow.deepLearningNotebookReady){reject(Error('پایتون هنوز آماده نیست.'));return;}
+  const timer=setTimeout(()=>onStatus('اجرای سلول طول کشیده است؛ برای قطع حلقهٔ طولانی، «توقف پایتون» را بزن.'),10000);
+  notebookRequest={id:request.id,resolve,reject,timer};
+  frame.contentDocument.getElementById('pause')?.click();
+  frame.contentWindow.postMessage({type:'danna-notebook-run',request},location.origin);
+ });
+}
+window.addEventListener('message',event=>{
+ if(event.origin!==location.origin||event.source!==liveFrame()?.contentWindow||event.data?.type!=='danna-notebook-result'||event.data.value?.id!==notebookRequest?.id)return;
+ const waiting=notebookRequest;notebookRequest=null;clearTimeout(waiting.timer);waiting.resolve(event.data.value);
+});
 function message(text,error=false){status.textContent=text;status.dataset.error=String(error);}
 function readStorage(){try{const r=JSON.parse(sessionStorage.getItem(key)||'{}');if(r&&typeof r==='object'&&!Array.isArray(r))return r;}catch{}return {};}
 function save(){try{sessionStorage.setItem(key,JSON.stringify(stored));return true;}catch{message('ذخیرهٔ موقت در این مرورگر ممکن نیست؛ پیش از بستن صفحه، فایل کد را دریافت کن.',true);return false;}}
@@ -51,11 +79,23 @@ async function boot(){
  for(const selector of ['#code-section','#source-code','[data-apply]','[data-download]','[data-reset]'])$(selector).disabled=false;
  showCode(Boolean(stored.codeOpen),false);
  const applied=structuredClone(original);for(const file of applied){const code=stored.applied?.[file.name];if(file.type==='text'&&typeof code==='string'&&code.length<=500000)file.content=code;}
+ appliedFiles=applied;
+ try{
+  const response=await fetch('./notebook.json');if(!response.ok)throw Error();notebookSpec=await response.json();
+  notebook=mountNotebook($('[data-notebook-pane]'),{...notebookSpec,key:'lab/'+lab,filename:lab,
+   execute:runNotebook,capture:notebookConfig,stop:()=>restart(true),restart:()=>restart(false),
+   getFiles:()=>Object.fromEntries(appliedFiles.filter(file=>notebookSpec.source_files.includes(file.name)).map(file=>[file.name,file.content]))});
+  window.labNotebook=notebook;
+ }catch(error){ $('[data-notebook-mode]').disabled=true;message('دفترچه دریافت نشد؛ کد کامل در دسترس است.',true);console.error('Notebook initialization:',error); }
+ editorMode(!notebook||stored.codeView==='source'?'source':'notebook',false);
+ const context=new URLSearchParams(location.search),term=context.get('term'),session=context.get('session'),sourcePage=Number(context.get('page'));
+ if(term==='spring-2026'&&/^s\d{2}$/.test(session||'')&&Number.isInteger(sourcePage)&&sourcePage>0){const back=$('.host-title>a');back.href='/deep-learning/terms/'+term+'/'+session+'/slides/#page='+sourcePage;back.textContent='بازگشت به اسلاید';}
  const customized=applied.some((f,i)=>f.content!==original[i].content);$('[data-code-state]').textContent=customized?'اجرای کد ویرایش‌شده':'اجرای کد اولیه';
- if(stored.paused){$('[data-stop]').disabled=true;$('[data-code-state]').textContent='اجرای پایتون متوقف است';$('#root').replaceChildren();const p=document.createElement('p');p.className='stopped-view';p.textContent='اجرای پایتون متوقف شد. کد را اصلاح کن و «اجرای کد» را بزن؛ با «کد اولیه» می‌توانی فایل انتخابی را برگردانی.';$('#root').append(p);message('محیط اجرا بسته شد؛ کد در پنل کناری حفظ شده است.');showCode(true);return;}
+ if(stored.paused){notebook?.setPaused(true);$('[data-stop]').disabled=true;$('[data-code-state]').textContent='اجرای پایتون متوقف است';$('#root').replaceChildren();const p=document.createElement('p');p.className='stopped-view';p.textContent='اجرای پایتون متوقف شد. کد را اصلاح کن و «اجرای کد» را بزن؛ با «کد اولیه» می‌توانی فایل انتخابی را برگردانی.';$('#root').append(p);message('محیط اجرا بسته شد؛ کد در پنل کناری حفظ شده است.');showCode(true);return;}
  runApp($('#root'),'editor-terminal-viewer',{startFiles:applied,showHeaderBar:false,setWindowTitle:false},'python');
  deadline=setTimeout(()=>{if(!wasReady){message('راه‌اندازی طول کشید؛ پیام‌های پایتون را ببین. برای بازیابی از خطا یا حلقهٔ بی‌پایان، توقف اجرای پایتون را بزن.',true);}},65000);
  interval=setInterval(()=>{
+  notebook?.setReady(Boolean(liveFrame()?.contentWindow.deepLearningNotebookReady));
   ready=Boolean(liveState());$('[data-capture]').disabled=!ready;const terminal=$('.shinylive-terminal');if(terminal){terminal.inert=!document.body.classList.contains('show-console');terminal.setAttribute('aria-hidden',String(terminal.inert));}
   if(!ready && /Traceback|SyntaxError/.test(document.querySelector('.shinylive-terminal')?.textContent||'')){message('پایتون خطا داد؛ شمارهٔ خط را در پیام‌ها ببین، کد را اصلاح و دوباره اجرا کن.',true);document.body.classList.add('show-console');$('[data-console-toggle]').setAttribute('aria-pressed','true');}
   if(ready&&!wasReady){wasReady=true;clearTimeout(deadline);message(customized?'آزمایش از کد ویرایش‌شده اجرا شد؛ تعریف فرمول و زیان را هنگام تغییر سازگار نگه دار.':'پایتون آماده است. یک عامل را تغییر بده، یک گام اجرا کن و نتیجه را مقایسه کن.');}
@@ -63,4 +103,4 @@ async function boot(){
 }
 window.labWorkspace={liveState,getFiles:()=>{persist();return structuredClone(files);},openCode:()=>showCode(true)};
 boot().catch(error=>message(error.message,true));
-window.addEventListener('pagehide',()=>{clearInterval(interval);clearTimeout(deadline);});
+window.addEventListener('pagehide',()=>{clearInterval(interval);clearTimeout(deadline);clearTimeout(notebookRequest?.timer);});

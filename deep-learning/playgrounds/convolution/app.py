@@ -14,6 +14,7 @@ if engine_path.is_dir():
 
 from experiment import CONFIG, calculate
 from source_record import source_record
+from notebook_runtime import register_notebook
 
 FILTERS = {
     "vertical": [[-1, 0, 1], [-1, 0, 1], [-1, 0, 1]],
@@ -277,6 +278,34 @@ app_ui = ui.page_fluid(
 
 
 def server(input, output, session):
+    def adopt_notebook(scope):
+        if "calculation" not in scope:
+            return False
+        config = scope["CONFIG"]
+        if config["stride"] not in (1, 2, 3) or config["padding"] not in (0, 1, 2):
+            raise ValueError("Use a supported stride and padding")
+        if (len(config["kernel"]) != 3 or any(len(row) != 3 for row in config["kernel"])
+                or any(not math.isfinite(v) or abs(v) > 10 for row in config["kernel"] for v in row)
+                or not math.isfinite(config["bias"]) or abs(config["bias"]) > 10):
+            raise ValueError("Use a 3x3 kernel and bounded finite weights/bias")
+        if scope["calculation"] != calculate(config):
+            raise ValueError("برای تغییر فرمول عملیات، کد کامل calculate را ویرایش کن؛ جدول‌های نمودار از همان تابع ساخته می‌شوند.")
+        ui.update_select("filter", selected="custom")
+        ui.update_select("pattern", selected=config["pattern"])
+        for key in ("stride", "padding"):
+            ui.update_select(key, selected=str(config[key]))
+        ui.update_select("pooling", selected=config["pooling"])
+        for key in ("relu", "flip"):
+            ui.update_checkbox(key, value=config[key])
+        ui.update_numeric("bias", value=config["bias"])
+        for row in range(3):
+            for column in range(3):
+                ui.update_numeric(f"w{row}{column}", value=config["kernel"][row][column])
+        return True
+
+    notebook_record = register_notebook(input, session,
+        lambda: snapshot()["config"] if snapshot() else CONFIG, adopt_notebook)
+
     @reactive.effect
     @reactive.event(input.filter)
     def choose_filter():
@@ -529,7 +558,7 @@ def server(input, output, session):
 
     @render.download_button(filename="convolution-experiment.json")
     def experiment():
-        yield json.dumps(source_record(snapshot(), HERE), ensure_ascii=False, indent=2)
+        yield json.dumps({**source_record(snapshot(), HERE), "notebook_execution": notebook_record.get()}, ensure_ascii=False, indent=2)
 
 
 app = App(app_ui, server, static_assets=HERE / "www")

@@ -5,10 +5,13 @@ import hashlib
 import json
 import shutil
 import subprocess
+import sys
 import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "playgrounds/shared"))
+from notebook_examples import notebook_for_lab
 LABS = ("neuron-xor", "network-playground", "convolution")
 
 
@@ -46,6 +49,8 @@ def stage(lab, destination):
     shutil.copyfile(
         ROOT / "playgrounds/shared/source_record.py", destination / "source_record.py"
     )
+    shutil.copyfile(ROOT / "playgrounds/shared/notebook_runtime.py", destination / "notebook_runtime.py")
+    shutil.copyfile(ROOT / "assets/notebook_kernel.py", destination / "notebook_kernel.py")
     for filename in ("workspace.js", "workspace.css"):
         shutil.copyfile(
             ROOT / "playgrounds/shared" / filename, destination / "www" / filename
@@ -101,6 +106,9 @@ def export(output):
             )
             for filename in ("host.js", "host.css"):
                 shutil.copyfile(shared / filename, output / lab / filename)
+            for filename in ("notebook.js", "notebook.css"):
+                shutil.copyfile(ROOT / "assets" / filename, output / lab / filename)
+            (output / lab / "notebook.json").write_text(json.dumps(notebook_for_lab(lab, source), ensure_ascii=False, indent=2))
             shutil.copyfile(
                 ROOT.parent / "assets/fonts/arad.woff2", output / lab / "arad.woff2"
             )

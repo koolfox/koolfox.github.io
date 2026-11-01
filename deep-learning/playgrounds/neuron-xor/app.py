@@ -14,6 +14,7 @@ if engine_path.is_dir():
 
 from experiment import CONFIG, create_run, train_epochs
 from source_record import source_record
+from notebook_runtime import register_notebook, equivalent_configuration
 
 shared_path = HERE.parent / "shared"
 if shared_path.is_dir():
@@ -171,10 +172,35 @@ def server(input, output, session):
     revision = reactive.value(0)
     message = reactive.value("آماده اجرای آزمایش")
     started = [0.0]
+    notebook_pending = [None]
 
     def changed():
         with reactive.isolate():
             revision.set(revision.get() + 1)
+
+    def adopt_notebook(scope):
+        if "experiment" not in scope:
+            return False
+        state = scope["experiment"]
+        # Validate before replacing the plotted model; failed prefixes leave it intact.
+        validated = create_run(**state.config)
+        if not isinstance(state, type(validated)):
+            raise ValueError("Use the laboratory model returned by create_run")
+        state.snapshot()
+        running.set(False)
+        config = state.config
+        notebook_pending[0] = (state, time.monotonic() + 2)
+        run.set(state)
+        changed()
+        ui.update_select("gate", selected=config["gate"])
+        ui.update_select("model", selected=config["model"])
+        for key in ("hidden", "learning_rate", "seed", "max_epochs"):
+            ui.update_numeric(key, value=config[key])
+        message.set("نمودار از سلول‌های همین دفترچه به‌روز شد.")
+        return True
+
+    notebook_record = register_notebook(input, session,
+        lambda: run.get().config if run.get() else CONFIG, adopt_notebook)
 
     @reactive.effect
     def configure():
@@ -199,6 +225,16 @@ def server(input, output, session):
                 f"تنظیمات معتبر نیست. مقدارها را در بازه مشخص‌شده وارد کن. ({error})"
             )
             return
+        if notebook_pending[0] is not None:
+            pending, deadline = notebook_pending[0]
+            if equivalent_configuration("neuron-xor", pending.config, state.config):
+                state = pending
+                notebook_pending[0] = None
+            elif time.monotonic() < deadline:
+                reactive.invalidate_later(0.05)
+                return
+            else:
+                notebook_pending[0] = None
         run.set(state)
         message.set("وزن‌های آغازین آماده‌اند. پیش از اجرا، خروجی را حدس بزن.")
         changed()
@@ -359,7 +395,7 @@ def server(input, output, session):
 
     @render.download_button(filename="neuron-xor-experiment.json")
     def experiment():
-        yield json.dumps(source_record(snapshot(), HERE), ensure_ascii=False, indent=2)
+        yield json.dumps({**source_record(snapshot(), HERE), "notebook_execution": notebook_record.get()}, ensure_ascii=False, indent=2)
 
 
 app = App(app_ui, server, static_assets=HERE / "www")

@@ -28,7 +28,14 @@ runs. Existing blue/light/Arad/RTL design and university identity are pinned.
 Cells are stacked in Jupyter order, each with its own code, run control and
 output. There is no cell-selection dropdown. Locally bundled Python syntax
 highlighting, line numbers, indentation and built-in/notebook-name completion
-must also work in the portable source bundle. Completion never executes code.
+must also work in the portable source bundle. Suggestions open automatically.
+Jedi analyzes the standard library, installed packages and notebook definitions
+without running cells. Optional package installation uses the actual browser
+Python session; compatible Pyodide/PyPI wheels only, explicit network download,
+errors and exact requirements export. Saved code versions include requirements.
+Mapped source-page examples may open the existing notebook beside the slide;
+tables, matrices and vector charts must use actual executed output and expose
+the selected value. No invented interactive facsimile of a source figure.
 Activation options appear only for architectures that use them. Do not add
 features to unrelated lessons or claim unavailable model capabilities.
 

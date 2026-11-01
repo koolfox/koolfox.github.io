@@ -74,3 +74,12 @@ every cell's labeled editor and actual output in order; run/stop and version
 tools stay outside that region. Local Python highlighting, indentation and
 name completion support editing. Ctrl+Space opens suggestions, Ctrl+Enter runs
 through the focused cell, and Shift+Enter runs then focuses the next cell.
+
+Suggestions now open automatically during typing, with local Jedi analysis of
+the whole notebook, Python standard library and compatible installed packages.
+Optional dependency installation is explicit, reports errors, and records exact
+versions with saved code and Jupyter exports. A page-specific exploration button
+exists only where the independently authored workshop has an exact source-page
+reference. Its vector/matrix/table views are drawn from actual Python results;
+selecting a value reveals its full number. The original remains untouched and
+moving to another page closes this page-bound exploration.

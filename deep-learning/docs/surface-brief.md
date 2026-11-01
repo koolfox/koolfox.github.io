@@ -1,33 +1,35 @@
 # Danna course reading and practice surface
 
 Mode: Read, with an Operate mode inside each laboratory. Build path: code.
-The user approved the five independent semester routes, original-source and
-Persian-companion layout, exercises and live Python laboratories in the execution
-plan, then explicitly asked to continue through completion without stopping.
-This is that pinned structure inside the established portfolio identity.
+The current source is Spring 2026, with unchanged originals beside aligned
+Persian translation. The owner removed the independent lesson article and
+settled four areas: slides, laboratory, questions, knowledge library. Earlier
+semester routes remain historical context. Preserve the established identity.
 
 ## Direction contract
 
-THESIS: A reader follows a real semester and moves from a source-linked idea to a
-computed example, their own prediction, and an experiment. Five calendars stay
-distinct; shared explanations are reused with explicit source mappings.
+THESIS: The slide is the main teaching artifact. A reader, presenter or teacher
+starts on it and opens an experiment, choice question or short definition only
+when useful, without losing their source-page context.
 
 OWN-WORLD: Local Arad, Persian RTL, the existing quiet blue and neutral light
 palette. Plain reading columns, visible section navigation, technical expressions
 isolated LTR. Source references occupy the margin, not the prose column.
 
-STORY: Choose a term, open a lesson, understand one mechanism, predict a result,
-run the corresponding small experiment, explain the result, then continue.
+STORY: Enter the current slide, move through its original and translation, then
+optionally inspect code, answer a choice question or look up a term and return.
 
-FIRST VIEWPORT: A compact course masthead and breadcrumb; the lesson title and
-opening in the reading column, source/page navigation in a narrower desktop
-margin. Mobile puts the source summary before the lesson and keeps controls in
-normal flow. The hub presents five semester rows with concrete topic differences.
+FIRST VIEWPORT: Compact course identity, university logo, four area controls and
+page navigation frame the original slide and Persian translation. A requested
+tool replaces the translation pane on desktop; mobile switches views. The
+presentation control gives the original slide the full content area. No lesson
+article or catalog stands between entry and the slide.
 
-FORM: The user-pinned semester → lesson → experiment structure; no visual-world
-replacement. Inherited design, readable content first, progressive laboratory
-loading. The signature interaction is a prediction followed by a real Python step
-whose weights, boundary and measured loss update together.
+FORM: Four areas around the source slide; no visual-world replacement. Short,
+commented notebook cells precede optional model sources. The signature
+interaction is an explicit Python run whose weights, boundary and measured loss
+update together. Saved versions and executable Jupyter exports support a learner
+presenting and explaining the same computation.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
 

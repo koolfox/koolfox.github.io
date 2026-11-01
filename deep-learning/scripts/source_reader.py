@@ -346,6 +346,10 @@ def load_source_translation(session_id, root=ROOT, require_reviewed=True, term_i
             require(type(number) is int and 1 <= number <= len(combined), 'Editorial note page outside source')
             require(note.get('verified') is True and note.get('kind') in {'arithmetic_correction', 'source_correction'}
                     and _specific_reason(note.get('fa')), 'Editorial note needs verified correction text')
+            references = note.get('references', [])
+            require(isinstance(references, list) and all(isinstance(ref, dict)
+                    and _nonempty(ref.get('label_fa')) and isinstance(ref.get('url'), str)
+                    and valid_url(ref['url']) for ref in references), 'Invalid editorial reference')
             combined[number-1].setdefault('editorial_notes', []).append(deepcopy(note))
     return {
         "schema_version": 1,

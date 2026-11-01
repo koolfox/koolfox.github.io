@@ -66,7 +66,9 @@ function renderTranslation(){
  for(const correction of record.editorial_notes||[]){
   const aside=element('aside','reader-limits reader-editorial');
   aside.append(element('h3','','یادداشت اصلاحی این مجموعه'));
-  const text=element('p');addText(text,correction.fa);aside.append(text);fragment.append(aside);
+  const text=element('p');addText(text,correction.fa);aside.append(text);
+  for(const reference of correction.references||[]){const url=safeExternal(reference.url);if(!url)continue;const a=element('a','reader-reference',reference.label_fa);a.href=url;a.target='_blank';a.rel='noopener noreferrer';const p=element('p');p.append(a);aside.append(p);}
+  fragment.append(aside);
  }
  if(!fragment.childNodes.length)fragment.append(element('p','reader-visual-only','این صفحه فقط تصویر دارد؛ اصل تصویر بدون تغییر در کنار آن نمایش داده می‌شود.'));
  persian.replaceChildren(fragment);persian.dataset.page=String(page);$('[data-source-text]').textContent=visibleEnglish(record);

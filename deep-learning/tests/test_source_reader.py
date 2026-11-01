@@ -163,6 +163,11 @@ class SourceReaderTests(unittest.TestCase):
         self.assertEqual(payload['pages'][0]['editorial_notes'], [note])
         self.assertEqual(payload['pages'][0]['blocks'], self.translation['pages'][0]['blocks'])
         self.assertEqual(payload['pages'][0]['lines'], self.source['pages'][0]['lines'])
+        note['references'] = [{'label_fa':'منبع اصلی', 'url':'javascript:alert(1)'}]
+        path.write_text(json.dumps(document))
+        with self.assertRaisesRegex(ValueError, 'Invalid editorial reference'):
+            self.load()
+        note.pop('references')
         note['verified'] = False
         path.write_text(json.dumps(document))
         with self.assertRaisesRegex(ValueError, 'verified correction'):

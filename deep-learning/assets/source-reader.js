@@ -79,6 +79,7 @@ function controls(){
  $('[data-page-count]').textContent=fa(config.pageCount);$('[data-zoom-out]').disabled=zoom<=1;$('[data-zoom-in]').disabled=zoom>=3;
  canvas.setAttribute('aria-label',`صفحهٔ ${fa(page)} از ${fa(config.pageCount)}، اصل اسلایدهای دانا گوراری`);
  $('[data-print]').disabled=renderedPage!==page;
+ $('[data-page-experiment]').hidden=!config.interactivePages?.includes(page);
 }
 function safeExternal(raw){try{const url=new URL(raw,new URL(config.pdfUrl,location.href));return ['http:','https:'].includes(url.protocol)?url.href:null;}catch{return null;}}
 async function destination(dest){
@@ -122,7 +123,7 @@ async function renderOriginal(){
  }catch(error){if(error?.name==='RenderingCancelledException'||closed||id!==serial)return;task=null;message('نمایش این صفحه کامل نشد. اصل PDF از پیوند بالای صفحه در دسترس است؛ صفحه را دوباره انتخاب کن.',true);}
 }
 function go(number,update=true){
- if(!Number.isInteger(number))return;page=clamp(number);renderedPage=0;controls();renderTranslation();
+ if(!Number.isInteger(number))return;const closeExplore=document.body.dataset.readerSection==='explore'&&number!==page;page=clamp(number);if(closeExplore)selectSection('slides');renderedPage=0;controls();renderTranslation();
  try{localStorage.setItem('danna-slide-position:v1',JSON.stringify({term:config.term,session:config.session,page}));}catch{}
  if(update)history.replaceState(null,'',`#page=${page}`);renderOriginal();
 }
@@ -131,12 +132,13 @@ function selectSection(section){
  const slides=section==='slides',translation=$('#translation-panel'),tools=document.querySelector('.reader-tools-panel'),frame=$('[data-reader-tools-frame]');
  document.body.dataset.readerSection=section;document.body.dataset.sourceOnly='false';$('[data-source-only-toggle]').setAttribute('aria-pressed','false');
  translation.hidden=!slides;tools.hidden=slides;
- document.querySelectorAll('[data-reader-section]').forEach(item=>{if(item!==document.body)item.setAttribute('aria-pressed',String(item.dataset.readerSection===section));});
- if(!slides){const next=section==='knowledge'?config.knowledgeUrl:config.practiceUrl+(section==='questions'?'#questions':'#code');if(frame.getAttribute('src')!==next)frame.src=next;}
+ document.querySelectorAll('[data-reader-section]').forEach(item=>{if(item!==document.body)item.setAttribute('aria-pressed',String(item.dataset.readerSection===(section==='explore'?'lab':section)));});
+ if(!slides){const next=section==='knowledge'?config.knowledgeUrl:config.practiceUrl+(section==='explore'?'?source-page='+page+'#code':section==='questions'?'#questions':'#code');if(frame.getAttribute('src')!==next)frame.src=next;}
  renderOriginal();
 }
 document.querySelectorAll('.reader-sections [data-reader-section]').forEach(button=>button.addEventListener('click',event=>{event.preventDefault();selectSection(button.dataset.readerSection);}));
 document.querySelectorAll('.reader-sections a[role=button]').forEach(button=>button.addEventListener('keydown',event=>{if(event.key===' '){event.preventDefault();button.click();}}));
+$('[data-page-experiment]').addEventListener('click',()=>selectSection('explore'));
 $('[data-source-only-toggle]').addEventListener('click',()=>{const sourceOnly=document.body.dataset.sourceOnly!=='true';selectSection('slides');document.body.dataset.sourceOnly=String(sourceOnly);if(sourceOnly)zoom=1;$('#translation-panel').hidden=sourceOnly;$('[data-source-only-toggle]').setAttribute('aria-pressed',String(sourceOnly));renderOriginal();});
 window.addEventListener('message',event=>{if(event.origin!==location.origin||event.source!==$('[data-reader-tools-frame]').contentWindow||event.data?.type!=='danna-source-page'||!Number.isInteger(event.data.page))return;go(event.data.page);if(matchMedia('(max-width:760px)').matches)selectSection('slides');});
 $('[data-prev-page]').addEventListener('click',()=>go(page-1));$('[data-next-page]').addEventListener('click',()=>go(page+1));picker.addEventListener('change',()=>go(Number(picker.value)));

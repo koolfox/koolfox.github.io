@@ -49,7 +49,7 @@ test('earlier-cell edits drive controls, failed prefixes preserve the plot, and 
   test.setTimeout(150000);await openBook(page);
   const editor=page.locator('[data-notebook-code]').first();
   await editor.fill((await page.evaluate(()=>window.labNotebook.cells[0].source)).replace('"learning_rate": 0.03','"learning_rate": 0.07'));
-  await page.locator('.nb-tools summary').click();await page.getByLabel('نام نسخه',{exact:true}).fill('نرخ ۰٫۰۷');await page.locator('[data-notebook-save]').click();
+  await page.locator('.nb-tools:not(.nb-packages) summary').click();await page.getByLabel('نام نسخه',{exact:true}).fill('نرخ ۰٫۰۷');await page.locator('[data-notebook-save]').click();
   await run(page);await expect.poll(()=>page.evaluate(()=>window.labWorkspace.liveState()?.config.learning_rate)).toBe(.07);
   const before=await page.evaluate(()=>window.labWorkspace.liveState().weights);
   await page.locator('[data-notebook-code]').nth(3).fill('raise ValueError("check cell four")\n');
@@ -140,4 +140,65 @@ test('notebook cells stack in document order with highlighted Python and working
   expect((await page.evaluate(()=>window.studentNotebook.cells)).at(-1).source).toBe('print');
   await page.reload();
   expect((await page.evaluate(()=>window.studentNotebook?.cells)).at(-1).source).toBe('print');
+});
+
+test('automatic Python analysis completes standard library attributes and types defined in earlier cells without running them',async({page})=>{
+  test.setTimeout(90000);
+  await page.goto('/deep-learning/terms/spring-2026/s01/practice/');
+  await page.locator('[data-notebook-add]').click();
+  let editor=page.locator('[data-notebook-code]').last();
+  await editor.fill('import math\nmath.');await editor.pressSequentially('sq');
+  await expect(page.getByRole('option').filter({hasText:/^sqrt/}).first()).toBeVisible({timeout:60000});
+  await editor.press('Escape');
+  await editor.fill('class Learner:\n    def predict(self):\n        return 1\nlearner = Learner()\n');
+  await page.locator('[data-notebook-add]').click();editor=page.locator('[data-notebook-code]').last();
+  await editor.fill('learner.');await editor.pressSequentially('pre');
+  await expect(page.getByRole('option').filter({hasText:/^predict/}).first()).toBeVisible({timeout:20000});
+  expect(await page.evaluate(()=>window.studentNotebook.record)).toBeNull();
+});
+
+test('optional packages install in practice and the actual laboratory and export pinned requirements',async({page})=>{
+  test.skip(process.env.CHECK_PYTHON_PACKAGES!=='1','Optional online Pyodide package installation is verified separately.');
+  test.setTimeout(240000);
+  for(const laboratory of [false,true]) {
+    if(laboratory)await openBook(page);
+    else await page.goto('/deep-learning/terms/spring-2026/s01/practice/');
+    await page.locator('.nb-packages summary').click();await page.getByLabel('بسته‌های مورد نیاز').fill('numpy');
+    await page.locator('[data-notebook-install]').click();await expect(page.locator('.nb-packages')).toContainText('numpy==2.0.2',{timeout:120000});
+    await page.locator('[data-notebook-add]').click();
+    await page.locator('[data-notebook-code]').last().fill('import numpy as np\nresult = {"sum": int(np.array([1, 2, 3]).sum())}\n');
+    await page.locator('[data-notebook-run-all]').click();
+    await page.waitForFunction(native=>(native?window.labNotebook:window.studentNotebook)?.record?.ok,laboratory,{timeout:30000});
+    const result=await page.evaluate(native=>(native?window.labNotebook:window.studentNotebook).record.outputs.at(-1).result,laboratory);
+    expect(result.sum).toBe(6);
+    await page.locator('.nb-tools:not(.nb-packages) summary').click();
+    const pending=page.waitForEvent('download');await page.locator('[data-notebook-download]').click();const zip=await(await pending).path();
+    expect(execFileSync('python3',['-c','import sys,zipfile; z=zipfile.ZipFile(sys.argv[1]); print(z.read("requirements.txt").decode())',zip],{encoding:'utf8'})).toContain('numpy==2.0.2');
+  }
+});
+
+test('only mapped slide pages offer exploration, and plotted weights respond to the actual notebook code',async({page})=>{
+  test.setTimeout(90000);await page.setViewportSize({width:1440,height:1000});
+  await page.goto('/deep-learning/terms/spring-2026/s13/slides/#page=28');
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+  await page.locator('[data-page-experiment]').click();
+  await expect(page.locator('#source-canvas')).toBeVisible();
+  const tools=page.frameLocator('[data-reader-tools-frame]');
+  await tools.locator('[data-notebook-run-all]').click();
+  const frame=page.frames().find(f=>f.url().includes('/practice/'));
+  await frame.waitForFunction(()=>window.studentNotebook?.record?.ok,null,{timeout:65000});
+  await tools.getByRole('button',{name:'وزن‌ها (weights)',exact:true}).click();
+  await tools.getByRole('button',{name:/^weights\[0\]/}).click();
+  await expect(tools.locator('.nb-result-readout').last()).toContainText('0.063378938333');
+  const editor=tools.locator('[data-notebook-code]').first();
+  const original=await frame.evaluate(()=>window.studentNotebook.cells[0].source);
+  await editor.fill(original.replace('query = [1, 0, 2]','query = [0, 0, 0]'));
+  await tools.locator('[data-notebook-run-all]').click();
+  await frame.waitForFunction(()=>window.studentNotebook?.record?.ok,null,{timeout:10000});
+  await tools.getByRole('button',{name:'وزن‌ها (weights)',exact:true}).click();
+  await tools.getByRole('button',{name:/^weights\[0\]/}).click();
+  await expect(tools.locator('.nb-result-readout').last()).toContainText('0.333333333333');
+  await page.locator('[data-page-select]').selectOption('1');
+  await expect(page.locator('body')).toHaveAttribute('data-reader-section','slides');
+  await expect(page.locator('[data-page-experiment]')).toBeHidden();
 });

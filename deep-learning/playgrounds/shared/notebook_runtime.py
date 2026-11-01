@@ -5,6 +5,7 @@ import traceback
 from copy import deepcopy
 
 from notebook_kernel import execute_cells, equivalent_configuration
+from notebook_support import install_packages
 
 
 def register_notebook(input, session, configuration, adopt):
@@ -12,6 +13,19 @@ def register_notebook(input, session, configuration, adopt):
     from shiny import reactive
 
     last_record = reactive.value(None)
+
+    @reactive.effect
+    @reactive.event(input.notebook_install, ignore_none=True)
+    async def install_notebook_packages():
+        request = input.notebook_install()
+        response = {"id": request.get("id"), "ok": False}
+        try:
+            if sys.platform != "emscripten":
+                raise RuntimeError("نصب بسته فقط در پایتون مرورگر انجام می‌شود.")
+            response.update(ok=True, packages=await install_packages(list(request["packages"])))
+        except Exception:
+            response["error"] = traceback.format_exc(limit=3)[-3000:]
+        await session.send_custom_message("danna_packages", response)
 
     @reactive.effect
     @reactive.event(input.notebook_run, ignore_none=True)

@@ -405,6 +405,11 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
         "practiceUrl": lesson + "practice/",
         "knowledgeUrl": BASE + "/knowledge/",
     }
+    if row.get("workshop"):
+        unit = row["workshop"]
+        pages = sorted({n for n in [unit.get("source_page"), *[q.get("source_page") for q in unit.get("questions", [])]] if type(n) is int and 1 <= n <= count})
+        if pages:
+            config["interactivePages"] = pages
     encoded = json.dumps(config, ensure_ascii=False).replace("<", "\\u003c")
     encoded = encoded.replace("\u2028", "\\u2028").replace("\u2029", "\\u2029")
     def e(value):
@@ -450,6 +455,7 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
 <button type="button" data-fullscreen>تمام‌صفحه</button>
 <button type="button" data-print>چاپ</button>
 <button type="button" data-source-only-toggle aria-pressed="false">نمای ارائه</button>
+<button type="button" data-page-experiment hidden>کاوش این اسلاید</button>
 <div class="reader-view-controls" role="group" aria-label="نمایش در صفحهٔ کوچک">
 <button type="button" data-view-source aria-pressed="true" aria-controls="original-panel">اصل اسلاید</button>
 <button type="button" data-view-translation aria-pressed="false" aria-controls="translation-panel">ترجمهٔ فارسی</button>

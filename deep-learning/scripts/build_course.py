@@ -802,6 +802,8 @@ def build(output, root=ROOT):
         "source-reader.css",
         "notebook.js", "notebook.css", "notebook_kernel.py", "notebook-worker.mjs",
         "practice.js", "practice.css", "knowledge.js",
+        "python-tools.js", "python-tools-worker.mjs", "notebook_support.py",
+        "notebook-results.js",
     ):
         if (root / "assets" / name).resolve() != (assets / name).resolve():
             shutil.copyfile(root / "assets" / name, assets / name)
@@ -816,7 +818,7 @@ def build(output, root=ROOT):
     from package_slides import declared_vendor_files, package_slides, package_source_readers
 
     if readers:
-        for vendor in ("pdfjs", "katex", "python-editor"):
+        for vendor in ("pdfjs", "katex", "python-editor", "python-tools"):
             for name in declared_vendor_files(root, vendor):
                 source = root / "assets/vendor" / vendor / name
                 target = assets / "vendor" / vendor / name

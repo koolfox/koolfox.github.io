@@ -76,9 +76,11 @@
  if(!window.Shiny){setTimeout(notebookBridge,50);return;}
  const origin=parent.location.origin;
  window.Shiny.addCustomMessageHandler('danna_notebook',value=>parent.postMessage({type:'danna-notebook-result',value},origin));
+ window.Shiny.addCustomMessageHandler('danna_packages',value=>parent.postMessage({type:'danna-packages-result',value},origin));
  window.addEventListener('message',event=>{
-  if(event.source!==parent||event.origin!==origin||event.data?.type!=='danna-notebook-run')return;
-  window.Shiny.setInputValue('notebook_run',event.data.request,{priority:'event'});
+  if(event.source!==parent||event.origin!==origin)return;
+  if(event.data?.type==='danna-notebook-run')window.Shiny.setInputValue('notebook_run',event.data.request,{priority:'event'});
+  if(event.data?.type==='danna-packages-install')window.Shiny.setInputValue('notebook_install',event.data.request,{priority:'event'});
  });
  window.Shiny.initializedPromise.then(()=>{window.deepLearningNotebookReady=true;});
 })();

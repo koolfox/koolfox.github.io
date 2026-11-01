@@ -1,4 +1,6 @@
 import {createPythonEditor} from './vendor/python-editor/editor.mjs';
+import {pythonTools} from './python-tools.js';
+import {renderNotebookResult} from './notebook-results.js';
 
 let notebookCount = 0;
 
@@ -63,7 +65,8 @@ export function mountNotebook(root, options) {
   const questions = options.questions || [];
   const defaults = structuredClone(options.cells), storageKey = 'danna:notebook:v1:' + options.key;
   const identity = 'notebook-' + (++notebookCount);
-  let cells = structuredClone(defaults), selected = 0, versions = [], answers = [], record = null;
+  let cells = structuredClone(defaults), selected = 0, versions = [], answers = [], record = null, packages = [];
+  let nativePackagesReady = false;
   let ready = false, busy = false, activeRequest = null, paused = false;
   try {
     const raw = localStorage.getItem(storageKey);
@@ -72,8 +75,10 @@ export function mountNotebook(root, options) {
       cells = saved.cells;
       answers = Array.isArray(saved.answers) ? saved.answers.map((value,index)=>Number.isInteger(value)&&value>=0&&value<(questions[index]?.options.length||0)?value:null) : [];
       versions = Array.isArray(saved.versions) ? saved.versions.filter(v => validCells(v.cells)).slice(-8) : [];
+      packages = Array.isArray(saved.packages) ? saved.packages.filter(p => typeof p === 'string' && /^[A-Za-z0-9_.-]+==[A-Za-z0-9_.+!-]+$/.test(p)).slice(0,12) : [];
     }
   } catch { /* Download remains available when browser storage is blocked. */ }
+  const services = pythonTools({getFiles: options.getFiles, packages});
 
   root.classList.add('student-notebook'); root.replaceChildren();
   const modes = node('div', 'nb-modes'), codeMode = node('button', '', 'سلول‌های کد');
@@ -110,12 +115,21 @@ export function mountNotebook(root, options) {
   for (const button of [saveVersion, exportBook]) button.type = 'button';
   exportBook.dataset.notebookDownload = ''; saveVersion.dataset.notebookSave = '';
   versionRow.append(versionName, saveVersion, versionPicker, exportBook); tools.append(summary, versionRow);
-  code.append(actions, status, hint, errorOutput, list, tools);
+  const packageTools = node('details', 'nb-tools nb-packages'), packageSummary = node('summary', '', 'بسته‌های پایتون');
+  const packageHelp = node('p', 'nb-status', 'نصب اختیاری با اینترنت؛ بستهٔ آمادهٔ Pyodide یا wheel سازگار Python. نام بسته یا نام==نسخه؛ چند نام با فاصله. بسته‌های این دفترچه پس از راه‌اندازی دوباره بازیابی می‌شوند.');
+  const packageRow = node('div', 'nb-version-tools'), packageInput = node('input');
+  packageInput.type = 'text'; packageInput.maxLength = 1200; packageInput.dir = 'ltr';
+  packageInput.placeholder = 'numpy scikit-learn'; packageInput.setAttribute('aria-label', 'بسته‌های مورد نیاز');
+  const install = node('button', '', 'نصب بسته‌ها'), clearPackages = node('button', '', 'پاک کردن فهرست');
+  install.type = clearPackages.type = 'button'; install.dataset.notebookInstall = '';
+  const packageStatus = node('p', 'nb-status'); packageStatus.setAttribute('role', 'status');
+  packageRow.append(packageInput, install, clearPackages); packageTools.append(packageSummary, packageHelp, packageRow, packageStatus);
+  code.append(actions, status, hint, errorOutput, list, tools, packageTools);
   root.append(modes, code, quiz);
 
   function message(text, error = false) { status.textContent = text; status.dataset.error = String(error); }
   function save() {
-    try { localStorage.setItem(storageKey, JSON.stringify({schema_version: 1, cells, versions, answers})); }
+    try { localStorage.setItem(storageKey, JSON.stringify({schema_version: 1, cells, versions, answers, packages})); }
     catch { message('ذخیرهٔ مرورگر ممکن نیست؛ پیش از بستن صفحه، نوت‌بوک را دریافت کن.', true); }
   }
   function controls() {
@@ -125,14 +139,16 @@ export function mountNotebook(root, options) {
     add.disabled = busy || cells.length >= 12;
     capture.disabled = !ready || busy; saveVersion.disabled = busy;
     versionPicker.disabled = busy || versions.length === 0;
+    install.disabled = packageInput.disabled = clearPackages.disabled = busy;
     stop.hidden = !busy; restart.hidden = !paused;
   }
   function showOutput() {
     cellRows.forEach((row, index) => {
       const value = record?.outputs?.find(item => item.index === index);
-      const pieces = value ? [value.stdout, value.error, value.result === null || value.result === undefined ? '' : JSON.stringify(value.result, null, 2)] : [];
+      const pieces = value ? [value.stdout, value.error] : [];
       const text = pieces.filter(Boolean).join('\n');
       row.output.textContent = text; row.output.hidden = !text;
+      renderNotebookResult(row.results,value?.result);
       row.execution.textContent = value ? (value.error ? 'خطا' : 'اجرا شد') : 'اجرا نشده';
     });
     errorOutput.textContent = record?.error || ''; errorOutput.hidden = !record?.error;
@@ -156,14 +172,19 @@ export function mountNotebook(root, options) {
       bar.append(title, execution, runCell, resetCell);
       const editorHost = node('div', 'nb-cell-editor'), output = node('pre', 'nb-output');
       output.dir = 'ltr'; output.hidden = true; output.dataset.notebookOutput = String(index);
-      section.append(bar, editorHost, output); list.append(section);
+      const results = node('div', 'nb-result');results.hidden=true;
+      section.append(bar, editorHost, output, results); list.append(section);
       const editor = createPythonEditor(editorHost, {source: cell.source, label: `کد سلول ${number} پایتون`,
         getSource: () => cells.map(item => item.source).join('\n'),
+        complete: (source, line, column) => services.complete({
+          source: [...cells.slice(0,index).map(item=>item.source),source,...cells.slice(index+1).map(item=>item.source)].join('\n'),
+          line: line + cells.slice(0,index).reduce((count,item)=>count+item.source.split('\n').length,0), column,
+        }),
         onFocus: () => { selected = index; },
         onChange: source => { cells[index].source = source; selected = index; changed(); },
         onRun: async advance => { if (await run(index) && advance && index + 1 < cells.length) focusCell(index + 1); },
       });
-      editors.push(editor); cellRows.push({run: runCell, reset: resetCell, execution, output});
+      editors.push(editor); cellRows.push({run: runCell, reset: resetCell, execution, output, results});
     });
     showOutput(); controls();
   }
@@ -188,7 +209,11 @@ export function mountNotebook(root, options) {
     const id = crypto.randomUUID(); activeRequest = id;
     message(`در حال اجرای سلول‌های ۱ تا ${until + 1}…`);
     try {
-      const result = await options.execute({id, cells: structuredClone(cells), until}, message);
+      if (options.installPackages && packages.length && !nativePackagesReady) {
+        message('در حال بازیابی بسته‌های این دفترچه…'); await options.installPackages(packages); nativePackagesReady = true;
+      }
+      const request = {id, cells: structuredClone(cells), until};
+      const result = await (options.execute ? options.execute(request, message) : services.execute(request));
       if (activeRequest !== id) return;
       record = result; showOutput();
       if (!result.ok) message('پایتون خطا داد؛ شمارهٔ سلول و خط را در خروجی بخوان، اصلاح کن و دوباره اجرا کن.', true);
@@ -199,19 +224,43 @@ export function mountNotebook(root, options) {
   }
   add.addEventListener('click', () => { if (cells.length >= 12) return; cells.push({title: 'آزمایش من', source: '# یک تغییر کوچک را اینجا بررسی کن.\n'}); selected = cells.length - 1; changed(); draw(); focusCell(selected); });
   runAll.addEventListener('click', () => run(cells.length - 1));
-  stop.addEventListener('click', () => { activeRequest = null; busy = false; controls(); options.stop?.(); message('اجرا متوقف شد؛ کدها حفظ شده‌اند.'); });
+  stop.addEventListener('click', () => { activeRequest = null; busy = false; services.stop(); controls(); options.stop?.(); message('اجرا متوقف شد؛ کدها حفظ شده‌اند.'); });
   restart.addEventListener('click', () => options.restart?.());
   capture.addEventListener('click', () => { try { cells[0].source = options.capture(cells[0].source); selected = 0; changed(); draw(); } catch (error) { message(error.message, true); } });
   codeMode.addEventListener('click', () => mode('code')); quizMode.addEventListener('click', () => mode('quiz'));
   modes.addEventListener('keydown', event => { if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key) || quizMode.hidden) return; event.preventDefault(); const next = event.key === 'Home' ? 'code' : event.key === 'End' ? 'quiz' : code.hidden ? 'code' : 'quiz'; mode(next); (next === 'code' ? codeMode : quizMode).focus(); });
   saveVersion.addEventListener('click', () => {
-    versions.push({name: versionName.value.trim() || `نسخهٔ ${versions.length + 1}`, cells: structuredClone(cells), saved_at_utc: new Date().toISOString()});
+    versions.push({name: versionName.value.trim() || `نسخهٔ ${versions.length + 1}`, cells: structuredClone(cells), packages: [...packages], saved_at_utc: new Date().toISOString()});
     versions = versions.slice(-8); save(); drawVersions(); message('نسخهٔ کد ذخیره شد؛ بازیابی آن اجرای خودکار ندارد.');
   });
-  versionPicker.addEventListener('change', () => { if (!versionPicker.value) return; cells = structuredClone(versions[Number(versionPicker.value)].cells); selected = 0; changed(); draw(); });
+  versionPicker.addEventListener('change', () => {
+    if (!versionPicker.value) return;
+    const version = versions[Number(versionPicker.value)];cells = structuredClone(version.cells);
+    if(Array.isArray(version.packages))packages=version.packages.filter(p=>typeof p==='string'&&/^[A-Za-z0-9_.-]+==[A-Za-z0-9_.+!-]+$/.test(p)).slice(0,12);
+    services.stop();services.setPackages(packages);nativePackagesReady=false;showPackages();selected = 0; changed(); draw();
+  });
+  function showPackages() {
+    packageStatus.textContent = packages.length ? packages.join(' · ') : 'بستهٔ اضافه‌ای برای این دفترچه انتخاب نشده است.';
+    packageStatus.dir = packages.length ? 'ltr' : 'rtl';
+  }
+  install.addEventListener('click', async () => {
+    const requested = packageInput.value.trim().split(/[\s,،]+/).filter(Boolean);
+    if (!requested.length) { packageStatus.textContent = 'ابتدا نام بسته را وارد کن.'; return; }
+    busy = true; controls(); packageStatus.textContent = 'در حال دریافت و نصب بسته‌ها…';
+    try {
+      const actual = options.installPackages ? await options.installPackages(requested) : null;
+      const analyzed = await services.install(actual || requested);
+      packages = [...new Map([...packages,...(actual || analyzed)].map(p=>[p.split('==')[0].toLowerCase().replace(/[-_.]+/g,'-'),p])).values()].slice(-12);
+      services.setPackages(packages);
+      nativePackagesReady = true; record = null; showOutput(); save(); showPackages();
+      message('بسته‌ها نصب شدند؛ اکنون import را در سلول بنویس و اجرا کن.');
+    } catch (error) { packageStatus.textContent = 'نصب انجام نشد؛ نام/نسخه و سازگاری wheel با مرورگر را بررسی کن. ' + error.message; }
+    finally { busy = false; controls(); }
+  });
+  clearPackages.addEventListener('click', () => { packages = []; nativePackagesReady = false; services.stop(); services.setPackages(packages);save(); showPackages(); message('فهرست بازیابی خالی شد؛ بستهٔ بارشدهٔ آزمایشگاه تا راه‌اندازی دوباره در محیط فعلی می‌ماند.'); });
   exportBook.addEventListener('click', async () => {
     try {
-      const notebook = {nbformat: 4, nbformat_minor: 5, metadata: {kernelspec: {display_name: 'Python 3', language: 'python', name: 'python3'}, language_info: {name: 'python', ...(record?.python ? {version: record.python} : {})}}, cells: []};
+      const notebook = {nbformat: 4, nbformat_minor: 5, metadata: {kernelspec: {display_name: 'Python 3', language: 'python', name: 'python3'}, language_info: {name: 'python', ...(record?.python ? {version: record.python} : {})}, learning_requirements: packages}, cells: []};
       for (let index = 0; index < cells.length; index++) {
         const cell = cells[index], actual = record?.outputs?.find(item => item.index === index), outputs = [];
         if (actual?.stdout) outputs.push({output_type: 'stream', name: 'stdout', text: actual.stdout});
@@ -221,6 +270,7 @@ export function mountNotebook(root, options) {
       }
       const name = options.filename || 'learning-notebook', files = {...(await options.getFiles?.() || {})};
       if (options.license_text) files['LICENSE.txt'] = options.license_text;
+      if (packages.length) files['requirements.txt'] = packages.join('\n') + '\n';
       files[name + '.ipynb'] = JSON.stringify(notebook, null, 2);
       const sourceHashes = {};
       for (const [filename, source] of Object.entries(files)) {
@@ -228,7 +278,7 @@ export function mountNotebook(root, options) {
         sourceHashes[filename] = [...new Uint8Array(hash)].map(byte => byte.toString(16).padStart(2, '0')).join('');
       }
       files['notebook-execution.json'] = JSON.stringify({schema_version: 1, notebook: options.key, execution: record, source_files_sha256: sourceHashes, exported_at_utc: new Date().toISOString()}, null, 2);
-      files['README.txt'] = 'پوشه را استخراج کن و فایل .ipynb را با Jupyter باز کن. فایل‌های .py را کنار آن نگه دار و سلول‌ها را از ابتدا به ترتیب اجرا کن. مثال‌های پایه فقط به کتابخانهٔ استاندارد Python 3.11 یا جدیدتر نیاز دارند. سلول ویرایش‌شده تا اجرای دوباره خروجی ذخیره‌شده ندارد. مجوز کد در LICENSE.txt است.\n';
+      files['README.txt'] = 'پوشه را استخراج کن و فایل .ipynb را با Jupyter باز کن. فایل‌های .py را کنار آن نگه دار و سلول‌ها را از ابتدا به ترتیب اجرا کن. مثال‌های پایه فقط به کتابخانهٔ استاندارد Python 3.11 یا جدیدتر نیاز دارند. اگر requirements.txt وجود دارد، ابتدا python -m pip install -r requirements.txt را در محیط ژوپیتر اجرا کن. سلول ویرایش‌شده تا اجرای دوباره خروجی ذخیره‌شده ندارد. مجوز کد در LICENSE.txt است.\n';
       const zip = storedZip(files); download(name + '.zip', zip, 'application/zip');
     } catch (error) { message('دریافت نوت‌بوک انجام نشد: ' + error.message, true); }
   });
@@ -261,7 +311,7 @@ export function mountNotebook(root, options) {
     const sample = node('pre', 'nb-output', options.tip.code); sample.dir = 'ltr';
     details.append(summary, sample); tip.append(details); quiz.append(tip);
   }
-  mode('code'); drawVersions(); draw();
+  mode('code'); drawVersions(); draw(); showPackages();
   return {
     setReady(value) { ready = Boolean(value); controls(); },
     setPaused(value) { paused = Boolean(value); controls(); },

@@ -11,6 +11,20 @@ const topicSets={
 let original=[],files=[],selection='',stored={},ready=false,wasReady=false,deadline,interval;
 const topics=topicSets[lab];
 let notebook=null,notebookSpec=null,appliedFiles=[],notebookRequest=null;
+let packageRequest=null;
+function installPackages(packages){
+ return new Promise((resolve,reject)=>{
+  const frame=liveFrame();if(!frame?.contentWindow.deepLearningNotebookReady){reject(Error('پایتون هنوز آماده نیست.'));return;}
+  const id=crypto.randomUUID(),timer=setTimeout(()=>{packageRequest=null;reject(Error('دریافت بسته طول کشید؛ اتصال یا پیام‌های پایتون را بررسی کن.'));},120000);
+  packageRequest={id,resolve,reject,timer};frame.contentDocument.getElementById('pause')?.click();
+  frame.contentWindow.postMessage({type:'danna-packages-install',request:{id,packages}},location.origin);
+ });
+}
+window.addEventListener('message',event=>{
+ if(event.origin!==location.origin||event.source!==liveFrame()?.contentWindow||event.data?.type!=='danna-packages-result'||event.data.value?.id!==packageRequest?.id)return;
+ const waiting=packageRequest;packageRequest=null;clearTimeout(waiting.timer);
+ event.data.value.ok?waiting.resolve(event.data.value.packages):waiting.reject(Error(event.data.value.error));
+});
 function editorMode(mode,persistChoice=true){
  $('[data-notebook-pane]').hidden=mode!=='notebook';$('[data-source-pane]').hidden=mode!=='source';
  $('[data-notebook-mode]').setAttribute('aria-pressed',String(mode==='notebook'));$('[data-source-mode]').setAttribute('aria-pressed',String(mode==='source'));
@@ -84,7 +98,7 @@ async function boot(){
  try{
   const response=await fetch('./notebook.json'+assetQuery);if(!response.ok)throw Error();notebookSpec=await response.json();
   notebook=mountNotebook($('[data-notebook-pane]'),{...notebookSpec,key:'lab/'+lab,filename:lab,
-   execute:runNotebook,capture:notebookConfig,stop:()=>restart(true),restart:()=>restart(false),
+   execute:runNotebook,installPackages,capture:notebookConfig,stop:()=>restart(true),restart:()=>restart(false),
    getFiles:()=>Object.fromEntries(appliedFiles.filter(file=>notebookSpec.source_files.includes(file.name)).map(file=>[file.name,file.content]))});
   window.labNotebook=notebook;
  }catch(error){ $('[data-notebook-mode]').disabled=true;message('دفترچه دریافت نشد؛ کد کامل در دسترس است.',true);console.error('Notebook initialization:',error); }
@@ -104,4 +118,4 @@ async function boot(){
 }
 window.labWorkspace={liveState,getFiles:()=>{persist();return structuredClone(files);},openCode:()=>showCode(true)};
 boot().catch(error=>message(error.message,true));
-window.addEventListener('pagehide',()=>{clearInterval(interval);clearTimeout(deadline);clearTimeout(notebookRequest?.timer);});
+window.addEventListener('pagehide',()=>{clearInterval(interval);clearTimeout(deadline);clearTimeout(notebookRequest?.timer);clearTimeout(packageRequest?.timer);});

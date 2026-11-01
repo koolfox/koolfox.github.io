@@ -132,7 +132,7 @@ test('network playground reproduces Python training and seals final test evaluat
   expect(actual.validation.loss).toBeCloseTo(expected.validation.loss,12);
   const predictions=await frame.evaluate(()=>window.dannaNetwork.state.points.map(p=>window.dannaNetwork.forward(p.x)));
   predictions.forEach((value,i)=>expect(value).toBeCloseTo(expected.predictions[i],11));
-  await frame.getByRole('tab',{name:'راهنما و آزمون',exact:true}).click();
+  await frame.getByRole('tab',{name:'روش محاسبه',exact:true}).click();
   await frame.getByRole('button',{name:'پایان آموزش و مشاهده آزمون',exact:true}).click();
   await frame.waitForFunction(()=>window.dannaNetwork.state.sealed);
   expect((await frame.evaluate(()=>window.dannaNetwork.state.test)).loss).toBeCloseTo(expected.final_test.loss,12);

@@ -156,7 +156,7 @@ class RegisteredSourceReaderTests(unittest.TestCase):
         self.write(self.root / f"data/metadata/{self.term}-slide-identity.json", {"records": originals})
         self.write(self.root / "data/metadata/source-readers.json", {"schema_version": 1, "terms": {self.term: ["s01", "s02"]}})
         self.write(self.root / "content/slide-reader-identity.json", {"supervisor_fa": "دکتر نگار مجمع"})
-        for name in ("course.css", "course.js", "workshops.js", "workshop-worker.mjs", "source-reader.js", "source-reader.css",
+        for name in ("course.css", "course.js", "workshops.js", "workshop-worker.mjs", "source-reader.js", "slide-content.js", "source-reader.css",
                      "university-logo.png", "university-logo.source.json", "vendor/pyodide.mjs", "vendor/pyodide-LICENSE.json",
                      "notebook.js", "notebook.css", "notebook_kernel.py", "notebook-worker.mjs", "practice.js", "practice.css", "knowledge.js",
                      "python-tools.js", "python-tools-worker.mjs", "notebook_support.py", "notebook-results.js"):

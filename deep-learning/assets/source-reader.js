@@ -1,5 +1,5 @@
 import {getDocument,GlobalWorkerOptions} from './vendor/pdfjs/pdf.min.mjs';
-import katex from './vendor/katex/katex.mjs';
+import {addText, math, renderBlocks} from './slide-content.js';
 
 const $=s=>document.querySelector(s),config=JSON.parse($('#source-reader-config').textContent);
 const canvas=$('#source-canvas'),links=$('#source-links'),persian=$('#persian-page'),status=$('[data-reader-status]');
@@ -21,34 +21,10 @@ function visibleEnglish(record){
  for(const item of record.image_text||[])if(item.en)lines.push(item.en);
  return lines.join('\n');
 }
-function addText(parent,text){
- const pattern=/https?:\/\/[^\s<>"\u0600-\u06ff]+|\([^\u0600-\u06ff()\n]*\)|[A-Za-z0-9α-ωΑ-Ω∂∇Σ∑√σŷ][A-Za-z0-9α-ωΑ-Ω∂∇Σ∑√σŷ₀-₉⁰-⁹_+−=<>≤≥×*/.,:;\[\]{}^% \t\-]*/g;
- let end=0;
- for(const match of text.matchAll(pattern)){
-  parent.append(document.createTextNode(text.slice(end,match.index)));
-  const token=match[0];
-  if(/^https?:/.test(token)){
-   let url=token;while(/[.,;،؛]$/.test(url)||(/\)$/.test(url)&&(url.match(/\)/g)||[]).length>(url.match(/\(/g)||[]).length))url=url.slice(0,-1);
-   try{const parsed=new URL(url);if(!['http:','https:'].includes(parsed.protocol))throw Error();const a=element('a','reader-reference',url);a.href=parsed.href;a.target='_blank';a.rel='noopener noreferrer';a.dir='ltr';parent.append(a,document.createTextNode(token.slice(url.length)));}catch{parent.append(document.createTextNode(token));}
-  }else{const bdi=element('bdi','',token.trimEnd());bdi.dir='ltr';parent.append(bdi,document.createTextNode(token.slice(token.trimEnd().length)));}
-  end=match.index+token.length;
- }
- parent.append(document.createTextNode(text.slice(end)));
-}
-function math(parent,item){
- const div=element('div','reader-math');div.dir='ltr';
- if(item.latex){try{katex.render(item.latex,div,{displayMode:true,throwOnError:true,trust:false,strict:'error'});div.dataset.typeset='true';}catch{div.textContent=item.fa;div.dataset.mathError='true';}}
- else div.textContent=item.fa;
- parent.append(div);
-}
 function renderTranslation(){
  if(!payload)return;
  const record=payload.pages[page-1],fragment=document.createDocumentFragment();
- for(const block of record.blocks){
-  if(block.kind==='not_visible')continue;
-  if(block.latex||block.kind==='math'){math(fragment,block);continue;}
-  const node=element(block.kind==='heading'?'h3':'p','reader-copy '+block.kind);addText(node,block.fa);fragment.append(node);
- }
+ renderBlocks(fragment,record.blocks);
  if(record.image_text?.length){
   const section=element('section','reader-image-labels');section.setAttribute('aria-label','ترجمهٔ نوشته‌ها و برچسب‌های تصویر');
   for(const item of record.image_text){

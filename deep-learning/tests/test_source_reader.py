@@ -438,13 +438,14 @@ class SourceReaderTests(unittest.TestCase):
         parser = ReaderParser()
         parser.feed(html)
         config = json.loads(parser.config)
+        translation_url = config.pop("translationUrl")
+        self.assertRegex(translation_url, rf"^/deep-learning/source-translations/{self.term_id}/s01.json\?v=[a-f0-9]{{16}}$")
         self.assertEqual(
             config,
             {
                 "term": self.term_id,
                 "session": "s01",
                 "pdfUrl": payload["source"]["local_url"],
-                "translationUrl": f"/deep-learning/source-translations/{self.term_id}/s01.json",
                 "practiceUrl": f"/deep-learning/terms/{self.term_id}/s01/practice/",
                 "knowledgeUrl": "/deep-learning/knowledge/",
                 "pageCount": 2,
@@ -526,6 +527,25 @@ class SourceReaderTests(unittest.TestCase):
         self.assertIn(self.license_notice.split(";")[0], html)
         self.assertEqual(json.loads(parser.config)["term"], self.term_id)
         self.assertIn(f"/deep-learning/terms/{self.term_id}/s01/", html)
+
+    def test_typography_requires_the_exact_source_and_page_identity(self):
+        record = {"schema_version": 1, "term_id": self.term_id, "session_id": "s01",
+                  "source_sha256": self.source["source"]["sha256"],
+                  "pages": [{"number": page["number"], "source_text_sha256": page["source_text_sha256"],
+                             "lines": [{"index": 0, "color": "#ffc000", "bold": True}] if page["number"] == 1 else []}
+                            for page in self.source["pages"]]}
+        path = self.root / f"content/source-typography/{self.term_id}/s01.json"
+        path.parent.mkdir(parents=True)
+        path.write_text(json.dumps(record))
+        self.assertEqual(self.load()["pages"][0]["blocks"][0]["presentation"], {"color": "#ffc000", "bold": True})
+        record["pages"][0]["source_text_sha256"] = "0" * 64
+        path.write_text(json.dumps(record))
+        with self.assertRaisesRegex(ValueError, "Stale typography page"):
+            self.load()
+        record["source_sha256"] = "0" * 64
+        path.write_text(json.dumps(record))
+        with self.assertRaisesRegex(ValueError, "Stale source typography identity"):
+            self.load()
 
 
 class Spring2026SourceReaderTests(SourceReaderTests):

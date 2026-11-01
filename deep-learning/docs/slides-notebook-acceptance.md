@@ -160,9 +160,60 @@ unchanged. These copy changes introduce no new visual-system rule;
 `DESIGN.md` and `.impeccable/design.json` retain the hashes recorded above.
 
 The final copy passed 133 native tests. The earlier full browser result remains
-73 passing tests on v11. Separately, the latest head's full deep-learning check
-(57 tests) and Pages PR check succeeded (runs `41297571512` and `41297571539`); this does not
+73 passing tests on v11. Separately, the latest head's full deep-learning check and Pages PR check succeeded (runs `41297571512` and `41297571539`); this does not
 establish a v15 browser result. Focused browser checks for v15 have not yet been
 reported at this update. PR #70 deployment and current live publication remain
 pending. The v14 visual verdict, v15 native result, PR checks and publication
 boundary are distinct evidence layers.
+
+## Source-faithful typography extension — v26
+
+Artifact: `/private/tmp/danna-student-studio-v26`. This local extension follows
+the updated product and surface brief within the incumbent Arad/RTL/light
+identity. `DESIGN.md` and `.impeccable/design.json` remain unchanged at their
+recorded hashes. Observed renderer styles retain Persian body 17px/2 on desktop
+and 16px/2 on phones; image labels are 16px, English terms are 1em, and lists
+use semantic `ul`/`li` markup. Persian prose is RTL; numeric literals and
+mathematics have explicit LTR treatment. Sparse atomic source-graph labels are
+compact without changing their order.
+
+Exact source-PDF metadata spans all 21 files and 1,303 pages: 7,846 of 10,755
+lines have exact matches, including 3,200 styled lines: 1,985 whole-line colors, 145 bold,
+12 italic and 1,100 partial-accent lines (these categories can overlap). Matching is not fuzzy.
+Partial Persian least/most pairs have unique verified mappings; unmatched text
+uses the incumbent default. Bright source accents are adapted for text contrast
+of at least 4.5:1. These coverage counts do not claim recovery of every source
+word's color. Original PDF bytes remain unchanged.
+
+There are 45 newly explicit LaTeX expressions, 399 total; 14 date literals stay
+literal, and two source errors receive scientific clarification. Static Python
+tips use non-executing Lezer highlighting with code characters preserved;
+the three actual notebooks retain execution. This does not claim reconstruction
+of missing or unreadable image code or compatibility with every Python package.
+
+Internal image-review notes for 50 pages are hidden from the learner UI;
+42 image-label self-notes and old scientific-correction process suffixes were
+removed from displayed copy. Provenance and audit records remain. Translation,
+renderer and editor URLs carry hash queries to avoid stale caches.
+
+Validation supplied for this increment: 139 native tests and all 399 formula
+render/vendor checks passed; 14 focused v25 browser checks, including optional
+NumPy, and five final v26 checks passed. The latter cover all 21 source readers
+and 21 offline workshops, new typography/source fidelity, all three native
+notebooks and static code highlighting. These focused results supplement the
+earlier browser evidence; they are not a new full-suite claim.
+
+Six viewport captures, `quality-bar.md` and `type-findings.json` are in
+`../../.impeccable/review/slide-typography/`. The detector reports 21 advisory
+findings and zero non-advisory findings; these observations do not amend the
+normative tokens or canonize defects. The independent finish reviewer returned **ship**, with no material fixes
+after reviewing all six captures. PR #71's notes-cleanup Pages CI passed; PR #72 for
+typography has not yet been created. This entry records local evidence only,
+without claiming typography publication or a completed independent scientific
+audit.
+
+PR #70 was subsequently merged and published as
+`ff919052251c7534059d3990185906e294726ad1`: all 803 deep-learning manifest
+records matched, 171 actual file hashes matched and 10 public browser checks
+passed. This is release evidence for the notebook increment, separate from the
+current typography increment.

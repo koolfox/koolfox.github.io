@@ -88,3 +88,16 @@ Source citations now occupy one final «منابع» view per session, reachable
 page navigation after the last PDF page. Repeated PDF/source links and attribution
 chrome are removed. Learner copy uses «اسلاید» and contains no authoring/review
 chatter. Code comments explain calculations and relevant data assumptions.
+
+## Source typography refinement
+
+Keep the same Arad/light/RTL reader. Body remains 17px/2 on desktop and 16px/2 on
+phones; headings remain 23px/1.7 and 22px/1.7. Restore ordinary English terms to
+1em; use explicit LTR for Latin/numeric literal data and mathematics. Semantic
+lists replace printed bullet characters. Image-label copy uses 16px.
+
+Accent and weight data come from unique exact normalized PDF-line matches,
+with PDF/page SHA validation. Map bright source accents to a readable hue on
+white (4.5:1); preserve source English/emphasis pairing only when unambiguous.
+Unmatched lines receive the incumbent reading style. No review/legibility
+commentary is shown. Python tip snippets receive static, non-executing highlighting.

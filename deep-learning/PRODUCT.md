@@ -45,6 +45,12 @@ and build/review commentary from learner pages and displayed Python. Retain
 comments that teach the calculation, relevant data assumptions and licensing
 in resources and downloads.
 
+Persian slide typography uses semantic lists, RTL prose with isolated LTR data,
+source-derived emphasis/accessible accent colors, and explicit KaTeX mathematics.
+Only unique exact PDF-line matches supply formatting; never guess across
+ambiguous columns. Image legibility/extraction notes remain audit data and must
+not appear in reading content. Static Python tips use the notebook highlighter.
+
 Source questions and source media remain unchanged. Our own numeric questions
 are multiple choice; our essay prompts become explained code tips. Source
 translation, independent scientific review, CI, merge and public release remain

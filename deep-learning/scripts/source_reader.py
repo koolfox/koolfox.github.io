@@ -209,6 +209,54 @@ def _translation_page(source_page, translated_page, session, require_reviewed):
     return result
 
 
+def apply_source_typography(root, term_id, session_id, catalog, pages):
+    path = root / f"content/source-typography/{term_id}/{session_id}.json"
+    if not path.exists():
+        return
+    data = _document(path)
+    require(data.get("schema_version") == 1 and data.get("term_id") == term_id
+            and data.get("session_id") == session_id
+            and data.get("source_sha256") == catalog["sha256"], "Stale source typography identity")
+    records = data.get("pages")
+    require(isinstance(records, list) and len(records) == len(pages), "Incomplete source typography")
+    for page, record in zip(pages, records):
+        require(record.get("number") == page["number"]
+                and record.get("source_text_sha256") == page["source_text_sha256"], "Stale typography page")
+        entries = record.get("lines")
+        require(isinstance(entries, list), "Invalid typography lines")
+        styles = {}
+        for entry in entries:
+            index = entry.get("index")
+            require(type(index) is int and 0 <= index < len(page["lines"])
+                    and index not in styles, "Invalid typography line index")
+            if "color" in entry:
+                require(isinstance(entry["color"], str) and re.fullmatch(r"#[0-9a-fA-F]{6}", entry["color"]), "Invalid typography color")
+            for flag in ("bold", "italic"):
+                if flag in entry:
+                    require(type(entry[flag]) is bool, "Invalid typography emphasis")
+            accents = entry.get("accents", [])
+            require(isinstance(accents, list), "Invalid typography accents")
+            for accent in accents:
+                require(isinstance(accent, dict) and _nonempty(accent.get("text"))
+                        and isinstance(accent.get("color"), str)
+                        and re.fullmatch(r"#[0-9a-fA-F]{6}", accent["color"]), "Invalid typography accent")
+            styles[index] = entry
+        for block in page["blocks"]:
+            if block["kind"] == "not_visible":
+                continue
+            selected = [styles.get(index, {}) for index in block["source_lines"]]
+            presentation = {}
+            for key in ("color", "bold", "italic"):
+                values = [style.get(key) for style in selected]
+                if values and values[0] and all(value == values[0] for value in values):
+                    presentation[key] = values[0]
+            accents = [deepcopy(accent) for style in selected for accent in style.get("accents", [])]
+            if accents:
+                presentation["accents"] = accents
+            if presentation:
+                block["presentation"] = presentation
+
+
 def load_source_translation(session_id, root=ROOT, require_reviewed=True, term_id="spring-2022"):
     """Load one complete source/translation pair, rejecting stale or unreviewed data.
 
@@ -331,6 +379,7 @@ def load_source_translation(session_id, root=ROOT, require_reviewed=True, term_i
             f"{session_id}/page {number}: stale source text hash",
         )
         combined.append(_translation_page(page, translation, session_id, require_reviewed))
+    apply_source_typography(root, term_id, session_id, catalog, combined)
     notes_path = root / f'data/metadata/{term_id}-editorial-notes.json'
     if notes_path.exists():
         notes = _document(notes_path)
@@ -361,7 +410,7 @@ def load_source_translation(session_id, root=ROOT, require_reviewed=True, term_i
 
 
 def source_reader_page(term, row, identity, payload, asset_revision=""):
-    """Render a JS-enhanced reader shell; original PDF links work without JS."""
+    """Render the slide reader shell."""
     term_id = _validated_term(term.get("id"))
     session = row.get("id")
     require(
@@ -395,11 +444,12 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
         "Invalid reader source SHA-256",
     )
     lesson = f"{BASE}/terms/{term_id}/{session}/"
+    translation_version = hashlib.sha256(json.dumps(payload, ensure_ascii=False, sort_keys=True).encode()).hexdigest()[:16]
     config = {
         "term": term_id,
         "session": session,
         "pdfUrl": pdf,
-        "translationUrl": f"{BASE}/source-translations/{term_id}/{session}.json",
+        "translationUrl": f"{BASE}/source-translations/{term_id}/{session}.json?v={translation_version}",
         "pageCount": count,
         "sourceSha256": source["sha256"],
         "practiceUrl": lesson + "practice/",

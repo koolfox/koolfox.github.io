@@ -402,6 +402,8 @@ def source_reader_page(term, row, identity, payload):
         "translationUrl": f"{BASE}/source-translations/{term_id}/{session}.json",
         "pageCount": count,
         "sourceSha256": source["sha256"],
+        "practiceUrl": lesson + "practice/",
+        "knowledgeUrl": BASE + "/knowledge/",
     }
     encoded = json.dumps(config, ensure_ascii=False).replace("<", "\\u003c")
     encoded = encoded.replace("\u2028", "\\u2028").replace("\u2029", "\\u2029")
@@ -413,7 +415,7 @@ def source_reader_page(term, row, identity, payload):
         for n in range(1, count + 1)
     )
     workshop_link = (
-        f'<a href="{lesson}#workshop" data-session-workshop>کارگاه پایتون و پرسش‌وپاسخ</a>'
+        f'<a href="{lesson}practice/#code" data-reader-section="lab" data-session-workshop aria-pressed="false">آزمایشگاه</a><a href="{lesson}practice/#questions" data-reader-section="questions" aria-pressed="false">سؤال‌ها</a>'
         if row.get("workshop") else ""
     )
     return f'''<!doctype html>
@@ -424,16 +426,16 @@ def source_reader_page(term, row, identity, payload):
 <link rel="stylesheet" href="{BASE}/assets/course.css">
 <link rel="stylesheet" href="{BASE}/assets/source-reader.css">
 <link rel="stylesheet" href="{BASE}/assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="{BASE}/assets/practice.css">
 <script type="module" src="{BASE}/assets/source-reader.js"></script></head>
-<body class="source-reader" data-mobile-view="source">
+<body class="source-reader" data-mobile-view="source" data-reader-section="slides">
 <a class="skip" href="#reader">رفتن به اسلاید و ترجمه</a>
 <header class="reader-header">
-<div class="reader-heading"><a href="{lesson}">بازگشت به درس</a>
+<div class="reader-heading"><a href="{BASE}/terms/{term_id}/">فهرست اسلایدها</a>
 <p>{e(term.get('title_fa', TERM_TITLES[term_id]))}</p><h1>{e(title)}</h1>
 <p class="reader-instructor">استاد: دکتر نگار مجمع</p></div>
 <img class="deck-logo" src="{BASE}/assets/university-logo.png" alt="نشان مؤسسه آموزش عالی نقش جهان" width="100" height="104">
-<nav aria-label="منابع و تمرین جلسه"><a href="{pdf}" download="{session}.pdf" data-original-download>دریافت PDF اصلی</a>
-{workshop_link}</nav>
+<nav class="reader-sections" aria-label="بخش‌های درس"><button type="button" data-reader-section="slides" aria-pressed="true">اسلاید</button>{workshop_link}<a href="{BASE}/knowledge/" data-reader-section="knowledge" aria-pressed="false">کتابخانهٔ دانش</a></nav>
 </header>
 <main id="reader">
 <div class="reader-toolbar" aria-label="کنترل‌های مطالعه">
@@ -445,6 +447,7 @@ def source_reader_page(term, row, identity, payload):
 <button type="button" data-zoom-in aria-label="بزرگ‌نمایی">+</button>
 <button type="button" data-fullscreen>تمام‌صفحه</button>
 <button type="button" data-print>چاپ</button>
+<button type="button" data-source-only-toggle aria-pressed="false">نمای ارائه</button>
 <div class="reader-view-controls" role="group" aria-label="نمایش در صفحهٔ کوچک">
 <button type="button" data-view-source aria-pressed="true" aria-controls="original-panel">اصل اسلاید</button>
 <button type="button" data-view-translation aria-pressed="false" aria-controls="translation-panel">ترجمهٔ فارسی</button>
@@ -462,11 +465,12 @@ def source_reader_page(term, row, identity, payload):
 <h2 id="translation-heading">ترجمهٔ فارسی همین صفحه</h2><div id="persian-page" dir="rtl"></div>
 <details class="reader-source-text"><summary>متن انگلیسی قابل مشاهده در این صفحه</summary>
 <div data-source-text lang="en" dir="ltr"></div></details>
-</section></div>
+</section><section class="reader-tools-panel" aria-label="ابزار کنار اسلاید" hidden><iframe title="ابزار انتخابی درس" data-reader-tools-frame></iframe></section></div>
 <noscript><p>برای نمایش هم‌زمان صفحات و ترجمه، جاوااسکریپت لازم است. <a href="{pdf}">اصل PDF را باز کنید</a>.</p></noscript>
 </main>
 <footer class="reader-attribution"><p>اسلایدهای اصلی: دانا گوراری (<bdi lang="en" dir="ltr">Danna Gurari</bdi>)، دانشگاه کلرادو بولدر.</p>
 <p>{e(source.get('license_notice', ''))} · اعتبارها و ارجاع‌های اصلی در خود PDF حفظ شده‌اند.</p>
+<a class="reader-download" href="{pdf}" download="{session}.pdf" data-original-download>دریافت PDF اصلی</a>
 <a href="{e(source['url'])}" target="_blank" rel="noopener noreferrer">منبع رسمی PDF اصلی</a>
 <span aria-hidden="true"> · </span><a href="{BASE}/sources/">منابع و وضعیت بررسی</a></footer>
 <script id="source-reader-config" type="application/json">{encoded}</script>

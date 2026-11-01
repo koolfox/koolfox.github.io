@@ -84,11 +84,14 @@ def _bundle_html(text, name, names):
     )
     def config(match):
         value = json.loads(match[2])
-        for key in ("pdfUrl", "translationUrl"):
-            value[key] = _bundle_url(value[key], name, names)
+        for key in ("pdfUrl", "translationUrl", "practiceUrl", "knowledgeUrl", "reader", "source_url"):
+            if key in value:
+                value[key] = _bundle_url(value[key], name, names)
+        for lab in value.get("related_labs", []):
+            lab["url"] = _bundle_url(lab["url"], name, names)
         return match[1] + json.dumps(value, ensure_ascii=False).replace("<", "\\u003c") + match[3]
     return re.sub(
-        r'(<script\b[^>]*\bid="source-reader-config"[^>]*>)(.*?)(</script>)',
+        r'(<script\b[^>]*\bid="(?:source-reader-config|practice-config)"[^>]*>)(.*?)(</script>)',
         config, text, flags=re.DOTALL,
     )
 
@@ -150,6 +153,9 @@ def package_source_readers(output, term_id, sessions, root=ROOT):
     for session, payload in payloads.items():
         route = f"terms/{term_id}/{session}/slides/index.html"
         add("deep-learning/" + route, output / route)
+        practice = f"terms/{term_id}/{session}/practice/index.html"
+        if (output / practice).exists():
+            add("deep-learning/" + practice, output / practice)
         translated = f"source-translations/{term_id}/{session}.json"
         add("deep-learning/" + translated, output / translated)
         if json.loads(files["deep-learning/" + translated]) != payload:
@@ -157,8 +163,10 @@ def package_source_readers(output, term_id, sessions, root=ROOT):
         links.append(f'<li><a href="/deep-learning/{route}">{escape(rows[session]["title_fa"])}</a></li>')
     for name in ("course.css", "course.js", "workshops.js", "workshop-worker.mjs",
                  "source-reader.js", "source-reader.css", "university-logo.png",
-                 "university-logo.source.json", "vendor/pyodide.mjs", "vendor/pyodide-LICENSE.json"):
+                 "university-logo.source.json", "vendor/pyodide.mjs", "vendor/pyodide-LICENSE.json",
+                 "notebook.js", "notebook.css", "notebook_kernel.py", "notebook-worker.mjs", "practice.js", "practice.css", "knowledge.js"):
         add("deep-learning/assets/" + name, output / "assets" / name)
+    add("deep-learning/knowledge/index.html", output / "knowledge/index.html")
     for vendor in ("pdfjs", "katex"):
         for name in declared_vendor_files(root, vendor):
             add(f"deep-learning/assets/vendor/{vendor}/{name}", root / "assets/vendor" / vendor / name)

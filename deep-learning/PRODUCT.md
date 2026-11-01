@@ -2,6 +2,39 @@
 
 <!-- impeccable:product-schema 1 -->
 
+## Current direction — 2026-11-01
+
+Spring 2026 is the active course: 21 unchanged source PDFs and 1,303 aligned
+Persian pages. Source PDFs and translation retain the observed CC BY-NC-SA
+notice; its version is not printed. Hash-pinned local originals are authorized
+where source-specific license evidence is recorded. Own code/practice is MIT.
+This supersedes the earlier link-only and Spring2022 priority statements below.
+
+The owner explicitly removed the independent lesson/article experience. There
+are four areas: slides, laboratory, multiple-choice questions, and knowledge
+library. The source slide is the default entry and visual anchor for readers,
+teachers and presenters. Translation remains beside its original, and the
+presentation control can give the source the full view. Laboratory, quiz and
+knowledge lookup open only when requested. The library holds short definitions
+and relationships; it is not a second required learning path. Historical term
+calendars and provenance remain accessible without intervening in slide viewing.
+
+Laboratory code should be presentable by a learner: short commented notebook
+cells before optional full model sources, clear configuration/creation/training/
+output steps, saved code versions, exact-source exports for Jupyter, and actual
+Python output. Notebook execution must drive the existing real model and plots.
+A changed earlier cell recomputes its prefix; no hidden state is carried across
+runs. Existing blue/light/Arad/RTL design and university identity are pinned.
+Activation options appear only for architectures that use them. Do not add
+features to unrelated lessons or claim unavailable model capabilities.
+
+Source questions and source media remain unchanged. Our own numeric questions
+are multiple choice; our essay prompts become explained code tips. Source
+translation, independent scientific review, CI, merge and public release remain
+separate evidence. The Spring2026 slide release was verified publicly at commit
+88864b4e1a883e86d0a578de9c8c008b6a47ebfa; the four-area notebook refinement is a
+subsequent increment and requires its own acceptance and publication.
+
 ## Approved rebuild direction — 2026-10-25
 
 The source authority for the replacement course is Danna Gurari's official
@@ -49,9 +82,9 @@ remaining companions, topic laboratories and heavy reproducible experiments are
 unfinished; inventory/extraction is never described as course completion. See
 `data/metadata/rebuild-contract.json` and `reports/` for the execution plan.
 
-## Current implementation milestone
+## Historical Spring2022 implementation milestone
 
-The active completion scope is Spring 2022. All 23 public slide sessions now
+The earlier completion scope was Spring 2022. All 23 public slide sessions now
 have an independent editable Python workshop and three original questions
 (numeric, multiple choice and reasoning), with source page references. Eleven
 explicit classroom activity pages are retained as links to the unchanged

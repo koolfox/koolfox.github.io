@@ -445,6 +445,8 @@ class SourceReaderTests(unittest.TestCase):
                 "session": "s01",
                 "pdfUrl": payload["source"]["local_url"],
                 "translationUrl": f"/deep-learning/source-translations/{self.term_id}/s01.json",
+                "practiceUrl": f"/deep-learning/terms/{self.term_id}/s01/practice/",
+                "knowledgeUrl": "/deep-learning/knowledge/",
                 "pageCount": 2,
                 "sourceSha256": payload["source"]["sha256"],
             },
@@ -467,7 +469,7 @@ class SourceReaderTests(unittest.TestCase):
         self.assertEqual(parser.attr("data-view-source")[0][1]["aria-pressed"], "true")
         self.assertEqual(parser.attr("data-view-translation")[0][1]["aria-pressed"], "false")
         self.assertEqual(parser.attr("data-original-download")[0][1]["href"], payload["source"]["local_url"])
-        self.assertEqual(parser.attr("data-session-workshop")[0][1]["href"], f"/deep-learning/terms/{self.term_id}/s01/#workshop")
+        self.assertEqual(parser.attr("data-session-workshop")[0][1]["href"], f"/deep-learning/terms/{self.term_id}/s01/practice/#code")
         classes = {c for _, attrs in parser.elements for c in attrs.get("class", "").split()}
         self.assertTrue({"source-reader", "reader-header", "reader-layout", "reader-original", "reader-translation", "source-page"} <= classes)
         ids = {attrs.get("id") for _, attrs in parser.elements}

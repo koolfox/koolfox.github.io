@@ -15,6 +15,7 @@ from source_catalog import ROOT
 from workshops import load_workshops
 from local_slides import load_slides
 from source_reader import load_source_translation, source_reader_page
+from student_practice import choice_question, practice_page, knowledge_page
 
 BASE = "/deep-learning"
 
@@ -186,7 +187,7 @@ def page(title, body, crumbs=(), data=None):
 <html lang="fa" dir="rtl"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{e(title)} · یادگیری ژرف</title>
-<meta name="description" content="درسنامه مستقل فارسی، مسیر پنج ترم دانا گوراری، تمرین و آزمایشگاه پایتون">
+<meta name="description" content="اسلایدهای دانا گوراری، آزمایشگاه، سؤال‌های تستی و کتابخانهٔ دانش">
 <link rel="stylesheet" href="{BASE}/assets/course.css">
 <script src="{BASE}/assets/course.js" defer></script>
 <script src="{BASE}/assets/workshops.js" defer></script></head><body>
@@ -194,7 +195,7 @@ def page(title, body, crumbs=(), data=None):
 <header class="site-header"><div class="header-inner">{link("/", "حسام شینی", class_="brand")}
 <nav aria-label="مسیر صفحه">{trail}</nav>{link(f"{BASE}/playgrounds/", "آزمایشگاه‌ها", class_="lab-nav")}</div></header>
 <main id="main" class="page-shell">{body}</main>
-<footer class="site-footer"><p>درس‌های اصلی: دانا گوراری، دانشگاه کلرادو بولدر · درسنامه و تمرین فارسی: تألیف مستقل این مجموعه.</p>
+<footer class="site-footer"><p>اسلایدهای اصلی: دانا گوراری، دانشگاه کلرادو بولدر · ترجمهٔ فارسی با انتساب منبع؛ کد و تمرین مستقل این مجموعه.</p>
 <p>استاد: دکتر نگار مجمع</p>
 <p>تاریخ‌ها و تکالیف رسمی، سوابق همان ترم‌اند. این مسیر خودآموز وابسته به ثبت‌نام دانشگاه نیست.</p>
 {link("https://dannagurari.colorado.edu/courses/", "فهرست رسمی درس‌ها", True)}
@@ -218,18 +219,8 @@ def hub(course):
         rows.append(f'''<li class="term-row"><div><h2>{link(term_url(term), term["title_fa"])}</h2>
 <p>{e(TERM_SUMMARIES[term["id"]])}</p><p class="meta">{count} جلسه دارای اسلاید · {ready} درسنامه آماده
 <span data-term-progress="{e(term["id"])}"></span></p></div>{link(term_url(term), "ورود به مسیر ", class_="row-action")}</li>''')
-    first = next(t for t in course["terms"] if t["id"] == "spring-2026")
-    body = f"""<section class="course-intro">
-<h1>از یک نورون تا مدل‌های پایه</h1><p class="lead">درس را به فارسی بخوان، نتیجه را پیش‌بینی کن و با اجرای پایتون امتحانش کن.
-هر ترم دانا گوراری، مسیر مستقل خودش را دارد؛ اصل اسلایدها هم کنار هر جلسه در دسترس است.</p>
-<div class="intro-actions">{link(term_url(first), "شروع مسیر بهار ۲۰۲۶", class_="button primary")}
-{link(f"{BASE}/playgrounds/neuron-xor/", "آزمایش یک نورون", class_="text-link")}</div></section>
-<section aria-labelledby="terms-title"><div class="section-heading"><h2 id="terms-title">یک ترم را دنبال کن</h2>
-<p>ترتیب جلسه‌ها از برنامه رسمی همان دوره می‌آید.</p></div><ol class="term-list">{"".join(rows)}</ol></section>
-<section class="reading-note"><h2>روش کار در هر جلسه</h2><p>ابتدا مفهوم و مثال حل‌شده را بخوان. پیش از دیدن پاسخ، تمرین را حل کن؛
-سپس در آزمایشگاه یک فرض را تغییر بده و اثرش را توضیح بده. مرور اسلاید اصلی، ارجاع صفحه‌ها و اصلاح‌های مستند در همان جلسه آمده‌اند.</p>
-<p>تکمیل درسنامه‌ها تدریجی است. جلسه‌ای که هنوز آماده نیست، با همین وضعیت مشخص می‌شود.</p></section>{progress_tools()}"""
-    return page("مسیرهای دانا گوراری", body, data={"kind": "hub"})
+    body = '<section class="standalone"><h1>فهرست اسلایدها</h1><p>هر ترم، ترتیب و منابع اصلی خودش را دارد.</p><ol class="term-list">' + "".join(rows) + '</ol></section>' + progress_tools()
+    return page("فهرست ترم‌ها", body, data={"kind": "catalog"})
 
 
 def term_page(term):
@@ -244,15 +235,7 @@ def term_page(term):
             continue
         lesson_number += 1
         source_count = sum(s.get("page_count", 0) for s in row["slides"])
-        status = (
-            "درسنامه و تمرین آماده"
-            if row["companion_ready"]
-            else (
-                "اصل اسلاید · درسنامه در حال آماده‌سازی"
-                if row["slides"]
-                else "رویداد برنامه رسمی"
-            )
-        )
+        status = "اسلاید مرجع"
         if row.get("workshop"):
             status += " · کارگاه با کد و پرسش‌وپاسخ آماده"
         if row.get("source_reader"):
@@ -262,7 +245,7 @@ def term_page(term):
         items.append(f'''<li class="session-row" data-session-key="{term["id"]}/{row["id"]}">
 <span class="session-number" aria-label="درس {lesson_number}">{lesson_number:02d}</span><div>
 <p class="meta"><bdi>{e(row["date_label"])}</bdi>{f" · {source_count} صفحه" if source_count else ""}</p>
-<h2>{link(session_url(term, row), row["title_fa"])}</h2><p>{e(row.get("overview_fa", ""))}</p>
+<h2>{link(session_url(term, row) + ('slides/' if row.get('source_reader') else ''), row["title_fa"])}</h2>
 <p class="session-state">{e(status)}<span data-completion-label></span></p></div></li>''')
     bundle = (
         link(
@@ -357,7 +340,10 @@ def source_panel(term, row, concepts):
     return f'<aside class="source-panel" aria-label="منابع و راهنمای اسلاید">{content}</aside>'
 
 
-def exercise_html(exercise, prefix):
+def exercise_html(exercise, prefix, code=""):
+    if exercise["answer"]["kind"] == "manual":
+        return f'<article class="exercise code-tip"><h3>نکته با کد</h3><p>{prose(exercise["solution_fa"])}</p>' + (f'<details><summary>کد این نکته</summary><pre dir="ltr">{e(code)}</pre></details>' if code else "") + '</article>'
+    exercise = choice_question(exercise)
     identity = f"{prefix}-{exercise['id']}"
     answer = exercise["answer"]
     config = e(json.dumps(answer, ensure_ascii=False))
@@ -463,7 +449,7 @@ def workshop_html(term, row, include_sources=True, include_questions=True):
         ensure_ascii=False,
     ).replace("<", "\\u003c")
     questions = "".join(
-        exercise_html(q, "workshop-" + row["id"]) for q in unit["questions"]
+        exercise_html(q, "workshop-" + row["id"], unit["code"]) for q in unit["questions"]
     )
     activity_links = " · ".join(
         link(unit["source_url"] + f"#page={n}", f"فعالیت کلاسی · صفحهٔ {n}", True)
@@ -475,7 +461,7 @@ def workshop_html(term, row, include_sources=True, include_questions=True):
     )
     source = '<details id="source-activities" class="source-activities"><summary>تطبیق با پرسش‌ها و فعالیت‌های منبع اصلی</summary>'
     if activity_links:
-        source += f"<p>{activity_links}</p><p>اصل شکل‌ها و صورت فعالیت را در این صفحه‌ها ببین؛ بحث مرتبط را در پاسخ تشریحی پایین ثبت کن.</p>"
+        source += f"<p>{activity_links}</p><p>صورت اصلی فعالیت و شکل‌ها در همین صفحه‌های اسلاید حفظ شده‌اند.</p>"
     source += f'<details><summary>صفحه‌های دارای پرسش یا محاسبهٔ پرسشی در منبع</summary><p class="source-question-links">{question_links}</p><p class="meta">شماره‌ها صفحهٔ PDF هستند؛ برخی صفحه‌ها مراحل متوالی یک پرسش‌اند. این فهرست جای متن اصلی و بررسی کامل علمی آن را نمی‌گیرد.</p></details>'
     if unit["programming_tutorial_pages"]:
         source += '<p class="meta">اسلاید به آموزش برنامه‌نویسی کلاس اصلی اشاره می‌کند. کد و ویدئوی بستهٔ Canvas در دسترس عمومی این مجموعه نیست؛ کارگاه زیر مستقل تألیف شده است.</p>'
@@ -504,7 +490,7 @@ def workshop_html(term, row, include_sources=True, include_questions=True):
 {f'<p class="meta">منبع تکمیلی محاسبه: {references}</p>' if references else ""}
 <script type="application/json" data-workshop-config>{config}</script></section>'''
         + (
-            f'<section id="questions" class="workshop-questions"><h2>پرسش و پاسخ این جلسه</h2><p>ابتدا پاسخ بده؛ پاسخ نمونه و روش حل زیر هر سؤال باز می‌شود. پاسخ عددی و گزینه‌ای بررسی خودکار دارد؛ استدلال با معیارهای پاسخ نمونه مقایسه می‌شود.</p>{questions}</section>'
+            f'<section id="questions" class="workshop-questions"><h2>سؤال‌های تستی</h2><p>گزینه را انتخاب کن و پاسخ را بررسی کن؛ نکتهٔ توضیحی همراه کد در دسترس است.</p>{questions}</section>'
             if include_questions
             else ""
         )
@@ -560,7 +546,7 @@ def slides_page(term, row, identity, teaching):
         + "</pre>",
     )
     for i, question in enumerate(unit["questions"], 1):
-        add(f"پرسش و پاسخ · {i}", exercise_html(question, "deck-" + row["id"]))
+        add("نکته با کد" if question["answer"]["kind"] == "manual" else f"سؤال تستی · {i}", exercise_html(question, "deck-" + row["id"], unit["code"]))
     source = link(
         unit["source_url"] + "#page=" + str(unit["source_page"]),
         "اسلاید اصلی دانا گوراری، صفحهٔ " + str(unit["source_page"]),
@@ -586,104 +572,28 @@ def slides_page(term, row, identity, teaching):
 
 
 def session_page(term, row, concepts):
-    mapping = row["mapping"]
-    ready = row["companion_ready"]
-    intro = f"""<header class="lesson-heading">
-<h1>{e(row["title_fa"])}</h1><p class="lead">{e(row.get("overview_fa", ""))}</p></header>"""
-    content = intro
-    if row.get("workshop"):
-        slide_action = (
-            link(session_url(term, row) + "slides/", "اصل اسلاید و ترجمهٔ فارسی" if row.get("source_reader") else "اسلایدهای فارسی")
-            if row.get("local_slides") or row.get("source_reader")
-            else ""
-        )
-        content += (
-            '<nav class="inline-links lesson-actions" aria-label="بخش‌های تعاملی جلسه">'
-            + slide_action
-            + link("#workshop", "کارگاه با کد")
-            + link("#questions", "پرسش و پاسخ")
-            + link("#source-activities", "تمرین‌های داخل اسلاید")
-            + "</nav>"
-        )
-    if row.get("local_slides") or row.get("source_reader"):
-        content += '<div id="local-slide-view" class="local-slide-view"></div>'
-    if not ready:
-        note = (
-            (
-                "درسنامهٔ کامل این جلسه در حال آماده‌سازی است. کارگاه و پرسش‌وپاسخ مستقل پایین صفحه قابل استفاده‌اند؛ اصل اسلاید هم در دسترس است."
-                if row.get("workshop")
-                else "درسنامه و تمرین این جلسه در حال آماده‌سازی است. اصل اسلاید و برنامه رسمی در دسترس‌اند."
-            )
-            if row["slides"]
-            else "این ردیف از تقویم رسمی ترم است. اسلاید عمومی برای آن پیوند نشده؛ محتوایی به استاد نسبت داده نمی‌شود."
-        )
-        content += f'<p class="availability" role="note">{note}</p>'
-    content += f'<section class="objectives"><h2>در پایان این جلسه</h2>{listing(row.get("objectives_fa", []))}</section>'
-    if mapping and mapping.get("differences_fa"):
-        content += f'<details class="term-differences" open><summary>این جلسه در همین ترم</summary>{listing(mapping["differences_fa"])}</details>'
-    if ready:
-        content += "".join(concept_html(concepts[c]) for c in mapping["concept_ids"])
-        content += "".join(
-            exercise_html(x, row["id"]) for x in mapping.get("additional_exercises", [])
-        )
-        if row.get("workshop"):
-            related = row["workshop"].get("related_labs", [])
-        else:
-            related = [
-                dict(id=LAB_GOALS[c][0], goal_fa=LAB_GOALS[c][1])
-                for c in mapping["concept_ids"]
-                if c in LAB_GOALS
-            ]
-        if related:
-            entries = "".join(
-                f"<li>{prose(item['goal_fa'])} {link(BASE + '/playgrounds/' + item['id'] + '/', LABS[item['id']][0])}</li>"
-                for item in related
-            )
-            content += f'<details class="related-labs"><summary>تمرین تکمیلی همین موضوع</summary><ul>{entries}</ul></details>'
+    if row.get("source_reader"):
+        viewer = session_url(term, row) + "slides/"
+        practice = session_url(term, row) + "practice/"
+        return f'''<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8"><title>{e(row["title_fa"])}</title>
+<script>const area=location.hash;location.replace(area==='#workshop'||area==='#source-activities'?"{practice}#code":area==='#questions'?"{practice}#questions":"{viewer}");</script>
+<p><a href="{viewer}">اسلاید</a> · <a href="{practice}#code">آزمایشگاه</a> · <a href="{practice}#questions">سؤال‌ها</a> · <a href="{BASE}/knowledge/">کتابخانهٔ دانش</a></p></html>'''
+    content = f'<header class="lesson-heading"><h1>{e(row["title_fa"])}</h1></header>'
+    content += source_panel(term, row, concepts)
     content += workshop_html(term, row)
     content += findings_html(row)
-    if row.get("readings"):
-        content += "<details><summary>مطالعه‌های معرفی‌شده در برنامه رسمی</summary><ul>"
-        content += "".join(
-            f"<li>{link(r['url'], r.get('title', 'منبع'), True)}</li>"
-            for r in row["readings"]
-        )
-        content += "</ul></details>"
-    if row.get("assignment_labels"):
-        content += f"<details><summary>تکلیف‌های تاریخی کلاس اصلی</summary>{listing(row['assignment_labels'])}<p>متن تکلیف‌های بستهٔ Canvas در اختیار این مجموعه نیست. تمرین‌های بالا مستقل‌اند.</p></details>"
-    if ready:
-        content += '<div class="completion"><button type="button" data-toggle-complete aria-pressed="false">این جلسه را خواندم و تمرین کردم</button><p role="status" data-completion-message></p></div>'
     lessons = teaching_sessions(term)
     position = lessons.index(row)
     links = []
     if position:
         previous = lessons[position - 1]
-        links.append(
-            link(session_url(term, previous), " جلسه قبل: " + previous["title_fa"])
-        )
+        links.append(link(session_url(term, previous), "جلسهٔ قبل: " + previous["title_fa"]))
     if position + 1 < len(lessons):
         following = lessons[position + 1]
-        links.append(
-            link(
-                session_url(term, following),
-                "جلسه بعد: " + following["title_fa"] + " ",
-            )
-        )
-    content += (
-        '<nav class="lesson-pagination" aria-label="حرکت در مسیر">'
-        + "".join(links)
-        + "</nav>"
-    )
-    body = f'<div class="lesson-layout">{source_panel(term, row, concepts)}<article class="lesson-body">{content}</article></div>'
-    return page(
-        row["title_fa"],
-        body,
-        [
-            (term_url(term), term["title_fa"]),
-            (session_url(term, row), f"جلسه {row['order']}"),
-        ],
-        {"term": term["id"], "session": row["id"], "ready": ready},
-    )
+        links.append(link(session_url(term, following), "جلسهٔ بعد: " + following["title_fa"]))
+    content += '<nav class="lesson-pagination" aria-label="حرکت میان اسلایدها">' + "".join(links) + '</nav>'
+    return page(row["title_fa"], '<article class="lesson-body">' + content + '</article>',
+                [(term_url(term), term["title_fa"])], {"term": term["id"], "session": row["id"]})
 
 
 def project_page(term):
@@ -801,7 +711,13 @@ def build(output, root=ROOT):
     output.mkdir(parents=True, exist_ok=True)
     registry_path = root / 'data/metadata/source-readers.json'
     registered_terms = json.loads(registry_path.read_text()).get('terms', {}) if registry_path.exists() else {}
-    pages = {"index.html": hub(course), "sources/index.html": sources_page(course)}
+    pages = {"catalog/index.html": hub(course), "sources/index.html": sources_page(course),
+             "knowledge/index.html": knowledge_page(course["concepts"])}
+    initial = BASE + "/terms/spring-2026/s01/slides/"
+    enabled = json.dumps(list(readers.get("spring-2026", {})))
+    pages["index.html"] = f'''<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8"><title>یادگیری ژرف · اسلایدها</title><script>
++let target="{initial}";try{{const saved=JSON.parse(localStorage.getItem('danna-slide-position:v1'));if(saved?.term==='spring-2026'&&{enabled}.includes(saved.session)&&Number.isInteger(saved.page)&&saved.page>0)target='/deep-learning/terms/spring-2026/'+saved.session+'/slides/#page='+saved.page;}}catch{{}}location.replace(target);
++</script><a href="{initial}">اسلایدها</a><a href="{BASE}/catalog/">فهرست ترم‌ها</a></html>'''.replace("\n+", "\n")
     for term in course["terms"]:
         selected = list(readers.get(term['id'], {})) if term['id'] in registered_terms and not (root / f"content/workshops/{term['id']}.json").exists() else None
         workshops = load_workshops(term["id"], root, session_ids=selected)
@@ -815,6 +731,7 @@ def build(output, root=ROOT):
             row["source_reader"] = readers.get(term["id"], {}).get(row["id"])
             if row["source_reader"]:
                 payload = row["source_reader"]
+                pages[f"terms/{term['id']}/{row['id']}/practice/index.html"] = practice_page(term, row)
                 pages[f"terms/{term['id']}/{row['id']}/slides/index.html"] = source_reader_page(term, row, reader_identity, payload)
                 destination = output / f"source-translations/{term['id']}/{row['id']}.json"
                 destination.parent.mkdir(parents=True, exist_ok=True)
@@ -835,19 +752,7 @@ def build(output, root=ROOT):
         prefix = f"terms/{term['id']}"
         pages[f"{prefix}/index.html"] = term_page(term)
         pages[f"{prefix}/project/index.html"] = project_page(term)
-        if "math-python-foundations" in course["concepts"]:
-            body = (
-                '<article class="standalone"><h1>ریاضی و پایتون برای شروع</h1><p>پیش‌نیاز مستقل مسیر خودآموز؛ این بخش، جلسه‌ای از تقویم رسمی استاد نیست.</p>'
-                + concept_html(course["concepts"]["math-python-foundations"])
-                + link(term_url(term), "بازگشت به جلسه‌های ترم ")
-                + "</article>"
-            )
-            pages[f"{prefix}/foundations/index.html"] = page(
-                "مرور پیش‌نیازها",
-                body,
-                [(term_url(term), term["title_fa"])],
-                {"term": term["id"], "session": "s00"},
-            )
+        pages[f"{prefix}/foundations/index.html"] = '<!doctype html><meta charset="utf-8"><script>location.replace("/deep-learning/knowledge/#math-python-foundations")</script><a href="/deep-learning/knowledge/#math-python-foundations">کتابخانهٔ دانش</a>'
         for row in teaching_sessions(term):
             pages[f"{prefix}/{row['id']}/index.html"] = session_page(
                 term, row, course["concepts"]
@@ -886,6 +791,8 @@ def build(output, root=ROOT):
         "university-logo.source.json",
         "source-reader.js",
         "source-reader.css",
+        "notebook.js", "notebook.css", "notebook_kernel.py", "notebook-worker.mjs",
+        "practice.js", "practice.css", "knowledge.js",
     ):
         if (root / "assets" / name).resolve() != (assets / name).resolve():
             shutil.copyfile(root / "assets" / name, assets / name)

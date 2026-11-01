@@ -51,3 +51,17 @@ distinct. Exported records identify the executed source. Numerical parity,
 custom-source execution and recovery are acceptance gates. The finish record is
 `interactive-workspace-acceptance.md`; extracted design rules are in the course's
 `DESIGN.md` and `.impeccable/design.json`. No new raster asset was introduced.
+
+
+## Slides and notebook extension — 2026-11-01
+
+Mode: Read for the source slide; Operate for its optional notebook. Preserve the
+incumbent blue/light/Arad/RTL world and authoritative university PNG. No visual
+world replacement. The owner settled four areas: slide, laboratory, questions,
+knowledge library. The source slide stays visible while a secondary tool is
+open on desktop; phones switch views. Remove the independent lesson article
+from the user journey. Optional tools never start Python during slide reading.
+Notebook cells use readable comments and the same real numerical engine. Full
+source, saved versions, errors, stop/recovery and exact Jupyter exports remain
+findable without stacking a long page. All authored graded prompts are choice
+questions; explained code tips replace essays. Source pages remain unchanged.

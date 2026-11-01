@@ -215,9 +215,8 @@ def hub(course):
     rows = []
     for term in course["terms"]:
         count = sum(bool(r["slides"]) for r in term["schedule"])
-        ready = sum(r["companion_ready"] for r in term["schedule"])
         rows.append(f'''<li class="term-row"><div><h2>{link(term_url(term), term["title_fa"])}</h2>
-<p>{e(TERM_SUMMARIES[term["id"]])}</p><p class="meta">{count} جلسه دارای اسلاید · {ready} درسنامه آماده
+<p>{e(TERM_SUMMARIES[term["id"]])}</p><p class="meta">{count} مجموعه اسلاید مرجع
 <span data-term-progress="{e(term["id"])}"></span></p></div>{link(term_url(term), "ورود به مسیر ", class_="row-action")}</li>''')
     body = '<section class="standalone"><h1>فهرست اسلایدها</h1><p>هر ترم، ترتیب و منابع اصلی خودش را دارد.</p><ol class="term-list">' + "".join(rows) + '</ol></section>' + progress_tools()
     return page("فهرست ترم‌ها", body, data={"kind": "catalog"})
@@ -353,7 +352,8 @@ def exercise_html(exercise, prefix, code=""):
     elif answer["kind"] == "choice":
         control = "<fieldset><legend>یک پاسخ انتخاب کن</legend>"
         for i, option in enumerate(answer["options_fa"]):
-            control += f'<label class="choice"><input type="radio" name="answer" value="{i}" required><span>{e(option)}</span></label>'
+            label = f'<bdi dir="ltr">{e(option)}</bdi>' if re.fullmatch(r"[+−-]?[0-9.eE+−-]+", option) else e(option)
+            control += f'<label class="choice"><input type="radio" name="answer" value="{i}" required><span>{label}</span></label>'
         control += "</fieldset>"
     else:
         control = f'<label for="{identity}-answer">استدلال خودت را بنویس</label><textarea id="{identity}-answer" name="answer" rows="3"></textarea>'
@@ -466,6 +466,12 @@ def workshop_html(term, row, include_sources=True, include_questions=True):
     if unit["programming_tutorial_pages"]:
         source += '<p class="meta">اسلاید به آموزش برنامه‌نویسی کلاس اصلی اشاره می‌کند. کد و ویدئوی بستهٔ Canvas در دسترس عمومی این مجموعه نیست؛ کارگاه زیر مستقل تألیف شده است.</p>'
     source += "</details>"
+    related = unit.get("related_labs", [])
+    if include_sources and related:
+        source += '<details class="related-labs"><summary>آزمایشگاه مرتبط</summary><ul>'
+        for item in related:
+            source += f'<li>{prose(item["goal_fa"])} {link(BASE + "/playgrounds/" + item["id"] + "/", LABS[item["id"]][0])}</li>'
+        source += '</ul></details>'
     references = " · ".join(
         link(r["url"], r["title_fa"], True) for r in unit.get("references", [])
     )
@@ -580,6 +586,8 @@ def session_page(term, row, concepts):
 <p><a href="{viewer}">اسلاید</a> · <a href="{practice}#code">آزمایشگاه</a> · <a href="{practice}#questions">سؤال‌ها</a> · <a href="{BASE}/knowledge/">کتابخانهٔ دانش</a></p></html>'''
     content = f'<header class="lesson-heading"><h1>{e(row["title_fa"])}</h1></header>'
     content += source_panel(term, row, concepts)
+    if row.get("local_slides"):
+        content += '<div id="local-slide-view" class="local-slide-view"></div>'
     content += workshop_html(term, row)
     content += findings_html(row)
     lessons = teaching_sessions(term)
@@ -763,7 +771,7 @@ def build(output, root=ROOT):
     )
     pages["playgrounds/index.html"] = page(
         "آزمایشگاه‌ها",
-        f'<section class="standalone"><h1>از پیش‌بینی تا آزمایش</h1><p>آزمایش‌های زندهٔ مرورگر و پروژه‌های مستقل پایتون؛ روش اجرای هرکدام در صفحهٔ خودش مشخص است.</p><ul class="lab-list">{cards}</ul><h2>تمرین‌های مکمل</h2><p>{link(BASE + "/karpathy/", "کارپتی و آزمایشگاه گرادیان ")} · دوره‌ای مستقل از کارپتی، برای تمرین سازوکار مشتق خودکار.</p></section>',
+        f'<section class="standalone"><h1>از پیش‌بینی تا آزمایش</h1><p>آزمایش‌های زندهٔ مرورگر و پروژه‌های مستقل پایتون؛ روش اجرای هرکدام در صفحهٔ خودش مشخص است.</p><ul class="lab-list">{cards}</ul></section>',
     )
     for lab in LABS:
         if lab == "cnn-mnist":

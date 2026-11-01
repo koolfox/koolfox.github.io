@@ -59,15 +59,15 @@ test('deck code, keyboard navigation, question feedback and print fallback work 
   await editor.fill('while True:\n    pass');await page.locator('[data-workshop-run]').click();
   await page.locator('[data-deck-next]').click();
   await expect(page.locator('[data-workshop-status]')).toContainText('تغییر اسلاید');
-  const form=page.locator('#slide-6 form');await form.locator('input').fill('۰٫۹');await form.locator('button').click();
+  const form=page.locator('#slide-6 form');const answer=JSON.parse(await form.getAttribute('data-answer'));await form.locator(`input[value="${answer.correct_index}"]`).check();await form.locator('button').click();
   await expect(form.locator('.feedback')).toHaveAttribute('data-state','correct');
-  await page.reload();await expect(form.locator('input')).toHaveValue('۰٫۹');
+  await page.reload();await expect(form.locator('input:checked')).toHaveCount(1);
   await page.locator('body').click({position:{x:5,y:5}});await page.keyboard.press('Home');
   await expect(page).toHaveURL(/#slide-1$/);await page.keyboard.press('ArrowLeft');await expect(page).toHaveURL(/#slide-2$/);
   await page.evaluate(()=>window.dispatchEvent(new Event('beforeprint')));await page.emulateMedia({media:'print'});
   await expect(page.locator('.dl-slide:visible')).toHaveCount(9);
   await expect(page.locator('.slide-print-code')).toBeVisible();
-  await expect(page.locator('.solution[open]')).toHaveCount(3);
+  await expect(page.locator('.solution[open]')).toHaveCount(2);
   await expect(page.locator('[data-deck-print]')).toBeHidden();
 });
 
@@ -163,7 +163,7 @@ test('registered2026readers align original and Persian pages, math, download and
     await page.emulateMedia({media:'print'});await expect(page.locator('#source-canvas')).toBeVisible();await expect(page.locator('#persian-page')).toBeVisible();await expect(page.locator('[data-print]')).toBeHidden();
     await page.emulateMedia({media:'screen'});
     const workshop=page.locator('[data-session-workshop]');
-    if(await workshop.count()){await expect(workshop).toHaveAttribute('href',sourceLesson(id)+'#workshop');await workshop.click();await expect(page.locator('#workshop')).toBeVisible();}
+    if(await workshop.count()){await expect(workshop).toHaveAttribute('href',sourceLesson(id)+'practice/#code');await workshop.click();await expect(page.frameLocator('[data-reader-tools-frame]').locator('[data-notebook-code]')).toBeVisible();}
   }
   expect(errors).toEqual([]);
 });
@@ -204,9 +204,9 @@ test('downloaded2026bundle serves readers and every authored workshop under a pr
       await page.locator('[data-page-select]').selectOption('2');await readerReady(page,2);
     }
     for(const id of manifest.workshop_sessions){
-      await page.goto(base+sourceLesson(id)+'#workshop');await expect(page.locator('[data-workshop-code]')).toBeVisible();
-      await run(page);const actual=await result(page);
-      const reference=await page.locator('[data-workshop-config]').evaluate(node=>JSON.parse(node.textContent).reference);
+      await page.goto(base+sourceLesson(id)+'practice/#code');await expect(page.locator('[data-notebook-code]')).toBeVisible();
+      await page.locator('[data-notebook-run-all]').click();await page.waitForFunction(()=>window.studentNotebook?.record?.ok,{},{timeout:65000});const actual=await page.evaluate(()=>window.studentNotebook.record.outputs.at(-1).result);
+      const reference=await page.locator('#practice-config').evaluate(node=>JSON.parse(node.textContent).reference);
       expectReference(actual,reference);expect(await page.evaluate(()=>document.fonts.check('17px Arad'))).toBeTruthy();
     }
     expect(external).toEqual([]);expect(errors).toEqual([]);

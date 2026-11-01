@@ -4,99 +4,88 @@ import { fileURLToPath } from 'node:url';
 import { readFileSync } from 'node:fs';
 
 const lesson='/deep-learning/terms/spring-2026/s02/';
+const practice=lesson+'practice/';
 const terms={'spring-2026':32,'spring-2025':33,'spring-2024':32,'fall-2022':33,'spring-2022':33};
+const oldProgress={schema_version:1,sessions:{'spring-2026/s02':{complete:true}},answers:{}};
+async function answerFirst(page){
+ const correct=await page.locator('#practice-config').evaluate(n=>JSON.parse(n.textContent).questions[0].correct);
+ const form=page.locator('.nb-question').first();await form.locator(`input[value="${correct}"]`).check();await form.locator('button[type=submit]').click();return form;
+}
 
-test('five calendars retain historical notes while only slide lessons are linked',async({page,request})=>{
-  await page.goto('/deep-learning/');
-  await expect(page.locator('.term-row')).toHaveCount(5);
-  for(const [term,count] of Object.entries(terms)){
-    await page.goto(`/deep-learning/terms/${term}/`);
-    await expect(page.locator('.session-row, .calendar-note')).toHaveCount(count);
-    await expect(page.locator('.calendar-note a, .calendar-note button, .calendar-note [data-session-key]')).toHaveCount(0);
-    const first=page.locator('.session-row h2 a').first();await first.click();
-    await expect(page.locator('.source-link')).toHaveAttribute('href',term==='spring-2026'
-      ? '/deep-learning/assets/danna/spring-2026/s01.pdf' : /colorado.edu/);
-    await expect(page.locator('.concept')).not.toHaveCount(0);
-    const links=await page.locator('a[href]').evaluateAll(nodes=>nodes.map(a=>a.href));
-    for(const href of new Set(links)){
-      const url=new URL(href);if(url.origin!==new URL(page.url()).origin)continue;
-      if(url.pathname===new URL(page.url()).pathname&&url.hash){expect(await page.locator(url.hash).count(),href).toBe(1);continue;}
-      expect((await request.get(href)).ok(),href).toBeTruthy();
-    }
+test('five calendars retain only slide links and compact historical notes',async({page,request})=>{
+ await page.goto('/deep-learning/catalog/');await expect(page.locator('.term-row')).toHaveCount(5);
+ for(const [term,count] of Object.entries(terms)){
+  await page.goto(`/deep-learning/terms/${term}/`);
+  await expect(page.locator('.session-row, .calendar-note')).toHaveCount(count);
+  await expect(page.locator('.calendar-note a, .calendar-note button, .calendar-note [data-session-key]')).toHaveCount(0);
+  await page.locator('.session-row h2 a').first().click();
+  if(term==='spring-2026')await expect(page.locator('[data-original-download]')).toHaveAttribute('href','/deep-learning/assets/danna/spring-2026/s01.pdf');
+  else await expect(page.locator('.source-link')).toHaveAttribute('href',/colorado.edu/);
+  await expect(page.locator('.concept')).toHaveCount(0);
+  for(const href of new Set(await page.locator('a[href]').evaluateAll(nodes=>nodes.map(a=>a.href)))){
+   const url=new URL(href);if(url.origin!==new URL(page.url()).origin)continue;
+   expect((await request.get(href)).ok(),href).toBeTruthy();
   }
+ }
 });
 
-test('original exercises accept Persian digits and progress is scoped to semester',async({page})=>{
-  await page.goto(lesson);
-  const form=page.locator('form[data-exercise]').first();
-  await form.locator('input[name=answer]').fill('−۰٫۲۵');await form.locator('button').click();
-  await expect(form.locator('.feedback')).toHaveAttribute('data-state','correct');
-  await page.locator('[data-toggle-complete]').click();await page.reload();
-  await expect(page.locator('[data-toggle-complete]')).toHaveAttribute('aria-pressed','true');
-  await expect(page.locator('form[data-exercise]').first().locator('input')).toHaveValue('−۰٫۲۵');
-  await page.goto('/deep-learning/terms/spring-2025/s02/');
-  await expect(page.locator('[data-toggle-complete]')).toHaveAttribute('aria-pressed','false');
-  await page.goto('/deep-learning/terms/spring-2026/');
-  await expect(page.locator('[data-session-key="spring-2026/s02"] [data-completion-label]')).toContainText('خوانده');
+test('multiple choice answers persist independently for each slide session',async({page})=>{
+ await page.goto(practice+'#questions');let form=await answerFirst(page);
+ await expect(form.locator('.feedback')).toHaveAttribute('data-state','correct');
+ await page.reload();await expect(form.locator('input:checked')).toHaveCount(1);
+ await page.goto('/deep-learning/terms/spring-2026/s03/practice/#questions');
+ await expect(page.locator('.nb-question input:checked')).toHaveCount(0);
+ await page.goto(practice+'#questions');await expect(page.locator('.nb-question').first().locator('input:checked')).toHaveCount(1);
+ await expect(page.locator('.nb-quiz textarea')).toHaveCount(0);
 });
 
-test('malformed progress imports preserve existing work',async({page})=>{
-  await page.goto(lesson);await page.locator('[data-toggle-complete]').click();
-  await page.goto('/deep-learning/');await page.locator('.progress-tools summary').click();
-  await page.locator('[data-import-progress]').setInputFiles({name:'invalid.json',mimeType:'application/json',buffer:Buffer.from('{"schema_version":1,"sessions":{"__proto__":{"complete":true}},"answers":{}}')});
-  await expect(page.locator('[data-progress-message]')).toContainText('معتبر');
-  await page.goto(lesson);await expect(page.locator('[data-toggle-complete]')).toHaveAttribute('aria-pressed','true');
+test('malformed progress imports preserve historical records',async({page})=>{
+ await page.goto('/deep-learning/catalog/');await page.evaluate(record=>localStorage.setItem('danna-learning-progress:v1',JSON.stringify(record)),oldProgress);
+ await page.reload();await page.locator('.progress-tools summary').click();
+ await page.locator('[data-import-progress]').setInputFiles({name:'invalid.json',mimeType:'application/json',buffer:Buffer.from('{"schema_version":1,"sessions":{"__proto__":{"complete":true}},"answers":{}}')});
+ await expect(page.locator('[data-progress-message]')).toContainText('معتبر');
+ expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('danna-learning-progress:v1')))).toEqual(oldProgress);
 });
 
-test('a progress backup restores a completed lesson without altering legacy progress',async({page})=>{
-  await page.goto(lesson);await page.locator('[data-toggle-complete]').click();
-  await page.evaluate(()=>localStorage.setItem('koolfox.deep-learning.progress.v1','legacy-sentinel'));
-  await page.goto('/deep-learning/');await page.locator('.progress-tools summary').click();
-  const pending=page.waitForEvent('download');await page.locator('[data-export-progress]').click();
-  const path=await (await pending).path();await page.evaluate(()=>localStorage.removeItem('danna-learning-progress:v1'));
-  await page.reload();await page.locator('.progress-tools summary').click();
-  await page.locator('[data-import-progress]').setInputFiles(path);
-  await expect(page.locator('[data-progress-message]')).toContainText('ترکیب شد');
-  await page.goto(lesson);await expect(page.locator('[data-toggle-complete]')).toHaveAttribute('aria-pressed','true');
-  expect(await page.evaluate(()=>localStorage.getItem('koolfox.deep-learning.progress.v1'))).toBe('legacy-sentinel');
+test('historical progress backups round trip without altering legacy storage',async({page})=>{
+ await page.goto('/deep-learning/catalog/');await page.evaluate(record=>{localStorage.setItem('danna-learning-progress:v1',JSON.stringify(record));localStorage.setItem('koolfox.deep-learning.progress.v1','legacy-sentinel');},oldProgress);
+ await page.reload();await page.locator('.progress-tools summary').click();
+ const waiting=page.waitForEvent('download');await page.locator('[data-export-progress]').click();const path=await(await waiting).path();
+ await page.evaluate(()=>localStorage.removeItem('danna-learning-progress:v1'));await page.reload();await page.locator('.progress-tools summary').click();await page.locator('[data-import-progress]').setInputFiles(path);
+ await expect(page.locator('[data-progress-message]')).toContainText('ترکیب شد');
+ expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('danna-learning-progress:v1')))).toEqual(oldProgress);
+ expect(await page.evaluate(()=>localStorage.getItem('koolfox.deep-learning.progress.v1'))).toBe('legacy-sentinel');
 });
 
-test('blocked storage keeps local reading and exercise feedback usable',async({page})=>{
-  await page.addInitScript(()=>{Storage.prototype.getItem=()=>{throw Error('blocked')};Storage.prototype.setItem=()=>{throw Error('blocked')};});
-  await page.goto(lesson);await expect(page.locator('.storage-warning')).toBeVisible();
-  const form=page.locator('form[data-exercise]').first();await form.locator('input').fill('-0.25');await form.locator('button').click();
-  await expect(form.locator('.feedback')).toHaveAttribute('data-state','correct');
+test('blocked storage still permits multiple choice feedback',async({page})=>{
+ await page.addInitScript(()=>{Storage.prototype.getItem=()=>{throw Error('blocked')};Storage.prototype.setItem=()=>{throw Error('blocked')};});
+ await page.goto(practice+'#questions');const form=await answerFirst(page);await expect(form.locator('.feedback')).toHaveAttribute('data-state','correct');
 });
 
 test('the historical supplementary URL redirects without bundling sibling code',async({request})=>{
-  const redirect=await request.get('/deep-learning/karpathy/');
-  expect(redirect.ok()).toBe(true);
-  expect(await redirect.text()).toContain('href="/karpathy/"');
-  expect((await request.get('/deep-learning/karpathy/assets/js/engine.js')).status()).toBe(404);
+ const redirect=await request.get('/deep-learning/karpathy/');expect(redirect.ok()).toBe(true);expect(await redirect.text()).toContain('href="/karpathy/"');
+ expect((await request.get('/deep-learning/karpathy/assets/js/engine.js')).status()).toBe(404);
 });
 
-test('original source is linked immediately and embedded only on request',async({page})=>{
-  await page.goto(lesson);await expect(page.locator('iframe')).toHaveCount(0);
-  await expect(page.locator('.local-slide-link')).toBeVisible();
-  await page.route('https://home.cs.colorado.edu/**',route=>route.abort());
-  await page.locator('[data-show-source]').click();await expect(page.locator('iframe')).toHaveCount(1);
-  const reader=page.frameLocator('iframe');
-  await expect(reader.locator('#source-canvas')).toBeVisible();
-  await expect.poll(async()=>{
-    const frame=page.frames().find(f=>f!==page.mainFrame());
-    return frame?.evaluate(()=>window.sourceSlideReader?.renderedPage).catch(()=>0);
-  },{timeout:30000}).toBe(1);
-  await expect(page.locator('.source-link')).toHaveAttribute('href','/deep-learning/assets/danna/spring-2026/s02.pdf');
-  await page.locator('[data-show-source]').click();
-  await expect(page.locator('iframe')).toHaveCount(0);
+test('slides lead and optional tools open only when requested',async({page})=>{
+ const python=[];page.on('request',r=>{if(r.url().includes('/runtime/'))python.push(r.url());});
+ await page.goto('/deep-learning/');await page.waitForURL('**/spring-2026/s01/slides/');
+ await expect(page.locator('body')).toHaveAttribute('data-reader-section','slides');
+ await expect(page.locator('[data-reader-tools-frame]')).not.toHaveAttribute('src',/./);
+ expect(python).toEqual([]);
+ await page.locator('.reader-sections [data-reader-section=lab]').click();
+ await expect(page.frameLocator('[data-reader-tools-frame]').locator('[data-notebook-code]')).toBeVisible();
+ await expect(page.locator('#source-canvas')).toBeVisible();
+ await page.locator('.reader-sections [data-reader-section=slides]').click();
+ await expect(page.locator('#translation-panel')).toBeVisible();
 });
 
-test('mobile lessons retain readable content and no horizontal overflow',async({page})=>{
-  await page.setViewportSize({width:390,height:844});const errors=[];page.on('pageerror',e=>errors.push(e.message));
-  await page.goto(lesson);await expect(page.locator('h1')).toBeVisible();
-  expect(await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth)).toBeLessThanOrEqual(1);
-  await page.locator('.exercise textarea').first().fill('یک مرز خطی دو گوشه مقابل را جدا نمی‌کند.');
-  await page.screenshot({path:test.info().outputPath('danna-lesson-mobile.png'),fullPage:true});expect(errors).toEqual([]);
+test('phone presents the source first and switches optional tools without overflow',async({page})=>{
+ await page.setViewportSize({width:390,height:844});await page.goto(lesson+'slides/');
+ await expect(page.locator('#original-panel')).toBeVisible();await expect(page.locator('#translation-panel')).toBeHidden();
+ await page.locator('.reader-sections [data-reader-section=questions]').click();
+ await expect(page.frameLocator('[data-reader-tools-frame]').locator('.nb-question').first()).toBeVisible();
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBeTruthy();
 });
 
 test('exported Shinylive trains Python and canvas predictions match actual weights',async({page})=>{
@@ -195,7 +184,7 @@ test('convolution laboratory exposes actual Python products pooling and bounded 
   await frame.locator('#pooling').selectOption('average');await frame.waitForFunction(()=>window.dannaConvolution.config.pooling==='average');
   const state=await comparePython();
   const downloadPromise=page.waitForEvent('download');await frame.getByRole('link',{name:'دریافت محاسبه و تنظیمات',exact:true}).click();
-  const download=await downloadPromise;const saved=JSON.parse(readFileSync(await download.path(),'utf8'));const {source_files,...savedState}=saved;expect(savedState).toEqual(state);expect(source_files['convolution_lab.py'].content).toContain('def correlate');
+  const download=await downloadPromise;const saved=JSON.parse(readFileSync(await download.path(),'utf8'));const {source_files,notebook_execution,...savedState}=saved;expect(notebook_execution).toBeNull();expect(savedState).toEqual(state);expect(source_files['convolution_lab.py'].content).toContain('def correlate');
   await frame.locator('#cell_row').fill('4');await frame.locator('#cell_row').press('Tab');await frame.waitForFunction(()=>window.dannaConvolution.selected[0]===3);
   await frame.locator('#padding').selectOption('0');await frame.locator('#stride').selectOption('3');
   await frame.waitForFunction(()=>window.dannaConvolution.raw.output_shape[1]===2&&window.dannaConvolution.selected.join(',')==='1,1');

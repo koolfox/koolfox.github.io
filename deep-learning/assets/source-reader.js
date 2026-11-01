@@ -101,8 +101,8 @@ async function renderOriginal(){
   const pane=document.querySelector('.reader-original'),base=source.getViewport({scale:1});
   let available=pane.clientWidth?Math.max(250,pane.clientWidth-32):lastWidth;
   if(document.body.dataset.sourceOnly==='true'){
-   const heading=pane.querySelector('h2').offsetHeight;
-   available=Math.min(available,Math.max(100,pane.clientHeight-heading-56)*base.width/base.height);
+   const style=getComputedStyle(pane),padding=parseFloat(style.paddingTop)+parseFloat(style.paddingBottom);
+   available=Math.min(available,Math.max(100,pane.clientHeight-padding)*base.width/base.height);
   }
   lastWidth=available;
   const width=available*zoom,viewport=source.getViewport({scale:width/base.width}),ratio=Math.min(devicePixelRatio||1,2);

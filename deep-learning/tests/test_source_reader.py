@@ -523,7 +523,7 @@ class SourceReaderTests(unittest.TestCase):
         self.assertFalse(parser.attr("data-session-workshop"))
         self.assertNotIn("#workshop", html)
         self.assertTrue(parser.attr("data-source-citation"))
-        self.assertIn(self.license_notice, html)
+        self.assertIn(self.license_notice.split(";")[0], html)
         self.assertEqual(json.loads(parser.config)["term"], self.term_id)
         self.assertIn(f"/deep-learning/terms/{self.term_id}/s01/", html)
 

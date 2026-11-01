@@ -417,6 +417,7 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
     require(not asset_revision or re.fullmatch(r"[a-f0-9]{16}", asset_revision), "Invalid reader asset revision")
     asset_query = "?v=" + asset_revision if asset_revision else ""
     title = row.get("title_fa", row.get("title_en", session))
+    license_label = source.get("license_notice", "").removesuffix("; version not printed on cover")
     options = "".join(
         f'<option value="{n}"{" selected" if n == 1 else ""}>{n}</option>'
         for n in range(1, count + 1)
@@ -464,21 +465,20 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
 <p role="status" aria-live="polite" data-reader-status>در حال بارگیری اسلاید و ترجمه…</p>
 <progress data-pdf-progress max="100" value="0" aria-label="پیشرفت بارگیری اسلاید"></progress>
 <div class="reader-layout">
-<section id="original-panel" class="reader-original" aria-labelledby="original-heading">
-<h2 id="original-heading">اسلاید</h2>
+<section id="original-panel" class="reader-original" aria-label="اسلاید">
 <div class="source-page"><canvas id="source-canvas" width="960" height="540" role="img" aria-label="صفحهٔ اسلاید"></canvas>
 <div id="source-links" aria-label="پیوندهای اسلاید"></div></div>
 </section>
-<section id="translation-panel" class="reader-translation" aria-labelledby="translation-heading">
-<h2 id="translation-heading">ترجمهٔ فارسی همین صفحه</h2><div id="persian-page" dir="rtl"></div>
-<details class="reader-source-text"><summary>متن انگلیسی قابل مشاهده در این صفحه</summary>
+<section id="translation-panel" class="reader-translation" aria-label="ترجمهٔ فارسی">
+<div id="persian-page" dir="rtl"></div>
+<details class="reader-source-text"><summary>متن انگلیسی</summary>
 <div data-source-text lang="en" dir="ltr"></div></details>
 </section><section class="reader-tools-panel" aria-label="ابزار کنار اسلاید" hidden><iframe title="ابزار انتخابی درس" data-reader-tools-frame></iframe></section></div>
 <section id="reader-references" class="reader-references" aria-labelledby="references-heading" hidden>
 <h2 id="references-heading">منابع</h2>
 <p>دانا گوراری (<bdi lang="en" dir="ltr">Danna Gurari</bdi>) · دانشگاه کلرادو بولدر · {e(term.get('title_fa', TERM_TITLES[term_id]))}</p>
 <p><a href="{e(source['url'])}" data-source-citation target="_blank" rel="noopener noreferrer">{e(title)}</a></p>
-<p class="reader-reference-license">{e(source.get('license_notice', ''))}</p><p class="reader-reference-license">کد و تمرین‌های تألیفی این مجموعه: MIT</p>
+<p class="reader-reference-license">{e(license_label)}</p><p class="reader-reference-license">کد و تمرین‌ها: MIT</p>
 </section>
 <noscript><p>برای نمایش اسلایدها، جاوااسکریپت را فعال کن.</p></noscript>
 </main>

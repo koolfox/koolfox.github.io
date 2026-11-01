@@ -2,6 +2,7 @@
 
 from convolution_lab import correlate, pattern, pool
 
+# BEGIN CONFIG
 CONFIG = {
     "pattern": "vertical",
     "kernel": [[-1, 0, 1], [-1, 0, 1], [-1, 0, 1]],
@@ -12,6 +13,7 @@ CONFIG = {
     "relu": False,
     "pooling": "none",
 }
+# END CONFIG
 
 
 def calculate(config):

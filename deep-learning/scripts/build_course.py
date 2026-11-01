@@ -26,6 +26,31 @@ LABS = {
         "آموزش CNN روی MNIST",
         "پروژهٔ مستقل پایتون برای اجرای بیرون مرورگر، همراه کد، منبع داده و گزارش واقعی",
     ),
+    "vision-metrics": (
+        "کادر، ماسک و معیارهای بینایی",
+        "IoU، حذف کادرهای تکراری و زیان مکان؛ عددها را از داخل الگوریتم دنبال کن",
+    ),
+    "sequence-lab": (
+        "دنباله، بازنمایی و توجه",
+        "حافظهٔ بازگشتی، هندسهٔ بردار واژه و توجه مقیاس‌شده و علّی",
+    ),
+    "multimodal-lab": (
+        "زبان و تصویر در یک محاسبه",
+        "هدف پیش‌آموزش، امتیاز دنباله، پرسش تصویری و اثر تاریخچهٔ گفت‌وگو",
+    ),
+    "learning-strategies": (
+        "راهبردهای یادگیری و پردازش گفتار",
+        "هدف‌های یادگیری، کم‌نمونه، تقطیر، فشرده‌سازی، تصمیم و سیگنال",
+    ),
+}
+CODE_ENGINES = {
+    "neuron-xor": "logic_gates.py و live_training.py",
+    "network-playground": "network_playground.py",
+    "convolution": "convolution_lab.py",
+    "vision-metrics": "vision_metrics_lab.py",
+    "sequence-lab": "sequence_lab.py",
+    "multimodal-lab": "multimodal_lab.py",
+    "learning-strategies": "learning_strategies_lab.py",
 }
 TERM_SUMMARIES = {
     "spring-2026": "از نورون تا مدل‌های پایه؛ توجه ویژه به پس‌آموزش، پایداری و مسئولیت اجتماعی.",
@@ -80,7 +105,7 @@ def session_url(term, row):
     return f"{term_url(term)}{row['id']}/"
 
 
-def page(title, body, crumbs=(), data=None):
+def page(title, body, crumbs=(), data=None, extra_head=""):
     trail = link(f"{BASE}/", "یادگیری ژرف")
     for url, label in crumbs:
         trail += f'<span aria-hidden="true">/</span>{link(url, label)}'
@@ -91,7 +116,7 @@ def page(title, body, crumbs=(), data=None):
 <title>{e(title)} · یادگیری ژرف</title>
 <meta name="description" content="درسنامه مستقل فارسی، مسیر پنج ترم دانا گوراری، تمرین و آزمایشگاه پایتون">
 <link rel="stylesheet" href="{BASE}/assets/course.css">
-<script src="{BASE}/assets/course.js" defer></script></head><body>
+<script src="{BASE}/assets/course.js" defer></script>{extra_head}</head><body>
 <a class="skip" href="#main">رفتن به محتوای درس</a>
 <header class="site-header"><div class="header-inner">{link("/", "حسام شینی", class_="brand")}
 <nav aria-label="مسیر صفحه">{trail}</nav>{link(f"{BASE}/playgrounds/", "آزمایشگاه‌ها", class_="lab-nav")}</div></header>
@@ -418,15 +443,71 @@ uv run --project deep-learning/labs/cnn-mnist python deep-learning/labs/cnn-mnis
     return page("آموزش CNN روی MNIST", body, [(BASE + "/playgrounds/", "آزمایشگاه‌ها")])
 
 
+def lab_launch(lab):
+    return (
+        '<div class="intro-actions">'
+        + link(f"{BASE}/playgrounds/{lab}/code/", "کد و نتیجه", class_="button primary")
+        + link(f"{BASE}/runtime/{lab}/", "کنترل‌ها بدون ویرایشگر")
+        + "</div>"
+    )
+
+
+def code_page(lab):
+    title = LABS[lab][0]
+    runtime = (
+        f"{BASE}/runtime/{lab}/?_shinylive-mode=editor-terminal-viewer&_danna-code=1"
+    )
+    body = f'''<section class="code-workbench">
+<div class="workbench-heading"><h1>کد و نتیجه: {e(title)}</h1>{link(f"{BASE}/playgrounds/{lab}/", "راهنما و تمرین")}</div>
+<p class="workbench-intro">از <bdi dir="ltr"><code>experiment.py</code></bdi> شروع کن. پارامتر را دقیق عوض کن، کد را اجرا کن و اثرش را در خروجی و کنترل‌ها ببین.</p>
+<div class="workbench-toolbar" aria-label="کار با کد پایتون">
+<button type="button" class="primary" data-workbench-action="run" disabled>اجرای کد</button>
+<button type="button" data-workbench-action="capture" disabled>تنظیمات فعلی به کد</button>
+<button type="button" data-workbench-action="download" disabled>دریافت پروژه با ویرایش‌ها</button>
+<button type="button" data-workbench-action="reset" disabled>بازنشانی کد اولیه</button>
+</div>
+<p class="workbench-status" data-workbench-status role="status" aria-live="polite">محیط پایتون و ویرایشگر در حال بارگذاری‌اند؛ دریافت نخست ممکن است زمان ببرد.</p>
+<iframe class="workbench-runtime" data-code-runtime src="{e(runtime)}" title="ویرایشگر پایتون، کنسول و نتیجهٔ {e(title)}"></iframe>
+<details class="workbench-guide"><summary>پارامترها چگونه به نتیجه وصل می‌شوند؟</summary>
+<p><code>CONFIG</code> در <code>experiment.py</code> مقادیر آغازین کنترل‌ها را تعیین می‌کند. تغییر متن به‌تنهایی نتیجه را عوض نمی‌کند؛ «اجرای کد» مدل را با ویرایش‌های تو از ابتدا می‌سازد.</p>
+<p>کنترل‌های پنجرهٔ نتیجه، اجرای جاری را تغییر می‌دهند. «تنظیمات فعلی به کد» مقدارهای معتبر همین اجرا را در بخش نشان‌گذاری‌شدهٔ <code>CONFIG</code> ثبت می‌کند و اجرای تازه می‌سازد؛ توابع سفارشی دیگر حفظ می‌شوند. وزن‌های آموزش‌دیده به پارامتر آغازین تبدیل نمی‌شوند.</p>
+<p>برای بررسی یا تغییر خود الگوریتم، تب فایل <bdi dir="ltr"><code>{e(CODE_ENGINES[lab])}</code></bdi> را باز کن. کد محاسبه، دادهٔ نمونه و رابط در همین پروژه در دسترس‌اند؛ خروجی از اجرای پایتون به دست می‌آید.</p>
+<p>خطای نوشتاری یا محاسباتی را در کنسول ببین، کد را اصلاح کن و دوباره اجرا کن. «دریافت پروژه با ویرایش‌ها» فایل‌های فعلی را نگه می‌دارد؛ «بازنشانی کد اولیه» همهٔ ویرایش‌ها و اجرای جاری را به نسخهٔ اولیه برمی‌گرداند.</p>
+<p>روی موبایل، ویرایشگر، نتیجه و کنسول زیر هم قرار می‌گیرند. برای دیدن هم‌زمان کد و نمودار، نمایشگر عریض‌تر مناسب‌تر است.</p>
+</details></section>'''
+    head = (
+        f'<link rel="stylesheet" href="{BASE}/assets/workbench.css">'
+        f'<script src="{BASE}/assets/workbench.js" defer></script>'
+    )
+    return page(
+        "کد و نتیجه: " + title,
+        body,
+        [(f"{BASE}/playgrounds/", "آزمایشگاه‌ها")],
+        extra_head=head,
+    )
+
+
 def lab_page(lab, root=ROOT):
     title, description = LABS[lab]
+    if lab in (
+        "vision-metrics",
+        "sequence-lab",
+        "multimodal-lab",
+        "learning-strategies",
+    ):
+        body = f"""<article class="standalone"><h1>{e(title)}</h1><p class="lead">{prose(description)}</p>
+<h2>از یک تغییر قابل توضیح شروع کن</h2><p>یک سناریو انتخاب کن و پیش از اجرا، خروجی را حدس بزن. یک پارامتر را تغییر بده؛ عددها، جدول‌ها و پیام‌های محاسبه را با کد مقایسه کن. سپس همان آزمایش را با مقادیر اولیه بازسازی کن.</p>
+{lab_launch(lab)}
+<h2>کد، کنترل و نتیجهٔ یک آزمایش</h2><p>در محیط ترکیبی، فایل کوتاه experiment.py نقطهٔ شروع است. می‌توانی خود الگوریتم را هم در فایل موتور تغییر بدهی. تغییر کنترل‌ها را به کد برگردان و پروژهٔ ویرایش‌شده را دریافت کن.</p>
+<h2>مرز تفسیر</h2><p>فرض‌ها و اندازهٔ مسئله در خروجی هر سناریو آمده‌اند. داده‌ها و مدل‌های کوچکِ تألیفی برای بررسی سازوکارند؛ امتیاز یک مثال، نتیجهٔ آموزش یا ارزیابی یک سامانهٔ واقعی محسوب نمی‌شود. محاسبهٔ پیش‌رو و آموزش وزن‌ها در هر سناریو صریحاً مشخص می‌شوند.</p></article>"""
+        return page(title, body, [(f"{BASE}/playgrounds/", "آزمایشگاه‌ها")])
     if lab == "cnn-mnist":
         return mnist_page(root)
     if lab == "convolution":
         body = f"""<article class="standalone"><h1>{e(title)}</h1><p class="lead">{prose(description)}</p>
 <h2>پیش از اجرا، حدس بزن</h2><p>یک فیلتر ۳ × ۳ روی تصویر ۸ × ۸، بدون حاشیه و با گام ۱، چند خانهٔ خروجی می‌سازد؟ برای هر خانه چند ضرب لازم است؟</p>
 <ol><li>یک خانهٔ خروجی را انتخاب کن و پاسخ را از پنجرهٔ آبی ورودی، وزن‌ها و بایاس حساب کن.</li><li>گام و حاشیه را تغییر بده؛ اندازهٔ خروجی، تعداد ضرب‌ها و تعداد وزن‌ها را مقایسه کن.</li><li>فیلتر نامتقارن را بچرخان؛ سپس ReLU و دو نوع pooling را بررسی کن.</li></ol>
-{link(f"{BASE}/runtime/{lab}/", "اجرای آزمایشگاه زنده", class_="button primary")}
+{lab_launch(lab)}
 <p class="meta">بار اول محیط پایتون دریافت می‌شود. مرورگر باید JavaScript و WebAssembly را پشتیبانی کند.</p>
 <h2>محاسبهٔ عملیات</h2><p>فیلتر انتخابی روی تصویر مصنوعی محاسبه می‌شود و تمام ضرب‌های هر خانه در دسترس‌اند. وزن‌ها دستی قابل تغییرند. آموزش فیلتر و طبقه‌بندی تصویر به آزمایش جداگانه نیاز دارند.</p>
 <h2>بازسازی محاسبه</h2><p>فایل دریافت‌شده، تصویر، هسته، تنظیمات و نتایج دقیق را نگه می‌دارد. کد مستقل پایتون همان cross-correlation و pooling را محاسبه می‌کند.</p>
@@ -436,7 +517,7 @@ def lab_page(lab, root=ROOT):
         body = f"""<article class="standalone"><h1>{e(title)}</h1><p class="lead">{prose(description)}</p>
 <h2>پیش از اجرا، حدس بزن</h2><p>آیا یک مدل بدون لایه پنهان می‌تواند دو حلقه را جدا کند؟ اگر مربع مختصات را به‌عنوان ویژگی بدهیم، پاسخ چه تغییری می‌کند؟</p>
 <ol><li>دادهٔ حلقه‌ها را با دو ویژگی خام و بدون لایه پنهان اجرا کن.</li><li>با همان بذر، ویژگی‌های مربع مختصات را جایگزین کن و خطای اعتبارسنجی را مقایسه کن.</li><li>ویژگی خام را برگردان؛ لایه پنهان اضافه کن و اثر نویز، اندازه دسته و جریمه وزن‌ها را بررسی کن.</li></ol>
-{link(f"{BASE}/runtime/{lab}/", "اجرای آزمایشگاه زنده", class_="button primary")}
+{lab_launch(lab)}
 <p class="meta">بار اول محیط پایتون دریافت می‌شود. مرورگر باید JavaScript و WebAssembly را پشتیبانی کند.</p>
 <h2>ارزیابی را از تنظیم جدا نگه دار</h2><p>دادهٔ مصنوعی به آموزش، اعتبارسنجی و آزمون تقسیم می‌شود. آزمون تا تصمیم نهایی پنهان است؛ بازکردن آن آموزش همان اجرا را می‌بندد. استفاده دوباره از همان آزمون برای تنظیم مدل، ارزیابی مستقل نیست.</p>
 <h2>بازسازی آزمایش</h2><p>تنظیمات، وزن‌ها، داده‌های مشاهده‌شده و تاریخچه را دریافت کن. موتور مستقل پایتون با همان تنظیمات و تعداد دوره‌ها قابل اجراست.</p>
@@ -447,7 +528,7 @@ def lab_page(lab, root=ROOT):
 <ol><li>با مدل پرسپترون و جدول XOR شروع کن و خروجی چهار ورودی را ثبت کن.</li>
 <li>با همان بذر، مدل را به شبکه دارای لایه پنهان تغییر بده؛ تغییر مرز تصمیم و زیان را دنبال کن.</li>
 <li>آزمایش را از ابتدا اجرا کن؛ سپس فقط نرخ یادگیری را تغییر بده. تفاوت را توضیح بده.</li></ol>
-{link(f"{BASE}/runtime/{lab}/", "اجرای آزمایشگاه زنده ", class_="button primary")}
+{lab_launch(lab)}
 <p class="meta">بار اول محیط پایتون دریافت می‌شود و ممکن است کمی زمان ببرد. مرورگر باید JavaScript و WebAssembly را پشتیبانی کند.</p>
 <h2>اگر محیط اجرا باز نشد</h2><p>منطق آزمایش و آموزش در فایل‌های پایتون هم در دسترس است. نتیجه‌های آماده، جای اجرای زنده معرفی نمی‌شوند.</p>
 <div class="inline-links">{link(f"{BASE}/python/live_training.py", "کد اجرای مرحله‌ای")}{link(f"{BASE}/python/logic_gates.py", "کد مدل و گرادیان")}</div>
@@ -501,13 +582,15 @@ def build(output, root=ROOT):
     )
     for lab in LABS:
         pages[f"playgrounds/{lab}/index.html"] = lab_page(lab, root)
+        if lab in CODE_ENGINES:
+            pages[f"playgrounds/{lab}/code/index.html"] = code_page(lab)
     for name, html in pages.items():
         path = output / name
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(html, encoding="utf-8")
     assets = output / "assets"
     assets.mkdir(exist_ok=True)
-    for name in ("course.css", "course.js"):
+    for name in ("course.css", "course.js", "workbench.css", "workbench.js"):
         if (root / "assets" / name).resolve() != (assets / name).resolve():
             shutil.copyfile(root / "assets" / name, assets / name)
     return len(pages)

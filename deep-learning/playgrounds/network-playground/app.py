@@ -31,145 +31,172 @@ app_ui = ui.page_fluid(
         ui.tags.link(rel="stylesheet", href="lab.css"),
         ui.tags.link(rel="stylesheet", href="network.css"),
         ui.tags.script(src="plot.js", defer=True),
+        ui.tags.script(src="workspace.js", defer=True),
     ),
     ui.tags.main(
         ui.tags.header(
             ui.tags.a(
                 "بازگشت به درس یادگیری ژرف", href="/deep-learning/", target="_top"
             ),
+            ui.tags.a(
+                "کد و نتیجه",
+                href="/deep-learning/playgrounds/network-playground/code/",
+                target="_top",
+                class_="code-link",
+            ),
             ui.h1("شبکه چگونه مرز تصمیم را یاد می‌گیرد؟"),
             ui.p(
                 "داده، ویژگی و معماری را انتخاب کن. پیش از آموزش حدس بزن کدام تغییر، خطای داده‌های ندیده را کم می‌کند."
             ),
         ),
-        ui.tags.div(
-            ui.input_select(
-                "dataset",
-                "شکل داده",
-                {
-                    "circles": "دو حلقه",
-                    "xor": "چهار ربع (XOR)",
-                    "linear": "دو سوی یک خط",
-                    "spirals": "دو مارپیچ",
-                },
-                selected=CONFIG["dataset"],
-            ),
-            ui.input_numeric(
-                "layers",
-                "تعداد لایه‌های پنهان",
-                len(CONFIG["hidden"]),
-                min=0,
-                max=3,
-                step=1,
-            ),
-            ui.input_select(
-                "activation",
-                "تابع فعال‌سازی پنهان",
-                {"tanh": "tanh", "relu": "ReLU", "sigmoid": "sigmoid"},
-                selected=CONFIG["activation"],
-            ),
-            ui.panel_conditional(
-                "input.layers >= 1",
-                ui.input_numeric(
-                    "width1", "نورون‌های لایه اول", WIDTHS[0], min=1, max=8, step=1
-                ),
-            ),
-            ui.panel_conditional(
-                "input.layers >= 2",
-                ui.input_numeric(
-                    "width2", "نورون‌های لایه دوم", WIDTHS[1], min=1, max=8, step=1
-                ),
-            ),
-            ui.panel_conditional(
-                "input.layers >= 3",
-                ui.input_numeric(
-                    "width3", "نورون‌های لایه سوم", WIDTHS[2], min=1, max=8, step=1
-                ),
-            ),
-            class_="controls configuration",
-        ),
-        ui.tags.div(
-            ui.input_checkbox_group(
-                "features",
-                "ویژگی‌های ورودی",
-                FEATURE_LABELS,
-                selected=CONFIG["feature_names"],
-                inline=True,
-            ),
-            class_="feature-options",
-            dir="ltr",
-        ),
         ui.tags.details(
-            ui.tags.summary("تنظیمات داده و روش یادگیری"),
+            ui.tags.summary("پارامترهای آزمایش"),
             ui.tags.div(
-                ui.input_numeric(
-                    "size", "تعداد کل نمونه‌ها", CONFIG["size"], min=40, max=400, step=20
-                ),
-                ui.input_numeric(
-                    "noise",
-                    "انحراف معیار نویز ورودی",
-                    CONFIG["noise"],
-                    min=0,
-                    max=0.5,
-                    step=0.05,
-                ),
-                ui.input_numeric(
-                    "seed", "بذر تصادفی", CONFIG["seed"], min=0, max=4294967295, step=1
-                ),
                 ui.input_select(
-                    "optimizer",
-                    "روش به‌روزرسانی",
-                    {"adam": "Adam", "sgd": "SGD", "momentum": "SGD با مومنتوم ۰٫۹"},
-                    selected=CONFIG["optimizer"],
+                    "dataset",
+                    "شکل داده",
+                    {
+                        "circles": "دو حلقه",
+                        "xor": "چهار ربع (XOR)",
+                        "linear": "دو سوی یک خط",
+                        "spirals": "دو مارپیچ",
+                    },
+                    selected=CONFIG["dataset"],
                 ),
                 ui.input_numeric(
-                    "learning_rate",
-                    "نرخ یادگیری",
-                    CONFIG["learning_rate"],
-                    min=0.00001,
-                    max=1,
-                    step=0.01,
-                ),
-                ui.input_numeric(
-                    "batch_size",
-                    "اندازه دسته",
-                    CONFIG["batch_size"],
-                    min=1,
-                    max=400,
+                    "layers",
+                    "تعداد لایه‌های پنهان",
+                    len(CONFIG["hidden"]),
+                    min=0,
+                    max=3,
                     step=1,
                 ),
                 ui.input_select(
-                    "regularization",
-                    "جریمه وزن‌ها",
-                    {"none": "بدون جریمه", "l2": "L2", "l1": "L1"},
-                    selected=CONFIG["regularization"],
+                    "activation",
+                    "تابع فعال‌سازی پنهان",
+                    {"tanh": "tanh", "relu": "ReLU", "sigmoid": "sigmoid"},
+                    selected=CONFIG["activation"],
                 ),
-                ui.input_numeric(
-                    "regularization_rate",
-                    "ضریب جریمه λ",
-                    CONFIG["regularization_rate"],
-                    min=0,
-                    max=1,
-                    step=0.001,
+                ui.panel_conditional(
+                    "input.layers >= 1",
+                    ui.input_numeric(
+                        "width1", "نورون‌های لایه اول", WIDTHS[0], min=1, max=8, step=1
+                    ),
                 ),
-                ui.input_numeric(
-                    "max_epochs",
-                    "سقف دوره آموزش",
-                    CONFIG["max_epochs"],
-                    min=1,
-                    max=3000,
-                    step=100,
+                ui.panel_conditional(
+                    "input.layers >= 2",
+                    ui.input_numeric(
+                        "width2", "نورون‌های لایه دوم", WIDTHS[1], min=1, max=8, step=1
+                    ),
                 ),
-                class_="controls",
+                ui.panel_conditional(
+                    "input.layers >= 3",
+                    ui.input_numeric(
+                        "width3", "نورون‌های لایه سوم", WIDTHS[2], min=1, max=8, step=1
+                    ),
+                ),
+                class_="controls configuration",
+            ),
+            ui.tags.div(
+                ui.input_checkbox_group(
+                    "features",
+                    "ویژگی‌های ورودی",
+                    FEATURE_LABELS,
+                    selected=CONFIG["feature_names"],
+                    inline=True,
+                ),
+                class_="feature-options",
+                dir="ltr",
+            ),
+            ui.tags.details(
+                ui.tags.summary("تنظیمات داده و روش یادگیری"),
+                ui.tags.div(
+                    ui.input_numeric(
+                        "size",
+                        "تعداد کل نمونه‌ها",
+                        CONFIG["size"],
+                        min=40,
+                        max=400,
+                        step=20,
+                    ),
+                    ui.input_numeric(
+                        "noise",
+                        "انحراف معیار نویز ورودی",
+                        CONFIG["noise"],
+                        min=0,
+                        max=0.5,
+                        step=0.05,
+                    ),
+                    ui.input_numeric(
+                        "seed",
+                        "بذر تصادفی",
+                        CONFIG["seed"],
+                        min=0,
+                        max=4294967295,
+                        step=1,
+                    ),
+                    ui.input_select(
+                        "optimizer",
+                        "روش به‌روزرسانی",
+                        {
+                            "adam": "Adam",
+                            "sgd": "SGD",
+                            "momentum": "SGD با مومنتوم ۰٫۹",
+                        },
+                        selected=CONFIG["optimizer"],
+                    ),
+                    ui.input_numeric(
+                        "learning_rate",
+                        "نرخ یادگیری",
+                        CONFIG["learning_rate"],
+                        min=0.00001,
+                        max=1,
+                        step=0.01,
+                    ),
+                    ui.input_numeric(
+                        "batch_size",
+                        "اندازه دسته",
+                        CONFIG["batch_size"],
+                        min=1,
+                        max=400,
+                        step=1,
+                    ),
+                    ui.input_select(
+                        "regularization",
+                        "جریمه وزن‌ها",
+                        {"none": "بدون جریمه", "l2": "L2", "l1": "L1"},
+                        selected=CONFIG["regularization"],
+                    ),
+                    ui.input_numeric(
+                        "regularization_rate",
+                        "ضریب جریمه λ",
+                        CONFIG["regularization_rate"],
+                        min=0,
+                        max=1,
+                        step=0.001,
+                    ),
+                    ui.input_numeric(
+                        "max_epochs",
+                        "سقف دوره آموزش",
+                        CONFIG["max_epochs"],
+                        min=1,
+                        max=3000,
+                        step=100,
+                    ),
+                    class_="controls",
+                ),
+                ui.p(
+                    "نویز به مختصات افزوده می‌شود؛ برچسب عوض نمی‌شود. تقسیم طبقه‌بندی‌شدهٔ داده تقریباً ۶۰٪ آموزش، ۲۰٪ اعتبارسنجی و ۲۰٪ آزمون است. با بذر ثابت، تغییر معماری داده‌ها را عوض نمی‌کند.",
+                    class_="caption",
+                ),
             ),
             ui.p(
-                "نویز به مختصات افزوده می‌شود؛ برچسب عوض نمی‌شود. تقسیم طبقه‌بندی‌شدهٔ داده تقریباً ۶۰٪ آموزش، ۲۰٪ اعتبارسنجی و ۲۰٪ آزمون است. با بذر ثابت، تغییر معماری داده‌ها را عوض نمی‌کند.",
+                "تغییر هر تنظیم، اجرای تازه‌ای می‌سازد. مدل بدون لایه پنهان نیز قابل آزمایش است؛ خروجی نهایی همیشه سیگموید است.",
                 class_="caption",
             ),
-        ),
-        ui.p(
-            "تغییر هر تنظیم، اجرای تازه‌ای می‌سازد. مدل بدون لایه پنهان نیز قابل آزمایش است؛ خروجی نهایی همیشه سیگموید است.",
-            class_="caption",
+            open=True,
+            data_code_controls="true",
+            class_="experiment-controls",
         ),
         ui.tags.div(
             ui.input_action_button("play", "شروع / ادامه", class_="primary"),

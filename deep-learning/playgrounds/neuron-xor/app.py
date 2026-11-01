@@ -25,60 +25,78 @@ app_ui = ui.page_fluid(
         ui.tags.meta(name="viewport", content="width=device-width, initial-scale=1"),
         ui.tags.link(rel="stylesheet", href="lab.css"),
         ui.tags.script(src="plot.js", defer=True),
+        ui.tags.script(src="workspace.js", defer=True),
     ),
     ui.tags.main(
         ui.tags.header(
             ui.tags.a(
                 "بازگشت به درس یادگیری ژرف", href="/deep-learning/", target="_top"
             ),
+            ui.tags.a(
+                "کد و نتیجه",
+                href="/deep-learning/playgrounds/neuron-xor/code/",
+                target="_top",
+                class_="code-link",
+            ),
             ui.h1("نورون و مسئله XOR"),
             ui.p(
                 "یک مدل انتخاب کن، خروجی را حدس بزن و تغییر مرز تصمیم را هنگام یادگیری ببین."
             ),
         ),
-        ui.tags.div(
+        ui.tags.details(
+            ui.tags.summary("پارامترهای آزمایش"),
             ui.tags.div(
-                ui.input_select(
-                    "gate",
-                    "جدول درستی",
-                    {x: x for x in ("AND", "OR", "NAND", "NOR", "XOR", "XNOR")},
-                    selected=CONFIG["gate"],
+                ui.tags.div(
+                    ui.input_select(
+                        "gate",
+                        "جدول درستی",
+                        {x: x for x in ("AND", "OR", "NAND", "NOR", "XOR", "XNOR")},
+                        selected=CONFIG["gate"],
+                    ),
+                    ui.input_select("model", "مدل", MODELS, selected=CONFIG["model"]),
+                    ui.input_numeric(
+                        "hidden",
+                        "نورون‌های لایه پنهان",
+                        CONFIG["hidden"],
+                        min=1,
+                        max=32,
+                        step=1,
+                    ),
+                    ui.input_numeric(
+                        "learning_rate",
+                        "نرخ یادگیری",
+                        CONFIG["learning_rate"],
+                        min=0.001,
+                        max=4,
+                        step=0.1,
+                    ),
+                    ui.input_numeric(
+                        "seed",
+                        "بذر تصادفی",
+                        CONFIG["seed"],
+                        min=0,
+                        max=4294967295,
+                        step=1,
+                    ),
+                    ui.input_numeric(
+                        "max_epochs",
+                        "سقف دوره آموزش",
+                        CONFIG["max_epochs"],
+                        min=1,
+                        max=10000,
+                        step=100,
+                    ),
+                    class_="controls",
                 ),
-                ui.input_select("model", "مدل", MODELS, selected=CONFIG["model"]),
-                ui.input_numeric(
-                    "hidden",
-                    "نورون‌های لایه پنهان",
-                    CONFIG["hidden"],
-                    min=1,
-                    max=32,
-                    step=1,
+                ui.p(
+                    "تغییر تنظیمات یک اجرای تازه می‌سازد. بذر یکسان، وزن‌های آغازین یکسان می‌دهد.",
+                    class_="caption",
                 ),
-                ui.input_numeric(
-                    "learning_rate",
-                    "نرخ یادگیری",
-                    CONFIG["learning_rate"],
-                    min=0.001,
-                    max=4,
-                    step=0.1,
-                ),
-                ui.input_numeric(
-                    "seed", "بذر تصادفی", CONFIG["seed"], min=0, max=4294967295, step=1
-                ),
-                ui.input_numeric(
-                    "max_epochs",
-                    "سقف دوره آموزش",
-                    CONFIG["max_epochs"],
-                    min=1,
-                    max=10000,
-                    step=100,
-                ),
-                class_="controls",
+                class_="configuration",
             ),
-            ui.p(
-                "تغییر تنظیمات یک اجرای تازه می‌سازد. بذر یکسان، وزن‌های آغازین یکسان می‌دهد.",
-                class_="caption",
-            ),
-            class_="configuration",
+            open=True,
+            data_code_controls="true",
+            class_="experiment-controls",
         ),
         ui.tags.div(
             ui.input_action_button("play", "شروع / ادامه", class_="primary"),

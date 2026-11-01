@@ -78,101 +78,116 @@ app_ui = ui.page_fluid(
         ui.tags.link(rel="stylesheet", href="lab.css"),
         ui.tags.link(rel="stylesheet", href="convolution.css"),
         ui.tags.script(src="lab.js", defer=True),
+        ui.tags.script(src="workspace.js", defer=True),
     ),
     ui.tags.main(
         ui.tags.header(
             ui.tags.a(
                 "بازگشت به درس یادگیری ژرف", href="/deep-learning/", target="_top"
             ),
+            ui.tags.a(
+                "کد و نتیجه",
+                href="/deep-learning/playgrounds/convolution/code/",
+                target="_top",
+                class_="code-link",
+            ),
             ui.h1("یک فیلتر، چندین جای تصویر"),
             ui.p(
                 "خانه‌ای از خروجی را انتخاب کن؛ ناحیهٔ ورودی و همهٔ ضرب‌های سازندهٔ آن را ببین. سپس گام، حاشیه یا فیلتر را تغییر بده و نتیجه را پیش‌بینی کن."
             ),
         ),
-        ui.tags.div(
-            ui.input_select(
-                "pattern",
-                "تصویر مصنوعی ۸ × ۸",
-                {
-                    "vertical": "لبهٔ عمودی",
-                    "horizontal": "لبهٔ افقی",
-                    "diagonal": "قطر",
-                    "checker": "شطرنجی",
-                    "square": "مربع مرکزی",
-                },
-                selected=CONFIG["pattern"],
-            ),
-            ui.input_select(
-                "filter",
-                "فیلتر آغازین",
-                {
-                    "custom": "هستهٔ تعریف‌شده در کد",
-                    "vertical": "اختلاف چپ و راست",
-                    "horizontal": "اختلاف بالا و پایین",
-                    "average": "میانگین ۹ خانه",
-                    "identity": "کپی خانهٔ مرکزی",
-                    "laplacian": "لاپلاسین",
-                },
-                selected="custom",
-            ),
-            ui.input_select(
-                "stride",
-                "گام فیلتر",
-                {"1": "۱", "2": "۲", "3": "۳"},
-                selected=str(CONFIG["stride"]),
-            ),
-            ui.input_select(
-                "padding",
-                "حاشیهٔ صفر در هر طرف",
-                {"0": "۰", "1": "۱", "2": "۲"},
-                selected=str(CONFIG["padding"]),
-            ),
-            ui.input_numeric(
-                "bias", "بایاس", CONFIG["bias"], min=-10, max=10, step=0.1
-            ),
-            ui.input_select(
-                "pooling",
-                "تجمیع پس از فعال‌سازی",
-                {
-                    "none": "بدون pooling",
-                    "max": "بیشینهٔ ۲ × ۲، گام ۲",
-                    "average": "میانگین ۲ × ۲، گام ۲",
-                },
-                selected=CONFIG["pooling"],
-            ),
-            class_="controls configuration",
-        ),
-        ui.tags.div(
-            ui.input_checkbox(
-                "relu", "ReLU پس از فیلتر: منفی‌ها صفر شوند", CONFIG["relu"]
-            ),
-            ui.input_checkbox(
-                "flip", "چرخاندن ۱۸۰ درجهٔ هسته برای convolution ریاضی", CONFIG["flip"]
-            ),
-            class_="operation-options",
-        ),
         ui.tags.details(
-            ui.tags.summary("ویرایش ۹ وزن فیلتر"),
-            ui.p(
-                "فیلتر آغازین، این عددها را پر می‌کند؛ سپس می‌توانی هر وزن را مستقل عوض کنی. همین ۹ وزن در همهٔ جایگاه‌ها استفاده می‌شوند.",
-                class_="caption",
+            ui.tags.summary("پارامترهای آزمایش"),
+            ui.tags.div(
+                ui.input_select(
+                    "pattern",
+                    "تصویر مصنوعی ۸ × ۸",
+                    {
+                        "vertical": "لبهٔ عمودی",
+                        "horizontal": "لبهٔ افقی",
+                        "diagonal": "قطر",
+                        "checker": "شطرنجی",
+                        "square": "مربع مرکزی",
+                    },
+                    selected=CONFIG["pattern"],
+                ),
+                ui.input_select(
+                    "filter",
+                    "فیلتر آغازین",
+                    {
+                        "custom": "هستهٔ تعریف‌شده در کد",
+                        "vertical": "اختلاف چپ و راست",
+                        "horizontal": "اختلاف بالا و پایین",
+                        "average": "میانگین ۹ خانه",
+                        "identity": "کپی خانهٔ مرکزی",
+                        "laplacian": "لاپلاسین",
+                    },
+                    selected="custom",
+                ),
+                ui.input_select(
+                    "stride",
+                    "گام فیلتر",
+                    {"1": "۱", "2": "۲", "3": "۳"},
+                    selected=str(CONFIG["stride"]),
+                ),
+                ui.input_select(
+                    "padding",
+                    "حاشیهٔ صفر در هر طرف",
+                    {"0": "۰", "1": "۱", "2": "۲"},
+                    selected=str(CONFIG["padding"]),
+                ),
+                ui.input_numeric(
+                    "bias", "بایاس", CONFIG["bias"], min=-10, max=10, step=0.1
+                ),
+                ui.input_select(
+                    "pooling",
+                    "تجمیع پس از فعال‌سازی",
+                    {
+                        "none": "بدون pooling",
+                        "max": "بیشینهٔ ۲ × ۲، گام ۲",
+                        "average": "میانگین ۲ × ۲، گام ۲",
+                    },
+                    selected=CONFIG["pooling"],
+                ),
+                class_="controls configuration",
             ),
             ui.tags.div(
-                *(
-                    ui.input_numeric(
-                        f"w{r}{c}",
-                        f"w[{r + 1},{c + 1}]",
-                        CONFIG["kernel"][r][c],
-                        min=-10,
-                        max=10,
-                        step=0.1,
-                    )
-                    for r in range(3)
-                    for c in range(3)
+                ui.input_checkbox(
+                    "relu", "ReLU پس از فیلتر: منفی‌ها صفر شوند", CONFIG["relu"]
                 ),
-                class_="kernel-controls",
-                dir="ltr",
+                ui.input_checkbox(
+                    "flip",
+                    "چرخاندن ۱۸۰ درجهٔ هسته برای convolution ریاضی",
+                    CONFIG["flip"],
+                ),
+                class_="operation-options",
             ),
+            ui.tags.details(
+                ui.tags.summary("ویرایش ۹ وزن فیلتر"),
+                ui.p(
+                    "فیلتر آغازین، این عددها را پر می‌کند؛ سپس می‌توانی هر وزن را مستقل عوض کنی. همین ۹ وزن در همهٔ جایگاه‌ها استفاده می‌شوند.",
+                    class_="caption",
+                ),
+                ui.tags.div(
+                    *(
+                        ui.input_numeric(
+                            f"w{r}{c}",
+                            f"w[{r + 1},{c + 1}]",
+                            CONFIG["kernel"][r][c],
+                            min=-10,
+                            max=10,
+                            step=0.1,
+                        )
+                        for r in range(3)
+                        for c in range(3)
+                    ),
+                    class_="kernel-controls",
+                    dir="ltr",
+                ),
+            ),
+            open=True,
+            data_code_controls="true",
+            class_="experiment-controls",
         ),
         ui.tags.p(ui.output_text("status", inline=True), role="status"),
         ui.output_ui("readout"),

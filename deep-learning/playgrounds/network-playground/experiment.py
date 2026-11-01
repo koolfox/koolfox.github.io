@@ -2,6 +2,7 @@
 
 from network_playground import NetworkExperiment
 
+# BEGIN CONFIG
 CONFIG = {
     "dataset": "circles",
     "feature_names": ["x1", "x2"],
@@ -17,6 +18,7 @@ CONFIG = {
     "seed": 7,
     "max_epochs": 1000,
 }
+# END CONFIG
 
 
 def create_run(**config):

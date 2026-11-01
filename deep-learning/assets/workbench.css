@@ -1,0 +1,31 @@
+.page-shell:has(.code-workbench){max-width:1700px;padding:0 24px}
+.code-workbench{margin:24px 0 0}
+.workbench-heading{display:flex;align-items:baseline;justify-content:space-between;gap:24px}
+.workbench-heading h1{font-size:1.4rem;line-height:1.7;margin:0}
+.workbench-heading a{font-size:.82rem;white-space:nowrap}
+.workbench-intro{font-size:.86rem;color:var(--muted);margin:6px 0 16px;max-width:78ch}
+.workbench-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:12px 0;border-block:1px solid var(--line)}
+.workbench-toolbar button{font:inherit;font-size:.82rem;min-height:40px;padding:7px 14px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink);cursor:pointer}
+.workbench-toolbar button:hover:not(:disabled){background:var(--soft);border-color:var(--accent)}
+.workbench-toolbar button.primary{background:var(--accent);border-color:var(--accent);color:white}
+.workbench-toolbar button:disabled{color:var(--muted);background:var(--soft);cursor:wait}
+.workbench-toolbar button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.workbench-status{font-size:.76rem;color:var(--muted);margin:9px 0;min-height:1.8em;max-width:none}
+.workbench-status[data-error=true]{color:#9a3c29}
+.workbench-runtime{display:block;width:100%;height:max(660px,calc(100dvh - 290px));border:1px solid var(--line);background:var(--soft)}
+.workbench-guide{margin-top:20px;font-size:.85rem;max-width:85ch}
+.workbench-guide p{margin:14px 0;line-height:2}
+.workbench-guide code{direction:ltr;unicode-bidi:isolate;background:var(--soft);padding:1px 5px;font-size:.85em}
+.workbench-guide ul{padding-inline-start:22px}
+.code-workbench+.site-footer{margin-top:30px}
+@media(max-width:760px){
+ .page-shell:has(.code-workbench){padding:0 14px}
+ .code-workbench{margin-top:18px}
+ .workbench-heading{display:block}
+ .workbench-heading h1{font-size:1.2rem;margin-bottom:8px}
+ .workbench-intro{font-size:.8rem;margin:12px 0}
+ .workbench-toolbar{gap:7px}
+ .workbench-toolbar button{font-size:.75rem;flex:1 1 145px}
+ .workbench-runtime{height:1320px}
+ .workbench-status{font-size:.72rem}
+}

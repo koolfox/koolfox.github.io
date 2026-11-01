@@ -2,6 +2,7 @@
 
 from live_training import TrainingRun
 
+# BEGIN CONFIG
 CONFIG = {
     "gate": "XOR",
     "model": "mlp",
@@ -10,6 +11,7 @@ CONFIG = {
     "seed": 7,
     "max_epochs": 6000,
 }
+# END CONFIG
 
 
 def create_run(**config):

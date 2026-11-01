@@ -1,0 +1,20 @@
+@font-face{font-family:arad;src:url('/assets/fonts/arad.woff2') format('woff2');font-display:swap}
+.code-runtime{--colors-blue:#2563eb;--colors-blue-dark:#194fc3;--colors-fg:#172134;--font-face:arad,system-ui,sans-serif;--panel-roundness:0;--container-roundness:0}
+.code-runtime .HeaderBar{display:none}
+.code-runtime .shinylive-container{min-width:0;background:#dce2eb;border-radius:0}
+.code-runtime .shinylive-editor,.code-runtime .shinylive-viewer,.code-runtime .shinylive-terminal{min-width:0;max-width:100%;overflow:hidden}
+.code-runtime .cm-editor{min-width:0;max-width:100%;overflow:hidden}
+.code-runtime .cm-scroller{max-width:100%;overflow:auto}
+.code-runtime .editor-filename{font-size:12px}
+.code-runtime .cm-editor{font-size:13px}
+.code-runtime .cm-content{caret-color:#2563eb}
+.code-runtime .cm-selectionBackground{background:#dbe8ff!important}
+.code-runtime :focus-visible{outline:2px solid #2563eb;outline-offset:-2px}
+.code-runtime .shinylive-terminal{border-top:1px solid #dce2eb}
+@media(max-width:760px){
+ .code-runtime .ResizableGrid.shinylive-container{grid-template:'editor' 490px 'viewer' 620px 'terminal' 180px / minmax(0,1fr)!important;height:1294px}
+ .code-runtime .ResizableGrid--col-sizer,.code-runtime .ResizableGrid--row-sizer{display:none}
+ .code-runtime .HeaderBar .page-title{display:none}
+ .code-runtime .HeaderBar{justify-content:flex-end}
+ .code-runtime .HeaderBar button{min-height:32px}
+}

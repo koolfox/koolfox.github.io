@@ -1,6 +1,7 @@
 """Stage shared Python source and export browser-executed Shiny laboratories."""
 
 import argparse
+import json
 import shutil
 import subprocess
 import tempfile
@@ -32,6 +33,34 @@ def stage(lab, destination):
     shutil.copyfile(
         ROOT.parent / "assets/fonts/arad.woff2", destination / "www/arad.woff2"
     )
+    shutil.copyfile(
+        ROOT / "playgrounds/shared/workspace.js", destination / "www/workspace.js"
+    )
+
+
+def prepare_editor(destination):
+    """Use the pinned runtime's real multi-file editor, with the experiment first."""
+    manifest = destination / "app.json"
+    files = json.loads(manifest.read_text())
+    files.sort(key=lambda item: (item["name"] != "experiment.py", item["name"]))
+    manifest.write_text(json.dumps(files, ensure_ascii=False))
+    shutil.copyfile(
+        ROOT / "playgrounds/workbench-runtime.css", destination / "workbench.css"
+    )
+    shutil.copyfile(ROOT / "playgrounds/code-runtime.js", destination / "code-runtime.js")
+    index = destination / "index.html"
+    html = index.read_text()
+    html = html.replace(
+        'import { runExportedApp } from "./shinylive/shinylive.js";',
+        'import { runExportedApp } from "./code-runtime.js";',
+    )
+    html = html.replace(
+        "</head>",
+        '<link rel="stylesheet" href="./workbench.css">'
+        '<script>if(new URLSearchParams(location.search).has("_danna-code"))'
+        'document.documentElement.classList.add("code-runtime");</script></head>',
+    )
+    index.write_text(html)
 
 
 def export(output):
@@ -48,6 +77,7 @@ def export(output):
             subprocess.run(
                 [executable, "export", str(source), str(output / lab)], check=True
             )
+            prepare_editor(output / lab)
     return output
 
 

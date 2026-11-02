@@ -1,4 +1,4 @@
-# نه برچسبِ خود صفحهٔ11؛ هر برچسب از رنگ و نوع شیء تشکیل شده است.
+# نه برچسبِ خود صفحهٔ 11؛ هر برچسب از رنگ و نوع شیء تشکیل شده است.
 classes = ["red truck", "red car", "red bird", "green truck", "green car", "green bird",
            "blue truck", "blue car", "blue bird"]
 colors = ["red", "green", "blue"]

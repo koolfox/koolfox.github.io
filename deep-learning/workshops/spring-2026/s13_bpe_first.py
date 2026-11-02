@@ -1,15 +1,16 @@
-# جدول صفحات51تا53؛ Costدر سرستون به معنی فراوانی است.
+# جدول صفحات 51 تا 53؛ Cost در سرستون به معنی فراوانی است.
 word_frequencies = {"cost": 2, "best": 2, "menu": 1, "men": 1, "camel": 1}
 target_vocabulary_size = 14
-# 0،1،2 به‌ترتیب مرحله‌های صفحات51،52،53را انتخاب می‌کنند.
+# 0، 1، 2 به‌ترتیب مرحله‌های صفحات 51، 52، 53 را انتخاب می‌کنند.
 selected_round = 0
-if any(not word or type(count) is not int or count < 1 for word, count in word_frequencies.items()):
+if not word_frequencies or any(not isinstance(word, str) or not word or type(count) is not int or count < 1
+                               for word, count in word_frequencies.items()):
     raise ValueError("هر واژه باید غیرخالی و فراوانی آن صحیح مثبت باشد.")
 # در آغاز هر نویسه یک نماد است؛ فاصله یا نشانگر پایان به مثال اضافه نمی‌کنیم.
 tokens = {word: list(word) for word in word_frequencies}
 vocabulary = sorted({symbol for symbols in tokens.values() for symbol in symbols})
 if type(target_vocabulary_size) is not int or not len(vocabulary) <= target_vocabulary_size <= 1000:
-    raise ValueError("اندازهٔ واژگان باید دست‌کم اندازهٔ الفبای اولیه و حداکثر1000باشد.")
+    raise ValueError("اندازهٔ واژگان باید دست‌کم اندازهٔ الفبای اولیه و حداکثر 1000 باشد.")
 illustrated_pairs = [("s", "t"), ("m", "e"), ("me", "n")]
 trace = []
 while len(vocabulary) < target_vocabulary_size:

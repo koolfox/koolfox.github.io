@@ -1,4 +1,4 @@
-# مثال صفحهٔ 42: ورودی 3×3 ، هسته 2×2 ، یک کانال و یک فیلتر، بدون بایاس.
+# مثال صفحهٔ 42: ورودی 3×3، هسته 2×2، یک کانال و یک فیلتر، بدون بایاس.
 input_side = 3
 kernel_side = 2
 if any(type(n) is not int or n < 1 for n in [input_side, kernel_side]) or kernel_side > input_side:

@@ -1,4 +1,4 @@
-# چهار ورودی جدول XOR ؛ شمارهٔ نمونه را از 0 تا 3 انتخاب کن.
+# چهار ورودی جدول XOR؛ شمارهٔ نمونه را از 0 تا 3 انتخاب کن.
 inputs = [[0, 0], [0, 1], [1, 0], [1, 1]]
 selected_sample = 2
 # چهار اتصال ورودی به پنهان همگی 1 هستند؛ دو بایاس −0.5 و−1.5.
@@ -8,7 +8,7 @@ hidden_biases = [-0.5, -1.5]
 output_weights = [1.0, -2.0]
 output_bias = -0.5
 if type(selected_sample) is not int or not 0 <= selected_sample < len(inputs):
-    raise ValueError("اندیس نمونه باید0تا3باشد.")
+    raise ValueError("اندیس نمونه باید 0 تا 3 باشد.")
 if len(hidden_weights) != 2 or any(len(row) != 2 for row in hidden_weights):
     raise ValueError("در این معماری دو نورون پنهان با دو ورودی داریم.")
 if len(hidden_biases) != 2 or len(output_weights) != 2:
@@ -16,7 +16,7 @@ if len(hidden_biases) != 2 or len(output_weights) != 2:
 
 
 def threshold(value):
-    # قرارداد خود اسلاید: اگر کمتر از 0 باشد 0 ، در غیر این صورت 1.
+    # قرارداد خود اسلاید: اگر کمتر از 0 باشد 0، در غیر این صورت 1.
     return 0 if value < 0 else 1
 
 

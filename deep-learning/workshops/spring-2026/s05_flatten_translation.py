@@ -1,4 +1,4 @@
-# دو ماتریس کوچکِ صفحهٔ 10 ؛ الگوی سطر بالا به سطر پایین منتقل شده است.
+# دو ماتریس کوچکِ صفحهٔ 10؛ الگوی سطر بالا به سطر پایین منتقل شده است.
 original = [[1, 1], [0, 0]]
 translated = [[0, 0], [1, 1]]
 if not original or not original[0] or not translated or not translated[0]:

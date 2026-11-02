@@ -24,6 +24,52 @@ def execute(session, changes=None):
 
 
 class WorkshopNumericalTests(unittest.TestCase):
+    def test_weighted_source_bpe_pairs_and_nonunique_third_merge(self):
+        for index, name in enumerate(["first", "second", "third"]):
+            result = execute("s13_bpe_" + name)["result"]
+            self.assertEqual([row["frequency"] for row in result["rounds"]], [4,3,2])
+            self.assertEqual([row["merged_symbol"] for row in result["rounds"]], ["st","me","men"])
+            self.assertEqual(result["selected_round"], index)
+            self.assertEqual(result["initial_alphabet_size"], 11)
+            self.assertEqual(len(result["vocabulary"]), 14)
+            self.assertEqual(len(result["rounds"][2]["tied_maximum_pairs"]), 5)
+        # A changed dataset must not force the source's preferred merge when it is no longer maximal.
+        changed = execute("s13_bpe_second", {'"cost": 2': '"cost": 10'})["result"]
+        self.assertEqual(changed["rounds"][1]["selected_pair"], ["c","o"])
+        self.assertEqual(changed["rounds"][1]["frequency"], 10)
+        with self.assertRaises(ValueError):
+            execute("s13_bpe_first", {'{"cost": 2, "best": 2, "menu": 1, "men": 1, "camel": 1}': '{}'})
+        with self.assertRaises(ValueError):
+            execute("s13_bpe_first", {"selected_round = 0": "selected_round = 5"})
+
+    def test_source_sequence_rule_and_factored_label_dataset(self):
+        result = execute("s07_sequence_rule")["result"]
+        self.assertEqual(result["computed_sequence"], [30,15,46,23,70,35,106,53,160,80,40,20,10,5])
+        self.assertTrue(result["matches_source_b"])
+        self.assertEqual((result["length_a"], result["length_b"]), (8,14))
+        result = execute("s07_factored_classes")["result"]
+        self.assertEqual((result["flat_one_hot_width"], result["factored_two_one_hot_width"]), (9,6))
+        self.assertEqual(result["possible_color_object_pairs"], 9)
+        self.assertEqual(result["factored_classes"][0], {"label":"red truck", "color":[1,0,0], "object":[1,0,0]})
+        with self.assertRaises(ValueError):
+            execute("s07_sequence_rule", {"steps = 14": "steps = -1"})
+
+    def test_source_language_model_ablation_tables_and_illustrated_heads(self):
+        gpt = execute("s14_gpt_ablation")["result"]
+        self.assertAlmostEqual(gpt["pretraining_score_difference"], 14.8)
+        self.assertAlmostEqual(gpt["transformer_lstm_score_difference"], 5.6)
+        self.assertAlmostEqual(gpt["auxiliary_lm_score_difference"], -0.3)
+        cola = execute("s14_gpt_ablation", {'metric = "avg"': 'metric = "CoLA"'})["result"]
+        self.assertAlmostEqual(cola["pretraining_score_difference"], 26.5)
+        bert = execute("s14_bert_ablation")["result"]
+        self.assertAlmostEqual(bert["nsp_score_differences"]["QNLI"], 3.5)
+        self.assertAlmostEqual(bert["bidirectional_score_differences"]["SQuAD_F1"], 10.1)
+        self.assertTrue(all(value > 0 for value in bert["nsp_score_differences"].values()))
+        heads = execute("s14_bert_heads")["result"]
+        self.assertEqual((heads["token_count"], heads["next_sentence_prediction"], heads["masked_word_prediction"]), (11,"isNext","city"))
+        nli = execute("s14_nli_prediction")["result"]
+        self.assertEqual(nli, {"prediction":"contradiction", "selected_probability":1, "class_count":3})
+
     def test_source_negative_polynomial_frame_starts_at_the_actual_negative_point(self):
         result = execute("s03_quadratic_negative")["result"]
         self.assertEqual(result["value"], 9)

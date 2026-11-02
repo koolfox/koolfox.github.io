@@ -146,11 +146,31 @@ class SourceReaderTests(unittest.TestCase):
         self.assertEqual(payload["schema_version"], 1)
         self.assertEqual(payload["session_id"], "s01")
         self.assertEqual(payload["source"], self.source["source"])
+
         self.assertEqual(payload["pages"][0]["lines"], self.source["pages"][0]["lines"])
         self.assertEqual(payload["pages"][0]["blocks"], self.translation["pages"][0]["blocks"])
         self.assertEqual(payload["pages"][1]["blocks"], [])
         payload["pages"][0]["blocks"][0]["fa"] = "تغییر آزمایشی"
         self.assertNotEqual(self.load()["pages"][0]["blocks"][0]["fa"], "تغییر آزمایشی")
+
+    def test_tables_reject_ragged_rows_and_preserve_empty_and_spanning_cells(self):
+        page = self.translation['pages'][1]
+        page['tables'] = [{'verified': True, 'image_text_indices': [0],
+                          'headers': ['مدل', 'A', 'B'],
+                          'rows': [['sample', '', '2'], ['merged', {'text': '3', 'colspan': 2}]]}]
+        self.flush()
+        table = self.load()['pages'][1]['tables'][0]
+        self.assertEqual(table['rows'][0][1], '')
+        self.assertEqual(table['rows'][1][1]['colspan'], 2)
+        page['tables'][0]['rows'][0].pop()
+        self.invalid('uneven table row')
+
+    def test_unverified_reference_does_not_get_a_clickable_target(self):
+        path = self.root / f'data/metadata/{self.term_id}-links.json'
+        entries = {'https://example.org/old': {'status': 'missing', 'http_status': 404},
+                   'https://example.org/good': {'status': 'reachable', 'target': 'https://example.org/new', 'checked_at_utc': '2026-11-02T00:00:00Z'}}
+        path.write_text(json.dumps({'schema_version': 1, 'term_id': self.term_id, 'entries': entries}))
+        self.assertEqual(self.load()['reference_targets'], {'https://example.org/good': 'https://example.org/new'})
 
     def test_verified_editorial_note_is_separate_from_original_and_translation(self):
         note = {'session_id':'s01', 'page':1, 'source_sha256':self.source['source']['sha256'],
@@ -467,7 +487,7 @@ class SourceReaderTests(unittest.TestCase):
             "data-fullscreen", "data-print", "data-zoom-in", "data-zoom-out",
         ):
             self.assertEqual(len(parser.attr(attr)), 1, attr)
-        self.assertEqual(parser.attr("data-view-source")[0][1]["aria-pressed"], "true")
+        self.assertEqual(parser.attr("data-view-both")[0][1]["aria-pressed"], "true")
         self.assertEqual(parser.attr("data-view-translation")[0][1]["aria-pressed"], "false")
         self.assertEqual(parser.attr("data-source-citation")[0][1]["href"], payload["source"]["url"])
         self.assertEqual(parser.attr("data-session-workshop")[0][1]["href"], f"/deep-learning/terms/{self.term_id}/s01/practice/#code")

@@ -122,6 +122,52 @@ test('presentation mode fits the whole original slide in a shorter desktop viewp
   await expect(page.locator('#translation-panel')).toBeVisible();
 });
 
+test('presentation keeps language selection and the page notebook accessible',async({page})=>{
+  await page.setViewportSize({width:1280,height:720});
+  await page.goto('/deep-learning/terms/spring-2026/s13/slides/#page=28');
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+  await page.locator('[data-source-only-toggle]').click();
+  await page.locator('[data-view-translation]').click();
+  await expect(page.locator('#translation-panel')).toBeVisible();
+  await expect(page.locator('#original-panel')).toBeHidden();
+  await expect(page.locator('[data-page-experiment]')).toBeVisible();
+  await page.locator('[data-page-experiment]').click();
+  await expect(page.locator('#translation-panel')).toBeVisible();
+  await expect(page.frameLocator('[data-reader-tools-frame]').locator('[data-notebook-run-all]')).toBeVisible();
+  await page.locator('[data-view-source]').click();
+  await expect(page.locator('#original-panel')).toBeVisible();
+  await expect(page.locator('body')).toHaveAttribute('data-presenting','true');
+  await page.setViewportSize({width:390,height:844});
+  await page.locator('[data-view-translation]').click();
+  await expect(page.locator('#translation-panel')).toBeVisible();
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
+});
+
+test('source tables retain their column order, blank cells, merged costs and numerical precision',async({page})=>{
+  await page.goto('/deep-learning/terms/spring-2026/s13/slides/#page=56');
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+  const table=page.locator('.reader-table');
+  await expect(table.locator('tbody tr')).toHaveCount(10);
+  await expect(table.locator('tbody tr').first().locator('td').nth(1)).toHaveText('');
+  await expect(table.locator('tbody tr').nth(8).locator('td[colspan="2"]')).toHaveCount(1);
+  await expect(table.locator('.katex')).toHaveCount(14);
+  await page.goto('/deep-learning/terms/spring-2026/s11/slides/#page=49');
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+  await expect(page.locator('.reader-table tbody tr')).toHaveCount(6);
+  await expect(page.locator('.reader-table tbody tr').first()).toContainText('00.39');
+  await expect(page.locator('.reader-table tbody tr').last()).toContainText('57.75');
+});
+
+test('the migrated attention citation is checked and unresolved citations remain plain text',async({page})=>{
+  await page.goto('/deep-learning/terms/spring-2026/s13/slides/#page=28');
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+  await expect(page.locator('a[href*="towardsdatascience.com/illustrated-self-attention"]')).toHaveCount(0);
+  await expect(page.locator('#persian-page a[href="https://medium.com/data-science/illustrated-self-attention-2d627e33b20a"]')).toHaveCount(1);
+  const contract=await page.evaluate(()=>fetch(JSON.parse(document.querySelector('#source-reader-config').textContent).translationUrl).then(r=>r.json()));
+  const targets=new Set(Object.values(contract.reference_targets).map(url=>new URL(url).href));
+  for(const href of await page.locator('#source-links a[href^="http"],#persian-page .reader-reference').evaluateAll(items=>items.map(a=>a.href)))expect(targets.has(href)).toBe(true);
+});
+
 test('notebook cells stack in document order with highlighted Python and working local completion',async({page})=>{
   await page.goto('/deep-learning/terms/spring-2026/s01/practice/');
   const cells=page.locator('[data-notebook-cell]');

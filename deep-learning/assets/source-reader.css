@@ -21,3 +21,22 @@ html:has(body.source-reader),body.source-reader{height:100%;overflow:hidden}.sou
 .reader-math-inline{display:inline-block;max-width:100%;margin:0 .1em;padding:0;font:inherit;vertical-align:baseline;white-space:normal;overflow:visible}
 .reader-values{display:flex;flex-wrap:wrap;gap:8px 16px;white-space:normal}
 .reader-values>span{white-space:pre}
+
+.reader-view-controls{display:flex;gap:4px;align-items:center}
+.reader-view-controls button[aria-pressed=true]{color:#194fc3;background:#edf3ff;border-color:#245bdf}
+.source-reader[data-reader-section=slides][data-reader-view]:not([data-reader-view=both]) .reader-layout{grid-template-columns:minmax(0,1fr)}
+.source-reader[data-reader-view=translation] .reader-translation{display:block}
+.source-reader[data-presenting=true] .reader-header{padding-block:6px}
+.source-reader[data-presenting=true] .reader-heading>p,.source-reader[data-presenting=true] .reader-heading>a,.source-reader[data-presenting=true] .reader-instructor{display:none}
+.source-reader[data-presenting=true] .reader-translation{padding-inline:clamp(16px,5vw,72px)}
+@media(max-width:760px){.reader-view-controls [data-view-both]{display:none}.reader-toolbar [data-source-only-toggle]{display:block!important;grid-column:1/-1}.source-reader[data-reader-section]:not([data-reader-section=slides]) .reader-view-controls{display:flex}.source-reader[data-reader-section]:not([data-reader-section=slides]) #translation-panel{display:none}.source-reader[data-presenting=true] .reader-header{padding-block:4px}}
+.reader-table-viewport{max-width:100%;overflow:auto;margin-block:16px 24px;scrollbar-width:thin;scrollbar-color:#b8c5d9 #fff}
+.reader-table-viewport:focus-visible{outline:2px solid #2563eb;outline-offset:2px}
+.reader-table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.8;font-variant-numeric:tabular-nums}
+.reader-table th,.reader-table td{padding:8px 10px;border-bottom:1px solid #dce2eb;text-align:start;vertical-align:top;min-width:5ch}
+.reader-table th{font-weight:500}.reader-table thead th{font-weight:700;border-bottom-color:#526075}
+.reader-table tbody tr:last-child>*{border-bottom:2px solid #526075}
+.reader-table td{white-space:nowrap}.reader-table td:empty::after{content:''}.reader-table .reader-math-inline{font-size:1em}
+@media print{.reader-table-viewport{overflow:visible}.reader-table{font-size:9pt}}
+.reader-table thead th{text-align:center;white-space:nowrap}.reader-table th[rowspan]{vertical-align:middle}.reader-table td[rowspan]{white-space:normal;vertical-align:top}
+@media(max-width:760px){.reader-table{min-width:600px}.reader-table:has(thead tr:only-child th:nth-child(2):last-child){min-width:350px}}

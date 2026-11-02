@@ -204,6 +204,54 @@ def _translation_page(source_page, translated_page, session, require_reviewed):
         "image_text_reviewed": image_reviewed,
         "text_reviewed": text_reviewed,
     }
+    tables = translated_page.get("tables", [])
+    require(isinstance(tables, list), f"{location}: invalid tables")
+    used_labels = set()
+    for table in tables:
+        require(isinstance(table, dict) and table.get("verified") is True,
+                f"{location}: table needs visual verification")
+        indices = table.get("image_text_indices")
+        require(isinstance(indices, list) and indices and all(type(i) is int
+                and 0 <= i < len(image_text) and i not in used_labels for i in indices)
+                and len(indices) == len(set(indices)), f"{location}: invalid table labels")
+        used_labels.update(indices)
+        headers, rows = table.get("headers"), table.get("rows")
+        require(isinstance(headers, list) and len(headers) >= 2
+                and all(isinstance(h, str) for h in headers) and any(headers)
+                and isinstance(rows, list) and rows,
+                f"{location}: invalid table headers or rows")
+        occupied = [0] * len(headers)
+        for row_number, cells in enumerate(rows):
+            require(isinstance(cells, list) and cells, f"{location}: invalid table row")
+            column = 0
+            for cell in cells:
+                while column < len(headers) and occupied[column] > row_number:
+                    column += 1
+                if isinstance(cell, str):
+                    colspan, rowspan = 1, 1
+                else:
+                    require(isinstance(cell, dict) and isinstance(cell.get("text"), str)
+                            and type(cell.get("colspan", 1)) is int
+                            and 1 <= cell.get("colspan", 1) <= len(headers)
+                            and type(cell.get("rowspan", 1)) is int
+                            and 1 <= cell.get("rowspan", 1) <= len(rows) - row_number,
+                            f"{location}: invalid table cell")
+                    colspan, rowspan = cell.get("colspan", 1), cell.get("rowspan", 1)
+                require(column + colspan <= len(headers)
+                        and all(occupied[i] <= row_number for i in range(column, column + colspan)),
+                        f"{location}: uneven table row")
+                for i in range(column, column + colspan):
+                    occupied[i] = row_number + rowspan
+                column += colspan
+            require(all(n > row_number for n in occupied), f"{location}: uneven table row")
+        groups = table.get("groups", [])
+        if groups:
+            require(all(isinstance(g, dict) and _nonempty(g.get("text"))
+                        and type(g.get("colspan")) is int and g["colspan"] > 0 for g in groups)
+                    and sum(g["colspan"] for g in groups) == len(headers),
+                    f"{location}: invalid table header groups")
+    if tables:
+        result["tables"] = deepcopy(tables)
     if "image_text_limits" in translated_page:
         result["image_text_limits"] = deepcopy(translated_page["image_text_limits"])
     return result
@@ -400,13 +448,31 @@ def load_source_translation(session_id, root=ROOT, require_reviewed=True, term_i
                     and _nonempty(ref.get('label_fa')) and isinstance(ref.get('url'), str)
                     and valid_url(ref['url']) for ref in references), 'Invalid editorial reference')
             combined[number-1].setdefault('editorial_notes', []).append(deepcopy(note))
-    return {
+    result = {
         "schema_version": 1,
         "term_id": term_id,
         "session_id": session_id,
         "source": deepcopy(catalog),
         "pages": combined,
     }
+    link_path = root / f"data/metadata/{term_id}-links.json"
+    result["reference_targets"] = {}
+    if link_path.exists():
+        checks = _document(link_path)
+        require(checks.get("schema_version") == 1 and checks.get("term_id") == term_id,
+                "Invalid reference check identity")
+        for url, entry in checks.get("entries", {}).items():
+            target = entry.get("target")
+            if entry.get("status") not in {"reachable", "reviewed_migration"}:
+                continue
+            require(valid_url(url) and isinstance(target, str) and valid_url(target)
+                    and _nonempty(entry.get("checked_at_utc")), "Invalid checked reference")
+            if entry["status"] == "reviewed_migration":
+                require(isinstance(entry.get("migration_evidence"), dict)
+                        and entry["migration_evidence"].get("url") == target,
+                        "Reference migration needs direct evidence")
+            result["reference_targets"][url] = target
+    return result
 
 
 def source_reader_page(term, row, identity, payload, asset_revision=""):
@@ -508,9 +574,10 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
 <button type="button" data-source-only-toggle aria-pressed="false">نمای ارائه</button>
 <button type="button" data-page-experiment hidden>کاوش این اسلاید</button>
 <button type="button" data-retry-load hidden>تلاش دوباره</button>
-<div class="reader-view-controls" role="group" aria-label="نمایش در صفحهٔ کوچک">
-<button type="button" data-view-source aria-pressed="true" aria-controls="original-panel">اسلاید</button>
-<button type="button" data-view-translation aria-pressed="false" aria-controls="translation-panel">ترجمهٔ فارسی</button>
+<div class="reader-view-controls" role="group" aria-label="زبان نمایش اسلاید">
+<button type="button" data-view-source aria-pressed="false" aria-controls="original-panel">English</button>
+<button type="button" data-view-translation aria-pressed="false" aria-controls="translation-panel">فارسی</button>
+<button type="button" data-view-both aria-pressed="true" aria-controls="original-panel translation-panel">کنار هم</button>
 </div></div>
 <p role="status" aria-live="polite" data-reader-status>در حال بارگیری اسلاید و ترجمه…</p>
 <progress data-pdf-progress max="100" value="0" aria-label="پیشرفت بارگیری اسلاید"></progress>

@@ -3,6 +3,25 @@ import katex from './vendor/katex/katex.mjs';
 const persian = /[\u0620-\u063f\u0641-\u064a\u066e-\u066f\u0671-\u06d3\u06fa-\u06fc]/;
 const bullet = /^(\s*)([•●▪◦–-]|\d+[.)])\s+(.+)$/;
 const pairedTerms = new Map([['least', 'کمترین'], ['most', 'بیشترین']]);
+let referenceTargets = new Map();
+const referenceKey = value => value.replace(/\ufffe/g, '-').replace(/\/$/, '');
+
+export function configureReferences(targets = {}) {
+  referenceTargets = new Map(Object.entries(targets).map(([url, target]) => [referenceKey(url), target]));
+}
+
+export function referenceTarget(raw) {
+  try {
+    const url = new URL(raw);
+    const fragment = url.hash; url.hash = '';
+    const target = referenceTargets.get(referenceKey(url.href));
+    if (!target) return null;
+    const checked = new URL(target);
+    if (!['http:', 'https:'].includes(checked.protocol)) return null;
+    if (fragment && !checked.hash) checked.hash = fragment;
+    return checked.href;
+  } catch { return null; }
+}
 
 function element(tag, className) {
   const node = document.createElement(tag);
@@ -37,12 +56,12 @@ function appendBidi(parent, text) {
       let url = token;
       while (/[.,;،؛]$/.test(url) || (/\)$/.test(url) && (url.match(/\)/g) || []).length > (url.match(/\(/g) || []).length)) url = url.slice(0, -1);
       try {
-        const parsed = new URL(url);
-        if (!['http:', 'https:'].includes(parsed.protocol)) throw Error();
+        const target = referenceTarget(url);
+        if (!target) throw Error();
         const link = element('a', 'reader-reference');
-        link.href = parsed.href; link.target = '_blank'; link.rel = 'noopener noreferrer'; link.dir = 'ltr'; link.textContent = url;
+        link.href = target; link.target = '_blank'; link.rel = 'noopener noreferrer'; link.dir = 'ltr'; link.textContent = target;
         parent.append(link, document.createTextNode(token.slice(url.length)));
-      } catch { parent.append(document.createTextNode(token)); }
+      } catch { const text = element('bdi'); text.dir = 'ltr'; text.textContent = token; parent.append(text); }
     } else {
       const isolated = element('bdi'); isolated.dir = 'ltr'; isolated.textContent = token.trimEnd();
       parent.append(isolated, document.createTextNode(token.slice(token.trimEnd().length)));
@@ -97,6 +116,41 @@ export function math(parent, item) {
     } catch { node.textContent = item.fa; node.dataset.mathError = 'true'; }
   } else node.textContent = item.fa;
   parent.append(node);
+}
+
+export function renderTable(parent, table) {
+  const viewport = element('div', 'reader-table-viewport');
+  viewport.tabIndex = 0; viewport.setAttribute('role', 'region'); viewport.setAttribute('aria-label', 'جدول اسلاید');
+  const node = element('table', 'reader-table'); node.dir = 'ltr';
+  const head = element('thead'), headings = element('tr');
+  if (table.groups?.length) {
+    const groups = element('tr');
+    for (const group of table.groups) {
+      const cell = element('th'); cell.colSpan = group.colspan; cell.rowSpan = group.rowspan || 1; cell.scope = group.colspan > 1 ? 'colgroup' : 'col'; cell.dir = 'auto'; addText(cell, group.text); groups.append(cell);
+    }
+    head.append(groups);
+  }
+  const covered = new Set(); let column = 0;
+  for (const group of table.groups || []) { if (group.rowspan === 2) for (let i = 0; i < group.colspan; i++) covered.add(column + i); column += group.colspan; }
+  for (const [index, title] of table.headers.entries()) {
+    if (covered.has(index)) continue;
+    const cell = element('th'); cell.scope = 'col'; cell.dir = 'auto'; addText(cell, title); headings.append(cell);
+  }
+  head.append(headings); node.append(head);
+  const body = element('tbody');
+  for (const row of table.rows) {
+    const tr = element('tr');
+    row.forEach((value, index) => {
+      const data = typeof value === 'string' ? {text: value} : value;
+      const cell = element(index === 0 ? 'th' : 'td');
+      if (index === 0) cell.scope = 'row';
+      cell.colSpan = data.colspan || 1; cell.rowSpan = data.rowspan || 1; cell.dir = persian.test(data.text) ? 'rtl' : 'ltr';
+      if (data.bold) cell.style.fontWeight = '700';
+      addText(cell, data.text); tr.append(cell);
+    });
+    body.append(tr);
+  }
+  node.append(body); viewport.append(node); parent.append(viewport);
 }
 
 function paragraph(parent, text, block) {

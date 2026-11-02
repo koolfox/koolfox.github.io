@@ -430,11 +430,11 @@
       "number": 22,
       "source_text_sha256": "31a9bd085b6372b79164cbf9ebe1b3ecc8068386387b093c24e4129e27f23de9",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "question_text"
       ],
-      "question_coverage": "pending",
+      "question_coverage": "not_applicable",
       "question_ids": [],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
@@ -445,7 +445,9 @@
           5
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "quoted_generation_demo_prompt_not_student_question",
+      "review_basis": "full_source_context_inspected"
     },
     {
       "number": 23,
@@ -470,11 +472,11 @@
       "number": 24,
       "source_text_sha256": "205729b9df702d6717ee7cbb22da6fc6750b429556cd93badd695b34766b4715",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "question_text"
       ],
-      "question_coverage": "pending",
+      "question_coverage": "not_applicable",
       "question_ids": [],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
@@ -485,7 +487,9 @@
           6
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "quoted_generation_demo_prompt_not_student_question",
+      "review_basis": "full_source_context_inspected"
     },
     {
       "number": 25,
@@ -629,13 +633,15 @@
       "number": 32,
       "source_text_sha256": "5245c95343e51082e743c6062dbc388ee26aa8c2e6b35f56da2b6fe61fd385bb",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "complete",
+      "question_ids": [
+        "human-capability"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -645,7 +651,9 @@
           2
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "all_explicit_source_prompts_covered",
+      "review_basis": "source_text_and_rendered_figures_or_exact_table"
     },
     {
       "number": 33,
@@ -697,34 +705,38 @@
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "partial",
+      "question_coverage": "complete",
       "question_ids": [
-        "page-35-detail"
+        "page-35-detail",
+        "person-rule-features"
       ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
-      "review_basis": "source_text_study_check",
+      "review_basis": "source_text_and_rendered_figures_or_exact_table",
       "review_scope": "source_prompt_inventory",
       "explicit_prompt_candidates": {
         "source_line_indices": [
           1
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "all_explicit_source_prompts_covered"
     },
     {
       "number": 36,
       "source_text_sha256": "bf119a1b44cb38fbc17a4645735ce8302e5d0bcce05945396234a4374e628cd1",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "complete",
+      "question_ids": [
+        "parallel-lines"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -734,20 +746,24 @@
           1
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "all_explicit_source_prompts_covered",
+      "review_basis": "source_text_and_rendered_figures_or_exact_table"
     },
     {
       "number": 37,
       "source_text_sha256": "bf119a1b44cb38fbc17a4645735ce8302e5d0bcce05945396234a4374e628cd1",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "complete",
+      "question_ids": [
+        "parallel-lines"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -757,7 +773,9 @@
           1
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "all_explicit_source_prompts_covered",
+      "review_basis": "source_text_and_rendered_figures_or_exact_table"
     },
     {
       "number": 38,
@@ -851,21 +869,22 @@
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "partial",
+      "question_coverage": "not_applicable",
       "question_ids": [
         "page-42-detail"
       ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
-      "review_basis": "source_text_study_check",
+      "review_basis": "full_source_context_inspected",
       "review_scope": "source_prompt_inventory",
       "explicit_prompt_candidates": {
         "source_line_indices": [
           4
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "unknown_future_input_placeholder_not_solvable_student_problem"
     },
     {
       "number": 43,
@@ -916,32 +935,33 @@
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "partial",
+      "question_coverage": "complete",
       "question_ids": [
         "page-45-detail"
       ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
-      "review_basis": "source_text_study_check",
+      "review_basis": "source_text_and_rendered_figures_or_exact_table",
       "review_scope": "source_prompt_inventory",
       "explicit_prompt_candidates": {
         "source_line_indices": [
           3
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "all_explicit_source_prompts_covered"
     },
     {
       "number": 46,
       "source_text_sha256": "af1b02a052e6b8bbbe94af7bf001510d5f2459b3b04b7324ef3fa97a27dcb19c",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
+      "question_coverage": "not_applicable",
       "question_ids": [],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
@@ -952,19 +972,23 @@
           3
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "repeated_illustrated_classification_task_with_answer_shown",
+      "review_basis": "full_source_context_inspected"
     },
     {
       "number": 47,
       "source_text_sha256": "02026ec9c63b9d49faa8df6262de038b5ee3a9b76a5e26ca32e0b3714ded4480",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "complete",
+      "question_ids": [
+        "learned-features"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -974,7 +998,9 @@
           3
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "all_explicit_source_prompts_covered",
+      "review_basis": "source_text_and_rendered_figures_or_exact_table"
     },
     {
       "number": 48,
@@ -999,11 +1025,11 @@
       "number": 49,
       "source_text_sha256": "605f4ada3f9709e71ff46ac3f55558a286f82fc76f264d572ed971893e51ef6e",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "question_text"
       ],
-      "question_coverage": "pending",
+      "question_coverage": "not_applicable",
       "question_ids": [],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
@@ -1014,7 +1040,9 @@
           1
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "rhetorical_section_heading_not_new_student_activity",
+      "review_basis": "full_source_context_inspected"
     },
     {
       "number": 50,
@@ -1080,14 +1108,16 @@
       "number": 53,
       "source_text_sha256": "e5e1a922388ef1ec4e11a7c24977341806b1a435cd9a818985fe447d230efce4",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "source_activity_index",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "complete",
+      "question_ids": [
+        "intro-capacity"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -1095,7 +1125,9 @@
       "explicit_prompt_candidates": {
         "source_line_indices": [],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "all_explicit_source_prompts_covered",
+      "review_basis": "source_text_and_rendered_figures_or_exact_table"
     },
     {
       "number": 54,
@@ -1368,13 +1400,15 @@
       "number": 65,
       "source_text_sha256": "87184ba5fe22dd971a7e5cc2ab5b52164ef16c24a0b20052fa26c0226c6b5198",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "complete",
+      "question_ids": [
+        "harm-examples"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -1387,7 +1421,9 @@
         "image_label_indices": [
           2
         ]
-      }
+      },
+      "prompt_reconciliation": "all_explicit_source_prompts_covered",
+      "review_basis": "source_text_and_rendered_figures_or_exact_table"
     },
     {
       "number": 66,
@@ -2019,6 +2055,133 @@
           "الزاماً هیچ برچسبی ندارد"
         ],
         "correct_index": 1
+      },
+      "reviewed": true
+    },
+    {
+      "id": "human-capability",
+      "source_kind": "original",
+      "source_page": 32,
+      "pages": [
+        32
+      ],
+      "prompt_fa": "آزمون Turing درمحور تاریخی این اسلاید به کدام نمونه از توانایی انسان مربوط است؟",
+      "solution_fa": "آزمون به رفتار قابل مشاهده در تعامل زبانی می‌پردازد؛اثبات مستقیم ماهیت ذهن یا آگاهی نیست.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "رفتار گفت‌وگویی/زبانی ماشین در مقایسه با انسان",
+          "فقط اندازهٔ بدنهٔ رایانه",
+          "اندازه‌گیری مستقیم همهٔ حالت‌های ذهنی"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true,
+      "source_question_kind": "open_discussion",
+      "adaptation_kind": "source_specific_critical_reading_or_activity_check"
+    },
+    {
+      "id": "person-rule-features",
+      "source_kind": "original",
+      "source_page": 35,
+      "pages": [
+        35
+      ],
+      "prompt_fa": "برای قاعده‌سازی تشخیص شخص،کدام دستهٔ ویژگی با مسئله مرتبط‌تر است؟",
+      "solution_fa": "این‌ها نمونهٔ ویژگی‌های دستی‌اند؛با نور،زاویه و پوشیدگی تغییر می‌کنند و قاعدهٔ بی‌خطای عمومی نمی‌سازند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "تنها نام تصادفی فایل",
+          "لبه‌ها،شکل و آرایش اجزای بدن",
+          "همیشه عدد شمارهٔ صفحه"
+        ],
+        "correct_index": 1
+      },
+      "reviewed": true,
+      "source_question_kind": "open_discussion",
+      "adaptation_kind": "source_specific_critical_reading_or_activity_check"
+    },
+    {
+      "id": "parallel-lines",
+      "source_kind": "original",
+      "source_page": 36,
+      "pages": [
+        36,
+        37
+      ],
+      "prompt_fa": "آیاخطوط افقیِ توهم بصری این دو صفحه موازی‌اند؟",
+      "solution_fa": "ردیف‌های جابه‌جا و کنتراست مربع‌ها ظاهر کج ایجاد می‌کنند؛خطوط آبی راهنما افقی و موازی‌اند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "خیر؛با اختلاف زاویهٔ واقعی رسم شده‌اند",
+          "هیچ خط افقی وجود ندارد",
+          "بله؛خطوط راهنمای صفحهٔبعد موازی‌بودن را آشکار می‌کنند"
+        ],
+        "correct_index": 2
+      },
+      "reviewed": true
+    },
+    {
+      "id": "learned-features",
+      "source_kind": "original",
+      "source_page": 47,
+      "pages": [
+        47
+      ],
+      "prompt_fa": "تفاوت مسیر NN با مسیر ویژگی‌دستی در شکل چیست؟",
+      "solution_fa": "در Representation learning،بخش استخراج ویژگی هم در یادگیری نقش دارد؛کار طراحی هدف و معماری همچنان باقی است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "بازنماییِ مناسب نیز از داده یاد گرفته می‌شود",
+          "همهٔ ویژگی‌ها الزاماً دستی و ثابت‌اند",
+          "ورودی تصویر حذف می‌شود"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "intro-capacity",
+      "source_kind": "original",
+      "source_page": 53,
+      "pages": [
+        53
+      ],
+      "prompt_fa": "در فعالیت جداسازی x و o،کدام ترتیب ظرفیت مدل‌ها با مثال اسلاید سازگار است؟",
+      "solution_fa": "این فعالیت انعطاف خانوادهٔ مدل‌ها را مقایسه می‌کند؛انتخاب منحنی صرفاً برچسب‌زدن بی‌خطای آموزش نیست.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "منحنی آزاد<خط<سهمی",
+          "خط<سهمی<منحنی آزاد",
+          "همه دقیقاً یک خانوادهٔ تابع‌اند"
+        ],
+        "correct_index": 1
+      },
+      "reviewed": true,
+      "source_question_kind": "open_discussion",
+      "adaptation_kind": "source_specific_critical_reading_or_activity_check"
+    },
+    {
+      "id": "harm-examples",
+      "source_kind": "original",
+      "source_page": 65,
+      "pages": [
+        65
+      ],
+      "prompt_fa": "دو خطای برچسب‌گذاری افراد و تشخیص پلک‌زدن در این صفحه چه نیاز مشترکی را برجسته می‌کنند؟",
+      "solution_fa": "خطاهای وابسته به گروه یا ظاهر می‌توانند پیامد اجتماعی داشته باشند؛میانگین یک معیار به‌تنهایی کافی نیست.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "فقط افزایش اندازهٔ نام فایل‌ها",
+          "حذف کامل ارزیابی کاربران",
+          "آزمون عملکرد و آسیب روی گروه‌های مختلف و شرایط واقعی"
+        ],
+        "correct_index": 2
       },
       "reviewed": true
     }

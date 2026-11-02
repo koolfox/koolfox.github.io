@@ -37,6 +37,30 @@ class SourceActivityTests(unittest.TestCase):
         self.assertTrue(all(by_id[i]["source_page"] in (74,75) for i in loss_ids))
         self.assertFalse(any("direction" in i or "update-symbolic" in i for i in loss_ids))
 
+    def test_progressive_truth_table_only_asks_the_still_hidden_source_rows(self):
+        document = load_activities(ROOT, "spring-2026", "s02")
+        for page, count in [(21,8),(22,7),(23,6)]:
+            ids = [i for i in document["pages"][page-1]["question_ids"] if i.startswith("majority-table-row-")]
+            self.assertEqual(len(ids), count)
+        self.assertNotIn("majority-table-row-1", document["pages"][21]["question_ids"])
+        self.assertNotIn("majority-table-row-2", document["pages"][22]["question_ids"])
+
+    def test_shared_notebook_question_cannot_escape_its_actual_example(self):
+        from workshops import load_workshops
+        unit = json.loads((ROOT / "content/workshops/spring-2026/s02.json").read_text())
+        example = next(e for e in unit["source_examples"] if e["id"] == "majority-table")
+        example["questions"][0]["pages"] = [21, 50]
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            for name in ["content/workshops/spring-2026", "workshops/spring-2026", "data/metadata"]:
+                (root/name).mkdir(parents=True)
+            (root / "content/workshops/spring-2026/s02.json").write_text(json.dumps(unit))
+            (root / "data/metadata/spring-2026.json").write_bytes((ROOT / "data/metadata/spring-2026.json").read_bytes())
+            for name in ["s02.py"] + [e["code_file"] for e in unit["source_examples"]]:
+                (root / "workshops/spring-2026" / name).write_bytes((ROOT / "workshops/spring-2026" / name).read_bytes())
+            with self.assertRaisesRegex(ValueError, "outside source example"):
+                load_workshops("spring-2026", root, session_ids=["s02"])
+
     def test_stale_source_text_or_unsupported_completion_is_rejected(self):
         source = json.loads((ROOT / "content/source-slides/spring-2026/s01.json").read_text())
         document = load_activities(ROOT, "spring-2026", "s01")

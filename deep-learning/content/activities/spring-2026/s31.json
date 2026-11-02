@@ -270,14 +270,15 @@
         "source_question_index",
         "question_text"
       ],
-      "question_coverage": "partial",
+      "question_coverage": "complete",
       "question_ids": [
-        "page-14-concept"
+        "page-14-concept",
+        "winter-evidence"
       ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
-      "review_basis": "source_text_study_check",
+      "review_basis": "source_text_verified_figure_labels_and_checked_example_family",
       "review_scope": "source_prompt_inventory",
       "explicit_prompt_candidates": {
         "source_line_indices": [
@@ -285,7 +286,8 @@
           1
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "all_explicit_source_prompts_covered"
     },
     {
       "number": 15,
@@ -310,14 +312,16 @@
       "number": 16,
       "source_text_sha256": "41281248b12e65fd4a5dc7dffd89e9108d508d1eb6a0c78f41db13780f48e1fc",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "complete",
+      "question_ids": [
+        "evolution-analogy"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -327,7 +331,9 @@
           2
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "all_explicit_source_prompts_covered",
+      "review_basis": "source_text_verified_figure_labels_and_checked_example_family"
     },
     {
       "number": 17,
@@ -357,14 +363,16 @@
         "source_question_index",
         "question_text"
       ],
-      "question_coverage": "partial",
+      "question_coverage": "complete",
       "question_ids": [
-        "page-18-concept"
+        "page-18-concept",
+        "personal-ai-plan",
+        "societal-ai-plan"
       ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
-      "review_basis": "source_text_study_check",
+      "review_basis": "source_text_verified_figure_labels_and_checked_example_family",
       "review_scope": "source_prompt_inventory",
       "explicit_prompt_candidates": {
         "source_line_indices": [
@@ -377,7 +385,8 @@
           9
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "all_explicit_source_prompts_covered"
     },
     {
       "number": 19,
@@ -462,12 +471,12 @@
       "number": 23,
       "source_text_sha256": "b402fcd24bf96b4798a418c5e68abaeb5215a21d957a52f7bd3042099182f399",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text"
       ],
-      "question_coverage": "pending",
+      "question_coverage": "not_applicable",
       "question_ids": [],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
@@ -478,7 +487,9 @@
           0
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "administrative_open_floor_for_course_instructor",
+      "review_basis": "full_source_context_inspected"
     },
     {
       "number": 24,
@@ -502,11 +513,11 @@
       "number": 25,
       "source_text_sha256": "7dfb803dc2fbc93e1257753b6fc75725ca880ec65c94f7568e3fbdf118b23c45",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "question_text"
       ],
-      "question_coverage": "pending",
+      "question_coverage": "not_applicable",
       "question_ids": [],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
@@ -519,7 +530,9 @@
           9
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "instructor_closing_motivation_not_student_problem",
+      "review_basis": "full_source_context_inspected"
     },
     {
       "number": 26,
@@ -604,6 +617,94 @@
       "reviewed": true,
       "source_question_kind": "open_discussion",
       "adaptation_kind": "evidence_based_study_check"
+    },
+    {
+      "id": "winter-evidence",
+      "source_kind": "original",
+      "source_page": 14,
+      "pages": [
+        14
+      ],
+      "prompt_fa": "برایپرسش زمستان سومAIو ترکیدن/تخلیهٔحباب،کدامروش قابل دفاع است؟",
+      "solution_fa": "چرخهٔانتظارات و وضعیتاقتصادی با قابلیتفنی یکی نیست؛سؤال آینده‌نگر پاسخقطعی واحد ندارد.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "شاخصسرمایه،درآمد،تواناییمدل و هزینه را با سناریو و افقزمانی بررسی کنیم؛تاریخقطعی از گذشته به‌تنهایی به‌دست نمی‌آید",
+          "چون دو زمستان بوده،سومی درهمانروز حتمی است",
+          "هرپیشرفت فنی سودهمهٔشرکت‌ها را تضمین می‌کند"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true,
+      "source_question_kind": "open_discussion",
+      "adaptation_kind": "source_specific_critical_reading_or_activity_check"
+    },
+    {
+      "id": "evolution-analogy",
+      "source_kind": "original",
+      "source_page": 16,
+      "pages": [
+        16
+      ],
+      "prompt_fa": "قیاس70سالAIبا میلیاردهاسال تکامل زیستی چه محدودیتی دارد؟",
+      "solution_fa": "تصویر تکامل زمینه‌ایبرایبحث آینده است؛نوآوری انسانی،انتخابزیستی و گسترش فناوری سازوکارهای یکسان ندارند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "تمام فرایندها از نظرهدف و مقیاسزمانی یکسان‌اند",
+          "شباهت تغییر محیط،به‌تنهایی سرعت،مسیر یا پیامد آیندهٔAIرا پیش‌بینی نمی‌کند",
+          "تکاملزیستی تاریخ مشخص هیچمرحله‌ای ندارد"
+        ],
+        "correct_index": 1
+      },
+      "reviewed": true,
+      "source_question_kind": "open_discussion",
+      "adaptation_kind": "source_specific_critical_reading_or_activity_check"
+    },
+    {
+      "id": "personal-ai-plan",
+      "source_kind": "original",
+      "source_page": 18,
+      "pages": [
+        18
+      ],
+      "prompt_fa": "برای پاسخ به پرسش‌هایشخصیِ«چه استفاده‌ای پذیرفتنی است،چگونه در5و10سال درگیرمی‌شویم و تمایزمی‌یابیم»،کدامخروجی روشن‌تر است؟",
+      "solution_fa": "ازفهرستهدف‌ها باید برنامهٔقابل‌بررسی ساخت؛تغییر شغل/فناوری ممکن است بازنگری را ضروری کند.این سؤال نظرشخصی را نمره‌گذاری نمی‌کند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "فقط یک پیش‌بینی قطعی بدونمعیار",
+          "نسخهٔثابت یکسان برایهمهٔافراد",
+          "مرزاستفادهٔامروز،مهارت‌هایقابل‌سنجش و نقاطبازبینی آینده با توضیح ارزش‌ها و پیامدها"
+        ],
+        "correct_index": 2
+      },
+      "reviewed": true,
+      "source_question_kind": "open_discussion",
+      "adaptation_kind": "source_specific_critical_reading_or_activity_check"
+    },
+    {
+      "id": "societal-ai-plan",
+      "source_kind": "original",
+      "source_page": 18,
+      "pages": [
+        18
+      ],
+      "prompt_fa": "برایچهار پرسشاجتماعیِآگاهی‌رسانی،تأمینمالی،صرفوقت و حمایتسیاسی،کدام چارچوب به‌بحثکمک می‌کند؟",
+      "solution_fa": "کاربر باید ارزش‌ها و شواهد خود را بیان کند؛هیچشرکت،گزینهٔسیاسی یا استفادهٔشخصی به‌عنوانجواباجباری معرفی نمی‌شود.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "اطلاعاتمعتبر،پیامدبرایگروه‌هایذی‌نفع و سازگاری انتخاب‌ها با معیارهایاعلام‌شده بررسی شوند",
+          "صرفاًمحبوبیتیک برند کافی است",
+          "مشارکتجامعه هیچاهمیتی ندارد"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true,
+      "source_question_kind": "open_discussion",
+      "adaptation_kind": "source_specific_critical_reading_or_activity_check"
     }
   ]
 }

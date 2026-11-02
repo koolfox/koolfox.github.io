@@ -275,7 +275,7 @@ export function sourceLayoutPlan(record) {
     }
     region.slot = [left,top,Math.max(right,region.rect[2]),Math.max(bottom,region.rect[3])];
   }
-  return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || []};
+  return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&!persian.test(block.fa||''))};
 }
 
 export function createSourceLayout(record, plan) {
@@ -297,8 +297,8 @@ export function createSourceLayout(record, plan) {
     stage.append(node);
   }
   let companion = null;
-  if (plan.figureLabels?.length || plan.tables?.length) {
-    const tableIndices = new Set(plan.tables.flatMap(table => table.source_lines || []));
+  if (plan.figureLabels?.length || plan.tables?.length || plan.nativeMath?.length) {
+    const tableIndices = new Set([...plan.tables.flatMap(table => table.source_lines || []), ...plan.nativeMath.flatMap(block=>block.source_lines)]);
     const nativeTables = plan.layout.lines.filter(line => tableIndices.has(line.index));
     const rects = plan.figureLabels.length ? plan.layout.images.map(image => image.rect) : nativeTables.map(line => line.rect);
     if (!rects.length) rects.push([0,0,1,1]);
@@ -307,8 +307,9 @@ export function createSourceLayout(record, plan) {
     const details = element('details', 'reader-figure-labels'); details.dir = 'rtl';
     details.dataset.figureRect = JSON.stringify([left,top,right,bottom]);
     details.open = Boolean(plan.tables.length);
-    const summary = element('summary'); summary.textContent = plan.tables.length ? 'جدول و نوشته‌های شکل' : (rects.length > 1 ? 'نوشته‌های شکل‌ها' : 'نوشته‌های شکل'); details.append(summary);
+    const summary = element('summary'); summary.textContent = plan.tables.length ? 'جدول و نوشته‌های شکل' : (plan.figureLabels.length ? (plan.nativeMath.length?'نوشته‌ها و فرمول‌های شکل':rects.length>1?'نوشته‌های شکل‌ها':'نوشته‌های شکل') : 'فرمول‌ها'); details.append(summary);
     const content = element('div','reader-figure-content');
+    for(const block of plan.nativeMath)math(content,block);
     const imageTables=plan.tables.filter(table=>table.image_text_indices?.length);
     const tableAt=new Map(imageTables.map(table=>[table.image_text_indices[0],table]));
     const consumed=new Set(imageTables.flatMap(table=>table.image_text_indices));

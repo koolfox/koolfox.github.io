@@ -61,3 +61,12 @@ test('split labels need exact English anchors and whitespace slots avoid source 
  expect(result.regions.map(r=>r.color)).toEqual(['#ff0000','#00ff00']);
  expect(result.unmatched).toBe('split-source-line');
 });
+
+test('native source equations retain selectable KaTeX and MathML in their companion',async({page})=>{
+ await page.goto(deck+'#page=30');await ready(page);
+ expect(await page.locator('#persian-page .katex').count()).toBeGreaterThan(0);
+ expect(await page.locator('#persian-page math').count()).toBeGreaterThan(0);
+ const companion=page.locator('.reader-figure-labels');
+ if(await companion.count()&&!await companion.evaluate(node=>node.open))await companion.locator('summary').click();
+ await expect(page.locator('#persian-page .katex').first()).toBeVisible();
+});

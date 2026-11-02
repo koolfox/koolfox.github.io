@@ -207,37 +207,54 @@ def _translation_page(source_page, translated_page, session, require_reviewed):
     tables = translated_page.get("tables", [])
     require(isinstance(tables, list), f"{location}: invalid tables")
     used_labels = set()
+    used_lines = set()
     for table in tables:
         require(isinstance(table, dict) and table.get("verified") is True,
                 f"{location}: table needs visual verification")
-        indices = table.get("image_text_indices")
+        from_lines = "source_lines" in table
+        require(not (from_lines and "image_text_indices" in table), f"{location}: ambiguous table anchor")
+        indices = table.get("source_lines" if from_lines else "image_text_indices")
+        used = used_lines if from_lines else used_labels
+        size = len(source_page["lines"]) if from_lines else len(image_text)
         require(isinstance(indices, list) and indices and all(type(i) is int
-                and 0 <= i < len(image_text) and i not in used_labels for i in indices)
+                and 0 <= i < size and i not in used for i in indices)
                 and len(indices) == len(set(indices)), f"{location}: invalid table labels")
-        used_labels.update(indices)
+        used.update(indices)
+        if from_lines:
+            for block in blocks:
+                overlap = set(block["source_lines"]) & set(indices)
+                require(not overlap or (overlap == set(block["source_lines"])
+                        and block["kind"] != "not_visible"), f"{location}: table splits source block")
         headers, rows = table.get("headers"), table.get("rows")
-        require(isinstance(headers, list) and len(headers) >= 2
-                and all(isinstance(h, str) for h in headers) and any(headers)
+        columns = len(headers) if isinstance(headers, list) and headers else table.get("column_count")
+        require(isinstance(headers, list) and type(columns) is int and columns >= 2
+                and all(isinstance(h, str) for h in headers)
                 and isinstance(rows, list) and rows,
                 f"{location}: invalid table headers or rows")
-        occupied = [0] * len(headers)
+        occupied = [0] * columns
         for row_number, cells in enumerate(rows):
             require(isinstance(cells, list) and cells, f"{location}: invalid table row")
             column = 0
             for cell in cells:
-                while column < len(headers) and occupied[column] > row_number:
+                while column < columns and occupied[column] > row_number:
                     column += 1
                 if isinstance(cell, str):
                     colspan, rowspan = 1, 1
                 else:
                     require(isinstance(cell, dict) and isinstance(cell.get("text"), str)
                             and type(cell.get("colspan", 1)) is int
-                            and 1 <= cell.get("colspan", 1) <= len(headers)
+                            and 1 <= cell.get("colspan", 1) <= columns
                             and type(cell.get("rowspan", 1)) is int
                             and 1 <= cell.get("rowspan", 1) <= len(rows) - row_number,
                             f"{location}: invalid table cell")
                     colspan, rowspan = cell.get("colspan", 1), cell.get("rowspan", 1)
-                require(column + colspan <= len(headers)
+                    if "image_rect" in cell:
+                        rect = cell["image_rect"]
+                        require(isinstance(rect, list) and len(rect) == 4
+                                and all(type(v) in {int, float} and 0 <= v <= 1 for v in rect)
+                                and rect[0] < rect[2] and rect[1] < rect[3]
+                                and _nonempty(cell.get("image_alt")), f"{location}: invalid source image crop")
+                require(column + colspan <= columns
                         and all(occupied[i] <= row_number for i in range(column, column + colspan)),
                         f"{location}: uneven table row")
                 for i in range(column, column + colspan):
@@ -248,7 +265,7 @@ def _translation_page(source_page, translated_page, session, require_reviewed):
         if groups:
             require(all(isinstance(g, dict) and _nonempty(g.get("text"))
                         and type(g.get("colspan")) is int and g["colspan"] > 0 for g in groups)
-                    and sum(g["colspan"] for g in groups) == len(headers),
+                    and sum(g["colspan"] for g in groups) == columns,
                     f"{location}: invalid table header groups")
     if tables:
         result["tables"] = deepcopy(tables)
@@ -523,6 +540,14 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
     }
     if row.get("workshop"):
         unit = row["workshop"]
+        sequences = unit.get("slide_sequences", [])
+        require(isinstance(sequences, list) and all(isinstance(sequence, list)
+                and len(sequence) >= 2
+                and all(type(n) is int and 1 <= n <= count for n in sequence)
+                and sequence == sorted(set(sequence))
+                for sequence in sequences), "Invalid slide sequence")
+        if sequences:
+            config["slideSequences"] = sequences
         pages = sorted({n for n in [unit.get("source_page"), *[q.get("source_page") for q in unit.get("questions", [])]] if type(n) is int and 1 <= n <= count})
         if pages:
             config["interactivePages"] = pages
@@ -573,6 +598,7 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
 <button type="button" data-print>چاپ</button>
 <button type="button" data-source-only-toggle aria-pressed="false">نمای ارائه</button>
 <button type="button" data-page-experiment hidden>کاوش این اسلاید</button>
+<button type="button" data-play-slides aria-pressed="false" hidden>پخش مراحل</button>
 <button type="button" data-retry-load hidden>تلاش دوباره</button>
 <div class="reader-view-controls" role="group" aria-label="زبان نمایش اسلاید">
 <button type="button" data-view-source aria-pressed="false" aria-controls="original-panel">English</button>

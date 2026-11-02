@@ -159,7 +159,7 @@ class RegisteredSourceReaderTests(unittest.TestCase):
         for name in ("course.css", "course.js", "workshops.js", "workshop-worker.mjs", "source-reader.js", "slide-content.js", "source-reader.css",
                      "university-logo.png", "university-logo.source.json", "vendor/pyodide.mjs", "vendor/pyodide-LICENSE.json",
                      "notebook.js", "notebook.css", "notebook_kernel.py", "notebook-worker.mjs", "practice.js", "practice.css", "knowledge.js",
-                     "python-tools.js", "python-tools-worker.mjs", "notebook_support.py", "notebook-results.js"):
+                     "python-tools.js", "python-tools-worker.mjs", "notebook_support.py", "notebook-results.js", "webgpu-attention.js"):
             self.write(self.output / "assets" / name, "fixture")
         self.write(self.output / "assets/course.css", "@font-face{src:url('/assets/fonts/arad.woff2')}")
         self.write(self.output / "assets/workshops.js", "new Worker('/deep-learning/assets/workshop-worker.mjs', {type:'module'});")

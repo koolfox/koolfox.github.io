@@ -190,6 +190,7 @@ export function mountNotebook(root, options) {
   }
   function changed() {
     record = null; showOutput(); save();
+    options.onExecution?.(null);
     message(options.capture ? 'کد تغییر کرده؛ نمودار و مقدارهای آزمایش هنوز متعلق به آخرین اجرای موفق‌اند.' : 'کد تغییر کرده؛ برای دیدن خروجی، سلول را اجرا کن.');
   }
   function mode(name) {
@@ -215,7 +216,7 @@ export function mountNotebook(root, options) {
       const request = {id, cells: structuredClone(cells), until};
       const result = await (options.execute ? options.execute(request, message) : services.execute(request));
       if (activeRequest !== id) return;
-      record = result; showOutput();
+      record = result; showOutput(); options.onExecution?.(result);
       if (!result.ok) message('پایتون خطا داد؛ شمارهٔ سلول و خط را در خروجی بخوان، اصلاح کن و دوباره اجرا کن.', true);
       else message(`سلول‌های ۱ تا ${until + 1} اجرا شدند${result.python ? ' · Python ' + result.python : ''}. ${result.applied_to_lab === false ? 'مدل با اجرای سلول ساخت و محاسبه به‌روز می‌شود.' : 'خروجی از همین کد محاسبه شده است.'}`);
       return result.ok;

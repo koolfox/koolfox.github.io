@@ -37,5 +37,7 @@ result = {
     "weight_sum": sum(weights),
     "output": output,
     "slide_approximation_output": slide_output,
+    # همین ورودی‌ها برای مقابلهٔ مستقلِ اجرای WebGPU استفاده می‌شوند.
+    "gpu_inputs": {"query": query, "keys": keys, "values": values, "scaled": scaled},
 }
 print(result)

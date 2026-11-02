@@ -165,7 +165,7 @@ def package_source_readers(output, term_id, sessions, root=ROOT):
     for name in ("course.css", "course.js", "workshops.js", "workshop-worker.mjs",
                  "source-reader.js", "slide-content.js", "source-reader.css", "university-logo.png",
                  "university-logo.source.json", "vendor/pyodide.mjs", "vendor/pyodide-LICENSE.json",
-                 "notebook.js", "notebook.css", "notebook_kernel.py", "notebook-worker.mjs", "practice.js", "practice.css", "knowledge.js",
+                 "notebook.js", "notebook.css", "notebook_kernel.py", "notebook-worker.mjs", "practice.js", "practice.css", "knowledge.js", "webgpu-attention.js",
                  "python-tools.js", "python-tools-worker.mjs", "notebook_support.py", "notebook-results.js"):
         add("deep-learning/assets/" + name, output / "assets" / name)
     add("deep-learning/knowledge/index.html", output / "knowledge/index.html")

@@ -1,4 +1,4 @@
-import {test, expect} from '@playwright/test';
+import {test, expect, chromium} from '@playwright/test';
 import {execFileSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
 
@@ -166,6 +166,53 @@ test('the migrated attention citation is checked and unresolved citations remain
   const contract=await page.evaluate(()=>fetch(JSON.parse(document.querySelector('#source-reader-config').textContent).translationUrl).then(r=>r.json()));
   const targets=new Set(Object.values(contract.reference_targets).map(url=>new URL(url).href));
   for(const href of await page.locator('#source-links a[href^="http"],#persian-page .reader-reference').evaluateAll(items=>items.map(a=>a.href)))expect(targets.has(href)).toBe(true);
+});
+
+test('WebGPU executes the source attention values and compares the edited Python notebook',async({baseURL})=>{
+  test.setTimeout(90000);
+  const browser=await chromium.launch({args:['--enable-unsafe-webgpu','--use-angle=swiftshader','--enable-dawn-features=allow_unsafe_apis']});
+  try{
+    const page=await browser.newPage();await page.goto(baseURL+'/deep-learning/terms/spring-2026/s13/practice/');
+    const available=await page.evaluate(async()=>!!(await navigator.gpu?.requestAdapter()));
+    test.skip(!available,'This browser does not provide a WebGPU adapter.');
+    await page.locator('[data-notebook-run-all]').click();
+    await page.waitForFunction(()=>window.studentNotebook?.record?.ok,null,{timeout:60000});
+    await page.locator('[data-run-attention-gpu]').click();
+    await page.waitForFunction(()=>window.attentionGPUResult);
+    const result=await page.evaluate(()=>window.attentionGPUResult);
+    expect(result.scores).toEqual([2,4,4]);expect(result.matched_python).toBe(true);
+    expect(result.maximum_absolute_error).toBeLessThan(1e-5);
+    const editor=page.locator('[data-notebook-code]').first();
+    await editor.fill((await page.evaluate(()=>window.studentNotebook.cells[0].source)).replace('query = [1, 0, 2]','query = [2, 2, 2]'));
+    await expect(page.locator('[data-run-attention-gpu]')).toHaveCount(0);
+    await page.locator('[data-notebook-run-all]').click();
+    await page.waitForFunction(()=>window.studentNotebook?.record?.ok,null,{timeout:30000});
+    await page.locator('[data-run-attention-gpu]').click();await page.waitForFunction(()=>window.attentionGPUResult);
+    expect(await page.evaluate(()=>window.attentionGPUResult.scores)).toEqual([4,16,12]);
+    expect(await page.evaluate(()=>window.attentionGPUResult.matched_python)).toBe(true);
+  }finally{await browser.close();}
+});
+
+test('unsupported WebGPU reports the missing backend without inventing GPU output',async({page})=>{
+  await page.addInitScript(()=>Object.defineProperty(navigator,'gpu',{value:undefined}));
+  await page.goto('/deep-learning/terms/spring-2026/s13/practice/');
+  const error=await page.evaluate(async()=>{const {runAttentionGPU}=await import('/deep-learning/assets/webgpu-attention.js');try{await runAttentionGPU({query:[1],keys:[[1]],values:[[1]],scaled:false});return null;}catch(error){return error.message;}});
+  expect(error).toContain('WebGPU در این مرورگر در دسترس نیست');
+  expect(await page.evaluate(()=>window.attentionGPUResult??null)).toBeNull();
+});
+
+test('attention playback uses the actual consecutive source pages and stops on manual navigation',async({page})=>{
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await page.goto('/deep-learning/terms/spring-2026/s13/slides/#page=21');
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+  await page.locator('[data-play-slides]').click();
+  await expect(page.locator('[data-play-slides]')).toHaveAttribute('aria-pressed','true');
+  await page.waitForFunction(()=>window.sourceSlideReader.renderedPage===22);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-page','22');
+  await page.locator('[data-next-page]').click();
+  await expect(page.locator('[data-play-slides]')).toHaveAttribute('aria-pressed','false');
+  await page.locator('[data-page-select]').selectOption('32');
+  await expect(page.locator('[data-play-slides]')).toBeHidden();
 });
 
 test('notebook cells stack in document order with highlighted Python and working local completion',async({page})=>{

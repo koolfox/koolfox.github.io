@@ -172,6 +172,14 @@ class SourceReaderTests(unittest.TestCase):
         path.write_text(json.dumps({'schema_version': 1, 'term_id': self.term_id, 'entries': entries}))
         self.assertEqual(self.load()['reference_targets'], {'https://example.org/good': 'https://example.org/new'})
 
+    def test_source_line_table_cannot_consume_hidden_text(self):
+        self.translation['pages'][0]['tables'] = [{'verified': True, 'source_lines': [0],
+                'headers': [], 'column_count': 2, 'rows': [['P', 'Q'], ['T', 'F']]}]
+        self.flush()
+        self.assertEqual(self.load()['pages'][0]['tables'][0]['rows'][1], ['T', 'F'])
+        self.translation['pages'][0]['tables'][0]['source_lines'].append(1)
+        self.invalid('table splits source block')
+
     def test_verified_editorial_note_is_separate_from_original_and_translation(self):
         note = {'session_id':'s01', 'page':1, 'source_sha256':self.source['source']['sha256'],
                 'kind':'arithmetic_correction', 'verified':True,

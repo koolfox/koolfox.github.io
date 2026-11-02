@@ -136,16 +136,22 @@ export function renderTable(parent, table) {
     if (covered.has(index)) continue;
     const cell = element('th'); cell.scope = 'col'; cell.dir = 'auto'; addText(cell, title); headings.append(cell);
   }
-  head.append(headings); node.append(head);
+  if (table.headers.length) head.append(headings);
+  if (head.childElementCount) node.append(head);
   const body = element('tbody');
   for (const row of table.rows) {
     const tr = element('tr');
     row.forEach((value, index) => {
       const data = typeof value === 'string' ? {text: value} : value;
-      const cell = element(index === 0 ? 'th' : 'td');
-      if (index === 0) cell.scope = 'row';
+      const isHeader = index === 0 && table.row_headers !== false;
+      const cell = element(isHeader ? 'th' : 'td');
+      if (isHeader) cell.scope = 'row';
       cell.colSpan = data.colspan || 1; cell.rowSpan = data.rowspan || 1; cell.dir = persian.test(data.text) ? 'rtl' : 'ltr';
       if (data.bold) cell.style.fontWeight = '700';
+      if (data.image_rect) {
+        const crop = element('canvas', 'reader-table-image'); crop.dataset.sourceCrop = JSON.stringify(data.image_rect);
+        crop.setAttribute('role', 'img'); crop.setAttribute('aria-label', data.image_alt); cell.append(crop);
+      }
       addText(cell, data.text); tr.append(cell);
     });
     body.append(tr);
@@ -166,9 +172,14 @@ function paragraph(parent, text, block) {
   applyStyle(node, block.presentation); addText(node, text, block.presentation); parent.append(node);
 }
 
-export function renderBlocks(parent, blocks) {
+export function renderBlocks(parent, blocks, tables = []) {
   let list = null;
+  const consumed = new Set(tables.flatMap(table => table.source_lines || []));
+  const at = new Map(tables.filter(table => table.source_lines?.length).map(table => [Math.min(...table.source_lines), table]));
   for (const block of blocks) {
+    const table = at.get(Math.min(...(block.source_lines || [])));
+    if (table) { list = null; renderTable(parent, table); }
+    if (block.source_lines?.some(line => consumed.has(line))) continue;
     if (block.kind === 'not_visible') continue;
     if (block.latex || block.kind === 'math') { list = null; math(parent, block); continue; }
     if (block.kind === 'bullet') {

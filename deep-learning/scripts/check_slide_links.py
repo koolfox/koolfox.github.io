@@ -48,7 +48,11 @@ def check(url):
     request = Request(url, headers={'User-Agent': 'CourseCitationCheck/1.0', 'Range': 'bytes=0-65535'})
     try:
         with urlopen(request, timeout=12) as response:
-            response.read(65536)
+            body = response.read(65536)
+            if 'html' in response.headers.get('Content-Type', ''):
+                title = re.search(rb'<title[^>]*>\s*(.*?)</title', body, re.I | re.S)
+                if title and re.match(rb'(?:404\b|410\b|page\s+not\s+found\b|not\s+found\b)', title[1], re.I):
+                    return {'status': 'missing', 'http_status': response.status, 'soft_404': True}
             return {'status': 'reachable', 'http_status': response.status, 'target': response.url}
     except HTTPError as error:
         return {'status': 'missing' if error.code in (404, 410) else 'unverified', 'http_status': error.code}
@@ -73,9 +77,9 @@ def main():
         record = {**check(target), 'pages': pages, 'checked_at_utc': checked}
         if old.get('migration_evidence'):
             record['migration_evidence'] = old['migration_evidence']
-            if record['status'] != 'reachable':
+            record['target'] = target
+            if record['status'] == 'unverified':
                 record['status'] = 'reviewed_migration'
-                record['target'] = target
         return url, record
     with ThreadPoolExecutor(max_workers=8) as pool:
         records = dict(pool.map(run, locations.items()))

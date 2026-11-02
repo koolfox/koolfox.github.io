@@ -4,7 +4,7 @@ from pathlib import Path
 import tempfile
 import unittest
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location(
     "source_models", ROOT / "scripts/source_models.py"
 )

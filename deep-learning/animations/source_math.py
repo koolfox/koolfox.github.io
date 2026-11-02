@@ -25,7 +25,8 @@ def convolution():
 
 
 def backprop():
-    sigmoid = lambda value: 1 / (1 + exp(-value))
+    def sigmoid(value):
+        return 1 / (1 + exp(-value))
     z4, z5 = 0.2 - 0.5 - 0.4, -0.3 + 0.2 + 0.2
     o4, o5 = sigmoid(z4), sigmoid(z5)
     z6 = -0.3 * o4 - 0.2 * o5 + 0.1

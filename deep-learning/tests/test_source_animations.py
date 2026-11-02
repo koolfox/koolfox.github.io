@@ -10,8 +10,8 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 sys.path.insert(0, str(ROOT / 'animations'))
-from source_animations import animation_files
-from source_math import attention, backprop, convolution
+from source_animations import animation_files  # noqa: E402
+from source_math import attention, backprop, convolution  # noqa: E402
 
 
 def notebook(name):

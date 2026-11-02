@@ -1,68 +1,155 @@
 # Model execution audit
 
-Audit date: 2026-11-02. This records model computation, independently from slide translation, site deployment, or hardware GPU acceptance.
+Validated 2026-11-02. This records actual inference, independently of publication,
+slide coverage, training and historical benchmark reproduction.
 
-## Execution available now
+## Complete released models executed on hardware WebGPU
 
-`assets/webgpu-attention.js` executes **one query's dot-product attention** on supplied Q/K/V with a real WGSL compute dispatch. It computes scores, stable softmax, and the weighted value sum, optionally dividing scores by `sqrt(d_k)`. It uses float32 and neither trains nor loads model weights. There is no embedding, learned Q/K/V projection, multi-head concatenation, output projection, residual/normalization/feed-forward stack, tokenizer, classifier, or autoregressive decoding loop in this kernel.
+Both models ran through the production `assets/model-runtime.js` API using ONNX
+Runtime Web1.31.1, an isolated Playwright1.58.2 Chromium145 profile, and
+`--enable-unsafe-webgpu --use-angle=metal`. The adapter reported
+`vendor:apple`, `architecture:metal-3`, `fallback:false`. Sessions specified
+`executionProviders:[{name:'webgpu',device}]` **and**
+`extra.session.disable_cpu_ep_fallback:'1'`. Unsupported model nodes cause a
+session creation error. JavaScript tokenization, image preprocessing, shape
+specialization, downloads and hashing are host work; these are not GPU kernels.
+The complete learned inference graph runs on the WebGPU execution provider.
 
-The input is the actual worked example in [Gurari, session 13](https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/13-Transformer-Basics.pdf), page 21, visually checked against the local PDF (SHA-256 `a475a840420824879aa29003895f15cfec4c16e35654ff5a289617d8d17b35de`):
+| Model/task and source | Independent reference | Compared output | Maximum absolute error |
+| --- | --- | ---: | ---: |
+| Full ResNet152-v1, s08 pp36,41–42 | Official released Model Zoo golden tensor | 1,000 logits | 7.1525574e-6 WebGPU |
+| Same released ResNet152-v1 | MXNet1.9.1 CPU, official ONNX importer, exact initializers | 1,000 golden logits | 6.6757202e-6 MXNet |
+| Same released ResNet152-v1 | Native ONNX Runtime1.31.1 CPU | 1,000 golden logits | 2.8610230e-6 CPU |
+| Full BERT-Base Uncased MLM, s14 pp13,16 | PyTorch2.13.0 / Transformers4.57.3, pinned official safetensors | All3,906,816 logits `[1,128,30522]` | 5.1498413e-5 WebGPU |
+| Same BERT source mask via production API | Same independent PyTorch reference | All30,522 mask logits | 2.5749207e-5 WebGPU |
+| Original, unmodified official BERT ONNX | Same independent PyTorch CPU reference | All3,906,816 logits | 1.4019012e-4 native ONNX CPU |
+
+The CNN tolerance is `3e-5 + 3e-5*abs(reference)`; BERT uses
+`3e-4 + 1e-4*abs(reference)`. Every compared value passed, with no nonfinite
+outputs. Production API reference results include comparison counts and maximum
+error. Edited inputs are not falsely compared to the default input's reference.
+These float32 differences are measured errors, not exact-real-number equality.
+
+Recent local production API timings were approximately3.0s load/0.16s inference
+for ResNet and7.9s load/0.24s inference for BERT. Load includes local transfer,
+hashing, graph specialization and compilation; public network transfer time is
+additional. These are single-machine observations, not performance benchmarks.
+
+## Exact checkpoints and task scope
+
+The CNN is the [ONNX Model Zoo's released MXNet Gluon ResNet152-v1](https://github.com/onnx/models/tree/c5cae0f1942c8d7727372c7b1f6b485aa39e4421/validated/vision/classification/resnet),
+matching the152-layer family in source s08. It is not a smaller random model or
+torchvision's stride-modified ResNet-v1.5. Its original-v1 bottleneck downsamples
+on the first1×1 convolution. The default input is the released
+`test_data_set_0/input_0.pb` numerical **conformance tensor**, with the released
+`output_0.pb` golden logits. Its predicted labels do not identify a photograph or
+establish ImageNet accuracy. Its515-node graph contains60,404,072 initializer
+elements, including normalization state; that count is not a trainable-parameter
+count. Native MXNet validation imported those same released weights and graph
+using MXNet's official ONNX importer, on Rosetta x86_64 Python3.9/NumPy1.23.5.
+
+The Transformer is the [official Google BERT-Base Uncased checkpoint](https://huggingface.co/google-bert/bert-base-uncased/tree/86b5e0934494bd15c9632b12f734a8a67f723594):
+12 transformer layers,12 attention heads, hidden size768, vocabulary30522,
+109,514,298 unique MLM model parameters. The original safetensors also contain
+pooler/next-sentence-head weights; those unused heads are not the selected task.
+The **complete masked-language-model** uses the exact source text pair:
 
 ```text
-Q1 = [1, 0, 2]
-Q2 = [2, 2, 2]
-Q3 = [2, 1, 3]
-K  = [[0, 1, 1], [4, 4, 0], [2, 3, 1]]
-V  = [[1, 2, 3], [2, 8, 0], [2, 6, 3]]
+Segment0: I arrived at the bank [MASK] crossing the river.
+Segment1: My pants were wet.
 ```
 
-The source notebook defaults to Q1 and unscaled scores `[2, 4, 4]`. Float64 Python gives weights `[0.06337893833303762, 0.4683105308334812, 0.4683105308334812]` and output `[1.9366210616669624, 6.683105308334811, 1.5950684074995565]`. The source slide's rounded weights `[0, 0.5, 0.5]` instead give `[2, 7, 1.5]`; these are distinct outputs and must remain distinguished. Scaled mode corresponds to the formula on page 38, rather than the unscaled arithmetic of pages 27–29.
+Actual encoded IDs before padding are
+`[101,1045,3369,2012,1996,2924,103,5153,1996,2314,1012,102,2026,6471,2020,4954,1012,102]`.
+Segment1 begins after the first `[SEP]`; padding has attention mask0. Batch1 is
+padded to128tokens. Inputs longer than128tokens are rejected without truncation.
+The source mask's leading predictions are `after`, `,`, `before`, `of`, `without`;
+the actual highest probability was about0.52882. These are measured predictions,
+not a supplied answer or fabricated certainty. This does not reproduce NSP,
+GLUE fine-tuning or the BERT paper's benchmark table.
 
-## Correctness work and execution evidence
+## BERT graph specialization: exactly three bytes
 
-Fixed sparse-array validation. JavaScript `Array.every` skips missing entries; a missing entire key row formerly passed validation and produced plausible finite output. Independently reproduced before the fix with `query:[1], keys:Array(1), values:[[2]], scaled:false`: the old kernel returned scores `[2]`, weights `[1]`, output `[2]`. The fixed kernel checks every position through a dense copy and rejects sparse query vectors, matrix rows, and missing whole key/value rows before requesting an adapter. Ragged dimensions, nonfinite values, entries beyond absolute `1e6`, dimensions/counts beyond 64, and a non-boolean scaled flag are also rejected. A missing browser navigator now gives the intended WebGPU-unavailable message.
+The original BERT graph's int64 index inputs caused the strict-GPU session to
+fail because nodes were assigned to CPU. That rejected probe is retained. Changing
+only the three graph input types from ONNXINT64(7) to INT32(6) allows the complete
+model to run with CPUfallback disabled. All token IDs, masks and segment IDs fit
+exactly in int32; weights, operators, layers, activations and output types do not
+change. Fixed symbolic dimensions are batch_size1/sequence_length128.
 
-Used installed Playwright 1.58.2 / Chromium with `--enable-unsafe-webgpu --enable-unsafe-swiftshader --use-angle=swiftshader`, served the repository on confirmed localhost port 18943, imported the actual module, dispatched the actual compute shader, and read back device buffers. Adapter reported `google / swiftshader`, `fallback:true`. **This verifies software WebGPU execution; no physical GPU was verified.**
+`models/prepare_webgpu_graph.py` reconstructs this change through ONNX1.20.0,
+asserts that only three bytes differ, and verifies the derived SHA-256:
+`c526583275c6693ee6d83cd13b5aa02d47a36aceddf9558f9a93332d8f3245f2`.
+The offsets are532091031,532091090,532091149. The browser first verifies the
+**original** official artifact's hash, applies the manifest's three checked byte
+changes in memory, and verifies the entire derived graph's hash. No500MB
+converted artifact is hosted. Native CPU outputs of int64/int32 graphs were
+bit-for-bit identical on the fixed source input. WebGPU's complete output was
+also compared directly against the independent original PyTorch checkpoint.
 
-Reference values were independently calculated by CPython from dot products, stable `math.exp`, and weighted sums. The source inputs were loaded from the Python workshop and cross-checked visually against PDF page 21. Comparison threshold was `abs(actual-reference) <= 5e-5 * (1 + abs(reference))`, checking every score, weight, output component and result length.
+## Real image preprocessing
 
-| Case | Maximum absolute difference from Python |
-| --- | ---: |
-| Source Q1, unscaled | 3.164219695150905e-7 |
-| Source Q1, scaled | 2.112343739923972e-7 |
-| Source Q2, unscaled | 4.299710818500557e-7 |
-| Source Q3, unscaled | 2.6781086059912695e-7 |
-| One key, query dimension 2, value dimension 4, scaled | 9.034404335750423e-10 |
-| Logits `[1000000,-1000000,0]` | 0 |
-| Large negative logits `[-1000000,-999000,-998000]` | 0 |
-| 64 identical maximum-magnitude keys, scaled | 5210112 on scores of about 8e12; weights and output match |
-| Zero query, uniform attention | 9.934107481068821e-9 |
-| Inputs of magnitude 1e-10 | 9.80897582758237e-28 |
+`assets/model-image.js` implements the pinned [Model Zoo ImageNet preprocessing](https://github.com/onnx/models/blob/c5cae0f1942c8d7727372c7b1f6b485aa39e4421/validated/vision/classification/imagenet_preprocess.py):
+resize the shorter side to256 using bilinear filtering, preserve aspect ratio
+with Python's round-to-even sizing, center crop224×224, RGB→NCHW, divide255,
+normalize mean`[.485,.456,.406]`/std`[.229,.224,.225]`. It accepts already-decoded
+RGBA pixels, returning the actual crop preview and Float32Array. Browser file
+decoding precedes this API; JPEG decoders/color-profile handling can differ
+across systems. No bit-identical cross-decoder claim is made.
 
-All ten cases passed that mixed absolute/relative tolerance. Seventeen malformed-input cases were rejected, including empty/ragged/mismatched arrays, NaN, Infinity, out-of-range values, oversized dimensions/counts, invalid scaled type, and five sparse-array variants. During this audit the runner, reference cases and full results were retained at `/tmp/model-attention-check.mjs`, `/tmp/model-attention-cases.json`, `/tmp/model-attention-results.json`; these are temporary verification artifacts, not published benchmark data.
+Four independent Pillow12.0.0 synthetic fixtures cover shrinking, enlargement,
+portrait/landscape, odd dimensions and unchanged size:641×479,127×311,513×512,
+256×256. **Every resized/cropped preview byte matches Pillow**; normalized tensor
+maximum absolute difference is2.3841858e-7. Tests retain the independent preview
+SHA-256 values, not generated copies of this implementation. Class labels come
+from the pinned Model Zoo synset.txt; their source hash is in the reference JSON.
+An uploaded image uses its own preprocessed tensor and gets real model scores,
+without a conformance comparison against the unrelated default test tensor.
 
-Float32 is a real limitation, not an exact-real-number guarantee: with `Q=[1e6,1]`, `K=[[1e6,0],[1e6,1]]`, `V=[[0],[1]]`, unscaled Python distinguishes logits `1e12` and `1e12+1`, giving output about `0.73105858`. The verified WebGPU run rounds both logits to `999999995904`, giving weights `[0.5,0.5]` and output `[0.5]`. Stable softmax prevents exponential overflow, but cannot recover score differences lost during float32 accumulation. The existing frontend comparison must report such cases as mismatches; it must never claim universal Python equality from a successful source example. Very small values can likewise underflow in float32.
+## Download integrity, licenses and reproducibility
 
-## Full source models: missing artifacts
+`models/source-models.json` pins exact sources, revisions, SHA-256 hashes, bytes,
+source slide pages, config, task, tokenizer, reference and derivation. Main
+browser artifacts are241,816,206bytes ResNet ONNX and532,091,246bytes BERT ONNX.
+The440,449,768byte PyTorch safetensors is developer reference material and is
+not fetched by the browser. Both original public ONNX URLs passed real browser
+CORS+Range fetch checks. Network availability is not an offline guarantee.
 
-Inventory included ignored files beneath `deep-learning`, excluding Python environment `.pth` configuration files. No trained `.pt`, `.pth`, `.onnx`, `.safetensors`, `.ckpt`, `.npz`, or `.npy` model artifacts, original MNIST IDX files, or tokenizer model artifacts were present. The repository contains source PDFs, curated provenance and Python training code, not source-model checkpoints.
+Weights are downloaded only on explicit load/run, never by reading a slide.
+The loader verifies streamed length and SHA-256 before compilation; no silent
+CPU fallback, random weights or smaller architecture is used. No GPU, bad
+artifacts and unsupported operators surface as errors. An already-aborted or
+missing-WebGPU request does not fetch weights. Cancellation is checked during
+downloads and between stages; ONNX Runtime does not provide a public API to
+forcibly interrupt an already submitted GPU dispatch.
 
-| Source surface | Existing execution | What is still required for a faithful full-model run |
-| --- | --- | --- |
-| Session 05 CNN worked arithmetic | Hand-specified convolution exercise and Python convolution lab | A complete trained CNN checkpoint is separate from this arithmetic. Historical LeNet-5 needs its actual architecture, parameters, preprocessing, class coding and reference input/output. |
-| Session 05 historical LeNet-5 | `labs/cnn-mnist/train.py` defines a different, explicitly authored ReLU/max-pool CNN | Original LeNet uses scaled tanh, learned subsampling and RBF outputs, as recorded in the existing source review. The two 3×3 convolution layers and linear head in the lab cannot be labeled original LeNet. No verified historical trained weights are bundled. |
-| Session 13 Transformer worked example | Actual source Q1/Q2/Q3 with fixed K/V, one query per call | The worked example has enough numbers for attention, but no complete trained Transformer checkpoint. Random projections would introduce an unrelated model. |
-| Session 14 GPT/BERT/LXMERT/wav2vec 2.0/ViT | Slides, tables and architectural explanations | Exact variant/checkpoint, tokenizer or audio/image preprocessing, compatible task head, reference input, framework/runtime, and original-model reference output are absent. |
-| Session 16 GPT-2/GPT-3/CLIP | Slides and source examples | Same missing full-model artifacts; reproducing benchmark tables additionally needs the original benchmark data/protocol, not just one inference. |
+Large weights, environments and detailed output tensors stay in ignored
+`deep-learning/results/model-validation/`. Reproducible scripts and small golden
+fixtures are tracked under `models/`. See `models/README.md` for commands.
+The released weights/vocabulary are Apache-2.0, with retained upstream notices.
+ONNX Runtime Web is MIT with its third-party notices. The site's own license
+cannot relicense upstream slides, weights or media.
 
-The MNIST lab can train its own declared model once its locked dependencies and verified IDX data are installed, but no accuracy/checkpoint is invented here. Its manifest records source URLs, checksums and historical retrieval, which does not establish that raw data exists in this checkout. No new dependencies, weights, or raw datasets were downloaded in this audit.
+Local evidence includes `resnet152-v1-webgpu.json`,
+`resnet-original-mxnet-cpu.json`, `resnet-native-cpu.json`,
+`bert-base-uncased-webgpu.json`, `bert-full-pytorch-webgpu.json`,
+`bert-int32-derivation.json`, `image-preprocess-results.json`,
+`artifact-retrieval.json`, `cors-results.json`, and the CPU/probe logs.
+These files are ignored machine evidence; acceptance facts above are retained
+here and in the tracked manifest/fixtures.
 
-## Concrete faithful continuation
+## Model-specific boundaries
 
-1. Select one exact source model and task, not an arbitrary smaller replacement. For example, source session 14 BERT-Base requires the matching casing/language configuration and task head; session 16 GPT-2 requires the matching released size and tokenizer. The [official BERT repository](https://github.com/google-research/bert) supplies implementation/checkpoint references and identifies its code license as Apache-2.0. The [official GPT-2 repository](https://github.com/openai/gpt-2) supplies code/model references and identifies its license as Modified MIT. Check the exact artifact's terms and retain notices before redistributing it; the slide license does not establish checkpoint or dataset permissions.
-2. Pin the upstream revision, architecture/config, tokenizer or preprocessing, checkpoint URL and SHA-256; record download bytes and retrieve the matching artifact deliberately. Publicly available model variants are not interchangeable with a particular published result. For ViT, the [official repository](https://github.com/google-research/vision_transformer) distinguishes ImageNet-21k pretraining, fine-tuned and later AugReg checkpoints; do not silently use a newer AugReg checkpoint to claim the original slide result.
-3. Run the original implementation on a fixed source-compatible input and save token IDs/preprocessed tensor plus intermediate/final outputs. Export or implement that same graph in the chosen browser runtime and verify its tensors against the reference before exposing prediction scores. Quantization changes must be declared and independently checked.
-4. Budget actual memory on the target adapter before fetching large browser assets. Float32 parameter storage alone is `4 × parameter_count` bytes, excluding activations, copies, tokenizer and KV cache. The slide's 175B GPT-3 scale would require 700 GB for float32 weights alone; it cannot be equated to the current tiny attention shader. Runtime operator coverage and `maxBufferSize`/`maxStorageBufferBindingSize` must also be checked for the chosen full graph. No device capacity or performance result has been established here.
-5. Preserve an offline CPU reference and report browser/device/precision separately. A confirmed local software-adapter result, physical GPU result, complete-model inference, benchmark reproduction and live publication are separate acceptance claims.
+| Source model or example | Actual capability / remaining distinction |
+| --- | --- |
+| s05 convolution arithmetic | Exact authored numerical workshop; separate from trained full CNN inference. |
+| s05 original LeNet-5 | The existing ReLU/max-pool MNIST lab is not original LeNet's scaled-tanh/learned-subsampling/RBF model. No historical original weights or historical benchmark reproduction is claimed. |
+| s08 ResNet152 | Complete released v1 model now hardware-verified as above; one inference does not reproduce paper training/benchmark tables. |
+| s13 Q/K/V arithmetic | Existing WGSL kernel computes source dot-product attention. It is not by itself a full Transformer. Source rounded weights and full softmax remain distinct. |
+| s14 BERT | Complete released MLM now hardware-verified as above. NSP/GLUE heads and benchmark datasets are separate tasks. |
+| s14 LXMERT/wav2vec2/ViT and s16 GPT-2/CLIP | Public model families have released variants, but those distinct checkpoints, preprocessing/task heads and source inputs have not been integrated or validated here. They are not declared impossible or equivalent to BERT. |
+| s16 GPT-3 175B | The original175B checkpoint was not publicly released. Float32 weights alone would be700GB. A small released GPT model cannot be relabeled as this historical model. |
 
-Primary upstream repository pages above were checked on the audit date. No full-model inference, full-model training, historical benchmark reproduction, physical GPU execution, or public deployment is claimed by this document.
+No historical full-model training, full benchmark reproduction or live publication
+is established by a local inference test. Publication and the complete course's
+slide/lab/question acceptance remain separate checks.

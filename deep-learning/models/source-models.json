@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "models": [
+    {
+      "id": "resnet152-v1",
+      "title_fa": "شبکهٔ کامل ResNet152-v1",
+      "kind": "image-classification",
+      "source": {
+        "term": "spring-2026",
+        "session": "s08",
+        "pages": [
+          36,
+          41,
+          42
+        ],
+        "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/08-Quest-for-Depth.pdf",
+        "local_url": "/deep-learning/assets/danna/spring-2026/s08.pdf",
+        "sha256": "5d41c3879032b3f1813894ce39015ca6c5cf8796a4ecb3efb9011f8f959ad3bc",
+        "page_count": 46,
+        "license_notice": "CC BY-NC-SA; version not printed on cover"
+      },
+      "task": "Full released MXNet Gluon ResNet152-v1; numerical inference test, not ImageNet benchmark reproduction",
+      "architecture": {
+        "layers": 152,
+        "variant": "Original-v1 bottleneck stride on first 1x1 convolution; not torchvision ResNet-v1.5"
+      },
+      "checkpoint": {
+        "publisher": "ONNX Model Zoo / MXNet Gluon",
+        "revision": "c5cae0f1942c8d7727372c7b1f6b485aa39e4421"
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://github.com/onnx/models/blob/c5cae0f1942c8d7727372c7b1f6b485aa39e4421/LICENSE",
+        "local_url": "./licenses/resnet-LICENSE.txt"
+      },
+      "reference": {
+        "publisher": "ONNX Model Zoo",
+        "method": "Released test_data_set_0 input_0.pb/output_0.pb",
+        "url": "https://github.com/onnx/models/tree/c5cae0f1942c8d7727372c7b1f6b485aa39e4421/validated/vision/classification/resnet",
+        "original_framework": {
+          "name": "MXNet",
+          "version": "1.9.1",
+          "importer": "Official MXNet ONNX importer with exact released initializers",
+          "compared_outputs": 1000,
+          "max_absolute_error": 6.67572021484375e-06
+        }
+      },
+      "artifacts": {
+        "model": {
+          "name": "resnet152-v1-7.onnx",
+          "url": "https://media.githubusercontent.com/media/onnx/models/c5cae0f1942c8d7727372c7b1f6b485aa39e4421/validated/vision/classification/resnet/model/resnet152-v1-7.onnx",
+          "local_file": "resnet152-v1-7/resnet152-v1-7.onnx",
+          "bytes": 241816206,
+          "sha256": "b0ec92437bf8c9d0739bf9bafdea9638e13f9e3c1e2fb766ad546cc182fd3f6d"
+        },
+        "input": {
+          "name": "resnet152-input.float32.bin",
+          "url": "./references/resnet152-input.float32.bin",
+          "local_file": "../../../models/references/resnet152-input.float32.bin",
+          "bytes": 602112,
+          "sha256": "6f0aee7789afcd04b0164d10abe6a8c24b1ad8833dd6d6c6a998447047b66a04"
+        },
+        "reference": {
+          "name": "resnet152.json",
+          "url": "./references/resnet152.json",
+          "local_file": "../../../models/references/resnet152.json",
+          "bytes": 53457,
+          "sha256": "c5945d144a6a748ba592ec9600d6432e8e1c513673318da2faed73e0030a2b17"
+        }
+      },
+      "input_name": "data",
+      "input_shape": [
+        1,
+        3,
+        224,
+        224
+      ],
+      "output_name": "resnetv19_dense0_fwd",
+      "output_is_probabilities": false,
+      "preprocessing": {
+        "resize_short_side": 256,
+        "center_crop": [
+          224,
+          224
+        ],
+        "channel_order": "RGB",
+        "layout": "NCHW",
+        "scale": 255,
+        "mean": [
+          0.485,
+          0.456,
+          0.406
+        ],
+        "std": [
+          0.229,
+          0.224,
+          0.225
+        ],
+        "implementation": "Pillow-compatible bilinear antialiasing; round-to-even resized dimensions; decoded RGBA input",
+        "verification": {
+          "independent_reference": "Pillow12.0.0",
+          "cases": 4,
+          "preview_differing_bytes": 0,
+          "tensor_max_absolute_error": 2.384185791015625e-07
+        }
+      },
+      "validation": {
+        "state": "verified",
+        "tolerance": {
+          "absolute": 3e-05,
+          "relative": 3e-05
+        },
+        "webgpu_max_absolute_error": 7.152557373046875e-06,
+        "compared_outputs": 1000
+      },
+      "title": "ResNet152-v1",
+      "description_fa": "اجرای شبکهٔ ۱۵۲لایه با وزن‌های منتشرشده؛ مقایسهٔ ۱۰۰۰ خروجی روی تنسور آزمون مرجع."
+    },
+    {
+      "id": "bert-base-uncased",
+      "title": "BERT-Base Uncased",
+      "title_fa": "مدل کامل BERT-Base Uncased",
+      "description_fa": "پیش‌بینی واژهٔ پوشانده‌شده (Masked Language Modeling) در مثال بانک و رودخانه؛ مدل کامل ۱۲لایه با وزن‌های منتشرشده.",
+      "kind": "masked-language-model",
+      "source": {
+        "term": "spring-2026",
+        "session": "s14",
+        "pages": [
+          13,
+          16
+        ],
+        "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/14-Pioneering-Transformers.pdf",
+        "local_url": "/deep-learning/assets/danna/spring-2026/s14.pdf",
+        "sha256": "65bdebcbbe5ecca3e9dfa4ecbaaf5a78e79a4d10ce00c8a007801d062cefeda6",
+        "page_count": 62,
+        "license_notice": "CC BY-NC-SA; version not printed on cover"
+      },
+      "task": "Full released BERT-Base Uncased masked-language-model head; not NSP/GLUE fine-tuning or benchmark reproduction",
+      "architecture": {
+        "layers": 12,
+        "attention_heads": 12,
+        "hidden_size": 768,
+        "intermediate_size": 3072,
+        "vocabulary": 30522,
+        "parameters": 109514298
+      },
+      "checkpoint": {
+        "publisher": "google-bert",
+        "revision": "86b5e0934494bd15c9632b12f734a8a67f723594",
+        "python_reference_artifact": {
+          "url": "https://huggingface.co/google-bert/bert-base-uncased/resolve/86b5e0934494bd15c9632b12f734a8a67f723594/model.safetensors",
+          "bytes": 440449768,
+          "sha256": "68d45e234eb4a928074dfd868cead0219ab85354cc53d20e772753c6bb9169d3",
+          "role": "development validation only; never downloaded by the browser"
+        },
+        "configuration": {
+          "url": "https://huggingface.co/google-bert/bert-base-uncased/resolve/86b5e0934494bd15c9632b12f734a8a67f723594/config.json",
+          "bytes": 570,
+          "sha256": "7160e1553ad2ca51d8c1cb066be533db31826e12d173824c1bb0cb1a4f187d20"
+        }
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://huggingface.co/google-bert/bert-base-uncased/resolve/86b5e0934494bd15c9632b12f734a8a67f723594/LICENSE",
+        "local_url": "./licenses/bert-LICENSE.txt"
+      },
+      "reference": {
+        "framework": "PyTorch2.13.0 / Transformers4.57.3",
+        "method": "BertForMaskedLM.from_pretrained pinned official safetensors; eval/eager; CPU; no fine-tuning",
+        "full_tensor_cpu_onnx_max_absolute_error": 0.00014019012451171875
+      },
+      "artifacts": {
+        "model": {
+          "name": "bert-base-uncased.onnx",
+          "url": "https://huggingface.co/google-bert/bert-base-uncased/resolve/86b5e0934494bd15c9632b12f734a8a67f723594/model.onnx",
+          "local_file": "bert/model.onnx",
+          "bytes": 532091246,
+          "sha256": "44d7a2896d341c51fb1eba89aea3a590e6af0ce33e25481136f7eeecb62e5f7f"
+        },
+        "vocabulary": {
+          "name": "bert-vocab.txt",
+          "url": "./references/bert-vocab.txt",
+          "local_file": "../../../models/references/bert-vocab.txt",
+          "bytes": 231508,
+          "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3"
+        },
+        "reference": {
+          "name": "bert-base.json",
+          "url": "./references/bert-base.json",
+          "local_file": "../../../models/references/bert-base.json",
+          "bytes": 584408,
+          "sha256": "cc2c5ee2ce5d0d8225e16d0186dee15a7e6095c9790450c6ca144faebf930906"
+        }
+      },
+      "graph_patch": {
+        "operation": "ONNX graph inputs input_ids, attention_mask, token_type_ids: TensorProto.INT64(7) to INT32(6); weights and all operators unchanged",
+        "source_sha256": "44d7a2896d341c51fb1eba89aea3a590e6af0ce33e25481136f7eeecb62e5f7f",
+        "derived_sha256": "c526583275c6693ee6d83cd13b5aa02d47a36aceddf9558f9a93332d8f3245f2",
+        "bytes": 532091246,
+        "patches": [
+          {
+            "offset": 532091031,
+            "from": 7,
+            "to": 6
+          },
+          {
+            "offset": 532091090,
+            "from": 7,
+            "to": 6
+          },
+          {
+            "offset": 532091149,
+            "from": 7,
+            "to": 6
+          }
+        ]
+      },
+      "dimension_overrides": {
+        "batch_size": 1,
+        "sequence_length": 128
+      },
+      "input_dtype": "int32",
+      "input_shape": [
+        1,
+        128
+      ],
+      "output_name": "logits",
+      "default_input": {
+        "text": "I arrived at the bank [MASK] crossing the river.",
+        "textPair": "My pants were wet."
+      },
+      "tokenization": {
+        "algorithm": "BERT BasicTokenizer(lowercase/strip accents) + WordPiece; original30522-token vocabulary",
+        "maximum_tokens": 128,
+        "padding_id": 0,
+        "mask_id": 103,
+        "sentence_pair_segments": true,
+        "source_vocabulary": {
+          "url": "https://huggingface.co/google-bert/bert-base-uncased/resolve/86b5e0934494bd15c9632b12f734a8a67f723594/vocab.txt",
+          "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3"
+        }
+      },
+      "validation": {
+        "state": "verified",
+        "tolerance": {
+          "absolute": 0.0003,
+          "relative": 0.0001
+        },
+        "webgpu_mask_logits_compared": 30522,
+        "webgpu_vs_native_onnx_mask_max_absolute_error": 3.337860107421875e-05,
+        "webgpu_full_logits_compared": 3906816,
+        "webgpu_vs_native_onnx_full_max_absolute_error": 0.0001544952392578125,
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "fallback": false
+        },
+        "webgpu_vs_pytorch_full_max_absolute_error": 5.14984130859375e-05
+      }
+    }
+  ]
+}

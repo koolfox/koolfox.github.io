@@ -23,9 +23,10 @@ validation = [
 
 [project.scripts]
 tnf-atlas = "tnf_atlas.cli:main"
+peptide-lab = "peptide_lab.cli:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/tnf_atlas"]
+packages = ["src/tnf_atlas", "src/peptide_lab"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

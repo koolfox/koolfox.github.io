@@ -8,6 +8,8 @@ n_paths = 5
 # این پاسخ فرضیِ رمزگشایی حریصانه فقط برای مقایسه با تجمیع است.
 greedy_answer = 14
 # فقط n_paths مسیر نخست وارد محاسبه می‌شوند؛ افزایش بودجه، رأی‌های بیشتری اضافه می‌کند.
+if type(n_paths) is not int or not 1 <= n_paths <= len(answers):
+    raise ValueError("تعداد مسیرها باید عدد صحیح مثبت و حداکثر برابر مسیرهای موجود باشد.")
 used = answers[:n_paths]
 if not used:
     raise ValueError("حداقل یک مسیر لازم است")

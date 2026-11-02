@@ -204,9 +204,122 @@ def _translation_page(source_page, translated_page, session, require_reviewed):
         "image_text_reviewed": image_reviewed,
         "text_reviewed": text_reviewed,
     }
+    tables = translated_page.get("tables", [])
+    require(isinstance(tables, list), f"{location}: invalid tables")
+    used_labels = set()
+    used_lines = set()
+    for table in tables:
+        require(isinstance(table, dict) and table.get("verified") is True,
+                f"{location}: table needs visual verification")
+        from_lines = "source_lines" in table
+        require(not (from_lines and "image_text_indices" in table), f"{location}: ambiguous table anchor")
+        indices = table.get("source_lines" if from_lines else "image_text_indices")
+        used = used_lines if from_lines else used_labels
+        size = len(source_page["lines"]) if from_lines else len(image_text)
+        require(isinstance(indices, list) and indices and all(type(i) is int
+                and 0 <= i < size and i not in used for i in indices)
+                and len(indices) == len(set(indices)), f"{location}: invalid table labels")
+        used.update(indices)
+        if from_lines:
+            for block in blocks:
+                overlap = set(block["source_lines"]) & set(indices)
+                require(not overlap or (overlap == set(block["source_lines"])
+                        and block["kind"] != "not_visible"), f"{location}: table splits source block")
+        headers, rows = table.get("headers"), table.get("rows")
+        columns = len(headers) if isinstance(headers, list) and headers else table.get("column_count")
+        require(isinstance(headers, list) and type(columns) is int and columns >= 2
+                and all(isinstance(h, str) for h in headers)
+                and isinstance(rows, list) and rows,
+                f"{location}: invalid table headers or rows")
+        occupied = [0] * columns
+        for row_number, cells in enumerate(rows):
+            require(isinstance(cells, list) and cells, f"{location}: invalid table row")
+            column = 0
+            for cell in cells:
+                while column < columns and occupied[column] > row_number:
+                    column += 1
+                if isinstance(cell, str):
+                    colspan, rowspan = 1, 1
+                else:
+                    require(isinstance(cell, dict) and isinstance(cell.get("text"), str)
+                            and type(cell.get("colspan", 1)) is int
+                            and 1 <= cell.get("colspan", 1) <= columns
+                            and type(cell.get("rowspan", 1)) is int
+                            and 1 <= cell.get("rowspan", 1) <= len(rows) - row_number,
+                            f"{location}: invalid table cell")
+                    colspan, rowspan = cell.get("colspan", 1), cell.get("rowspan", 1)
+                    if "image_rect" in cell:
+                        rect = cell["image_rect"]
+                        require(isinstance(rect, list) and len(rect) == 4
+                                and all(type(v) in {int, float} and 0 <= v <= 1 for v in rect)
+                                and rect[0] < rect[2] and rect[1] < rect[3]
+                                and _nonempty(cell.get("image_alt")), f"{location}: invalid source image crop")
+                require(column + colspan <= columns
+                        and all(occupied[i] <= row_number for i in range(column, column + colspan)),
+                        f"{location}: uneven table row")
+                for i in range(column, column + colspan):
+                    occupied[i] = row_number + rowspan
+                column += colspan
+            require(all(n > row_number for n in occupied), f"{location}: uneven table row")
+        groups = table.get("groups", [])
+        if groups:
+            require(all(isinstance(g, dict) and _nonempty(g.get("text"))
+                        and type(g.get("colspan")) is int and g["colspan"] > 0 for g in groups)
+                    and sum(g["colspan"] for g in groups) == columns,
+                    f"{location}: invalid table header groups")
+    if tables:
+        result["tables"] = deepcopy(tables)
     if "image_text_limits" in translated_page:
         result["image_text_limits"] = deepcopy(translated_page["image_text_limits"])
     return result
+
+
+def apply_source_typography(root, term_id, session_id, catalog, pages):
+    path = root / f"content/source-typography/{term_id}/{session_id}.json"
+    if not path.exists():
+        return
+    data = _document(path)
+    require(data.get("schema_version") == 1 and data.get("term_id") == term_id
+            and data.get("session_id") == session_id
+            and data.get("source_sha256") == catalog["sha256"], "Stale source typography identity")
+    records = data.get("pages")
+    require(isinstance(records, list) and len(records) == len(pages), "Incomplete source typography")
+    for page, record in zip(pages, records):
+        require(record.get("number") == page["number"]
+                and record.get("source_text_sha256") == page["source_text_sha256"], "Stale typography page")
+        entries = record.get("lines")
+        require(isinstance(entries, list), "Invalid typography lines")
+        styles = {}
+        for entry in entries:
+            index = entry.get("index")
+            require(type(index) is int and 0 <= index < len(page["lines"])
+                    and index not in styles, "Invalid typography line index")
+            if "color" in entry:
+                require(isinstance(entry["color"], str) and re.fullmatch(r"#[0-9a-fA-F]{6}", entry["color"]), "Invalid typography color")
+            for flag in ("bold", "italic"):
+                if flag in entry:
+                    require(type(entry[flag]) is bool, "Invalid typography emphasis")
+            accents = entry.get("accents", [])
+            require(isinstance(accents, list), "Invalid typography accents")
+            for accent in accents:
+                require(isinstance(accent, dict) and _nonempty(accent.get("text"))
+                        and isinstance(accent.get("color"), str)
+                        and re.fullmatch(r"#[0-9a-fA-F]{6}", accent["color"]), "Invalid typography accent")
+            styles[index] = entry
+        for block in page["blocks"]:
+            if block["kind"] == "not_visible":
+                continue
+            selected = [styles.get(index, {}) for index in block["source_lines"]]
+            presentation = {}
+            for key in ("color", "bold", "italic"):
+                values = [style.get(key) for style in selected]
+                if values and values[0] and all(value == values[0] for value in values):
+                    presentation[key] = values[0]
+            accents = [deepcopy(accent) for style in selected for accent in style.get("accents", [])]
+            if accents:
+                presentation["accents"] = accents
+            if presentation:
+                block["presentation"] = presentation
 
 
 def load_source_translation(session_id, root=ROOT, require_reviewed=True, term_id="spring-2022"):
@@ -331,6 +444,7 @@ def load_source_translation(session_id, root=ROOT, require_reviewed=True, term_i
             f"{session_id}/page {number}: stale source text hash",
         )
         combined.append(_translation_page(page, translation, session_id, require_reviewed))
+    apply_source_typography(root, term_id, session_id, catalog, combined)
     notes_path = root / f'data/metadata/{term_id}-editorial-notes.json'
     if notes_path.exists():
         notes = _document(notes_path)
@@ -351,17 +465,35 @@ def load_source_translation(session_id, root=ROOT, require_reviewed=True, term_i
                     and _nonempty(ref.get('label_fa')) and isinstance(ref.get('url'), str)
                     and valid_url(ref['url']) for ref in references), 'Invalid editorial reference')
             combined[number-1].setdefault('editorial_notes', []).append(deepcopy(note))
-    return {
+    result = {
         "schema_version": 1,
         "term_id": term_id,
         "session_id": session_id,
         "source": deepcopy(catalog),
         "pages": combined,
     }
+    link_path = root / f"data/metadata/{term_id}-links.json"
+    result["reference_targets"] = {}
+    if link_path.exists():
+        checks = _document(link_path)
+        require(checks.get("schema_version") == 1 and checks.get("term_id") == term_id,
+                "Invalid reference check identity")
+        for url, entry in checks.get("entries", {}).items():
+            target = entry.get("target")
+            if entry.get("status") not in {"reachable", "reviewed_migration"}:
+                continue
+            require(valid_url(url) and isinstance(target, str) and valid_url(target)
+                    and _nonempty(entry.get("checked_at_utc")), "Invalid checked reference")
+            if entry["status"] == "reviewed_migration":
+                require(isinstance(entry.get("migration_evidence"), dict)
+                        and entry["migration_evidence"].get("url") == target,
+                        "Reference migration needs direct evidence")
+            result["reference_targets"][url] = target
+    return result
 
 
 def source_reader_page(term, row, identity, payload, asset_revision=""):
-    """Render a JS-enhanced reader shell; original PDF links work without JS."""
+    """Render the slide reader shell."""
     term_id = _validated_term(term.get("id"))
     session = row.get("id")
     require(
@@ -395,11 +527,12 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
         "Invalid reader source SHA-256",
     )
     lesson = f"{BASE}/terms/{term_id}/{session}/"
+    translation_version = hashlib.sha256(json.dumps(payload, ensure_ascii=False, sort_keys=True).encode()).hexdigest()[:16]
     config = {
         "term": term_id,
         "session": session,
         "pdfUrl": pdf,
-        "translationUrl": f"{BASE}/source-translations/{term_id}/{session}.json",
+        "translationUrl": f"{BASE}/source-translations/{term_id}/{session}.json?v={translation_version}",
         "pageCount": count,
         "sourceSha256": source["sha256"],
         "practiceUrl": lesson + "practice/",
@@ -407,7 +540,17 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
     }
     if row.get("workshop"):
         unit = row["workshop"]
-        pages = sorted({n for n in [unit.get("source_page"), *[q.get("source_page") for q in unit.get("questions", [])]] if type(n) is int and 1 <= n <= count})
+        sequences = unit.get("slide_sequences", [])
+        require(isinstance(sequences, list) and all(isinstance(sequence, list)
+                and len(sequence) >= 2
+                and all(type(n) is int and 1 <= n <= count for n in sequence)
+                and sequence == sorted(set(sequence))
+                for sequence in sequences), "Invalid slide sequence")
+        if sequences:
+            config["slideSequences"] = sequences
+        pages = sorted({n for n in [unit.get("source_page"), *unit.get("example_pages", []),
+                       *[n for example in unit.get("source_examples", []) for n in example["pages"]],
+                       *[q.get("source_page") for q in unit.get("questions", [])]] if type(n) is int and 1 <= n <= count})
         if pages:
             config["interactivePages"] = pages
     encoded = json.dumps(config, ensure_ascii=False).replace("<", "\\u003c")
@@ -457,10 +600,12 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
 <button type="button" data-print>چاپ</button>
 <button type="button" data-source-only-toggle aria-pressed="false">نمای ارائه</button>
 <button type="button" data-page-experiment hidden>کاوش این اسلاید</button>
+<button type="button" data-play-slides aria-pressed="false" hidden>پخش مراحل</button>
 <button type="button" data-retry-load hidden>تلاش دوباره</button>
-<div class="reader-view-controls" role="group" aria-label="نمایش در صفحهٔ کوچک">
-<button type="button" data-view-source aria-pressed="true" aria-controls="original-panel">اسلاید</button>
-<button type="button" data-view-translation aria-pressed="false" aria-controls="translation-panel">ترجمهٔ فارسی</button>
+<div class="reader-view-controls" role="group" aria-label="زبان نمایش اسلاید">
+<button type="button" data-view-source aria-pressed="false" aria-controls="original-panel">English</button>
+<button type="button" data-view-translation aria-pressed="false" aria-controls="translation-panel">فارسی</button>
+<button type="button" data-view-both aria-pressed="true" aria-controls="original-panel translation-panel">کنار هم</button>
 </div></div>
 <p role="status" aria-live="polite" data-reader-status>در حال بارگیری اسلاید و ترجمه…</p>
 <progress data-pdf-progress max="100" value="0" aria-label="پیشرفت بارگیری اسلاید"></progress>

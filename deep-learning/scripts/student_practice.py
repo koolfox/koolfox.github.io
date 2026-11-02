@@ -45,8 +45,7 @@ def code_cells(code):
     return cells
 
 
-def practice_page(term, row, license_text=""):
-    unit = row["workshop"]
+def _questions_for(unit):
     questions, tip = [], None
     for original in unit["questions"]:
         if original["answer"]["kind"] == "manual":
@@ -57,17 +56,34 @@ def practice_page(term, row, license_text=""):
         questions.append({"prompt": question["prompt_fa"], "options": answer["options_fa"],
                           "correct": answer["correct_index"], "explanation": question["solution_fa"],
                           "source_page": question["source_page"]})
+    return questions, tip
+
+
+def practice_page(term, row, license_text="", asset_revision=""):
+    unit = row["workshop"]
+    questions, tip = _questions_for(unit)
     config = {"key": term["id"] + "/" + row["id"], "cells": code_cells(unit["code"]),
               "questions": questions, "tip": tip, "filename": term["id"] + "-" + row["id"],
               "starter": unit["code"], "starter_sha256": unit["starter_sha256"], "license_text": license_text,
               "source_url": unit["source_url"], "source_sha256": unit["source_sha256"],
-              "source_page": unit["source_page"], "reference": unit["reference"],
+              "source_page": unit["source_page"], "source_page_count": unit["source_page_count"], "reference": unit["reference"],
               "source_pages": unit["question_pages"], "activity_pages": unit["class_activity_pages"],
               "related_labs": [{**lab, "url": f"{BASE}/runtime/{lab['id']}/?term={term['id']}&session={row['id']}&page={unit['source_page']}"} for lab in unit.get("related_labs", [])],
               "reader": f"{BASE}/terms/{term['id']}/{row['id']}/slides/"}
+    config["page_notebooks"] = []
+    for example in unit.get("source_examples", []):
+        questions, tip = _questions_for(example)
+        config["page_notebooks"].append({"pages": example["pages"],
+            "key": config["key"] + "/" + example["id"], "title": example["title_fa"],
+            "filename": config["filename"] + "-" + example["id"],
+            "cells": code_cells(example["code"]), "starter": example["code"],
+            "starter_sha256": example["starter_sha256"], "reference": example["reference"],
+            "questions": questions, "tip": tip, "related_labs": [],
+            "source_pages": [n for n in unit["question_pages"] if n in example["pages"]],
+            "activity_pages": [n for n in unit["class_activity_pages"] if n in example["pages"]]})
     encoded = json.dumps(config, ensure_ascii=False).replace("<", "\\u003c")
     return f'''<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>کارگاه آموزشی دیپ لرنینگ · {escape(row['title_fa'])}</title><link rel="stylesheet" href="{BASE}/assets/course.css"><link rel="stylesheet" href="{BASE}/assets/notebook.css"><link rel="stylesheet" href="{BASE}/assets/practice.css"><script type="module" src="{BASE}/assets/practice.js"></script></head>
+<title>کارگاه آموزشی دیپ لرنینگ · {escape(row['title_fa'])}</title><link rel="stylesheet" href="{BASE}/assets/course.css"><link rel="stylesheet" href="{BASE}/assets/notebook.css?v={asset_revision}"><link rel="stylesheet" href="{BASE}/assets/practice.css?v={asset_revision}"><script type="module" src="{BASE}/assets/practice.js?v={asset_revision}"></script></head>
 <body class="practice-page"><header><h1>{escape(unit['title_fa'])}</h1><nav data-related-labs></nav></header>
 <main id="practice-notebook"></main><footer><a href="{config['reader']}#page={unit['source_page']}" data-return-slide>بازگشت به اسلاید</a></footer>
 <script type="application/json" id="practice-config">{encoded}</script></body></html>'''

@@ -5,12 +5,18 @@ kernel = [[0, 1], [2, 3]]
 
 def transposed_convolution(values, weights, stride):
     # این مثال حاشیه و بایاس ندارد؛ گام باید عدد صحیح مثبت باشد.
-    if not isinstance(stride, int) or stride < 1:
+    if type(stride) is not int or stride < 1:
         raise ValueError("گام باید عدد صحیح مثبت باشد.")
 
     # اندازه‌ها را از داده می‌گیریم تا بتوانی شکل ورودی یا هسته را هم عوض کنی.
+    if not values or not values[0] or not weights or not weights[0]:
+        raise ValueError("ورودی و هسته نباید خالی باشند.")
     height, width = len(values), len(values[0])
     kernel_height, kernel_width = len(weights), len(weights[0])
+    if any(len(row) != width for row in values) or any(
+        len(row) != kernel_width for row in weights
+    ):
+        raise ValueError("سطرهای هر ماتریس باید طول یکسان داشته باشند.")
 
     # هر خانهٔ ورودی، هسته را در مکان وابسته به گام روی خروجی قرار می‌دهد.
     output_height = (height - 1) * stride + kernel_height

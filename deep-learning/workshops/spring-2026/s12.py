@@ -8,12 +8,16 @@ inputs = [[0, 0, 1, 1], [0, 1, 0, 0], [1, 1, 0, 1], [1, 0, 0, 1]]
 
 
 def dot(first, second):
+    if not first or len(first) != len(second):
+        raise ValueError("دو بردار باید بُعد برابر و غیرصفر داشته باشند.")
     # ضرب داخلی: مؤلفه‌های متناظر را ضرب و همهٔ حاصل‌ضرب‌ها را جمع می‌کنیم.
     return sum(a * b for a, b in zip(first, second))
 
 
 def softmax(scores):
     # کم‌کردن بزرگ‌ترین امتیاز از همه، نسبت احتمال‌ها را ثابت و محاسبه را پایدار می‌کند.
+    if not scores or not all(math.isfinite(value) for value in scores):
+        raise ValueError("امتیازها باید فهرستی غیرخالی از عددهای متناهی باشند.")
     largest = max(scores)
     exponentials = [math.exp(score - largest) for score in scores]
     # هر نمایی بر جمع نماها تقسیم می‌شود تا مجموع وزن‌ها برابر یک باشد.

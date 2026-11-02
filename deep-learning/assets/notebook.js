@@ -1,4 +1,4 @@
-import {createPythonEditor} from './vendor/python-editor/editor.mjs';
+import {createPythonEditor, highlightPythonCode} from './vendor/python-editor/editor.mjs?v=bce236fe0a347c65';
 import {pythonTools} from './python-tools.js';
 import {renderNotebookResult} from './notebook-results.js';
 
@@ -190,6 +190,7 @@ export function mountNotebook(root, options) {
   }
   function changed() {
     record = null; showOutput(); save();
+    options.onExecution?.(null);
     message(options.capture ? 'کد تغییر کرده؛ نمودار و مقدارهای آزمایش هنوز متعلق به آخرین اجرای موفق‌اند.' : 'کد تغییر کرده؛ برای دیدن خروجی، سلول را اجرا کن.');
   }
   function mode(name) {
@@ -215,7 +216,7 @@ export function mountNotebook(root, options) {
       const request = {id, cells: structuredClone(cells), until};
       const result = await (options.execute ? options.execute(request, message) : services.execute(request));
       if (activeRequest !== id) return;
-      record = result; showOutput();
+      record = result; showOutput(); options.onExecution?.(result);
       if (!result.ok) message('پایتون خطا داد؛ شمارهٔ سلول و خط را در خروجی بخوان، اصلاح کن و دوباره اجرا کن.', true);
       else message(`سلول‌های ۱ تا ${until + 1} اجرا شدند${result.python ? ' · Python ' + result.python : ''}. ${result.applied_to_lab === false ? 'مدل با اجرای سلول ساخت و محاسبه به‌روز می‌شود.' : 'خروجی از همین کد محاسبه شده است.'}`);
       return result.ok;
@@ -308,7 +309,7 @@ export function mountNotebook(root, options) {
     const tip = node('article', 'nb-question nb-code-tip');
     tip.append(node('h3', '', 'نکته با کد'), node('p', '', options.tip.explanation));
     const details = node('details'), summary = node('summary', '', 'کد این نکته');
-    const sample = node('pre', 'nb-output', options.tip.code); sample.dir = 'ltr';
+    const sample = node('pre', 'nb-output'); sample.dir = 'ltr'; highlightPythonCode(sample, options.tip.code);
     details.append(summary, sample); tip.append(details); quiz.append(tip);
   }
   mode('code'); drawVersions(); draw(); showPackages();

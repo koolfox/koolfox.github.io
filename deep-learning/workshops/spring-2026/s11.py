@@ -21,6 +21,8 @@ def agreement_score(answer, references):
 
 def held_out_score(answer, references):
     # در جزئیات صفحهٔ ۲۲، هر بار یک پاسخ انسانی کنار گذاشته می‌شود؛ اینجا ۱۰ دور داریم.
+    if len(references) != 10:
+        raise ValueError("قرارداد این مثال VQA به دقیقاً 10 پاسخ انسانی نیاز دارد.")
     rounds = []
     for omitted in range(len(references)):
         remaining = references[:omitted] + references[omitted + 1:]

@@ -65,6 +65,28 @@ class SourceWorkshopTests(unittest.TestCase):
         self.assertEqual(set(load_workshops('spring-2026', self.root, execute=True, session_ids=['s01'])), {'s01'})
         self.assertEqual(load_workshops('spring-2026', self.root, session_ids=[]), {})
 
+    def test_page_example_executes_its_own_hash_pinned_source_and_rejects_stale_code(self):
+        import hashlib
+        source = 'result = {"value": 3}\nprint(result)\n'
+        path = self.root/'workshops/spring-2026/s01_demo.py'
+        path.write_text(source)
+        choice = next(q for q in self.unit['questions'] if q['answer']['kind'] == 'choice')
+        questions = [{**copy.deepcopy(choice), 'id': 'demo'+str(i), 'source_page': 1,
+                      'source_kind': 'original'} for i in range(3)]
+        self.unit['source_examples'] = [{'id':'demo','title_fa':'مثال همین صفحه','pages':[1],
+            'code_file':'s01_demo.py','starter_sha256':hashlib.sha256(source.encode()).hexdigest(),
+            'reference':{'value':3},'questions':questions}]
+        self.write('content/workshops/spring-2026/s01.json', self.unit)
+        loaded = load_workshops('spring-2026', self.root, execute=True)['s01']['source_examples'][0]
+        self.assertEqual(loaded['code'], source)
+        path.write_text('result = {"value": 4}\n')
+        with self.assertRaisesRegex(ValueError, 'Source example code hash changed'):
+            load_workshops('spring-2026', self.root)
+        self.unit['source_examples'][0]['code_file'] = '../s01_demo.py'
+        self.write('content/workshops/spring-2026/s01.json', self.unit)
+        with self.assertRaisesRegex(ValueError, 'Invalid source example code file'):
+            load_workshops('spring-2026', self.root)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -721,7 +721,7 @@ def build(output, root=ROOT):
     output.mkdir(parents=True, exist_ok=True)
     registry_path = root / 'data/metadata/source-readers.json'
     registered_terms = json.loads(registry_path.read_text()).get('terms', {}) if registry_path.exists() else {}
-    reader_version = hashlib.sha256(b"".join((root / "assets" / name).read_bytes() for name in ("source-reader.js", "source-reader.css", "practice.css", "notebook.js"))).hexdigest()[:16]
+    reader_version = hashlib.sha256(b"".join((root / "assets" / name).read_bytes() for name in ("source-reader.js", "slide-content.js", "source-reader.css", "practice.css", "notebook.js", "practice.js", "webgpu-attention.js"))).hexdigest()[:16]
     pages = {"catalog/index.html": hub(course), "sources/index.html": sources_page(course),
              "knowledge/index.html": knowledge_page(course["concepts"])}
     initial = BASE + "/terms/spring-2026/s01/slides/"
@@ -742,7 +742,7 @@ def build(output, root=ROOT):
             row["source_reader"] = readers.get(term["id"], {}).get(row["id"])
             if row["source_reader"]:
                 payload = row["source_reader"]
-                pages[f"terms/{term['id']}/{row['id']}/practice/index.html"] = practice_page(term, row, (root / "LICENSE").read_text())
+                pages[f"terms/{term['id']}/{row['id']}/practice/index.html"] = practice_page(term, row, (root / "LICENSE").read_text(), reader_version)
                 pages[f"terms/{term['id']}/{row['id']}/slides/index.html"] = source_reader_page(term, row, reader_identity, payload, asset_revision=reader_version)
                 destination = output / f"source-translations/{term['id']}/{row['id']}.json"
                 destination.parent.mkdir(parents=True, exist_ok=True)
@@ -801,14 +801,25 @@ def build(output, root=ROOT):
         "university-logo.png",
         "university-logo.source.json",
         "source-reader.js",
+        "slide-content.js",
         "source-reader.css",
         "notebook.js", "notebook.css", "notebook_kernel.py", "notebook-worker.mjs",
         "practice.js", "practice.css", "knowledge.js",
         "python-tools.js", "python-tools-worker.mjs", "notebook_support.py",
-        "notebook-results.js",
+        "notebook-results.js", "webgpu-attention.js",
     ):
         if (root / "assets" / name).resolve() != (assets / name).resolve():
             shutil.copyfile(root / "assets" / name, assets / name)
+    if (root / "assets/source-reader.js").resolve() != (assets / "source-reader.js").resolve():
+        content_version = hashlib.sha256((root / "assets/slide-content.js").read_bytes()).hexdigest()[:16]
+        script = assets / "source-reader.js"
+        script.write_text(script.read_text().replace("'./slide-content.js'", f"'./slide-content.js?v={content_version}'"))
+        practice = assets / "practice.js"
+        content = practice.read_text()
+        for name in ("notebook.js", "webgpu-attention.js", "notebook-results.js"):
+            version = hashlib.sha256((root / "assets" / name).read_bytes()).hexdigest()[:16]
+            content = content.replace(f"'./{name}'", f"'./{name}?v={version}'")
+        practice.write_text(content)
     for name in ("pyodide.mjs", "pyodide-LICENSE.json"):
         source = root / "assets/vendor" / name
         target = assets / "vendor" / name

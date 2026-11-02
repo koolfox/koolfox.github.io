@@ -693,13 +693,59 @@
       "image_text": [
         {
           "en": "A conversation between User and Assistant. The user asks a question, and the Assistant solves it. The assistant first thinks about the reasoning process in the mind and then provides the user with the answer. The reasoning process and answer are enclosed within <think>…</think> and <answer>…</answer> tags, respectively, i.e., <think> reasoning process here </think> <answer> answer here </answer>. User: prompt. Assistant:",
-          "fa": "گفت‌وگویی میان کاربر و دستیار. کاربر پرسشی می‌پرسد و دستیار آن را حل می‌کند. دستیار ابتدا دربارهٔ فرایند استدلال در ذهن فکر می‌کند و سپس پاسخ را به کاربر می‌دهد. فرایند استدلال و پاسخ به‌ترتیب در برچسب‌های <think>…</think> و <answer>…</answer> قرار می‌گیرند؛ یعنی <think> فرایند استدلال اینجا </think> <answer> پاسخ اینجا </answer>. کاربر: پرامپت. دستیار: (اصل انگلیسی ورودی و برچسب‌ها حفظ شده است.)",
+          "fa": "گفت‌وگویی میان کاربر و دستیار. کاربر پرسشی می‌پرسد و دستیار آن را حل می‌کند. دستیار ابتدا دربارهٔ فرایند استدلال در ذهن فکر می‌کند و سپس پاسخ را به کاربر می‌دهد. فرایند استدلال و پاسخ به‌ترتیب در برچسب‌های <think>…</think> و <answer>…</answer> قرار می‌گیرند؛ یعنی <think> فرایند استدلال اینجا </think> <answer> پاسخ اینجا </answer>. کاربر: پرامپت. دستیار:",
           "verified": true
         },
         {
           "en": "Data Type; #Prompts; Question Type; Output Type; Math | 26K | Quantitative Reasoning | Number/Expression/Equation; Code | 17K | Algorithm and Bug Fixing | Code Solution; STEM | 22K | Multi-Choice | Option; Logic | 15K | Choice/Quantitative Reasoning | Option/Number; General | 66K | Helpfulness/Harmlessness | Ranked Responses",
           "fa": "نوع داده؛ تعداد پرامپت؛ نوع پرسش؛ نوع خروجی. ریاضی | 26 هزار | استدلال کمّی | عدد/عبارت/معادله؛ کد | 17 هزار | الگوریتم و رفع اشکال | راه‌حل کدی؛ STEM | 22 هزار | چندگزینه‌ای | گزینه؛ منطق | 15 هزار | گزینه‌ای/استدلال کمّی | گزینه/عدد؛ عمومی | 66 هزار | مفیدبودن/بی‌ضرربودن | پاسخ‌های رتبه‌بندی‌شده",
           "verified": true
+        }
+      ],
+      "tables": [
+        {
+          "verified": true,
+          "image_text_indices": [
+            1
+          ],
+          "headers": [
+            "نوع داده",
+            "تعداد پرامپت",
+            "نوع پرسش",
+            "نوع خروجی"
+          ],
+          "rows": [
+            [
+              "ریاضی",
+              "26K",
+              "استدلال کمّی",
+              "عدد/عبارت/معادله"
+            ],
+            [
+              "کد",
+              "17K",
+              "الگوریتم و رفع اشکال",
+              "راه‌حل کدی"
+            ],
+            [
+              "STEM",
+              "22K",
+              "چندگزینه‌ای",
+              "گزینه"
+            ],
+            [
+              "منطق",
+              "15K",
+              "گزینه‌ای/استدلال کمّی",
+              "گزینه/عدد"
+            ],
+            [
+              "عمومی",
+              "66K",
+              "مفیدبودن/بی‌ضرربودن",
+              "پاسخ‌های رتبه‌بندی‌شده"
+            ]
+          ]
         }
       ]
     },
@@ -795,7 +841,7 @@
         },
         {
           "en": "Response: <think> To solve the equation √(a − √(a+x)) = x, let’s start by squaring both … Rearrange to isolate the inner square root term: … Wait, wait. Wait. That’s an aha moment I can flag here. Let’s reevaluate this step-by-step to identify if the correct sum can be … We started with the equation: … First, let’s square both sides: … Next, I could square both sides again, treating the equation: … …",
-          "fa": "پاسخ: <think> برای حل معادلهٔ √(a − √(a+x)) = x، ابتدا هر دو طرف را به توان دو برسانیم… بازآرایی می‌کنیم تا عبارت رادیکالی درونی جدا شود: … صبر کن، صبر کن. صبر کن. این یک لحظهٔ «آها» است که می‌توانم اینجا مشخص کنم. بیایید گام‌به‌گام دوباره بررسی کنیم تا تشخیص دهیم آیا مجموع درست می‌تواند… با این معادله شروع کردیم: … ابتدا دو طرف را به توان دو برسانیم: … سپس می‌توانم دوباره دو طرف را به توان دو برسانم و معادله را این‌گونه در نظر بگیرم: … … (اصل انگلیسی خروجی در متن حفظ شده است.)",
+          "fa": "پاسخ: <think> برای حل معادلهٔ √(a − √(a+x)) = x، ابتدا هر دو طرف را به توان دو برسانیم… بازآرایی می‌کنیم تا عبارت رادیکالی درونی جدا شود: … صبر کن، صبر کن. صبر کن. این یک لحظهٔ «آها» است که می‌توانم اینجا مشخص کنم. بیایید گام‌به‌گام دوباره بررسی کنیم تا تشخیص دهیم آیا مجموع درست می‌تواند… با این معادله شروع کردیم: … ابتدا دو طرف را به توان دو برسانیم: … سپس می‌توانم دوباره دو طرف را به توان دو برسانم و معادله را این‌گونه در نظر بگیرم: … …",
           "verified": true
         },
         {
@@ -952,6 +998,37 @@
           "en": "Training Costs | DeepSeek-R1-Zero | SFT data creation | DeepSeek-R1 | Total; in H800 GPU Hours | 101K | 5K | 41K | 147K; in USD | $202K | $10K | $82K | $294K",
           "fa": "هزینه‌های آموزش | DeepSeek-R1-Zero | ساخت دادهٔ SFT | DeepSeek-R1 | مجموع؛ به ساعت GPU نوع H800 | 101 هزار | 5 هزار | 41 هزار | 147 هزار؛ به دلار آمریکا | $202 هزار | $10 هزار | $82 هزار | $294 هزار",
           "verified": true
+        }
+      ],
+      "tables": [
+        {
+          "image_text_indices": [
+            1
+          ],
+          "verified": true,
+          "headers": [
+            "هزینه‌های آموزش (Training Costs)",
+            "DeepSeek-R1-Zero",
+            "ساخت دادهٔ SFT",
+            "DeepSeek-R1",
+            "مجموع (Total)"
+          ],
+          "rows": [
+            [
+              "ساعت GPU نوع H800",
+              "101K",
+              "5K",
+              "41K",
+              "147K"
+            ],
+            [
+              "دلار آمریکا (USD)",
+              "$202K",
+              "$10K",
+              "$82K",
+              "$294K"
+            ]
+          ]
         }
       ]
     },
@@ -1346,42 +1423,42 @@
           "source_lines": [
             6
           ],
-          "kind": "math",
+          "kind": "literal",
           "fa": "1"
         },
         {
           "source_lines": [
             7
           ],
-          "kind": "math",
+          "kind": "literal",
           "fa": "2"
         },
         {
           "source_lines": [
             8
           ],
-          "kind": "math",
+          "kind": "literal",
           "fa": "3"
         },
         {
           "source_lines": [
             9
           ],
-          "kind": "math",
+          "kind": "literal",
           "fa": "7"
         },
         {
           "source_lines": [
             10
           ],
-          "kind": "math",
+          "kind": "literal",
           "fa": "8"
         },
         {
           "source_lines": [
             11
           ],
-          "kind": "math",
+          "kind": "literal",
           "fa": "9"
         }
       ],
@@ -2043,6 +2120,44 @@
           "fa": "مدل تقطیرشده | مدل پایه؛ DeepSeek-R1-Distill-Qwen-1.5B | Qwen2.5-Math-1.5B؛ DeepSeek-R1-Distill-Qwen-7B | Qwen2.5-Math-7B؛ DeepSeek-R1-Distill-Qwen-14B | Qwen2.5-14B؛ DeepSeek-R1-Distill-Qwen-32B | Qwen2.5-32B؛ DeepSeek-R1-Distill-Llama-8B | Llama-3.1-8B؛ DeepSeek-R1-Distill-Llama-70B | Llama-3.3-70B-Instruct",
           "verified": true
         }
+      ],
+      "tables": [
+        {
+          "image_text_indices": [
+            0
+          ],
+          "verified": true,
+          "headers": [
+            "مدل تقطیرشده (Distilled Model)",
+            "مدل پایه (Base Model)"
+          ],
+          "rows": [
+            [
+              "DeepSeek-R1-Distill-Qwen-1.5B",
+              "Qwen2.5-Math-1.5B"
+            ],
+            [
+              "DeepSeek-R1-Distill-Qwen-7B",
+              "Qwen2.5-Math-7B"
+            ],
+            [
+              "DeepSeek-R1-Distill-Qwen-14B",
+              "Qwen2.5-14B"
+            ],
+            [
+              "DeepSeek-R1-Distill-Qwen-32B",
+              "Qwen2.5-32B"
+            ],
+            [
+              "DeepSeek-R1-Distill-Llama-8B",
+              "Llama-3.1-8B"
+            ],
+            [
+              "DeepSeek-R1-Distill-Llama-70B",
+              "Llama-3.3-70B-Instruct"
+            ]
+          ]
+        }
       ]
     },
     {
@@ -2400,7 +2515,7 @@
       "image_text": [
         {
           "en": "What is 1 + 1 ?; Sparse Model; Punctuation; Verbs; Conjunctions; Numbers; not activated; activated; 2",
-          "fa": "ورودی با عین توکن‌ها: What is 1 + 1 ? (1 + 1 چیست؟)؛ مدل تنک؛ نشانه‌گذاری؛ فعل‌ها؛ پیوندها؛ عددها؛ فعال‌نشده؛ فعال‌شده؛ خروجی: 2",
+          "fa": "ورودی: What is 1 + 1 ? (1 + 1 چیست؟)؛ مدل تنک؛ نشانه‌گذاری؛ فعل‌ها؛ پیوندها؛ عددها؛ فعال‌نشده؛ فعال‌شده؛ خروجی: 2",
           "verified": true
         }
       ]
@@ -2796,7 +2911,7 @@
         },
         {
           "en": "Query vector; forth; Key and value vectors; Block 1: years ago our fathers; Block 2: brought forth; Block 0: Four score and seven; Figure 5. Illustration of the PagedAttention algorithm, where the attention key and values vectors are stored as non-contiguous blocks in the memory.",
-          "fa": "بردار پرس‌وجو؛ forth؛ بردارهای کلید و مقدار؛ بلوک 1: years ago our fathers؛ بلوک 2: brought forth؛ بلوک 0: Four score and seven. اصل توکن‌های عبارت تاریخی «هشتادوهفت سال پیش پدران ما… پدید آوردند» حفظ شده است. شکل 5. نمایش الگوریتم PagedAttention که در آن بردارهای کلید و مقدار توجه به‌صورت بلوک‌های ناپیوسته در حافظه ذخیره می‌شوند.",
+          "fa": "بردار پرس‌وجو؛ forth؛ بردارهای کلید و مقدار؛ بلوک 1: years ago our fathers؛ بلوک 2: brought forth؛ بلوک 0: Four score and seven. «هشتادوهفت سال پیش پدران ما… پدید آوردند» شکل 5. نمایش الگوریتم PagedAttention که در آن بردارهای کلید و مقدار توجه به‌صورت بلوک‌های ناپیوسته در حافظه ذخیره می‌شوند.",
           "verified": true
         }
       ]

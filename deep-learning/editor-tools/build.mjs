@@ -27,4 +27,8 @@ writeFileSync(path.join(destination, 'files.json'), JSON.stringify({
   source: 'https://codemirror.net/', build: 'editor-tools/editor.js via pinned package-lock.json',
   packages: metadata, files,
 }, null, 2) + '\n');
+const notebook = path.resolve(root, '../assets/notebook.js');
+writeFileSync(notebook, readFileSync(notebook, 'utf8').replace(
+  /\.\/vendor\/python-editor\/editor\.mjs(?:\?v=[a-f0-9]+)?/g,
+  './vendor/python-editor/editor.mjs?v=' + files[0].sha256.slice(0, 16)));
 console.log(`Vendored Python editor with ${metadata.length} MIT dependencies and SHA-256 manifest`);

@@ -3,8 +3,8 @@ import {EditorView, drawSelection, keymap, lineNumbers} from '@codemirror/view';
 import {defaultKeymap, history, historyKeymap, indentWithTab} from '@codemirror/commands';
 import {HighlightStyle, bracketMatching, indentOnInput, syntaxHighlighting, syntaxTree} from '@codemirror/language';
 import {autocompletion, closeBrackets, closeBracketsKeymap, completionKeymap} from '@codemirror/autocomplete';
-import {python, globalCompletion, localCompletionSource} from '@codemirror/lang-python';
-import {tags} from '@lezer/highlight';
+import {python, pythonLanguage, globalCompletion, localCompletionSource} from '@codemirror/lang-python';
+import {tags, highlightTree, classHighlighter} from '@lezer/highlight';
 
 const highlights = HighlightStyle.define([
   {tag: tags.keyword, color: '#194fc3', fontWeight: '600'},
@@ -14,6 +14,18 @@ const highlights = HighlightStyle.define([
   {tag: [tags.function(tags.variableName), tags.definition(tags.variableName)], color: '#194fc3'},
   {tag: [tags.operator, tags.punctuation], color: '#526075'},
 ]);
+
+export function highlightPythonCode(parent, source) {
+  const code = document.createElement('code');
+  let end = 0;
+  highlightTree(pythonLanguage.parser.parse(source), classHighlighter, (from, to, classes) => {
+    code.append(document.createTextNode(source.slice(end, from)));
+    const token = document.createElement('span'); token.className = classes; token.textContent = source.slice(from, to);
+    code.append(token); end = to;
+  });
+  code.append(document.createTextNode(source.slice(end)));
+  parent.replaceChildren(code);
+}
 
 // Completion reads names from the notebook, never executes code or contacts a server.
 function notebookNames(getSource) {

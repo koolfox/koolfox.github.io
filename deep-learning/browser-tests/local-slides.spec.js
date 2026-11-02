@@ -153,7 +153,7 @@ test('registered2026readers align original and Persian pages, math, a single sou
     await readerReady(page,target);
     const record=payload.pages[target-1];
     const copy=record.blocks.find(block=>block.kind!=='not_visible'&&!block.latex&&block.fa.trim());
-    if(copy)await expect(page.locator('#persian-page')).toContainText(copy.fa.replace(/\s+/g,' '),{useInnerText:true});
+    if(copy)await expect(page.locator('#persian-page')).toContainText(copy.fa.replace(/(^|\n)\s*(?:[•●▪◦–-]|\d+[.)])\s+/g,'$1').replace(/\s+/g,' '),{useInnerText:true});
     const mathPage=payload.pages.findIndex(record=>record.blocks.some(block=>block.latex)||record.image_text.some(item=>item.latex));
     if(mathPage>=0){await page.locator('[data-page-select]').selectOption(String(mathPage+1));await readerReady(page,mathPage+1);await expect(page.locator('#persian-page .katex').first()).toBeVisible();await expect(page.locator('[data-math-error]')).toHaveCount(0);}
     expect(payload.pages.some(record=>record.blocks.some(block=>/[\u0600-\u06ff].*\([A-Za-z]/s.test(block.fa))||record.image_text.some(item=>/[\u0600-\u06ff].*\([A-Za-z]/s.test(item.fa)))).toBeTruthy();
@@ -246,4 +246,25 @@ test('translation shows slide content without image review notes',async({page})=
   await expect(page.locator('.reader-limits:not(.reader-editorial)')).toHaveCount(0);
   await expect(page.locator('#persian-page')).not.toContainText('نویسه‌های ریز کد');
   await expect(page.locator('#persian-page')).not.toContainText('یادداشت تصویر مرجع');
+});
+
+test('Persian slide typography preserves source emphasis, lists and LTR mathematics',async({page})=>{
+  await page.goto(sourceDeck('s13')+'#page=28');await readerReady(page,28);
+  await expect(page.locator('#persian-page ul.reader-list')).toHaveCount(2);
+  const emphasis=page.locator('#persian-page .reader-emphasis');
+  await expect(emphasis).toHaveText(['کمترین','بیشترین']);
+  const colors=await emphasis.evaluateAll(nodes=>nodes.map(node=>getComputedStyle(node).color));
+  for(const color of colors){
+    const rgb=color.match(/\d+/g).map(Number);expect(rgb[0]).toBeGreaterThan(rgb[1]);expect(rgb[1]).toBeGreaterThan(rgb[2]);
+    const linear=rgb.map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4);
+    expect(1.05/(linear[0]*.2126+linear[1]*.7152+linear[2]*.0722+.05)).toBeGreaterThanOrEqual(4.5);
+  }
+  await expect(page.locator('.reader-math[data-typeset=true]').first()).toHaveAttribute('dir','ltr');
+  const sizes=await page.locator('.reader-copy.heading bdi').first().evaluate(node=>[getComputedStyle(node).fontSize,getComputedStyle(node.parentElement).fontSize]);expect(sizes[0]).toBe(sizes[1]);
+  await page.locator('[data-page-select]').selectOption('9');await readerReady(page,9);
+  await page.setViewportSize({width:320,height:844});await page.locator('[data-view-translation]').click();
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBeTruthy();
+  await page.goto(sourceDeck('s03')+'#page=107');await readerReady(page,107);
+  await expect(page.locator('.reader-editorial .reader-math-inline[data-typeset=true]')).toHaveCount(4);
+  await expect(page.locator('[data-math-error]')).toHaveCount(0);
 });

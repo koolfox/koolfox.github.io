@@ -160,9 +160,131 @@ unchanged. These copy changes introduce no new visual-system rule;
 `DESIGN.md` and `.impeccable/design.json` retain the hashes recorded above.
 
 The final copy passed 133 native tests. The earlier full browser result remains
-73 passing tests on v11. Separately, the latest head's full deep-learning check
-(57 tests) and Pages PR check succeeded (runs `41297571512` and `41297571539`); this does not
+73 passing tests on v11. Separately, the latest head's full deep-learning check and Pages PR check succeeded (runs `41297571512` and `41297571539`); this does not
 establish a v15 browser result. Focused browser checks for v15 have not yet been
 reported at this update. PR #70 deployment and current live publication remain
 pending. The v14 visual verdict, v15 native result, PR checks and publication
 boundary are distinct evidence layers.
+
+## Source-faithful typography extension — v26
+
+Artifact: `/private/tmp/danna-student-studio-v26`. This local extension follows
+the updated product and surface brief within the incumbent Arad/RTL/light
+identity. `DESIGN.md` and `.impeccable/design.json` remain unchanged at their
+recorded hashes. Observed renderer styles retain Persian body 17px/2 on desktop
+and 16px/2 on phones; image labels are 16px, English terms are 1em, and lists
+use semantic `ul`/`li` markup. Persian prose is RTL; numeric literals and
+mathematics have explicit LTR treatment. Sparse atomic source-graph labels are
+compact without changing their order.
+
+Exact source-PDF metadata spans all 21 files and 1,303 pages: 7,846 of 10,755
+lines have exact matches, including 3,200 styled lines: 1,985 whole-line colors, 145 bold,
+12 italic and 1,100 partial-accent lines (these categories can overlap). Matching is not fuzzy.
+Partial Persian least/most pairs have unique verified mappings; unmatched text
+uses the incumbent default. Bright source accents are adapted for text contrast
+of at least 4.5:1. These coverage counts do not claim recovery of every source
+word's color. Original PDF bytes remain unchanged.
+
+There are 45 newly explicit LaTeX expressions, 399 total; 14 date literals stay
+literal, and two source errors receive scientific clarification. Static Python
+tips use non-executing Lezer highlighting with code characters preserved;
+the three actual notebooks retain execution. This does not claim reconstruction
+of missing or unreadable image code or compatibility with every Python package.
+
+Internal image-review notes for 50 pages are hidden from the learner UI;
+42 image-label self-notes and old scientific-correction process suffixes were
+removed from displayed copy. Provenance and audit records remain. Translation,
+renderer and editor URLs carry hash queries to avoid stale caches.
+
+Validation supplied for this increment: 139 native tests and all 399 formula
+render/vendor checks passed; 14 focused v25 browser checks, including optional
+NumPy, and five final v26 checks passed. The latter cover all 21 source readers
+and 21 offline workshops, new typography/source fidelity, all three native
+notebooks and static code highlighting. These focused results supplement the
+earlier browser evidence; they are not a new full-suite claim.
+
+Six viewport captures, `quality-bar.md` and `type-findings.json` are in
+`../../.impeccable/review/slide-typography/`. The detector reports 21 advisory
+findings and zero non-advisory findings; these observations do not amend the
+normative tokens or canonize defects. The independent finish reviewer returned **ship**, with no material fixes
+after reviewing all six captures. PR #71's notes-cleanup Pages CI passed; PR #72 for
+typography has not yet been created. This entry records local evidence only,
+without claiming typography publication or a completed independent scientific
+audit.
+
+PR #70 was subsequently merged and published as
+`ff919052251c7534059d3990185906e294726ad1`: all 803 deep-learning manifest
+records matched, 171 actual file hashes matched and 10 public browser checks
+passed. This is release evidence for the notebook increment, separate from the
+current typography increment.
+
+## Source-fidelity refinement — 2026-11-02
+
+The existing blue/Arad/RTL identity remains pinned. This increment adds checked
+citation targets, semantic source tables, language selection during presentation,
+source-frame playback and an independent WebGPU check of the s13 attention
+example. It does not certify a spatial reconstruction of every Persian slide or
+reproduction of all cited research models.
+
+- Citation inventory: 258 extracted URL candidates, including PDF annotations.
+  The recorded GET run returned 183 reachable, 25 missing, 49 inconclusive and one
+  migration independently verified from the same author's TDS Archive article.
+  Some candidates are truncated PDF text, not full URLs. 403/429 are not 404.
+  Only recorded reachable/reviewed targets become reader links; other citations
+  remain faithful plain text. The immutable PDFs retain their printed URLs.
+- Forty tables on 37 pages were visually checked against the local source PDFs.
+  Column order, precision, empty cells, merged headers and rowspans are explicit.
+  The two mixed s17 tables use eighteen measured crops from the current source
+  page canvas; photos and handwriting are not approximated or redrawn.
+- Source-text truth tables consume complete mapped blocks; hidden extracted
+  answers remain excluded. Scientific correction notes stay separate.
+- Presentation retains English/Persian/paired views and access to mapped code.
+  Phones retain language access. The s13 sequence plays actual pages 21–31 and
+  stops on manual navigation, hidden document or switching sections. No video
+  generation or 3Blue1Brown authorship is claimed.
+- Attention WebGPU receives the inputs from the executed Python result, uses
+  stable float32 softmax and displays the difference from Python. Source Q1 and
+  edited Q2 passed through the actual WebGPU API on SwiftShader. This is a
+  software adapter check, not a hardware GPU benchmark or a full Transformer.
+  Unsupported devices report the missing adapter without a silent fallback.
+- All 21 Spring 2026 Python workshop references were executed successfully.
+  This proves agreement with the stored workshop references, not reproduction
+  of a paper's training run, dataset, pretrained checkpoint or reported metric.
+
+Review bounds: all newly structured table pages were visually inspected;
+remaining pages were searched through existing source text/image-label records.
+This is not a claim that every raster-only table or every translated spatial
+relationship across 1,303 pages was visually re-reviewed. Full CNN/Transformer
+checkpoint inference, whole-course spatial/media reconstruction and newly
+produced explanatory films remain separate work. Missing model artifacts must
+be identified before any research-reproduction claim.
+
+Local validation and publication evidence for this candidate are recorded
+separately; a commit or passing local check alone does not establish deployment.
+
+### Independent model / frontend / Python follow-up
+
+The model agent checked ten WebGPU numerical cases against independent Python
+and rejected seventeen malformed inputs, including sparse JS arrays. Source
+unscaled/scaled errors on SwiftShader were below 3.2e-7. Float32 cancellation can
+still disagree with float64; the UI explicitly reports a mismatch. No matching
+trained full CNN/Transformer checkpoint, tokenizer or paper dataset is present;
+see `model-execution-audit.md` for exact limits and required artifacts.
+
+The frontend agent checked all forty tables at desktop and phone sizes. Photo
+crops now retain a minimum 2048px PDF backing canvas, including when the source
+preview is narrow/hidden. A visual cell is never synthesized from an unrelated
+photo. Horizontal table scrolling works with keyboard focus without navigating
+away from the slide.
+
+The Python agent added twenty-two independent numerical checks, including all
+eleven source backprop derivatives by central differences, convolution/transpose
+adjointness, voting/attention/scaling invariants and editable-input shape errors.
+Two source-only notebooks are selected automatically for s03 pp68–84 and s05
+pp27–36, each with its own draft/version key, executed hash-pinned code and three
+matching choice questions. Navigation through either laboratory entry retains
+the current page, and Return closes the notebook without losing that page.
+The quiz/source conventions and deliberately dropped gradient factor2 remain
+explicit. See `python-example-audit.md`; default reference consistency alone is
+not scientific review. Root integration currently passes170native tests and443
+formula/vendor checks; final CI and actual publication are separate evidence.

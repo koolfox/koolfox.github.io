@@ -21,7 +21,7 @@ uv run --project structural-bioinformatics peptide-lab plan --min-length 2 --max
 uv run --project structural-bioinformatics peptide-lab generate --alphabet AR --min-length 2 --max-length 3 --max-sequences 12 --output-dir structural-bioinformatics/results/peptide-demo-01
 ```
 
-[کارگاه توالی، LocalFold و خواندن PDB](docs/peptide-workshop.fa.md) مسیر ساخت مدل و بازرسی آن را توضیح می‌دهد. این کارگاه در بخش پژوهش قابل انتخاب است. LocalFold به‌عنوان مسیر نخستِ تمرین پیش‌بینی ساختار بررسی می‌شود؛ اجرای مدل و واردکردن خودکار نتیجه هنوز تأیید نشده‌اند. درسنامهٔ عمومی تغییر نکرده است.
+[کارگاه توالی، LocalFold و خواندن PDB](docs/peptide-workshop.fa.md) چهار اجرای واقعی AF2-mono، فایل‌های ساختار و مقایسه با مرجع تجربی را ارائه می‌کند. [گزارش عددی](data/processed/localfold-pilot.json) و [منشأ فایل‌ها](data/metadata/localfold-pilot-provenance.json) قابل بازبینی‌اند. غربال پیوستگی ساختار با `python -m peptide_lab.structure` اجرا می‌شود؛ AR و ARA در همین اجراها رد شدند. اجرای دسته‌ای LocalFold، واردکردن خودکار نتیجه به نمایشگر و داکینگ پپتید–TNF هنوز آماده نیستند. درسنامهٔ عمومی تغییر نکرده است.
 
 ### آزمایشگاه تعاملی
 

@@ -130,7 +130,8 @@ test('library search and full documents do not require a chapter selection',asyn
 });
 
 test('research, paper reviews, datasets and docking have separate primary content',async({page})=>{
- await page.goto(`${root}research.html`);await expect(page.locator('.research-summary')).toContainText('نامزد پپتیدی کم‌هزینه‌تری');await expect(page.locator('#molecular-stage,#quiz-form,#datasets-table')).toHaveCount(0);
+ await page.goto(`${root}research.html`);await expect(page.locator('.research-summary')).toContainText('رابط آدالیموماب–TNF-α');await expect(page.locator('#molecular-stage,#quiz-form,#datasets-table')).toHaveCount(0);
+ await expect(page.locator('.research-summary')).toContainText('TNFR1 و TNFR2');
  await expect(page.locator('#reading-status')).toHaveAttribute('data-document','peptide-workshop.fa.md');
  await expect(page.getByRole('link',{name:'LocalFold',exact:true})).toHaveAttribute('href','https://localfold.org/');
  await expect(page.locator('#research-history')).not.toHaveAttribute('open','');

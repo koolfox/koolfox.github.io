@@ -111,4 +111,6 @@ def test_recorded_workshop_libraries_reproduce_without_network_or_model_runs(tmp
         assert actual["spec_sha256"] == expected["spec_sha256"]
     for filename, expected_hash in evidence["inputs_and_code_sha256"].items():
         assert hashlib.sha256((project / filename).read_bytes()).hexdigest() == expected_hash
-    assert evidence["localfold_inference"] == evidence["peptide_docking"] == "not_run"
+    assert evidence["peptide_docking"] == "not_run"
+    assert evidence["localfold_inference"] == "four_interactive_runs_completed"
+    assert (project / evidence["localfold_execution_record"]).is_file()

@@ -80,3 +80,20 @@ The developer-only CPU tensor is ignored and is not downloaded by the site.
 `validate_mxnet.py` independently reconstructs the CNN in MXNet1.9.1 CPU via its
 official ONNX importer; its x86_64 Python3.9 environment is separate from the
 modern PyTorch environment. On this Mac it was run through Rosetta.
+
+## Embedded inference interface
+
+`source_models.build_model_pages(root, output, asset_revision='')` writes only to
+the build output, generating `models/<id>/index.html`. Its two app assets are
+`source-model-app.js` and `source-model-app.css`. The source reader can open either
+route in its existing iframe. These pages expose inference, not model training.
+Image upload shows the exact crop used by the CNN. BERT shows editable sentence
+segments and actual tokens. Weight download starts only on the explicit button.
+Page teardown aborts pending work and releases the model session.
+
+With a built site served and ignored validation artifacts available to its local
+server, `models/tests/ui.mjs` redirects upstream weight requests to that same
+verified local cache (no fake tensors). It checks actual GPU predictions,
+reference/edited-input distinctions, the128token bound, release, missing-GPU
+errors and mobile overflow. `ui-cancel.mjs` checks cancellation before the weight
+response completes. Set `MODEL_VALIDATION_URL` to the local site's origin.

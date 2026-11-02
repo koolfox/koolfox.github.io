@@ -81,6 +81,19 @@ def practice_page(term, row, license_text="", asset_revision=""):
             "questions": questions, "tip": tip, "related_labs": [],
             "source_pages": [n for n in unit["question_pages"] if n in example["pages"]],
             "activity_pages": [n for n in unit["class_activity_pages"] if n in example["pages"]]})
+    config["page_questions"] = []
+    config["page_activity_states"] = []
+    activities = unit.get("activities")
+    if activities:
+        by_id = {question["id"]: question for question in activities["questions"]}
+        for page in activities["pages"]:
+            config["page_activity_states"].append({key: page[key] for key in
+                ("number", "classification", "review_status", "question_coverage")})
+            if not page["question_ids"]:
+                continue
+            questions, _ = _questions_for({"questions": [by_id[identity] for identity in page["question_ids"]],
+                                          "code": unit["code"]})
+            config["page_questions"].append({"pages": [page["number"]], "questions": questions})
     encoded = json.dumps(config, ensure_ascii=False).replace("<", "\\u003c")
     return f'''<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>کارگاه آموزشی دیپ لرنینگ · {escape(row['title_fa'])}</title><link rel="stylesheet" href="{BASE}/assets/course.css"><link rel="stylesheet" href="{BASE}/assets/notebook.css?v={asset_revision}"><link rel="stylesheet" href="{BASE}/assets/practice.css?v={asset_revision}"><script type="module" src="{BASE}/assets/practice.js?v={asset_revision}"></script></head>

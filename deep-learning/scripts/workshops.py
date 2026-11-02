@@ -10,6 +10,7 @@ import sys
 
 from course_content import check_exercise
 from source_catalog import ROOT, require
+from source_activities import load_activities
 
 
 def load_workshops(term_id, root=ROOT, execute=False, session_ids=None):
@@ -154,7 +155,9 @@ def load_workshops(term_id, root=ROOT, execute=False, session_ids=None):
                 require(equal_results(json.loads(run.stdout.splitlines()[-1]), example["reference"]),
                         "Source example differs from Python")
             loaded_examples.append({**example, "code": example_code})
-        result[identity] = {**unit, "code": code, "source_examples": loaded_examples}
+        activities = load_activities(root, term_id, identity)
+        result[identity] = {**unit, "code": code, "source_examples": loaded_examples,
+                            "activities": activities}
     if selected is not None:
         require(set(result) == selected, 'Requested workshop is missing')
     elif complete_document:

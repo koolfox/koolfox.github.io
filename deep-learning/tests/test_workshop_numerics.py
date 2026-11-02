@@ -24,6 +24,18 @@ def execute(session, changes=None):
 
 
 class WorkshopNumericalTests(unittest.TestCase):
+    def test_source_wer_exact_sentences_and_changed_prediction(self):
+        result = execute("s12_word_error_rate")["result"]
+        self.assertEqual(result["reference_length"], 15)
+        self.assertEqual(result["minimum_edits"], 8)
+        self.assertEqual(result["source_alignment_counts"], {"substitutions": 6, "insertions": 1, "deletions": 1})
+        self.assertAlmostEqual(result["word_error_rate"], 8 / 15)
+        identical = execute("s12_word_error_rate", {'prediction_text = "The son makes it to bike with a swarm to go outside to Denver today."': 'prediction_text = reference_text'})["result"]
+        self.assertEqual(identical["minimum_edits"], 0)
+        self.assertNotIn("source_alignment_counts", identical)
+        with self.assertRaises(ValueError):
+            execute("s12_word_error_rate", {'reference_text = "The sun makes it look like uh a warm, day to go outside to adventure."': 'reference_text = ""'})
+
     def test_source_caption_budget_and_beam_joint_probabilities(self):
         budget = execute("s11_caption_cost")["result"]
         self.assertEqual(budget["hours"], 8553.825)

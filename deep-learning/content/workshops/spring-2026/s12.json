@@ -214,6 +214,109 @@
           }
         }
       ]
+    },
+    {
+      "id": "word-error-rate",
+      "title_fa": "فاصلهٔ ویرایشی دو جملهٔ گفتار",
+      "pages": [
+        62
+      ],
+      "code_file": "s12_word_error_rate.py",
+      "starter_sha256": "2aaeb296394a8decad0e783f6e343ac42e18c94ad1787a2695b81827207389fb",
+      "reference": {
+        "reference_words": [
+          "the",
+          "sun",
+          "makes",
+          "it",
+          "look",
+          "like",
+          "uh",
+          "a",
+          "warm",
+          "day",
+          "to",
+          "go",
+          "outside",
+          "to",
+          "adventure"
+        ],
+        "prediction_words": [
+          "the",
+          "son",
+          "makes",
+          "it",
+          "to",
+          "bike",
+          "with",
+          "a",
+          "swarm",
+          "to",
+          "go",
+          "outside",
+          "to",
+          "denver",
+          "today"
+        ],
+        "reference_length": 15,
+        "minimum_edits": 8,
+        "word_error_rate": 0.5333333333333333,
+        "source_alignment_counts": {
+          "substitutions": 6,
+          "insertions": 1,
+          "deletions": 1
+        }
+      },
+      "questions": [
+        {
+          "id": "reference-length",
+          "source_kind": "original",
+          "source_page": 62,
+          "prompt_fa": "جملهٔ مرجع با احتسابuhچند واژه دارد؟",
+          "solution_fa": "نشانه‌گذاری کنار گذاشته می‌شود وuhیک واژه است؛تعداد مرجع15است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "15",
+              "16",
+              "8"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "edits",
+          "source_kind": "original",
+          "source_page": 62,
+          "prompt_fa": "در هم‌ترازی رنگی اسلاید،تعداد جایگزینی،درج و حذف چیست؟",
+          "solution_fa": "sun→sonو پنج جایگزینی دیگر؛dayحذف وtodayدرج شده است.مجموع8ویرایش است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "8،0،0",
+              "6،1،1",
+              "1،6،1"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "wer",
+          "source_kind": "original",
+          "source_page": 62,
+          "prompt_fa": "WERاین دو جمله چقدر است؟",
+          "solution_fa": "مخرج تعداد واژه‌های مرجع است؛عدد.53گردشده است و کم‌تر بودنWERبهتر است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "8/16=.5",
+              "15/8",
+              "8/15≈.5333"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
     }
   ]
 }

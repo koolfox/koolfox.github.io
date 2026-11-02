@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-02T17:34:30.123054+00:00",
+  "scope": "Executed sequence-library examples; documentation for structure prediction and inspection.",
+  "implementation_commit": "a4bc10a",
+  "inputs_and_code_sha256": {
+    "src/peptide_lab/__init__.py": "8327da5a9dbed54dd020e1373310c4f6472afaf31f77343a2457ac608dfa1062",
+    "src/peptide_lab/library.py": "a2ca820f9341a743c05332801bed8a46f7f34e3eda7bfecb8ffa9050a754b4b4",
+    "src/peptide_lab/cli.py": "41f0a37ba6fa48dae3606804f028cdbcf5a4f87859c1dfce45d58704ca534d40",
+    "assets/3wd5.pdb": "fae6eee1b06b8cba0a466280dbc32563efaa54ec639afd921cb610d17debd216"
+  },
+  "runs": [
+    {
+      "directory": "results/peptide-ar-20261102",
+      "outputs_committed": false,
+      "manifest": {
+        "schema_version": 1,
+        "tool": "peptide-lab",
+        "tool_version": "0.1.0",
+        "settings": {
+          "alphabet": "AR",
+          "min_length": 2,
+          "max_length": 3,
+          "ordered": true,
+          "repetition_allowed": true
+        },
+        "spec_sha256": "0cefe1346f39933770de3082ca15574bb9ddf7dfb948791003208b594de4d8c1",
+        "counts_by_length": [
+          {
+            "length": 2,
+            "count": 4
+          },
+          {
+            "length": 3,
+            "count": 8
+          }
+        ],
+        "total_sequences": 12,
+        "max_export_sequences": 10000,
+        "enumeration_order": "increasing_length_then_supplied_alphabet_order",
+        "scope": "sequence_strings_only",
+        "structure_generation": "not_run",
+        "docking": "not_run",
+        "functional_test": "not_run",
+        "stereochemistry": "not_built_or_checked",
+        "status": "sequences_generated",
+        "generated_at_utc": "2026-11-02T17:27:58.616206+00:00",
+        "python_version": "3.13.12",
+        "export_budget": 12,
+        "exported_sequences": 12,
+        "files": {
+          "sequences.fasta": {
+            "sha256": "cfb9121ad4c5c862d96cac8013b203e28fcbf53b2a4f0e51be021bada95b8bfa"
+          }
+        }
+      }
+    },
+    {
+      "directory": "results/peptide-pairs-20261102",
+      "outputs_committed": false,
+      "manifest": {
+        "schema_version": 1,
+        "tool": "peptide-lab",
+        "tool_version": "0.1.0",
+        "settings": {
+          "alphabet": "ACDEFGHIKLMNPQRSTVWY",
+          "min_length": 2,
+          "max_length": 2,
+          "ordered": true,
+          "repetition_allowed": true
+        },
+        "spec_sha256": "94148c5b11d0b69ca400a59d5d8cbbe830875753c3879e81bab707a290e4b5c6",
+        "counts_by_length": [
+          {
+            "length": 2,
+            "count": 400
+          }
+        ],
+        "total_sequences": 400,
+        "max_export_sequences": 10000,
+        "enumeration_order": "increasing_length_then_supplied_alphabet_order",
+        "scope": "sequence_strings_only",
+        "structure_generation": "not_run",
+        "docking": "not_run",
+        "functional_test": "not_run",
+        "stereochemistry": "not_built_or_checked",
+        "status": "sequences_generated",
+        "generated_at_utc": "2026-11-02T17:27:58.703823+00:00",
+        "python_version": "3.13.12",
+        "export_budget": 400,
+        "exported_sequences": 400,
+        "files": {
+          "sequences.fasta": {
+            "sha256": "cb703837c8c33b965980baed035c46a2ea50307ea537000e7c60db537c6a8ec1"
+          }
+        }
+      }
+    }
+  ],
+  "documentation_sources": [
+    {
+      "url": "https://raw.githubusercontent.com/sokrypton/localfold/0724b7fcebd9a83d263d9d9c485f818dce0242a1/README.md",
+      "retrieved_at_utc": "2026-11-02T17:34:20.779907+00:00",
+      "status": 200,
+      "sha256": "a4928fd886d3392a8effef345ac1b84325a5066abc1a906fff5c25d49b6c6eac"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/sokrypton/localfold/0724b7fcebd9a83d263d9d9c485f818dce0242a1/docs/RUNNING.md",
+      "retrieved_at_utc": "2026-11-02T17:34:23.566082+00:00",
+      "status": 200,
+      "sha256": "913905c7c8ac81e1e3481c7ff4933ed592a92f54417da194e3fc70d3b1859c10"
+    },
+    {
+      "url": "https://www.ks.uiuc.edu/Research/vmd/current/ug/node25.html",
+      "retrieved_at_utc": "2026-11-02T17:34:25.786357+00:00",
+      "status": 200,
+      "sha256": "add2489c8a108dfcf92d1bf21ce5bf08c3247eafd7673ad4c272d862369fc149"
+    }
+  ],
+  "localfold_inference": "not_run",
+  "vmd_ui": "not_run",
+  "peptide_docking": "not_run"
+}

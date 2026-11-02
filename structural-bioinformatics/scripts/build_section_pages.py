@@ -12,7 +12,6 @@ def render_pages(project=PROJECT):
     sections = config["sections"]
     course = json.loads((project / "data/metadata/learning-course.json").read_text())
     syllabus = json.loads((project / "data/metadata/course-syllabus.json").read_text())
-    study = json.loads((project / "data/metadata/research-thread.json").read_text())
 
     def fragment(name):
         return (project / f"templates/sections/{name}.html").read_text()
@@ -62,7 +61,10 @@ def render_pages(project=PROJECT):
             for section in children
         )
         subnav = subnav + "</nav>" if children else ""
-        revision = "20261028-reading" if ident == "course" else "20261025-sections"
+        revision = {
+            "course": "20261028-reading",
+            "research": "20261102-peptide",
+        }.get(ident, "20261025-sections")
         modules = "\n".join(
             f'<script type="module" src="assets/{name}?v={revision}"></script>'
             for name in ["site.js", *scripts]
@@ -230,14 +232,14 @@ def render_pages(project=PROJECT):
             body = docnav + fragment("docking") + reader(section)
             scripts = ["docking-validation.js"]
         elif ident == "research":
+            previous_study = json.loads(
+                (project / "data/metadata/research-thread.json").read_text()
+            )
             body = (
                 f"""<section class="research-summary">
 <h2>پرسش فعلی</h2>
-<p>{html.escape(study["question"])}</p>
-<p>
-متن پرسش، روش انتخاب مقاله‌ها، بازتحلیل‌ها و پیش‌نویس مرور در این بخش قرار دارند. برای
-شناخت هر فایل داده یا خواندن خودِ مقاله، از بخش‌های مستقلِ دیتاست‌ها و مقاله‌ها استفاده
-کنید.</p>
+<p>{html.escape(section["question"])}</p>
+<p>{html.escape(section["summary"])}</p>
 </section>"""
                 + docnav
                 + reader(section)
@@ -246,7 +248,7 @@ def render_pages(project=PROJECT):
                 (project / "data/metadata/education-research-map.json").read_text()
             )
             application = [
-                '<section id="learning-applications"><h2>کاربرد آموخته‌ها در این مطالعه</h2>'
+                '<section id="learning-applications"><h2>کاربرد آموخته‌ها در مطالعهٔ پیشین</h2>'
             ]
             for row in parallel["chapters"]:
                 application.append(f'<details id="learning-application-{row["unit"]}">')
@@ -265,8 +267,13 @@ def render_pages(project=PROJECT):
                     application.append(link(doc["title"], "docs/" + doc["file"]))
                 application.append("</details>")
             application.append("</section>")
-            body = body.replace("</section>", "</section>" + "".join(application), 1)
-            body += fragment("evidence")
+            history = (
+                "<h2>پرسش مطالعهٔ پیشین</h2><p>"
+                + html.escape(previous_study["question"])
+                + "</p>"
+                + "".join(application)
+                + fragment("evidence")
+            )
             notes = ["<section><h2>یادداشت‌های پژوهشیِ مباحث</h2>"]
             for block in syllabus["blocks"]:
                 notes.append("<details><summary>" + html.escape(block["title"]) + "</summary>")
@@ -282,7 +289,12 @@ def render_pages(project=PROJECT):
             notes.append('</section><section id="research-topic-note" hidden>')
             notes.append('<h2 id="research-topic-title"></h2>')
             notes.append('<article id="research-topic-body" class="markdown-content"></article>')
-            body = body + "".join(notes) + "</section>"
+            body += (
+                '<details id="research-history"><summary>مطالعهٔ پیشین؛ RNA و TOP2A</summary>'
+                + history
+                + "".join(notes)
+                + "</section></details>"
+            )
         elif ident == "library":
             body = """<section aria-label="جست‌وجوی کتابخانه">
 <label for="library-search">جست‌وجوی عنوان یا موضوع</label>

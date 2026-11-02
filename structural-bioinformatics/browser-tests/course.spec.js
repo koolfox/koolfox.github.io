@@ -130,7 +130,11 @@ test('library search and full documents do not require a chapter selection',asyn
 });
 
 test('research, paper reviews, datasets and docking have separate primary content',async({page})=>{
- await page.goto(`${root}research.html`);await expect(page.locator('.research-summary')).toContainText('تغییر بیان TOP2A');await expect(page.locator('#molecular-stage,#quiz-form,#datasets-table')).toHaveCount(0);
+ await page.goto(`${root}research.html`);await expect(page.locator('.research-summary')).toContainText('نامزد پپتیدی کم‌هزینه‌تری');await expect(page.locator('#molecular-stage,#quiz-form,#datasets-table')).toHaveCount(0);
+ await expect(page.locator('#reading-status')).toHaveAttribute('data-document','peptide-workshop.fa.md');
+ await expect(page.getByRole('link',{name:'LocalFold',exact:true})).toHaveAttribute('href','https://localfold.org/');
+ await expect(page.locator('#research-history')).not.toHaveAttribute('open','');
+ await page.locator('#research-history > summary').click();await expect(page.locator('#evidence-bridge')).toContainText('TOP2A');
  await page.goto(`${root}papers.html`);await expect(page.locator('#paper-list')).toHaveAttribute('data-state','ready');await expect(page.locator('#sessions,#quiz-form')).toHaveCount(0);
  await page.goto(`${root}datasets.html`);await expect(page.locator('#dataset-search')).toBeEnabled();await page.locator('#dataset-search').fill('GSE339038');await expect(page.locator('#datasets-table')).toContainText('GSE339038');
  await page.goto(`${root}docking.html`);await expect(page.locator('#docking-validation')).toHaveAttribute('data-state','ready');await expect(page.locator('#molecular-stage,#datasets-table')).toHaveCount(0);

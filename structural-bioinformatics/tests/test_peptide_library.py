@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+from pathlib import Path
 
 import pytest
 
@@ -95,3 +96,19 @@ def test_cli_reports_counts_and_budget_errors(capsys, tmp_path):
         main(["generate", "--output-dir", str(tmp_path / "too-large")])
     assert error.value.code == 2
     assert not (tmp_path / "too-large").exists()
+
+
+def test_recorded_workshop_libraries_reproduce_without_network_or_model_runs(tmp_path):
+    project = Path(__file__).resolve().parents[1]
+    evidence = json.loads((project / "data/metadata/peptide-workshop-provenance.json").read_text())
+    for index, run in enumerate(evidence["runs"]):
+        expected = run["manifest"]
+        settings = expected["settings"]
+        spec = LibrarySpec(settings["alphabet"], settings["min_length"], settings["max_length"])
+        actual = export_library(spec, tmp_path / str(index), expected["export_budget"])
+        assert actual["files"] == expected["files"]
+        assert actual["exported_sequences"] == expected["exported_sequences"]
+        assert actual["spec_sha256"] == expected["spec_sha256"]
+    for filename, expected_hash in evidence["inputs_and_code_sha256"].items():
+        assert hashlib.sha256((project / filename).read_bytes()).hexdigest() == expected_hash
+    assert evidence["localfold_inference"] == evidence["peptide_docking"] == "not_run"

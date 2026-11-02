@@ -1,11 +1,11 @@
-import { DOCUMENTS, createMarkdownReader, configureDocumentRoutes } from './markdown-reader.js';
+import { DOCUMENTS, createMarkdownReader, configureDocumentRoutes } from './markdown-reader.js?v=20261102-peptide';
 import { documentAddress, documentSection } from './section-routes.js';
 const $=id=>document.getElementById(id);
 const current=document.body.dataset.section;
 let sections, reader;
 const textNode=(tag,text)=>{const node=document.createElement(tag);node.textContent=text;return node;};
 try {
-  const response=await fetch('data/metadata/site-sections.json');
+  const response=await fetch('data/metadata/site-sections.json',{cache:'no-store'});
   if(!response.ok)throw Error('section metadata');
   sections=(await response.json()).sections;
   configureDocumentRoutes(sections);
@@ -47,6 +47,8 @@ try {
     $('library-search').addEventListener('input',render);render();
   }
   if(current==='research') {
+    const requestedHistory=new URLSearchParams(location.search);
+    if(requestedHistory.has('unit')||requestedHistory.has('topic'))$('research-history').open=true;
     const unit=Number(new URLSearchParams(location.search).get('unit'));
     const application=$('learning-application-'+unit);
     if(application){application.open=true;application.scrollIntoView({block:'start'});}

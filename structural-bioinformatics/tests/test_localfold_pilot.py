@@ -37,9 +37,8 @@ def test_report_recomputes_from_unchanged_export_bytes_without_inference():
     for name, expected in provenance["analysis_files_sha256"].items():
         assert hashlib.sha256((PROJECT / name).read_bytes()).hexdigest() == expected
     for screenshot in provenance["screenshots"]:
-        assert hashlib.sha256((PROJECT / screenshot["path"]).read_bytes()).hexdigest() == (
-            screenshot["sha256"]
-        )
+        actual_hash = hashlib.sha256((PROJECT / screenshot["path"]).read_bytes()).hexdigest()
+        assert actual_hash == screenshot["sha256"]
 
 
 def test_short_exports_fail_geometry_even_when_confidence_is_higher(capsys):

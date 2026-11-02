@@ -62,14 +62,21 @@ async function paintPersianLayout(source,canonicalSource,id,selected){
  persian.dataset.layout=plan.reason||'pending';
  if(plan.reason)return;
  const fallback=[...persian.childNodes],slide=createSourceLayout(record,plan);
- persian.replaceChildren(slide.holder,...(slide.companion?[slide.companion]:[]),...fallback.filter(node=>node.nodeType===1&&node.matches('.reader-editorial')));
+ const tableState=[...persian.querySelectorAll('.reader-table-viewport')].map(node=>({left:node.scrollLeft,top:node.scrollTop,focused:document.activeElement===node}));
+ const previousCompanion=persian.querySelector('.reader-figure-labels');
+ if(previousCompanion&&slide.companion)slide.companion.open=previousCompanion.open;
+ function install(...nodes){
+  persian.replaceChildren(...nodes);
+  persian.querySelectorAll('.reader-table-viewport').forEach((node,index)=>{const state=tableState[index];if(!state)return;if(state.focused)node.focus({preventScroll:true});node.scrollLeft=state.left;node.scrollTop=state.top;});
+ }
+ install(slide.holder,...(slide.companion?[slide.companion]:[]),...fallback.filter(node=>node.nodeType===1&&node.matches('.reader-editorial')));
  const available=Math.max(280,document.querySelector('.reader-translation').clientWidth-32)*zoom;
  const scale=available/slide.width;
  slide.holder.style.width=available+'px';slide.holder.style.height=slide.height*scale+'px';
  slide.stage.style.transform=`scale(${scale})`;
  await document.fonts.ready;
  if(id!==serial||page!==selected)return;
- if(!fitSourceLayout(slide.stage)){persian.replaceChildren(...fallback);persian.dataset.layout='text-overflow';return;}
+ if(!fitSourceLayout(slide.stage)){install(...fallback);persian.dataset.layout='text-overflow';return;}
  const measured=document.createElement('canvas'),measureViewport=source.getViewport({scale:slide.width/source.getViewport({scale:1}).width});
  measured.width=Math.ceil(measureViewport.width);measured.height=Math.ceil(measureViewport.height);
  const measurement=source.render({canvasContext:measured.getContext('2d'),viewport:measureViewport,recordOperations:true});layoutTask=measurement;
@@ -108,18 +115,18 @@ async function paintPersianLayout(source,canonicalSource,id,selected){
   const numbers=targets.map((target,index)=>target.block===region.block?index:-1).filter(index=>index>=0);
   if(numbers.length===region.block.source_lines.length)prove(region.block.source_lines.map(index=>record.lines[index]).join(''),numbers);
  }
- if(covered.size!==targets.length){persian.replaceChildren(...fallback);persian.dataset.layout='unmatched-operators';return;}
+ if(covered.size!==targets.length){install(...fallback);persian.dataset.layout='unmatched-operators';return;}
  const viewport=source.getViewport({scale:slide.width/source.getViewport({scale:1}).width});
- const target=slide.background;target.width=Math.ceil(viewport.width);target.height=Math.ceil(viewport.height);
+ const target=slide.background,ratio=Math.max(1,Math.min(2,(devicePixelRatio||1)*scale));target.width=Math.ceil(viewport.width*ratio);target.height=Math.ceil(viewport.height*ratio);
  const context=target.getContext('2d'),drawing=new Set(['fillText','strokeText','fill','stroke','drawImage']);let suppress=false;
  // Execute text operators to preserve their advances; suppress only their paint calls.
  const proxy=new Proxy(context,{get(object,key){const value=Reflect.get(object,key,object);if(typeof value!=='function')return value;if(drawing.has(key))return(...args)=>{if(!suppress)return value.apply(object,args);};return value.bind(object);},set(object,key,value){return Reflect.set(object,key,value,object);}});
  paintSourceCrops();
  const canonicalOps=await canonicalSource.getOperatorList();
  if(id!==serial||page!==selected)return;
- if(canonicalOps.fnArray.length!==list.fnArray.length||!list.fnArray.every((value,index)=>value===canonicalOps.fnArray[index])){persian.replaceChildren(...fallback);persian.dataset.layout='operator-mismatch';return;}
- const current=canonicalSource.render({canvas:null,canvasContext:proxy,viewport,background:'#ffffff',operationsFilter:index=>{suppress=selectedOps.has(index);return true;}});layoutTask=current;
- try{await current.promise;if(id===serial&&page===selected)persian.dataset.layout=(plan.figureLabels?.length||plan.tables?.length)?'source-canvas-figure-companion':'source-canvas';}catch(error){if(id===serial&&page===selected){persian.replaceChildren(...fallback);persian.dataset.layout='render-fallback';}if(error?.name!=='RenderingCancelledException')console.warn('Slide layout render failed',error);}finally{if(layoutTask===current)layoutTask=null;}
+ if(canonicalOps.fnArray.length!==list.fnArray.length||!list.fnArray.every((value,index)=>value===canonicalOps.fnArray[index])){install(...fallback);persian.dataset.layout='operator-mismatch';return;}
+ const current=canonicalSource.render({canvas:null,canvasContext:proxy,viewport,transform:ratio===1?null:[ratio,0,0,ratio,0,0],background:'#ffffff',operationsFilter:index=>{suppress=selectedOps.has(index);return true;}});layoutTask=current;
+ try{await current.promise;if(id===serial&&page===selected)persian.dataset.layout=(plan.figureLabels?.length||plan.tables?.length)?'source-canvas-figure-companion':'source-canvas';}catch(error){if(id===serial&&page===selected){install(...fallback);persian.dataset.layout='render-fallback';}if(error?.name!=='RenderingCancelledException')console.warn('Slide layout render failed',error);}finally{if(layoutTask===current)layoutTask=null;}
 }
 function paintSourceCrops(){
  for(const target of persian.querySelectorAll('[data-source-crop]')){
@@ -143,8 +150,13 @@ function controls(){
   const pages=section==='lab'?config.interactivePages:config.questionPages;
   const disabled=Array.isArray(pages)&&!pages.includes(page)&&!(customTool&&section==='lab'&&['lab','explore'].includes(document.body.dataset.readerSection));
   control.setAttribute('aria-disabled',String(disabled));control.tabIndex=disabled?-1:0;
-  if(disabled){if(control.hasAttribute('href'))control.dataset.navigationUrl=control.getAttribute('href');control.removeAttribute('href');}
-  else if(control.dataset.navigationUrl)control.setAttribute('href',control.dataset.navigationUrl);
+  if(disabled)control.removeAttribute('href');
+  else{
+   const activeTool=customTool&&section==='lab'&&['lab','explore'].includes(document.body.dataset.readerSection);
+   const url=new URL(activeTool?$('[data-reader-tools-frame]').src:config.practiceUrl,location.href);
+   if(!activeTool){url.searchParams.set('source-page',String(page));url.hash=section==='questions'?'questions':'code';}
+   control.setAttribute('href',url.pathname+url.search+url.hash);
+  }
  }
  const playable=config.slideSequences?.some(sequence=>sequence.includes(page));
  $('[data-play-slides]').hidden=references||!playable||document.body.dataset.readerSection!=='slides';
@@ -155,9 +167,10 @@ async function destination(dest){
  const value=typeof dest==='string'?await pdf.getDestination(dest):dest;if(!Array.isArray(value))return;
  const first=value[0];const index=typeof first==='number'?first:await pdf.getPageIndex(first);go(index+1);
 }
+function readerSize(){const original=$('#original-panel').getBoundingClientRect(),translated=$('#translation-panel').getBoundingClientRect();return Math.round(original.width)+':'+Math.round(translated.width)+':'+(document.body.dataset.sourceOnly==='true'?Math.round(original.height):'');}
 async function renderOriginal(){
  if(!pdf||!payload||closed||references)return;
- const id=++serial,selected=page;
+ const id=++serial,selected=page;lastObservedSize=readerSize();clearTimeout(resizeTimer);
  if(layoutTask){layoutTask.cancel();try{await layoutTask.promise;}catch{}layoutTask=null;}
  if(task){task.cancel();try{await task.promise;}catch{}task=null;}
  if(id!==serial||closed)return;
@@ -229,7 +242,7 @@ function syncPanels(){
  for(const [selector,value] of [['[data-view-source]','source'],['[data-view-translation]','translation'],['[data-view-both]','both']])$(selector).setAttribute('aria-pressed',String(view===value));
  $('[data-source-only-toggle]').setAttribute('aria-pressed',String(presenting));
 }
-function setView(value){view=value;if(matchMedia('(max-width:760px)').matches&&document.body.dataset.readerSection!=='slides')selectSection('slides');syncPanels();renderOriginal();}
+function setView(value){clearTimeout(resizeTimer);view=value;if(matchMedia('(max-width:760px)').matches&&document.body.dataset.readerSection!=='slides')selectSection('slides');syncPanels();renderOriginal();}
 function selectSection(section,toolUrl=null){
  if(!toolUrl&&((['lab','explore'].includes(section)&&Array.isArray(config.interactivePages)&&!config.interactivePages.includes(page))||(section==='questions'&&Array.isArray(config.questionPages)&&!config.questionPages.includes(page))))return;
  const releaseTool=customTool&&section==='slides';customTool=Boolean(toolUrl);
@@ -263,12 +276,14 @@ $('[data-fullscreen]').addEventListener('click',async()=>{try{if(document.fullsc
 $('[data-print]').addEventListener('click',async()=>{if(!references&&renderedPage!==page)return;await document.fonts.ready;window.print();});
 document.addEventListener('keydown',event=>{if(event.defaultPrevented||event.shiftKey||event.altKey||event.ctrlKey||event.metaKey||event.target.closest('.reader-table-viewport')||/INPUT|TEXTAREA|SELECT|BUTTON|A/.test(event.target.tagName))return;const action={ArrowLeft:nextPage,PageDown:nextPage,ArrowRight:previousPage,PageUp:previousPage,Home:()=>go(1),End:()=>go(config.pageCount)}[event.key];if(action){event.preventDefault();action();}});
 window.addEventListener('hashchange',()=>location.hash==='#sources'?showReferences(false):go(fromHash(),false));
-let resizeTimer,lastObservedSize='';new ResizeObserver(entries=>{
- const {width,height}=entries[0].contentRect;
- const size=Math.round(width)+':'+(document.body.dataset.sourceOnly==='true'?Math.round(height):'');
- if(size===lastObservedSize)return;lastObservedSize=size;
+let resizeTimer,lastObservedSize=readerSize();
+const resizeObserver=new ResizeObserver(()=>{
+ const size=readerSize();if(size===lastObservedSize)return;lastObservedSize=size;
  clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>renderOriginal(),150);
-}).observe(document.querySelector('.reader-original'));
+});
+resizeObserver.observe(document.querySelector('.reader-original'));
+resizeObserver.observe(document.querySelector('.reader-translation'));
+
 const documentOptions={url:config.pdfUrl+'?sha='+config.sourceSha256,cMapUrl:new URL('./vendor/pdfjs/cmaps/',import.meta.url).href,cMapPacked:true,standardFontDataUrl:new URL('./vendor/pdfjs/standard_fonts/',import.meta.url).href,wasmUrl:new URL('./vendor/pdfjs/wasm/',import.meta.url).href,isEvalSupported:false,enableXfa:false,disableAutoFetch:true,disableStream:true,rangeChunkSize:262144};
 const loading=getDocument({...documentOptions,disableFontFace:config.term!=='spring-2026'}),canonicalLoading=config.term==='spring-2026'?getDocument({...documentOptions,disableFontFace:true}):loading;
 loading.onProgress=event=>{if(event.total){progress.value=Math.min(100,event.loaded/event.total*100);progress.setAttribute('aria-valuetext',`${fa(Math.round(progress.value))} درصد`);}};

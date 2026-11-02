@@ -245,6 +245,12 @@ export function sourceLayoutPlan(record) {
       }
       continue;
     }
+    if (block.kind !== 'math' && mapped.length > 1) {
+      const ordered = [...mapped].sort((a,b)=>a.rect[1]-b.rect[1]);
+      if (Math.max(...mapped.map(line=>line.rect[0])) > Math.min(...mapped.map(line=>line.rect[2]))
+          || ordered.some((line,index)=>index&&line.rect[1]-ordered[index-1].rect[3]
+            > Math.max(line.font_size,ordered[index-1].font_size)/layout.height*.8)) return fail('discontinuous-source-region');
+    }
     const rect = [Math.min(...mapped.map(l => l.rect[0])), Math.min(...mapped.map(l => l.rect[1])),
       Math.max(...mapped.map(l => l.rect[2])), Math.max(...mapped.map(l => l.rect[3]))];
     const font = Math.max(...mapped.map(line => line.font_size));

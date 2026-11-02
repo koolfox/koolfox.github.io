@@ -217,3 +217,47 @@ PR #70 was subsequently merged and published as
 records matched, 171 actual file hashes matched and 10 public browser checks
 passed. This is release evidence for the notebook increment, separate from the
 current typography increment.
+
+## Source-fidelity refinement — 2026-11-02
+
+The existing blue/Arad/RTL identity remains pinned. This increment adds checked
+citation targets, semantic source tables, language selection during presentation,
+source-frame playback and an independent WebGPU check of the s13 attention
+example. It does not certify a spatial reconstruction of every Persian slide or
+reproduction of all cited research models.
+
+- Citation inventory: 258 extracted URL candidates, including PDF annotations.
+  The recorded GET run returned 183 reachable, 25 missing, 49 inconclusive and one
+  migration independently verified from the same author's TDS Archive article.
+  Some candidates are truncated PDF text, not full URLs. 403/429 are not 404.
+  Only recorded reachable/reviewed targets become reader links; other citations
+  remain faithful plain text. The immutable PDFs retain their printed URLs.
+- Forty tables on 37 pages were visually checked against the local source PDFs.
+  Column order, precision, empty cells, merged headers and rowspans are explicit.
+  The two mixed s17 tables use eighteen measured crops from the current source
+  page canvas; photos and handwriting are not approximated or redrawn.
+- Source-text truth tables consume complete mapped blocks; hidden extracted
+  answers remain excluded. Scientific correction notes stay separate.
+- Presentation retains English/Persian/paired views and access to mapped code.
+  Phones retain language access. The s13 sequence plays actual pages 21–31 and
+  stops on manual navigation, hidden document or switching sections. No video
+  generation or 3Blue1Brown authorship is claimed.
+- Attention WebGPU receives the inputs from the executed Python result, uses
+  stable float32 softmax and displays the difference from Python. Source Q1 and
+  edited Q2 passed through the actual WebGPU API on SwiftShader. This is a
+  software adapter check, not a hardware GPU benchmark or a full Transformer.
+  Unsupported devices report the missing adapter without a silent fallback.
+- All 21 Spring 2026 Python workshop references were executed successfully.
+  This proves agreement with the stored workshop references, not reproduction
+  of a paper's training run, dataset, pretrained checkpoint or reported metric.
+
+Review bounds: all newly structured table pages were visually inspected;
+remaining pages were searched through existing source text/image-label records.
+This is not a claim that every raster-only table or every translated spatial
+relationship across 1,303 pages was visually re-reviewed. Full CNN/Transformer
+checkpoint inference, whole-course spatial/media reconstruction and newly
+produced explanatory films remain separate work. Missing model artifacts must
+be identified before any research-reproduction claim.
+
+Local validation and publication evidence for this candidate are recorded
+separately; a commit or passing local check alone does not establish deployment.

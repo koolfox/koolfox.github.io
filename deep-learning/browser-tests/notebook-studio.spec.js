@@ -158,6 +158,22 @@ test('source tables retain their column order, blank cells, merged costs and num
   await expect(page.locator('.reader-table tbody tr').last()).toContainText('57.75');
 });
 
+test('mixed visual tables retain the actual photos and handwriting from their source page',async({page})=>{
+  await page.goto('/deep-learning/terms/spring-2026/s17/slides/#page=44');
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+  const photos=page.locator('.reader-table [data-source-crop]');
+  await expect(photos).toHaveCount(9);
+  expect(await photos.evaluateAll(items=>items.every(canvas=>{
+    if(canvas.dataset.cropReady!=='true'||canvas.width<20||canvas.height<20)return false;
+    const pixels=canvas.getContext('2d').getImageData(0,0,canvas.width,canvas.height).data;
+    return pixels.some((value,index)=>index%4===3&&value!==0);
+  }))).toBe(true);
+  await page.locator('[data-page-select]').selectOption('45');
+  await page.waitForFunction(()=>window.sourceSlideReader.renderedPage===45);
+  await expect(photos).toHaveCount(9);
+  await expect(page.locator('.reader-table thead th').first()).toHaveAttribute('colspan','6');
+});
+
 test('the migrated attention citation is checked and unresolved citations remain plain text',async({page})=>{
   await page.goto('/deep-learning/terms/spring-2026/s13/slides/#page=28');
   await page.waitForFunction(()=>window.sourceSlideReader?.ready);

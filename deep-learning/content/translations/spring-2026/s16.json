@@ -1313,6 +1313,46 @@
           "fa": "مجموعه‌داده؛ مقدار برحسب توکن؛ وزن در ترکیب آموزش. Common Crawl پالایش‌شده: ۴۱۰ میلیارد، ۶۰٪؛ WebText2: ۱۹ میلیارد، ۲۲٪؛ Books1: ۱۲ میلیارد، ۸٪؛ Books2: ۵۵ میلیارد، ۸٪؛ Wikipedia: سه میلیارد، ۳٪.",
           "verified": true
         }
+      ],
+      "tables": [
+        {
+          "verified": true,
+          "image_text_indices": [
+            1
+          ],
+          "headers": [
+            "مجموعه‌داده (Dataset)",
+            "مقدار توکن (Quantity (tokens))",
+            "وزن در ترکیب آموزش (Weight in training mix)"
+          ],
+          "rows": [
+            [
+              "Common Crawl پالایش‌شده (filtered)",
+              "410 میلیارد (billion)",
+              "60%"
+            ],
+            [
+              "WebText2",
+              "19 میلیارد (billion)",
+              "22%"
+            ],
+            [
+              "Books1",
+              "12 میلیارد (billion)",
+              "8%"
+            ],
+            [
+              "Books2",
+              "55 میلیارد (billion)",
+              "8%"
+            ],
+            [
+              "Wikipedia",
+              "3 میلیارد (billion)",
+              "3%"
+            ]
+          ]
+        }
       ]
     },
     {
@@ -1601,6 +1641,61 @@
           "en": "Tokens | Open source; SlimPajama | 627B | Yes; RedPajama | 1.21T | Yes; RefinedWeb-600B | 600B | Yes; RefinedWeb-5T | 5T | No; LLaMA | 1.4T | No; MPT | 1T | No; MassiveText | 1.4T | No; FineWeb; The finest collection of data the web has to offer",
           "fa": "توکن‌ها؛ متن‌باز (Open Source). SlimPajama: 627B، بله؛ RedPajama: 1.21T، بله؛ RefinedWeb-600B: 600B، بله؛ RefinedWeb-5T: 5T، خیر؛ LLaMA: 1.4T، خیر؛ MPT: 1T، خیر؛ MassiveText: 1.4T، خیر. B یعنی میلیارد و T یعنی تریلیون؛ FineWeb: بهترین مجموعهٔ داده‌ای که وب برای ارائه دارد.",
           "verified": true
+        },
+        {
+          "en": "FineWeb; The finest collection of data the web has to offer",
+          "fa": "FineWeb؛ بهترین مجموعهٔ داده‌ای که وب برای ارائه دارد.",
+          "verified": true
+        }
+      ],
+      "tables": [
+        {
+          "verified": true,
+          "image_text_indices": [
+            0
+          ],
+          "headers": [
+            "",
+            "توکن‌ها (Tokens)",
+            "متن‌باز (Open source)"
+          ],
+          "rows": [
+            [
+              "SlimPajama",
+              "627B",
+              "بله (Yes)"
+            ],
+            [
+              "RedPajama",
+              "1.21T",
+              "بله (Yes)"
+            ],
+            [
+              "RefinedWeb-600B",
+              "600B",
+              "بله (Yes)"
+            ],
+            [
+              "RefinedWeb-5T",
+              "5T",
+              "خیر (No)"
+            ],
+            [
+              "LLaMA",
+              "1.4T",
+              "خیر (No)"
+            ],
+            [
+              "MPT",
+              "1T",
+              "خیر (No)"
+            ],
+            [
+              "MassiveText",
+              "1.4T",
+              "خیر (No)"
+            ]
+          ]
         }
       ]
     },
@@ -1924,6 +2019,180 @@
           "fa": "مدل 1542M: 8.63، 63.24، 93.30، 89.05، 18.34، 35.76، 0.93، 0.98، 17.48، 42.16",
           "verified": true
         }
+      ],
+      "tables": [
+        {
+          "verified": true,
+          "image_text_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "headers": [
+            "",
+            "LAMBADA (PPL)",
+            "LAMBADA (ACC)",
+            "CBT-CN (ACC)",
+            "CBT-NE (ACC)",
+            "WikiText2 (PPL)",
+            "PTB (PPL)",
+            "enwik8 (BPB)",
+            "text8 (BPC)",
+            "WikiText103 (PPL)",
+            "1BW (PPL)"
+          ],
+          "rows": [
+            [
+              "SOTA",
+              "99.8",
+              "59.23",
+              "85.7",
+              "82.3",
+              "39.14",
+              "46.54",
+              "0.99",
+              "1.08",
+              "18.3",
+              {
+                "text": "21.8",
+                "bold": true
+              }
+            ],
+            [
+              "117M",
+              {
+                "text": "35.13",
+                "bold": true
+              },
+              "45.99",
+              {
+                "text": "87.65",
+                "bold": true
+              },
+              {
+                "text": "83.4",
+                "bold": true
+              },
+              {
+                "text": "29.41",
+                "bold": true
+              },
+              "65.85",
+              "1.16",
+              "1.17",
+              "37.50",
+              "75.20"
+            ],
+            [
+              "345M",
+              {
+                "text": "15.60",
+                "bold": true
+              },
+              "55.48",
+              {
+                "text": "92.35",
+                "bold": true
+              },
+              {
+                "text": "87.1",
+                "bold": true
+              },
+              {
+                "text": "22.76",
+                "bold": true
+              },
+              "47.33",
+              "1.01",
+              {
+                "text": "1.06",
+                "bold": true
+              },
+              "26.37",
+              "55.72"
+            ],
+            [
+              "762M",
+              {
+                "text": "10.87",
+                "bold": true
+              },
+              {
+                "text": "60.12",
+                "bold": true
+              },
+              {
+                "text": "93.45",
+                "bold": true
+              },
+              {
+                "text": "88.0",
+                "bold": true
+              },
+              {
+                "text": "19.93",
+                "bold": true
+              },
+              {
+                "text": "40.31",
+                "bold": true
+              },
+              {
+                "text": "0.97",
+                "bold": true
+              },
+              {
+                "text": "1.02",
+                "bold": true
+              },
+              "22.05",
+              "44.575"
+            ],
+            [
+              "1542M",
+              {
+                "text": "8.63",
+                "bold": true
+              },
+              {
+                "text": "63.24",
+                "bold": true
+              },
+              {
+                "text": "93.30",
+                "bold": true
+              },
+              {
+                "text": "89.05",
+                "bold": true
+              },
+              {
+                "text": "18.34",
+                "bold": true
+              },
+              {
+                "text": "35.76",
+                "bold": true
+              },
+              {
+                "text": "0.93",
+                "bold": true
+              },
+              {
+                "text": "0.98",
+                "bold": true
+              },
+              {
+                "text": "17.48",
+                "bold": true
+              },
+              "42.16"
+            ]
+          ]
+        }
       ]
     },
     {
@@ -2169,6 +2438,163 @@
           "en": "Setting | NaturalQS WebQs TriviaQA; RAG (Fine-tuned, Open-Domain) [LPP+20] 44.5 45.5 68.0; T5-11B+SSM (Fine-tuned, Closed-Book) [RRS20] 36.6 44.7 60.5; T5-11B (Fine-tuned, Closed-Book) 34.5 37.4 50.1; GPT-3 Zero-Shot 14.6 14.4 64.3; GPT-3 One-Shot 23.0 25.3 68.0; GPT-3 Few-Shot 29.9 41.5 71.2",
           "fa": "وضعیت؛ ستون‌های NaturalQS، WebQs، TriviaQA. RAG، تنظیم‌دقیق‌شده با دامنهٔ باز (Open-Domain) [LPP+20]: 44.5، 45.5، 68.0. T5-11B+SSM، تنظیم‌دقیق‌شده و کتاب‌بسته (Closed-Book) [RRS20]: 36.6، 44.7، 60.5. T5-11B کتاب‌بسته: 34.5، 37.4، 50.1. GPT-3 بدون نمونه: 14.6، 14.4، 64.3؛ تک‌نمونه‌ای: 23.0، 25.3، 68.0؛ چندنمونه‌ای: 29.9، 41.5، 71.2.",
           "verified": true
+        }
+      ],
+      "tables": [
+        {
+          "verified": true,
+          "image_text_indices": [
+            0
+          ],
+          "headers": [
+            "وضعیت (Setting)",
+            "PTB"
+          ],
+          "rows": [
+            [
+              "روش پیشرو، بدون نمونه (SOTA (Zero-Shot))",
+              "\\(35.8^{a}\\)"
+            ],
+            [
+              "GPT-3 بدون نمونه (Zero-Shot)",
+              {
+                "text": "20.5",
+                "bold": true
+              }
+            ]
+          ]
+        },
+        {
+          "verified": true,
+          "image_text_indices": [
+            1
+          ],
+          "headers": [
+            "وضعیت (Setting)",
+            "LAMBADA (acc)",
+            "LAMBADA (ppl)",
+            "StoryCloze (acc)",
+            "HellaSwag (acc)"
+          ],
+          "rows": [
+            [
+              "روش پیشرو (SOTA)",
+              "\\(68.0^{a}\\)",
+              "\\(8.63^{b}\\)",
+              {
+                "text": "\\(91.8^{c}\\)",
+                "bold": true
+              },
+              {
+                "text": "\\(85.6^{d}\\)",
+                "bold": true
+              }
+            ],
+            [
+              "GPT-3 بدون نمونه (Zero-Shot)",
+              {
+                "text": "76.2",
+                "bold": true
+              },
+              {
+                "text": "3.00",
+                "bold": true
+              },
+              "83.2",
+              "78.9"
+            ],
+            [
+              "GPT-3 تک‌نمونه‌ای (One-Shot)",
+              {
+                "text": "72.5",
+                "bold": true
+              },
+              {
+                "text": "3.35",
+                "bold": true
+              },
+              "84.7",
+              "78.1"
+            ],
+            [
+              "GPT-3 چندنمونه‌ای (Few-Shot)",
+              {
+                "text": "86.4",
+                "bold": true
+              },
+              {
+                "text": "1.92",
+                "bold": true
+              },
+              "87.7",
+              "79.3"
+            ]
+          ]
+        },
+        {
+          "verified": true,
+          "image_text_indices": [
+            2
+          ],
+          "headers": [
+            "وضعیت (Setting)",
+            "NaturalQS",
+            "WebQS",
+            "TriviaQA"
+          ],
+          "rows": [
+            [
+              "RAG (تنظیم‌دقیق‌شده، دامنهٔ باز؛ Fine-tuned, Open-Domain) \\([\\mathrm{LPP}^{+}20]\\)",
+              {
+                "text": "44.5",
+                "bold": true
+              },
+              {
+                "text": "45.5",
+                "bold": true
+              },
+              {
+                "text": "68.0",
+                "bold": true
+              }
+            ],
+            [
+              "T5-11B+SSM (تنظیم‌دقیق‌شده، کتاب‌بسته؛ Fine-tuned, Closed-Book) [RRS20]",
+              "36.6",
+              "44.7",
+              "60.5"
+            ],
+            [
+              "T5-11B (تنظیم‌دقیق‌شده، کتاب‌بسته؛ Fine-tuned, Closed-Book)",
+              "34.5",
+              "37.4",
+              "50.1"
+            ],
+            [
+              "GPT-3 بدون نمونه (Zero-Shot)",
+              "14.6",
+              "14.4",
+              "64.3"
+            ],
+            [
+              "GPT-3 تک‌نمونه‌ای (One-Shot)",
+              "23.0",
+              "25.3",
+              {
+                "text": "68.0",
+                "bold": true
+              }
+            ],
+            [
+              "GPT-3 چندنمونه‌ای (Few-Shot)",
+              "29.9",
+              "41.5",
+              {
+                "text": "71.2",
+                "bold": true
+              }
+            ]
+          ]
         }
       ]
     },
@@ -2521,6 +2947,239 @@
           "en": "ImageNet|1000|1,281,167|50,000|accuracy",
           "fa": "ImageNet: دسته‌ها 1000؛ آموزش 1,281,167؛ آزمون 50,000؛ معیار: دقت.",
           "verified": true
+        }
+      ],
+      "tables": [
+        {
+          "verified": true,
+          "image_text_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "headers": [
+            "مجموعه‌داده (Dataset)",
+            "تعداد دسته‌ها (Classes)",
+            "اندازهٔ آموزش (Train size)",
+            "اندازهٔ آزمون (Test size)",
+            "معیار ارزیابی (Evaluation metric)"
+          ],
+          "rows": [
+            [
+              "Food-101",
+              "102",
+              "75,750",
+              "25,250",
+              "دقت (accuracy)"
+            ],
+            [
+              "CIFAR-10",
+              "10",
+              "50,000",
+              "10,000",
+              "دقت (accuracy)"
+            ],
+            [
+              "CIFAR-100",
+              "100",
+              "50,000",
+              "10,000",
+              "دقت (accuracy)"
+            ],
+            [
+              "Birdsnap",
+              "500",
+              "42,283",
+              "2,149",
+              "دقت (accuracy)"
+            ],
+            [
+              "SUN397",
+              "397",
+              "19,850",
+              "19,850",
+              "دقت (accuracy)"
+            ],
+            [
+              "Stanford Cars",
+              "196",
+              "8,144",
+              "8,041",
+              "دقت (accuracy)"
+            ],
+            [
+              "FGVC Aircraft",
+              "100",
+              "6,667",
+              "3,333",
+              "میانگین بر دسته (mean per class)"
+            ],
+            [
+              "Pascal VOC 2007 Classification",
+              "20",
+              "5,011",
+              "4,952",
+              "میانگین دقت متوسط ۱۱نقطه‌ای (11-point mAP)"
+            ],
+            [
+              "Describable Textures",
+              "47",
+              "3,760",
+              "1,880",
+              "دقت (accuracy)"
+            ],
+            [
+              "Oxford-IIIT Pets",
+              "37",
+              "3,680",
+              "3,669",
+              "میانگین بر دسته (mean per class)"
+            ],
+            [
+              "Caltech-101",
+              "102",
+              "3,060",
+              "6,085",
+              "میانگین بر دسته (mean-per-class)"
+            ],
+            [
+              "Oxford Flowers 102",
+              "102",
+              "2,040",
+              "6,149",
+              "میانگین بر دسته (mean per class)"
+            ],
+            [
+              "MNIST",
+              "10",
+              "60,000",
+              "10,000",
+              "دقت (accuracy)"
+            ],
+            [
+              "Facial Emotion Recognition 2013",
+              "8",
+              "32,140",
+              "3,574",
+              "دقت (accuracy)"
+            ],
+            [
+              "STL-10",
+              "10",
+              "1000",
+              "8000",
+              "دقت (accuracy)"
+            ],
+            [
+              "EuroSAT",
+              "10",
+              "10,000",
+              "5,000",
+              "دقت (accuracy)"
+            ],
+            [
+              "RESISC45",
+              "45",
+              "3,150",
+              "25,200",
+              "دقت (accuracy)"
+            ],
+            [
+              "GTSRB",
+              "43",
+              "26,640",
+              "12,630",
+              "دقت (accuracy)"
+            ],
+            [
+              "KITTI",
+              "4",
+              "6,770",
+              "711",
+              "دقت (accuracy)"
+            ],
+            [
+              "Country211",
+              "211",
+              "43,200",
+              "21,100",
+              "دقت (accuracy)"
+            ],
+            [
+              "PatchCamelyon",
+              "2",
+              "294,912",
+              "32,768",
+              "دقت (accuracy)"
+            ],
+            [
+              "UCF101",
+              "101",
+              "9,537",
+              "1,794",
+              "دقت (accuracy)"
+            ],
+            [
+              "Kinetics700",
+              "700",
+              "494,801",
+              "31,669",
+              "میانگین رتبهٔ اول و پنج رتبهٔ اول (mean(top1, top5))"
+            ],
+            [
+              "CLEVR Counts",
+              "8",
+              "2,000",
+              "500",
+              "دقت (accuracy)"
+            ],
+            [
+              "Hateful Memes",
+              "2",
+              "8,500",
+              "500",
+              "مساحت زیر منحنی ROC (ROC AUC)"
+            ],
+            [
+              "Rendered SST2",
+              "2",
+              "7,792",
+              "1,821",
+              "دقت (accuracy)"
+            ],
+            [
+              "ImageNet",
+              "1000",
+              "1,281,167",
+              "50,000",
+              "دقت (accuracy)"
+            ]
+          ]
         }
       ]
     },

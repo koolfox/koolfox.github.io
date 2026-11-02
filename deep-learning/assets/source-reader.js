@@ -68,7 +68,7 @@ function paintSourceCrops(){
 function controls(){
  picker.value=references?'sources':String(page);$('[data-prev-page]').disabled=!references&&page===1;$('[data-next-page]').disabled=references;
  $('[data-next-page]').textContent=!references&&page===config.pageCount?'منابع':'بعدی';
- $('[data-page-total]').hidden=references;$('[data-page-count]').textContent=fa(config.pageCount);$('[data-zoom-out]').disabled=references||zoom<=1;$('[data-zoom-in]').disabled=references||zoom>=3;
+ $('[data-page-total]').hidden=references;$('[data-page-count]').textContent=fa(config.pageCount);$('[data-zoom-out]').disabled=references||view==='translation'||zoom<=1;$('[data-zoom-in]').disabled=references||view==='translation'||zoom>=3;
  $('[data-source-only-toggle]').disabled=references;document.querySelector('.reader-view-controls').hidden=references;
  status.hidden=references;progress.hidden=references||Boolean(pdf&&payload);
  canvas.setAttribute('aria-label',`صفحهٔ ${fa(page)} از ${fa(config.pageCount)}، اسلاید`);

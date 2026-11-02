@@ -62,7 +62,7 @@
       "id": "explain",
       "source_kind": "original",
       "source_page": 16,
-      "prompt_fa": "پس از تغییر A، با سه خروجی کد نشان بده چه چیزی ثابت و چه چیزی تغییر کرد. این مثال چه چیزی دربارهٔ کیفیت زبانی مدل ثابت نمی‌کند؟",
+      "prompt_fa": "پس از تغییر A ، با سه خروجی کد نشان بده چه چیزی ثابت و چه چیزی تغییر کرد. این مثال چه چیزی دربارهٔ کیفیت زبانی مدل ثابت نمی‌کند؟",
       "solution_fa": "W0 ثابت می‌ماند و خروجی پایه تغییر نمی‌کند؛ دو مسیر سازگارشده همچنان برابرند. این مثال فقط هم‌ارزی جبری را نشان می‌دهد، نه عملکرد زبانی یا کیفیت آموزش.",
       "answer": {
         "kind": "manual",
@@ -100,5 +100,90 @@
   "reference_python": "3.13.9",
   "limits_fa": "این کد، دادهٔ کوچک و پرسش‌ها تألیف مستقل برای تمرین سازوکارند؛ بازتولید آزمایش مقاله یا تکلیف رسمی Canvas نیستند. فقط محاسبه‌های صریح کد اجرا می‌شوند. اصل اسلایدها مجوز CC BY-NC-SA خود را حفظ می‌کند؛ این کارگاه مستقل MIT است.",
   "source_retrieved_at_utc": "2026-10-25T08:44:58.909538+00:00",
-  "related_labs": []
+  "related_labs": [],
+  "source_examples": [
+    {
+      "id": "pong-decisions",
+      "title_fa": "شمار تصمیم‌های مثال Pong",
+      "pages": [
+        46,
+        47
+      ],
+      "code_file": "s18_pong_decisions.py",
+      "starter_sha256": "3902f82dc0fa4f36820ff67b68bc268308385120cd1f5c3cb1f21fe01df739b7",
+      "reference": {
+        "decisions_per_game": 199,
+        "total_decisions": 19900,
+        "winning_game_decisions": 2388,
+        "losing_game_decisions": 17512,
+        "losses": 88
+      },
+      "questions": [
+        {
+          "id": "pairs",
+          "source_kind": "original",
+          "source_page": 46,
+          "prompt_fa": "در قرارداد اسلاید، از 200 فریم متوالی چند تصویر تفاضلی/تصمیم به دست می‌آید؟",
+          "solution_fa": "بین 200 فریم 199 زوج متوالی وجود دارد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "199",
+              "200",
+              "201"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "total",
+          "source_kind": "original",
+          "source_page": 46,
+          "prompt_fa": "در 100 بازی با 199 تصمیم در هر بازی، کل تصمیم‌ها چند است؟",
+          "solution_fa": "100×199=19900 ؛ این عدد از فرض‌های خود مثال به دست می‌آید.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "20000",
+              "19900",
+              "199"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "winning",
+          "source_kind": "original",
+          "source_page": 47,
+          "prompt_fa": "اگر 12 بازی برنده باشند، چند تصمیم متعلق به بازی‌های برنده است؟",
+          "solution_fa": "12×199=2388 ؛ تعلق به بازی برنده به‌تنهایی اثبات نمی‌کند هر تصمیم علت برد بوده است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "17512",
+              "2400",
+              "2388"
+            ],
+            "correct_index": 2
+          }
+        },
+        {
+          "id": "losing",
+          "source_kind": "original",
+          "source_page": 47,
+          "prompt_fa": "برای 88 بازی بازنده، چند تصمیم داریم؟",
+          "solution_fa": "88×199=17512 ؛ جمع با 2388 برابر 19900 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "17512",
+              "17600",
+              "2388"
+            ],
+            "correct_index": 0
+          }
+        }
+      ]
+    }
+  ]
 }

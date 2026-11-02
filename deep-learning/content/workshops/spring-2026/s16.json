@@ -108,7 +108,7 @@
       "source_kind": "original",
       "source_page": 11,
       "prompt_fa": "با توان مثبت ۰٫۵، چهاربرابرشدن ورودی، خروجی را چند برابر می‌کند؟",
-      "solution_fa": "4**0.5=2، پس خروجی دو برابر می‌شود.",
+      "solution_fa": "4**0.5=2 ، پس خروجی دو برابر می‌شود.",
       "answer": {
         "kind": "number",
         "value": 2,
@@ -145,6 +145,116 @@
           "تشخیص برون‌یابی به مقیاس بزرگ"
         ]
       }
+    }
+  ],
+  "source_examples": [
+    {
+      "id": "scaling",
+      "title_fa": "قانون توانی و نسبت زیان",
+      "pages": [
+        11,
+        12,
+        13
+      ],
+      "code_file": "s16_scaling.py",
+      "starter_sha256": "421144c17cc4f9ccd0ab28cdd89a3185ddf522c094a2ccb0c8c92191dfce6584",
+      "reference": {
+        "factors": [
+          1,
+          4,
+          16
+        ],
+        "loss_ratios": {
+          "compute": [
+            1.0,
+            0.9330329915368074,
+            0.8705505632961241
+          ],
+          "data": [
+            1.0,
+            0.8766057213160351,
+            0.7684375906440062
+          ],
+          "parameters": [
+            1.0,
+            0.9000019297935121,
+            0.8100034736320458
+          ]
+        },
+        "percent_reductions": {
+          "compute": [
+            0.0,
+            6.696700846319259,
+            12.944943670387588
+          ],
+          "data": [
+            0.0,
+            12.339427868396491,
+            23.15624093559938
+          ],
+          "parameters": [
+            0.0,
+            9.999807020648788,
+            18.999652636795417
+          ]
+        },
+        "positive_example_ratio": 2.0,
+        "factors_for_half_loss": {
+          "compute": 1048576.0,
+          "data": 1474.81245443969,
+          "parameters": 9139.469662302572
+        }
+      },
+      "questions": [
+        {
+          "id": "half-power",
+          "source_kind": "original",
+          "source_page": 11,
+          "prompt_fa": "برای y=Cx^0.5 ، اگر x چهاربرابر شود نسبت y جدید به قبلی چیست؟",
+          "solution_fa": "4^0.5=2 ؛ ثابت C در نسبت حذف می‌شود.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "4",
+              "2",
+              "0.5"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "negative",
+          "source_kind": "original",
+          "source_page": 12,
+          "prompt_fa": "در L=A×x^(−α) با α>0 ، افزایش x چه اثری در این رابطه دارد؟",
+          "solution_fa": "توان منفی با افزایش x کاهش می‌یابد؛ این رفتار رابطهٔ برازش‌شده است، نه تضمین هر آزمایش.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "کاهش L",
+              "افزایش L",
+              "همیشه L را صفر می‌کند"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "slope",
+          "source_kind": "original",
+          "source_page": 13,
+          "prompt_fa": "برای L∝D^(−0.095)، شیب نمودار log(L) بر حسب log(D) چیست؟",
+          "solution_fa": "با لگاریتم گرفتن، log(L)=ثابت−0.095 log(D) است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "0.095",
+              "−1/0.095",
+              "−0.095"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
     }
   ]
 }

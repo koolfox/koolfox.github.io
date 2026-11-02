@@ -7,7 +7,7 @@
   "prediction_fa": "در مثال صفحهٔ ۲۲، تنها یک نفر پاسخ left داده است. میانگین امتیازِ ده دورِ کنارگذاشتن یک پاسخ چقدر می‌شود؟",
   "steps_fa": [
     "ده پاسخ انسانی را با صفحهٔ ۲۲ تطبیق بده؛ امتیاز مستقیم و امتیاز ده‌دوریِ left را پیش از اجرا جداگانه پیش‌بینی کن.",
-    "کد را اجرا و نتیجهٔ left را با right، right side، center و bottom مقایسه کن؛ برابری معنایی را با برابری رشته‌ای اشتباه نگیر.",
+    "کد را اجرا و نتیجهٔ left را با right ، right side ، center و bottom مقایسه کن؛ برابری معنایی را با برابری رشته‌ای اشتباه نگیر.",
     "prediction را عوض کن؛ سپس یکی از پاسخ‌های right را به left تغییر بده و توضیح بده در کدام دورها امتیاز تغییر می‌کند."
   ],
   "source_page": 22,
@@ -58,7 +58,7 @@
       "id": "explain",
       "source_kind": "original",
       "source_page": 22,
-      "prompt_fa": "چرا برای left، فرمول مستقیم روی هر ۱۰ پاسخ با میانگین ده دورِ ۹پاسخی فرق دارد؟",
+      "prompt_fa": "چرا برای left ، فرمول مستقیم روی هر ۱۰ پاسخ با میانگین ده دورِ ۹پاسخی فرق دارد؟",
       "solution_fa": "فرمول مستقیم یک تطابق از ده پاسخ را می‌شمارد و ۱/۳ می‌دهد. در روش کنارگذاشتن پاسخ، یک دور هیچ تطابقی ندارد و ۹ دور یک تطابق دارند؛ میانگین ۰٫۳ می‌شود.",
       "answer": {
         "kind": "manual",
@@ -98,5 +98,149 @@
   "reference_python": "3.13.9",
   "limits_fa": "این کارگاه تألیف مستقل برای بازتولید محاسبهٔ توافق پاسخ‌ها در صفحهٔ ۲۲ است؛ مدل بینایی–زبان را آموزش نمی‌دهد. فقط کوچک‌سازی حروف و حذف فاصلهٔ ابتدا و انتها انجام می‌شود؛ ریشه‌یابی، حذف علائم و یکسان‌سازی مترادف‌ها پیاده نشده‌اند.",
   "source_retrieved_at_utc": "2026-10-25T08:44:51.932248+00:00",
-  "related_labs": []
+  "related_labs": [],
+  "source_examples": [
+    {
+      "id": "vqa-side",
+      "title_fa": "امتیازدهی پاسخ‌های جهت در VQA",
+      "pages": [
+        22
+      ],
+      "code_file": "s11_vqa_side.py",
+      "starter_sha256": "74cdde17df5458bfa2fe3deae25d65ae9d0f6e1b370db6299484504e59fd9567",
+      "reference": {
+        "prediction": "left",
+        "direct_score": 0.3333333333333333,
+        "held_out_score": 0.3,
+        "scores": {
+          "right": 1.0,
+          "left": 0.3,
+          "right side": 0.3,
+          "center": 0.3,
+          "bottom": 0.0
+        },
+        "answer_count": 10
+      },
+      "questions": [
+        {
+          "id": "singleton",
+          "source_kind": "original",
+          "source_page": 22,
+          "prompt_fa": "یک پاسخ انسانی left از میان 10 پاسخ، با میانگین کنارگذاری یک مرجع چه امتیازی می‌دهد؟",
+          "solution_fa": "در 9 دور یک تطبیق داریم و در یک دور صفر؛ میانگین 9×(1/3)/10=0.3 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "1/3",
+              "0.3",
+              "1"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "synonyms",
+          "source_kind": "original",
+          "source_page": 22,
+          "prompt_fa": "آیا در همین فهرست رشته‌های right و right side یک پاسخ شمرده می‌شوند؟",
+          "solution_fa": "کد فقط فاصله و بزرگی حروف را نرمال می‌کند؛ مترادف‌ها را یکی نمی‌کند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "بله، همیشه",
+              "فقط اگر اکثریت باشند",
+              "خیر؛ تطبیق رشته‌ها جداست"
+            ],
+            "correct_index": 2
+          }
+        },
+        {
+          "id": "absent",
+          "source_kind": "original",
+          "source_page": 22,
+          "prompt_fa": "پیش‌بینی bottom که هیچ مرجعی ندارد چه امتیازی می‌گیرد؟",
+          "solution_fa": "تعداد پاسخ مطابق در تمام دورها صفر است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "0",
+              "0.3",
+              "1"
+            ],
+            "correct_index": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "vqa-dog",
+      "title_fa": "اختلاف نظر در پرسش تصویری",
+      "pages": [
+        21
+      ],
+      "code_file": "s11_vqa_dog.py",
+      "starter_sha256": "16ca9d1438d710c647e87948799230ddc561d446bd12b6879a14dc096c401d3e",
+      "reference": {
+        "prediction": "yes",
+        "direct_score": 1.0,
+        "held_out_score": 1.0,
+        "scores": {
+          "yes": 1.0,
+          "no": 1.0,
+          "maybe": 0.0
+        },
+        "answer_count": 10
+      },
+      "questions": [
+        {
+          "id": "counts",
+          "source_kind": "original",
+          "source_page": 21,
+          "prompt_fa": "در فهرست ده پاسخ تصویر سگ، چند yes و چند no وجود دارد؟",
+          "solution_fa": "ده رشتهٔ تصویر چهار yes و شش no دارند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "4 yes و 6 no",
+              "6 yes و 4 no",
+              "5 yes و 5 no"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "score",
+          "source_kind": "original",
+          "source_page": 21,
+          "prompt_fa": "با معیار min(matches/3,1)، امتیاز yes و no چه می‌شود؟",
+          "solution_fa": "هر دو پاسخ دست‌کم سه مرجع مطابق دارند؛ سقف معیار برای هر دو برابر 1 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "فقط no امتیاز 1 دارد",
+              "هر دو امتیاز 1 دارند",
+              "هر دو صفرند"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "meaning",
+          "source_kind": "original",
+          "source_page": 21,
+          "prompt_fa": "داشتن امتیاز 1 برای هر دو پاسخ چه چیزی را نشان می‌دهد؟",
+          "solution_fa": "در سؤال ذهنی ترسناک بودن، چند پاسخ می‌توانند توافق کافی داشته باشند؛ این امتیاز احتمال یا حقیقت قطعی نیست.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "تصویر دو برچسب قطعی دارد",
+              "سؤال بی‌معناست",
+              "معیار توافق پاسخ‌ها را می‌سنجد و اختلاف نظر انسانی ممکن است"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    }
+  ]
 }

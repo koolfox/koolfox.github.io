@@ -47,7 +47,7 @@
   ],
   "programming_tutorial_pages": [],
   "reference_python": "3.13.9",
-  "limits_fa": "این کارگاه مستقل، شمار امتیازهای زوجی یک سر توجه را می‌شمارد. آموزش ViT، محاسبهٔ FLOPs کل، بُعد ویژگی و حافظهٔ پیاده‌سازی را شبیه‌سازی نمی‌کند. شمار وصله‌های منبع بدون CLS و شمار توکن‌های مدل با CLS جدا گزارش می‌شوند.",
+  "limits_fa": "این کارگاه مستقل، شمار امتیازهای زوجی یک سر توجه را می‌شمارد. آموزش ViT ، محاسبهٔ FLOPs کل، بُعد ویژگی و حافظهٔ پیاده‌سازی را شبیه‌سازی نمی‌کند. شمار وصله‌های منبع بدون CLS و شمار توکن‌های مدل با CLS جدا گزارش می‌شوند.",
   "source_retrieved_at_utc": "2026-10-25T08:44:55.722691+00:00",
   "related_labs": [],
   "questions": [
@@ -93,6 +93,77 @@
           "محاسبهٔ 101²"
         ]
       }
+    }
+  ],
+  "source_examples": [
+    {
+      "id": "patch-counts",
+      "title_fa": "شمار توکن و زوج‌های توجه",
+      "pages": [
+        53,
+        54
+      ],
+      "code_file": "s14_patch_counts.py",
+      "starter_sha256": "e2cc003790ce032a780b5ddbc59f2625f64ebf7c748f6c9db8a2772f85a4c0a9",
+      "reference": {
+        "pixel_tokens": 25600,
+        "patch_tokens": 100,
+        "pixel_pairs": 655360000,
+        "patch_pairs": 10000,
+        "reduction_factor_without_cls": 65536,
+        "with_cls_pairs": 10201,
+        "full_hd_pixel_pairs": 4299816960000
+      },
+      "questions": [
+        {
+          "id": "patches",
+          "source_kind": "original",
+          "source_page": 54,
+          "prompt_fa": "تصویر 160×160 با وصله‌های 16×16 چند وصله دارد؟",
+          "solution_fa": "در هر بُعد 10 وصله داریم و 10×10=100 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "10",
+              "100",
+              "256"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "cls",
+          "source_kind": "original",
+          "source_page": 54,
+          "prompt_fa": "با افزودن یک توکن CLS به 100 وصله، چند امتیاز برای یک سر توجه کامل داریم؟",
+          "solution_fa": "101 توکن داریم؛ تعداد زوج‌های مرتب با خودتوجهی 101²=10201 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "10000",
+              "10001",
+              "10201"
+            ],
+            "correct_index": 2
+          }
+        },
+        {
+          "id": "scope",
+          "source_kind": "original",
+          "source_page": 53,
+          "prompt_fa": "عدد (1920×1080)² چه چیزی را می‌شمارد؟",
+          "solution_fa": "این فقط شمار زوج‌های توکن در فرض یک توکن برای هر پیکسل است؛ کل FLOP مدل نیست.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "زوج‌های مرتب پیکسل‌ها برای امتیاز توجه",
+              "کل عملیات مدل کامل",
+              "تعداد وزن‌های مدل"
+            ],
+            "correct_index": 0
+          }
+        }
+      ]
     }
   ]
 }

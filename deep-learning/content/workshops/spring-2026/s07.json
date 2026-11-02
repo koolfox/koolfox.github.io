@@ -23,7 +23,7 @@
       "id": "calculate",
       "source_kind": "original",
       "prompt_fa": "برای 11 طبقه‌بند، چند خطای هم‌زمان برای خطای اکثریت لازم است؟",
-      "solution_fa": "بیش از نصف 11، یعنی حداقل 6 خطا لازم است.",
+      "solution_fa": "بیش از نصف 11 ، یعنی حداقل 6 خطا لازم است.",
       "answer": {
         "kind": "number",
         "value": 6,
@@ -85,5 +85,72 @@
   "reference_python": "3.13.9",
   "limits_fa": "کد و داده‌های کوچک، تألیف مستقل برای بررسی همین سازوکارند؛ بازتولید آزمایش مقاله یا تکلیف رسمی Canvas نیستند. نتیجه فقط به محاسبات و پارامترهای همین کد مربوط است.",
   "source_retrieved_at_utc": "2026-10-25T08:44:49.277620+00:00",
-  "related_labs": []
+  "related_labs": [],
+  "source_examples": [
+    {
+      "id": "majority",
+      "title_fa": "احتمال خطای رأی اکثریت",
+      "pages": [
+        38
+      ],
+      "code_file": "s07_majority.py",
+      "starter_sha256": "0ac9c4d59bba92e1476e81f8bf1353461d6d79bd40840a82806a3da2fd8e092a",
+      "reference": {
+        "classifiers": 11,
+        "majority": 6,
+        "individual_error": 0.25,
+        "ensemble_error": 0.03432750701904297
+      },
+      "questions": [
+        {
+          "id": "threshold",
+          "source_kind": "original",
+          "source_page": 38,
+          "prompt_fa": "از 11 رأی‌دهنده، چند خطا برای خطای اکثریت کافی است؟",
+          "solution_fa": "اکثریت باید بیش از نصف 11 باشد: 6.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "5",
+              "6",
+              "11"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "probability",
+          "source_kind": "original",
+          "source_page": 38,
+          "prompt_fa": "با خطای مستقل 0.25 ، احتمال خطای اکثریت تقریباً چقدر است؟",
+          "solution_fa": "جمع دوجمله‌ای برای k از 6 تا 11 برابر 0.0343275 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "0.25",
+              "0.75",
+              "0.0343"
+            ],
+            "correct_index": 2
+          }
+        },
+        {
+          "id": "assumption",
+          "source_kind": "original",
+          "source_page": 38,
+          "prompt_fa": "محاسبهٔ دوجمله‌ای به کدام فرض متکی است؟",
+          "solution_fa": "بدون استقلال نمی‌توان احتمال الگوها را با ضرب همین احتمال‌ها محاسبه کرد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "استقلال خطاها و نرخ یکسان",
+              "یکسان‌بودن تمام پیش‌بینی‌ها",
+              "صفر بودن خطا"
+            ],
+            "correct_index": 0
+          }
+        }
+      ]
+    }
+  ]
 }

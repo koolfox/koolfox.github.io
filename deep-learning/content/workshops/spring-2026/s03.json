@@ -80,7 +80,7 @@
       "id": "calculate",
       "source_kind": "original",
       "prompt_fa": "در نسخهٔ اولیه، مشتق f نسبت به b چند است؟",
-      "solution_fa": "با ثابت‌گرفتن a و c، مشتق a+bc نسبت به b برابر c=3 است.",
+      "solution_fa": "با ثابت‌گرفتن a و c ، مشتق a+bc نسبت به b برابر c=3 است.",
       "answer": {
         "kind": "number",
         "value": 3,
@@ -107,7 +107,7 @@
     {
       "id": "explain",
       "source_kind": "original",
-      "prompt_fa": "چرا هنگام محاسبهٔ مشتق نسبت به b، مقدار a را ثابت می‌گیریم؟",
+      "prompt_fa": "چرا هنگام محاسبهٔ مشتق نسبت به b ، مقدار a را ثابت می‌گیریم؟",
       "solution_fa": "مشتق جزئی اثر تغییر همان ورودی را جدا می‌سنجد؛ تغییر هم‌زمان ورودی‌ها این اثر را مخلوط می‌کند.",
       "answer": {
         "kind": "manual",
@@ -163,7 +163,7 @@
     109
   ],
   "reference_python": "3.13.9",
-  "limits_fa": "بخش نخست f=a+bc و گام 0.01 را از صفحات 54 تا 57 محاسبه می‌کند؛ بخش source_network شبکهٔ 3→2→1، وزن‌ها، بایاس‌ها و نمونهٔ صفحات 68 تا 84 را دقیق و بدون گردکردن میانی اجرا می‌کند. source_printed فقط اعداد گرد‌شدهٔ چاپی را نگه می‌دارد. حذف ضریب 2 در صفحهٔ 75 عمدی است: گرادیان نمایش‌داده‌شده با نیمِ خطای مربعی متناظر است و تغییر نرخ یادگیری همان مقیاس گام را جبران می‌کند. این بازسازی حساب یک نمونه است؛ آموزش مدل پژوهشی یا بازتولید آزمایش مقاله نیست.",
+  "limits_fa": "بخش نخست f=a+bc و گام 0.01 را از صفحات 54 تا 57 محاسبه می‌کند؛ بخش source_network شبکهٔ 3→2→1 ، وزن‌ها، بایاس‌ها و نمونهٔ صفحات 68 تا 84 را دقیق و بدون گردکردن میانی اجرا می‌کند. source_printed فقط اعداد گرد‌شدهٔ چاپی را نگه می‌دارد. حذف ضریب 2 در صفحهٔ 75 عمدی است: گرادیان نمایش‌داده‌شده با نیمِ خطای مربعی متناظر است و تغییر نرخ یادگیری همان مقیاس گام را جبران می‌کند. این بازسازی حساب یک نمونه است؛ آموزش مدل پژوهشی یا بازتولید آزمایش مقاله نیست.",
   "source_retrieved_at_utc": "2026-10-25T08:44:45.533955+00:00",
   "related_labs": [],
   "example_pages": [
@@ -190,6 +190,8 @@
       "id": "backprop",
       "title_fa": "گذر پیشرو و پس‌انتشارِ شبکهٔ خود اسلاید",
       "pages": [
+        66,
+        67,
         68,
         69,
         70,
@@ -206,7 +208,19 @@
         81,
         82,
         83,
-        84
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96
       ],
       "code_file": "s03_backprop.py",
       "prediction_fa": "با ورودی [1,0,1]، چرا وزن‌های متصل به ورودی دوم گرادیان صفر دارند؟",
@@ -233,7 +247,7 @@
           "source_kind": "original",
           "source_page": 83,
           "prompt_fa": "چرا گرادیان w24 برای همین نمونه صفر است؟",
-          "solution_fa": "گرادیان این وزن برابر e4×x2 است. چون x2=0، حاصل صفر است؛ این به معنای صفر بودن خود وزن یا گرادیان تمام نمونه‌ها نیست.",
+          "solution_fa": "گرادیان این وزن برابر e4×x2 است. چون x2=0 ، حاصل صفر است؛ این به معنای صفر بودن خود وزن یا گرادیان تمام نمونه‌ها نیست.",
           "answer": {
             "kind": "choice",
             "options_fa": [
@@ -259,6 +273,210 @@
             ],
             "correct_index": 2
           }
+        },
+        {
+          "id": "parameter-count",
+          "source_kind": "original",
+          "source_page": 66,
+          "prompt_fa": "شبکهٔ 3→2→1 همین مثال چند وزن و چند بایاس قابل یادگیری دارد؟",
+          "solution_fa": "اتصال‌های 3×2 و 2×1 در مجموع 8 وزن و سه نورون غیرورودی سه بایاس دارند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "8 وزن و 3 بایاس",
+              "11 وزن و بدون بایاس",
+              "6 وزن و 3 بایاس"
+            ],
+            "correct_index": 0
+          },
+          "reviewed": true
+        },
+        {
+          "id": "direction-w46",
+          "source_kind": "original",
+          "source_page": 86,
+          "prompt_fa": "برای کاهش خطا در همین نمونه، پارامتر w46 در یک گام کاهش گرادیان با نرخ مثبت چه تغییری می‌کند؟",
+          "solution_fa": "گرادیان این پارامتر -0.04352350 است؛ به‌روزرسانی برابر پارامتر منهای نرخ یادگیری ضرب‌در گرادیان است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "افزایش می‌یابد",
+              "کاهش می‌یابد",
+              "بدون تغییر می‌ماند"
+            ],
+            "correct_index": 0
+          },
+          "reviewed": true
+        },
+        {
+          "id": "direction-w56",
+          "source_kind": "original",
+          "source_page": 87,
+          "prompt_fa": "برای کاهش خطا در همین نمونه، پارامتر w56 در یک گام کاهش گرادیان با نرخ مثبت چه تغییری می‌کند؟",
+          "solution_fa": "گرادیان این پارامتر -0.06886104 است؛ به‌روزرسانی برابر پارامتر منهای نرخ یادگیری ضرب‌در گرادیان است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "افزایش می‌یابد",
+              "کاهش می‌یابد",
+              "بدون تغییر می‌ماند"
+            ],
+            "correct_index": 0
+          },
+          "reviewed": true
+        },
+        {
+          "id": "direction-b6",
+          "source_kind": "original",
+          "source_page": 88,
+          "prompt_fa": "برای کاهش خطا در همین نمونه، پارامتر b6 در یک گام کاهش گرادیان با نرخ مثبت چه تغییری می‌کند؟",
+          "solution_fa": "گرادیان این پارامتر -0.13116908 است؛ به‌روزرسانی برابر پارامتر منهای نرخ یادگیری ضرب‌در گرادیان است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "افزایش می‌یابد",
+              "کاهش می‌یابد",
+              "بدون تغییر می‌ماند"
+            ],
+            "correct_index": 0
+          },
+          "reviewed": true
+        },
+        {
+          "id": "direction-w14",
+          "source_kind": "original",
+          "source_page": 89,
+          "prompt_fa": "برای کاهش خطا در همین نمونه، پارامتر w14 در یک گام کاهش گرادیان با نرخ مثبت چه تغییری می‌کند؟",
+          "solution_fa": "گرادیان این پارامتر 0.00872456 است؛ به‌روزرسانی برابر پارامتر منهای نرخ یادگیری ضرب‌در گرادیان است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "افزایش می‌یابد",
+              "کاهش می‌یابد",
+              "بدون تغییر می‌ماند"
+            ],
+            "correct_index": 1
+          },
+          "reviewed": true
+        },
+        {
+          "id": "direction-w15",
+          "source_kind": "original",
+          "source_page": 90,
+          "prompt_fa": "برای کاهش خطا در همین نمونه، پارامتر w15 در یک گام کاهش گرادیان با نرخ مثبت چه تغییری می‌کند؟",
+          "solution_fa": "گرادیان این پارامتر 0.00654209 است؛ به‌روزرسانی برابر پارامتر منهای نرخ یادگیری ضرب‌در گرادیان است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "افزایش می‌یابد",
+              "کاهش می‌یابد",
+              "بدون تغییر می‌ماند"
+            ],
+            "correct_index": 1
+          },
+          "reviewed": true
+        },
+        {
+          "id": "direction-w24",
+          "source_kind": "original",
+          "source_page": 91,
+          "prompt_fa": "برای کاهش خطا در همین نمونه، پارامتر w24 در یک گام کاهش گرادیان با نرخ مثبت چه تغییری می‌کند؟",
+          "solution_fa": "گرادیان این پارامتر 0.00000000 است؛ به‌روزرسانی برابر پارامتر منهای نرخ یادگیری ضرب‌در گرادیان است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "افزایش می‌یابد",
+              "کاهش می‌یابد",
+              "بدون تغییر می‌ماند"
+            ],
+            "correct_index": 2
+          },
+          "reviewed": true
+        },
+        {
+          "id": "direction-w25",
+          "source_kind": "original",
+          "source_page": 92,
+          "prompt_fa": "برای کاهش خطا در همین نمونه، پارامتر w25 در یک گام کاهش گرادیان با نرخ مثبت چه تغییری می‌کند؟",
+          "solution_fa": "گرادیان این پارامتر 0.00000000 است؛ به‌روزرسانی برابر پارامتر منهای نرخ یادگیری ضرب‌در گرادیان است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "افزایش می‌یابد",
+              "کاهش می‌یابد",
+              "بدون تغییر می‌ماند"
+            ],
+            "correct_index": 2
+          },
+          "reviewed": true
+        },
+        {
+          "id": "direction-w34",
+          "source_kind": "original",
+          "source_page": 93,
+          "prompt_fa": "برای کاهش خطا در همین نمونه، پارامتر w34 در یک گام کاهش گرادیان با نرخ مثبت چه تغییری می‌کند؟",
+          "solution_fa": "گرادیان این پارامتر 0.00872456 است؛ به‌روزرسانی برابر پارامتر منهای نرخ یادگیری ضرب‌در گرادیان است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "افزایش می‌یابد",
+              "کاهش می‌یابد",
+              "بدون تغییر می‌ماند"
+            ],
+            "correct_index": 1
+          },
+          "reviewed": true
+        },
+        {
+          "id": "direction-w35",
+          "source_kind": "original",
+          "source_page": 94,
+          "prompt_fa": "برای کاهش خطا در همین نمونه، پارامتر w35 در یک گام کاهش گرادیان با نرخ مثبت چه تغییری می‌کند؟",
+          "solution_fa": "گرادیان این پارامتر 0.00654209 است؛ به‌روزرسانی برابر پارامتر منهای نرخ یادگیری ضرب‌در گرادیان است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "افزایش می‌یابد",
+              "کاهش می‌یابد",
+              "بدون تغییر می‌ماند"
+            ],
+            "correct_index": 1
+          },
+          "reviewed": true
+        },
+        {
+          "id": "direction-b5",
+          "source_kind": "original",
+          "source_page": 95,
+          "prompt_fa": "برای کاهش خطا در همین نمونه، پارامتر b5 در یک گام کاهش گرادیان با نرخ مثبت چه تغییری می‌کند؟",
+          "solution_fa": "گرادیان این پارامتر 0.00654209 است؛ به‌روزرسانی برابر پارامتر منهای نرخ یادگیری ضرب‌در گرادیان است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "افزایش می‌یابد",
+              "کاهش می‌یابد",
+              "بدون تغییر می‌ماند"
+            ],
+            "correct_index": 1
+          },
+          "reviewed": true
+        },
+        {
+          "id": "direction-b4",
+          "source_kind": "original",
+          "source_page": 96,
+          "prompt_fa": "برای کاهش خطا در همین نمونه، پارامتر b4 در یک گام کاهش گرادیان با نرخ مثبت چه تغییری می‌کند؟",
+          "solution_fa": "گرادیان این پارامتر 0.00872456 است؛ به‌روزرسانی برابر پارامتر منهای نرخ یادگیری ضرب‌در گرادیان است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "افزایش می‌یابد",
+              "کاهش می‌یابد",
+              "بدون تغییر می‌ماند"
+            ],
+            "correct_index": 1
+          },
+          "reviewed": true
         }
       ],
       "starter_sha256": "14090301fd613df832d75e49dbb42e6f69a65bd796a28a12685dbf1b92051359",
@@ -309,6 +527,1033 @@
           "e5": 0.0065
         }
       }
+    },
+    {
+      "id": "quadratic",
+      "title_fa": "گرادیان تابع درجهٔ دوم",
+      "pages": [
+        44,
+        45,
+        46,
+        47,
+        48
+      ],
+      "code_file": "s03_quadratic.py",
+      "starter_sha256": "4bfe0114d70c038a320f1182968fb97c98348bc750abff6c2c73d9f536c76010",
+      "reference": {
+        "value": 12.0,
+        "gradient": 13.0,
+        "next_x": 1.87,
+        "finite_differences": [
+          13.03999999999963,
+          13.003999999998683,
+          13.000400000020562
+        ],
+        "minimum_x": 0.375
+      },
+      "questions": [
+        {
+          "id": "value",
+          "source_kind": "original",
+          "source_page": 44,
+          "prompt_fa": "مقدار f(2) برای f(x)=2−3x+4x² کدام است؟",
+          "solution_fa": "2−6+16 برابر 12 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "12",
+              "13",
+              "6"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "gradient",
+          "source_kind": "original",
+          "source_page": 46,
+          "prompt_fa": "مشتق تابع در x=2 چند است؟",
+          "solution_fa": "f′(x)=−3+8x و f′(2)=13 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "12",
+              "13",
+              "8"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "step",
+          "source_kind": "original",
+          "source_page": 48,
+          "prompt_fa": "با نرخ 0.01 ، نقطهٔ بعدی از x=2 کدام است؟",
+          "solution_fa": "x جدید برابر 2−0.01×13 یعنی 1.87 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "2.13",
+              "1.99",
+              "1.87"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "scalar-graph",
+      "title_fa": "گرادیان گراف a+bc",
+      "pages": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      "code_file": "s03_scalar_graph.py",
+      "starter_sha256": "362f0803fb33fe371138d19d8420f5643a55e703d39366833ee1e2e27d417174",
+      "reference": {
+        "product": -6.0,
+        "value": -5.0,
+        "gradients": [
+          1.0,
+          3.0,
+          -2.0
+        ],
+        "updated": [
+          0.99,
+          -2.03,
+          3.02
+        ],
+        "next_value": -5.140599999999999
+      },
+      "questions": [
+        {
+          "id": "forward",
+          "source_kind": "original",
+          "source_page": 51,
+          "prompt_fa": "با a=1 ، b=−2 و c=3 مقدار a+bc چیست؟",
+          "solution_fa": "ابتدا bc=−6 و سپس 1−6=−5.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "−5",
+              "−6",
+              "7"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "partial",
+          "source_kind": "original",
+          "source_page": 53,
+          "prompt_fa": "مشتق f نسبت به b در همین نقطه کدام است؟",
+          "solution_fa": "در f=a+bc ، مشتق نسبت به b برابر c=3 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "−2",
+              "1",
+              "3"
+            ],
+            "correct_index": 2
+          }
+        },
+        {
+          "id": "update",
+          "source_kind": "original",
+          "source_page": 57,
+          "prompt_fa": "بعد از یک گام با نرخ 0.01 ، مقدار c کدام است؟",
+          "solution_fa": "گرادیان c برابر b=−2 است؛ 3−0.01×(−2)=3.02.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "2.98",
+              "3.02",
+              "3.01"
+            ],
+            "correct_index": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "xor-zero-zero",
+      "title_fa": "XOR با ورودی [0, 0]",
+      "pages": [
+        8,
+        9
+      ],
+      "code_file": "s03_xor_zero_zero.py",
+      "starter_sha256": "f3272cc58174d51c278bea916d423731ca748c8c4574913a4c2626f0e8fd0893",
+      "reference": {
+        "selected": {
+          "inputs": [
+            0,
+            0
+          ],
+          "hidden_sums": [
+            -0.5,
+            -1.5
+          ],
+          "hidden": [
+            0,
+            0
+          ],
+          "output_sum": -0.5,
+          "output": 0
+        },
+        "truth_table": [
+          {
+            "inputs": [
+              0,
+              0
+            ],
+            "hidden_sums": [
+              -0.5,
+              -1.5
+            ],
+            "hidden": [
+              0,
+              0
+            ],
+            "output_sum": -0.5,
+            "output": 0
+          },
+          {
+            "inputs": [
+              0,
+              1
+            ],
+            "hidden_sums": [
+              0.5,
+              -0.5
+            ],
+            "hidden": [
+              1,
+              0
+            ],
+            "output_sum": 0.5,
+            "output": 1
+          },
+          {
+            "inputs": [
+              1,
+              0
+            ],
+            "hidden_sums": [
+              0.5,
+              -0.5
+            ],
+            "hidden": [
+              1,
+              0
+            ],
+            "output_sum": 0.5,
+            "output": 1
+          },
+          {
+            "inputs": [
+              1,
+              1
+            ],
+            "hidden_sums": [
+              1.5,
+              0.5
+            ],
+            "hidden": [
+              1,
+              1
+            ],
+            "output_sum": -1.5,
+            "output": 0
+          }
+        ],
+        "outputs": [
+          0,
+          1,
+          1,
+          0
+        ]
+      },
+      "questions": [
+        {
+          "id": "hidden",
+          "source_kind": "original",
+          "source_page": 9,
+          "prompt_fa": "برای ورودی[0, 0]، خروجی دو نورون پنهان در ترتیب بالا/پایین چیست؟",
+          "solution_fa": "هر نورون پنهان ابتدا مجموع دو ورودی و بایاس خود را محاسبه می‌کند؛ آستانه در صفر است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "[0, 0]",
+              "[1, 0]",
+              "[0, 1]"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "output",
+          "source_kind": "original",
+          "source_page": 9,
+          "prompt_fa": "خروجی نهایی شبکه برای[0, 0] چیست؟",
+          "solution_fa": "خروجی آستانه‌ایِ h1−2h2−0.5 برابر 0 است؛ همان سطر جدول XOR.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "1",
+              "0",
+              "همیشه 0.5"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "nonlinear",
+          "source_kind": "original",
+          "source_page": 9,
+          "prompt_fa": "اگر تابع آستانهٔ نورون‌های پنهان را حذف کنیم، آیا همین استدلال XOR با دو ویژگی خطی حفظ می‌شود؟",
+          "solution_fa": "XOR با یک مرز خطی جدا نمی‌شود؛ غیرخطی بودن نورون‌های پنهان ضروری است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "بله، بدون هیچ تغییر",
+              "فقط با بیشتر کردن نرخ یادگیری",
+              "خیر؛ ترکیب خطی، مرز غیرخطی لازم را نمی‌سازد"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "xor-zero-one",
+      "title_fa": "XOR با ورودی [0, 1]",
+      "pages": [
+        10
+      ],
+      "code_file": "s03_xor_zero_one.py",
+      "starter_sha256": "6c7d5e61200ba8bf24b649e7b1e64deb4e6e742817c1b8f0b6771c3f1c14dff4",
+      "reference": {
+        "selected": {
+          "inputs": [
+            0,
+            1
+          ],
+          "hidden_sums": [
+            0.5,
+            -0.5
+          ],
+          "hidden": [
+            1,
+            0
+          ],
+          "output_sum": 0.5,
+          "output": 1
+        },
+        "truth_table": [
+          {
+            "inputs": [
+              0,
+              0
+            ],
+            "hidden_sums": [
+              -0.5,
+              -1.5
+            ],
+            "hidden": [
+              0,
+              0
+            ],
+            "output_sum": -0.5,
+            "output": 0
+          },
+          {
+            "inputs": [
+              0,
+              1
+            ],
+            "hidden_sums": [
+              0.5,
+              -0.5
+            ],
+            "hidden": [
+              1,
+              0
+            ],
+            "output_sum": 0.5,
+            "output": 1
+          },
+          {
+            "inputs": [
+              1,
+              0
+            ],
+            "hidden_sums": [
+              0.5,
+              -0.5
+            ],
+            "hidden": [
+              1,
+              0
+            ],
+            "output_sum": 0.5,
+            "output": 1
+          },
+          {
+            "inputs": [
+              1,
+              1
+            ],
+            "hidden_sums": [
+              1.5,
+              0.5
+            ],
+            "hidden": [
+              1,
+              1
+            ],
+            "output_sum": -1.5,
+            "output": 0
+          }
+        ],
+        "outputs": [
+          0,
+          1,
+          1,
+          0
+        ]
+      },
+      "questions": [
+        {
+          "id": "hidden",
+          "source_kind": "original",
+          "source_page": 10,
+          "prompt_fa": "برای ورودی[0, 1]، خروجی دو نورون پنهان در ترتیب بالا/پایین چیست؟",
+          "solution_fa": "هر نورون پنهان ابتدا مجموع دو ورودی و بایاس خود را محاسبه می‌کند؛ آستانه در صفر است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "[1, 0]",
+              "[0, 0]",
+              "[1, 1]"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "output",
+          "source_kind": "original",
+          "source_page": 10,
+          "prompt_fa": "خروجی نهایی شبکه برای[0, 1] چیست؟",
+          "solution_fa": "خروجی آستانه‌ایِ h1−2h2−0.5 برابر 1 است؛ همان سطر جدول XOR.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "0",
+              "1",
+              "همیشه 0.5"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "nonlinear",
+          "source_kind": "original",
+          "source_page": 10,
+          "prompt_fa": "اگر تابع آستانهٔ نورون‌های پنهان را حذف کنیم، آیا همین استدلال XOR با دو ویژگی خطی حفظ می‌شود؟",
+          "solution_fa": "XOR با یک مرز خطی جدا نمی‌شود؛ غیرخطی بودن نورون‌های پنهان ضروری است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "بله، بدون هیچ تغییر",
+              "فقط با بیشتر کردن نرخ یادگیری",
+              "خیر؛ ترکیب خطی، مرز غیرخطی لازم را نمی‌سازد"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "xor-one-zero",
+      "title_fa": "XOR با ورودی [1, 0]",
+      "pages": [
+        11
+      ],
+      "code_file": "s03_xor_one_zero.py",
+      "starter_sha256": "0c344b0a6f5353ea7d2c980dc23856a402af5b23d4e9e838f69762019cc41480",
+      "reference": {
+        "selected": {
+          "inputs": [
+            1,
+            0
+          ],
+          "hidden_sums": [
+            0.5,
+            -0.5
+          ],
+          "hidden": [
+            1,
+            0
+          ],
+          "output_sum": 0.5,
+          "output": 1
+        },
+        "truth_table": [
+          {
+            "inputs": [
+              0,
+              0
+            ],
+            "hidden_sums": [
+              -0.5,
+              -1.5
+            ],
+            "hidden": [
+              0,
+              0
+            ],
+            "output_sum": -0.5,
+            "output": 0
+          },
+          {
+            "inputs": [
+              0,
+              1
+            ],
+            "hidden_sums": [
+              0.5,
+              -0.5
+            ],
+            "hidden": [
+              1,
+              0
+            ],
+            "output_sum": 0.5,
+            "output": 1
+          },
+          {
+            "inputs": [
+              1,
+              0
+            ],
+            "hidden_sums": [
+              0.5,
+              -0.5
+            ],
+            "hidden": [
+              1,
+              0
+            ],
+            "output_sum": 0.5,
+            "output": 1
+          },
+          {
+            "inputs": [
+              1,
+              1
+            ],
+            "hidden_sums": [
+              1.5,
+              0.5
+            ],
+            "hidden": [
+              1,
+              1
+            ],
+            "output_sum": -1.5,
+            "output": 0
+          }
+        ],
+        "outputs": [
+          0,
+          1,
+          1,
+          0
+        ]
+      },
+      "questions": [
+        {
+          "id": "hidden",
+          "source_kind": "original",
+          "source_page": 11,
+          "prompt_fa": "برای ورودی[1, 0]، خروجی دو نورون پنهان در ترتیب بالا/پایین چیست؟",
+          "solution_fa": "هر نورون پنهان ابتدا مجموع دو ورودی و بایاس خود را محاسبه می‌کند؛ آستانه در صفر است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "[1, 0]",
+              "[0, 0]",
+              "[1, 1]"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "output",
+          "source_kind": "original",
+          "source_page": 11,
+          "prompt_fa": "خروجی نهایی شبکه برای[1, 0] چیست؟",
+          "solution_fa": "خروجی آستانه‌ایِ h1−2h2−0.5 برابر 1 است؛ همان سطر جدول XOR.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "0",
+              "1",
+              "همیشه 0.5"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "nonlinear",
+          "source_kind": "original",
+          "source_page": 11,
+          "prompt_fa": "اگر تابع آستانهٔ نورون‌های پنهان را حذف کنیم، آیا همین استدلال XOR با دو ویژگی خطی حفظ می‌شود؟",
+          "solution_fa": "XOR با یک مرز خطی جدا نمی‌شود؛ غیرخطی بودن نورون‌های پنهان ضروری است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "بله، بدون هیچ تغییر",
+              "فقط با بیشتر کردن نرخ یادگیری",
+              "خیر؛ ترکیب خطی، مرز غیرخطی لازم را نمی‌سازد"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "xor-one-one",
+      "title_fa": "XOR با ورودی [1, 1]",
+      "pages": [
+        12
+      ],
+      "code_file": "s03_xor_one_one.py",
+      "starter_sha256": "a886b5dc0e9c9fbbc715165303b17325bf930d34c5b186c0a8f161c04a7ab481",
+      "reference": {
+        "selected": {
+          "inputs": [
+            1,
+            1
+          ],
+          "hidden_sums": [
+            1.5,
+            0.5
+          ],
+          "hidden": [
+            1,
+            1
+          ],
+          "output_sum": -1.5,
+          "output": 0
+        },
+        "truth_table": [
+          {
+            "inputs": [
+              0,
+              0
+            ],
+            "hidden_sums": [
+              -0.5,
+              -1.5
+            ],
+            "hidden": [
+              0,
+              0
+            ],
+            "output_sum": -0.5,
+            "output": 0
+          },
+          {
+            "inputs": [
+              0,
+              1
+            ],
+            "hidden_sums": [
+              0.5,
+              -0.5
+            ],
+            "hidden": [
+              1,
+              0
+            ],
+            "output_sum": 0.5,
+            "output": 1
+          },
+          {
+            "inputs": [
+              1,
+              0
+            ],
+            "hidden_sums": [
+              0.5,
+              -0.5
+            ],
+            "hidden": [
+              1,
+              0
+            ],
+            "output_sum": 0.5,
+            "output": 1
+          },
+          {
+            "inputs": [
+              1,
+              1
+            ],
+            "hidden_sums": [
+              1.5,
+              0.5
+            ],
+            "hidden": [
+              1,
+              1
+            ],
+            "output_sum": -1.5,
+            "output": 0
+          }
+        ],
+        "outputs": [
+          0,
+          1,
+          1,
+          0
+        ]
+      },
+      "questions": [
+        {
+          "id": "hidden",
+          "source_kind": "original",
+          "source_page": 12,
+          "prompt_fa": "برای ورودی[1, 1]، خروجی دو نورون پنهان در ترتیب بالا/پایین چیست؟",
+          "solution_fa": "هر نورون پنهان ابتدا مجموع دو ورودی و بایاس خود را محاسبه می‌کند؛ آستانه در صفر است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "[1, 1]",
+              "[0, 1]",
+              "[1, 0]"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "output",
+          "source_kind": "original",
+          "source_page": 12,
+          "prompt_fa": "خروجی نهایی شبکه برای[1, 1] چیست؟",
+          "solution_fa": "خروجی آستانه‌ایِ h1−2h2−0.5 برابر 0 است؛ همان سطر جدول XOR.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "1",
+              "0",
+              "همیشه 0.5"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "nonlinear",
+          "source_kind": "original",
+          "source_page": 12,
+          "prompt_fa": "اگر تابع آستانهٔ نورون‌های پنهان را حذف کنیم، آیا همین استدلال XOR با دو ویژگی خطی حفظ می‌شود؟",
+          "solution_fa": "XOR با یک مرز خطی جدا نمی‌شود؛ غیرخطی بودن نورون‌های پنهان ضروری است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "بله، بدون هیچ تغییر",
+              "فقط با بیشتر کردن نرخ یادگیری",
+              "خیر؛ ترکیب خطی، مرز غیرخطی لازم را نمی‌سازد"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "parameter-count",
+      "title_fa": "شمار پارامترهای شبکهٔ چندلایه",
+      "pages": [
+        23
+      ],
+      "code_file": "s03_parameter_count.py",
+      "starter_sha256": "b1cb71da9756169b74169a44371f7ee1111d9073953023137b47c8951320a7fb",
+      "reference": {
+        "weights_per_layer": [
+          6,
+          9,
+          3
+        ],
+        "biases_per_layer": [
+          3,
+          3,
+          1
+        ],
+        "weight_count": 18,
+        "bias_count": 7,
+        "total_parameters": 25
+      },
+      "questions": [
+        {
+          "id": "weights",
+          "source_kind": "original",
+          "source_page": 23,
+          "prompt_fa": "شبکهٔ 2→3→3→1 چند وزن دارد؟",
+          "solution_fa": "اتصال‌ها 6+9+3=18 وزن دارند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "18",
+              "25",
+              "7"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "biases",
+          "source_kind": "original",
+          "source_page": 23,
+          "prompt_fa": "اگر هر نورون غیرورودی یک بایاس داشته باشد، چند بایاس داریم؟",
+          "solution_fa": "3+3+1=7 بایاس داریم.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "9",
+              "7",
+              "18"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "total",
+          "source_kind": "original",
+          "source_page": 23,
+          "prompt_fa": "تعداد کل پارامترهای قابل یادگیری چیست؟",
+          "solution_fa": "18 وزن و 7 بایاس در مجموع 25 پارامتر می‌سازند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "18",
+              "7",
+              "25"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "quadratic-negative",
+      "title_fa": "کاهش گرادیان از نقطهٔ منفی",
+      "pages": [
+        49,
+        50
+      ],
+      "code_file": "s03_quadratic_negative.py",
+      "starter_sha256": "4676f7a2fb33151cfa6193423a5e07c9f708719c632738f3f1cf2e47556462b0",
+      "reference": {
+        "value": 9.0,
+        "gradient": -11.0,
+        "next_x": -0.89,
+        "finite_differences": [
+          -10.960000000000036,
+          -10.99600000000045,
+          -10.999599999994558
+        ],
+        "minimum_x": 0.375
+      },
+      "questions": [
+        {
+          "id": "value",
+          "source_kind": "original",
+          "source_page": 49,
+          "prompt_fa": "مقدار f(−1) برای f(x)=2−3x+4x² چیست؟",
+          "solution_fa": "2+3+4=9 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "9",
+              "12",
+              "−11"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "gradient",
+          "source_kind": "original",
+          "source_page": 49,
+          "prompt_fa": "حد شیب تفاضلی در نقطهٔ x=−1 کدام است؟",
+          "solution_fa": "مشتق−3+8x است و در x=−1 مقدار−11 می‌دهد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "13",
+              "−11",
+              "11"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "step",
+          "source_kind": "original",
+          "source_page": 50,
+          "prompt_fa": "از x=−1 با نرخ 0.01 نقطهٔ بعدی کدام است؟",
+          "solution_fa": "−1−0.01×(−11)=−0.89 ؛ در خلاف جهت مشتق منفی، x افزایش می‌یابد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "−1.11",
+              "−0.99",
+              "−0.89"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "addition-graph",
+      "title_fa": "گراف جمع و عبور گرادیان",
+      "pages": [
+        106
+      ],
+      "code_file": "s03_addition_graph.py",
+      "starter_sha256": "3ce3d67295c041012795586c555b11ad80f93a2d14cfe7923dce2664fc0cf8f6",
+      "reference": {
+        "value": 5.0,
+        "grad_b": 1.0,
+        "grad_c": 1.0
+      },
+      "questions": [
+        {
+          "id": "value",
+          "source_kind": "original",
+          "source_page": 106,
+          "prompt_fa": "برای b=2 و c=3 ، خروجی گراف جمع چیست؟",
+          "solution_fa": "f=b+c=5.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "5",
+              "6",
+              "1"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "b-gradient",
+          "source_kind": "original",
+          "source_page": 106,
+          "prompt_fa": "گرادیان خروجی نسبت به b چیست؟",
+          "solution_fa": "مشتق جمع نسبت به هر ورودی 1 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "3",
+              "1",
+              "2"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "c-gradient",
+          "source_kind": "original",
+          "source_page": 106,
+          "prompt_fa": "چرا گرادیان به c نیز 1 می‌رسد؟",
+          "solution_fa": "∂(b+c)/∂c=1 ؛ مقدار عددی c این مشتق را تغییر نمی‌دهد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "چون c=3 است",
+              "چون ضرب انجام شده",
+              "جمع گرادیان ورودی را بدون تغییر به هر دو شاخه می‌فرستد"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "multiply-sum-graph",
+      "title_fa": "گراف ضرب در مجموع و قاعدهٔ زنجیره‌ای",
+      "pages": [
+        107
+      ],
+      "code_file": "s03_multiply_sum_graph.py",
+      "starter_sha256": "1d6ca8c3c9de0fd712a110f665a132f458beb2e11ba51dd4debead340aa3b3e8",
+      "reference": {
+        "z": 5.0,
+        "value": 20.0,
+        "grad_z": 4.0,
+        "grad_d": 5.0,
+        "grad_b": 4.0,
+        "grad_c": 4.0
+      },
+      "questions": [
+        {
+          "id": "forward",
+          "source_kind": "original",
+          "source_page": 107,
+          "prompt_fa": "برای b=2,c=3,d=4 ، مقدار f=d(b+c)چیست؟",
+          "solution_fa": "ابتدا z=5 و سپس f=4×5=20.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "5",
+              "20",
+              "24"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "d-gradient",
+          "source_kind": "original",
+          "source_page": 107,
+          "prompt_fa": "مشتق f نسبت به d چیست؟",
+          "solution_fa": "∂f/∂d=z=b+c=5.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "4",
+              "1",
+              "5"
+            ],
+            "correct_index": 2
+          }
+        },
+        {
+          "id": "b-c-gradients",
+          "source_kind": "original",
+          "source_page": 107,
+          "prompt_fa": "مشتق‌های f نسبت به b و c کدام‌اند؟",
+          "solution_fa": "گرادیان z برابر d=4 است و جمع آن را بدون تغییر به b و c می‌رساند؛ dz/dc=1 ولی df/dc=4 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "هر دو 4",
+              "هر دو 1",
+              "به‌ترتیب 2 و 3"
+            ],
+            "correct_index": 0
+          }
+        }
+      ]
     }
   ]
 }

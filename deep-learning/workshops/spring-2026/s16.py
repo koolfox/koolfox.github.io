@@ -5,6 +5,8 @@ exponents = {"compute": 0.050, "data": 0.095, "parameters": 0.076}
 factors = [1, 4, 16]
 
 # در L=A*x**(-alpha)، تقسیم بر زیان مبنا A را حذف می‌کند.
+if any(factor <= 0 for factor in factors) or any(alpha <= 0 for alpha in exponents.values()):
+    raise ValueError("ضریب منابع و قدرمطلق توان‌ها باید مثبت باشند.")
 loss_ratios = {
     name: [factor ** (-alpha) for factor in factors]
     for name, alpha in exponents.items()
@@ -23,6 +25,8 @@ positive_example_ratio = 4 ** positive_exponent
 # برای نصف‌شدن زیان، رابطهٔ r**(-alpha)=0.5 را نسبت به r حل می‌کنیم.
 # تغییر target_ratio به عدد نزدیک‌تر به یک، ضریب منبع لازم را کوچک‌تر می‌کند.
 target_ratio = 0.5
+if not 0 < target_ratio <= 1:
+    raise ValueError("نسبت زیان هدف برای این تمرین باید بزرگ‌تر از صفر و حداکثر یک باشد.")
 required_factors = {
     name: target_ratio ** (-1 / alpha)
     for name, alpha in exponents.items()

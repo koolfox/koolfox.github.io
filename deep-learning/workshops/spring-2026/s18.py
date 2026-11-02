@@ -7,7 +7,18 @@ B = [[2.0], [-1.0]]     # علامت هر سطر، جهت اثر سازگارک�
 x = [2.0, -1.0, 3.0]   # یک ورودی سه‌بعدی؛ همهٔ خروجی‌ها برای همین ورودی‌اند.
 
 
+# این کد عمداً فقط رتبهٔ 1 را پیاده می‌کند؛ ابعاد دیگر را بی‌صدا قطع نمی‌کنیم.
+if not W0 or not W0[0] or len(A) != 1 or len(A[0]) != len(W0[0]):
+    raise ValueError("A باید یک سطر با عرض وزن پایه داشته باشد.")
+if len(B) != len(W0) or any(len(row) != 1 for row in B):
+    raise ValueError("B باید به تعداد سطرهای وزن پایه، سطر تک‌درایه داشته باشد.")
+if any(len(row) != len(W0[0]) for row in W0) or len(x) != len(W0[0]):
+    raise ValueError("وزن پایه باید مستطیلی و با بُعد ورودی سازگار باشد.")
+
+
 def matvec(matrix, vector):
+    if not matrix or not vector or any(len(row) != len(vector) for row in matrix):
+        raise ValueError("عرض ماتریس باید با بُعد بردار برابر باشد.")
     # ضرب هر سطر در ورودی؛ تغییر طول‌ها بدون رعایت ابعاد، این مدل را نامعتبر می‌کند.
     return [sum(a * b for a, b in zip(row, vector)) for row in matrix]
 

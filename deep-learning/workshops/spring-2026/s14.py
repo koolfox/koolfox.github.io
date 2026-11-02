@@ -6,7 +6,10 @@ width = 160
 patch_side = 16
 
 # برای این مثال ساده، تصویر باید دقیقاً به وصله‌های بدون هم‌پوشانی تقسیم شود.
-assert height % patch_side == 0 and width % patch_side == 0
+if any(type(value) is not int or value < 1 for value in (height, width, patch_side)):
+    raise ValueError("ابعاد تصویر و ضلع وصله باید عدد صحیح مثبت باشند.")
+if height % patch_side or width % patch_side:
+    raise ValueError("ابعاد تصویر باید بر ضلع وصله بخش‌پذیر باشند.")
 
 # شمار پیکسل‌ها تعداد توکن‌ها در حالتِ یک توکن برای هر پیکسل است.
 pixel_tokens = height * width

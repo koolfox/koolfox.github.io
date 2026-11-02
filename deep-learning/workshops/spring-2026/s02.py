@@ -12,6 +12,8 @@ learning_rate = 0.1
 
 
 def predict(values, coefficients, intercept):
+    if not values or len(values) != len(coefficients):
+        raise ValueError("تعداد ویژگی‌ها و وزن‌ها باید برابر و غیرصفر باشد.")
     # ضرب هر ویژگی در وزنش، جمع آن‌ها و سپس افزودن بایاس.
     score = sum(x * w for x, w in zip(values, coefficients)) + intercept
     # مطابق قرارداد منبع، امتیاز صفر هم +1 پیش‌بینی می‌کند؛ >= را با > مقایسه کن.

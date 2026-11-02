@@ -9,7 +9,11 @@ expert_outputs = [2.0, 10.0, -4.0]
 top_k = 2
 # دمای بزرگ‌تر احتمال‌ها را هموارتر می‌کند؛ دمای مثبت لازم است.
 temperature = 1.0
-if not 1 <= top_k <= len(logits) or temperature <= 0:
+if type(top_k) is not int or not 1 <= top_k <= len(logits) or temperature <= 0:
+    raise ValueError("top_k باید عدد صحیح مجاز و دما مثبت باشد")
+if len(logits) != len(expert_outputs) or not all(
+    math.isfinite(value) for value in logits + expert_outputs + [temperature]
+):
     raise ValueError("top_k و temperature خارج از دامنه‌اند")
 # کم‌کردن بیشینه از همهٔ امتیازها مانع سرریز می‌شود و سافت‌مکس را تغییر نمی‌دهد.
 shift = max(logits)

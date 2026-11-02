@@ -6,13 +6,19 @@ training = [[1.0, 10.0], [3.0, 20.0], [5.0, 30.0]]
 # این نمونهٔ تازه در محاسبهٔ میانگین و انحراف معیار شرکت نمی‌کند.
 test = [7.0, 40.0]
 # هر ستون یک ویژگی است؛ زیپ، ستون‌ها را از سطرهای نمونه‌ها جدا می‌کند.
+if not training or not training[0] or any(len(row) != len(training[0]) for row in training):
+    raise ValueError("دادهٔ آموزش باید ماتریسی غیرخالی با سطرهای هم‌اندازه باشد.")
 columns = list(zip(*training))
 # میانگین و انحراف معیار جمعیتِ هر ویژگی فقط از سه نمونهٔ آموزش محاسبه می‌شوند.
 means = [mean(column) for column in columns]
 scales = [pstdev(column) for column in columns]
+if any(scale == 0 for scale in scales):
+    raise ValueError("ویژگی ثابت انحراف معیار صفر دارد؛ پیش از تقسیم آن را جدا کن.")
 
 
 def transform(sample):
+    if len(sample) != len(means):
+        raise ValueError("تعداد ویژگی‌های نمونه باید با آموزش برابر باشد.")
     # ابتدا میانگین را کم و سپس بر مقیاس تقسیم کن؛ همین آمار برای آزمون هم استفاده می‌شود.
     return [(x - mu) / scale for x, mu, scale in zip(sample, means, scales)]
 

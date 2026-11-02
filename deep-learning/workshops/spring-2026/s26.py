@@ -9,6 +9,11 @@ def distance_to_set(point, representatives):
     return min(abs(point - chosen) for chosen in representatives)
 
 
+if not points:
+    raise ValueError("فهرست نقاط نباید خالی باشد.")
+if type(budget) is not int or not 1 <= budget <= len(points):
+    raise ValueError("بودجه باید عدد صحیح مثبت و حداکثر برابر تعداد نقاط باشد.")
+
 # نقطهٔ نخست بذر ثابت است؛ عوض‌کردن بذر می‌تواند نتیجهٔ حریصانه را عوض کند.
 selected = [points[0]]
 while len(selected) < min(budget, len(points)):

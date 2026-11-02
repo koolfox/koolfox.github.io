@@ -241,6 +241,267 @@
           }
         }
       ]
+    },
+    {
+      "id": "caption-cost",
+      "title_fa": "برآورد زمان و هزینهٔ کپشن‌ها",
+      "pages": [
+        13
+      ],
+      "code_file": "s11_caption_cost.py",
+      "starter_sha256": "dd28bbbe706bc42d6552dc5afc806d32a8860369a34fd22ad92bbc21bc8b85f3",
+      "reference": {
+        "hours": 8553.825,
+        "cost_dollars": 128307.37500000001,
+        "person_years": 4.112415865384616,
+        "annual_pay_dollars": 31200.0
+      },
+      "questions": [
+        {
+          "id": "hours",
+          "source_kind": "original",
+          "source_page": 13,
+          "prompt_fa": "با1026459کپشن و30ثانیه برای هرکدام،زمان کل تقریباً چیست؟",
+          "solution_fa": "1026459×30÷3600=8553.825ساعت؛حدود8500در منبع گرد شده است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "8554ساعت",
+              "128ساعت",
+              "30ساعت"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "cost",
+          "source_kind": "original",
+          "source_page": 13,
+          "prompt_fa": "با15دلار در ساعت هزینهٔ مستقیم تقریباً چیست؟",
+          "solution_fa": "8553.825×15=128307.375دلار،نزدیک128هزار.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "8500دلار",
+              "128307دلار",
+              "1026459دلار"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "years",
+          "source_kind": "original",
+          "source_page": 13,
+          "prompt_fa": "با40ساعت در هفته و52هفته،این کار برای یک نفر چند سال است؟",
+          "solution_fa": "8553.825÷2080≈4.1124؛سال-نفر با زمان تقویمی کار موازی فرق دارد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "30",
+              "15",
+              "حدود4.11سال"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "beam-paths",
+      "title_fa": "احتمال مسیرهای Beam Search",
+      "pages": [
+        40,
+        42
+      ],
+      "code_file": "s11_beam_paths.py",
+      "starter_sha256": "d24e382c24c522a3e1ebcfc31e8b96f859f2daa7c892c772e8799be816c798fa",
+      "reference": {
+        "path_probabilities": {
+          "A": 0.5,
+          "C": 0.4,
+          "AB": 0.2,
+          "AE": 0.25,
+          "ABC": 0.16,
+          "AED": 0.2
+        },
+        "conditional_last_token": {
+          "AB": 0.4,
+          "AE": 0.5,
+          "ABC": 0.7999999999999999,
+          "AED": 0.8
+        },
+        "final_ranking": [
+          "AED",
+          "ABC"
+        ],
+        "displayed_beam_width": 2,
+        "calls_per_step_for_two_active_prefixes": 2
+      },
+      "questions": [
+        {
+          "id": "width",
+          "source_kind": "original",
+          "source_page": 40,
+          "prompt_fa": "عرضbeamدر شکل چند است و برای هرگام معمول پس از داشتن دو پیشوند فعال چند ارزیابی پیشوند لازم است؟",
+          "solution_fa": "مثال شکل2مسیر را نگه می‌دارد؛عدد20مربوط بهNICمقاله است.ارزیابی‌ها می‌توانند در یکbatchاجرا شوند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "2و2",
+              "20و20",
+              "1و1"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "conditional",
+          "source_kind": "original",
+          "source_page": 40,
+          "prompt_fa": "باP(A)=.5وP(AB)=.2،احتمال شرطیBپس ازAچیست؟",
+          "solution_fa": "P(B|A)=P(AB)/P(A)=.2/.5=.4؛احتمال مسیر حاصل‌ضرب احتمال‌های شرطی است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              ".1",
+              ".4",
+              ".7"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "final",
+          "source_kind": "original",
+          "source_page": 42,
+          "prompt_fa": "بینABCبا.16وAEDبا.2کدام مسیر عدددار محتمل‌تر است؟",
+          "solution_fa": "احتمال‌های مشترک مسیر مقایسه می‌شوند؛از شکل نمی‌توان احتمال تمام شاخه‌های بدون عدد را استخراج کرد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "ABC",
+              "هر دو برابرند",
+              "AED"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "vqa-results",
+      "title_fa": "مقایسهٔ جدول نتایج VQA",
+      "pages": [
+        47,
+        48,
+        49
+      ],
+      "code_file": "s11_vqa_results.py",
+      "starter_sha256": "9c51f32011a6f3055ea886a3420d8b9dd719ae155a748e32d1b1781d41a3604f",
+      "reference": {
+        "columns": [
+          "All",
+          "Yes/No",
+          "Number",
+          "Other"
+        ],
+        "scores_percent": {
+          "prior_yes": [
+            29.66,
+            70.81,
+            0.39,
+            1.15
+          ],
+          "image_only": [
+            28.13,
+            64.01,
+            0.42,
+            3.77
+          ],
+          "question_only": [
+            48.76,
+            78.2,
+            35.68,
+            26.59
+          ],
+          "lstm_question_image": [
+            53.74,
+            78.94,
+            35.24,
+            36.42
+          ],
+          "deeper_question_only": [
+            50.39,
+            78.41,
+            34.68,
+            30.03
+          ],
+          "deeper_question_normalized_image": [
+            57.75,
+            80.5,
+            36.79,
+            43.08
+          ]
+        },
+        "proposed_minus_lstm_percentage_points": {
+          "All": 4.009999999999998,
+          "Yes/No": 1.5600000000000023,
+          "Number": 1.5499999999999972,
+          "Other": 6.659999999999997
+        },
+        "question_minus_image_all_points": 20.63
+      },
+      "questions": [
+        {
+          "id": "overall",
+          "source_kind": "original",
+          "source_page": 47,
+          "prompt_fa": "بهبودAllمدل پیشنهادی نسبت بهLSTM Q+Iچند واحد درصد است؟",
+          "solution_fa": "57.75−53.74=4.01واحد درصد؛با بهبود نسبی درصدی اشتباه نشود.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "4.01",
+              "28.09",
+              "57.75"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "other",
+          "source_kind": "original",
+          "source_page": 48,
+          "prompt_fa": "بزرگ‌ترین بهبود پیشنهادی نسبت بهLSTM Q+Iبین سه نوع سؤال کدام است؟",
+          "solution_fa": "Other:43.08−36.42=6.66؛Number:1.55وYes/No:1.56.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "Number",
+              "Otherبا6.66واحد درصد",
+              "Yes/No"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "modality",
+          "source_kind": "original",
+          "source_page": 49,
+          "prompt_fa": "درAll،مدل سؤال‌تنها48.76در برابر تصویرتنها28.13چه چیزی نشان می‌دهد؟",
+          "solution_fa": "اختلاف20.63واحد درصد است؛مدل ترکیبی53.74وپیشنهادی57.75هستند.این مقایسه اثبات حذف نیاز به تصویر نیست.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "بینایی هیچ‌وقت لازم نیست",
+              "فقط تصویر همهٔ پاسخ‌ها را تعیین می‌کند",
+              "سوگیری/سرنخ‌های زبانی قوی‌اند؛مدل ترکیبی همچنان بهتر است"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
     }
   ]
 }

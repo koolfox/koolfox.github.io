@@ -24,6 +24,21 @@ def execute(session, changes=None):
 
 
 class WorkshopNumericalTests(unittest.TestCase):
+    def test_source_caption_budget_and_beam_joint_probabilities(self):
+        budget = execute("s11_caption_cost")["result"]
+        self.assertEqual(budget["hours"], 8553.825)
+        self.assertAlmostEqual(budget["cost_dollars"], 128307.375)
+        self.assertAlmostEqual(budget["person_years"], 8553.825 / 2080)
+        beam = execute("s11_beam_paths")["result"]
+        self.assertEqual(beam["final_ranking"], ["AED", "ABC"])
+        self.assertEqual(beam["conditional_last_token"]["AB"], 0.4)
+        self.assertAlmostEqual(beam["conditional_last_token"]["ABC"], 0.8)
+        with self.assertRaises(ValueError):
+            execute("s11_beam_paths", {'"A": 0.5': '"A": 0.1'})
+        table = execute("s11_vqa_results")["result"]
+        self.assertAlmostEqual(table["proposed_minus_lstm_percentage_points"]["Other"], 6.66)
+        self.assertAlmostEqual(table["question_minus_image_all_points"], 20.63)
+
     def test_source_purchase_scenario_and_peak_rates(self):
         cost = execute("s09_compute_cost")["result"]
         self.assertEqual(cost["hours"], 672)

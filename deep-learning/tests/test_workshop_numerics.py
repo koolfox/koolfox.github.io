@@ -64,6 +64,15 @@ class WorkshopNumericalTests(unittest.TestCase):
         table = execute("s11_vqa_results")["result"]
         self.assertAlmostEqual(table["proposed_minus_lstm_percentage_points"]["Other"], 6.66)
         self.assertAlmostEqual(table["question_minus_image_all_points"], 20.63)
+        # Independent transcription from both source page48 and49 table renders.
+        self.assertEqual(table["scores_percent"], {
+            "prior_yes": [29.66,70.81,0.39,1.15],
+            "image_only": [28.13,64.01,0.42,3.77],
+            "question_only": [48.76,78.20,35.68,26.59],
+            "lstm_question_image": [53.74,78.94,35.24,36.42],
+            "deeper_question_only": [50.39,78.41,34.68,30.03],
+            "deeper_question_normalized_image": [57.75,80.50,36.77,43.08]})
+        self.assertAlmostEqual(table["proposed_minus_lstm_percentage_points"]["Number"], 1.53)
 
     def test_source_purchase_scenario_and_peak_rates(self):
         cost = execute("s09_compute_cost")["result"]

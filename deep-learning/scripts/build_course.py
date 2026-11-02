@@ -721,7 +721,7 @@ def build(output, root=ROOT):
     output.mkdir(parents=True, exist_ok=True)
     registry_path = root / 'data/metadata/source-readers.json'
     registered_terms = json.loads(registry_path.read_text()).get('terms', {}) if registry_path.exists() else {}
-    reader_version = hashlib.sha256(b"".join((root / "assets" / name).read_bytes() for name in ("source-reader.js", "slide-content.js", "source-reader.css", "practice.css", "notebook.js", "practice.js", "webgpu-attention.js"))).hexdigest()[:16]
+    reader_version = hashlib.sha256(b"".join((root / "assets" / name).read_bytes() for name in ("source-reader.js", "slide-content.js", "source-reader.css", "practice.css", "notebook.js", "practice.js", "webgpu-attention.js", "source-interactives.js"))).hexdigest()[:16]
     pages = {"catalog/index.html": hub(course), "sources/index.html": sources_page(course),
              "knowledge/index.html": knowledge_page(course["concepts"])}
     initial = BASE + "/terms/spring-2026/s01/slides/"
@@ -838,6 +838,17 @@ def build(output, root=ROOT):
                 target.parent.mkdir(parents=True, exist_ok=True)
                 if source.resolve() != target.resolve():
                     shutil.copyfile(source, target)
+
+    from source_models import build_model_pages
+    from source_animations import build_animation_pages
+    from source_experiments import experiment_files
+    build_model_pages(root, output, asset_revision=reader_version)
+    build_animation_pages(root, output)
+    for name in experiment_files(root):
+        source, destination = root / name, output / name
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        if source.resolve() != destination.resolve():
+            shutil.copyfile(source, destination)
 
     package_slides(output, root)
     if os.environ.get("DANNA_SOURCE_DRAFT") != "1":

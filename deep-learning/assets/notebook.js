@@ -63,6 +63,8 @@ function validCells(value) {
 
 export function mountNotebook(root, options) {
   const questions = options.questions || [];
+  const codeAvailable=options.codeAvailable!==false;
+  const questionSignature=JSON.stringify(questions.map(question=>[question.prompt,question.options]));
   const defaults = structuredClone(options.cells), storageKey = 'danna:notebook:v1:' + options.key;
   const identity = 'notebook-' + (++notebookCount);
   let cells = structuredClone(defaults), selected = 0, versions = [], answers = [], record = null, packages = [];
@@ -73,7 +75,7 @@ export function mountNotebook(root, options) {
     const saved = raw && raw.length <= 1000000 ? JSON.parse(raw) : null;
     if (saved?.schema_version === 1 && validCells(saved.cells)) {
       cells = saved.cells;
-      answers = Array.isArray(saved.answers) ? saved.answers.map((value,index)=>Number.isInteger(value)&&value>=0&&value<(questions[index]?.options.length||0)?value:null) : [];
+      answers = saved.question_signature===questionSignature&&Array.isArray(saved.answers) ? saved.answers.map((value,index)=>Number.isInteger(value)&&value>=0&&value<(questions[index]?.options.length||0)?value:null) : [];
       versions = Array.isArray(saved.versions) ? saved.versions.filter(v => validCells(v.cells)).slice(-8) : [];
       packages = Array.isArray(saved.packages) ? saved.packages.filter(p => typeof p === 'string' && /^[A-Za-z0-9_.-]+==[A-Za-z0-9_.+!-]+$/.test(p)).slice(0,12) : [];
     }
@@ -92,6 +94,7 @@ export function mountNotebook(root, options) {
     panel.setAttribute('aria-labelledby', button.id); modes.append(button);
   }
   quizMode.hidden = questions.length === 0;
+  codeMode.hidden=!codeAvailable;
   const list = node('div', 'nb-cells'), add = node('button', '', 'افزودن سلول');
   add.type = 'button'; add.dataset.notebookAdd = '';
   let editors = [], cellRows = [];
@@ -129,7 +132,7 @@ export function mountNotebook(root, options) {
 
   function message(text, error = false) { status.textContent = text; status.dataset.error = String(error); }
   function save() {
-    try { localStorage.setItem(storageKey, JSON.stringify({schema_version: 1, cells, versions, answers, packages})); }
+    try { localStorage.setItem(storageKey, JSON.stringify({schema_version: 1, cells, versions, answers, packages,question_signature:questionSignature})); }
     catch { message('ذخیرهٔ مرورگر ممکن نیست؛ پیش از بستن صفحه، نوت‌بوک را دریافت کن.', true); }
   }
   function controls() {
@@ -194,6 +197,7 @@ export function mountNotebook(root, options) {
     message(options.capture ? 'کد تغییر کرده؛ نمودار و مقدارهای آزمایش هنوز متعلق به آخرین اجرای موفق‌اند.' : 'کد تغییر کرده؛ برای دیدن خروجی، سلول را اجرا کن.');
   }
   function mode(name) {
+    if(!codeAvailable)name='quiz';
     code.hidden = name !== 'code'; quiz.hidden = name !== 'quiz';
     for (const [button, current] of [[codeMode, 'code'], [quizMode, 'quiz']]) {
       button.setAttribute('aria-selected', String(name === current)); button.tabIndex = name === current ? 0 : -1;
@@ -312,6 +316,7 @@ export function mountNotebook(root, options) {
     const sample = node('pre', 'nb-output'); sample.dir = 'ltr'; highlightPythonCode(sample, options.tip.code);
     details.append(summary, sample); tip.append(details); quiz.append(tip);
   }
+  if(!codeAvailable&&!questions.length)quiz.append(node('p','nb-status','این صفحه فعالیت ندارد.'));
   mode('code'); drawVersions(); draw(); showPackages();
   return {
     setReady(value) { ready = Boolean(value); controls(); },

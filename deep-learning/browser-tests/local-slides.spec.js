@@ -169,7 +169,13 @@ test('registered2026readers align original and Persian pages, math, a single sou
     await expect(page.locator('#reader-references a')).toHaveCount(1);
     await page.locator('[data-prev-page]').click();await readerReady(page,payload.pages.length);
     const workshop=page.locator('[data-session-workshop]');
-    if(await workshop.count()){await expect(workshop).toHaveAttribute('href',sourceLesson(id)+'practice/#code');await workshop.click();await expect(page.frameLocator('[data-reader-tools-frame]').locator('[data-notebook-code]').first()).toBeVisible();}
+    if(await workshop.count()){
+      if(config.interactivePages.length){
+        await page.locator('[data-page-select]').selectOption(String(config.interactivePages[0]));await readerReady(page,config.interactivePages[0]);
+        await expect(workshop).toHaveAttribute('href',sourceLesson(id)+'practice/?source-page='+config.interactivePages[0]+'#code');
+        await workshop.click();await expect(page.frameLocator('[data-reader-tools-frame]').locator('[data-notebook-code]').first()).toBeVisible();
+      }else await expect(workshop).toHaveAttribute('aria-disabled','true');
+    }
   }
   expect(errors).toEqual([]);
 });

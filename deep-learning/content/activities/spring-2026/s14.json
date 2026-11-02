@@ -222,14 +222,16 @@
       "number": 11,
       "source_text_sha256": "7b407f8a4f17cdb350c51965136e0673e175cf1d8d866658556ce7e152a439ec",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "source_activity_index",
         "question_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "complete",
+      "question_ids": [
+        "transformer-origin"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -239,7 +241,9 @@
           10
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "all_explicit_source_prompts_covered",
+      "review_basis": "source_text_and_visually_verified_tables_and_outputs"
     },
     {
       "number": 12,
@@ -323,15 +327,17 @@
       "number": 16,
       "source_text_sha256": "33d4e2cb99d5f73044b89c26cbaf858729c8ce9bc9af6479ddafb2c1472f8e84",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "source_activity_index",
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "complete",
+      "question_ids": [
+        "objectives"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -341,7 +347,9 @@
           1
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "all_explicit_source_prompts_covered",
+      "review_basis": "source_text_and_visually_verified_tables_and_outputs"
     },
     {
       "number": 17,
@@ -353,14 +361,17 @@
         "source_activity_index",
         "question_text"
       ],
-      "question_coverage": "partial",
+      "question_coverage": "complete",
       "question_ids": [
-        "page-17-concept"
+        "page-17-concept",
+        "bert-heads-masked-word",
+        "bert-heads-next-sentence",
+        "bert-heads-cls-role"
       ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
-      "review_basis": "source_text_study_check",
+      "review_basis": "source_text_and_visually_verified_tables_and_outputs",
       "review_scope": "source_prompt_inventory",
       "explicit_prompt_candidates": {
         "source_line_indices": [
@@ -369,7 +380,8 @@
           14
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "all_explicit_source_prompts_covered"
     },
     {
       "number": 18,
@@ -516,14 +528,19 @@
       "number": 25,
       "source_text_sha256": "a4a0f5d5d1354ab1ff9a6822e0b85ddd086764adbe0c761e38829ee40c39245c",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "source_activity_index",
         "question_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "complete",
+      "question_ids": [
+        "transferred-layer-trend",
+        "gpt-ablation-pretraining",
+        "gpt-ablation-architecture",
+        "gpt-ablation-auxiliary"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -535,7 +552,9 @@
           2
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "all_explicit_source_prompts_covered",
+      "review_basis": "source_text_and_visually_verified_tables_and_outputs"
     },
     {
       "number": 26,
@@ -560,14 +579,18 @@
       "number": 27,
       "source_text_sha256": "d6a06a90aeecc0f21d4c435cc1fdde5a04407dde785f267e0096c56c20f42483",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "source_activity_index",
         "question_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "complete",
+      "question_ids": [
+        "nli-prediction-label",
+        "nli-prediction-classes",
+        "nli-prediction-representation"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -577,7 +600,9 @@
           5
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "all_explicit_source_prompts_covered",
+      "review_basis": "source_text_and_visually_verified_tables_and_outputs"
     },
     {
       "number": 28,
@@ -623,12 +648,16 @@
       "number": 30,
       "source_text_sha256": "6833b79e3b6e515cb19dd5d9f44fb35f8ee5e527203b29f1b891dd782019b7d1",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "question_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "complete",
+      "question_ids": [
+        "bert-ablation-nsp-qnli",
+        "bert-ablation-bidirectional-squad",
+        "bert-ablation-scope"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -639,7 +668,9 @@
           2
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "all_explicit_source_prompts_covered",
+      "review_basis": "source_text_and_visually_verified_tables_and_outputs"
     },
     {
       "number": 31,
@@ -713,14 +744,17 @@
         "source_activity_index",
         "question_text"
       ],
-      "question_coverage": "partial",
+      "question_coverage": "complete",
       "question_ids": [
-        "page-34-concept"
+        "page-34-concept",
+        "vision-representations",
+        "language-representations",
+        "cross-modal-representations"
       ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
-      "review_basis": "source_text_study_check",
+      "review_basis": "source_text_and_visually_verified_tables_and_outputs",
       "review_scope": "source_prompt_inventory",
       "explicit_prompt_candidates": {
         "source_line_indices": [
@@ -731,7 +765,8 @@
           19
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "all_explicit_source_prompts_covered"
     },
     {
       "number": 35,
@@ -776,11 +811,11 @@
       "number": 37,
       "source_text_sha256": "bddea813ddc7cfd18c05eaf782660dff90ebf3c95f3bc43febf28ffc137f98f1",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "question_text"
       ],
-      "question_coverage": "pending",
+      "question_coverage": "not_applicable",
       "question_ids": [],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
@@ -791,7 +826,9 @@
           2
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "parenthetical_task_definition_not_student_prompt",
+      "review_basis": "full_source_table_and_caption_inspected"
     },
     {
       "number": 38,
@@ -865,14 +902,15 @@
         "source_activity_index",
         "question_text"
       ],
-      "question_coverage": "partial",
+      "question_coverage": "complete",
       "question_ids": [
-        "page-41-concept"
+        "page-41-concept",
+        "speech-context"
       ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
-      "review_basis": "source_text_study_check",
+      "review_basis": "source_text_and_visually_verified_tables_and_outputs",
       "review_scope": "source_prompt_inventory",
       "explicit_prompt_candidates": {
         "source_line_indices": [
@@ -880,7 +918,8 @@
           10
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "all_explicit_source_prompts_covered"
     },
     {
       "number": 42,
@@ -988,15 +1027,17 @@
       "number": 47,
       "source_text_sha256": "32ea892ea21dfb765c754764839bb084e19f5a8f7fd207a8139781d5590c97ef",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "source_activity_index",
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "complete",
+      "question_ids": [
+        "pixels-quadratic"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -1006,7 +1047,9 @@
           5
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "all_explicit_source_prompts_covered",
+      "review_basis": "source_text_and_visually_verified_tables_and_outputs"
     },
     {
       "number": 48,
@@ -1124,8 +1167,9 @@
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "partial",
+      "question_coverage": "complete",
       "question_ids": [
+        "full-hd-pairs",
         "patch-counts-scope"
       ],
       "example_ids": [
@@ -1133,14 +1177,15 @@
       ],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
-      "review_basis": "source_text_and_example_arithmetic",
+      "review_basis": "source_text_and_visually_verified_tables_and_outputs",
       "review_scope": "source_prompt_inventory",
       "explicit_prompt_candidates": {
         "source_line_indices": [
           2
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "all_explicit_source_prompts_covered"
     },
     {
       "number": 54,
@@ -1152,8 +1197,9 @@
         "source_activity_index",
         "question_text"
       ],
-      "question_coverage": "partial",
+      "question_coverage": "complete",
       "question_ids": [
+        "image-cls",
         "patch-counts-patches",
         "patch-counts-cls"
       ],
@@ -1162,7 +1208,7 @@
       ],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
-      "review_basis": "source_text_and_example_arithmetic",
+      "review_basis": "source_text_and_visually_verified_tables_and_outputs",
       "review_scope": "source_prompt_inventory",
       "explicit_prompt_candidates": {
         "source_line_indices": [
@@ -1170,7 +1216,8 @@
           7
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "all_explicit_source_prompts_covered"
     },
     {
       "number": 55,
@@ -1397,6 +1444,206 @@
       "reviewed": true
     },
     {
+      "id": "transformer-origin",
+      "source_kind": "original",
+      "source_page": 11,
+      "pages": [
+        11
+      ],
+      "prompt_fa": "معماری کاملِ دوپشته‌ای نشان‌داده‌شده در شکل،با رمزگذار و رمزگشا،چیست؟",
+      "solution_fa": "BERT از رمزگذار دوطرفه و GPT از معماری رمزگشای خودبازگشتی الهام می‌گیرند؛ شکل پایه،ترنسفورمر کامل است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "ترنسفورمر Vaswani2017؛مبنای مقایسهٔ بخش‌های BERT و GPT",
+          "تنها یک CNN دوبعدی",
+          "پرسپترون تک‌لایه"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "objectives",
+      "source_kind": "original",
+      "source_page": 16,
+      "pages": [
+        16
+      ],
+      "prompt_fa": "کدام مقایسهٔ هدف پیش‌آموزشِ نسخه‌های تاریخی مطرح‌شده درست است؟",
+      "solution_fa": "بهترین هدف به وظیفه هم وابسته است؛ این صفحه تفاوت پیش‌بینی خودبازگشتی و هدف بازنمایی دوطرفه را نشان می‌دهد.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "هر دو فقط RGB را طبقه‌بندی می‌کنند",
+          "GPT توکن بعدی از گذشته؛ BERT توکن پوشانده‌شده با بافت دوطرفه و NSP",
+          "BERT فقط توکن آینده را از گذشته می‌بیند"
+        ],
+        "correct_index": 1
+      },
+      "reviewed": true
+    },
+    {
+      "id": "transferred-layer-trend",
+      "source_kind": "original",
+      "source_page": 25,
+      "pages": [
+        25
+      ],
+      "prompt_fa": "در منحنی انتقال لایه‌ها،چه روندی برای انتخاب شمار لایه‌های پیش‌آموخته دیده می‌شود؟",
+      "solution_fa": "هر دو منحنی Dev با افزایش تعداد لایه‌های منتقل‌شده در مجموع بهتر شده‌اند؛ این یک نتیجهٔ تجربی برای همان تنظیم است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "کمترین انتقال همیشه بهترین است",
+          "انتقال لایه هیچ اثری ندارد",
+          "انتقال بیشتر تا بیشترین شمار آزموده‌شده عموماً بهتر است؛انتخاب وظیفهٔ جدید با اعتبارسنجی انجام می‌شود"
+        ],
+        "correct_index": 2
+      },
+      "reviewed": true
+    },
+    {
+      "id": "vision-representations",
+      "source_kind": "original",
+      "source_page": 34,
+      "pages": [
+        34
+      ],
+      "prompt_fa": "در LXMERT،بازنمایی‌های مسیر بینایی چه اطلاعاتی را هدف می‌گیرند؟",
+      "solution_fa": "مسیر بینایی از RoI ویژگی و موقعیت می‌گیرد و Object-Relationship Encoder بافت درون‌تصویری را می‌سازد.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "ویژگی نواحی/اشیاء،مکان و روابط درون تصویر",
+          "فقط نویسه‌های متن بدون تصویر",
+          "فقط شمارهٔ فایل"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "language-representations",
+      "source_kind": "original",
+      "source_page": 34,
+      "pages": [
+        34
+      ],
+      "prompt_fa": "مسیر Language Encoder چه بازنمایی‌ای می‌سازد؟",
+      "solution_fa": "Embedding واژه/موقعیت و رمزگذار زبان،بازنمایی زمینه‌مند توکن‌ها را فراهم می‌کنند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "فقط میانگین رنگ تصویر",
+          "توکن‌های زبان با بافت توکن‌های دیگر همان جمله",
+          "همیشه یک بردار ثابت مستقل از ورودی"
+        ],
+        "correct_index": 1
+      },
+      "reviewed": true
+    },
+    {
+      "id": "cross-modal-representations",
+      "source_kind": "original",
+      "source_page": 34,
+      "pages": [
+        34
+      ],
+      "prompt_fa": "در Cross-attention چه اطلاعات تازه‌ای به هرجریان می‌رسد؟",
+      "solution_fa": "Query یک مدالیته به Key/Value مدالیتهٔ دیگر توجه می‌کند؛ بنابراین نمایش‌ها از هر دو منبع شرط می‌گیرند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "فقط همان Q بدون K و V",
+          "حذف کامل ورودی دیگر",
+          "اطلاعات مدالیتهٔ دیگر ازطریق K و V؛بازنمایی مشترک برایوظیفه در CLS خوانده می‌شود"
+        ],
+        "correct_index": 2
+      },
+      "reviewed": true
+    },
+    {
+      "id": "speech-context",
+      "source_kind": "original",
+      "source_page": 41,
+      "pages": [
+        41
+      ],
+      "prompt_fa": "در نمودار wav2vec،خروجی Transformer در مقایسه با ویژگی کوتاه‌مدت CNN چه بافتی اضافه می‌کند؟",
+      "solution_fa": "C بازنمایی زمینه‌مند توالی است؛ CNN ابتدا ویژگی‌های موضعی/کوتاه‌مدت را از موج صوتی می‌گیرد.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "ارتباط زمانی با بخش‌های دیگر توالی صوت",
+          "تضمین برچسب درست تمام واژه‌ها بدون داده",
+          "فقط نام فایل صوتی"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "pixels-quadratic",
+      "source_kind": "original",
+      "source_page": 47,
+      "pages": [
+        47
+      ],
+      "prompt_fa": "چرا دادن هرپیکسل به‌عنوان یک توکن برای تصویر بزرگ پرهزینه است؟",
+      "solution_fa": "وصله‌بندی تعداد توکن‌ها را کم می‌کند؛ این یک انگیزهٔ محاسباتی است،نه تضمین حفظ همهٔ جزئیات.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "توجه هیچ محاسبه‌ای ندارد",
+          "شمار زوج‌های توجه با مربع تعداد توکن‌ها رشد می‌کند",
+          "تصویر بزرگ فقط یک پیکسل دارد"
+        ],
+        "correct_index": 1
+      },
+      "reviewed": true
+    },
+    {
+      "id": "full-hd-pairs",
+      "source_kind": "original",
+      "source_page": 53,
+      "pages": [
+        53
+      ],
+      "prompt_fa": "برای 1920×1080 توکن پیکسلی،تعداد زوج‌های مرتب توجه با خودتوکنی چقدر است؟",
+      "solution_fa": "N=2073600 و N²=4299816960000 است؛ تعدادکل FLOP مدل کامل نیست.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "2073600",
+          "4299816960",
+          "4299816960000"
+        ],
+        "correct_index": 2
+      },
+      "reviewed": true
+    },
+    {
+      "id": "image-cls",
+      "source_kind": "original",
+      "source_page": 54,
+      "pages": [
+        54
+      ],
+      "prompt_fa": "CLS پس از گذر از ViT چه نقشی در این شکل دارد؟",
+      "solution_fa": "این توکن با توجه به وصله‌ها به‌روز می‌شود و ورودی MLP Head برای کلاس تصویر است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "بازنمایی آموخته‌شدهٔ کل تصویر برای سر طبقه‌بندی",
+          "فقط کپی پیکسل گوشهٔ بالاچپ",
+          "همیشه برچسب واقعی تصویر بدون نیاز به آموزش"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
       "id": "patch-counts-patches",
       "source_kind": "original",
       "source_page": 54,
@@ -1454,6 +1701,246 @@
       "reviewed": true,
       "pages": [
         53
+      ]
+    },
+    {
+      "id": "gpt-ablation-pretraining",
+      "source_kind": "original",
+      "source_page": 25,
+      "prompt_fa": "در ستون Avg،تفاضل مدل کامل 74.7 با مدل بدون پیش‌آموزش 59.9 چند واحد نمره است؟",
+      "solution_fa": "74.7−59.9=14.8 واحدِ همان ستون؛ این تفاضل با نسبت درصدی فرق دارد.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "14.8",
+          "14.8 درصد نسبی الزاماً",
+          "5.6"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true,
+      "pages": [
+        25
+      ]
+    },
+    {
+      "id": "gpt-ablation-architecture",
+      "source_kind": "original",
+      "source_page": 25,
+      "prompt_fa": "در ستون Avg، Transformer کامل در برابر LSTM با AuxLM چقدر بالاتر است؟",
+      "solution_fa": "74.7−69.1=5.6 واحد؛ نتیجه مربوط به همین جدول و تنظیم آزمایشی است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "14.8",
+          "5.6",
+          "0.3"
+        ],
+        "correct_index": 1
+      },
+      "reviewed": true,
+      "pages": [
+        25
+      ]
+    },
+    {
+      "id": "gpt-ablation-auxiliary",
+      "source_kind": "original",
+      "source_page": 25,
+      "prompt_fa": "کدام مدل در ستون Avg این جدول اندکی نمرهٔ بالاتر دارد؟",
+      "solution_fa": "75.0 از 74.7 بالاتر است؛ اثر یک انتخاب آموزشی را باید ستون‌به‌ستون و در زمینهٔ آزمایش خواند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "مدل بدون پیش‌آموزش",
+          "LSTM",
+          "Transformer بدون AuxLM با 75.0"
+        ],
+        "correct_index": 2
+      },
+      "reviewed": true,
+      "pages": [
+        25
+      ]
+    },
+    {
+      "id": "bert-ablation-nsp-qnli",
+      "source_kind": "original",
+      "source_page": 30,
+      "prompt_fa": "در QNLI،افت از BERT_BASE به NoNSP چند واحد نمره است؟",
+      "solution_fa": "88.4−84.9=3.5 است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "3.5",
+          "0.5",
+          "10.1"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true,
+      "pages": [
+        30
+      ]
+    },
+    {
+      "id": "bert-ablation-bidirectional-squad",
+      "source_kind": "original",
+      "source_page": 30,
+      "prompt_fa": "در SQuAD، NoNSP دوطرفه نسبت به LTR و NoNSP چقدر F1 بالاتر دارد؟",
+      "solution_fa": "87.9−77.8=10.1 واحد F1؛ این مقایسه هر دو تنظیم را بدون NSP نگه می‌دارد.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "0.6",
+          "10.1",
+          "3.5"
+        ],
+        "correct_index": 1
+      },
+      "reviewed": true,
+      "pages": [
+        30
+      ]
+    },
+    {
+      "id": "bert-ablation-scope",
+      "source_kind": "original",
+      "source_page": 30,
+      "prompt_fa": "از این جدول چه نتیجه‌ای مجاز است؟",
+      "solution_fa": "نتیجهٔ ablation به شرایط آزمایش وابسته است؛ حکم عمومی دربارهٔ همهٔ پیش‌آموزش‌ها نیست.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "NSP در تمام مدل‌ها و داده‌های آینده ضروری است",
+          "هیچ روش دیگری نمی‌تواند بهتر شود",
+          "در همین تنظیم‌ها حذف NSP و چپ‌به‌راست‌کردن پیش‌آموزش نمره‌ها را پایین آورده‌اند"
+        ],
+        "correct_index": 2
+      },
+      "reviewed": true,
+      "pages": [
+        30
+      ]
+    },
+    {
+      "id": "bert-heads-masked-word",
+      "source_kind": "original",
+      "source_page": 17,
+      "prompt_fa": "در خروجی نمونه،کدام واژه برای MASK بیشترین احتمال را دارد؟",
+      "solution_fa": "سر واژهٔ پوشانده‌شده city را با 0.9 در شکل نشان می‌دهد.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "city با 0.9",
+          "love با 0.9",
+          "Paris با 1.0"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true,
+      "pages": [
+        17
+      ]
+    },
+    {
+      "id": "bert-heads-next-sentence",
+      "source_kind": "original",
+      "source_page": 17,
+      "prompt_fa": "خروجی سر رابطهٔ دو جمله در همین توزیع چیست؟",
+      "solution_fa": "isNext با 0.9 بیشترین احتمال را دارد.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "NotNext",
+          "isNext",
+          "هیچ‌کدام،چون جمع احتمال‌ها 0 است"
+        ],
+        "correct_index": 1
+      },
+      "reviewed": true,
+      "pages": [
+        17
+      ]
+    },
+    {
+      "id": "bert-heads-cls-role",
+      "source_kind": "original",
+      "source_page": 17,
+      "prompt_fa": "برای پیش‌بینی رابطهٔ دو جمله از کدام بازنمایی استفاده می‌شود؟",
+      "solution_fa": "در شکل، CLS به سر رابطهٔ جمله‌ها می‌رود؛ پیش‌بینی MASK سر مربوط به جایگاه پوشانده‌شده را دارد.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "فقط آخرین حرف Paris",
+          "ورودی RGB",
+          "بازنمایی CLS برای کل ورودی دو جمله"
+        ],
+        "correct_index": 2
+      },
+      "reviewed": true,
+      "pages": [
+        17
+      ]
+    },
+    {
+      "id": "nli-prediction-label",
+      "source_kind": "original",
+      "source_page": 27,
+      "prompt_fa": "در توزیع نشان‌داده‌شده برای He is playing و He is sleeping،چه برچسبی پیش‌بینی شده است؟",
+      "solution_fa": "نمودار contradiction را بااحتمال 1 نشان می‌دهد؛ این خواندن خروجی همین مثال است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "contradiction",
+          "entailment",
+          "neutral"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true,
+      "pages": [
+        27
+      ]
+    },
+    {
+      "id": "nli-prediction-classes",
+      "source_kind": "original",
+      "source_page": 27,
+      "prompt_fa": "سر طبقه‌بندی این مثال چند کلاس دارد؟",
+      "solution_fa": "تناقض،استلزام و خنثی سه خروجی سر هستند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "2",
+          "3",
+          "11"
+        ],
+        "correct_index": 1
+      },
+      "reviewed": true,
+      "pages": [
+        27
+      ]
+    },
+    {
+      "id": "nli-prediction-representation",
+      "source_kind": "original",
+      "source_page": 27,
+      "prompt_fa": "کدام توکن بازنمایی ورودیِ سر طبقه‌بندی را فراهم می‌کند؟",
+      "solution_fa": "در این روش،بازنمایی کل توالی از CLS وارد سر وظیفه می‌شود.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "فقط sleeping",
+          "فقط SEP",
+          "CLS پس از گذر از BERT"
+        ],
+        "correct_index": 2
+      },
+      "reviewed": true,
+      "pages": [
+        27
       ]
     }
   ]

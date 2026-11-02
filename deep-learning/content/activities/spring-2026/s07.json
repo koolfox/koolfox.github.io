@@ -1507,206 +1507,6 @@
       "reviewed": true
     },
     {
-      "id": "majority-threshold",
-      "source_kind": "original",
-      "source_page": 38,
-      "prompt_fa": "از 11 رأی‌دهنده، چند خطا برای خطای اکثریت کافی است؟",
-      "solution_fa": "اکثریت باید بیش از نصف 11 باشد: 6.",
-      "answer": {
-        "kind": "choice",
-        "options_fa": [
-          "5",
-          "6",
-          "11"
-        ],
-        "correct_index": 1
-      },
-      "reviewed": true,
-      "pages": [
-        38
-      ]
-    },
-    {
-      "id": "majority-probability",
-      "source_kind": "original",
-      "source_page": 38,
-      "prompt_fa": "با خطای مستقل 0.25 ، احتمال خطای اکثریت تقریباً چقدر است؟",
-      "solution_fa": "جمع دوجمله‌ای برای k از 6 تا 11 برابر 0.0343275 است.",
-      "answer": {
-        "kind": "choice",
-        "options_fa": [
-          "0.25",
-          "0.75",
-          "0.0343"
-        ],
-        "correct_index": 2
-      },
-      "reviewed": true,
-      "pages": [
-        38
-      ]
-    },
-    {
-      "id": "majority-assumption",
-      "source_kind": "original",
-      "source_page": 38,
-      "prompt_fa": "محاسبهٔ دوجمله‌ای به کدام فرض متکی است؟",
-      "solution_fa": "بدون استقلال نمی‌توان احتمال الگوها را با ضرب همین احتمال‌ها محاسبه کرد.",
-      "answer": {
-        "kind": "choice",
-        "options_fa": [
-          "استقلال خطاها و نرخ یکسان",
-          "یکسان‌بودن تمام پیش‌بینی‌ها",
-          "صفر بودن خطا"
-        ],
-        "correct_index": 0
-      },
-      "reviewed": true,
-      "pages": [
-        38
-      ]
-    },
-    {
-      "id": "sequence-rule-next",
-      "source_kind": "original",
-      "source_page": 15,
-      "prompt_fa": "طبق قاعدهٔ دنبالهٔB،پس از15چه عددی می‌آید؟",
-      "solution_fa": "15فرد است؛3×15+1=46.",
-      "answer": {
-        "kind": "choice",
-        "options_fa": [
-          "46",
-          "30",
-          "7"
-        ],
-        "correct_index": 0
-      },
-      "reviewed": true,
-      "pages": [
-        15
-      ]
-    },
-    {
-      "id": "sequence-rule-description",
-      "source_kind": "original",
-      "source_page": 15,
-      "prompt_fa": "چراBباوجود14عضو می‌تواند ازAبا8عضو آسان‌تر به خاطر سپرده شود؟",
-      "solution_fa": "قاعده،بازنمایی فشرده‌ای از نظم دنباله است؛ طول فهرست تنها عامل پیچیدگی توصیف نیست.",
-      "answer": {
-        "kind": "choice",
-        "options_fa": [
-          "فقط چون بزرگ‌تر است",
-          "شروع و قاعدهٔ کوتاه،همهٔ اعضا را مشخص می‌کنند",
-          "چون هیچ عددی ندارد"
-        ],
-        "correct_index": 1
-      },
-      "reviewed": true,
-      "pages": [
-        15
-      ]
-    },
-    {
-      "id": "sequence-rule-autoencoder",
-      "source_kind": "original",
-      "source_page": 15,
-      "prompt_fa": "هدف یکAutoencoderایده‌آل برای ورودی620×426در تشبیه اسلاید چیست؟",
-      "solution_fa": "620×426=264120موقعیت پیکسلی است؛ در تصویر چندکاناله تعداد مقدارهای اسکالر به تعداد کانال هم وابسته است.",
-      "answer": {
-        "kind": "choice",
-        "options_fa": [
-          "پیش‌بینی نام کلاس فقط",
-          "تولید تصویر تصادفی مستقل از ورودی",
-          "بازسازی خود ورودی با264120موقعیت پیکسلی"
-        ],
-        "correct_index": 2
-      },
-      "reviewed": true,
-      "pages": [
-        15
-      ]
-    },
-    {
-      "id": "sequence-rule-self-target",
-      "source_kind": "original",
-      "source_page": 15,
-      "prompt_fa": "چرا بازسازی ورودی به برچسب دستیِ هر تصویر نیاز ندارد؟",
-      "solution_fa": "در این وظیفه،جفت ورودی/هدف از خود داده ساخته می‌شود؛ این به معنی بی‌نیازی از داده یا آموزش نیست.",
-      "answer": {
-        "kind": "choice",
-        "options_fa": [
-          "خود ورودی هدف بازسازی را فراهم می‌کند",
-          "چون زیان محاسبه نمی‌شود",
-          "چون همیشه مدل از پیش بی‌خطاست"
-        ],
-        "correct_index": 0
-      },
-      "reviewed": true,
-      "pages": [
-        15
-      ]
-    },
-    {
-      "id": "factored-classes-red-truck",
-      "source_kind": "original",
-      "source_page": 11,
-      "prompt_fa": "برچسبred truckبه کدام دو ویژگی قابل تفکیک است؟",
-      "solution_fa": "همان رنگ‌ها و نوع‌های شیء در چند کلاس مشترک‌اند.",
-      "answer": {
-        "kind": "choice",
-        "options_fa": [
-          "رنگredو نوعtruck",
-          "دو رنگredوgreen",
-          "فقط یک عدد وزن"
-        ],
-        "correct_index": 0
-      },
-      "reviewed": true,
-      "pages": [
-        11
-      ]
-    },
-    {
-      "id": "factored-classes-combinations",
-      "source_kind": "original",
-      "source_page": 11,
-      "prompt_fa": "سه رنگ و سه نوع شیء چند ترکیب در همین فهرست می‌سازند؟",
-      "solution_fa": "3×3=9ترکیب؛ فهرست منبع هرنه ترکیب را دارد.",
-      "answer": {
-        "kind": "choice",
-        "options_fa": [
-          "6",
-          "9",
-          "3"
-        ],
-        "correct_index": 1
-      },
-      "reviewed": true,
-      "pages": [
-        11
-      ]
-    },
-    {
-      "id": "factored-classes-representation",
-      "source_kind": "original",
-      "source_page": 11,
-      "prompt_fa": "در دوOne-hotجدا برای رنگ و شیء،طول بردار الحاق‌شده چند است؟",
-      "solution_fa": "سه مؤلفه برای رنگ و سه برای نوع شیء داریم؛ این فقط یک بازنمایی ساختاریافته است،نه ادعای کمینهٔ نظری بیت.",
-      "answer": {
-        "kind": "choice",
-        "options_fa": [
-          "9",
-          "3",
-          "6"
-        ],
-        "correct_index": 2
-      },
-      "reviewed": true,
-      "pages": [
-        11
-      ]
-    },
-    {
       "id": "scaling-ant",
       "source_kind": "original",
       "source_page": 13,
@@ -1733,8 +1533,8 @@
       "pages": [
         23
       ],
-      "prompt_fa": "درAlexNetشکل،چند لایه پارامتر قابل یادگیری دارد؟",
-      "solution_fa": "پنج کانولوشن و سه لایهٔ کاملاً متصل داریم؛ poolingپارامتر وزن مستقل ندارد.",
+      "prompt_fa": "در AlexNet شکل،چند لایه پارامتر قابل یادگیری دارد؟",
+      "solution_fa": "پنج کانولوشن و سه لایهٔ کاملاً متصل داریم؛ pooling پارامتر وزن مستقل ندارد.",
       "answer": {
         "kind": "choice",
         "options_fa": [
@@ -1753,7 +1553,7 @@
       "pages": [
         26
       ],
-      "prompt_fa": "کدام سه مشکل برای آموزشAlexNetدر این صفحه مطرح شده‌اند؟",
+      "prompt_fa": "کدام سه مشکل برای آموزش AlexNet در این صفحه مطرح شده‌اند؟",
       "solution_fa": "این سه مانع به‌ترتیب امکان یادگیری،تعمیم و عملی‌بودن محاسبه را تهدید می‌کنند.",
       "answer": {
         "kind": "choice",
@@ -1773,14 +1573,14 @@
       "pages": [
         31
       ],
-      "prompt_fa": "در آزمایش چهارلایهٔCIFAR-10این صفحه،مشاهدهٔ اصلی چه بود؟",
-      "solution_fa": "نتیجه مربوط به همین آزمایش و آستانهٔ خطاست؛ از آن ممنوعیت عمومیtanhنتیجه نمی‌شود.",
+      "prompt_fa": "در آزمایش چهارلایهٔ CIFAR-10 این صفحه،مشاهدهٔ اصلی چه بود؟",
+      "solution_fa": "نتیجه مربوط به همین آزمایش و آستانهٔ خطاست؛ از آن ممنوعیت عمومی tanh نتیجه نمی‌شود.",
       "answer": {
         "kind": "choice",
         "options_fa": [
-          "ReLUحدود6برابر سریع‌تر به25٪خطای آموزش رسید",
-          "tanhهمیشه در هر مسئله‌ای بی‌فایده است",
-          "ReLUبه آموزش و داده نیاز نداشت"
+          "ReLU حدود 6 برابر سریع‌تر به 25 ٪خطای آموزش رسید",
+          "tanh همیشه در هر مسئله‌ای بی‌فایده است",
+          "ReLU به آموزش و داده نیاز نداشت"
         ],
         "correct_index": 0
       },
@@ -1793,8 +1593,8 @@
       "pages": [
         40
       ],
-      "prompt_fa": "چراbaggingچند شبکهٔ بزرگ می‌تواند نامناسب یا پرهزینه باشد؟",
-      "solution_fa": "مسئله هزینهٔ چند مدل مستقل است؛Dropoutتقریبی ارزان‌تر از مجموعه‌ای از زیرشبکه‌ها می‌سازد.",
+      "prompt_fa": "چرا bagging چند شبکهٔ بزرگ می‌تواند نامناسب یا پرهزینه باشد؟",
+      "solution_fa": "مسئله هزینهٔ چند مدل مستقل است؛ Dropout تقریبی ارزان‌تر از مجموعه‌ای از زیرشبکه‌ها می‌سازد.",
       "answer": {
         "kind": "choice",
         "options_fa": [
@@ -1813,14 +1613,14 @@
       "pages": [
         42
       ],
-      "prompt_fa": "چراDropoutمی‌تواند منحنی زیان آموزش را پرنوسان‌تر کند؟",
-      "solution_fa": "ماسک تصادفی،مسیرهای فعال forward/backwardرا عوض می‌کند.",
+      "prompt_fa": "چرا Dropout می‌تواند منحنی زیان آموزش را پرنوسان‌تر کند؟",
+      "solution_fa": "ماسک تصادفی،مسیرهای فعال forward/backward را عوض می‌کند.",
       "answer": {
         "kind": "choice",
         "options_fa": [
           "چون برچسب‌ها عمداً غلط می‌شوند",
           "چون گرادیان همیشه صفر است",
-          "زیرشبکهٔ فعال میانmini-batchها تغییر می‌کند"
+          "زیرشبکهٔ فعال میان mini-batch ها تغییر می‌کند"
         ],
         "correct_index": 2
       },
@@ -1833,14 +1633,14 @@
       "pages": [
         43
       ],
-      "prompt_fa": "اگر احتمال حذفqباشد،درDropoutمعمول وزن آزمون در چه ضریبی ضرب می‌شود؟",
-      "solution_fa": "برای حفظ امید فعال‌سازی،ضریب احتمال نگه‌داشتن است. درInverted dropoutتقسیم بر احتمال نگه‌داشتن در آموزش انجام می‌شود و آزمون مقیاس‌دهی تازه ندارد.",
+      "prompt_fa": "اگر احتمال حذف q باشد،در Dropout معمول وزن آزمون در چه ضریبی ضرب می‌شود؟",
+      "solution_fa": "برای حفظ امید فعال‌سازی،ضریب احتمال نگه‌داشتن است. در Inverted dropout تقسیم بر احتمال نگه‌داشتن در آموزش انجام می‌شود و آزمون مقیاس‌دهی تازه ندارد.",
       "answer": {
         "kind": "choice",
         "options_fa": [
           "1−q؛احتمال نگه‌داشتن",
           "q؛احتمال حذف",
-          "همیشه2"
+          "همیشه 2"
         ],
         "correct_index": 0
       },
@@ -1853,14 +1653,14 @@
       "pages": [
         48
       ],
-      "prompt_fa": "استدلال همینAlexNetبرای به‌کارنبردنDropoutمعمول در لایه‌های کانولوشنی چه بود؟",
-      "solution_fa": "این انتخاب مربوط به معماری/آزمایش تاریخی است؛ قانون ممنوعیتDropoutبرای هرکانولوشن نیست.",
+      "prompt_fa": "استدلال همین AlexNet برای به‌کارنبردن Dropout معمول در لایه‌های کانولوشنی چه بود؟",
+      "solution_fa": "این انتخاب مربوط به معماری/آزمایش تاریخی است؛ قانون ممنوعیت Dropout برای هرکانولوشن نیست.",
       "answer": {
         "kind": "choice",
         "options_fa": [
           "تمام کانولوشن‌ها غیرقابل آموزش‌اند",
           "اشتراک پارامترها خودش تعداد پارامتر و نیاز به منظم‌سازی را کاهش می‌دهد",
-          "Dropoutدر تمامCNNهای امروزی ممنوع است"
+          "Dropout در تمام CNN های امروزی ممنوع است"
         ],
         "correct_index": 1
       },
@@ -1947,6 +1747,206 @@
         "correct_index": 2
       },
       "reviewed": true
+    },
+    {
+      "id": "majority-threshold",
+      "source_kind": "original",
+      "source_page": 38,
+      "prompt_fa": "از 11 رأی‌دهنده، چند خطا برای خطای اکثریت کافی است؟",
+      "solution_fa": "اکثریت باید بیش از نصف 11 باشد: 6.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "5",
+          "6",
+          "11"
+        ],
+        "correct_index": 1
+      },
+      "reviewed": true,
+      "pages": [
+        38
+      ]
+    },
+    {
+      "id": "majority-probability",
+      "source_kind": "original",
+      "source_page": 38,
+      "prompt_fa": "با خطای مستقل 0.25، احتمال خطای اکثریت تقریباً چقدر است؟",
+      "solution_fa": "جمع دوجمله‌ای برای k از 6 تا 11 برابر 0.0343275 است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "0.25",
+          "0.75",
+          "0.0343"
+        ],
+        "correct_index": 2
+      },
+      "reviewed": true,
+      "pages": [
+        38
+      ]
+    },
+    {
+      "id": "majority-assumption",
+      "source_kind": "original",
+      "source_page": 38,
+      "prompt_fa": "محاسبهٔ دوجمله‌ای به کدام فرض متکی است؟",
+      "solution_fa": "بدون استقلال نمی‌توان احتمال الگوها را با ضرب همین احتمال‌ها محاسبه کرد.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "استقلال خطاها و نرخ یکسان",
+          "یکسان‌بودن تمام پیش‌بینی‌ها",
+          "صفر بودن خطا"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true,
+      "pages": [
+        38
+      ]
+    },
+    {
+      "id": "sequence-rule-next",
+      "source_kind": "original",
+      "source_page": 15,
+      "prompt_fa": "طبق قاعدهٔ دنبالهٔ B،پس از 15 چه عددی می‌آید؟",
+      "solution_fa": "15 فرد است؛ 3×15+1=46.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "46",
+          "30",
+          "7"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true,
+      "pages": [
+        15
+      ]
+    },
+    {
+      "id": "sequence-rule-description",
+      "source_kind": "original",
+      "source_page": 15,
+      "prompt_fa": "چرا B باوجود 14 عضو می‌تواند از A با 8 عضو آسان‌تر به خاطر سپرده شود؟",
+      "solution_fa": "قاعده،بازنمایی فشرده‌ای از نظم دنباله است؛ طول فهرست تنها عامل پیچیدگی توصیف نیست.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "فقط چون بزرگ‌تر است",
+          "شروع و قاعدهٔ کوتاه،همهٔ اعضا را مشخص می‌کنند",
+          "چون هیچ عددی ندارد"
+        ],
+        "correct_index": 1
+      },
+      "reviewed": true,
+      "pages": [
+        15
+      ]
+    },
+    {
+      "id": "sequence-rule-autoencoder",
+      "source_kind": "original",
+      "source_page": 15,
+      "prompt_fa": "هدف یک Autoencoder ایده‌آل برای ورودی 620×426 در تشبیه اسلاید چیست؟",
+      "solution_fa": "620×426=264120 موقعیت پیکسلی است؛ در تصویر چندکاناله تعداد مقدارهای اسکالر به تعداد کانال هم وابسته است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "پیش‌بینی نام کلاس فقط",
+          "تولید تصویر تصادفی مستقل از ورودی",
+          "بازسازی خود ورودی با 264120 موقعیت پیکسلی"
+        ],
+        "correct_index": 2
+      },
+      "reviewed": true,
+      "pages": [
+        15
+      ]
+    },
+    {
+      "id": "sequence-rule-self-target",
+      "source_kind": "original",
+      "source_page": 15,
+      "prompt_fa": "چرا بازسازی ورودی به برچسب دستیِ هر تصویر نیاز ندارد؟",
+      "solution_fa": "در این وظیفه،جفت ورودی/هدف از خود داده ساخته می‌شود؛ این به معنی بی‌نیازی از داده یا آموزش نیست.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "خود ورودی هدف بازسازی را فراهم می‌کند",
+          "چون زیان محاسبه نمی‌شود",
+          "چون همیشه مدل از پیش بی‌خطاست"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true,
+      "pages": [
+        15
+      ]
+    },
+    {
+      "id": "factored-classes-red-truck",
+      "source_kind": "original",
+      "source_page": 11,
+      "prompt_fa": "برچسب red truck به کدام دو ویژگی قابل تفکیک است؟",
+      "solution_fa": "همان رنگ‌ها و نوع‌های شیء در چند کلاس مشترک‌اند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "رنگ red و نوع truck",
+          "دو رنگ red و green",
+          "فقط یک عدد وزن"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true,
+      "pages": [
+        11
+      ]
+    },
+    {
+      "id": "factored-classes-combinations",
+      "source_kind": "original",
+      "source_page": 11,
+      "prompt_fa": "سه رنگ و سه نوع شیء چند ترکیب در همین فهرست می‌سازند؟",
+      "solution_fa": "3×3=9 ترکیب؛ فهرست منبع هرنه ترکیب را دارد.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "6",
+          "9",
+          "3"
+        ],
+        "correct_index": 1
+      },
+      "reviewed": true,
+      "pages": [
+        11
+      ]
+    },
+    {
+      "id": "factored-classes-representation",
+      "source_kind": "original",
+      "source_page": 11,
+      "prompt_fa": "در دو One-hot جدا برای رنگ و شیء،طول بردار الحاق‌شده چند است؟",
+      "solution_fa": "سه مؤلفه برای رنگ و سه برای نوع شیء داریم؛ این فقط یک بازنمایی ساختاریافته است،نه ادعای کمینهٔ نظری بیت.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "9",
+          "3",
+          "6"
+        ],
+        "correct_index": 2
+      },
+      "reviewed": true,
+      "pages": [
+        11
+      ]
     }
   ]
 }

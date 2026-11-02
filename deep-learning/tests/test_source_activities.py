@@ -27,6 +27,16 @@ class SourceActivityTests(unittest.TestCase):
                     self.assertEqual(by_id[identity]["answer"]["kind"], "choice")
         self.assertEqual(total, 1303)
 
+    def test_forward_and_loss_frames_do_not_inherit_future_weight_update_questions(self):
+        document = load_activities(ROOT, "spring-2026", "s03")
+        by_id = {q["id"]:q for q in document["questions"]}
+        self.assertFalse(document["pages"][67]["question_ids"])
+        self.assertEqual(document["pages"][70]["question_ids"], ["forward-o5"])
+        loss_ids = document["pages"][74]["question_ids"]
+        self.assertTrue(loss_ids)
+        self.assertTrue(all(by_id[i]["source_page"] in (74,75) for i in loss_ids))
+        self.assertFalse(any("direction" in i or "update-symbolic" in i for i in loss_ids))
+
     def test_stale_source_text_or_unsupported_completion_is_rejected(self):
         source = json.loads((ROOT / "content/source-slides/spring-2026/s01.json").read_text())
         document = load_activities(ROOT, "spring-2026", "s01")

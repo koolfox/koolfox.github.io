@@ -1,4 +1,4 @@
-import{sourceModelCatalog,loadSourceModel,runSourceModel,releaseSourceModel,preprocessResnetImageData}from'./model-runtime.js';
+import{sourceModelCatalog,loadSourceModel,runSourceModel,releaseSourceModel,preprocessSourceModelImageData}from'./model-runtime.js?v=fe40e5cb0bf0ab28';
 import{createBertTokenizer}from'./model-tokenizer.js';
 const find=selector=>document.querySelector(selector),number=new Intl.NumberFormat('fa-IR',{maximumFractionDigits:1});
 const form=find('[data-model-form]'),run=find('[data-run]'),cancel=find('[data-cancel]'),release=find('[data-release]');
@@ -47,28 +47,30 @@ async function chooseImage(file){
   bitmap=await createImageBitmap(file,{imageOrientation:'none',colorSpaceConversion:'none'});
   if(bitmap.width*bitmap.height>20000000||Math.max(bitmap.width/bitmap.height,bitmap.height/bitmap.width)>16)throw Error('تصویر باید حداکثر ۲۰ مگاپیکسل و با نسبت ابعاد کمتر از ۱۶ باشد.');
   const canvas=document.createElement('canvas');canvas.width=bitmap.width;canvas.height=bitmap.height;const context=canvas.getContext('2d',{willReadFrequently:true});context.drawImage(bitmap,0,0);
-  const prepared=preprocessResnetImageData(context.getImageData(0,0,bitmap.width,bitmap.height));uploaded=prepared.tensor;
+  const prepared=preprocessSourceModelImageData(model,context.getImageData(0,0,bitmap.width,bitmap.height));uploaded=prepared.tensor;
   const preview=find('[data-crop]');preview.getContext('2d').putImageData(new ImageData(prepared.preview.data,224,224),0,0);find('[data-preview]').hidden=false;
  }catch(cause){error(cause.message||'تصویر خوانده نشد؛ فایل دیگری انتخاب کن.');}
  finally{bitmap?.close();preparing=false;controls();}
 }
+function referenceNote(){return model.default_input?.kind==='image'?'خروجی این تصویر با اجرای پایتون مقایسه می‌شود.':'تنسور عددی آزمون؛ این ورودی عکس نیست.';}
 function inputControls(){
  const container=find('[data-input-controls]');
  if(model.kind==='masked-language-model'){
   for(const[name,label,rows]of[['text','جملهٔ دارای [MASK]',3],['textPair','جملهٔ دوم',2]]){const wrapper=element('label',label),input=element('textarea',undefined,{name,rows,dir:'ltr',spellcheck:'false','aria-label':label});input.value=model.default_input[name];wrapper.append(input);container.append(wrapper);}
  }else{
   const modes=element('div',undefined,{class:'model-modes'});
-  for(const[value,text]of[['reference','آزمون عددی مرجع'],['image','تصویر من']]){const label=element('label'),radio=element('input',undefined,{type:'radio',name:'mode',value});radio.checked=value==='reference';label.append(radio,document.createTextNode(text));modes.append(label);}
+  for(const[value,text]of[['reference',model.default_input?.kind==='image'?'تصویر نمونه':'آزمون عددی مرجع'],['image','تصویر من']]){const label=element('label'),radio=element('input',undefined,{type:'radio',name:'mode',value});radio.checked=value==='reference';label.append(radio,document.createTextNode(text));modes.append(label);}
+  if(model.default_input?.preview_url){const figure=element('figure',undefined,{class:'model-preview','data-reference-preview':''}),image=element('img',undefined,{class:'model-crop',src:new URL(model.default_input.preview_url,new URL('../models/source-models.json',import.meta.url)).href,alt:model.default_input.caption_fa||'تصویر نمونه',width:'224',height:'224'});figure.append(image,element('figcaption',model.default_input.caption_fa||'تصویر نمونهٔ مدل'));container.append(figure);}
   const upload=element('div',undefined,{'data-upload':''});upload.hidden=true;const label=element('label','تصویر ورودی'),file=element('input',undefined,{type:'file',accept:'image/*','data-file':'','aria-label':'تصویر ورودی'});label.append(file);upload.append(label);
-  const figure=element('figure',undefined,{class:'model-preview','data-preview':''});figure.hidden=true;figure.append(element('canvas',undefined,{class:'model-crop',width:'224',height:'224','data-crop':'',role:'img','aria-label':'برش ۲۲۴ در ۲۲۴ ورودی مدل'}),element('figcaption','برش ورودی مدل · RGB · ۲۲۴ × ۲۲۴'));upload.append(figure);container.append(modes,upload);
+  const figure=element('figure',undefined,{class:'model-preview','data-preview':''});figure.hidden=true;figure.append(element('canvas',undefined,{class:'model-crop',width:'224',height:'224','data-crop':'',role:'img','aria-label':'تصویر ۲۲۴ در ۲۲۴ ورودی مدل'}),element('figcaption',model.preprocessing?.resize_mode==='stretch'?'تصویر ورودی مدل · RGB · ۲۲۴ × ۲۲۴':'برش ورودی مدل · RGB · ۲۲۴ × ۲۲۴'));upload.append(figure);container.append(modes,upload);
   file.addEventListener('change',()=>chooseImage(file.files[0]));
  }
  form.addEventListener('input',event=>{
   if(event.target.matches('[type=file]'))return;clearResults();errorPanel.hidden=true;
-  if(model.kind==='image-classification'){const image=form.elements.mode.value==='image';find('[data-upload]').hidden=!image;note.textContent=image?'تصویر در همین مرورگر پردازش می‌شود.':'تنسور عددی آزمون؛ این ورودی عکس نیست.';}
+  if(model.kind==='image-classification'){const image=form.elements.mode.value==='image';find('[data-upload]').hidden=!image;if(find('[data-reference-preview]'))find('[data-reference-preview]').hidden=image;note.textContent=image?'تصویر در همین مرورگر پردازش می‌شود.':referenceNote();}
   controls();
  });
- if(model.kind==='image-classification')note.textContent='تنسور عددی آزمون؛ این ورودی عکس نیست.';
+ if(model.kind==='image-classification')note.textContent=referenceNote();
 }
 form.addEventListener('submit',async event=>{
  event.preventDefault();if(busy||!validInput())return;busy=true;controller=new AbortController();errorPanel.hidden=true;clearResults();controls();
@@ -86,7 +88,7 @@ window.addEventListener('pageshow',()=>{leaving=false;controls();});
 window.addEventListener('pagehide',()=>{leaving=true;controller?.abort();if(handle){void releaseSourceModel(handle).catch(()=>{});handle=null;}});
 try{
  model=(await sourceModelCatalog()).find(value=>value.id===document.body.dataset.modelId);if(!model)throw Error('این مدل در فهرست موجود نیست.');
- find('[data-architecture]').textContent=model.kind==='masked-language-model'?'۱۲ لایهٔ Transformer · پیش‌بینی واژهٔ پوشانده‌شده':'۱۵۲ لایه · طبقه‌بندی تصویر';
+ find('[data-architecture]').textContent=model.architecture?.summary_fa||(model.kind==='masked-language-model'?'۱۲ لایهٔ Transformer · پیش‌بینی واژهٔ پوشانده‌شده':'۱۵۲ لایه · طبقه‌بندی تصویر');
  find('[data-download-size]').textContent=`بارگیری مدل: ${number.format(model.artifacts.model.bytes/1e6)} مگابایت.`;
  inputControls();if(model.kind==='masked-language-model')await loadVocabulary();controls();
  if(!navigator.gpu)error('این مرورگر WebGPU را ارائه نمی‌کند. از مرورگری با WebGPU فعال استفاده کن.');

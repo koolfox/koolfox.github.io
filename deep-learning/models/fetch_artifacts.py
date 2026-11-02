@@ -73,6 +73,32 @@ ARTIFACTS += [
     }
     for name, size, sha in SMALL
 ]
+ARTIFACTS += [
+    {
+        "file": "vit/model.safetensors",
+        "url": "https://huggingface.co/google/vit-base-patch16-224/resolve/3f49326eb077187dfe1c2a2bb15fbd74e6ab91e3/model.safetensors",
+        "size": 346293852,
+        "sha256": "1cea07110a4a47edc51420b2dda6f3b8b58e7256e8f44b4ea6aa9696162ccb5d",
+    },
+    {
+        "file": "vit/config.json",
+        "url": "https://huggingface.co/google/vit-base-patch16-224/resolve/3f49326eb077187dfe1c2a2bb15fbd74e6ab91e3/config.json",
+        "size": 69665,
+        "sha256": "abdf73cc4ce79495a83f32a8c9265daa7a1363f5a3efa4704c88a6e7f45ad19d",
+    },
+    {
+        "file": "vit/preprocessor_config.json",
+        "url": "https://huggingface.co/google/vit-base-patch16-224/resolve/3f49326eb077187dfe1c2a2bb15fbd74e6ab91e3/preprocessor_config.json",
+        "size": 160,
+        "sha256": "90d1ae427c27d2b9dcb01f6a62ba96aa67aac2de1697c59cd212055b5035c4a2",
+    },
+    {
+        "file": "vit/astronaut.png",
+        "url": "https://raw.githubusercontent.com/scikit-image/scikit-image/e8a42ba85aaf5fd9322ef9ca51bc21063b22fcae/skimage/data/astronaut.png",
+        "size": 791555,
+        "sha256": "88431cd9653ccd539741b555fb0a46b61558b301d4110412b5bc28b5e3ea6cb5",
+    },
+]
 BLOCK = 4 * 1024 * 1024
 
 
@@ -127,10 +153,20 @@ def fetch(item):
                 with urllib.request.urlopen(request, timeout=120) as response:
                     data = response.read()
                     if (
-                        response.status != 206
+                        (
+                            response.status != 206
+                            and not (
+                                response.status == 200
+                                and start == 0
+                                and end == item["size"]
+                            )
+                        )
                         or len(data) != end - start
-                        or not response.headers.get("Content-Range", "").startswith(
-                            f"bytes {start}-"
+                        or (
+                            response.status == 206
+                            and not response.headers.get(
+                                "Content-Range", ""
+                            ).startswith(f"bytes {start}-")
                         )
                     ):
                         raise ValueError(

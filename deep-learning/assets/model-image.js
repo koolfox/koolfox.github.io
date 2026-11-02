@@ -1,4 +1,4 @@
-// ImageNet preprocessing for the released MXNet Gluon ResNet-v1 checkpoint.
+// Checkpoint-specific RGB preprocessing for ResNet-v1 and ViT-B/16.
 // Input is decoded RGBA pixels. Resize uses Pillow's separable bilinear filter
 // with antialiasing when shrinking, then a center crop and RGB normalization.
 const precision=2**22;
@@ -14,10 +14,10 @@ function coefficients(inputSize,outputSize){
   return{first,weights:weights.map(value=>Math.floor(value/sum*precision+0.5))};
  });
 }
-export function preprocessResnetImageData(image){
+function preprocessImageData(image,processor){
  const {width,height,data}=image||{};
  if(!Number.isSafeInteger(width)||!Number.isSafeInteger(height)||width<1||height<1||width*height>20000000||Math.max(width/height,height/width)>16||!(data instanceof Uint8ClampedArray||data instanceof Uint8Array)||data.length!==width*height*4)throw Error('تصویر باید RGBA، حداکثر ۲۰ مگاپیکسل و با نسبت ابعاد کمتر از ۱۶ باشد.');
- const ratio=256/Math.min(width,height),resizedWidth=width>height?roundEven(width*ratio):256,resizedHeight=width>height?256:roundEven(height*ratio);
+ const ratio=256/Math.min(width,height),resizedWidth=processor==='vit'?224:width>height?roundEven(width*ratio):256,resizedHeight=processor==='vit'?224:width>height?256:roundEven(height*ratio);
  const horizontal=coefficients(width,resizedWidth),vertical=coefficients(height,resizedHeight);
  const intermediate=new Uint8Array(resizedWidth*height*3);
  for(let y=0;y<height;y++)for(let x=0;x<resizedWidth;x++)for(let channel=0;channel<3;channel++){
@@ -26,7 +26,7 @@ export function preprocessResnetImageData(image){
   intermediate[(y*resizedWidth+x)*3+channel]=Math.min(255,Math.max(0,Math.floor(sum/precision)));
  }
  const left=Math.floor(resizedWidth/2)-112,top=Math.floor(resizedHeight/2)-112;
- const tensor=new Float32Array(3*224*224),preview=new Uint8ClampedArray(224*224*4),mean=[0.485,0.456,0.406],std=[0.229,0.224,0.225];
+ const tensor=new Float32Array(3*224*224),preview=new Uint8ClampedArray(224*224*4),mean=processor==='vit'?[.5,.5,.5]:[0.485,0.456,0.406],std=processor==='vit'?[.5,.5,.5]:[0.229,0.224,0.225];
  for(let y=0;y<224;y++)for(let x=0;x<224;x++){
   const {first,weights}=vertical[y+top],pixel=y*224+x;
   for(let channel=0;channel<3;channel++){
@@ -38,4 +38,12 @@ export function preprocessResnetImageData(image){
   preview[pixel*4+3]=255;
  }
  return{tensor,preview:{width:224,height:224,data:preview},resizedShape:[resizedHeight,resizedWidth]};
+}
+
+export function preprocessResnetImageData(image){return preprocessImageData(image,'resnet');}
+export function preprocessVitImageData(image){return preprocessImageData(image,'vit');}
+export function preprocessSourceModelImageData(model,image){
+ if(model.preprocessing?.processor==='vit-bilinear-224')return preprocessVitImageData(image);
+ if(model.id==='resnet152-v1')return preprocessResnetImageData(image);
+ throw Error('پیش‌پردازش این مدل در مرورگر پشتیبانی نمی‌شود.');
 }

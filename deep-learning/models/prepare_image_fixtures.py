@@ -8,6 +8,7 @@ import hashlib
 
 r = Path("deep-learning/results/model-validation")
 cases = []
+vit_cases = []
 for width, height in [(641, 479), (127, 311), (513, 512), (256, 256)]:
     y, x = np.indices((height, width))
     rgba = np.zeros((height, width, 4), dtype=np.uint8)
@@ -27,6 +28,22 @@ for width, height in [(641, 479), (127, 311), (513, 512), (256, 256)]:
     preview = np.full((224, 224, 4), 255, dtype=np.uint8)
     preview[:, :, :3] = crop
     (r / f"image-{width}x{height}-preview.rgba").write_bytes(preview.tobytes())
+    vit_rgb = np.asarray(
+        Image.fromarray(rgba[:, :, :3]).resize((224, 224), Image.Resampling.BILINEAR)
+    )
+    vit_preview = np.full((224, 224, 4), 255, dtype=np.uint8)
+    vit_preview[:, :, :3] = vit_rgb
+    (r / f"vit-{width}x{height}-preview.rgba").write_bytes(vit_preview.tobytes())
+    vit_tensor = (vit_rgb.transpose(2, 0, 1).astype(np.float32) / 255 - 0.5) / 0.5
+    vit_tensor.astype("<f4").tofile(r / f"vit-{width}x{height}-tensor.bin")
+    vit_cases.append(
+        {
+            "width": width,
+            "height": height,
+            "preview_sha256": hashlib.sha256(vit_preview.tobytes()).hexdigest(),
+        }
+    )
+
     tensor = np.transpose(crop, (2, 0, 1)).astype(np.float32)
     tensor = (
         (tensor / 255 - np.array([0.485, 0.456, 0.406])[:, None, None])
@@ -41,3 +58,7 @@ for width, height in [(641, 479), (127, 311), (513, 512), (256, 256)]:
         }
     )
 (r / "image-preprocess-cases.json").write_text(json.dumps(cases, indent=2) + "\n")
+
+(r / "vit-image-preprocess-cases.json").write_text(
+    json.dumps(vit_cases, indent=2) + "\n"
+)

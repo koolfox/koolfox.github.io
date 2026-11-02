@@ -17,7 +17,7 @@ class ModelPageTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             output = Path(folder)
             pages = module.build_model_pages(ROOT, output, "test-revision")
-            self.assertEqual(len(pages), 2)
+            self.assertEqual(len(pages), 3)
             for page in pages:
                 self.assertTrue(page.is_relative_to(output))
                 text = page.read_text()

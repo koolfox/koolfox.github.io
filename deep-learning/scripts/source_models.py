@@ -2,6 +2,7 @@
 
 from html import escape
 import json
+import hashlib
 from pathlib import Path
 
 
@@ -9,15 +10,29 @@ def build_model_pages(root, output, asset_revision=""):
     root, output = Path(root), Path(output)
     models = json.loads((root / "models/source-models.json").read_text())["models"]
     written = []
+    revision = None
     for model in models:
         identity = model["id"]
         if not identity or any(
             c not in "abcdefghijklmnopqrstuvwxyz0123456789-" for c in identity
         ):
             raise ValueError("Invalid model route")
+        if revision is None:
+            assets = [
+                "source-model-app.js",
+                "source-model-app.css",
+                "model-runtime.js",
+                "model-image.js",
+                "model-tokenizer.js",
+            ]
+            fingerprint = hashlib.sha256(
+                (root / "models/source-models.json").read_bytes()
+                + b"".join((root / "assets" / name).read_bytes() for name in assets)
+            ).hexdigest()[:16]
+            revision = f"{asset_revision}-{fingerprint}"
         target = output / "models" / identity / "index.html"
         target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(model_page(model, asset_revision))
+        target.write_text(model_page(model, revision))
         written.append(target)
     return written
 

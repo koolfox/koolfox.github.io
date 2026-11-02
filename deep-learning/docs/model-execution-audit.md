@@ -5,7 +5,7 @@ slide coverage, training and historical benchmark reproduction.
 
 ## Complete released models executed on hardware WebGPU
 
-Both models ran through the production `assets/model-runtime.js` API using ONNX
+All three models ran through the production `assets/model-runtime.js` API using ONNX
 Runtime Web1.31.1, an isolated Playwright1.58.2 Chromium145 profile, and
 `--enable-unsafe-webgpu --use-angle=metal`. The adapter reported
 `vendor:apple`, `architecture:metal-3`, `fallback:false`. Sessions specified
@@ -23,6 +23,8 @@ The complete learned inference graph runs on the WebGPU execution provider.
 | Full BERT-Base Uncased MLM, s14 pp13,16 | PyTorch2.13.0 / Transformers4.57.3, pinned official safetensors | All3,906,816 logits `[1,128,30522]` | 5.1498413e-5 WebGPU |
 | Same BERT source mask via production API | Same independent PyTorch reference | All30,522 mask logits | 2.5749207e-5 WebGPU |
 | Original, unmodified official BERT ONNX | Same independent PyTorch CPU reference | All3,906,816 logits | 1.4019012e-4 native ONNX CPU |
+| Full ViT-B/16-224, s14 pp47,56 | Exact released PyTorch checkpoint, NASA photograph | All1,000 logits | 5.2452087e-6 WebGPU |
+| Same ViT external-data graph | Same PyTorch CPU reference | All1,000 logits | 5.4836273e-6 native ONNX CPU |
 
 The CNN tolerance is `3e-5 + 3e-5*abs(reference)`; BERT uses
 `3e-4 + 1e-4*abs(reference)`. Every compared value passed, with no nonfinite
@@ -68,6 +70,41 @@ the actual highest probability was about0.52882. These are measured predictions,
 not a supplied answer or fabricated certainty. This does not reproduce NSP,
 GLUE fine-tuning or the BERT paper's benchmark table.
 
+## ViT: full vision Transformer with original external weights
+
+The full released [Google ViT-B/16 checkpoint](https://huggingface.co/google/vit-base-patch16-224/tree/3f49326eb077187dfe1c2a2bb15fbd74e6ab91e3)
+uses12blocks/12heads/hidden768,16×16patches, and224×224RGB input (196patches
+plus CLS). It has86,567,656parameters. Its published lineage is JAX→timm→
+Hugging Face Transformers; the independent reference uses this exact released
+PyTorch conversion, including its pinned layer-normalization epsilon1e-12.
+It is ImageNet-21k pretrained and ImageNet-1k fine-tuned. It is not the private
+JFT303M checkpoint or a reproduction of the source benchmark points.
+
+`models/export_vit.py` exports a1,021-node graph and verifies all200initializer
+byte ranges against the original346,293,852byte safetensors file. All346,270,624
+parameter bytes remain unchanged. The small246,427byte ONNX graph points directly
+into the safetensors file, including its header offset. The browser verifies both
+files, mounts the original weights with ONNX Runtime's externalData API, and
+creates a strict-GPU session. No huge converted checkpoint is published.
+
+The fixed input is a real NASA public-domain photograph from scikit-image, with
+attribution, immutable source revision, hash and preprocessing recorded in
+`vit-image-source.json`. All1,000GPU logits agree with PyTorch to5.2452087e-6.
+This is numerical inference validation, not a claim that the predicted class
+is ground truth or that a benchmark accuracy was measured. Reference and uploaded
+photos both work in the existing interface; edited input does not receive a false
+reference-agreement label.
+
+ViT's preprocessing differs from ResNet: **resize the entire RGB image to224×224**
+using Pillow-compatible bilinear filtering, without a center crop, then normalize
+with mean/std`[.5,.5,.5]`. Four independent Pillow preview fixtures match every
+pixel. The source reader maps this full-model tool to architecture/fine-tuning
+pages47and56, preserving the160px arithmetic exercise and private-JFT discussion.
+
+Local graph/reference downloads carry their SHA-256 as a cache key; the catalog
+revalidates, and model entry scripts include content-derived module versions.
+Immutable remote checkpoint URLs remain unchanged.
+
 ## BERT graph specialization: exactly three bytes
 
 The original BERT graph's int64 index inputs caused the strict-GPU session to
@@ -110,7 +147,8 @@ without a conformance comparison against the unrelated default test tensor.
 
 `models/source-models.json` pins exact sources, revisions, SHA-256 hashes, bytes,
 source slide pages, config, task, tokenizer, reference and derivation. Main
-browser artifacts are241,816,206bytes ResNet ONNX and532,091,246bytes BERT ONNX.
+browser artifacts are241,816,206bytes ResNet ONNX,532,091,246bytes BERT ONNX,
+and346,293,852bytes ViT safetensors plus its246,427byte graph.
 The440,449,768byte PyTorch safetensors is developer reference material and is
 not fetched by the browser. Both original public ONNX URLs passed real browser
 CORS+Range fetch checks. Network availability is not an offline guarantee.
@@ -147,7 +185,8 @@ here and in the tracked manifest/fixtures.
 | s08 ResNet152 | Complete released v1 model now hardware-verified as above; one inference does not reproduce paper training/benchmark tables. |
 | s13 Q/K/V arithmetic | Existing WGSL kernel computes source dot-product attention. It is not by itself a full Transformer. Source rounded weights and full softmax remain distinct. |
 | s14 BERT | Complete released MLM now hardware-verified as above. NSP/GLUE heads and benchmark datasets are separate tasks. |
-| s14 LXMERT/wav2vec2/ViT and s16 GPT-2/CLIP | Public model families have released variants, but those distinct checkpoints, preprocessing/task heads and source inputs have not been integrated or validated here. They are not declared impossible or equivalent to BERT. |
+| s14 LXMERT/wav2vec2 and s16 GPT-2/CLIP | Public model families have released variants, but those distinct checkpoints, preprocessing/task heads and source inputs have not been integrated or validated here. They are not declared impossible or equivalent to BERT. |
+| s14 ViT | Complete released B/16-224 classifier hardware-verified above; the private JFT checkpoint and source training benchmarks remain distinct. |
 | s16 GPT-3 175B | The original175B checkpoint was not publicly released. Float32 weights alone would be700GB. A small released GPT model cannot be relabeled as this historical model. |
 
 No historical full-model training, full benchmark reproduction or live publication

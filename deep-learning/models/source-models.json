@@ -114,7 +114,8 @@
         "compared_outputs": 1000
       },
       "title": "ResNet152-v1",
-      "description_fa": "اجرای شبکهٔ ۱۵۲لایه با وزن‌های منتشرشده؛ مقایسهٔ ۱۰۰۰ خروجی روی تنسور آزمون مرجع."
+      "description_fa": "اجرای شبکهٔ ۱۵۲لایه با وزن‌های منتشرشده؛ مقایسهٔ ۱۰۰۰ خروجی روی تنسور آزمون مرجع.",
+      "action_title_fa": "اجرای ResNet152"
     },
     {
       "id": "bert-base-uncased",
@@ -256,6 +257,156 @@
           "fallback": false
         },
         "webgpu_vs_pytorch_full_max_absolute_error": 5.14984130859375e-05
+      },
+      "action_title_fa": "اجرای BERT"
+    },
+    {
+      "id": "vit-base-patch16-224",
+      "title": "ViT-B/16 (224)",
+      "title_fa": "مدل کامل ViT-B/16",
+      "action_title_fa": "اجرای ViT-B/16",
+      "kind": "image-classification",
+      "source": {
+        "term": "spring-2026",
+        "session": "s14",
+        "pages": [
+          47,
+          56
+        ],
+        "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/14-Pioneering-Transformers.pdf",
+        "local_url": "/deep-learning/assets/danna/spring-2026/s14.pdf",
+        "sha256": "65bdebcbbe5ecca3e9dfa4ecbaaf5a78e79a4d10ce00c8a007801d062cefeda6",
+        "page_count": 62,
+        "license_notice": "CC BY-NC-SA; version not printed on cover"
+      },
+      "task": "Full released ViT-B/16 ImageNet-1k classifier (86,567,656 parameters), pretrained on ImageNet-21k and fine-tuned at224. Not the private JFT checkpoint or a reproduction of the source benchmark.",
+      "architecture": {
+        "layers": 12,
+        "attention_heads": 12,
+        "hidden_size": 768,
+        "intermediate_size": 3072,
+        "patch_size": 16,
+        "image_size": 224,
+        "patches": 196,
+        "sequence_length": 197,
+        "parameters": 86567656,
+        "summary_fa": "۱۲ بلوک Transformer · ورودی ۲۲۴ × ۲۲۴ · ۱۹۶ پچ ۱۶ × ۱۶",
+        "layer_norm_eps": 1e-12
+      },
+      "checkpoint": {
+        "publisher": "Google checkpoint published on Hugging Face",
+        "revision": "3f49326eb077187dfe1c2a2bb15fbd74e6ab91e3",
+        "lineage": "Original JAX → timm → Hugging Face Transformers conversion, as identified by the model card. Comparisons use this exact published PyTorch checkpoint.",
+        "configuration": {
+          "url": "https://huggingface.co/google/vit-base-patch16-224/resolve/3f49326eb077187dfe1c2a2bb15fbd74e6ab91e3/config.json",
+          "sha256": "abdf73cc4ce79495a83f32a8c9265daa7a1363f5a3efa4704c88a6e7f45ad19d"
+        },
+        "model_card_url": "https://huggingface.co/google/vit-base-patch16-224/resolve/3f49326eb077187dfe1c2a2bb15fbd74e6ab91e3/README.md"
+      },
+      "license": {
+        "spdx": "Apache-2.0",
+        "url": "https://raw.githubusercontent.com/google-research/vision_transformer/64801f1b3b367b3611cc27a3d45cc22870a36fb3/LICENSE",
+        "local_url": "./licenses/vit-LICENSE.txt"
+      },
+      "reference": {
+        "framework": "PyTorch2.13.0 / Transformers4.57.3 / ViTForImageClassification",
+        "method": "Exact released safetensors; eval/eager float32; real public-domain NASA image; all 1,000 logits compared.",
+        "cpu_onnx_max_absolute_error": 5.4836273193359375e-06
+      },
+      "artifacts": {
+        "model": {
+          "name": "ViT-B/16 safetensors weights",
+          "url": "https://huggingface.co/google/vit-base-patch16-224/resolve/3f49326eb077187dfe1c2a2bb15fbd74e6ab91e3/model.safetensors",
+          "local_file": "vit/model.safetensors",
+          "bytes": 346293852,
+          "sha256": "1cea07110a4a47edc51420b2dda6f3b8b58e7256e8f44b4ea6aa9696162ccb5d"
+        },
+        "graph": {
+          "name": "vit-base-224.onnx",
+          "url": "./graphs/vit-base-224.onnx",
+          "local_file": "../../../models/graphs/vit-base-224.onnx",
+          "bytes": 246427,
+          "sha256": "3d6d1494daf9c44b7e67910d1e811acf64b987f38673aae390037d0ca6323a5c"
+        },
+        "input": {
+          "name": "vit-input.float32.bin",
+          "url": "./references/vit-input.float32.bin",
+          "local_file": "../../../models/references/vit-input.float32.bin",
+          "bytes": 602112,
+          "sha256": "c661563b98e6043821f942622d72fb2e014b635525cc2dda1eb5a138429c6ea9"
+        },
+        "reference": {
+          "name": "vit-base.json",
+          "url": "./references/vit-base.json",
+          "local_file": "../../../models/references/vit-base.json",
+          "bytes": 43801,
+          "sha256": "a2a43c3afe1a981a7de621e4d7cd98e03a344af5b747a6deb4152d2ae804b881"
+        },
+        "preview": {
+          "name": "vit-preview.png",
+          "url": "./references/vit-preview.png",
+          "local_file": "../../../models/references/vit-preview.png",
+          "bytes": 86103,
+          "sha256": "85f9ca7abaa9e4527bbca6b4ab767cab327bd9558ffacd4eac7d9919ddee3ec6"
+        }
+      },
+      "external_data": {
+        "path": "model.safetensors",
+        "format": "The original safetensors file supplies ONNX external initializers.",
+        "mapped_initializers": 200,
+        "weight_bytes": 346270624,
+        "conversion": "No weight bytes changed. All200tensor offsets and raw bytes are verified during export; only the small graph is hosted."
+      },
+      "input_name": "pixel_values",
+      "input_shape": [
+        1,
+        3,
+        224,
+        224
+      ],
+      "output_name": "logits",
+      "output_is_probabilities": false,
+      "preprocessing": {
+        "processor": "vit-bilinear-224",
+        "resize_mode": "stretch",
+        "resize": [
+          224,
+          224
+        ],
+        "resample": "Pillowbilinear",
+        "channel_order": "RGB",
+        "layout": "NCHW",
+        "rescale": 0.00392156862745098,
+        "mean": [
+          0.5,
+          0.5,
+          0.5
+        ],
+        "std": [
+          0.5,
+          0.5,
+          0.5
+        ]
+      },
+      "default_input": {
+        "kind": "image",
+        "preview_url": "./references/vit-preview.png?sha256=85f9ca7abaa9e4527bbca6b4ab767cab327bd9558ffacd4eac7d9919ddee3ec6",
+        "caption_fa": "تصویر نمونه: NASA / scikit-image",
+        "provenance_url": "./references/vit-image-source.json"
+      },
+      "validation": {
+        "state": "verified",
+        "tolerance": {
+          "absolute": 3e-05,
+          "relative": 3e-05
+        },
+        "compared_outputs": 1000,
+        "webgpu_max_absolute_error": 5.245208740234375e-06,
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "fallback": false
+        }
       }
     }
   ]

@@ -1,5 +1,5 @@
 import {createBertTokenizer} from './model-tokenizer.js';
-export {preprocessResnetImageData} from './model-image.js';
+export {preprocessResnetImageData,preprocessVitImageData,preprocessSourceModelImageData} from './model-image.js?v=3a9ff53e268cbc15';
 
 const manifestURL = new URL('../models/source-models.json', import.meta.url);
 let contextPromise = null;
@@ -7,7 +7,7 @@ const hex = bytes => [...new Uint8Array(bytes)].map(value => value.toString(16).
 function canceled(signal) { if (signal?.aborted) throw new DOMException('اجرای مدل لغو شد.','AbortError'); }
 
 export async function sourceModelCatalog() {
-  const response = await fetch(manifestURL);
+  const response = await fetch(manifestURL,{cache:'no-cache'});
   if (!response.ok) throw Error('فهرست مدل‌ها بارگیری نشد.');
   const manifest = await response.json();
   if (manifest.schema_version !== 1 || !Array.isArray(manifest.models)) throw Error('فهرست مدل‌ها معتبر نیست.');
@@ -18,7 +18,8 @@ async function verifiedBytes(artifact,{signal,onProgress,localArtifactBase}={}) 
   canceled(signal);
   const url = localArtifactBase ? new URL(artifact.local_file,localArtifactBase).href
     : new URL(artifact.url,manifestURL).href;
-  const response = await fetch(url,{signal});
+  const resolved=new URL(url);if(resolved.origin===manifestURL.origin)resolved.searchParams.set('sha256',artifact.sha256);
+  const response = await fetch(resolved,{signal});
   if (!response.ok) throw Error(`بارگیری ${artifact.name} انجام نشد (${response.status}).`);
   const length = artifact.bytes;
   let bytes;
@@ -75,8 +76,14 @@ export async function loadSourceModel(id,options={}) {
     options.onProgress?.({stage:'verify',artifact:model.id+' graph',loaded:bytes.length,total:bytes.length});
     if(hex(await crypto.subtle.digest('SHA-256',bytes))!==model.graph_patch.derived_sha256)throw Error('هش گراف تبدیل‌شده معتبر نیست.');
   }
+  let graphBytes=bytes,externalData;
+  if(model.external_data){
+    graphBytes=await verifiedBytes(model.artifacts.graph,options);
+    externalData=[{path:model.external_data.path,data:bytes}];
+  }
   canceled(options.signal);options.onProgress?.({stage:'compile',artifact:model.id});
-  const session=await context.ort.InferenceSession.create(bytes,{
+  const session=await context.ort.InferenceSession.create(graphBytes,{
+    externalData,
     executionProviders:[{name:'webgpu',device:context.device}],graphOptimizationLevel:'all',
     freeDimensionOverrides:model.dimension_overrides||{},
     extra:{session:{disable_cpu_ep_fallback:'1'}},

@@ -97,3 +97,22 @@ verified local cache (no fake tensors). It checks actual GPU predictions,
 reference/edited-input distinctions, the128token bound, release, missing-GPU
 errors and mobile overflow. `ui-cancel.mjs` checks cancellation before the weight
 response completes. Set `MODEL_VALIDATION_URL` to the local site's origin.
+
+
+## Full ViT-B/16
+
+`fetch_artifacts.py` also fetches the pinned Google-published ViT weights/config
+and public-domain NASA input into ignored storage. Run `export_vit.py` with the
+same locked environment to reproduce the small graph and PyTorch reference.
+All200external initializers point into unchanged bytes of the original
+safetensors file. ONNX Runtime receives that file via externalData; only the
+246KBgraph is served by the site. `preprocessSourceModelImageData(model,image)`
+selects the correct per-model pipeline: ViT stretches to224×224 and normalizes
+mean/std.5; ResNet resizes/crops and uses its different ImageNet normalization.
+
+Validate with `node deep-learning/models/validate_webgpu.mjs vit-base-patch16-224`.
+`models/tests/vit-ui.mjs` checks actual GPU inference of the reference and uploaded
+NASA image, explicit download, the per-model preprocessing, reference gating and
+mobile overflow. Point MODEL_VALIDATION_URL/VIT_UI_PATH at the built local route;
+large weights are redirected only in this validation harness to the verified
+ignored local cache. Real publication fetches the immutable official artifact.

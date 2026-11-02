@@ -184,6 +184,115 @@
           }
         }
       ]
+    },
+    {
+      "id": "markov-states",
+      "title_fa": "گراف دوحالتهٔ مارکوف",
+      "pages": [
+        35
+      ],
+      "code_file": "s18_markov_states.py",
+      "starter_sha256": "f04c429dda95d3069cd826cca755cb97c2a153c747b729bddfd86ba7729351b2",
+      "reference": {
+        "states": [
+          "E",
+          "A"
+        ],
+        "transition_rows": [
+          [
+            0.3,
+            0.7
+          ],
+          [
+            0.4,
+            0.6
+          ]
+        ],
+        "chosen_initial": [
+          1.0,
+          0.0
+        ],
+        "history": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.3,
+            0.7
+          ],
+          [
+            0.37,
+            0.63
+          ],
+          [
+            0.363,
+            0.637
+          ],
+          [
+            0.3637,
+            0.6363
+          ],
+          [
+            0.36363,
+            0.6363699999999999
+          ]
+        ],
+        "stationary_distribution": [
+          0.36363636363636365,
+          0.6363636363636362
+        ]
+      },
+      "questions": [
+        {
+          "id": "count",
+          "source_kind": "original",
+          "source_page": 35,
+          "prompt_fa": "در گراف چند حالت داریم؟",
+          "solution_fa": "پیکان‌ها گذارند؛حلقهٔخودی حالت تازه نیست.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "2: EوA",
+              "4",
+              "1"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "outgoing",
+          "source_kind": "original",
+          "source_page": 35,
+          "prompt_fa": "احتمال خروج ازEبهAو ماندن درEچیست؟",
+          "solution_fa": "ازEیک حلقهٔ.3وپیکان.7بهAوجود دارد؛مجموع1است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              ".4و.6",
+              ".7و.3",
+              ".3و.7"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "stationary",
+          "source_kind": "original",
+          "source_page": 35,
+          "prompt_fa": "توزیع پایایاین ماتریس با ترتیبE,Aکدام است؟",
+          "solution_fa": "توازن جریان.7p(E)=.4p(A)ومجموع1،جواب4/11و7/11می‌دهد.این نتیجهٔمحاسبهٔگرافاست،نه توزیع اولیهٔاعلام‌شدهدرمنبع.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "[.3,.7]",
+              "[.5,.5]",
+              "[4/11,7/11]"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
     }
   ]
 }

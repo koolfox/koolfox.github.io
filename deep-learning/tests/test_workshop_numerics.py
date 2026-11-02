@@ -24,6 +24,20 @@ def execute(session, changes=None):
 
 
 class WorkshopNumericalTests(unittest.TestCase):
+    def test_source_markov_transition_mass_and_stationary_balance(self):
+        result = execute("s18_markov_states")["result"]
+        self.assertEqual(result["history"][1], [0.3, 0.7])
+        self.assertAlmostEqual(result["history"][2][0], 0.37)
+        self.assertAlmostEqual(result["stationary_distribution"][0], 4/11)
+        for row in result["history"]:
+            self.assertAlmostEqual(sum(row), 1)
+        e, a = result["stationary_distribution"]
+        self.assertAlmostEqual(0.7 * e, 0.4 * a)
+        changed = execute("s18_markov_states", {"initial = [1.0, 0.0]": "initial = [0.0, 1.0]"})["result"]
+        self.assertEqual(changed["history"][1], [0.4, 0.6])
+        with self.assertRaises(ValueError):
+            execute("s18_markov_states", {"[0.3, 0.7]": "[0.3, 0.8]"})
+
     def test_source_wer_exact_sentences_and_changed_prediction(self):
         result = execute("s12_word_error_rate")["result"]
         self.assertEqual(result["reference_length"], 15)

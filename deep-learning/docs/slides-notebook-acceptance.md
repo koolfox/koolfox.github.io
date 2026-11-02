@@ -261,3 +261,30 @@ be identified before any research-reproduction claim.
 
 Local validation and publication evidence for this candidate are recorded
 separately; a commit or passing local check alone does not establish deployment.
+
+### Independent model / frontend / Python follow-up
+
+The model agent checked ten WebGPU numerical cases against independent Python
+and rejected seventeen malformed inputs, including sparse JS arrays. Source
+unscaled/scaled errors on SwiftShader were below 3.2e-7. Float32 cancellation can
+still disagree with float64; the UI explicitly reports a mismatch. No matching
+trained full CNN/Transformer checkpoint, tokenizer or paper dataset is present;
+see `model-execution-audit.md` for exact limits and required artifacts.
+
+The frontend agent checked all forty tables at desktop and phone sizes. Photo
+crops now retain a minimum 2048px PDF backing canvas, including when the source
+preview is narrow/hidden. A visual cell is never synthesized from an unrelated
+photo. Horizontal table scrolling works with keyboard focus without navigating
+away from the slide.
+
+The Python agent added twenty-two independent numerical checks, including all
+eleven source backprop derivatives by central differences, convolution/transpose
+adjointness, voting/attention/scaling invariants and editable-input shape errors.
+Two source-only notebooks are selected automatically for s03 pp68–84 and s05
+pp27–36, each with its own draft/version key, executed hash-pinned code and three
+matching choice questions. Navigation through either laboratory entry retains
+the current page, and Return closes the notebook without losing that page.
+The quiz/source conventions and deliberately dropped gradient factor2 remain
+explicit. See `python-example-audit.md`; default reference consistency alone is
+not scientific review. Root integration currently passes170native tests and443
+formula/vendor checks; final CI and actual publication are separate evidence.

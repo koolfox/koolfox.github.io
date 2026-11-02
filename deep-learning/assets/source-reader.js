@@ -154,7 +154,7 @@ function selectSection(section){
  const slides=section==='slides',translation=$('#translation-panel'),tools=document.querySelector('.reader-tools-panel'),frame=$('[data-reader-tools-frame]');
  document.body.dataset.readerSection=section;syncPanels();
  document.querySelectorAll('[data-reader-section]').forEach(item=>{if(item!==document.body)item.setAttribute('aria-pressed',String(item.dataset.readerSection===(section==='explore'?'lab':section)));});
- if(!slides){const next=section==='knowledge'?config.knowledgeUrl:config.practiceUrl+(section==='explore'?'?source-page='+page+'#code':section==='questions'?'#questions':'#code');if(frame.getAttribute('src')!==next)frame.src=next;}
+ if(!slides){const next=section==='knowledge'?config.knowledgeUrl:config.practiceUrl+'?source-page='+page+(section==='questions'?'#questions':'#code');if(frame.getAttribute('src')!==next)frame.src=next;}
  renderOriginal();
 }
 document.querySelectorAll('.reader-sections [data-reader-section]').forEach(button=>button.addEventListener('click',event=>{event.preventDefault();selectSection(button.dataset.readerSection);}));
@@ -168,7 +168,7 @@ $('[data-play-slides]').addEventListener('click',()=>{
 });
 document.addEventListener('visibilitychange',()=>{if(document.hidden)stopPlayback();});
 $('[data-source-only-toggle]').addEventListener('click',()=>{presenting=!presenting;if(presenting){readingView=view;view='source';zoom=1;}else view=readingView;syncPanels();renderOriginal();});
-window.addEventListener('message',event=>{if(event.origin!==location.origin||event.source!==$('[data-reader-tools-frame]').contentWindow||event.data?.type!=='danna-source-page'||!Number.isInteger(event.data.page))return;go(event.data.page);if(matchMedia('(max-width:760px)').matches)selectSection('slides');});
+window.addEventListener('message',event=>{if(event.origin!==location.origin||event.source!==$('[data-reader-tools-frame]').contentWindow||event.data?.type!=='danna-source-page'||!Number.isInteger(event.data.page))return;go(event.data.page);if(event.data.showSlides===true||matchMedia('(max-width:760px)').matches)selectSection('slides');});
 $('[data-prev-page]').addEventListener('click',previousPage);$('[data-next-page]').addEventListener('click',nextPage);picker.addEventListener('change',()=>picker.value==='sources'?showReferences():go(Number(picker.value)));
 $('[data-retry-load]').addEventListener('click',()=>location.reload());
 $('[data-zoom-in]').addEventListener('click',()=>{zoom=Math.min(3,zoom+.25);controls();renderOriginal();});$('[data-zoom-out]').addEventListener('click',()=>{zoom=Math.max(1,zoom-.25);controls();renderOriginal();});

@@ -248,6 +248,37 @@ test('attention playback uses the actual consecutive source pages and stops on m
   await expect(page.locator('[data-play-slides]')).toBeHidden();
 });
 
+test('source worked pages open only their exact Python example and three matching choices',async({page})=>{
+  test.setTimeout(120000);await page.setViewportSize({width:1440,height:1000});
+  function compare(actual,expected){
+    if(typeof expected==='number'){expect(actual).toBeCloseTo(expected,12);return;}
+    if(expected&&typeof expected==='object'){
+      expect(Object.keys(actual).sort()).toEqual(Object.keys(expected).sort());
+      for(const key of Object.keys(expected))compare(actual[key],expected[key]);
+    }else expect(actual).toEqual(expected);
+  }
+  for(const [session,number,id] of [['s03',75,'backprop'],['s05',27,'source-convolution']]){
+    await page.goto(`/deep-learning/terms/spring-2026/${session}/slides/#page=${number}`);
+    await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+    await page.locator('.reader-sections [data-reader-section=lab]').click();
+    await expect(page.frameLocator('[data-reader-tools-frame]').locator('[data-notebook-run-all]')).toBeVisible();
+    const frame=page.frames().find(frame=>frame.url().includes('/practice/'));
+    await frame.waitForFunction(()=>window.studentNotebook?.cells);
+    const cells=await frame.evaluate(()=>window.studentNotebook.cells.map(cell=>cell.source).join(''));
+    expect(cells).not.toContain('a, b, c = 1.0, -2.0, 3.0');
+    expect(cells).not.toContain('image = [[1, 0, 1, 0]');
+    const reference=await frame.evaluate(id=>JSON.parse(document.querySelector('#practice-config').textContent).page_notebooks.find(example=>example.key.endsWith('/'+id)).reference,id);
+    await frame.locator('[data-notebook-run-all]').click();
+    await frame.waitForFunction(()=>window.studentNotebook.record?.ok,null,{timeout:60000});
+    compare(await frame.evaluate(()=>window.studentNotebook.record.outputs.at(-1).result),reference);
+    await frame.getByRole('tab',{name:'آزمون تستی',exact:true}).click();
+    await expect(frame.locator('[data-notebook-question]')).toHaveCount(3);
+    await frame.locator('[data-return-slide]').click();
+    await expect(page.locator('body')).toHaveAttribute('data-reader-section','slides');
+    expect(await page.evaluate(()=>window.sourceSlideReader.page)).toBe(number);
+  }
+});
+
 test('notebook cells stack in document order with highlighted Python and working local completion',async({page})=>{
   await page.goto('/deep-learning/terms/spring-2026/s01/practice/');
   const cells=page.locator('[data-notebook-cell]');

@@ -2,9 +2,12 @@ import {mountNotebook} from './notebook.js';
 import {runAttentionGPU} from './webgpu-attention.js';
 import {renderNotebookResult} from './notebook-results.js';
 
-const config = JSON.parse(document.querySelector('#practice-config').textContent);
+const base = JSON.parse(document.querySelector('#practice-config').textContent);
 const requestedPage=Number(new URLSearchParams(location.search).get('source-page'));
-const returnPage=Number.isInteger(requestedPage)&&requestedPage>0&&requestedPage<=10000?requestedPage:config.source_page;
+const returnPage=Number.isInteger(requestedPage)&&requestedPage>0&&requestedPage<=base.source_page_count?requestedPage:base.source_page;
+const config={...base,...base.page_notebooks?.find(example=>example.pages.includes(returnPage))};
+document.querySelector('#practice-config').textContent=JSON.stringify(config);
+if(config.title)document.querySelector('.practice-page>header h1').textContent=config.title;
 let gpuGeneration=0;
 const gpuPanel=document.createElement('section');gpuPanel.className='nb-gpu';gpuPanel.hidden=true;
 function compareGPU(record){
@@ -34,20 +37,21 @@ function compareGPU(record){
     finally{if(generation===gpuGeneration)button.disabled=false;}
   });
 }
-function goToSource(page) {
-  if (parent !== window) parent.postMessage({type: 'danna-source-page', page}, location.origin);
+function goToSource(page,showSlides=false) {
+  if (parent !== window) parent.postMessage({type: 'danna-source-page', page,showSlides}, location.origin);
   else location.href = config.reader + '#page=' + page;
 }
 const book = mountNotebook(document.querySelector('#practice-notebook'), {
   ...config, goToSource,
   onExecution:compareGPU,
-  getFiles() { return {'starter.py': config.starter, 'source-reference.json': JSON.stringify({source_url: config.source_url, source_sha256: config.source_sha256, starter_sha256: config.starter_sha256}, null, 2)}; },
+  getFiles() { return {'starter.py': config.starter, 'source-reference.json': JSON.stringify({source_url: config.source_url, source_sha256: config.source_sha256, starter_sha256: config.starter_sha256,source_page:returnPage,example:config.key}, null, 2)}; },
 });
 document.querySelector('#practice-notebook .nb-cells').before(gpuPanel);
 book.setReady(true); window.studentNotebook = book;
 function section() { if (location.hash === '#questions') book.showQuiz(); else book.showCode(); }
 section(); window.addEventListener('hashchange', section);
-document.querySelector('[data-return-slide]').addEventListener('click', event => { if (parent !== window) { event.preventDefault(); goToSource(returnPage); } });
+const returnLink=document.querySelector('[data-return-slide]');returnLink.href=config.reader+'#page='+returnPage;
+returnLink.addEventListener('click', event => { if (parent !== window) { event.preventDefault(); goToSource(returnPage,true); } });
 for (const lab of config.related_labs) {
   const link = document.createElement('a'); link.textContent = 'آزمایش زندهٔ مرتبط';
   link.href = lab.url;if(requestedPage>0){const url=new URL(link.href);url.searchParams.set('page',returnPage);link.href=url.href;}

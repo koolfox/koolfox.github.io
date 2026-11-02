@@ -548,7 +548,9 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
                 for sequence in sequences), "Invalid slide sequence")
         if sequences:
             config["slideSequences"] = sequences
-        pages = sorted({n for n in [unit.get("source_page"), *[q.get("source_page") for q in unit.get("questions", [])]] if type(n) is int and 1 <= n <= count})
+        pages = sorted({n for n in [unit.get("source_page"), *unit.get("example_pages", []),
+                       *[n for example in unit.get("source_examples", []) for n in example["pages"]],
+                       *[q.get("source_page") for q in unit.get("questions", [])]] if type(n) is int and 1 <= n <= count})
         if pages:
             config["interactivePages"] = pages
     encoded = json.dumps(config, ensure_ascii=False).replace("<", "\\u003c")

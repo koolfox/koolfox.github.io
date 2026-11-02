@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 import math
+import re
 import subprocess
 import sys
 
@@ -112,7 +113,48 @@ def load_workshops(term_id, root=ROOT, execute=False, session_ids=None):
                 equal_results(actual, unit["reference"]),
                 f"{identity}: reference differs from Python",
             )
-        result[identity] = {**unit, "code": code}
+        examples = unit.get("source_examples", [])
+        require(isinstance(examples, list), "Invalid source examples")
+        loaded_examples, example_ids, example_pages = [], set(), set()
+        for example in examples:
+            name = example.get("id") if isinstance(example, dict) else None
+            require(isinstance(name, str) and re.fullmatch(r"[a-z][a-z0-9-]{0,40}", name)
+                    and name not in example_ids, "Invalid source example identity")
+            example_ids.add(name)
+            pages = example.get("pages")
+            require(isinstance(pages, list) and pages
+                    and all(type(n) is int and 1 <= n <= source["page_count"] for n in pages)
+                    and pages == sorted(set(pages)) and not set(pages) & example_pages,
+                    "Invalid source example pages")
+            example_pages.update(pages)
+            filename = f"{identity}_{name.replace('-', '_')}.py"
+            require(example.get("code_file") == filename and example.get("title_fa"),
+                    "Invalid source example code file")
+            example_path = root / f"workshops/{term_id}/{filename}"
+            require(not example_path.is_symlink(), "Symlink source example")
+            example_code = example_path.read_text()
+            require(hashlib.sha256(example_code.encode()).hexdigest() == example.get("starter_sha256"),
+                    "Source example code hash changed")
+            compile(example_code, filename, "exec")
+            require(isinstance(example.get("reference"), dict) and example["reference"],
+                    "Missing source example reference")
+            json.dumps(example["reference"], allow_nan=False)
+            questions = example.get("questions")
+            require(isinstance(questions, list) and len(questions) >= 3,
+                    "Source example needs questions")
+            for question in questions:
+                check_exercise(question)
+                require(question.get("source_kind") == "original"
+                        and question.get("source_page") in pages
+                        and question["answer"]["kind"] == "choice", "Invalid source example question")
+            if execute:
+                run = subprocess.run([sys.executable, "-I", "-c", example_code
+                    + "\nimport json\nprint(json.dumps(result,allow_nan=False))"],
+                    check=True, capture_output=True, text=True, timeout=5)
+                require(equal_results(json.loads(run.stdout.splitlines()[-1]), example["reference"]),
+                        "Source example differs from Python")
+            loaded_examples.append({**example, "code": example_code})
+        result[identity] = {**unit, "code": code, "source_examples": loaded_examples}
     if selected is not None:
         require(set(result) == selected, 'Requested workshop is missing')
     elif complete_document:

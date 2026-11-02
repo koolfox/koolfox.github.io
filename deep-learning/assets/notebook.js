@@ -2,6 +2,21 @@ import {createPythonEditor, highlightPythonCode} from './vendor/python-editor/ed
 import {pythonTools} from './python-tools.js';
 import {renderNotebookResult} from './notebook-results.js';
 
+function questionText(parent, value) {
+  parent.replaceChildren();parent.dir='auto';
+  const text=String(value),persian=/[\u0620-\u063f\u0641-\u064a\u0671-\u06d3]/;
+  if(!persian.test(text)){const isolated=node('bdi','',text);isolated.dir='ltr';parent.append(isolated);return;}
+  const runs=/\[[^\u0600-\u06ff\n]*\]|\([^\u0600-\u06ff\n]*\)|[A-Za-z0-9α-ωΑ-Ω∂∇Σ∑√σŷ][A-Za-z0-9α-ωΑ-Ω∂∇Σ∑√σŷ₀-₉⁰-⁹_+−=<>≤≥×*/.,:;\[\]{}()^% \t\-]*/g;
+  let end=0;
+  for(const match of text.matchAll(runs)){
+    parent.append(document.createTextNode(text.slice(end,match.index)));
+    const isolated=node('bdi','',match[0].trimEnd());isolated.dir='ltr';
+    parent.append(isolated,document.createTextNode(match[0].slice(match[0].trimEnd().length)));
+    end=match.index+match[0].length;
+  }
+  parent.append(document.createTextNode(text.slice(end)));
+}
+
 let notebookCount = 0;
 
 function node(tag, className, text) {
@@ -298,11 +313,11 @@ export function mountNotebook(root, options) {
     sources.append(summary, links); quiz.append(sources);
   }
   questions.forEach((question, index) => {
-    const form = node('form', 'nb-question'), title = node('legend', '', question.prompt), fieldset = node('fieldset'); fieldset.append(title);
-    question.options.forEach((option, choice) => { const label = node('label', 'choice'), input = node('input'); input.type = 'radio'; input.name = 'answer'; input.value = String(choice); input.required = true; input.checked = answers[index] === choice; const text=node('span','',option);text.dir=/^[+-]?(?:\d+\.?\d*|\.\d+)(?:e[+-]?\d+)?$/i.test(option)?'ltr':'auto';label.append(input,text);fieldset.append(label); });
+    const form = node('form', 'nb-question'), title = node('legend'), fieldset = node('fieldset'); questionText(title,question.prompt);fieldset.append(title);
+    question.options.forEach((option, choice) => { const label = node('label', 'choice'), input = node('input'); input.type = 'radio'; input.name = 'answer'; input.value = String(choice); input.required = true; input.checked = answers[index] === choice; const text=node('span');questionText(text,option);label.append(input,text);fieldset.append(label); });
     const check = node('button', '', 'بررسی پاسخ'), feedback = node('p', 'feedback'); check.type = 'submit'; feedback.setAttribute('role', 'status');
     form.append(fieldset, check, feedback); form.dataset.notebookQuestion = String(index);
-    form.addEventListener('submit', event => { event.preventDefault(); const answer = new FormData(form).get('answer'); if (answer === null) return; answers[index] = Number(answer); save(); const correct = Number(answer) === question.correct; feedback.textContent = (correct ? 'درست است. ' : 'دوباره مقایسه کن. ') + question.explanation; feedback.dataset.state = correct ? 'correct' : 'incorrect'; });
+    form.addEventListener('submit', event => { event.preventDefault(); const answer = new FormData(form).get('answer'); if (answer === null) return; answers[index] = Number(answer); save(); const correct = Number(answer) === question.correct; questionText(feedback,(correct ? 'درست است. ' : 'دوباره مقایسه کن. ') + question.explanation); feedback.dataset.state = correct ? 'correct' : 'incorrect'; });
     if (question.source_page && options.goToSource) {
       const source = node('button', '', `اسلاید مرتبط · صفحهٔ ${question.source_page}`); source.type = 'button';
       source.addEventListener('click', () => options.goToSource(question.source_page)); form.append(source);

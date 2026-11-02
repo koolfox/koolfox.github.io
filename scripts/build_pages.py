@@ -113,7 +113,7 @@ def redirect_page(target, title):
 
 def package_mnist_project(learning: Path, target: Path, public):
     destination = target / "labs/cnn-mnist"
-    destination.mkdir(parents=True)
+    destination.mkdir(parents=True, exist_ok=True)
     filenames = (
         "README.md",
         "train.py",

@@ -30,3 +30,37 @@ test('full model entry is source-bound and does not download weights on entry',a
  await expect(page.locator('[data-source-interactive="resnet152-v1"]')).toHaveCount(0);
  await expect(page.locator('[data-reader-tools-frame]')).toHaveAttribute('src','about:blank');
 });
+
+test('MNIST trains a real batch on explicit CPU and exposes the authentic images',async({page})=>{
+ test.setTimeout(90000);
+ let pixelRequests=0;page.on('request',request=>{if(request.url().endsWith('/pixels.bin'))pixelRequests++;});
+ await page.goto('/deep-learning/playgrounds/cnn-mnist/train/');
+ expect(pixelRequests).toBe(0);
+ await page.locator('[name=backend]').selectOption('cpu');
+ await page.locator('[data-load]').click();
+ await page.waitForFunction(()=>window.mnistLab?.state?.step===0&&!document.querySelector('[data-step]').disabled,null,{timeout:60000});
+ const before=await page.evaluate(()=>mnistLab.snapshot());
+ await page.locator('[data-step]').click();
+ await page.waitForFunction(()=>window.mnistLab.state.step===1&&!document.querySelector('[data-step]').disabled);
+ const after=await page.evaluate(()=>mnistLab.snapshot());
+ expect(after.state.batchIndices).toHaveLength(32);
+ expect(after.state.batchIndices.every(index=>index>=0&&index<2000)).toBe(true);
+ expect(after.weights[0].values.some((value,index)=>Math.abs(value-before.weights[0].values[index])>1e-7)).toBe(true);
+ await page.getByRole('button',{name:'داده‌ها',exact:true}).click();
+ await expect(page.locator('[data-training-digits] canvas')).toHaveCount(32);
+ await expect(page.locator('[data-validation-digits] canvas')).toHaveCount(20);
+ expect(await page.locator('[data-training-digits] canvas').first().evaluate(canvas=>{
+  const pixels=canvas.getContext('2d').getImageData(0,0,28,28).data;
+  return pixels.some((value,index)=>index%4!==3&&value>0);
+ })).toBe(true);
+ expect(pixelRequests).toBe(1);
+});
+
+test('page quizzes preserve symbolic and vector options with isolated left-to-right text',async({page})=>{
+ await page.goto('/deep-learning/terms/spring-2026/s03/practice/?source-page=85#questions');
+ await expect(page.locator('.nb-question').first()).toBeVisible();
+ const values=await page.locator('.nb-question label.choice span').evaluateAll(items=>items.map(item=>({text:item.textContent,isolated:[...item.querySelectorAll('bdi')].map(part=>({text:part.textContent,dir:part.dir}))})));
+ expect(values.length).toBeGreaterThan(0);
+ const symbolic=values.filter(item=>/[=η∂\[\]]/.test(item.text));expect(symbolic.length).toBeGreaterThan(0);
+ expect(symbolic.every(item=>item.isolated.some(part=>part.dir==='ltr'))).toBe(true);
+});

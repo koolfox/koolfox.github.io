@@ -7,16 +7,17 @@ const films=[
  {id:'attention',session:'s13',pages:Array.from({length:9},(_,i)=>21+i),title:'پخش محاسبهٔ توجه'},
 ];
 // Model source pages are read from the same pinned catalog as the execution UI.
+const training=[{id:'mnist-training',session:'s05',pages:[70],title:'آموزش CNN با MNIST',route:'playgrounds/cnn-mnist/train/'}];
 let catalog=[];
 const host=document.createElement('span');host.className='source-page-tools';
 document.querySelector('.reader-toolbar').append(host);
 function update(page){
  host.replaceChildren();
- for(const entry of [...films.map(item=>({...item,kind:'animations'})),...catalog.map(item=>({...item,kind:'models'}))]){
+ for(const entry of [...films.map(item=>({...item,kind:'animations'})),...catalog.map(item=>({...item,kind:'models'})),...training]){
   if(config.term!=='spring-2026'||entry.session!==config.session||!entry.pages.includes(page))continue;
   const button=document.createElement('button');button.type='button';button.textContent=entry.title;
   button.dataset.sourceInteractive=entry.id;
-  button.addEventListener('click',()=>window.sourceSlideReader.openTool(new URL(`${entry.kind}/${entry.id}/`,courseRoot).href));
+  button.addEventListener('click',()=>window.sourceSlideReader.openTool(new URL(entry.route||`${entry.kind}/${entry.id}/`,courseRoot).href));
   host.append(button);
  }
 }

@@ -640,7 +640,8 @@ def mnist_page(root):
     body = f"""<article class="standalone"><h1>از فیلتر دستی تا شبکه‌ای که یاد می‌گیرد</h1>
 <p class="lead">یک CNN کوچک را روی رقم‌های دست‌نویس آموزش بده و با مدل خطی مقایسه کن. این پروژهٔ پایتون روی رایانه اجرا می‌شود.</p>
 <h2>پیش از اجرا، پیش‌بینی کن</h2><p>فیلتر مکانی چه اطلاعاتی را نگه می‌دارد که مدل خطی به‌سادگی نمی‌سازد؟ پیش‌بینی کن کدام رقم‌ها بیشتر با هم اشتباه می‌شوند.</p>
-{link(BASE + "/labs/cnn-mnist/project.zip", "دریافت پروژهٔ پایتون (ZIP)", class_="button primary", download="")}
+{link(BASE + "/playgrounds/cnn-mnist/train/", "شروع آموزش زنده", class_="button primary")}
+{link(BASE + "/labs/cnn-mnist/project.zip", "دریافت پروژهٔ پایتون (ZIP)", class_="button", download="")}
 <p class="meta">Python 3.12، PyTorch 2.13 و محیط قفل‌شده. مسیر تأییدشده CPU است؛ نصب وابستگی‌ها و دریافت داده در رایانه انجام می‌شود.</p>
 <h2>یک اجرای کوچک، سپس آزمایش کامل</h2><ol><li>پروژه را از ZIP خارج کن و در پوشه‌ای که deep-learning قرار دارد، دستورهای زیر را اجرا کن.</li>
 <li>ابتدا smoke را برای بررسی نصب و اجرای کد انجام بده؛ دقت آن معیار آموزش کامل نیست.</li>
@@ -721,7 +722,7 @@ def build(output, root=ROOT):
     output.mkdir(parents=True, exist_ok=True)
     registry_path = root / 'data/metadata/source-readers.json'
     registered_terms = json.loads(registry_path.read_text()).get('terms', {}) if registry_path.exists() else {}
-    reader_version = hashlib.sha256(b"".join((root / "assets" / name).read_bytes() for name in ("source-reader.js", "slide-content.js", "source-reader.css", "practice.css", "notebook.js", "practice.js", "webgpu-attention.js", "source-interactives.js"))).hexdigest()[:16]
+    reader_version = hashlib.sha256(b"".join((root / "assets" / name).read_bytes() for name in ("source-reader.js", "slide-content.js", "source-reader.css", "practice.css", "notebook.js", "practice.js", "webgpu-attention.js", "source-interactives.js", "source-model-app.js", "source-model-app.css", "model-runtime.js", "model-image.js", "model-tokenizer.js", "mnist-training.js", "mnist-training.css", "mnist-training-runtime.js"))).hexdigest()[:16]
     pages = {"catalog/index.html": hub(course), "sources/index.html": sources_page(course),
              "knowledge/index.html": knowledge_page(course["concepts"])}
     initial = BASE + "/terms/spring-2026/s01/slides/"
@@ -842,13 +843,22 @@ def build(output, root=ROOT):
     from source_models import build_model_pages
     from source_animations import build_animation_pages
     from source_experiments import experiment_files
+    from mnist_training import build_mnist_training
     build_model_pages(root, output, asset_revision=reader_version)
+    build_mnist_training(root, output, asset_revision=reader_version)
     build_animation_pages(root, output)
     for name in experiment_files(root):
         source, destination = root / name, output / name
         destination.parent.mkdir(parents=True, exist_ok=True)
         if source.resolve() != destination.resolve():
             shutil.copyfile(source, destination)
+    if (root / 'assets').resolve() != assets.resolve():
+        for module in ('source-model-app.js', 'model-runtime.js', 'mnist-training.js'):
+            script = assets / module
+            content = script.read_text()
+            for dependency in ('model-runtime.js', 'model-tokenizer.js', 'model-image.js', 'mnist-training-runtime.js'):
+                content = content.replace('./' + dependency + "'", './' + dependency + '?v=' + reader_version + "'")
+            script.write_text(content)
 
     package_slides(output, root)
     if os.environ.get("DANNA_SOURCE_DRAFT") != "1":

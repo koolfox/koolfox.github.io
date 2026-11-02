@@ -174,7 +174,7 @@ test('mixed visual tables retain the actual photos and handwriting from their so
   await expect(page.locator('.reader-table thead th').first()).toHaveAttribute('colspan','6');
   await page.setViewportSize({width:390,height:844});
   await page.locator('[data-view-translation]').click();
-  expect(await page.locator('.reader-table').evaluate(t=>t.getBoundingClientRect().width)).toBeGreaterThanOrEqual(1050);
+  await expect.poll(()=>page.locator('.reader-table').evaluate(t=>t.getBoundingClientRect().width)).toBeGreaterThanOrEqual(1050);
   expect(await photos.first().evaluate(c=>c.getBoundingClientRect().width)).toBeGreaterThan(100);
   await page.waitForFunction(()=>window.sourceSlideReader?.ready);
   expect(await photos.evaluateAll(items=>items.every(canvas=>canvas.width>=canvas.getBoundingClientRect().width))).toBe(true);

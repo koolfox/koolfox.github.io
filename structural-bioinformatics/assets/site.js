@@ -5,7 +5,7 @@ const current=document.body.dataset.section;
 let sections, reader;
 const textNode=(tag,text)=>{const node=document.createElement(tag);node.textContent=text;return node;};
 try {
-  const response=await fetch('data/metadata/site-sections.json');
+  const response=await fetch('data/metadata/site-sections.json',{cache:'no-store'});
   if(!response.ok)throw Error('section metadata');
   sections=(await response.json()).sections;
   configureDocumentRoutes(sections);

@@ -1,4 +1,4 @@
-"""Prepare the deposited 7TA3 C/D complex, preserving amidation and disulfide.
+"""Prepare the deposited 7TA3 A/B complex, preserving amidation and disulfide.
 
 This is bound-template model preparation, not sequence-only prediction.
 """
@@ -39,17 +39,17 @@ def main():
     structure = PDBParser(QUIET=True).get_structure("7TA3", source)
     writer = PDBIO()
     writer.set_structure(structure[0])
-    for filename, chain, cap in [("peptide.pdb", "C", True), ("receptor.pdb", "D", False)]:
+    for filename, chain, cap in [("peptide.pdb", "A", True), ("receptor.pdb", "B", False)]:
         writer.save(str(out / filename), Selection(chain, cap))
     record = {
         "source_url": "https://files.rcsb.org/download/7TA3.pdb",
         "entry_url": "https://www.rcsb.org/structure/7TA3",
         "recorded_at_utc": datetime.now(UTC).isoformat(),
         "source_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
-        "model_method": "Extract bound experimental C/D coordinates; not de novo folding",
-        "peptide_chain": "C",
-        "target_chain": "D",
-        "sequence": "".join(seq1(r.resname) for r in structure[0]["C"] if r.id[0] == " "),
+        "model_method": "Extract bound experimental A/B coordinates; not de novo folding",
+        "peptide_chain": "A",
+        "target_chain": "B",
+        "sequence": "".join(seq1(r.resname) for r in structure[0]["A"] if r.id[0] == " "),
         "chemistry": "31 amino acids plus terminal NH2; Cys2-Cys31 disulfide",
         "reference_resolution_angstrom": 2.5,
         "paper_doi": "10.1021/jacs.1c13717",

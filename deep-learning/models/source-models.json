@@ -408,6 +408,191 @@
           "fallback": false
         }
       }
+    },
+    {
+      "id": "clip-vit-base-patch32",
+      "title": "CLIP ViT-B/32",
+      "title_fa": "مدل کامل CLIP ViT-B/32",
+      "action_title_fa": "اجرای CLIP ViT-B/32",
+      "kind": "contrastive-image-text",
+      "source": {
+        "term": "spring-2026",
+        "session": "s16",
+        "pages": [
+          25,
+          40
+        ],
+        "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/15-Scaling.pdf",
+        "local_url": "/deep-learning/assets/danna/spring-2026/s16.pdf",
+        "sha256": "8436fe7f45d440d6dc2f48656ad28215ba5e47686e78ab3d762790d076b31c5c",
+        "page_count": 47,
+        "license_notice": "CC BY-NC-SA; version not printed on cover"
+      },
+      "task": "Full released CLIP ViT-B/32 zero-shot image/text matching: exact source-page40 dog photograph and four plane/car/dog/bird text prompts. No training or paper benchmark reproduction.",
+      "architecture": {
+        "parameters": 151277313,
+        "vision_layers": 12,
+        "vision_heads": 12,
+        "vision_hidden": 768,
+        "image_size": 224,
+        "patch_size": 32,
+        "image_tokens": 50,
+        "text_layers": 12,
+        "text_heads": 8,
+        "text_hidden": 512,
+        "text_tokens": 77,
+        "projection_dim": 512,
+        "summary_fa": "رمزگذار تصویر ViT-B/32 + رمزگذار متن ۱۲لایه · بردارهای ۵۱۲بعدی"
+      },
+      "checkpoint": {
+        "publisher": "OpenAI checkpoint published on Hugging Face",
+        "revision": "3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268",
+        "configuration": {
+          "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/config.json",
+          "sha256": "b575ef3c36f2a057fa19e221650105052d61cc9c1a972ec15019c6261ec98770"
+        },
+        "model_card_url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/README.md"
+      },
+      "license": {
+        "spdx": "MIT",
+        "url": "https://raw.githubusercontent.com/openai/CLIP/d05afc436d78f1c48dc0dbf8e5980a9d471f35f6/LICENSE",
+        "local_url": "./licenses/clip-LICENSE.txt"
+      },
+      "reference": {
+        "framework": "PyTorch2.13.0 / Transformers4.57.3 / CLIPModel",
+        "method": "Independent original published CLIPModel.forward outputs compared to complete browser graph; all image/text embedding components, cosine scores and logits."
+      },
+      "artifacts": {
+        "model": {
+          "name": "CLIP ViT-B/32 PyTorch weights",
+          "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/pytorch_model.bin",
+          "local_file": "clip/pytorch_model.bin",
+          "bytes": 605247071,
+          "sha256": "a63082132ba4f97a80bea76823f544493bffa8082296d62d71581a4feff1576f"
+        },
+        "graph": {
+          "name": "clip-vit-base-patch32.onnx",
+          "url": "./graphs/clip-vit-base-patch32.onnx",
+          "local_file": "../../../models/graphs/clip-vit-base-patch32.onnx",
+          "bytes": 477845,
+          "sha256": "744318b7bb781ee4cbf6461b440037d572d2fbd79904e66e6729dfe479e5c183"
+        },
+        "input": {
+          "name": "clip-input.float32.bin",
+          "url": "./references/clip-input.float32.bin",
+          "local_file": "../../../models/references/clip-input.float32.bin",
+          "bytes": 602112,
+          "sha256": "6c9745d5ea61492b7996392340341d2e827519d8d76b5b6ea3be9bb6b85b42cb"
+        },
+        "reference": {
+          "name": "clip-base.json",
+          "url": "./references/clip-base.json",
+          "local_file": "../../../models/references/clip-base.json",
+          "bytes": 58784,
+          "sha256": "73595b24a0eb0e0839d6c859489be156eac41f98e074523de1b18947a8bfa669"
+        },
+        "preview": {
+          "name": "clip-preview.png",
+          "url": "./references/clip-preview.png",
+          "local_file": "../../../models/references/clip-preview.png",
+          "bytes": 89464,
+          "sha256": "510a60fa9e5807d3b68755b0d1c4e8fe8d4bfb2e1bb2fd5baef5598e993614cd"
+        },
+        "source_image": {
+          "name": "clip-source-dog.png",
+          "url": "./references/clip-source-dog.png",
+          "local_file": "../../../models/references/clip-source-dog.png",
+          "bytes": 32926,
+          "sha256": "711e7b5c9b46b46270a01902fac15244f90970263be6417546cc131504c4ad9f"
+        },
+        "tokenizer": {
+          "name": "clip-tokenizer.json",
+          "url": "./references/clip-tokenizer.json",
+          "local_file": "../../../models/references/clip-tokenizer.json",
+          "bytes": 2224041,
+          "sha256": "b556ac8c99757ffb677208af34bc8c6721572114111a6e0aaf5fa69ff0b8d842"
+        },
+        "tokenizer_config": {
+          "name": "clip-tokenizer-config.json",
+          "url": "./references/clip-tokenizer-config.json",
+          "local_file": "../../../models/references/clip-tokenizer-config.json",
+          "bytes": 592,
+          "sha256": "34b7336e4bee12e0a9730eaf5189f582ef3c3eea5027f65730e5717256755aad"
+        }
+      },
+      "external_data": {
+        "path": "pytorch_model.bin",
+        "format": "Original uncompressed PyTorch ZIP tensor storage; the browser never executes Python or pickle.",
+        "conversion": "All tensors match original checkpoint bytes. Contiguous views map offsets directly; two projection transposed views are represented by ONNX Transpose nodes. No converted checkpoint is hosted.",
+        "end_token_selection": "Tokenizer computes EOT one-hot mask; GPU multiply/reduce selects the same first EOT hidden vector as original token-index pooling."
+      },
+      "input_name": "pixel_values",
+      "input_shape": [
+        1,
+        3,
+        224,
+        224
+      ],
+      "text_shape": [
+        4,
+        77
+      ],
+      "output_name": "logits_per_image",
+      "output_is_probabilities": false,
+      "preprocessing": {
+        "processor": "clip-bicubic-224",
+        "resize_mode": "short-side-center-crop",
+        "resize_short_side": 224,
+        "center_crop": [
+          224,
+          224
+        ],
+        "resample": "Pillow bicubic",
+        "channel_order": "RGB",
+        "layout": "NCHW",
+        "rescale": 0.00392156862745098,
+        "mean": [
+          0.48145466,
+          0.4578275,
+          0.40821073
+        ],
+        "std": [
+          0.26862954,
+          0.26130258,
+          0.27577711
+        ]
+      },
+      "default_input": {
+        "kind": "image",
+        "preview_url": "./references/clip-preview.png?sha256=510a60fa9e5807d3b68755b0d1c4e8fe8d4bfb2e1bb2fd5baef5598e993614cd",
+        "caption_fa": "تصویر مثال اسلاید: Radford et al. (2021)",
+        "prompts": [
+          "A photo of a plane.",
+          "A photo of a car.",
+          "A photo of a dog.",
+          "A photo of a bird."
+        ]
+      },
+      "attribution": {
+        "text": "Radford et al. (2021), PMLR139:8748–8763؛ تصویر مثال، بدون تغییر از مقاله استخراج شده است.",
+        "url": "https://proceedings.mlr.press/v139/radford21a.html",
+        "license": "CC BY4.0",
+        "license_url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "validation": {
+        "state": "verified",
+        "tolerance": {
+          "absolute": 5e-05,
+          "relative": 5e-05
+        },
+        "compared_outputs": 2568,
+        "webgpu_max_absolute_error": 1.71661376953125e-05,
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "fallback": false
+        }
+      }
     }
   ]
 }

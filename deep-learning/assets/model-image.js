@@ -1,3 +1,4 @@
+import{preprocessClipImageData}from'./model-clip-image.js?v=aa8971f9668869a4';
 // Checkpoint-specific RGB preprocessing for ResNet-v1 and ViT-B/16.
 // Input is decoded RGBA pixels. Resize uses Pillow's separable bilinear filter
 // with antialiasing when shrinking, then a center crop and RGB normalization.
@@ -43,6 +44,7 @@ function preprocessImageData(image,processor){
 export function preprocessResnetImageData(image){return preprocessImageData(image,'resnet');}
 export function preprocessVitImageData(image){return preprocessImageData(image,'vit');}
 export function preprocessSourceModelImageData(model,image){
+ if(model.preprocessing?.processor==='clip-bicubic-224')return preprocessClipImageData(image);
  if(model.preprocessing?.processor==='vit-bilinear-224')return preprocessVitImageData(image);
  if(model.id==='resnet152-v1')return preprocessResnetImageData(image);
  throw Error('پیش‌پردازش این مدل در مرورگر پشتیبانی نمی‌شود.');

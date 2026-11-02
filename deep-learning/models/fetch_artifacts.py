@@ -4,14 +4,14 @@ Downloads resume by verified byte ranges. A complete SHA-256 check is mandatory
 before a partial file becomes usable. Run explicitly; never imported by slides.
 """
 
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import datetime, timezone
 import hashlib
 import json
 import os
-from pathlib import Path
 import time
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import UTC, datetime
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CACHE = ROOT / "results/model-validation/cache"
@@ -97,6 +97,56 @@ ARTIFACTS += [
         "url": "https://raw.githubusercontent.com/scikit-image/scikit-image/e8a42ba85aaf5fd9322ef9ca51bc21063b22fcae/skimage/data/astronaut.png",
         "size": 791555,
         "sha256": "88431cd9653ccd539741b555fb0a46b61558b301d4110412b5bc28b5e3ea6cb5",
+    },
+]
+ARTIFACTS += [
+    {
+        "file": "clip/pytorch_model.bin",
+        "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/pytorch_model.bin",
+        "size": 605247071,
+        "sha256": "a63082132ba4f97a80bea76823f544493bffa8082296d62d71581a4feff1576f",
+    },
+    {
+        "file": "clip/config.json",
+        "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/config.json",
+        "size": 4186,
+        "sha256": "b575ef3c36f2a057fa19e221650105052d61cc9c1a972ec15019c6261ec98770",
+    },
+    {
+        "file": "clip/preprocessor_config.json",
+        "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/preprocessor_config.json",
+        "size": 316,
+        "sha256": "910e70b3956ac9879ebc90b22fb3bc8a75b6a0677814500101a4c072bd7857bd",
+    },
+    {
+        "file": "clip/tokenizer.json",
+        "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/tokenizer.json",
+        "size": 2224041,
+        "sha256": "b556ac8c99757ffb677208af34bc8c6721572114111a6e0aaf5fa69ff0b8d842",
+    },
+    {
+        "file": "clip/tokenizer_config.json",
+        "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/tokenizer_config.json",
+        "size": 592,
+        "sha256": "34b7336e4bee12e0a9730eaf5189f582ef3c3eea5027f65730e5717256755aad",
+    },
+    {
+        "file": "clip/special_tokens_map.json",
+        "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/special_tokens_map.json",
+        "size": 389,
+        "sha256": "f8c0d6c39aee3f8431078ef6646567b0aba7f2246e9c54b8b99d55c22b707cbf",
+    },
+    {
+        "file": "clip/README.md",
+        "url": "https://huggingface.co/openai/clip-vit-base-patch32/resolve/3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268/README.md",
+        "size": 7942,
+        "sha256": "8f0e8c678e0afe5f384f3bf8a6694c1cb53c41e52f86277967b6c5354cb0f9f4",
+    },
+    {
+        "file": "clip/radford21a.pdf",
+        "url": "https://proceedings.mlr.press/v139/radford21a/radford21a.pdf",
+        "size": 3526772,
+        "sha256": "2a4952960f350e50a3a4a847371b80b8aaa09ba82d1c2a8f6b30450e392a1fe4",
     },
 ]
 BLOCK = 4 * 1024 * 1024
@@ -207,7 +257,7 @@ def fetch(item):
         raise ValueError("Artifact checksum mismatch: " + item["file"])
     temporary.replace(path)
     state_path.unlink(missing_ok=True)
-    return {**item, "retrieved_utc": datetime.now(timezone.utc).isoformat()}
+    return {**item, "retrieved_utc": datetime.now(UTC).isoformat()}
 
 
 if __name__ == "__main__":

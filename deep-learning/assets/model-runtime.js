@@ -1,5 +1,5 @@
 import {createBertTokenizer} from './model-tokenizer.js';
-export {preprocessResnetImageData,preprocessVitImageData,preprocessSourceModelImageData} from './model-image.js?v=3a9ff53e268cbc15';
+export {preprocessResnetImageData,preprocessVitImageData,preprocessSourceModelImageData} from './model-image.js?v=a7712c46f0cf8d6c';
 
 const manifestURL = new URL('../models/source-models.json', import.meta.url);
 let contextPromise = null;
@@ -92,6 +92,12 @@ export async function loadSourceModel(id,options={}) {
     canceled(options.signal);
     let tokenizer=null;
     if(model.kind==='masked-language-model')tokenizer=createBertTokenizer(new TextDecoder().decode(await verifiedBytes(model.artifacts.vocabulary,options)));
+    if(model.kind==='contrastive-image-text'){
+      const{createClipTokenizer}=await import('./model-clip-tokenizer.js?v=aff9feaf664e80a7');
+      const tokenizerJson=JSON.parse(new TextDecoder().decode(await verifiedBytes(model.artifacts.tokenizer,options)));
+      const config=JSON.parse(new TextDecoder().decode(await verifiedBytes(model.artifacts.tokenizer_config,options)));
+      tokenizer=createClipTokenizer(tokenizerJson,config);
+    }
     const reference=JSON.parse(new TextDecoder().decode(await verifiedBytes(model.artifacts.reference,options)));
     return {...context,id,model,session,tokenizer,reference,released:false};
   }catch(error){await session.release();throw error;}
@@ -115,7 +121,7 @@ function compare(actual,expected,tolerance) {
 export async function runSourceModel(handle,input={},options={}) {
   if(handle.released)throw Error('مدل آزاد شده است؛ دوباره آن را بارگیری کن.');
   canceled(options.signal);
-  const {model,session,ort,reference}=handle;let feeds,encoded=null,isReference=false;
+  const {model,session,ort,reference}=handle;let feeds,encoded=null,isReference=false,prompts=null;
   if(model.kind==='masked-language-model') {
     const text=input.text??model.default_input.text,textPair=input.textPair??model.default_input.textPair;
     encoded=handle.tokenizer.encode(text,textPair);
@@ -134,6 +140,13 @@ export async function runSourceModel(handle,input={},options={}) {
     }
     if(!(tensor instanceof Float32Array)||tensor.length!==model.input_shape.reduce((a,b)=>a*b,1)||tensor.some(value=>!Number.isFinite(value)))throw Error('تنسور تصویر با شکل ورودی مدل سازگار نیست.');
     feeds={[model.input_name]:new ort.Tensor('float32',tensor,model.input_shape)};
+    if(model.kind==='contrastive-image-text'){
+      prompts=input.prompts??model.default_input.prompts;encoded=handle.tokenizer.encodeCandidates(prompts);
+      feeds.input_ids=new ort.Tensor('int32',encoded.inputIds,[4,77]);
+      feeds.attention_mask=new ort.Tensor('int32',encoded.attentionMask,[4,77]);
+      feeds.end_mask=new ort.Tensor('float32',encoded.endMask,[4,77]);
+      isReference=isReference&&prompts.every((text,index)=>text===model.default_input.prompts[index]);
+    }
   }
   options.onProgress?.({stage:'inference',artifact:model.id});
   let outputs;
@@ -149,6 +162,13 @@ export async function runSourceModel(handle,input={},options={}) {
       });
       return {model:idOf(handle),adapter:handle.adapter,backend:'webgpu',tokens:encoded.tokens,inputIds:encoded.inputIds,
         outputShape:output.dims,masks,isReference,fullModel:true};
+    }
+    if(model.kind==='contrastive-image-text'){
+      const cosine=await outputs.cosine_similarity.getData(),image=await outputs.image_embeddings.getData(),text=await outputs.text_embeddings.getData(),probabilities=softmax(data);
+      const candidates=prompts.map((label,index)=>({index,label,value:probabilities[index],probability:probabilities[index],cosine:cosine[index],logit:data[index]}));
+      const tensorComparisons=isReference?{logits:compare(data,reference.logits,model.validation.tolerance),cosine:compare(cosine,reference.cosine,model.validation.tolerance),image:compare(image,reference.image_embeddings,model.validation.tolerance),text:compare(text,reference.text_embeddings,model.validation.tolerance)}:null;
+      const checks=Object.values(tensorComparisons||{}),comparison=isReference?{matched:checks.every(value=>value.matched),compared:checks.reduce((sum,value)=>sum+value.compared,0),failed:checks.reduce((sum,value)=>sum+value.failed,0),maxAbsoluteError:Math.max(...checks.map(value=>value.maxAbsoluteError)),tolerance:model.validation.tolerance}:null;
+      return{model:idOf(handle),adapter:handle.adapter,backend:'webgpu',fullModel:true,isReference,outputShape:output.dims,candidates,top:[...candidates].sort((a,b)=>b.value-a.value),textTokens:encoded.encoded.map(row=>row.tokens),inputIds:encoded.encoded.map(row=>row.ids),...(isReference?{comparison,tensorComparisons}:{}),embeddingShapes:{image:outputs.image_embeddings.dims,text:outputs.text_embeddings.dims}};
     }
     const probabilities=model.output_is_probabilities?Array.from(data):softmax(data);
     return {model:idOf(handle),adapter:handle.adapter,backend:'webgpu',inputShape:model.input_shape,outputShape:output.dims,

@@ -1,8 +1,8 @@
 import importlib.util
 import json
-from pathlib import Path
 import tempfile
 import unittest
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location(
@@ -17,7 +17,14 @@ class ModelPageTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             output = Path(folder)
             pages = module.build_model_pages(ROOT, output, "test-revision")
-            self.assertEqual(len(pages), 3)
+            self.assertEqual(
+                len(pages),
+                len(
+                    json.loads((ROOT / "models/source-models.json").read_text())[
+                        "models"
+                    ]
+                ),
+            )
             for page in pages:
                 self.assertTrue(page.is_relative_to(output))
                 text = page.read_text()

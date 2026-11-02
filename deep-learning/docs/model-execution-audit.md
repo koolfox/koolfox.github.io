@@ -5,7 +5,7 @@ slide coverage, training and historical benchmark reproduction.
 
 ## Complete released models executed on hardware WebGPU
 
-All three models ran through the production `assets/model-runtime.js` API using ONNX
+All four models ran through the production `assets/model-runtime.js` API using ONNX
 Runtime Web1.31.1, an isolated Playwright1.58.2 Chromium145 profile, and
 `--enable-unsafe-webgpu --use-angle=metal`. The adapter reported
 `vendor:apple`, `architecture:metal-3`, `fallback:false`. Sessions specified
@@ -25,6 +25,7 @@ The complete learned inference graph runs on the WebGPU execution provider.
 | Original, unmodified official BERT ONNX | Same independent PyTorch CPU reference | All3,906,816 logits | 1.4019012e-4 native ONNX CPU |
 | Full ViT-B/16-224, s14 pp47,56 | Exact released PyTorch checkpoint, NASA photograph | All1,000 logits | 5.2452087e-6 WebGPU |
 | Same ViT external-data graph | Same PyTorch CPU reference | All1,000 logits | 5.4836273e-6 native ONNX CPU |
+| Full CLIP ViT-B/32, s16 pp25,40 | Original released PyTorch CLIPModel, exact source dog and four prompts | All2,568 image/text embedding, cosine and logit values | Logits1.7166138e-5, cosine1.6391277e-7 WebGPU |
 
 The CNN tolerance is `3e-5 + 3e-5*abs(reference)`; BERT uses
 `3e-4 + 1e-4*abs(reference)`. Every compared value passed, with no nonfinite
@@ -192,3 +193,50 @@ here and in the tracked manifest/fixtures.
 No historical full-model training, full benchmark reproduction or live publication
 is established by a local inference test. Publication and the complete course's
 slide/lab/question acceptance remain separate checks.
+
+## Full CLIP image/text inference
+
+The pinned official `openai/clip-vit-base-patch32` revision is
+`3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268`. Its original605,247,071-byte
+PyTorch ZIP SHA256 is
+`a63082132ba4f97a80bea76823f544493bffa8082296d62d71581a4feff1576f`.
+Both complete12-layer learned towers, both512-dimensional projections, L2
+normalization and learned logit scale run on strict WebGPU. The2036-node graph
+mounts original ZIP storage bytes as external initializers: shared Q/K/V storage
+offsets are preserved, and the two transposed projection views use graph
+Transpose nodes. Every referenced tensor byte was checked during export; no
+converted large checkpoint is hosted. The tiny graph's pinned digest is recorded
+in the catalog. The model contains151,277,313 parameters.
+
+The source-page40 dog photograph is the exact embedded RGB image X16 from page2
+of Radford et al., PMLR139,2021; `clip-image-source.json` records paper/image hashes
+and attribution. It is separately CC-BY4.0 under the PMLR publication agreement,
+not the site's MIT code license. `extract_clip_source.py` reproduces extraction
+from the checksum-verified original paper. The four source prompts compare a
+plane, car, dog and bird. Actual dog relative probability is0.99738596; this is
+relative only to these four prompts, not calibrated certainty or a benchmark.
+
+The official Hugging Face pure-JavaScript tokenizer0.2.0 is pinned and vendored
+with Apache2 license and archive integrity. All source and Unicode token fixtures
+match the independent official Rust tokenizer. Four Pillow bicubic image fixtures
+match byte-for-byte; input normalization uses the exact published CLIP mean/std.
+Host tokenization selects the first EOT and supplies a one-hot mask; GPU
+multiply/reduce performs equivalent EOT pooling without int64 GPU indices.
+Exactly four candidate strings are supported in this fixed graph; over77tokens
+is rejected without silent truncation.
+
+Independent original PyTorch forward and CPU exported graph agree across all
+2568outputs (maximum logit error1.7166138e-5). Actual Apple Metal WebGPU through
+the production API agrees to the same logit bound; image/text embedding errors
+are4.656613e-7/2.384186e-7. UI acceptance checks explicit download, source-order
+cosines/probabilities, uploaded photograph preprocessing, edited prompts, no
+false reference comparisons, length validation and mobile overflow. Default
+reference comparisons are shown only for the exact default tensor and prompts.
+Evidence is retained in ignored `results/model-validation/clip-*` files.
+
+Reproduction: run `models/fetch_artifacts.py` explicitly; extract the source image
+with `models/extract_clip_source.py` (pypdf/Pillow), run
+`models/prepare_clip_fixtures.py` and `models/export_clip.py` in the pinned model
+validation environment, then `node models/validate_webgpu.mjs clip-vit-base-patch32`.
+No training, historical paper benchmark, largest CLIP variant or CPU fallback is
+claimed by this inference demonstration.

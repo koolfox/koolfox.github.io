@@ -316,6 +316,25 @@
       "verified": true,
       "fa": "مولفهٔ دومِ ورودی اول پس از استانداردسازی منفی است: \\(\\frac{-11.7}{8.7}\\approx-1.34\\). بنابراین بردار با گردکردن به یک رقم اعشار \\([-1.1,-1.3]\\) است.",
       "verification": "Printed local derivative and standardized vector compared with the source; differentiation and signed division recomputed."
+    },
+    {
+      "session_id": "s09",
+      "page": 59,
+      "source_sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "برای توان عملیاتی INT8، واحد TOPS (تریلیون عملیات صحیح در ثانیه) به کار می‌رود، نه TFLOPS (عملیات ممیز شناور). مقدار 3,958 در مشخصات H200 SXM مربوط به حالت تنک (Sparsity) است؛ راهنمای سخت‌افزار آن را 3,958 TOPS گزارش می‌کند.",
+      "references": [
+        {
+          "label_fa": "مشخصات H200 — Lenovo Press",
+          "url": "https://lenovopress.lenovo.com/lp1944-nvidia-h200-141gb-gpu"
+        }
+      ],
+      "verification": {
+        "method": "Original slide visually reviewed; statement checked against the dataset authors or hardware vendor primary source.",
+        "retrieved_at_utc": "2026-11-02T15:09:07.547432+00:00",
+        "reference_sha256": "87f5e63ff74cb14f74acced0a8bed4e0c9993029740a0950b88eb4bb530ae801"
+      }
     }
   ]
 }

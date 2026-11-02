@@ -99,7 +99,9 @@ async function renderOriginal(){
    available=Math.min(available,Math.max(100,pane.clientHeight-padding)*base.width/base.height);
   }
   lastWidth=available;
-  const width=available*zoom,viewport=source.getViewport({scale:width/base.width}),ratio=Math.min(devicePixelRatio||1,2);
+  const width=available*zoom,viewport=source.getViewport({scale:width/base.width});
+  // The table crops need source detail even when the slide preview is narrow or hidden.
+  const ratio=Math.max(Math.min(devicePixelRatio||1,2),persian.querySelector('[data-source-crop]')?2048/viewport.width:1);
   canvas.width=Math.ceil(viewport.width*ratio);canvas.height=Math.ceil(viewport.height*ratio);
   canvas.style.width=viewport.width+'px';canvas.style.height=viewport.height+'px';
   const holder=canvas.parentElement;holder.style.width=viewport.width+'px';holder.style.height=viewport.height+'px';

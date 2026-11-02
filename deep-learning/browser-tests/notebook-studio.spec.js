@@ -176,8 +176,11 @@ test('mixed visual tables retain the actual photos and handwriting from their so
   await page.locator('[data-view-translation]').click();
   expect(await page.locator('.reader-table').evaluate(t=>t.getBoundingClientRect().width)).toBeGreaterThanOrEqual(1050);
   expect(await photos.first().evaluate(c=>c.getBoundingClientRect().width)).toBeGreaterThan(100);
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+  expect(await photos.evaluateAll(items=>items.every(canvas=>canvas.width>=canvas.getBoundingClientRect().width))).toBe(true);
   const viewport=page.locator('.reader-table-viewport');
   await viewport.focus();await viewport.press('ArrowRight');
+  await expect.poll(()=>viewport.evaluate(node=>node.scrollLeft)).toBeGreaterThan(0);
   expect(await page.evaluate(()=>window.sourceSlideReader.page)).toBe(45);
 });
 

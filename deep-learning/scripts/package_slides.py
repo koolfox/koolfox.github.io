@@ -169,6 +169,10 @@ def package_source_readers(output, term_id, sessions, root=ROOT):
                  "python-tools.js", "python-tools-worker.mjs", "notebook_support.py", "notebook-results.js"):
         add("deep-learning/assets/" + name, output / "assets" / name)
     add("deep-learning/knowledge/index.html", output / "knowledge/index.html")
+    from source_experiments import experiment_files
+    if (root / 'models/source-models.json').exists():
+        for name in experiment_files(root, generated=True):
+            add('deep-learning/' + name, output / name)
     for vendor in ("pdfjs", "katex", "python-editor", "python-tools"):
         for name in declared_vendor_files(root, vendor):
             add(f"deep-learning/assets/vendor/{vendor}/{name}", root / "assets/vendor" / vendor / name)

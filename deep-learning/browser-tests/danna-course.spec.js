@@ -73,6 +73,8 @@ test('slides lead and optional tools open only when requested',async({page})=>{
  await expect(page.locator('body')).toHaveAttribute('data-reader-section','slides');
  await expect(page.locator('[data-reader-tools-frame]')).not.toHaveAttribute('src',/./);
  expect(python).toEqual([]);
+ await expect(page.locator('.reader-sections [data-reader-section=lab]')).toHaveAttribute('aria-disabled','true');
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=44');
  await page.locator('.reader-sections [data-reader-section=lab]').click();
  await expect(page.frameLocator('[data-reader-tools-frame]').locator('[data-notebook-code]').first()).toBeVisible();
  await expect(page.locator('#source-canvas')).toBeVisible();
@@ -81,7 +83,7 @@ test('slides lead and optional tools open only when requested',async({page})=>{
 });
 
 test('phone presents the source first and switches optional tools without overflow',async({page})=>{
- await page.setViewportSize({width:390,height:844});await page.goto(lesson+'slides/');
+ await page.setViewportSize({width:390,height:844});await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=44');
  await expect(page.locator('#original-panel')).toBeVisible();await expect(page.locator('#translation-panel')).toBeHidden();
  await page.locator('.reader-sections [data-reader-section=questions]').click();
  await expect(page.frameLocator('[data-reader-tools-frame]').locator('.nb-question').first()).toBeVisible();

@@ -2,7 +2,8 @@ import { defineConfig } from "@playwright/test";
 
 export default defineConfig({
     testDir: ".",
-    testMatch: ["isolation.spec.js", "deep-learning.spec.js", "danna-course.spec.js", "lesson-workshops.spec.js", "workshop-refinement.spec.js", "local-slides.spec.js", "interactive-workspace.spec.js", "notebook-studio.spec.js"],
+    outputDir: "./test-results",
+    testMatch: ["source-experiments.spec.js", "source-layout.spec.js", "isolation.spec.js", "deep-learning.spec.js", "danna-course.spec.js", "lesson-workshops.spec.js", "workshop-refinement.spec.js", "local-slides.spec.js", "interactive-workspace.spec.js", "notebook-studio.spec.js"],
     fullyParallel: true,
     reporter: "list",
     use: {

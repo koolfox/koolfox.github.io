@@ -174,7 +174,7 @@ test('mixed visual tables retain the actual photos and handwriting from their so
   await expect(page.locator('.reader-table thead th').first()).toHaveAttribute('colspan','6');
   await page.setViewportSize({width:390,height:844});
   await page.locator('[data-view-translation]').click();
-  expect(await page.locator('.reader-table').evaluate(t=>t.getBoundingClientRect().width)).toBeGreaterThanOrEqual(1050);
+  await expect.poll(()=>page.locator('.reader-table').evaluate(t=>t.getBoundingClientRect().width)).toBeGreaterThanOrEqual(1050);
   expect(await photos.first().evaluate(c=>c.getBoundingClientRect().width)).toBeGreaterThan(100);
   await page.waitForFunction(()=>window.sourceSlideReader?.ready);
   expect(await photos.evaluateAll(items=>items.every(canvas=>canvas.width>=canvas.getBoundingClientRect().width))).toBe(true);
@@ -209,7 +209,7 @@ test('WebGPU executes the source attention values and compares the edited Python
     expect(result.scores).toEqual([2,4,4]);expect(result.matched_python).toBe(true);
     expect(result.maximum_absolute_error).toBeLessThan(1e-5);
     const editor=page.locator('[data-notebook-code]').first();
-    await editor.fill((await page.evaluate(()=>window.studentNotebook.cells[0].source)).replace('query = [1, 0, 2]','query = [2, 2, 2]'));
+    await editor.fill((await page.evaluate(()=>window.studentNotebook.cells[0].source)).replace('selected_query = 0','selected_query = 1'));
     await expect(page.locator('[data-run-attention-gpu]')).toHaveCount(0);
     await page.locator('[data-notebook-run-all]').click();
     await page.waitForFunction(()=>window.studentNotebook?.record?.ok,null,{timeout:30000});
@@ -248,7 +248,7 @@ test('attention playback uses the actual consecutive source pages and stops on m
   await expect(page.locator('[data-play-slides]')).toBeHidden();
 });
 
-test('source worked pages open only their exact Python example and three matching choices',async({page})=>{
+test('source worked pages open their exact Python example and page-matched choices',async({page})=>{
   test.setTimeout(120000);await page.setViewportSize({width:1440,height:1000});
   function compare(actual,expected){
     if(typeof expected==='number'){expect(actual).toBeCloseTo(expected,12);return;}
@@ -272,7 +272,11 @@ test('source worked pages open only their exact Python example and three matchin
     await frame.waitForFunction(()=>window.studentNotebook.record?.ok,null,{timeout:60000});
     compare(await frame.evaluate(()=>window.studentNotebook.record.outputs.at(-1).result),reference);
     await frame.getByRole('tab',{name:'آزمون تستی',exact:true}).click();
-    await expect(frame.locator('[data-notebook-question]')).toHaveCount(3);
+    const questions=await frame.locator('#practice-config').evaluate(node=>JSON.parse(node.textContent).questions);
+    expect(questions.length).toBeGreaterThan(0);
+    const pageBank=await frame.locator('#practice-config').evaluate((node,n)=>JSON.parse(node.textContent).page_questions.find(item=>item.pages.includes(n)).questions,number);
+    expect(questions).toEqual(pageBank);
+    await expect(frame.locator('[data-notebook-question]')).toHaveCount(questions.length);
     await frame.locator('[data-return-slide]').click();
     await expect(page.locator('body')).toHaveAttribute('data-reader-section','slides');
     expect(await page.evaluate(()=>window.sourceSlideReader.page)).toBe(number);
@@ -349,7 +353,7 @@ test('only mapped slide pages offer exploration, and plotted weights respond to 
   await expect(tools.locator('.nb-result-readout').last()).toContainText('0.063378938333');
   const editor=tools.locator('[data-notebook-code]').first();
   const original=await frame.evaluate(()=>window.studentNotebook.cells[0].source);
-  await editor.fill(original.replace('query = [1, 0, 2]','query = [0, 0, 0]'));
+  await editor.fill(original.replace('query_weights = [[1, 0, 1], [1, 0, 0], [0, 0, 1], [0, 1, 1]]','query_weights = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]'));
   await tools.locator('[data-notebook-run-all]').click();
   await frame.waitForFunction(()=>window.studentNotebook?.record?.ok,null,{timeout:10000});
   await tools.getByRole('button',{name:'وزن‌ها (weights)',exact:true}).click();
@@ -361,7 +365,7 @@ test('only mapped slide pages offer exploration, and plotted weights respond to 
 });
 
 test('code tips highlight actual Python while preserving every source character',async({page})=>{
-  await page.goto('/deep-learning/terms/spring-2026/s13/practice/#questions');
+  await page.goto('/deep-learning/terms/spring-2026/s01/practice/#questions');
   await page.locator('.nb-code-tip summary').click();
   const code=page.locator('.nb-code-tip pre');
   await expect(code.locator('.tok-keyword').first()).toBeVisible();

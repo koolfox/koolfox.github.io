@@ -24,6 +24,219 @@ def execute(session, changes=None):
 
 
 class WorkshopNumericalTests(unittest.TestCase):
+    def test_weighted_source_bpe_pairs_and_nonunique_third_merge(self):
+        for index, name in enumerate(["first", "second", "third"]):
+            result = execute("s13_bpe_" + name)["result"]
+            self.assertEqual([row["frequency"] for row in result["rounds"]], [4,3,2])
+            self.assertEqual([row["merged_symbol"] for row in result["rounds"]], ["st","me","men"])
+            self.assertEqual(result["selected_round"], index)
+            self.assertEqual(result["initial_alphabet_size"], 11)
+            self.assertEqual(len(result["vocabulary"]), 14)
+            self.assertEqual(len(result["rounds"][2]["tied_maximum_pairs"]), 5)
+        # A changed dataset must not force the source's preferred merge when it is no longer maximal.
+        changed = execute("s13_bpe_second", {'"cost": 2': '"cost": 10'})["result"]
+        self.assertEqual(changed["rounds"][1]["selected_pair"], ["c","o"])
+        self.assertEqual(changed["rounds"][1]["frequency"], 10)
+        with self.assertRaises(ValueError):
+            execute("s13_bpe_first", {'{"cost": 2, "best": 2, "menu": 1, "men": 1, "camel": 1}': '{}'})
+        with self.assertRaises(ValueError):
+            execute("s13_bpe_first", {"selected_round = 0": "selected_round = 5"})
+
+    def test_source_sequence_rule_and_factored_label_dataset(self):
+        result = execute("s07_sequence_rule")["result"]
+        self.assertEqual(result["computed_sequence"], [30,15,46,23,70,35,106,53,160,80,40,20,10,5])
+        self.assertTrue(result["matches_source_b"])
+        self.assertEqual((result["length_a"], result["length_b"]), (8,14))
+        result = execute("s07_factored_classes")["result"]
+        self.assertEqual((result["flat_one_hot_width"], result["factored_two_one_hot_width"]), (9,6))
+        self.assertEqual(result["possible_color_object_pairs"], 9)
+        self.assertEqual(result["factored_classes"][0], {"label":"red truck", "color":[1,0,0], "object":[1,0,0]})
+        with self.assertRaises(ValueError):
+            execute("s07_sequence_rule", {"steps = 14": "steps = -1"})
+
+    def test_source_language_model_ablation_tables_and_illustrated_heads(self):
+        gpt = execute("s14_gpt_ablation")["result"]
+        self.assertAlmostEqual(gpt["pretraining_score_difference"], 14.8)
+        self.assertAlmostEqual(gpt["transformer_lstm_score_difference"], 5.6)
+        self.assertAlmostEqual(gpt["auxiliary_lm_score_difference"], -0.3)
+        cola = execute("s14_gpt_ablation", {'metric = "avg"': 'metric = "CoLA"'})["result"]
+        self.assertAlmostEqual(cola["pretraining_score_difference"], 26.5)
+        bert = execute("s14_bert_ablation")["result"]
+        self.assertAlmostEqual(bert["nsp_score_differences"]["QNLI"], 3.5)
+        self.assertAlmostEqual(bert["bidirectional_score_differences"]["SQuAD_F1"], 10.1)
+        self.assertTrue(all(value > 0 for value in bert["nsp_score_differences"].values()))
+        heads = execute("s14_bert_heads")["result"]
+        self.assertEqual((heads["token_count"], heads["next_sentence_prediction"], heads["masked_word_prediction"]), (11,"isNext","city"))
+        nli = execute("s14_nli_prediction")["result"]
+        self.assertEqual(nli, {"prediction":"contradiction", "selected_probability":1, "class_count":3})
+
+    def test_source_negative_polynomial_frame_starts_at_the_actual_negative_point(self):
+        result = execute("s03_quadratic_negative")["result"]
+        self.assertEqual(result["value"], 9)
+        self.assertEqual(result["gradient"], -11)
+        self.assertEqual(result["next_x"], -0.89)
+        for observed, expected in zip(result["finite_differences"], [-10.96, -10.996, -10.9996]):
+            self.assertAlmostEqual(observed, expected, places=8)
+
+    def test_source_forward_and_backward_graphs_obey_the_chain_rule(self):
+        addition = execute("s03_addition_graph")["result"]
+        self.assertEqual(addition, {"value": 5, "grad_b": 1, "grad_c": 1})
+        multiplication = execute("s03_multiply_sum_graph")["result"]
+        self.assertEqual(multiplication, {"z": 5, "value": 20, "grad_z": 4, "grad_d": 5, "grad_b": 4, "grad_c": 4})
+        for name in ["b", "c", "d"]:
+            base = {"b": 2, "c": 3, "d": 4}
+            plus, minus = dict(base), dict(base)
+            plus[name] += 1e-5
+            minus[name] -= 1e-5
+            f = lambda values: values["d"] * (values["b"] + values["c"])
+            numerical = (f(plus) - f(minus)) / 2e-5
+            self.assertAlmostEqual(numerical, multiplication["grad_" + name], places=8)
+
+    def test_original_hello_encoding_and_two_distinct_output_distributions(self):
+        result = execute("s04_hello_encoding")["result"]
+        self.assertEqual(result["encoded"], [[1,0,0,0], [0,1,0,0], [0,0,1,0], [0,0,1,0], [0,0,0,1]])
+        self.assertEqual((result["sequence_length"], result["vocabulary_size"]), (5,4))
+        self.assertEqual(execute("s04_character_choice")["result"]["prediction"], "e")
+        self.assertEqual(execute("s04_character_choice_rnn")["result"]["prediction"], "h")
+        with self.assertRaises(ValueError):
+            execute("s04_hello_encoding", {'text = "hello"': 'text = "hello!"'})
+        with self.assertRaises(ValueError):
+            execute("s04_character_choice", {"[0.05, 0.65, 0.2, 0.1]": "[0.05, 0.65, 0.2, 0.2]"})
+
+    def test_source_flattening_changes_positions_without_changing_active_pixel_count(self):
+        result = execute("s05_flatten_translation")["result"]
+        self.assertEqual(result["flat_original"], [1,1,0,0])
+        self.assertEqual(result["flat_translated"], [0,0,1,1])
+        self.assertEqual(result["changed_positions"], [0,1,2,3])
+        self.assertEqual(sum(result["flat_original"]), sum(result["flat_translated"]))
+        self.assertFalse(result["same_vector"])
+
+    def test_source_pong_counts_partition_decisions_without_claiming_causality(self):
+        result = execute("s18_pong_decisions")["result"]
+        self.assertEqual(result["decisions_per_game"], 199)
+        self.assertEqual(result["total_decisions"], 19900)
+        self.assertEqual(result["winning_game_decisions"], 2388)
+        self.assertEqual(result["losing_game_decisions"], 17512)
+        self.assertEqual(result["winning_game_decisions"] + result["losing_game_decisions"], result["total_decisions"])
+        with self.assertRaises(ValueError):
+            execute("s18_pong_decisions", {"frames_per_game = 200": "frames_per_game = 1"})
+        with self.assertRaises(ValueError):
+            execute("s18_pong_decisions", {"wins = 12": "wins = 101"})
+
+    def test_source_parameter_counts_and_channel_semantics(self):
+        network = execute("s03_parameter_count")["result"]
+        self.assertEqual(network["weights_per_layer"], [6, 9, 3])
+        self.assertEqual(network["total_parameters"], 25)
+        shared = execute("s05_shared_weights")["result"]
+        self.assertEqual((shared["conv_weights"], shared["dense_weights"]), (4, 36))
+        # Two 3-channel filters contain six 2-D slices but still only two output maps.
+        channel = execute("s05_channel_count", {"filters = 1": "filters = 2"})["result"]
+        self.assertEqual(channel, {"filters": 2, "kernels": 6, "feature_maps": 2, "weights_without_bias": 54})
+        cost = execute("s05_rgb_compute")["result"]
+        self.assertEqual(cost["total_multiplications"], 24883200)
+        wider = execute("s05_rgb_compute", {"width = 1280": "width = 2560"})["result"]
+        self.assertEqual(wider["total_multiplications"], 2 * cost["total_multiplications"])
+        with self.assertRaises(ValueError):
+            execute("s03_parameter_count", {"layer_sizes = [2, 3, 3, 1]": "layer_sizes = [2, 0, 1]"})
+
+    def test_source_xor_four_page_defaults_and_nonlinear_intermediates(self):
+        cases = [("zero_zero", [0, 0], [0, 0], 0),
+                 ("zero_one", [0, 1], [1, 0], 1),
+                 ("one_zero", [1, 0], [1, 0], 1),
+                 ("one_one", [1, 1], [1, 1], 0)]
+        for suffix, inputs, hidden, output in cases:
+            result = execute("s03_xor_" + suffix)["result"]
+            self.assertEqual(result["selected"]["inputs"], inputs)
+            self.assertEqual(result["selected"]["hidden"], hidden)
+            self.assertEqual(result["selected"]["output"], output)
+            self.assertEqual(result["outputs"], [0, 1, 1, 0])
+        altered = execute("s03_xor_zero_zero", {"output_bias = -0.5": "output_bias = 1.0"})
+        self.assertNotEqual(altered["result"]["outputs"], [0, 1, 1, 0])
+        with self.assertRaises(ValueError):
+            execute("s03_xor_zero_zero", {"selected_sample = 0": "selected_sample = 4"})
+
+    def test_source_pooling_selects_each_colored_regions_maximum(self):
+        result = execute("s05_source_pooling")["result"]
+        self.assertEqual(result["pooled"], [[6, 8], [3, 4]])
+        self.assertEqual(result["trainable_parameters"], 0)
+        overlapping = execute("s05_source_pooling", {"stride = 2": "stride = 1"})["result"]
+        self.assertEqual(overlapping["shape"], [3, 3])
+        self.assertEqual(overlapping["pooled"][1], [6, 7, 8])
+        with self.assertRaises(ValueError):
+            execute("s05_source_pooling", {"window = 2": "window = 5"})
+
+    def test_source_roi_retains_fractional_coordinates_and_area_scaling(self):
+        result = execute("s10_roi_coordinates")["result"]
+        self.assertEqual(result["feature_size"], [25/4, 145/32])
+        self.assertEqual(result["feature_origin_xy"], [37/4, 6])
+        self.assertEqual(result["bin_size"], [25/12, 145/96])
+        self.assertEqual(result["area_before"] / result["area_after"], 32**2)
+        with self.assertRaises(ValueError):
+            execute("s10_roi_coordinates", {"downsample = 32.0": "downsample = 0"})
+
+    def test_source_quadratic_derivative_and_update_are_independently_correct(self):
+        for x in (-1.0, 0.375, 2.0):
+            scope = execute("s03_quadratic", {"x = 2.0": f"x = {x}"})
+            h = 1e-5
+            f = lambda value: 2 - 3 * value + 4 * value**2
+            self.assertAlmostEqual(scope["gradient"], (f(x+h)-f(x-h))/(2*h), places=8)
+            self.assertLessEqual(f(scope["next_x"]), f(x) + 1e-14)
+        self.assertEqual(execute("s03_quadratic")["result"]["next_x"], 1.87)
+
+    def test_source_scalar_graph_all_partial_derivatives(self):
+        scope = execute("s03_scalar_graph")
+        self.assertEqual(scope["gradients"], [1, 3, -2])
+        self.assertAlmostEqual(scope["next_value"], -5.1406)
+        f = lambda values: values[0] + values[1] * values[2]
+        for index, derivative in enumerate(scope["gradients"]):
+            plus, minus = [1, -2, 3], [1, -2, 3]
+            plus[index] += 1e-5
+            minus[index] -= 1e-5
+            self.assertAlmostEqual((f(plus)-f(minus))/2e-5, derivative, places=8)
+
+    def test_source_standardization_preserves_sign_and_uses_population_variance(self):
+        result = execute("s06_standardization")["result"]
+        self.assertEqual(result["means"], [17/3, 65/3])
+        self.assertAlmostEqual(result["raw_sums"][1], 2.9)
+        self.assertTrue(all(x < 0 for x in result["standardized"][0]))
+        for j in range(2):
+            self.assertAlmostEqual(sum(row[j] for row in result["standardized"]), 0)
+            self.assertAlmostEqual(sum(row[j]**2 for row in result["standardized"])/3, 1)
+        with self.assertRaisesRegex(ValueError, "صفر"):
+            execute("s06_standardization", {"[[2.0, 10.0], [5.0, 24.0], [10.0, 31.0]]": "[[2, 10], [2, 24], [2, 31]]"})
+
+    def test_source_majority_epoch_uses_original_order_and_tie_convention(self):
+        result = execute("s02_majority_epoch")["result"]
+        self.assertEqual(result["trace"][0]["prediction"], 1)
+        self.assertEqual(result["trace"][0]["weights"], [-0.2, -0.2, 0, 0])
+        self.assertEqual(result["trace"][1]["weights"], [0, 0, 0, 0.2])
+        self.assertEqual(result["final_weights"], [-0.2, 0, 0.2, 0.2])
+        self.assertEqual(result["final_errors"], 2)
+        stationary = execute("s02_majority_epoch", {"learning_rate = 0.1": "learning_rate = 0"})
+        self.assertEqual(stationary["weights"], [0, 0, 0, 0])
+
+    def test_full_source_attention_projections_all_queries_and_changed_case(self):
+        scope = execute("s13_source_attention")
+        self.assertEqual(scope["queries"], [[1, 0, 2], [2, 2, 2], [2, 1, 3]])
+        self.assertEqual(scope["keys"], [[0, 1, 1], [4, 4, 0], [2, 3, 1]])
+        self.assertEqual(scope["values"], [[1, 2, 3], [2, 8, 0], [2, 6, 3]])
+        self.assertEqual(scope["all_scores"], [[2, 4, 4], [4, 16, 12], [4, 12, 10]])
+        for i, name in enumerate(("s13_source_attention", "s13_source_query_2", "s13_source_query_3")):
+            output = execute(name)["result"]
+            self.assertEqual(output["selected_query"], i)
+            self.assertEqual(output["scores"], scope["all_scores"][i])
+            expected_weights = [math.exp(v) / sum(math.exp(x) for x in output["scores"]) for v in output["scores"]]
+            for actual, expected in zip(output["weights"], expected_weights):
+                self.assertAlmostEqual(actual, expected)
+            for column, actual in enumerate(output["output"]):
+                self.assertAlmostEqual(actual, sum(w * row[column] for w, row in zip(expected_weights, scope["values"])))
+            edited = execute(name, {"scaled = False": "scaled = True"})["result"]
+            self.assertIsNone(edited["slide_approximation_output"])
+        with self.assertRaises(ValueError):
+            execute("s13_source_attention", {"selected_query = 0": "selected_query = 3"})
+        with self.assertRaises(ValueError):
+            scope["project"]([[1, 2]], [[1, 2]])
+
     def test_source_backprop_passes_all_eleven_central_differences(self):
         scope = execute("s03")
         parameters = scope["source_parameters"]

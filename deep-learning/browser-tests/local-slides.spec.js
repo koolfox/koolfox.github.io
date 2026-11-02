@@ -155,7 +155,15 @@ test('registered2026readers align original and Persian pages, math, a single sou
     const copy=record.blocks.find(block=>block.kind!=='not_visible'&&!block.latex&&block.fa.trim());
     if(copy)await expect(page.locator('#persian-page')).toContainText(copy.fa.replace(/(^|\n)\s*(?:[•●▪◦–-]|\d+[.)])\s+/g,'$1').replace(/\s+/g,' '),{useInnerText:true});
     const mathPage=payload.pages.findIndex(record=>record.blocks.some(block=>block.latex)||record.image_text.some(item=>item.latex));
-    if(mathPage>=0){await page.locator('[data-page-select]').selectOption(String(mathPage+1));await readerReady(page,mathPage+1);await expect(page.locator('#persian-page .katex').first()).toBeVisible();await expect(page.locator('[data-math-error]')).toHaveCount(0);}
+    if(mathPage>=0){
+      await page.locator('[data-page-select]').selectOption(String(mathPage+1));await readerReady(page,mathPage+1);
+      const formula=page.locator('#persian-page .katex').first();
+      if(!await formula.isVisible()){
+        const companion=page.locator('#persian-page .reader-figure-labels:has(.katex):not([open]) > summary').first();
+        if(await companion.count())await companion.click();
+      }
+      await expect(formula).toBeVisible();await expect(page.locator('[data-math-error]')).toHaveCount(0);
+    }
     expect(payload.pages.some(record=>record.blocks.some(block=>/[\u0600-\u06ff].*\([A-Za-z]/s.test(block.fa))||record.image_text.some(item=>/[\u0600-\u06ff].*\([A-Za-z]/s.test(item.fa)))).toBeTruthy();
     await page.locator('body').click({position:{x:5,y:5}});await page.keyboard.press('Home');await readerReady(page,1);
     await page.keyboard.press('ArrowLeft');await readerReady(page,Math.min(2,payload.pages.length));
@@ -169,7 +177,13 @@ test('registered2026readers align original and Persian pages, math, a single sou
     await expect(page.locator('#reader-references a')).toHaveCount(1);
     await page.locator('[data-prev-page]').click();await readerReady(page,payload.pages.length);
     const workshop=page.locator('[data-session-workshop]');
-    if(await workshop.count()){await expect(workshop).toHaveAttribute('href',sourceLesson(id)+'practice/#code');await workshop.click();await expect(page.frameLocator('[data-reader-tools-frame]').locator('[data-notebook-code]').first()).toBeVisible();}
+    if(await workshop.count()){
+      if(config.interactivePages.length){
+        await page.locator('[data-page-select]').selectOption(String(config.interactivePages[0]));await readerReady(page,config.interactivePages[0]);
+        await expect(workshop).toHaveAttribute('href',sourceLesson(id)+'practice/?source-page='+config.interactivePages[0]+'#code');
+        await workshop.click();await expect(page.frameLocator('[data-reader-tools-frame]').locator('[data-notebook-code]').first()).toBeVisible();
+      }else await expect(workshop).toHaveAttribute('aria-disabled','true');
+    }
   }
   expect(errors).toEqual([]);
 });

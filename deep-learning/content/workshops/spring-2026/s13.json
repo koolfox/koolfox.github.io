@@ -185,5 +185,1503 @@
       30,
       31
     ]
+  ],
+  "source_examples": [
+    {
+      "id": "source-attention",
+      "title_fa": "توجه ورودی اول و تبدیل‌های Q/K/V",
+      "pages": [
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "code_file": "s13_source_attention.py",
+      "starter_sha256": "bff9a3c18ff43bfd8bf939c48af1c026c54813f387511069f2030b25efbad49d",
+      "reference": {
+        "queries": [
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            1,
+            3
+          ]
+        ],
+        "keys": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            4,
+            4,
+            0
+          ],
+          [
+            2,
+            3,
+            1
+          ]
+        ],
+        "values": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            8,
+            0
+          ],
+          [
+            2,
+            6,
+            3
+          ]
+        ],
+        "all_scores": [
+          [
+            2.0,
+            4.0,
+            4.0
+          ],
+          [
+            4.0,
+            16.0,
+            12.0
+          ],
+          [
+            4.0,
+            12.0,
+            10.0
+          ]
+        ],
+        "all_weights": [
+          [
+            0.06337893833303762,
+            0.4683105308334812,
+            0.4683105308334812
+          ],
+          [
+            6.033664854558337e-06,
+            0.9820078648958167,
+            0.01798610143932864
+          ],
+          [
+            0.00029538722303456454,
+            0.8805369017749616,
+            0.11916771100200385
+          ]
+        ],
+        "all_outputs": [
+          [
+            1.9366210616669624,
+            6.683105308334811,
+            1.5950684074995565
+          ],
+          [
+            1.9999939663351451,
+            7.963991595132215,
+            0.053976405312549595
+          ],
+          [
+            1.9997046127769653,
+            7.759892254657784,
+            0.35838929467511527
+          ]
+        ],
+        "selected_query": 0,
+        "scores": [
+          2.0,
+          4.0,
+          4.0
+        ],
+        "weights": [
+          0.06337893833303762,
+          0.4683105308334812,
+          0.4683105308334812
+        ],
+        "weight_sum": 1.0,
+        "output": [
+          1.9366210616669624,
+          6.683105308334811,
+          1.5950684074995565
+        ],
+        "slide_approximation_output": [
+          2.0,
+          7.0,
+          1.5
+        ],
+        "gpu_inputs": {
+          "query": [
+            1,
+            0,
+            2
+          ],
+          "keys": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              4,
+              4,
+              0
+            ],
+            [
+              2,
+              3,
+              1
+            ]
+          ],
+          "values": [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              8,
+              0
+            ],
+            [
+              2,
+              6,
+              3
+            ]
+          ],
+          "scaled": false
+        }
+      },
+      "questions": [
+        {
+          "id": "query",
+          "source_kind": "original",
+          "source_page": 25,
+          "prompt_fa": "حاصل ضرب ورودی اول [1,0,1,0] در ماتریس WQ صفحهٔ 25 چیست؟",
+          "solution_fa": "سطر اول و سوم WQ جمع می‌شوند: [1,0,1]+[0,0,1]=[1,0,2].",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "[1,0,2]",
+              "[0,1,1]",
+              "[1,2,3]"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "scores",
+          "source_kind": "original",
+          "source_page": 27,
+          "prompt_fa": "امتیازهای بدون مقیاس پرس‌وجوی اول نسبت به سه کلید چیست؟",
+          "solution_fa": "[1,0,2] با سه کلید ضرب داخلی می‌شود و [2,4,4] می‌دهد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "[0,0.5,0.5]",
+              "[2,4,4]",
+              "[1,2,3]"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "rounding",
+          "source_kind": "original",
+          "source_page": 28,
+          "prompt_fa": "آیا وزن دقیق کلید اول در Softmax([2,4,4]) صفر است؟",
+          "solution_fa": "نمای یک عدد متناهی مثبت است؛ وزن اول تقریباً 0.06338 است. صفر روی تصویر تقریب آموزشی است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "بله، چون کمترین امتیاز را دارد",
+              "بله، چون روی شکل صفر چاپ شده",
+              "خیر؛ تقریباً 0.0634 است"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "source-query-2",
+      "title_fa": "توجه ورودی 2",
+      "pages": [
+        30,
+        31,
+        32
+      ],
+      "code_file": "s13_source_query_2.py",
+      "starter_sha256": "a781a0844a93f23a5de984b73d120e4c79ff8d2d1c5d9a320a9b48c1ab75be39",
+      "reference": {
+        "queries": [
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            1,
+            3
+          ]
+        ],
+        "keys": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            4,
+            4,
+            0
+          ],
+          [
+            2,
+            3,
+            1
+          ]
+        ],
+        "values": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            8,
+            0
+          ],
+          [
+            2,
+            6,
+            3
+          ]
+        ],
+        "all_scores": [
+          [
+            2.0,
+            4.0,
+            4.0
+          ],
+          [
+            4.0,
+            16.0,
+            12.0
+          ],
+          [
+            4.0,
+            12.0,
+            10.0
+          ]
+        ],
+        "all_weights": [
+          [
+            0.06337893833303762,
+            0.4683105308334812,
+            0.4683105308334812
+          ],
+          [
+            6.033664854558337e-06,
+            0.9820078648958167,
+            0.01798610143932864
+          ],
+          [
+            0.00029538722303456454,
+            0.8805369017749616,
+            0.11916771100200385
+          ]
+        ],
+        "all_outputs": [
+          [
+            1.9366210616669624,
+            6.683105308334811,
+            1.5950684074995565
+          ],
+          [
+            1.9999939663351451,
+            7.963991595132215,
+            0.053976405312549595
+          ],
+          [
+            1.9997046127769653,
+            7.759892254657784,
+            0.35838929467511527
+          ]
+        ],
+        "selected_query": 1,
+        "scores": [
+          4.0,
+          16.0,
+          12.0
+        ],
+        "weights": [
+          6.033664854558337e-06,
+          0.9820078648958167,
+          0.01798610143932864
+        ],
+        "weight_sum": 0.9999999999999999,
+        "output": [
+          1.9999939663351451,
+          7.963991595132215,
+          0.053976405312549595
+        ],
+        "slide_approximation_output": [
+          2.0,
+          8.0,
+          0.0
+        ],
+        "gpu_inputs": {
+          "query": [
+            2,
+            2,
+            2
+          ],
+          "keys": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              4,
+              4,
+              0
+            ],
+            [
+              2,
+              3,
+              1
+            ]
+          ],
+          "values": [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              8,
+              0
+            ],
+            [
+              2,
+              6,
+              3
+            ]
+          ],
+          "scaled": false
+        }
+      },
+      "questions": [
+        {
+          "id": "scores",
+          "source_kind": "original",
+          "source_page": 30,
+          "prompt_fa": "امتیازهای پرس‌وجوی 2 نسبت به سه کلید کدام است؟",
+          "solution_fa": "ضرب داخلی پرس‌وجوی همین صفحه با هر سه کلید، این سه امتیاز را می‌سازد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "[4, 16, 12]",
+              "[2,4,4]",
+              "[0,1,0]"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "maximum",
+          "source_kind": "original",
+          "source_page": 31,
+          "prompt_fa": "پرس‌وجوی 2 بیشترین وزن توجه را به کدام ورودی می‌دهد؟",
+          "solution_fa": "بیشترین امتیاز در جایگاه دوم است و Softmax ترتیب امتیازها را حفظ می‌کند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "ورودی اول",
+              "ورودی دوم",
+              "ورودی سوم"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "rounded",
+          "source_kind": "original",
+          "source_page": 32,
+          "prompt_fa": "آیا خروجی حاصل از وزن‌های گرد‌شده الزاماً با خروجی Softmax دقیق برابر است؟",
+          "solution_fa": "کد خروجی دقیق و تقریب آموزشی چاپ‌شده را جدا نشان می‌دهد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "بله، همیشه",
+              "فقط با افزایش بُعد",
+              "خیر؛ گردکردن وزن‌ها خروجی را تغییر می‌دهد"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "source-query-3",
+      "title_fa": "توجه ورودی 3",
+      "pages": [
+        33,
+        34,
+        35
+      ],
+      "code_file": "s13_source_query_3.py",
+      "starter_sha256": "4928802ffc4214886d98a9e3cd2414b6684ad15feabb23b193771fe70cdcc345",
+      "reference": {
+        "queries": [
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            1,
+            3
+          ]
+        ],
+        "keys": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            4,
+            4,
+            0
+          ],
+          [
+            2,
+            3,
+            1
+          ]
+        ],
+        "values": [
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            8,
+            0
+          ],
+          [
+            2,
+            6,
+            3
+          ]
+        ],
+        "all_scores": [
+          [
+            2.0,
+            4.0,
+            4.0
+          ],
+          [
+            4.0,
+            16.0,
+            12.0
+          ],
+          [
+            4.0,
+            12.0,
+            10.0
+          ]
+        ],
+        "all_weights": [
+          [
+            0.06337893833303762,
+            0.4683105308334812,
+            0.4683105308334812
+          ],
+          [
+            6.033664854558337e-06,
+            0.9820078648958167,
+            0.01798610143932864
+          ],
+          [
+            0.00029538722303456454,
+            0.8805369017749616,
+            0.11916771100200385
+          ]
+        ],
+        "all_outputs": [
+          [
+            1.9366210616669624,
+            6.683105308334811,
+            1.5950684074995565
+          ],
+          [
+            1.9999939663351451,
+            7.963991595132215,
+            0.053976405312549595
+          ],
+          [
+            1.9997046127769653,
+            7.759892254657784,
+            0.35838929467511527
+          ]
+        ],
+        "selected_query": 2,
+        "scores": [
+          4.0,
+          12.0,
+          10.0
+        ],
+        "weights": [
+          0.00029538722303456454,
+          0.8805369017749616,
+          0.11916771100200385
+        ],
+        "weight_sum": 1.0,
+        "output": [
+          1.9997046127769653,
+          7.759892254657784,
+          0.35838929467511527
+        ],
+        "slide_approximation_output": [
+          2.0,
+          7.8,
+          0.3
+        ],
+        "gpu_inputs": {
+          "query": [
+            2,
+            1,
+            3
+          ],
+          "keys": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              4,
+              4,
+              0
+            ],
+            [
+              2,
+              3,
+              1
+            ]
+          ],
+          "values": [
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              8,
+              0
+            ],
+            [
+              2,
+              6,
+              3
+            ]
+          ],
+          "scaled": false
+        }
+      },
+      "questions": [
+        {
+          "id": "scores",
+          "source_kind": "original",
+          "source_page": 33,
+          "prompt_fa": "امتیازهای پرس‌وجوی 3 نسبت به سه کلید کدام است؟",
+          "solution_fa": "ضرب داخلی پرس‌وجوی همین صفحه با هر سه کلید، این سه امتیاز را می‌سازد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "[4, 12, 10]",
+              "[2,4,4]",
+              "[0,1,0]"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "maximum",
+          "source_kind": "original",
+          "source_page": 34,
+          "prompt_fa": "پرس‌وجوی 3 بیشترین وزن توجه را به کدام ورودی می‌دهد؟",
+          "solution_fa": "بیشترین امتیاز در جایگاه دوم است و Softmax ترتیب امتیازها را حفظ می‌کند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "ورودی اول",
+              "ورودی دوم",
+              "ورودی سوم"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "rounded",
+          "source_kind": "original",
+          "source_page": 35,
+          "prompt_fa": "آیا خروجی حاصل از وزن‌های گرد‌شده الزاماً با خروجی Softmax دقیق برابر است؟",
+          "solution_fa": "کد خروجی دقیق و تقریب آموزشی چاپ‌شده را جدا نشان می‌دهد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "بله، همیشه",
+              "فقط با افزایش بُعد",
+              "خیر؛ گردکردن وزن‌ها خروجی را تغییر می‌دهد"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "bpe-first",
+      "title_fa": "BPE؛مرحلهٔ 1",
+      "pages": [
+        51
+      ],
+      "code_file": "s13_bpe_first.py",
+      "starter_sha256": "4eb8ef78eccc95d7da4ffd3ff8d77aeb296c870652e65f7ce196be11ce19cc18",
+      "reference": {
+        "initial_alphabet_size": 11,
+        "vocabulary": [
+          "a",
+          "b",
+          "c",
+          "e",
+          "l",
+          "m",
+          "n",
+          "o",
+          "s",
+          "t",
+          "u",
+          "st",
+          "me",
+          "men"
+        ],
+        "rounds": [
+          {
+            "selected_pair": [
+              "s",
+              "t"
+            ],
+            "frequency": 4,
+            "tied_maximum_pairs": [
+              [
+                "s",
+                "t"
+              ]
+            ],
+            "merged_symbol": "st",
+            "tokens_after": {
+              "cost": [
+                "c",
+                "o",
+                "st"
+              ],
+              "best": [
+                "b",
+                "e",
+                "st"
+              ],
+              "menu": [
+                "m",
+                "e",
+                "n",
+                "u"
+              ],
+              "men": [
+                "m",
+                "e",
+                "n"
+              ],
+              "camel": [
+                "c",
+                "a",
+                "m",
+                "e",
+                "l"
+              ]
+            }
+          },
+          {
+            "selected_pair": [
+              "m",
+              "e"
+            ],
+            "frequency": 3,
+            "tied_maximum_pairs": [
+              [
+                "m",
+                "e"
+              ]
+            ],
+            "merged_symbol": "me",
+            "tokens_after": {
+              "cost": [
+                "c",
+                "o",
+                "st"
+              ],
+              "best": [
+                "b",
+                "e",
+                "st"
+              ],
+              "menu": [
+                "me",
+                "n",
+                "u"
+              ],
+              "men": [
+                "me",
+                "n"
+              ],
+              "camel": [
+                "c",
+                "a",
+                "me",
+                "l"
+              ]
+            }
+          },
+          {
+            "selected_pair": [
+              "me",
+              "n"
+            ],
+            "frequency": 2,
+            "tied_maximum_pairs": [
+              [
+                "b",
+                "e"
+              ],
+              [
+                "c",
+                "o"
+              ],
+              [
+                "e",
+                "st"
+              ],
+              [
+                "me",
+                "n"
+              ],
+              [
+                "o",
+                "st"
+              ]
+            ],
+            "merged_symbol": "men",
+            "tokens_after": {
+              "cost": [
+                "c",
+                "o",
+                "st"
+              ],
+              "best": [
+                "b",
+                "e",
+                "st"
+              ],
+              "menu": [
+                "men",
+                "u"
+              ],
+              "men": [
+                "men"
+              ],
+              "camel": [
+                "c",
+                "a",
+                "me",
+                "l"
+              ]
+            }
+          }
+        ],
+        "selected_round": 0,
+        "selected": {
+          "selected_pair": [
+            "s",
+            "t"
+          ],
+          "frequency": 4,
+          "tied_maximum_pairs": [
+            [
+              "s",
+              "t"
+            ]
+          ],
+          "merged_symbol": "st",
+          "tokens_after": {
+            "cost": [
+              "c",
+              "o",
+              "st"
+            ],
+            "best": [
+              "b",
+              "e",
+              "st"
+            ],
+            "menu": [
+              "m",
+              "e",
+              "n",
+              "u"
+            ],
+            "men": [
+              "m",
+              "e",
+              "n"
+            ],
+            "camel": [
+              "c",
+              "a",
+              "m",
+              "e",
+              "l"
+            ]
+          }
+        }
+      },
+      "questions": [
+        {
+          "id": "pair",
+          "source_kind": "original",
+          "source_page": 51,
+          "prompt_fa": "در مرحلهٔ 1 نمونهٔ BPE،زوج مشخص‌شدهٔ اسلاید کدام است؟",
+          "solution_fa": "زوج s+t با فراوانی وزنی 4 یکی از بیشترین فراوانی‌ها را دارد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "s+t",
+              "c+a",
+              "n+u"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "frequency",
+          "source_kind": "original",
+          "source_page": 51,
+          "prompt_fa": "فراوانی وزنی زوج s+t در این مرحله چند است؟",
+          "solution_fa": "فراوانی واژه‌ها را باید لحاظ کرد؛ شمردن صرفِ تعداد سطرها کافی نیست.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "5",
+              "4",
+              "3"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "alphabet",
+          "source_kind": "original",
+          "source_page": 51,
+          "prompt_fa": "پیش از ادغام،الفبای یکتای این پنج واژه چند نماد دارد؟",
+          "solution_fa": "نمادهای a,b,c,e,l,m,n,o,s,t,u یازده عضو متمایزند؛اندازهٔ هدف 14 سه نماد تازه می‌خواهد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "14",
+              "5",
+              "11"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "bpe-second",
+      "title_fa": "BPE؛مرحلهٔ 2",
+      "pages": [
+        52
+      ],
+      "code_file": "s13_bpe_second.py",
+      "starter_sha256": "21860b2257f5c6aee0bbf81178d56afe1e4c06fa53aaa65a8eaea8949c1c2314",
+      "reference": {
+        "initial_alphabet_size": 11,
+        "vocabulary": [
+          "a",
+          "b",
+          "c",
+          "e",
+          "l",
+          "m",
+          "n",
+          "o",
+          "s",
+          "t",
+          "u",
+          "st",
+          "me",
+          "men"
+        ],
+        "rounds": [
+          {
+            "selected_pair": [
+              "s",
+              "t"
+            ],
+            "frequency": 4,
+            "tied_maximum_pairs": [
+              [
+                "s",
+                "t"
+              ]
+            ],
+            "merged_symbol": "st",
+            "tokens_after": {
+              "cost": [
+                "c",
+                "o",
+                "st"
+              ],
+              "best": [
+                "b",
+                "e",
+                "st"
+              ],
+              "menu": [
+                "m",
+                "e",
+                "n",
+                "u"
+              ],
+              "men": [
+                "m",
+                "e",
+                "n"
+              ],
+              "camel": [
+                "c",
+                "a",
+                "m",
+                "e",
+                "l"
+              ]
+            }
+          },
+          {
+            "selected_pair": [
+              "m",
+              "e"
+            ],
+            "frequency": 3,
+            "tied_maximum_pairs": [
+              [
+                "m",
+                "e"
+              ]
+            ],
+            "merged_symbol": "me",
+            "tokens_after": {
+              "cost": [
+                "c",
+                "o",
+                "st"
+              ],
+              "best": [
+                "b",
+                "e",
+                "st"
+              ],
+              "menu": [
+                "me",
+                "n",
+                "u"
+              ],
+              "men": [
+                "me",
+                "n"
+              ],
+              "camel": [
+                "c",
+                "a",
+                "me",
+                "l"
+              ]
+            }
+          },
+          {
+            "selected_pair": [
+              "me",
+              "n"
+            ],
+            "frequency": 2,
+            "tied_maximum_pairs": [
+              [
+                "b",
+                "e"
+              ],
+              [
+                "c",
+                "o"
+              ],
+              [
+                "e",
+                "st"
+              ],
+              [
+                "me",
+                "n"
+              ],
+              [
+                "o",
+                "st"
+              ]
+            ],
+            "merged_symbol": "men",
+            "tokens_after": {
+              "cost": [
+                "c",
+                "o",
+                "st"
+              ],
+              "best": [
+                "b",
+                "e",
+                "st"
+              ],
+              "menu": [
+                "men",
+                "u"
+              ],
+              "men": [
+                "men"
+              ],
+              "camel": [
+                "c",
+                "a",
+                "me",
+                "l"
+              ]
+            }
+          }
+        ],
+        "selected_round": 1,
+        "selected": {
+          "selected_pair": [
+            "m",
+            "e"
+          ],
+          "frequency": 3,
+          "tied_maximum_pairs": [
+            [
+              "m",
+              "e"
+            ]
+          ],
+          "merged_symbol": "me",
+          "tokens_after": {
+            "cost": [
+              "c",
+              "o",
+              "st"
+            ],
+            "best": [
+              "b",
+              "e",
+              "st"
+            ],
+            "menu": [
+              "me",
+              "n",
+              "u"
+            ],
+            "men": [
+              "me",
+              "n"
+            ],
+            "camel": [
+              "c",
+              "a",
+              "me",
+              "l"
+            ]
+          }
+        }
+      },
+      "questions": [
+        {
+          "id": "pair",
+          "source_kind": "original",
+          "source_page": 52,
+          "prompt_fa": "در مرحلهٔ 2 نمونهٔ BPE،زوج مشخص‌شدهٔ اسلاید کدام است؟",
+          "solution_fa": "زوج m+e با فراوانی وزنی 3 یکی از بیشترین فراوانی‌ها را دارد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "m+e",
+              "c+a",
+              "n+u"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "frequency",
+          "source_kind": "original",
+          "source_page": 52,
+          "prompt_fa": "فراوانی وزنی زوج m+e در این مرحله چند است؟",
+          "solution_fa": "فراوانی واژه‌ها را باید لحاظ کرد؛ شمردن صرفِ تعداد سطرها کافی نیست.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "4",
+              "3",
+              "2"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "vocabulary-size",
+          "source_kind": "original",
+          "source_page": 52,
+          "prompt_fa": "پس از افزودن st و سپس me به 11 نماد اولیه،اندازهٔ واژگان چقدر است؟",
+          "solution_fa": "11+2=13؛برای هدف 14 یک نماد تازهٔ دیگر لازم است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "11",
+              "14",
+              "13"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "bpe-third",
+      "title_fa": "BPE؛مرحلهٔ 3",
+      "pages": [
+        53
+      ],
+      "code_file": "s13_bpe_third.py",
+      "starter_sha256": "18b188c5c8178915b02be60c664b219fcbaa7e6a1c9cd1ec9519149dc09a5332",
+      "reference": {
+        "initial_alphabet_size": 11,
+        "vocabulary": [
+          "a",
+          "b",
+          "c",
+          "e",
+          "l",
+          "m",
+          "n",
+          "o",
+          "s",
+          "t",
+          "u",
+          "st",
+          "me",
+          "men"
+        ],
+        "rounds": [
+          {
+            "selected_pair": [
+              "s",
+              "t"
+            ],
+            "frequency": 4,
+            "tied_maximum_pairs": [
+              [
+                "s",
+                "t"
+              ]
+            ],
+            "merged_symbol": "st",
+            "tokens_after": {
+              "cost": [
+                "c",
+                "o",
+                "st"
+              ],
+              "best": [
+                "b",
+                "e",
+                "st"
+              ],
+              "menu": [
+                "m",
+                "e",
+                "n",
+                "u"
+              ],
+              "men": [
+                "m",
+                "e",
+                "n"
+              ],
+              "camel": [
+                "c",
+                "a",
+                "m",
+                "e",
+                "l"
+              ]
+            }
+          },
+          {
+            "selected_pair": [
+              "m",
+              "e"
+            ],
+            "frequency": 3,
+            "tied_maximum_pairs": [
+              [
+                "m",
+                "e"
+              ]
+            ],
+            "merged_symbol": "me",
+            "tokens_after": {
+              "cost": [
+                "c",
+                "o",
+                "st"
+              ],
+              "best": [
+                "b",
+                "e",
+                "st"
+              ],
+              "menu": [
+                "me",
+                "n",
+                "u"
+              ],
+              "men": [
+                "me",
+                "n"
+              ],
+              "camel": [
+                "c",
+                "a",
+                "me",
+                "l"
+              ]
+            }
+          },
+          {
+            "selected_pair": [
+              "me",
+              "n"
+            ],
+            "frequency": 2,
+            "tied_maximum_pairs": [
+              [
+                "b",
+                "e"
+              ],
+              [
+                "c",
+                "o"
+              ],
+              [
+                "e",
+                "st"
+              ],
+              [
+                "me",
+                "n"
+              ],
+              [
+                "o",
+                "st"
+              ]
+            ],
+            "merged_symbol": "men",
+            "tokens_after": {
+              "cost": [
+                "c",
+                "o",
+                "st"
+              ],
+              "best": [
+                "b",
+                "e",
+                "st"
+              ],
+              "menu": [
+                "men",
+                "u"
+              ],
+              "men": [
+                "men"
+              ],
+              "camel": [
+                "c",
+                "a",
+                "me",
+                "l"
+              ]
+            }
+          }
+        ],
+        "selected_round": 2,
+        "selected": {
+          "selected_pair": [
+            "me",
+            "n"
+          ],
+          "frequency": 2,
+          "tied_maximum_pairs": [
+            [
+              "b",
+              "e"
+            ],
+            [
+              "c",
+              "o"
+            ],
+            [
+              "e",
+              "st"
+            ],
+            [
+              "me",
+              "n"
+            ],
+            [
+              "o",
+              "st"
+            ]
+          ],
+          "merged_symbol": "men",
+          "tokens_after": {
+            "cost": [
+              "c",
+              "o",
+              "st"
+            ],
+            "best": [
+              "b",
+              "e",
+              "st"
+            ],
+            "menu": [
+              "men",
+              "u"
+            ],
+            "men": [
+              "men"
+            ],
+            "camel": [
+              "c",
+              "a",
+              "me",
+              "l"
+            ]
+          }
+        }
+      },
+      "questions": [
+        {
+          "id": "pair",
+          "source_kind": "original",
+          "source_page": 53,
+          "prompt_fa": "در مرحلهٔ 3 نمونهٔ BPE،زوج مشخص‌شدهٔ اسلاید کدام است؟",
+          "solution_fa": "زوج me+n با فراوانی وزنی 2 یکی از بیشترین فراوانی‌ها را دارد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "me+n",
+              "c+a",
+              "n+u"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "frequency",
+          "source_kind": "original",
+          "source_page": 53,
+          "prompt_fa": "فراوانی وزنی زوج me+n در این مرحله چند است؟",
+          "solution_fa": "فراوانی واژه‌ها را باید لحاظ کرد؛ شمردن صرفِ تعداد سطرها کافی نیست.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "3",
+              "2",
+              "1"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "tie",
+          "source_kind": "original",
+          "source_page": 53,
+          "prompt_fa": "اگر چند زوج بیشترین فراوانی برابر داشته باشند،کدام ادعا درست است؟",
+          "solution_fa": "در مرحلهٔ سوم، me+n با زوج‌های دیگری هم‌فراوان است؛ کد انتخاب نمایش‌داده‌شدهٔ منبع را بین بیشینه‌ها اولویت می‌دهد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "همهٔ شمارش‌ها غلط‌اند",
+              "BPE نمی‌تواند ادامه یابد",
+              "انتخاب به قاعدهٔ شکستن تساوی وابسته است؛ چند انتخاب مجاز داریم"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    }
   ]
 }

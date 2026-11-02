@@ -100,5 +100,223 @@
       "id": "neuron-xor",
       "goal_fa": "پرسپترون را انتخاب کن و تغییر وزن روی جدول درستی را ببین."
     }
+  ],
+  "source_examples": [
+    {
+      "id": "majority-epoch",
+      "title_fa": "یک دور آموزش پرسپترون اکثریت",
+      "pages": [
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "code_file": "s02_majority_epoch.py",
+      "starter_sha256": "d88cb4cd075656f235415925cff9fb0692c02b6b18d3eb3a811e460821bb97bf",
+      "reference": {
+        "trace": [
+          {
+            "score": 0.0,
+            "prediction": 1,
+            "target": -1,
+            "error": -2,
+            "weights": [
+              -0.2,
+              -0.2,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "score": -0.4,
+            "prediction": -1,
+            "target": 1,
+            "error": 2,
+            "weights": [
+              0.0,
+              0.0,
+              0.0,
+              0.2
+            ]
+          },
+          {
+            "score": 0.0,
+            "prediction": 1,
+            "target": 1,
+            "error": 0,
+            "weights": [
+              0.0,
+              0.0,
+              0.0,
+              0.2
+            ]
+          },
+          {
+            "score": 0.2,
+            "prediction": 1,
+            "target": 1,
+            "error": 0,
+            "weights": [
+              0.0,
+              0.0,
+              0.0,
+              0.2
+            ]
+          },
+          {
+            "score": 0.2,
+            "prediction": 1,
+            "target": -1,
+            "error": -2,
+            "weights": [
+              -0.2,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "score": -0.2,
+            "prediction": -1,
+            "target": -1,
+            "error": 0,
+            "weights": [
+              -0.2,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "score": -0.2,
+            "prediction": -1,
+            "target": 1,
+            "error": 2,
+            "weights": [
+              0.0,
+              0.0,
+              0.2,
+              0.2
+            ]
+          },
+          {
+            "score": 0.0,
+            "prediction": 1,
+            "target": -1,
+            "error": -2,
+            "weights": [
+              -0.2,
+              0.0,
+              0.2,
+              0.2
+            ]
+          }
+        ],
+        "final_weights": [
+          -0.2,
+          0.0,
+          0.2,
+          0.2
+        ],
+        "final_predictions": [
+          -1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          -1
+        ],
+        "final_errors": 2
+      },
+      "questions": [
+        {
+          "id": "zero",
+          "source_kind": "original",
+          "source_page": 25,
+          "prompt_fa": "با وزن‌ها و بایاس صفر، پیش‌بینی ورودی اول [1,0,0] چیست؟",
+          "solution_fa": "قرارداد پرسپترون صفحهٔ 20 برای امتیاز صفر خروجی+1 است؛ هدف این نمونه−1 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "+1",
+              "−1",
+              "0"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "first-update",
+          "source_kind": "original",
+          "source_page": 27,
+          "prompt_fa": "بعد از نمونهٔ اول با نرخ 0.1، وزن‌های [بایاس,w1,w2,w3] چیست؟",
+          "solution_fa": "اختلاف هدف و پیش‌بینی−2 است و در [1,1,0,0] ضرب می‌شود.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "[0,0,0,0]",
+              "[−0.2,−0.2,0,0]",
+              "[−0.1,−0.1,0,0]"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "second",
+          "source_kind": "original",
+          "source_page": 28,
+          "prompt_fa": "امتیاز نمونهٔ دوم [1,0,1] با وزن‌های پس از گام اول چیست؟",
+          "solution_fa": "بایاس−0.2 و سهم ورودی اول−0.2 است؛ جمع−0.4 می‌شود.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "0.2",
+              "−0.2",
+              "−0.4"
+            ],
+            "correct_index": 2
+          }
+        },
+        {
+          "id": "second-update",
+          "source_kind": "original",
+          "source_page": 30,
+          "prompt_fa": "پس از به‌روزرسانی نمونهٔ دوم، وزن‌ها چیست؟",
+          "solution_fa": "خطای برچسب+2 است؛ بایاس و w1 به صفر برمی‌گردند و w3 برابر 0.2 می‌شود.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "[0,0,0,0.2]",
+              "[0.2,0.2,0,0.2]",
+              "[−0.2,−0.2,0,0]"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "epoch",
+          "source_kind": "original",
+          "source_page": 31,
+          "prompt_fa": "یک epoch در همین مثال یعنی چه؟",
+          "solution_fa": "epoch یک عبور از مجموعهٔ آموزشی است؛ با همگرایی یکی نیست.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "تنها اولین نمونه",
+              "یک بار عبور از هر 8 نمونه به ترتیب جدول",
+              "آموزش تا خطای صفر با هر تعداد عبور"
+            ],
+            "correct_index": 1
+          }
+        }
+      ]
+    }
   ]
 }

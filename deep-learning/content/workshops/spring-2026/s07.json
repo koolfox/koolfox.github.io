@@ -85,5 +85,351 @@
   "reference_python": "3.13.9",
   "limits_fa": "کد و داده‌های کوچک، تألیف مستقل برای بررسی همین سازوکارند؛ بازتولید آزمایش مقاله یا تکلیف رسمی Canvas نیستند. نتیجه فقط به محاسبات و پارامترهای همین کد مربوط است.",
   "source_retrieved_at_utc": "2026-10-25T08:44:49.277620+00:00",
-  "related_labs": []
+  "related_labs": [],
+  "source_examples": [
+    {
+      "id": "majority",
+      "title_fa": "احتمال خطای رأی اکثریت",
+      "pages": [
+        38
+      ],
+      "code_file": "s07_majority.py",
+      "starter_sha256": "0ac9c4d59bba92e1476e81f8bf1353461d6d79bd40840a82806a3da2fd8e092a",
+      "reference": {
+        "classifiers": 11,
+        "majority": 6,
+        "individual_error": 0.25,
+        "ensemble_error": 0.03432750701904297
+      },
+      "questions": [
+        {
+          "id": "threshold",
+          "source_kind": "original",
+          "source_page": 38,
+          "prompt_fa": "از 11 رأی‌دهنده، چند خطا برای خطای اکثریت کافی است؟",
+          "solution_fa": "اکثریت باید بیش از نصف 11 باشد: 6.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "5",
+              "6",
+              "11"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "probability",
+          "source_kind": "original",
+          "source_page": 38,
+          "prompt_fa": "با خطای مستقل 0.25، احتمال خطای اکثریت تقریباً چقدر است؟",
+          "solution_fa": "جمع دوجمله‌ای برای k از 6 تا 11 برابر 0.0343275 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "0.25",
+              "0.75",
+              "0.0343"
+            ],
+            "correct_index": 2
+          }
+        },
+        {
+          "id": "assumption",
+          "source_kind": "original",
+          "source_page": 38,
+          "prompt_fa": "محاسبهٔ دوجمله‌ای به کدام فرض متکی است؟",
+          "solution_fa": "بدون استقلال نمی‌توان احتمال الگوها را با ضرب همین احتمال‌ها محاسبه کرد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "استقلال خطاها و نرخ یکسان",
+              "یکسان‌بودن تمام پیش‌بینی‌ها",
+              "صفر بودن خطا"
+            ],
+            "correct_index": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "sequence-rule",
+      "title_fa": "قاعدهٔ دنباله در مثال فشرده‌سازی",
+      "pages": [
+        15
+      ],
+      "code_file": "s07_sequence_rule.py",
+      "starter_sha256": "d1df6d86656d24227ee0dc1884f528c2ab35920027f479a4126c9c8e5ccb29ce",
+      "reference": {
+        "computed_sequence": [
+          30,
+          15,
+          46,
+          23,
+          70,
+          35,
+          106,
+          53,
+          160,
+          80,
+          40,
+          20,
+          10,
+          5
+        ],
+        "matches_source_b": true,
+        "length_a": 8,
+        "length_b": 14
+      },
+      "questions": [
+        {
+          "id": "next",
+          "source_kind": "original",
+          "source_page": 15,
+          "prompt_fa": "طبق قاعدهٔ دنبالهٔ B،پس از 15 چه عددی می‌آید؟",
+          "solution_fa": "15 فرد است؛ 3×15+1=46.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "46",
+              "30",
+              "7"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "description",
+          "source_kind": "original",
+          "source_page": 15,
+          "prompt_fa": "چرا B باوجود 14 عضو می‌تواند از A با 8 عضو آسان‌تر به خاطر سپرده شود؟",
+          "solution_fa": "قاعده،بازنمایی فشرده‌ای از نظم دنباله است؛ طول فهرست تنها عامل پیچیدگی توصیف نیست.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "فقط چون بزرگ‌تر است",
+              "شروع و قاعدهٔ کوتاه،همهٔ اعضا را مشخص می‌کنند",
+              "چون هیچ عددی ندارد"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "autoencoder",
+          "source_kind": "original",
+          "source_page": 15,
+          "prompt_fa": "هدف یک Autoencoder ایده‌آل برای ورودی 620×426 در تشبیه اسلاید چیست؟",
+          "solution_fa": "620×426=264120 موقعیت پیکسلی است؛ در تصویر چندکاناله تعداد مقدارهای اسکالر به تعداد کانال هم وابسته است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "پیش‌بینی نام کلاس فقط",
+              "تولید تصویر تصادفی مستقل از ورودی",
+              "بازسازی خود ورودی با 264120 موقعیت پیکسلی"
+            ],
+            "correct_index": 2
+          }
+        },
+        {
+          "id": "self-target",
+          "source_kind": "original",
+          "source_page": 15,
+          "prompt_fa": "چرا بازسازی ورودی به برچسب دستیِ هر تصویر نیاز ندارد؟",
+          "solution_fa": "در این وظیفه،جفت ورودی/هدف از خود داده ساخته می‌شود؛ این به معنی بی‌نیازی از داده یا آموزش نیست.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "خود ورودی هدف بازسازی را فراهم می‌کند",
+              "چون زیان محاسبه نمی‌شود",
+              "چون همیشه مدل از پیش بی‌خطاست"
+            ],
+            "correct_index": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "factored-classes",
+      "title_fa": "تفکیک رنگ و شیء در 9 برچسب",
+      "pages": [
+        11
+      ],
+      "code_file": "s07_factored_classes.py",
+      "starter_sha256": "34420319366d488f00d6146fff31b9ba4be1abc442fe7039f47c578f1da47bdb",
+      "reference": {
+        "factored_classes": [
+          {
+            "label": "red truck",
+            "color": [
+              1,
+              0,
+              0
+            ],
+            "object": [
+              1,
+              0,
+              0
+            ]
+          },
+          {
+            "label": "red car",
+            "color": [
+              1,
+              0,
+              0
+            ],
+            "object": [
+              0,
+              1,
+              0
+            ]
+          },
+          {
+            "label": "red bird",
+            "color": [
+              1,
+              0,
+              0
+            ],
+            "object": [
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "label": "green truck",
+            "color": [
+              0,
+              1,
+              0
+            ],
+            "object": [
+              1,
+              0,
+              0
+            ]
+          },
+          {
+            "label": "green car",
+            "color": [
+              0,
+              1,
+              0
+            ],
+            "object": [
+              0,
+              1,
+              0
+            ]
+          },
+          {
+            "label": "green bird",
+            "color": [
+              0,
+              1,
+              0
+            ],
+            "object": [
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "label": "blue truck",
+            "color": [
+              0,
+              0,
+              1
+            ],
+            "object": [
+              1,
+              0,
+              0
+            ]
+          },
+          {
+            "label": "blue car",
+            "color": [
+              0,
+              0,
+              1
+            ],
+            "object": [
+              0,
+              1,
+              0
+            ]
+          },
+          {
+            "label": "blue bird",
+            "color": [
+              0,
+              0,
+              1
+            ],
+            "object": [
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "flat_one_hot_width": 9,
+        "factored_two_one_hot_width": 6,
+        "possible_color_object_pairs": 9
+      },
+      "questions": [
+        {
+          "id": "red-truck",
+          "source_kind": "original",
+          "source_page": 11,
+          "prompt_fa": "برچسب red truck به کدام دو ویژگی قابل تفکیک است؟",
+          "solution_fa": "همان رنگ‌ها و نوع‌های شیء در چند کلاس مشترک‌اند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "رنگ red و نوع truck",
+              "دو رنگ red و green",
+              "فقط یک عدد وزن"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "combinations",
+          "source_kind": "original",
+          "source_page": 11,
+          "prompt_fa": "سه رنگ و سه نوع شیء چند ترکیب در همین فهرست می‌سازند؟",
+          "solution_fa": "3×3=9 ترکیب؛ فهرست منبع هرنه ترکیب را دارد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "6",
+              "9",
+              "3"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "representation",
+          "source_kind": "original",
+          "source_page": 11,
+          "prompt_fa": "در دو One-hot جدا برای رنگ و شیء،طول بردار الحاق‌شده چند است؟",
+          "solution_fa": "سه مؤلفه برای رنگ و سه برای نوع شیء داریم؛ این فقط یک بازنمایی ساختاریافته است،نه ادعای کمینهٔ نظری بیت.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "9",
+              "3",
+              "6"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    }
+  ]
 }

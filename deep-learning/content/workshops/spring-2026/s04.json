@@ -30,7 +30,7 @@
     {
       "id": "calculate",
       "source_kind": "original",
-      "prompt_fa": "در نسخهٔ اولیه پس از دو ورودی نخست، شمار 1ها زوج است یا فرد؟ برای فرد 1 و برای زوج 0 وارد کن.",
+      "prompt_fa": "در نسخهٔ اولیه پس از دو ورودی نخست، شمار 1 ها زوج است یا فرد؟ برای فرد 1 و برای زوج 0 وارد کن.",
       "solution_fa": "دو ورودی نخست [1,0] فقط یک عدد 1 دارند؛ شمار فرد است و پاسخ 1 است.",
       "answer": {
         "kind": "number",
@@ -103,5 +103,312 @@
   "reference_python": "3.13.9",
   "limits_fa": "دنبالهٔ [1,0,1,1]، u=3، حالت آغاز +1 و تبدیل 1→−1 و 0→+1 همان مثال صفحهٔ 27 هستند. حالت‌ها با tanh دقیق محاسبه می‌شوند؛ منبع آن‌ها را تقریباً ±1 نمایش می‌دهد. این بازسازی بازگشت یک دنباله است، نه آموزش شبکه یا بازتولید آزمایش مقاله. تغییر پارامترها آزمایشی مستقل است.",
   "source_retrieved_at_utc": "2026-10-25T08:44:45.547107+00:00",
-  "related_labs": []
+  "related_labs": [],
+  "source_examples": [
+    {
+      "id": "parity",
+      "title_fa": "حافظهٔ زوجیت در شبکهٔ بازگشتی",
+      "pages": [
+        27
+      ],
+      "code_file": "s04_parity.py",
+      "starter_sha256": "4bf8dd4fae10cedb3972e348abba7ca5da7e147e8743bbc35e76932b0b08f772",
+      "reference": {
+        "states": [
+          -0.9950547536867305,
+          -0.9949062016530742,
+          0.9949016710432858,
+          -0.9949015328034738
+        ],
+        "predicted_odd": [
+          1,
+          1,
+          0,
+          1
+        ]
+      },
+      "questions": [
+        {
+          "id": "encoding",
+          "source_kind": "original",
+          "source_page": 27,
+          "prompt_fa": "در قرارداد همین مثال، عدد 1 چگونه کدگذاری می‌شود؟",
+          "solution_fa": "ورودی 1 به −1 و ورودی 0 به +1 تبدیل می‌شود.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "+1",
+              "−1",
+              "0"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "parity",
+          "source_kind": "original",
+          "source_page": 27,
+          "prompt_fa": "پس از دنبالهٔ [1,0,1,1]، تعداد یک‌ها چه وضعی دارد؟",
+          "solution_fa": "سه عدد 1 داریم؛ علامت منفی حالت، زوجیت فرد را نمایش می‌دهد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "فرد؛ حالت نهایی منفی است",
+              "زوج؛ حالت نهایی مثبت است",
+              "صفر است"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "memory",
+          "source_kind": "original",
+          "source_page": 27,
+          "prompt_fa": "کدام جزء باعث وابستگی خروجی به ورودی‌های قبلی می‌شود؟",
+          "solution_fa": "در tanh(u×encoded×state)، حالت پیشین حافظهٔ توالی است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "فقط u",
+              "فقط ورودی فعلی",
+              "ضرب در حالت مرحلهٔ قبل"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "hello-encoding",
+      "title_fa": "کدگذاری One-hot توالی hello",
+      "pages": [
+        29
+      ],
+      "code_file": "s04_hello_encoding.py",
+      "starter_sha256": "01868b7fa5b054c28f64b496f24a642cda47f32e7f57efab988e6c067c16e43a",
+      "reference": {
+        "vocabulary": [
+          "h",
+          "e",
+          "l",
+          "o"
+        ],
+        "encoded": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "sequence_length": 5,
+        "vocabulary_size": 4
+      },
+      "questions": [
+        {
+          "id": "first",
+          "source_kind": "original",
+          "source_page": 29,
+          "prompt_fa": "در ترتیب واژگان[h,e,l,o]، بردار گام اول hello چیست؟",
+          "solution_fa": "حرف اول h است؛ نخستین جایگاه 1 می‌شود.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "[1,0,0,0]",
+              "[0,1,0,0]",
+              "[0,0,1,0]"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "second",
+          "source_kind": "original",
+          "source_page": 29,
+          "prompt_fa": "بردار گام دوم hello چیست؟",
+          "solution_fa": "حرف دوم e است و دومین جایگاه فعال می‌شود.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "[1,0,0,0]",
+              "[0,1,0,0]",
+              "[0,0,0,1]"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "third-fourth",
+          "source_kind": "original",
+          "source_page": 29,
+          "prompt_fa": "بردارهای گام سوم و چهارم چه رابطه‌ای دارند؟",
+          "solution_fa": "هر دو حرف l هستند؛ One-hot حرف یکسان است، هرچند حالت پنهان RNN ممکن است به سبب تاریخچه متفاوت باشد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "متفاوت‌اند چون زمان فرق دارد",
+              "هر دو صفرند",
+              "هر دو[0,0,1,0]هستند"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "character-choice",
+      "title_fa": "انتخاب حرف از توزیع خروجی",
+      "pages": [
+        31,
+        32
+      ],
+      "code_file": "s04_character_choice.py",
+      "starter_sha256": "f45ec1f499af340c6440d32074201343be1938aaa0cb004cde3383764a1b1950",
+      "reference": {
+        "classes": 4,
+        "probability_sum": 1.0,
+        "predicted_index": 1,
+        "prediction": "e"
+      },
+      "questions": [
+        {
+          "id": "choice",
+          "source_kind": "original",
+          "source_page": 31,
+          "prompt_fa": "برای احتمال‌های[0.05,0.65,0.2,0.1]به ترتیب[h,e,l,o]چه حرفی با argmax انتخاب می‌شود؟",
+          "solution_fa": "e با احتمال 0.65 بیشترین مقدار را دارد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "h",
+              "l",
+              "e"
+            ],
+            "correct_index": 2
+          }
+        },
+        {
+          "id": "classes",
+          "source_kind": "original",
+          "source_page": 32,
+          "prompt_fa": "در مثال همین واژگان، K در فرمول Softmax چند است؟",
+          "solution_fa": "چهار کلاس متمایز[h,e,l,o]داریم؛ تکرار l در hello کلاس تازه نمی‌سازد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "4",
+              "5",
+              "3"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "probabilities",
+          "source_kind": "original",
+          "source_page": 31,
+          "prompt_fa": "آیا باید Softmax را دوباره روی همین چهار عدد چاپ‌شده اجرا کنیم تا پیش‌بینی مثال را بخوانیم؟",
+          "solution_fa": "اعداد جمع 1 دارند و خود اسلاید آن‌ها را احتمال خروجی نشان می‌دهد؛ با logit اشتباه نشوند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "بله، چندبار",
+              "خیر؛ این‌ها از قبل احتمال خروجی‌اند",
+              "بله، چون جمعشانصفر است"
+            ],
+            "correct_index": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "character-choice-rnn",
+      "title_fa": "خواندن توزیع خروجی مثال RNN",
+      "pages": [
+        37
+      ],
+      "code_file": "s04_character_choice_rnn.py",
+      "starter_sha256": "d8d4a73bbfa05d566f97c44cf51e534aae03673ca3fcc7ab8e791c86149e92a0",
+      "reference": {
+        "classes": 4,
+        "probability_sum": 1.0,
+        "predicted_index": 0,
+        "prediction": "h"
+      },
+      "questions": [
+        {
+          "id": "choice",
+          "source_kind": "original",
+          "source_page": 37,
+          "prompt_fa": "در ترتیب[h,e,l,o]و احتمال‌های[0.419748,0.194682,0.162429,0.223141]، چه حرفی با argmax انتخاب می‌شود؟",
+          "solution_fa": "h با 0.419748 بیشترین احتمال را دارد؛ با توزیع نمونهٔ صفحهٔ 31 که e را برمی‌گزید متفاوت است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "h",
+              "e",
+              "o"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "probability",
+          "source_kind": "original",
+          "source_page": 37,
+          "prompt_fa": "احتمال انتخاب‌شده با argmax چقدر است؟",
+          "solution_fa": "انتخاب بیشینه به معنی احتمال 1 نیست؛ احتمال همان توزیع 0.419748 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "1.0",
+              "0.419748",
+              "0.223141"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "sampling",
+          "source_kind": "original",
+          "source_page": 37,
+          "prompt_fa": "آیا argmax همان نمونه‌گیری تصادفی از توزیع است؟",
+          "solution_fa": "در نمونه‌گیری تصادفی کلاس‌های دیگر هم می‌توانند انتخاب شوند؛ argmax این سیاست را ندارد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "بله، همیشه",
+              "فقط با 4 کلاس",
+              "خیر؛ همواره بزرگ‌ترین مقدار را برمی‌گزیند"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    }
+  ]
 }

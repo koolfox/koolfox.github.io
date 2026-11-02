@@ -233,6 +233,357 @@
         ],
         "bottom_right": 4
       }
+    },
+    {
+      "id": "source-pooling",
+      "title_fa": "بیشینه‌گیری نواحی تصویر",
+      "pages": [
+        48
+      ],
+      "code_file": "s05_source_pooling.py",
+      "starter_sha256": "59459f589f00a3458dfb01431065200974dca858f5e78820240455c76f765ffe",
+      "reference": {
+        "pooled": [
+          [
+            6,
+            8
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "shape": [
+          2,
+          2
+        ],
+        "trainable_parameters": 0
+      },
+      "questions": [
+        {
+          "id": "grid",
+          "source_kind": "original",
+          "source_page": 48,
+          "prompt_fa": "خروجی بیشینه‌گیری 2×2 با گام 2 از ماتریس همین شکل چیست؟",
+          "solution_fa": "بیشینهٔ چهار ناحیهٔ رنگی به‌ترتیب سطرها 6، 8، 3، 4 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "[[6,8],[3,4]]",
+              "[[1,2],[3,1]]",
+              "[[13,21],[8,8]]"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "parameters",
+          "source_kind": "original",
+          "source_page": 48,
+          "prompt_fa": "این Max pooling چند وزن قابل یادگیری دارد؟",
+          "solution_fa": "بیشینه‌گیری یک عمل ثابت است؛ وزن و بایاس آموختنی ندارد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "4",
+              "0",
+              "16"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "channels",
+          "source_kind": "original",
+          "source_page": 48,
+          "prompt_fa": "در شکل 224×224×64→112×112×64، چه چیزی کاهش یافته است؟",
+          "solution_fa": "بیشینه‌گیری مکانی گام 2 ارتفاع و عرض را نصف کرده و 64 کانال را حفظ کرده است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "فقط تعداد کانال‌ها",
+              "همهٔ ابعاد به یک نسبت",
+              "ارتفاع و عرض؛ تعداد کانال ثابت است"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "shared-weights",
+      "title_fa": "اشتراک وزن در برابر اتصال کامل",
+      "pages": [
+        42
+      ],
+      "code_file": "s05_shared_weights.py",
+      "starter_sha256": "5c6b3429070c2cfaa94d68c42190805030a106f6c0e8daf137dc03db424d2823",
+      "reference": {
+        "output_neurons": 4,
+        "conv_weights": 4,
+        "dense_weights": 36,
+        "conv_inputs_per_neuron": 4,
+        "dense_inputs_per_neuron": 9
+      },
+      "questions": [
+        {
+          "id": "conv",
+          "source_kind": "original",
+          "source_page": 42,
+          "prompt_fa": "لایهٔ کانولوشنی مثال چند وزن مستقل بدون بایاس دارد؟",
+          "solution_fa": "چهار وزن هستهٔ 2×2 در مکان‌ها مشترک‌اند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "4",
+              "16",
+              "36"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "dense",
+          "source_kind": "original",
+          "source_page": 42,
+          "prompt_fa": "اگر همان 9 ورودی به 4 خروجی اتصال کامل داشته باشند، چند وزن لازم است؟",
+          "solution_fa": "هر یک از 4 خروجی 9 وزن دارد؛ 36 وزن مستقل.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "4",
+              "36",
+              "9"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "inputs",
+          "source_kind": "original",
+          "source_page": 42,
+          "prompt_fa": "هر نورون کانولوشنی در برابر نورون کاملاً متصل چند ورودی می‌بیند؟",
+          "solution_fa": "کانولوشن ناحیهٔ 2×2 را می‌بیند؛ نورون اتصال کامل هر 9 ورودی را.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "9 و 4",
+              "4 و 4",
+              "4 و 9"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "channel-count",
+      "title_fa": "فیلتر چندکاناله و نقشهٔ ویژگی",
+      "pages": [
+        47
+      ],
+      "code_file": "s05_channel_count.py",
+      "starter_sha256": "42573be4771f298739a4d23abbf0173e513e96fd9f846764ff7fc14c440bc06e",
+      "reference": {
+        "filters": 1,
+        "kernels": 3,
+        "feature_maps": 1,
+        "weights_without_bias": 27
+      },
+      "questions": [
+        {
+          "id": "filters",
+          "source_kind": "original",
+          "source_page": 47,
+          "prompt_fa": "در شکل چند فیلتر سه‌بعدی داریم؟",
+          "solution_fa": "سه برش رنگی کانال‌های یک فیلترند، نه سه فیلتر مستقل.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "1",
+              "3",
+              "9"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "kernels",
+          "source_kind": "original",
+          "source_page": 47,
+          "prompt_fa": "در اصطلاح همین اسلاید، چند برش دوبعدی kernel داریم؟",
+          "solution_fa": "برای هر یک ازسه کانال ورودی یک برش 3×3 داریم.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "1",
+              "3",
+              "27"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "maps",
+          "source_kind": "original",
+          "source_page": 47,
+          "prompt_fa": "یک فیلتر چندکاناله چند نقشهٔ ویژگی خروجی می‌سازد؟",
+          "solution_fa": "پاسخ سه کانال جمع می‌شود تا یک نقشهٔ ویژگی برای همان فیلتر ساخته شود.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "3",
+              "27",
+              "1"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "rgb-compute",
+      "title_fa": "شمار ضرب‌های کانولوشن RGB",
+      "pages": [
+        55
+      ],
+      "code_file": "s05_rgb_compute.py",
+      "starter_sha256": "adb39f525778739929733a67b6e40de8dccd0cdcf8bd374a78a063dee4a9392f",
+      "reference": {
+        "multiplications_per_output": 27,
+        "output_locations": 921600,
+        "total_multiplications": 24883200
+      },
+      "questions": [
+        {
+          "id": "per-output",
+          "source_kind": "original",
+          "source_page": 55,
+          "prompt_fa": "هر مکان خروجی این هستهٔ 3×3 روی RGB چند ضرب نیاز دارد؟",
+          "solution_fa": "9 موقعیت فضایی در 3 کانال ضرب می‌شوند:27.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "27",
+              "9",
+              "3"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "locations",
+          "source_kind": "original",
+          "source_page": 55,
+          "prompt_fa": "با حفظ ارتفاع و عرض، چند مکان خروجی داریم؟",
+          "solution_fa": "1280×720=921600 مکان خروجی است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "1280+720",
+              "921600",
+              "2764800"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "total",
+          "source_kind": "original",
+          "source_page": 55,
+          "prompt_fa": "کل ضرب‌ها برای یک فیلتر خروجی چقدر است؟",
+          "solution_fa": "27×921600=24883200 ضرب، بدون جمع و فعال‌ساز.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "8294400",
+              "2764800",
+              "24883200"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "flatten-translation",
+      "title_fa": "جابجایی تصویر و تخت‌کردن ورودی",
+      "pages": [
+        10
+      ],
+      "code_file": "s05_flatten_translation.py",
+      "starter_sha256": "d7957f7ed0ae1a29a13ef4bfac01a822c63b5bdd4903c5beb790455b571e3d8f",
+      "reference": {
+        "flat_original": [
+          1,
+          1,
+          0,
+          0
+        ],
+        "flat_translated": [
+          0,
+          0,
+          1,
+          1
+        ],
+        "same_vector": false,
+        "changed_positions": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "questions": [
+        {
+          "id": "before",
+          "source_kind": "original",
+          "source_page": 10,
+          "prompt_fa": "با تخت‌کردن سطری ماتریس[[1,1],[0,0]] چه برداری می‌سازیم؟",
+          "solution_fa": "ترتیب سطری ابتدا همهٔ خانه‌های سطر اول و سپس سطر دوم را می‌گیرد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "[1,1,0,0]",
+              "[1,0,1,0]",
+              "[0,0,1,1]"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "shift",
+          "source_kind": "original",
+          "source_page": 10,
+          "prompt_fa": "پس از جابه‌جایی الگو به سطر پایین، بردار تخت چه می‌شود؟",
+          "solution_fa": "الگو مشابه است اما مقدارها در جایگاه‌های دیگری از بردار ورودی قرار گرفته‌اند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "[1,1,0,0]",
+              "[0,0,1,1]",
+              "[1,0,1,0]"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "invariance",
+          "source_kind": "original",
+          "source_page": 10,
+          "prompt_fa": "آیا تخت‌کردن به‌تنهایی ناوردایی نسبت به انتقال را تضمین می‌کند؟",
+          "solution_fa": "Flatten فقط شکل داده را تغییر می‌دهد؛ شبکهٔ کاملاً متصل تضمین ذاتی برای یکسان‌دیدن دو انتقال ندارد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "بله، در همهٔ شبکه‌ها",
+              "فقط اگر تصویر 2×2 باشد",
+              "خیر؛ بردارهای ورودی متفاوت شده‌اند"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
     }
   ]
 }

@@ -47,7 +47,9 @@ jobs:
           cache-dependency-path: deep-learning/browser-tests/package-lock.json
       - run: npm ci --prefix deep-learning/browser-tests
       - name: Verify source formula rendering and local reader assets
-        run: node deep-learning/math-tools/check_source_math.mjs
+        run: |
+          node deep-learning/math-tools/check_source_math.mjs
+          node --test deep-learning/models/tests/*.test.mjs
       - run: npx --prefix deep-learning/browser-tests playwright install --with-deps chromium
       - name: Check independent public component
         run: |

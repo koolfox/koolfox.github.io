@@ -94,5 +94,415 @@
         ]
       }
     }
+  ],
+  "source_examples": [
+    {
+      "id": "patch-counts",
+      "title_fa": "شمار توکن و زوج‌های توجه",
+      "pages": [
+        53,
+        54
+      ],
+      "code_file": "s14_patch_counts.py",
+      "starter_sha256": "e2cc003790ce032a780b5ddbc59f2625f64ebf7c748f6c9db8a2772f85a4c0a9",
+      "reference": {
+        "pixel_tokens": 25600,
+        "patch_tokens": 100,
+        "pixel_pairs": 655360000,
+        "patch_pairs": 10000,
+        "reduction_factor_without_cls": 65536,
+        "with_cls_pairs": 10201,
+        "full_hd_pixel_pairs": 4299816960000
+      },
+      "questions": [
+        {
+          "id": "patches",
+          "source_kind": "original",
+          "source_page": 54,
+          "prompt_fa": "تصویر 160×160 با وصله‌های 16×16 چند وصله دارد؟",
+          "solution_fa": "در هر بُعد 10 وصله داریم و 10×10=100 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "10",
+              "100",
+              "256"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "cls",
+          "source_kind": "original",
+          "source_page": 54,
+          "prompt_fa": "با افزودن یک توکن CLS به 100 وصله، چند امتیاز برای یک سر توجه کامل داریم؟",
+          "solution_fa": "101 توکن داریم؛ تعداد زوج‌های مرتب با خودتوجهی 101²=10201 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "10000",
+              "10001",
+              "10201"
+            ],
+            "correct_index": 2
+          }
+        },
+        {
+          "id": "scope",
+          "source_kind": "original",
+          "source_page": 53,
+          "prompt_fa": "عدد (1920×1080)² چه چیزی را می‌شمارد؟",
+          "solution_fa": "این فقط شمار زوج‌های توکن در فرض یک توکن برای هر پیکسل است؛ کل FLOP مدل نیست.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "زوج‌های مرتب پیکسل‌ها برای امتیاز توجه",
+              "کل عملیات مدل کامل",
+              "تعداد وزن‌های مدل"
+            ],
+            "correct_index": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "gpt-ablation",
+      "title_fa": "تحلیل جدول آزمایش‌های GPT",
+      "pages": [
+        25
+      ],
+      "code_file": "s14_gpt_ablation.py",
+      "starter_sha256": "b5c25ad0426106ee338e3a013aeef70fbd3b15f4161e4fb38d61a2fcd21dd6ea",
+      "reference": {
+        "metric": "avg",
+        "table": {
+          "transformer_full": {
+            "avg": 74.7,
+            "CoLA": 45.4,
+            "SST2": 91.3,
+            "MRPC": 82.3,
+            "STSB": 82.0,
+            "QQP": 70.3,
+            "MNLI": 81.8,
+            "QNLI": 88.1,
+            "RTE": 56.0
+          },
+          "without_pretraining": {
+            "avg": 59.9,
+            "CoLA": 18.9,
+            "SST2": 84.0,
+            "MRPC": 79.4,
+            "STSB": 30.9,
+            "QQP": 65.5,
+            "MNLI": 75.7,
+            "QNLI": 71.2,
+            "RTE": 53.8
+          },
+          "without_aux_lm": {
+            "avg": 75.0,
+            "CoLA": 47.9,
+            "SST2": 92.0,
+            "MRPC": 84.9,
+            "STSB": 83.2,
+            "QQP": 69.8,
+            "MNLI": 81.1,
+            "QNLI": 86.9,
+            "RTE": 54.4
+          },
+          "lstm_aux_lm": {
+            "avg": 69.1,
+            "CoLA": 30.3,
+            "SST2": 90.5,
+            "MRPC": 83.2,
+            "STSB": 71.8,
+            "QQP": 68.1,
+            "MNLI": 73.7,
+            "QNLI": 81.1,
+            "RTE": 54.6
+          }
+        },
+        "pretraining_score_difference": 14.800000000000004,
+        "transformer_lstm_score_difference": 5.6000000000000085,
+        "auxiliary_lm_score_difference": -0.29999999999999716
+      },
+      "questions": [
+        {
+          "id": "pretraining",
+          "source_kind": "original",
+          "source_page": 25,
+          "prompt_fa": "در ستون Avg،تفاضل مدل کامل 74.7 با مدل بدون پیش‌آموزش 59.9 چند واحد نمره است؟",
+          "solution_fa": "74.7−59.9=14.8 واحدِ همان ستون؛ این تفاضل با نسبت درصدی فرق دارد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "14.8",
+              "14.8 درصد نسبی الزاماً",
+              "5.6"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "architecture",
+          "source_kind": "original",
+          "source_page": 25,
+          "prompt_fa": "در ستون Avg، Transformer کامل در برابر LSTM با AuxLM چقدر بالاتر است؟",
+          "solution_fa": "74.7−69.1=5.6 واحد؛ نتیجه مربوط به همین جدول و تنظیم آزمایشی است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "14.8",
+              "5.6",
+              "0.3"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "auxiliary",
+          "source_kind": "original",
+          "source_page": 25,
+          "prompt_fa": "کدام مدل در ستون Avg این جدول اندکی نمرهٔ بالاتر دارد؟",
+          "solution_fa": "75.0 از 74.7 بالاتر است؛ اثر یک انتخاب آموزشی را باید ستون‌به‌ستون و در زمینهٔ آزمایش خواند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "مدل بدون پیش‌آموزش",
+              "LSTM",
+              "Transformer بدون AuxLM با 75.0"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "bert-ablation",
+      "title_fa": "تحلیل جدول مؤلفه‌های BERT",
+      "pages": [
+        30
+      ],
+      "code_file": "s14_bert_ablation.py",
+      "starter_sha256": "b0330c1ab8df3c46dd3eb588876f894416f9f35b24e890af47cfb691d1958d68",
+      "reference": {
+        "table": {
+          "bert_base": {
+            "MNLI_m": 84.4,
+            "QNLI": 88.4,
+            "MRPC": 86.7,
+            "SST2": 92.7,
+            "SQuAD_F1": 88.5
+          },
+          "no_nsp": {
+            "MNLI_m": 83.9,
+            "QNLI": 84.9,
+            "MRPC": 86.5,
+            "SST2": 92.6,
+            "SQuAD_F1": 87.9
+          },
+          "left_to_right_no_nsp": {
+            "MNLI_m": 82.1,
+            "QNLI": 84.3,
+            "MRPC": 77.5,
+            "SST2": 92.1,
+            "SQuAD_F1": 77.8
+          }
+        },
+        "nsp_score_differences": {
+          "MNLI_m": 0.5,
+          "QNLI": 3.5,
+          "MRPC": 0.20000000000000284,
+          "SST2": 0.10000000000000853,
+          "SQuAD_F1": 0.5999999999999943
+        },
+        "bidirectional_score_differences": {
+          "MNLI_m": 1.8000000000000114,
+          "QNLI": 0.6000000000000085,
+          "MRPC": 9.0,
+          "SST2": 0.5,
+          "SQuAD_F1": 10.100000000000009
+        }
+      },
+      "questions": [
+        {
+          "id": "nsp-qnli",
+          "source_kind": "original",
+          "source_page": 30,
+          "prompt_fa": "در QNLI،افت از BERT_BASE به NoNSP چند واحد نمره است؟",
+          "solution_fa": "88.4−84.9=3.5 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "3.5",
+              "0.5",
+              "10.1"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "bidirectional-squad",
+          "source_kind": "original",
+          "source_page": 30,
+          "prompt_fa": "در SQuAD، NoNSP دوطرفه نسبت به LTR و NoNSP چقدر F1 بالاتر دارد؟",
+          "solution_fa": "87.9−77.8=10.1 واحد F1؛ این مقایسه هر دو تنظیم را بدون NSP نگه می‌دارد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "0.6",
+              "10.1",
+              "3.5"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "scope",
+          "source_kind": "original",
+          "source_page": 30,
+          "prompt_fa": "از این جدول چه نتیجه‌ای مجاز است؟",
+          "solution_fa": "نتیجهٔ ablation به شرایط آزمایش وابسته است؛ حکم عمومی دربارهٔ همهٔ پیش‌آموزش‌ها نیست.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "NSP در تمام مدل‌ها و داده‌های آینده ضروری است",
+              "هیچ روش دیگری نمی‌تواند بهتر شود",
+              "در همین تنظیم‌ها حذف NSP و چپ‌به‌راست‌کردن پیش‌آموزش نمره‌ها را پایین آورده‌اند"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "bert-heads",
+      "title_fa": "خواندن دو سر خروجی BERT",
+      "pages": [
+        17
+      ],
+      "code_file": "s14_bert_heads.py",
+      "starter_sha256": "b4a1c9e24d4b6b206392b2a26a02f338c254b4dffb9098c557195d9843c01c4f",
+      "reference": {
+        "token_count": 11,
+        "next_sentence_prediction": "isNext",
+        "masked_word_prediction": "city",
+        "next_sentence_probability": 0.9,
+        "masked_word_probability": 0.9
+      },
+      "questions": [
+        {
+          "id": "masked-word",
+          "source_kind": "original",
+          "source_page": 17,
+          "prompt_fa": "در خروجی نمونه،کدام واژه برای MASK بیشترین احتمال را دارد؟",
+          "solution_fa": "سر واژهٔ پوشانده‌شده city را با 0.9 در شکل نشان می‌دهد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "city با 0.9",
+              "love با 0.9",
+              "Paris با 1.0"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "next-sentence",
+          "source_kind": "original",
+          "source_page": 17,
+          "prompt_fa": "خروجی سر رابطهٔ دو جمله در همین توزیع چیست؟",
+          "solution_fa": "isNext با 0.9 بیشترین احتمال را دارد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "NotNext",
+              "isNext",
+              "هیچ‌کدام،چون جمع احتمال‌ها 0 است"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "cls-role",
+          "source_kind": "original",
+          "source_page": 17,
+          "prompt_fa": "برای پیش‌بینی رابطهٔ دو جمله از کدام بازنمایی استفاده می‌شود؟",
+          "solution_fa": "در شکل، CLS به سر رابطهٔ جمله‌ها می‌رود؛ پیش‌بینی MASK سر مربوط به جایگاه پوشانده‌شده را دارد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "فقط آخرین حرف Paris",
+              "ورودی RGB",
+              "بازنمایی CLS برای کل ورودی دو جمله"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "nli-prediction",
+      "title_fa": "خواندن خروجی استنتاج زبانی",
+      "pages": [
+        27
+      ],
+      "code_file": "s14_nli_prediction.py",
+      "starter_sha256": "f11b5a363db2283d228ed9580b2671430217c842a2fbb3d04ea2b830e1029e41",
+      "reference": {
+        "prediction": "contradiction",
+        "selected_probability": 1.0,
+        "class_count": 3
+      },
+      "questions": [
+        {
+          "id": "label",
+          "source_kind": "original",
+          "source_page": 27,
+          "prompt_fa": "در توزیع نشان‌داده‌شده برای He is playing و He is sleeping،چه برچسبی پیش‌بینی شده است؟",
+          "solution_fa": "نمودار contradiction را بااحتمال 1 نشان می‌دهد؛ این خواندن خروجی همین مثال است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "contradiction",
+              "entailment",
+              "neutral"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "classes",
+          "source_kind": "original",
+          "source_page": 27,
+          "prompt_fa": "سر طبقه‌بندی این مثال چند کلاس دارد؟",
+          "solution_fa": "تناقض،استلزام و خنثی سه خروجی سر هستند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "2",
+              "3",
+              "11"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "representation",
+          "source_kind": "original",
+          "source_page": 27,
+          "prompt_fa": "کدام توکن بازنمایی ورودیِ سر طبقه‌بندی را فراهم می‌کند؟",
+          "solution_fa": "در این روش،بازنمایی کل توالی از CLS وارد سر وظیفه می‌شود.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "فقط sleeping",
+              "فقط SEP",
+              "CLS پس از گذر از BERT"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    }
   ]
 }

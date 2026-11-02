@@ -124,5 +124,97 @@
   "reference_python": "3.13.9",
   "limits_fa": "این کارگاه تألیف مستقل، بر پایهٔ ماتریس و جدول صفحهٔ ۵۲ است. فرض ذخیرهٔ ۳۲‌بیتی جدول برای محاسبهٔ سربار، فرض همین تمرین است؛ آزمایش زمان اجرا، پیاده‌سازی PyTorch یا تکلیف رسمی Canvas نیست.",
   "source_retrieved_at_utc": "2026-10-25T08:44:51.847884+00:00",
-  "related_labs": []
+  "related_labs": [],
+  "source_examples": [
+    {
+      "id": "codebook",
+      "title_fa": "کوانتیزه‌سازی جدول کد",
+      "pages": [
+        52
+      ],
+      "code_file": "s09_codebook.py",
+      "starter_sha256": "c40d4c09d79601ca8b2a2f39f02739edb9541d7e0b96d2fc5f8d24bd3736e1ff",
+      "reference": {
+        "bits_per_index": 2,
+        "indices": [
+          1,
+          3,
+          2,
+          1,
+          0,
+          1,
+          3,
+          2,
+          1
+        ],
+        "reconstructed": [
+          0.0,
+          1.1,
+          0.4,
+          0.0,
+          -0.6,
+          0.0,
+          1.1,
+          0.4,
+          0.0
+        ],
+        "mean_squared_error": 0.009433333333333334,
+        "original_bits": 288,
+        "index_bits": 18,
+        "table_bits": 128,
+        "total_quantized_bits": 146,
+        "compression_ratio": 1.9726027397260273
+      },
+      "questions": [
+        {
+          "id": "bits",
+          "source_kind": "original",
+          "source_page": 52,
+          "prompt_fa": "برای نشانی‌دهی چهار مقدار جدول کد، چند بیت برای هر اندیس لازم است؟",
+          "solution_fa": "دو بیت چهار حالت متمایز می‌سازد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "2",
+              "4",
+              "32"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "storage",
+          "source_kind": "original",
+          "source_page": 52,
+          "prompt_fa": "با ذخیرهٔ چهار عدد جدول با 32 بیت، کل هزینهٔ 9 اندیس و جدول چقدر است؟",
+          "solution_fa": "9×2+4×32=146 بیت؛ جدول را هم باید ذخیره کرد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "18 بیت",
+              "146 بیت",
+              "288 بیت"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "nearest",
+          "source_kind": "original",
+          "source_page": 52,
+          "prompt_fa": "عدد 1.2 در جدول [−0.6,0,0.4,1.1] به چه مقدار بازسازی می‌شود؟",
+          "solution_fa": "نزدیک‌ترین مقدار جدول به 1.2، عدد 1.1 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "0.4",
+              "1.2",
+              "1.1"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    }
+  ]
 }

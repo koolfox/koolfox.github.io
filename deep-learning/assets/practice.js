@@ -5,14 +5,24 @@ import {renderNotebookResult} from './notebook-results.js';
 const base = JSON.parse(document.querySelector('#practice-config').textContent);
 const requestedPage=Number(new URLSearchParams(location.search).get('source-page'));
 const returnPage=Number.isInteger(requestedPage)&&requestedPage>0&&requestedPage<=base.source_page_count?requestedPage:base.source_page;
-const config={...base,...base.page_notebooks?.find(example=>example.pages.includes(returnPage))};
+const example=base.page_notebooks?.find(example=>example.pages.includes(returnPage));
+const pageQuestions=base.page_questions?.find(item=>item.pages.includes(returnPage));
+const pageState=base.page_activity_states?.find(item=>item.number===returnPage);
+const config={...base,...example};
+if(pageState){
+  const questions=requestedPage?(pageQuestions?.questions||[]):config.questions;
+  config.questions=questions.filter((question,index)=>questions.findIndex(other=>other.prompt===question.prompt&&JSON.stringify(other.options)===JSON.stringify(question.options))===index);
+  config.tip=example?.tip||(!requestedPage&&!example?base.tip:null);
+  config.codeAvailable=Boolean(example)||!requestedPage;
+  if(!example)config.key=base.key+'/page-'+returnPage;
+}
 document.querySelector('#practice-config').textContent=JSON.stringify(config);
 if(config.title)document.querySelector('.practice-page>header h1').textContent=config.title;
 let gpuGeneration=0;
 const gpuPanel=document.createElement('section');gpuPanel.className='nb-gpu';gpuPanel.hidden=true;
 function compareGPU(record){
   const generation=++gpuGeneration;gpuPanel.replaceChildren();gpuPanel.hidden=true;window.attentionGPUResult=null;
-  if(config.key!=='spring-2026/s13'||!record?.ok)return;
+  if(!(config.key==='spring-2026/s13'||config.key.startsWith('spring-2026/s13/'))||!record?.ok)return;
   const python=record.outputs?.at(-1)?.result;if(!python?.gpu_inputs)return;
   gpuPanel.hidden=false;
   const button=document.createElement('button'),status=document.createElement('p'),output=document.createElement('div');

@@ -240,3 +240,22 @@ with `models/extract_clip_source.py` (pypdf/Pillow), run
 validation environment, then `node models/validate_webgpu.mjs clip-vit-base-patch32`.
 No training, historical paper benchmark, largest CLIP variant or CPU fallback is
 claimed by this inference demonstration.
+
+## Readable Python reference cells
+
+Each of the four model pages offers an optional code view: four stacked cells,
+syntax highlighting, Persian operation comments, a folded environment setup and
+a complete downloadable `.py` file pinned by SHA256. The ordinary model view
+remains the default. These scripts execute in an external Python environment;
+there is no simulated Python browser execution button. ResNet uses native ONNX
+Runtime CPU with the exact released MXNet checkpoint; BERT, ViT and CLIP use the
+pinned official PyTorch/Transformers checkpoint and eager attention. The teaching
+code does not expose the advanced ONNX storage/export machinery as student code.
+
+All four scripts were actually executed against the exact cached checkpoints and
+default source inputs. BERT mask logits, ViT1,000 logits and CLIP four logits match
+the independent Python reference exactly; ResNet1,000 logits differ by at most
+2.861023e-6 from the released golden tensor. Evidence is in ignored
+`results/model-validation/student-python-code.json`. A real browser check covers
+all four pages: optional code loading, four highlighted cells, external Python
+label, download hash, scrollable code area, mobile overflow and return to model.

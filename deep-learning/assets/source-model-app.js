@@ -106,3 +106,22 @@ try{
  if(model.attribution){const resources=element('details',undefined,{class:'model-resources'});resources.append(element('summary','منابع'));const citation=element('p'),link=element('a',model.attribution.text,{href:model.attribution.url,target:'_blank',rel:'noopener'});citation.append(link,document.createTextNode(' · '),element('a',model.attribution.license,{href:model.attribution.license_url,target:'_blank',rel:'noopener'}));resources.append(citation);find('.model-results').append(resources);}
  document.body.dataset.ready='true';
 }catch(cause){error(cause.message||'مدل آماده نشد؛ صفحه را دوباره باز کن.');}
+
+let codeLoaded=false;
+find('[data-code-toggle]').addEventListener('click',async()=>{
+ const panel=find('[data-python-panel]'),button=find('[data-code-toggle]'),opening=panel.hidden;
+ panel.hidden=!opening;find('main').hidden=opening;button.setAttribute('aria-expanded',String(opening));button.textContent=opening?'بازگشت به مدل':'کد پایتون';
+ if(!opening||codeLoaded)return;
+ const holder=find('[data-python-cells]');
+ try{
+  if(!model?.code_reference)throw Error('کد این مدل آماده نیست.');
+  const artifact=model.code_reference,url=new URL(artifact.url,new URL('../models/source-models.json',import.meta.url));url.searchParams.set('sha256',artifact.sha256);
+  const response=await fetch(url);if(!response.ok)throw Error('کد بارگیری نشد.');const bytes=await response.arrayBuffer(),digest=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(x=>x.toString(16).padStart(2,'0')).join('');if(digest!==artifact.sha256)throw Error('نسخهٔ کد با مدل سازگار نیست.');
+  const code=new TextDecoder().decode(bytes),{highlightPythonCode}=await import('./vendor/python-editor/editor.mjs');
+  find('[data-python-description]').textContent=`این کد با ${artifact.framework} در محیط پایتون اجرا می‌شود؛ اجرای همین صفحه روی WebGPU مرورگر است. وزن‌ها و ورودی پیش‌فرض در هر دو یکسان‌اند.`;
+  const download=find('[data-python-download]');download.href=url.href;download.download=model.id+'.py';holder.replaceChildren();
+  const sections=code.split(/^# %% (.+)$/m);
+  for(let i=1;i<sections.length;i+=2){const setup=i===1,cell=element(setup?'details':'section',undefined,{'data-code-cell':''}),title=element(setup?'summary':'h3',sections[i]),pre=element('pre',undefined,{dir:'ltr'});highlightPythonCode(pre,sections[i+1].trim());cell.append(title,pre);holder.append(cell);}
+  codeLoaded=true;
+ }catch(cause){holder.replaceChildren(element('p',cause.message,{role:'alert'}));}
+});

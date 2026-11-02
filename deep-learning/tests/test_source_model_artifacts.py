@@ -4,9 +4,9 @@ import hashlib
 import importlib.util
 import io
 import json
-from pathlib import Path
 import tempfile
 import unittest
+from pathlib import Path
 from unittest.mock import patch
 from urllib.parse import urlparse
 
@@ -36,6 +36,16 @@ class SourceModelArtifacts(unittest.TestCase):
                     self.assertEqual(
                         hashlib.sha256(payload).hexdigest(), artifact["sha256"]
                     )
+
+    def test_python_references_are_pinned_and_have_four_readable_cells(self):
+        catalog = json.loads((ROOT / "models/source-models.json").read_text())
+        for model in catalog["models"]:
+            reference = model["code_reference"]
+            payload = (ROOT / "models" / reference["url"][2:]).read_bytes()
+            self.assertEqual(len(payload), reference["bytes"])
+            self.assertEqual(hashlib.sha256(payload).hexdigest(), reference["sha256"])
+            self.assertEqual(payload.decode().count("# %% "), 4)
+            self.assertIn("External Python", reference["execution"])
 
     def test_whole_file_200_response_is_valid_for_small_metadata(self):
         payload = b"published configuration"

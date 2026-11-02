@@ -115,7 +115,14 @@
       },
       "title": "ResNet152-v1",
       "description_fa": "اجرای شبکهٔ ۱۵۲لایه با وزن‌های منتشرشده؛ مقایسهٔ ۱۰۰۰ خروجی روی تنسور آزمون مرجع.",
-      "action_title_fa": "اجرای ResNet152"
+      "action_title_fa": "اجرای ResNet152",
+      "code_reference": {
+        "url": "./python/resnet152-v1.py",
+        "sha256": "b761c5ea181a9ba631877dc0033ee12b60f3f2c5b9dca6f62a60c2d5402113c1",
+        "bytes": 2716,
+        "framework": "ONNX Runtime CPU",
+        "execution": "External Python process, not browser Python execution"
+      }
     },
     {
       "id": "bert-base-uncased",
@@ -258,7 +265,14 @@
         },
         "webgpu_vs_pytorch_full_max_absolute_error": 5.14984130859375e-05
       },
-      "action_title_fa": "اجرای BERT"
+      "action_title_fa": "اجرای BERT",
+      "code_reference": {
+        "url": "./python/bert-base-uncased.py",
+        "sha256": "fc8a5ce871c21a682d1fa9dbf4418feabf41aac24192629e2764d110739c34d3",
+        "bytes": 1942,
+        "framework": "PyTorch / Transformers",
+        "execution": "External Python process, not browser Python execution"
+      }
     },
     {
       "id": "vit-base-patch16-224",
@@ -407,6 +421,13 @@
           "architecture": "metal-3",
           "fallback": false
         }
+      },
+      "code_reference": {
+        "url": "./python/vit-base-patch16-224.py",
+        "sha256": "5fd10603e2fef110e5526cf73b46b422b8a108886a09d27a99cc592ef152d9f9",
+        "bytes": 1944,
+        "framework": "PyTorch / Transformers",
+        "execution": "External Python process, not browser Python execution"
       }
     },
     {
@@ -592,6 +613,13 @@
           "architecture": "metal-3",
           "fallback": false
         }
+      },
+      "code_reference": {
+        "url": "./python/clip-vit-base-patch32.py",
+        "sha256": "480ff093658823651e530a219fe54874c8b62ad06e87aaf96a60a4374b0b5558",
+        "bytes": 2644,
+        "framework": "PyTorch / Transformers",
+        "execution": "External Python process, not browser Python execution"
       }
     }
   ]

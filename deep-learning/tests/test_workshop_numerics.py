@@ -24,6 +24,25 @@ def execute(session, changes=None):
 
 
 class WorkshopNumericalTests(unittest.TestCase):
+    def test_source_purchase_scenario_and_peak_rates(self):
+        cost = execute("s09_compute_cost")["result"]
+        self.assertEqual(cost["hours"], 672)
+        self.assertEqual(cost["rental_cost"], 13440)
+        self.assertEqual(cost["break_even_hours"], 2000)
+        half_time = execute("s09_compute_cost", {"hours_per_day = 24": "hours_per_day = 12"})["result"]
+        self.assertEqual(half_time["rental_cost"], 6720)
+        with self.assertRaises(ValueError):
+            execute("s09_compute_cost", {"hourly_rent = 20.0": "hourly_rent = 0.0"})
+        rates = execute("s09_peak_throughput")["result"]
+        self.assertEqual(rates["peak_operation_rate_ratios"]["TF32 Tensor"], 8)
+        self.assertEqual(rates["peak_operation_rate_ratios"]["BF16 Tensor"], 16)
+        self.assertEqual(rates["peak_operation_rate_ratios"]["INT8 Tensor"], 32)
+        self.assertEqual(rates["integer_rate_unit"], "TOPS")
+        changed = execute("s09_peak_throughput", {"fp32 = 19.5": "fp32 = 39.0"})["result"]
+        self.assertEqual(changed["peak_operation_rate_ratios"]["TF32 Tensor"], 4)
+        with self.assertRaises(ValueError):
+            execute("s09_peak_throughput", {"fp32 = 19.5": "fp32 = 0.0"})
+
     def test_source_perceptron_matches_every_exact_decimal_epoch_row(self):
         result = execute("s02_majority_epochs")["result"]
         rows = [[0,0,0,0], [-0.2,0,0.2,0.2], [-0.2,0,0.4,0.2],

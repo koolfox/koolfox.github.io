@@ -215,6 +215,152 @@
           }
         }
       ]
+    },
+    {
+      "id": "compute-cost",
+      "title_fa": "سناریوی خرید و اجارهٔ GPU",
+      "pages": [
+        44
+      ],
+      "code_file": "s09_compute_cost.py",
+      "starter_sha256": "2701fa81d1d286c8ed25a830b3bd1730b817d18bb0f85bf1eb0f12b01d4e3a16",
+      "reference": {
+        "hours": 672,
+        "rental_cost": 13440.0,
+        "buy_price": 40000.0,
+        "buy_minus_rental": 26560.0,
+        "break_even_hours": 2000.0
+      },
+      "questions": [
+        {
+          "id": "hours",
+          "source_kind": "original",
+          "source_page": 44,
+          "prompt_fa": "چهار هفتهٔ استفادهٔ شبانه‌روزی چند ساعت است؟",
+          "solution_fa": "4×7×24=672ساعت.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "672",
+              "96",
+              "2000"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "rent",
+          "source_kind": "original",
+          "source_page": 44,
+          "prompt_fa": "اجارهٔ672ساعت با20دلار در ساعت چقدر است؟",
+          "solution_fa": "672×20=13440دلار؛قیمت‌ها فرض مسئله‌اند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "40000",
+              "13440",
+              "2000"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "equality",
+          "source_kind": "original",
+          "source_page": 44,
+          "prompt_fa": "برابری مستقیم خرید40000دلاری و اجارهٔ20دلاری در چه ساعتی است؟",
+          "solution_fa": "40000÷20=2000ساعت؛هزینه‌های جانبی در این مدل داده نشده‌اند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "672",
+              "40000",
+              "2000"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "peak-throughput",
+      "title_fa": "نسبت نرخ عملیات جدول A100",
+      "pages": [
+        57
+      ],
+      "code_file": "s09_peak_throughput.py",
+      "starter_sha256": "818471b4dcbbcd2b23cd0fd79036cc6705a93fc96393042880bf6d5a2cb0c73c",
+      "reference": {
+        "fp32_tflops": 19.5,
+        "dense_rates": {
+          "FP64": 9.7,
+          "FP64 Tensor": 19.5,
+          "TF32 Tensor": 156.0,
+          "BF16 Tensor": 312.0,
+          "FP16 Tensor": 312.0,
+          "INT8 Tensor": 624.0
+        },
+        "peak_operation_rate_ratios": {
+          "FP64": 0.4974358974358974,
+          "FP64 Tensor": 1.0,
+          "TF32 Tensor": 8.0,
+          "BF16 Tensor": 16.0,
+          "FP16 Tensor": 16.0,
+          "INT8 Tensor": 32.0
+        },
+        "integer_rate_unit": "TOPS",
+        "floating_rate_unit": "TFLOPS"
+      },
+      "questions": [
+        {
+          "id": "tf32",
+          "source_kind": "original",
+          "source_page": 57,
+          "prompt_fa": "نسبتTF32بدونsparsityبهFP32جدول چقدر است؟",
+          "solution_fa": "156÷19.5=8؛این نسبت نرخ اوج است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "8",
+              "16",
+              "32"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "fp16",
+          "source_kind": "original",
+          "source_page": 57,
+          "prompt_fa": "نسبتFP16یاBF16بدونsparsityبهFP32چقدر است؟",
+          "solution_fa": "312÷19.5=16.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "8",
+              "16",
+              "32"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "int8",
+          "source_kind": "original",
+          "source_page": 57,
+          "prompt_fa": "چرا624÷19.5=32به‌تنهایی شتاب32برابری آموزش را تضمین نمی‌کند؟",
+          "solution_fa": "تعریف عملیات،دقت،انباشت،اشغال دستگاه و انتقال داده باید در مقایسه لحاظ شوند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "چون تقسیم غلط است",
+              "چونINT8همانFP32است",
+              "صورت نرخ عملیات صحیحTOPSاست و زمان واقعی به مدل و حافظه نیز وابسته است"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
     }
   ]
 }

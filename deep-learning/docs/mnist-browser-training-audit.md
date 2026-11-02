@@ -92,6 +92,8 @@ one epoch,63real curve points,8feature maps/8filters, highlighted Python code,
 mobile overflow and exact seeded reset. The exported run includes configuration,
 actual weights/metrics, current view, baseline and source index/hash manifest.
 Page teardown aborts loading and releases the model after any active batch.
+Actual navigation away during training and history restoration were checked: the
+released session cannot resume, and a fresh explicit initialization is required.
 
 Desktop1080×800 and mobile390×780 were inspected together, then mobile axis
 labels received one readability correction and a confirmation capture. The

@@ -322,6 +322,79 @@ def apply_source_typography(root, term_id, session_id, catalog, pages):
                 block["presentation"] = presentation
 
 
+def apply_source_layout(root, term_id, session_id, catalog, translations, pages):
+    path = root / f"content/source-layout/{term_id}/{session_id}.json"
+    if not path.exists():
+        return
+    document = _document(path)
+    _identity(document, session_id, "layout", term_id)
+    require(document.get("source_sha256") == catalog["sha256"], "Stale layout source PDF")
+    extractor = document.get("extractor")
+    require(isinstance(extractor, dict) and extractor.get("name") in {"pdfplumber", "pdfplumber+pypdfium2"}
+            and _nonempty(extractor.get("version")), "Missing source layout extractor provenance")
+    source_pages = document.get("pages")
+    require(isinstance(source_pages, list) and len(source_pages) == len(pages), "Layout page count mismatch")
+    def rectangle(value):
+        return isinstance(value, list) and len(value) == 4 and all(
+            type(n) in {int, float} and 0 <= n <= 1 for n in value
+        ) and value[0] < value[2] and value[1] < value[3]
+    for geometry, translation, page in zip(source_pages, translations, pages):
+        require(isinstance(geometry, dict) and geometry.get("number") == page["number"]
+                and geometry.get("source_text_sha256") == page["source_text_sha256"], "Stale layout source page")
+        content = {key: translation.get(key, []) for key in ("blocks", "image_text", "tables")}
+        digest = hashlib.sha256(json.dumps(content, ensure_ascii=False, sort_keys=True,
+                                           separators=(",", ":")).encode()).hexdigest()
+        require(geometry.get("translation_sha256") == digest, "Stale layout translation blocks")
+        require(all(type(geometry.get(key)) in {int, float} and 0 < geometry[key] <= 20000
+                    for key in ("width", "height")), "Invalid source layout dimensions")
+        lines = geometry.get("lines")
+        require(isinstance(lines, list), "Invalid source layout lines")
+        covered = set()
+        for line in lines:
+            index = line.get("index") if isinstance(line, dict) else None
+            require(type(index) is int and 0 <= index < len(page["lines"]) and index not in covered
+                    and rectangle(line.get("rect")), "Invalid source line geometry")
+            covered.add(index)
+            require(line.get("match") in {"exact-line", "exact-glyph-sequence", "canonical-character-sequence",
+                                          "canonical-exact-line"}, "Unverified source geometry match")
+            require(type(line.get("font_size")) in {int, float} and 0 < line["font_size"] <= 1000,
+                    "Invalid source layout font size")
+            require("color" not in line or re.fullmatch(r"#[0-9a-f]{6}", line["color"]),
+                    "Invalid source layout color")
+            for part in line.get("parts", []):
+                require(isinstance(part, dict) and isinstance(part.get("text"), str)
+                        and rectangle(part.get("rect"))
+                        and ("color" not in part or re.fullmatch(r"#[0-9a-f]{6}", part["color"]))
+                        and ("font_size" not in part or (type(part["font_size"]) in {int,float}
+                             and 0 <= part["font_size"] <= 1000)), "Invalid source line part")
+        unmatched = geometry.get("unmatched_lines")
+        require(isinstance(unmatched, list) and all(type(i) is int for i in unmatched)
+                and len(unmatched) == len(set(unmatched)) and not covered.intersection(unmatched)
+                and covered.union(unmatched) == set(range(len(page["lines"]))),
+                "Incomplete source layout line inventory")
+        off_page = geometry.get("off_page_lines", [])
+        require(isinstance(off_page, list) and len(off_page) == len(set(off_page))
+                and set(off_page) <= set(unmatched), "Invalid off-page source inventory")
+        coverage = geometry.get("coverage")
+        if coverage is not None:
+            needed = {i for block in translation["blocks"] if block["kind"] != "not_visible"
+                      and re.search(r"[\u0620-\u063f\u0641-\u064a\u0671-\u06d3]", block["fa"])
+                      for i in block["source_lines"]}
+            expected = {"source_lines": len(page["lines"]), "matched_lines": len(covered),
+                        "translated_native_lines": len(needed), "mapped_translated_native_lines": len(needed & covered),
+                        "unpositioned_image_labels": len(translation.get("image_text", [])),
+                        "semantic_tables": len(translation.get("tables", []))}
+            require(coverage == expected, "Incorrect source layout coverage counts")
+        images = geometry.get("images")
+        require(isinstance(images, list) and all(isinstance(image, dict) and rectangle(image.get("rect"))
+                for image in images), "Invalid source image geometry")
+        graphics = geometry.get("graphics", [])
+        require(isinstance(graphics, list) and all(isinstance(item, dict) and rectangle(item.get("rect"))
+                for item in graphics), "Invalid source vector bounds")
+        require(type(geometry.get("visual_reviewed")) is bool, "Missing layout review state")
+        page["source_layout"] = deepcopy(geometry)
+
+
 def load_source_translation(session_id, root=ROOT, require_reviewed=True, term_id="spring-2022"):
     """Load one complete source/translation pair, rejecting stale or unreviewed data.
 
@@ -445,6 +518,7 @@ def load_source_translation(session_id, root=ROOT, require_reviewed=True, term_i
         )
         combined.append(_translation_page(page, translation, session_id, require_reviewed))
     apply_source_typography(root, term_id, session_id, catalog, combined)
+    apply_source_layout(root, term_id, session_id, catalog, translated["pages"], combined)
     notes_path = root / f'data/metadata/{term_id}-editorial-notes.json'
     if notes_path.exists():
         notes = _document(notes_path)
@@ -548,17 +622,33 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
                 for sequence in sequences), "Invalid slide sequence")
         if sequences:
             config["slideSequences"] = sequences
-        pages = sorted({n for n in [unit.get("source_page"), *unit.get("example_pages", []),
-                       *[n for example in unit.get("source_examples", []) for n in example["pages"]],
-                       *[q.get("source_page") for q in unit.get("questions", [])]] if type(n) is int and 1 <= n <= count})
-        if pages:
+        pages = sorted({n for example in unit.get("source_examples", [])
+                        for n in example["pages"] if type(n) is int and 1 <= n <= count})
+        if term_id == "spring-2026" and ("activities" in unit or "source_examples" in unit):
             config["interactivePages"] = pages
+            activity_pages = unit.get("activities", {}).get("pages", [])
+            config["questionPages"] = sorted({
+                entry["number"] for entry in activity_pages if entry.get("question_ids")
+            }) if "activities" in unit else sorted({
+                n for example in unit.get("source_examples", []) if example.get("questions")
+                for n in example["pages"]})
+        else:
+            legacy_pages = sorted(set(pages) | {
+                n for n in [unit.get("source_page"), *unit.get("example_pages", []),
+                            *[q.get("source_page") for q in unit.get("questions", [])]]
+                if type(n) is int and 1 <= n <= count})
+            if legacy_pages:
+                config["interactivePages"] = legacy_pages
     encoded = json.dumps(config, ensure_ascii=False).replace("<", "\\u003c")
     encoded = encoded.replace("\u2028", "\\u2028").replace("\u2029", "\\u2029")
     def e(value):
         return escape(str(value), quote=True)
     require(not asset_revision or re.fullmatch(r"[a-f0-9]{16}", asset_revision), "Invalid reader asset revision")
     asset_query = "?v=" + asset_revision if asset_revision else ""
+    interactives_script = (
+        f'<script type="module" src="{BASE}/assets/source-interactives.js{asset_query}"></script>'
+        if (ROOT / "assets/source-interactives.js").exists() else ""
+    )
     title = row.get("title_fa", row.get("title_en", session))
     license_label = source.get("license_notice", "").removesuffix("; version not printed on cover")
     options = "".join(
@@ -578,7 +668,7 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
 <link rel="stylesheet" href="{BASE}/assets/source-reader.css{asset_query}">
 <link rel="stylesheet" href="{BASE}/assets/vendor/katex/katex.min.css">
 <link rel="stylesheet" href="{BASE}/assets/practice.css{asset_query}">
-<script type="module" src="{BASE}/assets/source-reader.js{asset_query}"></script></head>
+<script type="module" src="{BASE}/assets/source-reader.js{asset_query}"></script>{interactives_script}</head>
 <body class="source-reader" data-mobile-view="source" data-reader-section="slides">
 <a class="skip" href="#reader">رفتن به اسلاید و ترجمه</a>
 <header class="reader-header">

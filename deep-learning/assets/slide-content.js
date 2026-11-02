@@ -3,6 +3,7 @@ import katex from './vendor/katex/katex.mjs';
 const persian = /[\u0620-\u063f\u0641-\u064a\u066e-\u066f\u0671-\u06d3\u06fa-\u06fc]/;
 const bullet = /^(\s*)([•●▪◦–-]|\d+[.)])\s+(.+)$/;
 const pairedTerms = new Map([['least', 'کمترین'], ['most', 'بیشترین']]);
+const sourceTerms = new Map([...pairedTerms, ['training data','دادهٔ آموزش'], ['test data','دادهٔ آزمون'], ['training','آموزش'], ['test','آزمون'], ['overfitting','بیش‌برازش'], ['regularize','منظم‌سازی'], ['gradient','گرادیان']]);
 let referenceTargets = new Map();
 const referenceKey = value => value.replace(/\ufffe/g, '-').replace(/\/$/, '');
 
@@ -71,22 +72,22 @@ function appendBidi(parent, text) {
   parent.append(document.createTextNode(text.slice(end)));
 }
 
-export function addText(parent, text, style = {}) {
+export function addText(parent, text, style = {}, options = {}) {
   const formulas = [...text.matchAll(/\\\(([\s\S]+?)\\\)/g)];
   if (formulas.length) {
     let end = 0;
     for (const formula of formulas) {
-      addText(parent, text.slice(end, formula.index), style);
+      addText(parent, text.slice(end, formula.index), style, options);
       math(parent, {latex: formula[1], fa: formula[0], display: 'inline'});
       end = formula.index + formula[0].length;
     }
-    addText(parent, text.slice(end), style);
+    addText(parent, text.slice(end), style, options);
     return;
   }
   const ranges = [];
   for (const accent of style.accents || []) {
     const english = accent.text.trim().replace(/^[•–-]\s*/, '');
-    const target = pairedTerms.get(english.toLowerCase()) || english;
+    const target = (options.sourceColors ? sourceTerms : pairedTerms).get(english.toLowerCase()) || english;
     if (!target || !readingColor(accent.color)) continue;
     const start = text.toLowerCase().indexOf(target.toLowerCase());
     if (start < 0 || text.toLowerCase().indexOf(target.toLowerCase(), start + target.length) >= 0) continue;
@@ -100,7 +101,7 @@ export function addText(parent, text, style = {}) {
     if (range.start < end) continue;
     appendBidi(parent, text.slice(end, range.start));
     const span = element(range.accent.bold ? 'strong' : 'span', 'reader-emphasis');
-    applyStyle(span, range.accent); appendBidi(span, text.slice(range.start, range.end)); parent.append(span);
+    applyStyle(span, range.accent); if(options.sourceColors&&/^#[0-9a-f]{6}$/i.test(range.accent.color||''))span.style.color=range.accent.color; appendBidi(span, text.slice(range.start, range.end)); parent.append(span);
     end = range.end;
   }
   appendBidi(parent, text.slice(end));
@@ -215,4 +216,117 @@ export function renderBlocks(parent, blocks, tables = []) {
       flush();
     } else paragraph(parent, block.fa, block);
   }
+}
+
+// Keep diagrams and numerical symbols in PDF space; only native translated text moves.
+export function sourceLayoutPlan(record) {
+  const layout = record.source_layout;
+  const fail = reason => ({reason, regions: []});
+  if (!layout) return fail('no-geometry');
+  if (record.image_text?.length && !layout.images?.length) return fail('unpositioned-source-figure');
+  const lines = new Map(layout.lines.map(line => [line.index, line]));
+  const regions = [];
+  for (const block of record.blocks) {
+    if (block.kind === 'not_visible' || !persian.test(block.fa || '')) continue;
+    const mapped = block.source_lines.map(index => lines.get(index));
+    if (!mapped.length || mapped.some(line => !line)) return fail('unmapped-native-text');
+    const columns = mapped.filter(line => (line.parts || []).filter(part => !/^(?:[•●▪◦–—-]|[0-9]+[.)])$/.test(part.text.trim())).length > 1);
+    if (columns.length) {
+      const clauses = block.fa.split(/[؛;\n]/).map(text => text.trim()).filter(Boolean);
+      const parts = mapped.length === 1 ? mapped[0].parts : [];
+      const key = text => text.normalize('NFKC').replace(/\s/g,'').toLowerCase();
+      const anchored = (text,term) => {const haystack=key(text),needle=key(term),at=haystack.indexOf(needle);return needle&&at>=0&&!/[a-z0-9_]/.test(haystack[at-1]||'')&&!/[a-z0-9_]/.test(haystack[at+needle.length]||'');};
+      const assignments = clauses.map(text => parts.map((part,index) => anchored(text,part.text) ? index : -1).filter(index => index >= 0));
+      if (!parts.length || clauses.some(text=>!persian.test(text)) || clauses.length !== parts.length || assignments.some(matches => matches.length !== 1)
+          || new Set(assignments.flat()).size !== parts.length || parts.some(part => !part.color || !part.font_size)) return fail('split-source-line');
+      for (const [index,text] of clauses.entries()) {
+        const part = parts[assignments[index][0]], line = {...mapped[0],...part};
+        regions.push({block:{...block,fa:text},rect:part.rect,lines:[line],font:part.font_size,color:part.color});
+      }
+      continue;
+    }
+    const rect = [Math.min(...mapped.map(l => l.rect[0])), Math.min(...mapped.map(l => l.rect[1])),
+      Math.max(...mapped.map(l => l.rect[2])), Math.max(...mapped.map(l => l.rect[3]))];
+    const font = Math.max(...mapped.map(line => line.font_size));
+    regions.push({block, rect, lines: mapped, font, color: mapped[0].color || '#000000'});
+  }
+  const intersects = (a,b) => a[0] < b[2] && a[2] > b[0] && a[1] < b[3] && a[3] > b[1];
+  for (const region of regions) {
+    if (layout.images.some(image => intersects(region.rect,image.rect)
+        && !region.lines.every(line => intersects(line.rect,image.rect)))) return fail('text-spans-media');
+  }
+  for (const region of regions) {
+    const owned = new Set(region.block.source_lines);
+    const obstacles = [...layout.images, ...(layout.graphics || []),
+      ...layout.lines.filter(line => !owned.has(line.index)),
+      ...regions.filter(other=>other!==region)].map(item => item.rect);
+    let [left,top,right,bottom] = region.rect;
+    if (!obstacles.some(rect => intersects(region.rect,rect))) {
+      const horizontal = obstacles.filter(rect => rect[1]<bottom&&rect[3]>top&&rect[0]>=right);
+      right = Math.min(.97,left+(right-left)*1.5,...horizontal.map(rect=>rect[0]-.004));
+      const vertical = obstacles.filter(rect=>rect[0]<right&&rect[2]>left&&rect[1]>=bottom);
+      bottom = Math.min(.97,top+(bottom-top)*2.4,...vertical.map(rect=>rect[1]-.004));
+    }
+    region.slot = [left,top,Math.max(right,region.rect[2]),Math.max(bottom,region.rect[3])];
+  }
+  return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || []};
+}
+
+export function createSourceLayout(record, plan) {
+  const stage = element('div', 'reader-slide-stage');
+  const width = 960, height = width * plan.layout.height / plan.layout.width;
+  stage.style.width = width + 'px'; stage.style.height = height + 'px';
+  const background = element('canvas', 'reader-slide-background');
+  background.setAttribute('aria-hidden', 'true'); stage.append(background);
+  for (const region of plan.regions) {
+    const node = element('div', 'reader-slide-text');
+    const [x0, y0, x1, y1] = region.slot || region.rect;
+    Object.assign(node.style, {left: x0 * width + 'px', top: y0 * height + 'px',
+      width: (x1 - x0) * width + 'px', height: (y1 - y0) * height + 'px',
+      fontSize: region.font / plan.layout.width * width * .95 + 'px', color: region.color});
+    node.dataset.sourceLines = region.block.source_lines.join(',');
+    if (region.block.presentation?.bold) node.style.fontWeight = '700';
+    if (region.block.presentation?.italic) node.style.fontStyle = 'italic';
+    if (region.block.latex) math(node, region.block); else addText(node, region.block.fa, region.block.presentation, {sourceColors:true});
+    stage.append(node);
+  }
+  let companion = null;
+  if (plan.figureLabels?.length || plan.tables?.length) {
+    const tableIndices = new Set(plan.tables.flatMap(table => table.source_lines || []));
+    const nativeTables = plan.layout.lines.filter(line => tableIndices.has(line.index));
+    const rects = plan.figureLabels.length ? plan.layout.images.map(image => image.rect) : nativeTables.map(line => line.rect);
+    if (!rects.length) rects.push([0,0,1,1]);
+    const left = Math.min(...rects.map(r => r[0])), top = Math.min(...rects.map(r => r[1]));
+    const right = Math.max(...rects.map(r => r[2])), bottom = Math.max(...rects.map(r => r[3]));
+    const details = element('details', 'reader-figure-labels'); details.dir = 'rtl';
+    details.dataset.figureRect = JSON.stringify([left,top,right,bottom]);
+    details.open = Boolean(plan.tables.length);
+    const summary = element('summary'); summary.textContent = plan.tables.length ? 'جدول و نوشته‌های شکل' : (rects.length > 1 ? 'نوشته‌های شکل‌ها' : 'نوشته‌های شکل'); details.append(summary);
+    const content = element('div','reader-figure-content');
+    const imageTables=plan.tables.filter(table=>table.image_text_indices?.length);
+    const tableAt=new Map(imageTables.map(table=>[table.image_text_indices[0],table]));
+    const consumed=new Set(imageTables.flatMap(table=>table.image_text_indices));
+    for(const table of plan.tables.filter(table=>table.source_lines?.length))renderTable(content,table);
+    for (const [index,item] of plan.figureLabels.entries()) {
+      if(tableAt.has(index)){renderTable(content,tableAt.get(index));continue;}
+      if(consumed.has(index))continue;
+      if(item.latex){math(content,item);continue;}
+      const paragraph = element('p');addText(paragraph,item.fa);content.append(paragraph);
+    }
+    details.append(content);companion=details;
+  }
+  const holder = element('div', 'reader-slide-holder'); holder.append(stage);
+  return {holder, stage, background, width, height, companion};
+}
+
+export function fitSourceLayout(stage) {
+  for (const node of stage.querySelectorAll('.reader-slide-text')) {
+    const initial = parseFloat(node.style.fontSize), minimum = Math.max(12, initial * .72);
+    let size = initial;
+    while ((node.scrollHeight > node.clientHeight + 2 || node.scrollWidth > node.clientWidth + 2) && size > minimum) {
+      size = Math.max(minimum, size - .5); node.style.fontSize = size + 'px';
+    }
+    if (node.scrollHeight > node.clientHeight + 2 || node.scrollWidth > node.clientWidth + 2) return false;
+  }
+  return true;
 }

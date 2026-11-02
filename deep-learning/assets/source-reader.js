@@ -1,13 +1,13 @@
-import {getDocument,GlobalWorkerOptions} from './vendor/pdfjs/pdf.min.mjs';
-import {addText, math, renderBlocks, renderTable, configureReferences, referenceTarget} from './slide-content.js';
+import {getDocument,GlobalWorkerOptions,OPS} from './vendor/pdfjs/pdf.min.mjs';
+import {addText, math, renderBlocks, renderTable, configureReferences, referenceTarget, sourceLayoutPlan, createSourceLayout, fitSourceLayout} from './slide-content.js';
 
 const $=s=>document.querySelector(s),config=JSON.parse($('#source-reader-config').textContent);
 const canvas=$('#source-canvas'),links=$('#source-links'),persian=$('#persian-page'),status=$('[data-reader-status]');
 const picker=$('[data-page-select]'),progress=$('[data-pdf-progress]');
 GlobalWorkerOptions.workerSrc=new URL('./vendor/pdfjs/pdf.worker.min.mjs',import.meta.url).href;
-let pdf=null,payload=null,page=1,renderedPage=0,zoom=1,serial=0,task=null,closed=false,lastWidth=720,references=false;
+let pdf=null,canonicalPdf=null,payload=null,page=1,renderedPage=0,zoom=1,serial=0,task=null,closed=false,lastWidth=720,references=false;
 let presenting=false,view=matchMedia('(max-width:760px)').matches?'source':'both',readingView=view;
-let playing=false,playSequence=null,playTimer=null;
+let playing=false,playSequence=null,playTimer=null,layoutTask=null,customTool=false;
 const fa=n=>new Intl.NumberFormat('fa-IR',{useGrouping:false}).format(n);
 const clamp=n=>Math.max(1,Math.min(config.pageCount,n));
 function fromHash(){const match=location.hash.match(/^#page=(\d+)$/);return match?clamp(Number(match[1])):1;}
@@ -57,6 +57,70 @@ function renderTranslation(){
  persian.replaceChildren(fragment);persian.dataset.page=String(page);$('[data-source-text]').textContent=visibleEnglish(record);
  document.querySelector('.reader-translation').scrollTop=0;
 }
+async function paintPersianLayout(source,canonicalSource,id,selected){
+ const record=payload.pages[selected-1],plan=sourceLayoutPlan(record);
+ persian.dataset.layout=plan.reason||'pending';
+ if(plan.reason)return;
+ const fallback=[...persian.childNodes],slide=createSourceLayout(record,plan);
+ persian.replaceChildren(slide.holder,...(slide.companion?[slide.companion]:[]),...fallback.filter(node=>node.nodeType===1&&node.matches('.reader-editorial')));
+ const available=Math.max(280,document.querySelector('.reader-translation').clientWidth-32)*zoom;
+ const scale=available/slide.width;
+ slide.holder.style.width=available+'px';slide.holder.style.height=slide.height*scale+'px';
+ slide.stage.style.transform=`scale(${scale})`;
+ await document.fonts.ready;
+ if(id!==serial||page!==selected)return;
+ if(!fitSourceLayout(slide.stage)){persian.replaceChildren(...fallback);persian.dataset.layout='text-overflow';return;}
+ const measured=document.createElement('canvas'),measureViewport=source.getViewport({scale:slide.width/source.getViewport({scale:1}).width});
+ measured.width=Math.ceil(measureViewport.width);measured.height=Math.ceil(measureViewport.height);
+ const measurement=source.render({canvasContext:measured.getContext('2d'),viewport:measureViewport,recordOperations:true});layoutTask=measurement;
+ try{await measurement.promise;}finally{if(layoutTask===measurement)layoutTask=null;}
+ if(id!==serial||page!==selected)return;
+ const list=await source.getOperatorList(),boxes=source.recordedBBoxes;
+ if(id!==serial||page!==selected)return;
+ const textOps=new Set([OPS.showText,OPS.showSpacedText,OPS.nextLineShowText,OPS.nextLineSetSpacingShowText]);
+ const targets=plan.regions.flatMap(region=>region.lines.map(line=>({line,block:region.block}))),selectedOps=new Set(),covered=new Set();
+ for(let index=0;index<list.fnArray.length;index++){
+  if(!textOps.has(list.fnArray[index])||!boxes||boxes.isEmpty(index))continue;
+  const x=(boxes.minX(index)+boxes.maxX(index))/2,y=(boxes.minY(index)+boxes.maxY(index))/2;
+  targets.forEach((target,number)=>{const [l,t,r,b]=target.line.rect;if(x>=l-.004&&x<=r+.004&&y>=t-.004&&y<=b+.004){selectedOps.add(index);covered.add(number);}});
+ }
+ // Missing browser-font ink bounds can still be proved by a unique complete glyph sequence.
+ const key=value=>value.normalize('NFKC').replace(/[\s\u0000]/g,'');
+ const glyphs=value=>Array.isArray(value)?value.map(glyphs).join(''):(value&&typeof value==='object'&&typeof value.unicode==='string'?value.unicode:'');
+ let stream='';const runs=[];
+ for(let index=0;index<list.fnArray.length;index++)if(textOps.has(list.fnArray[index])){
+  const text=key(glyphs(list.argsArray[index]));if(!text)continue;
+  runs.push({index,start:stream.length,end:stream.length+text.length});stream+=text;
+ }
+ function prove(text,numbers){
+  const needle=key(text),start=stream.indexOf(needle);if(needle.length<4||start<0||stream.indexOf(needle,start+1)>=0)return;
+  const end=start+needle.length,complete=runs.filter(run=>run.start>=start&&run.end<=end);
+  if(!complete.length||complete[0].start!==start||complete.at(-1).end!==end)return;
+  complete.forEach(run=>selectedOps.add(run.index));numbers.forEach(number=>covered.add(number));
+ }
+ targets.forEach((target,number)=>prove(target.line.text??record.lines[target.line.index],[number]));
+ const byLine=new Map();targets.forEach((target,number)=>{const index=target.line.index;if(!byLine.has(index))byLine.set(index,[]);byLine.get(index).push(number);});
+ for(const [index,numbers]of byLine){
+  const text=record.lines[index],parts=numbers.map(number=>targets[number].line).sort((a,b)=>a.rect[0]-b.rect[0]);
+  if(parts.every(part=>part.text)&&key(parts.map(part=>part.text).join(''))===key(text))prove(text,numbers);
+ }
+ for(const region of plan.regions){
+  const numbers=targets.map((target,index)=>target.block===region.block?index:-1).filter(index=>index>=0);
+  if(numbers.length===region.block.source_lines.length)prove(region.block.source_lines.map(index=>record.lines[index]).join(''),numbers);
+ }
+ if(covered.size!==targets.length){persian.replaceChildren(...fallback);persian.dataset.layout='unmatched-operators';return;}
+ const viewport=source.getViewport({scale:slide.width/source.getViewport({scale:1}).width});
+ const target=slide.background;target.width=Math.ceil(viewport.width);target.height=Math.ceil(viewport.height);
+ const context=target.getContext('2d'),drawing=new Set(['fillText','strokeText','fill','stroke','drawImage']);let suppress=false;
+ // Execute text operators to preserve their advances; suppress only their paint calls.
+ const proxy=new Proxy(context,{get(object,key){const value=Reflect.get(object,key,object);if(typeof value!=='function')return value;if(drawing.has(key))return(...args)=>{if(!suppress)return value.apply(object,args);};return value.bind(object);},set(object,key,value){return Reflect.set(object,key,value,object);}});
+ paintSourceCrops();
+ const canonicalOps=await canonicalSource.getOperatorList();
+ if(id!==serial||page!==selected)return;
+ if(canonicalOps.fnArray.length!==list.fnArray.length||!list.fnArray.every((value,index)=>value===canonicalOps.fnArray[index])){persian.replaceChildren(...fallback);persian.dataset.layout='operator-mismatch';return;}
+ const current=canonicalSource.render({canvas:null,canvasContext:proxy,viewport,background:'#ffffff',operationsFilter:index=>{suppress=selectedOps.has(index);return true;}});layoutTask=current;
+ try{await current.promise;if(id===serial&&page===selected)persian.dataset.layout=(plan.figureLabels?.length||plan.tables?.length)?'source-canvas-figure-companion':'source-canvas';}catch(error){if(id===serial&&page===selected){persian.replaceChildren(...fallback);persian.dataset.layout='render-fallback';}if(error?.name!=='RenderingCancelledException')console.warn('Slide layout render failed',error);}finally{if(layoutTask===current)layoutTask=null;}
+}
 function paintSourceCrops(){
  for(const target of persian.querySelectorAll('[data-source-crop]')){
   const [x0,y0,x1,y1]=JSON.parse(target.dataset.sourceCrop),width=(x1-x0)*canvas.width,height=(y1-y0)*canvas.height;
@@ -68,12 +132,20 @@ function paintSourceCrops(){
 function controls(){
  picker.value=references?'sources':String(page);$('[data-prev-page]').disabled=!references&&page===1;$('[data-next-page]').disabled=references;
  $('[data-next-page]').textContent=!references&&page===config.pageCount?'منابع':'بعدی';
- $('[data-page-total]').hidden=references;$('[data-page-count]').textContent=fa(config.pageCount);$('[data-zoom-out]').disabled=references||view==='translation'||zoom<=1;$('[data-zoom-in]').disabled=references||view==='translation'||zoom>=3;
+ $('[data-page-total]').hidden=references;$('[data-page-count]').textContent=fa(config.pageCount);$('[data-zoom-out]').disabled=references||zoom<=1;$('[data-zoom-in]').disabled=references||zoom>=3;
  $('[data-source-only-toggle]').disabled=references;document.querySelector('.reader-view-controls').hidden=references;
  status.hidden=references;progress.hidden=references||Boolean(pdf&&payload);
  canvas.setAttribute('aria-label',`صفحهٔ ${fa(page)} از ${fa(config.pageCount)}، اسلاید`);
  $('[data-print]').disabled=!references&&renderedPage!==page;
  $('[data-page-experiment]').hidden=references||!config.interactivePages?.includes(page);
+ for(const section of ['lab','questions']){
+  const control=document.querySelector(`.reader-sections [data-reader-section="${section}"]`);if(!control)continue;
+  const pages=section==='lab'?config.interactivePages:config.questionPages;
+  const disabled=Array.isArray(pages)&&!pages.includes(page)&&!(customTool&&section==='lab'&&['lab','explore'].includes(document.body.dataset.readerSection));
+  control.setAttribute('aria-disabled',String(disabled));control.tabIndex=disabled?-1:0;
+  if(disabled){if(control.hasAttribute('href'))control.dataset.navigationUrl=control.getAttribute('href');control.removeAttribute('href');}
+  else if(control.dataset.navigationUrl)control.setAttribute('href',control.dataset.navigationUrl);
+ }
  const playable=config.slideSequences?.some(sequence=>sequence.includes(page));
  $('[data-play-slides]').hidden=references||!playable||document.body.dataset.readerSection!=='slides';
  $('[data-play-slides]').textContent=playing?'توقف پخش':'پخش مراحل';$('[data-play-slides]').setAttribute('aria-pressed',String(playing));
@@ -86,12 +158,13 @@ async function destination(dest){
 async function renderOriginal(){
  if(!pdf||!payload||closed||references)return;
  const id=++serial,selected=page;
+ if(layoutTask){layoutTask.cancel();try{await layoutTask.promise;}catch{}layoutTask=null;}
  if(task){task.cancel();try{await task.promise;}catch{}task=null;}
  if(id!==serial||closed)return;
  renderedPage=0;controls();links.replaceChildren();canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);
  message(`در حال نمایش صفحهٔ ${fa(selected)} از ${fa(config.pageCount)}…`);
  try{
-  const source=await pdf.getPage(selected);if(id!==serial||closed)return;
+  const layoutSource=await pdf.getPage(selected),source=await canonicalPdf.getPage(selected);if(id!==serial||closed)return;
   const pane=document.querySelector('.reader-original'),base=source.getViewport({scale:1});
   let available=pane.clientWidth?Math.max(250,pane.clientWidth-32):lastWidth;
   if(document.body.dataset.sourceOnly==='true'){
@@ -116,7 +189,7 @@ async function renderOriginal(){
    if(url){a.href=url;a.target='_blank';a.rel='noopener noreferrer';}else{a.href='#';a.addEventListener('click',event=>{event.preventDefault();destination(annotation.dest).catch(()=>message('این ارجاع داخلی در PDF قابل نمایش نیست؛ اصل فایل در دسترس است.',true));});}
    links.append(a);
   }
-  paintSourceCrops();renderedPage=selected;task=null;document.documentElement.dataset.readerReady='true';controls();
+  paintSourceCrops();await paintPersianLayout(layoutSource,source,id,selected);if(id!==serial||closed)return;renderedPage=selected;task=null;document.documentElement.dataset.readerReady='true';controls();
   const record=payload.pages[page-1],reviewed=record.text_reviewed&&record.image_text_reviewed;
   message(`صفحهٔ ${fa(page)} از ${fa(config.pageCount)}${reviewed?'':' · ترجمه در بازبینی'}`);
   schedulePlayback();
@@ -132,9 +205,18 @@ function nextPage(){if(references)return;if(page===config.pageCount)showReferenc
 function previousPage(){go(references?config.pageCount:page-1);}
 function go(number,update=true,fromPlayback=false){
  if(!fromPlayback)stopPlayback();
- if(!Number.isInteger(number))return;leaveReferences();const closeExplore=document.body.dataset.readerSection==='explore'&&number!==page;page=clamp(number);if(closeExplore)selectSection('slides');renderedPage=0;controls();renderTranslation();
+ if(!Number.isInteger(number))return;leaveReferences();
+ const previousSection=document.body.dataset.readerSection,changed=clamp(number)!==page;
+ const closeTool=changed&&(customTool||previousSection==='explore');
+ page=clamp(number);
+ if(closeTool)selectSection('slides');
+ else if(changed&&['lab','questions'].includes(previousSection)){
+  const available=previousSection==='lab'?config.interactivePages:config.questionPages;
+  selectSection(!Array.isArray(available)||available.includes(page)?previousSection:'slides');
+ }
+ renderedPage=0;controls();renderTranslation();
  try{localStorage.setItem('danna-slide-position:v1',JSON.stringify({term:config.term,session:config.session,page}));}catch{}
- if(update)history.replaceState(null,'',`#page=${page}`);renderOriginal();
+ if(update)history.replaceState(null,'',`#page=${page}`);window.dispatchEvent(new CustomEvent('danna:source-page',{detail:{term:config.term,session:config.session,page}}));renderOriginal();
 }
 function syncPanels(){
  const slides=document.body.dataset.readerSection==='slides',translated=view==='translation';
@@ -148,13 +230,16 @@ function syncPanels(){
  $('[data-source-only-toggle]').setAttribute('aria-pressed',String(presenting));
 }
 function setView(value){view=value;if(matchMedia('(max-width:760px)').matches&&document.body.dataset.readerSection!=='slides')selectSection('slides');syncPanels();renderOriginal();}
-function selectSection(section){
+function selectSection(section,toolUrl=null){
+ if(!toolUrl&&((['lab','explore'].includes(section)&&Array.isArray(config.interactivePages)&&!config.interactivePages.includes(page))||(section==='questions'&&Array.isArray(config.questionPages)&&!config.questionPages.includes(page))))return;
+ const releaseTool=customTool&&section==='slides';customTool=Boolean(toolUrl);
+ if(releaseTool)$('[data-reader-tools-frame]').src='about:blank';
  stopPlayback();
  leaveReferences();
  const slides=section==='slides',translation=$('#translation-panel'),tools=document.querySelector('.reader-tools-panel'),frame=$('[data-reader-tools-frame]');
  document.body.dataset.readerSection=section;syncPanels();
  document.querySelectorAll('[data-reader-section]').forEach(item=>{if(item!==document.body)item.setAttribute('aria-pressed',String(item.dataset.readerSection===(section==='explore'?'lab':section)));});
- if(!slides){const next=section==='knowledge'?config.knowledgeUrl:config.practiceUrl+'?source-page='+page+(section==='questions'?'#questions':'#code');if(frame.getAttribute('src')!==next)frame.src=next;}
+ if(!slides){const next=toolUrl||(section==='knowledge'?config.knowledgeUrl:config.practiceUrl+((section==='questions'||config.interactivePages?.includes(page))?'?source-page='+page:'')+(section==='questions'?'#questions':'#code'));if(frame.getAttribute('src')!==next)frame.src=next;}
  renderOriginal();
 }
 document.querySelectorAll('.reader-sections [data-reader-section]').forEach(button=>button.addEventListener('click',event=>{event.preventDefault();selectSection(button.dataset.readerSection);}));
@@ -178,17 +263,23 @@ $('[data-fullscreen]').addEventListener('click',async()=>{try{if(document.fullsc
 $('[data-print]').addEventListener('click',async()=>{if(!references&&renderedPage!==page)return;await document.fonts.ready;window.print();});
 document.addEventListener('keydown',event=>{if(event.defaultPrevented||event.shiftKey||event.altKey||event.ctrlKey||event.metaKey||event.target.closest('.reader-table-viewport')||/INPUT|TEXTAREA|SELECT|BUTTON|A/.test(event.target.tagName))return;const action={ArrowLeft:nextPage,PageDown:nextPage,ArrowRight:previousPage,PageUp:previousPage,Home:()=>go(1),End:()=>go(config.pageCount)}[event.key];if(action){event.preventDefault();action();}});
 window.addEventListener('hashchange',()=>location.hash==='#sources'?showReferences(false):go(fromHash(),false));
-let resizeTimer;new ResizeObserver(()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>renderOriginal(),150);}).observe(document.querySelector('.reader-original'));
-const loading=getDocument({url:config.pdfUrl+'?sha='+config.sourceSha256,cMapUrl:new URL('./vendor/pdfjs/cmaps/',import.meta.url).href,cMapPacked:true,standardFontDataUrl:new URL('./vendor/pdfjs/standard_fonts/',import.meta.url).href,wasmUrl:new URL('./vendor/pdfjs/wasm/',import.meta.url).href,isEvalSupported:false,enableXfa:false,disableAutoFetch:true,disableStream:true,rangeChunkSize:262144});
+let resizeTimer,lastObservedSize='';new ResizeObserver(entries=>{
+ const {width,height}=entries[0].contentRect;
+ const size=Math.round(width)+':'+(document.body.dataset.sourceOnly==='true'?Math.round(height):'');
+ if(size===lastObservedSize)return;lastObservedSize=size;
+ clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>renderOriginal(),150);
+}).observe(document.querySelector('.reader-original'));
+const documentOptions={url:config.pdfUrl+'?sha='+config.sourceSha256,cMapUrl:new URL('./vendor/pdfjs/cmaps/',import.meta.url).href,cMapPacked:true,standardFontDataUrl:new URL('./vendor/pdfjs/standard_fonts/',import.meta.url).href,wasmUrl:new URL('./vendor/pdfjs/wasm/',import.meta.url).href,isEvalSupported:false,enableXfa:false,disableAutoFetch:true,disableStream:true,rangeChunkSize:262144};
+const loading=getDocument({...documentOptions,disableFontFace:config.term!=='spring-2026'}),canonicalLoading=config.term==='spring-2026'?getDocument({...documentOptions,disableFontFace:true}):loading;
 loading.onProgress=event=>{if(event.total){progress.value=Math.min(100,event.loaded/event.total*100);progress.setAttribute('aria-valuetext',`${fa(Math.round(progress.value))} درصد`);}};
-Promise.all([loading.promise,fetch(config.translationUrl).then(response=>{if(!response.ok)throw Error('translation unavailable');return response.json();})]).then(([document,data])=>{
+Promise.all([loading.promise,canonicalLoading.promise,fetch(config.translationUrl).then(response=>{if(!response.ok)throw Error('translation unavailable');return response.json();})]).then(([document,canonicalDocument,data])=>{
  if(data.source?.sha256!==config.sourceSha256||document.numPages!==config.pageCount||data.pages?.length!==config.pageCount)throw Error('source/translation identity mismatch');
- pdf=document;payload=data;configureReferences(data.reference_targets);progress.hidden=true;
+ pdf=document;canonicalPdf=canonicalDocument;payload=data;configureReferences(data.reference_targets);progress.hidden=true;
  for(const option of picker.options){if(option.value==='sources')continue;const record=data.pages[Number(option.value)-1];const heading=record.blocks.find(b=>b.kind==='heading')?.fa||record.blocks.find(b=>b.kind!=='not_visible'&&b.fa)?.fa?.split('\n').find(s=>!/^https?:/.test(s))||'';option.textContent=fa(Number(option.value))+(heading?' · '+heading.slice(0,100):'');}
  if(location.hash==='#sources')showReferences(false);else go(page,false);
 }).catch(()=>{progress.hidden=true;message('بارگیری اسلایدها انجام نشد؛ دوباره تلاش کن.',true);$('[data-retry-load]').hidden=false;});
-window.addEventListener('pagehide',event=>{stopPlayback();if(event.persisted)return;closed=true;serial++;clearTimeout(resizeTimer);task?.cancel();loading.destroy().catch(()=>{});});
-window.sourceSlideReader={get page(){return page;},get renderedPage(){return renderedPage;},get pageCount(){return config.pageCount;},get sourceSha256(){return config.sourceSha256;},get ready(){return Boolean(pdf&&payload&&(references||renderedPage===page));}};
+window.addEventListener('pagehide',event=>{stopPlayback();if(event.persisted)return;closed=true;serial++;clearTimeout(resizeTimer);task?.cancel();layoutTask?.cancel();loading.destroy().catch(()=>{});if(canonicalLoading!==loading)canonicalLoading.destroy().catch(()=>{});});
+window.sourceSlideReader={openTool(raw,section='lab'){const url=new URL(raw,location.href);if(url.origin!==location.origin||!['http:','https:'].includes(url.protocol)||!['lab','explore','questions','knowledge'].includes(section))throw Error('Invalid slide tool');selectSection(section,url.href);},get page(){return page;},get renderedPage(){return renderedPage;},get pageCount(){return config.pageCount;},get sourceSha256(){return config.sourceSha256;},get ready(){return Boolean(pdf&&payload&&(references||renderedPage===page));}};
 controls();
 syncPanels();
 if(location.hash==='#sources')showReferences(false);

@@ -39,14 +39,15 @@
         "• Assignments (Canvas):"
       ],
       "private_material_state": "not_available_in_public_pdf",
-      "review_basis": "course_logistics_text",
+      "review_basis": "source_review_assignments_page",
       "review_scope": "source_prompt_inventory",
       "explicit_prompt_candidates": {
         "source_line_indices": [
           8
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "review_and_course_logistics_invitation"
     },
     {
       "number": 3,
@@ -176,14 +177,17 @@
       "number": 9,
       "source_text_sha256": "410c138d3bae03bbf04cea0268a0aad126b7765878a047dd5b13214742fdeae4",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "complete",
+      "question_ids": [
+        "sentiment-review",
+        "sequence-task-types"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -193,7 +197,9 @@
           17
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "all_explicit_source_prompts_covered",
+      "review_basis": "source_prompt_and_checked_example_family"
     },
     {
       "number": 10,
@@ -804,7 +810,7 @@
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "partial",
+      "question_coverage": "complete",
       "question_ids": [
         "character-choice-rnn-choice",
         "character-choice-rnn-probability",
@@ -821,7 +827,9 @@
           5
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "all_explicit_source_prompts_covered",
+      "review_basis": "source_prompt_and_checked_example_family"
     },
     {
       "number": 38,
@@ -1231,12 +1239,13 @@
       ],
       "question_coverage": "complete",
       "question_ids": [
-        "page-55-concept"
+        "page-55-concept",
+        "input-gate-one"
       ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
-      "review_basis": "explicit_source_prompt_and_authored_answer",
+      "review_basis": "source_prompt_and_checked_example_family",
       "prompt_reconciliation": "all_explicit_source_prompts_covered",
       "review_scope": "source_prompt_inventory",
       "explicit_prompt_candidates": {
@@ -1258,12 +1267,13 @@
       ],
       "question_coverage": "complete",
       "question_ids": [
-        "page-56-concept"
+        "page-56-concept",
+        "forget-gate-zero"
       ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
-      "review_basis": "explicit_source_prompt_and_authored_answer",
+      "review_basis": "source_prompt_and_checked_example_family",
       "prompt_reconciliation": "all_explicit_source_prompts_covered",
       "review_scope": "source_prompt_inventory",
       "explicit_prompt_candidates": {
@@ -1712,6 +1722,86 @@
       "reviewed": true
     },
     {
+      "id": "sentiment-review",
+      "source_kind": "original",
+      "source_page": 9,
+      "pages": [
+        9
+      ],
+      "prompt_fa": "در نقد«هواداران عاشقش می‌شوند؛ برای بقیه تفریحی به‌قدر قابل‌تحمل خوب است»، کدام برداشت مناسب‌تر است؟",
+      "solution_fa": "«good time»و امتیازBنشانهٔ ارزیابی مثبت ملایم‌اند؛ قید«tolerably»و تفکیک مخاطبان لحن را محدود می‌کند. در برچسب‌گذاری واقعی، قرارداد و توافق ارزیابان نیز مهم است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "مثبت ملایم با قید و محدودیت",
+          "نفرت کاملاً صریح از فیلم",
+          "هیچ نظر ارزشی در متن وجود ندارد"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "sequence-task-types",
+      "source_kind": "original",
+      "source_page": 9,
+      "pages": [
+        9
+      ],
+      "prompt_fa": "کدام تطبیق ورودی/خروجی سه مثال درست است؟",
+      "solution_fa": "تصویر ورودی ثابت و کپشن توالی است؛ ترجمه دو توالی و برچسب احساس یک خروجی برای توالی واژه‌ها دارد.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "شرح تصویر چندبه‌یک، ترجمه یک‌به‌یک",
+          "شرح تصویر یک‌به‌چند، ترجمه چندبه‌چند، احساس‌سنجی جمله چندبه‌یک",
+          "هرسه فقط یک خروجی اسکالر از یک ورودی اسکالر دارند"
+        ],
+        "correct_index": 1
+      },
+      "reviewed": true
+    },
+    {
+      "id": "input-gate-one",
+      "source_kind": "original",
+      "source_page": 55,
+      "pages": [
+        55
+      ],
+      "prompt_fa": "اگر دروازهٔ ورودیLSTMبرابر1باشد، سهم کاندید جدید چه می‌شود؟",
+      "solution_fa": "ضرب کاندید در1آن را حفظ می‌کند؛ سهم حافظهٔ قبلی جداگانه با دروازهٔ فراموشی تعیین می‌شود.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "همیشه کل حافظه صفر می‌شود",
+          "کاندید جدید حذف می‌شود",
+          "کاندید جدید بدون کاهشِ این دروازه به سهم حافظه اضافه می‌شود"
+        ],
+        "correct_index": 2
+      },
+      "reviewed": true
+    },
+    {
+      "id": "forget-gate-zero",
+      "source_kind": "original",
+      "source_page": 56,
+      "pages": [
+        56
+      ],
+      "prompt_fa": "اگر دروازهٔ فراموشیLSTMصفر باشد، کدام گزاره درست است؟",
+      "solution_fa": "f_t×c_{t−1}صفر می‌شود ولی i_t×کاندیدمی‌تواند غیرصفر باشد.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "سهم حافظهٔ قبلی حذف می‌شود؛ حافظهٔ جدید الزاماً صفر نیست",
+          "کل خروجی شبکه همیشه1است",
+          "ورودی جدید نیز الزاماً حذف می‌شود"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
       "id": "parity-encoding",
       "source_kind": "original",
       "source_page": 27,
@@ -1775,8 +1865,8 @@
       "id": "hello-encoding-first",
       "source_kind": "original",
       "source_page": 29,
-      "prompt_fa": "در ترتیب واژگان[h,e,l,o]، بردار گام اولhelloچیست؟",
-      "solution_fa": "حرف اولhاست؛ نخستین جایگاه1می‌شود.",
+      "prompt_fa": "در ترتیب واژگان[h,e,l,o]، بردار گام اول hello چیست؟",
+      "solution_fa": "حرف اول h است؛ نخستین جایگاه 1 می‌شود.",
       "answer": {
         "kind": "choice",
         "options_fa": [
@@ -1795,8 +1885,8 @@
       "id": "hello-encoding-second",
       "source_kind": "original",
       "source_page": 29,
-      "prompt_fa": "بردار گام دومhelloچیست؟",
-      "solution_fa": "حرف دومeاست و دومین جایگاه فعال می‌شود.",
+      "prompt_fa": "بردار گام دوم hello چیست؟",
+      "solution_fa": "حرف دوم e است و دومین جایگاه فعال می‌شود.",
       "answer": {
         "kind": "choice",
         "options_fa": [
@@ -1816,7 +1906,7 @@
       "source_kind": "original",
       "source_page": 29,
       "prompt_fa": "بردارهای گام سوم و چهارم چه رابطه‌ای دارند؟",
-      "solution_fa": "هر دو حرفlهستند؛ One-hotحرف یکسان است، هرچند حالت پنهان RNNممکن است به سبب تاریخچه متفاوت باشد.",
+      "solution_fa": "هر دو حرف l هستند؛ One-hot حرف یکسان است، هرچند حالت پنهان RNN ممکن است به سبب تاریخچه متفاوت باشد.",
       "answer": {
         "kind": "choice",
         "options_fa": [
@@ -1835,8 +1925,8 @@
       "id": "character-choice-choice",
       "source_kind": "original",
       "source_page": 31,
-      "prompt_fa": "برای احتمال‌های[0.05,0.65,0.2,0.1]به ترتیب[h,e,l,o]چه حرفی باargmaxانتخاب می‌شود؟",
-      "solution_fa": "eبا احتمال0.65بیشترین مقدار را دارد.",
+      "prompt_fa": "برای احتمال‌های[0.05,0.65,0.2,0.1]به ترتیب[h,e,l,o]چه حرفی با argmax انتخاب می‌شود؟",
+      "solution_fa": "e با احتمال 0.65 بیشترین مقدار را دارد.",
       "answer": {
         "kind": "choice",
         "options_fa": [
@@ -1855,8 +1945,8 @@
       "id": "character-choice-classes",
       "source_kind": "original",
       "source_page": 32,
-      "prompt_fa": "در مثال همین واژگان،Kدر فرمولSoftmaxچند است؟",
-      "solution_fa": "چهار کلاس متمایز[h,e,l,o]داریم؛ تکرارlدرhelloکلاس تازه نمی‌سازد.",
+      "prompt_fa": "در مثال همین واژگان، K در فرمول Softmax چند است؟",
+      "solution_fa": "چهار کلاس متمایز[h,e,l,o]داریم؛ تکرار l در hello کلاس تازه نمی‌سازد.",
       "answer": {
         "kind": "choice",
         "options_fa": [
@@ -1875,8 +1965,8 @@
       "id": "character-choice-probabilities",
       "source_kind": "original",
       "source_page": 31,
-      "prompt_fa": "آیا بایدSoftmaxرا دوباره روی همین چهار عدد چاپ‌شده اجرا کنیم تا پیش‌بینی مثال را بخوانیم؟",
-      "solution_fa": "اعداد جمع1دارند و خود اسلاید آن‌ها را احتمال خروجی نشان می‌دهد؛ با logitاشتباه نشوند.",
+      "prompt_fa": "آیا باید Softmax را دوباره روی همین چهار عدد چاپ‌شده اجرا کنیم تا پیش‌بینی مثال را بخوانیم؟",
+      "solution_fa": "اعداد جمع 1 دارند و خود اسلاید آن‌ها را احتمال خروجی نشان می‌دهد؛ با logit اشتباه نشوند.",
       "answer": {
         "kind": "choice",
         "options_fa": [
@@ -1895,8 +1985,8 @@
       "id": "character-choice-rnn-choice",
       "source_kind": "original",
       "source_page": 37,
-      "prompt_fa": "در ترتیب[h,e,l,o]و احتمال‌های[0.419748,0.194682,0.162429,0.223141]، چه حرفی باargmaxانتخاب می‌شود؟",
-      "solution_fa": "hبا0.419748بیشترین احتمال را دارد؛ با توزیع نمونهٔ صفحهٔ31کهeرا برمی‌گزید متفاوت است.",
+      "prompt_fa": "در ترتیب[h,e,l,o]و احتمال‌های[0.419748,0.194682,0.162429,0.223141]، چه حرفی با argmax انتخاب می‌شود؟",
+      "solution_fa": "h با 0.419748 بیشترین احتمال را دارد؛ با توزیع نمونهٔ صفحهٔ 31 که e را برمی‌گزید متفاوت است.",
       "answer": {
         "kind": "choice",
         "options_fa": [
@@ -1915,8 +2005,8 @@
       "id": "character-choice-rnn-probability",
       "source_kind": "original",
       "source_page": 37,
-      "prompt_fa": "احتمال انتخاب‌شده باargmaxچقدر است؟",
-      "solution_fa": "انتخاب بیشینه به معنی احتمال1نیست؛ احتمال همان توزیع0.419748است.",
+      "prompt_fa": "احتمال انتخاب‌شده با argmax چقدر است؟",
+      "solution_fa": "انتخاب بیشینه به معنی احتمال 1 نیست؛ احتمال همان توزیع 0.419748 است.",
       "answer": {
         "kind": "choice",
         "options_fa": [
@@ -1935,13 +2025,13 @@
       "id": "character-choice-rnn-sampling",
       "source_kind": "original",
       "source_page": 37,
-      "prompt_fa": "آیاargmaxهمان نمونه‌گیری تصادفی از توزیع است؟",
-      "solution_fa": "در نمونه‌گیری تصادفی کلاس‌های دیگر هم می‌توانند انتخاب شوند؛ argmaxاین سیاست را ندارد.",
+      "prompt_fa": "آیا argmax همان نمونه‌گیری تصادفی از توزیع است؟",
+      "solution_fa": "در نمونه‌گیری تصادفی کلاس‌های دیگر هم می‌توانند انتخاب شوند؛ argmax این سیاست را ندارد.",
       "answer": {
         "kind": "choice",
         "options_fa": [
           "بله، همیشه",
-          "فقط با4کلاس",
+          "فقط با 4 کلاس",
           "خیر؛ همواره بزرگ‌ترین مقدار را برمی‌گزیند"
         ],
         "correct_index": 2

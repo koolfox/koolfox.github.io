@@ -151,6 +151,285 @@
           }
         }
       ]
+    },
+    {
+      "id": "sequence-rule",
+      "title_fa": "قاعدهٔ دنباله در مثال فشرده‌سازی",
+      "pages": [
+        15
+      ],
+      "code_file": "s07_sequence_rule.py",
+      "starter_sha256": "6bbc4841c46625fac41e7eb53b37a1eb606d344e0faaff371a77bf73cde95d17",
+      "reference": {
+        "computed_sequence": [
+          30,
+          15,
+          46,
+          23,
+          70,
+          35,
+          106,
+          53,
+          160,
+          80,
+          40,
+          20,
+          10,
+          5
+        ],
+        "matches_source_b": true,
+        "length_a": 8,
+        "length_b": 14
+      },
+      "questions": [
+        {
+          "id": "next",
+          "source_kind": "original",
+          "source_page": 15,
+          "prompt_fa": "طبق قاعدهٔ دنبالهٔB،پس از15چه عددی می‌آید؟",
+          "solution_fa": "15فرد است؛3×15+1=46.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "46",
+              "30",
+              "7"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "description",
+          "source_kind": "original",
+          "source_page": 15,
+          "prompt_fa": "چراBباوجود14عضو می‌تواند ازAبا8عضو آسان‌تر به خاطر سپرده شود؟",
+          "solution_fa": "قاعده،بازنمایی فشرده‌ای از نظم دنباله است؛ طول فهرست تنها عامل پیچیدگی توصیف نیست.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "فقط چون بزرگ‌تر است",
+              "شروع و قاعدهٔ کوتاه،همهٔ اعضا را مشخص می‌کنند",
+              "چون هیچ عددی ندارد"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "autoencoder",
+          "source_kind": "original",
+          "source_page": 15,
+          "prompt_fa": "هدف یکAutoencoderایده‌آل برای ورودی620×426در تشبیه اسلاید چیست؟",
+          "solution_fa": "620×426=264120موقعیت پیکسلی است؛ در تصویر چندکاناله تعداد مقدارهای اسکالر به تعداد کانال هم وابسته است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "پیش‌بینی نام کلاس فقط",
+              "تولید تصویر تصادفی مستقل از ورودی",
+              "بازسازی خود ورودی با264120موقعیت پیکسلی"
+            ],
+            "correct_index": 2
+          }
+        },
+        {
+          "id": "self-target",
+          "source_kind": "original",
+          "source_page": 15,
+          "prompt_fa": "چرا بازسازی ورودی به برچسب دستیِ هر تصویر نیاز ندارد؟",
+          "solution_fa": "در این وظیفه،جفت ورودی/هدف از خود داده ساخته می‌شود؛ این به معنی بی‌نیازی از داده یا آموزش نیست.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "خود ورودی هدف بازسازی را فراهم می‌کند",
+              "چون زیان محاسبه نمی‌شود",
+              "چون همیشه مدل از پیش بی‌خطاست"
+            ],
+            "correct_index": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "factored-classes",
+      "title_fa": "تفکیک رنگ و شیء در9برچسب",
+      "pages": [
+        11
+      ],
+      "code_file": "s07_factored_classes.py",
+      "starter_sha256": "fd2c977b19a54bd29768412aceac5fcc9c3d124f624061f8e4ee6f88bd5f1b19",
+      "reference": {
+        "factored_classes": [
+          {
+            "label": "red truck",
+            "color": [
+              1,
+              0,
+              0
+            ],
+            "object": [
+              1,
+              0,
+              0
+            ]
+          },
+          {
+            "label": "red car",
+            "color": [
+              1,
+              0,
+              0
+            ],
+            "object": [
+              0,
+              1,
+              0
+            ]
+          },
+          {
+            "label": "red bird",
+            "color": [
+              1,
+              0,
+              0
+            ],
+            "object": [
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "label": "green truck",
+            "color": [
+              0,
+              1,
+              0
+            ],
+            "object": [
+              1,
+              0,
+              0
+            ]
+          },
+          {
+            "label": "green car",
+            "color": [
+              0,
+              1,
+              0
+            ],
+            "object": [
+              0,
+              1,
+              0
+            ]
+          },
+          {
+            "label": "green bird",
+            "color": [
+              0,
+              1,
+              0
+            ],
+            "object": [
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "label": "blue truck",
+            "color": [
+              0,
+              0,
+              1
+            ],
+            "object": [
+              1,
+              0,
+              0
+            ]
+          },
+          {
+            "label": "blue car",
+            "color": [
+              0,
+              0,
+              1
+            ],
+            "object": [
+              0,
+              1,
+              0
+            ]
+          },
+          {
+            "label": "blue bird",
+            "color": [
+              0,
+              0,
+              1
+            ],
+            "object": [
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "flat_one_hot_width": 9,
+        "factored_two_one_hot_width": 6,
+        "possible_color_object_pairs": 9
+      },
+      "questions": [
+        {
+          "id": "red-truck",
+          "source_kind": "original",
+          "source_page": 11,
+          "prompt_fa": "برچسبred truckبه کدام دو ویژگی قابل تفکیک است؟",
+          "solution_fa": "همان رنگ‌ها و نوع‌های شیء در چند کلاس مشترک‌اند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "رنگredو نوعtruck",
+              "دو رنگredوgreen",
+              "فقط یک عدد وزن"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "combinations",
+          "source_kind": "original",
+          "source_page": 11,
+          "prompt_fa": "سه رنگ و سه نوع شیء چند ترکیب در همین فهرست می‌سازند؟",
+          "solution_fa": "3×3=9ترکیب؛ فهرست منبع هرنه ترکیب را دارد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "6",
+              "9",
+              "3"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "representation",
+          "source_kind": "original",
+          "source_page": 11,
+          "prompt_fa": "در دوOne-hotجدا برای رنگ و شیء،طول بردار الحاق‌شده چند است؟",
+          "solution_fa": "سه مؤلفه برای رنگ و سه برای نوع شیء داریم؛ این فقط یک بازنمایی ساختاریافته است،نه ادعای کمینهٔ نظری بیت.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "9",
+              "3",
+              "6"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
     }
   ]
 }

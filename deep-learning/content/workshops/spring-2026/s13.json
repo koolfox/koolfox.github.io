@@ -879,6 +879,809 @@
           }
         }
       ]
+    },
+    {
+      "id": "bpe-first",
+      "title_fa": "BPE؛مرحلهٔ1",
+      "pages": [
+        51
+      ],
+      "code_file": "s13_bpe_first.py",
+      "starter_sha256": "7ec758b1816c8582baf2be30f97582133f477d4879282f56cb94dfed5d98f1b1",
+      "reference": {
+        "initial_alphabet_size": 11,
+        "vocabulary": [
+          "a",
+          "b",
+          "c",
+          "e",
+          "l",
+          "m",
+          "n",
+          "o",
+          "s",
+          "t",
+          "u",
+          "st",
+          "me",
+          "men"
+        ],
+        "rounds": [
+          {
+            "selected_pair": [
+              "s",
+              "t"
+            ],
+            "frequency": 4,
+            "tied_maximum_pairs": [
+              [
+                "s",
+                "t"
+              ]
+            ],
+            "merged_symbol": "st",
+            "tokens_after": {
+              "cost": [
+                "c",
+                "o",
+                "st"
+              ],
+              "best": [
+                "b",
+                "e",
+                "st"
+              ],
+              "menu": [
+                "m",
+                "e",
+                "n",
+                "u"
+              ],
+              "men": [
+                "m",
+                "e",
+                "n"
+              ],
+              "camel": [
+                "c",
+                "a",
+                "m",
+                "e",
+                "l"
+              ]
+            }
+          },
+          {
+            "selected_pair": [
+              "m",
+              "e"
+            ],
+            "frequency": 3,
+            "tied_maximum_pairs": [
+              [
+                "m",
+                "e"
+              ]
+            ],
+            "merged_symbol": "me",
+            "tokens_after": {
+              "cost": [
+                "c",
+                "o",
+                "st"
+              ],
+              "best": [
+                "b",
+                "e",
+                "st"
+              ],
+              "menu": [
+                "me",
+                "n",
+                "u"
+              ],
+              "men": [
+                "me",
+                "n"
+              ],
+              "camel": [
+                "c",
+                "a",
+                "me",
+                "l"
+              ]
+            }
+          },
+          {
+            "selected_pair": [
+              "me",
+              "n"
+            ],
+            "frequency": 2,
+            "tied_maximum_pairs": [
+              [
+                "b",
+                "e"
+              ],
+              [
+                "c",
+                "o"
+              ],
+              [
+                "e",
+                "st"
+              ],
+              [
+                "me",
+                "n"
+              ],
+              [
+                "o",
+                "st"
+              ]
+            ],
+            "merged_symbol": "men",
+            "tokens_after": {
+              "cost": [
+                "c",
+                "o",
+                "st"
+              ],
+              "best": [
+                "b",
+                "e",
+                "st"
+              ],
+              "menu": [
+                "men",
+                "u"
+              ],
+              "men": [
+                "men"
+              ],
+              "camel": [
+                "c",
+                "a",
+                "me",
+                "l"
+              ]
+            }
+          }
+        ],
+        "selected_round": 0,
+        "selected": {
+          "selected_pair": [
+            "s",
+            "t"
+          ],
+          "frequency": 4,
+          "tied_maximum_pairs": [
+            [
+              "s",
+              "t"
+            ]
+          ],
+          "merged_symbol": "st",
+          "tokens_after": {
+            "cost": [
+              "c",
+              "o",
+              "st"
+            ],
+            "best": [
+              "b",
+              "e",
+              "st"
+            ],
+            "menu": [
+              "m",
+              "e",
+              "n",
+              "u"
+            ],
+            "men": [
+              "m",
+              "e",
+              "n"
+            ],
+            "camel": [
+              "c",
+              "a",
+              "m",
+              "e",
+              "l"
+            ]
+          }
+        }
+      },
+      "questions": [
+        {
+          "id": "pair",
+          "source_kind": "original",
+          "source_page": 51,
+          "prompt_fa": "در مرحلهٔ1نمونهٔBPE،زوج مشخص‌شدهٔ اسلاید کدام است؟",
+          "solution_fa": "زوجs+tبا فراوانی وزنی4یکی از بیشترین فراوانی‌ها را دارد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "s+t",
+              "c+a",
+              "n+u"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "frequency",
+          "source_kind": "original",
+          "source_page": 51,
+          "prompt_fa": "فراوانی وزنی زوجs+tدر این مرحله چند است؟",
+          "solution_fa": "فراوانی واژه‌ها را باید لحاظ کرد؛ شمردن صرفِ تعداد سطرها کافی نیست.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "5",
+              "4",
+              "3"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "tie",
+          "source_kind": "original",
+          "source_page": 51,
+          "prompt_fa": "اگر چند زوج بیشترین فراوانی برابر داشته باشند،کدام ادعا درست است؟",
+          "solution_fa": "در مرحلهٔ سوم،me+nبا زوج‌های دیگری هم‌فراوان است؛ کد انتخاب نمایش‌داده‌شدهٔ منبع را بین بیشینه‌ها اولویت می‌دهد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "همهٔ شمارش‌ها غلط‌اند",
+              "BPEنمی‌تواند ادامه یابد",
+              "انتخاب به قاعدهٔ شکستن تساوی وابسته است؛ چند انتخاب مجاز داریم"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "bpe-second",
+      "title_fa": "BPE؛مرحلهٔ2",
+      "pages": [
+        52
+      ],
+      "code_file": "s13_bpe_second.py",
+      "starter_sha256": "8e746b19643e757a8d56ae3a26935b3fae8e583ee9af43d015891129c46ba393",
+      "reference": {
+        "initial_alphabet_size": 11,
+        "vocabulary": [
+          "a",
+          "b",
+          "c",
+          "e",
+          "l",
+          "m",
+          "n",
+          "o",
+          "s",
+          "t",
+          "u",
+          "st",
+          "me",
+          "men"
+        ],
+        "rounds": [
+          {
+            "selected_pair": [
+              "s",
+              "t"
+            ],
+            "frequency": 4,
+            "tied_maximum_pairs": [
+              [
+                "s",
+                "t"
+              ]
+            ],
+            "merged_symbol": "st",
+            "tokens_after": {
+              "cost": [
+                "c",
+                "o",
+                "st"
+              ],
+              "best": [
+                "b",
+                "e",
+                "st"
+              ],
+              "menu": [
+                "m",
+                "e",
+                "n",
+                "u"
+              ],
+              "men": [
+                "m",
+                "e",
+                "n"
+              ],
+              "camel": [
+                "c",
+                "a",
+                "m",
+                "e",
+                "l"
+              ]
+            }
+          },
+          {
+            "selected_pair": [
+              "m",
+              "e"
+            ],
+            "frequency": 3,
+            "tied_maximum_pairs": [
+              [
+                "m",
+                "e"
+              ]
+            ],
+            "merged_symbol": "me",
+            "tokens_after": {
+              "cost": [
+                "c",
+                "o",
+                "st"
+              ],
+              "best": [
+                "b",
+                "e",
+                "st"
+              ],
+              "menu": [
+                "me",
+                "n",
+                "u"
+              ],
+              "men": [
+                "me",
+                "n"
+              ],
+              "camel": [
+                "c",
+                "a",
+                "me",
+                "l"
+              ]
+            }
+          },
+          {
+            "selected_pair": [
+              "me",
+              "n"
+            ],
+            "frequency": 2,
+            "tied_maximum_pairs": [
+              [
+                "b",
+                "e"
+              ],
+              [
+                "c",
+                "o"
+              ],
+              [
+                "e",
+                "st"
+              ],
+              [
+                "me",
+                "n"
+              ],
+              [
+                "o",
+                "st"
+              ]
+            ],
+            "merged_symbol": "men",
+            "tokens_after": {
+              "cost": [
+                "c",
+                "o",
+                "st"
+              ],
+              "best": [
+                "b",
+                "e",
+                "st"
+              ],
+              "menu": [
+                "men",
+                "u"
+              ],
+              "men": [
+                "men"
+              ],
+              "camel": [
+                "c",
+                "a",
+                "me",
+                "l"
+              ]
+            }
+          }
+        ],
+        "selected_round": 1,
+        "selected": {
+          "selected_pair": [
+            "m",
+            "e"
+          ],
+          "frequency": 3,
+          "tied_maximum_pairs": [
+            [
+              "m",
+              "e"
+            ]
+          ],
+          "merged_symbol": "me",
+          "tokens_after": {
+            "cost": [
+              "c",
+              "o",
+              "st"
+            ],
+            "best": [
+              "b",
+              "e",
+              "st"
+            ],
+            "menu": [
+              "me",
+              "n",
+              "u"
+            ],
+            "men": [
+              "me",
+              "n"
+            ],
+            "camel": [
+              "c",
+              "a",
+              "me",
+              "l"
+            ]
+          }
+        }
+      },
+      "questions": [
+        {
+          "id": "pair",
+          "source_kind": "original",
+          "source_page": 52,
+          "prompt_fa": "در مرحلهٔ2نمونهٔBPE،زوج مشخص‌شدهٔ اسلاید کدام است؟",
+          "solution_fa": "زوجm+eبا فراوانی وزنی3یکی از بیشترین فراوانی‌ها را دارد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "m+e",
+              "c+a",
+              "n+u"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "frequency",
+          "source_kind": "original",
+          "source_page": 52,
+          "prompt_fa": "فراوانی وزنی زوجm+eدر این مرحله چند است؟",
+          "solution_fa": "فراوانی واژه‌ها را باید لحاظ کرد؛ شمردن صرفِ تعداد سطرها کافی نیست.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "4",
+              "3",
+              "2"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "tie",
+          "source_kind": "original",
+          "source_page": 52,
+          "prompt_fa": "اگر چند زوج بیشترین فراوانی برابر داشته باشند،کدام ادعا درست است؟",
+          "solution_fa": "در مرحلهٔ سوم،me+nبا زوج‌های دیگری هم‌فراوان است؛ کد انتخاب نمایش‌داده‌شدهٔ منبع را بین بیشینه‌ها اولویت می‌دهد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "همهٔ شمارش‌ها غلط‌اند",
+              "BPEنمی‌تواند ادامه یابد",
+              "انتخاب به قاعدهٔ شکستن تساوی وابسته است؛ چند انتخاب مجاز داریم"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "bpe-third",
+      "title_fa": "BPE؛مرحلهٔ3",
+      "pages": [
+        53
+      ],
+      "code_file": "s13_bpe_third.py",
+      "starter_sha256": "8fccb7fba26bd623d578a35a47103c4b3615395d8634a709fc802542d8a99c8a",
+      "reference": {
+        "initial_alphabet_size": 11,
+        "vocabulary": [
+          "a",
+          "b",
+          "c",
+          "e",
+          "l",
+          "m",
+          "n",
+          "o",
+          "s",
+          "t",
+          "u",
+          "st",
+          "me",
+          "men"
+        ],
+        "rounds": [
+          {
+            "selected_pair": [
+              "s",
+              "t"
+            ],
+            "frequency": 4,
+            "tied_maximum_pairs": [
+              [
+                "s",
+                "t"
+              ]
+            ],
+            "merged_symbol": "st",
+            "tokens_after": {
+              "cost": [
+                "c",
+                "o",
+                "st"
+              ],
+              "best": [
+                "b",
+                "e",
+                "st"
+              ],
+              "menu": [
+                "m",
+                "e",
+                "n",
+                "u"
+              ],
+              "men": [
+                "m",
+                "e",
+                "n"
+              ],
+              "camel": [
+                "c",
+                "a",
+                "m",
+                "e",
+                "l"
+              ]
+            }
+          },
+          {
+            "selected_pair": [
+              "m",
+              "e"
+            ],
+            "frequency": 3,
+            "tied_maximum_pairs": [
+              [
+                "m",
+                "e"
+              ]
+            ],
+            "merged_symbol": "me",
+            "tokens_after": {
+              "cost": [
+                "c",
+                "o",
+                "st"
+              ],
+              "best": [
+                "b",
+                "e",
+                "st"
+              ],
+              "menu": [
+                "me",
+                "n",
+                "u"
+              ],
+              "men": [
+                "me",
+                "n"
+              ],
+              "camel": [
+                "c",
+                "a",
+                "me",
+                "l"
+              ]
+            }
+          },
+          {
+            "selected_pair": [
+              "me",
+              "n"
+            ],
+            "frequency": 2,
+            "tied_maximum_pairs": [
+              [
+                "b",
+                "e"
+              ],
+              [
+                "c",
+                "o"
+              ],
+              [
+                "e",
+                "st"
+              ],
+              [
+                "me",
+                "n"
+              ],
+              [
+                "o",
+                "st"
+              ]
+            ],
+            "merged_symbol": "men",
+            "tokens_after": {
+              "cost": [
+                "c",
+                "o",
+                "st"
+              ],
+              "best": [
+                "b",
+                "e",
+                "st"
+              ],
+              "menu": [
+                "men",
+                "u"
+              ],
+              "men": [
+                "men"
+              ],
+              "camel": [
+                "c",
+                "a",
+                "me",
+                "l"
+              ]
+            }
+          }
+        ],
+        "selected_round": 2,
+        "selected": {
+          "selected_pair": [
+            "me",
+            "n"
+          ],
+          "frequency": 2,
+          "tied_maximum_pairs": [
+            [
+              "b",
+              "e"
+            ],
+            [
+              "c",
+              "o"
+            ],
+            [
+              "e",
+              "st"
+            ],
+            [
+              "me",
+              "n"
+            ],
+            [
+              "o",
+              "st"
+            ]
+          ],
+          "merged_symbol": "men",
+          "tokens_after": {
+            "cost": [
+              "c",
+              "o",
+              "st"
+            ],
+            "best": [
+              "b",
+              "e",
+              "st"
+            ],
+            "menu": [
+              "men",
+              "u"
+            ],
+            "men": [
+              "men"
+            ],
+            "camel": [
+              "c",
+              "a",
+              "me",
+              "l"
+            ]
+          }
+        }
+      },
+      "questions": [
+        {
+          "id": "pair",
+          "source_kind": "original",
+          "source_page": 53,
+          "prompt_fa": "در مرحلهٔ3نمونهٔBPE،زوج مشخص‌شدهٔ اسلاید کدام است؟",
+          "solution_fa": "زوجme+nبا فراوانی وزنی2یکی از بیشترین فراوانی‌ها را دارد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "me+n",
+              "c+a",
+              "n+u"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "frequency",
+          "source_kind": "original",
+          "source_page": 53,
+          "prompt_fa": "فراوانی وزنی زوجme+nدر این مرحله چند است؟",
+          "solution_fa": "فراوانی واژه‌ها را باید لحاظ کرد؛ شمردن صرفِ تعداد سطرها کافی نیست.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "3",
+              "2",
+              "1"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "tie",
+          "source_kind": "original",
+          "source_page": 53,
+          "prompt_fa": "اگر چند زوج بیشترین فراوانی برابر داشته باشند،کدام ادعا درست است؟",
+          "solution_fa": "در مرحلهٔ سوم،me+nبا زوج‌های دیگری هم‌فراوان است؛ کد انتخاب نمایش‌داده‌شدهٔ منبع را بین بیشینه‌ها اولویت می‌دهد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "همهٔ شمارش‌ها غلط‌اند",
+              "BPEنمی‌تواند ادامه یابد",
+              "انتخاب به قاعدهٔ شکستن تساوی وابسته است؛ چند انتخاب مجاز داریم"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
     }
   ]
 }

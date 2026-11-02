@@ -225,6 +225,13 @@ test('unsupported WebGPU reports the missing backend without inventing GPU outpu
   const error=await page.evaluate(async()=>{const {runAttentionGPU}=await import('/deep-learning/assets/webgpu-attention.js');try{await runAttentionGPU({query:[1],keys:[[1]],values:[[1]],scaled:false});return null;}catch(error){return error.message;}});
   expect(error).toContain('WebGPU در این مرورگر در دسترس نیست');
   expect(await page.evaluate(()=>window.attentionGPUResult??null)).toBeNull();
+  const rejected=await page.evaluate(async()=>{
+    const {runAttentionGPU}=await import('/deep-learning/assets/webgpu-attention.js');
+    const valid={query:[1],keys:[[1]],values:[[1]],scaled:false};
+    const inputs=[{...valid,query:Array(1)},{...valid,keys:Array(1)},{...valid,values:[Array(1)]},{...valid,query:[Infinity]}];
+    return Promise.all(inputs.map(async input=>{try{await runAttentionGPU(input);return false;}catch(error){return error.message.includes('هم‌اندازه و متناهی');}}));
+  });
+  expect(rejected).toEqual([true,true,true,true]);
 });
 
 test('attention playback uses the actual consecutive source pages and stops on manual navigation',async({page})=>{

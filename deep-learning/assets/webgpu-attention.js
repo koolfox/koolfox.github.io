@@ -1,14 +1,17 @@
 // One query, its keys and values: the same dot-product example as the Python cell.
-export async function runAttentionGPU({query, keys, values, scaled}) {
+export async function runAttentionGPU({query, keys, values, scaled} = {}) {
+  // Array.every skips holes: validate a dense copy so missing entries cannot
+  // shift the packed key/value offsets or silently become NaN in float32.
+  const denseEvery = (row, predicate) => Array.from(row).every(predicate);
   const finite = row => Array.isArray(row) && row.length > 0 && row.length <= 64
-    && row.every(value => typeof value === 'number' && Number.isFinite(value) && Math.abs(value) <= 1e6);
+    && denseEvery(row, value => typeof value === 'number' && Number.isFinite(value) && Math.abs(value) <= 1e6);
   if (!finite(query) || !Array.isArray(keys) || !Array.isArray(values) || !keys.length
       || keys.length > 64 || keys.length !== values.length || typeof scaled !== 'boolean'
-      || !keys.every(row => finite(row) && row.length === query.length)
-      || !values.every(row => finite(row) && row.length === values[0].length)) {
+      || !denseEvery(keys, row => finite(row) && row.length === query.length)
+      || !denseEvery(values, row => finite(row) && row.length === values[0]?.length)) {
     throw Error('ورودی توجه باید بردارها و ماتریس‌های هم‌اندازه و متناهی باشد.');
   }
-  if (!navigator.gpu) throw Error('WebGPU در این مرورگر در دسترس نیست؛ اجرای پایتون در دسترس است.');
+  if (!globalThis.navigator?.gpu) throw Error('WebGPU در این مرورگر در دسترس نیست؛ اجرای پایتون در دسترس است.');
   const adapter = await navigator.gpu.requestAdapter();
   if (!adapter) throw Error('مرورگر آداپتور WebGPU ارائه نکرد؛ اجرای پایتون در دسترس است.');
   const device = await adapter.requestDevice(), buffers = [];

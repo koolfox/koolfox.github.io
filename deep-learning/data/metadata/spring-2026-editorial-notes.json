@@ -8,8 +8,15 @@
       "source_sha256": "56b60ad00104c5b652116317d181b37fc89b69ed89201694ff0b33084aae8077",
       "kind": "arithmetic_correction",
       "verified": true,
-      "fa": "در دو عبارت آخرِ اسلاید، تقسیم‌های چاپ‌شده ناسازگارند: 192/32 = 6 و 145/32 = 4.53125. اگر مختصات نقطهٔ بالاچپ x=296 و y=192 در نظر گرفته شود، خروجی‌های 9.25 و 6 به‌ترتیب درست‌اند.",
-      "verification": "Actual original page visually inspected; printed arithmetic independently recomputed."
+      "fa": "در دو عبارت آخرِ اسلاید، صورتِ تقسیم‌ها اشتباه چاپ شده است. مختصات گوشهٔ بالاچپ در مثال برابر x=296 و y=192 است؛ پس x/32=9.25 و y/32=6. عرض و ارتفاع به‌ترتیب 200/32=6.25 و 145/32=4.53125 هستند.",
+      "verification": "Actual source page and underlying Erdem RoI article checked. The article explicitly labels x=296/32 and y=192/32; arithmetic independently recomputed.",
+      "verification_sources": [
+        {
+          "url": "https://erdem.pl/2020/02/understanding-region-of-interest-ro-i-pooling/",
+          "retrieved_at_utc": "2026-11-02T18:11:39.929158+00:00",
+          "sha256": "ee07f5cf6dd72d28f801ab0b31a7f63c35d72203a96090cc605761259530dc92"
+        }
+      ]
     },
     {
       "session_id": "s23",
@@ -335,6 +342,43 @@
         "retrieved_at_utc": "2026-11-02T15:09:07.547432+00:00",
         "reference_sha256": "87f5e63ff74cb14f74acced0a8bed4e0c9993029740a0950b88eb4bb530ae801"
       }
+    },
+    {
+      "session_id": "s14",
+      "page": 11,
+      "source_sha256": "65bdebcbbe5ecca3e9dfa4ecbaaf5a78e79a4d10ce00c8a007801d062cefeda6",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "هر دو مدل از توکن‌سازی زیرواژه‌ای (Subword tokenization) استفاده می‌کنند؛ اما روش یکسان نیست: GPT اولیه از BPE و BERT از WordPiece استفاده می‌کند. عبارت «با WordPiece» برای هر دو مدل دقیق نیست.",
+      "verification": "Checked the actual source page text against the original OpenAI GPT TextEncoder.bpe implementation and Google BERT FullTokenizer/WordpieceTokenizer implementations.",
+      "verification_sources": [
+        {
+          "url": "https://raw.githubusercontent.com/openai/finetune-transformer-lm/master/text_utils.py",
+          "retrieved_at_utc": "2026-11-02T18:06:22.663954+00:00",
+          "sha256": "9d1974714d454ce8a4b9175f5617d9acda2b7324e120de15935d5336268609d5"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/google-research/bert/master/tokenization.py",
+          "retrieved_at_utc": "2026-11-02T18:06:23.432291+00:00",
+          "sha256": "576f8e709eaa59c999a8aed3f32c581487d59ab47079fe64b3d3fa457bc7fb34"
+        }
+      ]
+    },
+    {
+      "session_id": "s14",
+      "page": 17,
+      "source_sha256": "65bdebcbbe5ecca3e9dfa4ecbaaf5a78e79a4d10ce00c8a007801d062cefeda6",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "در سطر بازنمایی توکن‌ها (Token embeddings)، ورودی این جایگاه [MASK] است؛ بنابراین باید E_[MASK] خوانده شود، نه E_city. واژهٔ city پاسخ هدف است و در این مثال از ورودی ماسک‌شده پنهان می‌ماند.",
+      "verification": "Actual source image visually inspected. Original Google BERT modeling.py constructs token embeddings by lookup of input_ids, not masked ground-truth labels.",
+      "verification_sources": [
+        {
+          "url": "https://raw.githubusercontent.com/google-research/bert/master/modeling.py",
+          "retrieved_at_utc": "2026-11-02T18:11:36.778819+00:00",
+          "sha256": "6f5e7c2d157ef46c092f8bc0538e60775f9fa0d40f957c8a3529ead18ff4dded"
+        }
+      ]
     }
   ]
 }

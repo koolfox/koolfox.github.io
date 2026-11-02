@@ -39,6 +39,6 @@ html:has(body.source-reader),body.source-reader{height:100%;overflow:hidden}.sou
 .reader-table td{white-space:nowrap}.reader-table td:empty::after{content:''}.reader-table .reader-math-inline{font-size:1em}
 @media print{.reader-table-viewport{overflow:visible}.reader-table{font-size:9pt}}
 .reader-table thead th{text-align:center;white-space:nowrap}.reader-table th[rowspan]{vertical-align:middle}.reader-table td[rowspan]{white-space:normal;vertical-align:top}
-@media(max-width:760px){.reader-table{min-width:600px}.reader-table:has(thead tr:only-child th:nth-child(2):last-child){min-width:350px}}
+@media(max-width:760px){.reader-table{min-width:600px}.reader-table[data-columns="2"]{min-width:350px}}
 .reader-table-image{display:block;width:100%;max-width:320px;height:auto;margin-block:4px 10px;object-fit:contain}
 .reader-table:has(.reader-table-image){min-width:1050px;table-layout:fixed}.reader-table:has(.reader-table-image) td{white-space:pre-line}

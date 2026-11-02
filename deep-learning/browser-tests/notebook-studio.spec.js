@@ -172,6 +172,13 @@ test('mixed visual tables retain the actual photos and handwriting from their so
   await page.waitForFunction(()=>window.sourceSlideReader.renderedPage===45);
   await expect(photos).toHaveCount(9);
   await expect(page.locator('.reader-table thead th').first()).toHaveAttribute('colspan','6');
+  await page.setViewportSize({width:390,height:844});
+  await page.locator('[data-view-translation]').click();
+  expect(await page.locator('.reader-table').evaluate(t=>t.getBoundingClientRect().width)).toBeGreaterThanOrEqual(1050);
+  expect(await photos.first().evaluate(c=>c.getBoundingClientRect().width)).toBeGreaterThan(100);
+  const viewport=page.locator('.reader-table-viewport');
+  await viewport.focus();await viewport.press('ArrowRight');
+  expect(await page.evaluate(()=>window.sourceSlideReader.page)).toBe(45);
 });
 
 test('the migrated attention citation is checked and unresolved citations remain plain text',async({page})=>{

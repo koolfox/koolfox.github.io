@@ -120,8 +120,9 @@ export function math(parent, item) {
 
 export function renderTable(parent, table) {
   const viewport = element('div', 'reader-table-viewport');
+  viewport.dir = 'ltr';
   viewport.tabIndex = 0; viewport.setAttribute('role', 'region'); viewport.setAttribute('aria-label', 'جدول اسلاید');
-  const node = element('table', 'reader-table'); node.dir = 'ltr';
+  const node = element('table', 'reader-table'); node.dir = 'ltr'; node.dataset.columns = String(table.headers.length || table.column_count);
   const head = element('thead'), headings = element('tr');
   if (table.groups?.length) {
     const groups = element('tr');

@@ -148,6 +148,12 @@ def load_workshops(term_id, root=ROOT, execute=False, session_ids=None):
                 require(question.get("source_kind") == "original"
                         and question.get("source_page") in pages
                         and question["answer"]["kind"] == "choice", "Invalid source example question")
+                shared_pages = question.get("pages", [question["source_page"]])
+                require(isinstance(shared_pages, list) and shared_pages
+                        and all(type(n) is int and n in pages for n in shared_pages)
+                        and shared_pages == sorted(set(shared_pages))
+                        and question["source_page"] in shared_pages,
+                        "Question page outside source example")
             if execute:
                 run = subprocess.run([sys.executable, "-I", "-c", example_code
                     + "\nimport json\nprint(json.dumps(result,allow_nan=False))"],

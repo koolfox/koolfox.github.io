@@ -113,8 +113,7 @@
         28,
         29,
         30,
-        31,
-        32
+        31
       ],
       "code_file": "s02_majority_epoch.py",
       "starter_sha256": "d88cb4cd075656f235415925cff9fb0692c02b6b18d3eb3a811e460821bb97bf",
@@ -314,6 +313,489 @@
               "آموزش تا خطای صفر با هر تعداد عبور"
             ],
             "correct_index": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "majority-table",
+      "title_fa": "جدول برچسب‌های قانون اکثریت",
+      "pages": [
+        21,
+        22,
+        23
+      ],
+      "code_file": "s02_majority_table.py",
+      "starter_sha256": "67977d1dc7d0af47f01d95b453e2814db0075f058b1cf4e2e238465733374eb6",
+      "reference": {
+        "truth_table": [
+          {
+            "inputs": [
+              1,
+              0,
+              0
+            ],
+            "ones": 1,
+            "target": -1
+          },
+          {
+            "inputs": [
+              1,
+              0,
+              1
+            ],
+            "ones": 2,
+            "target": 1
+          },
+          {
+            "inputs": [
+              1,
+              1,
+              0
+            ],
+            "ones": 2,
+            "target": 1
+          },
+          {
+            "inputs": [
+              1,
+              1,
+              1
+            ],
+            "ones": 3,
+            "target": 1
+          },
+          {
+            "inputs": [
+              0,
+              0,
+              1
+            ],
+            "ones": 1,
+            "target": -1
+          },
+          {
+            "inputs": [
+              0,
+              1,
+              0
+            ],
+            "ones": 1,
+            "target": -1
+          },
+          {
+            "inputs": [
+              0,
+              1,
+              1
+            ],
+            "ones": 2,
+            "target": 1
+          },
+          {
+            "inputs": [
+              0,
+              0,
+              0
+            ],
+            "ones": 0,
+            "target": -1
+          }
+        ],
+        "targets": [
+          -1,
+          1,
+          1,
+          1,
+          -1,
+          -1,
+          1,
+          -1
+        ]
+      },
+      "questions": [
+        {
+          "id": "row-1",
+          "source_kind": "original",
+          "source_page": 21,
+          "prompt_fa": "در قانون اکثریتِ همین جدول،برچسب ورودی[1, 0, 0]چیست؟",
+          "solution_fa": "این ورودی 1 عدد 1 دارد؛هدف وقتی دست‌کم 2 عدد 1 باشد+1 و در غیر این صورت−1 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "−1",
+              "+1",
+              "0"
+            ],
+            "correct_index": 0
+          },
+          "pages": [
+            21
+          ]
+        },
+        {
+          "id": "row-2",
+          "source_kind": "original",
+          "source_page": 21,
+          "prompt_fa": "در قانون اکثریتِ همین جدول،برچسب ورودی[1, 0, 1]چیست؟",
+          "solution_fa": "این ورودی 2 عدد 1 دارد؛هدف وقتی دست‌کم 2 عدد 1 باشد+1 و در غیر این صورت−1 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "−1",
+              "+1",
+              "0"
+            ],
+            "correct_index": 1
+          },
+          "pages": [
+            21,
+            22
+          ]
+        },
+        {
+          "id": "row-3",
+          "source_kind": "original",
+          "source_page": 21,
+          "prompt_fa": "در قانون اکثریتِ همین جدول،برچسب ورودی[1, 1, 0]چیست؟",
+          "solution_fa": "این ورودی 2 عدد 1 دارد؛هدف وقتی دست‌کم 2 عدد 1 باشد+1 و در غیر این صورت−1 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "−1",
+              "+1",
+              "0"
+            ],
+            "correct_index": 1
+          },
+          "pages": [
+            21,
+            22,
+            23
+          ]
+        },
+        {
+          "id": "row-4",
+          "source_kind": "original",
+          "source_page": 21,
+          "prompt_fa": "در قانون اکثریتِ همین جدول،برچسب ورودی[1, 1, 1]چیست؟",
+          "solution_fa": "این ورودی 3 عدد 1 دارد؛هدف وقتی دست‌کم 2 عدد 1 باشد+1 و در غیر این صورت−1 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "−1",
+              "+1",
+              "0"
+            ],
+            "correct_index": 1
+          },
+          "pages": [
+            21,
+            22,
+            23
+          ]
+        },
+        {
+          "id": "row-5",
+          "source_kind": "original",
+          "source_page": 21,
+          "prompt_fa": "در قانون اکثریتِ همین جدول،برچسب ورودی[0, 0, 1]چیست؟",
+          "solution_fa": "این ورودی 1 عدد 1 دارد؛هدف وقتی دست‌کم 2 عدد 1 باشد+1 و در غیر این صورت−1 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "−1",
+              "+1",
+              "0"
+            ],
+            "correct_index": 0
+          },
+          "pages": [
+            21,
+            22,
+            23
+          ]
+        },
+        {
+          "id": "row-6",
+          "source_kind": "original",
+          "source_page": 21,
+          "prompt_fa": "در قانون اکثریتِ همین جدول،برچسب ورودی[0, 1, 0]چیست؟",
+          "solution_fa": "این ورودی 1 عدد 1 دارد؛هدف وقتی دست‌کم 2 عدد 1 باشد+1 و در غیر این صورت−1 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "−1",
+              "+1",
+              "0"
+            ],
+            "correct_index": 0
+          },
+          "pages": [
+            21,
+            22,
+            23
+          ]
+        },
+        {
+          "id": "row-7",
+          "source_kind": "original",
+          "source_page": 21,
+          "prompt_fa": "در قانون اکثریتِ همین جدول،برچسب ورودی[0, 1, 1]چیست؟",
+          "solution_fa": "این ورودی 2 عدد 1 دارد؛هدف وقتی دست‌کم 2 عدد 1 باشد+1 و در غیر این صورت−1 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "−1",
+              "+1",
+              "0"
+            ],
+            "correct_index": 1
+          },
+          "pages": [
+            21,
+            22,
+            23
+          ]
+        },
+        {
+          "id": "row-8",
+          "source_kind": "original",
+          "source_page": 21,
+          "prompt_fa": "در قانون اکثریتِ همین جدول،برچسب ورودی[0, 0, 0]چیست؟",
+          "solution_fa": "این ورودی 0 عدد 1 دارد؛هدف وقتی دست‌کم 2 عدد 1 باشد+1 و در غیر این صورت−1 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "−1",
+              "+1",
+              "0"
+            ],
+            "correct_index": 0
+          },
+          "pages": [
+            21,
+            22,
+            23
+          ]
+        }
+      ]
+    },
+    {
+      "id": "majority-epochs",
+      "title_fa": "شش دور آموزش با محاسبهٔ دقیق",
+      "pages": [
+        32
+      ],
+      "code_file": "s02_majority_epochs.py",
+      "starter_sha256": "736d97197b00c208390c5c5d72eb3ca476d19bc123cf755dbf839856386a69bc",
+      "reference": {
+        "history": [
+          {
+            "epoch": 0,
+            "weights": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "training_errors": 4
+          },
+          {
+            "epoch": 1,
+            "weights": [
+              -0.2,
+              0.0,
+              0.2,
+              0.2
+            ],
+            "online_mistakes": 5,
+            "training_errors": 2
+          },
+          {
+            "epoch": 2,
+            "weights": [
+              -0.2,
+              0.0,
+              0.4,
+              0.2
+            ],
+            "online_mistakes": 2,
+            "training_errors": 2
+          },
+          {
+            "epoch": 3,
+            "weights": [
+              -0.4,
+              0.0,
+              0.4,
+              0.2
+            ],
+            "online_mistakes": 3,
+            "training_errors": 2
+          },
+          {
+            "epoch": 4,
+            "weights": [
+              -0.4,
+              0.2,
+              0.4,
+              0.4
+            ],
+            "online_mistakes": 4,
+            "training_errors": 2
+          },
+          {
+            "epoch": 5,
+            "weights": [
+              -0.6,
+              0.2,
+              0.4,
+              0.2
+            ],
+            "online_mistakes": 1,
+            "training_errors": 1
+          },
+          {
+            "epoch": 6,
+            "weights": [
+              -0.6,
+              0.4,
+              0.4,
+              0.2
+            ],
+            "online_mistakes": 2,
+            "training_errors": 0
+          }
+        ],
+        "final_weights": [
+          -0.6,
+          0.4,
+          0.4,
+          0.2
+        ],
+        "final_training_errors": 0
+      },
+      "questions": [
+        {
+          "id": "sixth",
+          "source_kind": "original",
+          "source_page": 32,
+          "prompt_fa": "وزن‌های[بایاس,w1,w2,w3]در پایان دور 6 جدول چیست؟",
+          "solution_fa": "همان ترتیب نمونه‌ها و آستانهٔامتیاز≥0،ردیف ششم جدول را می‌سازد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "[−0.6,0.4,0.4,0.2]",
+              "[−0.2,0,0.2,0.2]",
+              "[0,0,0,0]"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "first",
+          "source_kind": "original",
+          "source_page": 32,
+          "prompt_fa": "کدام بردار پایان تنها یک دور است؟",
+          "solution_fa": "ردیف اول پس از آموزش در جدول،با خروجی کارگاه یک‌دور مطابق است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "[−0.6,0.4,0.4,0.2]",
+              "[−0.2,0,0.2,0.2]",
+              "[−0.4,0.2,0.4,0.4]"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "zero",
+          "source_kind": "original",
+          "source_page": 32,
+          "prompt_fa": "چرا در این مثال محاسبهٔ دقیق صفر اهمیت دارد؟",
+          "solution_fa": "Fraction اعداددهدهی را دقیق نگه می‌دارد؛صرف نزدیک‌بودن float به صفر ممکن است تصمیم مرزی را عوض کند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "چون تمام وزن‌ها همیشه صفرند",
+              "چون نرخ یادگیری حذف می‌شود",
+              "چون امتیازصفر به+1 می‌رود و خطای گردکردن می‌تواند مسیر بعدی را تغییر دهد"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "logic-tables",
+      "title_fa": "دو جدول منطق گزاره‌ای",
+      "pages": [
+        12
+      ],
+      "code_file": "s02_logic_tables.py",
+      "starter_sha256": "7a9a4560939f608e97e460ce55e01aa8e043b99fd8d82533c3ff69382a21875a",
+      "reference": {
+        "and_outputs": [
+          true,
+          false,
+          false,
+          false
+        ],
+        "or_outputs": [
+          true,
+          true,
+          true,
+          false
+        ]
+      },
+      "questions": [
+        {
+          "id": "left",
+          "source_kind": "original",
+          "source_page": 12,
+          "prompt_fa": "جدول سمت چپ با خروجی T,F,F,F برای TT,TF,FT,FF کدام عمل است؟",
+          "solution_fa": "فقط وقتی هر دو گزاره درست باشند خروجی درست است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "AND",
+              "OR",
+              "XOR"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "right",
+          "source_kind": "original",
+          "source_page": 12,
+          "prompt_fa": "جدول سمت راست با خروجی T,T,T,F کدام عمل است؟",
+          "solution_fa": "درست‌بودن حداقل یکی از دو گزاره کافی است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "AND",
+              "OR فراگیر",
+              "XOR"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "inclusive",
+          "source_kind": "original",
+          "source_page": 12,
+          "prompt_fa": "در OR فراگیر،اگر P و Q هردو درست باشند خروجی چیست؟",
+          "solution_fa": "OR فراگیر،برخلاف XOR،حالت درست‌بودن هم‌زمان دو گزاره را نیز درست می‌داند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "False",
+              "تعریف‌نشده",
+              "True"
+            ],
+            "correct_index": 2
           }
         }
       ]

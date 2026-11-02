@@ -24,6 +24,44 @@ def execute(session, changes=None):
 
 
 class WorkshopNumericalTests(unittest.TestCase):
+    def test_source_perceptron_matches_every_exact_decimal_epoch_row(self):
+        result = execute("s02_majority_epochs")["result"]
+        rows = [[0,0,0,0], [-0.2,0,0.2,0.2], [-0.2,0,0.4,0.2],
+                [-0.4,0,0.4,0.2], [-0.4,0.2,0.4,0.4], [-0.6,0.2,0.4,0.2],
+                [-0.6,0.4,0.4,0.2]]
+        self.assertEqual([row["weights"] for row in result["history"]], rows)
+        self.assertEqual([row["training_errors"] for row in result["history"]], [4,2,2,2,2,1,0])
+        self.assertEqual(result["final_training_errors"], 0)
+        doubled = execute("s02_majority_epochs", {"learning_rate = 0.1": "learning_rate = 0.2"})["result"]
+        self.assertEqual(doubled["final_weights"], [-1.2,0.8,0.8,0.4])
+        float_inputs = execute("s02_majority_epochs", {"[1, 0, 0]": "[1.0, 0.0, 0.0]"})["result"]
+        self.assertEqual(float_inputs["final_weights"], rows[-1])
+        with self.assertRaises(ValueError):
+            execute("s02_majority_epochs", {"epochs = 6": "epochs = -1"})
+
+    def test_source_truth_tables_and_binary_threshold_parameter(self):
+        result = execute("s02_majority_table")["result"]
+        self.assertEqual(result["targets"], [-1,1,1,1,-1,-1,1,-1])
+        lower = execute("s02_majority_table", {"minimum_ones = 2": "minimum_ones = 1"})["result"]
+        self.assertEqual(lower["targets"], [1,1,1,1,1,1,1,-1])
+        logical = execute("s02_logic_tables")["result"]
+        self.assertEqual(logical["and_outputs"], [True,False,False,False])
+        self.assertEqual(logical["or_outputs"], [True,True,True,False])
+
+    def test_original_seven_by_seven_image_and_four_filter_responses(self):
+        result = execute("s05_four_filters")["result"]
+        self.assertEqual(result["output_shape"], [5,5])
+        self.assertEqual(result["weight_sums"], {"identity":1,"edge_detection":0,"sharpen":1,"box_blur":1})
+        self.assertEqual(result["feature_maps"]["identity"], [[0,0,0,30,0]] + [[0,0,30,0,0]] * 4)
+        # Source window [[0,0,30],[0,30,0],[30,0,0]] has these analytically known responses.
+        for name, expected in {"identity":30,"edge_detection":-60,"sharpen":150,"box_blur":10}.items():
+            self.assertEqual(result["feature_maps"][name][0][3], expected)
+        brighter = execute("s05_four_filters", {"[0, 0, 0, 0, 0, 30, 0]": "[0, 0, 0, 0, 0, 60, 0]"})["result"]
+        self.assertEqual(brighter["feature_maps"]["edge_detection"][0][3], -90)
+        geometry = execute("s05_lenet_first_layer")["result"]
+        self.assertEqual(geometry["output_shape"], [6,28,28])
+        self.assertEqual((geometry["weights"], geometry["biases"], geometry["total_parameters"]), (150,6,156))
+
     def test_weighted_source_bpe_pairs_and_nonunique_third_merge(self):
         for index, name in enumerate(["first", "second", "third"]):
             result = execute("s13_bpe_" + name)["result"]

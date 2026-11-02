@@ -379,6 +379,57 @@
           "sha256": "6f5e7c2d157ef46c092f8bc0538e60775f9fa0d40f957c8a3529ead18ff4dded"
         }
       ]
+    },
+    {
+      "session_id": "s09",
+      "page": 51,
+      "source_sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "بازهٔ int8 علامت‌دارِ مکمل دو (Two’s complement) برابر [-128, 127] است. بازهٔ [-127, 127] می‌تواند انتخابِ یک کمّی‌ساز متقارن (Symmetric quantizer) باشد که یک کد را استفاده نمی‌کند؛ این دو مفهوم یکسان نیستند.",
+      "verification": "Official torch.iinfo documentation plus actual PyTorch2.13.0 torch.iinfo(torch.int8): bits8,min-128,max127.",
+      "verification_sources": [
+        {
+          "url": "https://docs.pytorch.org/docs/2.15/type_info.html",
+          "verified_at_utc": "2026-11-02T19:17:20.067993+00:00",
+          "method": "Primary page verified with web reader",
+          "sha256": "ac4ee27da92f7bd64709dcf5b033e4c8807ae410259e0d496720b2ac56024511"
+        }
+      ]
+    },
+    {
+      "session_id": "s09",
+      "page": 56,
+      "source_sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "در مقالهٔ Deep Compression، حافظهٔ VGG-16 پیش از فشرده‌سازی 552MB گزارش شده است، نه 512MB. نسبت 552/11.3 حدود 48.85 است که به 49 برابر گرد می‌شود؛ 512/11.3 حدود 45.31 است.",
+      "verification": "Source slide table checked against the primary Deep Compression abstract (1510.00149v5); both ratios independently recomputed.",
+      "verification_sources": [
+        {
+          "url": "https://arxiv.org/abs/1510.00149",
+          "verified_at_utc": "2026-11-02T19:17:23.530979+00:00",
+          "method": "Primary page verified with web reader",
+          "sha256": "c1a39d3c049834778927ed3a1c0aade872ab787a511104519024a393a3c244bb"
+        }
+      ]
+    },
+    {
+      "session_id": "s09",
+      "page": 67,
+      "source_sha256": "5d79e40630e6ae35e90abc3392e3c6fe51f94ddfb60c99ee90e2a3b6eca9164c",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "میانگین‌گیری گرادیان‌ها در DDP با همگام‌سازی (Synchronization) و عملیات All-reduce انجام می‌شود؛ این کار با ذخیرهٔ وضعیت آموزش (Checkpointing) یکسان نیست.",
+      "verification": "Official PyTorch DDP design: allreduce calculates mean gradients, then writes averaged param.grad to replicas.",
+      "verification_sources": [
+        {
+          "url": "https://docs.pytorch.org/docs/2.15/notes/ddp.html",
+          "verified_at_utc": "2026-11-02T19:17:25.127737+00:00",
+          "method": "Primary page verified with web reader",
+          "sha256": "a07b86a3d2bff2c817ff1dcdfc579a20f4f8173dd0d7586ec1d773203ea4bb5f"
+        }
+      ]
     }
   ]
 }

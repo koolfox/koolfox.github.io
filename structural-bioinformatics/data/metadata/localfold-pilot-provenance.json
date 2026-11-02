@@ -1,0 +1,329 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-02T18:47:07.590607+00:00",
+  "execution": "real interactive LocalFold runs in Chrome; new outputs downloaded through Download All",
+  "application_url": "https://localfold.org/",
+  "observed_repository_head": "7f66b52d825eccdb211e67ea675e2c352548cd2f",
+  "deployed_commit_verified": false,
+  "weights_sha256": null,
+  "version_limit": "Repository head is an observation, not proof of the deployed build. Exports do not include the model-weight digest.",
+  "model": "AlphaFold 2 monomer (LocalFold WebGPU port)",
+  "common_settings": {
+    "model_number": 1,
+    "seed": 0,
+    "recycles": 3,
+    "early_stop": 0.1,
+    "templates": "none",
+    "copies": 1,
+    "max_msa_ui": "128:256 (disabled for single sequence)"
+  },
+  "runs": [
+    {
+      "id": "ubiquitin-single-sequence",
+      "object_name": "af2_1",
+      "msa": "none",
+      "ui_reported_elapsed_seconds": 4.6,
+      "elapsed_scope": "UI reported elapsed, not a separately measured end-to-end wall time",
+      "ui_status": "Done in 4.6 s · pLDDT 48.6 · pTM 0.398 · saved pass 3 of 4",
+      "exported_at_utc": "2026-11-02T18:42:19.579660+00:00",
+      "archive": {
+        "path": "results/localfold-pilot-20261102/ubiquitin-single-sequence.zip",
+        "sha256": "fbfbf72ab33bf489a30276c91dee110f2e80d0efe4dfb04cdab741348fdf4454",
+        "committed": false,
+        "members": [
+          {
+            "name": "af2_1_job_request.json",
+            "bytes": 363,
+            "sha256": "ddb7910da33f53670293e1d185b42ded95bd8d9846b8cc0afed7ac6088a1db26"
+          },
+          {
+            "name": "af2_1_model_0.pdb",
+            "bytes": 47527,
+            "sha256": "73d89ff3d82973d21af292072cae7a3846d7f3b2e5758cf7872a0ad5e79b9ee2"
+          },
+          {
+            "name": "af2_1_summary_confidences_0.json",
+            "bytes": 911,
+            "sha256": "5437c7be7e8ae310e784bb4542943982ebd4c5202b82defd277653b591eeea6d"
+          },
+          {
+            "name": "af2_1_full_data_0.json",
+            "bytes": 63442,
+            "sha256": "a14cf73f98f07bf6904e638f69275d39635fb122aebd1ddf8e8cc8f73a87582c"
+          },
+          {
+            "name": "README.md",
+            "bytes": 946,
+            "sha256": "b9ed3f8221f0de873029374629310740ab4e6e241b0e3f0931f6c4691f2f8834"
+          }
+        ]
+      },
+      "files": {
+        "pdb": {
+          "path": "assets/localfold-pilot/ubiquitin-single-sequence.pdb",
+          "sha256": "73d89ff3d82973d21af292072cae7a3846d7f3b2e5758cf7872a0ad5e79b9ee2",
+          "original_member": "af2_1_model_0.pdb"
+        },
+        "request": {
+          "path": "assets/localfold-pilot/ubiquitin-single-sequence-request.json",
+          "sha256": "ddb7910da33f53670293e1d185b42ded95bd8d9846b8cc0afed7ac6088a1db26",
+          "original_member": "af2_1_job_request.json"
+        },
+        "confidence": {
+          "path": "assets/localfold-pilot/ubiquitin-single-sequence-confidence.json",
+          "sha256": "5437c7be7e8ae310e784bb4542943982ebd4c5202b82defd277653b591eeea6d",
+          "original_member": "af2_1_summary_confidences_0.json"
+        }
+      }
+    },
+    {
+      "id": "ar",
+      "object_name": "af2_2",
+      "msa": "none",
+      "ui_reported_elapsed_seconds": 1.0,
+      "elapsed_scope": "UI reported elapsed, not a separately measured end-to-end wall time",
+      "ui_status": "Done in 1.0 s · pLDDT 37.3 · pTM 0.001 · NOT A CHAIN - the backbone is broken",
+      "exported_at_utc": "2026-11-02T18:43:07.633955+00:00",
+      "archive": {
+        "path": "results/localfold-pilot-20261102/ar.zip",
+        "sha256": "eaa6b438e7534e1aca53a450fe5c7e303c1792822fb9e917b1a33ff3c0f10296",
+        "committed": false,
+        "members": [
+          {
+            "name": "af2_2_job_request.json",
+            "bytes": 289,
+            "sha256": "68dc2dedd2c8e218a66bc03b81bd81ecc9b2ec85deb7af4b1017a772e8d73d20"
+          },
+          {
+            "name": "af2_2_model_0.pdb",
+            "bytes": 1312,
+            "sha256": "835dd1508005cacb04f923f5a5544ee073528296bec709546b6cc2817530cd9b"
+          },
+          {
+            "name": "af2_2_summary_confidences_0.json",
+            "bytes": 241,
+            "sha256": "21c48f4f754dc07662c884f69adb8da6f0901644b5249098d2acabe436deb06e"
+          },
+          {
+            "name": "af2_2_full_data_0.json",
+            "bytes": 319,
+            "sha256": "5ad4c752e1148934f890f94cd4e810ae4d404c6ba9489ac71a8f3d6c9d655b1d"
+          },
+          {
+            "name": "README.md",
+            "bytes": 946,
+            "sha256": "d5b3e21cf225d65bcfa8283df0f0903fa82d9e67a90a02d69085453aaa8e291e"
+          }
+        ]
+      },
+      "files": {
+        "pdb": {
+          "path": "assets/localfold-pilot/ar.pdb",
+          "sha256": "835dd1508005cacb04f923f5a5544ee073528296bec709546b6cc2817530cd9b",
+          "original_member": "af2_2_model_0.pdb"
+        },
+        "request": {
+          "path": "assets/localfold-pilot/ar-request.json",
+          "sha256": "68dc2dedd2c8e218a66bc03b81bd81ecc9b2ec85deb7af4b1017a772e8d73d20",
+          "original_member": "af2_2_job_request.json"
+        },
+        "confidence": {
+          "path": "assets/localfold-pilot/ar-confidence.json",
+          "sha256": "21c48f4f754dc07662c884f69adb8da6f0901644b5249098d2acabe436deb06e",
+          "original_member": "af2_2_summary_confidences_0.json"
+        }
+      }
+    },
+    {
+      "id": "ara",
+      "object_name": "af2_3",
+      "msa": "none",
+      "ui_reported_elapsed_seconds": 1.0,
+      "elapsed_scope": "UI reported elapsed, not a separately measured end-to-end wall time",
+      "ui_status": "Done in 1.0 s · pLDDT 68.9 · pTM 0.119 · saved pass 1 of 4 · NOT A CHAIN - the backbone is broken",
+      "exported_at_utc": "2026-11-02T18:43:26.616001+00:00",
+      "archive": {
+        "path": "results/localfold-pilot-20261102/ara.zip",
+        "sha256": "c812ae815b9f306f0a02411fd43f3ac01789961ef3f28a79990abb5ce20a2676",
+        "committed": false,
+        "members": [
+          {
+            "name": "af2_3_job_request.json",
+            "bytes": 290,
+            "sha256": "ae821e644497af6cb8d843a0c3f1633bcb8feb4532e2b85e325740c2315ebfe4"
+          },
+          {
+            "name": "af2_3_model_0.pdb",
+            "bytes": 1707,
+            "sha256": "27d39528f0317fbd723647f79719d59263b04982768ea7116f7de3c36457e22e"
+          },
+          {
+            "name": "af2_3_summary_confidences_0.json",
+            "bytes": 254,
+            "sha256": "7ef5f960eae5a5cfd01c9a0e0ad6c71fbb6ded369eec9984bfb66f0cfc7285de"
+          },
+          {
+            "name": "af2_3_full_data_0.json",
+            "bytes": 414,
+            "sha256": "f509b54b35b25adf80f32aec4d9b485819e01bef0f26077cb33871ecfdd9a74f"
+          },
+          {
+            "name": "README.md",
+            "bytes": 946,
+            "sha256": "81351a348a9920458f4a27d832fe068e001598fc30b75e1b170b733962d2eaf1"
+          }
+        ]
+      },
+      "files": {
+        "pdb": {
+          "path": "assets/localfold-pilot/ara.pdb",
+          "sha256": "27d39528f0317fbd723647f79719d59263b04982768ea7116f7de3c36457e22e",
+          "original_member": "af2_3_model_0.pdb"
+        },
+        "request": {
+          "path": "assets/localfold-pilot/ara-request.json",
+          "sha256": "ae821e644497af6cb8d843a0c3f1633bcb8feb4532e2b85e325740c2315ebfe4",
+          "original_member": "af2_3_job_request.json"
+        },
+        "confidence": {
+          "path": "assets/localfold-pilot/ara-confidence.json",
+          "sha256": "7ef5f960eae5a5cfd01c9a0e0ad6c71fbb6ded369eec9984bfb66f0cfc7285de",
+          "original_member": "af2_3_summary_confidences_0.json"
+        }
+      }
+    },
+    {
+      "id": "ubiquitin-msa",
+      "object_name": "af2_4",
+      "msa": "MMseqs2",
+      "ui_reported_elapsed_seconds": 14.5,
+      "elapsed_scope": "UI reported elapsed, not a separately measured end-to-end wall time",
+      "ui_status": "Done in 14.5 s · pLDDT 94.6 · pTM 0.820 · saved pass 3 of 4",
+      "exported_at_utc": "2026-11-02T18:44:47.587239+00:00",
+      "archive": {
+        "path": "results/localfold-pilot-20261102/ubiquitin-msa.zip",
+        "sha256": "77917dcd6af79403f46a14f6625d3aad32d7106d2318b08bb4bcf2ec03db1aed",
+        "committed": false,
+        "members": [
+          {
+            "name": "af2_4_job_request.json",
+            "bytes": 363,
+            "sha256": "1bf9ccfb5e4d1072138e593374cdaa7b8c75b310719d946cd1681a84dfef104d"
+          },
+          {
+            "name": "af2_4_model_0.pdb",
+            "bytes": 47527,
+            "sha256": "e6505b87c24cdfc609b29e377c20fe9a102ad827abe34efb8197965e698b91da"
+          },
+          {
+            "name": "af2_4_summary_confidences_0.json",
+            "bytes": 911,
+            "sha256": "b9a7ff1ee74c677584e65ac9eff2dfd6734cf65044a294db727cd8fd656260f3"
+          },
+          {
+            "name": "af2_4_full_data_0.json",
+            "bytes": 48454,
+            "sha256": "42b9448565359f4d123f6d1da8f77ba723d25203048152f7127aa593bfd9e9ea"
+          },
+          {
+            "name": "msas/af2_4_unpaired_msa_chains_a.a3m",
+            "bytes": 3001450,
+            "sha256": "ae41dff7b31529d839eb93929f93a867003558fd14d30f5ac8645b601d6e2d26"
+          },
+          {
+            "name": "README.md",
+            "bytes": 1145,
+            "sha256": "4aa6e1a64e4cdd9b82ca4e8318822a3b04ec7272c72561cde78c8a8f614e7429"
+          }
+        ]
+      },
+      "files": {
+        "pdb": {
+          "path": "assets/localfold-pilot/ubiquitin-msa.pdb",
+          "sha256": "e6505b87c24cdfc609b29e377c20fe9a102ad827abe34efb8197965e698b91da",
+          "original_member": "af2_4_model_0.pdb"
+        },
+        "request": {
+          "path": "assets/localfold-pilot/ubiquitin-msa-request.json",
+          "sha256": "1bf9ccfb5e4d1072138e593374cdaa7b8c75b310719d946cd1681a84dfef104d",
+          "original_member": "af2_4_job_request.json"
+        },
+        "confidence": {
+          "path": "assets/localfold-pilot/ubiquitin-msa-confidence.json",
+          "sha256": "b9a7ff1ee74c677584e65ac9eff2dfd6734cf65044a294db727cd8fd656260f3",
+          "original_member": "af2_4_summary_confidences_0.json"
+        }
+      }
+    }
+  ],
+  "reference": {
+    "path": "assets/course/gromacs/1ubq-protein.pdb",
+    "sha256": "f1899546f581eaba2c618f012097644e1ab2aa281c47c13cbb3747147ca17fc3",
+    "pdb_id": "1UBQ",
+    "url": "https://www.rcsb.org/structure/1UBQ",
+    "role": "76-residue workflow control, not a peptide drug or a held-out benchmark"
+  },
+  "not_run": [
+    "peptide-TNF complex prediction",
+    "peptide docking",
+    "TNF receptor competition test",
+    "functional assay",
+    "cost analysis"
+  ],
+  "privacy": "Only public ubiquitin and artificial AR/ARA sequences in these exports. Preexisting browser-session output is private and excluded.",
+  "screenshots": [
+    {
+      "path": "assets/localfold-pilot/ubiquitin-browser.jpg",
+      "sha256": "8b2620e15d6c5f708b43baa18e0899af8516bf155f4e73f19a94eb22a2397218"
+    },
+    {
+      "path": "assets/localfold-pilot/ar-browser.jpg",
+      "sha256": "ec79ab38b18aa32825dec569536c10678b74040b890efeeb53cc152ae5a3ac14"
+    },
+    {
+      "path": "assets/localfold-pilot/ara-browser.jpg",
+      "sha256": "b83cb6c196c471c0ef87ac44a70f5907459ddc0e40f563e4d8e8eb806691f765"
+    },
+    {
+      "path": "assets/localfold-pilot/ubiquitin-msa-browser.jpg",
+      "sha256": "0e55e2cdee9cab3b085203ab83a68d9edc64a6434f940a32d7aad494df2e5d9b"
+    }
+  ],
+  "analysis_environment": {
+    "python": "3.13.12",
+    "biopython": "1.88",
+    "numpy": "2.5.4",
+    "matplotlib": "3.11.2",
+    "dependency_lock": "uv.lock"
+  },
+  "analysis_files_sha256": {
+    "src/peptide_lab/structure.py": "cec2baac721d483562f53da6ec81a9d775ac1b4ae9368e2fbb4d255f0186a933",
+    "scripts/analyze_localfold_pilot.py": "23f416146f9114b350b75eba1d2787c6c6db85b9f6245f3785b539e8d0d1b2d6",
+    "uv.lock": "b8ace931f916a8de6a78b1c6f396e68601e8a77649204b7e99f5d3286de2762d",
+    "data/processed/localfold-pilot.json": "62eaf759468f23cc2f4e05be928e411f62b85339e1f247fc8e711fcad7ec3e7f",
+    "assets/localfold-pilot/comparison.png": "e5eff984033906d574c92c1e831c8c3e37dd2686bbe18f287d940f6133be25f2"
+  },
+  "source_review": {
+    "reviewed_at_utc": "2026-11-02T18:51:21.241578+00:00",
+    "references": [
+      {
+        "url": "https://www.rcsb.org/structure/1UBQ",
+        "use": "experimental workflow reference; X-ray 1.80 angstrom, 76 residues"
+      },
+      {
+        "url": "https://www.nature.com/articles/s41467-021-27838-9",
+        "doi": "10.1038/s41467-021-27838-9",
+        "year": 2022,
+        "use": "peptide-protein AF2 benchmark: peptide 4–25 residues; not validation of this browser port or di/tripeptides"
+      },
+      {
+        "url": "https://www.rcsb.org/structure/3WD5",
+        "use": "adalimumab Fab binding to TNF; experimental research context"
+      },
+      {
+        "url": "https://github.com/sokrypton/localfold",
+        "use": "tool source repository; current deployed commit not verified"
+      }
+    ]
+  }
+}

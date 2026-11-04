@@ -247,6 +247,29 @@ test('bias derivative correction is visible separately from the source slide',as
  expect(data.lines[40]).toBe('𝜕wi,6');expect(data.lines[45]).toContain('= 1');expect(data.editorial_notes).toHaveLength(1);
 });
 
+test('backward-pass weight and bias slides keep formulas and correction separate',async({page})=>{
+ await page.setViewportSize({width:1440,height:900});
+ for(const number of [77,78]){
+  await page.goto(`/deep-learning/terms/spring-2026/s03/slides/#page=${number}`);await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const evidence=await page.evaluate(async()=>{
+   const config=JSON.parse(document.querySelector('#source-reader-config').textContent),record=(await(await fetch(config.translationUrl)).json()).pages[window.sourceSlideReader.page-1],{sourceLayoutPlan}=await import('/deep-learning/assets/slide-content.js'),plan=sourceLayoutPlan(record,config);
+   const node=document.querySelector('.reader-slide-text'),titleLine=record.source_layout.lines.find(line=>line.index===0),probe=node.cloneNode(true);
+   probe.style.visibility='hidden';probe.style.width=(node.clientWidth*.90)+'px';probe.style.lineHeight='1.25';node.parentElement.append(probe);
+   const stress={width:probe.clientWidth,scrollWidth:probe.scrollWidth,height:probe.clientHeight,scrollHeight:probe.scrollHeight};probe.remove();
+   const translatedLines=plan.regions.flatMap(region=>region.lines.map(line=>line.index)),mathLines=record.blocks.filter(block=>block.kind==='math').flatMap(block=>block.source_lines);
+   const canvas=document.querySelector('.reader-slide-background'),pixels=canvas.getContext('2d').getImageData(0,0,canvas.width,canvas.height).data;let purple=0;
+   for(let i=0;i<pixels.length;i+=4)if(pixels[i]>55&&pixels[i+2]>75&&pixels[i+2]>pixels[i+1]*1.25&&pixels[i]>pixels[i+1]*1.25)purple++;
+   return {actual:parseFloat(node.style.fontSize),expected:titleLine.font_size/record.source_layout.width*960,color:getComputedStyle(node).color,stress,translatedLines,mathLines,purple};
+  });
+  expect(Math.abs(evidence.actual-evidence.expected)).toBeLessThan(.05);expect(evidence.color).toBe('rgb(255, 255, 255)');
+  expect(evidence.stress.scrollWidth).toBeLessThanOrEqual(evidence.stress.width+2);expect(evidence.stress.scrollHeight).toBeLessThanOrEqual(evidence.stress.height+2);
+  for(const line of evidence.mathLines)expect(evidence.translatedLines).not.toContain(line);
+  expect(evidence.purple).toBeGreaterThan(50);
+  await page.locator('.reader-figure-labels summary').click();await expect(page.locator('.reader-figure-content .katex-mathml').first()).toBeAttached();
+  if(number===78){const note=page.locator('.reader-editorial');await expect(note).toBeVisible();await expect(note).toContainText('برای بایاس');}
+ }
+});
 
 test('standardization source correction is visible beside the unchanged slide',async({page})=>{
  await page.goto('/deep-learning/terms/spring-2026/s06/slides/#page=19');await ready(page);

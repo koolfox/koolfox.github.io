@@ -194,3 +194,14 @@ test('forward and backward pass diagram keeps source colors and exact example va
  await page.locator('.reader-figure-labels summary').click();
  await expect(page.locator('.reader-figure-content')).toContainText('f');await expect(page.locator('.reader-figure-content .katex-mathml').first()).toBeAttached();
 });
+
+test('source derivative correction appears beside the untouched source slide',async({page})=>{
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=107');await ready(page);
+ await expect(page.locator('#source-canvas')).toBeVisible();
+ const note=page.locator('#persian-page .reader-editorial');await expect(note).toBeVisible();
+ await expect(note).toContainText('مشتق محلی');
+ await expect(note.locator('.katex-mathml')).toHaveCount(4);
+ const data=await page.evaluate(async()=>{const c=JSON.parse(document.querySelector('#source-reader-config').textContent);return (await(await fetch(c.translationUrl)).json()).pages[106]});
+ expect(data.lines[10]).toContain('df/dc = 1');
+ expect(data.editorial_notes).toHaveLength(1);
+});

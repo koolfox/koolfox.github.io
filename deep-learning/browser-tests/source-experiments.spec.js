@@ -1,5 +1,57 @@
 import {test,expect} from '@playwright/test';
 
+test('convolution film and matching notebook chapters navigate without executing or editing code',async({page})=>{
+ await page.goto('/deep-learning/terms/spring-2026/s05/practice/?source-page=27#code');
+ const cells=page.locator('[data-notebook-cell]');await expect(cells).toHaveCount(3);
+ const before=await page.evaluate(()=>({cells:studentNotebook.cells,record:studentNotebook.record}));
+ expect(before.record).toBeNull();
+ const first=page.locator('[data-film-jump="1"]');await first.click();
+ const frame=page.frameLocator('[data-notebook-film]'),video=frame.locator('video');
+ await expect(video).toBeVisible();
+ await expect.poll(()=>video.evaluate(node=>node.currentTime)).toBeCloseTo(6.8,1);
+ expect(await video.evaluate(node=>node.paused)).toBe(true);
+ expect(await page.evaluate(()=>studentNotebook.cells)).toEqual(before.cells);
+ expect(await page.evaluate(()=>studentNotebook.record)).toBeNull();
+ for(const [label,index] of [['ورودی',0],['فیلتر',0],['حلقه ها',1],['ضرب و جمع',1],['خروجی',2]]){
+  await frame.getByRole('button',{name:label,exact:true}).click();
+  await expect(cells.nth(index)).toHaveAttribute('data-film-related','');
+  expect(await frame.getByRole('button',{name:label,exact:true}).evaluate(node=>document.activeElement===node)).toBe(true);
+ }
+ expect(await video.evaluate(node=>node.paused)).toBe(true);
+ for(const [index,time] of [[0,.1],[1,6.8],[2,13.5]]){
+  await page.locator(`[data-film-jump="${index}"]`).click();
+  await expect.poll(()=>video.evaluate(node=>node.currentTime)).toBeCloseTo(time,1);
+  expect(await video.evaluate(node=>node.paused)).toBe(true);
+ }
+ await video.evaluate(node=>node.play());
+ await frame.getByRole('button',{name:'فیلتر',exact:true}).click();
+ expect(await video.evaluate(node=>node.paused)).toBe(false);
+ await video.evaluate(node=>node.pause());
+ expect(await page.evaluate(()=>studentNotebook.cells)).toEqual(before.cells);
+ expect(await page.evaluate(()=>studentNotebook.record)).toBeNull();
+ await page.evaluate(()=>window.dispatchEvent(new MessageEvent('message',{origin:location.origin,data:{type:'danna-film-chapter',film:'convolution-code',chapter:4}})));
+ await expect(cells.nth(0)).toHaveAttribute('data-film-related','');
+ await cells.first().locator('.cm-content').click();await page.keyboard.insertText('# edit\n');
+ await expect(page.locator('[data-film-jump="1"]')).toBeDisabled();
+ await expect(page.locator('.nb-film-note')).toContainText('کد تغییر کرده');
+ expect(await video.evaluate(node=>node.paused)).toBe(true);
+ await cells.first().getByRole('button',{name:'بازگرداندن سلول ۱'}).click();
+ await expect(page.locator('[data-film-jump="1"]')).toBeEnabled();
+ await page.locator('[data-notebook-add]').click();
+ await expect(page.locator('[data-film-jump="1"]')).toBeDisabled();
+});
+
+test('convolution notebook keeps film and cells usable on a phone',async({page})=>{
+ await page.setViewportSize({width:390,height:844});
+ await page.goto('/deep-learning/terms/spring-2026/s05/practice/?source-page=27#code');
+ await page.locator('[data-film-jump="0"]').click();
+ const frame=page.frameLocator('[data-notebook-film]');
+ await expect(frame.locator('video')).toBeVisible();
+ await frame.getByRole('button',{name:'حلقه ها'}).click();
+ await expect(page.locator('[data-notebook-cell="1"]')).toHaveAttribute('data-film-related','');
+ const list=page.locator('.nb-cells');expect((await list.boundingBox()).height).toBeGreaterThan(60);
+});
+
 test('source attention film plays in place without loading a model or changing the slide',async({page})=>{
  const weights=[];page.on('request',request=>{if(/\.onnx(?:\?|$)/.test(request.url()))weights.push(request.url());});
  await page.goto('/deep-learning/terms/spring-2026/s13/slides/#page=27');

@@ -7,6 +7,7 @@ from pathlib import Path
 PLAYER_SCRIPT = r"""<script>
 const video=document.querySelector('video'),chapters=[...document.querySelectorAll('[data-film-time]')],status=document.querySelector('.film-status');
 const mediaURL=video.querySelector('source').src,controller=new AbortController();
+const linked=new URLSearchParams(location.search).get('notebook')==='1'&&document.documentElement.dataset.filmId==='convolution-code';
 let preparation,blobURL,leaving=false;
 function prepareMovie(){
  if(preparation)return preparation;
@@ -25,8 +26,21 @@ function prepareMovie(){
  return preparation;
 }
 function showFailure(message){if(!leaving)status.textContent=message;}
-for(const button of chapters)button.addEventListener('click',async()=>{
- video.pause();try{await prepareMovie();if(!leaving){video.pause();video.currentTime=Number(button.dataset.filmTime);}}catch{showFailure('بارگیری فیلم انجام نشد. دوباره تلاش کنید.');}
+async function seekChapter(index,notifyParent=false){
+ const button=chapters[index];if(!button)return;
+ const wasPlaying=!video.paused;if(!linked)video.pause();
+ try{
+  await prepareMovie();if(leaving)return;
+  video.currentTime=Number(button.dataset.filmTime);
+  if(linked&&wasPlaying&&video.paused)await video.play();
+  else if(!linked)video.pause();
+  if(linked&&notifyParent&&parent!==window)parent.postMessage({type:'danna-film-chapter',film:'convolution-code',chapter:index},location.origin);
+ }catch{showFailure('بارگیری فیلم انجام نشد. دوباره تلاش کنید.');}
+}
+chapters.forEach((button,index)=>button.addEventListener('click',()=>seekChapter(index,true)));
+window.addEventListener('message',event=>{
+ if(!linked||event.origin!==location.origin||event.source!==parent||event.data?.type!=='danna-film-seek'||event.data.film!=='convolution-code'||!Number.isInteger(event.data.chapter)||event.data.chapter<0||event.data.chapter>=chapters.length)return;
+ seekChapter(event.data.chapter);
 });
 video.addEventListener('timeupdate',()=>{let current=null;for(const button of chapters)if(Number(button.dataset.filmTime)<=video.currentTime+.05)current=button;for(const button of chapters)button.setAttribute('aria-pressed',String(button===current));});
 if(new URLSearchParams(location.search).get('play')==='1')prepareMovie().then(()=>{if(!leaving&&!document.hidden)return video.play().catch(()=>showFailure('برای پخش، دکمه پخش فیلم را بزنید.'));}).catch(()=>showFailure('بارگیری فیلم انجام نشد. دوباره تلاش کنید.'));
@@ -61,10 +75,12 @@ def build_animation_pages(root, output):
             raise ValueError('Film chapter outside duration')
         buttons = ''.join(f'<button type="button" data-film-time="{chapter["time"]}" aria-pressed="false">{escape(chapter["label_fa"])}</button>' for chapter in chapters)
         transcript = ''.join(f'<p>{escape(line)}</p>' for line in film['transcript_fa'])
-        body = f'''<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8">
+        body = f'''<!doctype html><html lang="fa" dir="rtl" data-film-id="{escape(film['id'], quote=True)}"><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>{title}</title>
 <link rel="stylesheet" href="/deep-learning/assets/course.css">
 <style>body{{margin:0}}main{{max-width:72rem;margin:auto;padding:1rem}}h1{{font-size:1.25rem;margin:.2rem 0 1rem}}video{{display:block;width:100%;max-height:75dvh;background:#000}}summary{{cursor:pointer;margin-top:1rem}}.film-status:empty{{display:none}}.film-status{{color:#9b2c24;margin:.5rem 0}}.film-chapters{{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}}.film-chapters button{{font:inherit;font-size:.875rem;min-height:44px;padding:8px 12px;border:1px solid #c7d3e6;border-radius:5px;background:#fff;color:#172134;cursor:pointer}}.film-chapters button[aria-pressed=true]{{background:#245bdf;color:#fff;border-color:#245bdf}}.film-chapters button:focus-visible{{outline:2px solid #245bdf;outline-offset:2px}}p{{max-width:70ch;line-height:1.9}}::cue{{font-family:Arad,sans-serif;font-size:1rem;background:#000c}}</style>
+<script>if(new URLSearchParams(location.search).get('notebook')==='1')document.documentElement.classList.add('film-embedded');</script>
+<style>.film-embedded main{{padding:.35rem;display:grid;grid-template-columns:minmax(0,1fr) minmax(200px,1fr);gap:8px;align-items:center}}.film-embedded h1,.film-embedded details{{display:none}}.film-embedded video{{max-height:160px}}.film-embedded .film-status{{grid-column:1/-1}}.film-embedded .film-chapters{{margin:0;gap:4px}}.film-embedded .film-chapters button{{min-height:36px;padding:5px 9px}}@media(max-width:600px){{.film-embedded main{{display:block}}.film-embedded .film-chapters{{margin-top:6px}}}}</style>
 <main><h1>{title}</h1><video controls playsinline preload="metadata" aria-label="{title}">
 <source src="/deep-learning/{film['video']['path']}?sha={film['video']['sha256']}" type="video/mp4">
 <track kind="captions" src="/deep-learning/{film['captions']['path']}?sha={film['captions']['sha256']}" srclang="fa" label="فارسی" default>

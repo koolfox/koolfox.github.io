@@ -64,3 +64,21 @@ uv run --project structural-bioinformatics python -m peptide_lab.candidates \
 شماره‌های `start` و `end` در این دستور، ترتیب باقی‌مانده‌های مشاهده‌شده در زنجیره‌اند؛ شماره‌های نویسنده نیز در manifest ثبت می‌شوند. فایل‌های دارای چند مدل، بازهٔ دارای اشغال صفر، شماره‌گذاری گسسته، حالت جایگزین یا باقی‌ماندهٔ غیراستاندارد در بازه رد می‌شوند. برای FASTA به‌جای `--drug-pdb` و `--drug-chain` از `--fasta` و `--record-id` استفاده کنید. ورودی داروی مولکول کوچک و تبدیل مستقیم آن به توالی پپتیدی در این ابزار پشتیبانی نمی‌شود.
 
 در [آزمایش فنی ثبت‌شده](../data/processed/antibody-variant-demo.json)، بازهٔ VQ از زنجیرهٔ H ساختار 3WD5 و چهار تک‌جانشینی آن تولید شدند و صرفاً برای آزمون اتصال مراحل روی هدف نامرتبط 1UBQ اجرا شدند. [منشأ و نوع هر تغییر](../assets/antibody-variant-demo/manifest.json) و [FASTA](../assets/antibody-variant-demo/candidates.fasta) قابل مشاهده است. این انتخاب یک مثال نرم‌افزاری است؛ نه اپی‌توپ تأییدشده، نه آزمون TNF و نه شواهدی برای تبدیل آدالیموماب به داروی پپتیدی. انتخاب قطعهٔ هدفمند، مقایسهٔ ساختاری و آزمایش زیستی مراحل مستقل‌اند.
+
+## نمایش سه‌بعدی حالت‌های داکینگ
+
+[نمایش سه‌بعدی در مرورگر](../assets/docked-pose-viewer.html) نمونهٔ آماده را نشان می‌دهد و می‌توانید گیرنده و خروجی داکینگِ یک اجرای خودتان را نیز انتخاب کنید. فایل‌های انتخابی در همان مرورگر خوانده می‌شوند. برای مقایسهٔ درست، هر دو فایل باید به یک اجرا و یک دستگاه مختصات تعلق داشته باشند؛ این سازگاری خودکار تأیید نمی‌شود. این نما فقط مسیر اتم‌های Cα را نشان می‌دهد؛ برای دیدن اتم‌ها و پیوندها از فایل‌های زیر استفاده کنید.
+
+فایل `poses.pdbqt` مختصات حالت‌های پیشنهادی را نگه می‌دارد. برای بازکردن آنها با اطلاعات پیوند مناسب‌تر، ابزار زیر با Meeko هر حالت را به SDF جدا تبدیل و برای هرکدام فایل دستور PyMOL می‌سازد. هش گیرنده و خروجی داکینگ با گزارش اجرا تطبیق داده می‌شود و مختصات اتم‌های سنگین بازسازی‌شده کنترل می‌شوند:
+
+```bash
+conda run -n tnf-docking python structural-bioinformatics/scripts/export_docked_poses.py \
+  --run-dir /path/to/a/docking/run --sequence AC \
+  --output-dir structural-bioinformatics/results/ac-view-01
+cd structural-bioinformatics/results/ac-view-01
+pymol pose-1.pml
+```
+
+مسیر `--run-dir` باید پوشه‌ای باشد که `report.json`، `selected-chain.pdb` و پوشهٔ توالی را دارد؛ در اجرای دسته‌ای، این پوشه زیر `batch-.../docking` قرار می‌گیرد. برای هر حالت، فایل `pose-N.sdf` و دستور `pose-N.pml` جدا ساخته می‌شود. برای مثال می‌توانید [گیرندهٔ 1UBQ](../assets/docked-ac-visualization/receptor.pdb)، [حالت اول AC](../assets/docked-ac-visualization/pose-1.sdf)، [حالت دوم](../assets/docked-ac-visualization/pose-2.sdf)، [حالت سوم](../assets/docked-ac-visualization/pose-3.sdf) و [منشأ و هش‌ها](../assets/docked-ac-visualization/manifest.json) را دریافت کنید. برای Nanome، فایل‌های گیرنده و SDF را در نسخه‌ای که این قالب‌ها را پشتیبانی می‌کند وارد کنید؛ اجرای رابط PyMOL و Nanome در این آزمایش مستقل تأیید نشده است.
+
+مطابق [مستندات Meeko](https://meeko.readthedocs.io/en/develop/export_usage.html)، هیدروژن‌های حذف‌شده از PDBQT ممکن است هنگام تبدیل بازسازی شوند. تصویر ساختاری، حالت پیشنهادیِ محاسبه است؛ نمایش آن نشانهٔ قطعی اتصال یا اثربخشی نیست.

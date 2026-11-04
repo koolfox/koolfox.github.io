@@ -48,7 +48,7 @@ function applyStyle(node, style) {
 }
 
 function appendBidi(parent, text) {
-  const tokens = /https?:\/\/[^\s<>"\u0600-\u06ff]+|\([^\u0600-\u06ff()\n]*\)|(?:[+−-](?=\d))?[A-Za-z0-9α-ωΑ-Ω∂∇Σ∑√σŷ][A-Za-z0-9α-ωΑ-Ω∂∇Σ∑√σŷ₀-₉⁰-⁹_+−=<>≤≥×*/.,:;\[\]{}^% \t\-]*/g;
+  const tokens = /https?:\/\/[^\s<>"\u0600-\u06ff]+|[A-Za-z][A-Za-z0-9_]*\([^\u0600-\u06ff()\n]*\)|\([^\u0600-\u06ff()\n]*\)|(?:[+−-](?=\d))?[A-Za-z0-9α-ωΑ-Ω∂∇Σ∑√σŷ][A-Za-z0-9α-ωΑ-Ω∂∇Σ∑√σŷ₀-₉⁰-⁹_+−=<>≤≥×*/.,:;\[\]{}^% \t\-]*/g;
   let end = 0;
   for (const match of text.matchAll(tokens)) {
     parent.append(document.createTextNode(text.slice(end, match.index)));
@@ -406,6 +406,19 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(text.startsWith('نشان می‌دهد'))region.slot=[.50,.70,.98,.84];
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===44
+      && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
+      && record.source_text_sha256==='7a321ee0a41f17f13f61f7911b8234739af74cc0a998a69bf8f1436c68473c38' && layout.translation_sha256==='64b50183dd6ba034c2ab4ab0a43bba54e7e3d4bb49a73278f09b5ab8f1491b00'){
+    for(const region of regions){
+      const text=region.block.fa;
+      if(region.block.kind==='heading')region.slot=[.02,.075,.99,.205];
+      if(text.startsWith('• گرادیان')){region.slot=[.06,.215,.97,.335];region.color='#ffffff';region.manualAccents=[{text:'گرادیان (Gradient)',color:'#ffc000'},{text:'مشتق‌های جزئی برای چند متغیر',color:'#ffc000'}];}
+      if(text.startsWith('• مشتق')){region.slot=[.06,.34,.97,.455];region.color='#ffffff';region.manualAccents=[{text:'مشتق (Derivative)',color:'#ffc000'}];}
+      if(text.startsWith('آیا این تابع')){region.slot=[.095,.575,.55,.675];region.keepTermsTogether=true;}
+      if(text.startsWith('مقدار تابع'))region.slot=[.095,.68,.55,.77];
+      if(text.startsWith('مقدار x در کمینه'))region.slot=[.095,.775,.55,.87];
+    }
+  }
   // Reviewed examples use the same text scale as the source neural-network diagram.
   const weightReview = {
     86:['677ef30e430098d8abc449ef7ba245ba50b0585c828114c8820d6deea9a81f4c','06b40a38450fc61c9781fb040c1a81ee5cd790bbde53b43c539545cc92bbcd93'],
@@ -458,6 +471,7 @@ export function createSourceLayout(record, plan) {
         addText(term,chunk,presentation,{sourceColors:true});node.append(term);
       }
     }else addText(node, region.block.fa, presentation, {sourceColors:true});
+    if(region.keepTermsTogether)node.querySelectorAll('bdi').forEach(term=>{term.style.whiteSpace='nowrap';});
     stage.append(node);
   }
   let companion = null;

@@ -41,3 +41,26 @@ def test_failed_engine_is_recorded_and_existing_output_is_protected(tmp_path, mo
     assert (output / "batch-001.stderr.txt").read_text() == "engine failure"
     with pytest.raises(FileExistsError):
         batches.run("A", [2], 1, receptor, "vina", output)
+
+
+def test_wrong_engine_version_cannot_pass(tmp_path, monkeypatch):
+    receptor = tmp_path / "receptor.pdbqt"
+    receptor.write_text("input")
+
+    def fake_engine(command, **kwargs):
+        destination = Path(command[command.index("--output-dir") + 1])
+        destination.mkdir()
+        (destination / "run.json").write_text(
+            json.dumps(
+                {"status": "completed", "engine_version": "AutoDock Vina v0.0.0", "candidates": []}
+            )
+        )
+        return SimpleNamespace(returncode=0, stdout="", stderr="")
+
+    monkeypatch.setattr(batches.subprocess, "run", fake_engine)
+    output = tmp_path / "run"
+    with pytest.raises(RuntimeError, match="unsupported Vina version"):
+        batches.run("A", [2], 1, receptor, "vina", output)
+    report = json.loads((output / "batch-report.json").read_text())
+    assert report["status"] == "failed"
+    assert report["batches"][0]["status"] == "failed"

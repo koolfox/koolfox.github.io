@@ -192,6 +192,16 @@ class SourceLayoutTests(unittest.TestCase):
         self.assertIn(r'\frac{\partial z}{\partial c}=1', notes[0]['fa'])
         self.assertIn(r'\frac{\partial f}{\partial c}=d=4', notes[0]['fa'])
 
+    def test_bias_derivative_correction_stays_separate_from_source_page(self):
+        root = Path(__file__).resolve().parents[1]
+        page = load_source_translation('s03', root=root, term_id='spring-2026')['pages'][77]
+        self.assertEqual(page['lines'][40], '𝜕wi,6')
+        self.assertIn('= 1', page['lines'][45])
+        notes = page.get('editorial_notes', [])
+        self.assertEqual(len(notes), 1)
+        self.assertIn(r'\frac{\partial z_6}{\partial b_6}=1', notes[0]['fa'])
+        self.assertIn(r'\frac{\partial z_6}{\partial w_{i,6}}=o_i', notes[0]['fa'])
+
     def test_all_spring_2026_pages_have_explicit_geometry_inventory(self):
         root = Path(__file__).resolve().parents[1]
         pages = 0

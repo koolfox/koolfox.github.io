@@ -103,6 +103,16 @@ class SourceWorkshopTests(unittest.TestCase):
         questions = next(item for item in config['page_questions'] if 35 in item['pages'])
         self.assertEqual(len(questions['questions']), 3)
 
+    def test_source_character_choice_and_question_banks_agree(self):
+        unit = load_workshops('spring-2026', ROOT, execute=True, session_ids=['s04'])['s04']
+        example = next(item for item in unit['source_examples'] if item['id'] == 'character-choice')
+        workshop_question = next(item for item in example['questions'] if item['id'] == 'choice')
+        activity_question = next(item for item in unit['activities']['questions'] if item['id'] == 'character-choice-choice')
+        for question in [workshop_question, activity_question]:
+            self.assertEqual(question['answer']['options_fa'][question['answer']['correct_index']], 'o')
+            self.assertIn('[0.05, 0.1, 0.2, 0.65]', question['prompt_fa'])
+        self.assertEqual(example['reference']['prediction'], 'o')
+
     def test_page_example_executes_its_own_hash_pinned_source_and_rejects_stale_code(self):
         import hashlib
         source = 'result = {"value": 3}\nprint(result)\n'

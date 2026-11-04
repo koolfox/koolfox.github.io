@@ -1,6 +1,6 @@
 # توزیع احتمال چاپ‌شده در صفحهٔ 31؛ این اعداد خروجی‌اند، نه logit ورودی Softmax.
 vocabulary = ["h", "e", "l", "o"]
-probabilities = [0.05, 0.65, 0.2, 0.1]
+probabilities = [0.05, 0.1, 0.2, 0.65]
 if len(vocabulary) != len(probabilities) or not probabilities:
     raise ValueError("هر حرف باید یک احتمال داشته باشد.")
 if any(p < 0 or p > 1 for p in probabilities) or abs(sum(probabilities)-1) > 1e-9:

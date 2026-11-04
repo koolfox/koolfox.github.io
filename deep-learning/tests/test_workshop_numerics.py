@@ -289,6 +289,13 @@ class WorkshopNumericalTests(unittest.TestCase):
         nonunique = execute("s18_markov_states", {"[[0.3, 0.7], [0.4, 0.6]]": "[[1, 0], [0, 1]]"})["result"]
         self.assertIsNone(nonunique["stationary_distribution"])
 
+    def test_standardization_source_second_sample_weighted_sum(self):
+        from decimal import Decimal
+        scope = execute("s06_standardization")
+        self.assertEqual(scope["samples"][1], [5.0, 24.0])
+        self.assertEqual(Decimal("0.1") * (Decimal("5") + Decimal("24")), Decimal("2.9"))
+        self.assertAlmostEqual(scope["result"]["raw_sums"][1], 2.9)
+
     def test_source_backprop_passes_all_eleven_central_differences(self):
         scope = execute("s03")
         parameters = scope["source_parameters"]

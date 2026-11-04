@@ -206,6 +206,20 @@ class SourceReaderTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Stale editorial'):
             self.load()
 
+    def test_actual_standardization_note_is_attached_without_changing_source(self):
+        project = Path(__file__).resolve().parents[1]
+        payload = load_source_translation('s06', root=project, term_id='spring-2026')
+        page = payload['pages'][18]
+        notes = page['editorial_notes']
+        self.assertEqual(len(notes), 1)
+        self.assertIn('[5,24]', notes[0]['fa'])
+        self.assertIn('2.9', notes[0]['fa'])
+        source = json.loads((project / 'content/source-slides/spring-2026/s06.json').read_text())
+        translation = json.loads((project / 'content/translations/spring-2026/s06.json').read_text())
+        self.assertEqual(page['lines'], source['pages'][18]['lines'])
+        self.assertEqual([block['fa'] for block in page['blocks']],
+                         [block['fa'] for block in translation['pages'][18]['blocks']])
+
     def test_schema_and_session_identity_are_strict(self):
         for document, field, value, message in (
             (self.translation, "schema_version", True, "schema"),

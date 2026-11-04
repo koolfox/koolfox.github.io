@@ -270,3 +270,13 @@ test('backward-pass weight and bias slides keep formulas and correction separate
   if(number===78){const note=page.locator('.reader-editorial');await expect(note).toBeVisible();await expect(note).toContainText('برای بایاس');}
  }
 });
+
+test('standardization source correction is visible beside the unchanged slide',async({page})=>{
+ await page.goto('/deep-learning/terms/spring-2026/s06/slides/#page=19');await ready(page);
+ await expect(page.locator('#source-canvas')).toBeVisible();
+ const note=page.locator('#persian-page .reader-editorial');await expect(note).toBeVisible();
+ await expect(note).toContainText('[5,24]');await expect(note).toContainText('0.9');
+ await expect(note.locator('.katex-mathml')).toHaveCount(1);
+ const data=await page.evaluate(async()=>{const c=JSON.parse(document.querySelector('#source-reader-config').textContent);return (await(await fetch(c.translationUrl)).json()).pages[18]});
+ expect(data.editorial_notes).toHaveLength(1);expect(data.editorial_notes[0].fa).toContain('2.9');
+});

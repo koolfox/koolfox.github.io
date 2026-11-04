@@ -94,3 +94,13 @@ test('page quizzes preserve symbolic and vector options with isolated left-to-ri
  const symbolic=values.filter(item=>/[=η∂\[\]]/.test(item.text));expect(symbolic.length).toBeGreaterThan(0);
  expect(symbolic.every(item=>item.isolated.some(part=>part.dir==='ltr'))).toBe(true);
 });
+
+test('MNIST mobile controls expose real training and the browsable dataset',async({baseURL})=>{
+ test.setTimeout(120000);
+ const {execFile}=await import('node:child_process');
+ const {promisify}=await import('node:util');
+ const {stdout}=await promisify(execFile)(process.execPath,['mnist-readability.mjs'],{
+  cwd:import.meta.dirname,env:{...process.env,SITE_BASE_URL:baseURL},timeout:110000,
+ });
+ expect(stdout).toContain('PASS real CPU MNIST batch');
+});

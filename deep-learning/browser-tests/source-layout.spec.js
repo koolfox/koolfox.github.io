@@ -217,6 +217,7 @@ test('forward and backward pass diagram keeps source colors and exact example va
 
 test('source derivative correction appears beside the untouched source slide',async({page})=>{
  await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=107');await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
  await expect(page.locator('#source-canvas')).toBeVisible();
  const note=page.locator('#persian-page .reader-editorial');await expect(note).toBeVisible();
  await expect(note).toContainText('مشتق محلی');
@@ -224,4 +225,15 @@ test('source derivative correction appears beside the untouched source slide',as
  const data=await page.evaluate(async()=>{const c=JSON.parse(document.querySelector('#source-reader-config').textContent);return (await(await fetch(c.translationUrl)).json()).pages[106]});
  expect(data.lines[10]).toContain('df/dc = 1');
  expect(data.editorial_notes).toHaveLength(1);
+ const integrity=await page.evaluate(async record=>{
+  const config=JSON.parse(document.querySelector('#source-reader-config').textContent),{sourceLayoutPlan}=await import('/deep-learning/assets/slide-content.js'),plan=sourceLayoutPlan(record,config);
+  const translatedLines=plan.regions.flatMap(region=>region.lines.map(line=>line.index));
+  const nodes=[...document.querySelectorAll('.reader-slide-text')];
+  const sizes=nodes.map((node,index)=>({actual:parseFloat(node.style.fontSize),expected:plan.regions[index].font/plan.layout.width*960}));
+  const stress=nodes.map(node=>{const probe=node.cloneNode(true);probe.style.visibility='hidden';probe.style.width=(node.clientWidth*.85)+'px';probe.style.lineHeight='1.25';node.parentElement.append(probe);const result={width:probe.clientWidth,scrollWidth:probe.scrollWidth,height:probe.clientHeight,scrollHeight:probe.scrollHeight};probe.remove();return result});
+  return {translatedLines,stress,sizes};
+ },data);
+ for(const originalMathLine of [7,8,9,10,13])expect(integrity.translatedLines).not.toContain(originalMathLine);
+ for(const size of integrity.sizes)expect(Math.abs(size.actual-size.expected)).toBeLessThan(.05);
+ for(const node of integrity.stress){expect(node.scrollWidth).toBeLessThanOrEqual(node.width+2);expect(node.scrollHeight).toBeLessThanOrEqual(node.height+2);}
 });

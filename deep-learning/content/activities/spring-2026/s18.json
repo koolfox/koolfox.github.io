@@ -715,16 +715,22 @@
     {
       "number": 35,
       "source_text_sha256": "19f8c8a9decd1bde9ad543de30740149fa38a23ddb8cedff9ed2470a4266c756",
-      "classification": "conceptual_question",
-      "review_status": "pending",
+      "classification": "worked_example",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
-      "example_ids": [],
+      "question_coverage": "complete",
+      "question_ids": [
+        "markov-states",
+        "markov-e-to-a",
+        "markov-a-to-e"
+      ],
+      "example_ids": [
+        "markov-states"
+      ],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
       "review_scope": "source_prompt_inventory",
@@ -733,7 +739,8 @@
           3
         ],
         "image_label_indices": []
-      }
+      },
+      "review_basis": "source_figure_study_check"
     },
     {
       "number": 36,
@@ -1529,6 +1536,66 @@
       "pages": [
         47
       ]
+    },
+    {
+      "id": "markov-states",
+      "source_kind": "original",
+      "source_page": 35,
+      "prompt_fa": "گراف اسلاید چند حالت دارد؟",
+      "solution_fa": "دو حالت E و A نمایش داده شده‌اند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "یک",
+          "دو",
+          "سه"
+        ],
+        "correct_index": 1
+      },
+      "pages": [
+        35
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "markov-e-to-a",
+      "source_kind": "original",
+      "source_page": 35,
+      "prompt_fa": "احتمال انتقال از E به A در شکل چقدر است؟",
+      "solution_fa": "پیکان E به A برچسب ۰٫۷ دارد.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "۰٫۳",
+          "۰٫۴",
+          "۰٫۷"
+        ],
+        "correct_index": 2
+      },
+      "pages": [
+        35
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "markov-a-to-e",
+      "source_kind": "original",
+      "source_page": 35,
+      "prompt_fa": "احتمال انتقال از A به E در شکل چقدر است؟",
+      "solution_fa": "پیکان A به E برچسب ۰٫۴ دارد.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "۰٫۴",
+          "۰٫۶",
+          "۰٫۷"
+        ],
+        "correct_index": 0
+      },
+      "pages": [
+        35
+      ],
+      "reviewed": true
     }
   ]
 }

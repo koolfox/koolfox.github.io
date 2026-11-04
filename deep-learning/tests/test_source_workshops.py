@@ -77,6 +77,19 @@ class SourceWorkshopTests(unittest.TestCase):
         self.assertEqual(examples[0]['key'], 'spring-2026/s02/majority-epochs')
         self.assertEqual(len(examples[0]['reference']['history']), 7)
 
+    def test_slide_35_opens_source_markov_chain_and_its_questions(self):
+        from student_practice import practice_page
+        unit = load_workshops('spring-2026', ROOT, execute=True, session_ids=['s18'])['s18']
+        page = practice_page({'id': 'spring-2026'}, {'id': 's18', 'title_fa': 'مارکوف', 'workshop': unit})
+        tag = '<script type="application/json" id="practice-config">'
+        start = page.index(tag) + len(tag)
+        config = json.loads(page[start:page.index('</script>', start)])
+        example = next(item for item in config['page_notebooks'] if 35 in item['pages'])
+        self.assertEqual(example['key'], 'spring-2026/s18/markov-states')
+        self.assertEqual(example['reference']['transition_rows'], [[0.3, 0.7], [0.4, 0.6]])
+        questions = next(item for item in config['page_questions'] if 35 in item['pages'])
+        self.assertEqual(len(questions['questions']), 3)
+
     def test_page_example_executes_its_own_hash_pinned_source_and_rejects_stale_code(self):
         import hashlib
         source = 'result = {"value": 3}\nprint(result)\n'

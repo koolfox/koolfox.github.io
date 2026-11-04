@@ -1,0 +1,41 @@
+import assert from 'node:assert/strict';
+import {chromium} from 'playwright';
+
+const base=process.env.SITE_BASE_URL||'http://127.0.0.1:8900';
+const browser=await chromium.launch({headless:true});
+try {
+  const page=await browser.newPage({viewport:{width:390,height:844}});
+  await page.goto(base+'/deep-learning/playgrounds/cnn-mnist/train/');
+  await page.locator('[name=backend]').selectOption('cpu');
+  await page.locator('[data-load]').click();
+  await page.waitForFunction(()=>window.mnistLab?.state?.step===0&&!document.querySelector('[data-step]').disabled,null,{timeout:90000});
+  assert.equal(await page.locator('.mnist-selected').isVisible(),true);
+  assert.match(await page.locator('[data-selected-caption]').textContent(),/پیش‌بینی.*احتمال/);
+  const grid=await page.locator('.mnist-plots').evaluate(node=>getComputedStyle(node).gridTemplateColumns.split(' ').length);
+  assert.equal(grid,1);
+  await page.locator('[data-step]').click();
+  await page.waitForFunction(()=>window.mnistLab.state.step===1&&!document.querySelector('[data-step]').disabled,null,{timeout:90000});
+  assert.equal(await page.locator('[data-loss-chart] circle[fill="var(--accent)"]').count(),1);
+  assert.equal(await page.locator('[data-accuracy-chart] circle[fill="var(--accent)"]').count(),1);
+  await page.locator('[data-history] summary').click();
+  await page.waitForFunction(()=>document.querySelectorAll('[data-history-rows] tr').length===2);
+  const state=await page.evaluate(()=>window.mnistLab.state);
+  const row=await page.locator('[data-history-rows] tr').last().locator('td').allTextContents();
+  assert.deepEqual(row,[String(state.step),String(state.history[0].loss),String(state.history[0].accuracy),'—','—']);
+  await page.screenshot({path:'/tmp/mnist-readable-mobile.png'});
+  await page.locator('[data-tab-button=data]').click();
+  assert.equal(await page.locator('[data-browse-digits] canvas').count(),32);
+  assert.match(await page.locator('[data-browse-page]').textContent(),/۱/);
+  const first=await page.locator('[data-browse-digits] canvas').first().evaluate(canvas=>Array.from(canvas.getContext('2d').getImageData(0,0,28,28).data));
+  const sourcePixels=await page.evaluate(async()=>Array.from(new Uint8Array(await (await fetch('/deep-learning/data/processed/mnist-browser/pixels.bin')).arrayBuffer()).slice(0,784)));
+  assert.deepEqual(first.filter((_,index)=>index%4===0),sourcePixels);
+  await page.locator('[data-browse-next]').click();
+  assert.match(await page.locator('[data-browse-page]').textContent(),/۲/);
+  const second=await page.locator('[data-browse-digits] canvas').first().evaluate(canvas=>Array.from(canvas.getContext('2d').getImageData(0,0,28,28).data));
+  assert.notDeepEqual(first,second);
+  await page.locator('[data-browse-split]').selectOption('validation');
+  assert.equal(await page.locator('[data-browse-previous]').isDisabled(),true);
+  assert.equal(await page.locator('[data-browse-digits] canvas').count(),32);
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+  console.log('PASS real CPU MNIST batch, charts, history, mobile and data paging');
+} finally {await browser.close();}

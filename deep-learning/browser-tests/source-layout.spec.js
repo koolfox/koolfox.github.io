@@ -159,6 +159,18 @@ test('XOR example preserves source image and two distinct caption colors and siz
 
 test('computational graphs preserve their source diagrams, formulas and colored labels',async({page})=>{
  await page.setViewportSize({width:1440,height:900});await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=105');await ready(page);
+ const state=await page.locator('#persian-page').getAttribute('data-layout');
+ if(state!=='source-canvas'){
+  const diagnostic=await page.evaluate(async()=>{
+   const config=JSON.parse(document.querySelector('#source-reader-config').textContent),record=(await(await fetch(config.translationUrl)).json()).pages[104];
+   const {sourceLayoutPlan,createSourceLayout}=await import('/deep-learning/assets/slide-content.js');
+   const plan=sourceLayoutPlan(record,config);if(plan.reason)return {reason:plan.reason};
+   const slide=createSourceLayout(record,plan);document.body.append(slide.holder);await document.fonts.ready;
+   const overflows=[...slide.stage.querySelectorAll('.reader-slide-text')].filter(n=>n.scrollHeight>n.clientHeight+2||n.scrollWidth>n.clientWidth+2).map(n=>({text:n.textContent,font:getComputedStyle(n).font,width:n.clientWidth,scrollWidth:n.scrollWidth,height:n.clientHeight,scrollHeight:n.scrollHeight}));
+   const fonts=[...document.fonts].filter(f=>f.family==='Arad').map(f=>({family:f.family,status:f.status}));slide.holder.remove();return {state:document.querySelector('#persian-page').dataset.layout,fonts,overflows};
+  });
+  console.error('Source layout diagnostics:',JSON.stringify(diagnostic));
+ }
  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
  const evidence=await page.evaluate(async()=>{
   const config=JSON.parse(document.querySelector('#source-reader-config').textContent),record=(await(await fetch(config.translationUrl)).json()).pages[104];

@@ -1,0 +1,91 @@
+{
+  "status": "completed",
+  "started_at_utc": "2026-11-04T08:19:30.392269+00:00",
+  "purpose": "technical A/R short-peptide pilot; not validated discovery",
+  "rdkit_version": "2026.09.1",
+  "conformer_method": "ETKDGv3 + MMFF94; one conformer",
+  "protonation": "N-terminus +1, C-terminus -1, Arg side chain +1; fixed assumptions, not pH prediction",
+  "receptor_sha256": "ef6112549c988297f3911490d9a5466cfcb9fbce65c262608f1b4963e7785e06",
+  "box": {
+    "center_x": -1.2684999999999995,
+    "center_y": -58.9935,
+    "center_z": -16.9865,
+    "size_x": 30.919,
+    "size_y": 29.395000000000003,
+    "size_z": 30.355
+  },
+  "docking": {
+    "engine": "AutoDock Vina 1.2.7",
+    "cpu": 1,
+    "exhaustiveness": 2,
+    "num_modes": 3,
+    "seed": 42
+  },
+  "limitations": [
+    "One conformer and one protonation state per peptide",
+    "Low search budget; no flexible-peptide benchmark or negative-site control",
+    "Monomeric TNF receptor from a peptide-bound structure with modeled side chains",
+    "Known binding box is derived from a different 31-residue peptide",
+    "Scores do not measure binding affinity, inhibition, safety, or manufacturing cost"
+  ],
+  "candidates": [
+    {
+      "sequence": "AA",
+      "status": "completed",
+      "seed": 42,
+      "formal_charge": 0,
+      "pdbqt_sha256": "a669256530f70561f9181ecbd4f6579322ea4f5e68fb5dd4ff5fa0595efeec99",
+      "sdf_sha256": "40a9fcd733224f70eaf9c0a577da8d4793ab954c2d8808eb89856f6cd8e15df3",
+      "elapsed_seconds": 2.04,
+      "exit_code": 0,
+      "poses": [
+        {
+          "vina_score_kcal_mol": -3.415,
+          "minimum_interchain_heavy_distance_angstrom": 2.8290565565219805,
+          "severe_clash_screen": "pass"
+        },
+        {
+          "vina_score_kcal_mol": -3.329,
+          "minimum_interchain_heavy_distance_angstrom": 2.9203794274032253,
+          "severe_clash_screen": "pass"
+        },
+        {
+          "vina_score_kcal_mol": -3.305,
+          "minimum_interchain_heavy_distance_angstrom": 2.857873685102264,
+          "severe_clash_screen": "pass"
+        }
+      ],
+      "poses_sha256": "471b91c110588013943f488074e2c9ee1234f5c53fc96e9b92332fae0bdeaa42"
+    },
+    {
+      "sequence": "AAA",
+      "status": "completed",
+      "seed": 42,
+      "formal_charge": 0,
+      "pdbqt_sha256": "66237e45ee07ae8c0f638b2e2d5699f35202e1e8ab2ffc8c4f0667df9c96f259",
+      "sdf_sha256": "f19f00ec955c0dfc7e0261d0312ba705db711d2eb8bfde959b4629ec85351cec",
+      "elapsed_seconds": 3.4,
+      "exit_code": 0,
+      "poses": [
+        {
+          "vina_score_kcal_mol": -4.345,
+          "minimum_interchain_heavy_distance_angstrom": 2.8069574275360845,
+          "severe_clash_screen": "pass"
+        },
+        {
+          "vina_score_kcal_mol": -3.972,
+          "minimum_interchain_heavy_distance_angstrom": 2.8288338586774566,
+          "severe_clash_screen": "pass"
+        },
+        {
+          "vina_score_kcal_mol": -3.642,
+          "minimum_interchain_heavy_distance_angstrom": 2.849179180044665,
+          "severe_clash_screen": "pass"
+        }
+      ],
+      "poses_sha256": "9220b8ce053792c94eabaf98468ebca590ee6125c517767a112352b714c774d1"
+    }
+  ],
+  "engine_version": "AutoDock Vina v1.2.7",
+  "finished_at_utc": "2026-11-04T08:19:36.017283+00:00"
+}

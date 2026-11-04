@@ -1,4 +1,6 @@
 import math
+from decimal import Decimal
+from fractions import Fraction
 
 # نه مقدار ماتریسِ صفحهٔ ۵۲؛ ترتیب سطرهای تصویر اصلی حفظ شده است.
 values = [0.2, 1.0, 0.3, 0.1, -0.6, -0.07, 1.2, 0.4, 0.0]
@@ -11,10 +13,14 @@ if not values or not codebook:
     raise ValueError("داده و جدول کد نباید خالی باشند.")
 bits_per_index = math.ceil(math.log2(len(codebook)))
 
-# هر مقدار به نزدیک‌ترین خانه می‌رود؛ در فاصلهٔ برابر، اندیس کوچک‌تر انتخاب می‌شود.
+# فاصله‌ها با نمایش دهدهی عددهای پایتون محاسبه می‌شوند، نه تفریق float.
+# کسر دقیق مانع گردشدن دوباره می‌شود؛ فاصلهٔ برابر به اندیس کوچک‌تر می‌رود.
+# عددی که از ابتدا به float گرد شده باشد، با همین مقدار نمایش‌داده‌شده سنجیده می‌شود.
+decimal_values = [Fraction(Decimal(str(value))) for value in values]
+decimal_codebook = [Fraction(Decimal(str(value))) for value in codebook]
 indices = [
-    min(range(len(codebook)), key=lambda index: abs(value - codebook[index]))
-    for value in values
+    min(range(len(codebook)), key=lambda index: abs(value - decimal_codebook[index]))
+    for value in decimal_values
 ]
 
 # بازسازی مقدار از اندیس، تفاوت دادهٔ اولیه و دادهٔ کم‌دقت را آشکار می‌کند.

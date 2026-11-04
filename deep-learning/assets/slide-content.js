@@ -493,7 +493,20 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       region.slot=s01TitleReview[2];region.font=s01TitleReview[3];region.keepTermsTogether=true;
     }
   }
-  return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
+  let imageTranslations=[];
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='d63d4b5c01249f0dd295bd5ab96bfdba336fdaf5da802ebce1fea51264725914'
+      && layout.translation_sha256==='69176de0c02bc368a77f415655258cb84993e0d8f3f1708eb395812f97574324'){
+    const [gemini,copilot]=record.image_text[2].fa.split('؛');
+    imageTranslations=[
+      {rect:[.17,.34,.82,.389],text:record.image_text[0].fa,background:'#282a2c',color:'#fff',font:21},
+      {rect:[.17,.418,.86,.51],text:record.image_text[1].fa,background:'#282a2c',color:'#e8eaed',font:13},
+      {rect:[.175,.63,.45,.675],text:gemini,background:'#1e1f20',color:'#bdc1c6',font:17},
+      {rect:[.235,.845,.50,.895],text:copilot.trim(),background:'#0f131f',color:'#8990a7',font:17},
+    ];
+  }
+  return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 
 export function createSourceLayout(record, plan) {
@@ -526,6 +539,12 @@ export function createSourceLayout(record, plan) {
     }else addText(node, region.block.fa, presentation, {sourceColors:true});
     if(region.keepTermsTogether)node.querySelectorAll('bdi').forEach(term=>{term.style.whiteSpace='nowrap';});
     stage.append(node);
+  }
+  for(const item of plan.imageTranslations || []){
+    const node=element('div','reader-slide-text reader-image-translation');
+    const [x0,y0,x1,y1]=item.rect;
+    Object.assign(node.style,{left:x0*width+'px',top:y0*height+'px',width:(x1-x0)*width+'px',height:(y1-y0)*height+'px',fontSize:item.font+'px',lineHeight:'1.2',background:item.background,color:item.color});
+    addText(node,item.text,{},{});stage.append(node);
   }
   let companion = null;
   if (plan.figureLabels?.length || plan.tables?.length || plan.nativeMath?.length) {

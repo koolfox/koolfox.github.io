@@ -431,3 +431,17 @@ test('session 1 image titles fit without covering their figures', async ({page})
   await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
  }
 });
+
+test('session 1 personal assistants show translated image text in place', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=5'); await ready(page);
+ const translated=page.locator('#persian-page .reader-image-translation');
+ await expect(translated).toHaveCount(4);
+ await expect(translated.nth(0)).toContainText('دستیار هوش مصنوعی شخصی');
+ await expect(translated.nth(1)).toContainText('اطلاعات مکان شما');
+ await expect(translated.nth(2)).toContainText('Gemini');
+ await expect(translated.nth(3)).toContainText('Copilot');
+ expect(await translated.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+ await page.setViewportSize({width:390,height:844});
+ await expect(translated).toHaveCount(4);
+ expect(await translated.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

@@ -1,0 +1,37 @@
+REMARK SMILES C[C@H]([NH3+])C(=O)N[C@@H](CC(=O)[O-])C(=O)[O-]
+REMARK SMILES IDX 4 1 5 2 6 3 2 5 1 6 3 7 7 11 12 12 13 13 14 14 8 15 9 16
+REMARK SMILES IDX 10 17 11 18
+REMARK H PARENT 6 4 3 8 3 9 3 10
+ROOT
+ATOM      1  C   ALA A   1       0.819  -0.788   1.118  1.00  0.00    +0.278 C 
+ATOM      2  O   ALA A   1       1.362  -1.778   1.600  1.00  0.00    -0.268 OA
+ATOM      3  N   ASP A   2      -0.506  -0.750   0.723  1.00  0.00    -0.343 N 
+ATOM      4  H   UNL     1      -0.859   0.198   0.588  1.00  0.00    +0.164 HD
+ENDROOT
+BRANCH   1   5
+ATOM      5  CA  ALA A   1       1.563   0.560   0.939  1.00  0.00    +0.267 C 
+ATOM      6  CB  ALA A   1       1.198   1.546   2.035  1.00  0.00    +0.086 C 
+BRANCH   5   7
+ATOM      7  N   ALA A   1       1.275   1.191  -0.375  1.00  0.00    -0.348 N 
+ATOM      8  H   UNL     1       1.351   0.420  -1.096  1.00  0.00    +0.345 HD
+ATOM      9  H   UNL     1       0.251   1.404  -0.516  1.00  0.00    +0.345 HD
+ATOM     10  H   UNL     1       1.829   1.971  -0.704  1.00  0.00    +0.345 HD
+ENDBRANCH   5   7
+ENDBRANCH   1   5
+BRANCH   3  11
+ATOM     11  CA  ASP A   2      -0.905  -1.543  -0.475  1.00  0.00    +0.134 C 
+BRANCH  11  12
+ATOM     12  C   ASP A   2       0.157  -1.704  -1.628  1.00  0.00    +0.064 C 
+ATOM     13  O   ASP A   2       1.067  -0.809  -1.670  1.00  0.00    -0.548 OA
+ATOM     14  OXT ASP A   2       0.025  -2.719  -2.364  1.00  0.00    -0.548 OA
+ENDBRANCH  11  12
+BRANCH  11  15
+ATOM     15  CB  ASP A   2      -2.145  -0.892  -1.113  1.00  0.00    +0.083 C 
+BRANCH  15  16
+ATOM     16  CG  ASP A   2      -1.983   0.594  -1.471  1.00  0.00    +0.044 C 
+ATOM     17  OD1 ASP A   2      -2.705   1.032  -2.401  1.00  0.00    -0.550 OA
+ATOM     18  OD2 ASP A   2      -1.169   1.256  -0.736  1.00  0.00    -0.550 OA
+ENDBRANCH  15  16
+ENDBRANCH  11  15
+ENDBRANCH   3  11
+TORSDOF 6

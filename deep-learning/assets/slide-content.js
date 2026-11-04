@@ -505,7 +505,24 @@ export function createSourceLayout(record, plan) {
 }
 
 export function fitSourceLayout(stage) {
-  // Text that does not fit keeps its source size and uses the accessible fallback.
-  return [...stage.querySelectorAll('.reader-slide-text')].every(node =>
-    node.scrollHeight <= node.clientHeight + 2 && node.scrollWidth <= node.clientWidth + 2);
+  const nodes = [...stage.querySelectorAll('.reader-slide-text')];
+  const original = nodes.map(node => node.style.fontSize);
+  const scale = stage.offsetWidth ? stage.getBoundingClientRect().width / stage.offsetWidth : 0;
+  const fits = node => node.scrollHeight <= node.clientHeight + 2 && node.scrollWidth <= node.clientWidth + 2;
+  for (const node of nodes) {
+    if (fits(node)) continue;
+    const size = parseFloat(node.style.fontSize);
+    if (Number.isFinite(size) && !node.matches('.reader-word-math') && !node.querySelector('.katex, code, pre')) {
+      for (const factor of [.95, .90, .85]) {
+        if (size * factor < 16 || size * factor * scale < 12) continue;
+        node.style.fontSize = `${size * factor}px`;
+        if (fits(node)) break;
+      }
+    }
+    if (!fits(node)) {
+      nodes.forEach((item,index) => { item.style.fontSize = original[index]; });
+      return false;
+    }
+  }
+  return true;
 }

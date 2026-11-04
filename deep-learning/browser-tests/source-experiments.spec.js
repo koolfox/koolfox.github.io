@@ -34,6 +34,20 @@ test('film chapters explain a failed download and allow retry',async({page})=>{
  await expect.poll(()=>page.locator('video').evaluate(node=>node.currentTime)).toBeCloseTo(5.8,1);
 });
 
+test('convolution code film is available only on the matching source pages',async({page})=>{
+ await page.goto('/deep-learning/terms/spring-2026/s05/slides/#page=27');
+ const button=page.getByRole('button',{name:'فیلم کد کانولوشن'});
+ await expect(button).toBeVisible();
+ await button.click();
+ const film=page.frameLocator('[data-reader-tools-frame]');
+ await expect(film.getByRole('heading',{name:'کد کانولوشن (Convolution)'})).toBeVisible();
+ await expect(film.locator('track')).toHaveAttribute('srclang','fa');
+ await film.getByRole('button',{name:'ضرب و جمع'}).click();
+ await expect.poll(()=>film.locator('video').evaluate(node=>node.currentTime)).toBeCloseTo(9.4,1);
+ await page.locator('[data-page-select]').selectOption('38');
+ await expect(button).toHaveCount(0);
+});
+
 test('full model entry is source-bound and does not download weights on entry',async({page})=>{
  const weights=[];page.on('request',request=>{if(/\.onnx(?:\?|$)/.test(request.url()))weights.push(request.url());});
  await page.goto('/deep-learning/terms/spring-2026/s08/slides/#page=36');

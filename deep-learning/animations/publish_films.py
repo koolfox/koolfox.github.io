@@ -77,6 +77,8 @@ def main():
             'license': 'CC BY-NC-SA; source adaptation, source version unspecified',
             'render': {'engine': 'Manim Community', 'version': '0.20.1', 'resolution': [1920, 1080], 'fps': 24},
             'scene': scene})
+    # This film has its own render script and source-specific metadata.
+    published.append(json.loads((ROOT / 'animations/convolution-code.record.json').read_text()))
     (ROOT / 'animations/manifest.json').write_text(json.dumps({'schema_version': 1, 'films': published}, ensure_ascii=False, indent=2) + '\n')
 
 

@@ -156,3 +156,23 @@ test('XOR example preserves source image and two distinct caption colors and siz
  expect(Math.abs(evidence.a.size-evidence.expected[0])).toBeLessThan(.05);expect(Math.abs(evidence.b.size-evidence.expected[1])).toBeLessThan(.05);
  expect(evidence.delta).toBeLessThan(3);
 });
+
+test('computational graphs preserve their source diagrams, formulas and colored labels',async({page})=>{
+ await page.setViewportSize({width:1440,height:900});await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=105');await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const evidence=await page.evaluate(async()=>{
+  const config=JSON.parse(document.querySelector('#source-reader-config').textContent),record=(await(await fetch(config.translationUrl)).json()).pages[104];
+  const nodes=[...document.querySelectorAll('.reader-slide-text')],labels=nodes.map(node=>({text:node.textContent,color:getComputedStyle(node).color,overflow:node.scrollHeight>node.clientHeight+2||node.scrollWidth>node.clientWidth+2,yellow:[...node.querySelectorAll('.reader-emphasis')].some(el=>getComputedStyle(el).color==='rgb(255, 192, 0)')}));
+  const alternative=nodes.find(node=>node.textContent==='یا');
+  const crop=canvas=>{const temp=document.createElement('canvas');temp.width=64;temp.height=64;temp.getContext('2d').drawImage(canvas,.20*canvas.width,.61*canvas.height,.22*canvas.width,.22*canvas.height,0,0,64,64);return temp.getContext('2d').getImageData(0,0,64,64).data};
+  const a=crop(document.querySelector('#source-canvas')),b=crop(document.querySelector('.reader-slide-background'));let delta=0;for(let i=0;i<a.length;i+=4)delta+=Math.abs(a[i]-b[i])+Math.abs(a[i+1]-b[i+1])+Math.abs(a[i+2]-b[i+2]);
+  return {labels,alternative:Boolean(alternative)&&!alternative.querySelector('.katex'),delta:delta/(64*64*3),formula:record.blocks.find(block=>block.kind==='math').fa};
+ });
+ expect(evidence.alternative).toBe(true);expect(evidence.formula).toBe('a = b + c یا a = d*(b + c)');
+ await page.locator('.reader-figure-labels summary').click();await expect(page.locator('.reader-figure-content .katex-mathml')).toBeAttached();
+ expect(evidence.labels.some(item=>item.text.includes('گرافی جهت‌دار')&&item.yellow)).toBe(true);
+ expect(evidence.labels.some(item=>item.text.includes('گره‌ها')&&item.yellow)).toBe(true);
+ expect(evidence.labels.some(item=>item.text.includes('یال‌ها')&&item.yellow)).toBe(true);
+ expect(evidence.labels.some(item=>item.text.includes('مقدار میانی')&&item.color==='rgb(0, 253, 255)')).toBe(true);
+ expect(evidence.labels.every(item=>!item.overflow)).toBe(true);expect(evidence.delta).toBeLessThan(3);
+});

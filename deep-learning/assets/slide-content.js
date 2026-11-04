@@ -3,7 +3,7 @@ import katex from './vendor/katex/katex.mjs';
 const persian = /[\u0620-\u063f\u0641-\u064a\u066e-\u066f\u0671-\u06d3\u06fa-\u06fc]/;
 const bullet = /^(\s*)([•●▪◦–-]|\d+[.)])\s+(.+)$/;
 const pairedTerms = new Map([['least', 'کمترین'], ['most', 'بیشترین']]);
-const sourceTerms = new Map([...pairedTerms, ['training data','دادهٔ آموزش'], ['test data','دادهٔ آزمون'], ['training','آموزش'], ['test','آزمون'], ['overfitting','بیش‌برازش'], ['regularize','منظم‌سازی'], ['gradient','گرادیان'], ['constant','ثابت'], ['constant(i.e.,modelparameter)','ثابت (یعنی پارامتر مدل)'], ['intuition','شهود'], ['e.g','برای مثال'], ['forxorproblem','برای مسئله XOR']].map(([term,target])=>[term.replace(/\s/g,""),target]));
+const sourceTerms = new Map([...pairedTerms, ['training data','دادهٔ آموزش'], ['test data','دادهٔ آزمون'], ['training','آموزش'], ['test','آزمون'], ['overfitting','بیش‌برازش'], ['regularize','منظم‌سازی'], ['gradient','گرادیان'], ['constant','ثابت'], ['constant(i.e.,modelparameter)','ثابت (یعنی پارامتر مدل)'], ['intuition','شهود'], ['e.g','برای مثال'], ['forxorproblem','برای مسئله XOR'], ['directedgraph','گرافی جهت‌دار'], ['nodes','گره‌ها'], ['edges','یال‌ها']].map(([term,target])=>[term.replace(/\s/g,""),target]));
 let referenceTargets = new Map();
 const referenceKey = value => value.replace(/\ufffe/g, '-').replace(/\/$/, '');
 
@@ -230,6 +230,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   const regions = [];
   const blocks = record.blocks.flatMap(block => block.source_fragments ? block.source_fragments.map(fragment => ({
     ...block, fa:fragment.fa.trim(), kind:fragment.kind || block.kind,
+    latex:fragment.kind && fragment.kind!=='math' ? undefined : block.latex,
     source_refs:fragment.source_parts, source_lines:[...new Set(fragment.source_parts.map(ref=>ref.line))],
   })) : [block]);
   for (const block of blocks) {
@@ -329,6 +330,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(region.block.fa.startsWith('(و مسئله‌های حل‌شده'))region.slot=[.03,.91,.97,.985];
     }
   }
+  // Separate the computational-graph labels without covering the diagrams.
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===105
+      && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
+      && record.source_text_sha256==='9cfd57c543dbe83396610804bf2ba0188988faf0823e2f875d4c088a034bccaf'
+      && layout.translation_sha256==='8198005a8396db902564d2df1470999ea75b245317e34791f9d5ff1cdd452919'){
+    for(const region of regions)if(region.block.fa==='مقدار میانی در متغیری تازه ذخیره می‌شود.')region.slot=[.65,.568,.97,.615];
+  }
   // Reviewed examples use the same text scale as the source neural-network diagram.
   const weightReview = {
     86:['677ef30e430098d8abc449ef7ba245ba50b0585c828114c8820d6deea9a81f4c','06b40a38450fc61c9781fb040c1a81ee5cd790bbde53b43c539545cc92bbcd93'],
@@ -351,7 +359,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(/^آیا (?:w[1-5],(?:4|5|6)|b[4-6]) باید افزایش یابد یا کاهش؟$/.test(region.block.fa))region.slot=[.64,.25,.98,.315];
     }
   }
-  return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&!persian.test(block.fa||''))};
+  return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 
 export function createSourceLayout(record, plan) {

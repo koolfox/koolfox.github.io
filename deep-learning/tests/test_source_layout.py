@@ -9,7 +9,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 import test_source_reader as fixtures
 from extract_source_layout import rgb, translation_identity
-from source_reader import source_reader_page
+from source_reader import source_reader_page, validate_source_fragments
 
 
 class SourceLayoutTests(unittest.TestCase):
@@ -170,6 +170,18 @@ class SourceLayoutTests(unittest.TestCase):
         self.flush_fragments()
         with self.assertRaisesRegex(ValueError, 'Incomplete source fragment partition'):
             self.fixture.load()
+
+    def test_reviewed_formula_parts_cannot_change_native_equations(self):
+        root = Path(__file__).resolve().parents[1]
+        def page(kind):
+            path = root / f'content/{kind}/spring-2026/s03.json'
+            return json.loads(path.read_text())['pages'][104]
+        translated, geometry, source = page('translations'), page('source-layout'), page('source-slides')
+        validate_source_fragments(translated, geometry, source)
+        broken = copy.deepcopy(translated)
+        broken['blocks'][2]['source_fragments'][0]['fa'] = 'a = b - c '
+        with self.assertRaisesRegex(ValueError, 'Formula fragments must preserve native equations'):
+            validate_source_fragments(broken, geometry, source)
 
     def test_all_spring_2026_pages_have_explicit_geometry_inventory(self):
         root = Path(__file__).resolve().parents[1]

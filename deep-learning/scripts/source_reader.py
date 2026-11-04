@@ -333,7 +333,8 @@ def validate_source_fragments(translation, geometry, page):
             continue
         fragments = block["source_fragments"]
         require(block.get("source_fragments_verified") is True
-                and block["kind"] != "not_visible" and "latex" not in block,
+                and block["kind"] != "not_visible"
+                and ("latex" not in block or block["kind"] == "math"),
                 "Source fragments need verified visible text")
         require(isinstance(fragments, list) and bool(fragments), "Empty source fragments")
         seen = set()
@@ -345,6 +346,12 @@ def validate_source_fragments(translation, geometry, page):
             texts.append(fragment["fa"])
             refs = fragment.get("source_parts")
             require(isinstance(refs, list) and bool(refs), "Empty source fragment references")
+            if "latex" in block:
+                require(len(refs) == 1 and isinstance(refs[0], dict), "Invalid formula fragment")
+                kind = fragment.get("kind", block["kind"])
+                intact = kind == "literal" and key(fragment["fa"]) == key(refs[0].get("en", ""))
+                connector = kind == "text" and key(refs[0].get("en", "")).upper() == "OR" and key(fragment["fa"]) == "یا"
+                require(intact or connector, "Formula fragments must preserve native equations")
             for ref in refs:
                 require(isinstance(ref, dict) and set(ref) <= {"line", "part", "en"}
                         and type(ref.get("line")) is int and ref["line"] in block["source_lines"]

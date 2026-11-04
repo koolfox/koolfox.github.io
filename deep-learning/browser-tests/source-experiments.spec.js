@@ -34,6 +34,17 @@ test('film chapters explain a failed download and allow retry',async({page})=>{
  await expect.poll(()=>page.locator('video').evaluate(node=>node.currentTime)).toBeCloseTo(5.8,1);
 });
 
+test('film chapters show loading while a slow download is in progress',async({page})=>{
+ await page.goto('/deep-learning/animations/attention/');
+ await page.route('**/assets/media/attention.mp4*',async route=>{
+  await new Promise(resolve=>setTimeout(resolve,1000));
+  await route.continue();
+ });
+ await page.getByRole('button',{name:'وزن‌ها',exact:true}).click();
+ await expect(page.getByRole('status')).toContainText('در حال بارگیری فیلم');
+ await expect(page.locator('.film-status')).toBeEmpty({timeout:30000});
+});
+
 test('convolution code film is available only on the matching source pages',async({page})=>{
  await page.goto('/deep-learning/terms/spring-2026/s05/slides/#page=27');
  const button=page.getByRole('button',{name:'فیلم کد کانولوشن'});

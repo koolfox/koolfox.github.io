@@ -45,5 +45,14 @@ try {
  $('pose-select').addEventListener('change',()=>{try{draw()}catch(e){$('pose-stage').hidden=true;status.textContent=e.message}});
  $('load-sample').addEventListener('click',sample);$('reset-view').addEventListener('click',()=>scene.resetView());
  $('load-files').addEventListener('click',async()=>{const current=++requestId;try{const a=$('target-file').files[0],b=$('pose-file').files[0];if(!a||!b)throw Error('هر دو فایل را انتخاب کنید.');if(a.size>10000000||b.size>10000000)throw Error('اندازهٔ هر فایل باید کمتر از ۱۰ مگابایت باشد.');const target=await a.text(),poses=await b.text();if(current===requestId)setData(target,poses)}catch(e){if(current===requestId){$('pose-stage').hidden=true;status.textContent='نمایش انجام نشد: '+e.message}}});
- sample();
+ const params=new URLSearchParams(location.search);
+ const sequence=params.get('sequence'),batch=params.get('batch');
+ if(params.get('demo')==='39' && /^[ACDEFGHIKLMNPQRSTVWY]{2}$/.test(sequence||'') && /^(1|2)$/.test(batch||'')) {
+  const current=++requestId;
+  const folder=`peptide-ops-39-demo/docking/batch-00000${batch}/docking/`;
+  status.textContent='در حال بارگذاری نتیجهٔ ثبت‌شده…';
+  Promise.all([fetch(folder+'report.json'),fetch(folder+'selected-chain.pdb'),fetch(folder+sequence+'/poses.pdbqt')])
+   .then(async rs=>{if(rs.some(r=>!r.ok))throw Error('فایل نتیجه در دسترس نیست.');const report=await rs[0].json();if(!report.candidates.some(row=>row.sequence===sequence))throw Error('توالی در گزارش این دسته نیست.');const [target,poses]=await Promise.all([rs[1].text(),rs[2].text()]);if(current===requestId){setData(target,poses);$('sample-description').textContent=`نتیجهٔ ثبت‌شدهٔ ${sequence} در هدف آزمایشی 1UBQ؛ آبی هدف و نارنجی پپتید است.`}})
+   .catch(e=>{if(current===requestId){$('pose-stage').hidden=true;status.textContent='نمایش انجام نشد: '+e.message}});
+ } else sample();
 }catch(e){status.textContent='نمای سه‌بعدی در این مرورگر در دسترس نیست. فایل‌های SDF را دریافت کنید.'}

@@ -6,7 +6,7 @@ test('source attention film plays in place without loading a model or changing t
  const play=page.locator('[data-source-interactive="attention"]');await expect(play).toBeVisible();
  await play.click();
  const tool=page.frameLocator('[data-reader-tools-frame]');
- await expect(tool.getByRole('heading',{name:'محاسبهٔ توجه (Self-attention)'})).toBeVisible();
+ await expect(tool.getByRole('heading',{name:'محاسبه توجه (Self-attention)'})).toBeVisible();
  const video=tool.locator('video');await expect(video).toHaveAttribute('controls','');
  await expect(video).not.toHaveAttribute('autoplay');
  await video.evaluate(async node=>{await node.play();});
@@ -32,6 +32,31 @@ test('film chapters explain a failed download and allow retry',async({page})=>{
  await chapter.click();
  await expect(page.locator('.film-status')).toBeEmpty();
  await expect.poll(()=>page.locator('video').evaluate(node=>node.currentTime)).toBeCloseTo(5.8,1);
+});
+
+test('film chapters show loading while a slow download is in progress',async({page})=>{
+ await page.goto('/deep-learning/animations/attention/');
+ await page.route('**/assets/media/attention.mp4*',async route=>{
+  await new Promise(resolve=>setTimeout(resolve,1000));
+  await route.continue();
+ });
+ await page.getByRole('button',{name:'وزن‌ها',exact:true}).click();
+ await expect(page.getByRole('status')).toContainText('در حال بارگیری فیلم');
+ await expect(page.locator('.film-status')).toBeEmpty({timeout:30000});
+});
+
+test('convolution code film is available only on the matching source pages',async({page})=>{
+ await page.goto('/deep-learning/terms/spring-2026/s05/slides/#page=27');
+ const button=page.getByRole('button',{name:'فیلم کد کانولوشن'});
+ await expect(button).toBeVisible();
+ await button.click();
+ const film=page.frameLocator('[data-reader-tools-frame]');
+ await expect(film.getByRole('heading',{name:'کد کانولوشن (Convolution)'})).toBeVisible();
+ await expect(film.locator('track')).toHaveAttribute('srclang','fa');
+ await film.getByRole('button',{name:'ضرب و جمع'}).click();
+ await expect.poll(()=>film.locator('video').evaluate(node=>node.currentTime)).toBeCloseTo(9.4,1);
+ await page.locator('[data-page-select]').selectOption('38');
+ await expect(button).toHaveCount(0);
 });
 
 test('full model entry is source-bound and does not download weights on entry',async({page})=>{
@@ -79,4 +104,14 @@ test('page quizzes preserve symbolic and vector options with isolated left-to-ri
  expect(values.length).toBeGreaterThan(0);
  const symbolic=values.filter(item=>/[=η∂\[\]]/.test(item.text));expect(symbolic.length).toBeGreaterThan(0);
  expect(symbolic.every(item=>item.isolated.some(part=>part.dir==='ltr'))).toBe(true);
+});
+
+test('MNIST mobile controls expose real training and the browsable dataset',async({baseURL})=>{
+ test.setTimeout(120000);
+ const {execFile}=await import('node:child_process');
+ const {promisify}=await import('node:util');
+ const {stdout}=await promisify(execFile)(process.execPath,['mnist-readability.mjs'],{
+  cwd:import.meta.dirname,env:{...process.env,SITE_BASE_URL:baseURL},timeout:110000,
+ });
+ expect(stdout).toContain('PASS real CPU MNIST batch');
 });

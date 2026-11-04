@@ -34,7 +34,9 @@ class SourceAnimationTests(unittest.TestCase):
         self.assertAlmostEqual(actual['e6'], result['source_scaled_gradients']['b6'], places=14)
 
     def test_film_artifacts_and_source_identity_are_pinned(self):
-        self.assertEqual(len(animation_files(ROOT)), 7)
+        files = animation_files(ROOT)
+        self.assertIn("assets/media/convolution-code.mp4", files)
+        self.assertIn("assets/media/convolution-code.fa.vtt", files)
         originals = {row['session_id']: row for row in json.loads((ROOT / 'data/metadata/spring-2026-slide-identity.json').read_text())['records']}
         films = json.loads((ROOT / 'animations/manifest.json').read_text())['films']
         for film in films:

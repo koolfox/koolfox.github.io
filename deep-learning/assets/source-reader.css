@@ -60,3 +60,15 @@ html:has(body.source-reader),body.source-reader{height:100%;overflow:hidden}.sou
 .reader-slide-text a{color:inherit}
 .source-page-tools{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
 .source-page-tools:empty{display:none}
+
+/* A quiet, keyboard-accessible handle separates the two working surfaces. */
+@media screen and (min-width:761px){
+ .source-reader[data-split-active=true] .reader-layout{grid-template-columns:minmax(0,calc((100% - 14px) * var(--reader-split))) 14px minmax(0,1fr);gap:0}
+ .reader-divider{position:relative;cursor:col-resize;touch-action:none;background:#f0f3f8;outline:0}
+ .reader-divider::after{content:'';position:absolute;left:6px;top:calc(50% - 22px);width:2px;height:44px;border-radius:1px;background:#8294ae}
+ .reader-divider:hover::after,.reader-divider:focus-visible::after,.reader-resizing .reader-divider::after{background:#245bdf;width:4px;left:5px}
+ .reader-divider:focus-visible{outline:3px solid #245bdf;outline-offset:-3px}
+ .reader-resizing,.reader-resizing *{cursor:col-resize!important;user-select:none!important}
+ .reader-resizing .reader-tools-panel iframe{pointer-events:none}
+}
+@media print{.reader-divider{display:none!important}}

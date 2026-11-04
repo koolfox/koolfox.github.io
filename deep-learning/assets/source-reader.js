@@ -298,3 +298,50 @@ window.sourceSlideReader={openTool(raw,section='lab'){const url=new URL(raw,loca
 controls();
 syncPanels();
 if(location.hash==='#sources')showReferences(false);
+
+// The divider changes available space only; each slide keeps its own scale and content.
+{
+ const layout=document.querySelector('.reader-layout');
+ const divider=document.createElement('div');
+ divider.className='reader-divider';
+ divider.setAttribute('role','separator');
+ divider.setAttribute('aria-orientation','vertical');
+ divider.setAttribute('aria-label','تنظیم اندازه دو بخش');
+ divider.setAttribute('aria-valuemin','25');
+ divider.setAttribute('aria-valuemax','75');
+ divider.title='برای تنظیم اندازه بکشید یا از کلیدهای جهت استفاده کنید';
+ let fraction=.5,dragging=false;
+ try{const saved=Number(localStorage.getItem('danna-reader-split'));if(saved>=.25&&saved<=.75)fraction=saved;}catch{}
+ const setFraction=value=>{
+  fraction=Math.max(.25,Math.min(.75,value));
+  layout.style.setProperty('--reader-split',String(fraction));
+  divider.setAttribute('aria-valuenow',String(Math.round(fraction*100)));
+  divider.setAttribute('aria-valuetext',`${Math.round(fraction*100)} درصد برای بخش چپ`);
+ };
+ const sync=()=>{
+  const panes=[...layout.children].filter(node=>node!==divider&&!node.hidden);
+  const active=matchMedia('(min-width:761px)').matches&&!layout.hidden&&panes.length===2;
+  document.body.dataset.splitActive=String(active);
+  divider.hidden=!active;divider.tabIndex=active?0:-1;
+  if(active){layout.insertBefore(divider,panes[1]);divider.setAttribute('aria-controls',panes[0].id||'reader');}
+ };
+ const save=()=>{try{localStorage.setItem('danna-reader-split',String(fraction));}catch{}};
+ divider.addEventListener('pointerdown',event=>{
+  if(event.button!==0)return;
+  dragging=true;divider.setPointerCapture(event.pointerId);document.body.classList.add('reader-resizing');event.preventDefault();
+ });
+ divider.addEventListener('pointermove',event=>{
+  if(!dragging)return;
+  const bounds=layout.getBoundingClientRect();setFraction((event.clientX-bounds.left)/bounds.width);
+ });
+ const endDrag=()=>{if(!dragging)return;dragging=false;document.body.classList.remove('reader-resizing');save();};
+ divider.addEventListener('pointerup',endDrag);divider.addEventListener('pointercancel',endDrag);divider.addEventListener('lostpointercapture',endDrag);
+ divider.addEventListener('keydown',event=>{
+  const next={ArrowLeft:fraction-.02,ArrowRight:fraction+.02,Home:.25,End:.75}[event.key];
+  if(next===undefined)return;event.preventDefault();event.stopPropagation();setFraction(next);save();
+ });
+ layout.append(divider);setFraction(fraction);sync();
+ const observer=new MutationObserver(sync);
+ for(const node of [layout,...layout.children])if(node!==divider)observer.observe(node,{attributes:true,attributeFilter:['hidden']});
+ matchMedia('(min-width:761px)').addEventListener('change',sync);
+}

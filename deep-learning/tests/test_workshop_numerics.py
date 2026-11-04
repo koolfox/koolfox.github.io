@@ -295,6 +295,11 @@ class WorkshopNumericalTests(unittest.TestCase):
             self.assertAlmostEqual(scope["gradient"], (f(x+h)-f(x-h))/(2*h), places=8)
             self.assertLessEqual(f(scope["next_x"]), f(x) + 1e-14)
         self.assertEqual(execute("s03_quadratic")["result"]["next_x"], 1.87)
+        minimum = 3 / 8
+        self.assertEqual(f(2), 12)
+        self.assertEqual(round(minimum, 2), 0.38)
+        self.assertLess(f(minimum), f(minimum - 0.01))
+        self.assertLess(f(minimum), f(minimum + 0.01))
 
     def test_source_scalar_graph_all_partial_derivatives(self):
         scope = execute("s03_scalar_graph")

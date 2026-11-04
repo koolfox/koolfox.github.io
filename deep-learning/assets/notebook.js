@@ -113,7 +113,7 @@ export function mountNotebook(root, options) {
   const list = node('div', 'nb-cells'), add = node('button', '', 'افزودن سلول');
   add.type = 'button'; add.dataset.notebookAdd = '';
   let editors = [], cellRows = [];
-  const actions = node('div', 'nb-actions'), runAll = node('button', 'primary', 'اجرای همهٔ سلول‌ها');
+  const actions = node('div', 'nb-actions'), runAll = node('button', 'primary', 'اجرای همه سلول‌ها');
   const stop = node('button', '', 'توقف پایتون');
   const capture = node('button', '', 'کنترل‌ها به تنظیمات'), restart = node('button', '', 'راه‌اندازی پایتون');
   for (const button of [runAll, capture, add, stop, restart]) { button.type = 'button'; actions.append(button); }
@@ -138,22 +138,28 @@ export function mountNotebook(root, options) {
   fontTools.append(smaller, fontSize, larger); actions.append(fontTools); setCodeFontSize(codeFontSize);
   runAll.dataset.notebookRunAll = '';
   capture.hidden = !options.capture; stop.hidden = true; restart.hidden = true;
-  const status = node('p', 'nb-status', 'هر اجرا، سلول‌های قبلی را از ابتدا محاسبه می‌کند؛ نتیجهٔ پنهان از اجرای قبل باقی نمی‌ماند.');
+  const status = node('p', 'nb-status', 'هر اجرا، سلول‌های قبلی را از ابتدا محاسبه می‌کند؛ نتیجه پنهان از اجرای قبل باقی نمی‌ماند.');
   status.setAttribute('role', 'status'); status.setAttribute('aria-live', 'polite');
-  const hint = node('p', 'nb-editor-help', 'تکمیل کد: Ctrl+Space · اجرای سلول: Ctrl+Enter · اجرا و سلول بعد: Shift+Enter');
+  const hint = node('p', 'nb-editor-help');
+  for (const [label, keys] of [['تکمیل کد', 'Ctrl+Space'], ['اجرای سلول', 'Ctrl+Enter'], ['اجرا و سلول بعد', 'Shift+Enter']]) {
+    if (hint.childNodes.length) hint.append(document.createTextNode(' · '));
+    hint.append(document.createTextNode(label + ': '));
+    const shortcut = node('bdi', '', keys); shortcut.dir = 'ltr'; hint.append(shortcut);
+  }
   const errorOutput = node('pre', 'nb-output nb-error'); errorOutput.dir = 'ltr'; errorOutput.hidden = true;
   const tools = node('details', 'nb-tools'), summary = node('summary', '', 'نسخه‌ها و دریافت نوت‌بوک');
   const versionRow = node('div', 'nb-version-tools'), versionName = node('input');
   versionName.type = 'text'; versionName.maxLength = 60; versionName.placeholder = 'نام نسخه، اختیاری';
   versionName.setAttribute('aria-label', 'نام نسخه');
-  const saveVersion = node('button', '', 'ذخیرهٔ نسخه'), versionPicker = node('select');
+  const saveVersion = node('button', '', 'ذخیره نسخه'), versionPicker = node('select');
   versionPicker.setAttribute('aria-label', 'نسخه‌های ذخیره‌شده');
   const exportBook = node('button', '', 'دریافت برای Jupyter');
   for (const button of [saveVersion, exportBook]) button.type = 'button';
   exportBook.dataset.notebookDownload = ''; saveVersion.dataset.notebookSave = '';
   versionRow.append(versionName, saveVersion, versionPicker, exportBook); tools.append(summary, versionRow);
   const packageTools = node('details', 'nb-tools nb-packages'), packageSummary = node('summary', '', 'بسته‌های پایتون');
-  const packageHelp = node('p', 'nb-status', 'نصب اختیاری با اینترنت؛ بستهٔ آمادهٔ Pyodide یا wheel سازگار Python. نام بسته یا نام==نسخه؛ چند نام با فاصله. بسته‌های این دفترچه پس از راه‌اندازی دوباره بازیابی می‌شوند.');
+  const packageHelp = node('p', 'nb-status');
+  questionText(packageHelp, 'نصب اختیاری با اینترنت؛ بسته آماده Pyodide یا wheel سازگار Python. نام بسته یا نام==نسخه؛ چند نام با فاصله. بسته‌های این دفترچه پس از راه‌اندازی دوباره بازیابی می‌شوند.');
   const packageRow = node('div', 'nb-version-tools'), packageInput = node('input');
   packageInput.type = 'text'; packageInput.maxLength = 1200; packageInput.dir = 'ltr';
   packageInput.placeholder = 'numpy scikit-learn'; packageInput.setAttribute('aria-label', 'بسته‌های مورد نیاز');
@@ -167,7 +173,7 @@ export function mountNotebook(root, options) {
   function message(text, error = false) { status.textContent = text; status.dataset.error = String(error); }
   function save() {
     try { localStorage.setItem(storageKey, JSON.stringify({schema_version: 1, cells, versions, answers, packages,question_signature:questionSignature})); }
-    catch { message('ذخیرهٔ مرورگر ممکن نیست؛ پیش از بستن صفحه، نوت‌بوک را دریافت کن.', true); }
+    catch { message('ذخیره مرورگر ممکن نیست؛ پیش از بستن صفحه، نوت‌بوک را دریافت کن.', true); }
   }
   function controls() {
     runAll.disabled = !ready || busy;
@@ -255,7 +261,7 @@ export function mountNotebook(root, options) {
       const result = await (options.execute ? options.execute(request, message) : services.execute(request));
       if (activeRequest !== id) return;
       record = result; showOutput(); options.onExecution?.(result);
-      if (!result.ok) message('پایتون خطا داد؛ شمارهٔ سلول و خط را در خروجی بخوان، اصلاح کن و دوباره اجرا کن.', true);
+      if (!result.ok) message('پایتون خطا داد؛ شماره سلول و خط را در خروجی بخوان، اصلاح کن و دوباره اجرا کن.', true);
       else message(`سلول‌های ۱ تا ${until + 1} اجرا شدند${result.python ? ' · Python ' + result.python : ''}. ${result.applied_to_lab === false ? 'مدل با اجرای سلول ساخت و محاسبه به‌روز می‌شود.' : 'خروجی از همین کد محاسبه شده است.'}`);
       return result.ok;
     } catch (error) { if (activeRequest === id) message(String(error.message || error), true); }
@@ -270,7 +276,7 @@ export function mountNotebook(root, options) {
   modes.addEventListener('keydown', event => { if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key) || quizMode.hidden) return; event.preventDefault(); const next = event.key === 'Home' ? 'code' : event.key === 'End' ? 'quiz' : code.hidden ? 'code' : 'quiz'; mode(next); (next === 'code' ? codeMode : quizMode).focus(); });
   saveVersion.addEventListener('click', () => {
     versions.push({name: versionName.value.trim() || `نسخهٔ ${versions.length + 1}`, cells: structuredClone(cells), packages: [...packages], saved_at_utc: new Date().toISOString()});
-    versions = versions.slice(-8); save(); drawVersions(); message('نسخهٔ کد ذخیره شد؛ بازیابی آن اجرای خودکار ندارد.');
+    versions = versions.slice(-8); save(); drawVersions(); message('نسخه کد ذخیره شد؛ بازیابی آن اجرای خودکار ندارد.');
   });
   versionPicker.addEventListener('change', () => {
     if (!versionPicker.value) return;
@@ -279,7 +285,7 @@ export function mountNotebook(root, options) {
     services.stop();services.setPackages(packages);nativePackagesReady=false;showPackages();selected = 0; changed(); draw();
   });
   function showPackages() {
-    packageStatus.textContent = packages.length ? packages.join(' · ') : 'بستهٔ اضافه‌ای برای این دفترچه انتخاب نشده است.';
+    packageStatus.textContent = packages.length ? packages.join(' · ') : 'بسته اضافه‌ای برای این دفترچه انتخاب نشده است.';
     packageStatus.dir = packages.length ? 'ltr' : 'rtl';
   }
   install.addEventListener('click', async () => {
@@ -296,7 +302,7 @@ export function mountNotebook(root, options) {
     } catch (error) { packageStatus.textContent = 'نصب انجام نشد؛ نام/نسخه و سازگاری wheel با مرورگر را بررسی کن. ' + error.message; }
     finally { busy = false; controls(); }
   });
-  clearPackages.addEventListener('click', () => { packages = []; nativePackagesReady = false; services.stop(); services.setPackages(packages);save(); showPackages(); message('فهرست بازیابی خالی شد؛ بستهٔ بارشدهٔ آزمایشگاه تا راه‌اندازی دوباره در محیط فعلی می‌ماند.'); });
+  clearPackages.addEventListener('click', () => { packages = []; nativePackagesReady = false; services.stop(); services.setPackages(packages);save(); showPackages(); message('فهرست بازیابی خالی شد؛ بسته بارشده آزمایشگاه تا راه‌اندازی دوباره در محیط فعلی می‌ماند.'); });
   exportBook.addEventListener('click', async () => {
     try {
       const notebook = {nbformat: 4, nbformat_minor: 5, metadata: {kernelspec: {display_name: 'Python 3', language: 'python', name: 'python3'}, language_info: {name: 'python', ...(record?.python ? {version: record.python} : {})}, learning_requirements: packages}, cells: []};
@@ -326,7 +332,7 @@ export function mountNotebook(root, options) {
     const links = node('div', 'nb-actions');
     for (const page of options.source_pages) {
       const activity = options.activity_pages?.includes(page);
-      const button = node('button', '', `${activity ? 'فعالیت' : 'صفحهٔ'} ${new Intl.NumberFormat('fa-IR').format(page)}`);
+      const button = node('button', '', `${activity ? 'فعالیت' : 'صفحه'} ${new Intl.NumberFormat('fa-IR').format(page)}`);
       button.type = 'button'; button.addEventListener('click', () => options.goToSource(page)); links.append(button);
     }
     sources.append(summary, links); quiz.append(sources);
@@ -338,7 +344,7 @@ export function mountNotebook(root, options) {
     form.append(fieldset, check, feedback); form.dataset.notebookQuestion = String(index);
     form.addEventListener('submit', event => { event.preventDefault(); const answer = new FormData(form).get('answer'); if (answer === null) return; answers[index] = Number(answer); save(); const correct = Number(answer) === question.correct; questionText(feedback,(correct ? 'درست است. ' : 'دوباره مقایسه کن. ') + question.explanation); feedback.dataset.state = correct ? 'correct' : 'incorrect'; });
     if (question.source_page && options.goToSource) {
-      const source = node('button', '', `اسلاید مرتبط · صفحهٔ ${question.source_page}`); source.type = 'button';
+      const source = node('button', '', `اسلاید مرتبط · صفحه ${question.source_page}`); source.type = 'button';
       source.addEventListener('click', () => options.goToSource(question.source_page)); form.append(source);
     }
     quiz.append(form);

@@ -1,0 +1,147 @@
+{
+  "status": "completed",
+  "started_at_utc": "2026-11-04T07:09:39.621411+00:00",
+  "purpose": "technical A/R short-peptide pilot; not validated discovery",
+  "rdkit_version": "2026.09.1",
+  "conformer_method": "ETKDGv3 + MMFF94; one conformer",
+  "protonation": "N-terminus +1, C-terminus -1, Arg side chain +1; fixed assumptions, not pH prediction",
+  "receptor_sha256": "ef6112549c988297f3911490d9a5466cfcb9fbce65c262608f1b4963e7785e06",
+  "box": {
+    "center_x": -1.2684999999999995,
+    "center_y": -58.9935,
+    "center_z": -16.9865,
+    "size_x": 30.919,
+    "size_y": 29.395000000000003,
+    "size_z": 30.355
+  },
+  "docking": {
+    "engine": "AutoDock Vina 1.2.7",
+    "cpu": 1,
+    "exhaustiveness": 2,
+    "num_modes": 3,
+    "seed": 42
+  },
+  "limitations": [
+    "One conformer and one protonation state per peptide",
+    "Low search budget; no flexible-peptide benchmark or negative-site control",
+    "Monomeric TNF receptor from a peptide-bound structure with modeled side chains",
+    "Known binding box is derived from a different 31-residue peptide",
+    "Scores do not measure binding affinity, inhibition, safety, or manufacturing cost"
+  ],
+  "candidates": [
+    {
+      "sequence": "AA",
+      "status": "completed",
+      "seed": 42,
+      "formal_charge": 0,
+      "pdbqt_sha256": "a669256530f70561f9181ecbd4f6579322ea4f5e68fb5dd4ff5fa0595efeec99",
+      "sdf_sha256": "40a9fcd733224f70eaf9c0a577da8d4793ab954c2d8808eb89856f6cd8e15df3",
+      "elapsed_seconds": 2.06,
+      "exit_code": 0,
+      "poses": [
+        {
+          "vina_score_kcal_mol": -3.415,
+          "minimum_interchain_heavy_distance_angstrom": 2.8290565565219805,
+          "severe_clash_screen": "pass"
+        },
+        {
+          "vina_score_kcal_mol": -3.329,
+          "minimum_interchain_heavy_distance_angstrom": 2.9203794274032253,
+          "severe_clash_screen": "pass"
+        },
+        {
+          "vina_score_kcal_mol": -3.305,
+          "minimum_interchain_heavy_distance_angstrom": 2.857873685102264,
+          "severe_clash_screen": "pass"
+        }
+      ],
+      "poses_sha256": "471b91c110588013943f488074e2c9ee1234f5c53fc96e9b92332fae0bdeaa42"
+    },
+    {
+      "sequence": "AR",
+      "status": "completed",
+      "seed": 42,
+      "formal_charge": 1,
+      "pdbqt_sha256": "431b0308a4f2a59bd50465ce3c0169fcc561d7170f89b02292caf9d89b502612",
+      "sdf_sha256": "1ab650963f36ccdc41aef6792818cf9580deb57ce8a77d6ea6c2bb0af8d75025",
+      "elapsed_seconds": 5.17,
+      "exit_code": 0,
+      "poses": [
+        {
+          "vina_score_kcal_mol": -3.954,
+          "minimum_interchain_heavy_distance_angstrom": 2.8391051407089525,
+          "severe_clash_screen": "pass"
+        },
+        {
+          "vina_score_kcal_mol": -3.827,
+          "minimum_interchain_heavy_distance_angstrom": 2.90319031411997,
+          "severe_clash_screen": "pass"
+        },
+        {
+          "vina_score_kcal_mol": -3.818,
+          "minimum_interchain_heavy_distance_angstrom": 2.8187135363495166,
+          "severe_clash_screen": "pass"
+        }
+      ],
+      "poses_sha256": "37c46554d64f6724705f2d95f8b72369f180edddea62905f27c3aabdd750d57b"
+    },
+    {
+      "sequence": "RA",
+      "status": "completed",
+      "seed": 42,
+      "formal_charge": 1,
+      "pdbqt_sha256": "13aad2c83b3a7e3ea921ff7069e55ff3f4857a6d7bacfe55b96a4cd172bd6595",
+      "sdf_sha256": "aebafc29f4156eb9b594cc8b323b3f0df267117db2c9587225679daaf50670b0",
+      "elapsed_seconds": 5.18,
+      "exit_code": 0,
+      "poses": [
+        {
+          "vina_score_kcal_mol": -4.114,
+          "minimum_interchain_heavy_distance_angstrom": 2.93262697934804,
+          "severe_clash_screen": "pass"
+        },
+        {
+          "vina_score_kcal_mol": -3.991,
+          "minimum_interchain_heavy_distance_angstrom": 2.7873046119862823,
+          "severe_clash_screen": "pass"
+        },
+        {
+          "vina_score_kcal_mol": -3.687,
+          "minimum_interchain_heavy_distance_angstrom": 3.238018684319164,
+          "severe_clash_screen": "pass"
+        }
+      ],
+      "poses_sha256": "2fae3ce934b831fc50e76729927702c3da5330263c5cb505ee18a3ba324a9615"
+    },
+    {
+      "sequence": "RR",
+      "status": "completed",
+      "seed": 42,
+      "formal_charge": 2,
+      "pdbqt_sha256": "91d0860f7aaac6a44ef07c2c2cb1db0808b70c61e7eb30081d5173a5dd298586",
+      "sdf_sha256": "e73072d61e246dc11363c5bab17166370f7afec074e01835ab77ca66800e9b14",
+      "elapsed_seconds": 11.63,
+      "exit_code": 0,
+      "poses": [
+        {
+          "vina_score_kcal_mol": -4.301,
+          "minimum_interchain_heavy_distance_angstrom": 2.833634591827251,
+          "severe_clash_screen": "pass"
+        },
+        {
+          "vina_score_kcal_mol": -4.027,
+          "minimum_interchain_heavy_distance_angstrom": 2.848394108967365,
+          "severe_clash_screen": "pass"
+        },
+        {
+          "vina_score_kcal_mol": -3.939,
+          "minimum_interchain_heavy_distance_angstrom": 2.804617977550598,
+          "severe_clash_screen": "pass"
+        }
+      ],
+      "poses_sha256": "bdef151af8c0c1c119aeeb15621c9518fc4d0c2660e940a0e2e7d05ca4b89534"
+    }
+  ],
+  "engine_version": "AutoDock Vina v1.2.7",
+  "finished_at_utc": "2026-11-04T07:10:03.914943+00:00"
+}

@@ -48,3 +48,31 @@ test('mobile view changes retain the readable fallback rather than an old slide 
  await expect(page.locator('#persian-page .reader-slide-stage')).toHaveCount(0);
  await expect(page.locator('#persian-page table')).toBeVisible();
 });
+
+test('measurable source text in fallback retains native color, background and scaled size',async({page})=>{
+ await page.setViewportSize({width:1440,height:900});
+ await page.goto('/deep-learning/terms/spring-2026/s17/slides/#page=44');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+ const result=await page.evaluate(async()=>{
+  const config=JSON.parse(document.querySelector('#source-reader-config').textContent);
+  const record=(await(await fetch(config.translationUrl)).json()).pages[43];
+  const line=record.source_layout.lines.find(line=>line.index===0);
+  const title=document.querySelector('#persian-page .reader-copy.heading'),style=getComputedStyle(title);
+  const original=parseFloat(document.querySelector('#source-canvas').style.width);
+  return {matched:title.dataset.sourceFallback,color:style.color,background:style.backgroundColor,size:parseFloat(style.fontSize),expected:line.font_size/record.source_layout.width*original};
+ });
+ expect(result.matched).toBe('measured');expect(result.color).toBe('rgb(255, 255, 255)');expect(result.background).toBe('rgb(0, 0, 0)');
+ expect(Math.abs(result.size-result.expected)).toBeLessThan(.05);
+ const table=page.locator('.reader-table-viewport').first();await table.focus();
+ expect(await table.evaluate(node=>node.scrollWidth>node.clientWidth)).toBe(true);
+ await expect(table).toBeFocused();
+});
+
+test('ambiguous multicolor source remains legible rather than inventing a color mapping',async({page})=>{
+ await page.goto('/deep-learning/terms/spring-2026/s07/slides/#page=18');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+ await expect(page.locator('#persian-page .reader-copy.heading')).toHaveAttribute('data-source-fallback','measured');
+ const ordinary=page.locator('#persian-page .reader-copy').filter({hasText:'نامهٔ مشهور'}).first();
+ await expect(ordinary).not.toHaveAttribute('data-source-fallback','measured');
+ await expect(ordinary).toBeVisible();
+});

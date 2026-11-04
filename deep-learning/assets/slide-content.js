@@ -165,13 +165,14 @@ export function renderTable(parent, table) {
 function paragraph(parent, text, block) {
   const values = text.split('\n');
   if (block.kind === 'literal' && values.length > 3 && values.every(value => /^[A-Za-zΑ-Ωα-ω0-9۰-۹+\-−×*/=.,()[\]{}^σ∂∇]+$/u.test(value.trim()))) {
-    const row = element('p', 'reader-copy literal reader-values'); row.dir = 'ltr'; applyStyle(row, block.presentation);
+    const row = element('p', 'reader-copy literal reader-values'); row.dir = 'ltr'; row.dataset.sourceLines = (block.source_lines || []).join(','); applyStyle(row, block.presentation);
     values.forEach((value, index) => { const token = element('span'); token.textContent = value; row.append(token); if (index < values.length - 1) row.append(document.createTextNode('\n')); });
     parent.append(row);
     return;
   }
   const node = element(block.kind === 'heading' ? 'h3' : block.kind === 'literal' ? 'pre' : 'p', 'reader-copy ' + block.kind);
   node.dir = persian.test(text) ? 'rtl' : 'ltr';
+  node.dataset.sourceLines = (block.source_lines || []).join(',');
   applyStyle(node, block.presentation); addText(node, text, block.presentation); parent.append(node);
 }
 
@@ -194,7 +195,7 @@ export function renderBlocks(parent, blocks, tables = []) {
         else items[items.length - 1] += '\n' + line;
       }
       for (const item of items) {
-        const node = element('li'); applyStyle(node, block.presentation);
+        const node = element('li'); node.dataset.sourceLines = (block.source_lines || []).join(','); applyStyle(node, block.presentation);
         addText(node, item, block.presentation); list.append(node);
       }
       continue;
@@ -210,7 +211,7 @@ export function renderBlocks(parent, blocks, tables = []) {
         flush();
         const tag = /\d/.test(match[2]) ? 'ol' : 'ul';
         if (!innerList || innerList.tagName.toLowerCase() !== tag) { innerList = element(tag, 'reader-list'); innerList.dir = 'rtl'; parent.append(innerList); }
-        const node = element('li');
+        const node = element('li'); node.dataset.sourceLines = (block.source_lines || []).join(',');
         if (tag === 'ol') node.value = parseInt(match[2], 10);
         applyStyle(node, block.presentation); addText(node, match[3], block.presentation); innerList.append(node);
       }

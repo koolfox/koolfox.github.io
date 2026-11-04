@@ -57,6 +57,48 @@ function renderTranslation(){
  persian.replaceChildren(fragment);translationFallback=[...persian.childNodes];persian.dataset.page=String(page);$('[data-source-text]').textContent=visibleEnglish(record);
  document.querySelector('.reader-translation').scrollTop=0;
 }
+// Use source typography only when native text and a solid background are measurable.
+function styleTranslationFallback(record){
+ const layout=record.source_layout;if(!layout||!canvas.width||!canvas.height)return;
+ const context=canvas.getContext('2d'), pixels=context.getImageData(0,0,canvas.width,canvas.height).data;
+ const sourceWidth=document.querySelector('.reader-original').clientWidth
+  ? parseFloat(canvas.style.width) : Math.max(250,document.querySelector('.reader-translation').clientWidth-24)*zoom;
+ const byIndex=new Map(layout.lines.map(line=>[line.index,line]));
+ const luminance=rgb=>rgb.map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((sum,v,i)=>sum+v*[.2126,.7152,.0722][i],0);
+ const backgrounds=lines=>{
+  const samples=[];
+  for(const line of lines){const [l,t,r,b]=line.rect;
+   for(let y=0;y<7;y++)for(let x=0;x<15;x++){
+    const px=Math.min(canvas.width-1,Math.max(0,Math.floor((l+(r-l)*(x+.5)/15)*canvas.width)));
+    const py=Math.min(canvas.height-1,Math.max(0,Math.floor((t+(b-t)*(y+.5)/7)*canvas.height)));
+    const offset=(py*canvas.width+px)*4;samples.push([pixels[offset],pixels[offset+1],pixels[offset+2]]);
+   }
+  }
+  const bins=new Map();for(const rgb of samples){const key=rgb.map(v=>v>>4).join(',');const entry=bins.get(key)||[];entry.push(rgb);bins.set(key,entry);}
+  const dominant=[...bins.values()].sort((a,b)=>b.length-a.length)[0];
+  if(!dominant||dominant.length/samples.length<.72)return null;
+  const rgb=[0,1,2].map(channel=>dominant.map(value=>value[channel]).sort((a,b)=>a-b)[Math.floor(dominant.length/2)]);
+  return rgb;
+ };
+ for(const root of translationFallback){if(root.nodeType!==1)continue;
+  const nodes=[...(root.matches('[data-source-lines]')?[root]:[]),...root.querySelectorAll('[data-source-lines]')];
+  for(const node of nodes){
+   delete node.dataset.sourceFallback;node.style.removeProperty('--source-fallback-color');node.style.removeProperty('--source-fallback-background');node.style.removeProperty('--source-fallback-size');
+   const indices=node.dataset.sourceLines.split(',').filter(Boolean).map(Number),lines=indices.map(index=>byIndex.get(index));
+   if(!lines.length||lines.some(line=>!line||!/^#[0-9a-f]{6}$/i.test(line.color||'')||(line.accents||[]).length))continue;
+   const first=lines[0];if(lines.some(line=>line.color!==first.color||Math.abs(line.font_size-first.font_size)>.2))continue;
+   const measuredSize=first.font_size/layout.width*sourceWidth;if(measuredSize<12)continue;
+   const background=backgrounds(lines);if(!background)continue;
+   const foreground=first.color.slice(1).match(/../g).map(value=>parseInt(value,16));
+   const lum=[luminance(foreground),luminance(background)].sort((a,b)=>a-b);
+   if((lum[1]+.05)/(lum[0]+.05)<4.5)continue;
+   node.style.setProperty('--source-fallback-color',first.color);
+   node.style.setProperty('--source-fallback-background',`rgb(${background.join(' ')})`);
+   node.style.setProperty('--source-fallback-size',`${measuredSize}px`);
+   node.dataset.sourceFallback='measured';
+  }
+ }
+}
 async function paintPersianLayout(source,canonicalSource,id,selected){
  const record=payload.pages[selected-1],plan=sourceLayoutPlan(record);
  persian.dataset.layout=plan.reason||'pending';
@@ -211,7 +253,7 @@ async function renderOriginal(){
    if(url){a.href=url;a.target='_blank';a.rel='noopener noreferrer';}else{a.href='#';a.addEventListener('click',event=>{event.preventDefault();destination(annotation.dest).catch(()=>message('این ارجاع داخلی در PDF قابل نمایش نیست؛ اصل فایل در دسترس است.',true));});}
    links.append(a);
   }
-  paintSourceCrops();await paintPersianLayout(layoutSource,source,id,selected);if(id!==serial||closed)return;renderedPage=selected;task=null;document.documentElement.dataset.readerReady='true';controls();
+  paintSourceCrops();styleTranslationFallback(payload.pages[selected-1]);await paintPersianLayout(layoutSource,source,id,selected);if(id!==serial||closed)return;renderedPage=selected;task=null;document.documentElement.dataset.readerReady='true';controls();
   const record=payload.pages[page-1],reviewed=record.text_reviewed&&record.image_text_reviewed;
   message(`صفحهٔ ${fa(page)} از ${fa(config.pageCount)}${reviewed?'':' · ترجمه در بازبینی'}`);
   schedulePlayback();

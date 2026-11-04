@@ -295,7 +295,7 @@ test('node-four gradient slide preserves source equations and the existing corre
 
 test('backward-pass weight and bias slides keep formulas and correction separate',async({page})=>{
  await page.setViewportSize({width:1440,height:900});
- for(const number of [77,78]){
+ for(const number of [77,78,83,84]){
   await page.goto(`/deep-learning/terms/spring-2026/s03/slides/#page=${number}`);await ready(page);
   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
   const evidence=await page.evaluate(async()=>{
@@ -304,12 +304,14 @@ test('backward-pass weight and bias slides keep formulas and correction separate
    probe.style.visibility='hidden';probe.style.width=(node.clientWidth*.90)+'px';probe.style.lineHeight='1.25';node.parentElement.append(probe);
    const stress={width:probe.clientWidth,scrollWidth:probe.scrollWidth,height:probe.clientHeight,scrollHeight:probe.scrollHeight};probe.remove();
    const translatedLines=plan.regions.flatMap(region=>region.lines.map(line=>line.index)),mathLines=record.blocks.filter(block=>block.kind==='math').flatMap(block=>block.source_lines);
+   const intersects=(a,b)=>a[0]<b[2]&&a[2]>b[0]&&a[1]<b[3]&&a[3]>b[1],collisions=plan.regions.flatMap(region=>record.source_layout.lines.filter(line=>!translatedLines.includes(line.index)&&intersects(region.slot,line.rect)).map(line=>line.index));
    const canvas=document.querySelector('.reader-slide-background'),pixels=canvas.getContext('2d').getImageData(0,0,canvas.width,canvas.height).data;let purple=0;
    for(let i=0;i<pixels.length;i+=4)if(pixels[i]>55&&pixels[i+2]>75&&pixels[i+2]>pixels[i+1]*1.25&&pixels[i]>pixels[i+1]*1.25)purple++;
-   return {actual:parseFloat(node.style.fontSize),expected:titleLine.font_size/record.source_layout.width*960,color:getComputedStyle(node).color,stress,translatedLines,mathLines,purple};
+   return {actual:parseFloat(node.style.fontSize),expected:titleLine.font_size/record.source_layout.width*960,color:getComputedStyle(node).color,stress,translatedLines,mathLines,purple,collisions};
   });
   expect(Math.abs(evidence.actual-evidence.expected)).toBeLessThan(.05);expect(evidence.color).toBe('rgb(255, 255, 255)');
   expect(evidence.stress.scrollWidth).toBeLessThanOrEqual(evidence.stress.width+2);expect(evidence.stress.scrollHeight).toBeLessThanOrEqual(evidence.stress.height+2);
+  expect(evidence.collisions).toEqual([]);
   for(const line of evidence.mathLines)expect(evidence.translatedLines).not.toContain(line);
   expect(evidence.purple).toBeGreaterThan(50);
   await page.locator('.reader-figure-labels summary').click();await expect(page.locator('.reader-figure-content .katex-mathml').first()).toBeAttached();

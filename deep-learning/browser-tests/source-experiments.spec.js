@@ -6,7 +6,7 @@ test('source attention film plays in place without loading a model or changing t
  const play=page.locator('[data-source-interactive="attention"]');await expect(play).toBeVisible();
  await play.click();
  const tool=page.frameLocator('[data-reader-tools-frame]');
- await expect(tool.getByRole('heading',{name:'محاسبهٔ توجه (Self-attention)'})).toBeVisible();
+ await expect(tool.getByRole('heading',{name:'محاسبه توجه (Self-attention)'})).toBeVisible();
  const video=tool.locator('video');await expect(video).toHaveAttribute('controls','');
  await expect(video).not.toHaveAttribute('autoplay');
  await video.evaluate(async node=>{await node.play();});

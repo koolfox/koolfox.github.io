@@ -83,7 +83,7 @@ for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
 
 test('mobile view changes retain the readable fallback rather than an old slide layout',async({page})=>{
  await page.setViewportSize({width:390,height:844});
- await page.goto('/deep-learning/terms/spring-2026/s17/slides/#page=44');
+ await page.goto('/deep-learning/terms/spring-2026/s14/slides/#page=25');
  await page.waitForFunction(()=>window.sourceSlideReader?.ready);
  await page.locator('[data-view-translation]').click();
  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','text-overflow');
@@ -96,12 +96,12 @@ test('mobile view changes retain the readable fallback rather than an old slide 
 
 test('measurable source text in fallback retains native color, background and scaled size',async({page})=>{
  await page.setViewportSize({width:1440,height:900});
- await page.goto('/deep-learning/terms/spring-2026/s17/slides/#page=44');
+ await page.goto('/deep-learning/terms/spring-2026/s14/slides/#page=25');
  await page.waitForFunction(()=>window.sourceSlideReader?.ready);
  const result=await page.evaluate(async()=>{
   const config=JSON.parse(document.querySelector('#source-reader-config').textContent);
-  const record=(await(await fetch(config.translationUrl)).json()).pages[43];
-  const line=record.source_layout.lines.find(line=>line.index===0);
+  const record=(await(await fetch(config.translationUrl)).json()).pages[24];
+  const line=record.source_layout.lines.find(line=>line.index===record.blocks.find(block=>block.kind==='heading').source_lines[0]);
   const title=document.querySelector('#persian-page .reader-copy.heading'),style=getComputedStyle(title);
   const original=parseFloat(document.querySelector('#source-canvas').style.width);
   return {matched:title.dataset.sourceFallback,color:style.color,background:style.backgroundColor,size:parseFloat(style.fontSize),expected:line.font_size/record.source_layout.width*original};

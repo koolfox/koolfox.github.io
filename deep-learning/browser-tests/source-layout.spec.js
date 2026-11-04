@@ -48,7 +48,7 @@ test('source canvas preserves white native labels, graphics and exact numeric va
 });
 
 test('long translation falls back without clipping and keeps its accessible table',async({page})=>{
- await page.goto('/deep-learning/terms/spring-2026/s17/slides/#page=44');await ready(page);
+ await page.goto('/deep-learning/terms/spring-2026/s14/slides/#page=25');await ready(page);
  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','text-overflow');
  await expect(page.locator('#source-canvas')).toBeVisible();
  await expect(page.locator('#persian-page table')).toBeVisible();

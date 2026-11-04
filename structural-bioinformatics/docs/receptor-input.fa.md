@@ -79,7 +79,7 @@ conda run -n tnf-docking python structural-bioinformatics/scripts/run_peptide_op
   --output-dir structural-bioinformatics/results/peptide-ops-01
 ```
 
-در پوشهٔ خروجی، `workflow.json` وضعیت مراحل و هش گزارش‌های آنها را ثبت می‌کند؛ پوشهٔ `candidates` منشأ و نوع جانشینی‌ها و پوشهٔ `docking` مدل‌ها، حالت‌ها و گزارش موتور را نگه می‌دارد. [گزارش اجرای فنی نمونه](../data/processed/peptide-ops-demo.json) و [فایل‌های آن](../assets/peptide-ops-demo/candidates/manifest.json) برای بازبینی موجودند. اگر تولید نامزد یا آماده‌سازی گیرنده شکست بخورد، مرحلهٔ بعدی موفق اعلام نمی‌شود و علت در فایل خطای همان مرحله می‌ماند.
+در پوشهٔ خروجی، `workflow.json` وضعیت مراحل و هش گزارش‌های آنها را ثبت می‌کند؛ پوشهٔ `candidates` منشأ و نوع جانشینی‌ها و پوشهٔ `docking` مدل‌ها، حالت‌ها و گزارش موتور را نگه می‌دارد و `report.html` نمای خوانای نتیجه است. [نمای خوانای اجرای فنی](../assets/peptide-ops-demo/report.html) و [گزارش عددی نمونه](../data/processed/peptide-ops-demo.json) و [فایل‌های آن](../assets/peptide-ops-demo/candidates/manifest.json) برای بازبینی موجودند. اگر تولید نامزد یا آماده‌سازی گیرنده شکست بخورد، مرحلهٔ بعدی موفق اعلام نمی‌شود و علت در فایل خطای همان مرحله می‌ماند.
 
 برای داروی دارای توالی FASTA می‌توان به‌جای دو گزینهٔ PDB از `--drug-fasta` و `--record-id` استفاده کرد. برای داروی کوچک‌مولکول، انتخاب مشابه پپتیدی به روش دیگری نیاز دارد و در این نسخه وجود ندارد. نتیجهٔ این مسیر فقط پیشنهادهای محاسباتی محدود است؛ نه شواهد اتصال، مهار یا معادل‌بودن دارویی.
 

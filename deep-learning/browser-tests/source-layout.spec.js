@@ -3,6 +3,31 @@ import {test,expect} from '@playwright/test';
 const deck='/deep-learning/terms/spring-2026/s03/slides/';
 const ready=page=>page.waitForFunction(()=>window.sourceSlideReader?.ready);
 
+test('backpropagation basics retains figures, accents and complete Persian text',async({page})=>{
+ await page.setViewportSize({width:1440,height:900});await page.goto(deck+'#page=61');await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ const result=await page.evaluate(async()=>{
+  const config=JSON.parse(document.querySelector('#source-reader-config').textContent),record=(await(await fetch(config.translationUrl)).json()).pages[60],{sourceLayoutPlan}=await import('/deep-learning/assets/slide-content.js'),plan=sourceLayoutPlan(record,config);
+  const intersects=(a,b)=>a[0]<b[2]&&a[2]>b[0]&&a[1]<b[3]&&a[3]>b[1],collisions=plan.regions.flatMap(region=>record.source_layout.images.filter(image=>intersects(region.slot,image.rect)));
+  const nodes=[...document.querySelectorAll('.reader-slide-text')],stress=nodes.map((node,index)=>{const probe=node.cloneNode(true);probe.style.visibility='hidden';probe.style.width=(node.clientWidth*(index===0?.9:.85))+'px';probe.style.lineHeight='1.25';node.parentElement.append(probe);const value={text:node.textContent,width:probe.clientWidth,scrollWidth:probe.scrollWidth,height:probe.clientHeight,scrollHeight:probe.scrollHeight,color:getComputedStyle(node).color};probe.remove();return value});
+  return {collisions,images:record.source_layout.images.length,stress,fonts:plan.regions.map(region=>region.font),accents:[...document.querySelectorAll('.reader-slide-text .reader-emphasis')].map(node=>({text:node.textContent,color:getComputedStyle(node).color}))};
+ });
+ expect(result.images).toBe(5);expect(result.collisions).toEqual([]);
+ expect(result.fonts.slice(1,4)).toEqual([17.18,17.18,17.18]);
+ for(const item of result.stress){expect(item.scrollWidth,item.text).toBeLessThanOrEqual(item.width+2);expect(item.scrollHeight,item.text).toBeLessThanOrEqual(item.height+2);}
+ expect(result.stress.at(-1).color).toBe('rgb(255, 192, 0)');
+ for(const term of ['تابعی ریاضی','زنجیره','مشتق‌های جزئی نسبت به متغیرهای تابع','قاعدهٔ زنجیره‌ای (Chain Rule) حساب دیفرانسیل'])expect(result.accents).toContainEqual({text:term,color:'rgb(255, 192, 0)'});
+ await expect(page.locator('.reader-slide-text').filter({hasText:'تنها بر مشتق‌های محلی تکیه دارد'})).toBeVisible();
+});
+
+test('backpropagation basics remains available in the mobile Persian view',async({page})=>{
+ await page.setViewportSize({width:390,height:844});await page.goto(deck+'#page=61');await ready(page);
+ await page.locator('[data-view-translation]').click();await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ await expect(page.locator('.reader-slide-background')).toBeVisible();
+ await expect(page.locator('.reader-slide-text').filter({hasText:'مشتق‌های محلی'})).toBeVisible();
+});
+
 test('gradient definition slide retains the source plot and faithful definitions',async({page})=>{
  await page.setViewportSize({width:1440,height:900});await page.goto(deck+'#page=44');await ready(page);
  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');

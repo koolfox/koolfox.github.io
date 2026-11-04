@@ -128,6 +128,12 @@ def main():
             )
             save()
         report["status"] = "requires_further_validation"
+    except KeyboardInterrupt:
+        report["status"] = "interrupted"
+        if report["steps"] and report["steps"][-1]["status"] == "running":
+            report["steps"][-1]["status"] = "interrupted"
+        print("Workflow interrupted; results are incomplete", file=sys.stderr)
+        raise SystemExit(130) from None
     except Exception as exc:
         report["status"] = "failed"
         report["error"] = str(exc)

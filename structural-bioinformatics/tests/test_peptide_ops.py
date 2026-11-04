@@ -69,3 +69,62 @@ def test_real_recorded_workflow_chain_is_traceable():
     assert [(r["id"], r["sequence"]) for r in candidates["candidates"]] == [
         (r["input_id"], r["sequence"]) for r in docking["candidates"]
     ]
+
+
+def test_interrupted_stage_is_not_recorded_as_success(tmp_path, monkeypatch):
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "peptide_ops", PROJECT / "scripts/run_peptide_ops.py"
+    )
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    out = tmp_path / "interrupted"
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_peptide_ops.py",
+            "--drug-pdb",
+            str(PROJECT / "assets/3wd5.pdb"),
+            "--drug-chain",
+            "H",
+            "--start",
+            "2",
+            "--end",
+            "3",
+            "--position",
+            "1",
+            "--target-pdb",
+            str(PROJECT / "assets/course/gromacs/1ubq-protein.pdb"),
+            "--target-chain",
+            "A",
+            "--center",
+            "30",
+            "28",
+            "15",
+            "--size",
+            "20",
+            "20",
+            "20",
+            "--receptor-preparer",
+            "unused",
+            "--vina",
+            "unused",
+            "--output-dir",
+            str(out),
+        ],
+    )
+
+    def interrupt(*args, **kwargs):
+        raise KeyboardInterrupt
+
+    monkeypatch.setattr(module.subprocess, "run", interrupt)
+    import pytest
+
+    with pytest.raises(SystemExit) as result:
+        module.main()
+    assert result.value.code == 130
+    report = json.loads((out / "workflow.json").read_text())
+    assert report["status"] == "interrupted"
+    assert report["steps"][-1]["status"] == "interrupted"

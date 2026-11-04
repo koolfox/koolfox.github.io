@@ -18,7 +18,7 @@ def build_mnist_training(root, output, asset_revision=""):
 <label>تابع فعال‌ساز<select name="activation"><option value="relu">ReLU</option><option value="tanh">tanh</option><option value="sigmoid">sigmoid</option></select></label>
 <label>نرخ یادگیری<input name="learningRate" type="number" min="0.0001" max="0.05" step="0.0001" value="0.001" dir="ltr"></label>
 <label>اندازهٔ دسته<select name="batchSize"><option>16</option><option selected>32</option><option>64</option></select></label>
-<label>تعداد دوره<input name="epochs" type="number" min="1" max="20" value="3" dir="ltr"></label>
+<label>تعداد دوره<input name="epochs" type="number" min="1" max="100" value="3" dir="ltr"></label>
 <label>محل اجرا<select name="backend"><option value="webgpu">WebGPU</option><option value="cpu">CPU</option></select></label></div></fieldset>
 <p class="mnist-small">تغییر فعال‌ساز، نرخ یادگیری، دسته یا محل اجرا، وزن‌ها را از نو می‌سازد.</p>
 <h2>نمونهٔ انتخاب‌شده</h2><div class="mnist-selected"><canvas width="28" height="28" data-selected aria-label="تصویر رقم انتخاب‌شده"></canvas><p data-selected-caption>پس از آماده‌سازی، یک تصویر را انتخاب کن.</p></div>

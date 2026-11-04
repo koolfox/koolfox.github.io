@@ -74,7 +74,8 @@ async function oneBatch(){working=true;updateControls();try{await trainer.step()
 $('[data-load]').addEventListener('click',initialize);$('[data-reset]').addEventListener('click',initialize);
 $('[data-step]').addEventListener('click',async()=>{try{await oneBatch();$('[data-status]').textContent='یک دسته آموزش داده شد.';}catch(error){fail(error);}});
 $('[data-start]').addEventListener('click',async()=>{
- const epochs=Number($('[name=epochs]').value);if(!Number.isInteger(epochs)||epochs<1||epochs>20){fail(Error('تعداد دوره باید بین ۱ و ۲۰ باشد.'));return;}
+ const epochs=Number($('[name=epochs]').value);if(!Number.isInteger(epochs)||epochs<1||epochs>100){fail(Error('تعداد دوره باید بین ۱ و ۱۰۰ باشد.'));return;}
+ $('[data-error]').hidden=true;
  running=true;updateControls();try{while(running&&!leaving&&trainer.state.epoch<epochs){await oneBatch();await new Promise(resolve=>requestAnimationFrame(resolve));}if(!leaving&&trainer)$('[data-status]').textContent=trainer.state.epoch>=epochs?'آموزش دوره‌های انتخاب‌شده تمام شد.':'آموزش مکث شد.';}catch(error){fail(error);}finally{running=false;updateControls();}
 });
 $('[data-pause]').addEventListener('click',()=>{if(running){running=false;$('[data-status]').textContent='مکث پس از پایان دستهٔ جاری…';}else controller?.abort();updateControls();});

@@ -18,6 +18,51 @@ test('source slide text keeps source size and exact color without shrinking to f
  expect(result.fits).toBe(false);expect(result.after).toBe(result.font);
 });
 
+test('only overflowing prose shrinks in bounded steps and failure restores sizes',async({page})=>{
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/');
+ const result=await page.evaluate(async()=>{
+  const {fitSourceLayout}=await import('/deep-learning/assets/slide-content.js');await document.fonts.ready;
+  const stage=document.createElement('div');stage.style.cssText='width:960px;position:absolute;top:0';document.body.append(stage);
+  function node(text,color){const n=document.createElement('div');n.className='reader-slide-text';n.style.cssText=`position:relative;width:900px;height:35px;white-space:nowrap;font-size:24px;color:${color}`;n.textContent=text;stage.append(n);return n;}
+  const normal=node('متن کوتاه','#ffffff'),long=node('این متن برای بررسی کوچک سازی کنترل شده است','#ffc000');
+  const range=document.createRange();range.selectNodeContents(long);long.style.width=Math.floor(range.getBoundingClientRect().width*.92)+'px';
+  const fit=fitSourceLayout(stage),after=[normal.style.fontSize,long.style.fontSize],colors=[normal.style.color,long.style.color];
+  long.style.fontSize='24px';stage.style.transform='scale(.3)';const small=fitSourceLayout(stage),restored=long.style.fontSize;
+  stage.style.transform='';const math=node('equation must not shrink','#ffffff');math.classList.add('reader-word-math');math.style.width='10px';
+  const protectedMath=fitSourceLayout(stage),afterFailure=[normal.style.fontSize,long.style.fontSize,math.style.fontSize];stage.remove();
+  return {fit,after,colors,small,restored,protectedMath,afterFailure};
+ });
+ expect(result.fit).toBe(true);expect(result.after[0]).toBe('24px');expect(['22.8px','21.6px','20.4px']).toContain(result.after[1]);
+ expect(result.colors).toEqual(['rgb(255, 255, 255)','rgb(255, 192, 0)']);
+ expect(result.small).toBe(false);expect(result.restored).toBe('24px');
+ expect(result.protectedMath).toBe(false);expect(result.afterFailure).toEqual(['24px','24px','24px']);
+});
+
+for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
+ test(`source diagram keeps white and yellow text after bounded fit at ${viewport.width}px`,async({page})=>{
+  await page.setViewportSize(viewport);await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=30');await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+  if(viewport.width<761){await page.locator('[data-view-translation]').click();await page.waitForFunction(()=>window.sourceSlideReader?.ready);}
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const result=await page.evaluate(async()=>{
+   const config=JSON.parse(document.querySelector('#source-reader-config').textContent),record=(await(await fetch(config.translationUrl)).json()).pages[29],{sourceLayoutPlan}=await import('/deep-learning/assets/slide-content.js'),plan=sourceLayoutPlan(record,config),nodes=[...document.querySelectorAll('.reader-slide-text')];
+   const source=document.querySelector('#source-canvas'),target=document.querySelector('.reader-slide-background');
+   function crop(canvas){const temp=document.createElement('canvas');temp.width=64;temp.height=64;const ctx=temp.getContext('2d');ctx.drawImage(canvas,canvas.width*.05,canvas.height*.42,canvas.width*.38,canvas.height*.36,0,0,64,64);return ctx.getImageData(0,0,64,64).data;}
+   const a=crop(source),b=crop(target);let delta=0;for(let i=0;i<a.length;i+=4)delta+=Math.abs(a[i]-b[i])+Math.abs(a[i+1]-b[i+1])+Math.abs(a[i+2]-b[i+2]);
+   return {nodes:nodes.map((node,index)=>({text:node.textContent,size:parseFloat(node.style.fontSize),source:plan.regions[index].font/plan.layout.width*960,screen:parseFloat(node.style.fontSize)*node.closest('.reader-slide-stage').getBoundingClientRect().width/960,color:getComputedStyle(node).color,overflow:node.scrollHeight>node.clientHeight+2||node.scrollWidth>node.clientWidth+2})),delta:delta/(64*64*3)};
+  });
+  expect(result.nodes.some(node=>node.size/node.source<.99)).toBe(true);expect(result.nodes.some(node=>node.color==='rgb(255, 192, 0)')).toBe(true);expect(result.nodes.some(node=>node.color==='rgb(255, 255, 255)')).toBe(true);
+  for(const node of result.nodes){expect(node.overflow,node.text).toBe(false);if(node.size/node.source<.99){expect(node.size/node.source).toBeGreaterThanOrEqual(.8499);expect(node.screen).toBeGreaterThanOrEqual(12);}}
+  if(viewport.width>761)expect(result.delta).toBeLessThan(3);
+  await expect(page.locator('.reader-slide-background')).toBeVisible();
+ });
+}
+
+test('source operator protection still rejects an unsafe placement after fitting',async({page})=>{
+ await page.setViewportSize({width:1440,height:900});await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=26');await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','unmatched-operators');
+ await expect(page.locator('#source-canvas')).toBeVisible();await expect(page.locator('#persian-page .reader-slide-stage')).toHaveCount(0);
+});
+
 for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
  test(`Persian and isolated English/numbers keep their reading directions at ${viewport.width}px`,async({page})=>{
   await page.setViewportSize(viewport);await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=70');

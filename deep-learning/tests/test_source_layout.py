@@ -9,7 +9,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 import test_source_reader as fixtures
 from extract_source_layout import rgb, translation_identity
-from source_reader import source_reader_page, validate_source_fragments
+from source_reader import source_reader_page, validate_source_fragments, load_source_translation
 
 
 class SourceLayoutTests(unittest.TestCase):
@@ -182,6 +182,15 @@ class SourceLayoutTests(unittest.TestCase):
         broken['blocks'][2]['source_fragments'][0]['fa'] = 'a = b - c '
         with self.assertRaisesRegex(ValueError, 'Formula fragments must preserve native equations'):
             validate_source_fragments(broken, geometry, source)
+
+    def test_graph_derivative_correction_stays_separate_from_source_page(self):
+        root = Path(__file__).resolve().parents[1]
+        page = load_source_translation('s03', root=root, term_id='spring-2026')['pages'][106]
+        self.assertIn('df/dc = 1', page['lines'][10])
+        notes = page.get('editorial_notes', [])
+        self.assertEqual(len(notes), 1)
+        self.assertIn(r'\frac{\partial z}{\partial c}=1', notes[0]['fa'])
+        self.assertIn(r'\frac{\partial f}{\partial c}=d=4', notes[0]['fa'])
 
     def test_all_spring_2026_pages_have_explicit_geometry_inventory(self):
         root = Path(__file__).resolve().parents[1]

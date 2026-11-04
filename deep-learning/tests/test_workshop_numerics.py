@@ -237,6 +237,19 @@ class WorkshopNumericalTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             scope["project"]([[1, 2]], [[1, 2]])
 
+    def test_six_source_perceptron_epochs_match_all_table_rows(self):
+        result = execute("s02_majority_epochs")["result"]
+        # The seven vectors are transcribed from slide 32, including epoch zero.
+        expected = [[0, 0, 0, 0], [-0.2, 0, 0.2, 0.2], [-0.2, 0, 0.4, 0.2],
+                    [-0.4, 0, 0.4, 0.2], [-0.4, 0.2, 0.4, 0.4],
+                    [-0.6, 0.2, 0.4, 0.2], [-0.6, 0.4, 0.4, 0.2]]
+        self.assertEqual([row["weights"] for row in result["history"]], expected)
+        self.assertEqual([row["epoch"] for row in result["history"]], list(range(7)))
+        self.assertEqual(result["final_training_errors"], 0)
+        changed = execute("s02_majority_epochs", {"epochs = 6": "epochs = 3"})["result"]
+        self.assertEqual(changed["final_weights"], expected[3])
+        self.assertNotEqual(changed["final_weights"], result["final_weights"])
+
     def test_source_backprop_passes_all_eleven_central_differences(self):
         scope = execute("s03")
         parameters = scope["source_parameters"]

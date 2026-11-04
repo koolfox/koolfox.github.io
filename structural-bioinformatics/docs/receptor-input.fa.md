@@ -120,3 +120,19 @@ uv run --project structural-bioinformatics python -m peptide_lab.library_stream 
 ```
 
 این مثال ۱۶٬۳۸۴ توالی می‌نویسد؛ داکینگ آنها در این مثال اجرا نشده است. بودجه تعداد را محدود می‌کند، نه زمان یا حجم خروجی داکینگ را. طول ۷ در محدودهٔ مدل‌ساز فعلی است؛ خود تولیدکننده طول‌های بیشتری را هم می‌شمارد، ولی داکینگ فعلی فقط طول ۱ تا ۱۲ را می‌پذیرد.
+
+## نمایش سه‌بعدی حالت‌های داکینگ
+
+فایل `poses.pdbqt` مختصات حالت‌های پیشنهادی را نگه می‌دارد. برای بازکردن آنها با اطلاعات پیوند مناسب‌تر، ابزار زیر با Meeko هر حالت را به SDF جدا تبدیل و برای هرکدام فایل دستور PyMOL می‌سازد. هش گیرنده و خروجی داکینگ با گزارش اجرا تطبیق داده می‌شود و مختصات اتم‌های سنگین بازسازی‌شده کنترل می‌شوند:
+
+```bash
+conda run -n tnf-docking python structural-bioinformatics/scripts/export_docked_poses.py \
+  --run-dir /path/to/a/docking/run --sequence AC \
+  --output-dir structural-bioinformatics/results/ac-view-01
+cd structural-bioinformatics/results/ac-view-01
+pymol pose-1.pml
+```
+
+مسیر `--run-dir` باید پوشه‌ای باشد که `report.json`، `selected-chain.pdb` و پوشهٔ توالی را دارد؛ در اجرای دسته‌ای، این پوشه زیر `batch-.../docking` قرار می‌گیرد. برای هر حالت، فایل `pose-N.sdf` و دستور `pose-N.pml` جدا ساخته می‌شود. برای مثال می‌توانید [گیرندهٔ 1UBQ](../assets/docked-ac-visualization/receptor.pdb)، [حالت اول AC](../assets/docked-ac-visualization/pose-1.sdf)، [حالت دوم](../assets/docked-ac-visualization/pose-2.sdf)، [حالت سوم](../assets/docked-ac-visualization/pose-3.sdf) و [منشأ و هش‌ها](../assets/docked-ac-visualization/manifest.json) را دریافت کنید. برای Nanome، فایل‌های گیرنده و SDF را در نسخه‌ای که این قالب‌ها را پشتیبانی می‌کند وارد کنید؛ اجرای رابط PyMOL و Nanome در این آزمایش مستقل تأیید نشده است.
+
+مطابق [مستندات Meeko](https://meeko.readthedocs.io/en/develop/export_usage.html)، هیدروژن‌های حذف‌شده از PDBQT ممکن است هنگام تبدیل بازسازی شوند. تصویر ساختاری، حالت پیشنهادیِ محاسبه است؛ نمایش آن نشانهٔ قطعی اتصال یا اثربخشی نیست.

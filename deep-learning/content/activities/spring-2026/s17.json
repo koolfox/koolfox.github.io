@@ -465,12 +465,19 @@
     {
       "number": 23,
       "source_text_sha256": "79c9a84b7cfdd9e46334b79fcf3ffc960de97097f685b01d02feb3b22cd3a7d3",
-      "classification": "content",
-      "review_status": "pending",
+      "classification": "worked_example",
+      "review_status": "reviewed",
       "candidate_signals": [],
-      "question_coverage": "not_applicable",
-      "question_ids": [],
-      "example_ids": [],
+      "question_coverage": "complete",
+      "question_ids": [
+        "self-vote",
+        "self-eggs",
+        "self-error",
+        "self-car"
+      ],
+      "example_ids": [
+        "self-consistency"
+      ],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
       "review_scope": "source_prompt_inventory",
@@ -479,7 +486,8 @@
         "image_label_indices": [
           1
         ]
-      }
+      },
+      "review_basis": "source_figure_study_check"
     },
     {
       "number": 24,
@@ -1090,6 +1098,86 @@
         ],
         "correct_index": 1
       },
+      "reviewed": true
+    },
+    {
+      "id": "self-vote",
+      "source_kind": "original",
+      "source_page": 23,
+      "prompt_fa": "از سه پاسخ اسلاید کدام بیشترین رای را دارد؟",
+      "solution_fa": "دو مسیر پاسخ ۱۸ و یک مسیر پاسخ ۲۶ داده‌اند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "۱۸ با دو رای",
+          "۲۶ با دو رای",
+          "۱۴ با سه رای"
+        ],
+        "correct_index": 0
+      },
+      "pages": [
+        23
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "self-eggs",
+      "source_kind": "original",
+      "source_page": 23,
+      "prompt_fa": "با ۱۶ تخم، مصرف ۳ تخم و پخت ۴ تخم، درآمد فروش با قیمت ۲ دلار چند است؟",
+      "solution_fa": "۹ تخم باقی می‌ماند و ۹ ضرب‌در ۲ برابر ۱۸ دلار است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "۱۴ دلار",
+          "۱۸ دلار",
+          "۲۶ دلار"
+        ],
+        "correct_index": 1
+      },
+      "pages": [
+        23
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "self-error",
+      "source_kind": "original",
+      "source_page": 23,
+      "prompt_fa": "در مسیر میانی، مقدار درست عبارت ۲ × (۱۶ − ۴ − ۳) چیست؟",
+      "solution_fa": "عبارت برابر ۱۸ است؛ ۲۶ پاسخ نوشته‌شده ولی نادرست در آن مسیر است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "۱۸",
+          "۲۶",
+          "۱۴"
+        ],
+        "correct_index": 0
+      },
+      "pages": [
+        23
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "self-car",
+      "source_kind": "original",
+      "source_page": 23,
+      "prompt_fa": "در مثال نخست داخل شکل، ورود ۲ ماشین به پارکینگی با ۳ ماشین چه نتیجه‌ای دارد؟",
+      "solution_fa": "۳ به اضافه ۲ برابر ۵ ماشین است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "۱",
+          "۵",
+          "۶"
+        ],
+        "correct_index": 1
+      },
+      "pages": [
+        23
+      ],
       "reviewed": true
     }
   ]

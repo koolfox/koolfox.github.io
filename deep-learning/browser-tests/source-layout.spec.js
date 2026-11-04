@@ -113,7 +113,7 @@ test('manual diagram placement is bound to the exact PDF and translation',async(
 
 test('weight-update diagrams preserve the source network, equations and measured type',async({page})=>{
  await page.setViewportSize({width:1440,height:900});
- for(const number of [86,87,88,89,90,91,92,93]){
+ for(const number of [86,87,88,89,90,91,92,93,94,95,96]){
   await page.goto(`/deep-learning/terms/spring-2026/s03/slides/#page=${number}`);await ready(page);
   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
   const evidence=await page.evaluate(async()=>{

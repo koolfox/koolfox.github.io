@@ -65,6 +65,19 @@ class SourceWorkshopTests(unittest.TestCase):
         self.assertEqual(set(load_workshops('spring-2026', self.root, execute=True, session_ids=['s01'])), {'s01'})
         self.assertEqual(load_workshops('spring-2026', self.root, session_ids=[]), {})
 
+    def test_slide_23_opens_source_self_consistency_and_its_questions(self):
+        from student_practice import practice_page
+        unit = load_workshops('spring-2026', ROOT, execute=True, session_ids=['s17'])['s17']
+        page = practice_page({'id': 'spring-2026'}, {'id': 's17', 'title_fa': 'رای', 'workshop': unit})
+        tag = '<script type="application/json" id="practice-config">'
+        start = page.index(tag) + len(tag)
+        config = json.loads(page[start:page.index('</script>', start)])
+        example = next(item for item in config['page_notebooks'] if 23 in item['pages'])
+        self.assertEqual(example['key'], 'spring-2026/s17/self-consistency')
+        self.assertEqual(example['reference']['answers'], [18, 26, 18])
+        questions = next(item for item in config['page_questions'] if 23 in item['pages'])
+        self.assertEqual(len(questions['questions']), 4)
+
     def test_page_example_executes_its_own_hash_pinned_source_and_rejects_stale_code(self):
         import hashlib
         source = 'result = {"value": 3}\nprint(result)\n'

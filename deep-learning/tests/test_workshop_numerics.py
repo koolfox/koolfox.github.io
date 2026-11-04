@@ -237,6 +237,20 @@ class WorkshopNumericalTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             scope["project"]([[1, 2]], [[1, 2]])
 
+    def test_self_consistency_uses_three_original_answers_and_checks_arithmetic(self):
+        result = execute("s17_self_consistency")["result"]
+        self.assertEqual(result["answers"], [18, 26, 18])
+        self.assertEqual(result["counts"], {"18": 2, "26": 1})
+        self.assertEqual((result["selected_answer"], result["votes_for_selected"], result["total_paths"]), (18, 2, 3))
+        self.assertEqual(result["greedy_answer"], 14)
+        self.assertEqual(result["correct_income"], (16 - 3 - 4) * 2)
+        self.assertEqual(result["middle_expression_value"], 2 * (16 - 4 - 3))
+        self.assertEqual(result["middle_claimed_answer"], 26)
+        self.assertFalse(result["middle_claim_is_correct"])
+        tied = execute("s17_self_consistency", {"path_answers = [18, 26, 18]": "path_answers = [18, 26]"})["result"]
+        self.assertEqual(tied["winners"], [18, 26])
+        self.assertIsNone(tied["selected_answer"])
+
     def test_source_backprop_passes_all_eleven_central_differences(self):
         scope = execute("s03")
         parameters = scope["source_parameters"]

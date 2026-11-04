@@ -256,6 +256,25 @@ class WorkshopNumericalTests(unittest.TestCase):
         self.assertEqual(changed["final_weights"], expected[3])
         self.assertNotEqual(changed["final_weights"], result["final_weights"])
 
+    def test_source_markov_transitions_and_stationary_distribution(self):
+        result = execute("s18_markov_states")["result"]
+        self.assertEqual(result["transition_rows"], [[0.3, 0.7], [0.4, 0.6]])
+        for row in result["transition_rows"]:
+            self.assertAlmostEqual(sum(row), 1)
+        self.assertEqual(result["history"][1], [0.3, 0.7])
+        self.assertAlmostEqual(result["history"][2][0], 0.37)
+        self.assertAlmostEqual(result["history"][2][1], 0.63)
+        p_e, p_a = result["stationary_distribution"]
+        self.assertAlmostEqual(p_e, 4 / 11)
+        self.assertAlmostEqual(p_a, 7 / 11)
+        self.assertAlmostEqual(p_e * 0.7, p_a * 0.4)
+        changed = execute("s18_markov_states", {"initial = [1.0, 0.0]": "initial = [0.0, 1.0]"})["result"]
+        self.assertEqual(changed["history"][1], [0.4, 0.6])
+        with self.assertRaises(ValueError):
+            execute("s18_markov_states", {"[0.3, 0.7]": "[0.3, 0.8]"})
+        nonunique = execute("s18_markov_states", {"[[0.3, 0.7], [0.4, 0.6]]": "[[1, 0], [0, 1]]"})["result"]
+        self.assertIsNone(nonunique["stationary_distribution"])
+
     def test_source_backprop_passes_all_eleven_central_differences(self):
         scope = execute("s03")
         parameters = scope["source_parameters"]

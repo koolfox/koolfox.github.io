@@ -196,3 +196,32 @@ test('computational graphs preserve their source diagrams, formulas and colored 
  expect(evidence.stress.scrollWidth).toBeLessThanOrEqual(evidence.stress.width+2);
  expect(evidence.stress.scrollHeight).toBeLessThanOrEqual(evidence.stress.height+2);
 });
+
+test('forward and backward pass diagram keeps source colors and exact example values',async({page})=>{
+ await page.setViewportSize({width:1440,height:900});await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=106');await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const values=await page.evaluate(()=>{
+  const nodes=[...document.querySelectorAll('.reader-slide-text')];
+  const mapped=nodes.map(n=>({text:n.textContent,colors:[...n.querySelectorAll('.reader-emphasis')].map(x=>getComputedStyle(x).color),overflow:n.scrollHeight>n.clientHeight+2||n.scrollWidth>n.clientWidth+2}));
+  const crop=canvas=>{const t=document.createElement('canvas');t.width=64;t.height=64;t.getContext('2d').drawImage(canvas,.14*canvas.width,.70*canvas.height,.19*canvas.width,.22*canvas.height,0,0,64,64);return t.getContext('2d').getImageData(0,0,64,64).data};
+  const a=crop(document.querySelector('#source-canvas')),b=crop(document.querySelector('.reader-slide-background'));let delta=0;for(let i=0;i<a.length;i+=4)delta+=Math.abs(a[i]-b[i])+Math.abs(a[i+1]-b[i+1])+Math.abs(a[i+2]-b[i+2]);
+  return {mapped,delta:delta/(64*64*3)};
+ });
+ expect(values.mapped.some(x=>x.text.includes('گذر رو به جلو')&&x.colors.includes('rgb(0, 176, 80)'))).toBe(true);
+ expect(values.mapped.some(x=>x.text.includes('گذر رو به عقب')&&x.colors.includes('rgb(255, 192, 0)'))).toBe(true);
+ expect(values.mapped.some(x=>x.text.includes('برای مثال')&&x.colors.includes('rgb(4, 50, 255)'))).toBe(true);
+ expect(values.mapped.every(x=>!x.overflow)).toBe(true);expect(values.delta).toBeLessThan(3);
+ await page.locator('.reader-figure-labels summary').click();
+ await expect(page.locator('.reader-figure-content')).toContainText('f');await expect(page.locator('.reader-figure-content .katex-mathml').first()).toBeAttached();
+});
+
+test('source derivative correction appears beside the untouched source slide',async({page})=>{
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=107');await ready(page);
+ await expect(page.locator('#source-canvas')).toBeVisible();
+ const note=page.locator('#persian-page .reader-editorial');await expect(note).toBeVisible();
+ await expect(note).toContainText('مشتق محلی');
+ await expect(note.locator('.katex-mathml')).toHaveCount(4);
+ const data=await page.evaluate(async()=>{const c=JSON.parse(document.querySelector('#source-reader-config').textContent);return (await(await fetch(c.translationUrl)).json()).pages[106]});
+ expect(data.lines[10]).toContain('df/dc = 1');
+ expect(data.editorial_notes).toHaveLength(1);
+});

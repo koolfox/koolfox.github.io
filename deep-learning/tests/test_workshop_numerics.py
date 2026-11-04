@@ -83,6 +83,12 @@ class WorkshopNumericalTests(unittest.TestCase):
         self.assertEqual(addition, {"value": 5, "grad_b": 1, "grad_c": 1})
         multiplication = execute("s03_multiply_sum_graph")["result"]
         self.assertEqual(multiplication, {"z": 5, "value": 20, "grad_z": 4, "grad_d": 5, "grad_b": 4, "grad_c": 4})
+        # The source labels the final local derivative as df/dc; it is dz/dc.
+        h = 1e-5
+        z = lambda c: 2 + c
+        local_dz_dc = (z(3+h) - z(3-h)) / (2*h)
+        self.assertAlmostEqual(local_dz_dc, 1, places=8)
+        self.assertAlmostEqual(multiplication["grad_c"], 4 * local_dz_dc, places=8)
         for name in ["b", "c", "d"]:
             base = {"b": 2, "c": 3, "d": 4}
             plus, minus = dict(base), dict(base)

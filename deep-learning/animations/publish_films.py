@@ -19,7 +19,7 @@ FILMS = [
         (9, 'هر بردار مقدار در وزن متناظر ضرب می‌شود؛ جمع آن‌ها بردار خروجی است.'),
         (13, 'خروجی دقیق با تقریب چاپ‌شده در اسلاید متفاوت است؛ هر دو جدا نمایش داده می‌شوند.'),
     ]),
-    ('convolution', 'Convolution', 'کانولوشن (Convolution)', 's05', list(range(27, 37)), [
+    ('convolution', 'Convolution', 'کانولوشن (Convolution)', 's05', list(range(27, 38)), [
         (0, 'تصویر پنج‌درپنج و فیلتر سه‌درسهٔ مثال درس؛ بدون حاشیه‌گذاری و بایاس.'),
         (2, 'در هر پنجره، درایه‌های متناظر ضرب و سپس جمع می‌شوند.'),
         (5, 'گام برابر یک است؛ همان نه وزن در مکان بعدی دوباره استفاده می‌شوند.'),
@@ -62,7 +62,7 @@ def main():
         vtt = ROOT / f'assets/media/{identity}.fa.vtt'
         lines = ['WEBVTT', '']
         for index, (start, line) in enumerate(captions):
-            end = captions[index + 1][0] if index + 1 < len(captions) else duration
+            end = captions[index + 1][0] if index + 1 < len(captions) else max(start, duration - 5.625)
             lines.extend([f'{stamp(start)} --> {stamp(end)}', line, ''])
         vtt.write_text('\n'.join(lines))
         def artifact(path):

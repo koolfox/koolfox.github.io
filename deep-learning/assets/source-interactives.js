@@ -3,7 +3,7 @@ const courseRoot=new URL('../',import.meta.url);
 const config=JSON.parse(document.querySelector('#source-reader-config').textContent);
 const films=[
  {id:'backpropagation',session:'s03',pages:Array.from({length:16},(_,i)=>69+i),title:'پخش پس‌انتشار'},
- {id:'convolution',session:'s05',pages:Array.from({length:10},(_,i)=>27+i),title:'پخش کانولوشن'},
+ {id:'convolution',session:'s05',pages:Array.from({length:11},(_,i)=>27+i),title:'پخش کانولوشن'},
  {id:'convolution-code',session:'s05',pages:Array.from({length:11},(_,i)=>27+i),title:'فیلم کد کانولوشن'},
  {id:'attention',session:'s13',pages:Array.from({length:9},(_,i)=>21+i),title:'پخش محاسبهٔ توجه'},
 ];

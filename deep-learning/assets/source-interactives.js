@@ -5,7 +5,7 @@ const films=[
  {id:'backpropagation',session:'s03',pages:Array.from({length:16},(_,i)=>69+i),title:'پخش پس‌انتشار'},
  {id:'convolution',session:'s05',pages:Array.from({length:11},(_,i)=>27+i),title:'پخش کانولوشن'},
  {id:'convolution-code',session:'s05',pages:Array.from({length:11},(_,i)=>27+i),title:'فیلم کد کانولوشن'},
- {id:'attention',session:'s13',pages:Array.from({length:9},(_,i)=>21+i),title:'پخش محاسبهٔ توجه'},
+ {id:'attention',session:'s13',pages:Array.from({length:9},(_,i)=>21+i),title:'پخش محاسبه توجه'},
 ];
 // Model source pages are read from the same pinned catalog as the execution UI.
 const training=[{id:'mnist-training',session:'s05',pages:[70],title:'آموزش CNN با MNIST',route:'playgrounds/cnn-mnist/train/'}];

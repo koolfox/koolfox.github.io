@@ -482,6 +482,17 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       region.slot=[.04,.09,.96,.205];region.font=33;region.keepTermsTogether=true;
     }
   }
+  const s01TitleReview={
+    14:['766169dcca47dd0f8949d0481e883b01b40ea73afd686cc4c7f6f2a7de71e6eb','1628326d1ab32c33dfe78e62320213b30f9b51f26a6e0d85d9a3e9eab667044c',[.04,.09,.96,.205],30],
+    19:['a2e55bbba08b55ea9c01ab2d28267bedaf666acd16d3f971a809ca68b67fde8b','2087ae62e9f77f266d3deb4b8e77b306a22fcacd53733a2f55962ba674ba02e3',[.02,.10,.40,.22],26],
+  }[record.number];
+  if(s01TitleReview && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01'
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256===s01TitleReview[0] && layout.translation_sha256===s01TitleReview[1]){
+    for(const region of regions)if(region.block.kind==='heading'){
+      region.slot=s01TitleReview[2];region.font=s01TitleReview[3];region.keepTermsTogether=true;
+    }
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

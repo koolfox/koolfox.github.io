@@ -100,7 +100,7 @@ function styleTranslationFallback(record){
  }
 }
 async function paintPersianLayout(source,canonicalSource,id,selected){
- const record=payload.pages[selected-1],plan=sourceLayoutPlan(record);
+ const record=payload.pages[selected-1],plan=sourceLayoutPlan(record,config);
  persian.dataset.layout=plan.reason||'pending';
  if(plan.reason){persian.replaceChildren(...translationFallback);paintSourceCrops();return;}
  const fallback=translationFallback,slide=createSourceLayout(record,plan);

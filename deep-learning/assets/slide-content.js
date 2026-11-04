@@ -221,7 +221,7 @@ export function renderBlocks(parent, blocks, tables = []) {
 }
 
 // Keep diagrams and numerical symbols in PDF space; only native translated text moves.
-export function sourceLayoutPlan(record) {
+export function sourceLayoutPlan(record, sourceIdentity = {}) {
   const layout = record.source_layout;
   const fail = reason => ({reason, regions: []});
   if (!layout) return fail('no-geometry');
@@ -295,6 +295,30 @@ export function sourceLayoutPlan(record) {
     }
     region.slot = [left,top,Math.max(right,region.rect[2]),Math.max(bottom,region.rect[3])];
   }
+  // Reviewed placements for the four consecutive gradient-descent diagrams.
+  // Both hashes bind these coordinates to the exact source text and translation.
+  const reviewed = {
+    39:['e99475b68b4d829815dc80e4ff71d0bd1f2ab3dac640d392fd945288a6303f4b','79b1d56908f4d2a69815eb118de60754e9b30ecd7a132bc7803e7466d5b70fc8'],
+    40:['764cf46efc021ad48a92db78891affa2b6a5a3bd9292cb4d2f98dcc3d7346b30','6d4bcc8790819ad8d12b8ad6063e85bba527127ed7bae74248736704661843c4'],
+    41:['e99475b68b4d829815dc80e4ff71d0bd1f2ab3dac640d392fd945288a6303f4b','79b1d56908f4d2a69815eb118de60754e9b30ecd7a132bc7803e7466d5b70fc8'],
+    42:['24fc7b83ba2cd24db3a2e54bfc710cf1647bc2967f2e4cf01eaaca8c51208a54','b37b42737e9f0b619ec9dc48e9eefaffc99a92636bd54d13b06f6e65f1de3f75'],
+  }[record.number];
+  if(reviewed && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03'
+      && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
+      && record.source_text_sha256===reviewed[0] && layout.translation_sha256===reviewed[1]){
+    const slots = new Map([
+      ['نزول گرادیان (Gradient Descent): شهود پیاده‌سازی',[.05,.07,.97,.27]],
+      ['• تکرار کنید:',[.076,.274,.235,.326]],
+      ['حدس',[.151,.329,.212,.378]],
+      ['محاسبه خطا',[.150,.380,.287,.430]],
+      ['خطا = حدس − مقدار درست.',[.65,.70,.98,.77]],
+    ]);
+    for(const region of regions){
+      if(slots.has(region.block.fa))region.slot=slots.get(region.block.fa);
+      if(region.block.fa.startsWith('• برای مثال، ضریب ثابتی'))region.slot=[.076,.44,.90,.60];
+      if(region.block.kind==='math')region.persianEquation=true;
+    }
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&!persian.test(block.fa||''))};
 }
 
@@ -317,7 +341,8 @@ export function createSourceLayout(record, plan) {
     if (region.block.presentation?.italic) node.style.fontStyle = 'italic';
     if (region.block.latex) math(node, region.block);
     else if(region.block.kind==='math'&&region.block.source_refs&&!region.block.fa.includes('\\(')){
-      node.classList.add('reader-word-math');node.dir='ltr';node.setAttribute('role','math');
+      node.classList.add('reader-word-math');node.dir=region.persianEquation?'rtl':'ltr';node.setAttribute('role','math');
+      if(region.persianEquation){node.style.direction='rtl';node.style.textAlign='right';}
       for(const chunk of region.block.fa.split(/([=+−×÷-])/)){
         const term=element('bdi');term.dir=persian.test(chunk)?'rtl':'ltr';
         addText(term,chunk,presentation,{sourceColors:true});node.append(term);

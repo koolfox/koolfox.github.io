@@ -58,6 +58,51 @@ const book = mountNotebook(document.querySelector('#practice-notebook'), {
 });
 document.querySelector('#practice-notebook .nb-cells').before(gpuPanel);
 book.setReady(true); window.studentNotebook = book;
+if(config.key==='spring-2026/s05/source-convolution'&&config.starter_sha256==='6b411c2a1e630fb97e8f78a871b7ec0c464417f57db0a5bccfe1164ba262fe7c'&&config.cells.length===3&&config.cells.map(cell=>cell.source).join('')===config.starter){
+  // The film illustrates the same calculation with different code; links are by topic.
+  const root=document.querySelector('#practice-notebook'),list=root.querySelector('.nb-cells');
+  const panel=document.createElement('details'),summary=document.createElement('summary');
+  const note=document.createElement('p'),frame=document.createElement('iframe');
+  panel.className='nb-film';summary.textContent='فیلم و بخش مرتبط کد';
+  note.className='nb-film-note';note.setAttribute('role','status');note.setAttribute('aria-live','polite');
+  frame.title='فیلم کد کانولوشن';frame.dataset.notebookFilm='';frame.loading='lazy';frame.allowFullscreen=true;
+  panel.append(summary,note,frame);list.before(panel);
+  const relatedCells=[0,0,1,1,2],relatedChapters=[0,2,4];
+  let pendingChapter=null;
+  const unchanged=()=>{const cells=book.cells;return cells.length===config.cells.length&&cells.every((cell,index)=>cell.source===config.cells[index].source);};
+  function updateLinks(){
+    const enabled=unchanged();
+    note.textContent=enabled?'بخش‌های فیلم به سلول‌های مرتبط اشاره می‌کنند.':'کد تغییر کرده؛ پرش به بخش مرتبط تا بازگرداندن کد اولیه غیرفعال است.';
+    for(const cell of list.querySelectorAll('[data-notebook-cell]')){
+      const index=Number(cell.dataset.notebookCell),bar=cell.querySelector('.nb-cell-bar');
+      if(!bar||!Number.isInteger(index)||index>=relatedChapters.length)continue;
+      let button=bar.querySelector('[data-film-jump]');
+      if(!button){button=document.createElement('button');button.type='button';button.dataset.filmJump=String(index);button.textContent='بخش مرتبط فیلم';
+        button.setAttribute('aria-label',`بخش مرتبط فیلم برای سلول ${index+1}`);
+        button.addEventListener('click',()=>{if(!unchanged())return;pendingChapter=relatedChapters[index];panel.open=true;loadFilm();sendPending();});bar.append(button);}
+      button.disabled=!enabled;
+      if(!enabled)cell.removeAttribute('data-film-related');
+    }
+  }
+  function sendPending(){
+    if(pendingChapter===null||!frame.dataset.loaded||!unchanged())return;
+    frame.contentWindow.postMessage({type:'danna-film-seek',film:'convolution-code',chapter:pendingChapter},location.origin);
+    pendingChapter=null;
+  }
+  function loadFilm(){if(!frame.getAttribute('src')){delete frame.dataset.loaded;frame.src='/deep-learning/animations/convolution-code/?notebook=1';}}
+  panel.addEventListener('toggle',()=>{if(panel.open)loadFilm();});
+  frame.addEventListener('load',()=>{if(frame.getAttribute('src')){frame.dataset.loaded='true';sendPending();}});
+  window.addEventListener('message',event=>{
+    if(event.origin!==location.origin||event.source!==frame.contentWindow||event.data?.type!=='danna-film-chapter'||event.data.film!=='convolution-code'||!Number.isInteger(event.data.chapter)||event.data.chapter<0||event.data.chapter>=relatedCells.length||!unchanged())return;
+    const index=relatedCells[event.data.chapter],cell=list.querySelector(`[data-notebook-cell="${index}"]`);if(!cell)return;
+    for(const item of list.querySelectorAll('[data-film-related]'))item.removeAttribute('data-film-related');
+    cell.dataset.filmRelated='';note.textContent=`بخش مرتبط: سلول ${index+1}`;
+    list.scrollTo({top:cell.offsetTop-list.offsetTop,behavior:'auto'});
+  });
+  new MutationObserver(updateLinks).observe(list,{childList:true});
+  list.addEventListener('input',()=>queueMicrotask(updateLinks));
+  updateLinks();
+}
 function section() { if (location.hash === '#questions') book.showQuiz(); else book.showCode(); }
 section(); window.addEventListener('hashchange', section);
 const returnLink=document.querySelector('[data-return-slide]');returnLink.href=config.reader+'#page='+returnPage;

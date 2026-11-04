@@ -113,8 +113,7 @@
         28,
         29,
         30,
-        31,
-        32
+        31
       ],
       "code_file": "s02_majority_epoch.py",
       "starter_sha256": "d88cb4cd075656f235415925cff9fb0692c02b6b18d3eb3a811e460821bb97bf",
@@ -314,6 +313,152 @@
               "آموزش تا خطای صفر با هر تعداد عبور"
             ],
             "correct_index": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "majority-epochs",
+      "title_fa": "شش دور آموزش با محاسبهٔ دقیق",
+      "pages": [
+        32
+      ],
+      "code_file": "s02_majority_epochs.py",
+      "starter_sha256": "736d97197b00c208390c5c5d72eb3ca476d19bc123cf755dbf839856386a69bc",
+      "reference": {
+        "history": [
+          {
+            "epoch": 0,
+            "weights": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "training_errors": 4
+          },
+          {
+            "epoch": 1,
+            "weights": [
+              -0.2,
+              0.0,
+              0.2,
+              0.2
+            ],
+            "online_mistakes": 5,
+            "training_errors": 2
+          },
+          {
+            "epoch": 2,
+            "weights": [
+              -0.2,
+              0.0,
+              0.4,
+              0.2
+            ],
+            "online_mistakes": 2,
+            "training_errors": 2
+          },
+          {
+            "epoch": 3,
+            "weights": [
+              -0.4,
+              0.0,
+              0.4,
+              0.2
+            ],
+            "online_mistakes": 3,
+            "training_errors": 2
+          },
+          {
+            "epoch": 4,
+            "weights": [
+              -0.4,
+              0.2,
+              0.4,
+              0.4
+            ],
+            "online_mistakes": 4,
+            "training_errors": 2
+          },
+          {
+            "epoch": 5,
+            "weights": [
+              -0.6,
+              0.2,
+              0.4,
+              0.2
+            ],
+            "online_mistakes": 1,
+            "training_errors": 1
+          },
+          {
+            "epoch": 6,
+            "weights": [
+              -0.6,
+              0.4,
+              0.4,
+              0.2
+            ],
+            "online_mistakes": 2,
+            "training_errors": 0
+          }
+        ],
+        "final_weights": [
+          -0.6,
+          0.4,
+          0.4,
+          0.2
+        ],
+        "final_training_errors": 0
+      },
+      "questions": [
+        {
+          "id": "sixth",
+          "source_kind": "original",
+          "source_page": 32,
+          "prompt_fa": "وزن‌های[بایاس,w1,w2,w3]در پایان دور 6 جدول چیست؟",
+          "solution_fa": "همان ترتیب نمونه‌ها و آستانهٔامتیاز≥0،ردیف ششم جدول را می‌سازد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "[−0.6,0.4,0.4,0.2]",
+              "[−0.2,0,0.2,0.2]",
+              "[0,0,0,0]"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "first",
+          "source_kind": "original",
+          "source_page": 32,
+          "prompt_fa": "کدام بردار پایان تنها یک دور است؟",
+          "solution_fa": "ردیف اول پس از آموزش در جدول،با خروجی کارگاه یک‌دور مطابق است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "[−0.6,0.4,0.4,0.2]",
+              "[−0.2,0,0.2,0.2]",
+              "[−0.4,0.2,0.4,0.4]"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "zero",
+          "source_kind": "original",
+          "source_page": 32,
+          "prompt_fa": "چرا در این مثال محاسبهٔ دقیق صفر اهمیت دارد؟",
+          "solution_fa": "Fraction اعداددهدهی را دقیق نگه می‌دارد؛صرف نزدیک‌بودن float به صفر ممکن است تصمیم مرزی را عوض کند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "چون تمام وزن‌ها همیشه صفرند",
+              "چون نرخ یادگیری حذف می‌شود",
+              "چون امتیازصفر به+1 می‌رود و خطای گردکردن می‌تواند مسیر بعدی را تغییر دهد"
+            ],
+            "correct_index": 2
           }
         }
       ]

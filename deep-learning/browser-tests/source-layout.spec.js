@@ -177,8 +177,14 @@ test('computational graphs preserve their source diagrams, formulas and colored 
   const nodes=[...document.querySelectorAll('.reader-slide-text')],labels=nodes.map(node=>({text:node.textContent,color:getComputedStyle(node).color,overflow:node.scrollHeight>node.clientHeight+2||node.scrollWidth>node.clientWidth+2,yellow:[...node.querySelectorAll('.reader-emphasis')].some(el=>getComputedStyle(el).color==='rgb(255, 192, 0)')}));
   const alternative=nodes.find(node=>node.textContent==='یا');
   const crop=canvas=>{const temp=document.createElement('canvas');temp.width=64;temp.height=64;temp.getContext('2d').drawImage(canvas,.20*canvas.width,.61*canvas.height,.22*canvas.width,.22*canvas.height,0,0,64,64);return temp.getContext('2d').getImageData(0,0,64,64).data};
-  const a=crop(document.querySelector('#source-canvas')),b=crop(document.querySelector('.reader-slide-background'));let delta=0;for(let i=0;i<a.length;i+=4)delta+=Math.abs(a[i]-b[i])+Math.abs(a[i+1]-b[i+1])+Math.abs(a[i+2]-b[i+2]);
-  return {labels,alternative:Boolean(alternative)&&!alternative.querySelector('.katex'),delta:delta/(64*64*3),formula:record.blocks.find(block=>block.kind==='math').fa};
+  const source=document.querySelector('#source-canvas'),background=document.querySelector('.reader-slide-background');
+  const a=crop(source),b=crop(background);let delta=0;for(let i=0;i<a.length;i+=4)delta+=Math.abs(a[i]-b[i])+Math.abs(a[i+1]-b[i+1])+Math.abs(a[i+2]-b[i+2]);
+  const rightCrop=canvas=>{const temp=document.createElement('canvas');temp.width=64;temp.height=64;temp.getContext('2d').drawImage(canvas,.53*canvas.width,.55*canvas.height,.065*canvas.width,.10*canvas.height,0,0,64,64);return temp.getContext('2d').getImageData(0,0,64,64).data};
+  const c=rightCrop(source),d=rightCrop(background);let redSource=0,redTarget=0,redDifference=0;for(let i=0;i<c.length;i+=4){const original=c[i]>150&&c[i]>c[i+1]*1.5&&c[i]>c[i+2]*1.5,painted=d[i]>150&&d[i]>d[i+1]*1.5&&d[i]>d[i+2]*1.5;redSource+=original;redTarget+=painted;redDifference+=original!==painted;}
+  const original=nodes.find(node=>node.textContent.includes('مقدار میانی')),probe=original.cloneNode(true);
+  probe.style.visibility='hidden';probe.style.width=(original.clientWidth*.85)+'px';probe.style.lineHeight='1.25';original.parentElement.append(probe);
+  const stress={width:probe.clientWidth,scrollWidth:probe.scrollWidth,height:probe.clientHeight,scrollHeight:probe.scrollHeight,fontSize:getComputedStyle(probe).fontSize};probe.remove();
+  return {labels,alternative:Boolean(alternative)&&!alternative.querySelector('.katex'),delta:delta/(64*64*3),redSource,redTarget,redDifference: redDifference/(64*64),stress,formula:record.blocks.find(block=>block.kind==='math').fa};
  });
  expect(evidence.alternative).toBe(true);expect(evidence.formula).toBe('a = b + c یا a = d*(b + c)');
  await page.locator('.reader-figure-labels summary').click();await expect(page.locator('.reader-figure-content .katex-mathml')).toBeAttached();
@@ -186,5 +192,7 @@ test('computational graphs preserve their source diagrams, formulas and colored 
  expect(evidence.labels.some(item=>item.text.includes('گره‌ها')&&item.yellow)).toBe(true);
  expect(evidence.labels.some(item=>item.text.includes('یال‌ها')&&item.yellow)).toBe(true);
  expect(evidence.labels.some(item=>item.text.includes('مقدار میانی')&&item.color==='rgb(0, 253, 255)')).toBe(true);
- expect(evidence.labels.every(item=>!item.overflow)).toBe(true);expect(evidence.delta).toBeLessThan(3);
+ expect(evidence.labels.every(item=>!item.overflow)).toBe(true);expect(evidence.delta).toBeLessThan(3);expect(evidence.redSource).toBeGreaterThan(100);expect(evidence.redTarget).toBeGreaterThan(100);expect(evidence.redDifference).toBeLessThan(.05);
+ expect(evidence.stress.scrollWidth).toBeLessThanOrEqual(evidence.stress.width+2);
+ expect(evidence.stress.scrollHeight).toBeLessThanOrEqual(evidence.stress.height+2);
 });

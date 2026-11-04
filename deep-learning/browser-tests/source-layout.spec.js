@@ -110,3 +110,31 @@ test('manual diagram placement is bound to the exact PDF and translation',async(
  });
  expect(checks.reviewed).not.toEqual(checks.wrongPdf);expect(checks.reviewed).not.toEqual(checks.wrongText);
 });
+
+test('weight-update diagrams preserve the source network, equations and measured type',async({page})=>{
+ await page.setViewportSize({width:1440,height:900});
+ for(const number of [86,87,88,89]){
+  await page.goto(`/deep-learning/terms/spring-2026/s03/slides/#page=${number}`);await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const evidence=await page.evaluate(async()=>{
+   const config=JSON.parse(document.querySelector('#source-reader-config').textContent),record=(await(await fetch(config.translationUrl)).json()).pages[window.sourceSlideReader.page-1];
+   const line=record.source_layout.lines.find(line=>line.index===27),red=[...document.querySelectorAll('.reader-slide-text')].find(n=>n.textContent.startsWith('پارامترهای تازه'));
+   const canvas=document.querySelector('.reader-slide-background'),pixels=canvas.getContext('2d').getImageData(0,0,canvas.width,canvas.height).data;let redCount=0,greenCount=0;
+   for(let i=0;i<pixels.length;i+=4){if(pixels[i]>200&&pixels[i+1]<65&&pixels[i+2]<65)redCount++;if(pixels[i+1]>80&&pixels[i+1]>pixels[i]*1.4&&pixels[i+1]>pixels[i+2]*1.3)greenCount++;}
+   return {actual:parseFloat(red.style.fontSize),expected:line.font_size/record.source_layout.width*960,color:getComputedStyle(red).color,overflow:red.scrollHeight>red.clientHeight+2,redCount,greenCount,formula:record.blocks.find(block=>block.kind==='math').fa};
+  });
+  expect(Math.abs(evidence.actual-evidence.expected)).toBeLessThan(.05);
+  expect(evidence.color).toBe('rgb(255, 0, 0)');expect(evidence.overflow).toBe(false);
+  expect(evidence.redCount).toBeGreaterThan(50);expect(evidence.greenCount).toBeGreaterThan(50);
+  expect(evidence.formula).toMatch(/0\.9/);
+ }
+});
+
+test('weight-update diagram and exact values remain available on mobile',async({page})=>{
+ await page.setViewportSize({width:390,height:844});await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=88');await ready(page);
+ await page.locator('[data-view-translation]').click();await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ await expect(page.locator('.reader-slide-background')).toBeVisible();
+ await page.locator('.reader-figure-labels summary').click();
+ await expect(page.locator('.reader-figure-content')).toContainText('0.218');
+});

@@ -474,6 +474,14 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(index===3)region.manualAccents=[{text:'یا',color:'#ffffff'}];
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===13
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='a446f994291fe2033fe08f7ebffd845639d0ba5a4f14fe5ea71abc743c0feebf'
+      && layout.translation_sha256==='1945a5e7443b4fd60df7744c340748e5be1274c3cf23fa6386c716525ea40bd7'){
+    for(const region of regions)if(region.block.kind==='heading'){
+      region.slot=[.04,.09,.96,.205];region.font=33;region.keepTermsTogether=true;
+    }
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

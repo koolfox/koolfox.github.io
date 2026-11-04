@@ -412,3 +412,12 @@ test('session 1 opening topics and motivation retain source colors', async ({pag
  await expect(regions.nth(3).locator('span')).toHaveCSS('color','rgb(255, 255, 255)');
  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 meeting summary slide keeps the source image beneath the title', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=13'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
+ const title=page.locator('#persian-page .reader-slide-text');
+ await expect(title).toContainText('Zoom');
+ expect(await title.evaluate(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2)).toBeTruthy();
+});

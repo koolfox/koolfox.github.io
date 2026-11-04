@@ -384,7 +384,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     for(const region of regions){
       const text=region.block.fa;
       if(region.block.kind==='heading')region.slot=[.02,.075,.99,.205];
-      if(record.number===73 && text.startsWith('مربع خطا'))region.slot=[.68,.52,.98,.58];
+      if(record.number===73 && text.startsWith('مربع خطا'))region.slot=[.60,.52,.99,.58];
       if(record.number===73 && text.startsWith('آیا هنگام تغییر')){region.slot=[.56,.80,.985,.985];region.color='#ffffff';region.manualAccents=[{text:'increase',color:'#ffc000'},{text:'reduce',color:'#ffc000'}];}
       if(record.number===74 && text.startsWith('به یاد آورید'))region.slot=[.60,.24,.98,.34];
       if(record.number===74 && text.startsWith('1. جمع'))region.slot=[.55,.37,.81,.46];

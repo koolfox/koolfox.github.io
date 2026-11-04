@@ -297,3 +297,33 @@ test('standardization source correction is visible beside the unchanged slide',a
  const data=await page.evaluate(async()=>{const c=JSON.parse(document.querySelector('#source-reader-config').textContent);return (await(await fetch(c.translationUrl)).json()).pages[18]});
  expect(data.editorial_notes).toHaveLength(1);expect(data.editorial_notes[0].fa).toContain('2.9');
 });
+
+test('loss and backward-pass examples preserve source formulas and avoid graphic labels',async({page})=>{
+ await page.setViewportSize({width:1440,height:900});
+ for(const number of [73,74]){
+  await page.goto(`/deep-learning/terms/spring-2026/s03/slides/#page=${number}`);await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const result=await page.evaluate(async()=>{
+   const config=JSON.parse(document.querySelector('#source-reader-config').textContent),record=(await(await fetch(config.translationUrl)).json()).pages[window.sourceSlideReader.page-1],{sourceLayoutPlan}=await import('/deep-learning/assets/slide-content.js'),plan=sourceLayoutPlan(record,config);
+   const owned=new Set(plan.regions.flatMap(region=>region.lines.map(line=>line.index))),intersects=(a,b)=>a[0]<b[2]&&a[2]>b[0]&&a[1]<b[3]&&a[3]>b[1];
+   const collisions=plan.regions.flatMap(region=>record.source_layout.lines.filter(line=>!owned.has(line.index)&&intersects(region.slot,line.rect)).map(line=>line.index));
+   const nodes=[...document.querySelectorAll('.reader-slide-text')],stress=nodes.map((node,index)=>{const probe=node.cloneNode(true);probe.style.visibility='hidden';probe.style.width=(node.clientWidth*(index===0?.90:.85))+'px';probe.style.lineHeight='1.25';node.parentElement.append(probe);const r={text:node.textContent,width:probe.clientWidth,scrollWidth:probe.scrollWidth,height:probe.clientHeight,scrollHeight:probe.scrollHeight,actual:parseFloat(node.style.fontSize),expected:plan.regions[index].font/plan.layout.width*960};probe.remove();return r});
+   const mathLines=record.blocks.filter(block=>block.kind==='math').flatMap(block=>block.source_lines),accents=[...document.querySelectorAll('.reader-slide-text .reader-emphasis')].map(node=>({text:node.textContent,color:getComputedStyle(node).color}));
+   return {collisions,mathLines,translated:[...owned],stress,accents,formulas:record.blocks.filter(block=>block.kind==='math').map(block=>block.latex)};
+  });
+  expect(result.collisions).toEqual([]);
+  if(number===73){const occupied=await page.locator('#source-canvas').evaluate(canvas=>{const pixels=canvas.getContext('2d').getImageData(0,0,canvas.width,canvas.height).data;let count=0;for(let y=.52;y<.58;y+=.001)for(let x=.60;x<.68;x+=.001){const i=(Math.floor(y*canvas.height)*canvas.width+Math.floor(x*canvas.width))*4;if(Math.max(pixels[i],pixels[i+1],pixels[i+2])>30)count++;}return count;});expect(occupied).toBe(0);}
+  for(const line of result.mathLines)expect(result.translated).not.toContain(line);
+  for(const node of result.stress){expect(Math.abs(node.actual-node.expected)).toBeLessThan(.05);expect(node.scrollWidth,`page ${number}: ${node.text}`).toBeLessThanOrEqual(node.width+2);expect(node.scrollHeight,`page ${number}: ${node.text}`).toBeLessThanOrEqual(node.height+2);}
+  if(number===73){expect(result.formulas).toContain('(1-0.474)^2=0.277');for(const term of ['افزایش','کاهش'])expect(result.accents).toContainEqual({text:term,color:'rgb(255, 192, 0)'});}
+  if(number===74){expect(result.formulas).toContain('z_j=\\sum_{i=1}^n w_{ij}x_i+b_j');expect(result.formulas).toContain('o_j=\\frac1{1+e^{-z}}');}
+  await page.locator('.reader-figure-labels summary').click();await expect(page.locator('.reader-figure-content .katex-mathml').first()).toBeAttached();
+ }
+});
+
+test('backward-pass example is readable in the mobile slide view',async({page})=>{
+ await page.setViewportSize({width:390,height:844});await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=74');await ready(page);
+ await page.locator('[data-view-translation]').click();await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');await expect(page.locator('.reader-slide-background')).toBeVisible();
+ await expect(page.locator('.reader-slide-text').filter({hasText:'تابع فعال‌سازی'})).toBeVisible();
+});

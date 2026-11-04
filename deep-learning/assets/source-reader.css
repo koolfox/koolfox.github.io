@@ -73,3 +73,5 @@ html:has(body.source-reader),body.source-reader{height:100%;overflow:hidden}.sou
  .reader-resizing .reader-tools-panel iframe{pointer-events:none}
 }
 @media print{.reader-divider{display:none!important}}
+.reader-translation [data-source-fallback=measured]{color:var(--source-fallback-color);background:var(--source-fallback-background);font-size:var(--source-fallback-size);padding:.16em .3em;inline-size:fit-content;max-inline-size:100%;margin-inline-start:0;margin-inline-end:auto}
+.reader-translation [data-source-fallback=measured] a{color:inherit}

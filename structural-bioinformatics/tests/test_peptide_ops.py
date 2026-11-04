@@ -54,7 +54,7 @@ def test_invalid_reference_region_stops_before_docking(tmp_path):
 def test_real_recorded_workflow_chain_is_traceable():
     import hashlib
 
-    root = PROJECT / "assets/peptide-ops-demo"
+    root = PROJECT / "assets/peptide-ops-batched-demo"
     report = json.loads((PROJECT / "data/processed/peptide-ops-demo.json").read_text())
     assert report["status"] == "requires_further_validation"
     assert (
@@ -71,10 +71,16 @@ def test_real_recorded_workflow_chain_is_traceable():
     for step in report["steps"]:
         assert hashlib.sha256((root / step["artifact"]).read_bytes()).hexdigest() == step["sha256"]
     candidates = json.loads((root / "candidates/manifest.json").read_text())
-    docking = json.loads((root / "docking/report.json").read_text())
-    assert candidates["fasta_sha256"] == docking["fasta_sha256"]
+    batches = json.loads((root / "docking/batch-workflow.json").read_text())
+    assert candidates["fasta_sha256"] == batches["input_fasta_sha256"]
+    assert [b["input_count"] for b in batches["batches"]] == [2, 2, 1]
+    outputs = []
+    for b in batches["batches"]:
+        file = root / "docking" / f"batch-{b['batch']:06d}" / "docking/report.json"
+        assert hashlib.sha256(file.read_bytes()).hexdigest() == b["report_sha256"]
+        outputs.extend(json.loads(file.read_text())["candidates"])
     assert [(r["id"], r["sequence"]) for r in candidates["candidates"]] == [
-        (r["input_id"], r["sequence"]) for r in docking["candidates"]
+        (r["input_id"], r["sequence"]) for r in outputs
     ]
 
 

@@ -36,8 +36,9 @@ def write_summary(out, report):
         for step in report["steps"]
     )
     rows = []
-    docking = out / "docking/report.json"
-    if docking.is_file():
+    docking_root = out / "docking"
+    dock_reports = sorted(docking_root.glob("batch-*/docking/report.json"))
+    for docking in dock_reports:
         for candidate in json.loads(docking.read_text()).get("candidates", []):
             poses = candidate.get("poses", [])
             score = str(poses[0]["vina_score_kcal_mol"]) if poses else "—"
@@ -86,6 +87,7 @@ def main():
     p.add_argument("--alphabet", default="ACDEFGHIKLMNPQRSTVWY")
     p.add_argument("--include-seed", action="store_true")
     p.add_argument("--max-sequences", type=int, default=20)
+    p.add_argument("--batch-size", type=int, default=20)
     p.add_argument("--target-pdb", type=Path, required=True)
     p.add_argument("--target-chain", required=True)
     p.add_argument("--center", type=float, nargs=3, required=True)
@@ -144,7 +146,7 @@ def main():
             gen += ["--position", str(pos)]
         dock = [
             sys.executable,
-            str(PROJECT / "scripts/run_general_peptide_docking.py"),
+            str(PROJECT / "scripts/run_fasta_batches.py"),
             "--pdb",
             str(args.target_pdb.resolve()),
             "--chain",
@@ -155,6 +157,8 @@ def main():
             *map(str, args.center),
             "--size",
             *map(str, args.size),
+            "--batch-size",
+            str(args.batch_size),
             "--receptor-preparer",
             args.receptor_preparer,
             "--vina",
@@ -164,7 +168,7 @@ def main():
         ]
         for name, command, artifact, expected in (
             ("candidate_generation", gen, out / "candidates/manifest.json", "sequences_generated"),
-            ("docking", dock, out / "docking/report.json", "requires_further_validation"),
+            ("docking", dock, out / "docking/batch-workflow.json", "requires_further_validation"),
         ):
             row = {"step": name, "status": "running"}
             report["steps"].append(row)

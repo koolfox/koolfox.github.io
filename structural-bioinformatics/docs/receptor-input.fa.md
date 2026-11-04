@@ -51,7 +51,7 @@ uv run --project structural-bioinformatics peptide-lab generate \
 
 ### ساخت نامزد از توالی یا ساختار داروی مرجع
 
-اگر داروی مرجع یک پروتئین یا پپتید است، می‌توان بخشی از توالی آن را با شناسهٔ FASTA و بازهٔ یک‌پایه و شامل دو انتها انتخاب کرد؛ یا بازه‌ای از باقی‌مانده‌های مشاهده‌شدهٔ یک زنجیره در PDB را داد. این ابزار تک‌جانشینی‌های انتخاب‌شده را کامل می‌سازد و اگر شمارشان از سقف ۲۰ بیشتر شود بدون ایجاد خروجی متوقف می‌شود:
+اگر داروی مرجع یک پروتئین یا پپتید است، می‌توان بخشی از توالی آن را با شناسهٔ FASTA و بازهٔ یک‌پایه و شامل دو انتها انتخاب کرد؛ یا بازه‌ای از باقی‌مانده‌های مشاهده‌شدهٔ یک زنجیره در PDB را داد. این ابزار تک‌جانشینی‌های انتخاب‌شده را کامل می‌سازد و اگر شمارشان از بودجهٔ انتخابی `--max-sequences` بیشتر شود بدون ایجاد خروجی متوقف می‌شود:
 
 ```bash
 uv run --project structural-bioinformatics python -m peptide_lab.candidates \
@@ -72,16 +72,54 @@ uv run --project structural-bioinformatics python -m peptide_lab.candidates \
 ```bash
 conda run -n tnf-docking python structural-bioinformatics/scripts/run_peptide_ops.py \
   --drug-pdb structural-bioinformatics/assets/3wd5.pdb --drug-chain H \
-  --start 2 --end 3 --position 1 --alphabet ACDE --include-seed --max-sequences 5 \
+  --start 2 --end 3 --position 1 --alphabet ACDE --include-seed --max-sequences 5 --batch-size 2 \
   --target-pdb structural-bioinformatics/assets/course/gromacs/1ubq-protein.pdb --target-chain A \
   --center 30 28 15 --size 20 20 20 \
   --receptor-preparer /path/to/mk_prepare_receptor.py --vina /path/to/vina \
   --output-dir structural-bioinformatics/results/peptide-ops-01
 ```
 
-در پوشهٔ خروجی، `workflow.json` وضعیت مراحل و هش گزارش‌های آنها را ثبت می‌کند؛ پوشهٔ `candidates` منشأ و نوع جانشینی‌ها و پوشهٔ `docking` مدل‌ها، حالت‌ها و گزارش موتور را نگه می‌دارد و `report.html` نمای خوانای نتیجه است. [نمای خوانای اجرای فنی](../assets/peptide-ops-demo/report.html) و [گزارش عددی نمونه](../data/processed/peptide-ops-demo.json) و [فایل‌های آن](../assets/peptide-ops-demo/candidates/manifest.json) برای بازبینی موجودند. اگر تولید نامزد یا آماده‌سازی گیرنده شکست بخورد، مرحلهٔ بعدی موفق اعلام نمی‌شود و علت در فایل خطای همان مرحله می‌ماند.
+در پوشهٔ خروجی، `workflow.json` وضعیت مراحل و هش گزارش‌های آنها را ثبت می‌کند؛ پوشهٔ `candidates` منشأ و نوع جانشینی‌ها و پوشهٔ `docking` مدل‌ها، حالت‌ها و گزارش موتور را در دسته‌های پی‌درپی نگه می‌دارد و `report.html` نمای خوانای نتیجه است. [نمای خوانای اجرای فنی](../assets/peptide-ops-batched-demo/report.html) و [گزارش عددی نمونه](../data/processed/peptide-ops-demo.json) و [فایل‌های آن](../assets/peptide-ops-batched-demo/candidates/manifest.json) برای بازبینی موجودند. اگر تولید نامزد یا آماده‌سازی گیرنده شکست بخورد، مرحلهٔ بعدی موفق اعلام نمی‌شود و علت در فایل خطای همان مرحله می‌ماند.
 
 برای داروی دارای توالی FASTA می‌توان به‌جای دو گزینهٔ PDB از `--drug-fasta` و `--record-id` استفاده کرد. برای داروی کوچک‌مولکول، انتخاب مشابه پپتیدی به روش دیگری نیاز دارد و در این نسخه وجود ندارد. نتیجهٔ این مسیر فقط پیشنهادهای محاسباتی محدود است؛ نه شواهد اتصال، مهار یا معادل‌بودن دارویی.
+
+### اجرای کتابخانهٔ بزرگ در دسته‌های پی‌درپی
+
+برای فایل FASTA با تعداد رکورد دلخواه از دستور زیر استفاده کنید. عدد ۲۰ سقف هر دسته است، نه سقف کل فایل. ابزار ابتدا همهٔ رکوردها را برای نام تکراری، حروف مجاز و طول ۱ تا ۱۲ بررسی می‌کند، سپس آنها را بدون حذف خاموش به دسته‌های متوالی می‌فرستد. توالی‌های تکراری با شناسه‌های متفاوت حفظ می‌شوند و در صورت نیاز در دسته‌های جدا قرار می‌گیرند. زمان اجرا و فضای ذخیره‌سازی با اندازهٔ کتابخانه افزایش می‌یابد.
+
+```bash
+conda run -n tnf-docking python structural-bioinformatics/scripts/run_fasta_batches.py \
+  --fasta /path/to/library.fasta --pdb /path/to/target.pdb --chain A \
+  --center 30 28 15 --size 20 20 20 --batch-size 20 \
+  --receptor-preparer /path/to/mk_prepare_receptor.py --vina /path/to/vina \
+  --output-dir structural-bioinformatics/results/library-run-01
+```
+
+در اجرای واقعیِ [نمونهٔ ۲۱ توالی](../data/processed/batches-21-demo.json)، دسته‌ها به‌ترتیب ۲۰ و ۱ رکورد داشتند. فایل FASTA، هش و گزارش هر دسته در `assets/batches-21-demo/` موجود است. شکست یک دسته اجرا را متوقف می‌کند و تعداد کامل‌شده و علت شکست ثبت می‌شود؛ ادامه از همان نقطه پس از رفع خطا هنوز خودکار نیست. جعبه، کیفیت گیرنده، مدل‌سازی پپتید و تفسیر نتایج همان محدودیت‌های بالا را دارند.
+
+### اجرای ۳۹ نامزد و بازرسی مستقل
+
+در یک آزمون فنی دیگر، از بازهٔ VQ در زنجیرهٔ H ساختار 3WD5، توالی مرجع و همهٔ تک‌جانشینی‌های هر دو جایگاه با ۲۰ آمینواسید ساخته شد: ۳۹ نامزد. ابزار یک‌فرمانی آنها را در دو دستهٔ ۲۰ و ۱۹تایی روی هدف نامرتبط 1UBQ اجرا کرد. بازرسی مستقل [گزارش ۳۹ نامزد](../data/processed/peptide-ops-39-audit.json)، ۸۹ حالت ذخیره‌شده را از نظر شناسه، هش فایل، امتیاز ثبت‌شده و فاصلهٔ اتم سنگین بازخوانی کرد؛ کمترین فاصلهٔ ثبت‌شده حدود ۲٫۴۹۹ آنگستروم در حالت دوم KQ، میان OXT گلوتامین پپتید و NH2 آرژینین ۷۲ هدف بود. آستانهٔ سادهٔ ۲ آنگستروم خطای آشکار کمتر از آن را جست‌وجو می‌کند و معتبر بودن این حالت نزدیک را ثابت نمی‌کند.
+
+[گزارش خوانای اجرا](../assets/peptide-ops-39-demo/report.html)، [توالی‌ها و منشأ تغییرات](../assets/peptide-ops-39-demo/candidates/manifest.json) و فایل‌های کامل زیر `assets/peptide-ops-39-demo/` موجودند. بازاجرای بازرسی، بدون داکینگ دوباره:
+
+```bash
+uv run --project structural-bioinformatics python structural-bioinformatics/scripts/audit_batched_run.py \
+  --root structural-bioinformatics/assets/peptide-ops-39-demo
+```
+
+این نمونه نه آزمایش TNF است و نه مقایسهٔ عملکرد با آدالیموماب؛ اتصال زیستی، موقعیت مناسب هدف و اثر دارویی با این بازرسی مشخص نمی‌شوند.
+
+برای ساخت کتابخانه‌ای بزرگ‌تر از محدودیت ابزار قدیمی، تولیدکنندهٔ جریانی زیر شمار همهٔ ترکیب‌ها را ابتدا حساب می‌کند و فقط اگر در بودجهٔ صریح شما بگنجد کل FASTA را می‌نویسد؛ سقف ثابت تعداد ندارد:
+
+```bash
+uv run --project structural-bioinformatics python -m peptide_lab.library_stream \
+  --alphabet ACDE --min-length 7 --max-length 7 --budget 16384 \
+  --output-dir structural-bioinformatics/results/large-library-01
+# سپس sequences.fasta را به run_fasta_batches.py بدهید.
+```
+
+این مثال ۱۶٬۳۸۴ توالی می‌نویسد؛ داکینگ آنها در این مثال اجرا نشده است. بودجه تعداد را محدود می‌کند، نه زمان یا حجم خروجی داکینگ را. طول ۷ در محدودهٔ مدل‌ساز فعلی است؛ خود تولیدکننده طول‌های بیشتری را هم می‌شمارد، ولی داکینگ فعلی فقط طول ۱ تا ۱۲ را می‌پذیرد.
 
 ## نمایش سه‌بعدی حالت‌های داکینگ
 

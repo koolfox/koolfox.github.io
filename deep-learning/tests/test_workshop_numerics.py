@@ -388,6 +388,25 @@ class WorkshopNumericalTests(unittest.TestCase):
             self.assertAlmostEqual(gradient, numerical, delta=2e-10)
         self.assertAlmostEqual(network["forward"]["o6"], 0.47388889882398544)
 
+    def test_source_backprop_updates_use_original_rate_and_displayed_rounding(self):
+        scope = execute("s03_backprop")
+        result = scope["result"]
+        self.assertEqual(result["learning_rate"], 0.9)
+        # These values are printed on the source pages 86–96.
+        self.assertEqual(result["source_rounded_updates"], {
+            "w46": -0.261, "w56": -0.138, "b6": 0.218,
+            "w14": 0.192, "w15": -0.306, "w24": 0.4, "w25": 0.1,
+            "w34": -0.508, "w35": 0.194, "b4": -0.408, "b5": 0.194,
+        })
+        for name, initial in scope["source_parameters"].items():
+            gradient = result["source_scaled_gradients"][name]
+            self.assertAlmostEqual(result["updated_parameters"][name], initial - 0.9 * gradient)
+        self.assertLess(scope["source_forward"](result["updated_parameters"])["squared_error"], result["forward"]["squared_error"])
+        changed = execute("s03_backprop", {"learning_rate = 0.9": "learning_rate = 0.2"})["result"]
+        self.assertIsNone(changed["source_rounded_updates"])
+        self.assertIsNone(changed["source_printed"])
+        self.assertNotEqual(changed["updated_parameters"]["w46"], result["updated_parameters"]["w46"])
+
     def test_standalone_source_stencil_has_source_grid_and_linear_response(self):
         scope = execute("s05_source_convolution")
         self.assertEqual(scope["result"]["feature_map"], [[4, 3, 4], [2, 4, 3], [2, 3, 4]])

@@ -246,6 +246,23 @@ test('bias derivative correction is visible separately from the source slide',as
  const data=await page.evaluate(async()=>{const c=JSON.parse(document.querySelector('#source-reader-config').textContent);return (await(await fetch(c.translationUrl)).json()).pages[77]});
  expect(data.lines[40]).toBe('𝜕wi,6');expect(data.lines[45]).toContain('= 1');expect(data.editorial_notes).toHaveLength(1);
 });
+test('node-four gradient slide preserves source equations and the existing correction',async({page})=>{
+ await page.setViewportSize({width:1440,height:900});await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=82');await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const evidence=await page.evaluate(async()=>{
+  const config=JSON.parse(document.querySelector('#source-reader-config').textContent),record=(await(await fetch(config.translationUrl)).json()).pages[81],{sourceLayoutPlan}=await import('/deep-learning/assets/slide-content.js'),plan=sourceLayoutPlan(record,config);
+  const translatedLines=plan.regions.flatMap(region=>region.lines.map(line=>line.index)),mathLines=record.blocks.filter(block=>block.kind==='math').flatMap(block=>block.source_lines),annotation=plan.regions.find(region=>region.block.fa.startsWith('به‌طور مشابه'));
+  const intersects=(a,b)=>a[0]<b[2]&&a[2]>b[0]&&a[1]<b[3]&&a[3]>b[1];
+  const overlap=record.source_layout.lines.some(line=>mathLines.includes(line.index)&&intersects(annotation.slot,line.rect));
+  const nodes=[...document.querySelectorAll('.reader-slide-text')],stress=nodes.map((node,index)=>{const probe=node.cloneNode(true);probe.style.visibility='hidden';probe.style.width=(node.clientWidth*(index===0?.90:.85))+'px';probe.style.lineHeight='1.25';node.parentElement.append(probe);const result={width:probe.clientWidth,scrollWidth:probe.scrollWidth,height:probe.clientHeight,scrollHeight:probe.scrollHeight,actual:parseFloat(node.style.fontSize),expected:plan.regions[index].font/plan.layout.width*960};probe.remove();return result});
+  return {translatedLines,mathLines,overlap,stress,noteCount:record.editorial_notes?.length};
+ });
+ expect(evidence.noteCount).toBe(1);expect(evidence.overlap).toBe(false);
+ for(const index of evidence.mathLines)expect(evidence.translatedLines).not.toContain(index);
+ for(const node of evidence.stress){expect(Math.abs(node.actual-node.expected)).toBeLessThan(.05);expect(node.scrollWidth).toBeLessThanOrEqual(node.width+2);expect(node.scrollHeight).toBeLessThanOrEqual(node.height+2);}
+ await expect(page.locator('.reader-editorial')).toContainText('∂o₆/∂z₆');
+ await page.locator('.reader-figure-labels summary').click();await expect(page.locator('.reader-figure-content .katex-mathml').first()).toBeAttached();
+});
 
 test('backward-pass weight and bias slides keep formulas and correction separate',async({page})=>{
  await page.setViewportSize({width:1440,height:900});

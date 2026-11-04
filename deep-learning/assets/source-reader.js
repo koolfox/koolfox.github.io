@@ -7,7 +7,7 @@ const picker=$('[data-page-select]'),progress=$('[data-pdf-progress]');
 GlobalWorkerOptions.workerSrc=new URL('./vendor/pdfjs/pdf.worker.min.mjs',import.meta.url).href;
 let pdf=null,canonicalPdf=null,payload=null,page=1,renderedPage=0,zoom=1,serial=0,task=null,closed=false,lastWidth=720,references=false;
 let presenting=false,view=matchMedia('(max-width:760px)').matches?'source':'both',readingView=view;
-let playing=false,playSequence=null,playTimer=null,layoutTask=null,customTool=false;
+let playing=false,playSequence=null,playTimer=null,layoutTask=null,customTool=false,translationFallback=[];
 const fa=n=>new Intl.NumberFormat('fa-IR',{useGrouping:false}).format(n);
 const clamp=n=>Math.max(1,Math.min(config.pageCount,n));
 function fromHash(){const match=location.hash.match(/^#page=(\d+)$/);return match?clamp(Number(match[1])):1;}
@@ -54,14 +54,14 @@ function renderTranslation(){
   for(const reference of correction.references||[]){const url=safeExternal(reference.url);if(!url)continue;const a=element('a','reader-reference',reference.label_fa);a.href=url;a.target='_blank';a.rel='noopener noreferrer';const p=element('p');p.append(a);aside.append(p);}
   fragment.append(aside);
  }
- persian.replaceChildren(fragment);persian.dataset.page=String(page);$('[data-source-text]').textContent=visibleEnglish(record);
+ persian.replaceChildren(fragment);translationFallback=[...persian.childNodes];persian.dataset.page=String(page);$('[data-source-text]').textContent=visibleEnglish(record);
  document.querySelector('.reader-translation').scrollTop=0;
 }
 async function paintPersianLayout(source,canonicalSource,id,selected){
  const record=payload.pages[selected-1],plan=sourceLayoutPlan(record);
  persian.dataset.layout=plan.reason||'pending';
- if(plan.reason)return;
- const fallback=[...persian.childNodes],slide=createSourceLayout(record,plan);
+ if(plan.reason){persian.replaceChildren(...translationFallback);paintSourceCrops();return;}
+ const fallback=translationFallback,slide=createSourceLayout(record,plan);
  const tableState=[...persian.querySelectorAll('.reader-table-viewport')].map(node=>({left:node.scrollLeft,top:node.scrollTop,focused:document.activeElement===node}));
  const previousCompanion=persian.querySelector('.reader-figure-labels');
  if(previousCompanion&&slide.companion)slide.companion.open=previousCompanion.open;
@@ -76,7 +76,7 @@ async function paintPersianLayout(source,canonicalSource,id,selected){
  slide.stage.style.transform=`scale(${scale})`;
  await document.fonts.ready;
  if(id!==serial||page!==selected)return;
- if(!fitSourceLayout(slide.stage)){install(...fallback);persian.dataset.layout='text-overflow';return;}
+ if(!fitSourceLayout(slide.stage)){install(...fallback);paintSourceCrops();persian.dataset.layout='text-overflow';return;}
  const measured=document.createElement('canvas'),measureViewport=source.getViewport({scale:slide.width/source.getViewport({scale:1}).width});
  measured.width=Math.ceil(measureViewport.width);measured.height=Math.ceil(measureViewport.height);
  const measurement=source.render({canvasContext:measured.getContext('2d'),viewport:measureViewport,recordOperations:true});layoutTask=measurement;
@@ -88,8 +88,8 @@ async function paintPersianLayout(source,canonicalSource,id,selected){
  const targets=plan.regions.flatMap(region=>region.lines.map(line=>({line,block:region.block}))),selectedOps=new Set(),covered=new Set();
  for(let index=0;index<list.fnArray.length;index++){
   if(!textOps.has(list.fnArray[index])||!boxes||boxes.isEmpty(index))continue;
-  const x=(boxes.minX(index)+boxes.maxX(index))/2,y=(boxes.minY(index)+boxes.maxY(index))/2;
-  targets.forEach((target,number)=>{const [l,t,r,b]=target.line.rect;if(x>=l-.004&&x<=r+.004&&y>=t-.004&&y<=b+.004){selectedOps.add(index);covered.add(number);}});
+  const [x0,y0,x1,y1]=[boxes.minX(index),boxes.minY(index),boxes.maxX(index),boxes.maxY(index)];
+  targets.forEach((target,number)=>{const [l,t,r,b]=target.line.rect;if(x0>=l-.004&&x1<=r+.004&&y0>=t-.004&&y1<=b+.004){selectedOps.add(index);covered.add(number);}});
  }
  // Missing browser-font ink bounds can still be proved by a unique complete glyph sequence.
  const key=value=>value.normalize('NFKC').replace(/[\s\u0000]/g,'');
@@ -113,9 +113,18 @@ async function paintPersianLayout(source,canonicalSource,id,selected){
  }
  for(const region of plan.regions){
   const numbers=targets.map((target,index)=>target.block===region.block?index:-1).filter(index=>index>=0);
-  if(numbers.length===region.block.source_lines.length)prove(region.block.source_lines.map(index=>record.lines[index]).join(''),numbers);
+  if(numbers.length===region.lines.length)prove(region.lines.map(line=>line.text??record.lines[line.index]).join(''),numbers);
  }
- if(covered.size!==targets.length){install(...fallback);persian.dataset.layout='unmatched-operators';return;}
+ targets.forEach((target,number)=>{
+  if(covered.has(number))return;
+  const expected=key(target.line.text??record.lines[target.line.index]),[l,t,r,b]=target.line.rect;
+  for(const run of runs){
+   if(stream.slice(run.start,run.end)!==expected||!boxes||boxes.isEmpty(run.index))continue;
+   const x=(boxes.minX(run.index)+boxes.maxX(run.index))/2,y=(boxes.minY(run.index)+boxes.maxY(run.index))/2;
+   if(x>=l-.004&&x<=r+.004&&y>=t-.004&&y<=b+.004){selectedOps.add(run.index);covered.add(number);}
+  }
+ });
+ if(covered.size!==targets.length){install(...fallback);paintSourceCrops();persian.dataset.layout='unmatched-operators';return;}
  const viewport=source.getViewport({scale:slide.width/source.getViewport({scale:1}).width});
  const target=slide.background,ratio=Math.max(1,Math.min(2,(devicePixelRatio||1)*scale));target.width=Math.ceil(viewport.width*ratio);target.height=Math.ceil(viewport.height*ratio);
  const context=target.getContext('2d'),drawing=new Set(['fillText','strokeText','fill','stroke','drawImage']);let suppress=false;

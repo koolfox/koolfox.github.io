@@ -18,13 +18,12 @@ test('source canvas preserves white native labels, graphics and exact numeric va
  await expect(page.locator('.reader-slide-background')).toBeVisible();
 });
 
-test('figure labels and semantic tables stay available without erasing source media',async({page})=>{
+test('long translation falls back without clipping and keeps its accessible table',async({page})=>{
  await page.goto('/deep-learning/terms/spring-2026/s17/slides/#page=44');await ready(page);
- await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
- await expect(page.locator('.reader-slide-background')).toBeVisible();
- await expect(page.locator('.reader-figure-labels')).toHaveAttribute('open','');
- await expect(page.locator('.reader-figure-content table')).toBeVisible();
- await expect(page.locator('.reader-figure-content table tbody tr')).not.toHaveCount(0);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','text-overflow');
+ await expect(page.locator('#source-canvas')).toBeVisible();
+ await expect(page.locator('#persian-page table')).toBeVisible();
+ await expect(page.locator('#persian-page table tbody tr')).not.toHaveCount(0);
 });
 
 test('page-bound custom tools and page-change event do not load a general toy first',async({page})=>{

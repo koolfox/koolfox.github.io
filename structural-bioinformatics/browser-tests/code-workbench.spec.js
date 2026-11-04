@@ -93,3 +93,18 @@ test('mobile editor is readable, keyboard accessible and falls back when rich ed
  expect(await frame.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  await expect(frame.locator('#code-download-result')).toBeEnabled();
 });
+
+test('peptide notebook executes real code and keeps edits locally', async ({page}) => {
+ test.setTimeout(120000);
+ await page.goto('/structural-bioinformatics/research.html');
+ const cells=page.locator('.peptide-cell');
+ await expect(cells).toHaveCount(3);
+ await cells.nth(2).locator('.peptide-run').click();
+ await expect(cells.nth(2).locator('.peptide-output')).toContainText('0.1368', {timeout:90000});
+ await expect(cells.nth(2).locator('.peptide-output')).toContainText('253');
+ await cells.nth(0).locator('textarea').fill('print(2 ** 3)');
+ await cells.nth(0).locator('.peptide-run').click();
+ await expect(cells.nth(0).locator('.peptide-output')).toHaveText('8\n', {timeout:90000});
+ await page.reload();
+ await expect(cells.nth(0).locator('textarea')).toHaveValue('print(2 ** 3)');
+});

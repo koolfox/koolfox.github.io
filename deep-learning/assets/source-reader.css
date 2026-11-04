@@ -63,7 +63,7 @@ html:has(body.source-reader),body.source-reader{height:100%;overflow:hidden}.sou
 
 /* A quiet, keyboard-accessible handle separates the two working surfaces. */
 @media screen and (min-width:761px){
- .source-reader[data-split-active=true] .reader-layout{grid-template-columns:minmax(0,calc((100% - 14px) * var(--reader-split))) 14px minmax(0,1fr);gap:0}
+ .source-reader[data-reader-section][data-split-active=true] .reader-layout:not([hidden]){grid-template-columns:minmax(0,calc((100% - 14px) * var(--reader-split))) 14px minmax(0,1fr);gap:0}
  .reader-divider{position:relative;cursor:col-resize;touch-action:none;background:#f0f3f8;outline:0}
  .reader-divider::after{content:'';position:absolute;left:6px;top:calc(50% - 22px);width:2px;height:44px;border-radius:1px;background:#8294ae}
  .reader-divider:hover::after,.reader-divider:focus-visible::after,.reader-resizing .reader-divider::after{background:#245bdf;width:4px;left:5px}

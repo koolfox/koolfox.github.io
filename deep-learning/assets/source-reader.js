@@ -247,7 +247,8 @@ async function renderOriginal(){
   const annotations=await source.getAnnotations({intent:'display'});if(id!==serial||closed)return;
   for(const annotation of annotations){
    const url=annotation.url?referenceTarget(safeExternal(annotation.url)):null;if(!url&&!annotation.dest)continue;
-   const rect=viewport.convertToViewportRectangle(annotation.rect);const a=element('a','source-link-overlay');
+   const [x1,y1]=viewport.convertToViewportPoint(annotation.rect[0],annotation.rect[1]),[x2,y2]=viewport.convertToViewportPoint(annotation.rect[2],annotation.rect[3]);
+   const rect=[x1,y1,x2,y2],a=element('a','source-link-overlay');
    a.style.left=Math.min(rect[0],rect[2])+'px';a.style.top=Math.min(rect[1],rect[3])+'px';a.style.width=Math.abs(rect[2]-rect[0])+'px';a.style.height=Math.abs(rect[3]-rect[1])+'px';
    a.setAttribute('aria-label',url?'پیوند: '+url:'رفتن به صفحهٔ ارجاع‌شده');
    if(url){a.href=url;a.target='_blank';a.rel='noopener noreferrer';}else{a.href='#';a.addEventListener('click',event=>{event.preventDefault();destination(annotation.dest).catch(()=>message('این ارجاع داخلی در PDF قابل نمایش نیست؛ اصل فایل در دسترس است.',true));});}

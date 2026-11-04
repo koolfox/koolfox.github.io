@@ -109,3 +109,14 @@ uv run --project structural-bioinformatics python structural-bioinformatics/scri
 ```
 
 این نمونه نه آزمایش TNF است و نه مقایسهٔ عملکرد با آدالیموماب؛ اتصال زیستی، موقعیت مناسب هدف و اثر دارویی با این بازرسی مشخص نمی‌شوند.
+
+برای ساخت کتابخانه‌ای بزرگ‌تر از محدودیت ابزار قدیمی، تولیدکنندهٔ جریانی زیر شمار همهٔ ترکیب‌ها را ابتدا حساب می‌کند و فقط اگر در بودجهٔ صریح شما بگنجد کل FASTA را می‌نویسد؛ سقف ثابت تعداد ندارد:
+
+```bash
+uv run --project structural-bioinformatics python -m peptide_lab.library_stream \
+  --alphabet ACDE --min-length 7 --max-length 7 --budget 16384 \
+  --output-dir structural-bioinformatics/results/large-library-01
+# سپس sequences.fasta را به run_fasta_batches.py بدهید.
+```
+
+این مثال ۱۶٬۳۸۴ توالی می‌نویسد؛ داکینگ آنها در این مثال اجرا نشده است. بودجه تعداد را محدود می‌کند، نه زمان یا حجم خروجی داکینگ را. طول ۷ در محدودهٔ مدل‌ساز فعلی است؛ خود تولیدکننده طول‌های بیشتری را هم می‌شمارد، ولی داکینگ فعلی فقط طول ۱ تا ۱۲ را می‌پذیرد.

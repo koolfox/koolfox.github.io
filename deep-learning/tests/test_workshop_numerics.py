@@ -289,6 +289,24 @@ class WorkshopNumericalTests(unittest.TestCase):
         nonunique = execute("s18_markov_states", {"[[0.3, 0.7], [0.4, 0.6]]": "[[1, 0], [0, 1]]"})["result"]
         self.assertIsNone(nonunique["stationary_distribution"])
 
+    def test_source_scalar_graph_reproduces_b_and_c_finite_differences(self):
+        result = execute("s03_scalar_graph")["result"]
+        expected_b = [[0.01, -4.970, 3], [0.001, -4.997, 3]]
+        expected_c = [[0.01, -5.020, -2], [0.001, -5.002, -2]]
+        self.assertEqual(result["source_printed_b"], expected_b)
+        self.assertEqual(result["source_printed_c"], expected_c)
+        for key, expected in [("finite_difference_b", expected_b), ("finite_difference_c", expected_c)]:
+            for actual_row, expected_row in zip(result[key], expected):
+                for actual, value in zip(actual_row, expected_row):
+                    self.assertAlmostEqual(actual, value, places=10)
+        changed = execute("s03_scalar_graph", {"h_values = [0.01, 0.001]": "h_values = [0.1]"})["result"]
+        self.assertAlmostEqual(changed["finite_difference_b"][0][1], -4.7)
+        self.assertAlmostEqual(changed["finite_difference_c"][0][1], -5.2)
+        self.assertIsNone(changed["source_printed_b"])
+        self.assertIsNone(changed["source_printed_c"])
+        with self.assertRaises(ValueError):
+            execute("s03_scalar_graph", {"h_values = [0.01, 0.001]": "h_values = [0]"})
+
     def test_standardization_source_second_sample_weighted_sum(self):
         from decimal import Decimal
         scope = execute("s06_standardization")

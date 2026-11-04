@@ -55,3 +55,53 @@ def test_recorded_fasta_batch_preserves_identifiers_and_hashes():
     ]
     for row in report["candidates"]:
         assert digest(folder / row["sequence"] / "poses.pdbqt") == row["poses_sha256"]
+
+
+def test_all_twenty_recorded_dipeptides_match_pose_files():
+    import math
+    import re
+
+    import numpy as np
+
+    root = PROJECT / "assets/general-aa20-demo"
+    report = json.loads((PROJECT / "data/processed/general-aa20-demo.json").read_text())
+    assert report["status"] == "requires_further_validation"
+    assert report["fasta_sha256"] == digest(root / "sequences.fasta")
+    assert report["receptor_pdbqt_sha256"] == digest(root / "receptor.pdbqt")
+    assert report["workflow_sha256"] == digest(PROJECT / "scripts/run_general_peptide_docking.py")
+    assert [row["sequence"] for row in report["candidates"]] == [
+        "A" + code for code in "ACDEFGHIKLMNPQRSTVWY"
+    ]
+
+    def coordinates(text):
+        return np.array(
+            [
+                [float(line[i : i + 8]) for i in (30, 38, 46)]
+                for line in text.splitlines()
+                if line.startswith(("ATOM  ", "HETATM")) and line.split()[-1] not in ("H", "HD")
+            ]
+        )
+
+    receptor = coordinates((root / "receptor.pdbqt").read_text())
+    for row in report["candidates"]:
+        folder = root / row["sequence"]
+        assert row["input_id"] == row["sequence"]
+        assert row["status"] == "requires_further_validation"
+        for name, field in (
+            ("conformer.sdf", "conformer_sha256"),
+            ("ligand.pdbqt", "ligand_sha256"),
+            ("poses.pdbqt", "poses_sha256"),
+        ):
+            assert digest(folder / name) == row[field]
+        blocks = re.findall(
+            r"^MODEL\s+\d+\s*$(.*?)^ENDMDL\s*$", (folder / "poses.pdbqt").read_text(), re.M | re.S
+        )
+        assert len(blocks) == len(row["poses"]) and 1 <= len(blocks) <= 3
+        for block, pose in zip(blocks, row["poses"], strict=True):
+            score = float(re.search(r"^REMARK VINA RESULT:\s*([-+\d.]+)", block, re.M).group(1))
+            assert math.isclose(score, pose["vina_score_kcal_mol"], abs_tol=1e-9)
+            actual = float(
+                np.linalg.norm(coordinates(block)[:, None, :] - receptor[None, :, :], axis=2).min()
+            )
+            assert math.isclose(actual, pose["minimum_heavy_atom_distance_angstrom"], abs_tol=1e-9)
+            assert actual >= 2

@@ -52,3 +52,12 @@ def test_recorded_pilot_files_and_distances():
             minimum = float(np.linalg.norm(coords[:, None, :] - target[None, :, :], axis=2).min())
             assert np.isclose(minimum, pose["minimum_interchain_heavy_distance_angstrom"])
             assert pose["severe_clash_screen"] == ("pass" if minimum >= 2 else "fail")
+
+
+def test_public_logs_do_not_include_local_absolute_paths():
+    for sequence in ("AA", "AR", "RA", "RR"):
+        text = (SCREEN / sequence / "vina.stdout.txt").read_text()
+        assert "/Users/" not in text
+        assert "/private/tmp/" not in text
+        assert "[local path removed; see provenance]" in text
+        assert "Estimated Free Energy of Binding" in text or "Affinity" in text or "mode" in text

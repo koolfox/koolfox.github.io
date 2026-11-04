@@ -116,6 +116,61 @@ class SourceLayoutTests(unittest.TestCase):
         finally:
             fixture.tearDown()
 
+    def aligned_fragments(self):
+        block = self.fixture.translation['pages'][0]['blocks'][0]
+        block['fa'] = 'نمایان اصلی'
+        block['source_fragments_verified'] = True
+        block['source_fragments'] = [
+            {'fa': 'نمایان ', 'source_parts': [{'line': 0, 'part': 0, 'en': 'VISIBLE'}]},
+            {'fa': 'اصلی', 'source_parts': [{'line': 0, 'part': 1, 'en': 'ORIGINAL'}]},
+        ]
+        geometry = self.layout['pages'][0]
+        geometry['unmatched_lines'] = [1]
+        geometry['lines'] = [{'index': 0, 'match': 'exact-line', 'font_size': 24,
+                              'rect': [.1,.1,.7,.2], 'parts': [
+                                  {'text':'VISIBLE', 'rect':[.1,.1,.3,.2]},
+                                  {'text':'ORIGINAL', 'rect':[.4,.1,.7,.2]}]}]
+        self.flush_fragments()
+        return block
+
+    def flush_fragments(self):
+        self.fixture.flush()
+        self.layout['pages'][0]['translation_sha256'] = translation_identity(self.fixture.translation['pages'][0])
+        self.flush()
+
+    def test_reviewed_native_parts_preserve_exact_persian_and_geometry_identity(self):
+        block = self.aligned_fragments()
+        actual = self.fixture.load()['pages'][0]['blocks'][0]
+        self.assertEqual(actual['source_fragments'], block['source_fragments'])
+
+    def test_fragment_cannot_move_onto_a_different_native_word(self):
+        block = self.aligned_fragments()
+        block['source_fragments'][1]['source_parts'][0]['en'] = 'DIFFERENT'
+        self.flush_fragments()
+        with self.assertRaisesRegex(ValueError, 'Source fragment text identity mismatch'):
+            self.fixture.load()
+
+    def test_fragment_cannot_drop_persian_words(self):
+        block = self.aligned_fragments()
+        block['source_fragments'][1]['fa'] = 'دیگر'
+        self.flush_fragments()
+        with self.assertRaisesRegex(ValueError, 'preserve the exact Persian text'):
+            self.fixture.load()
+
+    def test_native_parts_cannot_be_claimed_twice(self):
+        block = self.aligned_fragments()
+        block['source_fragments'][1]['source_parts'][0] = {'line':0, 'part':0, 'en':'VISIBLE'}
+        self.flush_fragments()
+        with self.assertRaisesRegex(ValueError, 'Duplicate source fragment reference'):
+            self.fixture.load()
+
+    def test_fragment_cannot_omit_a_native_glyph_group(self):
+        block = self.aligned_fragments()
+        block['source_fragments'] = [{'fa':block['fa'], 'source_parts':[{'line':0,'part':0,'en':'VISIBLE'}]}]
+        self.flush_fragments()
+        with self.assertRaisesRegex(ValueError, 'Incomplete source fragment partition'):
+            self.fixture.load()
+
     def test_all_spring_2026_pages_have_explicit_geometry_inventory(self):
         root = Path(__file__).resolve().parents[1]
         pages = 0

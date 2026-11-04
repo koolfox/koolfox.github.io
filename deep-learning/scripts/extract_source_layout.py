@@ -9,6 +9,7 @@ from concurrent.futures import ProcessPoolExecutor
 import hashlib
 import importlib.metadata
 import json
+import math
 from pathlib import Path
 import statistics
 import unicodedata
@@ -57,6 +58,24 @@ def rgb(value):
     return "#" + "".join(f"{max(0, min(255, round(n * 255))):02x}" for n in value)
 
 
+def color_accents(chars, dominant, width, height, size):
+    runs, current = [], []
+    previous = None
+    for char in chars:
+        color = rgb(char.get("non_stroking_color"))
+        if current and (color != previous or char["x0"]-current[-1]["x1"] > max(size*.85, 7)):
+            runs.append((previous, current))
+            current = []
+        current.append(char)
+        previous = color
+    if current:
+        runs.append((previous, current))
+    return [{"text": "".join(char["text"] for char in run).strip(), "color": color,
+             "rect": rect(run, width, height)}
+            for color, run in runs if color and color != dominant
+            and "".join(char["text"] for char in run).strip()]
+
+
 def geometry(line, width, height):
     chars = sorted(line["chars"], key=lambda char: char["x0"])
     sizes = [float(char["size"]) for char in chars if char["text"].strip()]
@@ -74,6 +93,7 @@ def geometry(line, width, height):
     result = {"rect": rect([line], width, height), "font_size": round(size, 4)}
     if color:
         result["color"] = color
+    result["accents"] = color_accents(chars, color, width, height, size)
     if len(chunks) > 1:
         result["parts"] = []
         for chunk in chunks:
@@ -84,6 +104,7 @@ def geometry(line, width, height):
             color = Counter(colors).most_common(1)[0][0] if colors else None
             if color:
                 part["color"] = color
+            part["accents"] = color_accents(chunk, color, width, height, part["font_size"])
             result["parts"].append(part)
     return result
 
@@ -115,9 +136,13 @@ def pdfium_geometry(page):
             left, bottom, right, top = text.get_charbox(index, loose=True)
             rgba = [ctypes.c_uint() for _ in range(4)]
             ok = pdfium.raw.FPDFText_GetFillColor(text.raw, index, *[ctypes.byref(v) for v in rgba])
+            matrix = pdfium.raw.FS_MATRIX()
+            measured = pdfium.raw.FPDFText_GetMatrix(text.raw, index, ctypes.byref(matrix))
+            vertical_scale = math.hypot(matrix.c, matrix.d) if measured else 1
+            effective_size = pdfium.raw.FPDFText_GetFontSize(text.raw, index) * vertical_scale
             current.append({"text": char, "x0": left, "x1": right, "top": height-top,
                             "bottom": height-bottom,
-                            "size": pdfium.raw.FPDFText_GetFontSize(text.raw, index),
+                            "size": effective_size,
                             "non_stroking_color": [v.value/255 for v in rgba[:3]] if ok else None})
         if current:
             rows.append(current)
@@ -224,10 +249,30 @@ def extract_session(args):
             graphics = [{"rect": rect(vectors, page.width, page.height)}] if vectors else []
             graphics = [item for item in graphics if item["rect"][0]<item["rect"][2]
                         and item["rect"][1]<item["rect"][3]]
+            frames = []
+            for drawing in page.rects:
+                if not drawing.get("stroke") or drawing.get("fill"):
+                    continue
+                inset = float(drawing.get("linewidth") or 0)/2 + .5
+                inner = {**drawing, "x0":drawing["x0"]+inset, "x1":drawing["x1"]-inset,
+                         "top":drawing["top"]+inset, "bottom":drawing["bottom"]-inset}
+                if inner["x0"] >= inner["x1"] or inner["top"] >= inner["bottom"]:
+                    continue
+                def overlaps(item):
+                    padding = float(item.get("linewidth") or 0)/2
+                    return (inner["x0"] < item["x1"]+padding and inner["x1"] > item["x0"]-padding
+                            and inner["top"] < item["bottom"]+padding and inner["bottom"] > item["top"]-padding)
+                others = [item for item in [*page.curves,*page.rects,*page.lines] if item is not drawing
+                          and (item["x1"]-item["x0"])*(item["bottom"]-item["top"]) < page.width*page.height*.9]
+                if any(overlaps(item) for item in [*others,*page.images]):
+                    continue
+                outer_rect, inner_rect = rect([drawing],page.width,page.height),rect([inner],page.width,page.height)
+                if inner_rect[0]<inner_rect[2] and inner_rect[1]<inner_rect[3]:
+                    frames.append({"rect":outer_rect,"inner_rect":inner_rect})
             row = {"number": original["number"], "source_text_sha256": original["source_text_sha256"],
                    "width": float(page.width), "height": float(page.height),
                    "translation_sha256": translation_identity(translation),
-                   "lines": lines, "unmatched_lines": unmatched, "images": media, "graphics": graphics,
+                   "lines": lines, "unmatched_lines": unmatched, "images": media, "graphics": graphics, "text_frames": frames,
                    "off_page_lines": off_page_lines,
                    "visual_reviewed": False}
             indices = {line["index"] for line in lines}
@@ -248,7 +293,9 @@ def extract_session(args):
                 "pages": pages}
     destination.mkdir(parents=True, exist_ok=True)
     path = destination / f"{session}.json"
-    path.write_text(json.dumps(document, ensure_ascii=False, separators=(",", ":")) + "\n")
+    temporary = path.with_suffix(".json.tmp")
+    temporary.write_text(json.dumps(document, ensure_ascii=False, separators=(",", ":")) + "\n")
+    temporary.replace(path)
     return {"session": session, **counts}
 
 

@@ -1,0 +1,25 @@
+{
+  "status": "requires_further_validation",
+  "started_at_utc": "2026-11-04T10:24:49.017610+00:00",
+  "drug_input_sha256": "fae6eee1b06b8cba0a466280dbc32563efaa54ec639afd921cb610d17debd216",
+  "target_input_sha256": "f1899546f581eaba2c618f012097644e1ab2aa281c47c13cbb3747147ca17fc3",
+  "workflow_sha256": "c9b7dda32b323550b9ebb66f4e5e8c186f09a6551d13bf356536030359facd2b",
+  "steps": [
+    {
+      "step": "candidate_generation",
+      "status": "sequences_generated",
+      "exit_code": 0,
+      "artifact": "candidates/manifest.json",
+      "sha256": "1446165cf9a455f238acf337250baed7d75229f26e2b78da94d33f22d2ff274f"
+    },
+    {
+      "step": "docking",
+      "status": "requires_further_validation",
+      "exit_code": 0,
+      "artifact": "docking/report.json",
+      "sha256": "707e7ffa904a867170a11e8ecca4b765ee3ac1be95b730540fce073013941d4b"
+    }
+  ],
+  "limitations": "Experimental single-substitution workflow; docking scores are not affinity or efficacy",
+  "finished_at_utc": "2026-11-04T10:25:27.964603+00:00"
+}

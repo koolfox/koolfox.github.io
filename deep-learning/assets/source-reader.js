@@ -7,7 +7,7 @@ const picker=$('[data-page-select]'),progress=$('[data-pdf-progress]');
 GlobalWorkerOptions.workerSrc=new URL('./vendor/pdfjs/pdf.worker.min.mjs',import.meta.url).href;
 let pdf=null,canonicalPdf=null,payload=null,page=1,renderedPage=0,zoom=1,serial=0,task=null,closed=false,lastWidth=720,references=false;
 let presenting=false,view=matchMedia('(max-width:760px)').matches?'source':'both',readingView=view;
-let playing=false,playSequence=null,playTimer=null,layoutTask=null,customTool=false;
+let playing=false,playSequence=null,playTimer=null,layoutTask=null,customTool=false,translationFallback=[];
 const fa=n=>new Intl.NumberFormat('fa-IR',{useGrouping:false}).format(n);
 const clamp=n=>Math.max(1,Math.min(config.pageCount,n));
 function fromHash(){const match=location.hash.match(/^#page=(\d+)$/);return match?clamp(Number(match[1])):1;}
@@ -54,14 +54,56 @@ function renderTranslation(){
   for(const reference of correction.references||[]){const url=safeExternal(reference.url);if(!url)continue;const a=element('a','reader-reference',reference.label_fa);a.href=url;a.target='_blank';a.rel='noopener noreferrer';const p=element('p');p.append(a);aside.append(p);}
   fragment.append(aside);
  }
- persian.replaceChildren(fragment);persian.dataset.page=String(page);$('[data-source-text]').textContent=visibleEnglish(record);
+ persian.replaceChildren(fragment);translationFallback=[...persian.childNodes];persian.dataset.page=String(page);$('[data-source-text]').textContent=visibleEnglish(record);
  document.querySelector('.reader-translation').scrollTop=0;
+}
+// Use source typography only when native text and a solid background are measurable.
+function styleTranslationFallback(record){
+ const layout=record.source_layout;if(!layout||!canvas.width||!canvas.height)return;
+ const context=canvas.getContext('2d'), pixels=context.getImageData(0,0,canvas.width,canvas.height).data;
+ const sourceWidth=document.querySelector('.reader-original').clientWidth
+  ? parseFloat(canvas.style.width) : Math.max(250,document.querySelector('.reader-translation').clientWidth-24)*zoom;
+ const byIndex=new Map(layout.lines.map(line=>[line.index,line]));
+ const luminance=rgb=>rgb.map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((sum,v,i)=>sum+v*[.2126,.7152,.0722][i],0);
+ const backgrounds=lines=>{
+  const samples=[];
+  for(const line of lines){const [l,t,r,b]=line.rect;
+   for(let y=0;y<7;y++)for(let x=0;x<15;x++){
+    const px=Math.min(canvas.width-1,Math.max(0,Math.floor((l+(r-l)*(x+.5)/15)*canvas.width)));
+    const py=Math.min(canvas.height-1,Math.max(0,Math.floor((t+(b-t)*(y+.5)/7)*canvas.height)));
+    const offset=(py*canvas.width+px)*4;samples.push([pixels[offset],pixels[offset+1],pixels[offset+2]]);
+   }
+  }
+  const bins=new Map();for(const rgb of samples){const key=rgb.map(v=>v>>4).join(',');const entry=bins.get(key)||[];entry.push(rgb);bins.set(key,entry);}
+  const dominant=[...bins.values()].sort((a,b)=>b.length-a.length)[0];
+  if(!dominant||dominant.length/samples.length<.72)return null;
+  const rgb=[0,1,2].map(channel=>dominant.map(value=>value[channel]).sort((a,b)=>a-b)[Math.floor(dominant.length/2)]);
+  return rgb;
+ };
+ for(const root of translationFallback){if(root.nodeType!==1)continue;
+  const nodes=[...(root.matches('[data-source-lines]')?[root]:[]),...root.querySelectorAll('[data-source-lines]')];
+  for(const node of nodes){
+   delete node.dataset.sourceFallback;node.style.removeProperty('--source-fallback-color');node.style.removeProperty('--source-fallback-background');node.style.removeProperty('--source-fallback-size');
+   const indices=node.dataset.sourceLines.split(',').filter(Boolean).map(Number),lines=indices.map(index=>byIndex.get(index));
+   if(!lines.length||lines.some(line=>!line||!/^#[0-9a-f]{6}$/i.test(line.color||'')||(line.accents||[]).length))continue;
+   const first=lines[0];if(lines.some(line=>line.color!==first.color||Math.abs(line.font_size-first.font_size)>.2))continue;
+   const measuredSize=first.font_size/layout.width*sourceWidth;if(measuredSize<12)continue;
+   const background=backgrounds(lines);if(!background)continue;
+   const foreground=first.color.slice(1).match(/../g).map(value=>parseInt(value,16));
+   const lum=[luminance(foreground),luminance(background)].sort((a,b)=>a-b);
+   if((lum[1]+.05)/(lum[0]+.05)<4.5)continue;
+   node.style.setProperty('--source-fallback-color',first.color);
+   node.style.setProperty('--source-fallback-background',`rgb(${background.join(' ')})`);
+   node.style.setProperty('--source-fallback-size',`${measuredSize}px`);
+   node.dataset.sourceFallback='measured';
+  }
+ }
 }
 async function paintPersianLayout(source,canonicalSource,id,selected){
  const record=payload.pages[selected-1],plan=sourceLayoutPlan(record);
  persian.dataset.layout=plan.reason||'pending';
- if(plan.reason)return;
- const fallback=[...persian.childNodes],slide=createSourceLayout(record,plan);
+ if(plan.reason){persian.replaceChildren(...translationFallback);paintSourceCrops();return;}
+ const fallback=translationFallback,slide=createSourceLayout(record,plan);
  const tableState=[...persian.querySelectorAll('.reader-table-viewport')].map(node=>({left:node.scrollLeft,top:node.scrollTop,focused:document.activeElement===node}));
  const previousCompanion=persian.querySelector('.reader-figure-labels');
  if(previousCompanion&&slide.companion)slide.companion.open=previousCompanion.open;
@@ -76,7 +118,7 @@ async function paintPersianLayout(source,canonicalSource,id,selected){
  slide.stage.style.transform=`scale(${scale})`;
  await document.fonts.ready;
  if(id!==serial||page!==selected)return;
- if(!fitSourceLayout(slide.stage)){install(...fallback);persian.dataset.layout='text-overflow';return;}
+ if(!fitSourceLayout(slide.stage)){install(...fallback);paintSourceCrops();persian.dataset.layout='text-overflow';return;}
  const measured=document.createElement('canvas'),measureViewport=source.getViewport({scale:slide.width/source.getViewport({scale:1}).width});
  measured.width=Math.ceil(measureViewport.width);measured.height=Math.ceil(measureViewport.height);
  const measurement=source.render({canvasContext:measured.getContext('2d'),viewport:measureViewport,recordOperations:true});layoutTask=measurement;
@@ -88,8 +130,8 @@ async function paintPersianLayout(source,canonicalSource,id,selected){
  const targets=plan.regions.flatMap(region=>region.lines.map(line=>({line,block:region.block}))),selectedOps=new Set(),covered=new Set();
  for(let index=0;index<list.fnArray.length;index++){
   if(!textOps.has(list.fnArray[index])||!boxes||boxes.isEmpty(index))continue;
-  const x=(boxes.minX(index)+boxes.maxX(index))/2,y=(boxes.minY(index)+boxes.maxY(index))/2;
-  targets.forEach((target,number)=>{const [l,t,r,b]=target.line.rect;if(x>=l-.004&&x<=r+.004&&y>=t-.004&&y<=b+.004){selectedOps.add(index);covered.add(number);}});
+  const [x0,y0,x1,y1]=[boxes.minX(index),boxes.minY(index),boxes.maxX(index),boxes.maxY(index)];
+  targets.forEach((target,number)=>{const [l,t,r,b]=target.line.rect;if(x0>=l-.004&&x1<=r+.004&&y0>=t-.004&&y1<=b+.004){selectedOps.add(index);covered.add(number);}});
  }
  // Missing browser-font ink bounds can still be proved by a unique complete glyph sequence.
  const key=value=>value.normalize('NFKC').replace(/[\s\u0000]/g,'');
@@ -113,9 +155,18 @@ async function paintPersianLayout(source,canonicalSource,id,selected){
  }
  for(const region of plan.regions){
   const numbers=targets.map((target,index)=>target.block===region.block?index:-1).filter(index=>index>=0);
-  if(numbers.length===region.block.source_lines.length)prove(region.block.source_lines.map(index=>record.lines[index]).join(''),numbers);
+  if(numbers.length===region.lines.length)prove(region.lines.map(line=>line.text??record.lines[line.index]).join(''),numbers);
  }
- if(covered.size!==targets.length){install(...fallback);persian.dataset.layout='unmatched-operators';return;}
+ targets.forEach((target,number)=>{
+  if(covered.has(number))return;
+  const expected=key(target.line.text??record.lines[target.line.index]),[l,t,r,b]=target.line.rect;
+  for(const run of runs){
+   if(stream.slice(run.start,run.end)!==expected||!boxes||boxes.isEmpty(run.index))continue;
+   const x=(boxes.minX(run.index)+boxes.maxX(run.index))/2,y=(boxes.minY(run.index)+boxes.maxY(run.index))/2;
+   if(x>=l-.004&&x<=r+.004&&y>=t-.004&&y<=b+.004){selectedOps.add(run.index);covered.add(number);}
+  }
+ });
+ if(covered.size!==targets.length){install(...fallback);paintSourceCrops();persian.dataset.layout='unmatched-operators';return;}
  const viewport=source.getViewport({scale:slide.width/source.getViewport({scale:1}).width});
  const target=slide.background,ratio=Math.max(1,Math.min(2,(devicePixelRatio||1)*scale));target.width=Math.ceil(viewport.width*ratio);target.height=Math.ceil(viewport.height*ratio);
  const context=target.getContext('2d'),drawing=new Set(['fillText','strokeText','fill','stroke','drawImage']);let suppress=false;
@@ -202,7 +253,7 @@ async function renderOriginal(){
    if(url){a.href=url;a.target='_blank';a.rel='noopener noreferrer';}else{a.href='#';a.addEventListener('click',event=>{event.preventDefault();destination(annotation.dest).catch(()=>message('این ارجاع داخلی در PDF قابل نمایش نیست؛ اصل فایل در دسترس است.',true));});}
    links.append(a);
   }
-  paintSourceCrops();await paintPersianLayout(layoutSource,source,id,selected);if(id!==serial||closed)return;renderedPage=selected;task=null;document.documentElement.dataset.readerReady='true';controls();
+  paintSourceCrops();styleTranslationFallback(payload.pages[selected-1]);await paintPersianLayout(layoutSource,source,id,selected);if(id!==serial||closed)return;renderedPage=selected;task=null;document.documentElement.dataset.readerReady='true';controls();
   const record=payload.pages[page-1],reviewed=record.text_reviewed&&record.image_text_reviewed;
   message(`صفحهٔ ${fa(page)} از ${fa(config.pageCount)}${reviewed?'':' · ترجمه در بازبینی'}`);
   schedulePlayback();

@@ -12,6 +12,7 @@ Validation establishes provenance and completeness, not scientific correctness.
 import hashlib
 import json
 import re
+import unicodedata
 from copy import deepcopy
 from html import escape
 from pathlib import Path
@@ -322,9 +323,58 @@ def apply_source_typography(root, term_id, session_id, catalog, pages):
                 block["presentation"] = presentation
 
 
+def validate_source_fragments(translation, geometry, page):
+    """Bind manually aligned Persian chunks to exact native lines or glyph groups."""
+    native = {line["index"]: line for line in geometry["lines"]}
+    key = lambda text: "".join(unicodedata.normalize("NFKC", text).split())
+    for block in translation["blocks"]:
+        if "source_fragments" not in block:
+            require("source_fragments_verified" not in block, "Source fragment review without fragments")
+            continue
+        fragments = block["source_fragments"]
+        require(block.get("source_fragments_verified") is True
+                and block["kind"] != "not_visible" and "latex" not in block,
+                "Source fragments need verified visible text")
+        require(isinstance(fragments, list) and bool(fragments), "Empty source fragments")
+        seen = set()
+        texts = []
+        for fragment in fragments:
+            require(isinstance(fragment, dict) and set(fragment) <= {"fa", "kind", "source_parts"}
+                    and _nonempty(fragment.get("fa")) and fragment.get("kind", block["kind"]) in BLOCK_KINDS-{"not_visible"},
+                    "Invalid source fragment")
+            texts.append(fragment["fa"])
+            refs = fragment.get("source_parts")
+            require(isinstance(refs, list) and bool(refs), "Empty source fragment references")
+            for ref in refs:
+                require(isinstance(ref, dict) and set(ref) <= {"line", "part", "en"}
+                        and type(ref.get("line")) is int and ref["line"] in block["source_lines"]
+                        and _nonempty(ref.get("en")), "Invalid source fragment reference")
+                line = native.get(ref["line"])
+                require(line is not None, "Source fragment geometry unavailable")
+                part = ref.get("part", -1)
+                require(type(part) is int and ("part" not in ref or 0 <= part < len(line.get("parts", []))),
+                        "Invalid source glyph group")
+                token = (ref["line"], part)
+                require(token not in seen, "Duplicate source fragment reference")
+                seen.add(token)
+                expected = page["lines"][ref["line"]] if part == -1 else line["parts"][part]["text"]
+                require(key(ref["en"]) == key(expected), "Source fragment text identity mismatch")
+                if "visible_en" in block:
+                    require(key(ref["en"]) in key(block["visible_en"]), "Source fragment includes occluded text")
+        require("".join(texts) == block["fa"], "Source fragments must preserve the exact Persian text")
+        for index in block["source_lines"]:
+            selected = {part for line, part in seen if line == index}
+            expected = set(range(len(native.get(index, {}).get("parts", []))))
+            require(selected == {-1} or (bool(expected) and selected == expected),
+                    "Incomplete source fragment partition")
+
+
 def apply_source_layout(root, term_id, session_id, catalog, translations, pages):
     path = root / f"content/source-layout/{term_id}/{session_id}.json"
     if not path.exists():
+        require(not any("source_fragments" in block or "source_fragments_verified" in block
+                        for page in translations for block in page["blocks"]),
+                "Source fragments require geometry metadata")
         return
     document = _document(path)
     _identity(document, session_id, "layout", term_id)
@@ -385,13 +435,28 @@ def apply_source_layout(root, term_id, session_id, catalog, translations, pages)
                         "unpositioned_image_labels": len(translation.get("image_text", [])),
                         "semantic_tables": len(translation.get("tables", []))}
             require(coverage == expected, "Incorrect source layout coverage counts")
+        for line in lines:
+            for item in [line, *line.get("parts", [])]:
+                accents = item.get("accents", [])
+                require(isinstance(accents, list) and all(isinstance(accent, dict)
+                        and _nonempty(accent.get("text")) and rectangle(accent.get("rect"))
+                        and isinstance(accent.get("color"), str)
+                        and re.fullmatch(r"#[0-9a-f]{6}", accent["color"])
+                        for accent in accents), "Invalid source glyph colors")
         images = geometry.get("images")
         require(isinstance(images, list) and all(isinstance(image, dict) and rectangle(image.get("rect"))
                 for image in images), "Invalid source image geometry")
         graphics = geometry.get("graphics", [])
         require(isinstance(graphics, list) and all(isinstance(item, dict) and rectangle(item.get("rect"))
                 for item in graphics), "Invalid source vector bounds")
+        frames = geometry.get("text_frames", [])
+        require(isinstance(frames, list) and all(isinstance(frame, dict)
+                and rectangle(frame.get("rect")) and rectangle(frame.get("inner_rect"))
+                and frame["rect"][0] <= frame["inner_rect"][0] < frame["inner_rect"][2] <= frame["rect"][2]
+                and frame["rect"][1] <= frame["inner_rect"][1] < frame["inner_rect"][3] <= frame["rect"][3]
+                for frame in frames), "Invalid native text frame")
         require(type(geometry.get("visual_reviewed")) is bool, "Missing layout review state")
+        validate_source_fragments(translation, geometry, page)
         page["source_layout"] = deepcopy(geometry)
 
 

@@ -3,7 +3,7 @@ import katex from './vendor/katex/katex.mjs';
 const persian = /[\u0620-\u063f\u0641-\u064a\u066e-\u066f\u0671-\u06d3\u06fa-\u06fc]/;
 const bullet = /^(\s*)([•●▪◦–-]|\d+[.)])\s+(.+)$/;
 const pairedTerms = new Map([['least', 'کمترین'], ['most', 'بیشترین']]);
-const sourceTerms = new Map([...pairedTerms, ['training data','دادهٔ آموزش'], ['test data','دادهٔ آزمون'], ['training','آموزش'], ['test','آزمون'], ['overfitting','بیش‌برازش'], ['regularize','منظم‌سازی'], ['gradient','گرادیان']]);
+const sourceTerms = new Map([...pairedTerms, ['training data','دادهٔ آموزش'], ['test data','دادهٔ آزمون'], ['training','آموزش'], ['test','آزمون'], ['overfitting','بیش‌برازش'], ['regularize','منظم‌سازی'], ['gradient','گرادیان'], ['constant','ثابت'], ['constant(i.e.,modelparameter)','ثابت (یعنی پارامتر مدل)'], ['intuition','شهود']].map(([term,target])=>[term.replace(/\s/g,""),target]));
 let referenceTargets = new Map();
 const referenceKey = value => value.replace(/\ufffe/g, '-').replace(/\/$/, '');
 
@@ -48,7 +48,7 @@ function applyStyle(node, style) {
 }
 
 function appendBidi(parent, text) {
-  const tokens = /https?:\/\/[^\s<>"\u0600-\u06ff]+|\([^\u0600-\u06ff()\n]*\)|[A-Za-z0-9α-ωΑ-Ω∂∇Σ∑√σŷ][A-Za-z0-9α-ωΑ-Ω∂∇Σ∑√σŷ₀-₉⁰-⁹_+−=<>≤≥×*/.,:;\[\]{}^% \t\-]*/g;
+  const tokens = /https?:\/\/[^\s<>"\u0600-\u06ff]+|\([^\u0600-\u06ff()\n]*\)|(?:[+−-](?=\d))?[A-Za-z0-9α-ωΑ-Ω∂∇Σ∑√σŷ][A-Za-z0-9α-ωΑ-Ω∂∇Σ∑√σŷ₀-₉⁰-⁹_+−=<>≤≥×*/.,:;\[\]{}^% \t\-]*/g;
   let end = 0;
   for (const match of text.matchAll(tokens)) {
     parent.append(document.createTextNode(text.slice(end, match.index)));
@@ -87,8 +87,9 @@ export function addText(parent, text, style = {}, options = {}) {
   const ranges = [];
   for (const accent of style.accents || []) {
     const english = accent.text.trim().replace(/^[•–-]\s*/, '');
-    const target = (options.sourceColors ? sourceTerms : pairedTerms).get(english.toLowerCase()) || english;
-    if (!target || !readingColor(accent.color)) continue;
+    const sourceKey=english.toLowerCase().replace(/\s/g,'').replace(/[:;,.]+$/,'');
+    const target = (options.sourceColors ? sourceTerms.get(sourceKey)||sourceTerms.get(english.toLowerCase()) : pairedTerms.get(english.toLowerCase())) || english;
+    if (!target || !(options.sourceColors ? /^#[0-9a-f]{6}$/i.test(accent.color || '') : readingColor(accent.color))) continue;
     const start = text.toLowerCase().indexOf(target.toLowerCase());
     if (start < 0 || text.toLowerCase().indexOf(target.toLowerCase(), start + target.length) >= 0) continue;
     const word = /[\p{L}\p{N}_]/u;
@@ -164,13 +165,14 @@ export function renderTable(parent, table) {
 function paragraph(parent, text, block) {
   const values = text.split('\n');
   if (block.kind === 'literal' && values.length > 3 && values.every(value => /^[A-Za-zΑ-Ωα-ω0-9۰-۹+\-−×*/=.,()[\]{}^σ∂∇]+$/u.test(value.trim()))) {
-    const row = element('p', 'reader-copy literal reader-values'); row.dir = 'ltr'; applyStyle(row, block.presentation);
+    const row = element('p', 'reader-copy literal reader-values'); row.dir = 'ltr'; row.dataset.sourceLines = (block.source_lines || []).join(','); applyStyle(row, block.presentation);
     values.forEach((value, index) => { const token = element('span'); token.textContent = value; row.append(token); if (index < values.length - 1) row.append(document.createTextNode('\n')); });
     parent.append(row);
     return;
   }
   const node = element(block.kind === 'heading' ? 'h3' : block.kind === 'literal' ? 'pre' : 'p', 'reader-copy ' + block.kind);
   node.dir = persian.test(text) ? 'rtl' : 'ltr';
+  node.dataset.sourceLines = (block.source_lines || []).join(',');
   applyStyle(node, block.presentation); addText(node, text, block.presentation); parent.append(node);
 }
 
@@ -193,7 +195,7 @@ export function renderBlocks(parent, blocks, tables = []) {
         else items[items.length - 1] += '\n' + line;
       }
       for (const item of items) {
-        const node = element('li'); applyStyle(node, block.presentation);
+        const node = element('li'); node.dataset.sourceLines = (block.source_lines || []).join(','); applyStyle(node, block.presentation);
         addText(node, item, block.presentation); list.append(node);
       }
       continue;
@@ -209,7 +211,7 @@ export function renderBlocks(parent, blocks, tables = []) {
         flush();
         const tag = /\d/.test(match[2]) ? 'ol' : 'ul';
         if (!innerList || innerList.tagName.toLowerCase() !== tag) { innerList = element(tag, 'reader-list'); innerList.dir = 'rtl'; parent.append(innerList); }
-        const node = element('li');
+        const node = element('li'); node.dataset.sourceLines = (block.source_lines || []).join(',');
         if (tag === 'ol') node.value = parseInt(match[2], 10);
         applyStyle(node, block.presentation); addText(node, match[3], block.presentation); innerList.append(node);
       }
@@ -226,10 +228,20 @@ export function sourceLayoutPlan(record) {
   if (record.image_text?.length && !layout.images?.length) return fail('unpositioned-source-figure');
   const lines = new Map(layout.lines.map(line => [line.index, line]));
   const regions = [];
-  for (const block of record.blocks) {
+  const blocks = record.blocks.flatMap(block => block.source_fragments ? block.source_fragments.map(fragment => ({
+    ...block, fa:fragment.fa.trim(), kind:fragment.kind || block.kind,
+    source_refs:fragment.source_parts, source_lines:[...new Set(fragment.source_parts.map(ref=>ref.line))],
+  })) : [block]);
+  for (const block of blocks) {
     if (block.kind === 'not_visible' || !persian.test(block.fa || '')) continue;
-    const mapped = block.source_lines.map(index => lines.get(index));
+    if(block.visible_en&&!block.source_refs)return fail('occluded-source-text');
+    const mapped = block.source_refs ? block.source_refs.map(ref=>{
+      const line=lines.get(ref.line);if(!line)return null;
+      if(ref.part===undefined)return {...line,text:ref.en};
+      const part=line.parts?.[ref.part];return part?{...line,...part,index:ref.line,text:ref.en,parts:undefined}:null;
+    }) : block.source_lines.map(index => lines.get(index));
     if (!mapped.length || mapped.some(line => !line)) return fail('unmapped-native-text');
+    if(mapped.some(line=>line.font_size<8&&(line.rect[3]-line.rect[1])*layout.height>line.font_size*3))return fail('unscaled-source-font');
     const columns = mapped.filter(line => (line.parts || []).filter(part => !/^(?:[•●▪◦–—-]|[0-9]+[.)])$/.test(part.text.trim())).length > 1);
     if (columns.length) {
       const clauses = block.fa.split(/[؛;\n]/).map(text => text.trim()).filter(Boolean);
@@ -261,8 +273,16 @@ export function sourceLayoutPlan(record) {
     if (layout.images.some(image => intersects(region.rect,image.rect)
         && !region.lines.every(line => intersects(line.rect,image.rect)))) return fail('text-spans-media');
   }
+  const contains=(outer,inner,padding=0)=>outer[0]-padding<=inner[0]&&outer[1]-padding<=inner[1]&&outer[2]+padding>=inner[2]&&outer[3]+padding>=inner[3];
+  const units=layout.lines.flatMap(line=>(line.parts?.length?line.parts:[line]).map(unit=>({...unit,index:line.index})));
   for (const region of regions) {
     const owned = new Set(region.block.source_lines);
+    const occupied=units.filter(unit=>!region.lines.some(line=>line.index===unit.index&&contains(line.rect,unit.rect,.00001)));
+    const area=rect=>(rect[2]-rect[0])*(rect[3]-rect[1]);
+    const frames=(layout.text_frames||[]).filter(frame=>contains(frame.inner_rect,region.rect,.004)
+      && area(frame.inner_rect)<=area(region.rect)*8
+      && !occupied.some(unit=>intersects(frame.inner_rect,unit.rect)));
+    if(frames.length){frames.sort((a,b)=>area(a.inner_rect)-area(b.inner_rect));region.slot=frames[0].inner_rect;continue;}
     const obstacles = [...layout.images, ...(layout.graphics || []),
       ...layout.lines.filter(line => !owned.has(line.index)),
       ...regions.filter(other=>other!==region)].map(item => item.rect);
@@ -286,14 +306,23 @@ export function createSourceLayout(record, plan) {
   background.setAttribute('aria-hidden', 'true'); stage.append(background);
   for (const region of plan.regions) {
     const node = element('div', 'reader-slide-text');
+    const presentation={...region.block.presentation};
+    if(region.lines.every(line=>Array.isArray(line.accents)))presentation.accents=region.lines.flatMap(line=>line.accents);
     const [x0, y0, x1, y1] = region.slot || region.rect;
     Object.assign(node.style, {left: x0 * width + 'px', top: y0 * height + 'px',
       width: (x1 - x0) * width + 'px', height: (y1 - y0) * height + 'px',
-      fontSize: region.font / plan.layout.width * width * .95 + 'px', color: region.color});
+      fontSize: region.font / plan.layout.width * width + 'px', color: region.color});
     node.dataset.sourceLines = region.block.source_lines.join(',');
     if (region.block.presentation?.bold) node.style.fontWeight = '700';
     if (region.block.presentation?.italic) node.style.fontStyle = 'italic';
-    if (region.block.latex) math(node, region.block); else addText(node, region.block.fa, region.block.presentation, {sourceColors:true});
+    if (region.block.latex) math(node, region.block);
+    else if(region.block.kind==='math'&&region.block.source_refs&&!region.block.fa.includes('\\(')){
+      node.classList.add('reader-word-math');node.dir='ltr';node.setAttribute('role','math');
+      for(const chunk of region.block.fa.split(/([=+−×÷-])/)){
+        const term=element('bdi');term.dir=persian.test(chunk)?'rtl':'ltr';
+        addText(term,chunk,presentation,{sourceColors:true});node.append(term);
+      }
+    }else addText(node, region.block.fa, presentation, {sourceColors:true});
     stage.append(node);
   }
   let companion = null;
@@ -327,13 +356,7 @@ export function createSourceLayout(record, plan) {
 }
 
 export function fitSourceLayout(stage) {
-  for (const node of stage.querySelectorAll('.reader-slide-text')) {
-    const initial = parseFloat(node.style.fontSize), minimum = Math.max(12, initial * .72);
-    let size = initial;
-    while ((node.scrollHeight > node.clientHeight + 2 || node.scrollWidth > node.clientWidth + 2) && size > minimum) {
-      size = Math.max(minimum, size - .5); node.style.fontSize = size + 'px';
-    }
-    if (node.scrollHeight > node.clientHeight + 2 || node.scrollWidth > node.clientWidth + 2) return false;
-  }
-  return true;
+  // Text that does not fit keeps its source size and uses the accessible fallback.
+  return [...stage.querySelectorAll('.reader-slide-text')].every(node =>
+    node.scrollHeight <= node.clientHeight + 2 && node.scrollWidth <= node.clientWidth + 2);
 }

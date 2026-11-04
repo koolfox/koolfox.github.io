@@ -48,7 +48,7 @@ html:has(body.source-reader),body.source-reader{height:100%;overflow:hidden}.sou
 .reader-slide-text{position:absolute;box-sizing:border-box;direction:rtl;text-align:right;line-height:1.05;white-space:pre-line;overflow-wrap:normal;font-family:Arad,sans-serif;margin:0;padding:0}
 .reader-slide-text .reader-math{margin:0;padding:0;font-size:1em;line-height:1.05}
 .reader-slide-text .katex-display{margin:0}.reader-slide-text .katex{font-size:1em}
-.reader-slide-text bdi{font-size:.94em}.reader-slide-text .reader-math-inline{line-height:1}
+.reader-slide-text bdi{font-size:1em}.reader-slide-text .reader-math-inline{line-height:1}
 .reader-figure-labels{position:relative;width:100%;max-width:100%;margin-block:14px;color:#172134;text-align:right;font:16px/1.8 Arad,sans-serif}
 .reader-figure-labels summary{display:inline-block;cursor:pointer;background:#fff;color:#245bdf;border:1px solid #245bdf;border-radius:5px;padding:4px 10px;font-size:12px}
 .reader-figure-labels summary:focus-visible{outline:3px solid #245bdf;outline-offset:3px}
@@ -61,6 +61,7 @@ html:has(body.source-reader),body.source-reader{height:100%;overflow:hidden}.sou
 .source-page-tools{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
 .source-page-tools:empty{display:none}
 
+.reader-word-math{direction:ltr;text-align:left;unicode-bidi:isolate}.reader-word-math bdi{font-size:1em}
 /* A quiet, keyboard-accessible handle separates the two working surfaces. */
 @media screen and (min-width:761px){
  .source-reader[data-reader-section][data-split-active=true] .reader-layout:not([hidden]){grid-template-columns:minmax(0,calc((100% - 14px) * var(--reader-split))) 14px minmax(0,1fr);gap:0}
@@ -72,3 +73,5 @@ html:has(body.source-reader),body.source-reader{height:100%;overflow:hidden}.sou
  .reader-resizing .reader-tools-panel iframe{pointer-events:none}
 }
 @media print{.reader-divider{display:none!important}}
+.reader-translation [data-source-fallback=measured]{color:var(--source-fallback-color);background:var(--source-fallback-background);font-size:var(--source-fallback-size);padding:.16em .3em;inline-size:fit-content;max-inline-size:100%;margin-inline-start:0;margin-inline-end:auto}
+.reader-translation [data-source-fallback=measured] a{color:inherit}

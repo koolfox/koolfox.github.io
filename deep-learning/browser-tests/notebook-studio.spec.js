@@ -395,3 +395,21 @@ test('code size controls stay usable and preserve notebook content on desktop an
   await page.locator('[data-notebook-add]').click();
   await expect(page.locator('[data-notebook-code]').last()).toBeVisible();
 });
+
+test('notebook interface text keeps shortcuts readable without changing questions or code',async({page})=>{
+  await page.goto('/deep-learning/terms/spring-2026/s01/practice/');
+  const original=await page.locator('#practice-config').evaluate(node=>JSON.parse(node.textContent));
+  const cells=await page.evaluate(()=>window.studentNotebook.cells.map(cell=>cell.source));
+  await expect(page.locator('[data-notebook-run-all]')).toHaveText('اجرای همه سلول‌ها');
+  const shortcuts=page.locator('.nb-editor-help bdi');
+  await expect(shortcuts).toHaveCount(3);
+  expect(await shortcuts.allTextContents()).toEqual(['Ctrl+Space','Ctrl+Enter','Shift+Enter']);
+  expect(await shortcuts.evaluateAll(nodes=>nodes.every(node=>getComputedStyle(node).direction==='ltr'))).toBe(true);
+  await page.getByRole('tab',{name:'آزمون تستی'}).click();
+  const first=page.locator('[data-notebook-question]').first();
+  await expect(first.locator('legend')).toHaveText(original.questions[0].prompt);
+  expect(await first.locator('label span').allTextContents()).toEqual(original.questions[0].options);
+  await first.locator('input').first().check();await first.getByRole('button',{name:'بررسی پاسخ'}).click();
+  await expect(first.locator('.feedback')).toContainText(original.questions[0].explanation);
+  expect(await page.evaluate(()=>window.studentNotebook.cells.map(cell=>cell.source))).toEqual(cells);
+});

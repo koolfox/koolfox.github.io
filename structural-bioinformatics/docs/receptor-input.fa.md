@@ -64,3 +64,21 @@ uv run --project structural-bioinformatics python -m peptide_lab.candidates \
 شماره‌های `start` و `end` در این دستور، ترتیب باقی‌مانده‌های مشاهده‌شده در زنجیره‌اند؛ شماره‌های نویسنده نیز در manifest ثبت می‌شوند. فایل‌های دارای چند مدل، بازهٔ دارای اشغال صفر، شماره‌گذاری گسسته، حالت جایگزین یا باقی‌ماندهٔ غیراستاندارد در بازه رد می‌شوند. برای FASTA به‌جای `--drug-pdb` و `--drug-chain` از `--fasta` و `--record-id` استفاده کنید. ورودی داروی مولکول کوچک و تبدیل مستقیم آن به توالی پپتیدی در این ابزار پشتیبانی نمی‌شود.
 
 در [آزمایش فنی ثبت‌شده](../data/processed/antibody-variant-demo.json)، بازهٔ VQ از زنجیرهٔ H ساختار 3WD5 و چهار تک‌جانشینی آن تولید شدند و صرفاً برای آزمون اتصال مراحل روی هدف نامرتبط 1UBQ اجرا شدند. [منشأ و نوع هر تغییر](../assets/antibody-variant-demo/manifest.json) و [FASTA](../assets/antibody-variant-demo/candidates.fasta) قابل مشاهده است. این انتخاب یک مثال نرم‌افزاری است؛ نه اپی‌توپ تأییدشده، نه آزمون TNF و نه شواهدی برای تبدیل آدالیموماب به داروی پپتیدی. انتخاب قطعهٔ هدفمند، مقایسهٔ ساختاری و آزمایش زیستی مراحل مستقل‌اند.
+
+### اجرای یکپارچهٔ مراحل
+
+برای اجرای تولید جانشینی و داکینگ در یک فرمان، می‌توانید از برنامهٔ زیر استفاده کنید. این مثال ساختار آدالیموماب را به‌عنوان منبع انتخاب توالی و 1UBQ را صرفاً به‌عنوان هدف آزمایشیِ نامرتبط به کار می‌برد:
+
+```bash
+conda run -n tnf-docking python structural-bioinformatics/scripts/run_peptide_ops.py \
+  --drug-pdb structural-bioinformatics/assets/3wd5.pdb --drug-chain H \
+  --start 2 --end 3 --position 1 --alphabet ACDE --include-seed --max-sequences 5 \
+  --target-pdb structural-bioinformatics/assets/course/gromacs/1ubq-protein.pdb --target-chain A \
+  --center 30 28 15 --size 20 20 20 \
+  --receptor-preparer /path/to/mk_prepare_receptor.py --vina /path/to/vina \
+  --output-dir structural-bioinformatics/results/peptide-ops-01
+```
+
+در پوشهٔ خروجی، `workflow.json` وضعیت مراحل و هش گزارش‌های آنها را ثبت می‌کند؛ پوشهٔ `candidates` منشأ و نوع جانشینی‌ها و پوشهٔ `docking` مدل‌ها، حالت‌ها و گزارش موتور را نگه می‌دارد. [گزارش اجرای فنی نمونه](../data/processed/peptide-ops-demo.json) و [فایل‌های آن](../assets/peptide-ops-demo/candidates/manifest.json) برای بازبینی موجودند. اگر تولید نامزد یا آماده‌سازی گیرنده شکست بخورد، مرحلهٔ بعدی موفق اعلام نمی‌شود و علت در فایل خطای همان مرحله می‌ماند.
+
+برای داروی دارای توالی FASTA می‌توان به‌جای دو گزینهٔ PDB از `--drug-fasta` و `--record-id` استفاده کرد. برای داروی کوچک‌مولکول، انتخاب مشابه پپتیدی به روش دیگری نیاز دارد و در این نسخه وجود ندارد. نتیجهٔ این مسیر فقط پیشنهادهای محاسباتی محدود است؛ نه شواهد اتصال، مهار یا معادل‌بودن دارویی.

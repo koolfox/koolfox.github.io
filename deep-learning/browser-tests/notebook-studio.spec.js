@@ -257,7 +257,7 @@ test('source worked pages open their exact Python example and page-matched choic
       for(const key of Object.keys(expected))compare(actual[key],expected[key]);
     }else expect(actual).toEqual(expected);
   }
-  for(const [session,number,id] of [['s03',75,'backprop'],['s05',27,'source-convolution']]){
+  for(const [session,number,id] of [['s03',75,'backprop'],['s03',86,'backprop'],['s05',27,'source-convolution']]){
     await page.goto(`/deep-learning/terms/spring-2026/${session}/slides/#page=${number}`);
     await page.waitForFunction(()=>window.sourceSlideReader?.ready);
     await page.locator('.reader-sections [data-reader-section=lab]').click();

@@ -11,7 +11,7 @@ let preparation,blobURL,leaving=false;
 function prepareMovie(){
  if(preparation)return preparation;
  for(const button of chapters)button.disabled=true;
- status.textContent='';
+ status.textContent='در حال بارگیری فیلم...';
  preparation=(async()=>{
   const response=await fetch(mediaURL,{signal:controller.signal});if(!response.ok)throw Error('فیلم بارگیری نشد.');
   const bytes=await response.arrayBuffer();if(leaving)return;
@@ -21,7 +21,7 @@ function prepareMovie(){
    const failed=()=>{video.removeEventListener('loadedmetadata',ready);reject(Error('فیلم پخش نشد.'));};
    video.addEventListener('loadedmetadata',ready,{once:true});video.addEventListener('error',failed,{once:true});video.src=blobURL;
   });
- })().catch(error=>{preparation=null;if(blobURL){URL.revokeObjectURL(blobURL);blobURL=null;}throw error;}).finally(()=>{for(const button of chapters)button.disabled=false;});
+ })().catch(error=>{preparation=null;if(blobURL){URL.revokeObjectURL(blobURL);blobURL=null;}throw error;}).finally(()=>{if(!leaving)status.textContent='';for(const button of chapters)button.disabled=false;});
  return preparation;
 }
 function showFailure(message){if(!leaving)status.textContent=message;}

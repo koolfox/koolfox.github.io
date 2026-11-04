@@ -246,3 +246,14 @@ test('bias derivative correction is visible separately from the source slide',as
  const data=await page.evaluate(async()=>{const c=JSON.parse(document.querySelector('#source-reader-config').textContent);return (await(await fetch(c.translationUrl)).json()).pages[77]});
  expect(data.lines[40]).toBe('𝜕wi,6');expect(data.lines[45]).toContain('= 1');expect(data.editorial_notes).toHaveLength(1);
 });
+
+
+test('standardization source correction is visible beside the unchanged slide',async({page})=>{
+ await page.goto('/deep-learning/terms/spring-2026/s06/slides/#page=19');await ready(page);
+ await expect(page.locator('#source-canvas')).toBeVisible();
+ const note=page.locator('#persian-page .reader-editorial');await expect(note).toBeVisible();
+ await expect(note).toContainText('[5,24]');await expect(note).toContainText('0.9');
+ await expect(note.locator('.katex-mathml')).toHaveCount(1);
+ const data=await page.evaluate(async()=>{const c=JSON.parse(document.querySelector('#source-reader-config').textContent);return (await(await fetch(c.translationUrl)).json()).pages[18]});
+ expect(data.editorial_notes).toHaveLength(1);expect(data.editorial_notes[0].fa).toContain('2.9');
+});

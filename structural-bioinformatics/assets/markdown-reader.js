@@ -5,6 +5,7 @@ import { isolateScientificText, scientificDiagramSource, setDiagramDirection } f
 import { linkGlossaryTerms } from './glossary-terms.js';
 // Repository-owned Markdown only; optional rendering libraries load on demand.
 export const DOCUMENTS = [
+  ["receptor-input.fa.md", "بررسی اولیهٔ فایل PDB کاربر", "ابزارها و منابع"],
   ["peptide-workshop.fa.md", "از ترکیب آمینواسیدها تا LocalFold و خواندن PDB", "پژوهش پس از مبانی"],
   ["chapter-presentation.fa.md", "ارائه‌های همین نه فصل", "ارائه و روش پژوهش"],
   ["learning-redesign-review.fa.md", "بازطراحی مسیر و مرزهای بررسی", "آموزش و پژوهش"],

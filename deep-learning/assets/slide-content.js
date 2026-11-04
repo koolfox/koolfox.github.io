@@ -441,6 +441,20 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(/^آیا (?:w[1-5],(?:4|5|6)|b[4-6]) باید افزایش یابد یا کاهش؟$/.test(region.block.fa))region.slot=[.64,.25,.98,.315];
     }
   }
+  const historyReview = {
+    104:['8e3bcd80521f7447d652e6bff329a6f04da8d18046f6a876eaa832f7b864af13','52922152980a9a85e1a3b6195281dcc039f3829f5d5658d448593feaa26c890e'],
+    108:['9d1100f78fc5694e7688a1ffbd47153a29fd4b6b93882e0f17a015973614aedd','cfdae2cb13ce1f79e7660befecbe8f7ea87eb69b6070362b7d4d935b559c6e12'],
+  }[record.number];
+  if(historyReview && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03'
+      && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
+      && record.source_text_sha256===historyReview[0] && layout.translation_sha256===historyReview[1]){
+    for(const region of regions){
+      if(region.block.fa.startsWith('دهه‌های 1960'))region.manualAccents=[{text:'دهه‌های 1960 و 1970',color:'#ffc000'}];
+      if(region.block.fa.startsWith('دههٔ 1980'))region.manualAccents=[{text:'دههٔ 1980',color:'#ffc000'}];
+      if(region.block.fa.startsWith('• محاسبهٔ کارآمد'))region.manualAccents=[{text:'محاسبهٔ کارآمد',color:'#0000ff'}];
+      if(region.block.fa.startsWith('• بازنمایی کارآمد'))region.manualAccents=[{text:'بازنمایی کارآمد',color:'#0000ff'}];
+    }
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

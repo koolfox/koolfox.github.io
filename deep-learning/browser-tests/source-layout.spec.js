@@ -3,6 +3,35 @@ import {test,expect} from '@playwright/test';
 const deck='/deep-learning/terms/spring-2026/s03/slides/';
 const ready=page=>page.waitForFunction(()=>window.sourceSlideReader?.ready);
 
+test('gradient definition slide retains the source plot and faithful definitions',async({page})=>{
+ await page.setViewportSize({width:1440,height:900});await page.goto(deck+'#page=44');await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const result=await page.evaluate(async()=>{
+  const config=JSON.parse(document.querySelector('#source-reader-config').textContent),record=(await(await fetch(config.translationUrl)).json()).pages[43],{sourceLayoutPlan}=await import('/deep-learning/assets/slide-content.js'),plan=sourceLayoutPlan(record,config);
+  const owned=new Set(plan.regions.flatMap(region=>region.lines.map(line=>line.index))),intersects=(a,b)=>a[0]<b[2]&&a[2]>b[0]&&a[1]<b[3]&&a[3]>b[1];
+  const collisions=plan.regions.flatMap(region=>record.source_layout.lines.filter(line=>!owned.has(line.index)&&intersects(region.slot,line.rect)).map(line=>line.index));
+  const imageCollisions=plan.regions.flatMap(region=>record.source_layout.images.filter(image=>intersects(region.slot,image.rect)));
+  const nodes=[...document.querySelectorAll('.reader-slide-text')],stress=nodes.map((node,index)=>{const probe=node.cloneNode(true);probe.style.visibility='hidden';probe.style.width=(node.clientWidth*(index===0?.90:.85))+'px';probe.style.lineHeight='1.25';node.parentElement.append(probe);const r={text:node.textContent,width:probe.clientWidth,scrollWidth:probe.scrollWidth,height:probe.clientHeight,scrollHeight:probe.scrollHeight,actual:parseFloat(node.style.fontSize),expected:plan.regions[index].font/plan.layout.width*960};probe.remove();return r});
+  return {collisions,imageCollisions,owned:[...owned],stress,lines:record.lines,accents:[...document.querySelectorAll('.reader-slide-text .reader-emphasis')].map(node=>({text:node.textContent,color:getComputedStyle(node).color})),bidi:[...document.querySelectorAll('.reader-slide-text bdi')].map(node=>({text:node.textContent,dir:node.dir,whiteSpace:getComputedStyle(node).whiteSpace}))};
+ });
+ expect(result.collisions).toEqual([]);expect(result.imageCollisions).toEqual([]);
+ for(const index of [8,9,10,11])expect(result.owned).not.toContain(index);
+ for(const node of result.stress){expect(Math.abs(node.actual-node.expected)).toBeLessThan(.05);expect(node.scrollWidth,node.text).toBeLessThanOrEqual(node.width+2);expect(node.scrollHeight,node.text).toBeLessThanOrEqual(node.height+2);}
+ const text=result.stress.map(node=>node.text).join(' ');
+ for(const phrase of ['هر متغیر تابع در','چگونه خروجی','مشتق‌های جزئی برای چند متغیر','تغییر عمودی/تغییر افقی','در هر نقطه نشان می‌دهد'])expect(text).toContain(phrase);
+ for(const term of ['گرادیان (Gradient)','مشتق‌های جزئی برای چند متغیر','مشتق (Derivative)'])expect(result.accents).toContainEqual({text:term,color:'rgb(255, 192, 0)'});
+ expect(result.bidi.some(item=>item.text==='f(x)'&&item.dir==='ltr')).toBe(true);
+ expect(result.bidi.some(item=>item.text==='(Non-convex)'&&item.whiteSpace==='nowrap')).toBe(true);
+});
+
+test('gradient definition remains available in the mobile Persian view',async({page})=>{
+ await page.setViewportSize({width:390,height:844});await page.goto(deck+'#page=44');await ready(page);
+ await page.locator('[data-view-translation]').click();await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ await expect(page.locator('.reader-slide-background')).toBeVisible();
+ await expect(page.locator('.reader-slide-text').filter({hasText:'مشتق‌های جزئی برای چند متغیر'})).toBeVisible();
+});
+
 test('source canvas preserves white native labels, graphics and exact numeric values',async({page})=>{
  await page.goto(deck+'#page=70');await ready(page);
  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');

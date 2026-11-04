@@ -21,11 +21,18 @@ def write_summary(out, report):
     labels = {
         "failed": "اجرا شکست خورد",
         "interrupted": "اجرا قطع شد",
+        "sequences_generated": "توالی‌ها ساخته شدند",
+        "running": "در حال اجرا",
         "requires_further_validation": "محاسبه کامل؛ نیازمند اعتبارسنجی",
     }
     status = html.escape(labels.get(report["status"], report["status"]))
+    names = {"candidate_generation": "ساخت نامزدها", "docking": "داکینگ"}
     steps = "".join(
-        "<li>" + html.escape(step["step"]) + ": " + html.escape(step["status"]) + "</li>"
+        "<li>"
+        + html.escape(names.get(step["step"], step["step"]))
+        + ": "
+        + html.escape(labels.get(step["status"], step["status"]))
+        + "</li>"
         for step in report["steps"]
     )
     rows = []
@@ -38,10 +45,10 @@ def write_summary(out, report):
                 "<tr><td>"
                 + html.escape(candidate["sequence"])
                 + "</td><td>"
-                + html.escape(candidate["status"])
-                + "</td><td>"
+                + html.escape(labels.get(candidate["status"], candidate["status"]))
+                + '</td><td><bdi dir="ltr">'
                 + html.escape(score)
-                + "</td></tr>"
+                + "</bdi></td></tr>"
             )
     table = "".join(rows)
     error = html.escape(report.get("error", ""))

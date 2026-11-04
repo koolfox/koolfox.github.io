@@ -441,6 +441,18 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(/^آیا (?:w[1-5],(?:4|5|6)|b[4-6]) باید افزایش یابد یا کاهش؟$/.test(region.block.fa))region.slot=[.64,.25,.98,.315];
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===1
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='c7a3f94597e9fcf0b36ceea393004034742e29f1737386e69c7e5f147053a4ca'
+      && layout.translation_sha256==='a0a63c0c55ab7a7898f06d8308b9053c96f86195e88f85601d134b1241e6fbb6'){
+    for(const region of regions){
+      region.align='center';region.keepTermsTogether=true;
+      if(region.block.kind==='heading'){region.slot=[.04,.27,.96,.52];region.font=38;}
+      if(region.block.source_lines[0]===2){region.slot=[.12,.61,.88,.67];region.font=28;}
+      if(region.block.source_lines[0]===3){region.slot=[.08,.68,.92,.74];region.font=23;}
+      if(region.block.source_lines[0]===4){region.slot=[.2,.75,.8,.80];region.font=24;}
+    }
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 
@@ -460,6 +472,7 @@ export function createSourceLayout(record, plan) {
       width: (x1 - x0) * width + 'px', height: (y1 - y0) * height + 'px',
       fontSize: region.font / plan.layout.width * width + 'px', color: region.color});
     node.dataset.sourceLines = region.block.source_lines.join(',');
+    if (region.align) node.style.textAlign=region.align;
     if (region.block.presentation?.bold) node.style.fontWeight = '700';
     if (region.block.presentation?.italic) node.style.fontStyle = 'italic';
     if (region.block.latex) math(node, region.block);

@@ -383,3 +383,15 @@ test('backward-pass example is readable in the mobile slide view',async({page})=
  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');await expect(page.locator('.reader-slide-background')).toBeVisible();
  await expect(page.locator('.reader-slide-text').filter({hasText:'تابع فعال‌سازی'})).toBeVisible();
 });
+
+test('session 1 title keeps its centered source structure and readable bilingual credit', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=1'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout', 'source-canvas');
+ const regions = page.locator('#persian-page .reader-slide-text');
+ await expect(regions).toHaveCount(4);
+ await expect(regions.nth(0)).toContainText('Neural Networks and Deep Learning');
+ await expect(regions.nth(1)).toContainText('Danna Gurari');
+ await expect(regions.nth(2)).toContainText('University of Colorado Boulder');
+ await expect(regions.nth(3)).toContainText('2026');
+ expect(await regions.evaluateAll(nodes => nodes.every(node => getComputedStyle(node).textAlign === 'center' && node.scrollHeight <= node.clientHeight + 2 && node.scrollWidth <= node.clientWidth + 2))).toBeTruthy();
+});

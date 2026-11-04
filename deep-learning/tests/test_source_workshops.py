@@ -65,6 +65,16 @@ class SourceWorkshopTests(unittest.TestCase):
         self.assertEqual(set(load_workshops('spring-2026', self.root, execute=True, session_ids=['s01'])), {'s01'})
         self.assertEqual(load_workshops('spring-2026', self.root, session_ids=[]), {})
 
+    def test_filter_workshop_discloses_which_source_image_is_used(self):
+        from student_practice import practice_page
+        unit = load_workshops('spring-2026', ROOT, execute=True, session_ids=['s05'])['s05']
+        page = practice_page({'id':'spring-2026'}, {'id':'s05', 'title_fa':'فیلتر', 'workshop':unit})
+        start = page.index('<script type="application/json" id="practice-config">') + len('<script type="application/json" id="practice-config">')
+        config = json.loads(page[start:page.index('</script>', start)])
+        example = next(item for item in config['page_notebooks'] if 39 in item['pages'])
+        self.assertEqual(example['title'], 'فیلترها روی ماتریس ۷×۷؛ عکس بازتولید نشده')
+        self.assertEqual(example['reference']['output_shape'], [5, 5])
+
     def test_page_example_executes_its_own_hash_pinned_source_and_rejects_stale_code(self):
         import hashlib
         source = 'result = {"value": 3}\nprint(result)\n'

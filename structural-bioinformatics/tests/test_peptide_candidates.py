@@ -126,3 +126,9 @@ def test_recorded_reference_variants_link_to_docking_output():
             row["poses_sha256"]
             == hashlib.sha256((root / row["sequence"] / "poses.pdbqt").read_bytes()).hexdigest()
         )
+
+
+def test_variant_budget_can_exceed_one_docking_batch():
+    rows = variants("AR", [1, 2], "ACDEFGHIKLMNPQRSTVWY", True, 40)
+    assert len(rows) == 39
+    assert len({r["sequence"] for r in rows}) == 39

@@ -51,7 +51,7 @@ uv run --project structural-bioinformatics peptide-lab generate \
 
 ### ساخت نامزد از توالی یا ساختار داروی مرجع
 
-اگر داروی مرجع یک پروتئین یا پپتید است، می‌توان بخشی از توالی آن را با شناسهٔ FASTA و بازهٔ یک‌پایه و شامل دو انتها انتخاب کرد؛ یا بازه‌ای از باقی‌مانده‌های مشاهده‌شدهٔ یک زنجیره در PDB را داد. این ابزار تک‌جانشینی‌های انتخاب‌شده را کامل می‌سازد و اگر شمارشان از سقف ۲۰ بیشتر شود بدون ایجاد خروجی متوقف می‌شود:
+اگر داروی مرجع یک پروتئین یا پپتید است، می‌توان بخشی از توالی آن را با شناسهٔ FASTA و بازهٔ یک‌پایه و شامل دو انتها انتخاب کرد؛ یا بازه‌ای از باقی‌مانده‌های مشاهده‌شدهٔ یک زنجیره در PDB را داد. این ابزار تک‌جانشینی‌های انتخاب‌شده را کامل می‌سازد و اگر شمارشان از بودجهٔ انتخابی `--max-sequences` بیشتر شود بدون ایجاد خروجی متوقف می‌شود:
 
 ```bash
 uv run --project structural-bioinformatics python -m peptide_lab.candidates \
@@ -72,14 +72,14 @@ uv run --project structural-bioinformatics python -m peptide_lab.candidates \
 ```bash
 conda run -n tnf-docking python structural-bioinformatics/scripts/run_peptide_ops.py \
   --drug-pdb structural-bioinformatics/assets/3wd5.pdb --drug-chain H \
-  --start 2 --end 3 --position 1 --alphabet ACDE --include-seed --max-sequences 5 \
+  --start 2 --end 3 --position 1 --alphabet ACDE --include-seed --max-sequences 5 --batch-size 2 \
   --target-pdb structural-bioinformatics/assets/course/gromacs/1ubq-protein.pdb --target-chain A \
   --center 30 28 15 --size 20 20 20 \
   --receptor-preparer /path/to/mk_prepare_receptor.py --vina /path/to/vina \
   --output-dir structural-bioinformatics/results/peptide-ops-01
 ```
 
-در پوشهٔ خروجی، `workflow.json` وضعیت مراحل و هش گزارش‌های آنها را ثبت می‌کند؛ پوشهٔ `candidates` منشأ و نوع جانشینی‌ها و پوشهٔ `docking` مدل‌ها، حالت‌ها و گزارش موتور را نگه می‌دارد و `report.html` نمای خوانای نتیجه است. [نمای خوانای اجرای فنی](../assets/peptide-ops-demo/report.html) و [گزارش عددی نمونه](../data/processed/peptide-ops-demo.json) و [فایل‌های آن](../assets/peptide-ops-demo/candidates/manifest.json) برای بازبینی موجودند. اگر تولید نامزد یا آماده‌سازی گیرنده شکست بخورد، مرحلهٔ بعدی موفق اعلام نمی‌شود و علت در فایل خطای همان مرحله می‌ماند.
+در پوشهٔ خروجی، `workflow.json` وضعیت مراحل و هش گزارش‌های آنها را ثبت می‌کند؛ پوشهٔ `candidates` منشأ و نوع جانشینی‌ها و پوشهٔ `docking` مدل‌ها، حالت‌ها و گزارش موتور را در دسته‌های پی‌درپی نگه می‌دارد و `report.html` نمای خوانای نتیجه است. [نمای خوانای اجرای فنی](../assets/peptide-ops-batched-demo/report.html) و [گزارش عددی نمونه](../data/processed/peptide-ops-demo.json) و [فایل‌های آن](../assets/peptide-ops-batched-demo/candidates/manifest.json) برای بازبینی موجودند. اگر تولید نامزد یا آماده‌سازی گیرنده شکست بخورد، مرحلهٔ بعدی موفق اعلام نمی‌شود و علت در فایل خطای همان مرحله می‌ماند.
 
 برای داروی دارای توالی FASTA می‌توان به‌جای دو گزینهٔ PDB از `--drug-fasta` و `--record-id` استفاده کرد. برای داروی کوچک‌مولکول، انتخاب مشابه پپتیدی به روش دیگری نیاز دارد و در این نسخه وجود ندارد. نتیجهٔ این مسیر فقط پیشنهادهای محاسباتی محدود است؛ نه شواهد اتصال، مهار یا معادل‌بودن دارویی.
 

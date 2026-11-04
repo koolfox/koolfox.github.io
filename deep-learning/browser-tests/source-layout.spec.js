@@ -237,3 +237,12 @@ test('source derivative correction appears beside the untouched source slide',as
  for(const size of integrity.sizes)expect(Math.abs(size.actual-size.expected)).toBeLessThan(.05);
  for(const node of integrity.stress){expect(node.scrollWidth).toBeLessThanOrEqual(node.width+2);expect(node.scrollHeight).toBeLessThanOrEqual(node.height+2);}
 });
+
+test('bias derivative correction is visible separately from the source slide',async({page})=>{
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=78');await ready(page);
+ await expect(page.locator('#source-canvas')).toBeVisible();
+ const note=page.locator('#persian-page .reader-editorial');await expect(note).toBeVisible();
+ await expect(note).toContainText('برای بایاس');await expect(note.locator('.katex-mathml')).toHaveCount(2);
+ const data=await page.evaluate(async()=>{const c=JSON.parse(document.querySelector('#source-reader-config').textContent);return (await(await fetch(c.translationUrl)).json()).pages[77]});
+ expect(data.lines[40]).toBe('𝜕wi,6');expect(data.lines[45]).toContain('= 1');expect(data.editorial_notes).toHaveLength(1);
+});

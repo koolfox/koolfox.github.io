@@ -78,6 +78,18 @@ class SourceWorkshopTests(unittest.TestCase):
         questions = next(item for item in config['page_questions'] if 23 in item['pages'])
         self.assertEqual(len(questions['questions']), 4)
 
+    def test_slide_32_opens_six_epochs_instead_of_single_epoch(self):
+        from student_practice import practice_page
+        unit = load_workshops('spring-2026', ROOT, execute=True, session_ids=['s02'])['s02']
+        page = practice_page({'id': 'spring-2026'}, {'id': 's02', 'title_fa': 'پرسپترون', 'workshop': unit})
+        tag = '<script type="application/json" id="practice-config">'
+        start = page.index(tag) + len(tag)
+        config = json.loads(page[start:page.index('</script>', start)])
+        examples = [example for example in config['page_notebooks'] if 32 in example['pages']]
+        self.assertEqual(len(examples), 1)
+        self.assertEqual(examples[0]['key'], 'spring-2026/s02/majority-epochs')
+        self.assertEqual(len(examples[0]['reference']['history']), 7)
+
     def test_page_example_executes_its_own_hash_pinned_source_and_rejects_stale_code(self):
         import hashlib
         source = 'result = {"value": 3}\nprint(result)\n'

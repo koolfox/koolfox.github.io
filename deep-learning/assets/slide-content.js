@@ -441,6 +441,24 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(/^آیا (?:w[1-5],(?:4|5|6)|b[4-6]) باید افزایش یابد یا کاهش؟$/.test(region.block.fa))region.slot=[.64,.25,.98,.315];
     }
   }
+  const gptReview = {
+    24:['fb9438d6e7e309334448cdc155c3f87ec4572540d33b09f35cb7d8ae433254c0','69356b1a121126513f38e4a38b95ed60d7bac5e05765d98b4cf03459be09ed60'],
+    25:['a4a0f5d5d1354ab1ff9a6822e0b85ddd086764adbe0c761e38829ee40c39245c','5da98201019f0338e9f16eb0e1f2b30908736e7acb8d8a28bb71277ad1273eda'],
+  }[record.number];
+  if(gptReview && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s14'
+      && sourceIdentity.sourceSha256==='65bdebcbbe5ecca3e9dfa4ecbaaf5a78e79a4d10ce00c8a007801d062cefeda6'
+      && record.source_text_sha256===gptReview[0] && layout.translation_sha256===gptReview[1]){
+    const placements = record.number===24 ? {
+      '0':[.05,.08,.92,.24], '1,2':[.30,.57,.46,.695], '3,4':[.47,.57,.61,.695],
+      '5,6':[.62,.57,.78,.695], '8,9':[.06,.37,.96,.56],
+    } : {
+      '0':[.05,.35,.66,.44], '1':[.05,.44,.66,.545], '2':[.05,.55,.66,.64], '3':[.05,.07,.66,.29],
+    };
+    for(const region of regions){
+      const slot=placements[region.block.source_lines.join(',')];
+      if(slot)region.slot=slot;
+    }
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

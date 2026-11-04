@@ -327,6 +327,20 @@ class WorkshopNumericalTests(unittest.TestCase):
             self.assertAlmostEqual(gradient, numerical, delta=2e-10)
         self.assertAlmostEqual(network["forward"]["o6"], 0.47388889882398544)
 
+    def test_source_output_node_bias_and_weight_have_distinct_local_derivatives(self):
+        scope = execute("s03_backprop")
+        parameters = scope["source_parameters"]
+        forward = scope["source_forward"]
+        baseline = forward(parameters)
+        for name, expected in (("b6", 1.0), ("w46", baseline["o4"]), ("w56", baseline["o5"])):
+            plus, minus = dict(parameters), dict(parameters)
+            plus[name] += 1e-5
+            minus[name] -= 1e-5
+            numerical = (forward(plus)["z6"] - forward(minus)["z6"]) / 2e-5
+            self.assertAlmostEqual(numerical, expected, places=9)
+        self.assertNotAlmostEqual(baseline["o4"], 1.0, places=3)
+        self.assertNotAlmostEqual(baseline["o5"], 1.0, places=3)
+
     def test_source_backprop_updates_use_original_rate_and_displayed_rounding(self):
         scope = execute("s03_backprop")
         result = scope["result"]

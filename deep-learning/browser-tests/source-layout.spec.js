@@ -138,3 +138,21 @@ test('weight-update diagram and exact values remain available on mobile',async({
  await page.locator('.reader-figure-labels summary').click();
  await expect(page.locator('.reader-figure-content')).toContainText('0.218');
 });
+
+test('XOR example preserves source image and two distinct caption colors and sizes',async({page})=>{
+ await page.setViewportSize({width:1440,height:900});await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=99');await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const evidence=await page.evaluate(async()=>{
+  const config=JSON.parse(document.querySelector('#source-reader-config').textContent),record=(await(await fetch(config.translationUrl)).json()).pages[98],lines=record.source_layout.lines;
+  const nodes=[...document.querySelectorAll('.reader-slide-text')],first=nodes.find(node=>node.textContent.startsWith('برای مثال، وزن‌ها')),second=nodes.find(node=>node.textContent.startsWith('(و مسئله‌های'));
+  const image=record.source_layout.images[0].rect,source=document.querySelector('#source-canvas'),target=document.querySelector('.reader-slide-background');
+  function crop(canvas){const temp=document.createElement('canvas');temp.width=64;temp.height=64;const [x0,y0,x1,y1]=image;temp.getContext('2d').drawImage(canvas,x0*canvas.width,y0*canvas.height,(x1-x0)*canvas.width,(y1-y0)*canvas.height,0,0,64,64);return temp.getContext('2d').getImageData(0,0,64,64).data;}
+  const a=crop(source),b=crop(target);let delta=0;for(let i=0;i<a.length;i+=4)delta+=Math.abs(a[i]-b[i])+Math.abs(a[i+1]-b[i+1])+Math.abs(a[i+2]-b[i+2]);
+  const fields=node=>({size:parseFloat(node.style.fontSize),color:getComputedStyle(node).color,white:[...node.querySelectorAll('.reader-emphasis')].some(el=>getComputedStyle(el).color==='rgb(255, 255, 255)'),fits:node.scrollWidth<=node.clientWidth+2&&node.scrollHeight<=node.clientHeight+2});
+  return {a:fields(first),b:fields(second),expected:lines.filter(line=>line.index<2).sort((a,b)=>a.index-b.index).map(line=>line.font_size/record.source_layout.width*960),delta:delta/(64*64*3)};
+ });
+ expect(evidence.a.color).toBe('rgb(255, 192, 0)');expect(evidence.a.white).toBe(true);
+ expect(evidence.b.color).toBe('rgb(255, 255, 255)');expect(evidence.a.fits&&evidence.b.fits).toBe(true);
+ expect(Math.abs(evidence.a.size-evidence.expected[0])).toBeLessThan(.05);expect(Math.abs(evidence.b.size-evidence.expected[1])).toBeLessThan(.05);
+ expect(evidence.delta).toBeLessThan(3);
+});

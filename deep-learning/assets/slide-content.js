@@ -3,7 +3,7 @@ import katex from './vendor/katex/katex.mjs';
 const persian = /[\u0620-\u063f\u0641-\u064a\u066e-\u066f\u0671-\u06d3\u06fa-\u06fc]/;
 const bullet = /^(\s*)([•●▪◦–-]|\d+[.)])\s+(.+)$/;
 const pairedTerms = new Map([['least', 'کمترین'], ['most', 'بیشترین']]);
-const sourceTerms = new Map([...pairedTerms, ['training data','دادهٔ آموزش'], ['test data','دادهٔ آزمون'], ['training','آموزش'], ['test','آزمون'], ['overfitting','بیش‌برازش'], ['regularize','منظم‌سازی'], ['gradient','گرادیان'], ['constant','ثابت'], ['constant(i.e.,modelparameter)','ثابت (یعنی پارامتر مدل)'], ['intuition','شهود']].map(([term,target])=>[term.replace(/\s/g,""),target]));
+const sourceTerms = new Map([...pairedTerms, ['training data','دادهٔ آموزش'], ['test data','دادهٔ آزمون'], ['training','آموزش'], ['test','آزمون'], ['overfitting','بیش‌برازش'], ['regularize','منظم‌سازی'], ['gradient','گرادیان'], ['constant','ثابت'], ['constant(i.e.,modelparameter)','ثابت (یعنی پارامتر مدل)'], ['intuition','شهود'], ['e.g','برای مثال'], ['forxorproblem','برای مسئله XOR']].map(([term,target])=>[term.replace(/\s/g,""),target]));
 let referenceTargets = new Map();
 const referenceKey = value => value.replace(/\ufffe/g, '-').replace(/\/$/, '');
 
@@ -317,6 +317,16 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(slots.has(region.block.fa))region.slot=slots.get(region.block.fa);
       if(region.block.fa.startsWith('• برای مثال، ضریب ثابتی'))region.slot=[.076,.44,.90,.60];
       if(region.block.kind==='math')region.persianEquation=true;
+    }
+  }
+  // Captions on the XOR diagram use distinct source lines and source colors.
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===99
+      && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
+      && record.source_text_sha256==='baf0c6c184e6fcd54f83a44caef077746147f053f468ee0b00cfcd6cd82fac5b'
+      && layout.translation_sha256==='f41d1a6500b5e82f7990b77d655dd33d592adb9ed5a19d724f54283df96f1b5a'){
+    for(const region of regions){
+      if(region.block.fa.startsWith('برای مثال، وزن‌ها و بایاس‌های'))region.slot=[.03,.84,.97,.91];
+      if(region.block.fa.startsWith('(و مسئله‌های حل‌شده'))region.slot=[.03,.91,.97,.985];
     }
   }
   // Reviewed examples use the same text scale as the source neural-network diagram.

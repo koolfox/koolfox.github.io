@@ -117,6 +117,25 @@ export function mountNotebook(root, options) {
   const stop = node('button', '', 'توقف پایتون');
   const capture = node('button', '', 'کنترل‌ها به تنظیمات'), restart = node('button', '', 'راه‌اندازی پایتون');
   for (const button of [runAll, capture, add, stop, restart]) { button.type = 'button'; actions.append(button); }
+  const fontTools = node('div', 'nb-font-tools');
+  fontTools.setAttribute('role', 'group'); fontTools.setAttribute('aria-label', 'اندازه کد');
+  const smaller = node('button', '', '−'), fontSize = node('output'), larger = node('button', '', '+');
+  smaller.type = larger.type = 'button';
+  smaller.setAttribute('aria-label', 'کوچک کردن کد'); larger.setAttribute('aria-label', 'بزرگ کردن کد');
+  fontSize.setAttribute('aria-live', 'polite'); fontSize.dataset.notebookFontSize = '';
+  const fontKey = 'danna:notebook:font-size';
+  let codeFontSize = 14;
+  try { const savedSize = Number(localStorage.getItem(fontKey)); if (savedSize >= 12 && savedSize <= 20 && savedSize % 2 === 0) codeFontSize = savedSize; } catch {}
+  function setCodeFontSize(size) {
+    codeFontSize = Math.max(12, Math.min(20, size));
+    root.style.setProperty('--notebook-code-size', `${codeFontSize}px`);
+    fontSize.textContent = `${codeFontSize}px`;
+    smaller.disabled = codeFontSize === 12; larger.disabled = codeFontSize === 20;
+    try { localStorage.setItem(fontKey, String(codeFontSize)); } catch {}
+  }
+  smaller.addEventListener('click', () => setCodeFontSize(codeFontSize - 2));
+  larger.addEventListener('click', () => setCodeFontSize(codeFontSize + 2));
+  fontTools.append(smaller, fontSize, larger); actions.append(fontTools); setCodeFontSize(codeFontSize);
   runAll.dataset.notebookRunAll = '';
   capture.hidden = !options.capture; stop.hidden = true; restart.hidden = true;
   const status = node('p', 'nb-status', 'هر اجرا، سلول‌های قبلی را از ابتدا محاسبه می‌کند؛ نتیجهٔ پنهان از اجرای قبل باقی نمی‌ماند.');

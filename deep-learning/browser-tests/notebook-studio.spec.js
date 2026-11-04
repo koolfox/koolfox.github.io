@@ -372,3 +372,26 @@ test('code tips highlight actual Python while preserving every source character'
   expect(await code.textContent()).toBe(await page.locator('#practice-config').evaluate(node=>JSON.parse(node.textContent).tip.code));
   await expect(page.locator('.nb-quiz textarea')).toHaveCount(0);
 });
+
+test('code size controls stay usable and preserve notebook content on desktop and mobile',async({page})=>{
+  await page.setViewportSize({width:1280,height:800});
+  await page.goto('/deep-learning/terms/spring-2026/s01/practice/');
+  const editor=page.locator('[data-notebook-code]').first();
+  await expect(editor).toBeVisible();
+  const source=await page.evaluate(()=>window.studentNotebook.cells[0].source);
+  const size=page.locator('[data-notebook-font-size]');
+  await expect(size).toHaveText('14px');
+  expect(await editor.evaluate(node=>parseFloat(getComputedStyle(node).fontSize))).toBe(14);
+  await page.getByRole('button',{name:'بزرگ کردن کد'}).click();
+  await expect(size).toHaveText('16px');
+  expect(await editor.evaluate(node=>parseFloat(getComputedStyle(node).fontSize))).toBe(16);
+  await page.reload();
+  await expect(size).toHaveText('16px');
+  expect(await page.evaluate(()=>window.studentNotebook.cells[0].source)).toBe(source);
+  await page.setViewportSize({width:390,height:844});
+  await page.getByRole('button',{name:'کوچک کردن کد'}).click();
+  await expect(size).toHaveText('14px');
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
+  await page.locator('[data-notebook-add]').click();
+  await expect(page.locator('[data-notebook-code]').last()).toBeVisible();
+});

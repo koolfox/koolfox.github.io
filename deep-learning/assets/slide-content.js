@@ -354,6 +354,16 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(region.block.fa==='جمع، گرادیان ورودی را عبور می‌دهد؛ ضرب، مقدار دیگر را عبور می‌دهد.')region.slot=[.38,.878,.985,.99];
     }
   }
+  // Keep the source formulas and the highlighted bias/weight paths unobscured.
+  const backwardReview = {
+    77:['2252eb710c6cd3758bc7a1ab58124712ad2465c587da9e622d123256c10017f7','4219ca1094fa78cb8c6cf10e6af42ff8db68c673915351d657d8013d79e99b6d'],
+    78:['6e6008d861992f9b5c29a244733a3e3da69fcfcafc8eaf4a72227897f8012a0e','c26bfdb60cfdb024f73a5822dce9312d06ff60f103253c8dca7b51e966d8a791'],
+  }[record.number];
+  if(backwardReview && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03'
+      && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
+      && record.source_text_sha256===backwardReview[0] && layout.translation_sha256===backwardReview[1]){
+    for(const region of regions)if(region.block.fa==='مثال: گام 3 — گذر رو به عقب (Backward Pass)')region.slot=[.02,.075,.99,.205];
+  }
   // Reviewed examples use the same text scale as the source neural-network diagram.
   const weightReview = {
     86:['677ef30e430098d8abc449ef7ba245ba50b0585c828114c8820d6deea9a81f4c','06b40a38450fc61c9781fb040c1a81ee5cd790bbde53b43c539545cc92bbcd93'],

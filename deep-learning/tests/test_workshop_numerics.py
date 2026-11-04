@@ -344,6 +344,23 @@ class WorkshopNumericalTests(unittest.TestCase):
         self.assertEqual(r["total_quantized_bits"], 9 * 2 + 4 * 32)
         self.assertAlmostEqual(r["compression_ratio"], 288 / 146)
 
+    def test_codebook_decimal_tie_and_nearby_distinct_values(self):
+        original = execute("s09_codebook")["result"]
+        self.assertEqual(original["indices"], [1, 3, 2, 1, 0, 1, 3, 2, 1])
+        changed = execute("s09_codebook", {
+            "values = [0.2, 1.0, 0.3, 0.1, -0.6, -0.07, 1.2, 0.4, 0.0]":
+                "values = [-0.95, -0.950000000001, -0.949999999999]",
+            "codebook = [-0.6, 0.0, 0.4, 1.1]": "codebook = [-1.0, -0.9]",
+        })["result"]
+        # The first is exactly halfway in decimal; the following two are not ties.
+        self.assertEqual(changed["indices"], [0, 0, 1])
+        self.assertEqual(changed["reconstructed"], [-1.0, -1.0, -0.9])
+        large = execute("s09_codebook", {
+            "values = [0.2, 1.0, 0.3, 0.1, -0.6, -0.07, 1.2, 0.4, 0.0]": "values = [1e100]",
+            "codebook = [-0.6, 0.0, 0.4, 1.1]": "codebook = [1, 2]",
+        })["result"]
+        self.assertEqual(large["indices"], [1])
+
     def test_attention_source_logits_exact_softmax_and_convex_hull(self):
         for session, expected_scores in [("s12", [2, 0, 3, 3]), ("s13", [2, 4, 4])]:
             scope = execute(session)

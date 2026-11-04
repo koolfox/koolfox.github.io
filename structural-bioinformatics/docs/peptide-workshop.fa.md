@@ -236,3 +236,16 @@ conda run -n tnf-docking python structural-bioinformatics/scripts/screen_ar_pept
 ```
 
 این اسکریپت نمونهٔ پژوهشی محدود است؛ برای جست‌وجوی عمومیِ همهٔ آمینواسیدها، کنترل کامل استریوشیمی و پروتون‌گذاری، چند ساختار اولیه، کنترل‌های مثبت و منفی و اعتبارسنجی در برابر داده‌های تجربی باید جداگانه توسعه و بررسی شوند. اجرای نرم‌افزارهای PyMOL و Nanome برای این چهار خروجی هنوز تأیید نشده است.
+
+### اجرای دسته‌ایِ محدود
+
+اسکریپت `run_peptide_batches.py` همهٔ ترکیب‌های خواسته‌شده از الفبای A/R را برای طول ۲ یا ۳ تولید می‌کند؛ سپس آنها را در دسته‌های حداکثر چهارتایی به اجرای آزمایشی بالا می‌دهد. سقف کل ۱۲ توالی است و اگر شمار از سقف درخواستی بیشتر شود هیچ دسته‌ای آغاز نمی‌شود. هر دسته گزارش، مختصات و خروجی موتور خودش را دارد؛ یک خطای موتور یا برخورد کمتر از ۲ آنگستروم وضعیت کل اجرا را «شکست» ثبت می‌کند. پوشهٔ خروجی قبلی بازنویسی نمی‌شود.
+
+```bash
+conda run -n tnf-docking python structural-bioinformatics/scripts/run_peptide_batches.py \
+  --alphabet AR --length 2 --length 3 --max-sequences 12 \
+  --receptor structural-bioinformatics/assets/tnf-peptide/receptor.pdbqt \
+  --vina /path/to/vina --output-dir structural-bioinformatics/results/tnf-peptide/batch-01
+```
+
+برای کنترل این مسیر، اجرای واقعی دیگری با الفبای `A` و طول‌های ۲ و ۳ انجام شد: توالی‌های AA و AAA در [گزارش دسته](../data/processed/tnf-batch-demo.json) و فایل‌های پوشهٔ `assets/tnf-peptide/batch-demo/` ثبت شده‌اند. وضعیت نهایی `requires_further_validation` یعنی اجرای محاسباتی کامل است ولی هنوز برای نتیجه‌گیری زیستی تأیید نشده است. این نسخه فقط گیرنده و جعبهٔ آمادهٔ 7TA3 و پپتیدهای ساخته‌شده از A/R را پشتیبانی می‌کند؛ بارگذاری هر PDB دلخواه و غربال همهٔ آمینواسیدها هنوز پشتیبانی نمی‌شوند.

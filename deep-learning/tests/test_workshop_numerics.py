@@ -102,12 +102,16 @@ class WorkshopNumericalTests(unittest.TestCase):
         result = execute("s04_hello_encoding")["result"]
         self.assertEqual(result["encoded"], [[1,0,0,0], [0,1,0,0], [0,0,1,0], [0,0,1,0], [0,0,0,1]])
         self.assertEqual((result["sequence_length"], result["vocabulary_size"]), (5,4))
-        self.assertEqual(execute("s04_character_choice")["result"]["prediction"], "e")
+        source = execute("s04_character_choice")
+        # The PDF p31 labels h, e, l, o beside these four probabilities.
+        self.assertEqual(source["vocabulary"], ["h", "e", "l", "o"])
+        self.assertEqual(source["probabilities"], [0.05, 0.1, 0.2, 0.65])
+        self.assertEqual((source["result"]["predicted_index"], source["result"]["prediction"]), (3, "o"))
         self.assertEqual(execute("s04_character_choice_rnn")["result"]["prediction"], "h")
         with self.assertRaises(ValueError):
             execute("s04_hello_encoding", {'text = "hello"': 'text = "hello!"'})
         with self.assertRaises(ValueError):
-            execute("s04_character_choice", {"[0.05, 0.65, 0.2, 0.1]": "[0.05, 0.65, 0.2, 0.2]"})
+            execute("s04_character_choice", {"[0.05, 0.1, 0.2, 0.65]": "[0.05, 0.1, 0.2, 0.75]"})
 
     def test_source_flattening_changes_positions_without_changing_active_pixel_count(self):
         result = execute("s05_flatten_translation")["result"]

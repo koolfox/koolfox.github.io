@@ -39,3 +39,14 @@ def test_rejects_unknown_and_excessive_sequences():
     for sequence in ("", "AX", "A" * 13, "aa"):
         with pytest.raises(ValueError):
             models.build(sequence)
+
+
+@pytest.mark.parametrize("letter", sorted("ACDEFGHIKLMNPQRSTVWY"))
+def test_each_standard_residue_can_be_prepared_for_vina(letter):
+    meeko = pytest.importorskip("meeko")
+    molecule, _ = models.build("A" + letter)
+    setups = meeko.MoleculePreparation().prepare(molecule)
+    assert len(setups) == 1
+    pdbqt, ok, error = meeko.PDBQTWriterLegacy.write_string(setups[0])
+    assert ok, error
+    assert "ATOM" in pdbqt

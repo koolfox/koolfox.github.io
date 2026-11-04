@@ -31,3 +31,16 @@ def test_reject_zero_occupancy_and_missing_backbone(tmp_path):
     target.write_text("".join(lines[:index] + lines[index + 1 :]))
     with pytest.raises(ValueError, match="backbone"):
         inspect_pdb(target, "A")
+
+
+def test_reject_missing_side_chain_atom(tmp_path):
+    lines = PDB.read_text().splitlines(keepends=True)
+    index = next(
+        i
+        for i, line in enumerate(lines)
+        if line.startswith("ATOM  ") and line[12:16].strip() == "CB"
+    )
+    target = tmp_path / "missing-sidechain.pdb"
+    target.write_text("".join(lines[:index] + lines[index + 1 :]))
+    with pytest.raises(ValueError, match="Missing side-chain"):
+        inspect_pdb(target, "A")

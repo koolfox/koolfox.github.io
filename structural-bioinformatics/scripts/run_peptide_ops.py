@@ -2,6 +2,7 @@
 
 import argparse
 import hashlib
+import html
 import json
 import os
 import subprocess
@@ -14,6 +15,55 @@ PROJECT = Path(__file__).resolve().parents[1]
 
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def write_summary(out, report):
+    labels = {
+        "failed": "اجرا شکست خورد",
+        "interrupted": "اجرا قطع شد",
+        "requires_further_validation": "محاسبه کامل؛ نیازمند اعتبارسنجی",
+    }
+    status = html.escape(labels.get(report["status"], report["status"]))
+    steps = "".join(
+        "<li>" + html.escape(step["step"]) + ": " + html.escape(step["status"]) + "</li>"
+        for step in report["steps"]
+    )
+    rows = []
+    docking = out / "docking/report.json"
+    if docking.is_file():
+        for candidate in json.loads(docking.read_text()).get("candidates", []):
+            poses = candidate.get("poses", [])
+            score = str(poses[0]["vina_score_kcal_mol"]) if poses else "—"
+            rows.append(
+                "<tr><td>"
+                + html.escape(candidate["sequence"])
+                + "</td><td>"
+                + html.escape(candidate["status"])
+                + "</td><td>"
+                + html.escape(score)
+                + "</td></tr>"
+            )
+    table = "".join(rows)
+    error = html.escape(report.get("error", ""))
+    (out / "report.html").write_text(
+        '<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8">'
+        '<meta name="viewport" content="width=device-width,initial-scale=1">'
+        "<title>گزارش آزمایش پپتید</title><style>body{font-family:system-ui;line-height:1.9;"
+        "max-width:58rem;margin:2rem auto;padding:0 1rem;color:#173044}"
+        "table{border-collapse:collapse;"
+        "width:100%}td,th{padding:.6rem;border:1px solid #cbd9df;text-align:right}"
+        "code{direction:ltr;display:inline-block;overflow-wrap:anywhere}</style>"
+        "<h1>گزارش آزمایش پپتید</h1><p>وضعیت: <strong>" + status + "</strong></p>"
+        "<p>" + error + "</p><h2>مراحل</h2><ol>" + steps + "</ol>"
+        "<h2>خروجی نامزدها</h2><table><thead><tr><th>توالی</th><th>وضعیت</th>"
+        "<th>امتیاز حالت نخست Vina (kcal/mol)</th></tr></thead><tbody>" + table + "</tbody></table>"
+        "<p>این امتیاز میل اتصال، مهار یا اثر درمانی را اندازه نمی‌گیرد. "
+        "فایل‌های JSON، فرض‌ها و خطاهای هر مرحله را برای بررسی دقیق بخوانید.</p>"
+        "<p>هش ورودی هدف: <code>"
+        + html.escape(report["target_input_sha256"])
+        + "</code></p></html>",
+        encoding="utf-8",
+    )
 
 
 def main():
@@ -141,6 +191,7 @@ def main():
     finally:
         report["finished_at_utc"] = datetime.now(UTC).isoformat()
         save()
+        write_summary(out, report)
     print(json.dumps({"status": report["status"], "report": str(path)}))
     if report["status"] == "failed":
         raise SystemExit(1)

@@ -242,7 +242,8 @@ def render_pages(project=PROJECT):
                 (project / "data/metadata/research-thread.json").read_text()
             )
             body = (
-                '<p><a href="assets/peptide-workflow.html">مسیر عملی تولید پپتید، داکینگ و بررسی سه‌بعدی</a></p>\n'
+                '<p><a href="assets/peptide-workflow.html">'
+                "مسیر عملی تولید پپتید، داکینگ و بررسی سه‌بعدی</a></p>\n"
                 + f"""<section class="research-summary">
 <h2>پرسش فعلی</h2>
 <p>{html.escape(section["question"])}</p>

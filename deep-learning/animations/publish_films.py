@@ -35,6 +35,15 @@ FILMS = [
     ]),
 ]
 
+CHAPTERS = {
+    'attention': [(1.1, 'ورودی‌ها'), (3.5, 'امتیازها'), (5.8, 'وزن‌ها'),
+                  (9.3, 'جمع وزن‌دار'), (12.3, 'خروجی دقیق'), (15.3, 'تقریب اسلاید')],
+    'convolution': [(3.0 + 1.3 * index, f'پنجرهٔ {index + 1}') for index in range(9)],
+    'backpropagation': [(2.1, 'وزن‌ها و بایاس‌ها'), (3.2, 'لایهٔ پنهان'),
+                        (6.2, 'خروجی و زیان'), (11.2, 'دلتاها'),
+                        (15.2, 'قاعدهٔ زنجیره'), (18.2, 'ضریب ثابت')],
+}
+
 
 def stamp(seconds):
     milliseconds = round(seconds * 1000)
@@ -64,6 +73,7 @@ def main():
             'pdf_sha256': records[session]['sha256'], 'url': records[session]['url']},
             'video': artifact(video), 'captions': artifact(vtt), 'duration_seconds': duration,
             'transcript_fa': [line for _, line in captions],
+            'chapters': [{'time': round(time, 3), 'label_fa': label} for time, label in CHAPTERS[identity]],
             'license': 'CC BY-NC-SA; source adaptation, source version unspecified',
             'render': {'engine': 'Manim Community', 'version': '0.20.1', 'resolution': [1920, 1080], 'fps': 24},
             'scene': scene})

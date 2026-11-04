@@ -12,10 +12,26 @@ test('source attention film plays in place without loading a model or changing t
  await video.evaluate(async node=>{await node.play();});
  await expect.poll(()=>video.evaluate(node=>node.currentTime)).toBeGreaterThan(0);
  await expect(tool.locator('track')).toHaveAttribute('srclang','fa');
+ await tool.getByRole('button',{name:'وزن‌ها',exact:true}).click();
+ await expect.poll(()=>video.evaluate(node=>node.currentTime)).toBeCloseTo(5.8,1);
+ expect(await video.evaluate(node=>node.paused)).toBe(true);
  await page.getByRole('button',{name:'اسلاید',exact:true}).click();
  await expect(page.locator('[data-reader-tools-frame]')).toHaveAttribute('src','about:blank');
  expect(await page.evaluate(()=>sourceSlideReader.page)).toBe(27);
  expect(weights).toEqual([]);
+});
+
+test('film chapters explain a failed download and allow retry',async({page})=>{
+ await page.goto('/deep-learning/animations/attention/');
+ const film='**/assets/media/attention.mp4*';
+ await page.route(film,route=>route.abort());
+ const chapter=page.getByRole('button',{name:'وزن‌ها',exact:true});
+ await chapter.focus();await page.keyboard.press('Enter');
+ await expect(page.getByRole('status')).toContainText('دوباره تلاش کنید');
+ await page.unroute(film);
+ await chapter.click();
+ await expect(page.locator('.film-status')).toBeEmpty();
+ await expect.poll(()=>page.locator('video').evaluate(node=>node.currentTime)).toBeCloseTo(5.8,1);
 });
 
 test('full model entry is source-bound and does not download weights on entry',async({page})=>{

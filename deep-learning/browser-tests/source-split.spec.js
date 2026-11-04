@@ -17,6 +17,10 @@ test('slide divider changes both pane sizes with keyboard and pointer',async({pa
  expect(Number(await divider.getAttribute('aria-valuenow'))).toBeGreaterThan(52);
  await page.locator('[data-view-source]').click();await expect(divider).toBeHidden();
  await page.locator('[data-view-both]').click();await expect(divider).toBeVisible();
+ await page.evaluate(()=>window.sourceSlideReader.openTool(location.origin+'/deep-learning/knowledge/'));
+ await expect(divider).toBeVisible();
+ const tool=page.locator('.reader-tools-panel');
+ expect((await tool.boundingBox()).width).toBeGreaterThan(250);
  await page.reload();await expect(divider).toBeVisible();
  expect(Number(await divider.getAttribute('aria-valuenow'))).toBeGreaterThan(52);
 });

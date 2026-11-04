@@ -1,4 +1,4 @@
-# مثال عددی خود منبع، صفحات 68 تا 84: سه ورودی، دو نورون پنهان، یک خروجی.
+# مثال عددی خود منبع، صفحات 68 تا 96: سه ورودی، دو نورون پنهان، یک خروجی.
 # فقط همان شبکهٔ شکل را اجرا می‌کنیم: ورودی‌ها، وزن‌ها و بایاس‌ها را پایین ببین.
 from math import exp
 
@@ -46,12 +46,34 @@ for index, value in enumerate(source_inputs, start=1):
     source_scaled_gradients[f"w{index}4"] = e4 * value
     source_scaled_gradients[f"w{index}5"] = e5 * value
 
+# صفحات 86 تا 96، نرخ 0.9 را روی گرادیان نیم خطای مربعی اعمال می‌کنند.
+learning_rate = 0.9
+updated_parameters = {name: value - learning_rate * source_scaled_gradients[name]
+                      for name, value in source_parameters.items()}
+# محاسبه دوم از گرادیان‌های گرد شده روی اسلاید استفاده می‌کند.
+# این مقایسه فقط برای همان داده و پارامترهای چاپ شده معتبر است.
+original_parameters = {
+    "w14": 0.2, "w24": 0.4, "w34": -0.5, "b4": -0.4,
+    "w15": -0.3, "w25": 0.1, "w35": 0.2, "b5": 0.2,
+    "w46": -0.3, "w56": -0.2, "b6": 0.1,
+}
+source_case = (source_inputs == [1.0, 0.0, 1.0] and source_target == 1.0
+               and source_parameters == original_parameters and learning_rate == 0.9)
+printed_gradients = {"w46": -0.0435, "w56": -0.0688, "b6": -0.1311,
+                     "w14": 0.0087, "w15": 0.0065, "w24": 0, "w25": 0,
+                     "w34": 0.0087, "w35": 0.0065, "b4": 0.0087, "b5": 0.0065}
+source_rounded_updates = ({name: round(value - learning_rate * printed_gradients[name], 3)
+                           for name, value in source_parameters.items()} if source_case else None)
+
 result = {
+    "learning_rate": learning_rate,
+    "updated_parameters": updated_parameters,
+    "source_rounded_updates": source_rounded_updates,
     "forward": forward,
     "source_scaled_gradients": source_scaled_gradients,
     "squared_error_gradients": {name: 2 * value for name, value in source_scaled_gradients.items()},
     # فقط ثبت اعداد چاپ‌شده؛ برای محاسبه از این تقریب‌ها استفاده نشده است.
     "source_printed": {"o4": 0.332, "o5": 0.525, "o6": 0.474, "squared_error": 0.277,
-                       "e6": -0.1311, "e4": 0.0087, "e5": 0.0065},
+                       "e6": -0.1311, "e4": 0.0087, "e5": 0.0065} if source_case else None,
 }
 print(result)

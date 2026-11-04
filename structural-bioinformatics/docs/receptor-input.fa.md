@@ -28,3 +28,17 @@ conda run -n tnf-docking python structural-bioinformatics/scripts/run_general_pe
 نمونهٔ آزمایش‌شده، زنجیرهٔ A فایل اوبیکویتین 1UBQ و دو توالی AC و AR بود؛ این فقط آزمون فنیِ اتصال مراحل است. [گزارش اجرای واقعی](../data/processed/general-docking-demo.json)، [گیرنده](../assets/general-docking-demo/selected-chain.pdb)، و خروجی‌های [AC](../assets/general-docking-demo/AC/poses.pdbqt) و [AR](../assets/general-docking-demo/AR/poses.pdbqt) در دسترس‌اند. برای بازکردن خروجی PDBQT در PyMOL یا Nanome سازگاری نسخهٔ برنامه و نمایش اتم‌ها را جدا بررسی کنید؛ این رابط‌ها برای این اجرا آزمون نشده‌اند.
 
 این نسخه فقط یک زنجیرهٔ پروتئینی استاندارد و یک مدل بدون حالت جایگزین یا اتم‌های ستون فقرات غایب را می‌پذیرد؛ پشتیبانی از هر PDB، کمپلکس چندزنجیره‌ای، کوفاکتور، آب‌های ضروری، ترمیم همهٔ اتم‌های گمشده و پروتون‌گذاری وابسته به pH را تضمین نمی‌کند. پپتید فقط یک شکل و حالت بار دارد؛ جست‌وجوی محدود Vina و غربال فاصلهٔ ۲ آنگستروم اعتبارسنجی اتصال نیستند. تغییر فرض‌های شیمیایی یا جعبه می‌تواند نتیجه را تغییر دهد. برای آزمایش فرضیه، کنترل‌های مثبت و منفی و در نهایت دادهٔ تجربی لازم‌اند؛ شکست نرم‌افزار به معنی رد زیستی فرضیه نیست.
+
+### از کتابخانهٔ ترکیبی به همان اجرا
+
+اگر می‌خواهید همهٔ ترکیب‌های یک الفبای کوچک بررسی شوند، ابتدا کتابخانه را با سقف صریح بسازید. سپس در دستور داکینگ به‌جای گزینه‌های `--sequence` از `--fasta` استفاده کنید:
+
+```bash
+uv run --project structural-bioinformatics peptide-lab generate \
+  --alphabet AR --min-length 2 --max-length 2 --max-sequences 4 \
+  --output-dir structural-bioinformatics/results/sequence-library-01
+# در دستور بالا برای run_general_peptide_docking.py جایگزین کنید:
+# --fasta structural-bioinformatics/results/sequence-library-01/sequences.fasta
+```
+
+حداکثر ۲۰ رکورد FASTA متمایز در هر اجرا پذیرفته می‌شود؛ تعداد بیشتر رد می‌شود و تنها بخشی از کتابخانه به‌جای کل آن بررسی نمی‌شود. هش FASTA و شناسهٔ هر رکورد در گزارش می‌ماند. در [آزمایش چهار توالی](../data/processed/general-fasta-demo.json) همین مسیر با AA، AR، RA و RR و فایل 1UBQ اجرا شده است. افزایش تعداد ترکیب‌ها به‌سرعت هزینهٔ محاسباتی را زیاد می‌کند و نتیجهٔ این نمونه، اثبات اتصال نیست.

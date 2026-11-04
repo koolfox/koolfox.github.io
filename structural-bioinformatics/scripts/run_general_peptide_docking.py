@@ -16,6 +16,7 @@ from importlib.metadata import version as package_version
 from pathlib import Path
 
 import numpy as np
+from Bio import SeqIO
 from Bio.PDB import PDBIO, PDBParser, Select
 from meeko import MoleculePreparation, PDBQTWriterLegacy
 from rdkit import Chem, rdBase
@@ -51,14 +52,32 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--pdb", type=Path, required=True)
     parser.add_argument("--chain", required=True)
-    parser.add_argument("--sequence", action="append", required=True)
+    source = parser.add_mutually_exclusive_group(required=True)
+    source.add_argument("--sequence", action="append")
+    source.add_argument("--fasta", type=Path)
     parser.add_argument("--center", type=float, nargs=3, required=True, metavar=("X", "Y", "Z"))
     parser.add_argument("--size", type=float, nargs=3, required=True, metavar=("X", "Y", "Z"))
     parser.add_argument("--receptor-preparer", required=True)
     parser.add_argument("--vina", required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
     args = parser.parse_args()
-    if len(args.sequence) > 20 or len(set(args.sequence)) != len(args.sequence):
+    fasta_hash = None
+    sequence_ids = {}
+    if args.fasta:
+        try:
+            fasta_hash = sha(args.fasta)
+            records = list(SeqIO.parse(str(args.fasta), "fasta"))
+        except (OSError, ValueError) as exc:
+            parser.exit(1, f"FASTA rejected: {exc}\n")
+        if len(records) > 20 or len({r.id for r in records}) != len(records):
+            parser.error("FASTA must contain at most 20 uniquely identified records")
+        args.sequence = [str(record.seq) for record in records]
+        sequence_ids = {str(record.seq): record.id for record in records}
+    if (
+        not args.sequence
+        or len(args.sequence) > 20
+        or len(set(args.sequence)) != len(args.sequence)
+    ):
         parser.error("Choose up to 20 distinct explicit peptide sequences")
     if any(not s or len(s) > 12 or set(s) - models.ALPHABET for s in args.sequence):
         parser.error("Use 1–12 uppercase standard amino acid codes")
@@ -79,6 +98,7 @@ def main():
         "center_angstrom": args.center,
         "size_angstrom": args.size,
         "sequences": args.sequence,
+        "fasta_sha256": fasta_hash,
         "rdkit_version": rdBase.rdkitVersion,
         "meeko_version": package_version("meeko"),
         "biopython_version": package_version("biopython"),
@@ -138,7 +158,11 @@ def main():
         report["receptor_pdbqt_sha256"] = sha(receptor)
         receptor_xyz = xyz(receptor.read_text())
         for sequence in args.sequence:
-            row = {"sequence": sequence, "status": "running"}
+            row = {
+                "sequence": sequence,
+                "input_id": sequence_ids.get(sequence),
+                "status": "running",
+            }
             report["candidates"].append(row)
             save()
             directory = out / sequence

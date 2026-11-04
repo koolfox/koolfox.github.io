@@ -383,3 +383,18 @@ test('backward-pass example is readable in the mobile slide view',async({page})=
  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');await expect(page.locator('.reader-slide-background')).toBeVisible();
  await expect(page.locator('.reader-slide-text').filter({hasText:'تابع فعال‌سازی'})).toBeVisible();
 });
+
+test('session 3 agenda keeps its source layout, text, and emphasis', async ({page}) => {
+ const highlights = {3: [1, 2, 3, 4], 4: [1], 103: [3], 109: [4], 110: []};
+ for (const [number, active] of Object.entries(highlights)) {
+  await page.goto(deck + '#page=' + number); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout', 'source-canvas');
+  const regions = page.locator('#persian-page .reader-slide-text');
+  await expect(regions).toHaveCount(5);
+  await expect(regions.first()).toContainText('موضوع‌های امروز');
+  for (let i = 1; i < 5; i++) {
+   await expect(regions.nth(i)).toHaveCSS('color', active.includes(i) ? 'rgb(255, 255, 255)' : 'rgb(127, 127, 127)');
+  }
+  expect(await regions.evaluateAll(nodes => nodes.every(node => node.scrollHeight <= node.clientHeight + 2 && node.scrollWidth <= node.clientWidth + 2))).toBeTruthy();
+ }
+});

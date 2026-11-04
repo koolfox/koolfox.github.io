@@ -1,0 +1,73 @@
+{
+  "source": "https://www.rcsb.org/structure/7TA3",
+  "scope": "known-site rigid redocking of the experimentally bound peptide conformation",
+  "method": "AutoDock Vina 1.2.7 CLI",
+  "recorded_output_utc": "2026-11-04T06:55:12.153454+00:00",
+  "settings": {
+    "seed": 42,
+    "cpu": 1,
+    "exhaustiveness": 4,
+    "num_modes": 5,
+    "center_x": -1.2684999999999995,
+    "center_y": -58.9935,
+    "center_z": -16.9865,
+    "size_x": 30.919,
+    "size_y": 29.395000000000003,
+    "size_z": 30.355
+  },
+  "scores": {
+    "heavy_atoms": 253,
+    "poses": [
+      {
+        "rank": 1,
+        "vina_score_kcal_mol": -22.087,
+        "heavy_atom_rmsd_angstrom": 0.1368
+      }
+    ],
+    "rmsd_method": "same atom serials in the fixed receptor frame; no superposition",
+    "limitations": [
+      "atom symmetry is not accounted for",
+      "Vina score is not a measured affinity",
+      "bound conformation and known site make this an easy control"
+    ]
+  },
+  "submitted_poses": 5,
+  "saved_poses": 1,
+  "files_sha256": {
+    "reference.pdbqt": "5cd3024fd227adcd1309a51faef8eedcb878de407dc5a76ea4b05251ad6d437e",
+    "receptor.pdbqt": "ef6112549c988297f3911490d9a5466cfcb9fbce65c262608f1b4963e7785e06",
+    "native-pose.pdbqt": "323fc140318d148c5e6b05fab2f927e22f6f28b835926a48c5e3c8322cdb88d9",
+    "native-pose.pdb": "3a806505f6e12f92673f77f606c81f076eb7148c03e10f7426bfe05a7a7cf953",
+    "rotated-start.pdbqt": "e605d0af756fcda39a6a024a3c2802ade8005d9724d156e5be75bdfd8390007e",
+    "rotated-pose.pdbqt": "557b8a4da9baeb5dca82d1fb81e714a0b798876646269cd4b8f08b6050a2b8e4"
+  },
+  "limitations": [
+    "The receptor and peptide start from the experimentally bound complex",
+    "Peptide internal torsions are frozen and the binding site is known",
+    "Protonation states have not been independently validated",
+    "Five receptor side chains were modeled; receptor loops remain incomplete",
+    "A docking score is not experimental affinity or evidence of treatment effect"
+  ],
+  "repeat": {
+    "seed": 43,
+    "input_transform": "rigid rotation and translation of the same bound conformation",
+    "initial_heavy_atom_rmsd_angstrom": 13.231161884962596,
+    "scores_vs_experimental": {
+      "heavy_atoms": 253,
+      "poses": [
+        {
+          "rank": 1,
+          "vina_score_kcal_mol": -22.087,
+          "heavy_atom_rmsd_angstrom": 0.1368
+        }
+      ],
+      "rmsd_method": "same atom serials in the fixed receptor frame; no superposition",
+      "limitations": [
+        "atom symmetry is not accounted for",
+        "Vina score is not a measured affinity",
+        "bound conformation and known site make this an easy control"
+      ]
+    },
+    "qualification": "One repeat, not an independent benchmark or a new peptide"
+  }
+}

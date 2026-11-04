@@ -85,6 +85,9 @@ def run(alphabet, lengths, maximum, receptor, vina, output):
                 row["status"] = "failed"
                 raise RuntimeError(f"Batch {number} failed; inspect its logs")
             report = json.loads(report_path.read_text())
+            if report.get("engine_version") != "AutoDock Vina v1.2.7":
+                row["status"] = "failed"
+                raise RuntimeError(f"Batch {number} used an unsupported Vina version")
             rows = report.get("candidates", [])
             if report.get("status") != "completed" or [r.get("sequence") for r in rows] != subset:
                 row["status"] = "failed"

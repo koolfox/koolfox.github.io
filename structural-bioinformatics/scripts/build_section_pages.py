@@ -79,6 +79,12 @@ def render_pages(project=PROJECT):
             "body": body,
         }
         template = (project / "templates/page.html").read_text()
+        if ident == "research":
+            template = template.replace(
+                '<link rel="stylesheet" href="assets/sections.css">',
+                '<link rel="stylesheet" href="assets/sections.css">\n'
+                '<link rel="stylesheet" href="assets/peptide-notebook.css">',
+            )
         if ident == "course":
             template = template.replace(
                 '<header class="page-heading"><h1>@@title@@</h1>',
@@ -241,9 +247,11 @@ def render_pages(project=PROJECT):
 <p>{html.escape(section["question"])}</p>
 <p>{html.escape(section["summary"])}</p>
 </section>"""
+                + fragment("peptide-notebook")
                 + docnav
                 + reader(section)
             )
+            scripts = ["peptide-notebook.js"]
             parallel = json.loads(
                 (project / "data/metadata/education-research-map.json").read_text()
             )

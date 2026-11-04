@@ -61,3 +61,14 @@ def test_public_logs_do_not_include_local_absolute_paths():
         assert "/private/tmp/" not in text
         assert "[local path removed; see provenance]" in text
         assert "Estimated Free Energy of Binding" in text or "Affinity" in text or "mode" in text
+
+
+def test_public_batch_logs_do_not_include_local_absolute_paths():
+    root = PROJECT / "assets/tnf-peptide/batch-demo"
+    logs = list(root.glob("batch-*/[A-Z]*/vina.stdout.txt"))
+    assert len(logs) == 2
+    for path in logs:
+        text = path.read_text()
+        assert "/Users/" not in text
+        assert "/private/tmp/" not in text
+        assert "[local path removed; see provenance]" in text

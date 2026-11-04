@@ -69,3 +69,44 @@ test('native source equations retain selectable KaTeX and MathML in their compan
  if(await companion.count()&&!await companion.evaluate(node=>node.open))await companion.locator('summary').click();
  await expect(page.locator('#persian-page .katex').first()).toBeVisible();
 });
+
+test('reviewed gradient diagrams retain source size, frames and Persian equation direction',async({page})=>{
+ await page.setViewportSize({width:1440,height:900});
+ for(const number of [39,40,41,42]){
+  await page.goto(`/deep-learning/terms/spring-2026/s03/slides/#page=${number}`);await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const details=await page.evaluate(async()=>{
+   const config=JSON.parse(document.querySelector('#source-reader-config').textContent),record=(await(await fetch(config.translationUrl)).json()).pages[window.sourceSlideReader.page-1];
+   const heading=document.querySelector('.reader-slide-text'),line=record.source_layout.lines.find(line=>line.index===record.blocks[0].source_lines[0]);
+   const equations=[...document.querySelectorAll('.reader-word-math')].map(node=>({text:node.textContent,dir:getComputedStyle(node).direction,height:node.scrollHeight,font:parseFloat(node.style.fontSize),width:node.clientWidth,scrollWidth:node.scrollWidth}));
+   const canvas=document.querySelector('.reader-slide-background'),data=canvas.getContext('2d').getImageData(0,0,canvas.width,canvas.height).data;let red=0;
+   for(let i=0;i<data.length;i+=4)if(data[i]>220&&data[i+1]<40&&data[i+2]<40)red++;
+   return {actual:parseFloat(heading.style.fontSize),expected:line.font_size/record.source_layout.width*960,color:getComputedStyle(heading).color,equations,red,text:document.querySelector('#persian-page').textContent};
+  });
+  expect(Math.abs(details.actual-details.expected)).toBeLessThan(.05);
+  expect(details.color).toBe('rgb(255, 255, 255)');expect(details.red).toBeGreaterThan(30);
+  expect(details.text).not.toMatch(/[\u064b-\u065f\u0670]/);
+  for(const equation of details.equations){expect(equation.dir).toBe('rtl');expect(equation.scrollWidth).toBeLessThanOrEqual(equation.width+2);}
+  if(number===40||number===42){const error=details.equations.find(equation=>equation.text.includes('مقدار درست'));expect(error).toBeTruthy();expect(error.height).toBeLessThan(error.font*1.5);}
+ }
+});
+
+test('reviewed gradient diagram remains visible in the mobile Persian view',async({page})=>{
+ await page.setViewportSize({width:390,height:844});await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=40');await ready(page);
+ await page.locator('[data-view-translation]').click();await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ await expect(page.locator('.reader-slide-background')).toBeVisible();
+ await expect(page.locator('.reader-word-math').last()).toContainText('خطا = حدس − مقدار درست');
+});
+
+test('manual diagram placement is bound to the exact PDF and translation',async({page})=>{
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=40');await ready(page);
+ const checks=await page.evaluate(async()=>{
+  const config=JSON.parse(document.querySelector('#source-reader-config').textContent),record=(await(await fetch(config.translationUrl)).json()).pages[39];
+  const {sourceLayoutPlan}=await import('/deep-learning/assets/slide-content.js');
+  const slot=(data,identity)=>sourceLayoutPlan(data,identity).regions.find(region=>region.block.kind==='heading').slot;
+  const changed=structuredClone(record);changed.source_layout.translation_sha256='0'.repeat(64);
+  return {reviewed:slot(record,config),wrongPdf:slot(record,{...config,sourceSha256:'0'.repeat(64)}),wrongText:slot(changed,config)};
+ });
+ expect(checks.reviewed).not.toEqual(checks.wrongPdf);expect(checks.reviewed).not.toEqual(checks.wrongText);
+});

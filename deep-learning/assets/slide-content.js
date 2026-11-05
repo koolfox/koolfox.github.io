@@ -628,6 +628,17 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       {rect:[.527,.60,.67,.65],text:'با گوگل ثبت‌نام کنید',background:'#fff',color:'#282828',font:11,align:'center'},
     ];
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===8
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='612229f89f94d28bbd69eab27a2fb1a89ab36a740e36ab47370affa774e8521d'
+      && layout.translation_sha256==='330712f176311beb7b47a09f61501bfef46fa2a717dec41d4f04af4a5e679a69'){
+    const [label,title]=record.image_text[1].fa.split('؛');
+    imageTranslations=[
+      {rect:[.21,.47,.79,.52],text:label,background:'#030319',color:'#b0b0c1',font:15},
+      {rect:[.21,.53,.79,.79],text:title.trim(),background:'linear-gradient(#030319,#02062b)',color:'#fff',font:36,accents:[{text:'پژوهش حقوقی',color:'#3987ff'}]},
+      {rect:[.21,.82,.79,.96],text:record.image_text[2].fa,background:'#02062b',color:'#d4d6e8',font:17},
+    ];
+  }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

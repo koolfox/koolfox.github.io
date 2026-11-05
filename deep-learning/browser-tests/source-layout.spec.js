@@ -674,3 +674,12 @@ test('session 1 perception examples preserve the source images and questions', a
   expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
  }
 });
+
+test('session 1 limits of manual rules preserve separated points', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=38'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const regions=page.locator('#persian-page .reader-slide-text'); await expect(regions).toHaveCount(3);
+ await expect(regions.nth(1)).toContainText('مجموعه‌ای کامل');
+ await expect(regions.nth(2)).toContainText('ناخودآگاه');
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

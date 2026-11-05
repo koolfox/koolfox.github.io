@@ -906,3 +906,12 @@ test('session 1 challenge retains its source images and quotation', async ({page
   await expect(regions.filter({hasText:'کسی پلک زد'})).toBeVisible();
   expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 agenda highlights course logistics', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=66'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'امور اجرایی درس'})).toHaveCSS('color','rgb(255, 255, 255)');
+  await expect(regions.filter({hasText:'ماشین چگونه'})).toHaveCSS('color','rgb(127, 127, 127)');
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

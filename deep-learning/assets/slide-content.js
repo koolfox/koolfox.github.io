@@ -726,7 +726,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && layout.translation_sha256==='5a1c20b227891c75db4c82d427982c5961d3557a272bedea193fe90e678abc31'){
     for(const region of regions){region.slot=[.07,.40,.93,.61];region.font=29;}
   }
-  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===50
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && [50,66].includes(record.number)
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='93be166ad020db0006505dc7ba7155a8e809f0fb64afc1dfc2f33e13791b16be'
       && layout.translation_sha256==='ae0510d97d33a63f2d4c163c0c48f6b55a124bd4921b58801103d1bdfcb1b30c'){

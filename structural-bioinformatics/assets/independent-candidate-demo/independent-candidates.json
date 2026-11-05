@@ -1,0 +1,42 @@
+{
+  "status": "completed_with_failures",
+  "started_at_utc": "2026-11-05T09:13:03.801591+00:00",
+  "input_fasta_sha256": "b672fb3bf44583364c96582ec17f87866fa11a2cd3ef40713623aaebc92a2690",
+  "target_pdb_sha256": "d8e77e18b1869caef3833fcaffb9daab0149e6c1fb1c8c34fd860348dec261fc",
+  "workflow_sha256": "b795adb1c46d766761b4c91ea9554057e45fd93dd01278ef4ffca33c44b05687",
+  "chain": "A",
+  "center_angstrom": [
+    30.0,
+    28.0,
+    15.0
+  ],
+  "size_angstrom": [
+    20.0,
+    20.0,
+    20.0
+  ],
+  "total": 2,
+  "candidates": [
+    {
+      "index": 1,
+      "input_id": "clash_example",
+      "sequence": "VQLVESGG",
+      "status": "failed",
+      "report_sha256": "ce30f81e43970e55f24edf9f68f8d36cc37b3153b83729a842038518644aeb66",
+      "report_path": "candidate-000001/report.json",
+      "error": "Severe interchain clash for VQLVESGG",
+      "exit_code": 1
+    },
+    {
+      "index": 2,
+      "input_id": "control_ac",
+      "sequence": "AC",
+      "status": "requires_further_validation",
+      "report_sha256": "c213846276fdfaa22ae5ae5f671e70352f0d5967d441b30c056a4149cf7ced56",
+      "report_path": "candidate-000002/report.json",
+      "exit_code": 0
+    }
+  ],
+  "limitations": "Computational results are not measured binding or efficacy; no resume.",
+  "finished_at_utc": "2026-11-05T09:16:27.885326+00:00"
+}

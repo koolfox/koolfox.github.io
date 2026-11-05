@@ -503,3 +503,12 @@ test('session 1 Turing test history preserves the timeline and both illustration
  await expect(regions.nth(4)).toContainText('Alan Turing');
  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 AI origins retain the plaque and separate timeline labels', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=30'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const regions=page.locator('#persian-page .reader-slide-text'); await expect(regions).toHaveCount(5);
+ await expect(regions.filter({hasText:'تولد هوش مصنوعی'})).toHaveCSS('color','rgb(255, 192, 0)');
+ await expect(regions.filter({hasText:'نخستین ماشین'})).toHaveCSS('color','rgb(255, 255, 255)');
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

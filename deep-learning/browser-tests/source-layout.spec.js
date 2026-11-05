@@ -781,3 +781,12 @@ test('session 1 agenda highlights the current topic', async ({page}) => {
   await expect(regions.filter({hasText:'کاربردها'})).toHaveCSS('color','rgb(127, 127, 127)');
   expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 neural network ingredients retain the image and colored terms', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=51'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'داستان عاشقانه'})).toBeVisible();
+  await expect(regions.filter({hasText:'پردازنده'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

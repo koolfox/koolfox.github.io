@@ -580,6 +580,18 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(text==='تولد هوش مصنوعی (AI)'){region.slot=[.19,.36,.30,.43];region.font=16;region.align='center';}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===32
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='5245c95343e51082e743c6062dbc388ee26aa8c2e6b35f56da2b6fe61fd385bb'
+      && layout.translation_sha256==='9aecbd9977733675c668c5fc5b1ed7baae9375972247b0040d3923c3009993e4'){
+    for(const region of regions){
+      const text=region.block.fa;
+      if(text.startsWith('رایانه‌ها ممکن است')){region.slot=[.21,.59,.70,.78];region.font=30;region.align='center';}
+      if(text.startsWith('آزمون تورینگ')){region.slot=[.075,.435,.23,.55];region.font=16;region.align='center';region.keepTermsTogether=true;}
+      if(text==='نخستین ماشین برنامه‌پذیر'){region.slot=[.01,.33,.20,.43];region.font=17;region.align='center';}
+      if(text==='تولد هوش مصنوعی (AI)'){region.slot=[.19,.36,.30,.43];region.font=16;region.align='center';}
+    }
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

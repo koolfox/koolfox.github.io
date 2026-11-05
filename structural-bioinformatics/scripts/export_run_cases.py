@@ -23,6 +23,8 @@ def export(run_dir, output):
     rows, total = report.get("candidates"), report.get("total")
     if not isinstance(rows, list) or type(total) is not int or total < 1 or len(rows) > total:
         raise ValueError("Invalid candidate count")
+    if any(not isinstance(row, dict) for row in rows):
+        raise ValueError("Invalid candidate record")
     if (
         report["status"] in {"requires_further_validation", "completed_with_failures"}
         and len(rows) != total
@@ -69,7 +71,8 @@ def export(run_dir, output):
             if status == "requires_further_validation":
                 candidates = child_data.get("candidates", [])
                 if (
-                    child_data.get("status") != "requires_further_validation"
+                    row.get("exit_code") != 0
+                    or child_data.get("status") != "requires_further_validation"
                     or child_data.get("input", {}).get("source_sha256")
                     != report["target_pdb_sha256"]
                     or len(candidates) != 1
@@ -77,6 +80,15 @@ def export(run_dir, output):
                     or candidates[0].get("status") != "requires_further_validation"
                 ):
                     raise ValueError("Completed child report is inconsistent")
+                poses = child.parent / sequence / "poses.pdbqt"
+                expected_pose_hash = candidates[0].get("poses_sha256")
+                if (
+                    not candidates[0].get("poses")
+                    or not poses.resolve().is_relative_to(run_dir.resolve())
+                    or not isinstance(expected_pose_hash, str)
+                    or sha(poses) != expected_pose_hash
+                ):
+                    raise ValueError("Completed pose file does not match its recorded hash")
         if status == "requires_further_validation" and path is None:
             raise ValueError("Completed candidate has no child report")
         cases.append(

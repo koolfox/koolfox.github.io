@@ -77,3 +77,13 @@ def test_published_example_matches_fresh_deterministic_projection(tmp_path):
     assert (published / "cases.jsonl").read_bytes() == (new / "cases.jsonl").read_bytes()
     assert manifest["cases_sha256"] == module.sha(published / "cases.jsonl")
     assert manifest["exporter_sha256"] == module.sha(PROJECT / "scripts/export_run_cases.py")
+
+
+def test_changed_completed_pose_is_rejected_before_writing_output(tmp_path):
+    root = tmp_path / "source"
+    shutil.copytree(PROJECT / "assets/independent-candidate-demo", root)
+    (root / "candidate-000002/AC/poses.pdbqt").write_text("not a pose")
+    output = tmp_path / "out"
+    with pytest.raises(ValueError, match="pose file"):
+        module.export(root, output)
+    assert not output.exists()

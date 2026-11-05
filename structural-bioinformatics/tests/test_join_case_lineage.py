@@ -2,8 +2,10 @@
 
 import importlib.util
 import json
+import re
 from pathlib import Path
 
+import numpy as np
 import pytest
 from Bio import SeqIO
 
@@ -90,3 +92,58 @@ def test_interrupted_run_joins_only_observed_cases_and_keeps_unprocessed_count(t
     row = json.loads((tmp_path / "out/cases.jsonl").read_text())
     assert row["execution_status"] == "interrupted"
     assert row["biological_binding_label"] is None
+
+
+def test_published_real_run_recreates_joined_cases(tmp_path):
+    root = PROJECT / "assets/lineage-example"
+    joined = tmp_path / "joined"
+    result = module.join(
+        root / "base-cases",
+        root / "run",
+        PDB,
+        root / "candidates/candidates.fasta",
+        root / "candidates/manifest.json",
+        joined,
+    )
+    recorded = root / "joined-cases"
+    assert (joined / "cases.jsonl").read_bytes() == (recorded / "cases.jsonl").read_bytes()
+    manifest = json.loads((recorded / "manifest.json").read_text())
+    assert manifest["joiner_sha256"] == module.digest(PROJECT / "scripts/join_case_lineage.py")
+    assert manifest["cases_sha256"] == result["cases_sha256"]
+    rows = [json.loads(line) for line in (joined / "cases.jsonl").read_text().splitlines()]
+    assert [row["candidate_sequence"] for row in rows] == ["VQLVESGG", "AQLVESGG"]
+    assert [row["execution_status"] for row in rows] == ["failed", "failed"]
+    assert all(row["biological_binding_label"] is None for row in rows)
+
+
+def test_published_real_lineage_files_match_recorded_hashes():
+    root = PROJECT / "assets/lineage-example"
+    manifest = json.loads((root / "files-manifest.json").read_text())
+    for name, expected in manifest["files"].items():
+        assert module.digest(root / name) == expected
+
+
+def test_real_lineage_docking_rejections_have_severe_clashes():
+    root = PROJECT / "assets/lineage-example/run"
+
+    def coordinates(text):
+        return np.array(
+            [
+                [float(line[i : i + 8]) for i in (30, 38, 46)]
+                for line in text.splitlines()
+                if line.startswith(("ATOM  ", "HETATM")) and line.split()[-1] not in ("H", "HD")
+            ]
+        )
+
+    for index, sequence in ((1, "VQLVESGG"), (2, "AQLVESGG")):
+        folder = root / f"candidate-{index:06d}"
+        report = json.loads((folder / "report.json").read_text())
+        assert report["status"] == "failed" and "clash" in report["error"].lower()
+        receptor = coordinates((folder / "receptor.pdbqt").read_text())
+        text = (folder / sequence / "poses.pdbqt").read_text()
+        blocks = re.findall(r"^MODEL\s+\d+\s*$(.*?)^ENDMDL\s*$", text, re.M | re.S)
+        assert blocks
+        minimum = np.linalg.norm(
+            coordinates(blocks[0])[:, None, :] - receptor[None, :, :], axis=2
+        ).min()
+        assert minimum < 2.0

@@ -2,20 +2,28 @@ import { test, expect, devices } from '@playwright/test';
 
 test.use({ ...devices['iPhone 13'] });
 
-test('a visited slide reloads offline after a single PDF download', async ({ page, context }) => {
- const requests = [];
- page.on('request', request => { if (request.url().includes('/s01.pdf?sha=')) requests.push(request); });
+test('visited session one pages load separately and work offline after reload', async ({ page, context }) => {
+ const pdfs = [];
+ page.on('response', response => { if (/\.pdf\?sha=/.test(response.url())) pdfs.push({url: response.url(), size: Number(response.headers()['content-length'])}); });
  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=40');
- await page.waitForFunction(() => window.sourceSlideReader?.ready);
+ await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 40);
  await expect(page.locator('html')).toHaveAttribute('data-offline-ready', 'true', { timeout: 30000 });
- expect(requests).toHaveLength(1);
+ expect(pdfs).toHaveLength(1);
+ expect(pdfs[0].url).toContain('/s01-pages/040.pdf');
+ expect(pdfs[0].size).toBeLessThan(400000);
  await page.reload();
  await page.waitForFunction(() => window.sourceSlideReader?.ready);
- expect(requests).toHaveLength(1);
+ expect(pdfs).toHaveLength(1);
  await expect(page.locator('html')).toHaveAttribute('data-offline-ready', 'true', { timeout: 30000 });
+ await page.locator('[data-next-page]').click();
+ await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 41);
+ expect(pdfs).toHaveLength(2);
+ expect(pdfs[1].url).toContain('/s01-pages/041.pdf');
  await context.setOffline(true);
  await page.reload();
- await page.waitForFunction(() => window.sourceSlideReader?.ready);
+ await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 41);
+ await page.locator('[data-prev-page]').click();
+ await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 40);
  await expect(page.locator('#persian-page')).toHaveAttribute('data-page', '40');
  expect(await page.evaluate(() => document.fonts.check('16px Arad'))).toBe(true);
  await page.locator('[data-view-translation]').click();
@@ -27,4 +35,19 @@ test('the reader still loads online when persistent storage is unavailable', asy
  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=40');
  await page.waitForFunction(() => window.sourceSlideReader?.ready);
  await expect(page.locator('html')).toHaveAttribute('data-offline-ready', 'false', { timeout: 30000 });
+});
+
+test('a corrupted cached page is discarded and fetched again', async ({ page }) => {
+ const pdfs = [];
+ page.on('response', response => { if (response.url().includes('/s01-pages/040.pdf?sha=')) pdfs.push(response); });
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=40');
+ await page.waitForFunction(() => window.sourceSlideReader?.ready);
+ expect(pdfs).toHaveLength(1);
+ await page.evaluate(async url => {
+  const cache = await caches.open('danna-slide-reader-v1');
+  await cache.put(url, new Response('incomplete'));
+ }, pdfs[0].url());
+ await page.reload();
+ await page.waitForFunction(() => window.sourceSlideReader?.ready);
+ expect(pdfs).toHaveLength(2);
 });

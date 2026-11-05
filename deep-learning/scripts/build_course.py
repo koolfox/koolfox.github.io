@@ -863,6 +863,10 @@ def build(output, root=ROOT):
                 content = content.replace('./' + dependency + "'", './' + dependency + '?v=' + reader_version + "'")
             script.write_text(content)
 
+    if "s01" in readers.get("spring-2026", {}):
+        from source_page_pdfs import build_source_pages
+        build_source_pages(root, output)
+
     package_slides(output, root)
     if os.environ.get("DANNA_SOURCE_DRAFT") != "1":
         for term_id, sessions in readers.items():

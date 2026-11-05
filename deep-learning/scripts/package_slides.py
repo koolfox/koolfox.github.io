@@ -168,6 +168,12 @@ def package_source_readers(output, term_id, sessions, root=ROOT):
                  "notebook.js", "notebook.css", "notebook_kernel.py", "notebook-worker.mjs", "practice.js", "practice.css", "knowledge.js", "webgpu-attention.js",
                  "python-tools.js", "python-tools-worker.mjs", "notebook_support.py", "notebook-results.js"):
         add("deep-learning/assets/" + name, output / "assets" / name)
+    if term_id == "spring-2026" and "s01" in sessions:
+        page_dir = output / "assets/danna/spring-2026/s01-pages"
+        add("deep-learning/assets/danna/spring-2026/s01-pages/manifest.json", page_dir / "manifest.json")
+        for number in range(1, originals["s01"]["page_count"] + 1):
+            name = f"{number:03}.pdf"
+            add(f"deep-learning/assets/danna/spring-2026/s01-pages/{name}", page_dir / name)
     add("deep-learning/slide-offline-sw.js", output / "slide-offline-sw.js")
     add("deep-learning/knowledge/index.html", output / "knowledge/index.html")
     from source_experiments import experiment_files

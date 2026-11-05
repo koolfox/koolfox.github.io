@@ -229,7 +229,8 @@ async function renderOriginal(){
  renderedPage=0;controls();links.replaceChildren();canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);
  message(`در حال نمایش صفحهٔ ${fa(selected)} از ${fa(config.pageCount)}…`);
  try{
-  const layoutSource=await pdf.getPage(selected),source=await canonicalPdf.getPage(selected);if(id!==serial||closed)return;
+  const layoutSource=await pdf.getPage(selected);if(id!==serial||closed)return;
+  const source=await canonicalPdf.getPage(selected);if(id!==serial||closed)return;
   const pane=document.querySelector('.reader-original'),base=source.getViewport({scale:1});
   let available=pane.clientWidth?Math.max(250,pane.clientWidth-32):lastWidth;
   if(document.body.dataset.sourceOnly==='true'){
@@ -342,10 +343,42 @@ const documentOptions={url:config.pdfUrl+'?sha='+config.sourceSha256,cMapUrl:new
 let loading,canonicalLoading;
 const loadingController=new AbortController();
 progress.removeAttribute('value');
+let pageLoad=null;
+function releasePage(){
+ const old=pageLoad;pageLoad=null;if(!old)return;
+ old.controller.abort();
+ old.promise.then(value=>Promise.all(value.tasks.map(item=>item.destroy()))).catch(()=>{});
+}
 async function loadSources(){
- const [bytes,data]=await Promise.all([readPdf(documentOptions.url,config.sourceSha256,loadingController.signal),fetch(config.translationUrl,{signal:loadingController.signal}).then(response=>{if(!response.ok)throw Error('translation unavailable');return response.json();})]);
- if(closed)throw Error('reader closed');
+ const paged=config.term==='spring-2026'&&config.session==='s01';
+ const pageRoot='/deep-learning/assets/danna/spring-2026/s01-pages/';
+ const translation=fetch(config.translationUrl,{signal:loadingController.signal}).then(response=>{if(!response.ok)throw Error('translation unavailable');return response.json();});
  const {url,...options}=documentOptions;
+ if(paged){
+  const [manifest,data]=await Promise.all([fetch(pageRoot+'manifest.json?sha='+config.sourceSha256,{signal:loadingController.signal}).then(response=>{if(!response.ok)throw Error('page index unavailable');return response.json();}),translation]);
+  if(manifest.source_sha256!==config.sourceSha256||manifest.page_count!==config.pageCount||manifest.pages?.length!==config.pageCount||!manifest.pages.every(value=>/^[0-9a-f]{64}$/.test(value)))throw Error('page identity mismatch');
+  async function loadPage(number){
+   if(!Number.isInteger(number)||number<1||number>config.pageCount)throw Error('invalid page');
+   if(!pageLoad||pageLoad.number!==number){
+    releasePage();const controller=new AbortController();
+    const promise=(async()=>{
+     const hash=manifest.pages[number-1],name=String(number).padStart(3,'0')+'.pdf';
+     const bytes=await readPdf(pageRoot+name+'?sha='+hash,hash,controller.signal);
+     if(controller.signal.aborted||closed)throw Error('page closed');
+     const tasks=[getDocument({...options,data:new Uint8Array(bytes.slice(0)),disableFontFace:false}),getDocument({...options,data:new Uint8Array(bytes.slice(0)),disableFontFace:true})];
+     try{return {documents:await Promise.all(tasks.map(item=>item.promise)),tasks};}
+     catch(error){await Promise.all(tasks.map(item=>item.destroy().catch(()=>{})));throw error;}
+    })();
+    pageLoad={number,controller,promise};
+   }
+   return pageLoad.promise;
+  }
+  const document={numPages:config.pageCount,getPage:async number=>(await loadPage(number)).documents[0].getPage(1)};
+  const canonicalDocument={getPage:async number=>(await loadPage(number)).documents[1].getPage(1)};
+  return [document,canonicalDocument,data];
+ }
+ const [bytes,data]=await Promise.all([readPdf(documentOptions.url,config.sourceSha256,loadingController.signal),translation]);
+ if(closed)throw Error('reader closed');
  loading=getDocument({...options,data:new Uint8Array(bytes.slice(0)),disableFontFace:config.term!=='spring-2026'});
  canonicalLoading=config.term==='spring-2026'?getDocument({...options,data:new Uint8Array(bytes.slice(0)),disableFontFace:true}):loading;
  const [document,canonicalDocument]=await Promise.all([loading.promise,canonicalLoading.promise]);
@@ -357,7 +390,7 @@ loadSources().then(([document,canonicalDocument,data])=>{
  for(const option of picker.options){if(option.value==='sources')continue;const record=data.pages[Number(option.value)-1];const heading=record.blocks.find(b=>b.kind==='heading')?.fa||record.blocks.find(b=>b.kind!=='not_visible'&&b.fa)?.fa?.split('\n').find(s=>!/^https?:/.test(s))||'';option.textContent=fa(Number(option.value))+(heading?' · '+heading.slice(0,100):'');}
  if(location.hash==='#sources')showReferences(false);else go(page,false);
 }).catch(()=>{progress.hidden=true;message('بارگیری اسلایدها انجام نشد؛ دوباره تلاش کن.',true);$('[data-retry-load]').hidden=false;});
-window.addEventListener('pagehide',event=>{stopPlayback();if(event.persisted)return;closed=true;loadingController.abort();serial++;clearTimeout(resizeTimer);task?.cancel();layoutTask?.cancel();loading?.destroy().catch(()=>{});if(canonicalLoading&&canonicalLoading!==loading)canonicalLoading.destroy().catch(()=>{});});
+window.addEventListener('pagehide',event=>{stopPlayback();if(event.persisted)return;closed=true;loadingController.abort();releasePage();serial++;clearTimeout(resizeTimer);task?.cancel();layoutTask?.cancel();loading?.destroy().catch(()=>{});if(canonicalLoading&&canonicalLoading!==loading)canonicalLoading.destroy().catch(()=>{});});
 window.sourceSlideReader={openTool(raw,section='lab'){const url=new URL(raw,location.href);if(url.origin!==location.origin||!['http:','https:'].includes(url.protocol)||!['lab','explore','questions','knowledge'].includes(section))throw Error('Invalid slide tool');selectSection(section,url.href);},get page(){return page;},get renderedPage(){return renderedPage;},get pageCount(){return config.pageCount;},get sourceSha256(){return config.sourceSha256;},get ready(){return Boolean(pdf&&payload&&(references||renderedPage===page));}};
 controls();
 syncPanels();

@@ -9,6 +9,7 @@ export default defineConfig({
     use: {
         baseURL: process.env.SITE_BASE_URL || process.env.RESEARCH_BASE_URL || "http://127.0.0.1:8000",
         browserName: "chromium",
+        channel: process.env.CI ? "chromium" : undefined,
         launchOptions: { args: ["--enable-unsafe-swiftshader"] },
         trace: "retain-on-failure",
     },

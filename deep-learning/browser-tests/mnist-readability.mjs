@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {chromium} from 'playwright';
 
 const base=process.env.SITE_BASE_URL||'http://127.0.0.1:8900';
-const browser=await chromium.launch({headless:true});
+const browser=await chromium.launch({headless:true,executablePath:process.env.MNIST_CHROMIUM_PATH||undefined});
 try {
   const page=await browser.newPage({viewport:{width:390,height:844}});
   await page.goto(base+'/deep-learning/playgrounds/cnn-mnist/train/');

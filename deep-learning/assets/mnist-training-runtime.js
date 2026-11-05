@@ -54,15 +54,15 @@ export async function createMnistTrainer(data,settings={},options={}){
  const state={step:0,epoch:0,history:[],epochs:[],backend,config,parameters:model.countParams()};
  const gallery=[];for(let digit=0;digit<10;digit++){let found=0;for(let i=0;i<validationCount&&found<2;i++)if(data.labels[trainCount+i]===digit){gallery.push(i);found++;}}
  async function evaluate(){
-  const output=model.predict(tensors.validationX);try{const probabilities=await output.data();let loss=0,correct=0;
-   for(let i=0;i<validationCount;i++){const label=data.labels[trainCount+i],row=probabilities.subarray(i*10,(i+1)*10);loss-=Math.log(Math.max(1e-7,row[label]));if(row.indexOf(Math.max(...row))===label)correct++;}
-   return{loss:loss/validationCount,accuracy:correct/validationCount,count:validationCount};
+  const output=model.predict(tensors.validationX);try{const probabilities=await output.data();let loss=0,correct=0;const classes=Array.from({length:10},()=>({count:0,correct:0}));
+   for(let i=0;i<validationCount;i++){const label=data.labels[trainCount+i],row=probabilities.subarray(i*10,(i+1)*10);loss-=Math.log(Math.max(1e-7,row[label]));classes[label].count++;if(row.indexOf(Math.max(...row))===label){correct++;classes[label].correct++;}}
+   return{loss:loss/validationCount,accuracy:correct/validationCount,count:validationCount,correct,classes};
   }finally{output.dispose();}
  }
  async function view(selected=gallery[0]){
   if(disposed)throw Error('مدل آزاد شده است.');if(!Number.isInteger(selected)||selected<0||selected>=validationCount)throw Error('نمونهٔ انتخاب‌شده معتبر نیست.');
-  const outputs=tf.tidy(()=>{const sample=tensors.validationX.slice([selected,0,0,0],[1,28,28,1]);return{predictions:model.predict(tf.gather(tensors.validationX,gallery)),features:model.layers[0].apply(sample),weights:model.layers[0].getWeights()[0].clone()};});
-  try{return{gallery,predictions:Array.from(await outputs.predictions.data()),features:Array.from(await outputs.features.data()),featureShape:outputs.features.shape,weights:Array.from(await outputs.weights.data()),weightShape:outputs.weights.shape,selected};}
+  const outputs=tf.tidy(()=>{const sample=tensors.validationX.slice([selected,0,0,0],[1,28,28,1]);return{predictions:model.predict(tf.gather(tensors.validationX,gallery)),selectedPrediction:model.predict(sample),features:model.layers[0].apply(sample),weights:model.layers[0].getWeights()[0].clone()};});
+  try{return{gallery,predictions:Array.from(await outputs.predictions.data()),selectedPrediction:Array.from(await outputs.selectedPrediction.data()),features:Array.from(await outputs.features.data()),featureShape:outputs.features.shape,weights:Array.from(await outputs.weights.data()),weightShape:outputs.weights.shape,selected};}
   finally{Object.values(outputs).forEach(tensor=>tensor.dispose());}
  }
  async function step(){

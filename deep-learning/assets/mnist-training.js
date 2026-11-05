@@ -7,7 +7,7 @@ function fail(cause){$('[data-error]').hidden=false;$('[data-error]').textConten
 function settings(){return{activation:$('[name=activation]').value,learningRate:Number($('[name=learningRate]').value),batchSize:Number($('[name=batchSize]').value),backend:$('[name=backend]').value};}
 function updateControls(){
  $('[data-load]').hidden=Boolean(trainer);$('[data-load]').disabled=working;
- for(const key of['start','step','reset','save'])$(`[data-${key}]`).disabled=!trainer||working||running;
+ for(const key of['start','step','reset','save','validate'])$(`[data-${key}]`).disabled=!trainer||working||running;
  $('[data-pause]').textContent=running||trainer?'مکث':'لغو';$('[data-pause]').hidden=!working&&!running;$('[data-pause]').disabled=working&&!running&&Boolean(trainer);
  $('[data-settings]').disabled=working||running;
  for(const digit of document.querySelectorAll('.mnist-digit'))digit.disabled=working||running||!trainer;
@@ -16,7 +16,7 @@ function image(canvas,index){const ctx=canvas.getContext('2d'),pixels=ctx.create
 function digit(index,label,prediction,validation=false,validationIndex=0){
  const button=node(validation?'button':'figure',undefined,{class:'mnist-digit'}),canvas=node('canvas',undefined,{width:'28',height:'28',role:'img','aria-label':`رقم ${label}`});image(canvas,index);button.append(canvas,node('span',`برچسب ${fmt.format(label)}`));
  if(prediction!==undefined){button.append(node('span',`پیش‌بینی ${fmt.format(prediction)}`,{class:'mnist-prediction'}));button.dataset.correct=String(prediction===label);}
- if(validation){button.setAttribute('aria-pressed',String(validationIndex===selected));button.addEventListener('click',async()=>{selected=validationIndex;if(!working){working=true;updateControls();try{await refresh();}catch(error){fail(error);}finally{working=false;updateControls();}}});}
+ if(validation){button.setAttribute('aria-pressed',String(validationIndex===selected));button.dataset.validationIndex=String(validationIndex);button.dataset.label=String(label);button.addEventListener('click',async()=>{selected=validationIndex;if(!working){working=true;updateControls();try{await refresh();if(document.body.dataset.tab==='data'){document.querySelector('[data-tab-button=train]').click();}}catch(error){fail(error);}finally{working=false;updateControls();}}});}
  return button;
 }
 function heat(canvas,values,width,height,channels,channel,diverging=false,globalMax=1){
@@ -44,10 +44,10 @@ function updateHistory(){
 function updateBrowse(){
  const grid=$('[data-browse-digits]'),split=$('[data-browse-split]').value;
  grid.replaceChildren();if(!data)return;
- const count=split==='train'?data.manifest.train_count:data.manifest.validation_count,offset=split==='train'?0:data.manifest.train_count,pageSize=32;
- const pages=Math.ceil(count/pageSize);browsePage=Math.max(0,Math.min(browsePage,pages-1));
- for(let i=browsePage*pageSize;i<Math.min((browsePage+1)*pageSize,count);i++)grid.append(digit(offset+i,data.labels[offset+i]));
- $('[data-browse-page]').textContent=`صفحه ${fmt.format(browsePage+1)} از ${fmt.format(pages)}`;
+ const count=split==='train'?data.manifest.train_count:data.manifest.validation_count,offset=split==='train'?0:data.manifest.train_count,pageSize=32,filter=$('[data-browse-label]').value;
+ const indices=Array.from({length:count},(_,i)=>i).filter(i=>filter==='all'||data.labels[offset+i]===Number(filter)),pages=Math.max(1,Math.ceil(indices.length/pageSize));browsePage=Math.max(0,Math.min(browsePage,pages-1));
+ for(const i of indices.slice(browsePage*pageSize,(browsePage+1)*pageSize))grid.append(digit(offset+i,data.labels[offset+i],undefined,split==='validation',i));
+ $('[data-browse-page]').textContent=`${fmt.format(indices.length)} تصویر · صفحه ${fmt.format(browsePage+1)} از ${fmt.format(pages)}`;
  $('[data-browse-previous]').disabled=browsePage===0;$('[data-browse-next]').disabled=browsePage===pages-1;
 }
 async function refresh(){
@@ -56,8 +56,8 @@ async function refresh(){
  const valLoss=[{step:0,value:baseline.loss},...state.epochs.map(e=>({step:e.step,value:e.validationLoss}))],trainLoss=state.history.map(e=>({step:e.step,value:e.loss}));chart('[data-loss-chart]',trainLoss,valLoss,Math.max(.1,...valLoss.map(p=>p.value),...trainLoss.map(p=>p.value))*1.05);
  chart('[data-accuracy-chart]',state.history.map(e=>({step:e.step,value:e.accuracy*100})),[{step:0,value:baseline.accuracy*100},...state.epochs.map(e=>({step:e.step,value:e.validationAccuracy*100}))],100);
  const strip=$('[data-strip]'),gallery=$('[data-validation-digits]');strip.replaceChildren();gallery.replaceChildren();
- views.gallery.forEach((index,position)=>{const probabilities=views.predictions.slice(position*10,(position+1)*10),prediction=probabilities.indexOf(Math.max(...probabilities)),label=data.labels[2000+index];gallery.append(digit(2000+index,label,prediction,true,index));if(position%2===0&&position<16)strip.append(digit(2000+index,label,prediction,true,index));});
- image($('[data-selected]'),2000+views.selected);const position=views.gallery.indexOf(views.selected),row=views.predictions.slice(position*10,(position+1)*10),pred=row.indexOf(Math.max(...row));$('[data-selected-caption]').textContent=`برچسب: ${fmt.format(data.labels[2000+views.selected])} · پیش‌بینی: ${fmt.format(pred)} · احتمال: ${fmt.format(Math.max(...row)*100)}٪`;
+ views.gallery.forEach((index,position)=>{const probabilities=views.predictions.slice(position*10,(position+1)*10),prediction=probabilities.indexOf(Math.max(...probabilities)),label=data.labels[2000+index];gallery.append(digit(2000+index,label,prediction,true,index));if(position%2===0)strip.append(digit(2000+index,label,prediction,true,index));});
+ image($('[data-selected]'),2000+views.selected);const row=views.selectedPrediction,pred=row.indexOf(Math.max(...row));$('[data-selected-caption]').textContent=`برچسب: ${fmt.format(data.labels[2000+views.selected])} · پیش‌بینی: ${fmt.format(pred)} · احتمال: ${fmt.format(Math.max(...row)*100)}٪`;
  const features=$('[data-features]'),filters=$('[data-filters]');features.replaceChildren();filters.replaceChildren();const weightMax=Math.max(...views.weights.map(Math.abs));
  for(let channel=0;channel<8;channel++){const canvas=node('canvas',undefined,{width:28,height:28,role:'img','aria-label':`نقشهٔ ویژگی ${channel+1}`});heat(canvas,views.features,28,28,8,channel);features.append(canvas);const filter=node('canvas',undefined,{width:3,height:3,role:'img','aria-label':`فیلتر ${channel+1}`});heat(filter,views.weights,3,3,8,channel,true,weightMax);filters.append(filter);}
  const batch=$('[data-training-digits]');batch.replaceChildren();for(const index of state.batchIndices||[])batch.append(digit(index,data.labels[index]));if(!state.batchIndices)$('[data-batch-info]').textContent='اولین دسته با «یک دسته» یا «شروع» نمایش داده می‌شود.';else $('[data-batch-info]').textContent=`دستهٔ ${fmt.format(state.step)} · ${fmt.format(state.batchIndices.length)} تصویر آموزش`;
@@ -66,11 +66,11 @@ async function refresh(){
 }
 async function initialize(){
  working=true;controller=new AbortController();$('[data-error]').hidden=true;$('[data-status]').textContent='آماده‌سازی داده و مدل…';updateControls();
- try{if(trainer){trainer.dispose();trainer=null;updateControls();}if(!data)data=await loadMnistSubset({signal:controller.signal});trainer=await createMnistTrainer(data,settings(),{signal:controller.signal});if(leaving){trainer.dispose();trainer=null;return;}selected=trainer.gallery[0];baseline=await trainer.evaluate();$('[data-history-rows]').replaceChildren();updateBrowse();await refresh();$('[data-status]').textContent='آماده است؛ شروع یا یک دسته را انتخاب کن.';}
+ try{if(trainer){trainer.dispose();trainer=null;updateControls();}if(!data)data=await loadMnistSubset({signal:controller.signal});trainer=await createMnistTrainer(data,settings(),{signal:controller.signal});if(leaving){trainer.dispose();trainer=null;return;}selected=trainer.gallery[0];baseline=await trainer.evaluate();$('[data-history-rows]').replaceChildren();$('[data-validation-summary]').textContent='برای ارزیابی مدل فعلی روی ۵۰۰ تصویر اعتبارسنجی، «اعتبارسنجی مدل» را بزن.';$('[data-validation-details]').hidden=true;updateBrowse();await refresh();$('[data-status]').textContent='آماده است؛ شروع یا یک دسته را انتخاب کن.';}
  catch(error){fail(error);$('[data-status]').textContent='آماده‌سازی کامل نشد.';}
  finally{working=false;updateControls();}
 }
-async function oneBatch(){working=true;updateControls();try{await trainer.step();await refresh();if(!leaving)$('[data-status]').textContent=trainer.state.epochs.at(-1)?.step===trainer.state.step?`دورهٔ ${fmt.format(trainer.state.epoch)} کامل شد.`:'آموزش در حال اجراست.';}finally{working=false;if(leaving){trainer?.dispose();trainer=null;}updateControls();}}
+async function oneBatch(){working=true;updateControls();try{await trainer.step();await refresh();if(!leaving&&!$('[data-validation-details]').hidden&&!$('[data-validation-summary]').textContent.includes('دوباره اعتبارسنجی'))$('[data-validation-summary]').textContent+=' · برای وزن‌های جدید دوباره اعتبارسنجی کن.';if(!leaving)$('[data-status]').textContent=trainer.state.epochs.at(-1)?.step===trainer.state.step?`دورهٔ ${fmt.format(trainer.state.epoch)} کامل شد.`:'آموزش در حال اجراست.';}finally{working=false;if(leaving){trainer?.dispose();trainer=null;}updateControls();}}
 $('[data-load]').addEventListener('click',initialize);$('[data-reset]').addEventListener('click',initialize);
 $('[data-step]').addEventListener('click',async()=>{try{await oneBatch();$('[data-status]').textContent='یک دسته آموزش داده شد.';}catch(error){fail(error);}});
 $('[data-start]').addEventListener('click',async()=>{
@@ -78,12 +78,18 @@ $('[data-start]').addEventListener('click',async()=>{
  $('[data-error]').hidden=true;
  running=true;updateControls();try{while(running&&!leaving&&trainer.state.epoch<epochs){await oneBatch();await new Promise(resolve=>requestAnimationFrame(resolve));}if(!leaving&&trainer)$('[data-status]').textContent=trainer.state.epoch>=epochs?'آموزش دوره‌های انتخاب‌شده تمام شد.':'آموزش مکث شد.';}catch(error){fail(error);}finally{running=false;updateControls();}
 });
+$('[data-validate]').addEventListener('click',async()=>{
+ if(!trainer||working||running)return;working=true;updateControls();$('[data-error]').hidden=true;$('[data-status]').textContent='در حال اعتبارسنجی مدل…';
+ try{const result=await trainer.evaluate(),step=trainer.state.step;$('[data-validation-summary]').textContent=`دقت: ${fmt.format(result.accuracy*100)}٪ · ${fmt.format(result.correct)} پاسخ درست از ${fmt.format(result.count)} تصویر · زیان: ${fmt.format(result.loss)} · دوره ${fmt.format(trainer.state.epoch)}، دسته ${fmt.format(step)}`;const body=$('[data-validation-classes]');body.replaceChildren();result.classes.forEach((item,digit)=>{const row=node('tr');for(const value of [digit,item.correct,item.count,item.count?`${fmt.format(100*item.correct/item.count)}٪`:'—'])row.append(node('td',typeof value==='number'?fmt.format(value):value));body.append(row);});$('[data-validation-details]').hidden=false;$('[data-status]').textContent='اعتبارسنجی مدل کامل شد.';}
+ catch(error){fail(error);$('[data-status]').textContent='اعتبارسنجی کامل نشد.';}finally{working=false;updateControls();}
+});
 $('[data-pause]').addEventListener('click',()=>{if(running){running=false;$('[data-status]').textContent='مکث پس از پایان دستهٔ جاری…';}else controller?.abort();updateControls();});
 $('[data-settings]').addEventListener('change',event=>{if(trainer&&event.target.name!=='epochs')void initialize();});
 $('[data-save]').addEventListener('click',async()=>{if(!trainer)return;const snapshot=await trainer.snapshot();const blob=new Blob([JSON.stringify({...snapshot,view:views,baseline,dataset:{manifest:data.manifest}},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),link=node('a',undefined,{href:url,download:'mnist-training.json'});link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
 for(const button of document.querySelectorAll('[data-tab-button]'))button.addEventListener('click',async()=>{document.body.dataset.tab=button.dataset.tabButton;for(const other of document.querySelectorAll('[data-tab-button]'))other.setAttribute('aria-pressed',String(other===button));if(button.dataset.tabButton==='code'&&!codeLoaded){try{const response=await fetch(new URL('../labs/cnn-mnist/browser_train.py',import.meta.url));if(!response.ok)throw Error('کد بارگیری نشد.');const code=await response.text(),{highlightPythonCode}=await import('./vendor/python-editor/editor.mjs');const holder=$('[data-python-code]');holder.replaceChildren();const sections=code.split(/^# %% (.+)$/m);const setup=node('details'),summary=node('summary','تنظیم محیط و دریافت داده (پیش از سلول‌ها)'),setupCode=node('pre',undefined,{dir:'ltr'});highlightPythonCode(setupCode,sections[0]);setup.append(summary,setupCode);holder.append(setup);for(let i=1;i<sections.length;i+=2){const section=node('section',undefined,{'data-code-cell':''}),title=node('h3',sections[i]),pre=node('pre',undefined,{dir:'ltr'});highlightPythonCode(pre,sections[i+1].trim());section.append(title,pre);holder.append(section);}codeLoaded=true;}catch(error){fail(error);}}});
 $('[data-history]').addEventListener('toggle',()=>{if($('[data-history]').open)updateHistory();});
 $('[data-browse-split]').addEventListener('change',()=>{browsePage=0;updateBrowse();});
+$('[data-browse-label]').addEventListener('change',()=>{browsePage=0;updateBrowse();});
 $('[data-browse-previous]').addEventListener('click',()=>{browsePage--;updateBrowse();});
 $('[data-browse-next]').addEventListener('click',()=>{browsePage++;updateBrowse();});
 window.addEventListener('pageshow',event=>{if(event.persisted){location.reload();return;}leaving=false;});

@@ -639,6 +639,18 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       {rect:[.21,.82,.79,.96],text:record.image_text[2].fa,background:'#02062b',color:'#d4d6e8',font:17},
     ];
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===9
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='434e82ab1b169fea82a230f936eae28f8b5e87fb8f9b85a19d6b14fd4086e701'
+      && layout.translation_sha256==='5601cfe635fa66eea4d7f4a74c804ed8be3dd805f6984cdbd343d02ec346276c'){
+    const [heading,subheading]=record.image_text[1].fa.split('. ');
+    imageTranslations=[
+      {rect:[.40,.33,.77,.39],text:heading,background:'#091517',color:'#f3f5f5',font:20,align:'center'},
+      {rect:[.40,.40,.77,.45],text:subheading,background:'#091517',color:'#aeb6b8',font:11,align:'center'},
+      {rect:[.39,.59,.78,.87],text:'بازی‌ای برای علاقه‌مندان تاریخ بساز که به کاوش در دنیایی افسون‌شده با رازهای پنهان قابل کشف کمک کند. از سبک هنری زیبای دست‌کشیده استفاده کن.',background:'#1a222a',color:'#e9eef0',font:16},
+      {rect:[.40,.92,.76,.96],text:'ساخت با هوش مصنوعی را آغاز کنید',background:'#fff',color:'#1a222a',font:10,align:'center'},
+    ];
+  }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

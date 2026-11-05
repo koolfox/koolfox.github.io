@@ -524,6 +524,17 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(index===2)region.manualAccents=[{text:'نتیجهٔ این پرامپت (Prompt):',color:'#ffc000'}];
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===26
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='12e7f4d50b25e3ebaeeaed061df4ba576dae8c35dcfaa3ce714a67cc77bd4ef0'
+      && layout.translation_sha256==='ac1cc1e93c28dd7efb0e53d3cf65913246991e4721b76b0e300e9adda01e982f'){
+    const slots={0:[.04,.25,.96,.36],1:[.04,.38,.96,.47],2:[.04,.49,.96,.63],4:[.04,.67,.96,.83]};
+    const accents={0:'شبکه‌های عصبی (Neural Networks)',1:'جادو نیستند',2:'ساختهٔ انسان',4:'هدف:'};
+    for(const region of regions){
+      const index=region.block.source_lines[0];
+      if(slots[index]){region.slot=slots[index];region.font=26;region.align='center';region.keepTermsTogether=true;region.manualAccents=[{text:accents[index],color:'#ffc000'}];}
+    }
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

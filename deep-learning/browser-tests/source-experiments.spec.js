@@ -254,3 +254,29 @@ test('lesson one source questions open on their matching pages',async({page})=>{
   expect(await questions.locator('input[type=radio]').count()).toBeGreaterThanOrEqual(2);
  }
 });
+
+test('lesson one questions remain usable in presentation and mobile views',async({browser})=>{
+ test.setTimeout(120000);
+ const numbers=[32,35,36,37,42,43,45,49,53,56,57,58,59,60,65,83,84];
+ for(const [width,present] of [[1440,true],[390,true],[390,false]]){
+  const context=await browser.newContext({viewport:{width,height:844},isMobile:width===390,hasTouch:width===390});
+  const page=await context.newPage();await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=32');
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+  if(present){await page.locator('[data-source-only-toggle]').click();await expect(page.locator('body')).toHaveAttribute('data-presenting','true');}
+  for(const number of numbers){
+   await page.evaluate(n=>location.hash=`page=${n}`,number);
+   await page.waitForFunction(n=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===n,number);
+   const questions=page.locator('[data-reader-section=questions]');await expect(questions).toBeVisible();await expect(questions).not.toHaveAttribute('aria-disabled','true');await questions.click();
+   const frame=page.frameLocator('[data-reader-tools-frame]');await expect(frame.locator('[data-notebook-question]').first()).toBeVisible();
+   expect(await frame.locator('input[type=radio]').count()).toBeGreaterThanOrEqual(2);
+   await page.locator('[data-reader-section=slides]').click();await page.waitForFunction(n=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===n,number);
+  }
+  await page.evaluate(()=>location.hash='page=53');await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===53);
+  await page.locator('[data-capacity-toggle]').click();const area=page.locator('.capacity-overlay rect[role=application]');const box=await area.boundingBox();expect(box).not.toBeNull();
+  await page.mouse.move(box.x+box.width*.2,box.y+box.height*.3);await page.mouse.down();await page.mouse.move(box.x+box.width*.8,box.y+box.height*.7,{steps:5});await page.mouse.up();
+  const line=page.locator('[data-boundary=line]');await expect(line).toHaveAttribute('d',/^M .+ L .+/);
+  await page.locator('[data-reader-section=questions]').click();await expect(page.frameLocator('[data-reader-tools-frame]').locator('[data-notebook-question]').first()).toBeVisible();
+  await page.locator('[data-reader-section=slides]').click();await expect(line).toHaveAttribute('d',/^M .+ L .+/);
+  await context.close();
+ }
+});

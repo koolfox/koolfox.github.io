@@ -51,3 +51,40 @@ test('a corrupted cached page is discarded and fetched again', async ({ page }) 
  await page.waitForFunction(() => window.sourceSlideReader?.ready);
  expect(pdfs).toHaveLength(2);
 });
+
+test('a guarded slide loads and identifies the complete source PDF', async ({ page, context }) => {
+ const pdfs = [];
+ page.on('response', response => { if (/\.pdf\?sha=/.test(response.url())) pdfs.push(response.url()); });
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=37');
+ await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 37);
+ expect(pdfs).toHaveLength(1);
+ expect(pdfs[0]).toContain('/s01.pdf?sha=');
+ await expect(page.locator('[data-reader-status]')).toContainText('فایل کامل جلسه');
+ await expect(page.locator('html')).toHaveAttribute('data-offline-ready', 'true', { timeout: 30000 });
+ await context.setOffline(true);
+ await page.reload();
+ await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 37);
+ await expect(page.locator('[data-reader-status]')).toContainText('فایل کامل جلسه');
+});
+
+test('another session loads its requested page without the whole PDF', async ({ page }) => {
+ const pdfs = [];
+ page.on('response', response => { if (/\.pdf\?sha=/.test(response.url())) pdfs.push(response.url()); });
+ await page.goto('/deep-learning/terms/spring-2026/s09/slides/#page=17');
+ await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 17);
+ expect(pdfs).toHaveLength(1);
+ expect(pdfs[0]).toContain('/s09-pages/017.pdf?sha=');
+});
+
+test('rapid navigation finishes on the latest requested page', async ({ page }) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=1');
+ await page.waitForFunction(() => window.sourceSlideReader?.ready);
+ await page.evaluate(() => {
+  for (const number of [40, 41, 42, 43]) {
+   location.hash = `#page=${number}`;
+   window.dispatchEvent(new HashChangeEvent('hashchange'));
+  }
+ });
+ await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 43);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-page', '43');
+});

@@ -258,7 +258,7 @@ async function renderOriginal(){
   }
   paintSourceCrops();styleTranslationFallback(payload.pages[selected-1]);await paintPersianLayout(layoutSource,source,id,selected);if(id!==serial||closed)return;renderedPage=selected;task=null;document.documentElement.dataset.readerReady='true';controls();
   const record=payload.pages[page-1],reviewed=record.text_reviewed&&record.image_text_reviewed;
-  message(`صفحهٔ ${fa(page)} از ${fa(config.pageCount)}${reviewed?'':' · ترجمه در بازبینی'}`);
+  message(`صفحهٔ ${fa(page)} از ${fa(config.pageCount)}${reviewed?'':' · ترجمه در بازبینی'}${usesFullPdf(page)?' · این صفحه از فایل کامل جلسه بارگیری می‌شود':''}`);
   schedulePlayback();
   if(!document.documentElement.dataset.offlineWarmStarted){document.documentElement.dataset.offlineWarmStarted='true';warmSlideOffline().then(ok=>document.documentElement.dataset.offlineReady=String(ok));}
  }catch(error){if(error?.name==='RenderingCancelledException'||closed||id!==serial)return;task=null;stopPlayback();message('نمایش این صفحه کامل نشد؛ صفحه را دوباره انتخاب کن.',true);}
@@ -343,38 +343,39 @@ const documentOptions={url:config.pdfUrl+'?sha='+config.sourceSha256,cMapUrl:new
 let loading,canonicalLoading;
 const loadingController=new AbortController();
 progress.removeAttribute('value');
-let pageLoad=null;
+let pageLoad=null,usesFullPdf=()=>false;
 function releasePage(){
  const old=pageLoad;pageLoad=null;if(!old)return;
  old.controller.abort();
  old.promise.then(value=>Promise.all(value.tasks.map(item=>item.destroy()))).catch(()=>{});
 }
 async function loadSources(){
- const paged=config.term==='spring-2026'&&config.session==='s01';
- const pageRoot='/deep-learning/assets/danna/spring-2026/s01-pages/';
+ const paged=config.term==='spring-2026'&&config.pageFiles!==false;
+ const pageRoot=`/deep-learning/assets/danna/spring-2026/${config.session}-pages/`;
  const translation=fetch(config.translationUrl,{signal:loadingController.signal}).then(response=>{if(!response.ok)throw Error('translation unavailable');return response.json();});
  const {url,...options}=documentOptions;
  if(paged){
   const [manifest,data]=await Promise.all([fetch(pageRoot+'manifest.json?sha='+config.sourceSha256,{signal:loadingController.signal}).then(response=>{if(!response.ok)throw Error('page index unavailable');return response.json();}),translation]);
-  if(manifest.source_sha256!==config.sourceSha256||manifest.page_count!==config.pageCount||manifest.pages?.length!==config.pageCount||!manifest.pages.every(value=>/^[0-9a-f]{64}$/.test(value)))throw Error('page identity mismatch');
+  if(manifest.source_sha256!==config.sourceSha256||manifest.page_count!==config.pageCount||manifest.pages?.length!==config.pageCount||!manifest.pages.every(value=>value===null||/^[0-9a-f]{64}$/.test(value)))throw Error('page identity mismatch');
   async function loadPage(number){
    if(!Number.isInteger(number)||number<1||number>config.pageCount)throw Error('invalid page');
    if(!pageLoad||pageLoad.number!==number){
     releasePage();const controller=new AbortController();
     const promise=(async()=>{
-     const hash=manifest.pages[number-1],name=String(number).padStart(3,'0')+'.pdf';
-     const bytes=await readPdf(pageRoot+name+'?sha='+hash,hash,controller.signal);
+     const pageHash=manifest.pages[number-1],fallback=pageHash===null,hash=pageHash||config.sourceSha256,name=String(number).padStart(3,'0')+'.pdf';
+     const bytes=await readPdf(fallback?documentOptions.url:pageRoot+name+'?sha='+hash,hash,controller.signal);
      if(controller.signal.aborted||closed)throw Error('page closed');
      const tasks=[getDocument({...options,data:new Uint8Array(bytes.slice(0)),disableFontFace:false}),getDocument({...options,data:new Uint8Array(bytes.slice(0)),disableFontFace:true})];
-     try{return {documents:await Promise.all(tasks.map(item=>item.promise)),tasks};}
+     try{return {documents:await Promise.all(tasks.map(item=>item.promise)),tasks,pageNumber:fallback?number:1};}
      catch(error){await Promise.all(tasks.map(item=>item.destroy().catch(()=>{})));throw error;}
     })();
     pageLoad={number,controller,promise};
    }
    return pageLoad.promise;
   }
-  const document={numPages:config.pageCount,getPage:async number=>(await loadPage(number)).documents[0].getPage(1)};
-  const canonicalDocument={getPage:async number=>(await loadPage(number)).documents[1].getPage(1)};
+  const document={numPages:config.pageCount,getPage:async number=>{const item=await loadPage(number);return item.documents[0].getPage(item.pageNumber);}};
+  const canonicalDocument={getPage:async number=>{const item=await loadPage(number);return item.documents[1].getPage(item.pageNumber);}};
+  usesFullPdf=number=>manifest.pages[number-1]===null;
   return [document,canonicalDocument,data];
  }
  const [bytes,data]=await Promise.all([readPdf(documentOptions.url,config.sourceSha256,loadingController.signal),translation]);

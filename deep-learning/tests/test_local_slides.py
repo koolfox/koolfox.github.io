@@ -156,7 +156,7 @@ class RegisteredSourceReaderTests(unittest.TestCase):
         self.write(self.root / f"data/metadata/{self.term}-slide-identity.json", {"records": originals})
         self.write(self.root / "data/metadata/source-readers.json", {"schema_version": 1, "terms": {self.term: ["s01", "s02"]}})
         self.write(self.root / "content/slide-reader-identity.json", {"supervisor_fa": "دکتر نگار مجمع"})
-        for name in ("course.css", "course.js", "workshops.js", "workshop-worker.mjs", "source-reader.js", "slide-content.js", "source-reader.css",
+        for name in ("course.css", "course.js", "workshops.js", "workshop-worker.mjs", "source-reader.js", "slide-offline-cache.js", "slide-content.js", "source-reader.css",
                      "university-logo.png", "university-logo.source.json", "vendor/pyodide.mjs", "vendor/pyodide-LICENSE.json",
                      "notebook.js", "notebook.css", "notebook_kernel.py", "notebook-worker.mjs", "practice.js", "practice.css", "knowledge.js",
                      "python-tools.js", "python-tools-worker.mjs", "notebook_support.py", "notebook-results.js", "webgpu-attention.js"):
@@ -181,6 +181,7 @@ class RegisteredSourceReaderTests(unittest.TestCase):
         for name in CORE:
             self.write(self.root / "results/shinylive/neuron-xor/shinylive/pyodide" / name, b"runtime bytes")
         self.write(self.output / "knowledge/index.html", "<h1>Knowledge</h1>")
+        self.write(self.output / "slide-offline-sw.js", "fixture")
         self.write(self.output / "private.pdf", "untracked forbidden input")
         self.write(self.root / "assets/vendor/pdfjs/untracked.js", "untracked forbidden input")
 
@@ -244,6 +245,8 @@ class RegisteredSourceReaderTests(unittest.TestCase):
             self.assertIn('href="https://koolfox.github.io/deep-learning/sources/"', html)
             self.assertIn('"pdfUrl": "../../../../assets/danna/spring-2026/s01.pdf"', html)
             self.assertIn('"translationUrl": "../../../../source-translations/spring-2026/s01.json"', html)
+            self.assertIn('"pageFiles": false', html)
+            self.assertFalse(any("-pages/" in name for name in names))
             self.assertIn(b"../../assets/fonts/arad.woff2", archive.read("deep-learning/assets/course.css"))
             self.assertNotIn(b"'/deep-learning/", archive.read("deep-learning/assets/workshops.js"))
             self.assertIn(b"import.meta.url", archive.read("deep-learning/assets/workshop-worker.mjs"))

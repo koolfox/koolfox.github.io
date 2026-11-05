@@ -2,6 +2,8 @@
 
 import importlib.util
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -73,3 +75,47 @@ def test_tampered_cases_rejected(tmp_path):
     (source / "cases.jsonl").write_bytes((CASES / "cases.jsonl").read_bytes() + b" ")
     with pytest.raises(ValueError, match="SHA-256"):
         MODULE.evaluate(source, responses(tmp_path, []))
+
+
+def test_cli_with_synthetic_fixture_and_no_overwrite(tmp_path):
+    fixture = ROOT / "tests/fixtures/agent-evaluation/synthetic-responses.jsonl"
+    output = tmp_path / "evaluation.json"
+    command = [
+        sys.executable,
+        str(ROOT / "scripts/evaluate_agent_cases.py"),
+        "--cases-dir",
+        str(CASES),
+        "--responses",
+        str(fixture),
+        "--output",
+        str(output),
+    ]
+    result = subprocess.run(command, capture_output=True, text=True, check=False)
+    assert result.returncode == 0, result.stderr
+    assert json.loads(output.read_text())["correct_statuses"] == 2
+    original = output.read_bytes()
+    result = subprocess.run(command, capture_output=True, text=True, check=False)
+    assert result.returncode != 0
+    assert output.read_bytes() == original
+
+
+def test_cli_rejects_invalid_without_creating_output(tmp_path):
+    invalid = responses(tmp_path, [answer(0, "binds")])
+    output = tmp_path / "evaluation.json"
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts/evaluate_agent_cases.py"),
+            "--cases-dir",
+            str(CASES),
+            "--responses",
+            str(invalid),
+            "--output",
+            str(output),
+        ],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode != 0
+    assert not output.exists()

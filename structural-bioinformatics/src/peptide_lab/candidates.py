@@ -17,8 +17,8 @@ from .library import CANONICAL_ALPHABET
 
 
 def variants(seed, positions, alphabet, include_seed, maximum):
-    if not seed or len(seed) > 12 or set(seed) - set(CANONICAL_ALPHABET):
-        raise ValueError("Seed must contain 1–12 uppercase standard amino acids")
+    if not seed or len(seed) > 13 or set(seed) - set(CANONICAL_ALPHABET):
+        raise ValueError("Seed must contain 1–13 uppercase standard amino acids")
     if (
         not alphabet
         or len(set(alphabet)) != len(alphabet)

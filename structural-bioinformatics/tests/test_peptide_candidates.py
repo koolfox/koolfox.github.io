@@ -107,7 +107,9 @@ def test_recorded_reference_variants_link_to_docking_output():
     report = json.loads((project / "data/processed/antibody-variant-demo.json").read_text())
     assert (
         manifest["generator_sha256"]
-        == hashlib.sha256((project / "src/peptide_lab/candidates.py").read_bytes()).hexdigest()
+        == hashlib.sha256(
+            (project / "tests/fixtures/docking-provenance-20261104/candidates.py").read_bytes()
+        ).hexdigest()
     )
     assert (
         manifest["source_pdb_sha256"]

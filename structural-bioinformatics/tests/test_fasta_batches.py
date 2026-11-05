@@ -103,7 +103,9 @@ def test_actual_twenty_one_sequence_run_is_complete():
     assert report["status"] == "requires_further_validation"
     assert report["total_sequences"] == report["completed_sequences"] == 21
     assert report["input_fasta_sha256"] == module.digest(root / "sequences.fasta")
-    assert report["workflow_sha256"] == module.digest(PROJECT / "scripts/run_fasta_batches.py")
+    assert report["workflow_sha256"] == module.digest(
+        PROJECT / "tests/fixtures/docking-provenance-20261104/run_fasta_batches.py"
+    )
     assert [row["input_count"] for row in report["batches"]] == [20, 1]
     for row in report["batches"]:
         folder = root / f"batch-{row['batch']:06d}"

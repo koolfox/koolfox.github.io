@@ -72,7 +72,7 @@ def main():
         db.execute("CREATE TABLE ids (id TEXT PRIMARY KEY)")
         for record in SeqIO.parse(str(args.fasta), "fasta"):
             sequence = str(record.seq)
-            if not record.id or not sequence or len(sequence) > 12 or set(sequence) - ALPHABET:
+            if not record.id or not sequence or len(sequence) > 13 or set(sequence) - ALPHABET:
                 raise ValueError(f"Invalid sequence or length for record {record.id!r}")
             try:
                 db.execute("INSERT INTO ids VALUES (?)", (record.id,))

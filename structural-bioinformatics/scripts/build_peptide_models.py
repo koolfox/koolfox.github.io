@@ -16,8 +16,8 @@ ALPHABET = frozenset("ACDEFGHIKLMNPQRSTVWY")
 
 
 def build(sequence, seed=42):
-    if not sequence or len(sequence) > 12 or set(sequence) - ALPHABET:
-        raise ValueError("Use 1–12 uppercase standard amino acid codes")
+    if not sequence or len(sequence) > 13 or set(sequence) - ALPHABET:
+        raise ValueError("Use 1–13 uppercase standard amino acid codes")
     source = Chem.MolFromSequence(sequence)
     if source is None:
         raise ValueError("RDKit could not construct sequence")
@@ -45,7 +45,7 @@ def build(sequence, seed=42):
         raise ValueError("Conformer generation failed")
     if not AllChem.MMFFHasAllMoleculeParams(molecule):
         raise ValueError("MMFF94 parameters unavailable")
-    if AllChem.MMFFOptimizeMolecule(molecule, maxIters=1000) != 0:
+    if AllChem.MMFFOptimizeMolecule(molecule, maxIters=10000 if len(sequence) > 12 else 1000) != 0:
         raise ValueError("MMFF94 optimization did not converge")
     return molecule, charge
 
@@ -57,8 +57,8 @@ def main():
     args = parser.parse_args()
     if len(args.sequence) > 20 or len(set(args.sequence)) != len(args.sequence):
         parser.error("Choose up to 20 distinct sequences")
-    if any(not s or len(s) > 12 or set(s) - ALPHABET for s in args.sequence):
-        parser.error("Use 1–12 uppercase standard amino acid codes")
+    if any(not s or len(s) > 13 or set(s) - ALPHABET for s in args.sequence):
+        parser.error("Use 1–13 uppercase standard amino acid codes")
     args.output_dir.mkdir(parents=True, exist_ok=False)
     report = {
         "status": "running",
@@ -67,7 +67,8 @@ def main():
         "seed": 42,
         "chemistry": "linear L residues; free N+ and C-; Asp/Glu -, Lys/Arg +; "
         "neutral histidine; reduced cysteine; no caps or disulfides",
-        "method": "one ETKDGv3 conformer, MMFF94 optimization",
+        "method": "one ETKDGv3 conformer, MMFF94 optimization; "
+        "maximum 10000 iterations for length 13, otherwise 1000",
         "limitations": "fixed protonation and one conformer are not docking validation",
         "candidates": [],
     }

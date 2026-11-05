@@ -36,7 +36,7 @@ def test_each_standard_amino_acid_builds_as_l_dipeptide(letter):
 
 
 def test_rejects_unknown_and_excessive_sequences():
-    for sequence in ("", "AX", "A" * 13, "aa"):
+    for sequence in ("", "AX", "A" * 14, "aa"):
         with pytest.raises(ValueError):
             models.build(sequence)
 
@@ -50,3 +50,14 @@ def test_each_standard_residue_can_be_prepared_for_vina(letter):
     pdbqt, ok, error = meeko.PDBQTWriterLegacy.write_string(setups[0])
     assert ok, error
     assert "ATOM" in pdbqt
+
+
+def test_thirteen_residue_pilot_builds_a_three_dimensional_conformer():
+    molecule, _ = models.build("A" * 13)
+    assert molecule.GetNumConformers() == 1
+    residue_numbers = {
+        atom.GetPDBResidueInfo().GetResidueNumber()
+        for atom in molecule.GetAtoms()
+        if atom.GetPDBResidueInfo() is not None
+    }
+    assert residue_numbers == set(range(1, 14))

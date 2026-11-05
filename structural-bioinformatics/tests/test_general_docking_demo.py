@@ -18,7 +18,9 @@ def test_recorded_general_docking_files_and_input():
     assert report["input"]["source_sha256"] == digest(
         PROJECT / "assets/course/gromacs/1ubq-protein.pdb"
     )
-    assert report["workflow_sha256"] == digest(PROJECT / "scripts/run_general_peptide_docking.py")
+    assert report["workflow_sha256"] == digest(
+        PROJECT / "tests/fixtures/docking-provenance-20261104/run_general_peptide_docking.py"
+    )
     assert report["selected_pdb_sha256"] == digest(ASSETS / "selected-chain.pdb")
     assert report["receptor_pdbqt_sha256"] == digest(ASSETS / "receptor.pdbqt")
     assert [c["sequence"] for c in report["candidates"]] == ["AC", "AR"]
@@ -36,7 +38,9 @@ def test_recorded_general_docking_files_and_input():
 
 def test_recorded_model_and_inspection_scripts_have_not_changed():
     report = json.loads((PROJECT / "data/processed/general-docking-demo.json").read_text())
-    assert report["model_builder_sha256"] == digest(PROJECT / "scripts/build_peptide_models.py")
+    assert report["model_builder_sha256"] == digest(
+        PROJECT / "tests/fixtures/docking-provenance-20261104/build_peptide_models.py"
+    )
     assert report["inspector_sha256"] == digest(PROJECT / "src/peptide_lab/receptor_input.py")
 
 
@@ -45,7 +49,9 @@ def test_recorded_fasta_batch_preserves_identifiers_and_hashes():
     folder = PROJECT / "assets/general-fasta-demo"
     assert report["status"] == "requires_further_validation"
     assert report["fasta_sha256"] == digest(folder / "sequences.fasta")
-    assert report["workflow_sha256"] == digest(PROJECT / "scripts/run_general_peptide_docking.py")
+    assert report["workflow_sha256"] == digest(
+        PROJECT / "tests/fixtures/docking-provenance-20261104/run_general_peptide_docking.py"
+    )
     assert [r["sequence"] for r in report["candidates"]] == ["AA", "AR", "RA", "RR"]
     assert [r["input_id"] for r in report["candidates"]] == [
         "peptide-000001",
@@ -68,7 +74,9 @@ def test_all_twenty_recorded_dipeptides_match_pose_files():
     assert report["status"] == "requires_further_validation"
     assert report["fasta_sha256"] == digest(root / "sequences.fasta")
     assert report["receptor_pdbqt_sha256"] == digest(root / "receptor.pdbqt")
-    assert report["workflow_sha256"] == digest(PROJECT / "scripts/run_general_peptide_docking.py")
+    assert report["workflow_sha256"] == digest(
+        PROJECT / "tests/fixtures/docking-provenance-20261104/run_general_peptide_docking.py"
+    )
     assert [row["sequence"] for row in report["candidates"]] == [
         "A" + code for code in "ACDEFGHIKLMNPQRSTVWY"
     ]

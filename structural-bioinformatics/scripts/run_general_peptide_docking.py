@@ -79,8 +79,8 @@ def main():
         or len(set(args.sequence)) != len(args.sequence)
     ):
         parser.error("Choose up to 20 distinct explicit peptide sequences")
-    if any(not s or len(s) > 12 or set(s) - models.ALPHABET for s in args.sequence):
-        parser.error("Use 1–12 uppercase standard amino acid codes")
+    if any(not s or len(s) > 13 or set(s) - models.ALPHABET for s in args.sequence):
+        parser.error("Use 1–13 uppercase standard amino acid codes")
     if not all(math.isfinite(v) for v in args.center + args.size) or not all(
         0 < v <= 30 for v in args.size
     ):

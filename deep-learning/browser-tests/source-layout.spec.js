@@ -483,3 +483,13 @@ test('session 1 neural-network motivation keeps the four emphasized statements',
  for(let i=0;i<4;i++) await expect(regions.nth(i).locator('span')).toHaveCSS('color','rgb(255, 192, 0)');
  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 computer history keeps both photos and original timeline', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=28'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const regions=page.locator('#persian-page .reader-slide-text'); await expect(regions).toHaveCount(4);
+ await expect(regions.nth(1)).toHaveCSS('color','rgb(255, 192, 0)');
+ await expect(regions.nth(2)).toContainText('5,000');
+ await expect(regions.nth(3)).toContainText('برنامه‌نویسان');
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

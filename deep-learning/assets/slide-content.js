@@ -733,14 +733,14 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const top=[.11,.35,.49,.64,.79];
     for(const region of regions){const i=region.block.source_lines[0];region.slot=[.075,top[i],.92,top[i]+.09];region.font=i===0?35:23;}
   }
-  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && [51,52].includes(record.number)
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && [51,52,55].includes(record.number)
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='c13c8b12f2c82f6f39911df9250e21a438ec4e5d816c296f0d8c1124191359bb'
       && layout.translation_sha256==='6847e9d587d81e12420dd918f66c8e6f1758b4d8c9dff4027f5dca4c26cf80f8'){
     for(const region of regions){const i=region.block.source_lines[0];region.align='center';
       if(i===0){region.slot=[.04,.10,.96,.21];region.font=29;}
       if(i===1){region.slot=[.06,.925,.94,.99];region.font=18;}
-      if(i===2){region.slot=[.12,.30,.88,.44];region.font=22;region.color='#ffc000';region.manualAccents=[{text:'معماری (Architecture)',color:'#ff0000'},{text:'آموزش می‌بیند',color:'#ff0000'},...(record.number===51?[{text:'داده',color:'#00b050'},{text:'پردازنده',color:'#7030a0'}]:[])];}
+      if(i===2){region.slot=[.12,.30,.88,.44];region.font=22;region.color='#ffc000';region.manualAccents=[...(record.number!==55?[{text:'معماری (Architecture)',color:'#ff0000'},{text:'آموزش می‌بیند',color:'#ff0000'}]:[]),...(record.number!==52?[{text:'داده',color:'#00b050'}]:[]),...(record.number===51?[{text:'پردازنده',color:'#7030a0'}]:[])];}
     }
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===53

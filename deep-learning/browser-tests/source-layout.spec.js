@@ -632,3 +632,13 @@ test('session 1 coloring example translates headline and keeps source figures', 
  await expect(overlay.first()).toContainText('صفحه رنگ‌آمیزی');
  expect(await overlay.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 coding assistant translates headline without covering code', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=6'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ const overlay=page.locator('#persian-page .reader-image-translation');
+ await expect(overlay).toHaveCount(2);
+ await expect(overlay.nth(0)).toContainText('توسعه‌دهندگان');
+ await expect(overlay.nth(1)).toContainText('Copilot');
+ expect(await overlay.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

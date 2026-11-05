@@ -718,6 +718,15 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       {rect:[.07,.69,.63,.89],text:'تبدیل رایگان آنلاین عکس به صفحه رنگ‌آمیزی',background:'linear-gradient(105deg,#f69ca9,#f98997)',color:'#fff',font:32},
     ];
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===6
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='54b822b737f3a34ef6cc599bf9919c7e348900d49d62c72a87cfd38fc35506c2'
+      && layout.translation_sha256==='f115323bd73d34d629c3ad8f9e6209183632a32ef594c4c8920bd72483e38b6f'){
+    imageTranslations=[
+      {rect:[.30,.28,.70,.40],text:'ابزار هوش مصنوعی توسعه‌دهندگان با گسترده‌ترین پذیرش در جهان',background:'linear-gradient(#0c033c,#12085a)',color:'#fff',font:25,align:'center'},
+      {rect:[.445,.425,.555,.45],text:'آغاز کار با Copilot',background:'#fff',color:'#111',font:9,align:'center'},
+    ];
+  }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

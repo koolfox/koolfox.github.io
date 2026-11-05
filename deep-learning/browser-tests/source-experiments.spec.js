@@ -167,6 +167,33 @@ test('MNIST trains a real batch on explicit CPU and exposes the authentic images
  expect(pixelRequests).toBe(1);
 });
 
+test('MNIST selects every digit and validates current weights on held-out data',async({page})=>{
+ test.setTimeout(120000);
+ await page.goto('/deep-learning/playgrounds/cnn-mnist/train/');
+ await page.locator('[name=backend]').selectOption('cpu');
+ await page.locator('[data-load]').click();
+ await page.waitForFunction(()=>window.mnistLab?.state?.step===0&&!document.querySelector('[data-step]').disabled,null,{timeout:60000});
+ const digits=page.locator('[data-strip] button');await expect(digits).toHaveCount(10);
+ expect(await digits.evaluateAll(items=>items.map(item=>Number(item.dataset.label)).sort((a,b)=>a-b))).toEqual([0,1,2,3,4,5,6,7,8,9]);
+ let previousFeatures;for(let number=0;number<10;number++){
+  const digit=page.locator(`[data-strip] button[data-label="${number}"]`);await digit.click();
+  await expect(digit).toHaveAttribute('aria-pressed','true');
+  const view=await page.evaluate(()=>mnistLab.view);expect(view.selectedPrediction).toHaveLength(10);expect(view.features).toHaveLength(28*28*8);if(previousFeatures)expect(view.features.some((x,i)=>Math.abs(x-previousFeatures[i])>1e-7)).toBe(true);previousFeatures=view.features;
+ }
+ await page.locator('[data-step]').click();await page.waitForFunction(()=>mnistLab.state.step===1&&!document.querySelector('[data-step]').disabled);
+ const before=await page.evaluate(()=>mnistLab.snapshot());await page.locator('[data-validate]').click();
+ await expect(page.locator('[data-validation-summary]')).toContainText('۵۰۰');await expect(page.locator('[data-validation-classes] tr')).toHaveCount(10);
+ const counts=await page.locator('[data-validation-classes] tr').evaluateAll(rows=>rows.map(row=>row.children[2].textContent));
+ const persian='۰۱۲۳۴۵۶۷۸۹';expect(counts.map(v=>Number([...v].map(c=>persian.includes(c)?persian.indexOf(c):c).join(''))).reduce((a,b)=>a+b,0)).toBe(500);
+ const after=await page.evaluate(()=>mnistLab.snapshot());expect(after.weights).toEqual(before.weights);await expect(page.locator('[data-validation-summary]')).toContainText('دسته ۱');await page.locator('[data-step]').click();await page.waitForFunction(()=>mnistLab.state.step===2&&!document.querySelector('[data-step]').disabled);await expect(page.locator('[data-validation-summary]')).toContainText('دوباره اعتبارسنجی');
+ await page.getByRole('button',{name:'داده‌ها',exact:true}).click();await page.locator('[data-browse-split]').selectOption('validation');
+ await page.locator('[data-browse-label]').selectOption('3');expect(await page.locator('[data-browse-digits] button').count()).toBeGreaterThan(0);expect(await page.locator('[data-browse-digits] button').evaluateAll(items=>items.every(item=>item.dataset.label==='3'))).toBe(true);await page.locator('[data-browse-label]').selectOption('all');
+ const outside=await page.evaluate(()=>{const gallery=mnistLab.view.gallery;return [...document.querySelectorAll('[data-browse-digits] button')].find(el=>!gallery.includes(Number(el.dataset.validationIndex)))?.dataset.validationIndex});
+ expect(outside).toBeDefined();await page.locator(`[data-browse-digits] button[data-validation-index="${outside}"]`).click();
+ await expect(page.locator('[data-tab-button=train]')).toHaveAttribute('aria-pressed','true');expect(await page.evaluate(()=>mnistLab.view.selected)).toBe(Number(outside));
+ await expect(page.locator('[data-selected-caption]')).not.toContainText('−۱');
+});
+
 test('page quizzes preserve symbolic and vector options with isolated left-to-right text',async({page})=>{
  await page.goto('/deep-learning/terms/spring-2026/s03/practice/?source-page=85#questions');
  await expect(page.locator('.nb-question').first()).toBeVisible();

@@ -1,3 +1,4 @@
+import {setupFullscreen} from './reader-fullscreen.js';
 import {getDocument,GlobalWorkerOptions,OPS} from './vendor/pdfjs/pdf.min.mjs';
 import {readPdf,warmSlideOffline} from './slide-offline-cache.js';
 import {addText, math, renderBlocks, renderTable, configureReferences, referenceTarget, sourceLayoutPlan, createSourceLayout, fitSourceLayout} from './slide-content.js';
@@ -327,7 +328,7 @@ $('[data-retry-load]').addEventListener('click',()=>location.reload());
 $('[data-zoom-in]').addEventListener('click',()=>{zoom=Math.min(3,zoom+.25);controls();renderOriginal();});$('[data-zoom-out]').addEventListener('click',()=>{zoom=Math.max(1,zoom-.25);controls();renderOriginal();});
 $('[data-view-source]').addEventListener('click',()=>setView('source'));$('[data-view-translation]').addEventListener('click',()=>setView('translation'));
 $('[data-view-both]').addEventListener('click',()=>setView('both'));
-$('[data-fullscreen]').addEventListener('click',async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();}catch{message('مرورگر تمام‌صفحه را اجازه نداد؛ مطالعه در همین نما در دسترس است.',true);}});
+setupFullscreen($('[data-fullscreen]'));
 $('[data-print]').addEventListener('click',async()=>{if(!references&&renderedPage!==page)return;await document.fonts.ready;window.print();});
 document.addEventListener('keydown',event=>{if(event.defaultPrevented||event.shiftKey||event.altKey||event.ctrlKey||event.metaKey||event.target.closest('.reader-table-viewport')||/INPUT|TEXTAREA|SELECT|BUTTON|A/.test(event.target.tagName))return;const action={ArrowLeft:nextPage,PageDown:nextPage,ArrowRight:previousPage,PageUp:previousPage,Home:()=>go(1),End:()=>go(config.pageCount)}[event.key];if(action){event.preventDefault();action();}});
 window.addEventListener('hashchange',()=>location.hash==='#sources'?showReferences(false):go(fromHash(),false));

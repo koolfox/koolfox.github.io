@@ -88,3 +88,20 @@ test('rapid navigation finishes on the latest requested page', async ({ page }) 
  await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 43);
  await expect(page.locator('#persian-page')).toHaveAttribute('data-page', '43');
 });
+
+test('mobile fullscreen and Persian view remain usable after offline reload', async ({ page, context }) => {
+ await page.addInitScript(() => { Object.defineProperty(Element.prototype, 'requestFullscreen', { value: undefined, configurable: true }); });
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=40');
+ await page.waitForFunction(() => window.sourceSlideReader?.ready);
+ await expect(page.locator('html')).toHaveAttribute('data-offline-ready', 'true', { timeout: 30000 });
+ await context.setOffline(true);
+ await page.reload();
+ await page.waitForFunction(() => window.sourceSlideReader?.ready);
+ const fullscreen = page.locator('[data-fullscreen]');
+ await fullscreen.click();
+ await expect(fullscreen).toHaveAttribute('aria-pressed', 'true');
+ await page.locator('[data-view-translation]').click();
+ await expect(page.locator('#translation-panel')).toBeVisible();
+ await fullscreen.click();
+ await expect(fullscreen).toHaveAttribute('aria-pressed', 'false');
+});

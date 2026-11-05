@@ -642,3 +642,13 @@ test('session 1 coding assistant translates headline without covering code', asy
  await expect(overlay.nth(1)).toContainText('Copilot');
  expect(await overlay.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 medical assistant image retains interface and translated labels', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=10'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ const overlay=page.locator('#persian-page .reader-image-translation');
+ await expect(overlay).toHaveCount(2);
+ await expect(overlay.nth(0)).toContainText('پرسش پزشکی');
+ await expect(overlay.nth(1)).toContainText('اطلاعات پزشکی');
+ expect(await overlay.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

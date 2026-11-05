@@ -727,6 +727,15 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       {rect:[.445,.425,.555,.45],text:'آغاز کار با Copilot',background:'#fff',color:'#111',font:9,align:'center'},
     ];
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===10
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='872bff1955f2607d81954fc8c98cba5d588656411a0531fd803e8f38568f4294'
+      && layout.translation_sha256==='90192ae9c3d74f7d201ac88293ce1c12d5bdcbc9c40c005ea1d52a91ecbd58b4'){
+    imageTranslations=[
+      {rect:[.27,.335,.67,.39],text:'یک پرسش پزشکی بپرسید…',background:'#303030',color:'#c7c7c7',font:10},
+      {rect:[.30,.70,.70,.75],text:'پلتفرم پیشتاز اطلاعات پزشکی',background:'#1b1b1b',color:'#fff',font:15,align:'center'},
+    ];
+  }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

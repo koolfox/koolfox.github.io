@@ -23,7 +23,7 @@ from rdkit import Chem, rdBase
 
 PROJECT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT / "src"))
-from peptide_lab.receptor_input import inspect_pdb  # noqa: E402
+from peptide_lab.receptor_input import inspect_pdb, reject_close_cysteine_contacts  # noqa: E402
 
 spec = importlib.util.spec_from_file_location(
     "build_peptide_models", PROJECT / "scripts/build_peptide_models.py"
@@ -52,6 +52,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--pdb", type=Path, required=True)
     parser.add_argument("--chain", required=True)
+    parser.add_argument(
+        "--exclude-water", action="store_true", help="Explicitly omit HOH waters in selected chains"
+    )
     source = parser.add_mutually_exclusive_group(required=True)
     source.add_argument("--sequence", action="append")
     source.add_argument("--fasta", type=Path)
@@ -89,13 +92,21 @@ def main():
     if any(len(chain) != 1 for chain in chains) or len(set(chains)) != len(chains):
         parser.error("Use unique, comma-separated single-character author chain IDs")
     try:
-        inspected = [inspect_pdb(args.pdb, chain) for chain in chains]
-        inspection = inspected[0] if len(inspected) == 1 else {
-            "status": "requires_further_validation",
-            "source_sha256": inspected[0]["source_sha256"],
-            "author_chains": chains,
-            "chains": inspected,
-        }
+        inspected = [
+            inspect_pdb(args.pdb, chain, exclude_water=args.exclude_water) for chain in chains
+        ]
+        structure = PDBParser(QUIET=True, PERMISSIVE=False).get_structure("input", str(args.pdb))
+        reject_close_cysteine_contacts(structure, chains)
+        inspection = (
+            inspected[0]
+            if len(inspected) == 1
+            else {
+                "status": "requires_further_validation",
+                "source_sha256": inspected[0]["source_sha256"],
+                "author_chains": chains,
+                "chains": inspected,
+            }
+        )
     except (OSError, ValueError) as exc:
         parser.exit(1, f"PDB rejected: {exc}\n")
     args.output_dir.mkdir(parents=True, exist_ok=False)
@@ -117,7 +128,8 @@ def main():
         "model_chemistry": "linear L, N+/C-, Asp/Glu -, Lys/Arg +, neutral His, reduced Cys",
         "sampling": "one ETKDGv3 conformer; Vina seed 42, CPU 1, exhaustiveness 2",
         "limitations": [
-            "Only explicitly selected chains; no cofactors, waters, ligands or alternate conformations",
+            "Only explicitly selected chains; no cofactors, waters, ligands "
+            "or alternate conformations",
             "Receptor protonation, side chains, loops, assembly "
             "and binding site require independent review",
             "One peptide conformer and charge state; no flexible-peptide "
@@ -141,11 +153,15 @@ def main():
         report["vina_version"] = version.stdout.strip()
         if report["vina_version"] != "AutoDock Vina v1.2.7":
             raise ValueError("Only Vina 1.2.7 is tested")
-        structure = PDBParser(QUIET=True, PERMISSIVE=False).get_structure("input", str(args.pdb))
 
         class Chain(Select):
             def accept_chain(self, chain):
                 return chain.id in chains
+
+            def accept_residue(self, residue):
+                return not (
+                    args.exclude_water and residue.id[0] == "W" and residue.resname == "HOH"
+                )
 
         writer = PDBIO()
         writer.set_structure(structure)

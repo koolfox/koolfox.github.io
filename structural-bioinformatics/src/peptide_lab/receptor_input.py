@@ -8,7 +8,7 @@ import hashlib
 import math
 from pathlib import Path
 
-from Bio.PDB import PDBParser
+from Bio.PDB import NeighborSearch, PDBParser
 
 STANDARD = frozenset(
     "ALA ARG ASN ASP CYS GLN GLU GLY HIS ILE LEU LYS MET PHE PRO SER THR TRP TYR VAL".split()
@@ -41,7 +41,7 @@ SIDE_CHAINS = {
 }
 
 
-def inspect_pdb(path: Path, chain_id: str) -> dict:
+def inspect_pdb(path: Path, chain_id: str, *, exclude_water: bool = False) -> dict:
     path = Path(path)
     if not path.is_file() or len(chain_id) != 1:
         raise ValueError("Provide an existing PDB and one author chain identifier")
@@ -58,7 +58,11 @@ def inspect_pdb(path: Path, chain_id: str) -> dict:
         raise ValueError("Selected author chain is absent")
     chain = model[chain_id]
     residues = []
+    excluded_waters = 0
     for residue in chain:
+        if residue.id[0] == "W" and residue.resname == "HOH" and exclude_water:
+            excluded_waters += 1
+            continue
         if residue.id[0] != " ":
             raise ValueError(
                 "Selected chain contains water, ligand, or modified residue; review first"
@@ -97,12 +101,49 @@ def inspect_pdb(path: Path, chain_id: str) -> dict:
         "source_sha256": hashlib.sha256(raw).hexdigest(),
         "author_chain": chain_id,
         "residues": residues,
+        "excluded_waters": excluded_waters,
         "limitations": [
             "Side-chain completeness, protonation, covalent bonds, ligands, "
             "missing loops and biological assembly are not certified.",
             "PDB inspection alone does not prepare a receptor for Vina.",
         ],
     }
+
+
+def reject_close_cysteine_contacts(structure, chains):
+    """Flag ambiguous Cys SG/other-residue CB contacts before bond perception.
+
+    This narrow check does not certify all geometry or connectivity.
+    """
+    atoms = [
+        a
+        for c in structure[0]
+        if c.id in chains
+        for r in c
+        if r.id[0] == " "
+        for a in r
+        if a.element != "H"
+    ]
+    if not atoms:
+        return
+    neighbors = NeighborSearch(atoms)
+    for atom in atoms:
+        residue = atom.parent
+        if residue.resname != "CYS" or atom.name != "SG":
+            continue
+        for other in neighbors.search(atom.coord, 1.9):
+            if other.name == "CB" and other.parent is not residue:
+                distance = atom - other
+
+                def label(a):
+                    r = a.parent
+                    return f"{r.parent.id}:{r.resname}{r.id[1]}{r.id[2].strip()} {a.name}"
+
+                raise ValueError(
+                    f"Ambiguous close inter-residue contact: {label(atom)} / "
+                    f"{label(other)} ({distance:.2f} Å); review geometry and "
+                    "connectivity before receptor preparation"
+                )
 
 
 def main():

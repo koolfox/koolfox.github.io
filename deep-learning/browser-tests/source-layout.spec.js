@@ -856,3 +856,11 @@ test('session 1 text input example preserves its reference image', async ({page}
   await expect(regions.filter({hasText:'متن (Text)'})).toHaveCSS('color','rgb(255, 192, 0)');
   expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 multimodal overview keeps all data types and images', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=60'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'چندوجهی'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

@@ -781,6 +781,15 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===3){region.slot=[.25,.70,.35,.76];region.font=17;}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===57
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='45ca887e0c2f1867237c0090b08578ec9abc19f4f0e32701b7f22fcd0d2a5780'
+      && layout.translation_sha256==='d4a794e771f60f37b2ae3f2d81d11e74d19e836ffd5cb9cd7991d18afebd5523'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.85,.21];region.font=31;}
+      if(i===1||i===3){const top=i===1?.27:.405;region.slot=[.01,top,.20,top+.13];region.font=15;if(i===3)region.manualAccents=[{text:'ورودی؟',color:'#ffffff'}];}
+    }
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

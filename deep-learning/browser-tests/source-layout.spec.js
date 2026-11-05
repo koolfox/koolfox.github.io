@@ -572,3 +572,13 @@ test('session 1 developer assistant preserves and translates the prompt', async 
  await expect(overlay.nth(2)).toContainText('علاقه‌مندان تاریخ');
  expect(await overlay.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 tutor screenshot retains translated headline and explanation', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=11'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ const overlay=page.locator('#persian-page .reader-image-translation');
+ await expect(overlay).toHaveCount(4);
+ await expect(overlay.nth(0)).toContainText('۳۰ روز');
+ await expect(overlay.nth(3)).toContainText('توضیح گام‌به‌گام');
+ expect(await overlay.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

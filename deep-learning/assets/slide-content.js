@@ -703,6 +703,23 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(index===10){region.slot=text.startsWith('ورودی')?[.075,.33,.18,.385]:text.startsWith('خروجی')?[.79,.33,.92,.385]:[.27,.33,.74,.385];region.font=14;region.align='center';}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===48
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='03323390cdbb63782ad0d60397ee6a3fa9ecb06d015b2df341f101464d9df968'
+      && layout.translation_sha256==='c0e3d1fd20f239b784d1f5b02c7a1b65095bba51aef4506635e3f5781cf6cb58'){
+    for(const region of regions){
+      const index=region.block.source_lines[0], text=region.block.fa;
+      if(index===0){region.slot=[.04,.10,.98,.20];region.font=29;region.align='center';}
+      if(index===1){region.slot=text.includes('۱')?[.43,.48,.50,.53]:[.60,.48,.68,.53];region.font=17;region.align='center';}
+      if(index===3){region.slot=[.025,.65,.22,.81];region.font=18;}
+      if(index===6){region.slot=[.08,.43,.25,.50];region.font=14;region.align='center';}
+      if(index===8){region.slot=[.005,.33,.20,.38];region.font=15;region.align='center';}
+      if(index===9){region.slot=text==='برنامه‌پذیر'?[.06,.38,.14,.42]:[.205,.34,.27,.43];region.font=12;region.align='center';}
+      if(index===11){region.slot=[.26,.33,.37,.44];region.font=12;region.align='center';}
+      if(index===14){region.slot=[.78,.33,.96,.42];region.font=16;region.align='center';}
+      if(index===16){region.slot=[.52,.33,.78,.42];region.font=17;region.align='center';}
+    }
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

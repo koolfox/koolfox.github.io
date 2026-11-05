@@ -764,3 +764,11 @@ test('session 1 neural network timeline retains its graph and translated labels'
   await expect(regions.filter({hasText:'آزمون تورینگ'})).toBeVisible();
   expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 popularity question fits the source slide', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=49'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const text=page.locator('#persian-page .reader-slide-text');
+  await expect(text).toContainText('Deep Learning');
+  expect(await text.evaluate(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2)).toBeTruthy();
+});

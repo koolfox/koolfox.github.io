@@ -245,3 +245,12 @@ test('lesson one page 53 notebook runs its editable boundary equations',async({p
  const result=await page.evaluate(()=>studentNotebook.record.outputs.at(-1).result);
  expect(result).toEqual({x:[-2,-1,0,1,2],line:[-2,-1,0,1,2],parabola:[4,1,0,1,4]});
 });
+
+test('lesson one source questions open on their matching pages',async({page})=>{
+ for(const [number,expected] of [[32,'دیدن'],[35,'قاعده'],[36,'موازی'],[37,'موازی'],[42,'برچسب'],[43,'ضربدر'],[49,'محبوبیت'],[53,'نمادهای'],[57,'خاکستری'],[65,'ارزیابی'],[83,'خوراکی یا سمی'],[84,'خوراکی یا سمی']]){
+  await page.goto(`/deep-learning/terms/spring-2026/s01/practice/?source-page=${number}#questions`);
+  const questions=page.locator('[data-notebook-question]');await expect(questions.first()).toBeVisible();
+  await expect(questions.filter({hasText:expected}).first()).toBeVisible();
+  expect(await questions.locator('input[type=radio]').count()).toBeGreaterThanOrEqual(2);
+ }
+});

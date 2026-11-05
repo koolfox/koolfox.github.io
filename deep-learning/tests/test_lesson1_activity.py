@@ -23,6 +23,19 @@ class LessonOneActivityTest(unittest.TestCase):
             self.assertEqual(questions[identity]['answer']['kind'], 'choice')
             self.assertEqual(questions[identity]['pages'], [53])
 
+    def test_original_prompts_are_linked_and_prediction_is_not_truth(self):
+        activities = load_activities(ROOT, 'spring-2026', 's01')
+        questions = {item['id']: item for item in activities['questions']}
+        for number in (32, 35, 36, 37, 42, 43, 49, 53, 56, 57, 58, 59, 60, 65, 83, 84):
+            page = activities['pages'][number - 1]
+            self.assertTrue(page['question_ids'], f'missing questions on page {number}')
+            for identity in page['question_ids']:
+                self.assertEqual(questions[identity]['answer']['kind'], 'choice')
+        question = questions['test-prediction']
+        self.assertEqual(question['answer']['options_fa'][question['answer']['correct_index']], 'بدون مو')
+        self.assertIn('نادرست', questions['test-error']['solution_fa'])
+        self.assertIn('خاکستری', questions['page-57-detail']['prompt_fa'])
+
     def test_page_53_notebook_runs_and_preserves_illustrative_coefficients(self):
         unit = load_workshops('spring-2026', ROOT, execute=True, session_ids=['s01'])['s01']
         example = next(item for item in unit['source_examples'] if item['pages'] == [53])
@@ -35,6 +48,12 @@ class LessonOneActivityTest(unittest.TestCase):
         config = json.loads(html[start:html.index('</script>', start)])
         self.assertTrue(any(item['pages'] == [53] for item in config['page_notebooks']))
         self.assertEqual(len(next(item for item in config['page_questions'] if item['pages'] == [53])['questions']), 3)
+        for item in config['page_questions']:
+            for question in item['questions']:
+                self.assertGreaterEqual(len(question['options']), 2)
+                self.assertIn(question['correct'], range(len(question['options'])))
+        questions_42 = next(item for item in config['page_questions'] if item['pages'] == [42])['questions']
+        self.assertTrue(any(question['options'][question['correct']] == 'بدون مو' for question in questions_42))
 
 
 if __name__ == '__main__':

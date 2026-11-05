@@ -1,4 +1,5 @@
 import {getDocument,GlobalWorkerOptions,OPS} from './vendor/pdfjs/pdf.min.mjs';
+import {readPdf,warmSlideOffline} from './slide-offline-cache.js';
 import {addText, math, renderBlocks, renderTable, configureReferences, referenceTarget, sourceLayoutPlan, createSourceLayout, fitSourceLayout} from './slide-content.js';
 
 const $=s=>document.querySelector(s),config=JSON.parse($('#source-reader-config').textContent);
@@ -258,6 +259,7 @@ async function renderOriginal(){
   const record=payload.pages[page-1],reviewed=record.text_reviewed&&record.image_text_reviewed;
   message(`صفحهٔ ${fa(page)} از ${fa(config.pageCount)}${reviewed?'':' · ترجمه در بازبینی'}`);
   schedulePlayback();
+  if(!document.documentElement.dataset.offlineWarmStarted){document.documentElement.dataset.offlineWarmStarted='true';warmSlideOffline().then(ok=>document.documentElement.dataset.offlineReady=String(ok));}
  }catch(error){if(error?.name==='RenderingCancelledException'||closed||id!==serial)return;task=null;stopPlayback();message('نمایش این صفحه کامل نشد؛ صفحه را دوباره انتخاب کن.',true);}
 }
 function leaveReferences(){references=false;document.querySelector('.reader-layout').hidden=false;$('#reader-references').hidden=true;}
@@ -337,15 +339,25 @@ resizeObserver.observe(document.querySelector('.reader-original'));
 resizeObserver.observe(document.querySelector('.reader-translation'));
 
 const documentOptions={url:config.pdfUrl+'?sha='+config.sourceSha256,cMapUrl:new URL('./vendor/pdfjs/cmaps/',import.meta.url).href,cMapPacked:true,standardFontDataUrl:new URL('./vendor/pdfjs/standard_fonts/',import.meta.url).href,wasmUrl:new URL('./vendor/pdfjs/wasm/',import.meta.url).href,isEvalSupported:false,enableXfa:false,disableAutoFetch:true,disableStream:true,rangeChunkSize:262144};
-const loading=getDocument({...documentOptions,disableFontFace:config.term!=='spring-2026'}),canonicalLoading=config.term==='spring-2026'?getDocument({...documentOptions,disableFontFace:true}):loading;
-loading.onProgress=event=>{if(event.total){progress.value=Math.min(100,event.loaded/event.total*100);progress.setAttribute('aria-valuetext',`${fa(Math.round(progress.value))} درصد`);}};
-Promise.all([loading.promise,canonicalLoading.promise,fetch(config.translationUrl).then(response=>{if(!response.ok)throw Error('translation unavailable');return response.json();})]).then(([document,canonicalDocument,data])=>{
+let loading,canonicalLoading;
+const loadingController=new AbortController();
+progress.removeAttribute('value');
+async function loadSources(){
+ const [bytes,data]=await Promise.all([readPdf(documentOptions.url,config.sourceSha256,loadingController.signal),fetch(config.translationUrl,{signal:loadingController.signal}).then(response=>{if(!response.ok)throw Error('translation unavailable');return response.json();})]);
+ if(closed)throw Error('reader closed');
+ const {url,...options}=documentOptions;
+ loading=getDocument({...options,data:new Uint8Array(bytes.slice(0)),disableFontFace:config.term!=='spring-2026'});
+ canonicalLoading=config.term==='spring-2026'?getDocument({...options,data:new Uint8Array(bytes.slice(0)),disableFontFace:true}):loading;
+ const [document,canonicalDocument]=await Promise.all([loading.promise,canonicalLoading.promise]);
+ return [document,canonicalDocument,data];
+}
+loadSources().then(([document,canonicalDocument,data])=>{
  if(data.source?.sha256!==config.sourceSha256||document.numPages!==config.pageCount||data.pages?.length!==config.pageCount)throw Error('source/translation identity mismatch');
  pdf=document;canonicalPdf=canonicalDocument;payload=data;configureReferences(data.reference_targets);progress.hidden=true;
  for(const option of picker.options){if(option.value==='sources')continue;const record=data.pages[Number(option.value)-1];const heading=record.blocks.find(b=>b.kind==='heading')?.fa||record.blocks.find(b=>b.kind!=='not_visible'&&b.fa)?.fa?.split('\n').find(s=>!/^https?:/.test(s))||'';option.textContent=fa(Number(option.value))+(heading?' · '+heading.slice(0,100):'');}
  if(location.hash==='#sources')showReferences(false);else go(page,false);
 }).catch(()=>{progress.hidden=true;message('بارگیری اسلایدها انجام نشد؛ دوباره تلاش کن.',true);$('[data-retry-load]').hidden=false;});
-window.addEventListener('pagehide',event=>{stopPlayback();if(event.persisted)return;closed=true;serial++;clearTimeout(resizeTimer);task?.cancel();layoutTask?.cancel();loading.destroy().catch(()=>{});if(canonicalLoading!==loading)canonicalLoading.destroy().catch(()=>{});});
+window.addEventListener('pagehide',event=>{stopPlayback();if(event.persisted)return;closed=true;loadingController.abort();serial++;clearTimeout(resizeTimer);task?.cancel();layoutTask?.cancel();loading?.destroy().catch(()=>{});if(canonicalLoading&&canonicalLoading!==loading)canonicalLoading.destroy().catch(()=>{});});
 window.sourceSlideReader={openTool(raw,section='lab'){const url=new URL(raw,location.href);if(url.origin!==location.origin||!['http:','https:'].includes(url.protocol)||!['lab','explore','questions','knowledge'].includes(section))throw Error('Invalid slide tool');selectSection(section,url.href);},get page(){return page;},get renderedPage(){return renderedPage;},get pageCount(){return config.pageCount;},get sourceSha256(){return config.sourceSha256;},get ready(){return Boolean(pdf&&payload&&(references||renderedPage===page));}};
 controls();
 syncPanels();

@@ -662,6 +662,18 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       {rect:[.59,.70,.90,.83],text:'فقط پاسخ نمی‌گیرید؛ از آموزگار شخصی توضیح گام‌به‌گام می‌گیرید و تا موضوع را نفهمید، به مرحله بعد نمی‌رود.',background:'#fff',color:'#303545',font:10},
     ];
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===14
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='766169dcca47dd0f8949d0481e883b01b40ea73afd686cc4c7f6f2a7de71e6eb'
+      && layout.translation_sha256==='1628326d1ab32c33dfe78e62320213b30f9b51f26a6e0d85d9a3e9eab667044c'){
+    const [heading,body]=record.image_text[0].fa.split('؛');
+    imageTranslations=[
+      {rect:[.025,.36,.33,.59],text:heading,background:'linear-gradient(100deg,#b9e9fa,#c4ebfb)',color:'#075883',font:24,accents:[{text:'با تصوری تازه',color:'#09a6e7'}]},
+      {rect:[.025,.60,.33,.69],text:body,background:'linear-gradient(100deg,#b9e9fa,#c4ebfb)',color:'#507c91',font:11},
+      {rect:[.04,.71,.11,.75],text:'بیشتر بدانید',background:'#bbe7f8',color:'#0677b5',font:9,align:'center'},
+      {rect:[.13,.71,.23,.75],text:'درخواست نمایش',background:'#0080cb',color:'#fff',font:9,align:'center'},
+    ];
+  }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

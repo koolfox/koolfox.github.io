@@ -659,6 +659,20 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(slots[index]){region.slot=slots[index];region.font=[4,7].includes(index)?14:index===10?13:14;region.align='center';region.keepTermsTogether=true;}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===45
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='3d9aaca8c08f5f9b04fe5e7bc92c86bb2900592d2114d717cd65d8ac63dd7a76'
+      && layout.translation_sha256==='ea21d9d41268276de0013485c38c104146467deedc70b6fa5e80eca72499a4ad'){
+    for(const region of regions){
+      const index=region.block.source_lines[0], text=region.block.fa;
+      if(index===2){region.slot=text.startsWith('استخراج')?[.26,.40,.48,.47]:[.55,.40,.70,.47];region.font=12;region.align='center';}
+      if(index===3){region.slot=[.34,.255,.64,.31];region.font=16;region.align='center';}
+      if(index===4){region.slot=[.82,.45,.91,.51];region.font=16;region.align='center';}
+      if(index===5){region.slot=text.startsWith('ورودی')?[.075,.33,.18,.385]:text.startsWith('خروجی')?[.79,.33,.92,.385]:[.27,.33,.74,.385];region.font=14;region.align='center';}
+      if(index===6){region.slot=[.20,.74,.77,.82];region.font=19;}
+      if(index===7){region.slot=[.20,.84,.86,.91];region.font=14;}
+    }
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

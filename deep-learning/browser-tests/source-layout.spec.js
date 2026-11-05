@@ -725,3 +725,13 @@ test('session 1 1986 origins restores the nested networks diagram', async ({page
  await expect(regions.filter({hasText:'Artificial Intelligence'})).toBeVisible();
  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 hand-crafted feature diagram retains separated Persian labels', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=45'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const regions=page.locator('#persian-page .reader-slide-text');
+ await expect(regions.filter({hasText:'Feature Extraction'})).toBeVisible();
+ await expect(regions.filter({hasText:'Prediction'})).toBeVisible();
+ await expect(regions.filter({hasText:'ویژگی‌های دست‌ساز'})).toBeVisible();
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

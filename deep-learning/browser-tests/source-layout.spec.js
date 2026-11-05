@@ -398,11 +398,11 @@ test('session 1 title keeps its centered source structure and readable bilingual
 
 test('session 1 opening topics and motivation retain source colors', async ({page}) => {
  const s01='/deep-learning/terms/spring-2026/s01/slides/';
- for (const number of [2,3]) {
+ for (const number of [2,3,27]) {
   await page.goto(s01+'#page='+number); await ready(page);
   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
   const regions=page.locator('#persian-page .reader-slide-text'); await expect(regions).toHaveCount(5);
-  for(let i=1;i<=4;i++) await expect(regions.nth(i)).toHaveCSS('color',number===3&&i>1?'rgb(127, 127, 127)':'rgb(255, 255, 255)');
+  for(let i=1;i<=4;i++) await expect(regions.nth(i)).toHaveCSS('color',((number===3&&i>1)||(number===27&&i!==2))?'rgb(127, 127, 127)':'rgb(255, 255, 255)');
   expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
  }
  await page.goto(s01+'#page=4'); await ready(page);

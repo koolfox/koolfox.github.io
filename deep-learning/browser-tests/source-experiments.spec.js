@@ -280,3 +280,16 @@ test('lesson one questions remain usable in presentation and mobile views',async
   await context.close();
  }
 });
+
+test('session one film opens from its relevant slide and plays',async({page})=>{
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=40');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+ await page.locator('[data-source-interactive="train-test"]').click();
+ const film=page.frameLocator('[data-reader-tools-frame]');
+ const video=film.locator('video');
+ await film.getByRole('button',{name:'آموزش',exact:true}).click();
+ await expect.poll(()=>video.evaluate(element=>element.currentTime)).toBeGreaterThanOrEqual(5.9);
+ await video.evaluate(element=>element.play());
+ await expect.poll(()=>video.evaluate(element=>element.currentTime)).toBeGreaterThan(6.1);
+ expect(await video.evaluate(element=>element.error)).toBeNull();
+});

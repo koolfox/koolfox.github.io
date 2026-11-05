@@ -513,6 +513,17 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(slots[index]){region.slot=slots[index];region.font=index===7?16:12;}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===24
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='205729b9df702d6717ee7cbb22da6fc6750b429556cd93badd695b34766b4715'
+      && layout.translation_sha256==='e5f7b269b68c10816cd7efe6c37d44df2c061423b77229498ec9d5c4af7b37be'){
+    const slots={2:[.10,.675,.90,.76],4:[.10,.76,.90,.80],5:[.10,.80,.90,.84],6:[.10,.84,.90,.88],7:[.10,.88,.90,.92]};
+    for(const region of regions){
+      const index=region.block.source_lines[0];
+      if(slots[index]){region.slot=slots[index];region.font=17;}
+      if(index===2)region.manualAccents=[{text:'نتیجهٔ این پرامپت (Prompt):',color:'#ffc000'}];
+    }
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

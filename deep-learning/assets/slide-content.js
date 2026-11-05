@@ -567,6 +567,19 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(text==='تولد هوش مصنوعی (AI)'){region.slot=[.19,.36,.30,.43];region.font=16;region.align='center';}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===31
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='1f22cd043b9cbb99a325453dd893379690729088eec8e1aa619d55724a873f26'
+      && layout.translation_sha256==='6f575a5fcfc14326131f96bfa6442fc69ef0ff7e369598a3582e2c616fb22fb7'){
+    for(const region of regions){
+      const text=region.block.fa;
+      if(text.startsWith('«هوش مصنوعی»')){region.slot=[.07,.94,.94,.995];region.font=14;region.align='center';}
+      if(text.startsWith('پیشنهاد کارگاه:')){region.slot=[.065,.53,.93,.89];region.font=17;}
+      if(text.startsWith('آزمون تورینگ')){region.slot=[.075,.435,.23,.52];region.font=16;region.align='center';region.keepTermsTogether=true;}
+      if(text==='نخستین ماشین برنامه‌پذیر'){region.slot=[.01,.33,.20,.43];region.font=17;region.align='center';}
+      if(text==='تولد هوش مصنوعی (AI)'){region.slot=[.19,.36,.30,.43];region.font=16;region.align='center';}
+    }
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

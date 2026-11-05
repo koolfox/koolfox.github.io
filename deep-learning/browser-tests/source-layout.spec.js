@@ -512,3 +512,13 @@ test('session 1 AI origins retain the plaque and separate timeline labels', asyn
  await expect(regions.filter({hasText:'نخستین ماشین'})).toHaveCSS('color','rgb(255, 255, 255)');
  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 Dartmouth proposal keeps the complete quotation and source frame', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=31'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const regions=page.locator('#persian-page .reader-slide-text'); await expect(regions).toHaveCount(6);
+ const quote=regions.filter({hasText:'پیشنهاد کارگاه:'});
+ await expect(quote).toContainText('کالج دارتموث');
+ await expect(quote).toContainText('پیشرفتی چشمگیر');
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

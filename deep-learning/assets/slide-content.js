@@ -596,7 +596,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='7d594fd57fc388d20b760e111a961c282a5043507b873690242b4c3b2ca16b97'
       && layout.translation_sha256==='1ee6821da4c2626513699821f0ae646d768cd0752e9b11919f378cb27e364b1c'){
-    const slots={1:[.05,.57,.54,.70],3:[.05,.72,.54,.86],5:[.26,.33,.37,.43],7:[.61,.43,.89,.59],10:[.62,.70,.88,.86],13:[.075,.435,.23,.55],15:[.01,.33,.20,.43]};
+    const slots={1:[.05,.57,.54,.70],3:[.05,.72,.54,.86],5:[.25,.33,.41,.43],7:[.61,.43,.89,.59],10:[.62,.70,.88,.86],13:[.075,.435,.23,.55],15:[.01,.33,.20,.43]};
     for(const region of regions){
       const index=region.block.source_lines[0];
       if(slots[index]){region.slot=slots[index];region.font=index===1||index===3?16:14;region.keepTermsTogether=true;}

@@ -798,3 +798,12 @@ test('session 1 architecture emphasis follows the next source slide', async ({pa
   await expect(regions.filter({hasText:'پردازنده'})).toBeVisible();
   expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 model design exercise preserves the class prompts', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=53'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'سهمی'})).toHaveCSS('color','rgb(255, 64, 255)');
+  await expect(regions.filter({hasText:'منحنی دلخواه'})).toHaveCSS('color','rgb(255, 255, 0)');
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

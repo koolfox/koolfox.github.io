@@ -743,6 +743,18 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===2){region.slot=[.12,.30,.88,.44];region.font=22;region.color='#ffc000';region.manualAccents=[{text:'معماری (Architecture)',color:'#ff0000'},{text:'آموزش می‌بیند',color:'#ff0000'},...(record.number===51?[{text:'داده',color:'#00b050'},{text:'پردازنده',color:'#7030a0'}]:[])];}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===53
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='e5e1a922388ef1ec4e11a7c24977341806b1a435cd9a818985fe447d230efce4'
+      && layout.translation_sha256==='ad5ca6ebe60e3bfe72fcb97f10a8844a581736ca1526fef11cab1446752153cf'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===1){region.slot=[.04,.10,.96,.21];region.font=32;}
+      if(i===0){region.slot=[.07,.27,.92,.34];region.font=22;}
+      if(i===2){region.slot=[.54,.47,.97,.53];region.font=19;}
+      if(i===3||i===4||i===5){region.slot=[.54,.53+(i-3)*.058,.98,.59+(i-3)*.058];region.font=17;}
+      if(i===6||i===7){region.slot=[.48,.74+(i-6)*.06,.97,.80+(i-6)*.06];region.font=16;}
+    }
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

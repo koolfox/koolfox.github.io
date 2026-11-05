@@ -807,3 +807,11 @@ test('session 1 model design exercise preserves the class prompts', async ({page
   await expect(regions.filter({hasText:'منحنی دلخواه'})).toHaveCSS('color','rgb(255, 255, 0)');
   expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 architecture scope preserves its timeline', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=54'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'پیشرفت انباشتی'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

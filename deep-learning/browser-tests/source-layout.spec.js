@@ -735,3 +735,13 @@ test('session 1 hand-crafted feature diagram retains separated Persian labels', 
  await expect(regions.filter({hasText:'ویژگی‌های دست‌ساز'})).toBeVisible();
  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 feature engineering limitation keeps source diagram and emphasis', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=46'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const regions=page.locator('#persian-page .reader-slide-text');
+ await expect(regions.filter({hasText:'Feature Extraction'})).toBeVisible();
+ await expect(regions.filter({hasText:'ویژگی‌های دست‌ساز'})).toBeVisible();
+ await expect(regions.filter({hasText:'چالش‌برانگیز'})).toHaveCSS('color','rgb(255, 192, 0)');
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

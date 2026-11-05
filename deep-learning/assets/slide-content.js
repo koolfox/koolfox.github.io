@@ -617,6 +617,17 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       {rect:[.235,.845,.50,.895],text:copilot.trim(),background:'#0f131f',color:'#8990a7',font:17},
     ];
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===7
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='3d4e3a1b6181f4af554a89968295cc2694d87716a35eef5d824fddfae1e23a14'
+      && layout.translation_sha256==='0c918ddb540920c44a65eb808a2cf82560edc0a6772616943e058a8788e52c39'){
+    imageTranslations=[
+      {rect:[.18,.31,.82,.51],text:'ابزار نوشتن هوش مصنوعی با هوشمندی بی‌همتای داستان‌گویی را بیازمایید.',background:'#f0eddf',color:'#34291d',font:29,align:'center',accents:[{text:'هوش مصنوعی',color:'#04b9df'},{text:'بی‌همتای',color:'#d928d9'}]},
+      {rect:[.23,.51,.77,.55],text:'Sudowrite همان شریک نوشتن بدون قضاوتی است که همیشه می‌خواستید.',background:'#f0eddf',color:'#716854',font:12,align:'center'},
+      {rect:[.328,.60,.49,.65],text:'Sudowrite را رایگان بیازمایید',background:'#16a45b',color:'#fff',font:11,align:'center'},
+      {rect:[.527,.60,.67,.65],text:'با گوگل ثبت‌نام کنید',background:'#fff',color:'#282828',font:11,align:'center'},
+    ];
+  }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 
@@ -654,8 +665,8 @@ export function createSourceLayout(record, plan) {
   for(const item of plan.imageTranslations || []){
     const node=element('div','reader-slide-text reader-image-translation');
     const [x0,y0,x1,y1]=item.rect;
-    Object.assign(node.style,{left:x0*width+'px',top:y0*height+'px',width:(x1-x0)*width+'px',height:(y1-y0)*height+'px',fontSize:item.font+'px',lineHeight:'1.2',background:item.background,color:item.color});
-    addText(node,item.text,{},{});stage.append(node);
+    Object.assign(node.style,{left:x0*width+'px',top:y0*height+'px',width:(x1-x0)*width+'px',height:(y1-y0)*height+'px',fontSize:item.font+'px',lineHeight:'1.2',background:item.background,color:item.color,textAlign:item.align||'right'});
+    addText(node,item.text,{accents:item.accents||[]},{});stage.append(node);
   }
   let companion = null;
   if (plan.figureLabels?.length || plan.tables?.length || plan.nativeMath?.length) {

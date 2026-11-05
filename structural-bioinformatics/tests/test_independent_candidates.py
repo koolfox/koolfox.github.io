@@ -81,3 +81,30 @@ def test_interrupted_candidate_is_recorded_without_marking_later_as_complete(tmp
         ("first", "interrupted")
     ]
     assert result["total"] == 2
+
+
+def test_recorded_vina_run_preserves_failed_and_later_completed_candidate():
+    root = PROJECT / "assets/independent-candidate-demo"
+    manifest = json.loads((root / "manifest.json").read_text())
+    summary = json.loads((root / "independent-candidates.json").read_text())
+    assert summary["status"] == "completed_with_failures" and summary["total"] == 2
+    assert summary["input_fasta_sha256"] == module.digest(root / "input.fasta")
+    assert summary["target_pdb_sha256"] == module.digest(root / "target.pdb")
+    for path, expected in manifest["files"].items():
+        assert module.digest(root / path) == expected
+    first, second = summary["candidates"]
+    assert (first["sequence"], first["status"], first["exit_code"]) == ("VQLVESGG", "failed", 1)
+    assert "clash" in first["error"]
+    assert (second["sequence"], second["status"], second["exit_code"]) == (
+        "AC",
+        "requires_further_validation",
+        0,
+    )
+    for row in (first, second):
+        child = root / row["report_path"]
+        assert module.digest(child) == row["report_sha256"]
+    report = json.loads((root / second["report_path"]).read_text())
+    assert (
+        module.digest(root / "candidate-000002/AC/poses.pdbqt")
+        == report["candidates"][0]["poses_sha256"]
+    )

@@ -592,3 +592,13 @@ test('session 1 clinical documentation screenshot retains its example', async ({
  await expect(overlay.nth(1)).toContainText('DeepScribe');
  expect(await overlay.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 appearance editor translates screenshot while keeping poster grid', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=16'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ const overlay=page.locator('#persian-page .reader-image-translation');
+ await expect(overlay).toHaveCount(3);
+ await expect(overlay.nth(1)).toContainText('جلوه‌های بصری هالیوود');
+ await expect(overlay.nth(2)).toContainText('300 برابر');
+ expect(await overlay.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

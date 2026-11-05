@@ -674,6 +674,17 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       {rect:[.13,.71,.23,.75],text:'درخواست نمایش',background:'#0080cb',color:'#fff',font:9,align:'center'},
     ];
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===16
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='f39a4db60396e44d6b59c10c606887936c89b2b5b529f1b4ea0366c1a17b7527'
+      && layout.translation_sha256==='856793c0adf6086f16d7f5d1ce9c9459280a906da47a2f76c32f93a7194ef4ba'){
+    const parts=record.image_text[0].fa.split('؛');
+    imageTranslations=[
+      {rect:[.44,.405,.58,.45],text:'رزرو نمایش',background:'#000',color:'#fff',font:10,align:'center'},
+      {rect:[.10,.64,.42,.79],text:parts[2].trim(),background:'#000',color:'#fff',font:19,accents:[{text:'جلوه‌های بصری هالیوود',color:'#f10d36'}]},
+      {rect:[.10,.81,.42,.95],text:record.image_text[1].fa,background:'#000',color:'#fff',font:9},
+    ];
+  }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

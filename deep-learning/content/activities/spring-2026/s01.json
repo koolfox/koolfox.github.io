@@ -1080,14 +1080,18 @@
       "number": 53,
       "source_text_sha256": "e5e1a922388ef1ec4e11a7c24977341806b1a435cd9a818985fe447d230efce4",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "source_activity_index",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "partial",
+      "question_ids": [
+        "capacity-target",
+        "capacity-order",
+        "capacity-conclusion"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -1095,7 +1099,9 @@
       "explicit_prompt_candidates": {
         "source_line_indices": [],
         "image_label_indices": []
-      }
+      },
+      "review_basis": "source_slide_visual_and_text",
+      "prompt_reconciliation": "adapted_class_activity_with_interactive_drawing"
     },
     {
       "number": 54,
@@ -2021,6 +2027,72 @@
         "correct_index": 1
       },
       "reviewed": true
+    },
+    {
+      "id": "capacity-target",
+      "source_kind": "original",
+      "source_page": 53,
+      "pages": [
+        53
+      ],
+      "prompt_fa": "در فعالیت صفحه ۵۳ قرار است کدام دو گروه را از هم جدا کنیم؟",
+      "solution_fa": "در شکل صفحه، دو گروه با x و o نشان داده شده‌اند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "نمادهای x و o",
+          "تصویر و صدا",
+          "داده آموزش و آزمون"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true,
+      "source_question_kind": "class_activity",
+      "adaptation_kind": "source_specific_critical_reading_or_activity_check"
+    },
+    {
+      "id": "capacity-order",
+      "source_kind": "original",
+      "source_page": 53,
+      "pages": [
+        53
+      ],
+      "prompt_fa": "اسلاید سه خانواده مرز را با چه ترتیبی پیشنهاد می‌کند؟",
+      "solution_fa": "فعالیت به ترتیب خط مستقیم، سهمی و سپس منحنی دلخواه را پیشنهاد می‌کند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "سهمی، خط، منحنی",
+          "خط، سهمی، منحنی دلخواه",
+          "منحنی، سهمی، خط"
+        ],
+        "correct_index": 1
+      },
+      "reviewed": true,
+      "source_question_kind": "class_activity",
+      "adaptation_kind": "source_specific_critical_reading_or_activity_check"
+    },
+    {
+      "id": "capacity-conclusion",
+      "source_kind": "original",
+      "source_page": 53,
+      "pages": [
+        53
+      ],
+      "prompt_fa": "داشتن مرز منعطف‌تر به تنهایی چه چیزی را تضمین نمی‌کند؟",
+      "solution_fa": "انعطاف بیشتر به تنهایی عملکرد روی داده ندیده را تضمین نمی‌کند؛ باید آن را جداگانه ارزیابی کرد.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "امکان رسم شکل‌های متنوع‌تر",
+          "عملکرد خوب روی داده‌های ندیده",
+          "امکان تغییر شکل مرز"
+        ],
+        "correct_index": 1
+      },
+      "reviewed": true,
+      "source_question_kind": "class_activity",
+      "adaptation_kind": "source_specific_critical_reading_or_activity_check"
     }
   ]
 }

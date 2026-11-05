@@ -212,3 +212,36 @@ test('MNIST mobile controls expose real training and the browsable dataset',asyn
  });
  expect(stdout).toContain('PASS real CPU MNIST batch');
 });
+
+test('lesson one activity draws on the source figure with pointer and keyboard',async({browser})=>{
+ for(const width of [1440,390]){
+  const context=await browser.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390});
+  const page=await context.newPage();
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=53');
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===53);
+  const toggle=page.locator('[data-capacity-toggle]');await expect(toggle).toBeVisible();await toggle.click();
+  const area=page.locator('.capacity-overlay rect[role=application]');await expect(area).toBeVisible();
+  const box=await area.boundingBox();expect(box).not.toBeNull();
+  for(const mode of ['line','parabola','curve']){
+   await page.locator(`[data-capacity-mode="${mode}"]`).click();
+   await page.mouse.move(box.x+box.width*.25,box.y+box.height*.3);await page.mouse.down();
+   await page.mouse.move(box.x+box.width*.7,box.y+box.height*.7,{steps:6});await page.mouse.up();
+   await expect(page.locator(`[data-boundary="${mode}"]`)).toHaveAttribute('d',/^M .+/);
+  }
+  await page.getByRole('button',{name:'پاک کردن',exact:true}).click();
+  await expect(page.locator('[data-boundary=line]')).toHaveAttribute('d','');
+  await page.locator('[data-capacity-mode=line]').click();await area.focus();await page.keyboard.press('Enter');await page.keyboard.press('ArrowRight');await page.keyboard.press('ArrowDown');await page.keyboard.press('Enter');
+  await expect(page.locator('[data-boundary=line]')).toHaveAttribute('d',/^M .+ L .+/);
+  await page.locator('[data-next-page]').click();await expect(toggle).toBeHidden();await expect(page.locator('.capacity-overlay')).toBeHidden();
+  await context.close();
+ }
+});
+
+test('lesson one page 53 notebook runs its editable boundary equations',async({page})=>{
+ test.setTimeout(120000);
+ await page.goto('/deep-learning/terms/spring-2026/s01/practice/?source-page=53#code');
+ await page.locator('[data-notebook-run-all]').click();
+ await expect.poll(()=>page.evaluate(()=>window.studentNotebook?.record?.ok),{timeout:90000}).toBe(true);
+ const result=await page.evaluate(()=>studentNotebook.record.outputs.at(-1).result);
+ expect(result).toEqual({x:[-2,-1,0,1,2],line:[-2,-1,0,1,2],parabola:[4,1,0,1,4]});
+});

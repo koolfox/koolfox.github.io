@@ -831,7 +831,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===0){region.slot=[.05,.10,.95,.21];region.font=30;}
       if(i===1){region.slot=[.05,.26,.94,.33];region.font=22;}
       if(i===2){region.slot=[.05,.33,.94,.40];region.font=22;}
-      if(i===3){region.slot=[.10,.39,.94,.88];region.font=18;}
+      if(i===3){region.slot=[.10,.39,.94,.92];region.font=22;}
     }
   }
   let imageTranslations=[];

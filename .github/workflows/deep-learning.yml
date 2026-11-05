@@ -54,4 +54,4 @@ jobs:
       - name: Check independent public component
         run: |
           python3 -m http.server 8000 --bind 127.0.0.1 --directory dist/pages > /tmp/deep-learning-http.log 2>&1 &
-          npm --prefix deep-learning/browser-tests test -- --workers=1
+          npm --prefix deep-learning/browser-tests test

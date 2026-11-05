@@ -736,6 +736,18 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       {rect:[.30,.70,.70,.75],text:'پلتفرم پیشتاز اطلاعات پزشکی',background:'#1b1b1b',color:'#fff',font:15,align:'center'},
     ];
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===34
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='b52364a06033fe1870847d084611c5451a3a10e528ac69c2f03a2791c4f4bde0'
+      && layout.translation_sha256==='f80efe88defb697c5d8bc301a694afb3d19bb785b9a38a88ee41dcf926789417'){
+    imageTranslations=[
+      {rect:[.205,.625,.30,.705],text:'مطالعه مسئله',background:'#f2f2f2',color:'#171717',font:13,align:'center'},
+      {rect:[.375,.625,.47,.705],text:'نوشتن قواعد',background:'#f6cecf',color:'#171717',font:13,align:'center'},
+      {rect:[.595,.65,.68,.69],text:'ارزیابی',background:'#fff',color:'#171717',font:14,align:'center'},
+      {rect:[.397,.83,.49,.91],text:'تحلیل خطاها',background:'#f2f2f2',color:'#171717',font:13,align:'center'},
+      {rect:[.588,.38,.68,.47],text:'راه‌اندازی!',background:'#f2f2f2',color:'#171717',font:13,align:'center'},
+    ];
+  }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

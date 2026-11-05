@@ -37,14 +37,14 @@ function setData(target,poses) {
  poseTexts.forEach((_,i)=>{const o=document.createElement('option');o.value=String(i);o.textContent=`حالت ${i+1}`;select.append(o)});select.disabled=false;draw();
 }
 async function sample(){
- const current=++requestId;status.textContent='در حال بارگذاری نمونه…';
+ const current=++requestId;status.textContent='در حال بارگذاری نمونه…';$('quality-notice').hidden=true;$('sample-description').textContent='نمونهٔ آماده: هدف 1UBQ و پپتید AC. آبی هدف و نارنجی پپتید است.';const download=$('download-sample');download.hidden=false;download.href='docked-ac-visualization/pose-1.sdf';download.textContent='دریافت فایل سه‌بعدی نمونه، حالت اول';$('download-receptor').hidden=false;$('download-receptor').href='docked-ac-visualization/receptor.pdb';
  try {const rs=await Promise.all(['docked-ac-visualization/receptor.pdb','general-docking-demo/AC/poses.pdbqt'].map(u=>fetch(u)));if(rs.some(r=>!r.ok))throw Error('فایل نمونه در دسترس نیست.');const target=await rs[0].text(),poses=await rs[1].text();if(current===requestId)setData(target,poses)}catch(e){if(current===requestId){$('pose-stage').hidden=true;status.textContent='نمایش انجام نشد: '+e.message}}
 }
 try {
  scene=new MolecularScene($('pose-stage'),{descriptionIds:'pose-status'});
  $('pose-select').addEventListener('change',()=>{try{draw()}catch(e){$('pose-stage').hidden=true;status.textContent=e.message}});
  $('load-sample').addEventListener('click',sample);$('reset-view').addEventListener('click',()=>scene.resetView());
- $('load-files').addEventListener('click',async()=>{const current=++requestId;try{const a=$('target-file').files[0],b=$('pose-file').files[0];if(!a||!b)throw Error('هر دو فایل را انتخاب کنید.');if(a.size>10000000||b.size>10000000)throw Error('اندازهٔ هر فایل باید کمتر از ۱۰ مگابایت باشد.');const target=await a.text(),poses=await b.text();if(current===requestId)setData(target,poses)}catch(e){if(current===requestId){$('pose-stage').hidden=true;status.textContent='نمایش انجام نشد: '+e.message}}});
+ $('load-files').addEventListener('click',async()=>{const current=++requestId;try{const a=$('target-file').files[0],b=$('pose-file').files[0];if(!a||!b)throw Error('هر دو فایل را انتخاب کنید.');if(a.size>10000000||b.size>10000000)throw Error('اندازهٔ هر فایل باید کمتر از ۱۰ مگابایت باشد.');const target=await a.text(),poses=await b.text();if(current===requestId){$('quality-notice').hidden=true;$('download-sample').hidden=true;$('download-receptor').hidden=true;$('sample-description').textContent='فایل‌های انتخاب‌شده در همین مرورگر خوانده شدند.';setData(target,poses)}}catch(e){if(current===requestId){$('pose-stage').hidden=true;$('quality-notice').hidden=true;$('download-sample').hidden=true;$('download-receptor').hidden=true;status.textContent='نمایش انجام نشد: '+e.message}}});
  const params=new URLSearchParams(location.search);
  const sequence=params.get('sequence'),batch=params.get('batch');
  if(params.get('demo')==='39' && /^[ACDEFGHIKLMNPQRSTVWY]{2}$/.test(sequence||'') && /^(1|2)$/.test(batch||'')) {
@@ -52,7 +52,14 @@ try {
   const folder=`peptide-ops-39-demo/docking/batch-00000${batch}/docking/`;
   status.textContent='در حال بارگذاری نتیجهٔ ثبت‌شده…';
   Promise.all([fetch(folder+'report.json'),fetch(folder+'selected-chain.pdb'),fetch(folder+sequence+'/poses.pdbqt')])
-   .then(async rs=>{if(rs.some(r=>!r.ok))throw Error('فایل نتیجه در دسترس نیست.');const report=await rs[0].json();if(!report.candidates.some(row=>row.sequence===sequence))throw Error('توالی در گزارش این دسته نیست.');const [target,poses]=await Promise.all([rs[1].text(),rs[2].text()]);if(current===requestId){setData(target,poses);$('sample-description').textContent=`نتیجهٔ ثبت‌شدهٔ ${sequence} در هدف آزمایشی 1UBQ؛ آبی هدف و نارنجی پپتید است.`}})
+   .then(async rs=>{if(rs.some(r=>!r.ok))throw Error('فایل نتیجه در دسترس نیست.');const report=await rs[0].json();if(!report.candidates.some(row=>row.sequence===sequence))throw Error('توالی در گزارش این دسته نیست.');const [target,poses]=await Promise.all([rs[1].text(),rs[2].text()]);if(current===requestId){setData(target,poses);$('sample-description').textContent=`نتیجهٔ ثبت‌شدهٔ ${sequence} در هدف آزمایشی 1UBQ؛ آبی هدف و نارنجی پپتید است.`;const download=$('download-sample');download.href=folder+sequence+'/poses.pdbqt';download.textContent='دریافت حالت‌های اتمی (PDBQT)';$('download-receptor').href=folder+'selected-chain.pdb'}})
+   .catch(e=>{if(current===requestId){$('pose-stage').hidden=true;status.textContent='نمایش انجام نشد: '+e.message}});
+ } else if(params.get('demo')==='lineage' && /^(1|2)$/.test(params.get('index')||'')) {
+  const index=params.get('index'),seq=index==='1'?'VQLVESGG':'AQLVESGG';
+  const folder=`lineage-example/run/candidate-00000${index}/`, current=++requestId;
+  status.textContent='در حال بارگذاری حالت ردشده…';
+  Promise.all([fetch(folder+'report.json'),fetch(folder+'selected-chain.pdb'),fetch(folder+seq+'/poses.pdbqt')])
+   .then(async rs=>{if(rs.some(r=>!r.ok))throw Error('فایل نتیجه در دسترس نیست.');const report=await rs[0].json();if(report.status!=='failed'||!String(report.error||'').includes('clash')||!report.candidates.some(row=>row.sequence===seq&&row.status==='failed'))throw Error('وضعیت ردشده در گزارش تأیید نشد.');const [target,poses]=await Promise.all([rs[1].text(),rs[2].text()]);if(current===requestId){setData(target,poses);$('sample-description').textContent=`پپتید ${seq} روی هدف فنی 1UBQ؛ آبی هدف و نارنجی پپتید است.`;const notice=$('quality-notice');notice.textContent='ردشده در کنترل کیفیت: برخورد شدید اتمی ثبت شده است. نمای Cα برخورد اتمی را با جزئیات نشان نمی‌دهد؛ فایل اتمی را برای بررسی دقیق دریافت کنید.';notice.hidden=false;const download=$('download-sample');download.href=folder+seq+'/poses.pdbqt';download.textContent='دریافت حالت‌های اتمی ردشده (PDBQT)';download.hidden=false;$('download-receptor').hidden=false;$('download-receptor').href=folder+'selected-chain.pdb'}})
    .catch(e=>{if(current===requestId){$('pose-stage').hidden=true;status.textContent='نمایش انجام نشد: '+e.message}});
  } else sample();
 }catch(e){status.textContent='نمای سه‌بعدی در این مرورگر در دسترس نیست. فایل‌های SDF را دریافت کنید.'}

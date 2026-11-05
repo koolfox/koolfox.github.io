@@ -37,3 +37,18 @@ test('recorded workflow links each of 39 variants to its own pose', async ({ pag
   await expect(page.locator('#pose-stage')).toHaveAttribute('data-state', 'ready');
   await expect(page.locator('#pose-status')).toContainText('حالت 1');
 });
+
+test('rejected real poses show a persistent QC warning and the matching atomic file', async ({ page }) => {
+  for (const [index, sequence] of [['1', 'VQLVESGG'], ['2', 'AQLVESGG']]) {
+    await page.goto(`/structural-bioinformatics/assets/docked-pose-viewer.html?demo=lineage&index=${index}`);
+    await expect(page.locator('#pose-stage')).toHaveAttribute('data-state', 'ready');
+    await expect(page.locator('#sample-description')).toContainText(sequence);
+    await expect(page.locator('#quality-notice')).toBeVisible();
+    await expect(page.locator('#quality-notice')).toContainText('ردشده');
+    await expect(page.locator('#download-receptor')).toHaveAttribute('href', new RegExp(`candidate-00000${index}/selected-chain\\.pdb$`));
+    await expect(page.locator('#download-sample')).toHaveAttribute('href', new RegExp(`${sequence}/poses\\.pdbqt$`));
+    await page.locator('#load-sample').click();
+    await expect(page.locator('#quality-notice')).toBeHidden();
+    await expect(page.locator('#pose-status')).toContainText('حالت 1 از 3');
+  }
+});

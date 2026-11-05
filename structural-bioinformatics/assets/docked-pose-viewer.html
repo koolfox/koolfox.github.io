@@ -8,6 +8,7 @@ main{max-width:70rem;margin:2rem auto;padding:0 1rem} .viewer-grid{display:grid;
 </style></head><body class="research-page"><main>
 <a href="../research.html">بازگشت به پژوهش</a><h1>حالت داکینگ در سه بُعد</h1>
 <p id="sample-description">نمونهٔ آماده: هدف 1UBQ و پپتید AC. آبی تیره هدف و نارنجی مسیر پپتید است. این نمای ساده فقط اتم‌های Cα را نشان می‌دهد؛ برای بررسی اتم‌ها و پیوندها از فایل‌های SDF استفاده کنید.</p>
+<p id="quality-notice" class="note" role="status" hidden></p>
 <div class="viewer-grid"><section class="controls" aria-label="انتخاب فایل و حالت">
 <label for="target-file">فایل گیرندهٔ همان اجرا (PDB)</label><input id="target-file" type="file" accept=".pdb">
 <label for="pose-file">فایل حالت‌های همان اجرا (PDBQT)</label><input id="pose-file" type="file" accept=".pdbqt">
@@ -15,6 +16,6 @@ main{max-width:70rem;margin:2rem auto;padding:0 1rem} .viewer-grid{display:grid;
 <button id="load-files" type="button">نمایش فایل‌های من</button><button id="load-sample" type="button">نمایش نمونهٔ AC</button><button id="reset-view" type="button" disabled>بازنشانی زاویه</button>
 <p id="pose-status" role="status">در حال آماده‌سازی نمونه…</p>
 <p class="note">فایل‌های انتخابی در خود مرورگر خوانده می‌شوند. گیرنده و حالت باید از یک اجرا و در یک دستگاه مختصات باشند؛ این صفحه مطابقت آنها یا اتصال زیستی را تأیید نمی‌کند.</p>
-<a href="docked-ac-visualization/pose-1.sdf">دریافت فایل سه‌بعدی نمونه، حالت اول</a></section>
+<a id="download-sample" href="docked-ac-visualization/pose-1.sdf">دریافت فایل سه‌بعدی نمونه، حالت اول</a><a id="download-receptor" href="docked-ac-visualization/receptor.pdb">دریافت ساختار هدف همان نمونه</a></section>
 <div id="pose-stage" aria-label="نمای قابل چرخش هدف و پپتید"></div></div></main>
 <script type="module" src="docked-pose-viewer.js"></script></body></html>

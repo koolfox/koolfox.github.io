@@ -445,3 +445,13 @@ test('session 1 personal assistants show translated image text in place', async 
  await expect(translated).toHaveCount(4);
  expect(await translated.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 Gamma example preserves its figure and translated outline', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=22'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
+ const regions=page.locator('#persian-page .reader-slide-text'); await expect(regions).toHaveCount(7);
+ await expect(regions.nth(1)).toContainText('مبانی شبکه‌های عصبی');
+ await expect(regions.nth(6)).toContainText('نتیجهٔ پرامپت');
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

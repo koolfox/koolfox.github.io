@@ -698,6 +698,18 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       {rect:[.29,.87,.39,.92],text:'نمونه‌های بیشتر',background:'#fff',color:'#f33b47',font:10,align:'center'},
     ];
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===19
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='a2e55bbba08b55ea9c01ab2d28267bedaf666acd16d3f971a809ca68b67fde8b'
+      && layout.translation_sha256==='2087ae62e9f77f266d3deb4b8e77b306a22fcacd53733a2f55962ba674ba02e3'){
+    const [heading,description]=record.image_text[0].fa.split('؛');
+    imageTranslations=[
+      {rect:[.48,.04,.91,.11],text:heading,background:'#5c74cb',color:'#fff',font:25,align:'center'},
+      {rect:[.45,.12,.95,.22],text:description.trim(),background:'#5c74cb',color:'#fff',font:13,align:'center'},
+      {rect:[.455,.43,.78,.65],text:record.image_text[1].fa,background:'#899ad5',color:'#fff',font:12},
+      {rect:[.49,.86,.65,.93],text:record.image_text[2].fa,background:'#899ad5',color:'#fff',font:9},
+    ];
+  }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

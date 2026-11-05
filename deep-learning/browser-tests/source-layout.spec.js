@@ -839,3 +839,12 @@ test('session 1 image example keeps both input prompts and pixel diagram', async
   await expect(regions.filter({hasText:'تصویر'})).toHaveCSS('color','rgb(255, 192, 0)');
   expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 video data example retains temporal diagrams', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=58'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'ویدیو'})).toHaveCSS('color','rgb(255, 192, 0)');
+  await expect(regions.filter({hasText:'۱ ساعت'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

@@ -790,6 +790,18 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===1||i===3){const top=i===1?.27:.405;region.slot=[.01,top,.20,top+.13];region.font=15;if(i===3)region.manualAccents=[{text:'ورودی؟',color:'#ffffff'}];}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===58
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='77257dab3d0adef00b142a8b697cbbe421684c1f4a03306166d013fe54db4461'
+      && layout.translation_sha256==='0e7348e48445da4c273a53ac5144d0984fa69866623f428b5a737d5b50323004'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.85,.21];region.font=31;}
+      if(i===1||i===3||i===5){const top={1:.27,3:.40,5:.53}[i];region.slot=[.02,top,.25,top+.13];region.font=16;if(i===5)region.manualAccents=[{text:'ورودی؟',color:'#ffffff'}];}
+      if(i===7){region.slot=[.51,.85,.62,.90];region.font=15;}
+      if(i===8){region.slot=[.82,.56,.93,.61];region.font=15;}
+      if(i===9){region.slot=[.81,.67,.95,.72];region.font=15;}
+    }
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

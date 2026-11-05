@@ -67,3 +67,13 @@ def test_interrupted_run_preserves_unprocessed_count_without_inventing_cases(tmp
     assert row["execution_status"] == "interrupted"
     assert row["child_report_sha256"] is None
     assert row["biological_binding_label"] is None
+
+
+def test_published_example_matches_fresh_deterministic_projection(tmp_path):
+    published = PROJECT / "assets/agent-case-example"
+    manifest = json.loads((published / "manifest.json").read_text())
+    new = tmp_path / "new"
+    module.export(PROJECT / "assets/independent-candidate-demo", new)
+    assert (published / "cases.jsonl").read_bytes() == (new / "cases.jsonl").read_bytes()
+    assert manifest["cases_sha256"] == module.sha(published / "cases.jsonl")
+    assert manifest["exporter_sha256"] == module.sha(PROJECT / "scripts/export_run_cases.py")

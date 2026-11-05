@@ -1,4 +1,4 @@
-"""Experimental linear-peptide docking to one user-selected PDB protein chain.
+"""Experimental linear-peptide docking to selected PDB protein chains.
 
 This is a limited, fixed-protonation exploratory workflow, not validated drug design.
 """
@@ -85,8 +85,17 @@ def main():
         0 < v <= 30 for v in args.size
     ):
         parser.error("Box values must be finite; each side must be >0 and <=30 Å")
+    chains = args.chain.split(",")
+    if any(len(chain) != 1 for chain in chains) or len(set(chains)) != len(chains):
+        parser.error("Use unique, comma-separated single-character author chain IDs")
     try:
-        inspection = inspect_pdb(args.pdb, args.chain)
+        inspected = [inspect_pdb(args.pdb, chain) for chain in chains]
+        inspection = inspected[0] if len(inspected) == 1 else {
+            "status": "requires_further_validation",
+            "source_sha256": inspected[0]["source_sha256"],
+            "author_chains": chains,
+            "chains": inspected,
+        }
     except (OSError, ValueError) as exc:
         parser.exit(1, f"PDB rejected: {exc}\n")
     args.output_dir.mkdir(parents=True, exist_ok=False)
@@ -108,7 +117,7 @@ def main():
         "model_chemistry": "linear L, N+/C-, Asp/Glu -, Lys/Arg +, neutral His, reduced Cys",
         "sampling": "one ETKDGv3 conformer; Vina seed 42, CPU 1, exhaustiveness 2",
         "limitations": [
-            "Only one selected chain; no cofactors, waters, ligands or alternate conformations",
+            "Only explicitly selected chains; no cofactors, waters, ligands or alternate conformations",
             "Receptor protonation, side chains, loops, assembly "
             "and binding site require independent review",
             "One peptide conformer and charge state; no flexible-peptide "
@@ -136,7 +145,7 @@ def main():
 
         class Chain(Select):
             def accept_chain(self, chain):
-                return chain.id == args.chain
+                return chain.id in chains
 
         writer = PDBIO()
         writer.set_structure(structure)

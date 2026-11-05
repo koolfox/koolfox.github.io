@@ -623,3 +623,12 @@ test('session 1 companion slide translates quote and keeps attribution', async (
  await expect(overlay.nth(3)).toContainText('Denise Valenciano');
  expect(await overlay.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 coloring example translates headline and keeps source figures', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=20'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ const overlay=page.locator('#persian-page .reader-image-translation');
+ await expect(overlay).toHaveCount(1);
+ await expect(overlay.first()).toContainText('صفحه رنگ‌آمیزی');
+ expect(await overlay.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

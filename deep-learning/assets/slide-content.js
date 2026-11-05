@@ -710,6 +710,14 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       {rect:[.49,.86,.65,.93],text:record.image_text[2].fa,background:'#899ad5',color:'#fff',font:9},
     ];
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===20
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='2e37398adde30d4ea9d1eb093600f809eea2d545f558149912581637fd7d32de'
+      && layout.translation_sha256==='2696d9c10922b51a0bafcc5e707b6fc9084c8a21435af130bc5e73acc9f08343'){
+    imageTranslations=[
+      {rect:[.07,.69,.63,.89],text:'تبدیل رایگان آنلاین عکس به صفحه رنگ‌آمیزی',background:'linear-gradient(105deg,#f69ca9,#f98997)',color:'#fff',font:32},
+    ];
+  }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

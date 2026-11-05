@@ -604,6 +604,15 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(index===3)region.manualAccents=[{text:'توانایی یادگیری می‌دهد، بدون آنکه صریحا برنامه‌ریزی شوند',color:'#ffc000'}];
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===39
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='21f0e8cd989bb18d4ef7a8388ec73b00de7fafd0103bda05b8acf4c256eee569'
+      && layout.translation_sha256==='399257a7e6d9504e8fd7b4d077c2a5cfb43c0540943bb95075b3965cd6ca6764'){
+    for(const region of regions){
+      if(region.block.kind==='heading'){region.slot=[.04,.10,.96,.22];region.font=31;region.keepTermsTogether=true;}
+      if(region.block.source_lines[0]===1){region.slot=[.07,.29,.96,.37];region.font=21;region.manualAccents=[{text:'داده را انتخاب کنید',color:'#ffc000'}];}
+    }
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

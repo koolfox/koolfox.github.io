@@ -159,10 +159,20 @@ class PublicationIsolationTests(unittest.TestCase):
             self.put("deep-learning/labs/cnn-mnist/" + name, "public")
         self.put("deep-learning/data/processed/mnist-reference.json", "{}")
         self.put("deep-learning/scripts/build_course.py", "import sys\n")
+        self.put(
+            "deep-learning/scripts/course_star.py",
+            (ROOT / "deep-learning/scripts/course_star.py").read_text(),
+        )
         self.track()
         for lab in ("neuron-xor", "network-playground", "convolution"):
-            self.put(f"deep-learning/results/shinylive/{lab}/index.html", "runtime")
+            self.put(
+                f"deep-learning/results/shinylive/{lab}/index.html",
+                "<html><head></head><body><main>runtime</main></body></html>",
+            )
         self.build("deep-learning")
+        for lab in ("neuron-xor", "network-playground", "convolution"):
+            runtime = (self.output / "deep-learning/runtime" / lab / "index.html").read_text()
+            self.assertIn('href="https://github.com/koolfox/koolfox.github.io"', runtime)
         redirect = (self.output / "deep-learning/karpathy/index.html").read_text()
         self.assertIn('href="/karpathy/"', redirect)
         self.assertFalse((self.output / "deep-learning/karpathy/assets").exists())

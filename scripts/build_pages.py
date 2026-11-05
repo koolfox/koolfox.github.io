@@ -218,6 +218,14 @@ def build_site(repository: Path, output: Path, projects=None):
                 "--output deep-learning/results/shinylive"
             )
         copy_runtime(runtime, learning_target / "runtime")
+        sys.path.insert(0, str(learning / "scripts"))
+        try:
+            from course_star import add_course_star
+        finally:
+            sys.path.pop(0)
+        for lab in ("neuron-xor", "network-playground", "convolution"):
+            page = learning_target / "runtime" / lab / "index.html"
+            page.write_text(add_course_star(page.read_text(encoding="utf-8")), encoding="utf-8")
         package_mnist_project(learning, learning_target, public)
         # Historical URLs keep working through navigation, without duplicating sibling code.
         (learning_target / "karpathy").mkdir()

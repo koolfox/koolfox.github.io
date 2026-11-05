@@ -614,6 +614,19 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(region.block.source_lines[0]===3 && ['مودار','بی‌مو'].includes(region.block.fa)){region.slot=[region.rect[0]-.005,.719,region.rect[2]+.005,.768];region.font=16;region.align='center';}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===40
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='7f793820f417d38fab16ffb8114d6fc8847387a90602edb55117f3e2e4fabc30'
+      && layout.translation_sha256==='fab59128a31413698f8b2919bd0ff5f06fa245a7b2be7252aab1323315581ee1'){
+    for(const region of regions){
+      const index=region.block.source_lines[0];
+      if(region.block.kind==='heading'){region.slot=[.04,.10,.96,.22];region.font=31;region.keepTermsTogether=true;}
+      if(index===4){region.slot=[.07,.29,.96,.37];region.font=21;region.manualAccents=[{text:'تقسیم کنید',color:'#ffc000'}];}
+      if(index===1){region.slot=[region.rect[0]-.01,.398,region.rect[2]+.01,.447];region.font=16;region.align='center';}
+      if(index===3 && ['مودار','بی‌مو'].includes(region.block.fa)){region.slot=[region.rect[0]-.005,.719,region.rect[2]+.005,.768];region.font=16;region.align='center';}
+      if(index===3 && region.block.fa==='برچسب:'){region.slot=[.085,.719,.17,.768];region.font=14;}
+    }
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

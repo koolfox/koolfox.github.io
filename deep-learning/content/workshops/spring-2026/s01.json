@@ -178,6 +178,79 @@
           4
         ]
       }
+    },
+    {
+      "id": "training-validation",
+      "title_fa": "مقایسه آموزش و آزمون",
+      "pages": [
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "code_file": "s01_training_validation.py",
+      "prediction_fa": "پیش از اجرا، دقت دو گروه نمونه را با آستانه ۰٫۵ حساب کن.",
+      "limits_fa": "مقادیر عددی این دفترچه مثال مستقل‌اند و داده تصاویر موجود در اسلاید نیستند.",
+      "questions": [
+        {
+          "id": "train-accuracy",
+          "source_kind": "original",
+          "source_page": 40,
+          "prompt_fa": "در آستانه اولیه، دقت چهار نمونه آموزش چقدر است؟",
+          "solution_fa": "هر چهار نمونه آموزش در این مثال مستقل درست طبقه‌بندی می‌شوند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "۰٪",
+              "۵۰٪",
+              "۱۰۰٪"
+            ],
+            "correct_index": 2
+          }
+        },
+        {
+          "id": "test-accuracy",
+          "source_kind": "original",
+          "source_page": 42,
+          "prompt_fa": "در آستانه اولیه، دقت دو نمونه آزمون مثال عددی چند است؟",
+          "solution_fa": "پیش‌بینی‌ها [۰، ۱] و برچسب‌ها [۱، ۰] هستند؛ هر دو نادرست‌اند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "۰٪",
+              "۵۰٪",
+              "۱۰۰٪"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "threshold-change",
+          "source_kind": "original",
+          "source_page": 43,
+          "prompt_fa": "اگر آستانه این مثال را به ۰٫۷ تغییر دهیم، دقت آزمون چه می‌شود؟",
+          "solution_fa": "پیش‌بینی‌ها [۰، ۰] می‌شوند و یکی از دو برچسب درست است. آستانه را نباید با داده آزمون انتخاب کرد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "۰٪",
+              "۵۰٪",
+              "۱۰۰٪"
+            ],
+            "correct_index": 1
+          }
+        }
+      ],
+      "starter_sha256": "58307771efa7d4b508687243907b3eac687dba720ae4d5e136640a002f3cf4b3",
+      "reference": {
+        "training_accuracy": 1.0,
+        "test_accuracy": 0.0,
+        "test_prediction": [
+          0,
+          1
+        ]
+      }
     }
   ]
 }

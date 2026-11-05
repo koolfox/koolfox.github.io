@@ -257,7 +257,7 @@ test('lesson one source questions open on their matching pages',async({page})=>{
 
 test('lesson one questions remain usable in presentation and mobile views',async({browser})=>{
  test.setTimeout(120000);
- const numbers=[32,35,36,37,42,43,45,49,53,56,57,58,59,60,65,83,84];
+ const numbers=[32,35,36,37,39,40,41,42,43,45,49,53,56,57,58,59,60,65,83,84];
  for(const [width,present] of [[1440,true],[390,true],[390,false]]){
   const context=await browser.newContext({viewport:{width,height:844},isMobile:width===390,hasTouch:width===390});
   const page=await context.newPage();await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=32');
@@ -292,4 +292,33 @@ test('session one film opens from its relevant slide and plays',async({page})=>{
  await video.evaluate(element=>element.play());
  await expect.poll(()=>video.evaluate(element=>element.currentTime)).toBeGreaterThan(6.1);
  expect(await video.evaluate(element=>element.error)).toBeNull();
+});
+
+test('lesson one boundary film stays available beside the slide, questions and notebook',async({browser})=>{
+ test.setTimeout(120000);
+ for(const width of [1440,390]){
+  const context=await browser.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390});
+  const page=await context.newPage();await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=53');await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+  await page.locator('[data-source-only-toggle]').click();await page.locator('[data-capacity-toggle]').click();
+  await expect(page.locator('.capacity-overlay')).toBeVisible();await page.locator('[data-source-interactive=capacity-boundary]').click();
+  let film=page.frameLocator('[data-reader-tools-frame]');let video=film.locator('video');await expect(video).toBeVisible();
+  await film.getByRole('button',{name:'نمونه کد',exact:true}).click();await expect.poll(()=>video.evaluate(v=>v.currentTime)).toBeGreaterThanOrEqual(14);
+  await video.evaluate(v=>v.play());await expect.poll(()=>video.evaluate(v=>v.currentTime)).toBeGreaterThan(14.3);expect(await video.evaluate(v=>v.error)).toBeNull();
+  await page.locator('[data-reader-section=questions]').click();await expect(page.frameLocator('[data-reader-tools-frame]').locator('[data-notebook-question]').first()).toBeVisible();
+  await page.locator('[data-reader-section=slides]').click();await expect(page.locator('.capacity-overlay')).toBeVisible();await page.locator('[data-page-experiment]').click();
+  const notebook=page.frameLocator('[data-reader-tools-frame]');await notebook.locator('.nb-film summary').click();film=notebook.frameLocator('[data-capacity-film]');video=film.locator('video');await expect(video).toBeVisible();
+  const editor=notebook.locator('[data-notebook-code]').first();await editor.click();await editor.fill('x = 2\n');
+  await expect(notebook.locator('.nb-film-note')).toContainText('کد تغییر کرده');await context.close();
+ }
+});
+
+test('lesson one training notebook and film open on their five matching slides',async({page})=>{
+ test.setTimeout(120000);
+ for(const number of [39,40,41,42,43]){
+  await page.goto(`/deep-learning/terms/spring-2026/s01/slides/#page=${number}`);await page.waitForFunction(n=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===n,number);
+  await expect(page.locator('[data-page-experiment]')).toBeVisible();await page.locator('[data-page-experiment]').click();
+  const notebook=page.frameLocator('[data-reader-tools-frame]');await expect(notebook.locator('[data-notebook-run-all]')).toBeVisible();
+  await notebook.locator('.nb-film summary').click();const film=notebook.frameLocator('[data-lesson-one-film="train-test"]');await expect(film.locator('video')).toBeVisible();
+  if(number===40){await notebook.locator('[data-notebook-run-all]').click();await expect.poll(()=>notebook.locator('[data-notebook-output]').count(),{timeout:90000}).toBeGreaterThan(0);}
+ }
 });

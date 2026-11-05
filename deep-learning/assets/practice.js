@@ -103,6 +103,17 @@ if(config.key==='spring-2026/s05/source-convolution'&&config.starter_sha256==='6
   list.addEventListener('input',()=>queueMicrotask(updateLinks));
   updateLinks();
 }
+const lessonOneFilm=config.key==='spring-2026/s01/boundary-functions'?{id:'capacity-boundary',title:'فیلم مرز تصمیم و ظرفیت مدل',summary:'فیلم مرز تصمیم'}:config.key==='spring-2026/s01/training-validation'?{id:'train-test',title:'فیلم آموزش و آزمون',summary:'فیلم آموزش و آزمون'}:null;
+if(lessonOneFilm){
+  const root=document.querySelector('#practice-notebook'),cells=root.querySelector('.nb-cells');
+  const panel=document.createElement('details'),summary=document.createElement('summary');
+  const note=document.createElement('p'),frame=document.createElement('iframe');
+  panel.className='nb-film';summary.textContent=lessonOneFilm.summary;note.className='nb-film-note';note.setAttribute('role','status');
+  frame.title=lessonOneFilm.title;frame.dataset.lessonOneFilm=lessonOneFilm.id;if(lessonOneFilm.id==='capacity-boundary')frame.dataset.capacityFilm='';frame.loading='lazy';frame.allowFullscreen=true;
+  const update=()=>{const current=book.cells,unchanged=current.length===config.cells.length&&current.every((cell,index)=>cell.source===config.cells[index].source);note.textContent=lessonOneFilm.id==='train-test'?'فیلم روند آموزش و آزمون را نشان می‌دهد؛ اعداد دفترچه نمونه‌اند.':unchanged?'اعداد فیلم برای ضرایب اولیه دفترچه هستند.':'کد تغییر کرده؛ اعداد فیلم مربوط به ضرایب اولیه‌اند.';};
+  panel.append(summary,note,frame);cells.before(panel);panel.addEventListener('toggle',()=>{if(panel.open&&!frame.getAttribute('src'))frame.src=`/deep-learning/animations/${lessonOneFilm.id}/?notebook=1`;});
+  cells.addEventListener('input',()=>queueMicrotask(update));new MutationObserver(update).observe(cells,{childList:true});update();
+}
 function section() { if (location.hash === '#questions') book.showQuiz(); else book.showCode(); }
 section(); window.addEventListener('hashchange', section);
 const returnLink=document.querySelector('[data-return-slide]');returnLink.href=config.reader+'#page='+returnPage;

@@ -26,7 +26,7 @@ class LessonOneActivityTest(unittest.TestCase):
     def test_original_prompts_are_linked_and_prediction_is_not_truth(self):
         activities = load_activities(ROOT, 'spring-2026', 's01')
         questions = {item['id']: item for item in activities['questions']}
-        for number in (32, 35, 36, 37, 42, 43, 49, 53, 56, 57, 58, 59, 60, 65, 83, 84):
+        for number in (32, 35, 36, 37, 39, 40, 41, 42, 43, 49, 53, 56, 57, 58, 59, 60, 65, 83, 84):
             page = activities['pages'][number - 1]
             self.assertTrue(page['question_ids'], f'missing questions on page {number}')
             for identity in page['question_ids']:
@@ -47,6 +47,9 @@ class LessonOneActivityTest(unittest.TestCase):
         start = html.index(tag) + len(tag)
         config = json.loads(html[start:html.index('</script>', start)])
         self.assertTrue(any(item['pages'] == [53] for item in config['page_notebooks']))
+        training = next(item for item in config['page_notebooks'] if item['pages'] == [39, 40, 41, 42, 43])
+        self.assertEqual(training['reference']['test_accuracy'], 0.0)
+        self.assertIn('ساختگی', training['starter'])
         self.assertEqual(len(next(item for item in config['page_questions'] if item['pages'] == [53])['questions']), 3)
         for item in config['page_questions']:
             for question in item['questions']:

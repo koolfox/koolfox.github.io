@@ -796,8 +796,10 @@
       "candidate_signals": [
         "worked_example_text"
       ],
-      "question_coverage": "not_applicable",
-      "question_ids": [],
+      "question_coverage": "partial",
+      "question_ids": [
+        "dataset-labels"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -807,7 +809,7 @@
         "image_label_indices": []
       },
       "prompt_reconciliation": "no_explicit_native_or_verified_image_prompt",
-      "review_basis": "source_text_plus_verified_image_text_and_source_question_index"
+      "review_basis": "source_slide_visual_and_text"
     },
     {
       "number": 40,
@@ -817,8 +819,10 @@
       "candidate_signals": [
         "worked_example_text"
       ],
-      "question_coverage": "not_applicable",
-      "question_ids": [],
+      "question_coverage": "partial",
+      "question_ids": [
+        "data-split"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -828,7 +832,7 @@
         "image_label_indices": []
       },
       "prompt_reconciliation": "no_explicit_native_or_verified_image_prompt",
-      "review_basis": "source_text_plus_verified_image_text_and_source_question_index"
+      "review_basis": "source_slide_visual_and_text"
     },
     {
       "number": 41,
@@ -838,8 +842,10 @@
       "candidate_signals": [
         "worked_example_text"
       ],
-      "question_coverage": "not_applicable",
-      "question_ids": [],
+      "question_coverage": "partial",
+      "question_ids": [
+        "training-objective"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -849,7 +855,7 @@
         "image_label_indices": []
       },
       "prompt_reconciliation": "no_explicit_native_or_verified_image_prompt",
-      "review_basis": "source_text_plus_verified_image_text_and_source_question_index"
+      "review_basis": "source_slide_visual_and_text"
     },
     {
       "number": 42,
@@ -2293,6 +2299,72 @@
       },
       "reviewed": true,
       "source_question_kind": "embedded_figure_question",
+      "adaptation_kind": "source_specific_critical_reading_or_activity_check"
+    },
+    {
+      "id": "dataset-labels",
+      "source_kind": "original",
+      "source_page": 39,
+      "pages": [
+        39
+      ],
+      "prompt_fa": "در مثال تصویری، نمونه‌ها با کدام دو برچسب معرفی می‌شوند؟",
+      "solution_fa": "در تصویر صفحه دو برچسب Hairy و Not Hairy کنار نمونه‌ها دیده می‌شود.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "دارای مو و بدون مو",
+          "آموزش و پردازنده",
+          "خط و سهمی"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true,
+      "source_question_kind": "source_figure_interpretation",
+      "adaptation_kind": "source_specific_critical_reading_or_activity_check"
+    },
+    {
+      "id": "data-split",
+      "source_kind": "original",
+      "source_page": 40,
+      "pages": [
+        40
+      ],
+      "prompt_fa": "در صفحه ۴۰ مجموعه نمونه‌ها به چه بخش‌هایی تقسیم می‌شود؟",
+      "solution_fa": "شکل صفحه دو مجموعه آموزش و آزمون را جدا نشان می‌دهد.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "داده آموزش و داده آزمون",
+          "فقط داده آموزش",
+          "فقط خروجی مدل"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true,
+      "source_question_kind": "source_figure_interpretation",
+      "adaptation_kind": "source_specific_critical_reading_or_activity_check"
+    },
+    {
+      "id": "training-objective",
+      "source_kind": "original",
+      "source_page": 41,
+      "pages": [
+        41
+      ],
+      "prompt_fa": "هدف آموزش مدل در این اسلاید چیست؟",
+      "solution_fa": "متن صفحه آموزش مدل را با هدف کمینه کردن خطای پیش‌بینی معرفی می‌کند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "کمینه کردن خطای پیش‌بینی روی داده آموزش",
+          "تنظیم وزن مدل با هر نمونه آزمون",
+          "حذف تمام داده‌ها"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true,
+      "source_question_kind": "source_figure_interpretation",
       "adaptation_kind": "source_specific_critical_reading_or_activity_check"
     }
   ]

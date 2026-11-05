@@ -2,6 +2,10 @@
 .separated-site * { box-sizing:border-box; }
 .separated-site .site-header,.separated-site #section-nav,.separated-site main,.separated-site .site-footer { width:min(1250px,100% - 48px); margin-inline:auto; }
 .separated-site .site-header { display:flex; gap:24px; justify-content:space-between; align-items:center; padding-block:24px; }
+.separated-site .site-header-links { display:flex; flex-wrap:wrap; align-items:center; gap:4px 20px; }
+.separated-site .github-star { display:inline-flex; align-items:center; gap:6px; min-height:44px; font-weight:650; text-decoration:none; }
+.separated-site .github-star:hover { text-decoration:underline; text-underline-offset:4px; }
+.separated-site .github-star:focus-visible { outline:2px solid #245dc4; outline-offset:3px; border-radius:3px; }
 .separated-site .site-name { color:#111827; font-size:1.2rem; font-weight:750; text-decoration:none; }
 .separated-site #section-nav { display:flex; flex-wrap:wrap; gap:0 24px; border-block:1px solid #dce2eb; padding-block:8px; }
 .separated-site #section-nav a { padding:10px 0; min-height:44px; text-decoration:none; }

@@ -663,3 +663,14 @@ test('session 1 hand-written rules restores the flowchart and its Persian labels
  await expect(overlay.nth(3)).toContainText('تحلیل خطاها');
  expect(await overlay.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 perception examples preserve the source images and questions', async ({page}) => {
+ for(const number of [35,36,37]){
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page='+number); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text'); await expect(regions).toHaveCount(2);
+  if(number===35)await expect(regions.nth(1)).toContainText('شخصی در تصویر');
+  else {await expect(regions.nth(1)).toContainText('خط‌های افقی');await expect(regions.nth(1)).toHaveCSS('color','rgb(255, 192, 0)');}
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+ }
+});

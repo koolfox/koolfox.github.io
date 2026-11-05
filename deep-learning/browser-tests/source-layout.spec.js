@@ -704,3 +704,14 @@ test('session 1 training and test split retains labeled examples and colors', as
  expect(labels).toEqual(['مودار','مودار','بی‌مو','مودار']);
  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 training and generalization examples retain their source diagrams', async ({page}) => {
+ for(const number of [41,42,43]){
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page='+number); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:number===41?'داده آموزش':'داده آزمون'})).toBeVisible();
+  await expect(regions.filter({hasText:number===41?'خطای پیش‌بینی':'خطای تعمیم'}).locator('span')).toHaveCSS('color','rgb(255, 192, 0)');
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+ }
+});

@@ -627,6 +627,27 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(index===3 && region.block.fa==='برچسب:'){region.slot=[.085,.719,.17,.768];region.font=14;}
     }
   }
+  const s01TrainingReview={
+    41:['a5bb65667c1620f728c5c6092307cd4a32a64444907fab33e8f14b122723944c','c6303118221d2c91a1ab58c269359839ea8d8b52c7150a0d58218bbf034a63d0'],
+    42:['680a1d770209b136648e4d79c698ca9c2a7dc9a62a6f34a269c70755d748e39d','c1cfbec6c3cd396112dfd4f6e6ddcc9d3166b801709dd8194bf1983e6fea3ce9'],
+    43:['fae88c0963edb328116d7b7203e91d93ec9f4d7b9f7d1bde7b5280906aa917aa','f5785db850f45ec5a0711720d577c549790383046a7066714fd6bcc3b2bdb346'],
+  }[record.number];
+  if(s01TrainingReview && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01'
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256===s01TrainingReview[0] && layout.translation_sha256===s01TrainingReview[1]){
+    for(const region of regions){
+      const index=region.block.source_lines[0];
+      if(region.block.kind==='heading'){region.slot=[.04,.10,.96,.22];region.font=31;region.keepTermsTogether=true;}
+      if((record.number===41&&index===4)||(record.number!==41&&index===1)){
+        region.slot=[.07,.295,.96,.40];region.font=19;
+        region.manualAccents=[{text:record.number===41?'مدل را برای کمینه‌کردن خطای پیش‌بینی آموزش دهید':'خطای تعمیم (Generalization Error) را اندازه بگیرید',color:'#ffc000'}];
+      }
+      if((record.number===41&&index===1)||(record.number!==41&&index===3)){region.slot=[region.rect[0]-.015,.398,region.rect[2]+.015,.447];region.font=16;region.align='center';}
+      if(record.number===41&&index===3 && ['مودار','بی‌مو'].includes(region.block.fa)){region.slot=[region.rect[0]-.005,.719,region.rect[2]+.005,.768];region.font=16;region.align='center';}
+      if(record.number===41&&index===3 && region.block.fa==='برچسب:'){region.slot=[.085,.719,.17,.768];region.font=14;}
+      if(record.number===43&&index===4){region.slot=[.69,.719,.79,.768];region.font=16;region.align='center';}
+    }
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

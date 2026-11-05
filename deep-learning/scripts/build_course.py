@@ -9,6 +9,7 @@ import shutil
 from html import escape
 from pathlib import Path
 
+from course_star import add_course_star
 from course_content import load_course
 from mnist_reference import load_reference
 from source_catalog import ROOT
@@ -859,6 +860,14 @@ def build(output, root=ROOT):
             for dependency in ('model-runtime.js', 'model-tokenizer.js', 'model-image.js', 'mnist-training-runtime.js'):
                 content = content.replace('./' + dependency + "'", './' + dependency + '?v=' + reader_version + "'")
             script.write_text(content)
+
+    for page in output.rglob("*.html"):
+        if page.is_relative_to(assets):
+            continue
+        html = page.read_text(encoding="utf-8")
+        updated = add_course_star(html)
+        if updated != html:
+            page.write_text(updated, encoding="utf-8")
 
     package_slides(output, root)
     if os.environ.get("DANNA_SOURCE_DRAFT") != "1":

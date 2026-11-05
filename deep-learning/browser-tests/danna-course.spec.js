@@ -235,3 +235,19 @@ test('native MNIST project delivers measured results and a bounded reproducible 
   expect(headingBox.x).toBeCloseTo(rowBox.x,1);expect(headingBox.x+headingBox.width).toBeLessThanOrEqual(regionBox.x+regionBox.width+1);
   await page.screenshot({path:test.info().outputPath('mnist-mobile.png'),fullPage:true});
 });
+
+test('repository star link is visible and usable across course pages on mobile', async ({browser}) => {
+ const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
+ const page=await context.newPage();
+ for(const path of ['/deep-learning/catalog/','/deep-learning/terms/spring-2026/s03/slides/',
+   '/deep-learning/terms/spring-2026/s03/practice/','/deep-learning/models/resnet152-v1/',
+   '/deep-learning/runtime/neuron-xor/']){
+  await page.goto(path); const star=page.locator('header .course-repo-star');
+  await expect(star).toHaveCount(1); await expect(star).toBeVisible();
+  await expect(star).toHaveAttribute('href','https://github.com/koolfox/koolfox.github.io');
+  await expect(star).toHaveAccessibleName(/ستاره دادن به مخزن پروژه/);
+  const box=await star.boundingBox();expect(box.x).toBeGreaterThanOrEqual(0);expect(box.x+box.width).toBeLessThanOrEqual(391);
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBeTruthy();
+ }
+ await context.close();
+});

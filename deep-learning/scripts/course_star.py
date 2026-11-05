@@ -23,6 +23,8 @@ def add_course_star(html):
         start = html.index('<header class="deck-toolbar">')
         end = html.index('</div></header>', start)
         html = html[:end] + STAR + html[end:]
+    elif '<nav data-related-labs></nav>' in html:
+        html = html.replace('<nav data-related-labs></nav>', '<nav data-related-labs>' + STAR + '</nav>', 1)
     elif '<header class="host-header">' in html:
         start = html.index('<header class="host-header">')
         end = html.index('</nav>', start)

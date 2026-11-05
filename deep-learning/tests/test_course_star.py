@@ -35,6 +35,7 @@ class CourseStarTest(unittest.TestCase):
             '<header class="deck-toolbar"><div></div></header>',
             '<header class="host-header"><nav></nav></header>',
             '<header><h1>آزمایشگاه</h1></header>',
+            '<header><h1>نوتبوک</h1><nav data-related-labs></nav></header>',
             '<main><h1>فیلم</h1></main>',
         ]
         for case in cases:
@@ -49,6 +50,11 @@ class CourseStarTest(unittest.TestCase):
                 self.assertEqual(attrs['href'], 'https://github.com/koolfox/koolfox.github.io')
                 self.assertEqual(attrs['rel'], 'noopener noreferrer')
                 self.assertIn('GitHub', attrs['aria-label'])
+
+    def test_practice_link_shares_related_links_row(self):
+        html = '<header><h1>Notebook</h1><nav data-related-labs></nav></header>'
+        result = add_course_star(html)
+        self.assertIn('<nav data-related-labs><a class="course-repo-star"', result)
 
     def test_redirects_are_left_alone(self):
         source = '<html><script>location.replace("/deep-learning/")</script></html>'

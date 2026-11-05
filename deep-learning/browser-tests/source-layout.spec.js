@@ -683,3 +683,13 @@ test('session 1 limits of manual rules preserve separated points', async ({page}
  await expect(regions.nth(2)).toContainText('ناخودآگاه');
  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 data selection keeps each translated label under its example', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=39'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const regions=page.locator('#persian-page .reader-slide-text'); await expect(regions).toHaveCount(8);
+ await expect(regions.nth(1).locator('span')).toHaveCSS('color','rgb(255, 192, 0)');
+ const labels=await regions.evaluateAll(nodes=>nodes.slice(4).map(node=>node.textContent));
+ expect(labels).toEqual(['مودار','مودار','بی‌مو','مودار']);
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

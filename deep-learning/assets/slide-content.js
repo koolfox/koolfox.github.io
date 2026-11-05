@@ -611,6 +611,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     for(const region of regions){
       if(region.block.kind==='heading'){region.slot=[.04,.10,.96,.22];region.font=31;region.keepTermsTogether=true;}
       if(region.block.source_lines[0]===1){region.slot=[.07,.29,.96,.37];region.font=21;region.manualAccents=[{text:'داده را انتخاب کنید',color:'#ffc000'}];}
+      if(region.block.source_lines[0]===3 && ['مودار','بی‌مو'].includes(region.block.fa)){region.slot=[region.rect[0]-.005,.719,region.rect[2]+.005,.768];region.font=16;region.align='center';}
     }
   }
   let imageTranslations=[];

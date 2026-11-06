@@ -37,3 +37,21 @@ python3 structural-bioinformatics/scripts/audit_3wd5_disulfide_angles.py
 ```
 
 The earlier 95–115° angle window and all its other numerical cutoffs were exploratory filters, not scientific repair or acceptance criteria. No dihedral range was applied, and no re-filtered count is claimed. A torsion value alone cannot validate the side chains: a defensible model would require independent assessment of the complete local environment, stereochemistry and uncertainty. The deposited structure and earlier docking evidence remain unchanged; no new receptor or binding conclusion follows from this audit.
+
+## Independent deposited comparator and next control
+
+The existing [7TA3 structure](https://www.rcsb.org/structure/7TA3) is a separate TNF–α-peptide-3 complex, not a TNF–adalimumab complex. Its author chains B and D provide two deposited TNF copies with SSBOND Cys69–Cys101. The project already has its original [7TA3 PDB](../assets/tnf-peptide/7ta3.pdb) (SHA-256 `3c90d11838c88ebb5501319b367c6ac89e16c67c9a84aa22d17d5a4708052de4`; original retrieval provenance in [metadata](../data/metadata/tnf-peptide-preparation.json)) and [3WD5 PDB](../assets/3wd5.pdb) (SHA-256 `fae6eee1b06b8cba0a466280dbc32563efaa54ec639afd921cb610d17debd216`). Source records were checked 2026-11-06 UTC. [Comparison script](../scripts/compare_tnf_disulfides.py) reads those exact bytes, requires positive occupancy and unambiguous non-alternate atoms, and prints reproducible measurements in Å and degrees:
+
+```sh
+python3 structural-bioinformatics/scripts/compare_tnf_disulfides.py
+```
+
+| Deposited TNF chain | SG69–SG101 | SG69–CB101 | CB69–SG69–SG101 | SG69–SG101–CB101 | CB69–SG69–SG101–CB101 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 3WD5 A | 2.049 | 1.750 | 88.20 | 53.17 | −139.56 |
+| 7TA3 B | 2.028 | 3.003 | 102.63 | 103.14 | −84.03 |
+| 7TA3 D | 2.033 | 3.022 | 103.79 | 103.80 | −69.88 |
+
+The same dihedral convention as the preceding audit is used. Both 7TA3 copies show a much longer SG69–CB101 distance and different local angles than 3WD5 A. This is a small, related-structure comparison, not a population-derived geometry standard, independent biological replicates, or evidence that either 7TA3 conformation is correct in the 3WD5 crystal environment. No coordinates were transferred. Neither these measurements nor Meeko success would validate a receptor.
+
+A practical **positive-control strategy** is to reproduce the already documented [7TA3 known-site rigid redocking](peptide-workshop.fa.md) using its original inputs and hash-checked replay, then separately develop a flexible-peptide and negative-control benchmark before interpreting a new 3WD5 calculation. The existing reported 0.1368 Å fixed-frame heavy-atom RMSD is an easy bound-conformation, known-site result with modeled receptor side chains, not a blind or flexible-peptide validation. 7TA3 has a different ligand and biological context; success cannot certify 3WD5 A/H/L, its disulfide, Fab missing atoms, or any novel peptide. If revisiting 3WD5 preparation, evaluate alternative experimentally justified models and local electron-density/validation evidence, explicitly model missing atoms and protonation, and independently assess complete stereochemistry, connectivity, clashes, assembly and sensitivity before docking. The present comparison supplies no accepted repair, prepared multichain receptor, new docking run, affinity or biological conclusion.

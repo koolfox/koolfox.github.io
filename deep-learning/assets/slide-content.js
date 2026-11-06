@@ -467,6 +467,16 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===4){region.slot=[.05,.747,.95,.81];region.font=18;}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===5
+      && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
+      && record.source_text_sha256==='7223ce84f8bda3a3f91278b27d701d9882a532dba5b6959f918a45133a92646e'
+      && layout.translation_sha256==='4a810fb1270142b79e306799a189a762e6d1146124a9d435a3ac5e4f548413ef'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.95,.21];region.font=33;}
+      if(i===1){region.slot=[.05,.25,.95,.32];region.font=18;}
+      if(i===2){region.slot=[.28,.92,.65,.98];region.font=17;region.align='center';}
+    }
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 
@@ -486,6 +496,7 @@ export function createSourceLayout(record, plan) {
       width: (x1 - x0) * width + 'px', height: (y1 - y0) * height + 'px',
       fontSize: region.font / plan.layout.width * width + 'px', color: region.color});
     node.dataset.sourceLines = region.block.source_lines.join(',');
+    if (region.align) node.style.textAlign = region.align;
     if (region.block.presentation?.bold) node.style.fontWeight = '700';
     if (region.block.presentation?.italic) node.style.fontStyle = 'italic';
     if (region.block.latex) math(node, region.block);

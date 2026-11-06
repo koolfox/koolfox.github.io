@@ -2,6 +2,16 @@
 const CACHE = 'danna-slide-reader-v1';
 const root = '/deep-learning/';
 
+// Yield between cache writes so the reader remains responsive on slower devices.
+async function warmPause(signal) {
+ if (signal?.aborted) return false;
+ return await new Promise(resolve => {
+  const timer = setTimeout(() => { signal?.removeEventListener('abort', abort); resolve(true); }, 75);
+  const abort = () => { clearTimeout(timer); resolve(false); };
+  signal?.addEventListener('abort', abort, {once: true});
+ });
+}
+
 async function cacheStore() {
  try { return await caches.open(CACHE); } catch { return null; }
 }
@@ -50,6 +60,9 @@ export async function warmSlideOffline(signal) {
    if (signal?.aborted) return false;
    const url = new URL(raw, location.href);
    if (url.origin !== location.origin || !(url.pathname.startsWith(root) || url.pathname.startsWith('/assets/fonts/')) || /\.(?:pdf|mp4|bin)(?:$|\?)/i.test(url.pathname)) continue;
+   // Content-addressed assets never change under the same URL.
+   if ((url.searchParams.has('v') || url.searchParams.has('sha')) && await cache.match(url.href)) continue;
+   if (!(await warmPause(signal))) return false;
    const response = await fetch(url.href, {signal});
    if (!response.ok || response.status !== 200) return false;
    if (signal?.aborted) return false;

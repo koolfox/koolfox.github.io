@@ -52,6 +52,21 @@ test('versioned resources use their matching cache entry while new versions fetc
  expect(offline).toBe(result.next);
 });
 
+test('warming again reuses already cached versioned assets', async ({ page }) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=40');
+ await page.waitForFunction(() => window.sourceSlideReader?.ready);
+ await expect(page.locator('html')).toHaveAttribute('data-offline-ready', 'true', { timeout: 30000 });
+ const result = await page.evaluate(async () => {
+  const {warmSlideOffline} = await import('/deep-learning/assets/slide-offline-cache.js');
+  const originalFetch = window.fetch, requests = [];
+  window.fetch = (url, options) => { requests.push(String(url)); return originalFetch(url, options); };
+  try { return {ok:await warmSlideOffline(), requests}; } finally { window.fetch = originalFetch; }
+ });
+ expect(result.ok).toBe(true);
+ expect(result.requests.some(url => /[?&](?:v|sha)=/.test(url))).toBe(false);
+ expect(result.requests.some(url => url.includes('/slides/'))).toBe(true);
+});
+
 test('stopping the reader aborts an in-flight offline warm-up', async ({ page }) => {
  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=40');
  await page.waitForFunction(() => window.sourceSlideReader?.ready);

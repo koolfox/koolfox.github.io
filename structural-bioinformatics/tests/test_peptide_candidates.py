@@ -107,7 +107,9 @@ def test_recorded_reference_variants_link_to_docking_output():
     report = json.loads((project / "data/processed/antibody-variant-demo.json").read_text())
     assert (
         manifest["generator_sha256"]
-        == hashlib.sha256((project / "src/peptide_lab/candidates.py").read_bytes()).hexdigest()
+        == hashlib.sha256(
+            (project / "tests/fixtures/candidate-provenance/candidates.py.txt").read_bytes()
+        ).hexdigest()
     )
     assert (
         manifest["source_pdb_sha256"]
@@ -170,3 +172,15 @@ def test_real_eight_residue_antibody_fragment_and_variants(tmp_path):
         "AQLVESGG",
         "CQLVESGG",
     ]
+
+
+@pytest.mark.parametrize("maximum", [True, 1.5, 0, -1])
+def test_candidate_budget_requires_positive_integer(maximum):
+    with pytest.raises(ValueError, match="positive integer"):
+        variants("AR", [1], "AC", True, maximum)
+
+
+@pytest.mark.parametrize("position", [True, 1.0, 1.5, 0, 3])
+def test_candidate_position_requires_in_range_integer(position):
+    with pytest.raises(ValueError, match="Positions"):
+        variants("AR", [position], "AC", True, 2)

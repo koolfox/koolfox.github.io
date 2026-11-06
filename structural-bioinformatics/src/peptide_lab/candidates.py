@@ -27,10 +27,12 @@ def variants(seed, positions, alphabet, include_seed, maximum):
         raise ValueError("Alphabet must contain distinct uppercase standard amino acids")
     if not positions or len(set(positions)) != len(positions):
         raise ValueError("Choose one or more distinct positions")
-    if any(position < 1 or position > len(seed) for position in positions):
-        raise ValueError("Positions are 1-based and must fall inside the selected seed")
-    if maximum < 1:
-        raise ValueError("Maximum must be positive")
+    if any(
+        type(position) is not int or position < 1 or position > len(seed) for position in positions
+    ):
+        raise ValueError("Positions must be 1-based integers inside the selected seed")
+    if type(maximum) is not int or maximum < 1:
+        raise ValueError("Maximum must be a positive integer")
     rows = [{"sequence": seed, "change": "reference"}] if include_seed else []
     for pos in positions:
         for residue in alphabet:

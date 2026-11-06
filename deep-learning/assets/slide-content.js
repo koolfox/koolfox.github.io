@@ -956,7 +956,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='ed741ff36dff50fb7349c0a091133d102183c38a3ec39aa28778d96a278eeb0c'
       && layout.translation_sha256==='d0e4ad47edcb03fd3963e7db7e362a680b7a9dda248158885c9ef18eae99bef3'){
-    const slots={0:[.05,.06,.95,.25],2:[.05,.39,.95,.46],3:[.10,.46,.94,.52],4:[.10,.52,.94,.58],5:[.10,.58,.94,.64],6:[.05,.69,.94,.75],7:[.10,.75,.94,.82]};
+    const slots={0:[.05,.06,.95,.25],2:[.05,.36,.95,.46],3:[.10,.46,.94,.52],4:[.10,.52,.94,.58],5:[.10,.58,.94,.64],6:[.05,.69,.94,.75],7:[.10,.75,.94,.82]};
     for(const region of regions){const i=region.block.source_lines[0];region.slot=slots[i];region.font=i===0?32:i===2||i===6?22:19;if(i===7)region.manualAccents=[{text:'مبانی',color:'#ffc000'}];}
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===75

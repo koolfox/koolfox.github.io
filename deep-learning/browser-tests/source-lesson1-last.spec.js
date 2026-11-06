@@ -88,3 +88,18 @@ test('mobile readers can zoom and pan the dense schedule slide', async ({ page }
   expect(pan.available).toBeGreaterThan(0);
   expect(pan.moved).toBeGreaterThan(0);
 });
+
+
+test('session 1 comparison stays on the source canvas on mobile', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=74');
+  await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 74);
+  const previous = await page.locator('#persian-page .reader-slide-stage').elementHandle();
+  await page.locator('[data-view-translation]').click();
+  await page.waitForFunction(node => !node.isConnected, previous);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout', 'source-canvas');
+  const text = page.locator('#persian-page .reader-slide-text');
+  await expect(text.filter({ hasText: 'Deep Learning' })).toBeVisible();
+  await expect(text.filter({ hasText: 'مبانی' })).toBeVisible();
+  expect(await text.evaluateAll(nodes => nodes.every(node => node.scrollHeight <= node.clientHeight + 2 && node.scrollWidth <= node.clientWidth + 2))).toBeTruthy();
+});

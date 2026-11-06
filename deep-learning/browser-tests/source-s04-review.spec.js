@@ -74,3 +74,19 @@ test('parity and unrolling examples retain their source figures on both layouts'
     }
   }
 });
+
+test('parity film is attached to the source page and plays its worked example', async ({page}) => {
+  await page.setViewportSize({width:390, height:850});
+  await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=27');
+  await page.waitForFunction(() => window.sourceSlideReader?.ready);
+  await page.locator('[data-source-interactive="rnn-parity"]').click();
+  const film = page.frameLocator('[data-reader-tools-frame]');
+  await expect(film.locator('video')).toBeVisible();
+  await expect(film.locator('[data-film-time]')).toHaveCount(4);
+  await film.locator('[data-film-time]').nth(2).click();
+  await expect.poll(() => film.locator('video').evaluate(video => video.currentTime)).toBeCloseTo(5, 0);
+  await expect(film.locator('track[kind="captions"]')).toHaveAttribute('srclang', 'fa');
+  await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=28');
+  await page.waitForFunction(() => window.sourceSlideReader?.ready);
+  await expect(page.locator('[data-source-interactive="rnn-parity"]')).toHaveCount(0);
+});

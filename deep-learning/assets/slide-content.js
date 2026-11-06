@@ -705,6 +705,16 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && layout.translation_sha256==='737a35d48062886ce511122b9efb8fb34dd7581f7ef3f94febda006712b9adae'){
     for(const region of regions){if(region.block.source_lines[0]===0){region.slot=[.02,.44,.39,.66];region.color='#ffffff';region.manualAccents=[{text:'با پرسپترون تک‌لایه (Single Layer Perceptron) ناممکن است',color:'#ffc000'}];}}
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===46
+      && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
+      && record.source_text_sha256==='b9e9c21f5700b8a6d2e7fdf31710ec221de393d1cee4c86946448ddd4775180a'
+      && layout.translation_sha256==='afb5a857c524c95f3866442444819836b5fbcf265bfdcf8e02d99a849df75ef2'){
+    const slots={0:[.03,.08,.98,.22],1:[.53,.41,.97,.53],2:[.53,.57,.97,.72]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];if(i===0)region.font=29;
+      if(i===1){region.color='#ffffff';region.manualAccents=[{text:'نهادهای تامین مالی',color:'#ffc000'}];}
+      if(i===2){region.color='#ffffff';region.manualAccents=[{text:'پژوهشگران',color:'#ffc000'}];}
+    }
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

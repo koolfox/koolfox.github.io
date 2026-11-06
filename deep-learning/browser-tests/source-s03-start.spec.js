@@ -116,3 +116,13 @@ test('session 3 preserves each highlighted perceptron step', async ({page}) => {
   await expect(page.locator('#persian-page .reader-slide-text').filter({hasText:'وزن‌های آموختنی'})).toBeVisible();
  }
 });
+
+test('session 3 parameter count retains the network and color coded labels', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=23');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready && sourceSlideReader.page===23);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const labels=page.locator('#persian-page .reader-slide-text');
+ await expect(labels.filter({hasText:'وزن‌های ورودی'})).toHaveCSS('color','rgb(243, 0, 242)');
+ await expect(labels.filter({hasText:'بایاس‌ها'})).toHaveCSS('color','rgb(0, 176, 240)');
+ await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
+});

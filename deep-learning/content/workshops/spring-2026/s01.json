@@ -93,5 +93,164 @@
   "reference_python": "3.14.3",
   "limits_fa": "کد و داده‌های عددی، تألیف مستقل برای مطالعهٔ جداسازی آموزش و آزمون‌اند؛ نه بازتولید تصاویر منبع و نه تکلیف رسمی Canvas.",
   "source_retrieved_at_utc": "2026-10-25T08:44:45.533623+00:00",
-  "related_labs": []
+  "related_labs": [],
+  "source_examples": [
+    {
+      "id": "boundary-functions",
+      "title_fa": "خط و سهمی در فعالیت جداسازی",
+      "pages": [
+        53
+      ],
+      "code_file": "s01_boundary_functions.py",
+      "prediction_fa": "پیش از اجرا مقدار خط و سهمی را برای x=2 حساب کن.",
+      "limits_fa": "ضرایب و ورودی‌ها مثال قابل تغییرند؛ اسلاید برای نقاط تصویر مختصات عددی نداده است. رسم مرز روی خود شکل از دکمه رسم مرز در اسلاید انجام می‌شود.",
+      "questions": [
+        {
+          "id": "line-point",
+          "source_kind": "original",
+          "source_page": 53,
+          "prompt_fa": "در خط نمونه با slope=1 و intercept=0، مقدار y برای x=2 چند است؟",
+          "solution_fa": "در رابطه y=x، خروجی برای ورودی ۲ برابر ۲ است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "۲",
+              "۴",
+              "۰"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "parabola-point",
+          "source_kind": "original",
+          "source_page": 53,
+          "prompt_fa": "در سهمی نمونه با a=1 و b=c=0، مقدار y برای x=2 چند است؟",
+          "solution_fa": "در رابطه y=x²، خروجی برای ورودی ۲ برابر ۴ است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "۲",
+              "۴",
+              "−۲"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "coefficients",
+          "source_kind": "original",
+          "source_page": 53,
+          "prompt_fa": "اگر ضریب a در سهمی صفر شود، چه اتفاقی برای جمله درجه دوم می‌افتد؟",
+          "solution_fa": "وقتی a صفر باشد، جمله a*x*x از معادله حذف می‌شود.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "حذف می‌شود",
+              "همیشه برابر یک است",
+              "به x³ تبدیل می‌شود"
+            ],
+            "correct_index": 0
+          }
+        }
+      ],
+      "starter_sha256": "e916b76e9fd151c640eb8d898b3ce167465c0a005402dd6be059e77e11198e88",
+      "reference": {
+        "x": [
+          -2,
+          -1,
+          0,
+          1,
+          2
+        ],
+        "line": [
+          -2,
+          -1,
+          0,
+          1,
+          2
+        ],
+        "parabola": [
+          4,
+          1,
+          0,
+          1,
+          4
+        ]
+      }
+    },
+    {
+      "id": "training-validation",
+      "title_fa": "مقایسه آموزش و آزمون",
+      "pages": [
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "code_file": "s01_training_validation.py",
+      "prediction_fa": "پیش از اجرا، دقت دو گروه نمونه را با آستانه ۰٫۵ حساب کن.",
+      "limits_fa": "مقادیر عددی این دفترچه مثال مستقل‌اند و داده تصاویر موجود در اسلاید نیستند.",
+      "questions": [
+        {
+          "id": "train-accuracy",
+          "source_kind": "original",
+          "source_page": 40,
+          "prompt_fa": "در آستانه اولیه، دقت چهار نمونه آموزش چقدر است؟",
+          "solution_fa": "هر چهار نمونه آموزش در این مثال مستقل درست طبقه‌بندی می‌شوند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "۰٪",
+              "۵۰٪",
+              "۱۰۰٪"
+            ],
+            "correct_index": 2
+          }
+        },
+        {
+          "id": "test-accuracy",
+          "source_kind": "original",
+          "source_page": 42,
+          "prompt_fa": "در آستانه اولیه، دقت دو نمونه آزمون مثال عددی چند است؟",
+          "solution_fa": "پیش‌بینی‌ها [۰، ۱] و برچسب‌ها [۱، ۰] هستند؛ هر دو نادرست‌اند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "۰٪",
+              "۵۰٪",
+              "۱۰۰٪"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "threshold-change",
+          "source_kind": "original",
+          "source_page": 43,
+          "prompt_fa": "اگر آستانه این مثال را به ۰٫۷ تغییر دهیم، دقت آزمون چه می‌شود؟",
+          "solution_fa": "پیش‌بینی‌ها [۰، ۰] می‌شوند و یکی از دو برچسب درست است. آستانه را نباید با داده آزمون انتخاب کرد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "۰٪",
+              "۵۰٪",
+              "۱۰۰٪"
+            ],
+            "correct_index": 1
+          }
+        }
+      ],
+      "starter_sha256": "58307771efa7d4b508687243907b3eac687dba720ae4d5e136640a002f3cf4b3",
+      "reference": {
+        "training_accuracy": 1.0,
+        "test_accuracy": 0.0,
+        "test_prediction": [
+          0,
+          1
+        ]
+      }
+    }
+  ]
 }

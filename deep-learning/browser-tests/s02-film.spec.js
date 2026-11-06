@@ -95,3 +95,15 @@ test('neuron model slide retains truth tables and a verified resource',async({br
   const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(n=>n.scrollHeight>n.clientHeight+2||n.scrollWidth>n.clientWidth+2).map(n=>n.textContent));expect(overflow).toEqual([]);await context.close();
  }
 });
+
+test('key ideas slide separates the quotation and four claims',async({browser})=>{
+ for(const width of [1440,390]){
+  const context=await browser.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390});
+  const page=await context.newPage();await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=13');
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===13);
+  if(width===390){await page.locator('[data-view-translation]').click();await page.waitForFunction(()=>window.sourceSlideReader?.ready);}
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  for(const line of [9,10,11,12])await expect(page.locator(`.reader-slide-text[data-source-lines="${line}"]`)).toBeVisible();
+  const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(n=>n.scrollHeight>n.clientHeight+2||n.scrollWidth>n.clientWidth+2).map(n=>n.textContent));expect(overflow).toEqual([]);await context.close();
+ }
+});

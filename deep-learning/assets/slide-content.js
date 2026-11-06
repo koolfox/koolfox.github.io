@@ -497,6 +497,14 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===13){region.linkTarget='https://sites.millersville.edu/bikenaga/math-proof/truth-tables/truth-tables.html';region.clearRect=[.43,.875,.96,.965];}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===13
+      && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
+      && record.source_text_sha256==='faa6a39540825108d5432a3596d6c0183876b5d0a738af123515a321bb2f6e78' && layout.translation_sha256==='8c67e64b1346eab6b97439d0e32bf4ff76247c21651f86779de203bfe39c305b'){
+    const slots={1:[.04,.27,.97,.59],8:[.04,.60,.97,.68],9:[.04,.70,.97,.75],10:[.04,.75,.97,.81],11:[.04,.81,.97,.86],12:[.04,.86,.97,.92]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];if(i>=9&&i<=12)region.font=17;
+      if(i===1){region.color='#ffffff';region.manualAccents=[{text:'شناخت ما از جهان',color:'#ffff00'},{text:'ناقص',color:'#ffff00'},{text:'این ناآگاهی',color:'#00ff00'},{text:'شناخت ما را سودمند می‌کند',color:'#00ff00'},{text:'نقش مغزها',color:'#ffc000'},{text:'هر ایده و هر احساس با فعالیت درون آن شبکه تحقق می‌یابد',color:'#ffc000'},{text:'با تعیین شبکه',color:'#00ffff'}];}
+    }
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

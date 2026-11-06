@@ -107,3 +107,12 @@ test('key ideas slide separates the quotation and four claims',async({browser})=
   const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(n=>n.scrollHeight>n.clientHeight+2||n.scrollWidth>n.clientWidth+2).map(n=>n.textContent));expect(overflow).toEqual([]);await context.close();
  }
 });
+
+test('architecture slide preserves images and two distinct statements',async({page})=>{
+ await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=14');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===14);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ await expect(page.locator('.reader-slide-text[data-source-lines="1,2"]')).toBeVisible();
+ await expect(page.locator('.reader-slide-text[data-source-lines="3,4"]')).toBeVisible();
+ const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(n=>n.scrollHeight>n.clientHeight+2||n.scrollWidth>n.clientWidth+2).map(n=>n.textContent));expect(overflow).toEqual([]);
+});

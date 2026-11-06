@@ -64,3 +64,27 @@ test('session 1 schedule and experience keep source images on mobile', async ({ 
     for (const term of terms) await expect(page.locator('#persian-page .reader-slide-text').filter({ hasText: term })).toBeVisible();
   }
 });
+
+test('mobile readers can zoom and pan the dense schedule slide', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=73');
+  await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 73);
+  let oldStage = await page.locator('#persian-page .reader-slide-stage').elementHandle();
+  await page.locator('[data-view-translation]').click();
+  await page.waitForFunction(node => !node.isConnected, oldStage);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout', 'source-canvas');
+  const initialWidth = (await page.locator('#persian-page .reader-slide-holder').boundingBox()).width;
+  oldStage = await page.locator('#persian-page .reader-slide-stage').elementHandle();
+  await page.locator('[data-zoom-in]').click();
+  await page.locator('[data-zoom-in]').click();
+  await page.waitForFunction(node => !node.isConnected, oldStage);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout', 'source-canvas');
+  expect((await page.locator('#persian-page .reader-slide-holder').boundingBox()).width).toBeGreaterThan(initialWidth * 1.4);
+  const pan = await page.locator('.reader-translation').evaluate(node => {
+    const available = node.scrollWidth - node.clientWidth;
+    node.scrollLeft = -available;
+    return { available, moved: Math.abs(node.scrollLeft) };
+  });
+  expect(pan.available).toBeGreaterThan(0);
+  expect(pan.moved).toBeGreaterThan(0);
+});

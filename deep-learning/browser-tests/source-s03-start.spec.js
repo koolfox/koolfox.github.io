@@ -88,3 +88,12 @@ test('session 3 preserves the multilayer network diagram and labels', async ({pa
  await expect(labels.filter({hasText:'پیش‌بینی'}).first()).toHaveCSS('color','rgb(243, 0, 242)');
  await expect(labels.filter({hasText:'ورودی'}).first()).toHaveCSS('color','rgb(0, 176, 240)');
 });
+
+test('session 3 network question heading fits its slide', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=15');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready && sourceSlideReader.page===15);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const title=page.locator('#persian-page .reader-slide-text[data-source-lines="0"]');
+ expect(await title.evaluate(node=>node.getClientRects().length && node.scrollHeight<=node.clientHeight)).toBeTruthy();
+ await expect(title).toContainText('Multi-Layer Network');
+});

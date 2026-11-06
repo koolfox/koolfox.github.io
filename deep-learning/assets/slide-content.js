@@ -458,6 +458,12 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(index===11)region.manualAccents=[{text:'نوبل ۱۹۳۲',color:'#ffc000'},{text:'شلیک همه یا هیچ',color:'#ffc000'}];
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===7
+      && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
+      && record.source_text_sha256==='8b11b7ea0307482bb13cc03c5b7201a3c374838a70d1ac3a6bce4fd2a317aeff' && layout.translation_sha256==='c64a405889f4db34be38c012aa0c56ec2a54d92f544e18db46329bab89fd65a9'){
+    const slots={3:[.03,.84,.48,.99],11:[.52,.84,.98,.99],14:[.67,.29,.98,.48],17:[.67,.70,.98,.78]};
+    for(const region of regions){const slot=slots[region.block.source_lines[0]];if(slot)region.slot=slot;}
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

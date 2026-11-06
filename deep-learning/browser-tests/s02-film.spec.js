@@ -39,3 +39,17 @@ test('neuroscience discovery slide keeps the two portraits and captions apart',a
  const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(n=>n.scrollHeight>n.clientHeight+2||n.scrollWidth>n.clientWidth+2).map(n=>n.textContent));
  expect(overflow).toEqual([]);
 });
+
+test('neuron threshold slide retains the diagram and separated text',async({browser})=>{
+ for(const width of [1440,390]){
+  const context=await browser.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390});
+  const page=await context.newPage();await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=7');
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===7);
+  if(width===390){await page.locator('[data-view-translation]').click();await page.waitForFunction(()=>window.sourceSlideReader?.ready);}
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+  await expect(page.locator('.reader-slide-text[data-source-lines="14,15,16"]')).toBeVisible();
+  await expect(page.locator('.reader-slide-text[data-source-lines="17"]')).toBeVisible();
+  const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(n=>n.scrollHeight>n.clientHeight+2||n.scrollWidth>n.clientWidth+2).map(n=>n.textContent));
+  expect(overflow).toEqual([]);await context.close();
+ }
+});

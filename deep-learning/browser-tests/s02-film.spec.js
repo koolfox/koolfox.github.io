@@ -374,3 +374,17 @@ test('Rosenblatt experiments retain both figures and their captions',async({brow
   }finally{await context.close();}
  }
 });
+
+test('Rosenblatt motivation quote retains its complete translation',async({browser})=>{
+ for(const width of [1440,390]){
+  const context=await browser.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390});
+  try{
+   const page=await context.newPage();await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=34');
+   await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===34);
+   if(width===390)await page.locator('[data-view-translation]').click();
+   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+   await expect(page.locator('#persian-page')).toContainText('ساده‌سازی‌های انجام‌شده نسبت به سامانه‌های زیستی');
+   const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(node=>node.scrollHeight>node.clientHeight+2||node.scrollWidth>node.clientWidth+2).map(node=>node.textContent));expect(overflow).toEqual([]);
+  }finally{await context.close();}
+ }
+});

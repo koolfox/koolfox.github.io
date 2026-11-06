@@ -626,6 +626,14 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const slots={3:[.02,.08,.98,.22],0:[.02,.77,.49,.92],2:[.02,.92,.49,.98],4:[.51,.77,.98,.92],6:[.51,.92,.98,.98]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];if(i===3)region.font=30;}
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===34
+      && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
+      && record.source_text_sha256==='fcc1d6b4edf7711202471af906a40b0be01dfda1b1baa2799ecd1291d20dbfa0'
+      && layout.translation_sha256==='37ce1ca44d4e76666350e1dcb01ae255d95f4a4ac56784e040570b2524615ab6'){
+    for(const region of regions){const i=region.block.source_lines[0];if(i===0)region.slot=[.04,.08,.98,.22];
+      if(i===1){region.slot=[.04,.34,.96,.80];region.color='#ffffff';region.manualAccents=[{text:'بررسی ساختارهای فیزیکی و اصول عصب‌پویایی مربوط است که زیربنای «هوش طبیعی» هستند',color:'#ffc000'},{text:'پرسپترون پیش از هر چیز مدلی از مغز است',color:'#ffc000'},{text:'ما را قادر می‌کند شرایط فیزیکی پدیدآمدن ویژگی‌های روان‌شناختی گوناگون را تعیین کنیم',color:'#ffc000'}];}
+    }
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

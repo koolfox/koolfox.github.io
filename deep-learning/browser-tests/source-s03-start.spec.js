@@ -146,3 +146,13 @@ test('session 3 historical training slide retains all three accounts', async ({p
  for (const name of ['Rosenblatt','Werbos','LeCun and Parker']) await expect(labels.filter({hasText:name})).toBeVisible();
  await expect(labels.filter({hasText:'روش تصحیح خطای پس‌انتشاری'}).locator('.reader-emphasis').first()).toHaveCSS('color','rgb(255, 192, 0)');
 });
+
+test('session 3 agenda and backpropagation references retain source emphasis', async ({page}) => {
+ for (const [number,layout] of [[27,'source-canvas'],[28,'source-canvas-figure-companion']]) {
+  await page.goto(`/deep-learning/terms/spring-2026/s03/slides/#page=${number}`);
+  await page.waitForFunction(expected=>window.sourceSlideReader?.ready && sourceSlideReader.page===expected,number);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout',layout);
+  await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
+ }
+ await expect(page.locator('#persian-page .reader-slide-text .reader-emphasis')).toHaveCSS('color','rgb(255, 192, 0)');
+});

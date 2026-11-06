@@ -574,6 +574,25 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const slots={0:[.05,.10,.97,.21],1:[.08,.26,.96,.32],2:[.10,.32,.96,.61],8:[.08,.61,.96,.67],9:[.10,.67,.96,.76],11:[.10,.76,.96,.81],12:[.08,.81,.96,.87],13:[.10,.87,.96,.94]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];region.font=i===0?33:([1,8,12].includes(i)?19:17);if(i===2){region.color='#ffffff';region.manualAccents=[{text:'روش تصحیح خطای پس‌انتشاری',color:'#ffc000'},{text:'شاید بهبود چشمگیری در عملکرد حاصل شود',color:'#ffc000'}];}}
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===27
+      && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
+      && record.source_text_sha256==='1d3838ef5880e2a72216250d03f4f9c577d7009867b981b0a2159efe58a3c020'
+      && layout.translation_sha256==='5e007360ec6865d5bce3616732269fe38c32c074b25de8c9e3d306c8f0233f86'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.95,.21];region.font=33;}
+      if(i>=1){region.slot=[.075,region.rect[1]-.01,.96,region.rect[3]+.025];region.font=20;}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===28
+      && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
+      && record.source_text_sha256==='54f6575979fcf155fd709f8b1d1f738e28dc6b794b6928bd02897b3893ca7fc2'
+      && layout.translation_sha256==='a4b6ee1723d10bc31eef14a2cb94d1d9c2a3393d00e8fb240ade55587541bb5b'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===5){region.slot=[.05,.05,.95,.25];region.font=29;region.align='center';region.manualAccents=[{text:'رواج یافت',color:'#ffc000'}];}
+      if(i===0){region.slot=[.03,.76,.54,.92];region.font=17;region.align='center';}
+      if(i===2){region.slot=[.59,.74,.99,.97];region.font=15;region.align='center';}
+    }
+  }
   const xorLayouts={
     8:['d2b3197385ac54cba5e2883e08b575286ecb53ec32490248714c327d28b2f53b','414db0665fe15478a7298705f8437c61179a99157138f11dc87c6f4df357d677'],
     9:['0c34d94aedceba75167565b32f6a1aef6444728377f7c21ad3a0701f165a4e00','84e1ebe3a8d6fdd6ba5126dff88fc0cbdcd3d7ed8ab30e8aebdb215a07798ab9'],

@@ -11,3 +11,13 @@ def test_worked_radius_and_surface_examples():
     assert rg == pytest.approx(np.sqrt(6))
     assert 900 + 700 - 1300 == 300
     assert (900 + 700 - 1300) / 2 == 150
+
+
+def test_radius_of_gyration_is_translation_invariant():
+    points = np.array([[-2.0, 0, 0], [2, 0, 0]])
+
+    def radius(coords):
+        return np.sqrt(np.mean(np.sum((coords - coords.mean(axis=0)) ** 2, axis=1)))
+
+    assert radius(points) == pytest.approx(2)
+    assert radius(points + [10, 0, 0]) == pytest.approx(radius(points))

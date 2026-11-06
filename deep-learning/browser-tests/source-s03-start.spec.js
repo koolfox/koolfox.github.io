@@ -211,3 +211,12 @@ test('session 3 activation function slide retains diagrams and sigmoid formula',
  await expect(page.locator('#persian-page .reader-slide-text').filter({hasText:'تابع فعال‌سازی'})).toHaveCSS('color','rgb(4, 50, 255)');
  await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
 });
+
+test('session 3 gradient descent steps retain the source illustration', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=36');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready && sourceSlideReader.page===36);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const labels=page.locator('#persian-page .reader-slide-text');
+ for (const term of ['1.','2.','3.','4.']) await expect(labels.filter({hasText:term})).toBeVisible();
+ await expect(labels.filter({hasText:'باورپذیر نیست'})).toHaveCSS('color','rgb(255, 192, 0)');
+});

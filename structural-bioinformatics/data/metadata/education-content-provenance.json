@@ -255,17 +255,18 @@
     {
       "topic": 10,
       "path": "docs/course/session-10.fa.md",
-      "sha256": "8c9a5e7af45962f7aa05091475f7d040eadea22d3536b3e5d8397488d65bd0e6",
+      "sha256": "7395883ba3c7afc49afcd33e034204c4946812799affa8fb7553c0be223c4500",
       "source_ids": [
         "uni",
         "ref"
       ],
       "case_lesson_path": "docs/research-notes/lesson-context/topic-10.fa.md",
       "case_lesson_sha256": "c528a0736280cc82f649986c5ab946204d8dbfc9c5215dda01ebf6e46d1cbb5a",
-      "word_count_whitespace": 1392,
+      "word_count_whitespace": 1424,
       "external_reference_urls": [
         "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=NP_000549.1&rettype=fasta&retmode=text",
         "https://rest.uniprot.org/uniprotkb/P69905.fasta",
+        "https://rest.uniprot.org/unisave/P69905?format=txt&versions=220",
         "https://www.ncbi.nlm.nih.gov/books/NBK50679/",
         "https://www.ncbi.nlm.nih.gov/gene/3039",
         "https://www.ncbi.nlm.nih.gov/protein/NP_000549.1",
@@ -611,7 +612,7 @@
     "tcl": "The arithmetic example was executed with local tclsh and returned mean = 4.0. VMD-specific commands were checked against the official atomselect/measure manual; VMD itself was not run.",
     "binding": "Specific binding references added from indexed source excerpts for the one-step kinetic model and the mutation free-energy definition; fresh full-page access returned CAPTCHA/redirect failures. No full-text review claimed."
   },
-  "last_revised_at_utc": "2026-11-06T16:32:44.665978+00:00",
+  "last_revised_at_utc": "2026-11-06T16:40:06.810224+00:00",
   "teaching_assets": [
     {
       "path": "assets/course/figures/contact-network.svg",
@@ -678,6 +679,19 @@
     ],
     "sequence_length": 142,
     "sequence_strings_equal": true,
-    "note": "Hashes apply to downloaded FASTA bytes, including headers and line breaks; remote contents may change."
+    "note": "Hashes apply to downloaded FASTA bytes, including headers and line breaks; remote contents may change.",
+    "retained_files": [
+      "assets/course/examples/NP_000549.1.fasta",
+      "assets/course/examples/P69905.fasta"
+    ],
+    "uniprot_entry_check": {
+      "source": "https://rest.uniprot.org/uniprotkb/P69905.txt",
+      "retrieved_at_utc": "2026-11-06T16:36:32Z",
+      "sha256": "d7a5c64ab4606d3de528e9fcafe23087fd4088d14176e1be84cc0fc6811553d1",
+      "entry_version": 220,
+      "sequence_version": 2,
+      "note": "Separate retrieval from FASTA; not an atomic snapshot.",
+      "versioned_archive": "https://rest.uniprot.org/unisave/P69905?format=txt&versions=220"
+    }
   }
 }

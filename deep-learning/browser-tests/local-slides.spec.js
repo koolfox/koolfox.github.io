@@ -224,6 +224,14 @@ test('downloaded2026bundle serves readers and every authored workshop under a pr
       const config=await page.locator('#source-reader-config').evaluate(node=>JSON.parse(node.textContent));
       expect(config.pdfUrl.startsWith('/')).toBeFalsy();expect(config.translationUrl.startsWith('/')).toBeFalsy();
       await page.locator('[data-page-select]').selectOption('2');await readerReady(page,2);
+      if(id===manifest.sessions[0]){
+        const duplicatePdfs=await page.evaluate(async()=>{
+          const names=await caches.keys();const matches=[];
+          for(const name of names){for(const request of await (await caches.open(name)).keys())if(new URL(request.url).pathname.endsWith('.pdf'))matches.push(request.url);}
+          return matches;
+        });
+        expect(duplicatePdfs).toEqual([]);
+      }
     }
     for(const id of manifest.workshop_sessions){
       await page.goto(base+sourceLesson(id)+'practice/#code');await expect(page.locator('[data-notebook-code]').first()).toBeVisible();

@@ -113,6 +113,12 @@ class WorkshopNumericalTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             execute("s04_character_choice", {"[0.05, 0.1, 0.2, 0.65]": "[0.05, 0.1, 0.2, 0.75]"})
 
+    def test_vanishing_gradient_separates_exact_value_from_slide_rounding(self):
+        result = execute('s04_vanishing_gradient')['result']
+        self.assertEqual(result['signals'], [0.25, 0.0625, 0.015625, 0.00390625])
+        self.assertEqual(result['final'], 0.00390625)
+        self.assertEqual(result['rounded_source'], 0.004)
+
     def test_rnn_hidden_steps_match_rounded_source_values(self):
         result = execute("s04_hidden_steps")["result"]
         for actual, expected in zip(result["states"][0], [0.693168, 0.899554, 0.802118]):

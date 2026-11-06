@@ -499,6 +499,75 @@
           }
         }
       ]
+    },
+    {
+      "id": "vanishing-gradient",
+      "title_fa": "ضرب مشتق ها در پس انتشار زمانی",
+      "pages": [
+        52
+      ],
+      "code_file": "s04_vanishing_gradient.py",
+      "starter_sha256": "e92459f209125c33f621c0367d4d986083217d7d8163dfc253de71ab2e06aa19",
+      "reference": {
+        "signals": [
+          0.25,
+          0.0625,
+          0.015625,
+          0.00390625
+        ],
+        "final": 0.00390625,
+        "rounded_source": 0.004
+      },
+      "questions": [
+        {
+          "id": "exact",
+          "source_kind": "original",
+          "source_page": 52,
+          "prompt_fa": "حاصل دقیق چهار عامل 0.25 چقدر است؟",
+          "solution_fa": "چهار بار ضرب در 0.25 مقدار 0.00390625 می دهد که اسلاید به 0.004 گرد کرده است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "0.00390625",
+              "0.04",
+              "0.25"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "rounded",
+          "source_kind": "original",
+          "source_page": 52,
+          "prompt_fa": "عدد 0.004 در شکل چگونه به دست آمده است؟",
+          "solution_fa": "حاصل دقیق 0.00390625 با سه رقم اعشار به 0.004 گرد می شود.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "گرد کردن حاصل دقیق",
+              "حاصل جمع مشتق ها",
+              "انتخاب نرخ یادگیری"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "effect",
+          "source_kind": "original",
+          "source_page": 52,
+          "prompt_fa": "اگر عامل 0.25 در گام های بیشتری تکرار شود، حاصل چه می شود؟",
+          "solution_fa": "ضرب پیاپی عددی بین صفر و یک، قدر مطلق حاصل را کم می کند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "کوچک تر می شود",
+              "ثابت می ماند",
+              "همیشه بزرگ تر می شود"
+            ],
+            "correct_index": 0
+          }
+        }
+      ]
     }
   ]
 }

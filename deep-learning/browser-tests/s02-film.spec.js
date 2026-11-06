@@ -557,3 +557,22 @@ test('lab preparation slide separates both instructions',async({browser})=>{
   }finally{await context.close();}
  }
 });
+
+test('existing zoom makes mobile slides pannable without losing the source layout',async({browser})=>{
+ for(const n of [30,39]){
+  const context=await browser.newContext({viewport:{width:390,height:900},isMobile:true,hasTouch:true});
+  try{
+   const page=await context.newPage();await page.goto(`/deep-learning/terms/spring-2026/s02/slides/#page=${n}`);
+   await page.waitForFunction(n=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===n,n);
+   await page.locator('[data-view-translation]').click();
+   const stage=page.locator('.reader-slide-stage'), panel=page.locator('.reader-translation');
+   await expect(stage).toBeVisible();await expect.poll(async()=> (await stage.boundingBox()).width).toBeLessThan(400);
+   const initial=(await stage.boundingBox()).width;
+   for(let i=0;i<4;i++)await page.locator('[data-zoom-in]').click();
+   await expect.poll(async()=> (await stage.boundingBox()).width).toBeGreaterThan(initial*1.9);
+   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+   const dimensions=await panel.evaluate(node=>{node.scrollLeft=-node.scrollWidth;return {width:node.clientWidth,scrollWidth:node.scrollWidth,scrollLeft:node.scrollLeft}});
+   expect(dimensions.scrollWidth).toBeGreaterThan(dimensions.width);expect(dimensions.scrollLeft).toBeLessThan(0);
+  }finally{await context.close();}
+ }
+});

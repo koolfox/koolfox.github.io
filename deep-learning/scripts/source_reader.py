@@ -744,7 +744,7 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
 <body class="source-reader" data-mobile-view="source" data-reader-section="slides">
 <a class="skip" href="#reader">رفتن به اسلاید و ترجمه</a>
 <header class="reader-header">
-<div class="reader-heading"><a href="{BASE}/terms/{term_id}/">فهرست اسلایدها</a>
+<div class="reader-heading"><a href="{BASE}/terms/{term_id}/" aria-label="بازگشت به فهرست اسلایدها" title="فهرست اسلایدها">فهرست اسلایدها</a>
 <p>{e(term.get('title_fa', TERM_TITLES[term_id]))}</p><h1>{e(title)}</h1>
 <p class="reader-instructor">استاد: دکتر نگار مجمع</p></div>
 <img class="deck-logo" src="{BASE}/assets/university-logo.png" alt="نشان مؤسسه آموزش عالی نقش جهان" width="100" height="104">
@@ -752,16 +752,16 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
 </header>
 <main id="reader">
 <div class="reader-toolbar" aria-label="کنترل‌های مطالعه">
-<button type="button" data-prev-page aria-label="صفحهٔ قبل" disabled>قبلی</button>
+<button type="button" data-prev-page aria-label="صفحهٔ قبل" title="صفحهٔ قبل" disabled>قبلی</button>
 <label>صفحه <select data-page-select aria-label="انتخاب صفحه">{options}<option value="sources">منابع</option></select></label>
 <span data-page-total>از <bdi data-page-count>{count}</bdi></span>
-<button type="button" data-next-page aria-label="صفحهٔ بعد">بعدی</button>
-<button type="button" data-zoom-out aria-label="کوچک‌نمایی">−</button>
-<button type="button" data-zoom-in aria-label="بزرگ‌نمایی">+</button>
-<button type="button" data-fullscreen>تمام‌صفحه</button>
-<button type="button" data-print>چاپ</button>
-<button type="button" data-source-only-toggle aria-pressed="false">نمای ارائه</button>
-<button type="button" data-page-experiment hidden>کاوش این اسلاید</button>
+<button type="button" data-next-page aria-label="صفحهٔ بعد" title="صفحهٔ بعد">بعدی</button>
+<button type="button" data-zoom-out aria-label="کوچک‌نمایی" title="کوچک‌نمایی">−</button>
+<button type="button" data-zoom-in aria-label="بزرگ‌نمایی" title="بزرگ‌نمایی">+</button>
+<button type="button" data-fullscreen title="تمام‌صفحه">تمام‌صفحه</button>
+<button type="button" data-print aria-label="چاپ" title="چاپ">چاپ</button>
+<button type="button" data-source-only-toggle aria-label="نمای ارائه" title="نمای ارائه" aria-pressed="false">نمای ارائه</button>
+<button type="button" data-page-experiment title="کاوش این اسلاید" hidden>کاوش این اسلاید</button>
 <button type="button" data-play-slides aria-pressed="false" hidden>پخش مراحل</button>
 <button type="button" data-retry-load hidden>تلاش دوباره</button>
 <div class="reader-view-controls" role="group" aria-label="زبان نمایش اسلاید">

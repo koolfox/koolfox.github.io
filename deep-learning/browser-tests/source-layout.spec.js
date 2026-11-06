@@ -1038,3 +1038,13 @@ test('session 1 grading table exposes exact semantic values', async ({page}) => 
   await expect(table.locator('tbody tr').nth(2)).toContainText('30%');
   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
 });
+
+test('session 1 experience timeline preserves the four eras and source images', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=83'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'دانشجوی دکتری'})).toBeVisible();
+  await expect(regions.filter({hasText:'پژوهشگر پسادکتری'})).toBeVisible();
+  await expect(regions.filter({hasText:'استادیار'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

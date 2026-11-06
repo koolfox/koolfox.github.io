@@ -22,3 +22,10 @@ test('session 1 research question retains source canvas', async ({ page }) => {
   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout', 'source-canvas');
   await expect(page.locator('.reader-slide-text')).toHaveCount(2);
 });
+
+test('session 1 questions slide keeps its source canvas', async ({ page }) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=81');
+  await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 81);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout', 'source-canvas');
+  await expect(page.locator('.reader-slide-text')).toHaveCount(5);
+});

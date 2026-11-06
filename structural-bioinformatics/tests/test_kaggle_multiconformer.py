@@ -38,3 +38,34 @@ def test_rejects_changed_reference(tmp_path, monkeypatch):
     with pytest.raises(ValueError, match="reference hash mismatch"):
         builder.build(tmp_path / "output")
     assert not (tmp_path / "output").exists()
+
+
+def test_new_text_avoids_persian_diacritics_and_hamza():
+    import unicodedata
+
+    paths = [
+        PROJECT / "kaggle/MULTICONFORMER.md",
+        PROJECT / "kaggle/build_multiconformer.py",
+        PROJECT / "kaggle/multiconformer_runner.py",
+        PROJECT / "kaggle/check_multiconformer_output.py",
+        Path(__file__),
+    ]
+    forbidden = {
+        "\u0621",
+        "\u0623",
+        "\u0624",
+        "\u0625",
+        "\u0626",
+        "\u0674",
+        "\u06c0",
+        "\u06c2",
+        "\u06d3",
+    }
+    for path in paths:
+        text = path.read_text()
+        assert not any(
+            c in forbidden
+            or ("\u064b" <= c <= "\u065f")
+            or ("\u06d6" <= c <= "\u06ed" and unicodedata.combining(c))
+            for c in text
+        ), path

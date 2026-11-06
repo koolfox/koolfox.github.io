@@ -39,7 +39,7 @@ def build(destination):
     dest.mkdir(parents=True, exist_ok=False)
     (dest / "experiment.py").write_text(script)
     metadata = {
-        "id": "lakookoo/bioops-7ta3-multiconformer",
+        "id": "lakookoo/bioops-7ta3-multiconformer-feasibility",
         "title": "Bioops 7TA3 multiconformer feasibility",
         "code_file": "experiment.py",
         "language": "python",

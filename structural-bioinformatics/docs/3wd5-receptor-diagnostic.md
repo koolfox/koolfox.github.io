@@ -159,3 +159,40 @@ modeling and validation procedure that treats both cysteine side chains, local
 backbone and crystal neighbors, missing regions and protonation, and tests
 support from diffraction data without treating model-biased map agreement as
 independent proof.
+
+
+---
+
+## 3WD5 multichain rotamer repair exploration
+
+**Outcome: a reproducible preparation candidate, not an accepted repair or experimental validation.** This extends the earlier sulfur-rotation scan and failed 7TA3 template transfer; it does not introduce a new refinement algorithm. It tests a broader geometric screen, a controlled recovery example, the reconstructed three-chain environment, the unchanged input guard and unmodified Meeko. It does not establish the actual sulfur positions or justify docking. [Script](../scripts/explore_3wd5_rotamer_repair.py); [complete numeric record](../data/processed/3wd5-rotamer-repair-exploration.json); [previous investigation](3wd5-trimer-receptor-investigation.md); [density limitations](3wd5-local-density-comparison.md).
+
+### Method and boundaries
+
+On 2026-11-06 UTC, use the hash-checked deposited [3WD5](https://www.rcsb.org/structure/3WD5), reconstructed trimer/three Fab model and deposited [7TA3](https://www.rcsb.org/structure/7TA3), plus the hash-checked 3WD5 validation coefficients and derived map. The map is regenerated voxel-for-voxel from those coefficients using the same Gemmi implementation. The previously documented 3.10 Å map uses observed amplitudes and model-derived phases, so its values are model-biased and not independent evidence. See the earlier density report for provenance and sampling details.
+
+Rotate each sulfur around its own CA–CB bond in 2° steps (32,400 pairs), preserving each original CB–SG length and CA–CB–SG angle and leaving the rest of the structure fixed. Screen SG–SG 1.9–2.2 Å, each CB–SG–SG angle 95–115°, minimum 2.5 Å to other occupied heavy atoms of the deposited A/H/L protein model (including the other cysteine's backbone), and absolute CB–SG–SG–CB torsion 60–120°. The new, intentionally broad, sign-neutral torsion window is an exploratory filter, not a complete rotamer library or acceptance criterion. Disulfide stereochemistry is conventionally described by multiple torsions and bond geometry; see the [disulfide geometry analysis](https://www.jthjournal.org/article/S1538-7836%2822%2911523-0/fulltext). The new filter and tests were chosen after the earlier scan and density results were known; they are not preregistered.
+
+Choose the passing point with minimum sum of squared sulfur displacements from deposited positions, without using density or known 7TA3 answers to select it. Compute density only afterward. For every point, independently inspect nearest occupied protein heavy atoms in the reconstructed A/B/C/H/L/I/M/J/N model, applying the existing coordinate permutations to each candidate. This is a finite reconstructed model, not the full crystal; water and other omitted components are not checked. These nearest distances do not constitute an all-atom clashscore, stereochemical validation, or full crystal contact analysis. The sulfur pair itself is evaluated separately. The fixed backbone and coarse 2° grid exclude other conformations and possible coupled relaxation; no energy minimization or refinement was performed.
+
+### Results and real-structure control
+
+Ten 3WD5 grid points pass these screens. The selected point is the **same** −90°/−10° point from the prior scan, not a newly identified conformation. Its two sulfur displacements are 2.354 and 0.285 Å; SG–SG is 1.904 Å, angles are 102.16° and 95.39°, and signed dihedral is +69.05°. Its nearest other occupied heavy-atom distances in each of the three reconstructed copies are 2.768 and 2.867 Å. This comparison includes reconstructed Fab atoms, but excludes unmodeled crystal neighbors and waters. Among all ten candidates the smallest reported nearest distance is 2.750 Å. These crude thresholds are permissive: passing does not mean the local stereochemistry or environment is correct.
+
+For the selected candidate, the Cys69 and Cys101 SG center densities are 0.438σ and 1.403σ versus deposited values 2.380σ and 1.437σ. Cys69 sphere means are 0.714σ versus 2.086σ, based on three versus four voxels respectively. These are descriptive samples from the same model-biased map, not independent sulfur observations, a formal fit score or proof against the candidate. No density-based search or cross-validation was done. The poor Cys69 support and large displacement remain serious limitations.
+
+As a bounded real-structure exercise, take the two observed 7TA3 TNF chains B and D, artificially rotate their known sulfurs +20°/−20°, and apply the same search and minimum-displacement rule with the rest of 7TA3 fixed. Compare the selected sulfurs afterward to the withheld deposited positions. B and D yield 39 and 36 passing grid points; selected sulfur RMSDs are **0.204 Å and 0.173 Å**, respectively. These are real deposited structures with synthetic distortions, not experimental validation of a repair. The two chains are related observations, the distortions are small and chosen here, and the native coordinates and screening rules were available during method development. This control does not measure general recovery, identify the correct 3WD5 rotamer, or validate its density fit. The test suite also checks a blocking-neighbor negative control and rotation invariants.
+
+The selected 3WD5 sulfur positions were temporarily propagated by the established symmetry permutations to A/B/C, rounded to PDB precision; all other selected ATOM records remained unchanged. The normal chain inspection returned `requires_further_validation` for each chain, and the existing close-cysteine guard passed without modification. Unmodified Meeko 0.8.0 returned exit 0 and produced a temporary rigid PDBQT, which was deleted with the temporary directory. The record captures the temporary input hash, program hash, stdout and stderr. This is a **software compatibility result**, not evidence that the candidate chemistry, protonation, missing residues, terminal chemistry, receptor preparation, or ligand binding is correct. No docking was run; no candidate coordinates or prepared receptor are published. Prior negative controls on the original coordinates remain unchanged.
+
+### Reproduction
+
+No files are fetched or installed by this command. Supply the original validation coefficients and the previously generated map whose SHA-256 values match the record, and a compatible pre-existing Meeko installation:
+
+```sh
+/opt/anaconda3/envs/tnf-docking/bin/python structural-bioinformatics/scripts/explore_3wd5_rotamer_repair.py \
+  --map PATH_TO_3WD5_MAP --coefficients PATH_TO_3WD5_COEFFICIENTS.cif.gz \
+  --meeko /opt/anaconda3/envs/tnf-docking/bin/mk_prepare_receptor.py
+```
+
+The script validates source, reconstruction, template, coefficients and map hashes and records package versions and its own hash. External map files are not committed. Repeating on another system may change floating-point details or Meeko output; verify the program and dependencies. A defensible next step would require a documented crystallographic refinement/alternative-model comparison, the appropriate experimental reflections and unbiased or carefully interpreted maps, explicit full-environment and stereochemical review, and independent controls before considering receptor use.

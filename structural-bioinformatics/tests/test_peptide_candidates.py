@@ -126,3 +126,47 @@ def test_recorded_reference_variants_link_to_docking_output():
             row["poses_sha256"]
             == hashlib.sha256((root / row["sequence"] / "poses.pdbqt").read_bytes()).hexdigest()
         )
+
+
+def test_variant_budget_can_exceed_one_docking_batch():
+    rows = variants("AR", [1, 2], "ACDEFGHIKLMNPQRSTVWY", True, 40)
+    assert len(rows) == 39
+    assert len({r["sequence"] for r in rows}) == 39
+
+
+def test_real_eight_residue_antibody_fragment_and_variants(tmp_path):
+    from pathlib import Path
+
+    project = Path(__file__).resolve().parents[1]
+    output = tmp_path / "eight"
+    args = [
+        sys.executable,
+        "-m",
+        "peptide_lab.candidates",
+        "--drug-pdb",
+        str(project / "assets/3wd5.pdb"),
+        "--drug-chain",
+        "H",
+        "--start",
+        "2",
+        "--end",
+        "9",
+        "--position",
+        "1",
+        "--alphabet",
+        "AC",
+        "--include-seed",
+        "--max-sequences",
+        "3",
+        "--output-dir",
+        str(output),
+    ]
+    subprocess.run(args, check=True, capture_output=True, text=True)
+    manifest = json.loads((output / "manifest.json").read_text())
+    assert manifest["seed"] == "VQLVESGG"
+    assert manifest["source_record"]["author_residue_numbers"] == list(range(2, 10))
+    assert [row["sequence"] for row in manifest["candidates"]] == [
+        "VQLVESGG",
+        "AQLVESGG",
+        "CQLVESGG",
+    ]

@@ -1,0 +1,40 @@
+REMARK SMILES CC(C)[C@H]([NH3+])C(=O)N[C@@H](CS)C(=O)[O-]
+REMARK SMILES IDX 6 1 7 2 8 3 4 5 5 6 2 10 1 11 3 12 9 13 12 14 13 15 14 16
+REMARK SMILES IDX 10 17 11 18
+REMARK H PARENT 8 4 5 7 5 8 5 9 11 19
+ROOT
+ATOM      1  C   VAL A   1       0.469   0.624  -0.810  1.00  0.00    +0.278 C 
+ATOM      2  O   VAL A   1       1.151   1.417  -1.453  1.00  0.00    -0.268 OA
+ATOM      3  N   CYS A   2       0.784   0.208   0.474  1.00  0.00    -0.342 N 
+ATOM      4  H   UNL     1       0.169  -0.465   0.905  1.00  0.00    +0.164 HD
+ENDROOT
+BRANCH   1   5
+ATOM      5  CA  VAL A   1      -0.774  -0.040  -1.444  1.00  0.00    +0.273 C 
+BRANCH   5   6
+ATOM      6  N   VAL A   1      -0.728  -1.533  -1.310  1.00  0.00    -0.347 N 
+ATOM      7  H   UNL     1      -1.163  -1.931  -0.478  1.00  0.00    +0.345 HD
+ATOM      8  H   UNL     1      -1.006  -2.048  -2.146  1.00  0.00    +0.345 HD
+ATOM      9  H   UNL     1       0.287  -1.821  -1.156  1.00  0.00    +0.345 HD
+ENDBRANCH   5   6
+BRANCH   5  10
+ATOM     10  CB  VAL A   1      -2.136   0.495  -0.965  1.00  0.00    +0.051 C 
+ATOM     11  CG1 VAL A   1      -2.297   1.972  -1.341  1.00  0.00    +0.014 C 
+ATOM     12  CG2 VAL A   1      -2.420   0.316   0.529  1.00  0.00    +0.014 C 
+ENDBRANCH   5  10
+ENDBRANCH   1   5
+BRANCH   3  13
+ATOM     13  CA  CYS A   2       2.203  -0.185   0.705  1.00  0.00    +0.138 C 
+BRANCH  13  14
+ATOM     14  C   CYS A   2       2.461  -1.631   0.144  1.00  0.00    +0.065 C 
+ATOM     15  O   CYS A   2       3.576  -2.155   0.367  1.00  0.00    -0.548 OA
+ATOM     16  OXT CYS A   2       1.446  -2.122  -0.471  1.00  0.00    -0.548 OA
+ENDBRANCH  13  14
+BRANCH  13  17
+ATOM     17  CB  CYS A   2       2.572  -0.261   2.188  1.00  0.00    +0.097 C 
+BRANCH  17  18
+ATOM     18  SG  CYS A   2       2.197   1.284   3.089  1.00  0.00    -0.177 SA
+ATOM     19  H   UNL     1       2.837   0.950   4.219  1.00  0.00    +0.102 HD
+ENDBRANCH  17  18
+ENDBRANCH  13  17
+ENDBRANCH   3  13
+TORSDOF 7

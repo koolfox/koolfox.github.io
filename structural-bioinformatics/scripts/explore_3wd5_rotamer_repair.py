@@ -2,7 +2,10 @@
 """Enumerate rigid cysteine rotamers; report diagnostics, not a receptor."""
 
 import hashlib
+import itertools
 import json
+import math
+import os
 import subprocess
 import sys
 import tempfile
@@ -124,16 +127,122 @@ def summarize(row):
     return {k: v for k, v in row.items() if k != "positions"}
 
 
+def candidate_sulfurs(positions):
+    """Return the six candidate sulfurs in the reconstructed coordinate frame."""
+    return {
+        ("ABC"[i], residue): np.asarray(pos)[list(perm)]
+        for i, perm in enumerate(((0, 1, 2), (1, 2, 0), (2, 0, 1)))
+        for residue, pos in zip((69, 101), positions, strict=True)
+    }
+
+
+def interchain_sulfur_pairs(sulfurs):
+    """Measure all unique inter-chain pairs, excluding the covalent intra-chain pairs."""
+    expected = {(chain, residue) for chain in "ABC" for residue in (69, 101)}
+    if set(sulfurs) != expected:
+        raise ValueError("Expected exactly the six A/B/C candidate sulfurs")
+    pairs = []
+    for left, right in itertools.combinations(sorted(sulfurs), 2):
+        if left[0] == right[0]:
+            continue
+        distance = float(np.linalg.norm(sulfurs[left] - sulfurs[right]))
+        if not math.isfinite(distance):
+            raise ValueError("Nonfinite sulfur distance")
+        pairs.append(
+            {
+                "atoms": [f"{left[0]}:{left[1]}:SG", f"{right[0]}:{right[1]}:SG"],
+                "distance_angstrom": distance,
+            }
+        )
+    return pairs
+
+
+def summarize_atom_records(raw, *, pdbqt=False):
+    """Describe exact PDB/PDBQT bytes; fail on malformed atom lines."""
+    chains = {}
+    atom_types = {}
+    record_types = {}
+    atom_records = 0
+    charge_sum = 0.0
+    for line in raw.decode("ascii").splitlines():
+        if line[:6].strip() not in ("ATOM", "HETATM"):
+            continue
+        if len(line) < (78 if pdbqt else 54):
+            raise ValueError("Truncated atom record")
+        record_type = line[:6].strip()
+        record_types[record_type] = record_types.get(record_type, 0) + 1
+        chain = line[21].strip() or "<blank>"
+        residue = (line[17:20].strip(), line[22:26].strip(), line[26].strip())
+        if not line[12:16].strip() or not residue[0] or not residue[1]:
+            raise ValueError("Incomplete atom identity")
+        coords = [float(line[start : start + 8]) for start in (30, 38, 46)]
+        if not all(math.isfinite(x) for x in coords):
+            raise ValueError("Nonfinite atom coordinate")
+        entry = chains.setdefault(chain, {"atom_records": 0, "residues": set()})
+        entry["atom_records"] += 1
+        entry["residues"].add(residue)
+        atom_records += 1
+        if pdbqt:
+            atom_type = line[77:].strip()
+            charge = float(line[70:76])
+            if not atom_type or not math.isfinite(charge):
+                raise ValueError("Invalid PDBQT charge or atom type")
+            atom_types[atom_type] = atom_types.get(atom_type, 0) + 1
+            charge_sum += charge
+    if not atom_records:
+        raise ValueError("No atom records")
+    result = {
+        "sha256": hashlib.sha256(raw).hexdigest(),
+        "bytes": len(raw),
+        "atom_records": atom_records,
+        "record_types": record_types,
+        "chains": {
+            c: {"atom_records": info["atom_records"], "residues": len(info["residues"])}
+            for c, info in sorted(chains.items())
+        },
+    }
+    if pdbqt:
+        result["autodock_atom_types"] = dict(sorted(atom_types.items()))
+        result["sum_of_rounded_partial_charges"] = round(charge_sum, 6)
+    return result
+
+
+def meeko_process_environment():
+    """Avoid cross-interpreter imports from the caller environment."""
+    return {
+        key: value for key, value in os.environ.items() if key not in ("PYTHONPATH", "PYTHONHOME")
+    }
+
+
+def meeko_environment(meeko):
+    """Query the interpreter named by the executable, not this process by assumption."""
+    first = Path(meeko).read_text().splitlines()[0]
+    if not first.startswith("#!/") or " " in first:
+        raise ValueError("Expected an absolute, argument-free Python shebang for Meeko")
+    interpreter = first[2:]
+    code = (
+        "import importlib.metadata as m,json,platform,sys; "
+        "names=('meeko','rdkit','numpy','scipy','gemmi','biopython'); "
+        "print(json.dumps({'python':sys.version.split()[0], 'executable':sys.executable, "
+        "'platform':platform.platform(), 'packages':{n:m.version(n) for n in names}, "
+        "'meeko_declared_requirements':m.requires('meeko')}))"
+    )
+    proc = subprocess.run(
+        [interpreter, "-c", code],
+        capture_output=True,
+        text=True,
+        check=True,
+        env=meeko_process_environment(),
+    )
+    return json.loads(proc.stdout)
+
+
 def probe_candidate(row, meeko):
     """Apply symmetry copies in a temporary file; run the unmodified guard and Meeko."""
     sys.path.insert(0, str(PROJECT / "src"))
     from peptide_lab.receptor_input import inspect_pdb, reject_close_cysteine_contacts
 
-    positions = {
-        ("ABC"[i], n): pos[list(perm)]
-        for i, perm in enumerate(((0, 1, 2), (1, 2, 0), (2, 0, 1)))
-        for n, pos in zip((69, 101), row["positions"], strict=True)
-    }
+    positions = candidate_sulfurs(row["positions"])
     records = []
     changed = 0
     for line in TRIMER.read_text().splitlines(keepends=True):
@@ -150,6 +259,7 @@ def probe_candidate(row, meeko):
     with tempfile.TemporaryDirectory(prefix="3wd5-candidate-") as tmp:
         path = Path(tmp) / "candidate.pdb"
         path.write_text("".join(records) + "END\n")
+        input_summary = summarize_atom_records(path.read_bytes())
         model = PDBParser(QUIET=True, PERMISSIVE=False).get_structure("candidate", path)
         try:
             inspections = {cid: inspect_pdb(path, cid)["status"] for cid in "ABC"}
@@ -161,14 +271,24 @@ def probe_candidate(row, meeko):
             capture_output=True,
             text=True,
             check=False,
+            env=meeko_process_environment(),
         )
+        output = Path(tmp) / "candidate.pdbqt"
+        output_summary = (
+            summarize_atom_records(output.read_bytes(), pdbqt=True) if output.is_file() else None
+        )
+        if result.returncode == 0 and output_summary is None:
+            raise ValueError("Meeko reported success without a PDBQT file")
         return {
             "guard": "passed",
+            "input_atom_selection": input_summary,
+            "environment": meeko_environment(meeko),
             "candidate_pdb_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
             "meeko_program_sha256": hashlib.sha256(Path(meeko).read_bytes()).hexdigest(),
             "chain_inspections": inspections,
             "meeko": {
                 "exit_code": result.returncode,
+                "output_pdbqt": output_summary,
                 "stdout": result.stdout.replace(tmp, "<temporary>"),
                 "stderr": result.stderr.replace(tmp, "<temporary>"),
                 "output_files": sorted(p.name for p in Path(tmp).iterdir() if p != path),
@@ -229,7 +349,13 @@ def run(map_path, coefficients, meeko):
 
     for row in rows:
         row["density"] = [sample(grid, p, mean, sigma) for p in row["positions"]]
-        row["multichain_nearest"] = multichain(row)
+        row["multichain_nearest_excluding_candidate_sulfurs"] = multichain(row)
+        pairs = interchain_sulfur_pairs(candidate_sulfurs(row["positions"]))
+        row["interchain_sulfur_pairs"] = pairs
+        row["interchain_sulfur_min_angstrom"] = min(p["distance_angstrom"] for p in pairs)
+        row["interchain_sulfur_all_at_least_2_5_angstrom"] = all(
+            p["distance_angstrom"] >= 2.5 for p in pairs
+        )
     # Real structure, synthetic perturbation: known sulfurs are withheld from the selection.
     control_model = parser.get_structure("control", TEMPLATE)[0]
     controls = {}

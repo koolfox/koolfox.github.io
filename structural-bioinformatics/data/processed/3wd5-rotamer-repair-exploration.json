@@ -6,7 +6,7 @@
     "map": "9bfadd1b1f4ef8b4746129f4668ffe8c0c1e873faa206e96265646f3c3a5922d",
     "coefficients": "4a4f2d98a9f1bdaaf9ffa70115be757d96f2e881dfef9d9b01c332c7864c0322"
   },
-  "script_sha256": "47d449b3f1b6396ad5ee0634550fdd2b3dd59e4cec01fcc6bc7a71bc1866d2b5",
+  "script_sha256": "3b891f0df7c0899b0da5901d9a65b83556d7202ba8fcd56459237394dd244986",
   "versions": {
     "biopython": "1.86",
     "numpy": "2.5.4",
@@ -65,7 +65,7 @@
         "sphere_max_sigma": 2.0125786934028627
       }
     ],
-    "multichain_nearest": [
+    "multichain_nearest_excluding_candidate_sulfurs": [
       [
         2.7677432005697393,
         "A",
@@ -102,7 +102,95 @@
         69,
         "CB"
       ]
-    ]
+    ],
+    "interchain_sulfur_pairs": [
+      {
+        "atoms": [
+          "A:69:SG",
+          "B:69:SG"
+        ],
+        "distance_angstrom": 15.252848373036716
+      },
+      {
+        "atoms": [
+          "A:69:SG",
+          "B:101:SG"
+        ],
+        "distance_angstrom": 14.432788179035805
+      },
+      {
+        "atoms": [
+          "A:69:SG",
+          "C:69:SG"
+        ],
+        "distance_angstrom": 15.252848373036715
+      },
+      {
+        "atoms": [
+          "A:69:SG",
+          "C:101:SG"
+        ],
+        "distance_angstrom": 15.318351788798878
+      },
+      {
+        "atoms": [
+          "A:101:SG",
+          "B:69:SG"
+        ],
+        "distance_angstrom": 15.318351788798878
+      },
+      {
+        "atoms": [
+          "A:101:SG",
+          "B:101:SG"
+        ],
+        "distance_angstrom": 14.360986168141823
+      },
+      {
+        "atoms": [
+          "A:101:SG",
+          "C:69:SG"
+        ],
+        "distance_angstrom": 14.432788179035803
+      },
+      {
+        "atoms": [
+          "A:101:SG",
+          "C:101:SG"
+        ],
+        "distance_angstrom": 14.360986168141824
+      },
+      {
+        "atoms": [
+          "B:69:SG",
+          "C:69:SG"
+        ],
+        "distance_angstrom": 15.252848373036716
+      },
+      {
+        "atoms": [
+          "B:69:SG",
+          "C:101:SG"
+        ],
+        "distance_angstrom": 14.432788179035805
+      },
+      {
+        "atoms": [
+          "B:101:SG",
+          "C:69:SG"
+        ],
+        "distance_angstrom": 15.318351788798877
+      },
+      {
+        "atoms": [
+          "B:101:SG",
+          "C:101:SG"
+        ],
+        "distance_angstrom": 14.360986168141824
+      }
+    ],
+    "interchain_sulfur_min_angstrom": 14.360986168141823,
+    "interchain_sulfur_all_at_least_2_5_angstrom": true
   },
   "all_candidate_summaries": [
     {
@@ -140,7 +228,7 @@
           "sphere_max_sigma": 2.0125786934028627
         }
       ],
-      "multichain_nearest": [
+      "multichain_nearest_excluding_candidate_sulfurs": [
         [
           2.7677432005697393,
           "A",
@@ -177,7 +265,95 @@
           69,
           "CB"
         ]
-      ]
+      ],
+      "interchain_sulfur_pairs": [
+        {
+          "atoms": [
+            "A:69:SG",
+            "B:69:SG"
+          ],
+          "distance_angstrom": 15.252848373036716
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "B:101:SG"
+          ],
+          "distance_angstrom": 14.432788179035805
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.252848373036715
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 15.318351788798878
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "B:69:SG"
+          ],
+          "distance_angstrom": 15.318351788798878
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "B:101:SG"
+          ],
+          "distance_angstrom": 14.360986168141823
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 14.432788179035803
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.360986168141824
+        },
+        {
+          "atoms": [
+            "B:69:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.252848373036716
+        },
+        {
+          "atoms": [
+            "B:69:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.432788179035805
+        },
+        {
+          "atoms": [
+            "B:101:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.318351788798877
+        },
+        {
+          "atoms": [
+            "B:101:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.360986168141824
+        }
+      ],
+      "interchain_sulfur_min_angstrom": 14.360986168141823,
+      "interchain_sulfur_all_at_least_2_5_angstrom": true
     },
     {
       "rotation_degrees": [
@@ -214,7 +390,7 @@
           "sphere_max_sigma": 2.0125786934028627
         }
       ],
-      "multichain_nearest": [
+      "multichain_nearest_excluding_candidate_sulfurs": [
         [
           2.816656763586628,
           "A",
@@ -251,7 +427,95 @@
           69,
           "CB"
         ]
-      ]
+      ],
+      "interchain_sulfur_pairs": [
+        {
+          "atoms": [
+            "A:69:SG",
+            "B:69:SG"
+          ],
+          "distance_angstrom": 15.294145589818688
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "B:101:SG"
+          ],
+          "distance_angstrom": 14.458721548517461
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.294145589818688
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 15.341620110729037
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "B:69:SG"
+          ],
+          "distance_angstrom": 15.341620110729037
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "B:101:SG"
+          ],
+          "distance_angstrom": 14.369243594146003
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 14.458721548517461
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.369243594146003
+        },
+        {
+          "atoms": [
+            "B:69:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.294145589818688
+        },
+        {
+          "atoms": [
+            "B:69:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.458721548517461
+        },
+        {
+          "atoms": [
+            "B:101:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.341620110729037
+        },
+        {
+          "atoms": [
+            "B:101:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.369243594146003
+        }
+      ],
+      "interchain_sulfur_min_angstrom": 14.369243594146003,
+      "interchain_sulfur_all_at_least_2_5_angstrom": true
     },
     {
       "rotation_degrees": [
@@ -288,7 +552,7 @@
           "sphere_max_sigma": 2.0125786934028627
         }
       ],
-      "multichain_nearest": [
+      "multichain_nearest_excluding_candidate_sulfurs": [
         [
           2.816656763586628,
           "A",
@@ -325,7 +589,95 @@
           69,
           "CB"
         ]
-      ]
+      ],
+      "interchain_sulfur_pairs": [
+        {
+          "atoms": [
+            "A:69:SG",
+            "B:69:SG"
+          ],
+          "distance_angstrom": 15.294145589818688
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "B:101:SG"
+          ],
+          "distance_angstrom": 14.439844409841223
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.294145589818688
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 15.358670519685898
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "B:69:SG"
+          ],
+          "distance_angstrom": 15.3586705196859
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "B:101:SG"
+          ],
+          "distance_angstrom": 14.360986168141823
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 14.439844409841223
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.360986168141824
+        },
+        {
+          "atoms": [
+            "B:69:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.294145589818688
+        },
+        {
+          "atoms": [
+            "B:69:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.439844409841223
+        },
+        {
+          "atoms": [
+            "B:101:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.3586705196859
+        },
+        {
+          "atoms": [
+            "B:101:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.360986168141824
+        }
+      ],
+      "interchain_sulfur_min_angstrom": 14.360986168141823,
+      "interchain_sulfur_all_at_least_2_5_angstrom": true
     },
     {
       "rotation_degrees": [
@@ -362,7 +714,7 @@
           "sphere_max_sigma": 2.0125786934028627
         }
       ],
-      "multichain_nearest": [
+      "multichain_nearest_excluding_candidate_sulfurs": [
         [
           2.8653516501085883,
           "A",
@@ -399,7 +751,95 @@
           69,
           "CB"
         ]
-      ]
+      ],
+      "interchain_sulfur_pairs": [
+        {
+          "atoms": [
+            "A:69:SG",
+            "B:69:SG"
+          ],
+          "distance_angstrom": 15.334190088026473
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "B:101:SG"
+          ],
+          "distance_angstrom": 14.483193119029364
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.334190088026473
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 15.363110705486353
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "B:69:SG"
+          ],
+          "distance_angstrom": 15.363110705486353
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "B:101:SG"
+          ],
+          "distance_angstrom": 14.375349325732312
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 14.483193119029364
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.375349325732312
+        },
+        {
+          "atoms": [
+            "B:69:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.334190088026473
+        },
+        {
+          "atoms": [
+            "B:69:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.483193119029364
+        },
+        {
+          "atoms": [
+            "B:101:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.363110705486353
+        },
+        {
+          "atoms": [
+            "B:101:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.375349325732312
+        }
+      ],
+      "interchain_sulfur_min_angstrom": 14.375349325732312,
+      "interchain_sulfur_all_at_least_2_5_angstrom": true
     },
     {
       "rotation_degrees": [
@@ -436,7 +876,7 @@
           "sphere_max_sigma": 2.0125786934028627
         }
       ],
-      "multichain_nearest": [
+      "multichain_nearest_excluding_candidate_sulfurs": [
         [
           2.8653516501085883,
           "A",
@@ -473,7 +913,95 @@
           69,
           "CB"
         ]
-      ]
+      ],
+      "interchain_sulfur_pairs": [
+        {
+          "atoms": [
+            "A:69:SG",
+            "B:69:SG"
+          ],
+          "distance_angstrom": 15.334190088026473
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "B:101:SG"
+          ],
+          "distance_angstrom": 14.466014410410724
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.334190088026473
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 15.380870296450484
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "B:69:SG"
+          ],
+          "distance_angstrom": 15.380870296450484
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "B:101:SG"
+          ],
+          "distance_angstrom": 14.369243594146003
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 14.466014410410724
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.369243594146003
+        },
+        {
+          "atoms": [
+            "B:69:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.334190088026473
+        },
+        {
+          "atoms": [
+            "B:69:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.466014410410724
+        },
+        {
+          "atoms": [
+            "B:101:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.380870296450484
+        },
+        {
+          "atoms": [
+            "B:101:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.369243594146003
+        }
+      ],
+      "interchain_sulfur_min_angstrom": 14.369243594146003,
+      "interchain_sulfur_all_at_least_2_5_angstrom": true
     },
     {
       "rotation_degrees": [
@@ -510,7 +1038,7 @@
           "sphere_max_sigma": 2.0125786934028627
         }
       ],
-      "multichain_nearest": [
+      "multichain_nearest_excluding_candidate_sulfurs": [
         [
           2.8653516501085883,
           "A",
@@ -547,7 +1075,95 @@
           69,
           "CB"
         ]
-      ]
+      ],
+      "interchain_sulfur_pairs": [
+        {
+          "atoms": [
+            "A:69:SG",
+            "B:69:SG"
+          ],
+          "distance_angstrom": 15.334190088026473
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "B:101:SG"
+          ],
+          "distance_angstrom": 14.4471985921966
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.334190088026473
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 15.397985457878974
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "B:69:SG"
+          ],
+          "distance_angstrom": 15.397985457878974
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "B:101:SG"
+          ],
+          "distance_angstrom": 14.360986168141823
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 14.4471985921966
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.360986168141824
+        },
+        {
+          "atoms": [
+            "B:69:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.334190088026473
+        },
+        {
+          "atoms": [
+            "B:69:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.4471985921966
+        },
+        {
+          "atoms": [
+            "B:101:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.397985457878974
+        },
+        {
+          "atoms": [
+            "B:101:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.360986168141824
+        }
+      ],
+      "interchain_sulfur_min_angstrom": 14.360986168141823,
+      "interchain_sulfur_all_at_least_2_5_angstrom": true
     },
     {
       "rotation_degrees": [
@@ -584,7 +1200,7 @@
           "sphere_max_sigma": 2.0125786934028627
         }
       ],
-      "multichain_nearest": [
+      "multichain_nearest_excluding_candidate_sulfurs": [
         [
           2.9137809786103235,
           "A",
@@ -621,7 +1237,95 @@
           69,
           "CB"
         ]
-      ]
+      ],
+      "interchain_sulfur_pairs": [
+        {
+          "atoms": [
+            "A:69:SG",
+            "B:69:SG"
+          ],
+          "distance_angstrom": 15.37290865609576
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "B:101:SG"
+          ],
+          "distance_angstrom": 14.506149086775116
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.372908656095758
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 15.38277308030833
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "B:69:SG"
+          ],
+          "distance_angstrom": 15.38277308030833
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "B:101:SG"
+          ],
+          "distance_angstrom": 14.379272435706937
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 14.506149086775116
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.379272435706937
+        },
+        {
+          "atoms": [
+            "B:69:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.372908656095758
+        },
+        {
+          "atoms": [
+            "B:69:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.506149086775116
+        },
+        {
+          "atoms": [
+            "B:101:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.38277308030833
+        },
+        {
+          "atoms": [
+            "B:101:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.379272435706937
+        }
+      ],
+      "interchain_sulfur_min_angstrom": 14.379272435706937,
+      "interchain_sulfur_all_at_least_2_5_angstrom": true
     },
     {
       "rotation_degrees": [
@@ -658,7 +1362,7 @@
           "sphere_max_sigma": 2.0125786934028627
         }
       ],
-      "multichain_nearest": [
+      "multichain_nearest_excluding_candidate_sulfurs": [
         [
           2.9137809786103235,
           "A",
@@ -695,7 +1399,95 @@
           69,
           "CB"
         ]
-      ]
+      ],
+      "interchain_sulfur_pairs": [
+        {
+          "atoms": [
+            "A:69:SG",
+            "B:69:SG"
+          ],
+          "distance_angstrom": 15.37290865609576
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "B:101:SG"
+          ],
+          "distance_angstrom": 14.490695998423812
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.372908656095758
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 15.401237082254827
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "B:69:SG"
+          ],
+          "distance_angstrom": 15.401237082254827
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "B:101:SG"
+          ],
+          "distance_angstrom": 14.375349325732312
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 14.490695998423812
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.375349325732312
+        },
+        {
+          "atoms": [
+            "B:69:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.372908656095758
+        },
+        {
+          "atoms": [
+            "B:69:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.490695998423812
+        },
+        {
+          "atoms": [
+            "B:101:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.401237082254827
+        },
+        {
+          "atoms": [
+            "B:101:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.375349325732312
+        }
+      ],
+      "interchain_sulfur_min_angstrom": 14.375349325732312,
+      "interchain_sulfur_all_at_least_2_5_angstrom": true
     },
     {
       "rotation_degrees": [
@@ -732,7 +1524,7 @@
           "sphere_max_sigma": 2.0125786934028627
         }
       ],
-      "multichain_nearest": [
+      "multichain_nearest_excluding_candidate_sulfurs": [
         [
           2.9137809786103235,
           "A",
@@ -769,7 +1561,95 @@
           69,
           "CB"
         ]
-      ]
+      ],
+      "interchain_sulfur_pairs": [
+        {
+          "atoms": [
+            "A:69:SG",
+            "B:69:SG"
+          ],
+          "distance_angstrom": 15.37290865609576
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "B:101:SG"
+          ],
+          "distance_angstrom": 14.473588406329398
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.372908656095758
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 15.419071409775386
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "B:69:SG"
+          ],
+          "distance_angstrom": 15.419071409775386
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "B:101:SG"
+          ],
+          "distance_angstrom": 14.369243594146003
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 14.473588406329398
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.369243594146003
+        },
+        {
+          "atoms": [
+            "B:69:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.372908656095758
+        },
+        {
+          "atoms": [
+            "B:69:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.473588406329398
+        },
+        {
+          "atoms": [
+            "B:101:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.419071409775386
+        },
+        {
+          "atoms": [
+            "B:101:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.369243594146003
+        }
+      ],
+      "interchain_sulfur_min_angstrom": 14.369243594146003,
+      "interchain_sulfur_all_at_least_2_5_angstrom": true
     },
     {
       "rotation_degrees": [
@@ -806,7 +1686,7 @@
           "sphere_max_sigma": 2.0125786934028627
         }
       ],
-      "multichain_nearest": [
+      "multichain_nearest_excluding_candidate_sulfurs": [
         [
           2.9137809786103235,
           "A",
@@ -843,7 +1723,95 @@
           69,
           "CB"
         ]
-      ]
+      ],
+      "interchain_sulfur_pairs": [
+        {
+          "atoms": [
+            "A:69:SG",
+            "B:69:SG"
+          ],
+          "distance_angstrom": 15.37290865609576
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "B:101:SG"
+          ],
+          "distance_angstrom": 14.45484131841732
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.372908656095758
+        },
+        {
+          "atoms": [
+            "A:69:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 15.436256553732518
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "B:69:SG"
+          ],
+          "distance_angstrom": 15.436256553732518
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "B:101:SG"
+          ],
+          "distance_angstrom": 14.360986168141823
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 14.454841318417317
+        },
+        {
+          "atoms": [
+            "A:101:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.360986168141824
+        },
+        {
+          "atoms": [
+            "B:69:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.372908656095758
+        },
+        {
+          "atoms": [
+            "B:69:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.454841318417317
+        },
+        {
+          "atoms": [
+            "B:101:SG",
+            "C:69:SG"
+          ],
+          "distance_angstrom": 15.436256553732518
+        },
+        {
+          "atoms": [
+            "B:101:SG",
+            "C:101:SG"
+          ],
+          "distance_angstrom": 14.360986168141824
+        }
+      ],
+      "interchain_sulfur_min_angstrom": 14.360986168141823,
+      "interchain_sulfur_all_at_least_2_5_angstrom": true
     }
   ],
   "synthetic_7ta3_controls": {
@@ -906,6 +1874,42 @@
   },
   "temporary_candidate_probe": {
     "guard": "passed",
+    "input_atom_selection": {
+      "sha256": "fd5a4b1a7c010116571f24bfa2711651bcc757acbd7dfd28aad9d75e586f598e",
+      "bytes": 288445,
+      "atom_records": 3561,
+      "record_types": {
+        "ATOM": 3561
+      },
+      "chains": {
+        "A": {
+          "atom_records": 1187,
+          "residues": 152
+        },
+        "B": {
+          "atom_records": 1187,
+          "residues": 152
+        },
+        "C": {
+          "atom_records": 1187,
+          "residues": 152
+        }
+      }
+    },
+    "environment": {
+      "python": "3.12.15",
+      "executable": "/opt/anaconda3/envs/tnf-docking/bin/python3.12",
+      "platform": "macOS-26.5.1-arm64-arm-64bit",
+      "packages": {
+        "meeko": "0.8.0",
+        "rdkit": "2026.9.1",
+        "numpy": "2.5.4",
+        "scipy": "1.18.1",
+        "gemmi": "0.7.5",
+        "biopython": "1.86"
+      },
+      "meeko_declared_requirements": null
+    },
     "candidate_pdb_sha256": "fd5a4b1a7c010116571f24bfa2711651bcc757acbd7dfd28aad9d75e586f598e",
     "meeko_program_sha256": "126a2173344b9a50368d17eabcc83b5356f2cbb324b57fa92cdc4f026b06f62d",
     "chain_inspections": {
@@ -915,6 +1919,38 @@
     },
     "meeko": {
       "exit_code": 0,
+      "output_pdbqt": {
+        "sha256": "a273748ae8ad055721b5b911996770c6b9063e866313eb827a3e1318be5615d6",
+        "bytes": 346560,
+        "atom_records": 4332,
+        "record_types": {
+          "ATOM": 4332
+        },
+        "chains": {
+          "A": {
+            "atom_records": 1444,
+            "residues": 152
+          },
+          "B": {
+            "atom_records": 1444,
+            "residues": 152
+          },
+          "C": {
+            "atom_records": 1444,
+            "residues": 152
+          }
+        },
+        "autodock_atom_types": {
+          "A": 273,
+          "C": 1995,
+          "HD": 771,
+          "N": 603,
+          "NA": 9,
+          "OA": 675,
+          "SA": 6
+        },
+        "sum_of_rounded_partial_charges": -12.0
+      },
       "stdout": "Template padding will be used.\n\u001b[32m gasteiger charges will be read from template file \n \u001b[0m\n\nFiles written:\n<temporary>/candidate.pdbqt <-- static (i.e., rigid) receptor input file\n",
       "stderr": "",
       "output_files": [

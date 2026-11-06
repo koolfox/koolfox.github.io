@@ -194,3 +194,12 @@ test('session 3 descent analogy keeps the mountain image and endpoints', async (
  await expect(labels.filter({hasText:'نقطهٔ پایان'})).toHaveCSS('color','rgb(243, 0, 242)');
  await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
 });
+
+test('session 3 step-function diagram preserves the question and source answer', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=34');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready && sourceSlideReader.page===34);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ const labels=page.locator('#persian-page .reader-slide-text');
+ await expect(labels.filter({hasText:'مشتق تابع پله‌ای چیست'})).toHaveCSS('color','rgb(4, 50, 255)');
+ await expect(labels.filter({hasText:'بی‌نهایت/تعریف‌نشده'})).toBeVisible();
+});

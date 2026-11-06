@@ -625,6 +625,17 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const slots={0:[.05,.06,.96,.235],2:[.05,.26,.97,.32],3:[.05,.33,.97,.39],4:[.02,.84,.98,.90],5:[.06,.90,.97,.97],6:[.16,.54,.31,.64],8:[.73,.44,.90,.55]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];region.font=i===0?29:([2,3].includes(i)?17:14);if(i===2){region.color='#ffffff';region.manualAccents=[{text:'مشتق‌پذیر',color:'#ffc000'},{text:'بهینه‌سازی',color:'#ffc000'}];}if(i===3)region.manualAccents=[{text:'سطح خطا',color:'#ffc000'}];if(i===4)region.manualAccents=[{text:'تمثیل',color:'#ffc000'}];if(i===5)region.manualAccents=[{text:'رویکرد',color:'#ffc000'},{text:'نزول گرادیان',color:'#ffc000'}];}
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===34
+      && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
+      && record.source_text_sha256==='242be6d9fe4be8a170b56c26609dc5df411b1d94e2222729ee2c4b95a447d6a0'
+      && layout.translation_sha256==='0bcc76ab7b5d333d2f6a4e89e1f8890e9c0540c0d25a63cf1c0a9fce4063d8af'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.06,.96,.235];region.font=29;region.manualAccents=[{text:'مشتق‌پذیر',color:'#ffc000'}];}
+      if(i===2){region.slot=[.40,.50,.63,.66];region.font=16;}
+      if(i===5){region.slot=[.76,.45,.98,.55];region.font=15;region.align='center';}
+      if(i===7){region.slot=[.76,.65,.98,.72];region.font=15;region.align='center';}
+    }
+  }
   const xorLayouts={
     8:['d2b3197385ac54cba5e2883e08b575286ecb53ec32490248714c327d28b2f53b','414db0665fe15478a7298705f8437c61179a99157138f11dc87c6f4df357d677'],
     9:['0c34d94aedceba75167565b32f6a1aef6444728377f7c21ad3a0701f165a4e00','84e1ebe3a8d6fdd6ba5126dff88fc0cbdcd3d7ed8ab30e8aebdb215a07798ab9'],

@@ -119,3 +119,17 @@ test('evidence exercise checks answers and restores choices on mobile', async ({
   await expect(page.locator('#evidence-0')).toHaveValue('coordinates');
   await expect(page.locator('#evidence-2')).toHaveValue('experiment');
 });
+
+test('evidence exercise remains usable when browser storage is blocked', async ({page}) => {
+  await page.addInitScript(() => {
+    Storage.prototype.setItem = () => { throw new Error('blocked'); };
+  });
+  await page.goto(root + 'assets/course-slides.html?topic=1');
+  await expect(page.locator('#lesson-deck')).toHaveAttribute('aria-busy','false');
+  const evidence = await page.locator('#slide-select option[data-kind=evidence]').getAttribute('value');
+  await page.locator('#slide-select').selectOption(evidence);
+  await page.locator('#evidence-0').selectOption('sequence');
+  await expect(page.locator('#lesson-slide section:visible [role=status]')).toContainText('ذخیره در مرورگر ممکن نشد');
+  await page.getByRole('button',{name:'بررسی پاسخ‌ها'}).click();
+  await expect(page.locator('.evidence-question p').first()).toContainText('درست است');
+});

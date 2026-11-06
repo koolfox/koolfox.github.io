@@ -580,6 +580,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===10){region.maskSourceLines=[10];region.clearRect=[.07,.26,.34,.35];}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===28
+      && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
+      && record.source_text_sha256==='8b2400cf470e8ddd46a4c7b622788970f16fa12104f0f5d919f6b742f5f2ddee'
+      && layout.translation_sha256==='01c51cd7619d52d70bc95726a8d1bac585302a49e14b036d9b7301333963c5ec'){
+    const slots={0:[.04,.08,.98,.22],1:[.04,.25,.96,.34],6:[.15,.66,.39,.735],7:[.15,.735,.39,.805],8:[.40,.68,.94,.80]};
+    for(const region of regions){const slot=slots[region.block.source_lines[0]];if(slot)region.slot=slot;}
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

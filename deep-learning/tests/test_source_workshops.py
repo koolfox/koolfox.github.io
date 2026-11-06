@@ -118,6 +118,19 @@ class SourceWorkshopTests(unittest.TestCase):
             self.assertIn('31 که o', question['solution_fa'])
             self.assertNotIn('31 که e', question['solution_fa'])
 
+    def test_rnn_worked_pages_keep_source_linked_multiple_choice(self):
+        unit = load_workshops('spring-2026', ROOT, execute=True, session_ids=['s04'])['s04']
+        example = next(item for item in unit['source_examples'] if item['id'] == 'hidden-steps')
+        self.assertEqual(example['pages'], [33, 34, 35, 36])
+        questions = {item['id']: item for item in unit['activities']['questions']}
+        for number in [34, 35, 36]:
+            page = unit['activities']['pages'][number - 1]
+            self.assertTrue(page['question_ids'])
+            self.assertEqual(page['question_coverage'], 'not_applicable')
+            for identity in page['question_ids']:
+                self.assertEqual(questions[identity]['answer']['kind'], 'choice')
+                self.assertEqual(questions[identity]['source_page'], number)
+
     def test_page_example_executes_its_own_hash_pinned_source_and_rejects_stale_code(self):
         import hashlib
         source = 'result = {"value": 3}\nprint(result)\n'

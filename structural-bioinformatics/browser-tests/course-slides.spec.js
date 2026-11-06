@@ -2,6 +2,28 @@ import { test, expect } from '@playwright/test';
 
 const root = '/structural-bioinformatics/';
 
+test('the crystallography exercise explains each model choice on mobile', async ({page}) => {
+  await page.setViewportSize({width:390,height:844});
+  await page.goto(root + 'assets/course-slides.html?topic=11');
+  await expect(page.locator('#lesson-deck')).toHaveAttribute('aria-busy', 'false');
+  const index = await page.locator('#slide-select option[data-kind=structure-interpretation]').getAttribute('value');
+  await page.locator('#slide-select').selectOption(index);
+  const slide = page.locator('#lesson-slide section:visible');
+  await slide.getByRole('button', {name:'بررسی انتخاب'}).click();
+  await expect(slide.getByRole('status')).toContainText('ابتدا یک گزینه');
+  await page.locator('#structure-choice').selectOption('a');
+  await slide.getByRole('button', {name:'بررسی انتخاب'}).click();
+  await expect(slide.getByRole('status')).toContainText('مختصات حلقه وجود ندارد');
+  await page.locator('#structure-choice').selectOption('b');
+  await expect(slide.getByRole('status')).toBeEmpty();
+  await slide.getByRole('button', {name:'بررسی انتخاب'}).click();
+  await expect(slide.getByRole('status')).toContainText('به‌تنهایی کافی نیست');
+  await page.locator('#structure-choice').selectOption('either');
+  await slide.getByRole('button', {name:'بررسی انتخاب'}).click();
+  await expect(slide.getByRole('status')).toContainText('اطلاعات یکسانی ندارند');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
+});
+
 test('the course opens a slide view of its own general lesson', async ({page}) => {
   await page.goto(root + 'course.html?topic=1');
   const link = page.locator('#course-slide-link');

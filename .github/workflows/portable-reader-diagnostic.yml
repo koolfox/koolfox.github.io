@@ -1,0 +1,55 @@
+name: Portable reader comparison (diagnostic only)
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/portable-reader-diagnostic.yml
+
+permissions:
+  contents: read
+
+jobs:
+  portable-comparison:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - label: baseline-main
+            ref: 2c320c1e2f05efbccce99999645b5bd0011495f6
+          - label: mobile-teardown
+            ref: 2fec3bdf132816a16922857b63f92256d788ceda
+    name: portable-${{ matrix.label }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ matrix.ref }}
+          sparse-checkout: |
+            deep-learning
+            scripts
+            assets
+      - uses: astral-sh/setup-uv@v10.3.0
+        with:
+          version: '0.11.2'
+      - name: Export browser laboratories
+        run: uv run --frozen --project deep-learning/playgrounds python deep-learning/scripts/export_playgrounds.py --output deep-learning/results/shinylive
+      - name: Build the exact course
+        run: uv run --no-project --with pypdf==6.21.4 python scripts/build_pages.py --project deep-learning --output dist/pages
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: deep-learning/browser-tests/package-lock.json
+      - run: npm ci --prefix deep-learning/browser-tests
+      - run: npx --prefix deep-learning/browser-tests playwright install --with-deps chromium
+      - name: Repeat the full portable bundle test
+        run: |
+          python3 -m http.server 8000 --bind 127.0.0.1 --directory dist/pages > /tmp/portable-http.log 2>&1 &
+          npm --prefix deep-learning/browser-tests test -- local-slides.spec.js -g 'downloaded2026bundle serves readers' --repeat-each=3 --workers=1
+      - name: Preserve failing traces
+        if: failure()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: portable-comparison-${{ matrix.label }}
+          path: deep-learning/browser-tests/test-results
+          if-no-files-found: ignore

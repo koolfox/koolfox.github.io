@@ -31,7 +31,7 @@
 ```sh
 uv sync --project deep-learning/playgrounds --frozen
 uv run --project deep-learning/playgrounds python deep-learning/scripts/export_playgrounds.py --output deep-learning/results/shinylive
-python3 scripts/build_pages.py --project deep-learning --output dist/pages
+uv run --no-project --with pypdf==6.21.4 python scripts/build_pages.py --project deep-learning --output dist/pages
 python3 -m http.server 8765 --directory dist/pages
 ```
 

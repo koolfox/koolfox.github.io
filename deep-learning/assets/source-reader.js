@@ -1,5 +1,6 @@
 import {setupFullscreen} from './reader-fullscreen.js';
 import {getDocument,GlobalWorkerOptions,OPS} from './vendor/pdfjs/pdf.min.mjs';
+import {readPdf,warmSlideOffline} from './slide-offline-cache.js';
 import {addText, math, renderBlocks, renderTable, configureReferences, referenceTarget, sourceLayoutPlan, createSourceLayout, fitSourceLayout} from './slide-content.js';
 
 const $=s=>document.querySelector(s),config=JSON.parse($('#source-reader-config').textContent);
@@ -229,7 +230,8 @@ async function renderOriginal(){
  renderedPage=0;controls();links.replaceChildren();canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);
  message(`در حال نمایش صفحهٔ ${fa(selected)} از ${fa(config.pageCount)}…`);
  try{
-  const layoutSource=await pdf.getPage(selected),source=await canonicalPdf.getPage(selected);if(id!==serial||closed)return;
+  const layoutSource=await pdf.getPage(selected);if(id!==serial||closed)return;
+  const source=await canonicalPdf.getPage(selected);if(id!==serial||closed)return;
   const pane=document.querySelector('.reader-original'),base=source.getViewport({scale:1});
   let available=pane.clientWidth?Math.max(250,pane.clientWidth-32):lastWidth;
   if(document.body.dataset.sourceOnly==='true'){
@@ -257,8 +259,9 @@ async function renderOriginal(){
   }
   paintSourceCrops();styleTranslationFallback(payload.pages[selected-1]);await paintPersianLayout(layoutSource,source,id,selected);if(id!==serial||closed)return;renderedPage=selected;task=null;document.documentElement.dataset.readerReady='true';controls();
   const record=payload.pages[page-1],reviewed=record.text_reviewed&&record.image_text_reviewed;
-  message(`صفحهٔ ${fa(page)} از ${fa(config.pageCount)}${reviewed?'':' · ترجمه در بازبینی'}`);
+  message(`صفحهٔ ${fa(page)} از ${fa(config.pageCount)}${reviewed?'':' · ترجمه در بازبینی'}${usesFullPdf(page)?' · این صفحه از فایل کامل جلسه بارگیری می‌شود':''}`);
   schedulePlayback();
+  if(!document.documentElement.dataset.offlineWarmStarted){document.documentElement.dataset.offlineWarmStarted='true';warmSlideOffline(loadingController.signal).then(ok=>document.documentElement.dataset.offlineReady=String(ok));}
  }catch(error){if(error?.name==='RenderingCancelledException'||closed||id!==serial)return;task=null;stopPlayback();message('نمایش این صفحه کامل نشد؛ صفحه را دوباره انتخاب کن.',true);}
 }
 function leaveReferences(){references=false;document.querySelector('.reader-layout').hidden=false;$('#reader-references').hidden=true;}
@@ -338,15 +341,58 @@ resizeObserver.observe(document.querySelector('.reader-original'));
 resizeObserver.observe(document.querySelector('.reader-translation'));
 
 const documentOptions={url:config.pdfUrl+'?sha='+config.sourceSha256,cMapUrl:new URL('./vendor/pdfjs/cmaps/',import.meta.url).href,cMapPacked:true,standardFontDataUrl:new URL('./vendor/pdfjs/standard_fonts/',import.meta.url).href,wasmUrl:new URL('./vendor/pdfjs/wasm/',import.meta.url).href,isEvalSupported:false,enableXfa:false,disableAutoFetch:true,disableStream:true,rangeChunkSize:262144};
-const loading=getDocument({...documentOptions,disableFontFace:config.term!=='spring-2026'}),canonicalLoading=config.term==='spring-2026'?getDocument({...documentOptions,disableFontFace:true}):loading;
-loading.onProgress=event=>{if(event.total){progress.value=Math.min(100,event.loaded/event.total*100);progress.setAttribute('aria-valuetext',`${fa(Math.round(progress.value))} درصد`);}};
-Promise.all([loading.promise,canonicalLoading.promise,fetch(config.translationUrl).then(response=>{if(!response.ok)throw Error('translation unavailable');return response.json();})]).then(([document,canonicalDocument,data])=>{
+let loading,canonicalLoading;
+const loadingController=new AbortController();
+progress.removeAttribute('value');
+let pageLoad=null,usesFullPdf=()=>false;
+function releasePage(){
+ const old=pageLoad;pageLoad=null;if(!old)return;
+ old.controller.abort();
+ old.promise.then(value=>Promise.all(value.tasks.map(item=>item.destroy()))).catch(()=>{});
+}
+async function loadSources(){
+ const paged=config.term==='spring-2026'&&config.pageFiles!==false;
+ const pageRoot=`/deep-learning/assets/danna/spring-2026/${config.session}-pages/`;
+ const translation=fetch(config.translationUrl,{signal:loadingController.signal}).then(response=>{if(!response.ok)throw Error('translation unavailable');return response.json();});
+ const {url,...options}=documentOptions;
+ if(paged){
+  const [manifest,data]=await Promise.all([fetch(pageRoot+'manifest.json?sha='+config.sourceSha256,{signal:loadingController.signal}).then(response=>{if(!response.ok)throw Error('page index unavailable');return response.json();}),translation]);
+  if(manifest.source_sha256!==config.sourceSha256||manifest.page_count!==config.pageCount||manifest.pages?.length!==config.pageCount||!manifest.pages.every(value=>value===null||/^[0-9a-f]{64}$/.test(value)))throw Error('page identity mismatch');
+  async function loadPage(number){
+   if(!Number.isInteger(number)||number<1||number>config.pageCount)throw Error('invalid page');
+   if(!pageLoad||pageLoad.number!==number){
+    releasePage();const controller=new AbortController();
+    const promise=(async()=>{
+     const pageHash=manifest.pages[number-1],fallback=pageHash===null,hash=pageHash||config.sourceSha256,name=String(number).padStart(3,'0')+'.pdf';
+     const bytes=await readPdf(fallback?documentOptions.url:pageRoot+name+'?sha='+hash,hash,controller.signal);
+     if(controller.signal.aborted||closed)throw Error('page closed');
+     const tasks=[getDocument({...options,data:new Uint8Array(bytes.slice(0)),disableFontFace:false}),getDocument({...options,data:new Uint8Array(bytes.slice(0)),disableFontFace:true})];
+     try{return {documents:await Promise.all(tasks.map(item=>item.promise)),tasks,pageNumber:fallback?number:1};}
+     catch(error){await Promise.all(tasks.map(item=>item.destroy().catch(()=>{})));throw error;}
+    })();
+    pageLoad={number,controller,promise};
+   }
+   return pageLoad.promise;
+  }
+  const document={numPages:config.pageCount,getPage:async number=>{const item=await loadPage(number);return item.documents[0].getPage(item.pageNumber);}};
+  const canonicalDocument={getPage:async number=>{const item=await loadPage(number);return item.documents[1].getPage(item.pageNumber);}};
+  usesFullPdf=number=>manifest.pages[number-1]===null;
+  return [document,canonicalDocument,data];
+ }
+ const [bytes,data]=await Promise.all([readPdf(documentOptions.url,config.sourceSha256,loadingController.signal),translation]);
+ if(closed)throw Error('reader closed');
+ loading=getDocument({...options,data:new Uint8Array(bytes.slice(0)),disableFontFace:config.term!=='spring-2026'});
+ canonicalLoading=config.term==='spring-2026'?getDocument({...options,data:new Uint8Array(bytes.slice(0)),disableFontFace:true}):loading;
+ const [document,canonicalDocument]=await Promise.all([loading.promise,canonicalLoading.promise]);
+ return [document,canonicalDocument,data];
+}
+loadSources().then(([document,canonicalDocument,data])=>{
  if(data.source?.sha256!==config.sourceSha256||document.numPages!==config.pageCount||data.pages?.length!==config.pageCount)throw Error('source/translation identity mismatch');
  pdf=document;canonicalPdf=canonicalDocument;payload=data;configureReferences(data.reference_targets);progress.hidden=true;
  for(const option of picker.options){if(option.value==='sources')continue;const record=data.pages[Number(option.value)-1];const heading=record.blocks.find(b=>b.kind==='heading')?.fa||record.blocks.find(b=>b.kind!=='not_visible'&&b.fa)?.fa?.split('\n').find(s=>!/^https?:/.test(s))||'';option.textContent=fa(Number(option.value))+(heading?' · '+heading.slice(0,100):'');}
  if(location.hash==='#sources')showReferences(false);else go(page,false);
 }).catch(()=>{progress.hidden=true;message('بارگیری اسلایدها انجام نشد؛ دوباره تلاش کن.',true);$('[data-retry-load]').hidden=false;});
-window.addEventListener('pagehide',event=>{stopPlayback();if(event.persisted)return;closed=true;serial++;clearTimeout(resizeTimer);task?.cancel();layoutTask?.cancel();loading.destroy().catch(()=>{});if(canonicalLoading!==loading)canonicalLoading.destroy().catch(()=>{});});
+window.addEventListener('pagehide',event=>{stopPlayback();if(event.persisted)return;closed=true;loadingController.abort();releasePage();serial++;clearTimeout(resizeTimer);task?.cancel();layoutTask?.cancel();loading?.destroy().catch(()=>{});if(canonicalLoading&&canonicalLoading!==loading)canonicalLoading.destroy().catch(()=>{});});
 window.sourceSlideReader={openTool(raw,section='lab'){const url=new URL(raw,location.href);if(url.origin!==location.origin||!['http:','https:'].includes(url.protocol)||!['lab','explore','questions','knowledge'].includes(section))throw Error('Invalid slide tool');selectSection(section,url.href);},get page(){return page;},get renderedPage(){return renderedPage;},get pageCount(){return config.pageCount;},get sourceSha256(){return config.sourceSha256;},get ready(){return Boolean(pdf&&payload&&(references||renderedPage===page));}};
 controls();
 syncPanels();

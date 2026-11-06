@@ -39,7 +39,7 @@ jobs:
       - name: Export only deep learning laboratories
         run: uv run --frozen --project deep-learning/playgrounds python deep-learning/scripts/export_playgrounds.py --output deep-learning/results/shinylive
       - name: Assemble only this project
-        run: python3 scripts/build_pages.py --project deep-learning --output dist/pages
+        run: uv run --no-project --with pypdf==6.21.4 python scripts/build_pages.py --project deep-learning --output dist/pages
       - uses: actions/setup-node@v7.1.0
         with:
           node-version: '24'

@@ -46,3 +46,15 @@ test('desktop retains side by side slides and text controls',async({browser})=>{
   expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(1440);
  }finally{await context.close();}
 });
+
+test('fullscreen fallback keeps mobile controls and exits with Escape',async({browser})=>{
+ const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
+ try{
+  const page=await context.newPage();await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=25');
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===25);
+  await page.evaluate(()=>Object.defineProperty(document.documentElement,'requestFullscreen',{value:undefined,configurable:true}));
+  const full=page.locator('[data-fullscreen]');await full.click();await expect(full).toHaveAttribute('aria-pressed','true');
+  await expect(page.locator('[data-zoom-in]')).toBeVisible();await page.keyboard.press('Escape');
+  await expect(full).toHaveAttribute('aria-pressed','false');await expect(full).toBeFocused();
+ }finally{await context.close();}
+});

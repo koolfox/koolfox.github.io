@@ -948,7 +948,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===73
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='6394af000becea9f3069c1f012e74a54d5ac596791dff971780bf7ba6cf3ab21'
-      && layout.translation_sha256==='97d0ee468b8030721fb1648cd50e5b7b67270debb780b55c890ba1b83c5e4a0e'){
+      && layout.translation_sha256==='02da0cfe1b19806325db65d2b9e0e9dcdf7af4dd68fa97c27884057112454c7d'){
     const slots={35:[.05,.10,.55,.21],0:[.23,.58,.35,.73],3:[.39,.42,.56,.47],4:[.37,.28,.57,.40],7:[.39,.50,.56,.71],12:[.84,.42,.98,.59],16:[.84,.28,.98,.40],19:[.84,.62,.98,.72],21:[.62,.39,.80,.55],25:[.62,.24,.80,.37],28:[.62,.58,.80,.72],31:[.015,.79,.24,.84],32:[.015,.84,.24,.97]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];region.font=i===35?35:i===31||i===32?14:12;if(i!==35&&i!==31&&i!==32)region.align='center';}
   }

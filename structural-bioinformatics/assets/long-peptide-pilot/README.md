@@ -86,3 +86,76 @@ involve residues 14–76. This setup and the limited search are plausible
 contributors, but the audit does not establish why Vina produced these poses.
 No software defect was demonstrated in the measured distances or receptor
 selection for these files; no new docking search was performed for this audit.
+
+## Follow-up diagnostics (2026-11-06)
+
+The two million-evaluation poses have respectively 7 and 3 ligand heavy
+atoms outside the specified 20 Å box (strictly beyond its faces, using the
+rounded PDBQT coordinates). This is a diagnostic, not proof of the cause of
+clashes and not a binding criterion. The current workflow now records this
+count for every pose; it still rejects any pose below the 2 Å distance screen.
+Earlier reports and all failed poses remain unchanged.
+
+Vina 1.2.7 `--local_only` was run on each saved pose with the same receptor,
+box, seed 42 and CPU 1. The initial minima/counts were 0.860513 Å/45 and
+1.249638 Å/32; after refinement they were 0.860513 Å/45 and 1.239368 Å/32.
+Neither passed. `local-refinement/` retains extracted inputs, outputs and logs.
+
+A separate sensitivity diagnostic removed all ligand torsion branches, leaving
+all 129 original PDBQT atoms in a single rigid ROOT and `TORSDOF 0`. This
+freezes an arbitrary generated conformer; it is not flexible peptide docking.
+With seed 42, CPU 1, exhaustiveness 2 and 100000 evaluations per run, one
+pose was returned per box: the 20 Å box gave 0.479010 Å/86 close pairs; a
+30 Å box gave 0.670918 Å/15. Both fail. Thus neither this rigid
+approximation nor enlargement in this limited experiment fixes the issue.
+Changing box and flexibility changes sampling, and this one seed cannot
+isolate a cause. A clash-free pose alone would not validate the model.
+
+`diagnostic-manifest.json` records hashes for the inputs, outputs and logs.
+To repeat the diagnostics with the installed Vina 1.2.7 from the repository
+root, use a **new** empty directory, replace `OUT` below, and compare distances
+rather than assuming identical bytes across platforms:
+
+```sh
+P=structural-bioinformatics/assets/long-peptide-pilot
+OUT=/tmp/long-peptide-repeat
+mkdir "$OUT"
+python3 - "$P" "$OUT" <<'PY'
+import re, sys
+from pathlib import Path
+p, out = map(Path, sys.argv[1:])
+text = (p / 'bounded-1000000/MQIFVKTLTGKTI/poses.pdbqt').read_text()
+for i, block in enumerate(re.findall(r'^MODEL\s+\d+\s*$(.*?)^ENDMDL\s*$', text, re.M | re.S), 1):
+    (out / f'input-{i}.pdbqt').write_text(block.strip() + '\n')
+text = (p / 'bounded-1000000/MQIFVKTLTGKTI/ligand.pdbqt').read_text()
+atoms = [line for line in text.splitlines() if line.startswith(('ATOM  ', 'HETATM'))]
+(out / 'rigid.pdbqt').write_text('ROOT\n' + '\n'.join(atoms) + '\nENDROOT\nTORSDOF 0\n')
+PY
+VINA=/opt/anaconda3/envs/tnf-docking/bin/vina
+REC="$P/bounded-1000000/receptor.pdbqt"
+for i in 1 2; do
+  "$VINA" --receptor "$REC" --ligand "$OUT/input-$i.pdbqt" --out "$OUT/local-$i.pdbqt" \
+    --center_x 30 --center_y 28 --center_z 15 --size_x 20 --size_y 20 --size_z 20 \
+    --seed 42 --cpu 1 --local_only > "$OUT/local-$i.log" 2>&1
+done
+for side in 20 30; do
+  "$VINA" --receptor "$REC" --ligand "$OUT/rigid.pdbqt" --out "$OUT/rigid-$side.pdbqt" \
+    --center_x 30 --center_y 28 --center_z 15 --size_x "$side" --size_y "$side" --size_z "$side" \
+    --seed 42 --cpu 1 --exhaustiveness 2 --num_modes 3 --max_evals 100000 > "$OUT/rigid-$side.log" 2>&1
+done
+```
+
+The local-only output is a single PDBQT structure rather than a MODEL-wrapped
+multi-pose file. For the distance audit, compare heavy atoms using their fixed
+PDBQT coordinate columns and exclude `H` and `HD`, as in the previous audit.
+The [Vina documentation](https://autodock-vina.readthedocs.io/en/stable/vina.html)
+describes local optimization; these experiments do not establish affinity or a
+biological interaction. Further work requires suitable peptide-specific
+sampling and an independent, experimentally justified benchmark.
+
+The updated workflow itself was also run with the original 20 Å box and
+1000 evaluations per Monte Carlo run. `workflow-box-check/` retains the
+complete failed run: 0.588778 Å minimum, 44 close pairs and 6 heavy atoms
+outside the box. Its command matches the earlier reproduction command above
+with `--max-evals 1000` and a fresh output directory. The report records the
+exact workflow hash; the failure remains a failure.

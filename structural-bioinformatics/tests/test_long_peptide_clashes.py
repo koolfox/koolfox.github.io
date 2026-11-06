@@ -81,6 +81,43 @@ class ClashTests(unittest.TestCase):
                 self.assertEqual(poses[0]["heavy_atom_pairs_below_2_angstrom"], pairs)
                 self.assertEqual(poses[0]["severe_clash_screen"], "fail")
 
+    def test_real_pose_box_diagnostic(self):
+        root = PROJECT / "assets/long-peptide-pilot/bounded-1000000"
+        receptor = docking.xyz((root / "receptor.pdbqt").read_text())
+        poses = docking.inspect_poses(
+            (root / "MQIFVKTLTGKTI/poses.pdbqt").read_text(),
+            receptor,
+            [30, 28, 15],
+            [20, 20, 20],
+        )
+        self.assertEqual([p["heavy_atoms_outside_box"] for p in poses], [7, 3])
+        self.assertTrue(all(p["severe_clash_screen"] == "fail" for p in poses))
+
+    def test_bounded_workflow_records_box_diagnostic_on_failure(self):
+        root = PROJECT / "assets/long-peptide-pilot/workflow-box-check"
+        report = json.loads((root / "report.json").read_text())
+        row = report["candidates"][0]
+        receptor = docking.xyz((root / "receptor.pdbqt").read_text())
+        pose = root / row["sequence"] / "poses.pdbqt"
+        self.assertEqual(row["poses_sha256"], docking.sha(pose))
+        self.assertEqual(
+            row["poses"],
+            docking.inspect_poses(pose.read_text(), receptor, [30, 28, 15], [20, 20, 20]),
+        )
+        self.assertEqual(row["poses"][0]["heavy_atoms_outside_box"], 6)
+        self.assertEqual(report["status"], "failed")
+
+    def test_recorded_rigid_diagnostics_remain_failed(self):
+        root = PROJECT / "assets/long-peptide-pilot"
+        receptor = docking.xyz((root / "bounded-1000000/receptor.pdbqt").read_text())
+        for filename, pairs in (("poses.pdbqt", 86), ("poses-box30.pdbqt", 15)):
+            with self.subTest(filename=filename):
+                poses = docking.inspect_poses(
+                    (root / "rigid-diagnostic" / filename).read_text(), receptor
+                )
+                self.assertEqual(poses[0]["heavy_atom_pairs_below_2_angstrom"], pairs)
+                self.assertEqual(poses[0]["severe_clash_screen"], "fail")
+
     def test_all_modes_including_exact_threshold(self):
         def block(number, x):
             atom = (

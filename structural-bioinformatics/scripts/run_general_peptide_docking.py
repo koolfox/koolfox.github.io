@@ -48,7 +48,7 @@ def xyz(text):
     return array
 
 
-def inspect_poses(text, receptor_xyz):
+def inspect_poses(text, receptor_xyz, center=None, size=None):
     """Measure every saved pose, including those that fail the clash screen."""
     blocks = re.findall(r"^MODEL\s+\d+\s*$(.*?)^ENDMDL\s*$", text, re.M | re.S)
     if not blocks:
@@ -58,7 +58,8 @@ def inspect_poses(text, receptor_xyz):
         score = re.search(r"^REMARK VINA RESULT:\s*([-+\d.]+)", block, re.M)
         if not score or not math.isfinite(float(score.group(1))):
             raise ValueError("Invalid pose score")
-        distances = np.linalg.norm(xyz(block)[:, None, :] - receptor_xyz[None, :, :], axis=2)
+        ligand_xyz = xyz(block)
+        distances = np.linalg.norm(ligand_xyz[:, None, :] - receptor_xyz[None, :, :], axis=2)
         minimum = float(distances.min())
         results.append(
             {
@@ -68,6 +69,9 @@ def inspect_poses(text, receptor_xyz):
                 "severe_clash_screen": "pass" if minimum >= 2 else "fail",
             }
         )
+        if center is not None and size is not None:
+            outside = np.any(np.abs(ligand_xyz - np.asarray(center)) > np.asarray(size) / 2, axis=1)
+            results[-1]["heavy_atoms_outside_box"] = int(np.count_nonzero(outside))
     return results
 
 
@@ -236,7 +240,7 @@ def main():
             (directory / "vina.stderr.txt").write_text(process.stderr)
             if process.returncode or not pose.is_file():
                 raise ValueError(f"Vina failed for {sequence}; inspect logs")
-            results = inspect_poses(pose.read_text(), receptor_xyz)
+            results = inspect_poses(pose.read_text(), receptor_xyz, args.center, args.size)
             row.update(
                 formal_charge=charge,
                 poses=results,

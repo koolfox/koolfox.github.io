@@ -48,6 +48,29 @@ def xyz(text):
     return array
 
 
+def inspect_poses(text, receptor_xyz):
+    """Measure every saved pose, including those that fail the clash screen."""
+    blocks = re.findall(r"^MODEL\s+\d+\s*$(.*?)^ENDMDL\s*$", text, re.M | re.S)
+    if not blocks:
+        raise ValueError("No complete poses")
+    results = []
+    for block in blocks:
+        score = re.search(r"^REMARK VINA RESULT:\s*([-+\d.]+)", block, re.M)
+        if not score or not math.isfinite(float(score.group(1))):
+            raise ValueError("Invalid pose score")
+        distances = np.linalg.norm(xyz(block)[:, None, :] - receptor_xyz[None, :, :], axis=2)
+        minimum = float(distances.min())
+        results.append(
+            {
+                "vina_score_kcal_mol": float(score.group(1)),
+                "minimum_heavy_atom_distance_angstrom": minimum,
+                "heavy_atom_pairs_below_2_angstrom": int(np.count_nonzero(distances < 2)),
+                "severe_clash_screen": "pass" if minimum >= 2 else "fail",
+            }
+        )
+    return results
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--pdb", type=Path, required=True)
@@ -213,33 +236,17 @@ def main():
             (directory / "vina.stderr.txt").write_text(process.stderr)
             if process.returncode or not pose.is_file():
                 raise ValueError(f"Vina failed for {sequence}; inspect logs")
-            blocks = re.findall(r"^MODEL\s+\d+\s*$(.*?)^ENDMDL\s*$", pose.read_text(), re.M | re.S)
-            if not blocks:
-                raise ValueError(f"No complete poses for {sequence}")
-            results = []
-            for block in blocks:
-                score = re.search(r"^REMARK VINA RESULT:\s*([-+\d.]+)", block, re.M)
-                if not score or not math.isfinite(float(score.group(1))):
-                    raise ValueError("Invalid pose score")
-                minimum = float(
-                    np.linalg.norm(xyz(block)[:, None, :] - receptor_xyz[None, :, :], axis=2).min()
-                )
-                if minimum < 2:
-                    raise ValueError(f"Severe interchain clash for {sequence}")
-                results.append(
-                    {
-                        "vina_score_kcal_mol": float(score.group(1)),
-                        "minimum_heavy_atom_distance_angstrom": minimum,
-                    }
-                )
+            results = inspect_poses(pose.read_text(), receptor_xyz)
             row.update(
-                status="requires_further_validation",
                 formal_charge=charge,
                 poses=results,
                 conformer_sha256=sha(sdf),
                 ligand_sha256=sha(ligand),
                 poses_sha256=sha(pose),
             )
+            if any(result["severe_clash_screen"] == "fail" for result in results):
+                raise ValueError(f"Severe interchain clash for {sequence}")
+            row["status"] = "requires_further_validation"
             save()
         report["status"] = "requires_further_validation"
     except Exception as exc:

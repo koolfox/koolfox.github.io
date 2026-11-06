@@ -61,3 +61,13 @@ test('biological neuron video has a short working destination and preserves the 
  const link=page.getByRole('link',{name:'ویدیو: از ۰:۰۸ تا ۱:۱۲'});
  await expect(link).toBeVisible();await expect(link).toHaveAttribute('href','https://youtu.be/oa6rvUJlg7o?t=8');
 });
+
+test('Rosenblatt slide separates the portrait caption and quotation',async({page})=>{
+ await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=10');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===10);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ await expect(page.locator('.reader-slide-text[data-source-lines="0,1,2"]')).toBeVisible();
+ const quote=page.locator('.reader-slide-text[data-source-lines="3,4,5"]');await expect(quote).toBeVisible();
+ await expect(quote.locator('.reader-emphasis').first()).toHaveCSS('color','rgb(255, 192, 0)');
+ const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(n=>n.scrollHeight>n.clientHeight+2||n.scrollWidth>n.clientWidth+2).map(n=>n.textContent));expect(overflow).toEqual([]);
+});

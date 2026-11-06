@@ -1,5 +1,9 @@
 """Check corrections against the published source and exact arithmetic."""
+import contextlib
+import io
 import json
+import re
+import runpy
 import unittest
 from decimal import Decimal
 from pathlib import Path
@@ -9,6 +13,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from source_reader import load_source_translation  # noqa: E402
 from source_activities import load_activities  # noqa: E402
+from student_practice import practice_page  # noqa: E402
+from workshops import load_workshops  # noqa: E402
 
 
 class SessionThreeCorrections(unittest.TestCase):
@@ -47,6 +53,42 @@ class SessionThreeCorrections(unittest.TestCase):
         h = 1e-6
         self.assertAlmostEqual((z(wi, bias+h)-z(wi, bias-h))/(2*h), 1, places=9)
         self.assertAlmostEqual((z(wi+h, bias)-z(wi-h, bias))/(2*h), oi, places=9)
+
+    def test_student_practice_emits_only_choice_questions(self):
+        unit = load_workshops('spring-2026', ROOT, execute=True, session_ids=['s03'])['s03']
+        page = practice_page({'id': 'spring-2026'},
+                             {'id': 's03', 'title_fa': 'شبکه عصبی', 'workshop': unit})
+        encoded = re.search(r'<script type="application/json" id="practice-config">(.*?)</script>',
+                            page, re.DOTALL).group(1)
+        config = json.loads(encoded)
+        self.assertTrue(config['tip'])  # Legacy open response becomes a code tip.
+        groups = [config['questions']]
+        groups += [entry['questions'] for entry in config['page_notebooks']]
+        groups += [entry['questions'] for entry in config['page_questions']]
+        self.assertTrue(all(groups))
+        for questions in groups:
+            for question in questions:
+                with self.subTest(prompt=question['prompt']):
+                    self.assertGreaterEqual(len(question['options']), 2)
+                    self.assertIn(question['correct'], range(len(question['options'])))
+        page30 = next(entry for entry in config['page_questions'] if entry['pages'] == [30])
+        self.assertIn('آفین', page30['questions'][0]['options'][page30['questions'][0]['correct']])
+
+    def test_actual_backprop_example_matches_finite_differences(self):
+        with contextlib.redirect_stdout(io.StringIO()):
+            code = runpy.run_path(str(ROOT / 'workshops/spring-2026/s03_backprop.py'))
+        result, params = code['result'], code['source_parameters']
+        self.assertAlmostEqual(result['forward']['o6'], 0.47388889882398544, places=12)
+        self.assertAlmostEqual(result['forward']['squared_error'], 0.2767928907806386, places=12)
+        for name, expected in result['source_scaled_gradients'].items():
+            plus, minus = dict(params), dict(params)
+            step = 1e-6
+            plus[name] += step
+            minus[name] -= step
+            numerical = (code['source_forward'](plus)['half_squared_error'] -
+                         code['source_forward'](minus)['half_squared_error']) / (2 * step)
+            with self.subTest(parameter=name):
+                self.assertAlmostEqual(numerical, expected, places=8)
 
     def test_affine_question_is_multiple_choice(self):
         document = load_activities(ROOT, 'spring-2026', 's03')

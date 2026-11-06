@@ -82,3 +82,16 @@ test('history slide has separate milestones and a sourced correction',async({pag
  const note=await page.evaluate(async()=>{const config=JSON.parse(document.querySelector('#source-reader-config').textContent),data=await(await fetch(config.translationUrl)).json();return data.pages[10].editorial_notes[0];});
  expect(note.references[0].url).toBe('https://www.computerhistory.org/tdih/may/12/');expect(note.fa).toContain('۱۹۴۱');
 });
+
+test('neuron model slide retains truth tables and a verified resource',async({browser})=>{
+ for(const width of [1440,390]){
+  const context=await browser.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390});
+  const page=await context.newPage();await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=12');
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===12);
+  if(width===390){await page.locator('[data-view-translation]').click();await page.waitForFunction(()=>window.sourceSlideReader?.ready);}
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+  await expect(page.getByRole('link',{name:'جدول‌های بیشتر'})).toHaveAttribute('href','https://sites.millersville.edu/bikenaga/math-proof/truth-tables/truth-tables.html');
+  await expect(page.locator('.reader-figure-content table')).toHaveCount(2);
+  const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(n=>n.scrollHeight>n.clientHeight+2||n.scrollWidth>n.clientWidth+2).map(n=>n.textContent));expect(overflow).toEqual([]);await context.close();
+ }
+});

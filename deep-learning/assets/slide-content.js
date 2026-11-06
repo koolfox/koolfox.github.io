@@ -487,6 +487,16 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(index===4){region.color='#ffffff';region.manualAccents=[{text:'الگوی یادگیری «نورون‌هایی که با هم شلیک می‌کنند، به هم متصل می‌شوند»',color:'#ffc000'}];}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===12
+      && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
+      && record.source_text_sha256==='6e968bc91ce539b3b39add82476a1d1c322f309b89c4935a38b35664df816d29' && layout.translation_sha256==='009b78724b243d94b5ab68dbfeed18e95dba6d557e73e95f68e2d4053349a2d9'){
+    const slots={1:[.01,.70,.22,.88],4:[.01,.35,.22,.55],8:[.41,.25,.99,.36],9:[.46,.36,.98,.445],11:[.42,.445,.98,.55],13:[.44,.88,.95,.96]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];
+      if(i===8){region.color='#ffffff';region.manualAccents=[{text:'منطق گزاره‌ای (Propositional Logic)',color:'#ffc000'}];}
+      if(i===9){region.color='#ffffff';region.manualAccents=[{text:'درستی یا نادرستی',color:'#ffc000'}];}
+      if(i===13){region.linkTarget='https://sites.millersville.edu/bikenaga/math-proof/truth-tables/truth-tables.html';region.clearRect=[.43,.875,.96,.965];}
+    }
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 
@@ -497,6 +507,7 @@ export function createSourceLayout(record, plan) {
   const background = element('canvas', 'reader-slide-background');
   background.setAttribute('aria-hidden', 'true'); stage.append(background);
   for (const region of plan.regions) {
+    if(region.clearRect){const [l,t,r,b]=region.clearRect,mask=element('div');Object.assign(mask.style,{position:'absolute',left:l*width+'px',top:t*height+'px',width:(r-l)*width+'px',height:(b-t)*height+'px',background:'#000'});stage.append(mask);}
     const node = element('div', 'reader-slide-text');
     const presentation={...region.block.presentation};
     if(region.lines.every(line=>Array.isArray(line.accents)))presentation.accents=region.lines.flatMap(line=>line.accents);

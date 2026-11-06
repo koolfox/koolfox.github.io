@@ -42,7 +42,6 @@ export async function warmSlideOffline(signal) {
   }
   await navigator.serviceWorker.register(script, {scope: `${root}terms/`});
   await navigator.serviceWorker.ready;
-  return false; // Diagnostic only: worker active, asset warm-up disabled.
   await document.fonts.ready;
   if (signal?.aborted) return false;
   const cache = await cacheStore(); if (!cache) return false;
@@ -54,7 +53,7 @@ export async function warmSlideOffline(signal) {
    const response = await fetch(url.href, {signal});
    if (!response.ok || response.status !== 200) return false;
    if (signal?.aborted) return false;
-   await cache.put(url.href, response);
+   await response.arrayBuffer(); // Diagnostic: fetch without storing warm-up assets.
   }
   return true;
  } catch { return false; }

@@ -592,3 +592,24 @@ test('optical reader advertisement keeps the readable body text',async({browser}
   }finally{await context.close();}
  }
 });
+
+test('epoch notebooks execute the values shown in the slides',async({browser})=>{
+ test.setTimeout(120000);
+ for(const width of [1440,390]){
+  const context=await browser.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390});
+  try{
+   for(const n of [31,32]){
+    const page=await context.newPage();await page.goto(`/deep-learning/terms/spring-2026/s02/slides/#page=${n}`);
+    await page.waitForFunction(n=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===n,n);
+    await page.locator('[data-page-experiment]').click();
+    const view=page.frameLocator('[data-reader-tools-frame]');await view.locator('[data-notebook-run-all]').click();
+    const frame=await (await page.locator('[data-reader-tools-frame]').elementHandle()).contentFrame();
+    await frame.waitForFunction(()=>window.studentNotebook?.record?.ok,null,{timeout:90000});
+    const result=await frame.evaluate(()=>studentNotebook.record.outputs.at(-1).result);
+    if(n===31)expect(result.trace.map(row=>row.weights)).toEqual([[-.2,-.2,0,0],[0,0,0,.2],[0,0,0,.2],[0,0,0,.2],[-.2,0,0,0],[-.2,0,0,0],[0,0,.2,.2],[-.2,0,.2,.2]]);
+    else expect(result.history.map(row=>row.weights)).toEqual([[0,0,0,0],[-.2,0,.2,.2],[-.2,0,.4,.2],[-.4,0,.4,.2],[-.4,.2,.4,.4],[-.6,.2,.4,.2],[-.6,.4,.4,.2]]);
+    await page.close();
+   }
+  }finally{await context.close();}
+ }
+});

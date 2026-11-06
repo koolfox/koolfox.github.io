@@ -896,6 +896,17 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===5){region.slot=[.10,.57,.94,.79];region.font=19;region.keepTermsTogether=true;}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===70
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='56ca95300265c1c9bd33285be236e973fb3f70b2212a4fe190a22a7eb4d0d86f'
+      && layout.translation_sha256==='11cd69113ab1600e056552223f615414377367117f47aa6ec1963287b48d8979'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.95,.21];region.font=34;}
+      if(i===1){region.slot=[.05,.34,.95,.47];region.font=22;region.color='#ffffff';region.manualAccents=[{text:'کسب تجربه عملی در شبکه‌های عصبی و یادگیری عمیق (Deep Learning) برای وظایف گوناگون هوش مصنوعی',color:'#ffc000'}];}
+      if(i===3){region.slot=[.10,.47,.94,.53];region.font=19;}
+      if(i===4){region.slot=[.10,.53,.94,.66];region.font=19;region.keepTermsTogether=true;}
+    }
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

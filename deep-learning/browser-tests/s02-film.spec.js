@@ -71,3 +71,14 @@ test('Rosenblatt slide separates the portrait caption and quotation',async({page
  await expect(quote.locator('.reader-emphasis').first()).toHaveCSS('color','rgb(255, 192, 0)');
  const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(n=>n.scrollHeight>n.clientHeight+2||n.scrollWidth>n.clientWidth+2).map(n=>n.textContent));expect(overflow).toEqual([]);
 });
+
+test('history slide has separate milestones and a sourced correction',async({page})=>{
+ await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=11');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===11);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ await expect(page.locator('.reader-slide-text')).toHaveCount(4);
+ await expect(page.locator('.reader-slide-text[data-source-lines="3"] .reader-emphasis')).toHaveCSS('color','rgb(255, 192, 0)');
+ const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(n=>n.scrollHeight>n.clientHeight+2||n.scrollWidth>n.clientWidth+2).map(n=>n.textContent));expect(overflow).toEqual([]);
+ const note=await page.evaluate(async()=>{const config=JSON.parse(document.querySelector('#source-reader-config').textContent),data=await(await fetch(config.translationUrl)).json();return data.pages[10].editorial_notes[0];});
+ expect(note.references[0].url).toBe('https://www.computerhistory.org/tdih/may/12/');expect(note.fa).toContain('۱۹۴۱');
+});

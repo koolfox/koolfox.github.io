@@ -292,3 +292,20 @@ test('second sample prediction keeps the reference values',async({browser})=>{
   }finally{await context.close();}
  }
 });
+
+test('second sample update preserves predictions and weights',async({browser})=>{
+ for(const width of [1440,390]){
+  const context=await browser.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390});
+  try{
+   const page=await context.newPage();await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=29');
+   await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===29);
+   if(width===390)await page.locator('[data-view-translation]').click();
+   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+   await expect(page.locator('#persian-page')).toContainText('آیا پارامترهای مدل');
+   const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(node=>node.scrollHeight>node.clientHeight+2||node.scrollWidth>node.clientWidth+2).map(node=>node.textContent));expect(overflow).toEqual([]);
+   const companion=page.locator('.reader-figure-labels');await companion.locator('summary').click();
+   const tables=companion.locator('table');await expect(tables).toHaveCount(2);
+   expect(await tables.nth(0).locator('tbody tr').evaluateAll(rows=>rows.map(row=>[...row.cells].map(cell=>cell.textContent)))).toEqual([['1','0','0','-1','1'],['1','0','1','1','-1']]);
+  }finally{await context.close();}
+ }
+});

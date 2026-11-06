@@ -805,6 +805,8 @@ def build(output, root=ROOT):
         "reader-fullscreen.js",
         "slide-content.js",
         "source-reader.css",
+        "vazirmatn-slide.woff2",
+        "vazirmatn-slide-LICENSE.txt",
         "notebook.js", "notebook.css", "notebook_kernel.py", "notebook-worker.mjs",
         "practice.js", "practice.css", "knowledge.js",
         "python-tools.js", "python-tools-worker.mjs", "notebook_support.py",

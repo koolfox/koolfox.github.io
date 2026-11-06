@@ -163,7 +163,7 @@ def package_source_readers(output, term_id, sessions, root=ROOT):
             raise ValueError(f"Stale generated source-reader payload: {session}")
         links.append(f'<li><a href="/deep-learning/{route}">{escape(rows[session]["title_fa"])}</a></li>')
     for name in ("course.css", "course.js", "workshops.js", "workshop-worker.mjs",
-                 "source-reader.js", "reader-fullscreen.js", "slide-content.js", "source-reader.css", "university-logo.png",
+                 "source-reader.js", "reader-fullscreen.js", "slide-content.js", "source-reader.css", "vazirmatn-slide.woff2", "vazirmatn-slide-LICENSE.txt", "university-logo.png",
                  "university-logo.source.json", "vendor/pyodide.mjs", "vendor/pyodide-LICENSE.json",
                  "notebook.js", "notebook.css", "notebook_kernel.py", "notebook-worker.mjs", "practice.js", "practice.css", "knowledge.js", "webgpu-attention.js",
                  "python-tools.js", "python-tools-worker.mjs", "notebook_support.py", "notebook-results.js"):

@@ -1,5 +1,26 @@
 import {test,expect} from '@playwright/test';
 
+for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
+ test(`slide font loads without changing reader controls at ${viewport.width}px`,async({page})=>{
+  await page.setViewportSize(viewport);
+  await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=30');
+  if(viewport.width<761)await page.locator('[data-view-translation]').click();
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const type=await page.evaluate(async()=>{
+   await document.fonts.ready;
+   const nodes=[...document.querySelectorAll('.reader-slide-text')];
+   return {loaded:document.fonts.check('400 16px VazirmatnSlide'),
+    fonts:nodes.map(node=>getComputedStyle(node).fontFamily),
+    header:getComputedStyle(document.querySelector('.reader-header')).fontFamily,
+    overflow:nodes.some(node=>node.scrollHeight>node.clientHeight+2||node.scrollWidth>node.clientWidth+2)};
+  });
+  expect(type.loaded).toBe(true);expect(type.fonts.length).toBeGreaterThan(0);
+  expect(type.fonts.every(font=>font.startsWith('VazirmatnSlide'))).toBe(true);
+  expect(type.header).toContain('Arad');expect(type.overflow).toBe(false);
+ });
+}
+
 test('source slide text keeps source size and exact color without shrinking to fit',async({page})=>{
  await page.goto('/deep-learning/terms/spring-2026/s03/slides/');
  const result=await page.evaluate(async()=>{

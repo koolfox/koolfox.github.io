@@ -426,7 +426,7 @@ test('session 1 image titles fit without covering their figures', async ({page})
  for (const number of [14,19]) {
   await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page='+number); await ready(page);
   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
-  const title=page.locator('#persian-page .reader-slide-text');
+  const title=page.locator('#persian-page .reader-slide-text:not(.reader-image-translation)');
   expect(await title.evaluate(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2)).toBeTruthy();
   await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
  }

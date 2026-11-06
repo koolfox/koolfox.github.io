@@ -30,7 +30,6 @@ export async function readPdf(url, expected, signal) {
 }
 
 export async function warmSlideOffline(signal) {
- return false; // Diagnostic only: isolate the slide worker.
  if (!('serviceWorker' in navigator) || !('caches' in window)) return false;
  try {
   if (signal?.aborted) return false;
@@ -43,6 +42,7 @@ export async function warmSlideOffline(signal) {
   }
   await navigator.serviceWorker.register(script, {scope: `${root}terms/`});
   await navigator.serviceWorker.ready;
+  return false; // Diagnostic only: worker active, asset warm-up disabled.
   await document.fonts.ready;
   if (signal?.aborted) return false;
   const cache = await cacheStore(); if (!cache) return false;

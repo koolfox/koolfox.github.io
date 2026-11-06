@@ -2,6 +2,29 @@ import { test, expect, devices } from '@playwright/test';
 
 test.use({ ...devices['iPhone 13'] });
 
+test('slide worker unregisters its legacy broad scope', async ({ page }) => {
+ await page.goto('/deep-learning/');
+ await page.evaluate(async () => {
+  await navigator.serviceWorker.register('/deep-learning/slide-offline-sw.js', { scope: '/deep-learning/' });
+  await navigator.serviceWorker.ready;
+ });
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=40');
+ await page.waitForFunction(() => window.sourceSlideReader?.ready);
+ await expect(page.locator('html')).toHaveAttribute('data-offline-ready', 'true', { timeout: 30000 });
+ const scopes = await page.evaluate(async () => (await navigator.serviceWorker.getRegistrations()).map(item => new URL(item.scope).pathname));
+ expect(scopes).toContain('/deep-learning/terms/');
+ expect(scopes).not.toContain('/deep-learning/');
+});
+
+test('new slide worker does not control other course pages', async ({ page, context }) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=40');
+ await page.waitForFunction(() => window.sourceSlideReader?.ready);
+ await expect(page.locator('html')).toHaveAttribute('data-offline-ready', 'true', { timeout: 30000 });
+ const otherPage = await context.newPage();
+ await otherPage.goto('/deep-learning/playgrounds/cnn-mnist/train/');
+ expect(await otherPage.evaluate(() => navigator.serviceWorker.controller?.scriptURL ?? null)).toBeNull();
+});
+
 test('visited session one pages load separately and work offline after reload', async ({ page, context }) => {
  const pdfs = [];
  page.on('response', response => { if (/\.pdf\?sha=/.test(response.url())) pdfs.push({url: response.url(), size: Number(response.headers()['content-length'])}); });

@@ -32,7 +32,13 @@ export async function readPdf(url, expected, signal) {
 export async function warmSlideOffline() {
  if (!('serviceWorker' in navigator) || !('caches' in window)) return false;
  try {
-  await navigator.serviceWorker.register(`${root}slide-offline-sw.js`, {scope: root});
+  const script = new URL(`${root}slide-offline-sw.js`, location.href).href;
+  const oldScope = new URL(root, location.href).href;
+  for (const registration of await navigator.serviceWorker.getRegistrations()) {
+   const worker = registration.active || registration.waiting || registration.installing;
+   if (registration.scope === oldScope && worker?.scriptURL === script) await registration.unregister();
+  }
+  await navigator.serviceWorker.register(script, {scope: `${root}terms/`});
   await navigator.serviceWorker.ready;
   await document.fonts.ready;
   const cache = await cacheStore(); if (!cache) return false;

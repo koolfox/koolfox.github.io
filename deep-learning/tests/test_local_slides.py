@@ -20,6 +20,10 @@ from source_catalog import ROOT
 
 
 class LocalSlidesTests(unittest.TestCase):
+    def test_first_slide_image_matches_its_versioned_name(self):
+        image = ROOT / "assets/s01-first-page-689c5542412903e7.jpg"
+        self.assertTrue(hashlib.sha256(image.read_bytes()).hexdigest().startswith("689c5542412903e7"))
+
     def test_every_teaching_session_has_an_independent_narrative(self):
         identity, units = load_slides("spring-2022")
         self.assertEqual(len(units), 23)
@@ -157,7 +161,7 @@ class RegisteredSourceReaderTests(unittest.TestCase):
         self.write(self.root / "data/metadata/source-readers.json", {"schema_version": 1, "terms": {self.term: ["s01", "s02"]}})
         self.write(self.root / "content/slide-reader-identity.json", {"supervisor_fa": "دکتر نگار مجمع"})
         for name in ("course.css", "course.js", "workshops.js", "workshop-worker.mjs", "source-reader.js", "slide-offline-cache.js", "reader-fullscreen.js", "slide-content.js", "source-reader.css", "vazirmatn-slide.woff2", "vazirmatn-slide-LICENSE.txt",
-                     "university-logo.png", "university-logo.source.json", "vendor/pyodide.mjs", "vendor/pyodide-LICENSE.json",
+                     "s01-first-page-689c5542412903e7.jpg", "university-logo.png", "university-logo.source.json", "vendor/pyodide.mjs", "vendor/pyodide-LICENSE.json",
                      "notebook.js", "notebook.css", "notebook_kernel.py", "notebook-worker.mjs", "practice.js", "practice.css", "knowledge.js",
                      "python-tools.js", "python-tools-worker.mjs", "notebook_support.py", "notebook-results.js", "webgpu-attention.js"):
             self.write(self.output / "assets" / name, "fixture")
@@ -225,6 +229,7 @@ class RegisteredSourceReaderTests(unittest.TestCase):
         self.assertEqual(self.package().read_bytes(), before)
         with zipfile.ZipFile(destination) as archive:
             names = set(archive.namelist())
+            self.assertIn("deep-learning/assets/s01-first-page-689c5542412903e7.jpg", names)
             manifest = json.loads(archive.read("bundle-manifest.json"))
             self.assertEqual((manifest["pages"], manifest["original_pages"], manifest["original_pdfs"]), (5, 5, 2))
             self.assertEqual(set(manifest["workshop_sessions"]), {"s01", "s02"})

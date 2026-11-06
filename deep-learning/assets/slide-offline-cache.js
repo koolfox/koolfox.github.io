@@ -10,10 +10,18 @@ async function validPdf(bytes, expected) {
 }
 
 export async function readPdf(url, expected, signal) {
- const cache = await cacheStore();
- let response = await cache?.match(url);
- let bytes = response ? await response.arrayBuffer() : null;
- if (bytes && !(await validPdf(bytes, expected))) { await cache.delete(url); bytes = null; }
+ let cache = await cacheStore(), response, bytes = null;
+ try {
+  response = await cache?.match(url);
+  bytes = response ? await response.arrayBuffer() : null;
+ } catch (error) {
+  console.warn('Slide cache read failed', error);
+  cache = null;
+ }
+ if (bytes && !(await validPdf(bytes, expected))) {
+  try { await cache.delete(url); } catch (error) { console.warn('Slide cache removal failed', error); cache = null; }
+  bytes = null;
+ }
  if (!bytes) {
   response = await fetch(url, {signal});
   if (!response.ok || response.status !== 200) throw Error('PDF download incomplete');

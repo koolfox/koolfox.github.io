@@ -645,8 +645,10 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
       && record.source_text_sha256==='7d0e1385360f7dbc13695b23d3722c295f594c2d58bbcfb6e870b16af434ba2f'
       && layout.translation_sha256==='4c1a7dffa343cba0179f7907ed76acfe77d9d10064aa453b56b67c8a3a09648c'){
-    const slots={0:[.03,.08,.98,.22],1:[.015,.22,.65,.59],10:[.015,.59,.65,.64],11:[.015,.65,.65,.93],18:[.015,.94,.65,.99],20:[.67,.23,.99,.29]};
-    for(const region of regions){const slot=slots[region.block.source_lines[0]];if(slot)region.slot=slot;}
+    const slots={0:[.03,.08,.98,.22],1:[.015,.22,.65,.57],10:[.015,.57,.65,.655],11:[.015,.655,.65,.93],18:[.015,.94,.65,.99],20:[.67,.23,.99,.29]};
+    for(const region of regions){const i=region.block.source_lines[0],slot=slots[i];if(slot)region.slot=slot;if(i===1||i===11){region.scrollable=true;region.color='#ffffff';}
+      if(i===1)region.manualAccents=[{text:'ظرف سه تا هشت سال، ماشینی با هوش عمومی یک انسان معمولی خواهیم داشت',color:'#ffc000'},{text:'ظرف چند ماه در سطح نابغه خواهد بود و چند ماه بعد، قدرت‌هایش محاسبه‌ناپذیر خواهند شد',color:'#ffc000'},{text:'اگر خوش‌شانس باشیم، شاید تصمیم بگیرند ما را به‌عنوان حیوان خانگی نگه دارند',color:'#ffc000'}];
+      if(i===11)region.manualAccents=[{text:'جدول زمانی او شاید تاحدی آرزومندانه باشد؛ «15 سال به ما وقت بدهید»',color:'#ffc000'},{text:'سومین انقلاب صنعتی را رقم بزند، جنگ و فقر را از میان ببرد و قرن‌ها پیشرفت در علم، آموزش و هنر را در هم فشرده کند',color:'#ffc000'},{text:'این موهبت به گولم',color:'#ffc000'}];}
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===39
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
@@ -753,6 +755,7 @@ export function createSourceLayout(record, plan) {
       width: (x1 - x0) * width + 'px', height: (y1 - y0) * height + 'px',
       fontSize: region.font / plan.layout.width * width + 'px', color: region.color});
     node.dataset.sourceLines = region.block.source_lines.join(',');
+    if(region.scrollable){node.dataset.scrollable='true';node.tabIndex=0;node.style.overflowY='auto';node.setAttribute('aria-label','نقل‌قول؛ برای خواندن ادامه اسکرول کنید');}
     if (region.block.presentation?.bold) node.style.fontWeight = '700';
     if (region.block.presentation?.italic) node.style.fontStyle = 'italic';
     if (region.block.latex) math(node, region.block);
@@ -805,7 +808,7 @@ export function fitSourceLayout(stage) {
   const scale = stage.offsetWidth ? stage.getBoundingClientRect().width / stage.offsetWidth : 0;
   const fits = node => node.scrollHeight <= node.clientHeight + 2 && node.scrollWidth <= node.clientWidth + 2;
   for (const node of nodes) {
-    if (fits(node)) continue;
+    if (fits(node) || node.dataset.scrollable==='true') continue;
     const size = parseFloat(node.style.fontSize);
     if (Number.isFinite(size) && !node.matches('.reader-word-math') && !node.querySelector('.katex, code, pre')) {
       for (const factor of [.95, .90, .85]) {

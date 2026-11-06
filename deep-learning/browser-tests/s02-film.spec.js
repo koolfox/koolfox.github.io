@@ -403,16 +403,18 @@ test('newspaper slide retains its image and translated headline',async({browser}
  }
 });
 
-test('long historical quotation remains complete in readable fallback',async({browser})=>{
+test('long historical quotations remain complete in scrollable slide regions',async({browser})=>{
  for(const width of [1440,390]){
   const context=await browser.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390});
   try{
    const page=await context.newPage();await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=37');
    await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===37);
    if(width===390)await page.locator('[data-view-translation]').click();
-   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','text-overflow');
+   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
    await expect(page.locator('#persian-page')).toContainText('به نظر نمی‌رسد بفهمند');
    await expect(page.locator('#persian-page')).toContainText('آفریده‌ای مهارنشدنی');
+   const quotes=page.locator('.reader-slide-text[data-scrollable=true]');await expect(quotes).toHaveCount(2);
+   for(let i=0;i<2;i++){const state=await quotes.nth(i).evaluate(node=>{node.scrollTop=node.scrollHeight;return {top:node.scrollTop,height:node.scrollHeight,client:node.clientHeight}});if(state.height>state.client)expect(state.top).toBeGreaterThan(0);}
   }finally{await context.close();}
  }
 });

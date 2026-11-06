@@ -259,3 +259,11 @@ test('session 3 finite difference example retains the source graph and values', 
  await expect(example).toContainText('0.01');
  await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
 });
+
+test('session 3 finite difference source error is corrected alongside the slide', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=47');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready && sourceSlideReader.page===47);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ await expect(page.locator('#persian-page .reader-editorial')).toContainText('12.00130004');
+ await expect(page.locator('#persian-page .reader-slide-text').filter({hasText:'12.0013004'})).toBeVisible();
+});

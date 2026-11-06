@@ -441,7 +441,736 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(/^آیا (?:w[1-5],(?:4|5|6)|b[4-6]) باید افزایش یابد یا کاهش؟$/.test(region.block.fa))region.slot=[.64,.25,.98,.315];
     }
   }
-  return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===1
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='c7a3f94597e9fcf0b36ceea393004034742e29f1737386e69c7e5f147053a4ca'
+      && layout.translation_sha256==='a0a63c0c55ab7a7898f06d8308b9053c96f86195e88f85601d134b1241e6fbb6'){
+    for(const region of regions){
+      region.align='center';region.keepTermsTogether=true;
+      if(region.block.kind==='heading'){region.slot=[.04,.27,.96,.52];region.font=38;}
+      if(region.block.source_lines[0]===2){region.slot=[.12,.61,.88,.67];region.font=28;}
+      if(region.block.source_lines[0]===3){region.slot=[.08,.68,.92,.74];region.font=23;}
+      if(region.block.source_lines[0]===4){region.slot=[.2,.75,.8,.80];region.font=24;}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && [2,3,27,86].includes(record.number)
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='93be166ad020db0006505dc7ba7155a8e809f0fb64afc1dfc2f33e13791b16be'
+      && layout.translation_sha256==='a219bf326c518c4dde45b9e7fb7de31a7a0d05378b9f50aa9e41795309054c2f'){
+    for(const region of regions){
+      const index=region.block.source_lines[0];
+      region.keepTermsTogether=true;
+      if(index===0)region.slot=[.04,.11,.96,.21];
+      else region.slot=[.04,.35+(index-1)*.149,.96,.48+(index-1)*.149];
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===4
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='cb37288320326d69b2a3cf49758e02d4af85a994fa33f569d65454eec9f4d46c'
+      && layout.translation_sha256==='bbee7d130870101735d56f84c0a730f0351a6e4594863799d165956e696b98e8'){
+    for(const region of regions){
+      const index=region.block.source_lines[0];
+      if(index>0){region.align='center';region.slot=[.06,.43+(index-1)*.09,.94,.52+(index-1)*.09];}
+      if(index===3)region.manualAccents=[{text:'یا',color:'#ffffff'}];
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===13
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='a446f994291fe2033fe08f7ebffd845639d0ba5a4f14fe5ea71abc743c0feebf'
+      && layout.translation_sha256==='1945a5e7443b4fd60df7744c340748e5be1274c3cf23fa6386c716525ea40bd7'){
+    for(const region of regions)if(region.block.kind==='heading'){
+      region.slot=[.04,.09,.96,.205];region.font=33;region.keepTermsTogether=true;
+    }
+  }
+  const s01TitleReview={
+    14:['766169dcca47dd0f8949d0481e883b01b40ea73afd686cc4c7f6f2a7de71e6eb','1628326d1ab32c33dfe78e62320213b30f9b51f26a6e0d85d9a3e9eab667044c',[.04,.09,.96,.205],30],
+    19:['a2e55bbba08b55ea9c01ab2d28267bedaf666acd16d3f971a809ca68b67fde8b','2087ae62e9f77f266d3deb4b8e77b306a22fcacd53733a2f55962ba674ba02e3',[.02,.10,.40,.22],26],
+  }[record.number];
+  if(s01TitleReview && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01'
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256===s01TitleReview[0] && layout.translation_sha256===s01TitleReview[1]){
+    for(const region of regions)if(region.block.kind==='heading'){
+      region.slot=s01TitleReview[2];region.font=s01TitleReview[3];region.keepTermsTogether=true;
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===21
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='6f488bfb122db5e22972cf3cc92e0f4afcbbf41f3e0c76cb2fd12682484b19c4'
+      && layout.translation_sha256==='cb979bfd8e149debec852ed0153d092bc2eb36c3ed002c1cf1565e16a2a78f4c'){
+    const slots={2:[.07,.745,.49,.79],3:[.07,.79,.49,.93],6:[.535,.745,.955,.79],7:[.535,.79,.955,.93]};
+    for(const region of regions){
+      const index=region.block.source_lines[0];
+      if(slots[index]){region.slot=slots[index];region.font=index===2||index===6?16:15;region.keepTermsTogether=true;}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===22
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='31a9bd085b6372b79164cbf9ebe1b3ecc8068386387b093c24e4129e27f23de9'
+      && layout.translation_sha256==='8b9fc2ef7cf844c58e16cc32d0cb29532a91df898826be7aefccd9219895ef77'){
+    const slots={2:[.095,.65,.71,.725],3:[.095,.725,.71,.758],4:[.095,.758,.71,.81],5:[.095,.81,.71,.855],6:[.095,.855,.71,.89],7:[.74,.68,.99,.73]};
+    for(const region of regions){
+      const index=region.block.source_lines[0];
+      if(slots[index]){region.slot=slots[index];region.font=index===7?16:12;}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===24
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='205729b9df702d6717ee7cbb22da6fc6750b429556cd93badd695b34766b4715'
+      && layout.translation_sha256==='e5f7b269b68c10816cd7efe6c37d44df2c061423b77229498ec9d5c4af7b37be'){
+    const slots={2:[.10,.675,.90,.76],4:[.10,.76,.90,.80],5:[.10,.80,.90,.84],6:[.10,.84,.90,.88],7:[.10,.88,.90,.92]};
+    for(const region of regions){
+      const index=region.block.source_lines[0];
+      if(slots[index]){region.slot=slots[index];region.font=17;}
+      if(index===2)region.manualAccents=[{text:'نتیجهٔ این پرامپت (Prompt):',color:'#ffc000'}];
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===26
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='12e7f4d50b25e3ebaeeaed061df4ba576dae8c35dcfaa3ce714a67cc77bd4ef0'
+      && layout.translation_sha256==='ac1cc1e93c28dd7efb0e53d3cf65913246991e4721b76b0e300e9adda01e982f'){
+    const slots={0:[.04,.25,.96,.36],1:[.04,.38,.96,.47],2:[.04,.49,.96,.63],4:[.04,.67,.96,.83]};
+    const accents={0:'شبکه‌های عصبی (Neural Networks)',1:'جادو نیستند',2:'ساختهٔ انسان',4:'هدف:'};
+    for(const region of regions){
+      const index=region.block.source_lines[0];
+      if(slots[index]){region.slot=slots[index];region.font=26;region.align='center';region.keepTermsTogether=true;region.manualAccents=[{text:accents[index],color:'#ffc000'}];}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===28
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='35e0d3bf882163cede45d4c0a9dc4e8555a392f05cb0e6f170ea5e30f5381798'
+      && layout.translation_sha256==='3389759be65bfc773ebcaa80fc72ff00158c6e0b51b77336cb95a0cc8e21c0fd'){
+    const slots={2:[.01,.33,.21,.43],4:[.10,.81,.61,.985],7:[.63,.84,.94,.91]};
+    for(const region of regions){
+      const index=region.block.source_lines[0];
+      if(slots[index]){region.slot=slots[index];region.align='center';region.font=index===4?15:19;}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===29
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='18026cab7117b432141ae0a94b515b66d3436da2ac486d6efbde8af976fbf8e4'
+      && layout.translation_sha256==='aea3615d0ec592c74e6abdcffd7be9b2ffba9f916ac3f831425bbbd20f24ffe2'){
+    const slots={1:[.075,.435,.23,.55],3:[.01,.33,.21,.425],5:[.54,.88,.98,.985],7:[.275,.88,.49,.985]};
+    for(const region of regions){
+      const index=region.block.source_lines[0];
+      if(slots[index]){region.slot=slots[index];region.align='center';region.font=index===5?15:17;region.keepTermsTogether=true;}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===30
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='9a946e4f149135b535c43a464284e546aeb6631358ad8d82dcf63a296979f9cc'
+      && layout.translation_sha256==='079ae3aa13559edf7bbac29ae810c278824ea5a0253bd42c008bc33bc018bf0f'){
+    for(const region of regions){
+      const text=region.block.fa;
+      if(text.startsWith('«هوش مصنوعی»')){region.slot=[.07,.94,.94,.995];region.font=14;region.align='center';}
+      if(text.startsWith('آزمون تورینگ')){region.slot=[.075,.435,.23,.55];region.font=16;region.align='center';region.keepTermsTogether=true;}
+      if(text==='نخستین ماشین برنامه‌پذیر'){region.slot=[.01,.33,.20,.43];region.font=17;region.align='center';}
+      if(text==='تولد هوش مصنوعی (AI)'){region.slot=[.19,.36,.30,.43];region.font=16;region.align='center';}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===31
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='1f22cd043b9cbb99a325453dd893379690729088eec8e1aa619d55724a873f26'
+      && layout.translation_sha256==='6f575a5fcfc14326131f96bfa6442fc69ef0ff7e369598a3582e2c616fb22fb7'){
+    for(const region of regions){
+      const text=region.block.fa;
+      if(text.startsWith('«هوش مصنوعی»')){region.slot=[.07,.94,.94,.995];region.font=14;region.align='center';}
+      if(text.startsWith('پیشنهاد کارگاه:')){region.slot=[.065,.53,.93,.89];region.font=17;}
+      if(text.startsWith('آزمون تورینگ')){region.slot=[.075,.435,.23,.52];region.font=16;region.align='center';region.keepTermsTogether=true;}
+      if(text==='نخستین ماشین برنامه‌پذیر'){region.slot=[.01,.33,.20,.43];region.font=17;region.align='center';}
+      if(text==='تولد هوش مصنوعی (AI)'){region.slot=[.19,.36,.30,.43];region.font=16;region.align='center';}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===32
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='5245c95343e51082e743c6062dbc388ee26aa8c2e6b35f56da2b6fe61fd385bb'
+      && layout.translation_sha256==='9aecbd9977733675c668c5fc5b1ed7baae9375972247b0040d3923c3009993e4'){
+    for(const region of regions){
+      const text=region.block.fa;
+      if(text.startsWith('رایانه‌ها ممکن است')){region.slot=[.21,.59,.70,.78];region.font=30;region.align='center';}
+      if(text.startsWith('آزمون تورینگ')){region.slot=[.075,.435,.23,.55];region.font=16;region.align='center';region.keepTermsTogether=true;}
+      if(text==='نخستین ماشین برنامه‌پذیر'){region.slot=[.01,.33,.20,.43];region.font=17;region.align='center';}
+      if(text==='تولد هوش مصنوعی (AI)'){region.slot=[.19,.36,.30,.43];region.font=16;region.align='center';}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===33
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='7d594fd57fc388d20b760e111a961c282a5043507b873690242b4c3b2ca16b97'
+      && layout.translation_sha256==='1ee6821da4c2626513699821f0ae646d768cd0752e9b11919f378cb27e364b1c'){
+    const slots={1:[.05,.57,.54,.70],3:[.05,.72,.54,.86],5:[.25,.33,.41,.43],7:[.61,.43,.89,.59],10:[.62,.70,.88,.86],13:[.075,.435,.23,.55],15:[.01,.33,.20,.43]};
+    for(const region of regions){
+      const index=region.block.source_lines[0];
+      if(slots[index]){region.slot=slots[index];region.font=index===1||index===3?16:14;region.keepTermsTogether=true;}
+      if([5,7,10,13,15].includes(index))region.align='center';
+      if(index===3)region.manualAccents=[{text:'توانایی یادگیری می‌دهد، بدون آنکه صریحا برنامه‌ریزی شوند',color:'#ffc000'}];
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===39
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='21f0e8cd989bb18d4ef7a8388ec73b00de7fafd0103bda05b8acf4c256eee569'
+      && layout.translation_sha256==='399257a7e6d9504e8fd7b4d077c2a5cfb43c0540943bb95075b3965cd6ca6764'){
+    for(const region of regions){
+      if(region.block.kind==='heading'){region.slot=[.04,.10,.96,.22];region.font=31;region.keepTermsTogether=true;}
+      if(region.block.source_lines[0]===1){region.slot=[.07,.29,.96,.37];region.font=21;region.manualAccents=[{text:'داده را انتخاب کنید',color:'#ffc000'}];}
+      if(region.block.source_lines[0]===3 && ['مودار','بی‌مو'].includes(region.block.fa)){region.slot=[region.rect[0]-.005,.719,region.rect[2]+.005,.768];region.font=16;region.align='center';}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===40
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='7f793820f417d38fab16ffb8114d6fc8847387a90602edb55117f3e2e4fabc30'
+      && layout.translation_sha256==='fab59128a31413698f8b2919bd0ff5f06fa245a7b2be7252aab1323315581ee1'){
+    for(const region of regions){
+      const index=region.block.source_lines[0];
+      if(region.block.kind==='heading'){region.slot=[.04,.10,.96,.22];region.font=31;region.keepTermsTogether=true;}
+      if(index===4){region.slot=[.07,.29,.96,.37];region.font=21;region.manualAccents=[{text:'تقسیم کنید',color:'#ffc000'}];}
+      if(index===1){region.slot=[region.rect[0]-.01,.398,region.rect[2]+.01,.447];region.font=16;region.align='center';}
+      if(index===3 && ['مودار','بی‌مو'].includes(region.block.fa)){region.slot=[region.rect[0]-.005,.719,region.rect[2]+.005,.768];region.font=16;region.align='center';}
+      if(index===3 && region.block.fa==='برچسب:'){region.slot=[.085,.719,.17,.768];region.font=14;}
+    }
+  }
+  const s01TrainingReview={
+    41:['a5bb65667c1620f728c5c6092307cd4a32a64444907fab33e8f14b122723944c','c6303118221d2c91a1ab58c269359839ea8d8b52c7150a0d58218bbf034a63d0'],
+    42:['680a1d770209b136648e4d79c698ca9c2a7dc9a62a6f34a269c70755d748e39d','c1cfbec6c3cd396112dfd4f6e6ddcc9d3166b801709dd8194bf1983e6fea3ce9'],
+    43:['fae88c0963edb328116d7b7203e91d93ec9f4d7b9f7d1bde7b5280906aa917aa','f5785db850f45ec5a0711720d577c549790383046a7066714fd6bcc3b2bdb346'],
+  }[record.number];
+  if(s01TrainingReview && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01'
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256===s01TrainingReview[0] && layout.translation_sha256===s01TrainingReview[1]){
+    for(const region of regions){
+      const index=region.block.source_lines[0];
+      if(region.block.kind==='heading'){region.slot=[.04,.10,.96,.22];region.font=31;region.keepTermsTogether=true;}
+      if((record.number===41&&index===4)||(record.number!==41&&index===1)){
+        region.slot=[.07,.295,.96,.40];region.font=19;
+        region.manualAccents=[{text:record.number===41?'مدل را برای کمینه‌کردن خطای پیش‌بینی آموزش دهید':'خطای تعمیم (Generalization Error) را اندازه بگیرید',color:'#ffc000'}];
+      }
+      if((record.number===41&&index===1)||(record.number!==41&&index===3)){region.slot=[region.rect[0]-.015,.398,region.rect[2]+.015,.447];region.font=16;region.align='center';}
+      if(record.number===41&&index===3 && ['مودار','بی‌مو'].includes(region.block.fa)){region.slot=[region.rect[0]-.005,.719,region.rect[2]+.005,.768];region.font=16;region.align='center';}
+      if(record.number===41&&index===3 && region.block.fa==='برچسب:'){region.slot=[.085,.719,.17,.768];region.font=14;}
+      if(record.number===43&&index===4){region.slot=[.69,.719,.79,.768];region.font=16;region.align='center';}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===44
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='113f6c87814d610d9d9b3b61a3f73db25daef0742b113d2bd17ecc4ce01b9460'
+      && layout.translation_sha256==='2c2213349e74d874745d1d70804ecb86673fecc4fe6a6825c56ac1cd55a649cc'){
+    const slots={1:[.49,.33,.83,.43],4:[.51,.49,.81,.61],7:[.53,.69,.79,.815],10:[.59,.85,.73,.94],12:[.25,.33,.40,.43],14:[.075,.435,.23,.55],16:[.01,.33,.20,.43]};
+    for(const region of regions){
+      const index=region.block.source_lines[0];
+      if(region.block.kind==='heading'){region.slot=[.04,.10,.96,.22];region.font=30;region.keepTermsTogether=true;}
+      if(slots[index]){region.slot=slots[index];region.font=[4,7].includes(index)?14:index===10?13:14;region.align='center';region.keepTermsTogether=true;}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===45
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='3d9aaca8c08f5f9b04fe5e7bc92c86bb2900592d2114d717cd65d8ac63dd7a76'
+      && layout.translation_sha256==='ea21d9d41268276de0013485c38c104146467deedc70b6fa5e80eca72499a4ad'){
+    for(const region of regions){
+      const index=region.block.source_lines[0], text=region.block.fa;
+      if(index===2){region.slot=text.startsWith('استخراج')?[.26,.40,.48,.47]:[.55,.40,.70,.47];region.font=12;region.align='center';}
+      if(index===3){region.slot=[.34,.255,.64,.31];region.font=16;region.align='center';}
+      if(index===4){region.slot=[.82,.45,.91,.51];region.font=16;region.align='center';}
+      if(index===5){region.slot=text.startsWith('ورودی')?[.075,.33,.18,.385]:text.startsWith('خروجی')?[.79,.33,.92,.385]:[.27,.33,.74,.385];region.font=14;region.align='center';}
+      if(index===6){region.slot=[.20,.74,.77,.82];region.font=19;}
+      if(index===7){region.slot=[.20,.84,.86,.91];region.font=14;}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===46
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='af1b02a052e6b8bbbe94af7bf001510d5f2459b3b04b7324ef3fa97a27dcb19c'
+      && layout.translation_sha256==='cafa77592cb133b0ec9dfc18a9e5c8b92b9386fc532e04af94123aa47a5bb3ad'){
+    for(const region of regions){
+      const index=region.block.source_lines[0], text=region.block.fa;
+      if(index===2){region.slot=text.startsWith('استخراج')?[.26,.40,.48,.47]:[.55,.40,.70,.47];region.font=12;region.align='center';}
+      if(index===3){region.slot=[.34,.255,.64,.31];region.font=16;region.align='center';}
+      if(index===4){region.slot=[.82,.45,.91,.51];region.font=16;region.align='center';}
+      if(index===6){region.slot=text.startsWith('ورودی')?[.075,.33,.18,.385]:text.startsWith('خروجی')?[.79,.33,.92,.385]:[.27,.33,.74,.385];region.font=14;region.align='center';}
+      if(index===5){region.slot=[.21,.74,.78,.82];region.font=21;region.align='center';}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===47
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='02026ec9c63b9d49faa8df6262de038b5ee3a9b76a5e26ca32e0b3714ded4480'
+      && layout.translation_sha256==='af1e625c530e6713ff143dfbd9d2bba721734f4f17d0bc983290fcab2606610b'){
+    for(const region of regions){
+      const index=region.block.source_lines[0], text=region.block.fa;
+      if(index===2){region.slot=text.startsWith('استخراج')?[.26,.40,.48,.47]:[.55,.40,.70,.47];region.font=12;region.align='center';}
+      if(index===3){region.slot=[.34,.255,.64,.31];region.font=16;region.align='center';}
+      if(index===4){region.slot=[.82,.45,.91,.51];region.font=16;region.align='center';}
+      if(index===5){region.slot=[.82,.82,.91,.88];region.font=16;region.align='center';}
+      if(index===6){region.slot=[.26,.755,.48,.81];region.font=12;region.align='center';}
+      if(index===7){region.slot=[.27,.69,.74,.75];region.font=13;region.align='center';}
+      if(index===8){region.slot=[.55,.755,.70,.81];region.font=12;region.align='center';}
+      if(index===9){region.slot=[.77,.675,.96,.74];region.font=18;region.align='center';}
+      if(index===10){region.slot=text.startsWith('ورودی')?[.075,.33,.18,.385]:text.startsWith('خروجی')?[.79,.33,.92,.385]:[.27,.33,.74,.385];region.font=14;region.align='center';}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===48
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='03323390cdbb63782ad0d60397ee6a3fa9ecb06d015b2df341f101464d9df968'
+      && layout.translation_sha256==='c0e3d1fd20f239b784d1f5b02c7a1b65095bba51aef4506635e3f5781cf6cb58'){
+    for(const region of regions){
+      const index=region.block.source_lines[0], text=region.block.fa;
+      if(index===0){region.slot=[.04,.10,.98,.20];region.font=29;region.align='center';}
+      if(index===1){region.slot=text.includes('۱')?[.43,.48,.50,.53]:[.60,.48,.68,.53];region.font=17;region.align='center';}
+      if(index===3){region.slot=[.025,.65,.22,.81];region.font=18;}
+      if(index===6){region.slot=[.08,.43,.25,.50];region.font=14;region.align='center';}
+      if(index===8){region.slot=[.005,.33,.20,.38];region.font=15;region.align='center';}
+      if(index===9){region.slot=text==='برنامه‌پذیر'?[.06,.38,.14,.42]:[.205,.34,.27,.43];region.font=12;region.align='center';}
+      if(index===11){region.slot=[.26,.33,.37,.44];region.font=12;region.align='center';}
+      if(index===14){region.slot=[.78,.33,.96,.42];region.font=16;region.align='center';}
+      if(index===16){region.slot=[.52,.33,.78,.42];region.font=17;region.align='center';}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===49
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='605f4ada3f9709e71ff46ac3f55558a286f82fc76f264d572ed971893e51ef6e'
+      && layout.translation_sha256==='5a1c20b227891c75db4c82d427982c5961d3557a272bedea193fe90e678abc31'){
+    for(const region of regions){region.slot=[.07,.40,.93,.61];region.font=29;}
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && [50,66].includes(record.number)
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='93be166ad020db0006505dc7ba7155a8e809f0fb64afc1dfc2f33e13791b16be'
+      && layout.translation_sha256==='ae0510d97d33a63f2d4c163c0c48f6b55a124bd4921b58801103d1bdfcb1b30c'){
+    const top=[.11,.35,.49,.64,.79];
+    for(const region of regions){const i=region.block.source_lines[0];region.slot=[.075,top[i],.92,top[i]+.09];region.font=i===0?35:23;}
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && [51,52,55,62].includes(record.number)
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='c13c8b12f2c82f6f39911df9250e21a438ec4e5d816c296f0d8c1124191359bb'
+      && layout.translation_sha256==='6847e9d587d81e12420dd918f66c8e6f1758b4d8c9dff4027f5dca4c26cf80f8'){
+    for(const region of regions){const i=region.block.source_lines[0];region.align='center';
+      if(i===0){region.slot=[.04,.10,.96,.21];region.font=29;}
+      if(i===1){region.slot=[.06,.925,.94,.99];region.font=18;}
+      if(i===2){region.slot=[.12,.30,.88,.44];region.font=22;region.color='#ffc000';region.manualAccents=[...([51,52].includes(record.number)?[{text:'معماری (Architecture)',color:'#ff0000'},{text:'آموزش می‌بیند',color:'#ff0000'}]:[]),...([51,55].includes(record.number)?[{text:'داده',color:'#00b050'}]:[]),...([51,62].includes(record.number)?[{text:'پردازنده',color:'#7030a0'}]:[])];}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===53
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='e5e1a922388ef1ec4e11a7c24977341806b1a435cd9a818985fe447d230efce4'
+      && layout.translation_sha256==='ad5ca6ebe60e3bfe72fcb97f10a8844a581736ca1526fef11cab1446752153cf'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===1){region.slot=[.04,.10,.96,.21];region.font=32;}
+      if(i===0){region.slot=[.07,.27,.92,.34];region.font=22;}
+      if(i===2){region.slot=[.54,.47,.97,.53];region.font=19;}
+      if(i===3||i===4||i===5){region.slot=[.54,.53+(i-3)*.058,.98,.59+(i-3)*.058];region.font=17;}
+      if(i===6||i===7){region.slot=[.48,.74+(i-6)*.06,.97,.80+(i-6)*.06];region.font=16;}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===54
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='9be4d2205c47a68510fb464d9458ebee9b8d5257952a206299aade47dbeb2202'
+      && layout.translation_sha256==='8571746ef101e315870051934b5096449781aee13008dfb2533687764a7d02ad'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.95,.20];region.font=31;region.align='center';}
+      if(i===1){region.slot=[.01,.34,.20,.43];region.font=14;region.align='center';}
+      if(i===4){region.slot=[.265,.34,.37,.44];region.font=12;region.align='center';}
+      if(i===6){region.slot=[.09,.45,.25,.52];region.font=14;region.align='center';}
+      if(i===8){region.slot=[.205,.36,.27,.44];region.font=12;region.align='center';}
+      if(i===10){region.slot=[.27,.49,.95,.61];region.font=18;region.align='center';}
+      if(i===12){region.slot=[.78,.33,.96,.43];region.font=15;region.align='center';}
+      if(i===14){region.slot=[.52,.33,.78,.43];region.font=16;region.align='center';}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===56
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='150b0a342cc4ddf232ac190a05a4ec2fc87663763c1e5e24374b650afc33f5e4'
+      && layout.translation_sha256==='daeb7831dae0d0674d5df48a0dd8be9cdb59fef3801c6822c25d32e7bee0f338'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.85,.21];region.font=31;}
+      if(i===1){region.slot=[.05,.27,.30,.34];region.font=23;}
+      if(i===2){region.slot=[.07,.34,.30,.40];region.font=19;}
+      if(i===3){region.slot=[.25,.70,.35,.76];region.font=17;}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===57
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='45ca887e0c2f1867237c0090b08578ec9abc19f4f0e32701b7f22fcd0d2a5780'
+      && layout.translation_sha256==='d4a794e771f60f37b2ae3f2d81d11e74d19e836ffd5cb9cd7991d18afebd5523'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.85,.21];region.font=31;}
+      if(i===1||i===3){const top=i===1?.27:.405;region.slot=[.01,top,.20,top+.13];region.font=15;if(i===3)region.manualAccents=[{text:'ورودی؟',color:'#ffffff'}];}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===58
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='77257dab3d0adef00b142a8b697cbbe421684c1f4a03306166d013fe54db4461'
+      && layout.translation_sha256==='0e7348e48445da4c273a53ac5144d0984fa69866623f428b5a737d5b50323004'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.85,.21];region.font=31;}
+      if(i===1||i===3||i===5){const top={1:.27,3:.40,5:.53}[i];region.slot=[.02,top,.25,top+.13];region.font=16;if(i===5)region.manualAccents=[{text:'ورودی؟',color:'#ffffff'}];}
+      if(i===7){region.slot=[.51,.85,.62,.90];region.font=15;}
+      if(i===8){region.slot=[.82,.56,.93,.61];region.font=15;}
+      if(i===9){region.slot=[.81,.67,.95,.72];region.font=15;}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===59
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='0ba41213473612c15d8013cf8b61f9a0674e21a8fe522fdc3aafafa320a427dc'
+      && layout.translation_sha256==='0597346a4b563c965600a7f1be2303154267d44073b2cb38a24cabfbbff17452'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.85,.21];region.font=31;}
+      if([1,3,5,7].includes(i)){const top={1:.27,3:.40,5:.53,7:.66}[i];region.slot=[.02,top,.25,top+.13];region.font=16;if(i===7)region.manualAccents=[{text:'ورودی؟',color:'#ffffff'}];}
+      if(i===9){region.slot=[.25,.59,.32,.66];region.font=15;}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===60
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='e51ec96b4f9dc65cca1731342b1867987d26a6542ebb57b3d064583bb482a99a'
+      && layout.translation_sha256==='76d7b3ad46ff924c09bdc3fc091d79deb2cc94c16ed8d37d383d3fd2f8b9237e'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.85,.21];region.font=31;}
+      if([1,3,5,7].includes(i)){const top={1:.27,3:.40,5:.53,7:.66}[i];region.slot=[.01,top,.25,top+.13];region.font=16;}
+      if(i===9){region.slot=[.01,.80,.40,.87];region.font=16;}
+      if(i===10){region.slot=[.01,.87,.45,.94];region.font=16;}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===61
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='f92e1020b35113df95396c2386c8ef9dc5f91910f03de1a7e8a5263f8603f1d9'
+      && layout.translation_sha256==='050aecd13695d5f8ce615c2de4fd2351014715a626acb7c40b569c830db5e059'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.95,.21];region.font=30;}
+      if(i===1){region.slot=[.05,.26,.94,.33];region.font=22;}
+      if(i===2){region.slot=[.05,.33,.94,.40];region.font=22;}
+      if(i===3){region.slot=[.10,.39,.94,.92];region.font=22;}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===63
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='a9d9b07431fc0137cb6b4915cdb80797483e32d04ba01e0a38c7280f79ddc9a9'
+      && layout.translation_sha256==='70ab60de1d08352a1f25150b382da621b2f1b84df1d4ea355711ec9bae5c341f'){
+    for(const region of regions){const i=region.block.source_lines[0];region.align='center';
+      if(i===0){region.slot=[.04,.10,.96,.21];region.font=29;}
+      if(i===1){region.slot=[.12,.30,.88,.44];region.font=19;}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===64
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='f3b579608cc56b76492d61f0acfd4c501e7499886745ffff5b456474b69afa29'
+      && layout.translation_sha256==='f7bcd0314c8e53aa4c577648640f3344cd9afc39055a2910ea81f13904456607'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.35,.21];region.font=35;}
+      if(i===1){region.slot=[.06,.925,.94,.99];region.font=18;region.align='center';}
+      if(i===2){region.slot=[.12,.30,.88,.44];region.font=22;region.align='center';region.color='#ffc000';region.manualAccents=[{text:'معماری (Architecture)',color:'#ff0000'},{text:'آموزش می‌بیند',color:'#ff0000'},{text:'داده',color:'#00b050'},{text:'پردازنده',color:'#7030a0'}];}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===65
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='87184ba5fe22dd971a7e5cc2ab5b52164ef16c24a0b20052fa26c0226c6b5198'
+      && layout.translation_sha256==='d839da333e344fc7504cdf0e90fa03e76c846bdb4605fe20bbb78d51ad15c59c'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.95,.21];region.font=33;}
+      if(i===2){region.slot=[.68,.665,.98,.94];region.font=20;}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===81
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='2e5b2c6330ea9f9fa04ff3c15e9c59982c160d9b3e1fd08f84cafdae82640ca9'
+      && layout.translation_sha256==='b56c81a23b04424c41f9944c402f484833ed4e247fbb93572ebf6e4da0976e1d'){
+    const labels={1:'پرسش از مدرس',2:'پیازا',6:'ساعت پاسخ‌گویی (Office Hours)',9:'قرار ملاقات'};
+    for(const region of regions){const label=labels[region.block.source_lines[0]];if(label){region.color='#ffffff';region.manualAccents=[{text:label,color:'#ffc000'}];}}
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===80
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='2a75a6c7431570b58c363f94ad10828cb82846f1ecebd9904f7a5d31bd7b1b75'
+      && layout.translation_sha256==='f5ef91bf48a6f72508a4b9d42e8e1d6216b74749beaad7dceaa02dc696520573'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.95,.21];region.font=35;}
+      if(i===1){region.slot=[.05,.30,.95,.38];region.font=19;}
+      if(i===2){region.slot=[.05,.41,.95,.47];region.font=19;}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===67
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='ccfb4c3eb76569bb8cc7550feb3a236d8b67364a366804e8a7c16293450432b1'
+      && layout.translation_sha256==='e368dc1f71f3f78972e3a7d0a560e72581800915f27b507d32c5bf568beb25d3'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.55,.21];region.font=35;}
+      if(i===1){region.slot=[.05,.33,.56,.40];region.font=19;}
+      if(i===3){region.slot=[.05,.55,.57,.63];region.font=19;region.manualAccents=[{text:'اسلایدهای درس',color:'#ffc000'}];}
+      if(i===4){region.slot=[.05,.69,.53,.81];region.font=19;region.color='#ffffff';region.manualAccents=[{text:'ضبط سخنرانی‌ها',color:'#ffc000'}];}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===68
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='1e9cdf51784b231bc58345d0e14ef690dab785761d0029bdfa4c41e2d02dddca'
+      && layout.translation_sha256==='7055408c1ca4faad40bc8422d4975b6474ce2adfa8cadac710e922bcc364e1da'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.95,.21];region.font=34;}
+      if(i===1){region.slot=[.05,.33,.95,.41];region.font=23;}
+      if(i===2){region.slot=[.08,.40,.95,.47];region.font=21;}
+      if(i===3){region.slot=[.10,.47,.94,.62];region.font=19;}
+      if(i===6){region.slot=[.10,.62,.94,.74];region.font=19;}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===69
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='385ea9aeff7b0289ead82ddcc8d754bfccf78306d32de8ee462b478e64d44023'
+      && layout.translation_sha256==='8c2d6846013b42756253197e369e4a8a0694fdee39232d235d1735e06cf651db'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.95,.21];region.font=34;}
+      if(i===1){region.slot=[.05,.34,.95,.47];region.font=22;region.color='#ffffff';region.manualAccents=[{text:'شناخت و تحلیل روش‌های رایج آموزش شبکه‌های عصبی (Neural Networks)',color:'#ffc000'}];}
+      if(i===3){region.slot=[.10,.47,.94,.57];region.font=19;}
+      if(i===5){region.slot=[.10,.57,.94,.79];region.font=19;region.keepTermsTogether=true;}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===70
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='56ca95300265c1c9bd33285be236e973fb3f70b2212a4fe190a22a7eb4d0d86f'
+      && layout.translation_sha256==='11cd69113ab1600e056552223f615414377367117f47aa6ec1963287b48d8979'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.95,.21];region.font=34;}
+      if(i===1){region.slot=[.05,.34,.95,.47];region.font=22;region.color='#ffffff';region.manualAccents=[{text:'کسب تجربه عملی در شبکه‌های عصبی و یادگیری عمیق (Deep Learning) برای وظایف گوناگون هوش مصنوعی',color:'#ffc000'}];}
+      if(i===3){region.slot=[.10,.47,.94,.53];region.font=19;}
+      if(i===4){region.slot=[.10,.53,.94,.66];region.font=19;region.keepTermsTogether=true;}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===71
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='b62fb7107fbff1a02b50d502c26435b417ff24e883e9c664806ce9eb04c24479'
+      && layout.translation_sha256==='d3eb7cfc72139fdba49bb00787b4648f0e012b84a03e2e8dbf01e4e7ebf09b48'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.95,.21];region.font=34;}
+      if(i===1){region.slot=[.05,.34,.95,.47];region.font=22;region.color='#ffffff';region.manualAccents=[{text:'بررسی رویه‌های هوش مصنوعی مسئولانه (Responsible AI)، برای کاهش آسیب زیست‌محیطی و ترویج رفتار اخلاقی در سامانه‌های هوش مصنوعی',color:'#ffc000'}];}
+      if(i===3){region.slot=[.10,.47,.94,.57];region.font=19;}
+      if(i===5){region.slot=[.10,.57,.94,.70];region.font=19;}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===72
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='40d0645e91a1dc4ce7cf6f9565703a9f4f71015229f70aa899ada821358efba6'
+      && layout.translation_sha256==='e8900e0e6675bb68863525b0bdf01e528a5ee75e3fce1667e89f8e562d31aec5'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.95,.21];region.font=34;}
+      if(i===1){region.slot=[.05,.34,.95,.47];region.font=22;region.color='#ffffff';region.manualAccents=[{text:'به‌کارگیری آموخته‌ها برای پیشنهاد و نقد پروژه‌های تازه مرتبط با شبکه‌های عصبی و یادگیری عمیق (Deep Learning)',color:'#ffc000'}];}
+      if(i>=3){const top=.47+(i-3)*.057;region.slot=[.10,top,.94,top+.057];region.font=19;}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===73
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='6394af000becea9f3069c1f012e74a54d5ac596791dff971780bf7ba6cf3ab21'
+      && layout.translation_sha256==='02da0cfe1b19806325db65d2b9e0e9dcdf7af4dd68fa97c27884057112454c7d'){
+    const slots={35:[.05,.10,.55,.21],0:[.23,.58,.35,.73],3:[.39,.42,.56,.47],4:[.37,.28,.57,.40],7:[.39,.50,.56,.71],12:[.84,.42,.98,.59],16:[.84,.28,.98,.40],19:[.84,.62,.98,.72],21:[.62,.39,.80,.55],25:[.62,.24,.80,.37],28:[.62,.58,.80,.72],31:[.015,.79,.24,.84],32:[.015,.84,.24,.97]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];region.font=i===35?35:i===31||i===32?14:12;if(i!==35&&i!==31&&i!==32)region.align='center';}
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===74
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='ed741ff36dff50fb7349c0a091133d102183c38a3ec39aa28778d96a278eeb0c'
+      && layout.translation_sha256==='d0e4ad47edcb03fd3963e7db7e362a680b7a9dda248158885c9ef18eae99bef3'){
+    const slots={0:[.05,.06,.95,.25],2:[.05,.36,.95,.46],3:[.10,.46,.94,.52],4:[.10,.52,.94,.58],5:[.10,.58,.94,.64],6:[.05,.69,.94,.75],7:[.10,.75,.94,.82]};
+    for(const region of regions){const i=region.block.source_lines[0];region.slot=slots[i];region.font=i===0?32:i===2||i===6?22:19;if(i===7)region.manualAccents=[{text:'مبانی',color:'#ffc000'}];}
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===75
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='db1c702981c2eede9bcbc6310baa916c16cf9c33aaa93e580223c07b336aec95'
+      && layout.translation_sha256==='e3bbaab7acbbc3eba807c7d8b6e322badf8304436ff18342fa7d243a02ffd567'){
+    for(const region of regions){const i=region.block.source_lines[0];if(i===0){region.slot=[.05,.06,.95,.25];region.font=32;}else{const top=.49+(i-2)*.075;region.slot=[.05,top,.94,top+.07];region.font=23;}}
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===76
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='b38ccde06ed46820c245a7e33621daa298644dd44bc9f0ac937a828b553fee55'
+      && layout.translation_sha256==='ac4ab84da881cfcafb301f42b5bc5d6dc6cc4551f8cb3756f4c28328c86f5a79'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.95,.21];region.font=32;}
+      if(i===1){region.slot=region.block.fa.includes('VPN')?[.56,.25,.94,.34]:[.12,.25,.49,.31];region.font=16;region.align='center';}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===77
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='dcb9f23d0a259de3a1e44ac53604692e94099e470588e5fbe0b5d28c1f08910f'
+      && layout.translation_sha256==='353f5cfd8aa99d06c06da31798f2691d134aaebd9fd2104738c1dcc32269ae6c'){
+    const top=[.10,.26,.40,.54,.60,.65,.70,.75,.87];
+    for(const region of regions){const i=region.block.source_lines[0];region.slot=[i>=4&&i<=7?.10:.05,top[i],.95,top[i]+(i===0?.11:.06)];region.font=i===0?34:i>=4&&i<=7?19:22;}
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===78
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='3e6672c8e90af769505a90237127f2bc27368343fc4a4d4291e6c38c66310f52'
+      && layout.translation_sha256==='40d8fec58c879396b42b249bddc7699a5f8f33ee07edf5ef6f874e13198f4239'){
+    for(const region of regions){region.slot=[.05,.10,.95,.21];region.font=32;}
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===79
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='89e5a1f84262047589124d433a72dc39bcde3571bd8c3ad248287d67d5abac7c'
+      && layout.translation_sha256==='b01789df84b726181ca909fe441fe321e7f929e3a99adea9a97804b72d418a5c'){
+    const slots={0:[.05,.10,.95,.21],1:[.05,.34,.95,.41],2:[.10,.41,.95,.48],3:[.05,.53,.95,.60],4:[.10,.60,.95,.75],7:[.10,.75,.95,.82]};
+    for(const region of regions){const i=region.block.source_lines[0];region.slot=slots[i];region.font=i===0?32:i===1||i===3?22:19;if(i===4)region.manualAccents=[{text:'مقررات تأخیر',color:'#ffc000'}];if(i===7)region.manualAccents=[{text:'درخواست بازبینی نمره',color:'#ffc000'}];}
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===83
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='098a2c262a1750acbe89fab828e45aa2a9283f3636e09211315038664fdf3415'
+      && layout.translation_sha256==='80a2ad7987de47e623a18b012398b7592aa8ba22f86f98f02658ad74c70162ca'){
+    const slots={0:[.05,.10,.95,.21],2:[.255,.36,.48,.55],6:[.495,.36,.705,.55],10:[.71,.36,.96,.55],14:[.68,.58,.99,.94],21:[.54,.89,.67,.97],24:[.01,.36,.22,.59],29:[.01,.79,.22,.83]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];region.font=i===0?34:i===29?12:i===14?16:14;if(i!==0)region.align='center';}
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===84
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='4b7a025a50e7266f0a49745a66375e3c610514152d0810865b5185f7264533c5'
+      && layout.translation_sha256==='d7ae61eb608f347f8ce472ec53ddf776433fdfd39f1d3bf285bdcabce66b760b'){
+    const slots={0:[.05,.10,.95,.21],2:[.255,.36,.48,.55],24:[.01,.36,.22,.59],29:[.01,.79,.22,.83],30:[.50,.55,.98,.77]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];region.font=i===0?34:i===30?34:i===29?12:14;if(i!==0)region.align='center';}
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===85
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='2f9bf15d27e4a50bfc77bf40d29e55d186172146802daa7f20e916a74f8298cc'
+      && layout.translation_sha256==='9002baffb6eb6e426aefb59f84c9ab790d5175e35bd7c3987a6594336cb01ad9'){
+    const slots={0:[.05,.10,.95,.21],1:[.34,.67,.59,.73],2:[.30,.74,.63,.97],6:[.34,.44,.59,.50],7:[.26,.51,.67,.63],9:[.34,.26,.59,.32],10:[.24,.33,.69,.40]};
+    for(const region of regions){const i=region.block.source_lines[0];region.slot=slots[i];region.font=i===0?32:[1,6,9].includes(i)?23:19;if(i!==0)region.align='center';}
+  }
+  let imageTranslations=[];
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===78
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='3e6672c8e90af769505a90237127f2bc27368343fc4a4d4291e6c38c66310f52'
+      && layout.translation_sha256==='40d8fec58c879396b42b249bddc7699a5f8f33ee07edf5ef6f874e13198f4239'){
+    imageTranslations=[
+      {rect:[.44,.41,.80,.47],text:'درصد نمره نهایی درس',background:'#fff',color:'#000',font:21,align:'center'},
+      {rect:[.20,.50,.43,.56],text:'مجموعه مسئله‌ها',background:'#fff',color:'#000',font:19,align:'center'},
+      {rect:[.20,.56,.43,.62],text:'تکلیف‌های آزمایشگاهی',background:'#fff',color:'#000',font:19,align:'center'},
+      {rect:[.20,.62,.43,.68],text:'پروژه نهایی',background:'#fff',color:'#000',font:19,align:'center'},
+    ];
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='d63d4b5c01249f0dd295bd5ab96bfdba336fdaf5da802ebce1fea51264725914'
+      && layout.translation_sha256==='69176de0c02bc368a77f415655258cb84993e0d8f3f1708eb395812f97574324'){
+    const [gemini,copilot]=record.image_text[2].fa.split('؛');
+    imageTranslations=[
+      {rect:[.17,.34,.82,.389],text:record.image_text[0].fa,background:'#282a2c',color:'#fff',font:21},
+      {rect:[.17,.418,.86,.51],text:record.image_text[1].fa,background:'#282a2c',color:'#e8eaed',font:13},
+      {rect:[.175,.63,.45,.675],text:gemini,background:'#1e1f20',color:'#bdc1c6',font:17},
+      {rect:[.235,.845,.50,.895],text:copilot.trim(),background:'#0f131f',color:'#8990a7',font:17},
+    ];
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===7
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='3d4e3a1b6181f4af554a89968295cc2694d87716a35eef5d824fddfae1e23a14'
+      && layout.translation_sha256==='0c918ddb540920c44a65eb808a2cf82560edc0a6772616943e058a8788e52c39'){
+    imageTranslations=[
+      {rect:[.18,.31,.82,.51],text:'ابزار نوشتن هوش مصنوعی با هوشمندی بی‌همتای داستان‌گویی را بیازمایید.',background:'#f0eddf',color:'#34291d',font:29,align:'center',accents:[{text:'هوش مصنوعی',color:'#04b9df'},{text:'بی‌همتای',color:'#d928d9'}]},
+      {rect:[.23,.51,.77,.55],text:'Sudowrite همان شریک نوشتن بدون قضاوتی است که همیشه می‌خواستید.',background:'#f0eddf',color:'#716854',font:12,align:'center'},
+      {rect:[.328,.60,.49,.65],text:'Sudowrite را رایگان بیازمایید',background:'#16a45b',color:'#fff',font:11,align:'center'},
+      {rect:[.527,.60,.67,.65],text:'با گوگل ثبت‌نام کنید',background:'#fff',color:'#282828',font:11,align:'center'},
+    ];
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===8
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='612229f89f94d28bbd69eab27a2fb1a89ab36a740e36ab47370affa774e8521d'
+      && layout.translation_sha256==='330712f176311beb7b47a09f61501bfef46fa2a717dec41d4f04af4a5e679a69'){
+    const [label,title]=record.image_text[1].fa.split('؛');
+    imageTranslations=[
+      {rect:[.21,.47,.79,.52],text:label,background:'#030319',color:'#b0b0c1',font:15},
+      {rect:[.21,.53,.79,.79],text:title.trim(),background:'linear-gradient(#030319,#02062b)',color:'#fff',font:36,accents:[{text:'پژوهش حقوقی',color:'#3987ff'}]},
+      {rect:[.21,.82,.79,.96],text:record.image_text[2].fa,background:'#02062b',color:'#d4d6e8',font:17},
+    ];
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===9
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='434e82ab1b169fea82a230f936eae28f8b5e87fb8f9b85a19d6b14fd4086e701'
+      && layout.translation_sha256==='5601cfe635fa66eea4d7f4a74c804ed8be3dd805f6984cdbd343d02ec346276c'){
+    const [heading,subheading]=record.image_text[1].fa.split('. ');
+    imageTranslations=[
+      {rect:[.40,.33,.77,.39],text:heading,background:'#091517',color:'#f3f5f5',font:20,align:'center'},
+      {rect:[.40,.40,.77,.45],text:subheading,background:'#091517',color:'#aeb6b8',font:11,align:'center'},
+      {rect:[.39,.59,.78,.87],text:'بازی‌ای برای علاقه‌مندان تاریخ بساز که به کاوش در دنیایی افسون‌شده با رازهای پنهان قابل کشف کمک کند. از سبک هنری زیبای دست‌کشیده استفاده کن.',background:'#1a222a',color:'#e9eef0',font:16},
+      {rect:[.40,.92,.76,.96],text:'ساخت با هوش مصنوعی را آغاز کنید',background:'#fff',color:'#1a222a',font:10,align:'center'},
+    ];
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===11
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='d36c30e80c8a929e9f3c5db555427aa977dc964e078dc2969e26c48d7081b43b'
+      && layout.translation_sha256==='6d73a0822341e45520def1a8f091bbf2855710a65030cda0c9e112176df0c896'){
+    imageTranslations=[
+      {rect:[.09,.47,.58,.78],text:'نمره‌های بهتر در ۳۰ روز، یا بازگرداندن پولتان',background:'#f7f7f7',color:'#111',font:37},
+      {rect:[.09,.80,.58,.87],text:'پرامپت‌های هوش مصنوعی که ChatGPT، Claude یا Gemini را به آموزگار شخصی شما تبدیل می‌کنند. استفاده‌شده توسط بیش از ۶۰۰ دانش‌آموز و دانشجو در بیش از ۵۰ موضوع.',background:'#f7f7f7',color:'#666',font:12},
+      {rect:[.59,.63,.90,.69],text:'چرا کار می‌کند؟',background:'#fff',color:'#111',font:16},
+      {rect:[.59,.70,.90,.83],text:'فقط پاسخ نمی‌گیرید؛ از آموزگار شخصی توضیح گام‌به‌گام می‌گیرید و تا موضوع را نفهمید، به مرحله بعد نمی‌رود.',background:'#fff',color:'#303545',font:10},
+    ];
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===14
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='766169dcca47dd0f8949d0481e883b01b40ea73afd686cc4c7f6f2a7de71e6eb'
+      && layout.translation_sha256==='1628326d1ab32c33dfe78e62320213b30f9b51f26a6e0d85d9a3e9eab667044c'){
+    const [heading,body]=record.image_text[0].fa.split('؛');
+    imageTranslations=[
+      {rect:[.025,.36,.33,.59],text:heading,background:'linear-gradient(100deg,#b9e9fa,#c4ebfb)',color:'#075883',font:24,accents:[{text:'با تصوری تازه',color:'#09a6e7'}]},
+      {rect:[.025,.60,.33,.69],text:body,background:'linear-gradient(100deg,#b9e9fa,#c4ebfb)',color:'#507c91',font:11},
+      {rect:[.04,.71,.11,.75],text:'بیشتر بدانید',background:'#bbe7f8',color:'#0677b5',font:9,align:'center'},
+      {rect:[.13,.71,.23,.75],text:'درخواست نمایش',background:'#0080cb',color:'#fff',font:9,align:'center'},
+    ];
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===16
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='f39a4db60396e44d6b59c10c606887936c89b2b5b529f1b4ea0366c1a17b7527'
+      && layout.translation_sha256==='856793c0adf6086f16d7f5d1ce9c9459280a906da47a2f76c32f93a7194ef4ba'){
+    const parts=record.image_text[0].fa.split('؛');
+    imageTranslations=[
+      {rect:[.44,.405,.58,.45],text:'رزرو نمایش',background:'#000',color:'#fff',font:10,align:'center'},
+      {rect:[.10,.64,.42,.79],text:parts[2].trim(),background:'#000',color:'#fff',font:19,accents:[{text:'جلوه‌های بصری هالیوود',color:'#f10d36'}]},
+      {rect:[.10,.81,.42,.95],text:record.image_text[1].fa,background:'#000',color:'#fff',font:9},
+    ];
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===17
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='0d8d9f5bc6fec33c8708fb7f8f1f036acc6898d27ab4a67ed476541941c50dd2'
+      && layout.translation_sha256==='a808d58607002fb795e2868f5af5191b0499c6e73e49dc699f60f52a56fca36f'){
+    const heading=record.image_text[0].fa.split('؛').at(-1).trim();
+    const body=record.image_text[1].fa.split('؛')[0];
+    imageTranslations=[
+      {rect:[.125,.46,.46,.68],text:heading,background:'#fff',color:'#171717',font:25},
+      {rect:[.125,.70,.46,.77],text:body,background:'#fff',color:'#777',font:9},
+      {rect:[.13,.87,.27,.92],text:'درخواست نمایش',background:'#00bf57',color:'#fff',font:10,align:'center'},
+      {rect:[.29,.87,.39,.92],text:'نمونه‌های بیشتر',background:'#fff',color:'#f33b47',font:10,align:'center'},
+    ];
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===19
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='a2e55bbba08b55ea9c01ab2d28267bedaf666acd16d3f971a809ca68b67fde8b'
+      && layout.translation_sha256==='2087ae62e9f77f266d3deb4b8e77b306a22fcacd53733a2f55962ba674ba02e3'){
+    const [heading,description]=record.image_text[0].fa.split('؛');
+    imageTranslations=[
+      {rect:[.48,.04,.91,.11],text:heading,background:'#5c74cb',color:'#fff',font:25,align:'center'},
+      {rect:[.45,.12,.95,.22],text:description.trim(),background:'#5c74cb',color:'#fff',font:13,align:'center'},
+      {rect:[.455,.43,.78,.65],text:record.image_text[1].fa,background:'#899ad5',color:'#fff',font:12},
+      {rect:[.49,.86,.65,.93],text:record.image_text[2].fa,background:'#899ad5',color:'#fff',font:9},
+    ];
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===20
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='2e37398adde30d4ea9d1eb093600f809eea2d545f558149912581637fd7d32de'
+      && layout.translation_sha256==='2696d9c10922b51a0bafcc5e707b6fc9084c8a21435af130bc5e73acc9f08343'){
+    imageTranslations=[
+      {rect:[.07,.69,.63,.89],text:'تبدیل رایگان آنلاین عکس به صفحه رنگ‌آمیزی',background:'linear-gradient(105deg,#f69ca9,#f98997)',color:'#fff',font:32},
+    ];
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===6
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='54b822b737f3a34ef6cc599bf9919c7e348900d49d62c72a87cfd38fc35506c2'
+      && layout.translation_sha256==='f115323bd73d34d629c3ad8f9e6209183632a32ef594c4c8920bd72483e38b6f'){
+    imageTranslations=[
+      {rect:[.30,.28,.70,.40],text:'ابزار هوش مصنوعی توسعه‌دهندگان با گسترده‌ترین پذیرش در جهان',background:'linear-gradient(#0c033c,#12085a)',color:'#fff',font:25,align:'center'},
+      {rect:[.445,.425,.555,.45],text:'آغاز کار با Copilot',background:'#fff',color:'#111',font:9,align:'center'},
+    ];
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===10
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='872bff1955f2607d81954fc8c98cba5d588656411a0531fd803e8f38568f4294'
+      && layout.translation_sha256==='90192ae9c3d74f7d201ac88293ce1c12d5bdcbc9c40c005ea1d52a91ecbd58b4'){
+    imageTranslations=[
+      {rect:[.27,.335,.67,.39],text:'یک پرسش پزشکی بپرسید…',background:'#303030',color:'#c7c7c7',font:10},
+      {rect:[.30,.70,.70,.75],text:'پلتفرم پیشتاز اطلاعات پزشکی',background:'#1b1b1b',color:'#fff',font:15,align:'center'},
+    ];
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===34
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='b52364a06033fe1870847d084611c5451a3a10e528ac69c2f03a2791c4f4bde0'
+      && layout.translation_sha256==='f80efe88defb697c5d8bc301a694afb3d19bb785b9a38a88ee41dcf926789417'){
+    imageTranslations=[
+      {rect:[.205,.625,.30,.705],text:'مطالعه مسئله',background:'#f2f2f2',color:'#171717',font:13,align:'center'},
+      {rect:[.375,.625,.47,.705],text:'نوشتن قواعد',background:'#f6cecf',color:'#171717',font:13,align:'center'},
+      {rect:[.595,.65,.68,.69],text:'ارزیابی',background:'#fff',color:'#171717',font:14,align:'center'},
+      {rect:[.397,.83,.49,.91],text:'تحلیل خطاها',background:'#f2f2f2',color:'#171717',font:13,align:'center'},
+      {rect:[.588,.38,.68,.47],text:'راه‌اندازی!',background:'#f2f2f2',color:'#171717',font:13,align:'center'},
+    ];
+  }
+  return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 
 export function createSourceLayout(record, plan) {
@@ -460,6 +1189,7 @@ export function createSourceLayout(record, plan) {
       width: (x1 - x0) * width + 'px', height: (y1 - y0) * height + 'px',
       fontSize: region.font / plan.layout.width * width + 'px', color: region.color});
     node.dataset.sourceLines = region.block.source_lines.join(',');
+    if (region.align) node.style.textAlign=region.align;
     if (region.block.presentation?.bold) node.style.fontWeight = '700';
     if (region.block.presentation?.italic) node.style.fontStyle = 'italic';
     if (region.block.latex) math(node, region.block);
@@ -473,6 +1203,12 @@ export function createSourceLayout(record, plan) {
     }else addText(node, region.block.fa, presentation, {sourceColors:true});
     if(region.keepTermsTogether)node.querySelectorAll('bdi').forEach(term=>{term.style.whiteSpace='nowrap';});
     stage.append(node);
+  }
+  for(const item of plan.imageTranslations || []){
+    const node=element('div','reader-slide-text reader-image-translation');
+    const [x0,y0,x1,y1]=item.rect;
+    Object.assign(node.style,{left:x0*width+'px',top:y0*height+'px',width:(x1-x0)*width+'px',height:(y1-y0)*height+'px',fontSize:item.font+'px',lineHeight:'1.2',background:item.background,color:item.color,textAlign:item.align||'right'});
+    addText(node,item.text,{accents:item.accents||[]},{});stage.append(node);
   }
   let companion = null;
   if (plan.figureLabels?.length || plan.tables?.length || plan.nativeMath?.length) {

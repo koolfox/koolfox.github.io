@@ -741,7 +741,7 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
 <link rel="stylesheet" href="{BASE}/assets/vendor/katex/katex.min.css">
 <link rel="stylesheet" href="{BASE}/assets/practice.css{asset_query}">
 <script type="module" src="{BASE}/assets/source-reader.js{asset_query}"></script>{interactives_script}</head>
-<body class="source-reader" data-mobile-view="source" data-reader-section="slides">
+<body class="source-reader" data-course-term="{e(term['id'])}" data-course-session="{e(row['id'])}" data-mobile-view="source" data-reader-section="slides">
 <a class="skip" href="#reader">رفتن به اسلاید و ترجمه</a>
 <header class="reader-header">
 <div class="reader-heading"><a href="{BASE}/terms/{term_id}/" aria-label="بازگشت به فهرست اسلایدها" title="فهرست اسلایدها">فهرست اسلایدها</a>
@@ -752,10 +752,10 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
 </header>
 <main id="reader">
 <div class="reader-toolbar" aria-label="کنترل‌های مطالعه">
-<button type="button" data-prev-page aria-label="صفحهٔ قبل" title="صفحهٔ قبل" disabled>قبلی</button>
+<button type="button" data-prev-page aria-label="صفحه قبل" title="صفحه قبل" disabled>قبلی</button>
 <label>صفحه <select data-page-select aria-label="انتخاب صفحه">{options}<option value="sources">منابع</option></select></label>
 <span data-page-total>از <bdi data-page-count>{count}</bdi></span>
-<button type="button" data-next-page aria-label="صفحهٔ بعد" title="صفحهٔ بعد">بعدی</button>
+<button type="button" data-next-page aria-label="صفحه بعد" title="صفحه بعد">بعدی</button>
 <button type="button" data-zoom-out aria-label="کوچک‌نمایی" title="کوچک‌نمایی">−</button>
 <button type="button" data-zoom-in aria-label="بزرگ‌نمایی" title="بزرگ‌نمایی">+</button>
 <button type="button" data-fullscreen title="تمام‌صفحه">تمام‌صفحه</button>

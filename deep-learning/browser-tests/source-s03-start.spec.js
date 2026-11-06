@@ -156,3 +156,13 @@ test('session 3 agenda and backpropagation references retain source emphasis', a
  }
  await expect(page.locator('#persian-page .reader-slide-text .reader-emphasis')).toHaveCSS('color','rgb(255, 192, 0)');
 });
+
+test('session 3 linear-composition heading does not cover the example', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=30');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready && sourceSlideReader.page===30);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const intro=page.locator('#persian-page .reader-slide-text[data-source-lines="2"]');
+ const question=page.locator('#persian-page .reader-slide-text[data-source-lines="14"]');
+ const [a,b]=await Promise.all([intro.boundingBox(),question.boundingBox()]);
+ expect(a.y+a.height).toBeLessThanOrEqual(b.y);
+});

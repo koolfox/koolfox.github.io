@@ -502,3 +502,16 @@ test('XOR graph slide preserves the complete truth table',async({browser})=>{
   }finally{await context.close();}
  }
 });
+
+test('impossibility proof retains diagram and translated equations',async({browser})=>{
+ for(const width of [1440,390]){
+  const context=await browser.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390});
+  try{
+   const page=await context.newPage();await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=45');
+   await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===45);
+   if(width===390)await page.locator('[data-view-translation]').click();
+   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+   const companion=page.locator('.reader-figure-labels');await companion.locator('summary').click();await expect(companion).toContainText('با شرط چهارم تناقض دارد');await expect(companion.locator('.katex')).toHaveCount(2);
+  }finally{await context.close();}
+ }
+});

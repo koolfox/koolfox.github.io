@@ -78,6 +78,13 @@ class SourceWorkshopTests(unittest.TestCase):
         questions = next(item for item in config['page_questions'] if 23 in item['pages'])
         self.assertEqual(len(questions['questions']), 4)
 
+    def test_s02_workshop_questions_are_multiple_choice(self):
+        unit = load_workshops('spring-2026', ROOT, execute=True, session_ids=['s02'])['s02']
+        for question in unit['questions']:
+            answer = question['answer']
+            self.assertEqual(answer['kind'], 'choice')
+            self.assertTrue(0 <= answer['correct_index'] < len(answer['options_fa']))
+
     def test_slide_32_opens_six_epochs_instead_of_single_epoch(self):
         from student_practice import practice_page
         unit = load_workshops('spring-2026', ROOT, execute=True, session_ids=['s02'])['s02']

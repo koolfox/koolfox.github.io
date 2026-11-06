@@ -29,9 +29,13 @@
       "prompt_fa": "در نسخهٔ اولیه مقدار delta چند است؟",
       "solution_fa": "0.1 × (-1 - 1) = -0.2.",
       "answer": {
-        "kind": "number",
-        "value": -0.2,
-        "tolerance": 1e-06
+        "kind": "choice",
+        "options_fa": [
+          "-0.2",
+          "0",
+          "+0.2"
+        ],
+        "correct_index": 0
       },
       "source_page": 27
     },
@@ -54,15 +58,16 @@
     {
       "id": "explain",
       "source_kind": "original",
-      "prompt_fa": "چرا قاعدهٔ پرسپترون برای پیش‌بینی درست، وزن و بایاس را تغییر نمی‌دهد؟ یک مثال از همین کد بیاور.",
+      "prompt_fa": "اگر target در نسخه اولیه 1 باشد، چرا وزن و بایاس تغییر نمی‌کنند؟",
       "solution_fa": "اگر target با before برابر باشد، اختلاف آن‌ها صفر است؛ بنابراین delta و همهٔ افزایش‌های وزن و بایاس صفر می‌شوند. با target=1 در نسخهٔ اولیه این حالت دیده می‌شود.",
       "answer": {
-        "kind": "manual",
-        "criteria_fa": [
-          "نوشتن target-before",
-          "صفرشدن delta",
-          "مثال مشخص از کد"
-        ]
+        "kind": "choice",
+        "options_fa": [
+          "چون target و پیش‌بینی هر دو 1 هستند و delta صفر می‌شود",
+          "چون نرخ یادگیری صفر است",
+          "چون همه ورودی‌ها صفر هستند"
+        ],
+        "correct_index": 0
       },
       "source_page": 20
     }

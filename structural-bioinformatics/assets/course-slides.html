@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>نمای اسلایدی درسنامه</title>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <link rel="stylesheet" href="research.css">
+  <link rel="stylesheet" href="course-slides.css">
+  <script src="vendor/markdown-it/markdown-it.min.js" defer></script>
+  <script type="module" src="course-slides.js"></script>
+</head>
+<body class="research-page">
+  <header class="lesson-toolbar">
+    <a id="back-to-lesson" href="../course.html">بازگشت به درسنامه</a>
+    <label for="lesson-select">مبحث درس</label>
+    <select id="lesson-select" disabled><option>در حال دریافت مباحث…</option></select>
+    <button id="print-lesson" type="button" disabled>چاپ اسلاید جاری</button>
+  </header>
+  <main class="lesson-deck" id="lesson-deck" aria-busy="true">
+    <p class="lesson-context" id="chapter-title"></p>
+    <h1 id="lesson-title">در حال دریافت درس…</h1>
+    <p class="lesson-explanation">متن همین درسنامه را بخش‌به‌بخش بخوانید، خودآزمایی کنید و در مباحث دارای آزمایش، آن را باز کنید.</p>
+    <div id="lesson-slide" class="lesson-slide" tabindex="-1"></div>
+    <p id="slide-status" role="status" aria-live="polite">در حال آماده‌سازی…</p>
+    <button id="retry-lesson" type="button" hidden>تلاش دوباره</button>
+    <nav class="slide-controls" aria-label="پیمایش اسلایدها">
+      <button id="previous-slide" type="button" disabled>قبلی</button>
+      <label for="slide-select">رفتن به</label><select id="slide-select" disabled></select>
+      <span id="slide-progress" dir="ltr" aria-live="polite"></span>
+      <button id="next-slide" type="button" disabled>بعدی</button>
+    </nav>
+  </main>
+</body>
+</html>

@@ -17,7 +17,7 @@ The following local command completed on 2026-11-06 UTC using Meeko 0.8.0 and Vi
 
 The center approximates the mean of the midpoint coordinates for the 208 deposited A–C heavy-atom pairs under 4.5 Å. It is a geometric test box, not a validated peptide binding site. `interface-run/report.json` and the associated receptor, peptide conformer, poses, and logs preserve the result: status `requires_further_validation`, three poses, lowest Vina score -4.384 kcal/mol, minimum heavy-atom receptor distances 2.92–3.01 Å. The peptide conformer and poses are computational; the score is not a binding affinity or evidence of binding. One peptide, one conformer and charge state, rigid receptor, low exhaustiveness, no controls, no independent validation, and 3.2 Å source resolution limit interpretation.
 
-The earlier `off-target-box-run` used center (35, 50, 40) Å, away from the protein. It produced zero scores and receptor distances above 33 Å; it is retained as an invalid setup, not evidence of docking. The program did not flag this error automatically.
+The earlier `off-target-box-run` used center (35, 50, 40) Å, away from the protein. It produced zero scores and receptor distances above 33 Å; it is retained as an invalid setup, not evidence of docking. The report still has status `requires_further_validation`: this status means the software pipeline completed, not that the peptide contacts the receptor or binds it. The program did not flag this error automatically.
 
 ## Preserved unsuccessful 1BRS attempt
 

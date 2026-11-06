@@ -45,11 +45,14 @@ html:has(body.source-reader),body.source-reader{height:100%;overflow:hidden}.sou
 .reader-slide-holder{position:relative;direction:ltr;margin-inline:auto;overflow:hidden}
 .reader-slide-stage{position:absolute;inset:0 auto auto 0;transform-origin:top left;background:#fff}
 .reader-slide-background{position:absolute;inset:0;width:100%;height:100%;display:block}
-.reader-slide-text{position:absolute;box-sizing:border-box;direction:rtl;text-align:right;line-height:1.05;white-space:pre-line;overflow-wrap:normal;font-family:Arad,sans-serif;margin:0;padding:0}
+@font-face{font-family:VazirmatnSlide;src:url('./vazirmatn-slide.woff2?v=33.003') format('woff2');font-style:normal;font-weight:100 900;font-display:swap;ascent-override:90%;descent-override:20%;line-gap-override:0%}
+.reader-translation{font-family:VazirmatnSlide,Arad,sans-serif}
+.reader-copy.heading{font-weight:400}
+.reader-slide-text{position:absolute;box-sizing:border-box;direction:rtl;text-align:right;line-height:1.05;white-space:pre-line;overflow-wrap:normal;font-family:VazirmatnSlide,Arad,sans-serif;font-weight:400;margin:0;padding:0}
 .reader-slide-text .reader-math{margin:0;padding:0;font-size:1em;line-height:1.05}
 .reader-slide-text .katex-display{margin:0}.reader-slide-text .katex{font-size:1em}
 .reader-slide-text bdi{font-size:1em}.reader-slide-text .reader-math-inline{line-height:1}
-.reader-figure-labels{position:relative;width:100%;max-width:100%;margin-block:14px;color:#172134;text-align:right;font:16px/1.8 Arad,sans-serif}
+.reader-figure-labels{position:relative;width:100%;max-width:100%;margin-block:14px;color:#172134;text-align:right;font:16px/1.8 VazirmatnSlide,Arad,sans-serif}
 .reader-figure-labels summary{display:inline-block;cursor:pointer;background:#fff;color:#245bdf;border:1px solid #245bdf;border-radius:5px;padding:4px 10px;font-size:12px}
 .reader-figure-labels summary:focus-visible{outline:3px solid #245bdf;outline-offset:3px}
 .reader-figure-labels[open]{background:#fff;border:1px solid #dce3ed;border-radius:5px}

@@ -36,13 +36,16 @@ function makeTextSlides(source, sourceUrl) {
     try { const url = new URL(node.getAttribute(attr), sourceUrl); if (!['http:', 'https:'].includes(url.protocol)) throw Error(); node.setAttribute(attr, url.href); }
     catch { node.removeAttribute(attr); }
   }
-  const result = []; let pending = [], context = null;
+  const result = []; let headings = [], pending = false;
   for (const node of [...container.children]) {
-    if (/^H[2-6]$/.test(node.tagName)) { pending.push(node); context = node; continue; }
-    const heads = pending.length ? pending : (context ? [context] : []);
-    result.push(blockSlide(heads, node)); pending = [];
+    if (/^H[2-6]$/.test(node.tagName)) {
+      const level = Number(node.tagName.slice(1));
+      headings = headings.filter(heading => Number(heading.tagName.slice(1)) < level);
+      headings.push(node); pending = true; continue;
+    }
+    result.push(blockSlide(headings, node)); pending = false;
   }
-  if (pending.length) result.push(blockSlide(pending));
+  if (pending) result.push(blockSlide(headings));
   return result;
 }
 function selfCheck(active) {
@@ -50,7 +53,7 @@ function selfCheck(active) {
   section.append(element('h2', 'خودآزمایی'), element('p', active.check.question));
   const label = element('label', 'پاسخ خودتان'); label.htmlFor = 'own-slide-answer';
   const textarea = element('textarea'); textarea.id = 'own-slide-answer'; textarea.value = typeof notes()[active.session] === 'string' ? notes()[active.session] : '';
-  const hint = element('p', 'پاسخ در همین مرورگر ذخیره می‌شود.'); hint.id = 'save-status';
+  const hint = element('p', 'پس از نوشتن، پاسخ در همین مرورگر ذخیره می‌شود.'); hint.id = 'save-status'; hint.setAttribute('role', 'status');
   textarea.addEventListener('input', () => { try { const data=notes(); data[active.session]=textarea.value; localStorage.setItem(storageKey, JSON.stringify(data)); hint.textContent='پاسخ در همین مرورگر ذخیره شد.'; } catch { hint.textContent='ذخیره در مرورگر ممکن نشد؛ پاسخ را پیش از خروج نگه دارید.'; } });
   const details = element('details'), summary = element('summary', 'دیدن پاسخ نمونه');
   details.append(summary, element('p', active.check.answer));
@@ -98,8 +101,22 @@ function labSlide(active) {
   const url = new URL('../runtime/concepts/', location.href); url.searchParams.set('experiment', active.laboratory); url.searchParams.set('topic', active.session);
   const button = element('button', 'بارگذاری آزمایشگاه در همین اسلاید'); button.type = 'button';
   const open = element('a', 'بازکردن آزمایشگاه در صفحهٔ جدا'); open.href = url.href;
-  button.addEventListener('click', () => { if (section.querySelector('iframe')) return; const frame = element('iframe'); frame.title = `آزمایشگاه ${active.title}`; frame.src = url.href; section.append(frame); button.disabled = true; });
-  const openLine=element('p'); openLine.append(open); section.append(button, openLine); return section;
+  const status = element('p'); status.setAttribute('role', 'status');
+  button.addEventListener('click', async () => {
+    if (section.querySelector('iframe')) return;
+    button.disabled = true; status.textContent = 'در حال بررسی دسترسی آزمایشگاه…';
+    try {
+      let response = await fetch(url.href, {method:'HEAD'});
+      if (response.status === 405) response = await fetch(url.href);
+      if (!response.ok) throw Error('unavailable');
+      const frame = element('iframe'); frame.title = `آزمایشگاه ${active.title}`; frame.src = url.href;
+      section.append(frame); status.textContent = 'آزمایشگاه باز شد؛ بارگذاری Python ممکن است زمان ببرد.';
+    } catch {
+      status.textContent = 'آزمایشگاه در این نشانی در دسترس نیست. برای نسخهٔ محلی از scripts/serve_local.py استفاده کنید و دوباره تلاش کنید.';
+      button.disabled = false;
+    }
+  });
+  const openLine=element('p'); openLine.append(open); section.append(button, openLine, status); return section;
 }
 async function load() {
   const ticket = ++revision; $('lesson-deck').setAttribute('aria-busy','true'); $('lesson-title').textContent='در حال دریافت درس…'; $('chapter-title').textContent=''; $('lesson-slide').replaceChildren(); $('slide-status').textContent='در حال دریافت درس…'; $('retry-lesson').hidden=true;
@@ -138,5 +155,5 @@ $('lesson-select').addEventListener('change',event=>{ history.pushState(null,'',
 $('retry-lesson').addEventListener('click',load);
 $('print-lesson').addEventListener('click',()=>window.print());
 window.addEventListener('popstate',load);
-document.addEventListener('keydown',event=>{ if(event.altKey||event.ctrlKey||event.metaKey||/INPUT|TEXTAREA|SELECT|BUTTON/.test(event.target.tagName)||event.target.isContentEditable)return; const actions={ArrowLeft:()=>show(current+1),ArrowRight:()=>show(current-1),Home:()=>show(0),End:()=>show(slides.length-1)}; if(actions[event.key]){event.preventDefault();actions[event.key]();} });
+document.addEventListener('keydown',event=>{ if(event.altKey||event.ctrlKey||event.metaKey||/INPUT|TEXTAREA|SELECT|BUTTON/.test(event.target.tagName)||event.target.isContentEditable)return; const actions={ArrowLeft:()=>show(current+1),ArrowRight:()=>show(current-1),Home:()=>show(0),End:()=>show(slides.length-1)}; if(actions[event.key]){event.preventDefault();actions[event.key](); $('lesson-slide').focus({preventScroll:true});} });
 load();

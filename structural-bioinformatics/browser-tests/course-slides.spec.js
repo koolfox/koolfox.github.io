@@ -133,3 +133,27 @@ test('evidence exercise remains usable when browser storage is blocked', async (
   await page.getByRole('button',{name:'بررسی پاسخ‌ها'}).click();
   await expect(page.locator('.evidence-question p').first()).toContainText('درست است');
 });
+
+test('answer slides retain their parent heading and keyboard navigation moves focus', async ({page}) => {
+  await page.goto(root + 'assets/course-slides.html?topic=1');
+  await expect(page.locator('#lesson-deck')).toHaveAttribute('aria-busy','false');
+  const slides = page.locator('#lesson-slide section[data-kind=lesson]');
+  const answer = slides.filter({has: page.locator('h3').filter({hasText:'توضیح پاسخ'})}).first();
+  await expect(answer.locator('h2')).toHaveText('خودآزمایی');
+  await page.locator('body').click({position:{x:5,y:5}});
+  await page.keyboard.press('ArrowLeft');
+  await expect(page.locator('#lesson-slide')).toBeFocused();
+});
+
+test('missing laboratory shows a retryable explanation', async ({page}) => {
+  await page.goto(root + 'assets/course-slides.html?topic=1');
+  await expect(page.locator('#lesson-deck')).toHaveAttribute('aria-busy','false');
+  const lab = await page.locator('#slide-select option[data-kind=lab]').getAttribute('value');
+  await page.locator('#slide-select').selectOption(lab);
+  await page.route('**/runtime/concepts/**', route => route.fulfill({status:404,body:'missing'}));
+  const button = page.getByRole('button',{name:'بارگذاری آزمایشگاه در همین اسلاید'});
+  await button.click();
+  await expect(page.locator('#lesson-slide section:visible [role=status]')).toContainText('در این نشانی در دسترس نیست');
+  await expect(button).toBeEnabled();
+  await expect(page.locator('#lesson-slide iframe')).toHaveCount(0);
+});

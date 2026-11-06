@@ -53,3 +53,11 @@ test('neuron threshold slide retains the diagram and separated text',async({brow
   expect(overflow).toEqual([]);await context.close();
  }
 });
+
+test('biological neuron video has a short working destination and preserves the figure',async({page})=>{
+ await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=8');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===8);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ const link=page.getByRole('link',{name:'ویدیو: از ۰:۰۸ تا ۱:۱۲'});
+ await expect(link).toBeVisible();await expect(link).toHaveAttribute('href','https://youtu.be/oa6rvUJlg7o?t=8');
+});

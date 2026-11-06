@@ -464,6 +464,11 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const slots={3:[.03,.84,.48,.99],11:[.52,.84,.98,.99],14:[.67,.29,.98,.48],17:[.67,.70,.98,.78]};
     for(const region of regions){const slot=slots[region.block.source_lines[0]];if(slot)region.slot=slot;}
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===8
+      && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
+      && record.source_text_sha256==='5fe7e43e304598fdd8f19b618a43e0e1e164b9d0aa28408b08f2d2dc1d9a3b09' && layout.translation_sha256==='0592cd3f463c9fffbb0c43f8f1f34bc51ee798dbaf13dba6001a4ad624114acc'){
+    for(const region of regions)if(region.block.source_lines[0]===1){region.slot=[.18,.92,.85,.98];region.linkTarget='https://youtu.be/oa6rvUJlg7o?t=8';}
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 
@@ -493,7 +498,8 @@ export function createSourceLayout(record, plan) {
         const term=element('bdi');term.dir=persian.test(chunk)?'rtl':'ltr';
         addText(term,chunk,presentation,{sourceColors:true});node.append(term);
       }
-    }else addText(node, region.block.fa, presentation, {sourceColors:true});
+    }else if(region.linkTarget){const link=element('a');link.href=region.linkTarget;link.target='_blank';link.rel='noopener noreferrer';link.textContent=region.block.fa;link.style.color='inherit';node.append(link);}
+    else addText(node, region.block.fa, presentation, {sourceColors:true});
     if(region.keepTermsTogether)node.querySelectorAll('bdi').forEach(term=>{term.style.whiteSpace='nowrap';});
     stage.append(node);
   }

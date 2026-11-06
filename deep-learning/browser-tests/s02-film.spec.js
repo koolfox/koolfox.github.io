@@ -402,3 +402,17 @@ test('newspaper slide retains its image and translated headline',async({browser}
   }finally{await context.close();}
  }
 });
+
+test('long historical quotation remains complete in readable fallback',async({browser})=>{
+ for(const width of [1440,390]){
+  const context=await browser.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390});
+  try{
+   const page=await context.newPage();await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=37');
+   await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===37);
+   if(width===390)await page.locator('[data-view-translation]').click();
+   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','text-overflow');
+   await expect(page.locator('#persian-page')).toContainText('به نظر نمی‌رسد بفهمند');
+   await expect(page.locator('#persian-page')).toContainText('آفریده‌ای مهارنشدنی');
+  }finally{await context.close();}
+ }
+});

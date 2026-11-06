@@ -641,6 +641,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const slots={0:[.03,.055,.46,.25],2:[.03,.49,.46,.57]};
     for(const region of regions){const slot=slots[region.block.source_lines[0]];if(slot)region.slot=slot;}
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===37
+      && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
+      && record.source_text_sha256==='7d0e1385360f7dbc13695b23d3722c295f594c2d58bbcfb6e870b16af434ba2f'
+      && layout.translation_sha256==='4c1a7dffa343cba0179f7907ed76acfe77d9d10064aa453b56b67c8a3a09648c'){
+    const slots={0:[.03,.08,.98,.22],1:[.015,.22,.65,.59],10:[.015,.59,.65,.64],11:[.015,.65,.65,.93],18:[.015,.94,.65,.99],20:[.67,.23,.99,.29]};
+    for(const region of regions){const slot=slots[region.block.source_lines[0]];if(slot)region.slot=slot;}
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

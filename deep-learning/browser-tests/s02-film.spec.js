@@ -566,10 +566,10 @@ test('existing zoom makes mobile slides pannable without losing the source layou
    await page.waitForFunction(n=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===n,n);
    await page.locator('[data-view-translation]').click();
    const stage=page.locator('.reader-slide-stage'), panel=page.locator('.reader-translation');
-   await expect(stage).toBeVisible();await expect.poll(async()=> (await stage.boundingBox()).width).toBeLessThan(400);
+   await expect(stage).toBeVisible();await expect.poll(async()=> (await stage.boundingBox())?.width || 10000).toBeLessThan(400);
    const initial=(await stage.boundingBox()).width;
    for(let i=0;i<4;i++)await page.locator('[data-zoom-in]').click();
-   await expect.poll(async()=> (await stage.boundingBox()).width).toBeGreaterThan(initial*1.9);
+   await expect.poll(async()=> (await stage.boundingBox())?.width || 0).toBeGreaterThan(initial*1.9);
    await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
    const dimensions=await panel.evaluate(node=>{node.scrollLeft=-node.scrollWidth;return {width:node.clientWidth,scrollWidth:node.scrollWidth,scrollLeft:node.scrollLeft}});
    expect(dimensions.scrollWidth).toBeGreaterThan(dimensions.width);expect(dimensions.scrollLeft).toBeLessThan(0);

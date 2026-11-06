@@ -203,3 +203,11 @@ test('session 3 step-function diagram preserves the question and source answer',
  await expect(labels.filter({hasText:'مشتق تابع پله‌ای چیست'})).toHaveCSS('color','rgb(4, 50, 255)');
  await expect(labels.filter({hasText:'بی‌نهایت/تعریف‌نشده'})).toBeVisible();
 });
+
+test('session 3 activation function slide retains diagrams and sigmoid formula', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=35');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready && sourceSlideReader.page===35);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ await expect(page.locator('#persian-page .reader-slide-text').filter({hasText:'تابع فعال‌سازی'})).toHaveCSS('color','rgb(4, 50, 255)');
+ await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
+});

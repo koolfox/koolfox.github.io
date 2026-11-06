@@ -942,6 +942,12 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const slots={0:[.05,.06,.95,.25],2:[.05,.39,.95,.46],3:[.10,.46,.94,.52],4:[.10,.52,.94,.58],5:[.10,.58,.94,.64],6:[.05,.69,.94,.75],7:[.10,.75,.94,.82]};
     for(const region of regions){const i=region.block.source_lines[0];region.slot=slots[i];region.font=i===0?32:i===2||i===6?22:19;if(i===7)region.manualAccents=[{text:'مبانی',color:'#ffc000'}];}
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===75
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='db1c702981c2eede9bcbc6310baa916c16cf9c33aaa93e580223c07b336aec95'
+      && layout.translation_sha256==='e3bbaab7acbbc3eba807c7d8b6e322badf8304436ff18342fa7d243a02ffd567'){
+    for(const region of regions){const i=region.block.source_lines[0];if(i===0){region.slot=[.05,.06,.95,.25];region.font=32;}else{const top=.49+(i-2)*.075;region.slot=[.05,top,.94,top+.07];region.font=23;}}
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

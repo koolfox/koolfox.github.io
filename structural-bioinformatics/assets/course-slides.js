@@ -93,7 +93,7 @@ function evidenceExercise() {
 function structureInterpretationExercise() {
   const section = element('section'); section.dataset.kind = 'structure-interpretation';
   section.append(element('h2', 'کدام مدل برای این پرسش مناسب‌تر است؟'));
-  section.append(element('p', 'مثال فرضی: می‌خواهیم فاصله‌ای را در یک حلقه بررسی کنیم. هر دو مدل سازه و حالت مولکولی مناسب دارند. مدل A تفکیک‌پذیری ۱٫۸ آنگستروم دارد، اما حلقه در آن مدل نشده است. مدل B با تفکیک‌پذیری ۲٫۵ آنگستروم، حلقه‌ای با پشتیبانی محلی قابل بررسی دارد.'));
+  section.append(element('p', 'مثال فرضی: می‌خواهیم فاصله را در یک حلقه بررسی کنیم. هر دو مدل سازه و حالت مولکولی مناسب دارند. مدل A تفکیک‌پذیری ۱٫۸ آنگستروم دارد، اما حلقه در آن مدل نشده است. مدل B با تفکیک‌پذیری ۲٫۵ آنگستروم، حلقه را دارد و پشتیبانی محلی آن قابل بررسی است.'));
   const label = element('label', 'انتخاب شما برای شروع بررسی حلقه'); label.htmlFor = 'structure-choice';
   const select = element('select'); select.id = label.htmlFor;
   [['', 'انتخاب کنید'], ['a', 'مدل A'], ['b', 'مدل B'], ['either', 'هر دو به یک اندازه']].forEach(([value, text]) => { const option = element('option', text); option.value = value; select.append(option); });
@@ -105,7 +105,7 @@ function structureInterpretationExercise() {
       '': 'ابتدا یک گزینه انتخاب کنید.',
       a: 'دوباره بررسی کنید: در A مختصات حلقه وجود ندارد؛ عدد کلی کوچک‌تر جای اطلاعات محلی را نمی‌گیرد.',
       b: 'انتخاب مناسبی برای شروع است: در B حلقه مدل شده است. پیش از گزارش فاصله، نقشه، حالت‌های جایگزین و اعتبارسنجی همان محل را بررسی کنید؛ وجود مختصات به‌تنهایی کافی نیست.',
-      either: 'دوباره بررسی کنید: A برای حلقهٔ مورد نظر مختصاتی ندارد، پس دو مدل برای این پرسش اطلاعات یکسانی ندارند.'
+      either: 'دوباره بررسی کنید: A برای حلقه مورد نظر مختصاتی ندارد، پس دو مدل برای این پرسش اطلاعات یکسانی ندارند.'
     };
     feedback.textContent = answers[select.value];
   });

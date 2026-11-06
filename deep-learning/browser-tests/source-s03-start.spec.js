@@ -44,3 +44,18 @@ test('session 3 timeline preserves the source figure and historic labels', async
  for (const name of ['روزنبلات','ویدرو','هاوکینز','نیلسون','مینسکی']) await expect(regions.filter({hasText:name})).toBeVisible();
  await expect(regions.filter({hasText:'۲ لایه پنهان'})).toHaveCSS('color','rgb(255, 0, 0)');
 });
+
+test('session 3 XOR slide keeps its source diagram and truth table on mobile', async ({page}) => {
+ await page.setViewportSize({width:390,height:844});
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=8');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready && sourceSlideReader.page===8);
+ const old=await page.locator('#persian-page .reader-slide-stage').elementHandle();
+ await page.locator('[data-view-translation]').click();
+ await page.waitForFunction(node=>!node.isConnected,old);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
+ await expect(page.locator('#persian-page .reader-slide-text').filter({hasText:'بایاس'})).toHaveCount(3);
+ const rows=page.locator('#persian-page table tbody tr');
+ await expect(rows).toHaveCount(4);
+ expect(await rows.allTextContents()).toEqual(['000','011','101','110']);
+});

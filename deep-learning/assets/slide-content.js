@@ -496,6 +496,19 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const slots={0:[.05,.10,.95,.21],1:[.05,.25,.95,.32],3:[.14,.69,.57,.74],4:[.13,.74,.57,.85],7:[.14,.88,.56,.95],8:[.25,.95,.48,.999],9:[.07,.34,.47,.385],10:[.06,.385,.48,.51],14:[.49,.455,.79,.525],17:[.81,.70,.95,.81]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];region.font=i===0?33:i===1?18:14;if(i!==0&&i!==1)region.align='center';}
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===8
+      && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
+      && record.source_text_sha256==='d2b3197385ac54cba5e2883e08b575286ecb53ec32490248714c327d28b2f53b'
+      && layout.translation_sha256==='414db0665fe15478a7298705f8437c61179a99157138f11dc87c6f4df357d677'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.95,.21];region.font=33;}
+      if(i===18){region.slot=[.05,.245,.95,.32];region.font=18;}
+      if(i===6){region.slot=region.block.fa.startsWith('ورودی')?[.23,.463,.302,.521]:[.306,.463,.39,.521];region.font=14;region.align='center';}
+      if(i===11){region.slot=[.68,.44,.755,.50];region.font=14;region.align='center';}
+      if(i===13){region.slot=[.54,.36,.615,.42];region.font=14;region.align='center';}
+      if(i===15){region.slot=[.54,.85,.62,.91];region.font=14;region.align='center';}
+    }
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

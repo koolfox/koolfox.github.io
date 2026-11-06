@@ -1,0 +1,193 @@
+{
+  "utc": "2026-11-06T20:16:43.315613+00:00",
+  "source_url": "https://files.rcsb.org/download/7TA3.pdb",
+  "source_retrieval_note": "Existing checked-in source; metadata records preparation time, not original source retrieval time",
+  "source_sha256": "3c90d11838c88ebb5501319b367c6ac89e16c67c9a84aa22d17d5a4708052de4",
+  "prepared_peptide_sha256": "5cd3024fd227adcd1309a51faef8eedcb878de407dc5a76ea4b05251ad6d437e",
+  "receptor_sha256": "ef6112549c988297f3911490d9a5466cfcb9fbce65c262608f1b4963e7785e06",
+  "script_sha256": "ab2babb9d35b821f557952577279dbe482780b9ded9653721bd6f49696c4843b",
+  "vina_sha256": "dbeeececfb8bd6e4da871335d1af5fe95f8c5d34955a7ba328272d4e39131a7b",
+  "vina_version": "AutoDock Vina v1.2.7",
+  "center_angstrom": [
+    -0.23749999999999982,
+    -55.016999999999996,
+    -21.6785
+  ],
+  "size_angstrom": [
+    28.905,
+    20.937999999999995,
+    22.971000000000004
+  ],
+  "atom_count": 97,
+  "cases": {
+    "0": {
+      "geometry": {
+        "minimum_heavy_distance_angstrom": 2.690057434331098,
+        "pairs_below_2_angstrom": 0,
+        "pairs_below_4_angstrom": 61
+      },
+      "fixed_frame_rmsd_angstrom": 0.0,
+      "command": [
+        "/opt/anaconda3/envs/tnf-docking/bin/vina",
+        "--receptor",
+        "/private/tmp/long-peptide-clash-investigation/structural-bioinformatics/assets/tnf-peptide/receptor.pdbqt",
+        "--ligand",
+        "structural-bioinformatics/assets/long-peptide-pilot/7ta3-13mer-control/run-20261106-corrected/offset-+0.pdbqt",
+        "--autobox",
+        "--score_only",
+        "--cpu",
+        "1",
+        "--seed",
+        "42"
+      ],
+      "input_sha256": "d63bd2d04444e083315ff352a9a66c37d371d480f6fcadc4b3d1b02a9d21b470",
+      "log_sha256": "59f813808811c5377c47830473eaf2e9d40deb30300a119c2ee1d988d0e17667"
+    },
+    "10": {
+      "geometry": {
+        "minimum_heavy_distance_angstrom": 6.022767636228381,
+        "pairs_below_2_angstrom": 0,
+        "pairs_below_4_angstrom": 0
+      },
+      "fixed_frame_rmsd_angstrom": 10.0,
+      "command": [
+        "/opt/anaconda3/envs/tnf-docking/bin/vina",
+        "--receptor",
+        "/private/tmp/long-peptide-clash-investigation/structural-bioinformatics/assets/tnf-peptide/receptor.pdbqt",
+        "--ligand",
+        "structural-bioinformatics/assets/long-peptide-pilot/7ta3-13mer-control/run-20261106-corrected/offset-+10.pdbqt",
+        "--autobox",
+        "--score_only",
+        "--cpu",
+        "1",
+        "--seed",
+        "42"
+      ],
+      "input_sha256": "be7f92277504cbdbf535f520e1f05f5f39fa68f0ea6841fa3b564514c49f4496",
+      "log_sha256": "04e6a24bd0bbdcb081e811195b8b3e8aa1b3994e38faa4e5e4ddf97e4cb92572"
+    },
+    "40": {
+      "geometry": {
+        "minimum_heavy_distance_angstrom": 27.586490371194376,
+        "pairs_below_2_angstrom": 0,
+        "pairs_below_4_angstrom": 0
+      },
+      "fixed_frame_rmsd_angstrom": 40.0,
+      "command": [
+        "/opt/anaconda3/envs/tnf-docking/bin/vina",
+        "--receptor",
+        "/private/tmp/long-peptide-clash-investigation/structural-bioinformatics/assets/tnf-peptide/receptor.pdbqt",
+        "--ligand",
+        "structural-bioinformatics/assets/long-peptide-pilot/7ta3-13mer-control/run-20261106-corrected/offset-+40.pdbqt",
+        "--autobox",
+        "--score_only",
+        "--cpu",
+        "1",
+        "--seed",
+        "42"
+      ],
+      "input_sha256": "68f13df9d2a87e20f6aff99f715d376b89ece89ec32673f3e527a5c7528ea2fe",
+      "log_sha256": "0c94c8f718ffe28f1c4231c57fa314766a6e5d65def2bcf5da2a6b798bb711bf"
+    },
+    "-40": {
+      "geometry": {
+        "minimum_heavy_distance_angstrom": 0.5816201509576534,
+        "pairs_below_2_angstrom": 13,
+        "pairs_below_4_angstrom": 60
+      },
+      "fixed_frame_rmsd_angstrom": 40.0,
+      "command": [
+        "/opt/anaconda3/envs/tnf-docking/bin/vina",
+        "--receptor",
+        "/private/tmp/long-peptide-clash-investigation/structural-bioinformatics/assets/tnf-peptide/receptor.pdbqt",
+        "--ligand",
+        "structural-bioinformatics/assets/long-peptide-pilot/7ta3-13mer-control/run-20261106-corrected/offset--40.pdbqt",
+        "--autobox",
+        "--score_only",
+        "--cpu",
+        "1",
+        "--seed",
+        "42"
+      ],
+      "input_sha256": "fbc2b8432b0c1b55e70639b3fd08e824d73d201830d34dc648019a3f918eeb28",
+      "log_sha256": "5ef076818e8e70a3d796be0dee545fdc547a7f9e5798408dbbb857c0ce6a8031"
+    }
+  },
+  "docking": {
+    "command": [
+      "/opt/anaconda3/envs/tnf-docking/bin/vina",
+      "--receptor",
+      "/private/tmp/long-peptide-clash-investigation/structural-bioinformatics/assets/tnf-peptide/receptor.pdbqt",
+      "--ligand",
+      "structural-bioinformatics/assets/long-peptide-pilot/7ta3-13mer-control/run-20261106-corrected/reference.pdbqt",
+      "--out",
+      "structural-bioinformatics/assets/long-peptide-pilot/7ta3-13mer-control/run-20261106-corrected/poses.pdbqt",
+      "--seed",
+      "42",
+      "--cpu",
+      "1",
+      "--exhaustiveness",
+      "2",
+      "--num_modes",
+      "5",
+      "--max_evals",
+      "100000",
+      "--center_x",
+      "-0.23749999999999982",
+      "--center_y",
+      "-55.016999999999996",
+      "--center_z",
+      "-21.6785",
+      "--size_x",
+      "28.905",
+      "--size_y",
+      "20.937999999999995",
+      "--size_z",
+      "22.971000000000004"
+    ],
+    "pose_sha256": "a79611976120942da6ac1cbafffc83aadf92bf2b0ebe42f0cf12beb5377df162",
+    "log_sha256": "b77c1e53de475cb0cc1e24c093741ead0013b3c577166def244a6c2254057c19",
+    "poses": [
+      {
+        "rank": 1,
+        "fixed_frame_rmsd_angstrom": 0.5133903781844487,
+        "geometry": {
+          "minimum_heavy_distance_angstrom": 2.6991496809180453,
+          "pairs_below_2_angstrom": 0,
+          "pairs_below_4_angstrom": 62
+        },
+        "vina_result": "REMARK VINA RESULT:    -8.992      0.000      0.000"
+      },
+      {
+        "rank": 2,
+        "fixed_frame_rmsd_angstrom": 12.801735053958607,
+        "geometry": {
+          "minimum_heavy_distance_angstrom": 2.978305054892801,
+          "pairs_below_2_angstrom": 0,
+          "pairs_below_4_angstrom": 40
+        },
+        "vina_result": "REMARK VINA RESULT:    -8.649      5.504     12.694"
+      },
+      {
+        "rank": 3,
+        "fixed_frame_rmsd_angstrom": 13.796041540814391,
+        "geometry": {
+          "minimum_heavy_distance_angstrom": 3.114896627498253,
+          "pairs_below_2_angstrom": 0,
+          "pairs_below_4_angstrom": 39
+        },
+        "vina_result": "REMARK VINA RESULT:    -7.199      3.331     13.736"
+      },
+      {
+        "rank": 4,
+        "fixed_frame_rmsd_angstrom": 11.23269421142687,
+        "geometry": {
+          "minimum_heavy_distance_angstrom": 3.1055685469813734,
+          "pairs_below_2_angstrom": 0,
+          "pairs_below_4_angstrom": 25
+        },
+        "vina_result": "REMARK VINA RESULT:    -6.063      4.874     11.144"
+      }
+    ]
+  }
+}

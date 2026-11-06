@@ -107,9 +107,9 @@ uv run --project structural-bioinformatics python structural-bioinformatics/scri
 پیش از مقایسه با یک مدل زبانی، اسکریپت `scripts/agent_status_baseline.py` مشاهدات صادرشده را پس از کنترل هش و تعداد می‌خواند و برای هر مورد وضعیت اجرا و اتصال را «نامعلوم» ثبت می‌کند. حتی وجود متن خطا به‌تنهایی برای تشخیص وضعیت نهایی کافی نیست؛ ممکن است اجرا قطع شده باشد یا گزارشِ ثبت‌شده معنای دیگری داشته باشد. این خط پایه عمداً از نتیجه‌گیری خودداری می‌کند و میزان امتناع و دقت آن باید در کنار مدل و مسیر ثابت سنجیده شود. این برنامه اتصال، کیفیت پپتید یا موفقیت داکینگ را پیش‌بینی نمی‌کند و به معنی آموزش یا ارزیابی Qwen نیست.
 
 ```bash
-python structural-bioinformatics/scripts/agent_status_baseline.py \\
+python structural-bioinformatics/scripts/agent_status_baseline.py \
   --observations-dir PATH_TO_OBSERVATIONS --output baseline-responses.jsonl
-python structural-bioinformatics/scripts/evaluate_agent_cases.py \\
+python structural-bioinformatics/scripts/evaluate_agent_cases.py \
   --cases-dir PATH_TO_CASES --responses baseline-responses.jsonl
 ```
 

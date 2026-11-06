@@ -112,6 +112,11 @@ class SourceWorkshopTests(unittest.TestCase):
             self.assertEqual(question['answer']['options_fa'][question['answer']['correct_index']], 'o')
             self.assertIn('[0.05, 0.1, 0.2, 0.65]', question['prompt_fa'])
         self.assertEqual(example['reference']['prediction'], 'o')
+        rnn = next(item for item in unit['source_examples'] if item['id'] == 'character-choice-rnn')
+        for question in [next(q for q in rnn['questions'] if q['id'] == 'choice'),
+                         next(q for q in unit['activities']['questions'] if q['id'] == 'character-choice-rnn-choice')]:
+            self.assertIn('31 که o', question['solution_fa'])
+            self.assertNotIn('31 که e', question['solution_fa'])
 
     def test_page_example_executes_its_own_hash_pinned_source_and_rejects_stale_code(self):
         import hashlib

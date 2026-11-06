@@ -157,3 +157,69 @@ test('missing laboratory shows a retryable explanation', async ({page}) => {
   await expect(button).toBeEnabled();
   await expect(page.locator('#lesson-slide iframe')).toHaveCount(0);
 });
+
+test('biomolecule examples remain readable in their general lesson slides', async ({page}) => {
+  await page.setViewportSize({width:390,height:844});
+  for (const [topic, heading, term] of [
+    [2, 'خانوادهٔ مونومر دیگر: نوکلئوتید', 'هیدروکسیل'],
+    [3, 'مثال آموزشی', 'فرضی'],
+  ]) {
+    await page.goto(root + `assets/course-slides.html?topic=${topic}`);
+    await expect(page.locator('#lesson-deck')).toHaveAttribute('aria-busy','false');
+    const option = page.locator('#slide-select option').filter({hasText:heading}).first();
+    const index = await option.getAttribute('value');
+    await page.locator('#slide-select').selectOption(index);
+    await expect(page.locator('#lesson-slide section:visible')).toContainText(term);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
+  }
+});
+
+test('reverse complement exercise checks arbitrary DNA and saves locally', async ({page}) => {
+  await page.setViewportSize({width:390,height:844});
+  await page.goto(root + 'assets/course-slides.html?topic=5');
+  await expect(page.locator('#lesson-deck')).toHaveAttribute('aria-busy','false');
+  const index = await page.locator('#slide-select option[data-kind=reverse-complement]').getAttribute('value');
+  await page.locator('#slide-select').selectOption(index);
+  await page.locator('#dna-input').fill('CGTAA');
+  await page.locator('#dna-answer').fill('GCATT');
+  await page.getByRole('button',{name:'بررسی مکمل معکوس'}).click();
+  await expect(page.locator('#lesson-slide section:visible [role=status]').first()).toContainText('دوباره');
+  await page.locator('#dna-answer').fill('ttacg');
+  await page.getByRole('button',{name:'بررسی مکمل معکوس'}).click();
+  await expect(page.locator('#lesson-slide section:visible [role=status]').first()).toContainText('5′-TTACG-3′');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
+  await page.reload();
+  await expect(page.locator('#dna-input')).toHaveValue('CGTAA');
+  await expect(page.locator('#dna-answer')).toHaveValue('ttacg');
+  await page.locator('#dna-input').fill('AUX');
+  await page.getByRole('button',{name:'بررسی مکمل معکوس'}).click();
+  await expect(page.locator('#lesson-slide section:visible [role=status]').first()).toContainText('فقط با حروف');
+});
+
+test('reverse complement remains usable if local storage fails', async ({page}) => {
+  await page.addInitScript(() => { Storage.prototype.setItem = () => { throw new Error('blocked'); }; });
+  await page.goto(root + 'assets/course-slides.html?topic=5');
+  await expect(page.locator('#lesson-deck')).toHaveAttribute('aria-busy','false');
+  const index = await page.locator('#slide-select option[data-kind=reverse-complement]').getAttribute('value');
+  await page.locator('#slide-select').selectOption(index);
+  await page.locator('#dna-answer').fill('CAGCT');
+  await expect(page.locator('#lesson-slide section:visible [role=status]').last()).toContainText('ذخیره ممکن نشد');
+  await page.getByRole('button',{name:'بررسی مکمل معکوس'}).click();
+  await expect(page.locator('#lesson-slide section:visible [role=status]').first()).toContainText('درست است');
+});
+
+test('reverse-complement feedback is cleared after changing either sequence', async ({page}) => {
+  await page.goto(root + 'assets/course-slides.html?topic=5');
+  await expect(page.locator('#lesson-deck')).toHaveAttribute('aria-busy','false');
+  const index = await page.locator('#slide-select option[data-kind=reverse-complement]').getAttribute('value');
+  await page.locator('#slide-select').selectOption(index);
+  await page.locator('#dna-input').fill('A');
+  await page.locator('#dna-answer').fill('T');
+  await page.getByRole('button',{name:'بررسی مکمل معکوس'}).click();
+  const feedback = page.locator('#lesson-slide section:visible [role=status]').first();
+  await expect(feedback).toContainText('درست است');
+  await page.locator('#dna-input').fill('C');
+  await expect(feedback).toBeEmpty();
+  await page.getByRole('button',{name:'بررسی مکمل معکوس'}).click();
+  await expect(feedback).toContainText('دوباره');
+});

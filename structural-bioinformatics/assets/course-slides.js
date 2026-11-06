@@ -90,6 +90,30 @@ function evidenceExercise() {
   });
   section.append(button, status); return section;
 }
+function reverseComplementExercise() {
+  const section = element('section'); section.dataset.kind = 'reverse-complement';
+  section.append(element('h2', 'مکمل معکوس را خودتان پیدا کنید'));
+  section.append(element('p', 'توالی DNA را از ۵′ به ۳′ بنویسید؛ سپس مکمل آن را نیز از ۵′ به ۳′ وارد کنید. فقط حروف A، C، G و T پذیرفته می‌شوند.'));
+  const storeKey = 'structural-course-reverse-complement-v1';
+  const sourceLabel = element('label', 'توالی ورودی در جهت ۵′ به ۳′'); sourceLabel.htmlFor = 'dna-input';
+  const source = element('input'); source.id = sourceLabel.htmlFor; source.type = 'text'; source.maxLength = 60; source.value = 'AGCTG'; source.dir = 'ltr'; source.autocomplete = 'off'; source.spellcheck = false;
+  const answerLabel = element('label', 'پاسخ شما در جهت ۵′ به ۳′'); answerLabel.htmlFor = 'dna-answer';
+  const answer = element('input'); answer.id = answerLabel.htmlFor; answer.type = 'text'; answer.maxLength = 60; answer.dir = 'ltr'; answer.autocomplete = 'off'; answer.spellcheck = false;
+  try { const saved = JSON.parse(localStorage.getItem(storeKey) || 'null'); if (saved && typeof saved.source === 'string' && typeof saved.answer === 'string') { source.value = saved.source; answer.value = saved.answer; } } catch { /* Keep defaults if storage is unavailable. */ }
+  const feedback = element('p'); feedback.setAttribute('role', 'status');
+  const save = element('p', 'پس از نوشتن، پاسخ در همین مرورگر ذخیره می‌شود.'); save.setAttribute('role', 'status');
+  const persist = () => { feedback.textContent = ''; try { localStorage.setItem(storeKey, JSON.stringify({source:source.value,answer:answer.value})); save.textContent='در همین مرورگر ذخیره شد.'; } catch { save.textContent='ذخیره ممکن نشد؛ تا زمان بازبودن صفحه می‌توانید تمرین کنید.'; } };
+  source.addEventListener('input', persist); answer.addEventListener('input', persist);
+  const button = element('button', 'بررسی مکمل معکوس'); button.type = 'button';
+  button.addEventListener('click', () => {
+    const original = source.value.trim().toUpperCase(), supplied = answer.value.trim().toUpperCase();
+    if (!/^[ACGT]+$/.test(original) || !/^[ACGT]+$/.test(supplied)) { feedback.textContent='هر دو کادر را فقط با حروف A، C، G و T پر کنید.'; return; }
+    const paired = [...original].map(base => ({A:'T',C:'G',G:'C',T:'A'})[base]).join('');
+    const expected = [...paired].reverse().join('');
+    feedback.textContent = supplied === expected ? `درست است. مکمل روبه‌رو 3′-${paired}-5′ و مکمل معکوس 5′-${expected}-3′ است.` : `پاسخ را دوباره بررسی کنید. مکمل روبه‌رو 3′-${paired}-5′ است؛ برای نوشتن از ۵′ به ۳′ ترتیب آن را وارونه کنید.`;
+  });
+  section.append(sourceLabel, source, answerLabel, answer, button, feedback, save); return section;
+}
 function dockingSlide() {
   const section=element('section'); section.dataset.kind='lab';
   section.append(element('h2','کارگاه داکینگ'), element('p','یک نمونهٔ ثبت‌شدهٔ بازداکینگ را با دادهٔ بلوری مقایسه کنید؛ این صفحه داکینگ تازه اجرا نمی‌کند.'));
@@ -135,7 +159,7 @@ async function load() {
     const source = await response.text(); if (ticket !== revision) return;
     if (!window.markdownit || !source.trim()) throw Error('متن درس برای نمایش آماده نیست.');
     const textSlides = makeTextSlides(source, sourceUrl); if (!textSlides.length) throw Error('متن درس خالی است.');
-    slides = [...textSlides, ...(topic.session === 1 ? [evidenceExercise()] : []), selfCheck(topic)]; if (labs.has(topic.laboratory)) slides.push(labSlide(topic)); else if (topic.block === 'docking') slides.push(dockingSlide());
+    slides = [...textSlides, ...(topic.session === 1 ? [evidenceExercise()] : []), ...(topic.session === 5 ? [reverseComplementExercise()] : []), selfCheck(topic)]; if (labs.has(topic.laboratory)) slides.push(labSlide(topic)); else if (topic.block === 'docking') slides.push(dockingSlide());
     $('lesson-slide').replaceChildren(...slides);
     $('lesson-title').textContent=topic.title; document.title=`${topic.title} | اسلاید درس`;
     const block = syllabus.blocks.find(item => item.id === topic.block); $('chapter-title').textContent=block?.title || ''; $('chapter-title').hidden=!block || block.title === topic.title;

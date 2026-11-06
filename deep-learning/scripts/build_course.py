@@ -722,7 +722,7 @@ def build(output, root=ROOT):
     output.mkdir(parents=True, exist_ok=True)
     registry_path = root / 'data/metadata/source-readers.json'
     registered_terms = json.loads(registry_path.read_text()).get('terms', {}) if registry_path.exists() else {}
-    reader_version = hashlib.sha256(b"".join((root / "assets" / name).read_bytes() for name in ("source-reader.js", "reader-fullscreen.js", "slide-content.js", "source-reader.css", "practice.css", "notebook.js", "practice.js", "webgpu-attention.js", "source-interactives.js", "source-model-app.js", "source-model-app.css", "model-runtime.js", "model-image.js", "model-tokenizer.js", "mnist-training.js", "mnist-training.css", "mnist-training-runtime.js"))).hexdigest()[:16]
+    reader_version = hashlib.sha256(b"".join((root / "assets" / name).read_bytes() for name in ("source-reader.js", "slide-offline-cache.js", "reader-fullscreen.js", "slide-content.js", "source-reader.css", "practice.css", "notebook.js", "practice.js", "webgpu-attention.js", "source-interactives.js", "source-model-app.js", "source-model-app.css", "model-runtime.js", "model-image.js", "model-tokenizer.js", "mnist-training.js", "mnist-training.css", "mnist-training-runtime.js"))).hexdigest()[:16]
     pages = {"catalog/index.html": hub(course), "sources/index.html": sources_page(course),
              "knowledge/index.html": knowledge_page(course["concepts"])}
     initial = BASE + "/terms/spring-2026/s01/slides/"
@@ -802,6 +802,7 @@ def build(output, root=ROOT):
         "university-logo.png",
         "university-logo.source.json",
         "source-reader.js",
+        "slide-offline-cache.js",
         "reader-fullscreen.js",
         "slide-content.js",
         "source-reader.css",
@@ -817,8 +818,9 @@ def build(output, root=ROOT):
     if (root / "assets/source-reader.js").resolve() != (assets / "source-reader.js").resolve():
         content_version = hashlib.sha256((root / "assets/slide-content.js").read_bytes()).hexdigest()[:16]
         script = assets / "source-reader.js"
+        cache_version = hashlib.sha256((root / "assets/slide-offline-cache.js").read_bytes()).hexdigest()[:16]
         fullscreen_version = hashlib.sha256((root / "assets/reader-fullscreen.js").read_bytes()).hexdigest()[:16]
-        script.write_text(script.read_text().replace("'./slide-content.js'", f"'./slide-content.js?v={content_version}'").replace("'./reader-fullscreen.js'", f"'./reader-fullscreen.js?v={fullscreen_version}'"))
+        script.write_text(script.read_text().replace("'./slide-content.js'", f"'./slide-content.js?v={content_version}'").replace("'./slide-offline-cache.js'", f"'./slide-offline-cache.js?v={cache_version}'").replace("'./reader-fullscreen.js'", f"'./reader-fullscreen.js?v={fullscreen_version}'"))
         practice = assets / "practice.js"
         content = practice.read_text()
         for name in ("notebook.js", "webgpu-attention.js", "notebook-results.js"):
@@ -863,6 +865,10 @@ def build(output, root=ROOT):
             for dependency in ('model-runtime.js', 'model-tokenizer.js', 'model-image.js', 'mnist-training-runtime.js'):
                 content = content.replace('./' + dependency + "'", './' + dependency + '?v=' + reader_version + "'")
             script.write_text(content)
+
+    if readers.get("spring-2026"):
+        from source_page_pdfs import build_source_pages
+        build_source_pages(root, output, readers["spring-2026"])
 
     package_slides(output, root)
     if os.environ.get("DANNA_SOURCE_DRAFT") != "1":

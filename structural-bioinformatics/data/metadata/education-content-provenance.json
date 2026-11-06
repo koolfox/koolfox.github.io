@@ -70,52 +70,78 @@
     "cath": {
       "title": "راهنمای رسمی طبقه‌بندی CATH",
       "url": "https://www.cathdb.info/wiki"
+    },
+    "openstax_nucleotides": {
+      "title": "OpenStax؛ نوکلئوتیدها و اسیدهای نوکلئیک",
+      "url": "https://openstax.org/books/organic-chemistry/pages/28-1-nucleotides-and-nucleic-acids",
+      "checked_at_utc": "2026-11-06T07:14:36Z"
+    },
+    "openstax_peptide": {
+      "title": "OpenStax؛ آمین‌ها، آمیدها و پیوند پپتیدی",
+      "url": "https://openstax.org/books/chemistry-2e/pages/20-4-amines-and-amides",
+      "checked_at_utc": "2026-11-06T07:49:27Z"
+    },
+    "rna_hydrolysis": {
+      "title": "Experimental alkaline hydrolysis of RNA",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27260412/",
+      "checked_at_utc": "2026-11-06T14:03:47Z"
     }
   },
   "lessons": [
     {
       "topic": 1,
       "path": "docs/course/session-01.fa.md",
-      "sha256": "959adb1bc9490c52091aa48330dbc2d74018421d50a6a7bd5c8418256abf6778",
+      "sha256": "180faff847e35223f14cb9e069d3661137990d0e05cff58e5db398dbfc62564e",
       "source_ids": [
         "bio",
         "pdb"
       ],
       "case_lesson_path": "docs/research-notes/lesson-context/topic-01.fa.md",
       "case_lesson_sha256": "20d1954cb06c942a27ceac3432325d178016d485b94a69ce7bc9bba1f639964a",
-      "word_count_whitespace": 1451,
+      "word_count_whitespace": 1761,
       "external_reference_urls": [
         "https://pdb101.rcsb.org/learn/guide-to-understanding-pdb-data/introduction",
         "https://www.ncbi.nlm.nih.gov/books/NBK26830/",
         "https://www.rcsb.org/structure/1UBQ"
-      ]
+      ],
+      "coordinate_example": {
+        "source_url": "https://www.rcsb.org/structure/1UBQ",
+        "source_checked_at_utc": "2026-11-06T06:31:02Z",
+        "local_input": "assets/course/gromacs/1ubq-protein.pdb",
+        "local_input_sha256": "f1899546f581eaba2c618f012097644e1ab2aa281c47c13cbb3747147ca17fc3",
+        "scope": "First two ATOM coordinates; measured distance 1.4736855 Å. Local file is a curated protein-only subset."
+      }
     },
     {
       "topic": 2,
       "path": "docs/course/session-02.fa.md",
-      "sha256": "2b5c9c1c58a6071010984661ec020d6450eaab46f86f3125832e772b1e4a5eb6",
+      "sha256": "3a98911c9e5e13f8e9ec5f6c5b94d2d1190cef927ded1ed2f1aa501ac6383ef0",
       "source_ids": [
-        "bio"
+        "bio",
+        "openstax_nucleotides"
       ],
       "case_lesson_path": "docs/research-notes/lesson-context/topic-02.fa.md",
       "case_lesson_sha256": "4957ef5026e83eca21a66b934fd20a43819a1605ef1f45b65d7d2df2c0d4f724",
-      "word_count_whitespace": 983,
+      "word_count_whitespace": 1447,
       "external_reference_urls": [
+        "https://openstax.org/books/organic-chemistry/pages/28-1-nucleotides-and-nucleic-acids",
         "https://www.ncbi.nlm.nih.gov/books/NBK26830/"
       ]
     },
     {
       "topic": 3,
       "path": "docs/course/session-03.fa.md",
-      "sha256": "3972e45e060c0ce6a14d1448d348d91f4d35220d5a441a467ca369cbc68f9234",
+      "sha256": "ee4b3ed039ebb750dcd3aa26feb6fb0de7374eb1990d0fc40986c6792bb950ca",
       "source_ids": [
         "bio",
-        "pdb"
+        "pdb",
+        "openstax_peptide"
       ],
       "case_lesson_path": "docs/research-notes/lesson-context/topic-03.fa.md",
       "case_lesson_sha256": "ed59ae4ff3626f2e71b914457c1a4173ca7b49e94273f2fe63928ba6870b1eb6",
-      "word_count_whitespace": 1053,
+      "word_count_whitespace": 1514,
       "external_reference_urls": [
+        "https://openstax.org/books/chemistry-2e/pages/20-4-amines-and-amides",
         "https://pdb101.rcsb.org/learn/guide-to-understanding-pdb-data/introduction",
         "https://www.ncbi.nlm.nih.gov/books/NBK26830/"
       ]
@@ -123,7 +149,7 @@
     {
       "topic": 4,
       "path": "docs/course/session-04.fa.md",
-      "sha256": "9fc294f7f5a7825f88939156d7d46231f75ef11a7429ddf0945525cfc5b92d73",
+      "sha256": "4fd54dc71cbb1d4fece0f5c04b41e93a37a554cb5aa18f381f98fdce8de8b9d7",
       "source_ids": [
         "bio",
         "pdb",
@@ -131,7 +157,7 @@
       ],
       "case_lesson_path": "docs/research-notes/lesson-context/topic-04.fa.md",
       "case_lesson_sha256": "0e7c670cd9e6e98ca8b55960b51ad6beabb219db6d280dab940dc58daca2660c",
-      "word_count_whitespace": 960,
+      "word_count_whitespace": 1013,
       "external_reference_urls": [
         "https://pdb101.rcsb.org/learn/guide-to-understanding-pdb-data/introduction",
         "https://www.cathdb.info/wiki",
@@ -141,29 +167,33 @@
     {
       "topic": 5,
       "path": "docs/course/session-05.fa.md",
-      "sha256": "f4d93d52309b47ba71a46c85cdc5ede32f2e438a7ddcfcffbdcfa4be6e3fa436",
+      "sha256": "3d99126dc170851249b7d1cc966be9d0422e9ca19668190b9623b20113362036",
       "source_ids": [
         "bio",
-        "pdb"
+        "pdb",
+        "openstax_nucleotides",
+        "rna_hydrolysis"
       ],
       "case_lesson_path": "docs/research-notes/lesson-context/topic-05.fa.md",
       "case_lesson_sha256": "9c31f0395cf03dc0fc637749e101a144f367d3a51ea8c63cb7794bb901704b7a",
-      "word_count_whitespace": 934,
+      "word_count_whitespace": 1773,
       "external_reference_urls": [
+        "https://openstax.org/books/organic-chemistry/pages/28-1-nucleotides-and-nucleic-acids",
         "https://pdb101.rcsb.org/learn/guide-to-understanding-pdb-data/introduction",
+        "https://pubmed.ncbi.nlm.nih.gov/27260412/",
         "https://www.ncbi.nlm.nih.gov/books/NBK26830/"
       ]
     },
     {
       "topic": 6,
       "path": "docs/course/session-06.fa.md",
-      "sha256": "c59bbe6df6996820ef3c0bcac5bb36412787f65f393324ef2855e989b1d9bc42",
+      "sha256": "643de5e9dec389add410658055022fc2f8bc15f6aef0b8156ae516fb56afb35c",
       "source_ids": [
         "vmd"
       ],
       "case_lesson_path": "docs/research-notes/lesson-context/topic-06.fa.md",
       "case_lesson_sha256": "00dc573929c45f0cceab126566fe6200d957b6069adaa924ba812e615e404ee5",
-      "word_count_whitespace": 971,
+      "word_count_whitespace": 1096,
       "external_reference_urls": [
         "https://www.ks.uiuc.edu/Research/vmd/",
         "https://www.ks.uiuc.edu/Research/vmd/current/ug/"
@@ -172,14 +202,14 @@
     {
       "topic": 7,
       "path": "docs/course/session-07.fa.md",
-      "sha256": "1e6d4d5372c6089f3b1a913b31d9e6c4b39f82457f4e6526d4a1cb5215f92837",
+      "sha256": "57530e9325c6d9b233e96d803bfcde84852979ce1babc751b46b9a91021f1765",
       "source_ids": [
         "tcl",
         "vmd"
       ],
       "case_lesson_path": "docs/research-notes/lesson-context/topic-07.fa.md",
       "case_lesson_sha256": "9e468cb254b36b9572ae269ded4801c0212ada2319f3219157af6f2c6b15a521",
-      "word_count_whitespace": 954,
+      "word_count_whitespace": 1299,
       "external_reference_urls": [
         "https://www.ks.uiuc.edu/Research/vmd/current/ug/",
         "https://www.ks.uiuc.edu/Research/vmd/current/ug/node122.html",
@@ -190,50 +220,60 @@
     {
       "topic": 8,
       "path": "docs/course/session-08.fa.md",
-      "sha256": "e9dbaca1f19a8c675efd87c218743badf12037e7479b571fd3914919578030e0",
+      "sha256": "7d1336354fbb714cd0d6788f1d7a4dcc7044524f2aa7fbe7068dbf6ce1d4b606",
       "source_ids": [
         "vmd",
         "pdb"
       ],
       "case_lesson_path": "docs/research-notes/lesson-context/topic-08.fa.md",
       "case_lesson_sha256": "803c50822bd9b6d676bf08c97e8d56af34d8c7bfadc5d81b814f759e29b6f792",
-      "word_count_whitespace": 922,
+      "word_count_whitespace": 1437,
       "external_reference_urls": [
         "https://pdb101.rcsb.org/learn/guide-to-understanding-pdb-data/introduction",
-        "https://www.ks.uiuc.edu/Research/vmd/current/ug/"
+        "https://www.ks.uiuc.edu/Research/vmd/current/ug/",
+        "https://www.ks.uiuc.edu/Research/vmd/current/ug/node203.html"
       ]
     },
     {
       "topic": 9,
       "path": "docs/course/session-09.fa.md",
-      "sha256": "0cf9aabe696d00262641c7c23b1ca5b9e1d83baf5c0d43212a0ff110d2cf1e30",
+      "sha256": "bcdd7765f46a54f971443374b150caf09fc98904f72bc0cf4c9e7448e29ff0f3",
       "source_ids": [
         "pdb",
         "vmd"
       ],
       "case_lesson_path": "docs/research-notes/lesson-context/topic-09.fa.md",
       "case_lesson_sha256": "04d24df1ab1cc5eeac0883fb1a925ad3b3f0865e1cf2512e91d19461271c294b",
-      "word_count_whitespace": 925,
+      "word_count_whitespace": 1241,
       "external_reference_urls": [
+        "https://biopython.org/docs/1.81/api/Bio.PDB.SASA.html",
         "https://pdb101.rcsb.org/learn/guide-to-understanding-pdb-data/introduction",
         "https://www.ks.uiuc.edu/Research/vmd/current/ug/",
-        "https://www.ks.uiuc.edu/Research/vmd/current/ug/node138.html"
+        "https://www.ks.uiuc.edu/Research/vmd/vmd-1.9.4/ug/node139.html"
       ]
     },
     {
       "topic": 10,
       "path": "docs/course/session-10.fa.md",
-      "sha256": "17bcfd148555d113406421b055733613f080d367a0ed864b946bbcdae8f6998f",
+      "sha256": "7395883ba3c7afc49afcd33e034204c4946812799affa8fb7553c0be223c4500",
       "source_ids": [
         "uni",
         "ref"
       ],
       "case_lesson_path": "docs/research-notes/lesson-context/topic-10.fa.md",
       "case_lesson_sha256": "c528a0736280cc82f649986c5ab946204d8dbfc9c5215dda01ebf6e46d1cbb5a",
-      "word_count_whitespace": 897,
+      "word_count_whitespace": 1424,
       "external_reference_urls": [
+        "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=NP_000549.1&rettype=fasta&retmode=text",
+        "https://rest.uniprot.org/uniprotkb/P69905.fasta",
+        "https://rest.uniprot.org/unisave/P69905?format=txt&versions=220",
+        "https://www.ncbi.nlm.nih.gov/books/NBK50679/",
+        "https://www.ncbi.nlm.nih.gov/gene/3039",
+        "https://www.ncbi.nlm.nih.gov/protein/NP_000549.1",
         "https://www.ncbi.nlm.nih.gov/refseq/about/",
-        "https://www.uniprot.org/help/sequence_annotation"
+        "https://www.uniprot.org/help/entry_history",
+        "https://www.uniprot.org/help/sequence_annotation",
+        "https://www.uniprot.org/uniprotkb/P69905/entry"
       ]
     },
     {
@@ -572,7 +612,7 @@
     "tcl": "The arithmetic example was executed with local tclsh and returned mean = 4.0. VMD-specific commands were checked against the official atomselect/measure manual; VMD itself was not run.",
     "binding": "Specific binding references added from indexed source excerpts for the one-step kinetic model and the mutation free-energy definition; fresh full-page access returned CAPTCHA/redirect failures. No full-text review claimed."
   },
-  "last_revised_at_utc": "2026-10-25T09:39:08.979278+00:00",
+  "last_revised_at_utc": "2026-11-06T16:40:06.810224+00:00",
   "teaching_assets": [
     {
       "path": "assets/course/figures/contact-network.svg",
@@ -619,5 +659,39 @@
       "Vina search/scoring and HADDOCK protein docking tutorial",
       "NetworkX path-weight conventions"
     ]
+  },
+  "lesson_10_fasta_comparison": {
+    "purpose": "General sequence-database teaching example; not a clinical or binding measurement.",
+    "retrievals": [
+      {
+        "source": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=protein&id=NP_000549.1&rettype=fasta&retmode=text",
+        "retrieved_at_utc": "2026-11-06T16:29:38Z",
+        "sha256": "d6d3088093d0df849535f1c682c8bc71ac54fc74a6b4b07037480f70fcbc55d7",
+        "accession": "NP_000549.1"
+      },
+      {
+        "source": "https://rest.uniprot.org/uniprotkb/P69905.fasta",
+        "retrieved_at_utc": "2026-11-06T16:30:17Z",
+        "sha256": "aecc3cb75f840f242f6b4489d501384d0c50cf0d61a8dab5a1dab81a80aa4bae",
+        "accession": "P69905",
+        "sequence_version": 2
+      }
+    ],
+    "sequence_length": 142,
+    "sequence_strings_equal": true,
+    "note": "Hashes apply to downloaded FASTA bytes, including headers and line breaks; remote contents may change.",
+    "retained_files": [
+      "assets/course/examples/NP_000549.1.fasta",
+      "assets/course/examples/P69905.fasta"
+    ],
+    "uniprot_entry_check": {
+      "source": "https://rest.uniprot.org/uniprotkb/P69905.txt",
+      "retrieved_at_utc": "2026-11-06T16:36:32Z",
+      "sha256": "d7a5c64ab4606d3de528e9fcafe23087fd4088d14176e1be84cc0fc6811553d1",
+      "entry_version": 220,
+      "sequence_version": 2,
+      "note": "Separate retrieval from FASTA; not an atomic snapshot.",
+      "versioned_archive": "https://rest.uniprot.org/unisave/P69905?format=txt&versions=220"
+    }
   }
 }

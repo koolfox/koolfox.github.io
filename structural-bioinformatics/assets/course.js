@@ -60,7 +60,12 @@ async function render(focus=false) {
   const body=source.split('\n').slice(1).join('\n');if(!body.trim())throw Error('missing text');
   if(window.markdownit)$('#lesson').innerHTML=window.markdownit({html:false,linkify:false}).render(body);else $('#lesson').textContent=body;
   $('#lesson').querySelectorAll('a[href],img[src]').forEach(node=>{const attr=node.tagName==='IMG'?'src':'href';const url=new URL(node.getAttribute(attr),new URL(exercise?active.exercise_path:active.path,location.href));if(['http:','https:'].includes(url.protocol))node.setAttribute(attr,url.href);else node.removeAttribute(attr);});
-  if(!exercise)appendCourseLab($('#lesson'),active);
+  if(!exercise){
+   appendCourseLab($('#lesson'),active);
+   let slideLink=$('#course-slide-link');
+   if(!slideLink){slideLink=link('اسلاید این مبحث','');slideLink.id='course-slide-link';$('#education-nav').append(slideLink);}
+   slideLink.href=`assets/course-slides.html?topic=${n}`;
+  }
   lessonOutline(n);
   if(!exercise)courseReader=enhanceCourseReading($('#lesson'),active);
   if(exercise)$('#topic-links').replaceChildren(link('مفهوم عمومی این مبحث',`course.html?topic=${n}`),link('ارائهٔ این پژوهش',`presentations.html?topic=${n}`));

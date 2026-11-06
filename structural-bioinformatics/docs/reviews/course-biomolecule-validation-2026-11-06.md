@@ -1,0 +1,13 @@
+# Independent review: general course topics 2–4
+
+Reviewed 2026-11-06 UTC against base commit `f4e23654b81a9c6a7173b701f83d013d6efb2ad6`. Scope: the general education lessons, their combined textbook and content provenance; the separate research lessons were not changed.
+
+- Topic 2: checked the nucleotide components, 2′ sugar distinction, 3′–5′ phosphodiester connection and sequence direction against [OpenStax](https://openstax.org/books/organic-chemistry/pages/28-1-nucleotides-and-nucleic-acids). The pH/pKa worked example is consistent with its explicitly simplified one-group model.
+- Topic 3: checked peptide/amide and the four structural levels against [OpenStax](https://openstax.org/books/chemistry-2e/pages/20-4-amines-and-amides) and [RCSB PDB-101](https://pdb101.rcsb.org/learn/guide-to-understanding-pdb-data/protein-hierarchical-structure). Corrected the worked example to distinguish free backbone termini in a linear unmodified chain from amino and carboxyl groups in side chains. The example sequence includes lysine and glutamate. Regenerated the combined textbook and lesson provenance fingerprint.
+- Topic 4: checked the structural hierarchy and the distinction between CATH class, architecture, topology and homologous superfamily against [RCSB PDB-101](https://pdb101.rcsb.org/learn/guide-to-understanding-pdb-data/protein-hierarchical-structure) and [CATH documentation](https://www.cathdb.info/wiki). No lesson change was necessary.
+
+The source pages above were accessed on 2026-11-06 UTC. The linked Sharif syllabus could not be fetched by the review tool, and the NCBI Bookshelf link presented a CAPTCHA; this review does not claim a fresh verification of either page. It is a focused review, not an exhaustive validation of every statement in the course.
+
+Validation: `ruff check structural-bioinformatics` passed. The full offline Python suite reported 499 passed, 2 skipped and 126 subtests passed. On the first clean run, 497 passed and two packaging/preview checks failed because the exported course lab was absent. A fresh export stalled while downloading its runtime; the successful rerun used a copy of a pre-existing local exported runtime solely to satisfy that packaging prerequisite. It does not validate a fresh export or that copied runtime's currentness.
+
+The course reader and slide suites passed 18 checks in locally installed Chrome 156, including source-text preservation across 30 topics and 390px overflow; the real workbench execution check was excluded because the fresh runtime was unavailable. The pinned Playwright Chromium download timed out, so this was not a pinned-browser run. These are local checks, not CI or public deployment acceptance.

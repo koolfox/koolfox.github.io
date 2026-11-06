@@ -21,7 +21,7 @@ try{
  await frame.locator('[data-notebook-cell="0"] .nb-execution').getByText('اجرا شد').waitFor({timeout:60000});
  const missing=[...urls].filter(url=>url.startsWith(origin)&&!new URL(url).pathname.endsWith('.pdf')&&!included.has(url));
  const external=[...urls].filter(url=>!url.startsWith(origin));
- if(!missing.some(url=>url.includes('/pyodide/')))throw Error('Expected to detect missing Python runtime');
+ if(missing.length)throw Error('Observed notebook dependencies missing: '+missing.join(', '));
  console.log(JSON.stringify({cellExecuted:true,missing:missing.map(url=>new URL(url).pathname),external}));
  await context.close();
 }finally{await browser.close();server.kill();}

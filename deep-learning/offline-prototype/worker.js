@@ -5,7 +5,7 @@ let snapshotBusy=false;
 const markerFor=value=>{
  const url=new URL(value,self.location.origin);
  if(url.pathname==='/deep-learning/animations/convolution-code/')return '/deep-learning/terms/spring-2026/s05/slides/';
- const match=url.pathname.match(/^\/deep-learning\/terms\/spring-2026\/(s01|s05)\/slides\//);
+ const match=url.pathname.match(/^\/deep-learning\/terms\/spring-2026\/(s01|s05)\/(?:slides|practice)\//);
  return match?`/deep-learning/terms/spring-2026/${match[1]}/slides/`:null;
 };
 const hex=bytes=>Array.from(new Uint8Array(bytes),x=>x.toString(16).padStart(2,'0')).join('');

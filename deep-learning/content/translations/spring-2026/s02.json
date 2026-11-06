@@ -1556,22 +1556,96 @@
           "source_lines": [
             3,
             4,
-            5,
-            6,
-            7
+            5
           ],
           "kind": "math",
-          "fa": "ŷ = 1 اگر wᵀx ≥ 0؛ در غیر این صورت −1",
+          "fa": "ŷ =",
           "latex": "\\hat y=\\begin{cases}1&\\mathbf w^T\\mathbf x\\ge0\\\\-1&\\text{otherwise}\\end{cases}"
         },
         {
           "source_lines": [
-            8,
-            9,
-            10
+            6
           ],
           "kind": "text",
-          "fa": "مدل چه چیزی پیش‌بینی می‌کند؟\nپیش‌بینی‌شده (Predicted)؛ ?"
+          "fa": "1 اگر \\(\\mathbf w^T\\mathbf x\\ge 0\\)",
+          "source_fragments_verified": true,
+          "source_fragments": [
+            {
+              "fa": "1",
+              "kind": "literal",
+              "source_parts": [
+                {
+                  "line": 6,
+                  "part": 0,
+                  "en": "1"
+                }
+              ]
+            },
+            {
+              "fa": " اگر \\(\\mathbf w^T\\mathbf x\\ge 0\\)",
+              "kind": "text",
+              "source_parts": [
+                {
+                  "line": 6,
+                  "part": 1,
+                  "en": "if 𝐰⊤𝐱 ≥ 0"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "source_lines": [
+            7
+          ],
+          "kind": "text",
+          "fa": "−1 در غیر این صورت",
+          "source_fragments_verified": true,
+          "source_fragments": [
+            {
+              "fa": "−1",
+              "kind": "literal",
+              "source_parts": [
+                {
+                  "line": 7,
+                  "part": 0,
+                  "en": "−1"
+                }
+              ]
+            },
+            {
+              "fa": " در غیر این صورت",
+              "kind": "text",
+              "source_parts": [
+                {
+                  "line": 7,
+                  "part": 1,
+                  "en": "otherwise"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "مدل چه چیزی پیش‌بینی می‌کند؟"
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "literal",
+          "fa": "Predicted"
+        },
+        {
+          "source_lines": [
+            10
+          ],
+          "kind": "literal",
+          "fa": "?"
         },
         {
           "source_lines": [
@@ -1582,7 +1656,67 @@
           "latex": "\\mathbf w^T\\mathbf x=1\\times w_0+x_1\\times w_1+x_2\\times w_2+x_3\\times w_3=1\\times0+1\\times0+0\\times0+0\\times0=0"
         }
       ],
-      "image_text": []
+      "image_text": [
+        {
+          "en": "Predicted ?",
+          "fa": "پیش‌بینی‌شده (Predicted): ؟",
+          "verified": true
+        },
+        {
+          "en": "X1 X2 X3 Y Predicted: 1 0 0 -1 ?",
+          "fa": "جدول نمونه و پیش‌بینی نامعلوم",
+          "verified": true
+        },
+        {
+          "en": "w0 w1 w2 w3: 0 0 0 0",
+          "fa": "جدول وزن‌های فعلی",
+          "verified": true
+        }
+      ],
+      "tables": [
+        {
+          "verified": true,
+          "image_text_indices": [
+            1
+          ],
+          "headers": [
+            "X₁",
+            "X₂",
+            "X₃",
+            "Y",
+            "Predicted"
+          ],
+          "rows": [
+            [
+              "1",
+              "0",
+              "0",
+              "-1",
+              "?"
+            ]
+          ]
+        },
+        {
+          "verified": true,
+          "image_text_indices": [
+            2
+          ],
+          "headers": [
+            "w₀",
+            "w₁",
+            "w₂",
+            "w₃"
+          ],
+          "rows": [
+            [
+              "0",
+              "0",
+              "0",
+              "0"
+            ]
+          ]
+        }
+      ]
     },
     {
       "number": 26,

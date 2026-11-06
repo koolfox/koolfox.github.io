@@ -629,3 +629,23 @@ test('XOR film plays on the revealed graph slide',async({browser})=>{
   }finally{await context.close();}
  }
 });
+
+test('XOR notebook executes and responds to edited weights',async({browser})=>{
+ test.setTimeout(120000);
+ for(const width of [1440,390]){
+  const context=await browser.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390});
+  try{
+   const page=await context.newPage();await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=44');
+   await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===44);
+   await page.locator('[data-page-experiment]').click();const view=page.frameLocator('[data-reader-tools-frame]');
+   await view.locator('[data-notebook-run-all]').click();const frame=await (await page.locator('[data-reader-tools-frame]').elementHandle()).contentFrame();
+   await frame.waitForFunction(()=>window.studentNotebook?.record?.ok,null,{timeout:90000});
+   let result=await frame.evaluate(()=>studentNotebook.record.outputs.at(-1).result);expect(result.predictions).toEqual([0,1,1,1]);expect(result.correct).toBe(3);
+   await view.locator('.cm-content').first().click();await page.keyboard.press('ControlOrMeta+A');
+   await page.keyboard.insertText('inputs = [[0,0], [0,1], [1,0], [1,1]]\ntargets = [0,1,1,0]\nw1 = -1.0\nw2 = 1.0');
+   await view.locator('[data-notebook-run-all]').click();
+   await frame.waitForFunction(()=>JSON.stringify(window.studentNotebook?.record?.outputs?.at(-1)?.result?.predictions)==='[0,1,0,0]',null,{timeout:90000});
+   result=await frame.evaluate(()=>studentNotebook.record.outputs.at(-1).result);expect(result.correct).toBe(3);
+  }finally{await context.close();}
+ }
+});

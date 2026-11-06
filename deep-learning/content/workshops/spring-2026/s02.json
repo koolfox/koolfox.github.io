@@ -584,6 +584,106 @@
           }
         }
       ]
+    },
+    {
+      "id": "xor-boundary",
+      "title_fa": "مرز تصمیم XOR",
+      "pages": [
+        44
+      ],
+      "code_file": "s02_xor_boundary.py",
+      "prediction_fa": "پیش از اجرا خروجی هر چهار ورودی را با خط اولیه پیش‌بینی کن.",
+      "limits_fa": "این مثال یک خط را بررسی می‌کند؛ برای اثبات ناممکن بودن همه خط‌ها از استدلال اسلاید و فیلم استفاده کن.",
+      "starter_sha256": "d86eddcf14fb023d4334437057db40b68a008bbdec359b4ee5ad070310f4bc2f",
+      "reference": {
+        "inputs": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "targets": [
+          0,
+          1,
+          1,
+          0
+        ],
+        "scores": [
+          -0.5,
+          0.5,
+          0.5,
+          1.5
+        ],
+        "predictions": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "correct": 3
+      },
+      "questions": [
+        {
+          "id": "prediction",
+          "source_kind": "original",
+          "source_page": 44,
+          "prompt_fa": "با وزن‌های اولیه، خروجی مدل برای ورودی [1,1] چیست؟",
+          "solution_fa": "امتیاز 1.5 است و چون نامنفی است، پیش‌بینی 1 می‌شود.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "0",
+              "1",
+              "-1"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "accuracy",
+          "source_kind": "original",
+          "source_page": 44,
+          "prompt_fa": "از چهار ردیف، خط اولیه چند ردیف را درست پیش‌بینی می‌کند؟",
+          "solution_fa": "سه ردیف درست و ردیف [1,1] نادرست است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "2",
+              "3",
+              "4"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "boundary",
+          "source_kind": "original",
+          "source_page": 44,
+          "prompt_fa": "آیا تغییر وزن و بایاس یک پرسپترون تک‌لایه می‌تواند همه ردیف‌های XOR را درست کند؟",
+          "solution_fa": "خیر؛ دو کلاس XOR خطی جداپذیر نیستند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "بله، با بایاس مناسب",
+              "بله، با وزن‌های بسیار بزرگ",
+              "خیر، هیچ خطی دو کلاس را جدا نمی‌کند"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
     }
   ]
 }

@@ -383,3 +383,20 @@ test('backward-pass example is readable in the mobile slide view',async({page})=
  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');await expect(page.locator('.reader-slide-background')).toBeVisible();
  await expect(page.locator('.reader-slide-text').filter({hasText:'تابع فعال‌سازی'})).toBeVisible();
 });
+
+test('second lecture review and agendas retain layout and active topic colors',async({browser})=>{
+ for(const width of [1440,390]){
+  const context=await browser.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390});
+  const page=await context.newPage();await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=2');await ready(page);
+  if(width===390){await page.locator('[data-view-translation]').click();await ready(page);}
+  for(const number of [2,3,4,9,38,48,50]){
+   await page.evaluate(n=>location.hash=`page=${n}`,number);await page.waitForFunction(n=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===n,number);
+   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+   await expect(page.locator('.reader-slide-text')).toHaveCount(number===2?9:5);
+   const overflows=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(n=>n.scrollHeight>n.clientHeight+2||n.scrollWidth>n.clientWidth+2).map(n=>n.textContent));
+   expect(overflows,`page ${number}`).toEqual([]);
+   if(number===4){await expect(page.locator('.reader-slide-text[data-source-lines="1"]')).toHaveCSS('color','rgb(255, 255, 255)');await expect(page.locator('.reader-slide-text[data-source-lines="2"]')).toHaveCSS('color','rgb(127, 127, 127)');}
+  }
+  await context.close();
+ }
+});

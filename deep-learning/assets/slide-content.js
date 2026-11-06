@@ -441,6 +441,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(/^آیا (?:w[1-5],(?:4|5|6)|b[4-6]) باید افزایش یابد یا کاهش؟$/.test(region.block.fa))region.slot=[.64,.25,.98,.315];
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===2
+      && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
+      && record.source_text_sha256==='a9a67f6e81b05125d6e74f2676bd4180b7f015dabc06ab3ea8cdda2167c89c35'
+      && layout.translation_sha256==='8021c46a51bbfdec84e87b6a29ea2b2323c7859b15c2fb16a2fd668018ad5c3c'){
+    const vertical=[[.105,.215],[.27,.335],[.335,.395],[.395,.455],[.455,.515],[.515,.575],[.63,.695],[.695,.765],[.82,.89]];
+    for(const region of regions){const index=region.block.source_lines[0];const [top,bottom]=vertical[index];const nested=[2,3,4,5,7].includes(index);region.slot=[.05,top,nested?.88:.94,bottom];}
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

@@ -3,7 +3,7 @@ import {test,expect} from '@playwright/test';
 for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
  test(`slide font loads without changing reader controls at ${viewport.width}px`,async({page})=>{
   await page.setViewportSize(viewport);
-  await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=30');
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=30');
   if(viewport.width<761)await page.locator('[data-view-translation]').click();
   await page.waitForFunction(()=>window.sourceSlideReader?.ready);
   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
@@ -20,6 +20,15 @@ for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
   expect(type.header).toContain('Arad');expect(type.overflow).toBe(false);
  });
 }
+
+test('other sessions retain their existing slide font',async({page})=>{
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=30');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const fonts=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.map(node=>getComputedStyle(node).fontFamily));
+ expect(fonts.length).toBeGreaterThan(0);
+ expect(fonts.every(font=>font.startsWith('Arad'))).toBe(true);
+});
 
 test('source slide text keeps source size and exact color without shrinking to fit',async({page})=>{
  await page.goto('/deep-learning/terms/spring-2026/s03/slides/');

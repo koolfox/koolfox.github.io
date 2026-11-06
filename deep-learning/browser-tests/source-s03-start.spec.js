@@ -35,3 +35,12 @@ test('session 3 source review keeps the image and colored quotation', async ({pa
  await expect(quote.locator('.reader-emphasis').first()).toHaveCSS('color','rgb(255, 192, 0)');
  await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
 });
+
+test('session 3 timeline preserves the source figure and historic labels', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=7');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready && sourceSlideReader.page===7);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ const regions=page.locator('#persian-page .reader-slide-text');
+ for (const name of ['روزنبلات','ویدرو','هاوکینز','نیلسون','مینسکی']) await expect(regions.filter({hasText:name})).toBeVisible();
+ await expect(regions.filter({hasText:'۲ لایه پنهان'})).toHaveCSS('color','rgb(255, 0, 0)');
+});

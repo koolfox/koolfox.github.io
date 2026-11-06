@@ -862,6 +862,17 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===2){region.slot=[.68,.665,.98,.94];region.font=20;}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===67
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='ccfb4c3eb76569bb8cc7550feb3a236d8b67364a366804e8a7c16293450432b1'
+      && layout.translation_sha256==='e368dc1f71f3f78972e3a7d0a560e72581800915f27b507d32c5bf568beb25d3'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.55,.21];region.font=35;}
+      if(i===1){region.slot=[.05,.33,.56,.40];region.font=19;}
+      if(i===3){region.slot=[.05,.55,.57,.63];region.font=19;region.manualAccents=[{text:'اسلایدهای درس',color:'#ffc000'}];}
+      if(i===4){region.slot=[.05,.69,.53,.81];region.font=19;region.color='#ffffff';region.manualAccents=[{text:'ضبط سخنرانی‌ها',color:'#ffc000'}];}
+    }
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

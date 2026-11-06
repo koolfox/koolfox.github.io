@@ -477,6 +477,18 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===2){region.slot=[.28,.92,.65,.98];region.font=17;region.align='center';}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===6
+      && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
+      && record.source_text_sha256==='9f3222dba016e54a25a87152cb0429d3cd26ba7339a8432ee0cd27127d8ef5c2'
+      && layout.translation_sha256==='33f255068e82f0f9c357ea5e07620c0b9dce7bbc3d3e91ff942a64d953d91c74'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.95,.21];region.font=33;}
+      if(i===1){region.slot=[.57,.39,.98,.69];region.font=15;region.color='#ffffff';region.manualAccents=[{text:'«… پرسپترون ساده نخست مطالعه شد… زیرا نشان داد شبکه‌های عصبی سازگارشونده، در ساده‌ترین شکل‌هایشان، در اصل می‌توانند بهبود یابند.',color:'#ffc000'},{text:'آنچه طرفداران پرسپترون تکیه‌گاهی موقت می‌دانستند، مینسکی و پاپرت ساختار نهایی تفسیر می‌کنند.»',color:'#ffc000'}];}
+      if(i===8){region.slot=[.57,.71,.98,.77];region.font=14;}
+      if(i===9){region.slot=[.22,.84,.39,.90];region.font=16;region.align='center';}
+      if(i===10){region.slot=[.05,.25,.95,.32];region.font=18;}
+    }
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

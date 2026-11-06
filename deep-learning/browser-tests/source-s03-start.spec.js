@@ -24,3 +24,14 @@ for (const viewport of [{width:1440,height:900},{width:390,height:844}]) {
   }
  });
 }
+
+test('session 3 source review keeps the image and colored quotation', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=6');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready && sourceSlideReader.page===6);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ const quote=page.locator('#persian-page .reader-slide-text').filter({hasText:'پرسپترون ساده نخست'});
+ await expect(quote).toBeVisible();
+ await expect(quote).toHaveCSS('color','rgb(255, 255, 255)');
+ await expect(quote.locator('.reader-emphasis').first()).toHaveCSS('color','rgb(255, 192, 0)');
+ await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
+});

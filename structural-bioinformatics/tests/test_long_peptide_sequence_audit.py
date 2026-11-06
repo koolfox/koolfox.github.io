@@ -18,7 +18,7 @@ ROOT = PROJECT / "assets/long-peptide-pilot/7ta3-sequence-control"
 RUN = ROOT / "run-20261106"
 
 
-def test_retained_results_and_independent_ca_rmsd():
+def test_retained_results_and_recomputed_heavy_atom_rmsd():
     report = json.loads((ROOT / "independent-audit.json").read_text())
     pose_path = RUN / "GWRIGEAGTDPNL/poses.pdbqt"
     receptor = RUN / "receptor.pdbqt"

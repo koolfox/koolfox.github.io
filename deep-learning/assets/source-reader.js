@@ -261,7 +261,7 @@ async function renderOriginal(){
   const record=payload.pages[page-1],reviewed=record.text_reviewed&&record.image_text_reviewed;
   message(`صفحهٔ ${fa(page)} از ${fa(config.pageCount)}${reviewed?'':' · ترجمه در بازبینی'}${usesFullPdf(page)?' · این صفحه از فایل کامل جلسه بارگیری می‌شود':''}`);
   schedulePlayback();
-  if(!document.documentElement.dataset.offlineWarmStarted){document.documentElement.dataset.offlineWarmStarted='true';warmSlideOffline(loadingController.signal).then(ok=>document.documentElement.dataset.offlineReady=String(ok));}
+  if(config.pageFiles!==false&&!document.documentElement.dataset.offlineWarmStarted){document.documentElement.dataset.offlineWarmStarted='true';warmSlideOffline(loadingController.signal).then(ok=>document.documentElement.dataset.offlineReady=String(ok));}
  }catch(error){if(error?.name==='RenderingCancelledException'||closed||id!==serial)return;task=null;stopPlayback();message('نمایش این صفحه کامل نشد؛ صفحه را دوباره انتخاب کن.',true);}
 }
 function leaveReferences(){references=false;document.querySelector('.reader-layout').hidden=false;$('#reader-references').hidden=true;}
@@ -355,6 +355,14 @@ async function loadSources(){
  const pageRoot=`/deep-learning/assets/danna/spring-2026/${config.session}-pages/`;
  const translation=fetch(config.translationUrl,{signal:loadingController.signal}).then(response=>{if(!response.ok)throw Error('translation unavailable');return response.json();});
  const {url,...options}=documentOptions;
+ // The downloaded package already contains every PDF locally. Its reader keeps
+ // the original URL/range path and does not duplicate those files in browser storage.
+ if(config.pageFiles===false){
+  loading=getDocument({...documentOptions,disableFontFace:config.term!=='spring-2026'});
+  canonicalLoading=config.term==='spring-2026'?getDocument({...documentOptions,disableFontFace:true}):loading;
+  const [document,canonicalDocument,data]=await Promise.all([loading.promise,canonicalLoading.promise,translation]);
+  return [document,canonicalDocument,data];
+ }
  if(paged){
   const [manifest,data]=await Promise.all([fetch(pageRoot+'manifest.json?sha='+config.sourceSha256,{signal:loadingController.signal}).then(response=>{if(!response.ok)throw Error('page index unavailable');return response.json();}),translation]);
   if(manifest.source_sha256!==config.sourceSha256||manifest.page_count!==config.pageCount||manifest.pages?.length!==config.pageCount||!manifest.pages.every(value=>value===null||/^[0-9a-f]{64}$/.test(value)))throw Error('page identity mismatch');

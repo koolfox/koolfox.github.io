@@ -59,7 +59,9 @@ def test_real_recorded_workflow_chain_is_traceable():
     assert report["status"] == "requires_further_validation"
     assert (
         report["workflow_sha256"]
-        == hashlib.sha256((PROJECT / "scripts/run_peptide_ops.py").read_bytes()).hexdigest()
+        == hashlib.sha256(
+            (PROJECT / "tests/fixtures/docking-provenance/peptide-ops.py.txt").read_bytes()
+        ).hexdigest()
     )
     html = (root / "report.html").read_text()
     assert "گزارش آزمایش پپتید" in html

@@ -4,12 +4,22 @@ import argparse
 import hashlib
 import json
 import re
+import sys
 from datetime import UTC, datetime
 from pathlib import Path
 
 import numpy as np
 from meeko import PDBQTMolecule, RDKitMolCreate
 from rdkit import Chem
+
+PROJECT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PROJECT / "src"))
+from peptide_lab.pose_geometry import (  # noqa: E402
+    CLOSE_DISTANCE_ANGSTROM,
+    FAR,
+    ISSUE,
+    verify_recorded_geometry,
+)
 
 
 def digest(path):
@@ -21,16 +31,43 @@ def export(run_dir, sequence, output):
         raise ValueError("Sequence must contain standard uppercase amino acids")
     run_dir = Path(run_dir)
     report = json.loads((run_dir / "report.json").read_text())
-    if report.get("status") != "requires_further_validation":
+    if report.get("status") not in ("requires_further_validation", ISSUE):
         raise ValueError("The docking run has not completed computationally")
     found = [row for row in report["candidates"] if row["sequence"] == sequence]
-    if len(found) != 1 or found[0].get("status") != "requires_further_validation":
+    if len(found) != 1 or found[0].get("status") not in ("requires_further_validation", ISSUE):
         raise ValueError("Sequence is absent or did not complete")
     row = found[0]
     receptor = run_dir / "selected-chain.pdb"
     poses = run_dir / sequence / "poses.pdbqt"
     if digest(receptor) != report["selected_pdb_sha256"] or digest(poses) != row["poses_sha256"]:
         raise ValueError("Receptor or pose file does not match the recorded hash")
+    receptor_pdbqt = run_dir / "receptor.pdbqt"
+    if digest(receptor_pdbqt) != report["receptor_pdbqt_sha256"]:
+        raise ValueError("Prepared receptor does not match recorded hash")
+    screen = report.get("proximity_screen")
+    if screen is not None:
+        if not isinstance(screen, dict) or screen.get("cutoff_angstrom") != CLOSE_DISTANCE_ANGSTROM:
+            raise ValueError("Unknown or invalid proximity screen")
+        if any("proximity" not in pose for pose in row["poses"]):
+            raise ValueError("Pose proximity is missing")
+    elif any("proximity" in pose for pose in row["poses"]):
+        raise ValueError("Proximity screen metadata is missing")
+    measured = verify_recorded_geometry(receptor_pdbqt.read_text(), poses.read_text(), row["poses"])
+    has_far = any(p["proximity"] == FAR for p in measured)
+    if row.get("status") == ISSUE and report.get("status") != ISSUE:
+        raise ValueError("Run status disagrees with candidate status")
+    if row.get("status") == ISSUE and not has_far:
+        raise ValueError("Candidate status disagrees with pose geometry")
+    if (
+        row.get("status") == "requires_further_validation"
+        and any("proximity" in p for p in row["poses"])
+        and has_far
+    ):
+        raise ValueError("Candidate status disagrees with pose geometry")
+    if has_far:
+        raise ValueError(
+            "Export blocked: pose has no heavy atoms within 4.5 Å; original poses preserved"
+        )
     pdbqt = PDBQTMolecule.from_file(str(poses), skip_typing=True)
     mols = RDKitMolCreate.from_pdbqt_mol(pdbqt)
     if len(mols) != 1 or mols[0] is None:
@@ -87,6 +124,7 @@ def export(run_dir, sequence, output):
                 "pymol_script": script.name,
                 "pymol_sha256": digest(script),
                 "vina_score_kcal_mol": row["poses"][index]["vina_score_kcal_mol"],
+                **measured[index],
             }
         )
     result = {
@@ -98,7 +136,10 @@ def export(run_dir, sequence, output):
         "source_poses_sha256": digest(poses),
         "exporter_sha256": digest(Path(__file__)),
         "files": files,
-        "limitations": "Hydrogens may be reconstructed; display does not validate binding.",
+        "proximity_cutoff_angstrom": CLOSE_DISTANCE_ANGSTROM,
+        "limitations": (
+            "Hydrogens may be reconstructed; proximity and display do not validate binding."
+        ),
     }
     (output / "manifest.json").write_text(json.dumps(result, indent=2) + "\n")
     return result

@@ -24,6 +24,7 @@ def write_summary(out, report):
         "sequences_generated": "توالی‌ها ساخته شدند",
         "running": "در حال اجرا",
         "requires_further_validation": "محاسبه کامل؛ نیازمند اعتبارسنجی",
+        "contains_poses_without_close_contact": "دارای حالت بدون نزدیکی اتم سنگین؛ بررسی لازم است",
     }
     status = html.escape(labels.get(report["status"], report["status"]))
     names = {"candidate_generation": "ساخت نامزدها", "docking": "داکینگ"}
@@ -41,12 +42,20 @@ def write_summary(out, report):
     for docking in dock_reports:
         for candidate in json.loads(docking.read_text()).get("candidates", []):
             poses = candidate.get("poses", [])
-            score = str(poses[0]["vina_score_kcal_mol"]) if poses else "—"
+            checked = (
+                poses
+                and candidate.get("status") == "requires_further_validation"
+                and poses[0].get("proximity") == "heavy_atoms_within_cutoff"
+            )
+            score = str(poses[0]["vina_score_kcal_mol"]) if checked else "—"
+            candidate_status = candidate["status"]
+            if not poses or "proximity" not in poses[0]:
+                candidate_status = "غربال فاصله در گزارش موجود نیست؛ بازبینی لازم است"
             rows.append(
                 "<tr><td>"
                 + html.escape(candidate["sequence"])
                 + "</td><td>"
-                + html.escape(labels.get(candidate["status"], candidate["status"]))
+                + html.escape(labels.get(candidate_status, candidate_status))
                 + '</td><td><bdi dir="ltr">'
                 + html.escape(score)
                 + "</bdi></td></tr>"
@@ -65,7 +74,9 @@ def write_summary(out, report):
         "<p>" + error + "</p><h2>مراحل</h2><ol>" + steps + "</ol>"
         "<h2>خروجی نامزدها</h2><table><thead><tr><th>توالی</th><th>وضعیت</th>"
         "<th>امتیاز حالت نخست Vina (kcal/mol)</th></tr></thead><tbody>" + table + "</tbody></table>"
-        "<p>این امتیاز میل اتصال، مهار یا اثر درمانی را اندازه نمی‌گیرد. "
+        "<p>غربال فاصلهٔ اتم سنگین شواهد اتصال نیست؛ "
+        "حالت بدون غربال یا بدون نزدیکی امتیاز نمایش نمی‌دهد. "
+        "این امتیاز میل اتصال، مهار یا اثر درمانی را اندازه نمی‌گیرد. "
         "فایل‌های JSON، فرض‌ها و خطاهای هر مرحله را برای بررسی دقیق بخوانید.</p>"
         "<p>هش ورودی هدف: <code>"
         + html.escape(report["target_input_sha256"])

@@ -5,10 +5,15 @@ import hashlib
 import json
 import math
 import re
+import sys
 from pathlib import Path
 
 import numpy as np
 from Bio import SeqIO
+
+PROJECT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PROJECT / "src"))
+from peptide_lab.pose_geometry import FAR, classify, minimum_distance  # noqa: E402
 
 
 def digest(path):
@@ -60,6 +65,8 @@ def audit(root):
         ):
             raise ValueError("Batch hash mismatch")
         child = json.loads(child_file.read_text())
+        if child.get("status") != "requires_further_validation":
+            raise ValueError("Docking report is not eligible for the batch audit")
         receptor_file = folder / "docking/receptor.pdbqt"
         if digest(receptor_file) != child["receptor_pdbqt_sha256"]:
             raise ValueError("Receptor hash mismatch")
@@ -87,17 +94,17 @@ def audit(root):
                     float(match.group(1)), pose["vina_score_kcal_mol"], abs_tol=1e-9
                 ):
                     raise ValueError("Pose score mismatch")
-                distance = float(
-                    np.linalg.norm(
-                        coordinates(block)[:, None, :] - receptor[None, :, :], axis=2
-                    ).min()
-                )
+                distance = minimum_distance(coordinates(block), receptor)
                 if not math.isclose(
                     distance, pose["minimum_heavy_atom_distance_angstrom"], abs_tol=1e-9
                 ):
                     raise ValueError("Pose distance mismatch")
                 if distance < 2:
                     raise ValueError("Pose fails 2 Å clash screen")
+                if "proximity" in pose and pose["proximity"] != classify(distance):
+                    raise ValueError("Recorded proximity differs from geometry")
+                if classify(distance) == FAR:
+                    raise ValueError("Pose has no heavy atoms within 4.5 Å; review required")
                 pose_count += 1
                 if minimum is None or distance < minimum["distance_angstrom"]:
                     minimum = {

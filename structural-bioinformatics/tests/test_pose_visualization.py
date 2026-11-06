@@ -24,7 +24,9 @@ def test_visualization_files_are_traceable_to_real_docking():
     assert manifest["source_poses_sha256"] == next(
         r["poses_sha256"] for r in report["candidates"] if r["sequence"] == "AC"
     )
-    assert manifest["exporter_sha256"] == digest(PROJECT / "scripts/export_docked_poses.py")
+    assert manifest["exporter_sha256"] == digest(
+        PROJECT / "tests/fixtures/docking-provenance/export-poses.py.txt"
+    )
     assert len(manifest["files"]) == 3
     for row in manifest["files"]:
         assert digest(root / row["sdf"]) == row["sdf_sha256"]
@@ -50,6 +52,7 @@ def test_actual_export_and_tampered_input_are_detected(tmp_path):
         PROJECT / "assets/general-docking-demo/selected-chain.pdb", run / "selected-chain.pdb"
     )
     shutil.copyfile(PROJECT / "assets/general-docking-demo/AC/poses.pdbqt", run / "AC/poses.pdbqt")
+    shutil.copyfile(PROJECT / "assets/general-docking-demo/receptor.pdbqt", run / "receptor.pdbqt")
     result = module.export(run, "AC", tmp_path / "view")
     assert len(result["files"]) == 3
     with pytest.raises(FileExistsError):

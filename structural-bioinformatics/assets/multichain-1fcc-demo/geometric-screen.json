@@ -1,0 +1,46 @@
+{
+  "cutoff_angstrom": 4.5,
+  "interpretation": "Heavy-atom proximity screen only; neither category proves or disproves binding. Original reports and poses are unchanged.",
+  "runs": {
+    "interface-run": {
+      "source_report_sha256": "4d3f1dfbd6820ccd4f353350a682af5932dd38bc42c82566207f9f1305bf0b5e",
+      "receptor_pdbqt_sha256": "3b5f5857b80ebd7c7cd28ad3e8f6320ae0e359974dffbfecf0bea2c558ae9148",
+      "poses_sha256": "ca1f2c9ffdca7bfb97ec33fd698fe8c2b68d69290185838cd3c6151e10ce63e2",
+      "proximity_status": "requires_further_validation",
+      "poses": [
+        {
+          "minimum_heavy_atom_distance_angstrom": 2.975899527873882,
+          "proximity": "heavy_atoms_within_cutoff"
+        },
+        {
+          "minimum_heavy_atom_distance_angstrom": 2.9218309328227736,
+          "proximity": "heavy_atoms_within_cutoff"
+        },
+        {
+          "minimum_heavy_atom_distance_angstrom": 3.007087793863026,
+          "proximity": "heavy_atoms_within_cutoff"
+        }
+      ]
+    },
+    "off-target-box-run": {
+      "source_report_sha256": "bbc4ebb86ae34a8a3aa8e52411bf34e522091b5e975bcf8e4b7523135e382bab",
+      "receptor_pdbqt_sha256": "3b5f5857b80ebd7c7cd28ad3e8f6320ae0e359974dffbfecf0bea2c558ae9148",
+      "poses_sha256": "3e78d21b5cc82c7d30e5164a842f5e6925d28d61d8c567158a48aa43b471098a",
+      "proximity_status": "contains_poses_without_close_contact",
+      "poses": [
+        {
+          "minimum_heavy_atom_distance_angstrom": 37.137127743001344,
+          "proximity": "no_heavy_atoms_within_cutoff"
+        },
+        {
+          "minimum_heavy_atom_distance_angstrom": 33.01990292232853,
+          "proximity": "no_heavy_atoms_within_cutoff"
+        },
+        {
+          "minimum_heavy_atom_distance_angstrom": 38.421274562408776,
+          "proximity": "no_heavy_atoms_within_cutoff"
+        }
+      ]
+    }
+  }
+}

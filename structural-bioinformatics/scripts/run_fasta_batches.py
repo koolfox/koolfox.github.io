@@ -132,6 +132,12 @@ def main():
                 row["status"] = "failed"
                 raise RuntimeError(f"Batch {batch_number} failed; inspect its logs")
             child_data = json.loads(child.read_text())
+            if child_data.get("status") == "contains_poses_without_close_contact":
+                row.update(status="failed", report_sha256=digest(child))
+                raise RuntimeError(
+                    f"Batch {batch_number} contains poses without close heavy-atom contact; "
+                    "results and original poses are preserved for review"
+                )
             if child_data.get("status") != "requires_further_validation" or len(
                 child_data.get("candidates", [])
             ) != len(records):

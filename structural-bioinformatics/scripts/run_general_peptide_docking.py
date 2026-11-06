@@ -23,6 +23,13 @@ from rdkit import Chem, rdBase
 
 PROJECT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT / "src"))
+from peptide_lab.pose_geometry import (  # noqa: E402
+    CLOSE_DISTANCE_ANGSTROM,
+    FAR,
+    ISSUE,
+    classify,
+    minimum_distance,
+)
 from peptide_lab.receptor_input import inspect_pdb, reject_close_cysteine_contacts  # noqa: E402
 
 spec = importlib.util.spec_from_file_location(
@@ -125,8 +132,16 @@ def main():
         "workflow_sha256": sha(Path(__file__)),
         "model_builder_sha256": sha(PROJECT / "scripts/build_peptide_models.py"),
         "inspector_sha256": sha(PROJECT / "src/peptide_lab/receptor_input.py"),
+        "proximity_screen_sha256": sha(PROJECT / "src/peptide_lab/pose_geometry.py"),
         "model_chemistry": "linear L, N+/C-, Asp/Glu -, Lys/Arg +, neutral His, reduced Cys",
         "sampling": "one ETKDGv3 conformer; Vina seed 42, CPU 1, exhaustiveness 2",
+        "proximity_screen": {
+            "cutoff_angstrom": CLOSE_DISTANCE_ANGSTROM,
+            "definition": "minimum receptor-pose heavy-atom distance <= cutoff",
+            "interpretation": (
+                "Geometric screen only; neither category proves or disproves binding."
+            ),
+        },
         "limitations": [
             "Only explicitly selected chains; no cofactors, waters, ligands "
             "or alternate conformations",
@@ -238,19 +253,20 @@ def main():
                 score = re.search(r"^REMARK VINA RESULT:\s*([-+\d.]+)", block, re.M)
                 if not score or not math.isfinite(float(score.group(1))):
                     raise ValueError("Invalid pose score")
-                minimum = float(
-                    np.linalg.norm(xyz(block)[:, None, :] - receptor_xyz[None, :, :], axis=2).min()
-                )
+                minimum = minimum_distance(xyz(block), receptor_xyz)
                 if minimum < 2:
                     raise ValueError(f"Severe interchain clash for {sequence}")
                 results.append(
                     {
                         "vina_score_kcal_mol": float(score.group(1)),
                         "minimum_heavy_atom_distance_angstrom": minimum,
+                        "proximity": classify(minimum),
                     }
                 )
             row.update(
-                status="requires_further_validation",
+                status=ISSUE
+                if any(p["proximity"] == FAR for p in results)
+                else "requires_further_validation",
                 formal_charge=charge,
                 poses=results,
                 conformer_sha256=sha(sdf),
@@ -258,7 +274,11 @@ def main():
                 poses_sha256=sha(pose),
             )
             save()
-        report["status"] = "requires_further_validation"
+        report["status"] = (
+            ISSUE
+            if any(row["status"] == ISSUE for row in report["candidates"])
+            else "requires_further_validation"
+        )
     except Exception as exc:
         report["status"] = "failed"
         report["error"] = str(exc)

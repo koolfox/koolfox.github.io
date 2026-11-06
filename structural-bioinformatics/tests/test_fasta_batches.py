@@ -103,7 +103,9 @@ def test_actual_twenty_one_sequence_run_is_complete():
     assert report["status"] == "requires_further_validation"
     assert report["total_sequences"] == report["completed_sequences"] == 21
     assert report["input_fasta_sha256"] == module.digest(root / "sequences.fasta")
-    assert report["workflow_sha256"] == module.digest(PROJECT / "scripts/run_fasta_batches.py")
+    assert report["workflow_sha256"] == module.digest(
+        PROJECT / "tests/fixtures/docking-provenance/fasta-batches.py.txt"
+    )
     assert [row["input_count"] for row in report["batches"]] == [20, 1]
     for row in report["batches"]:
         folder = root / f"batch-{row['batch']:06d}"
@@ -115,3 +117,30 @@ def test_actual_twenty_one_sequence_run_is_complete():
             assert candidate["poses_sha256"] == module.digest(
                 folder / "docking" / candidate["sequence"] / "poses.pdbqt"
             )
+
+
+def test_batch_stops_and_preserves_child_when_pose_has_no_close_contact(tmp_path, monkeypatch):
+    source = tmp_path / "input.fasta"
+    source.write_text(">sample\nAC\n")
+    target = tmp_path / "target.pdb"
+    target.write_text("target")
+    out = tmp_path / "run"
+    monkeypatch.setattr(sys, "argv", args_for(source, target, out))
+
+    def fake_child(command, **kwargs):
+        destination = Path(command[command.index("--output-dir") + 1])
+        (destination / "AC").mkdir(parents=True)
+        (destination / "AC/poses.pdbqt").write_text("original pose")
+        (destination / "report.json").write_text(
+            json.dumps({"status": "contains_poses_without_close_contact", "candidates": []})
+        )
+        return SimpleNamespace(returncode=0, stdout="", stderr="")
+
+    monkeypatch.setattr(module.subprocess, "run", fake_child)
+    with pytest.raises(SystemExit):
+        module.main()
+    report = json.loads((out / "batch-workflow.json").read_text())
+    assert report["status"] == "failed"
+    assert "without close heavy-atom contact" in report["error"]
+    assert report["batches"][0]["report_sha256"]
+    assert (out / "batch-000001/docking/AC/poses.pdbqt").read_text() == "original pose"

@@ -723,6 +723,16 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===1){region.slot=[.03,.28,.64,.87];region.color='#ffffff';region.manualAccents=[{text:'پیشرفت به‌سبب نبود نظریه‌های بنیادی کافی، از پیش عملا متوقف شده بود',color:'#ffc000'},{text:'درس‌های این کتاب به حوزه نیروی تازه دادند',color:'#ffc000'},{text:'هیچ‌کس نتوانسته بود توضیح دهد چرا آن‌ها می‌توانستند بازشناسی بعضی انواع الگوها را یاد بگیرند و بعضی دیگر را نه',color:'#ffc000'}];}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===49
+      && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
+      && record.source_text_sha256==='08a245281a6684133e9041e76e7b78b26955aa9beb0c431eb262501e39422390'
+      && layout.translation_sha256==='ddfb809ca90555239fb4a039c1dd7f6dd756bcac5bc321bb7fd26312451a29c6'){
+    const slots={0:[.04,.08,.98,.22],1:[.04,.46,.96,.58],3:[.04,.64,.96,.76]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];
+      if(i===1){region.color='#ffffff';region.manualAccents=[{text:'راهنمای تکلیف آزمایشگاهی 1',color:'#ffc000'}];}
+      if(i===3){region.color='#ffffff';region.manualAccents=[{text:'مطالب خواندنی تعیین‌شده',color:'#ffc000'}];}
+    }
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

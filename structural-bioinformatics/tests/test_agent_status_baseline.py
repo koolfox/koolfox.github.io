@@ -96,3 +96,63 @@ def test_cli_refuses_to_overwrite_output(tmp_path):
     )
     assert result.returncode != 0
     assert output.read_text() == "keep this evidence\n"
+
+
+def test_predictions_are_accepted_by_evaluator(tmp_path):
+    import subprocess
+
+    observations = tmp_path / "observations"
+    observations.mkdir()
+    fixture(observations, [observation()])
+    cases = tmp_path / "cases"
+    cases.mkdir()
+    case = {
+        "case_id": "case-1",
+        "execution_status": "interrupted",
+        "biological_binding_label": None,
+        "measured_affinity": None,
+    }
+    payload = (json.dumps(case) + "\n").encode()
+    (cases / "cases.jsonl").write_bytes(payload)
+    (cases / "manifest.json").write_text(
+        json.dumps(
+            {
+                "schema_version": 1,
+                "case_count": 1,
+                "cases_sha256": hashlib.sha256(payload).hexdigest(),
+            }
+        )
+    )
+    responses = tmp_path / "responses.jsonl"
+    subprocess.run(
+        [
+            sys.executable,
+            str(PROJECT / "scripts/agent_status_baseline.py"),
+            "--observations-dir",
+            str(observations),
+            "--output",
+            str(responses),
+        ],
+        capture_output=True,
+        text=True,
+        check=True,
+        timeout=5,
+    )
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(PROJECT / "scripts/evaluate_agent_cases.py"),
+            "--cases-dir",
+            str(cases),
+            "--responses",
+            str(responses),
+        ],
+        capture_output=True,
+        text=True,
+        check=True,
+        timeout=5,
+    )
+    report = json.loads(result.stdout)
+    assert report["answered"] == 1
+    assert report["correct_statuses"] == 0
+    assert not report["unsupported_binding_claim_case_ids"]

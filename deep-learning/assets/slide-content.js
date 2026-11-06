@@ -299,6 +299,8 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   // Reviewed placements for the four consecutive gradient-descent diagrams.
   // Both hashes bind these coordinates to the exact source text and translation.
   const reviewed = {
+    37:['d8ac0d1ace97fed0c17091f911cb8d2b26f1ddc62a551f6be92047e8a3184e24','90782fd9416c5c4565dd6e88bca2df9da9d79f3e85afd86558766e777f434fd3'],
+    38:['7bbb9f55c321ca229bfe0670ccaf7df2b99f03f22a8aeb6ceea5f06aeeaa409f','72090fadccdd88565e6df4005d2dbffbec5efa356eeafacfebc73c463db4eb05'],
     39:['e99475b68b4d829815dc80e4ff71d0bd1f2ab3dac640d392fd945288a6303f4b','79b1d56908f4d2a69815eb118de60754e9b30ecd7a132bc7803e7466d5b70fc8'],
     40:['764cf46efc021ad48a92db78891affa2b6a5a3bd9292cb4d2f98dcc3d7346b30','6d4bcc8790819ad8d12b8ad6063e85bba527127ed7bae74248736704661843c4'],
     41:['e99475b68b4d829815dc80e4ff71d0bd1f2ab3dac640d392fd945288a6303f4b','79b1d56908f4d2a69815eb118de60754e9b30ecd7a132bc7803e7466d5b70fc8'],

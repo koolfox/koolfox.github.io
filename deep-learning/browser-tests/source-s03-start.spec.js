@@ -220,3 +220,14 @@ test('session 3 gradient descent steps retain the source illustration', async ({
  for (const term of ['1.','2.','3.','4.']) await expect(labels.filter({hasText:term})).toBeVisible();
  await expect(labels.filter({hasText:'باورپذیر نیست'})).toHaveCSS('color','rgb(255, 192, 0)');
 });
+
+test('session 3 first two descent examples preserve source regions', async ({page}) => {
+ for (const number of [37,38]) {
+  await page.goto(`/deep-learning/terms/spring-2026/s03/slides/#page=${number}`);
+  await page.waitForFunction(expected=>window.sourceSlideReader?.ready && sourceSlideReader.page===expected,number);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const labels=page.locator('#persian-page .reader-slide-text');
+  await expect(labels.filter({hasText:'حدس'}).first()).toBeVisible();
+  await expect(labels.filter({hasText:'محاسبه خطا'})).toBeVisible();
+ }
+});

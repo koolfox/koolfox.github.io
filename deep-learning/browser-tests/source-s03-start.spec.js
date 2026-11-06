@@ -231,3 +231,12 @@ test('session 3 first two descent examples preserve source regions', async ({pag
   await expect(labels.filter({hasText:'محاسبه خطا'})).toBeVisible();
  }
 });
+
+test('session 3 loss monitoring slide keeps its graph and axis labels', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=43');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready && sourceSlideReader.page===43);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const labels=page.locator('#persian-page .reader-slide-text');
+ await expect(labels.filter({hasText:'تعداد حدس‌ها'})).toBeVisible();
+ await expect(labels.filter({hasText:'این گام را زیر نظر'})).toHaveCSS('color','rgb(255, 192, 0)');
+});

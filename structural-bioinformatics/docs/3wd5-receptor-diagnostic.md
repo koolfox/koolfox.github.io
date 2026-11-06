@@ -82,3 +82,80 @@ python structural-bioinformatics/scripts/export_3wd5_density_map.py \
 ```
 
 زمان دریافت خود را به شکل `2026-11-06T15:59:29Z` ثبت کنید؛ این مقدار نمونه مربوط به دریافت ماست، نه زمان دریافت شما. اگر زمان را نمی‌دانید گزینهٔ آن را حذف کنید تا `null` ثبت شود. فایل حاصل را می‌توان کنار مختصات ثبت‌شده در PyMOL یا Coot باز کرد. در این اجرا پارامترهای سلول و شمارهٔ گروه فضایی با فایل `assets/3wd5.pdb` تطبیق داده و هش فایل ثبت شد؛ این کنترل به‌تنهایی جای بررسی تصویری هم‌مکانی نقشه و مختصات را نمی‌گیرد. گزینهٔ `--coordinates` برای این کنترل اختیاری است و بدون آن، هش مختصات `null` ثبت می‌شود. در این مرحله خودِ این برنامه‌ها اجرا نشدند و بررسی تصویری محل Cys69/Cys101، مقایسه با مدل‌های جایگزین و اصلاح گیرنده هنوز انجام نشده است.
+# 3WD5: bounded 7TA3 sulfur-transfer experiment
+
+**Result: neither tested candidate is an accepted repair.** No coordinates were
+exported, no receptor was prepared and no docking was run. The A/B/C trimer
+copies inherit the same deposited chain A disulfide geometry; this study tests
+chain A only and does not validate the copies or the Fab H/L chains.
+
+## Method and provenance
+
+On 2026-11-06 UTC we compared two experimentally deposited human TNF
+conformations in [7TA3](https://www.rcsb.org/structure/7TA3) chains B and D,
+from a different peptide complex, to [3WD5](https://www.rcsb.org/structure/3WD5)
+author chain A. The reported resolutions are respectively 2.50 Å and 3.10 Å;
+a different structure, ligand and crystal environment do not establish a
+3WD5 conformation. Existing source hashes and map provenance are in the
+[previous density comparison](3wd5-local-density-comparison.md) and
+[recorded output](../data/processed/3wd5-template-transfer.json).
+
+For each 7TA3 chain, least-squares fit the six N, CA and C atoms from Cys69 and
+Cys101 simultaneously to the corresponding 3WD5 atoms. Apply that single
+rigid transformation to both template SG atoms only, leaving 3WD5 CB and every
+other atom fixed. Record fit RMSD, SG displacement, CB–SG and SG–SG distances,
+angles, dihedral, and nearest other positive-occupancy heavy atom in the
+deposited A/H/L model including waters (excluding each sulfur's own residue and
+the other sulfur). These are direct transfer probes, not energy minimization,
+side-chain rebuilding or refinement. The deposited A/H/L coordinates do not
+include the complete crystal environment. SG candidates are sampled against
+the existing 2Fo−Fc validation map using the earlier 1 Å sphere method.
+The map hash and coefficient hash are checked and the 160³ grid must equal a
+regenerated grid; script and helper hashes are recorded. Selection of these
+candidates and measures was not preregistered.
+
+| Transfer | Backbone RMSD (Å) | SG movements 69 / 101 (Å) | CB–SG 69 / 101 (Å) | SG–SG (Å) | SG69–CB101 (Å) | Angles (°) | Dihedral (°) |
+| --- | ---: | --- | --- | ---: | ---: | --- | ---: |
+| 7TA3 B | 0.424 | 0.938 / 1.262 | 1.991 / 1.266 | 2.028 | 2.378 | 79.20 / 89.27 | −113.72 |
+| 7TA3 D | 0.437 | 0.794 / 0.938 | 2.394 / 1.841 | 2.033 | 1.972 | 89.11 / 60.95 | −94.29 |
+
+The fit preserves the donor SG–SG distance by construction; it does **not**
+preserve bonds to the fixed target CB atoms. In both transfers at least one
+CB–SG distance differs from its corresponding 7TA3 bond by more than 0.4 Å.
+B's nearest other occupied heavy atom to SG69 is A101 CB at 2.378 Å; D's is
+A101 CB at 1.972 Å. D also remains inside Meeko's previously documented
+2.172 Å carbon–sulfur distance-inference cutoff. Geometry is thus visibly
+inconsistent even before a complete stereochemistry and clash review; no
+attempt was made to turn either probe into a Meeko receptor.
+
+| Transfer | SG69 center / sphere mean (σ) | SG101 center / sphere mean (σ) | Voxels 69 / 101 |
+| --- | --- | --- | --- |
+| 7TA3 B | 1.513 / 1.213 | 1.575 / 1.350 | 3 / 4 |
+| 7TA3 D | 1.397 / 1.598 | 0.703 / 0.891 | 3 / 4 |
+| Deposited (previous study) | 2.380 / 2.086 | 1.437 / 1.514 | 4 / 4 |
+
+The map depends on deposited model phases and is not independent evidence.
+Voxel sets differ, 3–4 points are sparse and neighboring atoms contribute;
+these descriptive values are neither RSCC nor a selection or acceptance test.
+No omit map, full crystallographic refinement, uncertainty analysis, visual
+inspection, protonation assignment, complete crystal-neighbor clash analysis,
+or full all-atom validation was performed. These negative results reject only
+the two specific direct-transfer choices, not all possible repairs. The
+previous rotation candidate and its limitations remain in the linked report.
+
+## Reproduction
+
+```sh
+/opt/anaconda3/envs/tnf-docking/bin/python structural-bioinformatics/scripts/compare_3wd5_template_transfer.py \
+  --map PATH_TO_VALIDATION_MAP.map --coefficients PATH_TO_VALIDATION_COEFFICIENTS.cif.gz
+uv run --project structural-bioinformatics pytest -q structural-bioinformatics/tests/test_3wd5_template_transfer.py
+```
+
+The map and coefficient files are external, hash-checked inputs; neither was
+committed. The experiment was run on CPU with the existing Python 3.12
+scientific environment. No heavy training or Kaggle job was needed. The
+regular workflow guard remains in place. A defensible further attempt needs a
+modeling and validation procedure that treats both cysteine side chains, local
+backbone and crystal neighbors, missing regions and protonation, and tests
+support from diffraction data without treating model-biased map agreement as
+independent proof.

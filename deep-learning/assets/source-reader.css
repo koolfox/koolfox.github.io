@@ -78,3 +78,18 @@ html:has(body.source-reader),body.source-reader{height:100%;overflow:hidden}.sou
 @media print{.reader-divider{display:none!important}}
 .reader-translation [data-source-fallback=measured]{color:var(--source-fallback-color);background:var(--source-fallback-background);font-size:var(--source-fallback-size);padding:.16em .3em;inline-size:fit-content;max-inline-size:100%;margin-inline-start:0;margin-inline-end:auto}
 .reader-translation [data-source-fallback=measured] a{color:inherit}
+
+.source-reader[data-immersive=true]{position:fixed;inset:0;width:100%;height:100vh;height:100dvh;z-index:1000;overflow:hidden}
+.source-reader[data-immersive=true] .reader-heading,.source-reader[data-immersive=true] .reader-header .deck-logo,.source-reader[data-immersive=true] .reader-attribution{display:none}
+.source-reader[data-immersive=true] .reader-header{display:block;padding:5px 12px}
+.source-reader[data-immersive=true] .reader-header nav{justify-content:flex-start;gap:12px}
+.source-reader[data-immersive=true] [data-fullscreen]{color:#194fc3;background:#edf3ff;border-color:#245bdf}
+@media(max-width:760px){
+ .source-reader[data-immersive=true] .reader-toolbar{padding-block:5px}
+ .source-reader[data-immersive=true] .reader-header nav{justify-content:space-between}
+ .source-reader[data-immersive=true] .reader-toolbar [data-zoom-out],.source-reader[data-immersive=true] .reader-toolbar [data-zoom-in],.source-reader[data-immersive=true] .reader-toolbar [data-print]{display:none}
+ .source-reader[data-immersive=true] .reader-toolbar [data-fullscreen]{grid-column:1/3}
+ .source-reader[data-immersive=true] .reader-toolbar [data-source-only-toggle]{grid-column:3/5!important}
+ .source-reader[data-immersive=true] .reader-toolbar [data-page-experiment]{grid-column:5/7}
+ .source-reader[data-immersive=true] [data-reader-status]:not([data-error=true]){display:none}
+}

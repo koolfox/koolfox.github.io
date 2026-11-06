@@ -29,8 +29,8 @@ def variants(seed, positions, alphabet, include_seed, maximum):
         raise ValueError("Choose one or more distinct positions")
     if any(position < 1 or position > len(seed) for position in positions):
         raise ValueError("Positions are 1-based and must fall inside the selected seed")
-    if maximum < 1 or maximum > 20:
-        raise ValueError("Maximum must be between 1 and 20")
+    if maximum < 1:
+        raise ValueError("Maximum must be positive")
     rows = [{"sequence": seed, "change": "reference"}] if include_seed else []
     for pos in positions:
         for residue in alphabet:

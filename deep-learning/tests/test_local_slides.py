@@ -156,7 +156,7 @@ class RegisteredSourceReaderTests(unittest.TestCase):
         self.write(self.root / f"data/metadata/{self.term}-slide-identity.json", {"records": originals})
         self.write(self.root / "data/metadata/source-readers.json", {"schema_version": 1, "terms": {self.term: ["s01", "s02"]}})
         self.write(self.root / "content/slide-reader-identity.json", {"supervisor_fa": "دکتر نگار مجمع"})
-        for name in ("course.css", "course.js", "workshops.js", "workshop-worker.mjs", "source-reader.js", "slide-content.js", "source-reader.css", "vazirmatn-slide.woff2", "vazirmatn-slide-LICENSE.txt",
+        for name in ("course.css", "course.js", "workshops.js", "workshop-worker.mjs", "source-reader.js", "slide-offline-cache.js", "reader-fullscreen.js", "slide-content.js", "source-reader.css", "vazirmatn-slide.woff2", "vazirmatn-slide-LICENSE.txt",
                      "university-logo.png", "university-logo.source.json", "vendor/pyodide.mjs", "vendor/pyodide-LICENSE.json",
                      "notebook.js", "notebook.css", "notebook_kernel.py", "notebook-worker.mjs", "practice.js", "practice.css", "knowledge.js",
                      "python-tools.js", "python-tools-worker.mjs", "notebook_support.py", "notebook-results.js", "webgpu-attention.js"):
@@ -244,6 +244,8 @@ class RegisteredSourceReaderTests(unittest.TestCase):
             self.assertIn('href="https://koolfox.github.io/deep-learning/sources/"', html)
             self.assertIn('"pdfUrl": "../../../../assets/danna/spring-2026/s01.pdf"', html)
             self.assertIn('"translationUrl": "../../../../source-translations/spring-2026/s01.json"', html)
+            self.assertIn('"pageFiles": false', html)
+            self.assertFalse(any("-pages/" in name for name in names))
             self.assertIn(b"../../assets/fonts/arad.woff2", archive.read("deep-learning/assets/course.css"))
             self.assertEqual(archive.read("deep-learning/assets/vazirmatn-slide.woff2"), b"fixture")
             self.assertEqual(archive.read("deep-learning/assets/vazirmatn-slide-LICENSE.txt"), b"fixture")

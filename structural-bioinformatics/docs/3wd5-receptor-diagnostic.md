@@ -55,3 +55,15 @@ python3 structural-bioinformatics/scripts/compare_tnf_disulfides.py
 The same dihedral convention as the preceding audit is used. Both 7TA3 copies show a much longer SG69–CB101 distance and different local angles than 3WD5 A. This is a small, related-structure comparison, not a population-derived geometry standard, independent biological replicates, or evidence that either 7TA3 conformation is correct in the 3WD5 crystal environment. No coordinates were transferred. Neither these measurements nor Meeko success would validate a receptor.
 
 A practical **positive-control strategy** is to reproduce the already documented [7TA3 known-site rigid redocking](peptide-workshop.fa.md) using its original inputs and hash-checked replay, then separately develop a flexible-peptide and negative-control benchmark before interpreting a new 3WD5 calculation. The existing reported 0.1368 Å fixed-frame heavy-atom RMSD is an easy bound-conformation, known-site result with modeled receptor side chains, not a blind or flexible-peptide validation. 7TA3 has a different ligand and biological context; success cannot certify 3WD5 A/H/L, its disulfide, Fab missing atoms, or any novel peptide. If revisiting 3WD5 preparation, evaluate alternative experimentally justified models and local electron-density/validation evidence, explicitly model missing atoms and protonation, and independently assess complete stereochemistry, connectivity, clashes, assembly and sensitivity before docking. The present comparison supplies no accepted repair, prepared multichain receptor, new docking run, affinity or biological conclusion.
+
+## بررسی گزارش اعتبارسنجی wwPDB
+
+گزارش XML اعتبارسنجی [3WD5](https://files.rcsb.org/pub/pdb/validation_reports/wd/3wd5/3wd5_validation.xml.gz) در `2026-11-06T15:16:48Z` دریافت شد؛ SHA-256 فایل فشرده `32b232daeab16593e270324416013a59b5924e0cb0456426e880b5e11e82ec97` است. پردازش با `scripts/inspect_3wd5_validation.py` صرفاً رکوردهای مدل ۱، زنجیرهٔ A و Cys69/Cys101 را می‌خواند؛ مختصات را تغییر نمی‌دهد. در گزارش منتشرشده، برای این دو باقی‌مانده به‌ترتیب RSCC برابر 0.841 و 0.878، RSRZ برابر 0.442 و 0.345 و EDIAm برابر 0.404 و 0.480 ثبت شده است. گزارش، وضعیت رامچاندران Cys101 را `OUTLIER` و Cys69 را `Favored` ثبت می‌کند؛ این وضعیت به هندسهٔ زوایای ستون فقرات مربوط است، نه اثبات هندسهٔ درست پیوند دی‌سولفید.
+
+این عددها خلاصهٔ اعتبارسنجی مدل ثبت‌شده‌اند؛ به‌تنهایی تعیین نمی‌کنند کدام آرایش جایگزین گوگردها درست است. تفکیک‌پذیری ساختار [3.10 Å](https://www.rcsb.org/structure/3WD5) است. بررسی نقشهٔ چگالی و مقایسهٔ مدل‌های جایگزین با دادهٔ پراش، محیط بلور و هندسه هنوز انجام نشده و ممکن است در این تفکیک‌پذیری نتیجهٔ قطعی ندهد. بنابراین مشکل آماده‌سازی 3WD5 و داکینگ چندزنجیره‌ای همچنان باز است.
+
+برای بازتولید، فایل XML فشرده را از نشانی بالا دریافت و هش آن را کنترل کنید؛ سپس مسیر فایل محلی را به برنامه بدهید:
+
+```bash
+python structural-bioinformatics/scripts/inspect_3wd5_validation.py PATH_TO_3WD5_VALIDATION.xml.gz
+```

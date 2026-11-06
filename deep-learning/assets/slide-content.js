@@ -907,6 +907,17 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===4){region.slot=[.10,.53,.94,.66];region.font=19;region.keepTermsTogether=true;}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===71
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='b62fb7107fbff1a02b50d502c26435b417ff24e883e9c664806ce9eb04c24479'
+      && layout.translation_sha256==='d3eb7cfc72139fdba49bb00787b4648f0e012b84a03e2e8dbf01e4e7ebf09b48'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.95,.21];region.font=34;}
+      if(i===1){region.slot=[.05,.34,.95,.47];region.font=22;region.color='#ffffff';region.manualAccents=[{text:'بررسی رویه‌های هوش مصنوعی مسئولانه (Responsible AI)، برای کاهش آسیب زیست‌محیطی و ترویج رفتار اخلاقی در سامانه‌های هوش مصنوعی',color:'#ffc000'}];}
+      if(i===3){region.slot=[.10,.47,.94,.57];region.font=19;}
+      if(i===5){region.slot=[.10,.57,.94,.70];region.font=19;}
+    }
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

@@ -524,7 +524,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const heading=regions.find(region=>region.block.source_lines[0]===0);
     if(heading){heading.slot=[.05,.10,.95,.21];heading.font=33;}
   }
-  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===16
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number>=16 && record.number<=22
       && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
       && record.source_text_sha256==='6508d4651512caadebed2f3b950de4ae10858f035dfb081b39a6ea2eaa03e8a0'
       && layout.translation_sha256==='58103bbbeceb299c4f292b09accac120bccd6168bd92a34e6b928e0ea9249c8c'){

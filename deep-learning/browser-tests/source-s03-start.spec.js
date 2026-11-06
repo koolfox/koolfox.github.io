@@ -107,3 +107,12 @@ test('session 3 perceptron diagram keeps both figures and source labels', async 
  await expect(labels.filter({hasText:'بایاس (Bias)'})).toHaveCSS('color','rgb(255, 0, 0)');
  await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
 });
+
+test('session 3 preserves each highlighted perceptron step', async ({page}) => {
+ for (const number of [17,18,19,20,21,22]) {
+  await page.goto(`/deep-learning/terms/spring-2026/s03/slides/#page=${number}`);
+  await page.waitForFunction(expected=>window.sourceSlideReader?.ready && sourceSlideReader.page===expected,number);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+  await expect(page.locator('#persian-page .reader-slide-text').filter({hasText:'وزن‌های آموختنی'})).toBeVisible();
+ }
+});

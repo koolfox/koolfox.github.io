@@ -118,6 +118,24 @@ class SourceWorkshopTests(unittest.TestCase):
             self.assertIn('31 که o', question['solution_fa'])
             self.assertNotIn('31 که e', question['solution_fa'])
 
+    def test_rnn_persian_text_and_example_code_have_no_diacritics(self):
+        import re
+        unwanted = re.compile(r"[\u064b-\u065fئأإءۀ]")
+        def check(value, key='', persian=False):
+            persian = persian or key == 'fa' or key.endswith('_fa')
+            if isinstance(value, dict):
+                for name, item in value.items():
+                    check(item, name, persian)
+            elif isinstance(value, list):
+                for item in value:
+                    check(item, key, persian)
+            elif persian and isinstance(value, str):
+                self.assertIsNone(unwanted.search(value), value)
+        for folder in ['translations', 'activities', 'workshops']:
+            check(json.loads((ROOT / f'content/{folder}/spring-2026/s04.json').read_text()))
+        for file in (ROOT / 'workshops/spring-2026').glob('s04*.py'):
+            self.assertIsNone(unwanted.search(file.read_text()), str(file))
+
     def test_rnn_worked_pages_keep_source_linked_multiple_choice(self):
         unit = load_workshops('spring-2026', ROOT, execute=True, session_ids=['s04'])['s04']
         example = next(item for item in unit['source_examples'] if item['id'] == 'hidden-steps')

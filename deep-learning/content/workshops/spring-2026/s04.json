@@ -11,7 +11,7 @@
     "در فرمول به‌جای state مقدار 1 بگذار؛ توضیح بده چه اطلاعاتی از گذشته از بین می‌رود."
   ],
   "source_page": 27,
-  "starter_sha256": "31fc4406f54cb0a731954107c6640b0135935e2a9a06fa3f7d4b2bbaf4615ef0",
+  "starter_sha256": "dce2bdc391a4ba1f0bb1672e2b2c41dae2ea42bbca0d0c14266c31153cd0a8b9",
   "reference": {
     "states": [
       -0.9950547536867305,
@@ -30,7 +30,7 @@
     {
       "id": "calculate",
       "source_kind": "original",
-      "prompt_fa": "در نسخهٔ اولیه پس از دو ورودی نخست، شمار 1 ها زوج است یا فرد؟ برای فرد 1 و برای زوج 0 وارد کن.",
+      "prompt_fa": "در نسخه اولیه پس از دو ورودی نخست، شمار 1 ها زوج است یا فرد؟ برای فرد 1 و برای زوج 0 وارد کن.",
       "solution_fa": "دو ورودی نخست [1,0] فقط یک عدد 1 دارند؛ شمار فرد است و پاسخ 1 است.",
       "answer": {
         "kind": "number",
@@ -43,11 +43,11 @@
       "id": "interpret",
       "source_kind": "original",
       "prompt_fa": "در این بازگشت، کدام عبارت اطلاعات گذشته را حمل می‌کند؟",
-      "solution_fa": "state در سمت راست فرمول، حالت ذخیره‌شدهٔ گام قبلی است.",
+      "solution_fa": "state در سمت راست فرمول، حالت ذخیره‌شده گام قبلی است.",
       "answer": {
         "kind": "choice",
         "options_fa": [
-          "شمارهٔ صفحه",
+          "شماره صفحه",
           "state قبلی",
           "فقط encoded فعلی"
         ],
@@ -101,18 +101,18 @@
     59
   ],
   "reference_python": "3.13.9",
-  "limits_fa": "دنبالهٔ [1,0,1,1]، u=3، حالت آغاز +1 و تبدیل 1→−1 و 0→+1 همان مثال صفحهٔ 27 هستند. حالت‌ها با tanh دقیق محاسبه می‌شوند؛ منبع آن‌ها را تقریباً ±1 نمایش می‌دهد. این بازسازی بازگشت یک دنباله است، نه آموزش شبکه یا بازتولید آزمایش مقاله. تغییر پارامترها آزمایشی مستقل است.",
+  "limits_fa": "دنباله [1,0,1,1]، u=3، حالت آغاز +1 و تبدیل 1→−1 و 0→+1 همان مثال صفحه 27 هستند. حالت‌ها با tanh دقیق محاسبه می‌شوند؛ منبع آن‌ها را تقریبا ±1 نمایش می‌دهد. این بازسازی بازگشت یک دنباله است، نه آموزش شبکه یا بازتولید آزمایش مقاله. تغییر پارامترها آزمایشی مستقل است.",
   "source_retrieved_at_utc": "2026-10-25T08:44:45.547107+00:00",
   "related_labs": [],
   "source_examples": [
     {
       "id": "parity",
-      "title_fa": "حافظهٔ زوجیت در شبکهٔ بازگشتی",
+      "title_fa": "حافظه زوجیت در شبکه بازگشتی",
       "pages": [
         27
       ],
       "code_file": "s04_parity.py",
-      "starter_sha256": "4bf8dd4fae10cedb3972e348abba7ca5da7e147e8743bbc35e76932b0b08f772",
+      "starter_sha256": "7fea456fabd7cf8e13ce94a8409d1323e77cde09cbec08836f64b21875da9181",
       "reference": {
         "states": [
           -0.9950547536867305,
@@ -148,7 +148,7 @@
           "id": "parity",
           "source_kind": "original",
           "source_page": 27,
-          "prompt_fa": "پس از دنبالهٔ [1,0,1,1]، تعداد یک‌ها چه وضعی دارد؟",
+          "prompt_fa": "پس از دنباله [1,0,1,1]، تعداد یک‌ها چه وضعی دارد؟",
           "solution_fa": "سه عدد 1 داریم؛ علامت منفی حالت، زوجیت فرد را نمایش می‌دهد.",
           "answer": {
             "kind": "choice",
@@ -164,14 +164,14 @@
           "id": "memory",
           "source_kind": "original",
           "source_page": 27,
-          "prompt_fa": "کدام جزء باعث وابستگی خروجی به ورودی‌های قبلی می‌شود؟",
-          "solution_fa": "در tanh(u×encoded×state)، حالت پیشین حافظهٔ توالی است.",
+          "prompt_fa": "کدام جز باعث وابستگی خروجی به ورودی‌های قبلی می‌شود؟",
+          "solution_fa": "در tanh(u×encoded×state)، حالت پیشین حافظه توالی است.",
           "answer": {
             "kind": "choice",
             "options_fa": [
               "فقط u",
               "فقط ورودی فعلی",
-              "ضرب در حالت مرحلهٔ قبل"
+              "ضرب در حالت مرحله قبل"
             ],
             "correct_index": 2
           }
@@ -185,7 +185,7 @@
         29
       ],
       "code_file": "s04_hello_encoding.py",
-      "starter_sha256": "01868b7fa5b054c28f64b496f24a642cda47f32e7f57efab988e6c067c16e43a",
+      "starter_sha256": "745c17e0306d4f95d45e1bf19497e7a02a388a1b6576d21948dd96df200cd4ac",
       "reference": {
         "vocabulary": [
           "h",
@@ -287,7 +287,7 @@
         32
       ],
       "code_file": "s04_character_choice.py",
-      "starter_sha256": "5a7bda1c091032ef85f6681f68114e7554a8c3d29ea6178cddd5055d364fcc57",
+      "starter_sha256": "d099fe0de21d5e06e16fa642fdbfe8e6bc330886d8c9355a1db0253eceaea581",
       "reference": {
         "classes": 4,
         "probability_sum": 1.0,
@@ -353,7 +353,7 @@
         37
       ],
       "code_file": "s04_character_choice_rnn.py",
-      "starter_sha256": "d8d4a73bbfa05d566f97c44cf51e534aae03673ca3fcc7ab8e791c86149e92a0",
+      "starter_sha256": "ff1198046b15c9c4ef33a8fe807a61f22c228fbdccf247b8422887b00e5f6672",
       "reference": {
         "classes": 4,
         "probability_sum": 1.0,
@@ -366,7 +366,7 @@
           "source_kind": "original",
           "source_page": 37,
           "prompt_fa": "در ترتیب[h,e,l,o]و احتمال‌های[0.419748,0.194682,0.162429,0.223141]، چه حرفی با argmax انتخاب می‌شود؟",
-          "solution_fa": "h با 0.419748 بیشترین احتمال را دارد؛ با توزیع نمونهٔ صفحهٔ 31 که o را برمی‌گزید متفاوت است.",
+          "solution_fa": "h با 0.419748 بیشترین احتمال را دارد؛ با توزیع نمونه صفحه 31 که o را برمی‌گزید متفاوت است.",
           "answer": {
             "kind": "choice",
             "options_fa": [

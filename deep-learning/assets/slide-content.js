@@ -299,9 +299,9 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   // Reviewed placements for the four consecutive gradient-descent diagrams.
   // Keep the longer Persian caption above the unrolled RNN figure.
   const s04CaptionReview = {
-    16:['5605488fd9bd2cd7352a205b14ac64ecf37b6827dec615023844f0810851e872','686957cff51b2e71d66cb10dc9c1586c76f3e64c0bc620ab68a76664885dcdc4'],
-    24:['8e4ae230d6a1eae89defb6b041d9c3860127b7f38380d1d360d577098648f14d','cc12e1172ce43f5c1d9657b02fafa26634d6e84d391f3766c90aca5dc9c08dd1'],
-    25:['8e4ae230d6a1eae89defb6b041d9c3860127b7f38380d1d360d577098648f14d','cc12e1172ce43f5c1d9657b02fafa26634d6e84d391f3766c90aca5dc9c08dd1'],
+    16:['5605488fd9bd2cd7352a205b14ac64ecf37b6827dec615023844f0810851e872','d72366e8f7c87c51feef6a199f079b060b27b4b77ec0910d047d37d2db209516'],
+    24:['8e4ae230d6a1eae89defb6b041d9c3860127b7f38380d1d360d577098648f14d','73d324917f54b73ee472be6f6b769acba976a0e836d67d1f6b0c173a08e992cf'],
+    25:['8e4ae230d6a1eae89defb6b041d9c3860127b7f38380d1d360d577098648f14d','73d324917f54b73ee472be6f6b769acba976a0e836d67d1f6b0c173a08e992cf'],
   }[record.number];
   if (s04CaptionReview && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'

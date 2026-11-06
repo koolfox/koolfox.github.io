@@ -97,3 +97,13 @@ test('session 3 network question heading fits its slide', async ({page}) => {
  expect(await title.evaluate(node=>node.getClientRects().length && node.scrollHeight<=node.clientHeight)).toBeTruthy();
  await expect(title).toContainText('Multi-Layer Network');
 });
+
+test('session 3 perceptron diagram keeps both figures and source labels', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=16');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready && sourceSlideReader.page===16);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ const labels=page.locator('#persian-page .reader-slide-text');
+ await expect(labels.filter({hasText:'وزن‌های آموختنی'})).toHaveCSS('color','rgb(255, 0, 0)');
+ await expect(labels.filter({hasText:'بایاس (Bias)'})).toHaveCSS('color','rgb(255, 0, 0)');
+ await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
+});

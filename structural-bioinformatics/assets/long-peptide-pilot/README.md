@@ -245,8 +245,8 @@ show that a search has sampled the pose space adequately.
 از ۸۲۳۲ حالت، ۷۲ حالت همهٔ اتم‌های سنگین پپتید را داخل جعبه داشتند. هیچ‌یک در این غربال از برخوردهای زیر ۲ Å خالی نبود؛ بالاترین حداقل فاصله در میان این ۷۲ حالت حدود ۰٫۶۷۸ Å بود و همان حالت ۱۵۸ زوج زیر ۲ Å داشت. پیاده‌سازی مستقل با SciPy `cKDTree` و نسخهٔ NumPy بر سر شمار زوج‌ها و فاصله‌ها برای همهٔ ۸۲۳۲ حالت توافق داشتند (تلورانس فاصله `1e-10` Å). این یک غربال محدود هندسی روی یک کانفورمر و چرخش‌ها و جابه‌جایی‌های گسسته است؛ ناممکن‌بودن هندسه، علت شکست Vina، اتصال یا نبود اتصال را ثابت نمی‌کند. گیرنده و پپتید از یک ساختار منشأ گرفته‌اند و این مثال کنترل فنی است، نه آزمایش اتصال مستقل.
 
 ```bash
-python structural-bioinformatics/scripts/long_peptide_grid_control.py \\
-  --receptor structural-bioinformatics/assets/long-peptide-pilot/bounded-1000000/receptor.pdbqt \\
-  --ligand structural-bioinformatics/assets/long-peptide-pilot/rigid-diagnostic/ligand.pdbqt \\
+python structural-bioinformatics/scripts/long_peptide_grid_control.py \
+  --receptor structural-bioinformatics/assets/long-peptide-pilot/bounded-1000000/receptor.pdbqt \
+  --ligand structural-bioinformatics/assets/long-peptide-pilot/rigid-diagnostic/ligand.pdbqt \
   --output-dir PATH_TO_NEW_OUTPUT_DIRECTORY
 ```

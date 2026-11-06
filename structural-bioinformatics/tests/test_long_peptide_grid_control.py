@@ -30,3 +30,19 @@ def test_strict_clash_threshold_and_box_membership(monkeypatch):
     assert all(row["outside_heavy_atoms"] == 0 for row in rows)
     assert all(row["minimum_distance_angstrom"] == 0 for row in rows)
     assert all(row["pairs_below_2_angstrom"] == 1 for row in rows)
+
+
+def test_box_faces_and_strict_distance_boundaries(monkeypatch):
+    monkeypatch.setattr(module, "OFFSETS", (0, 9.999, 10, 10.001))
+    ligand = np.array([[0.0, 0.0, 0.0]])
+    receptor = np.array(
+        [module.CENTER + [1.999, 0, 0], module.CENTER + [2.0, 0, 0], module.CENTER + [2.001, 0, 0]]
+    )
+    _, rows = module.scan(receptor, ligand)
+    rows = {tuple(row["offset"]): row for row in rows if row["rotation"] == 0}
+    assert rows[(0, 0, 0)]["pairs_below_2_angstrom"] == 1
+    for axis in range(3):
+        for offset, expected in ((9.999, 0), (10, 0), (10.001, 1)):
+            position = [0, 0, 0]
+            position[axis] = offset
+            assert rows[tuple(position)]["outside_heavy_atoms"] == expected

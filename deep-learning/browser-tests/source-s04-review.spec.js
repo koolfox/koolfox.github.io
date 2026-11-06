@@ -56,3 +56,21 @@ test('RNN agenda pages preserve the source canvas and active topic on both layou
     }
   }
 });
+
+test('parity and unrolling examples retain their source figures on both layouts', async ({page}) => {
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({width, height:850});
+    for (const number of [5, 7, 14, 15, 17, 19, 22]) {
+      await page.goto(`/deep-learning/terms/spring-2026/s04/slides/#page=${number}`);
+      await page.waitForFunction(n => window.sourceSlideReader?.ready && window.sourceSlideReader.page === n, number);
+      if (width === 390) {
+        const previous = await page.locator('#persian-page .reader-slide-stage').elementHandle();
+        await page.locator('[data-view-translation]').click();
+        await page.waitForFunction(node => !node.isConnected, previous);
+        await page.waitForFunction(() => window.sourceSlideReader?.ready);
+      }
+      await expect(page.locator('#persian-page')).toHaveAttribute('data-layout', number < 10 ? 'source-canvas' : 'source-canvas-figure-companion');
+      await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
+    }
+  }
+});

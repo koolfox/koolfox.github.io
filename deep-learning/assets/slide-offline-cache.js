@@ -30,6 +30,7 @@ export async function readPdf(url, expected, signal) {
 }
 
 export async function warmSlideOffline(signal) {
+ return false; // Diagnostic only: isolate the slide worker.
  if (!('serviceWorker' in navigator) || !('caches' in window)) return false;
  try {
   if (signal?.aborted) return false;

@@ -964,7 +964,24 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const top=[.10,.26,.40,.54,.60,.65,.70,.75,.87];
     for(const region of regions){const i=region.block.source_lines[0];region.slot=[i>=4&&i<=7?.10:.05,top[i],.95,top[i]+(i===0?.11:.06)];region.font=i===0?34:i>=4&&i<=7?19:22;}
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===78
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='3e6672c8e90af769505a90237127f2bc27368343fc4a4d4291e6c38c66310f52'
+      && layout.translation_sha256==='7002688b84393303c2ee12e63edbe4890dec1a3353c307e181362a4d4af8c6cb'){
+    for(const region of regions){region.slot=[.05,.10,.95,.21];region.font=32;}
+  }
   let imageTranslations=[];
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===78
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='3e6672c8e90af769505a90237127f2bc27368343fc4a4d4291e6c38c66310f52'
+      && layout.translation_sha256==='7002688b84393303c2ee12e63edbe4890dec1a3353c307e181362a4d4af8c6cb'){
+    imageTranslations=[
+      {rect:[.44,.41,.80,.47],text:'درصد نمره نهایی درس',background:'#fff',color:'#000',font:21,align:'center'},
+      {rect:[.20,.50,.43,.56],text:'مجموعه مسئله‌ها',background:'#fff',color:'#000',font:19,align:'center'},
+      {rect:[.20,.56,.43,.62],text:'تکلیف‌های آزمایشگاهی',background:'#fff',color:'#000',font:19,align:'center'},
+      {rect:[.20,.62,.43,.68],text:'پروژه نهایی',background:'#fff',color:'#000',font:19,align:'center'},
+    ];
+  }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='d63d4b5c01249f0dd295bd5ab96bfdba336fdaf5da802ebce1fea51264725914'

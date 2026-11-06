@@ -59,3 +59,13 @@ test('session 3 XOR slide keeps its source diagram and truth table on mobile', a
  await expect(rows).toHaveCount(4);
  expect(await rows.allTextContents()).toEqual(['000','011','101','110']);
 });
+
+test('session 3 XOR examples keep each highlighted case and the source layout', async ({page}) => {
+ for (const number of [9,10,11,12]) {
+  await page.goto(`/deep-learning/terms/spring-2026/s03/slides/#page=${number}`);
+  await page.waitForFunction(expected=>window.sourceSlideReader?.ready && sourceSlideReader.page===expected,number);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+  await expect(page.locator('#persian-page .reader-slide-text').filter({hasText:'بایاس'})).toHaveCount(3);
+  expect(await page.locator('#persian-page table tbody tr').allTextContents()).toEqual(['000','011','101','110']);
+ }
+});

@@ -217,6 +217,9 @@ test('perceptron update question keeps the source equations and example',async({
    await expect(page.locator('.reader-slide-background')).toBeVisible();
    const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(node=>node.scrollHeight>node.clientHeight+2||node.scrollWidth>node.clientWidth+2).map(node=>node.textContent));expect(overflow).toEqual([]);
    const companion=page.locator('.reader-figure-labels');await companion.locator('summary').click();await expect(companion).toContainText('پیش‌بینی‌شده');
+   const tables=companion.locator('table');await expect(tables).toHaveCount(2);
+   expect(await tables.nth(0).locator('tbody tr').evaluateAll(rows=>rows.map(row=>[...row.cells].map(cell=>cell.textContent)))).toEqual([['1','0','0','-1','1']]);
+   expect(await tables.nth(1).locator('tbody tr').evaluateAll(rows=>rows.map(row=>[...row.cells].map(cell=>cell.textContent)))).toEqual([['0','0','0','0']]);
   }finally{await context.close();}
  }
 });

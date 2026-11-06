@@ -51,3 +51,16 @@ test('session 1 experience overlay keeps its original content order', async ({ p
   await expect(page.locator('#persian-page .reader-slide-text').filter({ hasText: 'دانشجوی دکتری' })).toBeVisible();
   await expect(page.locator('#persian-page .reader-slide-text').filter({ hasText: 'سمی؟' })).toBeVisible();
 });
+
+test('session 1 schedule and experience keep source images on mobile', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  for (const [number, terms] of [[73, ['نزول گرادیان', 'Gradient Descent']], [83, ['دانشجوی دکتری', 'Image Classification']]]) {
+    await page.goto(`/deep-learning/terms/spring-2026/s01/slides/#page=${number}`);
+    await page.waitForFunction(expected => window.sourceSlideReader?.ready && window.sourceSlideReader.page === expected, number);
+    const previousSlide = await page.locator('#persian-page .reader-slide-stage').elementHandle();
+    await page.locator('[data-view-translation]').click();
+    await page.waitForFunction(node => !node.isConnected, previousSlide);
+    await expect(page.locator('#persian-page')).toHaveAttribute('data-layout', 'source-canvas');
+    for (const term of terms) await expect(page.locator('#persian-page .reader-slide-text').filter({ hasText: term })).toBeVisible();
+  }
+});

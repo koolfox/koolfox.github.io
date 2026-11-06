@@ -982,3 +982,12 @@ test('session 1 course comparison keeps source hierarchy and emphasis', async ({
   await expect(regions.filter({hasText:'مبانی'})).toBeVisible();
   expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 prerequisites retain the source slide hierarchy', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=75'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'برنامه‌نویسی'})).toBeVisible();
+  await expect(regions.filter({hasText:'Machine Learning'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

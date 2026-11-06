@@ -20,3 +20,13 @@ for(const size of [{width:1440,height:900},{width:390,height:844}]){
   await expect.poll(()=>embedded.locator('video').evaluate(v=>v.currentTime)).toBeCloseTo(10.1,1);
  });
 }
+
+test('motivation slide preserves its images and separately positioned questions',async({page})=>{
+ await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=5');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===5);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ await expect(page.locator('.reader-slide-text[data-source-lines="8"]')).toContainText('چه چیزی');
+ await expect(page.locator('.reader-slide-text[data-source-lines="9"]')).toContainText('چه کسی');
+ const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(n=>n.scrollHeight>n.clientHeight+2||n.scrollWidth>n.clientWidth+2).map(n=>n.textContent));
+ expect(overflow).toEqual([]);
+});

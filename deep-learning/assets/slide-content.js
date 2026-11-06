@@ -513,6 +513,11 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===3){region.slot=[.04,.83,.97,.98];region.color='#ffffff';region.manualAccents=[{text:'یادگیری',color:'#ffc000'},{text:'لازم است',color:'#ffc000'}];}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===15
+      && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
+      && record.source_text_sha256==='dffe4bb69b14983d8729a87dcc3356ef967552dc549aa166f1c1bfe9ad3f68f7' && layout.translation_sha256==='8a3fde567b9ac95202ded0de51a25cfbcd5e23965740b83d9cf122a200a1271c'){
+    for(const region of regions){const i=region.block.source_lines[0];if(i===1)region.slot=[.81,.69,.995,.90];if(i===5){region.slot=[.005,.66,.195,.97];region.clearRect=[.01,.69,.19,.775];region.maskSourceLines=[5];}}
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

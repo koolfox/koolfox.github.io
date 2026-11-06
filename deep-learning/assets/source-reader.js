@@ -128,7 +128,7 @@ async function paintPersianLayout(source,canonicalSource,id,selected){
  const list=await source.getOperatorList(),boxes=source.recordedBBoxes;
  if(id!==serial||page!==selected)return;
  const textOps=new Set([OPS.showText,OPS.showSpacedText,OPS.nextLineShowText,OPS.nextLineSetSpacingShowText]);
- const targets=plan.regions.flatMap(region=>region.lines.map(line=>({line,block:region.block}))),selectedOps=new Set(),covered=new Set();
+ const targets=plan.regions.flatMap(region=>region.lines.filter(line=>!region.maskSourceLines?.includes(line.index)).map(line=>({line,block:region.block}))),selectedOps=new Set(),covered=new Set();
  for(let index=0;index<list.fnArray.length;index++){
   if(!textOps.has(list.fnArray[index])||!boxes||boxes.isEmpty(index))continue;
   const [x0,y0,x1,y1]=[boxes.minX(index),boxes.minY(index),boxes.maxX(index),boxes.maxY(index)];

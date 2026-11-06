@@ -69,3 +69,12 @@ test('session 3 XOR examples keep each highlighted case and the source layout', 
   expect(await page.locator('#persian-page table tbody tr').allTextContents()).toEqual(['000','011','101','110']);
  }
 });
+
+test('session 3 terminology retains its source colors and English terms', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=13');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready && sourceSlideReader.page===13);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const body=page.locator('#persian-page .reader-slide-text').filter({hasText:'Artificial Neural Networks'});
+ await expect(body).toContainText('Connectionist Networks');
+ await expect(body.locator('.reader-emphasis')).toHaveCSS('color','rgb(255, 192, 0)');
+});

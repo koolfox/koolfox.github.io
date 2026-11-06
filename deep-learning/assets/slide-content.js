@@ -455,6 +455,18 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(region.block.fa.startsWith('• بازنمایی کارآمد'))region.manualAccents=[{text:'بازنمایی کارآمد',color:'#0000ff'}];
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===1
+      && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
+      && record.source_text_sha256==='6c8977230001710a5095b31f0814a98a904f5b97dca0180a625ddf2125605bb4'
+      && layout.translation_sha256==='53ebd634396bdfbedba20ae712cd00b04baa158e80c7c9a43af06cd37ed8ec9e'){
+    for(const region of regions){const i=region.block.source_lines[0];region.align='center';
+      if(i===0){region.slot=[.05,.19,.95,.30];region.font=39;}
+      if(i===1){region.slot=[.05,.30,.95,.46];region.font=33;region.keepTermsTogether=true;}
+      if(i===2){region.slot=[.05,.60,.95,.675];region.font=23;}
+      if(i===3){region.slot=[.05,.68,.95,.746];region.font=18;}
+      if(i===4){region.slot=[.05,.747,.95,.81];region.font=18;}
+    }
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

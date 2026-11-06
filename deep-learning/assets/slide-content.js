@@ -715,6 +715,14 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===2){region.color='#ffffff';region.manualAccents=[{text:'پژوهشگران',color:'#ffc000'}];}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===47
+      && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
+      && record.source_text_sha256==='8586d2b7414ae644105a506666c4d782224c365e4bea2579025183b27a61f57a'
+      && layout.translation_sha256==='4418015150cde8d38a3e78696587ace7bfe650f21d394c40cd1174a145e305b2'){
+    for(const region of regions){const i=region.block.source_lines[0];if(i===0)region.slot=[.04,.08,.63,.22];
+      if(i===1){region.slot=[.03,.28,.64,.87];region.color='#ffffff';region.manualAccents=[{text:'پیشرفت به‌سبب نبود نظریه‌های بنیادی کافی، از پیش عملا متوقف شده بود',color:'#ffc000'},{text:'درس‌های این کتاب به حوزه نیروی تازه دادند',color:'#ffc000'},{text:'هیچ‌کس نتوانسته بود توضیح دهد چرا آن‌ها می‌توانستند بازشناسی بعضی انواع الگوها را یاد بگیرند و بعضی دیگر را نه',color:'#ffc000'}];}
+    }
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

@@ -103,6 +103,15 @@ if(config.key==='spring-2026/s05/source-convolution'&&config.starter_sha256==='6
   list.addEventListener('input',()=>queueMicrotask(updateLinks));
   updateLinks();
 }
+if(['spring-2026/s02/majority-truth','spring-2026/s02/majority-epoch','spring-2026/s02/majority-epochs'].includes(config.key)){
+  const panel=document.createElement('details'),summary=document.createElement('summary');
+  const note=document.createElement('p'),frame=document.createElement('iframe');
+  panel.className='nb-film';summary.textContent='فیلم دو گام آموزش';
+  note.className='nb-film-note';note.textContent='دو نمونه اول با وزن اولیه و نرخ یادگیری اسلاید نشان داده می‌شوند؛ با تغییر کد، اعداد فیلم ثابت می‌مانند.';
+  frame.title='فیلم آموزش پرسپترون';frame.dataset.perceptronFilm='';frame.loading='lazy';frame.allowFullscreen=true;
+  panel.append(summary,note,frame);document.querySelector('#practice-notebook .nb-cells').before(panel);
+  panel.addEventListener('toggle',()=>{if(panel.open&&!frame.getAttribute('src'))frame.src='/deep-learning/animations/perceptron-steps/?notebook=1';});
+}
 function section() { if (location.hash === '#questions') book.showQuiz(); else book.showCode(); }
 section(); window.addEventListener('hashchange', section);
 const returnLink=document.querySelector('[data-return-slide]');returnLink.href=config.reader+'#page='+returnPage;

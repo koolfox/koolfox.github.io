@@ -2,6 +2,7 @@
 const courseRoot=new URL('../',import.meta.url);
 const config=JSON.parse(document.querySelector('#source-reader-config').textContent);
 const films=[
+ {id:'perceptron-steps',session:'s02',pages:[25,26,27,28,29,30],title:'فیلم دو گام پرسپترون'},
  {id:'backpropagation',session:'s03',pages:Array.from({length:16},(_,i)=>69+i),title:'پخش پس‌انتشار'},
  {id:'convolution',session:'s05',pages:Array.from({length:11},(_,i)=>27+i),title:'پخش کانولوشن'},
  {id:'convolution-code',session:'s05',pages:Array.from({length:11},(_,i)=>27+i),title:'فیلم کد کانولوشن'},

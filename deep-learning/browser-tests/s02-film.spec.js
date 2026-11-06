@@ -578,3 +578,17 @@ test('existing zoom makes mobile slides pannable without losing the source layou
   }finally{await context.close();}
  }
 });
+
+test('optical reader advertisement keeps the readable body text',async({browser})=>{
+ for(const width of [1440,390]){
+  const context=await browser.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390});
+  try{
+   const page=await context.newPage();await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=36');
+   await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===36);
+   if(width===390)await page.locator('[data-view-translation]').click();
+   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+   const companion=page.locator('.reader-figure-labels');await companion.locator('summary').click();
+   await expect(companion).toContainText('2400');await expect(companion).toContainText('8000');await expect(companion).toContainText('برای ما نامه‌ای بفرستید');
+  }finally{await context.close();}
+ }
+});

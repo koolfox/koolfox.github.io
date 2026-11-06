@@ -42,13 +42,12 @@ def export(cases_dir, run_dir, output):
             or row.get("status") != case["execution_status"]
             or row.get("sequence") != case.get("candidate_sequence")
             or row.get("report_sha256") != case.get("child_report_sha256")
+            or bool(row.get("error")) != case.get("failure_detail_recorded")
         ):
             raise ValueError("Case and run record disagree")
         exit_code = row.get("exit_code")
         status = case["execution_status"]
-        if (status == "failed" and (type(exit_code) is not int or exit_code == 0)) or (
-            status == "requires_further_validation" and exit_code != 0
-        ):
+        if status == "requires_further_validation" and exit_code != 0:
             raise ValueError("Exit code and recorded status disagree")
         if exit_code is not None and type(exit_code) is not int:
             raise ValueError("Invalid exit code")

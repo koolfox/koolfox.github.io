@@ -237,3 +237,16 @@ can search**. The number 32 is therefore not a Vina acceptance threshold here.
 Greater search dimensionality is a complexity consideration, not a demonstrated
 cause of the observed clashes; this diagnostic cannot determine that cause or
 show that a search has sampled the pose space adequately.
+
+## کنترل مستقل جای‌گذاری صلب داخل جعبه
+
+برای تفکیک محدودیت جست‌وجو از هندسه، همان گیرنده و `rigid-diagnostic/ligand.pdbqt` را بدون تغییر شکل پپتید، در مرکز جعبهٔ `(30, 28, 15)` Å با ابعاد `20 × 20 × 20` Å آزمودیم. ۲۴ چرخش صلبِ ماتریس جایگشتی با دترمینان مثبت و جابه‌جایی‌های شبکه‌ای از ۹− تا ۹+ با گام ۳ Å در هر محور بررسی شد. مبنای جابه‌جایی، مرکز جعبهٔ محدودکنندهٔ پپتید پس از هر چرخش است. `scripts/long_peptide_grid_control.py` تمام ۸۲۳۲ حالت، ماتریس‌ها، هش ورودی‌ها، شمار اتم‌های خارج جعبه، کوتاه‌ترین فاصله و شمار زوج‌های زیر ۲ Å را در `grid-control/` ثبت می‌کند؛ از این پارامترها می‌توان هر جای‌گذاری را بازسازی کرد. فایل خروجی جایگاه ذخیره‌شدهٔ جدید یا نمرهٔ داکینگ نیست.
+
+از ۸۲۳۲ حالت، ۷۲ حالت همهٔ اتم‌های سنگین پپتید را داخل جعبه داشتند. هیچ‌یک در این غربال از برخوردهای زیر ۲ Å خالی نبود؛ بالاترین حداقل فاصله در میان این ۷۲ حالت حدود ۰٫۶۷۸ Å بود و همان حالت ۱۵۸ زوج زیر ۲ Å داشت. پیاده‌سازی مستقل با SciPy `cKDTree` و نسخهٔ NumPy بر سر شمار زوج‌ها و فاصله‌ها برای همهٔ ۸۲۳۲ حالت توافق داشتند (تلورانس فاصله `1e-10` Å). این یک غربال محدود هندسی روی یک کانفورمر و چرخش‌ها و جابه‌جایی‌های گسسته است؛ ناممکن‌بودن هندسه، علت شکست Vina، اتصال یا نبود اتصال را ثابت نمی‌کند. گیرنده و پپتید از یک ساختار منشأ گرفته‌اند و این مثال کنترل فنی است، نه آزمایش اتصال مستقل.
+
+```bash
+python structural-bioinformatics/scripts/long_peptide_grid_control.py \\
+  --receptor structural-bioinformatics/assets/long-peptide-pilot/bounded-1000000/receptor.pdbqt \\
+  --ligand structural-bioinformatics/assets/long-peptide-pilot/rigid-diagnostic/ligand.pdbqt \\
+  --output-dir PATH_TO_NEW_OUTPUT_DIRECTORY
+```

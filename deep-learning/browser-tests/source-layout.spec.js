@@ -1018,3 +1018,12 @@ test('session 1 grading table shows Persian row labels on source table', async (
   await expect(regions.filter({hasText:'پروژه نهایی'})).toBeVisible();
   expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 grading policies retain source emphasis and numerical details', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=79'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'48 ساعت'})).toBeVisible();
+  await expect(regions.filter({hasText:'بازبینی نمره'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

@@ -970,6 +970,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && layout.translation_sha256==='7002688b84393303c2ee12e63edbe4890dec1a3353c307e181362a4d4af8c6cb'){
     for(const region of regions){region.slot=[.05,.10,.95,.21];region.font=32;}
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===79
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='89e5a1f84262047589124d433a72dc39bcde3571bd8c3ad248287d67d5abac7c'
+      && layout.translation_sha256==='b01789df84b726181ca909fe441fe321e7f929e3a99adea9a97804b72d418a5c'){
+    const slots={0:[.05,.10,.95,.21],1:[.05,.34,.95,.41],2:[.10,.41,.95,.48],3:[.05,.53,.95,.60],4:[.10,.60,.95,.75],7:[.10,.75,.95,.82]};
+    for(const region of regions){const i=region.block.source_lines[0];region.slot=slots[i];region.font=i===0?32:i===1||i===3?22:19;if(i===4)region.manualAccents=[{text:'مقررات تأخیر',color:'#ffc000'}];if(i===7)region.manualAccents=[{text:'درخواست بازبینی نمره',color:'#ffc000'}];}
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===78
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

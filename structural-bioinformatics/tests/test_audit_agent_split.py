@@ -2,6 +2,8 @@
 
 import importlib.util
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -71,3 +73,21 @@ def test_duplicate_id_or_unassigned_split_is_rejected(tmp_path):
     rows[0]["dataset_split"] = "unassigned"
     with pytest.raises(ValueError, match="split"):
         MODULE.audit(write(tmp_path, rows))
+
+
+def test_cli_returns_nonzero_for_split_leak(tmp_path):
+    rows = sample()
+    rows[1]["target_pdb_sha256"] = rows[0]["target_pdb_sha256"]
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts/audit_agent_split.py"),
+            "--input",
+            str(write(tmp_path, rows)),
+        ],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode == 1
+    assert json.loads(result.stdout)["cross_split_exact_identity_groups"]["target_pdb_sha256"] == 1

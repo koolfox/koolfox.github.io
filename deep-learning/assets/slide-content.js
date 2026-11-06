@@ -935,6 +935,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const slots={35:[.05,.10,.55,.21],0:[.23,.58,.35,.73],3:[.39,.42,.56,.47],4:[.37,.28,.57,.40],7:[.39,.50,.56,.71],12:[.84,.42,.98,.59],16:[.84,.28,.98,.40],19:[.84,.62,.98,.72],21:[.62,.39,.80,.55],25:[.62,.24,.80,.37],28:[.62,.58,.80,.72],31:[.015,.79,.24,.84],32:[.015,.84,.24,.97]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];region.font=i===35?35:i===31||i===32?14:12;if(i!==35&&i!==31&&i!==32)region.align='center';}
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===74
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='ed741ff36dff50fb7349c0a091133d102183c38a3ec39aa28778d96a278eeb0c'
+      && layout.translation_sha256==='d0e4ad47edcb03fd3963e7db7e362a680b7a9dda248158885c9ef18eae99bef3'){
+    const slots={0:[.05,.06,.95,.25],2:[.05,.39,.95,.46],3:[.10,.46,.94,.52],4:[.10,.52,.94,.58],5:[.10,.58,.94,.64],6:[.05,.69,.94,.75],7:[.10,.75,.94,.82]};
+    for(const region of regions){const i=region.block.source_lines[0];region.slot=slots[i];region.font=i===0?32:i===2||i===6?22:19;if(i===7)region.manualAccents=[{text:'مبانی',color:'#ffc000'}];}
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

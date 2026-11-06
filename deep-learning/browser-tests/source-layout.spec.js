@@ -973,3 +973,12 @@ test('session 1 course schedule retains all four source columns', async ({page})
   for(const label of ['نورون‌های مصنوعی','نزول گرادیان','ترنسفورمرها','دیدگاه‌های صنعت']) await expect(regions.filter({hasText:label})).toBeVisible();
   expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 course comparison keeps source hierarchy and emphasis', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=74'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'Reinforcement Learning'})).toBeVisible();
+  await expect(regions.filter({hasText:'مبانی'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

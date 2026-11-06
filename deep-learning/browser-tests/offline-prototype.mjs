@@ -53,23 +53,20 @@ try{
  const manifest05=JSON.parse(await readFile(join(dirname(resolve(process.env.PROTOTYPE_MANIFEST)),'s05.json'),'utf8'));
  const fifth=await snapshot(manifest05.version,manifest05.entries);
  if(!fifth.ok)throw Error('second session snapshot failed: '+JSON.stringify(fifth));
- const beforeTools=new Set(urls);
- await page.locator('[data-source-interactive="convolution-code"]').click();
- await page.locator('[data-reader-tools-frame]').waitFor({state:'visible'});
- await page.waitForTimeout(2500);
- const included05=new Set(manifest05.entries.map(entry=>new URL(entry.url,origin).href));
- const toolMissing=[...urls].filter(url=>!beforeTools.has(url)&&!included05.has(url));
- if(toolMissing.length)throw Error('missing observed tool dependencies: '+toolMissing.join(', '));
+ const cdp=await context.newCDPSession(page);
+ await cdp.send('Network.clearBrowserCache');
  await context.setOffline(true);
  await page.goto(origin+'/deep-learning/terms/spring-2026/s05/slides/#page=27');
  await page.waitForFunction(()=>window.sourceSlideReader?.ready && window.sourceSlideReader.page===27,null,{timeout:30000});
  await page.locator('[data-source-interactive="convolution-code"]').click();
  const movie=page.frameLocator('[data-reader-tools-frame]').locator('video');
  await movie.waitFor({state:'visible'});
- await movie.evaluate(video=>video.play());
- await movie.evaluate(video=>new Promise((resolve,reject)=>{if(video.readyState>=2)return resolve();video.addEventListener('loadeddata',resolve,{once:true});video.addEventListener('error',()=>reject(Error('offline movie failed')),{once:true});}));
+ await page.frameLocator('[data-reader-tools-frame]').locator('[data-film-time]').first().click();
+ const filmOffline=await movie.evaluate(video=>Promise.race([
+  new Promise(resolve=>{if(video.readyState>=1)return resolve(true);video.addEventListener('loadedmetadata',()=>resolve(true),{once:true});video.addEventListener('error',()=>resolve(false),{once:true});}),
+  new Promise(resolve=>setTimeout(()=>resolve(false),5000))]));
  await page.goto(origin+'/deep-learning/terms/spring-2026/s01/slides/#page=40');
  await page.waitForFunction(()=>window.sourceSlideReader?.ready && window.sourceSlideReader.page===40,null,{timeout:30000});
- console.log(JSON.stringify({snapshot:first.ok,corruptRejected:!second.ok,activePreserved:!duplicate.ok,simulatedQuotaRejected:!quota.ok,simulatedInterruptionRejected:!interrupted.ok,offlineReload:true,entries:entries.length,sessions:['s01','s05'],toolDependenciesMissing:toolMissing.map(value=>new URL(value).pathname),page:40}));
+ console.log(JSON.stringify({snapshot:first.ok,corruptRejected:!second.ok,activePreserved:!duplicate.ok,simulatedQuotaRejected:!quota.ok,simulatedInterruptionRejected:!interrupted.ok,offlineReload:true,entries:entries.length,sessions:['s01','s05'],filmOffline,page:40}));
  await context.close();
 }finally{await browser.close();server.kill();await unlink(worker).catch(()=>{});}

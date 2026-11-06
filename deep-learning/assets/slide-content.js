@@ -862,6 +862,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===2){region.slot=[.68,.665,.98,.94];region.font=20;}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===81
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='2e5b2c6330ea9f9fa04ff3c15e9c59982c160d9b3e1fd08f84cafdae82640ca9'
+      && layout.translation_sha256==='b56c81a23b04424c41f9944c402f484833ed4e247fbb93572ebf6e4da0976e1d'){
+    const labels={1:'پرسش از مدرس',2:'پیازا',6:'ساعت پاسخ‌گویی (Office Hours)',9:'قرار ملاقات'};
+    for(const region of regions){const label=labels[region.block.source_lines[0]];if(label){region.color='#ffffff';region.manualAccents=[{text:label,color:'#ffc000'}];}}
+  }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===80
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='2a75a6c7431570b58c363f94ad10828cb82846f1ecebd9904f7a5d31bd7b1b75'

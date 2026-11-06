@@ -326,3 +326,21 @@ test('second sample calculations keep unknown next weights',async({browser})=>{
   }finally{await context.close();}
  }
 });
+
+test('epoch example retains both source tables and questions',async({browser})=>{
+ for(const width of [1440,390]){
+  const context=await browser.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390});
+  try{
+   const page=await context.newPage();await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=31');
+   await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===31);
+   if(width===390)await page.locator('[data-view-translation]').click();
+   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+   await expect(page.locator('#persian-page')).toContainText('چرا ممکن است وزن‌ها');
+   const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(node=>node.scrollHeight>node.clientHeight+2||node.scrollWidth>node.clientWidth+2).map(node=>node.textContent));expect(overflow).toEqual([]);
+   const companion=page.locator('.reader-figure-labels');await companion.locator('summary').click();
+   const tables=companion.locator('table');await expect(tables).toHaveCount(2);
+   await expect(tables.nth(0).locator('tbody tr')).toHaveCount(8);
+   expect(await tables.nth(1).locator('tbody tr').evaluateAll(rows=>rows.map(row=>[...row.cells].map(cell=>cell.textContent)))).toEqual([['0','0','0','0','0'],['1','-0.2','-0.2','0','0'],['2','0','0','0','0.2'],['3','0','0','0','0.2'],['4','0','0','0','0.2'],['5','-0.2','0','0','0'],['6','-0.2','0','0','0'],['7','0','0','0.2','0.2'],['8','-0.2','0','0.2','0.2']]);
+  }finally{await context.close();}
+ }
+});

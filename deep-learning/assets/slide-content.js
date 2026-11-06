@@ -605,6 +605,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===11){region.maskSourceLines=[11];region.clearRect=[.07,.26,.34,.35];}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===31
+      && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
+      && record.source_text_sha256==='02884c1541d33e758c5508a19464f4d15eca023a013c72b9d8e76548382d6027'
+      && layout.translation_sha256==='d2cb7c50a32bc371683718b397e66b8aaf65fab42dd3069609ded194d639137b'){
+    const slots={7:[.04,.08,.98,.22],0:[.02,.36,.39,.43],1:[.02,.43,.39,.49],2:[.02,.49,.39,.55],3:[.02,.57,.39,.69],5:[.02,.72,.39,.85]};
+    for(const region of regions){const slot=slots[region.block.source_lines[0]];if(slot)region.slot=slot;}
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

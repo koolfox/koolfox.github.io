@@ -103,3 +103,25 @@ test('session 1 comparison stays on the source canvas on mobile', async ({ page 
   await expect(text.filter({ hasText: 'مبانی' })).toBeVisible();
   expect(await text.evaluateAll(nodes => nodes.every(node => node.scrollHeight <= node.clientHeight + 2 && node.scrollWidth <= node.clientWidth + 2))).toBeTruthy();
 });
+
+
+test('experience examples fit beside the image at desktop and mobile widths', async ({ page }) => {
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 850 });
+    await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=83');
+    await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 83);
+    if (width === 390) {
+      const previous = await page.locator('#persian-page .reader-slide-stage').elementHandle();
+      await page.locator('[data-view-translation]').click();
+      await page.waitForFunction(node => !node.isConnected, previous);
+      await page.waitForFunction(() => window.sourceSlideReader?.ready);
+    }
+    await expect(page.locator('#persian-page')).toHaveAttribute('data-layout', 'source-canvas');
+    const example = page.locator('#persian-page .reader-slide-text').filter({ hasText: 'Image Classification' });
+    await expect(example).toBeVisible();
+    expect(await example.evaluate(node => ({font: Math.round(parseFloat(node.style.fontSize)), fits: node.scrollHeight <= node.clientHeight + 2 && node.scrollWidth <= node.clientWidth + 2}))).toEqual({font: 16, fits: true});
+    const bounds = await example.evaluate(node => ({left: parseFloat(node.style.left), width: parseFloat(node.style.width)}));
+    expect(bounds.left).toBeGreaterThanOrEqual(0.68 * 960 - 1);
+    expect(bounds.left + bounds.width).toBeLessThanOrEqual(0.99 * 960 + 1);
+  }
+});

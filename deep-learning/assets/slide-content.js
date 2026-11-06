@@ -540,7 +540,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===8){region.clearRect=[.65,.83,.82,.875];region.maskSourceLines=[9];}
     }
   }
-  const trueModelHashes={21:'5075e0741b941c34d1fa82af4fa028ed9122dcda19706505eacb2bdf1f481388',22:'4dd07709cd890322b0138344958527f4940df089644a0a5503dbf8418c11e1c1',23:'3f65f19c7b8a50d7f76910c3fcbbe6bf6a06971b0a45119b6b8aa31a224fd0b5',24:'fc83ccbe4913098cca381a836dc2425c45a1730240cc7462f0852a69bdb1502a'};
+  const trueModelHashes={21:'c48301a8ad99eca5186b14425af66eae4664d89dcc66bb138fde66dff66e1fef',22:'cdaaabdb69ab67ec3fa90cd594e9ea0ecf7bc1ab6169d6a2a250bdc628219b2b',23:'ebad0c094a2f23f2a4916525c4a293960da79f3605b3baf37f8987ba17e6ba2d',24:'82ec1e03c08773362e6e43a9596fb61dd4939d200e17e8a7f96419fcb6a6e5df'};
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02'
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
       && trueModelHashes[record.number]===layout.translation_sha256){

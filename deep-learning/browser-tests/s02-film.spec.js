@@ -191,7 +191,8 @@ test('true model slides retain the source figure and separated Persian text',asy
     if(width===390)await page.locator('[data-view-translation]').click();
     await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
     await expect(page.locator('.reader-slide-text').first()).toContainText('مثال: مدل واقعی');
-    await expect(page.locator('.reader-slide-text').nth(1)).toContainText('۳ ورودی');
+    await expect(page.locator('.reader-slide-text').nth(1)).toContainText('3 ورودی');
+    await expect(page.locator('.reader-slide-text').nth(1).locator('bdi[dir=ltr]',{hasText:'-1'})).toHaveCount(1);
     const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(node=>node.scrollHeight>node.clientHeight+2||node.scrollWidth>node.clientWidth+2).map(node=>node.textContent));
     expect(overflow).toEqual([]);
    }

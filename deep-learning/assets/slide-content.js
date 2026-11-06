@@ -618,6 +618,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const slots={0:[.05,.06,.96,.235],2:[.05,.26,.97,.32],3:[.05,.33,.97,.39],5:[.15,.42,.53,.47],19:[.15,.47,.68,.52],14:[.535,.59,.98,.65],15:[.535,.65,.98,.75],17:[.535,.75,.98,.80],18:[.535,.81,.98,.87]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];if(i===0)region.font=29;else if(i===2||i===3)region.font=17;else if(slots[i])region.font=14;if(i===2){region.color='#ffffff';region.manualAccents=[{text:'مشتق‌پذیر',color:'#ffc000'},{text:'بهینه‌سازی',color:'#ffc000'}];}if(i===3)region.manualAccents=[{text:'سطح خطا',color:'#ffc000'}];}
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===33
+      && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
+      && record.source_text_sha256==='f593ca5fc89ad22365917dedd237abf53a9df79e3b0b570ff9f4b3f166d5f364'
+      && layout.translation_sha256==='c4891cee60d10cca38d9bb7fbf89c8d584733d2349dd511c72d385e46275a0a8'){
+    const slots={0:[.05,.06,.96,.235],2:[.05,.26,.97,.32],3:[.05,.33,.97,.39],4:[.02,.84,.98,.90],5:[.06,.90,.97,.97],6:[.16,.54,.31,.64],8:[.73,.44,.90,.55]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];region.font=i===0?29:([2,3].includes(i)?17:14);if(i===2){region.color='#ffffff';region.manualAccents=[{text:'مشتق‌پذیر',color:'#ffc000'},{text:'بهینه‌سازی',color:'#ffc000'}];}if(i===3)region.manualAccents=[{text:'سطح خطا',color:'#ffc000'}];if(i===4)region.manualAccents=[{text:'تمثیل',color:'#ffc000'}];if(i===5)region.manualAccents=[{text:'رویکرد',color:'#ffc000'},{text:'نزول گرادیان',color:'#ffc000'}];}
+  }
   const xorLayouts={
     8:['d2b3197385ac54cba5e2883e08b575286ecb53ec32490248714c327d28b2f53b','414db0665fe15478a7298705f8437c61179a99157138f11dc87c6f4df357d677'],
     9:['0c34d94aedceba75167565b32f6a1aef6444728377f7c21ad3a0701f165a4e00','84e1ebe3a8d6fdd6ba5126dff88fc0cbdcd3d7ed8ab30e8aebdb215a07798ab9'],

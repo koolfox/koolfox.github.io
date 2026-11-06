@@ -184,3 +184,13 @@ test('session 3 optimization slide keeps the plot and separated labels', async (
  await expect(labels.filter({hasText:'سطح خطا'}).locator('.reader-emphasis')).toHaveCSS('color','rgb(255, 192, 0)');
  await expect(labels.filter({hasText:'نزول گرادیان'})).toBeVisible();
 });
+
+test('session 3 descent analogy keeps the mountain image and endpoints', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=33');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready && sourceSlideReader.page===33);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const labels=page.locator('#persian-page .reader-slide-text');
+ await expect(labels.filter({hasText:'آغاز (ارتفاع زیاد)'})).toHaveCSS('color','rgb(243, 0, 242)');
+ await expect(labels.filter({hasText:'نقطهٔ پایان'})).toHaveCSS('color','rgb(243, 0, 242)');
+ await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
+});

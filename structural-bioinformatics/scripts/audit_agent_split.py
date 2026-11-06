@@ -17,6 +17,7 @@ HASH_FIELDS = (
 )
 GROUP_FIELDS = (*HASH_FIELDS, "candidate_sequence", "antibody_seed")
 DEFAULT_MAX_COMPARISONS = 100_000
+DEFAULT_MAX_RESIDUE_COMPARISONS = 5_000_000
 
 
 def positional_identity(sequence_a, sequence_b):
@@ -26,7 +27,7 @@ def positional_identity(sequence_a, sequence_b):
     return sum(a == b for a, b in zip(sequence_a, sequence_b, strict=True)) / len(sequence_a)
 
 
-def pairwise_sequence_similarity(records, threshold, max_comparisons):
+def pairwise_sequence_similarity(records, threshold, max_comparisons, max_residue_comparisons):
     """Optional conservative warning over same-length candidate_sequence cross-split pairs."""
     if isinstance(threshold, bool) or not isinstance(threshold, (int, float)):
         raise ValueError("similarity threshold must be a number between 0 and 1")
@@ -37,6 +38,8 @@ def pairwise_sequence_similarity(records, threshold, max_comparisons):
         raise ValueError("max_comparisons must be a non-negative integer")
     if max_comparisons < 0:
         raise ValueError("max_comparisons must be a non-negative integer")
+    if type(max_residue_comparisons) is not int or max_residue_comparisons < 0:
+        raise ValueError("max_residue_comparisons must be a non-negative integer")
     sequence_splits = defaultdict(set)
     for row in records:
         sequence = row.get("candidate_sequence")
@@ -47,6 +50,19 @@ def pairwise_sequence_similarity(records, threshold, max_comparisons):
             raise ValueError("Missing or invalid dataset_split; pairwise similarity fails closed")
         sequence_splits[sequence].add(split)
     unique_sequences = sorted(sequence_splits)
+    identifiers = {
+        sequence: f"sequence-{index:06d}" for index, sequence in enumerate(unique_sequences, 1)
+    }
+    lengths_by_split = {split: set() for split in SPLITS}
+    for sequence, splits in sequence_splits.items():
+        for split in splits:
+            lengths_by_split[split].add(len(sequence))
+    present_splits = sorted(split for split in SPLITS if lengths_by_split[split])
+    incomplete = any(
+        len(lengths_by_split[a] | lengths_by_split[b]) > 1
+        for i, a in enumerate(present_splits)
+        for b in present_splits[i + 1 :]
+    )
     by_length = defaultdict(list)
     for sequence in unique_sequences:
         by_length[len(sequence)].append(sequence)
@@ -57,6 +73,19 @@ def pairwise_sequence_similarity(records, threshold, max_comparisons):
         + sum(len(sequence_splits[sequence]) > 1 for sequence in bucket)
         for bucket in by_length.values()
     )
+    residue_bound = sum(
+        length
+        * (
+            len(bucket) * (len(bucket) - 1) // 2
+            + sum(len(sequence_splits[sequence]) > 1 for sequence in bucket)
+        )
+        for length, bucket in by_length.items()
+    )
+    if residue_bound > max_residue_comparisons:
+        raise ValueError(
+            f"Residue comparison cap exceeded: bound {residue_bound} exceeds "
+            f"max_residue_comparisons={max_residue_comparisons}"
+        )
     if inspected_bound > max_comparisons:
         raise ValueError(
             f"Comparison cap exceeded: conservative bound {inspected_bound} exceeds "
@@ -78,8 +107,8 @@ def pairwise_sequence_similarity(records, threshold, max_comparisons):
                 if identity >= threshold:
                     violations.append(
                         {
-                            "sequence_a": sequence_a,
-                            "sequence_b": sequence_b,
+                            "sequence_a_id": identifiers[sequence_a],
+                            "sequence_b_id": identifiers[sequence_b],
                             "splits_a": sorted(splits_a),
                             "splits_b": sorted(splits_b),
                             "positional_identity": identity,
@@ -92,6 +121,9 @@ def pairwise_sequence_similarity(records, threshold, max_comparisons):
         "homology, structural similarity or biological independence are assessed.",
         "threshold": threshold,
         "max_comparisons": max_comparisons,
+        "max_residue_comparisons": max_residue_comparisons,
+        "conservative_residue_bound": residue_bound,
+        "incomplete_length_coverage": incomplete,
         "comparisons": comparisons,
         "conservative_pair_bound": inspected_bound,
         "violating_cross_split_pairs": len(violations),
@@ -100,12 +132,19 @@ def pairwise_sequence_similarity(records, threshold, max_comparisons):
         if not comparisons
         else "warnings"
         if violations
+        else "incomplete_length_coverage"
+        if incomplete
         else "no_warnings",
-        "similarity_warning_check_passed": bool(comparisons) and not violations,
+        "similarity_warning_check_passed": bool(comparisons) and not violations and not incomplete,
     }
 
 
-def audit(path, similarity_threshold=None, max_comparisons=DEFAULT_MAX_COMPARISONS):
+def audit(
+    path,
+    similarity_threshold=None,
+    max_comparisons=DEFAULT_MAX_COMPARISONS,
+    max_residue_comparisons=DEFAULT_MAX_RESIDUE_COMPARISONS,
+):
     data = Path(path).read_bytes()
     records = []
     for number, line in enumerate(data.splitlines(), 1):
@@ -158,12 +197,14 @@ def audit(path, similarity_threshold=None, max_comparisons=DEFAULT_MAX_COMPARISO
         "pretraining contamination, independent labels and sufficient sample size are not checked.",
     }
     if similarity_threshold is not None:
-        similarity = pairwise_sequence_similarity(records, similarity_threshold, max_comparisons)
+        similarity = pairwise_sequence_similarity(
+            records, similarity_threshold, max_comparisons, max_residue_comparisons
+        )
         report["pairwise_sequence_similarity"] = similarity
         if not similarity["similarity_warning_check_passed"]:
             report["limitations"] += (
-                " Positional identity warnings found; same-length positional identity is a "
-                "warning only, not alignment or homology screening."
+                " Positional check flagged a warning or insufficient coverage; "
+                "same-length positional identity is not alignment or homology screening."
             )
     return report
 
@@ -185,9 +226,20 @@ def main():
         help="Maximum conservative bound on same-length sequence-pair candidates; larger bounds "
         "fail before comparison. Includes same-split pairs.",
     )
+    parser.add_argument(
+        "--max-residue-comparisons",
+        type=int,
+        default=DEFAULT_MAX_RESIDUE_COMPARISONS,
+        help="Maximum conservative count of residue position comparisons.",
+    )
     args = parser.parse_args()
     try:
-        report = audit(args.input, args.similarity_threshold, args.max_comparisons)
+        report = audit(
+            args.input,
+            args.similarity_threshold,
+            args.max_comparisons,
+            args.max_residue_comparisons,
+        )
         print(json.dumps(report, ensure_ascii=False, indent=2))
         section = report.get("pairwise_sequence_similarity")
         failed = not report["exact_identity_check_passed"] or (

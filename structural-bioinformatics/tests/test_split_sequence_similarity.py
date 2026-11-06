@@ -56,7 +56,8 @@ def test_threshold_flags_at_or_above_and_not_below(tmp_path):
     assert section["comparisons"] == 3
     assert section["violating_cross_split_pairs"] == 1
     pair = section["violating_pairs"][0]
-    assert pair["sequence_a"] == "AAAAAA" and pair["sequence_b"] == "AAAAAC"
+    assert pair["sequence_a_id"] == "sequence-000001" and pair["sequence_b_id"] == "sequence-000002"
+    assert "sequence_a" not in pair and "sequence_b" not in pair
     assert pair["positional_identity"] == pytest.approx(5 / 6)
     assert not section["similarity_warning_check_passed"]
     clean = MODULE.audit(path, similarity_threshold=0.9)
@@ -80,10 +81,10 @@ def test_only_same_length_across_different_splits_are_compared(tmp_path):
     ]
     assert section["comparisons"] == 3
     assert section["violating_cross_split_pairs"] == 2
-    assert {(pair["sequence_a"], pair["sequence_b"]) for pair in section["violating_pairs"]} == {
-        ("AA", "AA"),
-        ("AAAA", "AAAA"),
-    }
+    assert all(
+        pair["sequence_a_id"] == pair["sequence_b_id"] for pair in section["violating_pairs"]
+    )
+    assert section["incomplete_length_coverage"]
 
 
 @pytest.mark.parametrize("threshold", [-0.1, 1.1, float("nan"), float("inf"), True])
@@ -222,3 +223,26 @@ def test_no_comparable_pairs_is_not_a_pass(tmp_path):
         check=False,
     )
     assert result.returncode == 1
+
+
+def test_incomplete_length_coverage_never_passes(tmp_path):
+    rows = rows_for([("train", "AAAA"), ("validation", "CCCC"), ("test", "AAAAA")])
+    section = MODULE.audit(write(tmp_path, rows), similarity_threshold=0.8)[
+        "pairwise_sequence_similarity"
+    ]
+    assert section["comparisons"] == 1
+    assert section["status"] == "incomplete_length_coverage"
+    assert not section["similarity_warning_check_passed"]
+
+
+def test_residue_work_cap_fails_before_comparison(tmp_path):
+    rows = rows_for([("train", "A" * 1000), ("validation", "C" * 1000)])
+    with pytest.raises(ValueError, match="Residue comparison cap exceeded"):
+        MODULE.audit(write(tmp_path, rows), similarity_threshold=0.8, max_residue_comparisons=999)
+
+
+def test_output_contains_no_raw_sequences(tmp_path):
+    rows = rows_for([("train", "AAAAAA"), ("validation", "AAAAAC")])
+    report = MODULE.audit(write(tmp_path, rows), similarity_threshold=0.8)
+    serialized = json.dumps(report)
+    assert "AAAAAA" not in serialized and "AAAAAC" not in serialized

@@ -24,3 +24,31 @@ def test_deposited_geometry_and_unobserved_atoms():
     assert pair["first_sg_second_cb_angstrom"] == 1.75
     assert pair["first_sg_second_cb_angstrom"] < report["meeko_0_8_0_carbon_sulfur_cutoff_angstrom"]
     assert report["status"] == "not_prepared"
+
+
+def test_diagnostic_input_preserves_protein_coordinates_and_failure():
+    from Bio.PDB import PDBParser
+
+    parser = PDBParser(QUIET=True, PERMISSIVE=False)
+    source = parser.get_structure("source", str(PROJECT / "assets/3wd5.pdb"))
+    folder = PROJECT / "assets/3wd5-receptor-diagnostic"
+    selected = parser.get_structure("selected", str(folder / "3wd5-ahl-diagnostic.pdb"))
+    for chain in "AHL":
+        original = [a for r in source[0][chain] if r.id[0] == " " for a in r]
+        copied = list(selected[0][chain].get_atoms())
+        assert len(original) == len(copied)
+        for first, second in zip(original, copied, strict=True):
+            assert (first.parent.id, first.name, first.occupancy) == (
+                second.parent.id,
+                second.name,
+                second.occupancy,
+            )
+            assert (first.coord == second.coord).all()
+    assert (
+        "No template matched for residue_key='A:101'"
+        in (folder / "3wd5-ahl-diagnostic.stderr").read_text()
+    )
+    assert (
+        "Creation of data structure for receptor failed"
+        in (folder / "3wd5-ahl-diagnostic.stdout").read_text()
+    )

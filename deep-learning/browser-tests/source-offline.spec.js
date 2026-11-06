@@ -25,6 +25,58 @@ test('new slide worker does not control other course pages', async ({ page, cont
  expect(await otherPage.evaluate(() => navigator.serviceWorker.controller?.scriptURL ?? null)).toBeNull();
 });
 
+test('versioned resources use their matching cache entry while new versions fetch and work offline', async ({ page, context }) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=40');
+ await page.waitForFunction(() => window.sourceSlideReader?.ready);
+ await expect(page.locator('html')).toHaveAttribute('data-offline-ready', 'true', { timeout: 30000 });
+ await page.reload();
+ await page.waitForFunction(() => window.sourceSlideReader?.ready && navigator.serviceWorker.controller);
+ const result = await page.evaluate(async () => {
+  const cache = await caches.open('danna-slide-reader-v1');
+  const base = '/deep-learning/assets/course.css';
+  await cache.put(`${base}?v=old-test`, new Response('cached-old'));
+  await cache.put(`${base}?unversioned=test`, new Response('stale-unversioned'));
+  const old = await (await fetch(`${base}?v=old-test`, {cache:'no-store'})).text();
+  const nextResponse = await fetch(`${base}?v=new-test`, {cache:'no-store'});
+  const next = await nextResponse.clone().text();
+  await cache.put(`${base}?v=new-test`, nextResponse);
+  const unversioned = await (await fetch(`${base}?unversioned=test`, {cache:'no-store'})).text();
+  return {old, next, unversioned};
+ });
+ expect(result.old).toBe('cached-old');
+ expect(result.next).not.toBe('cached-old');
+ expect(result.next.length).toBeGreaterThan(100);
+ expect(result.unversioned).not.toBe('stale-unversioned');
+ await context.setOffline(true);
+ const offline = await page.evaluate(async () => (await fetch('/deep-learning/assets/course.css?v=new-test', {cache:'no-store'})).text());
+ expect(offline).toBe(result.next);
+});
+
+test('stopping the reader aborts an in-flight offline warm-up', async ({ page }) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=40');
+ await page.waitForFunction(() => window.sourceSlideReader?.ready);
+ await expect(page.locator('html')).toHaveAttribute('data-offline-ready', 'true', { timeout: 30000 });
+ const result = await page.evaluate(async () => {
+  const {warmSlideOffline} = await import('/deep-learning/assets/slide-offline-cache.js');
+  const originalFetch = window.fetch;
+  let started = 0, observedAbort = false, notifyStart;
+  const startedPromise = new Promise(resolve => { notifyStart = resolve; });
+  window.fetch = (_url, options) => new Promise((_resolve, reject) => {
+   started++;
+   options.signal.addEventListener('abort', () => { observedAbort = true; reject(new DOMException('Aborted', 'AbortError')); }, {once:true});
+   notifyStart();
+  });
+  const controller = new AbortController();
+  try {
+   const pending = warmSlideOffline(controller.signal);
+   await startedPromise;
+   controller.abort();
+   return {ok:await pending, started, observedAbort};
+  } finally { window.fetch = originalFetch; }
+ });
+ expect(result).toEqual({ok:false, started:1, observedAbort:true});
+});
+
 test('visited session one pages load separately and work offline after reload', async ({ page, context }) => {
  const pdfs = [];
  page.on('response', response => { if (/\.pdf\?sha=/.test(response.url())) pdfs.push({url: response.url(), size: Number(response.headers()['content-length'])}); });

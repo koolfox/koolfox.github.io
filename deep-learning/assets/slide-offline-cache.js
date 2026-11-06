@@ -29,25 +29,30 @@ export async function readPdf(url, expected, signal) {
  return bytes;
 }
 
-export async function warmSlideOffline() {
+export async function warmSlideOffline(signal) {
  if (!('serviceWorker' in navigator) || !('caches' in window)) return false;
  try {
+  if (signal?.aborted) return false;
   const script = new URL(`${root}slide-offline-sw.js`, location.href).href;
   const oldScope = new URL(root, location.href).href;
   for (const registration of await navigator.serviceWorker.getRegistrations()) {
+   if (signal?.aborted) return false;
    const worker = registration.active || registration.waiting || registration.installing;
    if (registration.scope === oldScope && worker?.scriptURL === script) await registration.unregister();
   }
   await navigator.serviceWorker.register(script, {scope: `${root}terms/`});
   await navigator.serviceWorker.ready;
   await document.fonts.ready;
+  if (signal?.aborted) return false;
   const cache = await cacheStore(); if (!cache) return false;
   const urls = new Set([location.href.split('#')[0], ...performance.getEntriesByType('resource').map(item => item.name)]);
   for (const raw of urls) {
+   if (signal?.aborted) return false;
    const url = new URL(raw, location.href);
    if (url.origin !== location.origin || !(url.pathname.startsWith(root) || url.pathname.startsWith('/assets/fonts/')) || /\.(?:pdf|mp4|bin)(?:$|\?)/i.test(url.pathname)) continue;
-   const response = await fetch(url.href);
+   const response = await fetch(url.href, {signal});
    if (!response.ok || response.status !== 200) return false;
+   if (signal?.aborted) return false;
    await cache.put(url.href, response);
   }
   return true;

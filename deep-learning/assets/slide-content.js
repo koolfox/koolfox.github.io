@@ -885,6 +885,17 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===6){region.slot=[.10,.62,.94,.74];region.font=19;}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===69
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='385ea9aeff7b0289ead82ddcc8d754bfccf78306d32de8ee462b478e64d44023'
+      && layout.translation_sha256==='8c2d6846013b42756253197e369e4a8a0694fdee39232d235d1735e06cf651db'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.95,.21];region.font=34;}
+      if(i===1){region.slot=[.05,.34,.95,.47];region.font=22;region.color='#ffffff';region.manualAccents=[{text:'شناخت و تحلیل روش‌های رایج آموزش شبکه‌های عصبی (Neural Networks)',color:'#ffc000'}];}
+      if(i===3){region.slot=[.10,.47,.94,.57];region.font=19;}
+      if(i===5){region.slot=[.10,.57,.94,.79];region.font=19;region.keepTermsTogether=true;}
+    }
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

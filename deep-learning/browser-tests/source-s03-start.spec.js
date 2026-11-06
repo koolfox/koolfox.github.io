@@ -240,3 +240,12 @@ test('session 3 loss monitoring slide keeps its graph and axis labels', async ({
  await expect(labels.filter({hasText:'تعداد حدس‌ها'})).toBeVisible();
  await expect(labels.filter({hasText:'این گام را زیر نظر'})).toHaveCSS('color','rgb(255, 192, 0)');
 });
+
+test('session 3 slope question keeps the graph and native formula', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=45');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready && sourceSlideReader.page===45);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ await expect(page.locator('#persian-page .reader-slide-text').filter({hasText:'h اندک و مثبت'})).toBeVisible();
+ await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
+ await expect(page.locator('#persian-page .reader-figure-labels')).toBeAttached();
+});

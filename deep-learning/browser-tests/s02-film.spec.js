@@ -480,8 +480,10 @@ test('XOR question table leaves the source answers hidden',async({browser})=>{
    const page=await context.newPage();await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=43');
    await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===43);
    if(width===390)await page.locator('[data-view-translation]').click();
-   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
    const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(node=>node.scrollHeight>node.clientHeight+2||node.scrollWidth>node.clientWidth+2).map(node=>node.textContent));expect(overflow).toEqual([]);
+   const companion=page.locator('.reader-figure-labels');await companion.locator('summary').click();
+   expect(await companion.locator('table tbody tr').evaluateAll(rows=>rows.map(row=>[...row.cells].map(cell=>cell.textContent)))).toEqual([['0','0','?'],['0','1','?'],['1','0','?'],['1','1','?']]);
   }finally{await context.close();}
  }
 });

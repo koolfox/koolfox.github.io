@@ -686,7 +686,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===43
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
       && record.source_text_sha256==='2cdfc2a4514b5e955bea58af1c5a6da21a72c5c6d76475de75eded3f64e4f934'
-      && layout.translation_sha256==='5c7f2860f46e8835e3d36e0aa928e787877a9722bd4768cd7055b3d3ebde8bfb'){
+      && layout.translation_sha256==='37d1242650e42e2d5580841f102e49aff792cbbcea71f8ed9ae12f6ee12a5b98'){
     const slots={0:[.03,.08,.98,.22],1:[.03,.46,.54,.52],2:[.03,.52,.54,.58],3:[.03,.58,.54,.63],4:[.03,.63,.54,.70],5:[.03,.70,.54,.76]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];if(i===0)region.font=30;}
   }

@@ -25,26 +25,32 @@ try{
   await navigator.serviceWorker.ready;
   if(!navigator.serviceWorker.controller)await new Promise(resolve=>navigator.serviceWorker.addEventListener('controllerchange',resolve,{once:true}));
  });
- const entries=[];
- for(const url of urls){
-  const path=new URL(url).pathname;
-  const file=join(site,decodeURIComponent(path),path.endsWith('/')?'index.html':'');
-  entries.push({url,sha256:createHash('sha256').update(await readFile(file)).digest('hex')});
- }
- const snapshot=async (id,items)=>page.evaluate(({id,entries})=>new Promise(resolve=>{
+ const manifest=JSON.parse(await readFile(resolve(process.env.PROTOTYPE_MANIFEST || ''),'utf8'));
+ const entries=manifest.entries;
+ const included=new Set(entries.map(entry=>new URL(entry.url,origin).href));
+ const missing=[...urls].filter(url=>!included.has(url));
+ if(missing.length)throw Error('manifest misses observed resources: '+missing.join(', '));
+ const manifestId=items=>createHash('sha256').update(JSON.stringify(items.map(({sha256,url})=>({sha256,url})))).digest('hex');
+ if(manifestId(entries)!==manifest.version)throw Error('manifest identity mismatch');
+ const snapshot=async (id,items,testFailureAfter,testFailureName)=>page.evaluate(({id,entries,testFailureAfter,testFailureName})=>new Promise(resolve=>{
   const channel=new MessageChannel();channel.port1.onmessage=event=>resolve(event.data);
-  navigator.serviceWorker.controller.postMessage({type:'snapshot',id,entries},[channel.port2]);
- }),{id,entries:items});
- const first=await snapshot('a'.repeat(64),entries);
+  navigator.serviceWorker.controller.postMessage({type:'snapshot',id,entries,testFailureAfter,testFailureName},[channel.port2]);
+ }),{id,entries:items,testFailureAfter,testFailureName});
+ const first=await snapshot(manifest.version,entries);
  if(!first.ok)throw Error('valid snapshot failed: '+JSON.stringify(first));
- const duplicate=await snapshot('a'.repeat(64),entries);
+ const duplicate=await snapshot(manifest.version,entries);
  if(duplicate.ok)throw Error('active snapshot must not be replaced');
- const broken=entries.map((x,i)=>i?x:{...x,sha256:'0'.repeat(64)});
- const second=await snapshot('b'.repeat(64),broken);
+ const broken=entries.map((x,i)=>i===Math.floor(entries.length/2)?{...x,sha256:'0'.repeat(64)}:x);
+ const second=await snapshot(manifestId(broken),broken);
  if(second.ok)throw Error('corrupt snapshot unexpectedly accepted');
+ const quotaEntries=entries.map((x,i)=>i===0?{...x,url:x.url+'?fault=quota'}:x);
+ const quota=await snapshot(manifestId(quotaEntries),quotaEntries,10);
+ if(quota.ok||!quota.error.includes('QuotaExceededError'))throw Error('quota failure not handled');
+ const interrupted=await snapshot(manifestId(quotaEntries),quotaEntries,10,'AbortError');
+ if(interrupted.ok||!interrupted.error.includes('AbortError'))throw Error('interruption not handled');
  await context.setOffline(true);
  await page.reload();
  await page.waitForFunction(()=>window.sourceSlideReader?.ready && window.sourceSlideReader.page===40,null,{timeout:30000});
- console.log(JSON.stringify({snapshot:first.ok,corruptRejected:!second.ok,activePreserved:!duplicate.ok,offlineReload:true,entries:entries.length,page:40}));
+ console.log(JSON.stringify({snapshot:first.ok,corruptRejected:!second.ok,activePreserved:!duplicate.ok,simulatedQuotaRejected:!quota.ok,simulatedInterruptionRejected:!interrupted.ok,offlineReload:true,entries:entries.length,page:40}));
  await context.close();
 }finally{await browser.close();server.kill();await unlink(worker).catch(()=>{});}

@@ -2,7 +2,10 @@
 
 import importlib.util
 import json
+import math
+import re
 import unittest
+from collections import Counter
 from pathlib import Path
 
 import numpy as np
@@ -16,6 +19,55 @@ spec.loader.exec_module(docking)
 
 
 class ClashTests(unittest.TestCase):
+    def test_independent_receptor_and_distance_audit(self):
+        root = PROJECT / "assets/long-peptide-pilot/bounded-1000000"
+        report = json.loads((root / "report.json").read_text())
+        receptor_path = root / "receptor.pdbqt"
+        self.assertEqual(docking.sha(receptor_path), report["receptor_pdbqt_sha256"])
+        self.assertEqual(docking.sha(root / "selected-chain.pdb"), report["selected_pdb_sha256"])
+        log = (root / "MQIFVKTLTGKTI/vina.stdout.txt").read_text()
+        self.assertIn(
+            "Rigid receptor: /private/tmp/long-peptide-search-1000000/receptor.pdbqt", log
+        )
+
+        def atom_lines(text):
+            return [line for line in text.splitlines() if line.startswith(("ATOM  ", "HETATM"))]
+
+        def coordinates(line):
+            return tuple(float(line[i : i + 8]) for i in (30, 38, 46))
+
+        receptor = atom_lines(receptor_path.read_text())
+        types = Counter(line.split()[-1] for line in receptor)
+        self.assertEqual(
+            types, {"C": 357, "OA": 118, "N": 104, "SA": 1, "HD": 142, "A": 21, "NA": 1}
+        )
+        heavy = [line for line in receptor if line.split()[-1] != "HD"]
+        selected = atom_lines((root / "selected-chain.pdb").read_text())
+        selected_heavy = [line for line in selected if line[76:78].strip() not in ("H", "D")]
+        self.assertEqual(
+            Counter(map(coordinates, heavy)), Counter(map(coordinates, selected_heavy))
+        )
+
+        pose_path = root / "MQIFVKTLTGKTI/poses.pdbqt"
+        blocks = re.findall(r"^MODEL\s+\d+\s*$(.*?)^ENDMDL\s*$", pose_path.read_text(), re.M | re.S)
+        self.assertEqual(len(blocks), 2)
+        for block, expected, pairs in zip(
+            blocks, (0.8605126379, 1.2496375475), (45, 32), strict=True
+        ):
+            ligand = atom_lines(block)
+            self.assertEqual(
+                Counter(line.split()[-1] for line in ligand),
+                {"C": 62, "OA": 18, "N": 16, "HD": 26, "SA": 1, "A": 6},
+            )
+            distances = [
+                math.dist(coordinates(a), coordinates(b))
+                for a in ligand
+                if a.split()[-1] != "HD"
+                for b in heavy
+            ]
+            self.assertAlmostEqual(min(distances), expected, places=9)
+            self.assertEqual(sum(distance < 2 for distance in distances), pairs)
+
     def test_recorded_failed_poses_are_measured(self):
         root = PROJECT / "assets/long-peptide-pilot"
         receptor = docking.xyz((root / "receptor.pdbqt").read_text())
@@ -37,13 +89,13 @@ class ClashTests(unittest.TestCase):
             )
             return f"MODEL {number}\nREMARK VINA RESULT: -1.0 0 0\n{atom}ENDMDL\n"
 
-        rows = docking.inspect_poses(block(1, 1.0) + block(2, 2.0), np.array([[0., 0., 0.]]))
+        rows = docking.inspect_poses(block(1, 1.0) + block(2, 2.0), np.array([[0.0, 0.0, 0.0]]))
         self.assertEqual([row["severe_clash_screen"] for row in rows], ["fail", "pass"])
         self.assertEqual([row["heavy_atom_pairs_below_2_angstrom"] for row in rows], [1, 0])
 
     def test_invalid_pose_rejected(self):
         with self.assertRaisesRegex(ValueError, "No complete poses"):
-            docking.inspect_poses("MODEL 1\n", np.array([[0., 0., 0.]]))
+            docking.inspect_poses("MODEL 1\n", np.array([[0.0, 0.0, 0.0]]))
 
     def test_new_run_preserves_failure_diagnostics(self):
         for budget in (100000, 1000000):

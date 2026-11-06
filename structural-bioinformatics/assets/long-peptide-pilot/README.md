@@ -53,3 +53,36 @@ The receptor and peptide are fixed to the workflow's single-chain and
 single-conformer assumptions. These failed technical runs do not establish
 binding, affinity or biological activity, and longer search or other methods
 would need separate validation.
+
+## Independent clash and receptor audit (2026-11-06)
+
+An independent standard-library `math.dist` calculation on the saved PDBQT
+coordinates reproduces all four runs' minima and pair counts: 0.588778 Å / 44,
+0.508052 Å / 80, 0.860513 Å / 45, and 0.860513 Å / 45 plus 1.249638 Å / 32,
+respectively. The last two minima are respectively peptide VAL 5 CG1 to
+receptor HIS 68 ND1, and peptide THR 12 CA to receptor ILE 61 CD1. These are
+distinct heavy atoms, not hydrogens or an atom compared to itself.
+
+The receptor contains 744 PDBQT atoms: 142 `HD` hydrogens and 602 heavy atoms
+(types `C`, `A`, `N`, `NA`, `OA`, `SA`). Each saved peptide pose contains 26
+`HD` and 103 heavy atoms (`C`, `A`, `N`, `OA`, `SA`). The workflow excludes
+`H` and `HD`; for these files the classification and fixed-column coordinates
+are correct. This does not establish correctness for every possible PDBQT atom
+type or malformed input. All 602 receptor heavy-atom coordinates match the
+selected-chain PDB as a multiset. The terminal GLY 76 `O` and `OXT` labels
+are swapped between preparation output and selected PDB; their coordinates
+are both present, and neither is involved in the closest pairs above.
+
+For each of the four runs, the stored receptor's SHA-256 equals the hash in
+the report. The Vina log identifies its rigid receptor path; on 2026-11-06 the
+file still at each logged path also matched that hash. The workflow passes that
+path to Vina and hashes it before launch. This is corroborating provenance,
+not a cryptographic record of the bytes read by Vina at execution time.
+
+The receptor retains its own residues 1–13 even though the peptide sequence
+is copied from that fragment. In the million-evaluation poses, respectively
+10 of 45 and 9 of 32 close pairs involve receptor residues 1–13; the remainder
+involve residues 14–76. This setup and the limited search are plausible
+contributors, but the audit does not establish why Vina produced these poses.
+No software defect was demonstrated in the measured distances or receptor
+selection for these files; no new docking search was performed for this audit.

@@ -546,6 +546,27 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if([3,5,7,9,11].includes(i)){region.slot=[.49,region.rect[1]-.004,.97,region.rect[3]+.006];region.font=15;}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===24
+      && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
+      && record.source_text_sha256==='2122eb5c5573331881a7e3edd7f30c665856aa1096635bb85ba519879da54041'
+      && layout.translation_sha256==='6da542d0d375c77c1bd8f717477a12d46e4ade463fd2ea93958e9642c5a0a610'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.05,.95,.25];region.font=30;}
+      if(i===2){region.slot=[.50,.45,.97,.56];region.font=18;region.manualAccents=[{text:'تمام‌متصل',color:'#ffc000'}];}
+      if(i===4){region.slot=[.50,.61,.97,.73];region.font=18;region.manualAccents=[{text:'پیش‌خور',color:'#ffc000'}];}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===25
+      && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
+      && record.source_text_sha256==='b7f21a8953abe540ddf19a5d8417d6bf096b30b0599a94994cbf83dd86cd0c93'
+      && layout.translation_sha256==='bac3183f58480f3a2e9626a7fa58a49f3cd6e70c4c1a8437e88b1c975eece07b'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.95,.21];region.font=33;}
+      if(i===1){region.slot=[.09,.33,.81,.47];region.font=18;region.manualAccents=[{text:'دشواری مسئله',color:'#ffc000'}];}
+      if(i===3){region.slot=[.08,.53,.94,.68];region.font=18;region.manualAccents=[{text:'به‌رسمیت‌شناخته‌شدن',color:'#ffc000'}];}
+      if(i===5){region.slot=[.08,.74,.94,.89];region.font=18;region.manualAccents=[{text:'تامین مالی',color:'#ffc000'}];}
+    }
+  }
   const xorLayouts={
     8:['d2b3197385ac54cba5e2883e08b575286ecb53ec32490248714c327d28b2f53b','414db0665fe15478a7298705f8437c61179a99157138f11dc87c6f4df357d677'],
     9:['0c34d94aedceba75167565b32f6a1aef6444728377f7c21ad3a0701f165a4e00','84e1ebe3a8d6fdd6ba5126dff88fc0cbdcd3d7ed8ab30e8aebdb215a07798ab9'],

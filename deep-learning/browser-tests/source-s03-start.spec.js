@@ -126,3 +126,14 @@ test('session 3 parameter count retains the network and color coded labels', asy
  await expect(labels.filter({hasText:'بایاس‌ها'})).toHaveCSS('color','rgb(0, 176, 240)');
  await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
 });
+
+test('session 3 retains network structure and the highlighted historical obstacle', async ({page}) => {
+ for (const number of [24,25]) {
+  await page.goto(`/deep-learning/terms/spring-2026/s03/slides/#page=${number}`);
+  await page.waitForFunction(expected=>window.sourceSlideReader?.ready && sourceSlideReader.page===expected,number);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const accents=page.locator('#persian-page .reader-slide-text .reader-emphasis');
+  expect(await accents.count()).toBeGreaterThan(1);
+  await expect(accents.first()).toHaveCSS('color','rgb(255, 192, 0)');
+ }
+});

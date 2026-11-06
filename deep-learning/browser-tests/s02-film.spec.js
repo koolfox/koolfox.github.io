@@ -179,3 +179,22 @@ test('mistake-driven questions open and accept an answer on desktop and mobile',
   }finally{await context.close();}
  }
 });
+
+test('true model slides retain the source figure and separated Persian text',async({browser})=>{
+ for(const width of [1440,390]){
+  const context=await browser.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390});
+  try{
+   const page=await context.newPage();
+   for(const number of [21,22,23,24]){
+    await page.goto(`/deep-learning/terms/spring-2026/s02/slides/#page=${number}`);
+    await page.waitForFunction(expected=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===expected,number);
+    if(width===390)await page.locator('[data-view-translation]').click();
+    await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+    await expect(page.locator('.reader-slide-text').first()).toContainText('مثال: مدل واقعی');
+    await expect(page.locator('.reader-slide-text').nth(1)).toContainText('۳ ورودی');
+    const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(node=>node.scrollHeight>node.clientHeight+2||node.scrollWidth>node.clientWidth+2).map(node=>node.textContent));
+    expect(overflow).toEqual([]);
+   }
+  }finally{await context.close();}
+ }
+});

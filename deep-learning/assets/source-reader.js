@@ -247,9 +247,13 @@ async function renderOriginal(){
   const holder=canvas.parentElement;holder.style.width=viewport.width+'px';holder.style.height=viewport.height+'px';
   const current=source.render({canvasContext:canvas.getContext('2d'),viewport,transform:ratio===1?null:[ratio,0,0,ratio,0,0],background:'#ffffff'});task=current;
   await current.promise;if(id!==serial||closed)return;
-  const annotations=await source.getAnnotations({intent:'display'});if(id!==serial||closed)return;
+  let annotations=[],linksUnavailable=false,layoutUnavailable=false;
+  try{annotations=await source.getAnnotations({intent:'display'});}
+  catch(error){linksUnavailable=true;console.warn('Slide links unavailable',error);}
+  if(id!==serial||closed)return;
   for(const annotation of annotations){
    const url=annotation.url?referenceTarget(safeExternal(annotation.url)):null;if(!url&&!annotation.dest)continue;
+   if(!Array.isArray(annotation.rect)||annotation.rect.length!==4||!annotation.rect.every(Number.isFinite)){linksUnavailable=true;console.warn('Invalid slide link geometry');continue;}
    const [x1,y1]=viewport.convertToViewportPoint(annotation.rect[0],annotation.rect[1]),[x2,y2]=viewport.convertToViewportPoint(annotation.rect[2],annotation.rect[3]);
    const rect=[x1,y1,x2,y2],a=element('a','source-link-overlay');
    a.style.left=Math.min(rect[0],rect[2])+'px';a.style.top=Math.min(rect[1],rect[3])+'px';a.style.width=Math.abs(rect[2]-rect[0])+'px';a.style.height=Math.abs(rect[3]-rect[1])+'px';
@@ -257,11 +261,13 @@ async function renderOriginal(){
    if(url){a.href=url;a.target='_blank';a.rel='noopener noreferrer';}else{a.href='#';a.addEventListener('click',event=>{event.preventDefault();destination(annotation.dest).catch(()=>message('این ارجاع داخلی در PDF قابل نمایش نیست؛ اصل فایل در دسترس است.',true));});}
    links.append(a);
   }
-  paintSourceCrops();styleTranslationFallback(payload.pages[selected-1]);await paintPersianLayout(layoutSource,source,id,selected);if(id!==serial||closed)return;renderedPage=selected;task=null;document.documentElement.dataset.readerReady='true';controls();
+  try{paintSourceCrops();styleTranslationFallback(payload.pages[selected-1]);await paintPersianLayout(layoutSource,source,id,selected);}
+  catch(error){if(error?.name==='RenderingCancelledException'||closed||id!==serial)return;layoutUnavailable=true;console.warn('Persian slide layout unavailable',error);persian.replaceChildren(...translationFallback);persian.dataset.layout='layout-error-fallback';}
+  if(id!==serial||closed)return;renderedPage=selected;task=null;document.documentElement.dataset.readerReady='true';$('[data-retry-load]').hidden=true;controls();
   const record=payload.pages[page-1],reviewed=record.text_reviewed&&record.image_text_reviewed;
-  message(`صفحهٔ ${fa(page)} از ${fa(config.pageCount)}${reviewed?'':' · ترجمه در بازبینی'}${usesFullPdf(page)?' · این صفحه از فایل کامل جلسه بارگیری می‌شود':''}`);
+  message(`صفحهٔ ${fa(page)} از ${fa(config.pageCount)}${reviewed?'':' · ترجمه در بازبینی'}${usesFullPdf(page)?' · این صفحه از فایل کامل جلسه بارگیری می‌شود':''}${linksUnavailable?' · پیوندهای اسلاید در دسترس نیستند':''}${layoutUnavailable?' · نمایش ساده ترجمه':''}`);
   schedulePlayback();
- }catch(error){if(error?.name==='RenderingCancelledException'||closed||id!==serial)return;task=null;stopPlayback();message('نمایش این صفحه کامل نشد؛ صفحه را دوباره انتخاب کن.',true);}
+ }catch(error){if(error?.name==='RenderingCancelledException'||closed||id!==serial)return;console.warn('Slide render failed',error);task=null;stopPlayback();message('نمایش این صفحه کامل نشد؛ دوباره تلاش کن.',true);$('[data-retry-load]').hidden=false;}
 }
 function leaveReferences(){references=false;document.querySelector('.reader-layout').hidden=false;$('#reader-references').hidden=true;}
 function showReferences(update=true){

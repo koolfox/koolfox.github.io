@@ -1001,6 +1001,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const slots={0:[.05,.10,.95,.21],2:[.255,.36,.48,.55],6:[.495,.36,.705,.55],10:[.71,.36,.96,.55],14:[.71,.59,.96,.87],21:[.54,.89,.67,.97],24:[.01,.36,.22,.59],29:[.01,.79,.22,.83]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];region.font=i===0?34:i===29?12:14;if(i!==0)region.align='center';}
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===84
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='4b7a025a50e7266f0a49745a66375e3c610514152d0810865b5185f7264533c5'
+      && layout.translation_sha256==='1946d2c5c6b2c0b0b5e028cfb2c4c41e3c0fac169c547173190d9a36e0676cda'){
+    const slots={0:[.05,.10,.95,.21],2:[.255,.36,.48,.55],24:[.01,.36,.22,.59],29:[.01,.79,.22,.83],30:[.50,.55,.98,.77]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];region.font=i===0?34:i===30?34:i===29?12:14;if(i!==0)region.align='center';}
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===78
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

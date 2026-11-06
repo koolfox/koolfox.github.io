@@ -398,7 +398,7 @@ test('newspaper slide retains its image and translated headline',async({browser}
    if(width===390)await page.locator('[data-view-translation]').click();
    await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
    const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(node=>node.scrollHeight>node.clientHeight+2||node.scrollWidth>node.clientWidth+2).map(node=>node.textContent));expect(overflow).toEqual([]);
-   const companion=page.locator('.reader-figure-labels');await companion.locator('summary').click();await expect(companion).toContainText('خود را بازتولید کند');
+   const companion=page.locator('.reader-figure-labels');await companion.locator('summary').click();await expect(companion).toContainText('خود را بازتولید کند');await expect(companion).toContainText('100000 دلار');await expect(companion).toContainText('پنجاه تلاش');
   }finally{await context.close();}
  }
 });

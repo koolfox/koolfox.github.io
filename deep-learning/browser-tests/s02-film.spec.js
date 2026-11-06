@@ -195,6 +195,11 @@ test('true model slides retain the source figure and separated Persian text',asy
     await expect(page.locator('.reader-slide-text').nth(1).locator('bdi[dir=ltr]',{hasText:'-1'})).toHaveCount(1);
     const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(node=>node.scrollHeight>node.clientHeight+2||node.scrollWidth>node.clientWidth+2).map(node=>node.textContent));
     expect(overflow).toEqual([]);
+    if(number===24){
+     const companion=page.locator('.reader-figure-labels');await companion.locator('summary').click();
+     const rows=await companion.locator('tbody tr').evaluateAll(items=>items.map(row=>[...row.cells].map(cell=>cell.textContent)));
+     expect(rows).toEqual([['1','0','0','-1'],['1','0','1','1'],['1','1','0','1'],['1','1','1','1'],['0','0','1','-1'],['0','1','0','-1'],['0','1','1','1'],['0','0','0','-1']]);
+    }
    }
   }finally{await context.close();}
  }

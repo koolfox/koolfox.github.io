@@ -56,6 +56,37 @@ function selfCheck(active) {
   details.append(summary, element('p', active.check.answer));
   section.append(label, textarea, hint, details); return section;
 }
+function evidenceExercise() {
+  const section = element('section'); section.dataset.kind = 'evidence';
+  section.append(element('h2', 'برای این پرسش چه داده‌ای لازم است؟'));
+  section.append(element('p', 'برای هر پرسش یک نوع داده انتخاب کنید؛ سپس توضیح هر پاسخ را ببینید.'));
+  const items = [
+    ['ترتیب اسیدهای آمینهٔ یک زنجیره چیست؟', 'sequence', 'توالی ترتیب واحدها را ثبت می‌کند.'],
+    ['فاصلهٔ دو اتم در ساختار ثبت‌شده چند آنگستروم است؟', 'coordinates', 'برای محاسبهٔ فاصله به مختصات اتم‌های انتخاب‌شده نیاز داریم.'],
+    ['آیا پروتئین در شرایط مشخص یک کار زیستی را انجام می‌دهد؟', 'experiment', 'برای عملکرد باید آزمایش و شرایط مرتبط را بررسی کنیم؛ تصویر به‌تنهایی کافی نیست.'],
+  ];
+  const choices = [['', 'انتخاب کنید'], ['sequence', 'توالی اسیدهای آمینه'], ['coordinates', 'مختصات اتم‌ها'], ['experiment', 'آزمایش عملکردی متناسب']];
+  const storeKey = 'structural-course-evidence-v1';
+  let saved = []; try { const parsed = JSON.parse(localStorage.getItem(storeKey) || '[]'); if (Array.isArray(parsed)) saved = parsed; } catch { /* Continue without saved answers. */ }
+  const controls = [], feedbacks = [];
+  items.forEach(([question], index) => {
+    const group = element('div'); group.className = 'evidence-question';
+    const label = element('label', question); label.htmlFor = `evidence-${index}`;
+    const select = element('select'); select.id = label.htmlFor;
+    choices.forEach(([value, text]) => { const option = element('option', text); option.value = value; select.append(option); });
+    if (choices.some(([value]) => value === saved[index])) select.value = saved[index];
+    const feedback = element('p'); feedback.setAttribute('aria-live', 'polite'); feedback.hidden = true;
+    select.addEventListener('change', () => { feedback.hidden = true; try { localStorage.setItem(storeKey, JSON.stringify(controls.map(control => control.value))); } catch { status.textContent = 'ذخیره در مرورگر ممکن نشد؛ پاسخ‌ها تا زمان بازبودن صفحه باقی می‌مانند.'; } });
+    controls.push(select); feedbacks.push(feedback); group.append(label, select, feedback); section.append(group);
+  });
+  const button = element('button', 'بررسی پاسخ‌ها'); button.type = 'button';
+  const status = element('p', 'پاسخ‌ها در همین مرورگر ذخیره می‌شوند.'); status.setAttribute('role', 'status');
+  button.addEventListener('click', () => {
+    items.forEach(([, answer, explanation], index) => { const value = controls[index].value; feedbacks[index].textContent = value ? (value === answer ? 'درست است. ' : 'دوباره بررسی کنید. ') + explanation : 'ابتدا یک گزینه انتخاب کنید.'; feedbacks[index].hidden = false; });
+    status.textContent = 'توضیح پاسخ‌ها زیر هر پرسش نمایش داده شد.';
+  });
+  section.append(button, status); return section;
+}
 function dockingSlide() {
   const section=element('section'); section.dataset.kind='lab';
   section.append(element('h2','کارگاه داکینگ'), element('p','یک نمونهٔ ثبت‌شدهٔ بازداکینگ را با دادهٔ بلوری مقایسه کنید؛ این صفحه داکینگ تازه اجرا نمی‌کند.'));
@@ -87,7 +118,7 @@ async function load() {
     const source = await response.text(); if (ticket !== revision) return;
     if (!window.markdownit || !source.trim()) throw Error('متن درس برای نمایش آماده نیست.');
     const textSlides = makeTextSlides(source, sourceUrl); if (!textSlides.length) throw Error('متن درس خالی است.');
-    slides = [...textSlides, selfCheck(topic)]; if (labs.has(topic.laboratory)) slides.push(labSlide(topic)); else if (topic.block === 'docking') slides.push(dockingSlide());
+    slides = [...textSlides, ...(topic.session === 1 ? [evidenceExercise()] : []), selfCheck(topic)]; if (labs.has(topic.laboratory)) slides.push(labSlide(topic)); else if (topic.block === 'docking') slides.push(dockingSlide());
     $('lesson-slide').replaceChildren(...slides);
     $('lesson-title').textContent=topic.title; document.title=`${topic.title} | اسلاید درس`;
     const block = syllabus.blocks.find(item => item.id === topic.block); $('chapter-title').textContent=block?.title || ''; $('chapter-title').hidden=!block || block.title === topic.title;

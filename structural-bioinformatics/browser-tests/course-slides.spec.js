@@ -99,3 +99,23 @@ test('the slide opens the real code workbench and runs its existing energy exper
   await frame.locator('#code-run').click();
   await expect(frame.locator('#code-comparison table')).toBeVisible({timeout:90000});
 });
+
+test('evidence exercise checks answers and restores choices on mobile', async ({page}) => {
+  await page.setViewportSize({width:390,height:844});
+  await page.goto(root + 'assets/course-slides.html?topic=1');
+  await expect(page.locator('#lesson-deck')).toHaveAttribute('aria-busy','false');
+  const evidence = await page.locator('#slide-select option[data-kind=evidence]').getAttribute('value');
+  await page.locator('#slide-select').selectOption(evidence);
+  await page.locator('#evidence-0').selectOption('coordinates');
+  await page.locator('#evidence-1').selectOption('coordinates');
+  await page.locator('#evidence-2').selectOption('experiment');
+  await page.getByRole('button',{name:'بررسی پاسخ‌ها'}).click();
+  const feedback = page.locator('.evidence-question p');
+  await expect(feedback.nth(0)).toContainText('دوباره بررسی');
+  await expect(feedback.nth(1)).toContainText('درست است');
+  await expect(feedback.nth(2)).toContainText('تصویر به‌تنهایی کافی نیست');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
+  await page.reload();
+  await expect(page.locator('#evidence-0')).toHaveValue('coordinates');
+  await expect(page.locator('#evidence-2')).toHaveValue('experiment');
+});

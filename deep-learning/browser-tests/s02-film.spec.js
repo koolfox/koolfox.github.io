@@ -613,3 +613,19 @@ test('epoch notebooks execute the values shown in the slides',async({browser})=>
   }finally{await context.close();}
  }
 });
+
+test('XOR film plays on the revealed graph slide',async({browser})=>{
+ for(const width of [1440,390]){
+  const context=await browser.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390});
+  try{
+   const page=await context.newPage();await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=43');
+   await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===43);
+   await expect(page.getByRole('button',{name:'فیلم مرز تصمیم XOR'})).toHaveCount(0);
+   await page.evaluate(()=>location.hash='page=44');await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===44);
+   await page.getByRole('button',{name:'فیلم مرز تصمیم XOR'}).click();const frame=page.frameLocator('[data-reader-tools-frame]');
+   await expect(frame.locator('video')).toBeVisible();await frame.locator('video').evaluate(video=>video.play());
+   await expect.poll(()=>frame.locator('video').evaluate(video=>video.currentTime)).toBeGreaterThan(0);
+   await frame.getByRole('button',{name:'دلیل جبری'}).click();await expect.poll(()=>frame.locator('video').evaluate(video=>video.currentTime)).toBeCloseTo(14,1);
+  }finally{await context.close();}
+ }
+});

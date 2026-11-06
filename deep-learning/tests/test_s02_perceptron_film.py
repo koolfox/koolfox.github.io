@@ -9,6 +9,18 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class PerceptronFilmTest(unittest.TestCase):
+    def test_xor_film_assets_and_source_page(self):
+        record = json.loads((ROOT / 'animations/xor-boundary.record.json').read_text())
+        self.assertEqual(record['source']['pages'], [44])
+        self.assertEqual([chapter['time'] for chapter in record['chapters']], [0, 7, 14])
+        for key in ('video', 'captions'):
+            entry = record[key]
+            data = (ROOT / entry['path']).read_bytes()
+            self.assertEqual(len(data), entry['bytes'])
+            self.assertEqual(hashlib.sha256(data).hexdigest(), entry['sha256'])
+        manifest = json.loads((ROOT / 'animations/manifest.json').read_text())
+        self.assertIn(record, manifest['films'])
+
     def test_assets_and_source_pages(self):
         record = json.loads((ROOT / 'animations/perceptron-steps.record.json').read_text())
         self.assertEqual(record['source']['pages'], list(range(25, 31)))

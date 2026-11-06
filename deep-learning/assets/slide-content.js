@@ -297,6 +297,19 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     region.slot = [left,top,Math.max(right,region.rect[2]),Math.max(bottom,region.rect[3])];
   }
   // Reviewed placements for the four consecutive gradient-descent diagrams.
+  // Keep the longer Persian caption above the unrolled RNN figure.
+  const s04CaptionReview = {
+    16:['5605488fd9bd2cd7352a205b14ac64ecf37b6827dec615023844f0810851e872','686957cff51b2e71d66cb10dc9c1586c76f3e64c0bc620ab68a76664885dcdc4'],
+    24:['8e4ae230d6a1eae89defb6b041d9c3860127b7f38380d1d360d577098648f14d','cc12e1172ce43f5c1d9657b02fafa26634d6e84d391f3766c90aca5dc9c08dd1'],
+    25:['8e4ae230d6a1eae89defb6b041d9c3860127b7f38380d1d360d577098648f14d','cc12e1172ce43f5c1d9657b02fafa26634d6e84d391f3766c90aca5dc9c08dd1'],
+  }[record.number];
+  if (s04CaptionReview && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256===s04CaptionReview[0] && layout.translation_sha256===s04CaptionReview[1]) {
+    for (const region of regions) if (region.block.fa.startsWith('• ')) {
+      region.slot=[.05,.23,.97,.34]; region.font=23;
+    }
+  }
   // Both hashes bind these coordinates to the exact source text and translation.
   const reviewed = {
     39:['e99475b68b4d829815dc80e4ff71d0bd1f2ab3dac640d392fd945288a6303f4b','79b1d56908f4d2a69815eb118de60754e9b30ecd7a132bc7803e7466d5b70fc8'],

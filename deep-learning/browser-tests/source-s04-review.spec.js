@@ -60,7 +60,7 @@ test('RNN agenda pages preserve the source canvas and active topic on both layou
 test('parity and unrolling examples retain their source figures on both layouts', async ({page}) => {
   for (const width of [1440, 390]) {
     await page.setViewportSize({width, height:850});
-    for (const number of [5, 7, 14, 15, 17, 19, 22]) {
+    for (const number of [5, 7, 14, 15, 16, 17, 19, 22, 24, 25]) {
       await page.goto(`/deep-learning/terms/spring-2026/s04/slides/#page=${number}`);
       await page.waitForFunction(n => window.sourceSlideReader?.ready && window.sourceSlideReader.page === n, number);
       if (width === 390) {

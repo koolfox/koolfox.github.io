@@ -249,3 +249,13 @@ test('session 3 slope question keeps the graph and native formula', async ({page
  await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
  await expect(page.locator('#persian-page .reader-figure-labels')).toBeAttached();
 });
+
+test('session 3 finite difference example retains the source graph and values', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=46');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready && sourceSlideReader.page===46);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const example=page.locator('#persian-page .reader-slide-text').filter({hasText:'12.1304'});
+ await expect(example).toContainText('13.04');
+ await expect(example).toContainText('0.01');
+ await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
+});

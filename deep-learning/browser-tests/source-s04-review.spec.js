@@ -90,3 +90,22 @@ test('parity film is attached to the source page and plays its worked example', 
   await page.waitForFunction(() => window.sourceSlideReader?.ready);
   await expect(page.locator('[data-source-interactive="rnn-parity"]')).toHaveCount(0);
 });
+
+test('slide 52 notebook separates the exact gradient from source rounding', async ({page}) => {
+  test.setTimeout(120000);
+  await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=52');
+  await page.waitForFunction(() => window.sourceSlideReader?.ready);
+  await page.locator('[data-page-experiment]').click();
+  const frame = page.frameLocator('[data-reader-tools-frame]');
+  await expect(frame.locator('#practice-config')).toHaveCount(1);
+  const handle = page.frames().find(item => item.url().includes('/s04/practice/'));
+  expect(handle.url()).toContain('source-page=52');
+  await frame.locator('[data-notebook-run-all]').click();
+  await handle.waitForFunction(() => window.studentNotebook?.record?.ok, null, {timeout:60000});
+  const result = await handle.evaluate(() => window.studentNotebook.record.outputs.at(-1).result);
+  expect(result.signals).toEqual([0.25, 0.0625, 0.015625, 0.00390625]);
+  expect(result.final).toBe(0.00390625);
+  expect(result.rounded_source).toBe(0.004);
+  await frame.getByRole('tab',{name:'آزمون تستی',exact:true}).click();
+  await expect(frame.locator('[data-notebook-question]')).toHaveCount(1);
+});

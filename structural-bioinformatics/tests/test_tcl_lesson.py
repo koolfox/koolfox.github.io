@@ -30,3 +30,19 @@ def test_general_tcl_lesson(items, expected):
     )
     assert result.stdout == expected
     assert result.stderr == ""
+
+
+def test_tcl_braces_and_quotes_example():
+    interpreter = shutil.which("tclsh")
+    if interpreter is None:
+        pytest.skip("tclsh is not installed")
+    result = subprocess.run(
+        [interpreter],
+        input='set x 3\nputs {$x}\nputs "$x"\nputs [expr {2 + 3}]\n',
+        text=True,
+        capture_output=True,
+        check=True,
+        timeout=5,
+    )
+    assert result.stdout == "$x\n3\n5\n"
+    assert not result.stderr

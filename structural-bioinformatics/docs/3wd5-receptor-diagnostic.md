@@ -67,3 +67,16 @@ A practical **positive-control strategy** is to reproduce the already documented
 ```bash
 python structural-bioinformatics/scripts/inspect_3wd5_validation.py PATH_TO_3WD5_VALIDATION.xml.gz
 ```
+
+## ساخت فایل نقشه برای بررسی سه‌بعدی
+
+فایل ضرایب اعتبارسنجی [2Fo−Fc ساختار 3WD5](https://files.rcsb.org/pub/pdb/validation_reports/wd/3wd5/3wd5_validation_2fo-fc_map_coef.cif.gz) در `2026-11-06T15:59:29Z` دریافت شد؛ SHA-256 فایل فشرده `4a4f2d98a9f1bdaaf9ffa70115be757d96f2e881dfef9d9b01c332c7864c0322` است. این ضرایب طبق [توضیح RCSB](https://www.rcsb.org/docs/general-help/electron-density-maps-and-coefficient-files) از داده و مدل به‌دست می‌آیند؛ نقشهٔ فازی‌شده شاهد کاملاً مستقل از مدل نیست.
+
+با Gemmi نسخهٔ 0.7.5 و نرخ نمونه‌برداری ۳، اسکریپت `scripts/export_3wd5_density_map.py` فایل CCP4 با شبکهٔ `160 × 160 × 160` ساخت و ابعاد آن پس از خواندن مجدد بررسی شد. هش ورودی، خروجی، اسکریپت و نسخه در `data/processed/3wd5-density-map-export.json` ثبت است. نقشهٔ حدود ۱۶ مگابایتی در مخزن قرار نگرفته و با فرمان زیر در یک پوشهٔ تازه ساخته می‌شود؛ Gemmi یک وابستگی اختیاری جدا از محیط قفل‌شدهٔ درس است.
+
+```bash
+python structural-bioinformatics/scripts/export_3wd5_density_map.py \
+  --coefficients PATH_TO_3WD5_COEFFICIENTS.cif.gz --output-dir NEW_OUTPUT_DIRECTORY
+```
+
+فایل حاصل را می‌توان کنار مختصات ثبت‌شده در PyMOL یا Coot باز کرد. در این مرحله خودِ این برنامه‌ها اجرا نشدند و بررسی تصویری محل Cys69/Cys101، مقایسه با مدل‌های جایگزین و اصلاح گیرنده هنوز انجام نشده است.

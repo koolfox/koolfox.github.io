@@ -250,3 +250,7 @@ python structural-bioinformatics/scripts/long_peptide_grid_control.py \
   --ligand structural-bioinformatics/assets/long-peptide-pilot/rigid-diagnostic/ligand.pdbqt \
   --output-dir PATH_TO_NEW_OUTPUT_DIRECTORY
 ```
+
+## Sequence-generated 7TA3 fragment check
+
+A separate [sequence-generated 7TA3 check](7ta3-sequence-control/README.md) now compares every saved pose with the deposited fragment by matched heavy-atom RMSD in the receptor frame. The bounded local run passed the 2 Å clash screen but failed to recover the reference (RMSDs 8.660–13.971 Å); the earlier bound-template rigid control does not establish success from sequence. Raw outputs and the independent audit are retained.

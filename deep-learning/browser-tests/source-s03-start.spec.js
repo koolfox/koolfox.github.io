@@ -78,3 +78,13 @@ test('session 3 terminology retains its source colors and English terms', async 
  await expect(body).toContainText('Connectionist Networks');
  await expect(body.locator('.reader-emphasis')).toHaveCSS('color','rgb(255, 192, 0)');
 });
+
+test('session 3 preserves the multilayer network diagram and labels', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=14');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready && sourceSlideReader.page===14);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const labels=page.locator('#persian-page .reader-slide-text');
+ await expect(labels.filter({hasText:'ورودی'}).last()).toHaveCSS('color','rgb(255, 192, 0)');
+ await expect(labels.filter({hasText:'پیش‌بینی'}).first()).toHaveCSS('color','rgb(243, 0, 242)');
+ await expect(labels.filter({hasText:'ورودی'}).first()).toHaveCSS('color','rgb(0, 176, 240)');
+});

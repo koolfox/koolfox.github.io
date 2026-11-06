@@ -505,6 +505,18 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===1){region.slot=[.08,.46,.93,.69];region.font=18;region.manualAccents=[{text:'اصطلاح‌های رایج',color:'#ffc000'}];}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===14
+      && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
+      && record.source_text_sha256==='6e17855c66104cb103869e9a81bf71f6b9dcbaef4d24ff5725e90c1f52819912'
+      && layout.translation_sha256==='318f520558411f31e7c10eae18fcfb4788951e900e531d95a6ae2a31df308971'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.95,.21];region.font=33;}
+      if(i===1){region.slot=[.64,.43,.99,.77];region.font=19;region.manualAccents=[{text:'لایه‌های پنهان',color:'#ffc000'},{text:'لایهٔ خروجی',color:'#f300f2'}];}
+      if(i===5){region.slot=[.52,.37,.63,.46];region.font=15;region.align='center';}
+      if(i===6){region.slot=[.07,.34,.145,.43];region.font=15;region.align='center';}
+      if(i===7){region.slot=[.11,.83,.54,.99];region.font=18;region.align='center';}
+    }
+  }
   const xorLayouts={
     8:['d2b3197385ac54cba5e2883e08b575286ecb53ec32490248714c327d28b2f53b','414db0665fe15478a7298705f8437c61179a99157138f11dc87c6f4df357d677'],
     9:['0c34d94aedceba75167565b32f6a1aef6444728377f7c21ad3a0701f165a4e00','84e1ebe3a8d6fdd6ba5126dff88fc0cbdcd3d7ed8ab30e8aebdb215a07798ab9'],

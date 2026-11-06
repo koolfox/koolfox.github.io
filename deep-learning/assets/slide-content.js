@@ -634,6 +634,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===1){region.slot=[.04,.34,.96,.80];region.color='#ffffff';region.manualAccents=[{text:'بررسی ساختارهای فیزیکی و اصول عصب‌پویایی مربوط است که زیربنای «هوش طبیعی» هستند',color:'#ffc000'},{text:'پرسپترون پیش از هر چیز مدلی از مغز است',color:'#ffc000'},{text:'ما را قادر می‌کند شرایط فیزیکی پدیدآمدن ویژگی‌های روان‌شناختی گوناگون را تعیین کنیم',color:'#ffc000'}];}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===35
+      && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
+      && record.source_text_sha256==='b97544e601ee854e01a65de63b54c46ee0f8c7fc81079f10ff3cacfc0deac74c'
+      && layout.translation_sha256==='6f53076044bd69876adf8945c164ec851f3cd4d80b3753298629c8fa42e6a135'){
+    const slots={0:[.03,.055,.46,.25],2:[.03,.49,.46,.57]};
+    for(const region of regions){const slot=slots[region.block.source_lines[0]];if(slot)region.slot=slot;}
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

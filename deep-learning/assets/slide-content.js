@@ -596,6 +596,15 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===10){region.maskSourceLines=[10];region.clearRect=[.07,.26,.34,.35];}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===30
+      && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
+      && record.source_text_sha256==='022d53bce28d324c6003bccb7c1d4bb189d4a44047d9d5a65b1f914dfe85a12b'
+      && layout.translation_sha256==='aa4f0e1afc51c19ae099aecc2e8b3efe725eee2675e01368b92a98d4384ddbf7'){
+    const slots={0:[.04,.08,.98,.22],11:[.04,.25,.34,.35]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];
+      if(i===11){region.maskSourceLines=[11];region.clearRect=[.07,.26,.34,.35];}
+    }
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

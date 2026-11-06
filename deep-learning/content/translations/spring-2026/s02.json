@@ -2424,20 +2424,38 @@
         },
         {
           "source_lines": [
-            3,
-            4,
-            5,
+            3
+          ],
+          "kind": "literal",
+          "fa": "Predicted"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "literal",
+          "fa": "1"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "literal",
+          "fa": "-1"
+        },
+        {
+          "source_lines": [
             10
           ],
-          "kind": "text",
-          "fa": "پیش‌بینی‌شده (Predicted): 1؛ -1.\n? ? ? ?"
+          "kind": "literal",
+          "fa": "? ? ? ?"
         },
         {
           "source_lines": [
             11
           ],
           "kind": "text",
-          "fa": "• پارامترها را به‌روزرسانی کنید: w ← w + η(y_true − y_pred)x"
+          "fa": "• پارامترها را به‌روز کنید:"
         },
         {
           "source_lines": [
@@ -2472,7 +2490,86 @@
           "latex": "w_3=0+0.1(1-(-1))\\times1=0.2"
         }
       ],
-      "image_text": []
+      "image_text": [
+        {
+          "en": "Predicted 1 -1",
+          "fa": "پیش‌بینی‌شده (Predicted): 1، -1",
+          "verified": true
+        },
+        {
+          "en": "X1 X2 X3 Y Predicted: 1 0 0 -1 1; 1 0 1 1 -1",
+          "fa": "جدول نمونه‌ها و پیش‌بینی‌ها",
+          "verified": true
+        },
+        {
+          "en": "w0 w1 w2 w3: 0 0 0 0; -0.2 -0.2 0 0; ? ? ? ?",
+          "fa": "جدول وزن‌ها",
+          "verified": true
+        }
+      ],
+      "tables": [
+        {
+          "verified": true,
+          "image_text_indices": [
+            1
+          ],
+          "headers": [
+            "X₁",
+            "X₂",
+            "X₃",
+            "Y",
+            "Predicted"
+          ],
+          "rows": [
+            [
+              "1",
+              "0",
+              "0",
+              "-1",
+              "1"
+            ],
+            [
+              "1",
+              "0",
+              "1",
+              "1",
+              "-1"
+            ]
+          ]
+        },
+        {
+          "verified": true,
+          "image_text_indices": [
+            2
+          ],
+          "headers": [
+            "w₀",
+            "w₁",
+            "w₂",
+            "w₃"
+          ],
+          "rows": [
+            [
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "-0.2",
+              "-0.2",
+              "0",
+              "0"
+            ],
+            [
+              "?",
+              "?",
+              "?",
+              "?"
+            ]
+          ]
+        }
+      ]
     },
     {
       "number": 31,

@@ -2,116 +2,22 @@ import { test, expect, devices } from '@playwright/test';
 
 test.use({ ...devices['iPhone 13'] });
 
-test('slide worker unregisters its legacy broad scope', async ({ page }) => {
- await page.goto('/deep-learning/');
- await page.evaluate(async () => {
-  await navigator.serviceWorker.register('/deep-learning/slide-offline-sw.js', { scope: '/deep-learning/' });
-  await navigator.serviceWorker.ready;
- });
- await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=40');
- await page.waitForFunction(() => window.sourceSlideReader?.ready);
- await expect(page.locator('html')).toHaveAttribute('data-offline-ready', 'true', { timeout: 30000 });
- const scopes = await page.evaluate(async () => (await navigator.serviceWorker.getRegistrations()).map(item => new URL(item.scope).pathname));
- expect(scopes).toContain('/deep-learning/terms/');
- expect(scopes).not.toContain('/deep-learning/');
-});
-
-test('new slide worker does not control other course pages', async ({ page, context }) => {
- await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=40');
- await page.waitForFunction(() => window.sourceSlideReader?.ready);
- await expect(page.locator('html')).toHaveAttribute('data-offline-ready', 'true', { timeout: 30000 });
- const otherPage = await context.newPage();
- await otherPage.goto('/deep-learning/playgrounds/cnn-mnist/train/');
- expect(await otherPage.evaluate(() => navigator.serviceWorker.controller?.scriptURL ?? null)).toBeNull();
-});
-
-test('versioned resources use their matching cache entry while new versions fetch and work offline', async ({ page, context }) => {
- await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=40');
- await page.waitForFunction(() => window.sourceSlideReader?.ready);
- await expect(page.locator('html')).toHaveAttribute('data-offline-ready', 'true', { timeout: 30000 });
- await page.reload();
- await page.waitForFunction(() => window.sourceSlideReader?.ready && navigator.serviceWorker.controller);
- const result = await page.evaluate(async () => {
-  const cache = await caches.open('danna-slide-reader-v1');
-  const base = '/deep-learning/assets/course.css';
-  await cache.put(`${base}?v=old-test`, new Response('cached-old'));
-  await cache.put(`${base}?unversioned=test`, new Response('stale-unversioned'));
-  const old = await (await fetch(`${base}?v=old-test`, {cache:'no-store'})).text();
-  const nextResponse = await fetch(`${base}?v=new-test`, {cache:'no-store'});
-  const next = await nextResponse.clone().text();
-  await cache.put(`${base}?v=new-test`, nextResponse);
-  const unversioned = await (await fetch(`${base}?unversioned=test`, {cache:'no-store'})).text();
-  return {old, next, unversioned};
- });
- expect(result.old).toBe('cached-old');
- expect(result.next).not.toBe('cached-old');
- expect(result.next.length).toBeGreaterThan(100);
- expect(result.unversioned).not.toBe('stale-unversioned');
- await context.setOffline(true);
- const offline = await page.evaluate(async () => (await fetch('/deep-learning/assets/course.css?v=new-test', {cache:'no-store'})).text());
- expect(offline).toBe(result.next);
-});
-
-test('warming again reuses already cached versioned assets', async ({ page }) => {
- await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=40');
- await page.waitForFunction(() => window.sourceSlideReader?.ready);
- await expect(page.locator('html')).toHaveAttribute('data-offline-ready', 'true', { timeout: 30000 });
- const result = await page.evaluate(async () => {
-  const {warmSlideOffline} = await import('/deep-learning/assets/slide-offline-cache.js');
-  const originalFetch = window.fetch, requests = [];
-  window.fetch = (url, options) => { requests.push(String(url)); return originalFetch(url, options); };
-  try { return {ok:await warmSlideOffline(), requests}; } finally { window.fetch = originalFetch; }
- });
- expect(result.ok).toBe(true);
- expect(result.requests.some(url => /[?&](?:v|sha)=/.test(url))).toBe(false);
- expect(result.requests.some(url => url.includes('/slides/'))).toBe(true);
-});
-
-test('stopping the reader aborts an in-flight offline warm-up', async ({ page }) => {
- await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=40');
- await page.waitForFunction(() => window.sourceSlideReader?.ready);
- await expect(page.locator('html')).toHaveAttribute('data-offline-ready', 'true', { timeout: 30000 });
- const result = await page.evaluate(async () => {
-  const {warmSlideOffline} = await import('/deep-learning/assets/slide-offline-cache.js');
-  const originalFetch = window.fetch;
-  let started = 0, observedAbort = false, notifyStart;
-  const startedPromise = new Promise(resolve => { notifyStart = resolve; });
-  window.fetch = (_url, options) => new Promise((_resolve, reject) => {
-   started++;
-   options.signal.addEventListener('abort', () => { observedAbort = true; reject(new DOMException('Aborted', 'AbortError')); }, {once:true});
-   notifyStart();
-  });
-  const controller = new AbortController();
-  try {
-   const pending = warmSlideOffline(controller.signal);
-   await startedPromise;
-   controller.abort();
-   return {ok:await pending, started, observedAbort};
-  } finally { window.fetch = originalFetch; }
- });
- expect(result).toEqual({ok:false, started:1, observedAbort:true});
-});
-
-test('visited session one pages load separately and work offline after reload', async ({ page, context }) => {
+test('visited pages load separately and remain available during an offline session', async ({ page, context }) => {
  const pdfs = [];
  page.on('response', response => { if (/\.pdf\?sha=/.test(response.url())) pdfs.push({url: response.url(), size: Number(response.headers()['content-length'])}); });
  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=40');
  await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 40);
- await expect(page.locator('html')).toHaveAttribute('data-offline-ready', 'true', { timeout: 30000 });
  expect(pdfs).toHaveLength(1);
  expect(pdfs[0].url).toContain('/s01-pages/040.pdf');
  expect(pdfs[0].size).toBeLessThan(400000);
  await page.reload();
  await page.waitForFunction(() => window.sourceSlideReader?.ready);
  expect(pdfs).toHaveLength(1);
- await expect(page.locator('html')).toHaveAttribute('data-offline-ready', 'true', { timeout: 30000 });
  await page.locator('[data-next-page]').click();
  await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 41);
  expect(pdfs).toHaveLength(2);
  expect(pdfs[1].url).toContain('/s01-pages/041.pdf');
  await context.setOffline(true);
- await page.reload();
- await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 41);
  await page.locator('[data-prev-page]').click();
  await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 40);
  await expect(page.locator('#persian-page')).toHaveAttribute('data-page', '40');
@@ -124,7 +30,6 @@ test('the reader still loads online when persistent storage is unavailable', asy
  await page.addInitScript(() => { window.caches.open = async () => { throw new DOMException('Full', 'QuotaExceededError'); }; });
  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=40');
  await page.waitForFunction(() => window.sourceSlideReader?.ready);
- await expect(page.locator('html')).toHaveAttribute('data-offline-ready', 'false', { timeout: 30000 });
 });
 
 test('a corrupted cached page is discarded and fetched again', async ({ page }) => {
@@ -150,9 +55,9 @@ test('a guarded slide loads and identifies the complete source PDF', async ({ pa
  expect(pdfs).toHaveLength(1);
  expect(pdfs[0]).toContain('/s01.pdf?sha=');
  await expect(page.locator('[data-reader-status]')).toContainText('فایل کامل جلسه');
- await expect(page.locator('html')).toHaveAttribute('data-offline-ready', 'true', { timeout: 30000 });
  await context.setOffline(true);
- await page.reload();
+ await page.locator('[data-next-page]').click();
+ await page.locator('[data-prev-page]').click();
  await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 37);
  await expect(page.locator('[data-reader-status]')).toContainText('فایل کامل جلسه');
 });
@@ -195,14 +100,11 @@ test('rapid reader unload settles in-flight PDF renders and restores history', a
  expect(errors).toEqual([]);
 });
 
-test('mobile fullscreen and Persian view remain usable after offline reload', async ({ page, context }) => {
+test('mobile fullscreen and Persian view remain usable offline', async ({ page, context }) => {
  await page.addInitScript(() => { Object.defineProperty(Element.prototype, 'requestFullscreen', { value: undefined, configurable: true }); });
  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=40');
  await page.waitForFunction(() => window.sourceSlideReader?.ready);
- await expect(page.locator('html')).toHaveAttribute('data-offline-ready', 'true', { timeout: 30000 });
  await context.setOffline(true);
- await page.reload();
- await page.waitForFunction(() => window.sourceSlideReader?.ready);
  const fullscreen = page.locator('[data-fullscreen]');
  await fullscreen.click();
  await expect(fullscreen).toHaveAttribute('aria-pressed', 'true');

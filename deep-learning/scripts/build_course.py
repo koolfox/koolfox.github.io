@@ -831,7 +831,6 @@ def build(output, root=ROOT):
         target.parent.mkdir(exist_ok=True)
         if source.resolve() != target.resolve():
             shutil.copyfile(source, target)
-    shutil.copyfile(root / "slide-offline-sw.js", output / "slide-offline-sw.js")
     for name in ("LICENSE", "THIRD_PARTY_NOTICES.md"):
         shutil.copyfile(root / name, output / name)
     from package_slides import declared_vendor_files, package_slides, package_source_readers

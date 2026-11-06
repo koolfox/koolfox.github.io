@@ -170,7 +170,6 @@ def package_source_readers(output, term_id, sessions, root=ROOT):
                  "notebook.js", "notebook.css", "notebook_kernel.py", "notebook-worker.mjs", "practice.js", "practice.css", "knowledge.js", "webgpu-attention.js",
                  "python-tools.js", "python-tools-worker.mjs", "notebook_support.py", "notebook-results.js"):
         add("deep-learning/assets/" + name, output / "assets" / name)
-    add("deep-learning/slide-offline-sw.js", output / "slide-offline-sw.js")
     add("deep-learning/knowledge/index.html", output / "knowledge/index.html")
     from source_experiments import experiment_files
     if (root / 'models/source-models.json').exists():

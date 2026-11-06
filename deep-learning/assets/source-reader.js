@@ -1,6 +1,6 @@
 import {setupFullscreen} from './reader-fullscreen.js';
 import {getDocument,GlobalWorkerOptions,OPS} from './vendor/pdfjs/pdf.min.mjs';
-import {readPdf,warmSlideOffline} from './slide-offline-cache.js';
+import {readPdf} from './slide-offline-cache.js';
 import {addText, math, renderBlocks, renderTable, configureReferences, referenceTarget, sourceLayoutPlan, createSourceLayout, fitSourceLayout} from './slide-content.js';
 
 const $=s=>document.querySelector(s),config=JSON.parse($('#source-reader-config').textContent);
@@ -261,7 +261,6 @@ async function renderOriginal(){
   const record=payload.pages[page-1],reviewed=record.text_reviewed&&record.image_text_reviewed;
   message(`صفحهٔ ${fa(page)} از ${fa(config.pageCount)}${reviewed?'':' · ترجمه در بازبینی'}${usesFullPdf(page)?' · این صفحه از فایل کامل جلسه بارگیری می‌شود':''}`);
   schedulePlayback();
-  if(config.pageFiles!==false&&!document.documentElement.dataset.offlineWarmStarted){document.documentElement.dataset.offlineWarmStarted='true';warmSlideOffline(loadingController.signal).then(ok=>document.documentElement.dataset.offlineReady=String(ok));}
  }catch(error){if(error?.name==='RenderingCancelledException'||closed||id!==serial)return;task=null;stopPlayback();message('نمایش این صفحه کامل نشد؛ صفحه را دوباره انتخاب کن.',true);}
 }
 function leaveReferences(){references=false;document.querySelector('.reader-layout').hidden=false;$('#reader-references').hidden=true;}

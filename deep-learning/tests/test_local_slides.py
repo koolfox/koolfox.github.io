@@ -181,7 +181,6 @@ class RegisteredSourceReaderTests(unittest.TestCase):
         for name in CORE:
             self.write(self.root / "results/shinylive/neuron-xor/shinylive/pyodide" / name, b"runtime bytes")
         self.write(self.output / "knowledge/index.html", "<h1>Knowledge</h1>")
-        self.write(self.output / "slide-offline-sw.js", "fixture")
         self.write(self.output / "private.pdf", "untracked forbidden input")
         self.write(self.root / "assets/vendor/pdfjs/untracked.js", "untracked forbidden input")
 

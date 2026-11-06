@@ -157,3 +157,19 @@ test('missing laboratory shows a retryable explanation', async ({page}) => {
   await expect(button).toBeEnabled();
   await expect(page.locator('#lesson-slide iframe')).toHaveCount(0);
 });
+
+test('biomolecule examples remain readable in their general lesson slides', async ({page}) => {
+  await page.setViewportSize({width:390,height:844});
+  for (const [topic, heading, term] of [
+    [2, 'خانوادهٔ مونومر دیگر: نوکلئوتید', 'هیدروکسیل'],
+    [3, 'مثال آموزشی', 'فرضی'],
+  ]) {
+    await page.goto(root + `assets/course-slides.html?topic=${topic}`);
+    await expect(page.locator('#lesson-deck')).toHaveAttribute('aria-busy','false');
+    const option = page.locator('#slide-select option').filter({hasText:heading}).first();
+    const index = await option.getAttribute('value');
+    await page.locator('#slide-select').selectOption(index);
+    await expect(page.locator('#lesson-slide section:visible')).toContainText(term);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
+  }
+});

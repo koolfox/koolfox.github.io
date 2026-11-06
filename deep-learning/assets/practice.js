@@ -12,7 +12,7 @@ const config={...base,...example};
 if(pageState){
   const questions=requestedPage?(pageQuestions?.questions||[]):config.questions;
   config.questions=questions.filter((question,index)=>questions.findIndex(other=>other.prompt===question.prompt&&JSON.stringify(other.options)===JSON.stringify(question.options))===index);
-  config.tip=example?.tip||(!requestedPage&&!example?base.tip:null);
+  config.tip=example?.tip||(!requestedPage?base.tip:null);
   config.codeAvailable=Boolean(example)||!requestedPage;
   if(!example)config.key=base.key+'/page-'+returnPage;
 }

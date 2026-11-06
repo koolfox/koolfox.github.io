@@ -557,6 +557,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const slots={0:[.04,.08,.98,.22],1:[.04,.25,.34,.35],10:[.49,.70,.97,.81]};
     for(const region of regions){const slot=slots[region.block.source_lines[0]];if(slot)region.slot=slot;}
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===20
+      && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
+      && record.source_text_sha256==='51c21430a260eb3982d4b11ea5fcfc837b9ed629e162530c6ff066409c6ddd41'
+      && layout.translation_sha256==='0fcc873299a8b3ef5a503d6a0d437d35fe96550ec333ef0878b373032f1763a6'){
+    const slots={0:[.04,.08,.96,.22],1:[.04,.24,.96,.40],3:[.04,.435,.96,.51],4:[.06,.50,.45,.56],5:[.08,.56,.60,.645],6:[.08,.66,.45,.74],7:[.04,.85,.96,.96],9:[.58,.765,.97,.845],11:[.68,.56,.98,.615],12:[.68,.615,.98,.68]};
+    for(const region of regions){const i=region.block.source_lines[0],slot=slots[i];if(slot)region.slot=slot;if(i===0)region.font=30;}
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

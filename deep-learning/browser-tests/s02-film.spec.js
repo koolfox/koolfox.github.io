@@ -223,3 +223,18 @@ test('perceptron update question keeps the source equations and example',async({
   }finally{await context.close();}
  }
 });
+
+test('mistake driven rule preserves both formulas and positioned statements',async({browser})=>{
+ for(const width of [1440,390]){
+  const context=await browser.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390});
+  try{
+   const page=await context.newPage();await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=20');
+   await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===20);
+   if(width===390)await page.locator('[data-view-translation]').click();
+   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+   const slide=page.locator('#persian-page');await expect(slide).toContainText('معیار توقف');await expect(slide).toContainText('در غیر این صورت');
+   const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(node=>node.scrollHeight>node.clientHeight+2||node.scrollWidth>node.clientWidth+2).map(node=>node.textContent));expect(overflow).toEqual([]);
+   const details=page.locator('.reader-figure-labels');await details.locator('summary').click();await expect(details.locator('.katex')).toHaveCount(2);
+  }finally{await context.close();}
+ }
+});

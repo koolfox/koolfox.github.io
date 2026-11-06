@@ -72,3 +72,27 @@ def test_rejects_changed_observations(tmp_path):
     (tmp_path / "observations.jsonl").write_text("{}\n")
     with pytest.raises(ValueError, match="SHA-256"):
         module.predict(tmp_path)
+
+
+def test_cli_refuses_to_overwrite_output(tmp_path):
+    import subprocess
+
+    fixture(tmp_path, [observation()])
+    output = tmp_path / "responses.jsonl"
+    output.write_text("keep this evidence\n")
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(PROJECT / "scripts/agent_status_baseline.py"),
+            "--observations-dir",
+            str(tmp_path),
+            "--output",
+            str(output),
+        ],
+        capture_output=True,
+        text=True,
+        check=False,
+        timeout=5,
+    )
+    assert result.returncode != 0
+    assert output.read_text() == "keep this evidence\n"

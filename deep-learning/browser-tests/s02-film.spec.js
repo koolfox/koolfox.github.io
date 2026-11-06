@@ -155,3 +155,11 @@ test('decision boundary slide preserves the plot and explains its label',async({
   const note=await page.evaluate(async()=>{const config=JSON.parse(document.querySelector('#source-reader-config').textContent),data=await(await fetch(config.translationUrl)).json();return data.pages[16].editorial_notes[0];});expect(note.fa).toContain('مرز تصمیم');await context.close();
  }
 });
+
+test('learning motivation slide has a distinct title and statement',async({page})=>{
+ await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=18');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===18);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ await expect(page.locator('.reader-slide-text')).toHaveCount(2);
+ const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(n=>n.scrollHeight>n.clientHeight+2||n.scrollWidth>n.clientWidth+2).map(n=>n.textContent));expect(overflow).toEqual([]);
+});

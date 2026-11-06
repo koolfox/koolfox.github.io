@@ -873,6 +873,18 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===4){region.slot=[.05,.69,.53,.81];region.font=19;region.color='#ffffff';region.manualAccents=[{text:'ضبط سخنرانی‌ها',color:'#ffc000'}];}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===68
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='1e9cdf51784b231bc58345d0e14ef690dab785761d0029bdfa4c41e2d02dddca'
+      && layout.translation_sha256==='7055408c1ca4faad40bc8422d4975b6474ce2adfa8cadac710e922bcc364e1da'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.95,.21];region.font=34;}
+      if(i===1){region.slot=[.05,.33,.95,.41];region.font=23;}
+      if(i===2){region.slot=[.08,.40,.95,.47];region.font=21;}
+      if(i===3){region.slot=[.10,.47,.94,.62];region.font=19;}
+      if(i===6){region.slot=[.10,.62,.94,.74];region.font=19;}
+    }
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

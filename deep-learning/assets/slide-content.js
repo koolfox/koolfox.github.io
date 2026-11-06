@@ -655,6 +655,15 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const slots={0:[.04,.08,.62,.22],1:[.01,.76,.42,.96],6:[.42,.76,.64,.95]};
     for(const region of regions){const slot=slots[region.block.source_lines[0]];if(slot)region.slot=slot;}
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===40
+      && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
+      && record.source_text_sha256==='36ef0d5b06b6c4f913e02a68df8f5a061ecfc722b4d6e1282cb3a203001ae49e'
+      && layout.translation_sha256==='c314f1b7bdb45070943cb84e7a4fee6436f6791dff08f2e0e93decd6972b5ffb'){
+    const slots={0:[.04,.08,.98,.22],4:[.05,.39,.96,.53],1:[.05,.56,.96,.74]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];
+      if(i===1){region.color='#ffffff';region.manualAccents=[{text:'در انواع الگوهایی که پرسپترون‌ها (Perceptrons) می‌توانند بازشناسی‌شان را یاد بگیرند، محدودیت‌های بنیادی وجود دارد',color:'#ffc000'}];}
+    }
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

@@ -430,3 +430,17 @@ test('Minsky and Papert keep distinct captions and correct name',async({browser}
   }finally{await context.close();}
  }
 });
+
+test('Minsky and Papert quotations follow source order',async({browser})=>{
+ for(const width of [1440,390]){
+  const context=await browser.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390});
+  try{
+   const page=await context.newPage();await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=40');
+   await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===40);
+   if(width===390)await page.locator('[data-view-translation]').click();
+   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout',/^source-canvas/);
+   const text=await page.locator('#persian-page').innerText();expect(text.indexOf('همکاری ما')).toBeLessThan(text.indexOf('نخستین کسانی'));
+   const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(node=>node.scrollHeight>node.clientHeight+2||node.scrollWidth>node.clientWidth+2).map(node=>node.textContent));expect(overflow).toEqual([]);
+  }finally{await context.close();}
+ }
+});

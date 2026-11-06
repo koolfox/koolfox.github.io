@@ -11,6 +11,9 @@ colors:
   canvas: "#ffffff"
   editor-panel: "#f7f8fb"
 typography:
+  slide:
+    fontFamily: "VazirmatnSlide, Arad, sans-serif"
+    fontWeight: 400
   body:
     fontFamily: "Arad, system-ui, sans-serif"
     fontSize: "14px"
@@ -67,7 +70,9 @@ data encodings and retain their legends; do not recolor them decoratively.
 
 ## Typography
 
-Arad carries Persian headings, labels and prose. Code is LTR monospace with Arad
+Vazirmatn carries Persian slide content with source-matched emphasis; its local
+variable font defaults to weight 400. Arad remains the course interface font.
+Code is LTR monospace with Arad
 for Persian comments. Numeric expressions in RTL text use isolation (`bdi` or
 an explicit LTR region) so negative signs and ordered coordinates remain clear.
 Compact lab labels use 10–13px, while full lessons retain their reading styles.

@@ -207,3 +207,19 @@ test('reverse complement remains usable if local storage fails', async ({page}) 
   await page.getByRole('button',{name:'بررسی مکمل معکوس'}).click();
   await expect(page.locator('#lesson-slide section:visible [role=status]').first()).toContainText('درست است');
 });
+
+test('reverse-complement feedback is cleared after changing either sequence', async ({page}) => {
+  await page.goto(root + 'assets/course-slides.html?topic=5');
+  await expect(page.locator('#lesson-deck')).toHaveAttribute('aria-busy','false');
+  const index = await page.locator('#slide-select option[data-kind=reverse-complement]').getAttribute('value');
+  await page.locator('#slide-select').selectOption(index);
+  await page.locator('#dna-input').fill('A');
+  await page.locator('#dna-answer').fill('T');
+  await page.getByRole('button',{name:'بررسی مکمل معکوس'}).click();
+  const feedback = page.locator('#lesson-slide section:visible [role=status]').first();
+  await expect(feedback).toContainText('درست است');
+  await page.locator('#dna-input').fill('C');
+  await expect(feedback).toBeEmpty();
+  await page.getByRole('button',{name:'بررسی مکمل معکوس'}).click();
+  await expect(feedback).toContainText('دوباره');
+});

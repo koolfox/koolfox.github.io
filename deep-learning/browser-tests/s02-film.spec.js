@@ -30,3 +30,12 @@ test('motivation slide preserves its images and separately positioned questions'
  const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(n=>n.scrollHeight>n.clientHeight+2||n.scrollWidth>n.clientWidth+2).map(n=>n.textContent));
  expect(overflow).toEqual([]);
 });
+
+test('neuroscience discovery slide keeps the two portraits and captions apart',async({page})=>{
+ await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=6');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===6);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ for(const lines of ['2,3,4','5,6,7','8,9,10','11,12,13'])await expect(page.locator(`.reader-slide-text[data-source-lines="${lines}"]`)).toBeVisible();
+ const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(n=>n.scrollHeight>n.clientHeight+2||n.scrollWidth>n.clientWidth+2).map(n=>n.textContent));
+ expect(overflow).toEqual([]);
+});

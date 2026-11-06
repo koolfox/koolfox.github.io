@@ -448,6 +448,16 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const vertical=[[.105,.215],[.27,.335],[.335,.395],[.395,.455],[.455,.515],[.515,.575],[.63,.695],[.695,.765],[.82,.89]];
     for(const region of regions){const index=region.block.source_lines[0];const [top,bottom]=vertical[index];const nested=[2,3,4,5,7].includes(index);region.slot=[.05,top,nested?.88:.94,bottom];}
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===6
+      && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
+      && record.source_text_sha256==='f6f11ea7d4965b4c5f5be9dd187202f219133da7b01eba95d2dd2d0728688852' && layout.translation_sha256==='6fdb505d07abe92a5427eb56f908bd21e4797304c7c8a3eb1ab74a9b51e4335a'){
+    const slots={2:[.03,.705,.48,.83],5:[.03,.84,.48,.99],8:[.52,.705,.98,.83],11:[.52,.84,.98,.99]};
+    for(const region of regions){
+      const index=region.block.source_lines[0],slot=slots[index];if(slot)region.slot=slot;
+      if(index===5)region.manualAccents=[{text:'نوبل ۱۹۰۶',color:'#ffc000'},{text:'سلول‌های مستقل',color:'#ffc000'},{text:'نورون',color:'#ffc000'}];
+      if(index===11)region.manualAccents=[{text:'نوبل ۱۹۳۲',color:'#ffc000'},{text:'شلیک همه یا هیچ',color:'#ffc000'}];
+    }
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

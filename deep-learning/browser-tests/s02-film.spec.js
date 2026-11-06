@@ -163,3 +163,19 @@ test('learning motivation slide has a distinct title and statement',async({page}
  await expect(page.locator('.reader-slide-text')).toHaveCount(2);
  const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(n=>n.scrollHeight>n.clientHeight+2||n.scrollWidth>n.clientWidth+2).map(n=>n.textContent));expect(overflow).toEqual([]);
 });
+
+test('mistake-driven questions open and accept an answer on desktop and mobile',async({browser})=>{
+ for(const width of [1440,390]){
+  const context=await browser.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390});
+  try{
+   const page=await context.newPage();await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=19');
+   await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===19);
+   await page.locator('[data-reader-section="questions"]').first().click();
+   const questions=page.frameLocator('[data-reader-tools-frame]').locator('.nb-question');
+   await expect(questions).toHaveCount(2);
+   const first=questions.first();await first.locator('input[type="radio"]').first().check();
+   await first.getByRole('button',{name:'بررسی پاسخ'}).click();
+   await expect(first).toContainText('درست است');
+  }finally{await context.close();}
+ }
+});

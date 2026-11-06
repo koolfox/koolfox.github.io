@@ -690,6 +690,15 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const slots={0:[.03,.08,.98,.22],1:[.03,.46,.54,.52],2:[.03,.52,.54,.58],3:[.03,.58,.54,.63],4:[.03,.63,.54,.70],5:[.03,.70,.54,.76]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];if(i===0)region.font=30;}
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===44
+      && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
+      && record.source_text_sha256==='b2d62cf2778b077bbf87a91d6df2ecdc732366dcec06c0a8628478c527037999'
+      && layout.translation_sha256==='ac4805593a58eb2babc1cd7686cf63262fe622fc5075ccc4333b5b0d743c1303'){
+    const slots={0:[.03,.08,.98,.22],10:[.10,.82,.90,.96]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];if(i===0)region.font=30;
+      if(i===10){region.color='#ffffff';region.manualAccents=[{text:'داوطلب',color:'#ffc000'},{text:'خطی',color:'#ffc000'}];}
+    }
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

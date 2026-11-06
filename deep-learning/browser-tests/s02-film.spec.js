@@ -142,3 +142,16 @@ test('perceptron equations preserve the figure and distinguish output labels fro
   const note=await page.evaluate(async()=>{const config=JSON.parse(document.querySelector('#source-reader-config').textContent),data=await(await fetch(config.translationUrl)).json();return data.pages[15].editorial_notes[0];});expect(note.fa).toContain('برچسب‌های خروجی');await context.close();
  }
 });
+
+test('decision boundary slide preserves the plot and explains its label',async({browser})=>{
+ for(const width of [1440,390]){
+  const context=await browser.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390});
+  const page=await context.newPage();await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=17');
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===17);
+  if(width===390){await page.locator('[data-view-translation]').click();await page.waitForFunction(()=>window.sourceSlideReader?.ready);}
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+  await expect(page.locator('.reader-slide-text[data-source-lines="6"]')).toHaveCSS('transform',/matrix/);
+  const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(n=>n.scrollHeight>n.clientHeight+2||n.scrollWidth>n.clientWidth+2).map(n=>n.textContent));expect(overflow).toEqual([]);
+  const note=await page.evaluate(async()=>{const config=JSON.parse(document.querySelector('#source-reader-config').textContent),data=await(await fetch(config.translationUrl)).json();return data.pages[16].editorial_notes[0];});expect(note.fa).toContain('مرز تصمیم');await context.close();
+ }
+});

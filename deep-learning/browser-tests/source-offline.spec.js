@@ -179,6 +179,22 @@ test('rapid navigation finishes on the latest requested page', async ({ page }) 
  await expect(page.locator('#persian-page')).toHaveAttribute('data-page', '43');
 });
 
+test('rapid reader unload settles in-flight PDF renders and restores history', async ({page}) => {
+ const errors = [];
+ page.on('pageerror', error => errors.push(error.message));
+ const deck = '/deep-learning/terms/spring-2026/s01/slides/';
+ for (let i = 0; i < 5; i++) {
+  await page.goto(deck + '#page=40');
+  await page.waitForFunction(() => window.sourceSlideReader?.ready);
+  await page.locator('[data-next-page]').click();
+  await page.goto('/deep-learning/');
+ }
+ await page.goBack();
+ await page.waitForFunction(() => window.sourceSlideReader?.ready);
+ expect(await page.locator('#persian-page').getAttribute('data-page')).toBeTruthy();
+ expect(errors).toEqual([]);
+});
+
 test('mobile fullscreen and Persian view remain usable after offline reload', async ({ page, context }) => {
  await page.addInitScript(() => { Object.defineProperty(Element.prototype, 'requestFullscreen', { value: undefined, configurable: true }); });
  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=40');

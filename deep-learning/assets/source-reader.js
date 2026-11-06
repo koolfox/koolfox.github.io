@@ -392,7 +392,19 @@ loadSources().then(([document,canonicalDocument,data])=>{
  for(const option of picker.options){if(option.value==='sources')continue;const record=data.pages[Number(option.value)-1];const heading=record.blocks.find(b=>b.kind==='heading')?.fa||record.blocks.find(b=>b.kind!=='not_visible'&&b.fa)?.fa?.split('\n').find(s=>!/^https?:/.test(s))||'';option.textContent=fa(Number(option.value))+(heading?' · '+heading.slice(0,100):'');}
  if(location.hash==='#sources')showReferences(false);else go(page,false);
 }).catch(()=>{progress.hidden=true;message('بارگیری اسلایدها انجام نشد؛ دوباره تلاش کن.',true);$('[data-retry-load]').hidden=false;});
-window.addEventListener('pagehide',event=>{stopPlayback();if(event.persisted)return;closed=true;loadingController.abort();releasePage();serial++;clearTimeout(resizeTimer);task?.cancel();layoutTask?.cancel();loading?.destroy().catch(()=>{});if(canonicalLoading&&canonicalLoading!==loading)canonicalLoading.destroy().catch(()=>{});});
+window.addEventListener('pagehide',event=>{
+ stopPlayback();if(event.persisted)return;
+ closed=true;loadingController.abort();serial++;clearTimeout(resizeTimer);
+ // PDF.js render cancellation settles asynchronously. Destroying its workers
+ // first can race the canvas task during rapid navigation or window close.
+ const renders=[task,layoutTask].filter(Boolean);
+ for(const render of renders)render.cancel();
+ Promise.allSettled(renders.map(render=>render.promise)).then(()=>{
+  releasePage();
+  loading?.destroy().catch(()=>{});
+  if(canonicalLoading&&canonicalLoading!==loading)canonicalLoading.destroy().catch(()=>{});
+ });
+});
 window.sourceSlideReader={openTool(raw,section='lab'){const url=new URL(raw,location.href);if(url.origin!==location.origin||!['http:','https:'].includes(url.protocol)||!['lab','explore','questions','knowledge'].includes(section))throw Error('Invalid slide tool');selectSection(section,url.href);},get page(){return page;},get renderedPage(){return renderedPage;},get pageCount(){return config.pageCount;},get sourceSha256(){return config.sourceSha256;},get ready(){return Boolean(pdf&&payload&&(references||renderedPage===page));}};
 controls();
 syncPanels();

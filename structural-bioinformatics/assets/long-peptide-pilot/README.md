@@ -159,3 +159,44 @@ complete failed run: 0.588778 Å minimum, 44 close pairs and 6 heavy atoms
 outside the box. Its command matches the earlier reproduction command above
 with `--max-evals 1000` and a fresh output directory. The report records the
 exact workflow hash; the failure remains a failure.
+
+## Rigid translation score controls (2026-11-06)
+
+To check whether the independently measured overlaps are reflected in Vina's
+scoring, we scored the first saved million-evaluation pose without optimization,
+then scored exact rigid translations of the same PDBQT by +10, +40 and -40 Å
+along x. All 129 atom coordinates were translated; the independent distance
+calculation uses 103 ligand and 602 receptor heavy atoms. `--autobox` makes a
+ligand-centered scoring box for each input; these are score-only controls, not
+new docking searches or equivalent box-sampling experiments.
+
+| x translation (Å) | Minimum heavy-atom distance (Å) | Pairs <2 Å | Vina intermolecular score (kcal/mol) |
+|---:|---:|---:|---:|
+| 0 | 0.860513 | 45 | 434.717 |
+| +10 | 0.332844 | 183 | 1204.094 |
+| +40 | 16.625914 | 0 | 0.000 |
+| -40 | 21.919987 | 0 | 0.000 |
+
+Vina 1.2.7 exited 0 for all four cases, using `--score_only --autobox --cpu 1
+--seed 42`. The higher overlap control also scores worse, and both separated
+controls report zero intermolecular score to three decimals. This verifies
+behavior for these particular inputs; it does not identify why the bounded
+search returned clashes, prove a software defect, validate the scoring function
+for peptides, or establish biological interaction. These scores are model
+outputs, not measured binding energies. The unchanged pose's 434.717 matches
+the previously recorded local-only log's final intermolecular score to its
+printed precision, but this is not an independent validation of optimization.
+
+`translation-control/final/` preserves the actual translated inputs, full logs,
+commands, SHA-256 hashes, environment and UTC time. The runnable script's SHA-256
+is `8c6864936f2f69c2790a36735e314114d1c22b3c23eba3a37017eae76c3c8b14`.
+Reproduce from the repository root with the already installed Vina and Python;
+the output directory must not exist:
+
+```sh
+/opt/anaconda3/envs/tnf-docking/bin/python structural-bioinformatics/scripts/long_peptide_translation_control.py \
+  --vina /opt/anaconda3/envs/tnf-docking/bin/vina --output-dir /tmp/long-peptide-translation-new
+```
+
+The original receptor includes the native 1–13 fragment and this artificial
+self-derived peptide is not a benchmark; translations do not model unbinding.

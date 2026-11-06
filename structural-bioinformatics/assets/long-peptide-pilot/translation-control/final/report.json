@@ -1,0 +1,95 @@
+{
+  "utc": "2026-11-06T13:38:32.429608+00:00",
+  "platform": "macOS-26.5.1-arm64-arm-64bit",
+  "vina_version": "AutoDock Vina v1.2.7",
+  "vina_sha256": "dbeeececfb8bd6e4da871335d1af5fe95f8c5d34955a7ba328272d4e39131a7b",
+  "receptor_sha256": "609e5609d5c22a88f89872da31cd3bec1eb3542a8e6c31084dd73e879d14a530",
+  "pose_sha256": "b4f9f8c457e97c70d6c0e6d20cdcc266fe2899f4885d432918c5f845fe128b31",
+  "method": "Rigid x translations in angstrom; Vina score_only with autobox, cpu 1, seed 42; no optimization",
+  "cases": [
+    {
+      "dx_angstrom": 0,
+      "ligand_sha256": "b4f9f8c457e97c70d6c0e6d20cdcc266fe2899f4885d432918c5f845fe128b31",
+      "log_sha256": "df730d2bf52d0abb69f8bd506d6f329e96411f08bdd2ae4a60b50fe389df0457",
+      "exit_code": 0,
+      "minimum_heavy_atom_distance_angstrom": 0.8605126379083563,
+      "heavy_atom_pairs_below_2_angstrom": 45,
+      "command": [
+        "/opt/anaconda3/envs/tnf-docking/bin/vina",
+        "--receptor",
+        "/private/tmp/long-peptide-clash-investigation/structural-bioinformatics/assets/long-peptide-pilot/bounded-1000000/receptor.pdbqt",
+        "--ligand",
+        "structural-bioinformatics/assets/long-peptide-pilot/translation-control/final/pose-x+0.pdbqt",
+        "--autobox",
+        "--score_only",
+        "--cpu",
+        "1",
+        "--seed",
+        "42"
+      ]
+    },
+    {
+      "dx_angstrom": 10,
+      "ligand_sha256": "643d26b3043a1b7c299f88bacd045e37fa258ec19b7024bdb67ceb96504ffe86",
+      "log_sha256": "c39985904d1964b4b58ae3b44a3aa89932dd59196f3cc2ab3af90ca683ace5f3",
+      "exit_code": 0,
+      "minimum_heavy_atom_distance_angstrom": 0.33284380721293216,
+      "heavy_atom_pairs_below_2_angstrom": 183,
+      "command": [
+        "/opt/anaconda3/envs/tnf-docking/bin/vina",
+        "--receptor",
+        "/private/tmp/long-peptide-clash-investigation/structural-bioinformatics/assets/long-peptide-pilot/bounded-1000000/receptor.pdbqt",
+        "--ligand",
+        "structural-bioinformatics/assets/long-peptide-pilot/translation-control/final/pose-x+10.pdbqt",
+        "--autobox",
+        "--score_only",
+        "--cpu",
+        "1",
+        "--seed",
+        "42"
+      ]
+    },
+    {
+      "dx_angstrom": 40,
+      "ligand_sha256": "d3bd1f219ff88146d589a76052fe8dc8222d689bb5d3449384e4795e5917d659",
+      "log_sha256": "4a240e077cd4b0c799e2158be1592f694fbee3e97d892fcdced86670937847f9",
+      "exit_code": 0,
+      "minimum_heavy_atom_distance_angstrom": 16.625914380869407,
+      "heavy_atom_pairs_below_2_angstrom": 0,
+      "command": [
+        "/opt/anaconda3/envs/tnf-docking/bin/vina",
+        "--receptor",
+        "/private/tmp/long-peptide-clash-investigation/structural-bioinformatics/assets/long-peptide-pilot/bounded-1000000/receptor.pdbqt",
+        "--ligand",
+        "structural-bioinformatics/assets/long-peptide-pilot/translation-control/final/pose-x+40.pdbqt",
+        "--autobox",
+        "--score_only",
+        "--cpu",
+        "1",
+        "--seed",
+        "42"
+      ]
+    },
+    {
+      "dx_angstrom": -40,
+      "ligand_sha256": "941e103c977ed73768694f2ab91090d08cd2642e42a71b288ad459c4067ae86c",
+      "log_sha256": "0342a4ab0a1ce23d19ccf10806622fe03fdfc1973371ff97324d60f07a466caa",
+      "exit_code": 0,
+      "minimum_heavy_atom_distance_angstrom": 21.91998695255086,
+      "heavy_atom_pairs_below_2_angstrom": 0,
+      "command": [
+        "/opt/anaconda3/envs/tnf-docking/bin/vina",
+        "--receptor",
+        "/private/tmp/long-peptide-clash-investigation/structural-bioinformatics/assets/long-peptide-pilot/bounded-1000000/receptor.pdbqt",
+        "--ligand",
+        "structural-bioinformatics/assets/long-peptide-pilot/translation-control/final/pose-x-40.pdbqt",
+        "--autobox",
+        "--score_only",
+        "--cpu",
+        "1",
+        "--seed",
+        "42"
+      ]
+    }
+  ]
+}

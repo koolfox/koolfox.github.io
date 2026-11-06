@@ -1,11 +1,12 @@
-// Experimental, limited to sessions 1 and 5. Not registered by the site.
+// Experimental, limited to sessions 1, 3, 5 and 13. Not registered by the site.
 const prefix='danna-offline-prototype-';
 const metaName=prefix+'metadata';
 let snapshotBusy=false;
 const markerFor=value=>{
  const url=new URL(value,self.location.origin);
- if(url.pathname==='/deep-learning/animations/convolution-code/')return '/deep-learning/terms/spring-2026/s05/slides/';
- const match=url.pathname.match(/^\/deep-learning\/terms\/spring-2026\/(s01|s05)\/(?:slides|practice)\//);
+ const films={'/deep-learning/animations/backpropagation/':'s03','/deep-learning/animations/convolution/':'s05','/deep-learning/animations/convolution-code/':'s05','/deep-learning/animations/attention/':'s13'};
+ if(films[url.pathname])return `/deep-learning/terms/spring-2026/${films[url.pathname]}/slides/`;
+ const match=url.pathname.match(/^\/deep-learning\/terms\/spring-2026\/(s01|s03|s05|s13)\/(?:slides|practice)\//);
  return match?`/deep-learning/terms/spring-2026/${match[1]}/slides/`:null;
 };
 const hex=bytes=>Array.from(new Uint8Array(bytes),x=>x.toString(16).padStart(2,'0')).join('');

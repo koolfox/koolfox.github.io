@@ -26,7 +26,7 @@ def report(site, manifests):
         required = [film_url, *assets]
         output.append({'film': name, 'session': session, 'required': required,
                        'missing': [url for url in required if url not in included],
-                       'iframe_outside_scope': True})
+                       'iframe_outside_reader_scope': True})
     return output
 
 

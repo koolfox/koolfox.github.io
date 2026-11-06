@@ -26,9 +26,13 @@ def generate(site, output):
         pending = [base, config['translationUrl'],
                    f"/deep-learning/assets/danna/spring-2026/{session}-pages/manifest.json?sha={config['sourceSha256']}",
                    '/deep-learning/models/source-models.json', '/assets/fonts/arad.woff2']
+        films = {'s03': ['backpropagation'], 's05': ['convolution', 'convolution-code'], 's13': ['attention']}
+        for film_id in films.get(session, []):
+            pending.append(f'/deep-learning/animations/{film_id}/')
+            film = (site / f'deep-learning/animations/{film_id}/index.html').read_text(encoding='utf-8')
+            pending.extend(re.findall(r'/deep-learning/assets/media/[^"\s<]+', film))
         if session == 's05':
-            pending.extend(['/deep-learning/animations/convolution-code/',
-                            '/deep-learning/terms/spring-2026/s05/practice/?source-page=27',
+            pending.extend([                            '/deep-learning/terms/spring-2026/s05/practice/?source-page=27',
                             '/deep-learning/assets/python-tools-worker.mjs',
                             '/deep-learning/assets/notebook-worker.mjs',
                             '/deep-learning/assets/notebook_kernel.py',
@@ -37,8 +41,6 @@ def generate(site, output):
             for folder in ('deep-learning/assets/vendor/python-tools',
                            'deep-learning/runtime/neuron-xor/shinylive/pyodide'):
                 pending.extend('/' + str(p.relative_to(site)) for p in sorted((site / folder).rglob('*')) if p.is_file())
-            film = (site / 'deep-learning/animations/convolution-code/index.html').read_text(encoding='utf-8')
-            pending.extend(re.findall(r'/deep-learning/assets/media/convolution-code[^\"\s<]+', film))
         pending += re.findall(r'<(?:script|link|img)\b[^>]*\b(?:src|href)="([^"]+)"', html)
         for directory in ('deep-learning/assets/vendor/pdfjs/cmaps',
                           'deep-learning/assets/vendor/pdfjs/standard_fonts',

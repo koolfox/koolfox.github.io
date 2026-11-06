@@ -22,7 +22,7 @@ try{
  await page.waitForFunction(()=>window.sourceSlideReader?.ready,null,{timeout:60000});
  await page.evaluate(async()=>{
   await navigator.serviceWorker.register('/deep-learning/offline-prototype-worker.js',{scope:'/deep-learning/terms/spring-2026/'});
-  await navigator.serviceWorker.register('/deep-learning/offline-prototype-worker.js',{scope:'/deep-learning/animations/convolution-code/'});
+  for(const film of ['backpropagation','convolution','convolution-code','attention'])await navigator.serviceWorker.register('/deep-learning/offline-prototype-worker.js',{scope:`/deep-learning/animations/${film}/`});
   await navigator.serviceWorker.ready;
   if(!navigator.serviceWorker.controller)await new Promise(resolve=>navigator.serviceWorker.addEventListener('controllerchange',resolve,{once:true}));
  });
@@ -54,22 +54,30 @@ try{
  const manifest05=JSON.parse(await readFile(join(dirname(resolve(process.env.PROTOTYPE_MANIFEST)),'s05.json'),'utf8'));
  const fifth=await snapshot(manifest05.version,manifest05.entries);
  if(!fifth.ok)throw Error('second session snapshot failed: '+JSON.stringify(fifth));
+ for(const [session,slide] of [['s03',69],['s13',21]]){
+  await page.goto(`${origin}/deep-learning/terms/spring-2026/${session}/slides/#page=${slide}`);
+  await page.waitForFunction(n=>window.sourceSlideReader?.ready && window.sourceSlideReader.page===n,slide,{timeout:60000});
+  const candidate=JSON.parse(await readFile(join(dirname(resolve(process.env.PROTOTYPE_MANIFEST)),session+'.json'),'utf8'));
+  const result=await snapshot(candidate.version,candidate.entries);
+  if(!result.ok)throw Error('session snapshot failed '+session+': '+JSON.stringify(result));
+ }
  const cdp=await context.newCDPSession(page);
  await cdp.send('Network.clearBrowserCache');
  await context.setOffline(true);
- await page.goto(origin+'/deep-learning/terms/spring-2026/s05/slides/#page=27');
- await page.waitForFunction(()=>window.sourceSlideReader?.ready && window.sourceSlideReader.page===27,null,{timeout:30000});
- await page.locator('[data-source-interactive="convolution-code"]').click();
- const movie=page.frameLocator('[data-reader-tools-frame]').locator('video');
- await movie.waitFor({state:'visible'});
- await page.frameLocator('[data-reader-tools-frame]').locator('[data-film-time]').first().click();
- const filmController=await movie.evaluate(video=>navigator.serviceWorker.controller?.scriptURL||null);
- if(!filmController?.endsWith('/offline-prototype-worker.js'))throw Error('film is not controlled by prototype worker');
- const filmOffline=await movie.evaluate(video=>Promise.race([
-  new Promise(resolve=>{if(video.readyState>=1)return resolve(true);video.addEventListener('loadedmetadata',()=>resolve(true),{once:true});video.addEventListener('error',()=>resolve(false),{once:true});}),
-  new Promise(resolve=>setTimeout(()=>resolve(false),5000))]));
- if(!filmOffline)throw Error('film not available offline');
- await movie.evaluate(video=>video.play());
+ const films=[['s03',69,'backpropagation'],['s05',27,'convolution'],['s05',27,'convolution-code'],['s13',21,'attention']];
+ for(const [session,slide,id] of films){
+  await page.goto(`${origin}/deep-learning/terms/spring-2026/${session}/slides/#page=${slide}`);
+  await page.waitForFunction(n=>window.sourceSlideReader?.ready && window.sourceSlideReader.page===n,slide,{timeout:30000});
+  await page.locator(`[data-source-interactive="${id}"]`).click();
+  const movie=page.frameLocator('[data-reader-tools-frame]').locator('video');
+  await movie.waitFor({state:'visible'});
+  const filmController=await movie.evaluate(()=>navigator.serviceWorker.controller?.scriptURL||null);
+  if(!filmController?.endsWith('/offline-prototype-worker.js'))throw Error('film is not controlled: '+id);
+  await page.frameLocator('[data-reader-tools-frame]').locator('[data-film-time]').first().click();
+  const available=await movie.evaluate(video=>Promise.race([new Promise(resolve=>{if(video.readyState>=1)return resolve(true);video.addEventListener('loadedmetadata',()=>resolve(true),{once:true});video.addEventListener('error',()=>resolve(false),{once:true});}),new Promise(resolve=>setTimeout(()=>resolve(false),8000))]));
+  if(!available)throw Error('film unavailable offline: '+id);
+  await movie.evaluate(video=>video.play());
+ }
  await page.goto(origin+'/deep-learning/terms/spring-2026/s05/slides/#page=27');
  await page.waitForFunction(()=>window.sourceSlideReader?.ready && window.sourceSlideReader.page===27,null,{timeout:30000});
  await page.locator('[data-page-experiment]').click();
@@ -78,6 +86,6 @@ try{
  await notebook.locator('[data-notebook-cell="0"] .nb-execution').getByText('اجرا شد').waitFor({timeout:60000});
  await page.goto(origin+'/deep-learning/terms/spring-2026/s01/slides/#page=40');
  await page.waitForFunction(()=>window.sourceSlideReader?.ready && window.sourceSlideReader.page===40,null,{timeout:30000});
- console.log(JSON.stringify({snapshot:first.ok,corruptRejected:!second.ok,activePreserved:!duplicate.ok,simulatedQuotaRejected:!quota.ok,simulatedInterruptionRejected:!interrupted.ok,offlineReload:true,entries:entries.length,sessions:['s01','s05'],filmOffline,notebookFirstCellOffline:true,page:40}));
+ console.log(JSON.stringify({snapshot:first.ok,corruptRejected:!second.ok,activePreserved:!duplicate.ok,simulatedQuotaRejected:!quota.ok,simulatedInterruptionRejected:!interrupted.ok,offlineReload:true,entries:entries.length,sessions:['s01','s03','s05','s13'],films:films.map(value=>value[2]),notebookFirstCellOffline:true,page:40}));
  await context.close();
 }finally{await browser.close();server.kill();await unlink(worker).catch(()=>{});}

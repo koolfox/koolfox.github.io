@@ -918,6 +918,16 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===5){region.slot=[.10,.57,.94,.70];region.font=19;}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===72
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='40d0645e91a1dc4ce7cf6f9565703a9f4f71015229f70aa899ada821358efba6'
+      && layout.translation_sha256==='e8900e0e6675bb68863525b0bdf01e528a5ee75e3fce1667e89f8e562d31aec5'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.95,.21];region.font=34;}
+      if(i===1){region.slot=[.05,.34,.95,.47];region.font=22;region.color='#ffffff';region.manualAccents=[{text:'به‌کارگیری آموخته‌ها برای پیشنهاد و نقد پروژه‌های تازه مرتبط با شبکه‌های عصبی و یادگیری عمیق (Deep Learning)',color:'#ffc000'}];}
+      if(i>=3){const top=.47+(i-3)*.057;region.slot=[.10,top,.94,top+.057];region.font=19;}
+    }
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

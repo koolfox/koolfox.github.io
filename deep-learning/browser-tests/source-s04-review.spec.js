@@ -34,3 +34,25 @@ test('slide 34 opens and runs the original hidden-state calculation', async ({ p
   expect(result.prediction).toBe('h');
   expect(result.probabilities[0]).toBeCloseTo(0.419748, 5);
 });
+
+test('RNN agenda pages preserve the source canvas and active topic on both layouts', async ({page}) => {
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({width, height:850});
+    for (const number of [3, 4, 10, 50, 59, 60]) {
+      await page.goto(`/deep-learning/terms/spring-2026/s04/slides/#page=${number}`);
+      await page.waitForFunction(n => window.sourceSlideReader?.ready && window.sourceSlideReader.page === n, number);
+      if (width === 390) {
+        const previous = await page.locator('#persian-page .reader-slide-stage').elementHandle();
+        await page.locator('[data-view-translation]').click();
+        await page.waitForFunction(node => !node.isConnected, previous);
+        await page.waitForFunction(() => window.sourceSlideReader?.ready);
+      }
+      await expect(page.locator('#persian-page')).toHaveAttribute('data-layout', 'source-canvas');
+      const regions = page.locator('#persian-page .reader-slide-text');
+      await expect(regions).toHaveCount(5);
+      const actual = await regions.evaluateAll(nodes => nodes.slice(1).map(node => getComputedStyle(node).color));
+      const bright={3:[0,1,2,3],4:[0],10:[1],50:[2],59:[3],60:[]}[number];
+      expect(actual).toEqual(actual.map((_,index) => bright.includes(index) ? 'rgb(255, 255, 255)' : 'rgb(127, 127, 127)'));
+    }
+  }
+});

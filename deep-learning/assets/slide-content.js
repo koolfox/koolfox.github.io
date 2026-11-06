@@ -957,6 +957,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===1){region.slot=region.block.fa.includes('VPN')?[.56,.25,.94,.34]:[.12,.25,.49,.31];region.font=16;region.align='center';}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===77
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='dcb9f23d0a259de3a1e44ac53604692e94099e470588e5fbe0b5d28c1f08910f'
+      && layout.translation_sha256==='353f5cfd8aa99d06c06da31798f2691d134aaebd9fd2104738c1dcc32269ae6c'){
+    const top=[.10,.26,.40,.54,.60,.65,.70,.75,.87];
+    for(const region of regions){const i=region.block.source_lines[0];region.slot=[i>=4&&i<=7?.10:.05,top[i],.95,top[i]+(i===0?.11:.06)];region.font=i===0?34:i>=4&&i<=7?19:22;}
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

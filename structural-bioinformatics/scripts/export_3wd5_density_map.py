@@ -21,6 +21,10 @@ def sha(path):
 
 
 def export(coefficients, output, retrieved_at_utc=None):
+    if retrieved_at_utc is not None:
+        timestamp = datetime.fromisoformat(retrieved_at_utc.replace("Z", "+00:00"))
+        if timestamp.tzinfo is None or timestamp.utcoffset() != UTC.utcoffset(timestamp):
+            raise ValueError("Retrieval timestamp must include a UTC offset")
     source = Path(coefficients)
     source_hash = sha(source)
     if source_hash != EXPECTED_SHA256:
@@ -46,6 +50,8 @@ def export(coefficients, output, retrieved_at_utc=None):
         raise ValueError("Exported map dimensions did not round-trip")
     if (
         check.axis_positions() != [0, 1, 2]
+        or any(check.header_i32(i) != 0 for i in (5, 6, 7))
+        or any(check.header_float(i) != 0 for i in (50, 51, 52))
         or check.grid.spacegroup != grid.spacegroup
         or not np.allclose(check.grid.unit_cell.parameters, grid.unit_cell.parameters, atol=1e-3)
         or not np.isfinite(np.array(check.grid, copy=False)).all()

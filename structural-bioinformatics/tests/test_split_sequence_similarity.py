@@ -198,3 +198,27 @@ def test_positional_identity_requires_equal_nonempty_sequences():
         MODULE.positional_identity("AA", "A")
     with pytest.raises(ValueError, match="non-empty"):
         MODULE.positional_identity("", "")
+
+
+def test_no_comparable_pairs_is_not_a_pass(tmp_path):
+    rows = rows_for([("train", "AA"), ("validation", "AAA"), ("test", "AAAA")])
+    path = write(tmp_path, rows)
+    report = MODULE.audit(path, similarity_threshold=0.8)
+    section = report["pairwise_sequence_similarity"]
+    assert section["comparisons"] == 0
+    assert section["status"] == "no_comparable_pairs"
+    assert section["similarity_warning_check_passed"] is False
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "scripts/audit_agent_split.py"),
+            "--input",
+            str(path),
+            "--similarity-threshold",
+            "0.8",
+        ],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode == 1

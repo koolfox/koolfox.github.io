@@ -96,7 +96,12 @@ def pairwise_sequence_similarity(records, threshold, max_comparisons):
         "conservative_pair_bound": inspected_bound,
         "violating_cross_split_pairs": len(violations),
         "violating_pairs": violations,
-        "similarity_warning_check_passed": not violations,
+        "status": "no_comparable_pairs"
+        if not comparisons
+        else "warnings"
+        if violations
+        else "no_warnings",
+        "similarity_warning_check_passed": bool(comparisons) and not violations,
     }
 
 

@@ -212,3 +212,23 @@ test('MNIST mobile controls expose real training and the browsable dataset',asyn
  });
  expect(stdout).toContain('PASS real CPU MNIST batch');
 });
+
+test('second lecture majority prompts and notebook run on their source pages',async({browser})=>{
+ test.setTimeout(120000);
+ for(const width of [1440,390]){
+  const context=await browser.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390});const page=await context.newPage();
+  await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=21');await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+  for(const number of [21,22,23,26,29,31]){
+   await page.evaluate(n=>location.hash=`page=${n}`,number);await page.waitForFunction(n=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===n,number);
+   const questions=page.locator('[data-reader-section=questions]');await expect(questions).not.toHaveAttribute('aria-disabled','true');await questions.click();
+   const view=page.frameLocator('[data-reader-tools-frame]');await expect(view.locator('[data-notebook-question]').first()).toBeVisible();expect(await view.locator('input[type=radio]').count()).toBeGreaterThanOrEqual(3);
+   await page.locator('[data-reader-section=slides]').click();
+  }
+  await page.evaluate(()=>location.hash='page=21');await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===21);
+  await expect(page.locator('[data-page-experiment]')).toBeVisible();await page.locator('[data-page-experiment]').click();
+  const view=page.frameLocator('[data-reader-tools-frame]');await view.locator('[data-notebook-run-all]').click();
+  const frame=await (await page.locator('[data-reader-tools-frame]').elementHandle()).contentFrame();await frame.waitForFunction(()=>window.studentNotebook?.record?.ok,null,{timeout:90000});
+  const result=await frame.evaluate(()=>studentNotebook.record.outputs.at(-1).result);expect(result.targets).toEqual([-1,1,1,1,-1,-1,1,-1]);
+  await context.close();
+ }
+});

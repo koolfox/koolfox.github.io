@@ -462,6 +462,123 @@
           }
         }
       ]
+    },
+    {
+      "id": "majority-truth",
+      "title_fa": "جدول هدف اکثریت",
+      "pages": [
+        21,
+        22,
+        23
+      ],
+      "code_file": "s02_majority_truth.py",
+      "prediction_fa": "پیش از اجرا خروجی ردیف‌های علامت سوال را با قانون حداقل دو ۱ پیدا کن.",
+      "limits_fa": "این جدول قانون هدف را نشان می‌دهد؛ هنوز هیچ مدل یا وزنی آموزش ندیده است.",
+      "starter_sha256": "3985278ae3a026202d5ff791dc8f13aa5e36c4af2b2953252ea924e2dbb4fee8",
+      "reference": {
+        "inputs": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "targets": [
+          -1,
+          1,
+          1,
+          1,
+          -1,
+          -1,
+          1,
+          -1
+        ]
+      },
+      "questions": [
+        {
+          "id": "first",
+          "source_kind": "original",
+          "source_page": 21,
+          "prompt_fa": "هدف ورودی [1,0,0] در مدل اکثریت چند است؟",
+          "solution_fa": "فقط یک ورودی برابر 1 است، پس هدف −1 می‌شود.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "−1",
+              "+1",
+              "0"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "second",
+          "source_kind": "original",
+          "source_page": 22,
+          "prompt_fa": "هدف ورودی [1,0,1] در مدل اکثریت چند است؟",
+          "solution_fa": "دو ورودی برابر 1 هستند، پس هدف +1 می‌شود.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "−1",
+              "+1",
+              "0"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "third",
+          "source_kind": "original",
+          "source_page": 23,
+          "prompt_fa": "هدف ورودی [1,1,0] در مدل اکثریت چند است؟",
+          "solution_fa": "دو ورودی برابر 1 هستند، پس هدف +1 می‌شود.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "0",
+              "−1",
+              "+1"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
     }
   ]
 }

@@ -166,3 +166,11 @@ test('session 3 linear-composition heading does not cover the example', async ({
  const [a,b]=await Promise.all([intro.boundingBox(),question.boundingBox()]);
  expect(a.y+a.height).toBeLessThanOrEqual(b.y);
 });
+
+test('session 3 linear function example preserves diagram and separate questions', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=31');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready && sourceSlideReader.page===31);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const labels=page.locator('#persian-page .reader-slide-text');
+ for (const term of ['تابع h1','تابع h2','تابع o1']) await expect(labels.filter({hasText:term})).toBeVisible();
+});

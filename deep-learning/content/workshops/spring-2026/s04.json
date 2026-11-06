@@ -410,6 +410,95 @@
           }
         }
       ]
+    },
+    {
+      "id": "hidden-steps",
+      "title_fa": "محاسبه حالت پنهان و خروجی مثال RNN",
+      "pages": [
+        33,
+        34,
+        35,
+        36
+      ],
+      "code_file": "s04_hidden_steps.py",
+      "starter_sha256": "ba127ef7da7e81f26952400b948db081b7ebced45b14ecafe509184f6588a245",
+      "reference": {
+        "states": [
+          [
+            0.693168,
+            0.899554,
+            0.802118
+          ],
+          [
+            0.936534,
+            0.949104,
+            0.762341
+          ]
+        ],
+        "logits": [
+          1.906075,
+          1.137792,
+          0.956664,
+          1.274228
+        ],
+        "probabilities": [
+          0.419747,
+          0.194682,
+          0.162429,
+          0.223141
+        ],
+        "prediction": "h"
+      },
+      "questions": [
+        {
+          "id": "rows",
+          "source_kind": "original",
+          "source_page": 33,
+          "prompt_fa": "در این مثال چرا ماتریس ورودی سه ردیف دارد؟",
+          "solution_fa": "هر ردیف یک مولفه از حالت پنهان را می‌سازد؛ تعداد ردیف‌ها یک انتخاب طراحی است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "برای سه مولفه حالت پنهان",
+              "برای سه حرف ورودی",
+              "برای سه کلاس خروجی"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "previous",
+          "source_kind": "original",
+          "source_page": 35,
+          "prompt_fa": "در محاسبه مرحله دوم کدام مقدار، اثر تاریخچه را منتقل می‌کند؟",
+          "solution_fa": "حالت پنهان مرحله اول در وزن بازگشتی ضرب می‌شود و به ورودی مرحله دوم اضافه می‌شود.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "حالت پنهان مرحله قبل",
+              "فقط بایاس",
+              "فقط بردار ورودی تازه"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "max",
+          "source_kind": "original",
+          "source_page": 36,
+          "prompt_fa": "پس از Softmax، کدام حرف بیشترین احتمال را دارد؟",
+          "solution_fa": "در ترتیب [h, e, l, o]، احتمال اول حدود 0.41975 و بزرگ‌ترین است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "h",
+              "e",
+              "o"
+            ],
+            "correct_index": 0
+          }
+        }
+      ]
     }
   ]
 }

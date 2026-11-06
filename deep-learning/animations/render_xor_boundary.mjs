@@ -10,7 +10,7 @@ import { execFileSync } from 'node:child_process';
 const folder=await mkdtemp(join(tmpdir(),'xor-boundary-'));
 const browser=await chromium.launch({headless:true,...(process.env.CHROME_PATH?{executablePath:process.env.CHROME_PATH}:{})});
 try{
- const page=await browser.newPage({viewport:{width:1280,height:720},deviceScaleFactor:1});
+ const page=await browser.newPage({viewport:{width:1280,height:720},deviceScaleFactor:1.5});
  const url=pathToFileURL(resolve('deep-learning/animations/xor-boundary.html')).href;
  for(let frame=0;frame<84;frame++){
   await page.goto(`${url}?t=${frame/4}`);await page.evaluate(()=>document.fonts.ready);

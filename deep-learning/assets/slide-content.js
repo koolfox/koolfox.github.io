@@ -664,6 +664,15 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===1){region.color='#ffffff';region.manualAccents=[{text:'در انواع الگوهایی که پرسپترون‌ها (Perceptrons) می‌توانند بازشناسی‌شان را یاد بگیرند، محدودیت‌های بنیادی وجود دارد',color:'#ffc000'}];}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===41
+      && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
+      && record.source_text_sha256==='13b7e29ff24fef2edffe12ce54d7ba54d434537a541d7ecd319cc34d5c7f9310'
+      && layout.translation_sha256==='7d86687217d44e6c57ae1c5f758c5fc8e065fdaa7760b23d48e84f42297e5533'){
+    const slots={0:[.04,.08,.98,.22],1:[.05,.28,.96,.84],12:[.05,.85,.96,.93]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];
+      if(i===1){region.color='#ffffff';region.manualAccents=[{text:'نتیجه‌ها… عموما ناامیدکننده بودند',color:'#ffc000'},{text:'احساس اجبار درمانگرانه',color:'#ffc000'},{text:'زدودن آنچه می‌ترسیدیم نخستین سایه‌های یک سوءبرداشت «کل‌گرایانه» یا «گشتالتی» باشد',color:'#ffc000'}];}
+    }
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

@@ -741,7 +741,7 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
 <link rel="stylesheet" href="{BASE}/assets/vendor/katex/katex.min.css">
 <link rel="stylesheet" href="{BASE}/assets/practice.css{asset_query}">
 <script type="module" src="{BASE}/assets/source-reader.js{asset_query}"></script>{interactives_script}</head>
-<body class="source-reader" data-mobile-view="source" data-reader-section="slides">
+<body class="source-reader" data-course-term="{e(term['id'])}" data-course-session="{e(row['id'])}" data-mobile-view="source" data-reader-section="slides">
 <a class="skip" href="#reader">رفتن به اسلاید و ترجمه</a>
 <header class="reader-header">
 <div class="reader-heading"><a href="{BASE}/terms/{term_id}/">فهرست اسلایدها</a>

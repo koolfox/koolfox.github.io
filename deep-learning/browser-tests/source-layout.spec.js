@@ -383,3 +383,668 @@ test('backward-pass example is readable in the mobile slide view',async({page})=
  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');await expect(page.locator('.reader-slide-background')).toBeVisible();
  await expect(page.locator('.reader-slide-text').filter({hasText:'تابع فعال‌سازی'})).toBeVisible();
 });
+
+test('session 1 title keeps its centered source structure and readable bilingual credit', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=1'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout', 'source-canvas');
+ const regions = page.locator('#persian-page .reader-slide-text');
+ await expect(regions).toHaveCount(4);
+ await expect(regions.nth(0)).toContainText('Neural Networks and Deep Learning');
+ await expect(regions.nth(1)).toContainText('Danna Gurari');
+ await expect(regions.nth(2)).toContainText('University of Colorado Boulder');
+ await expect(regions.nth(3)).toContainText('2026');
+ expect(await regions.evaluateAll(nodes => nodes.every(node => getComputedStyle(node).textAlign === 'center' && node.scrollHeight <= node.clientHeight + 2 && node.scrollWidth <= node.clientWidth + 2))).toBeTruthy();
+});
+
+test('session 1 opening topics and motivation retain source colors', async ({page}) => {
+ const s01='/deep-learning/terms/spring-2026/s01/slides/';
+ for (const number of [2,3,27]) {
+  await page.goto(s01+'#page='+number); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text'); await expect(regions).toHaveCount(5);
+  for(let i=1;i<=4;i++) await expect(regions.nth(i)).toHaveCSS('color',((number===3&&i>1)||(number===27&&i!==2))?'rgb(127, 127, 127)':'rgb(255, 255, 255)');
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+ }
+ await page.goto(s01+'#page=4'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const regions=page.locator('#persian-page .reader-slide-text');await expect(regions).toHaveCount(4);
+ await expect(regions.nth(2)).toHaveCSS('color','rgb(255, 192, 0)');
+ await expect(regions.nth(3).locator('span')).toHaveCSS('color','rgb(255, 255, 255)');
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 meeting summary slide keeps the source image beneath the title', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=13'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
+ const title=page.locator('#persian-page .reader-slide-text');
+ await expect(title).toContainText('Zoom');
+ expect(await title.evaluate(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2)).toBeTruthy();
+});
+
+test('session 1 image titles fit without covering their figures', async ({page}) => {
+ for (const number of [14,19]) {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page='+number); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+  const title=page.locator('#persian-page .reader-slide-text:not(.reader-image-translation)');
+  expect(await title.evaluate(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2)).toBeTruthy();
+  await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
+ }
+});
+
+test('session 1 personal assistants show translated image text in place', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=5'); await ready(page);
+ const translated=page.locator('#persian-page .reader-image-translation');
+ await expect(translated).toHaveCount(4);
+ await expect(translated.nth(0)).toContainText('دستیار هوش مصنوعی شخصی');
+ await expect(translated.nth(1)).toContainText('اطلاعات مکان شما');
+ await expect(translated.nth(2)).toContainText('Gemini');
+ await expect(translated.nth(3)).toContainText('Copilot');
+ expect(await translated.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+ await page.setViewportSize({width:390,height:844});
+ await expect(translated).toHaveCount(4);
+ expect(await translated.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 Gamma example preserves its figure and translated outline', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=22'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
+ const regions=page.locator('#persian-page .reader-slide-text'); await expect(regions).toHaveCount(7);
+ await expect(regions.nth(1)).toContainText('مبانی شبکه‌های عصبی');
+ await expect(regions.nth(6)).toContainText('نتیجهٔ پرامپت');
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 video examples keep their two figures and readable captions', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=21'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const regions=page.locator('#persian-page .reader-slide-text'); await expect(regions).toHaveCount(5);
+ await expect(regions.nth(1)).toHaveCSS('color','rgb(255, 192, 0)');
+ await expect(regions.nth(2)).toHaveCSS('color','rgb(255, 255, 255)');
+ await expect(regions.nth(3)).toHaveCSS('color','rgb(255, 192, 0)');
+ await expect(regions.nth(4)).toHaveCSS('color','rgb(255, 255, 255)');
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 podcast slide keeps the source picture and structured prompt', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=24'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const regions=page.locator('#persian-page .reader-slide-text'); await expect(regions).toHaveCount(6);
+ await expect(regions.nth(1).locator('span')).toHaveCSS('color','rgb(255, 192, 0)');
+ await expect(regions.nth(4)).toContainText('ماشین چگونه یاد می‌گیرد');
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 neural-network motivation keeps the four emphasized statements', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=26'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const regions=page.locator('#persian-page .reader-slide-text'); await expect(regions).toHaveCount(4);
+ for(let i=0;i<4;i++) await expect(regions.nth(i).locator('span')).toHaveCSS('color','rgb(255, 192, 0)');
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 computer history keeps both photos and original timeline', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=28'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const regions=page.locator('#persian-page .reader-slide-text'); await expect(regions).toHaveCount(4);
+ await expect(regions.nth(1)).toHaveCSS('color','rgb(255, 192, 0)');
+ await expect(regions.nth(2)).toContainText('5,000');
+ await expect(regions.nth(3)).toContainText('برنامه‌نویسان');
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 Turing test history preserves the timeline and both illustrations', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=29'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ const regions=page.locator('#persian-page .reader-slide-text'); await expect(regions).toHaveCount(5);
+ await expect(regions.nth(1)).toHaveCSS('color','rgb(255, 192, 0)');
+ await expect(regions.nth(3)).toContainText('پاسخ‌های متنی');
+ await expect(regions.nth(4)).toContainText('Alan Turing');
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 AI origins retain the plaque and separate timeline labels', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=30'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const regions=page.locator('#persian-page .reader-slide-text'); await expect(regions).toHaveCount(5);
+ await expect(regions.filter({hasText:'تولد هوش مصنوعی'})).toHaveCSS('color','rgb(255, 192, 0)');
+ await expect(regions.filter({hasText:'نخستین ماشین'})).toHaveCSS('color','rgb(255, 255, 255)');
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 Dartmouth proposal keeps the complete quotation and source frame', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=31'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const regions=page.locator('#persian-page .reader-slide-text'); await expect(regions).toHaveCount(6);
+ const quote=regions.filter({hasText:'پیشنهاد کارگاه:'});
+ await expect(quote).toContainText('کالج دارتموث');
+ await expect(quote).toContainText('پیشرفتی چشمگیر');
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 human intelligence question retains its timeline and senses image', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=32'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const regions=page.locator('#persian-page .reader-slide-text'); await expect(regions).toHaveCount(5);
+ await expect(regions.filter({hasText:'کدام هوش انسانی'})).toBeVisible();
+ await expect(regions.filter({hasText:'تولد هوش مصنوعی'})).toHaveCSS('color','rgb(255, 192, 0)');
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 learning origins preserves definition and diagram', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=33'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const regions=page.locator('#persian-page .reader-slide-text');
+ await expect(regions).toHaveCount(8);
+ await expect(regions.filter({hasText:'آرتور ساموئل'})).toBeVisible();
+ await expect(regions.filter({hasText:'توانایی یادگیری'})).toBeVisible();
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 writing assistant keeps image with translated text in place', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=7'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ const overlay=page.locator('#persian-page .reader-image-translation');
+ await expect(overlay).toHaveCount(4);
+ await expect(overlay.nth(0)).toContainText('هوش مصنوعی');
+ await expect(overlay.nth(1)).toContainText('بدون قضاوت');
+ await expect(overlay.nth(2)).toContainText('رایگان');
+ expect(await overlay.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 legal research slide keeps the figure and Persian description', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=8'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ const overlay=page.locator('#persian-page .reader-image-translation');
+ await expect(overlay).toHaveCount(3);
+ await expect(overlay.nth(1)).toContainText('پژوهش حقوقی');
+ await expect(overlay.nth(2)).toContainText('قوانین ایالتی');
+ expect(await overlay.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 developer assistant preserves and translates the prompt', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=9'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ const overlay=page.locator('#persian-page .reader-image-translation');
+ await expect(overlay).toHaveCount(4);
+ await expect(overlay.nth(0)).toContainText('ایده‌هایتان');
+ await expect(overlay.nth(2)).toContainText('علاقه‌مندان تاریخ');
+ expect(await overlay.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 tutor screenshot retains translated headline and explanation', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=11'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ const overlay=page.locator('#persian-page .reader-image-translation');
+ await expect(overlay).toHaveCount(4);
+ await expect(overlay.nth(0)).toContainText('۳۰ روز');
+ await expect(overlay.nth(3)).toContainText('توضیح گام‌به‌گام');
+ expect(await overlay.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 clinical documentation screenshot retains its example', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=14'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ const overlay=page.locator('#persian-page .reader-image-translation');
+ await expect(overlay).toHaveCount(4);
+ await expect(overlay.nth(0)).toContainText('مستندسازی بالینی');
+ await expect(overlay.nth(1)).toContainText('DeepScribe');
+ expect(await overlay.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 appearance editor translates screenshot while keeping poster grid', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=16'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ const overlay=page.locator('#persian-page .reader-image-translation');
+ await expect(overlay).toHaveCount(3);
+ await expect(overlay.nth(1)).toContainText('جلوه‌های بصری هالیوود');
+ await expect(overlay.nth(2)).toContainText('300 برابر');
+ expect(await overlay.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 accent example preserves image and translates the visible claim', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=17'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ const overlay=page.locator('#persian-page .reader-image-translation');
+ await expect(overlay).toHaveCount(4);
+ await expect(overlay.nth(0)).toContainText('لهجه');
+ await expect(overlay.nth(1)).toContainText('CSAT');
+ expect(await overlay.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 companion slide translates quote and keeps attribution', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=19'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ const overlay=page.locator('#persian-page .reader-image-translation');
+ await expect(overlay).toHaveCount(4);
+ await expect(overlay.nth(0)).toContainText('Replika');
+ await expect(overlay.nth(2)).toContainText('خلق‌وخو');
+ await expect(overlay.nth(3)).toContainText('Denise Valenciano');
+ expect(await overlay.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 coloring example translates headline and keeps source figures', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=20'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ const overlay=page.locator('#persian-page .reader-image-translation');
+ await expect(overlay).toHaveCount(1);
+ await expect(overlay.first()).toContainText('صفحه رنگ‌آمیزی');
+ expect(await overlay.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 coding assistant translates headline without covering code', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=6'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ const overlay=page.locator('#persian-page .reader-image-translation');
+ await expect(overlay).toHaveCount(2);
+ await expect(overlay.nth(0)).toContainText('توسعه‌دهندگان');
+ await expect(overlay.nth(1)).toContainText('Copilot');
+ expect(await overlay.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 medical assistant image retains interface and translated labels', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=10'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ const overlay=page.locator('#persian-page .reader-image-translation');
+ await expect(overlay).toHaveCount(2);
+ await expect(overlay.nth(0)).toContainText('پرسش پزشکی');
+ await expect(overlay.nth(1)).toContainText('اطلاعات پزشکی');
+ expect(await overlay.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 hand-written rules restores the flowchart and its Persian labels', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=34'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+ const overlay=page.locator('#persian-page .reader-image-translation');
+ await expect(overlay).toHaveCount(5);
+ await expect(overlay.nth(0)).toContainText('مطالعه مسئله');
+ await expect(overlay.nth(2)).toContainText('ارزیابی');
+ await expect(overlay.nth(3)).toContainText('تحلیل خطاها');
+ expect(await overlay.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 perception examples preserve the source images and questions', async ({page}) => {
+ for(const number of [35,36,37]){
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page='+number); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text'); await expect(regions).toHaveCount(2);
+  if(number===35)await expect(regions.nth(1)).toContainText('شخصی در تصویر');
+  else {await expect(regions.nth(1)).toContainText('خط‌های افقی');await expect(regions.nth(1)).toHaveCSS('color','rgb(255, 192, 0)');}
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+ }
+});
+
+test('session 1 limits of manual rules preserve separated points', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=38'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const regions=page.locator('#persian-page .reader-slide-text'); await expect(regions).toHaveCount(3);
+ await expect(regions.nth(1)).toContainText('مجموعه‌ای کامل');
+ await expect(regions.nth(2)).toContainText('ناخودآگاه');
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 data selection keeps each translated label under its example', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=39'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const regions=page.locator('#persian-page .reader-slide-text'); await expect(regions).toHaveCount(8);
+ await expect(regions.nth(1).locator('span')).toHaveCSS('color','rgb(255, 192, 0)');
+ const labels=await regions.evaluateAll(nodes=>nodes.slice(4).map(node=>node.textContent));
+ expect(labels).toEqual(['مودار','مودار','بی‌مو','مودار']);
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 training and test split retains labeled examples and colors', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=40'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const regions=page.locator('#persian-page .reader-slide-text'); await expect(regions).toHaveCount(10);
+ await expect(regions.filter({hasText:'داده آموزش'})).toHaveCSS('color','rgb(255, 0, 0)');
+ await expect(regions.filter({hasText:'داده آزمون'})).toHaveCSS('color','rgb(0, 253, 255)');
+ const labels=await regions.evaluateAll(nodes=>nodes.map(node=>node.textContent).filter(text=>text==='مودار'||text==='بی‌مو'));
+ expect(labels).toEqual(['مودار','مودار','بی‌مو','مودار']);
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 training and generalization examples retain their source diagrams', async ({page}) => {
+ for(const number of [41,42,43]){
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page='+number); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:number===41?'داده آموزش':'داده آزمون'})).toBeVisible();
+  await expect(regions.filter({hasText:number===41?'خطای پیش‌بینی':'خطای تعمیم'}).locator('span')).toHaveCSS('color','rgb(255, 192, 0)');
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+ }
+});
+
+test('session 1 1986 origins restores the nested networks diagram', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=44'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const regions=page.locator('#persian-page .reader-slide-text');
+ await expect(regions.filter({hasText:'راهبرد یادگیری'})).toHaveCSS('color','rgb(255, 192, 0)');
+ await expect(regions.filter({hasText:'Neural Networks'})).toBeVisible();
+ await expect(regions.filter({hasText:'Artificial Intelligence'})).toBeVisible();
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 hand-crafted feature diagram retains separated Persian labels', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=45'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const regions=page.locator('#persian-page .reader-slide-text');
+ await expect(regions.filter({hasText:'Feature Extraction'})).toBeVisible();
+ await expect(regions.filter({hasText:'Prediction'})).toBeVisible();
+ await expect(regions.filter({hasText:'ویژگی‌های دست‌ساز'})).toBeVisible();
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 feature engineering limitation keeps source diagram and emphasis', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=46'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const regions=page.locator('#persian-page .reader-slide-text');
+ await expect(regions.filter({hasText:'Feature Extraction'})).toBeVisible();
+ await expect(regions.filter({hasText:'ویژگی‌های دست‌ساز'})).toBeVisible();
+ await expect(regions.filter({hasText:'چالش‌برانگیز'})).toHaveCSS('color','rgb(255, 192, 0)');
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 representation-learning diagram retains both paths and scope', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=47'); await ready(page);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const regions=page.locator('#persian-page .reader-slide-text');
+ await expect(regions.filter({hasText:'Representation Learning'})).toBeVisible();
+ await expect(regions.filter({hasText:'محدوده درس'})).toHaveCSS('color','rgb(255, 192, 0)');
+ await expect(regions.filter({hasText:'Feature Extraction'})).toHaveCount(2);
+ expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 neural network timeline retains its graph and translated labels', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=48'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'موج ۳'})).toHaveCSS('color','rgb(255, 192, 0)');
+  await expect(regions.filter({hasText:'آزمون تورینگ'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 popularity question fits the source slide', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=49'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const text=page.locator('#persian-page .reader-slide-text');
+  await expect(text).toContainText('Deep Learning');
+  expect(await text.evaluate(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2)).toBeTruthy();
+});
+
+test('session 1 agenda highlights the current topic', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=50'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'ماشین چگونه یاد می‌گیرد'})).toHaveCSS('color','rgb(255, 255, 255)');
+  await expect(regions.filter({hasText:'کاربردها'})).toHaveCSS('color','rgb(127, 127, 127)');
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 neural network ingredients retain the image and colored terms', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=51'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'داستان عاشقانه'})).toBeVisible();
+  await expect(regions.filter({hasText:'پردازنده'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 architecture emphasis follows the next source slide', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=52'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'پردازنده'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 model design exercise preserves the class prompts', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=53'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'سهمی'})).toHaveCSS('color','rgb(255, 64, 255)');
+  await expect(regions.filter({hasText:'منحنی دلخواه'})).toHaveCSS('color','rgb(255, 255, 0)');
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 architecture scope preserves its timeline', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=54'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'پیشرفت انباشتی'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 data emphasis retains the original illustration', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=55'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'داستان عاشقانه'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 audio example keeps its waveform and topic highlight', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=56'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'صوت'})).toHaveCSS('color','rgb(255, 192, 0)');
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 image example keeps both input prompts and pixel diagram', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=57'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'تصویر'})).toHaveCSS('color','rgb(255, 192, 0)');
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 video data example retains temporal diagrams', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=58'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'ویدیو'})).toHaveCSS('color','rgb(255, 192, 0)');
+  await expect(regions.filter({hasText:'۱ ساعت'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 text input example preserves its reference image', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=59'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'متن (Text)'})).toHaveCSS('color','rgb(255, 192, 0)');
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 multimodal overview keeps all data types and images', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=60'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'چندوجهی'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 dataset sources retain the complete nested list', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=61'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'Opendatamonitor.eu'})).toBeVisible();
+  await expect(regions.filter({hasText:'Google Dataset Search'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 processor emphasis retains the original illustration', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=62'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'پردازنده'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 GPU comparison retains its three illustrations', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=63'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'GPU'})).toHaveCSS('color','rgb(255, 192, 0)');
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 summary preserves the image and key ingredients', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=64'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'جمع‌بندی'})).toBeVisible();
+  await expect(regions.filter({hasText:'پردازنده'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 challenge retains its source images and quotation', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=65'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'کسی پلک زد'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 agenda highlights course logistics', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=66'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'امور اجرایی درس'})).toHaveCSS('color','rgb(255, 255, 255)');
+  await expect(regions.filter({hasText:'ماشین چگونه'})).toHaveCSS('color','rgb(127, 127, 127)');
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 course resources keep the source screenshot and callouts', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=67'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'سرفصل درس'})).toHaveCSS('color','rgb(255, 192, 0)');
+  await expect(regions.filter({hasText:'ضبط سخنرانی‌ها'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 first objective preserves source emphasis and hierarchy', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=68'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'شناخت و تحلیل'})).toHaveCSS('color','rgb(255, 192, 0)');
+  await expect(regions.filter({hasText:'Transformer'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 second objective restores source canvas and training topics', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=69'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'LoRA'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 third objective restores practical learning hierarchy', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=70'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'PyTorch'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 fourth objective preserves responsible AI emphasis', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=71'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'Responsible AI'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 fifth objective preserves project activities', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=72'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'بازخورد سازنده'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 course schedule retains all four source columns', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=73'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  for(const label of ['نورون‌های مصنوعی','نزول گرادیان','ترنسفورمرها','دیدگاه‌های صنعت']) await expect(regions.filter({hasText:label})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 course comparison keeps source hierarchy and emphasis', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=74'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'Reinforcement Learning'})).toBeVisible();
+  await expect(regions.filter({hasText:'مبانی'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 prerequisites retain the source slide hierarchy', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=75'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'برنامه‌نویسی'})).toBeVisible();
+  await expect(regions.filter({hasText:'Machine Learning'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 textbooks retain covers and separate availability notes', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=76'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'VPN'})).toBeVisible();
+  await expect(regions.filter({hasText:'به رایگان'})).toHaveCount(2);
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 assignments retain nested project items and reading emphasis', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=77'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'گزارش نهایی'})).toBeVisible();
+  await expect(regions.filter({hasText:'مطالب خواندنی'})).toHaveCSS('color','rgb(255, 192, 0)');
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 grading table shows Persian row labels on source table', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=78'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'تکلیف‌های آزمایشگاهی'})).toBeVisible();
+  await expect(regions.filter({hasText:'پروژه نهایی'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 grading policies retain source emphasis and numerical details', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=79'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'48 ساعت'})).toBeVisible();
+  await expect(regions.filter({hasText:'بازبینی نمره'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});
+
+test('session 1 grading table exposes exact semantic values', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=78'); await ready(page);
+  const table=page.locator('#persian-page table');
+  await expect(table).toBeVisible();
+  await expect(table.locator('tbody tr')).toHaveCount(3);
+  await expect(table.locator('tbody tr').nth(0)).toContainText('25%');
+  await expect(table.locator('tbody tr').nth(1)).toContainText('45%');
+  await expect(table.locator('tbody tr').nth(2)).toContainText('30%');
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+});
+
+test('session 1 experience timeline preserves the four eras and source images', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=83'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'دانشجوی دکتری'})).toBeVisible();
+  await expect(regions.filter({hasText:'پژوهشگر پسادکتری'})).toBeVisible();
+  await expect(regions.filter({hasText:'استادیار'})).toBeVisible();
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

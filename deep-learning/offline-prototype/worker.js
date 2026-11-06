@@ -1,8 +1,13 @@
-// Experimental, limited to the first Spring 2026 session. Not registered by the site.
+// Experimental, limited to sessions 1 and 5. Not registered by the site.
 const prefix='danna-offline-prototype-';
 const metaName=prefix+'metadata';
 let snapshotBusy=false;
-const marker='/deep-learning/terms/spring-2026/s01/slides/';
+const markerFor=value=>{
+ const url=new URL(value,self.location.origin);
+ if(url.pathname==='/deep-learning/animations/convolution-code/')return '/deep-learning/terms/spring-2026/s05/slides/';
+ const match=url.pathname.match(/^\/deep-learning\/terms\/spring-2026\/(s01|s05)\/slides\//);
+ return match?`/deep-learning/terms/spring-2026/${match[1]}/slides/`:null;
+};
 const hex=bytes=>Array.from(new Uint8Array(bytes),x=>x.toString(16).padStart(2,'0')).join('');
 self.addEventListener('install',event=>event.waitUntil(self.skipWaiting()));
 self.addEventListener('activate',event=>event.waitUntil(self.clients.claim()));
@@ -13,6 +18,8 @@ self.addEventListener('message',event=>{
  snapshotBusy=true;
  event.waitUntil((async()=>{
   const {entries,id}=event.data;
+  const marker=event.source?.url&&markerFor(event.source.url);
+  if(!marker)throw Error('unsupported session');
   if(!/^[a-f0-9]{64}$/.test(id)||!Array.isArray(entries)||!entries.length)throw Error('invalid manifest');
   const canonical=JSON.stringify(entries.map(({sha256,url})=>({sha256,url})));
   if(hex(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(canonical)))!==id)throw Error('manifest identity mismatch');
@@ -44,6 +51,9 @@ self.addEventListener('fetch',event=>{
  if(request.method!=='GET'||url.origin!==self.location.origin||url.pathname.endsWith('.pdf')||request.headers.has('range'))return;
  event.respondWith((async()=>{
   try{return await fetch(request);}catch{
+   const client=event.clientId?await self.clients.get(event.clientId):null;
+   const marker=request.mode==='navigate'?markerFor(request.url):client?.url&&markerFor(client.url);
+   if(!marker)return Response.error();
    const metadata=await caches.open(metaName);
    const pointer=await metadata.match(new Request(new URL(marker,self.location.origin)));
    if(!pointer)return Response.error();

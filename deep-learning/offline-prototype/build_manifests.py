@@ -26,6 +26,10 @@ def generate(site, output):
         pending = [base, config['translationUrl'],
                    f"/deep-learning/assets/danna/spring-2026/{session}-pages/manifest.json?sha={config['sourceSha256']}",
                    '/deep-learning/models/source-models.json', '/assets/fonts/arad.woff2']
+        if session == 's05':
+            pending.append('/deep-learning/animations/convolution-code/')
+            film = (site / 'deep-learning/animations/convolution-code/index.html').read_text(encoding='utf-8')
+            pending.extend(re.findall(r'/deep-learning/assets/media/convolution-code[^\"\s<]+', film))
         pending += re.findall(r'<(?:script|link|img)\b[^>]*\b(?:src|href)="([^"]+)"', html)
         for directory in ('deep-learning/assets/vendor/pdfjs/cmaps',
                           'deep-learning/assets/vendor/pdfjs/standard_fonts',

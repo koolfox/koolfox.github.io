@@ -2,7 +2,7 @@ import { chromium, devices } from '@playwright/test';
 import { createHash } from 'node:crypto';
 import { copyFile, readFile, unlink } from 'node:fs/promises';
 import { spawn } from 'node:child_process';
-import { resolve, join } from 'node:path';
+import { resolve, join, dirname } from 'node:path';
 
 const site=resolve(process.env.PROTOTYPE_SITE || '');
 if(!process.env.PROTOTYPE_SITE)throw Error('Set PROTOTYPE_SITE to a disposable built site');
@@ -21,7 +21,7 @@ try{
  await page.goto(origin+'/deep-learning/terms/spring-2026/s01/slides/#page=40');
  await page.waitForFunction(()=>window.sourceSlideReader?.ready,null,{timeout:60000});
  await page.evaluate(async()=>{
-  await navigator.serviceWorker.register('/deep-learning/offline-prototype-worker.js',{scope:'/deep-learning/terms/spring-2026/s01/'});
+  await navigator.serviceWorker.register('/deep-learning/offline-prototype-worker.js',{scope:'/deep-learning/terms/spring-2026/'});
   await navigator.serviceWorker.ready;
   if(!navigator.serviceWorker.controller)await new Promise(resolve=>navigator.serviceWorker.addEventListener('controllerchange',resolve,{once:true}));
  });
@@ -48,9 +48,28 @@ try{
  if(quota.ok||!quota.error.includes('QuotaExceededError'))throw Error('quota failure not handled');
  const interrupted=await snapshot(manifestId(quotaEntries),quotaEntries,10,'AbortError');
  if(interrupted.ok||!interrupted.error.includes('AbortError'))throw Error('interruption not handled');
+ await page.goto(origin+'/deep-learning/terms/spring-2026/s05/slides/#page=27');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready && window.sourceSlideReader.page===27,null,{timeout:60000});
+ const manifest05=JSON.parse(await readFile(join(dirname(resolve(process.env.PROTOTYPE_MANIFEST)),'s05.json'),'utf8'));
+ const fifth=await snapshot(manifest05.version,manifest05.entries);
+ if(!fifth.ok)throw Error('second session snapshot failed: '+JSON.stringify(fifth));
+ const beforeTools=new Set(urls);
+ await page.locator('[data-source-interactive="convolution-code"]').click();
+ await page.locator('[data-reader-tools-frame]').waitFor({state:'visible'});
+ await page.waitForTimeout(2500);
+ const included05=new Set(manifest05.entries.map(entry=>new URL(entry.url,origin).href));
+ const toolMissing=[...urls].filter(url=>!beforeTools.has(url)&&!included05.has(url));
+ if(toolMissing.length)throw Error('missing observed tool dependencies: '+toolMissing.join(', '));
  await context.setOffline(true);
- await page.reload();
+ await page.goto(origin+'/deep-learning/terms/spring-2026/s05/slides/#page=27');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready && window.sourceSlideReader.page===27,null,{timeout:30000});
+ await page.locator('[data-source-interactive="convolution-code"]').click();
+ const movie=page.frameLocator('[data-reader-tools-frame]').locator('video');
+ await movie.waitFor({state:'visible'});
+ await movie.evaluate(video=>video.play());
+ await movie.evaluate(video=>new Promise((resolve,reject)=>{if(video.readyState>=2)return resolve();video.addEventListener('loadeddata',resolve,{once:true});video.addEventListener('error',()=>reject(Error('offline movie failed')),{once:true});}));
+ await page.goto(origin+'/deep-learning/terms/spring-2026/s01/slides/#page=40');
  await page.waitForFunction(()=>window.sourceSlideReader?.ready && window.sourceSlideReader.page===40,null,{timeout:30000});
- console.log(JSON.stringify({snapshot:first.ok,corruptRejected:!second.ok,activePreserved:!duplicate.ok,simulatedQuotaRejected:!quota.ok,simulatedInterruptionRejected:!interrupted.ok,offlineReload:true,entries:entries.length,page:40}));
+ console.log(JSON.stringify({snapshot:first.ok,corruptRejected:!second.ok,activePreserved:!duplicate.ok,simulatedQuotaRejected:!quota.ok,simulatedInterruptionRejected:!interrupted.ok,offlineReload:true,entries:entries.length,sessions:['s01','s05'],toolDependenciesMissing:toolMissing.map(value=>new URL(value).pathname),page:40}));
  await context.close();
 }finally{await browser.close();server.kill();await unlink(worker).catch(()=>{});}

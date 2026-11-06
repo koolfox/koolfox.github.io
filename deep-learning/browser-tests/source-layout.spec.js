@@ -991,3 +991,12 @@ test('session 1 prerequisites retain the source slide hierarchy', async ({page})
   await expect(regions.filter({hasText:'Machine Learning'})).toBeVisible();
   expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 textbooks retain covers and separate availability notes', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=76'); await ready(page);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+  const regions=page.locator('#persian-page .reader-slide-text');
+  await expect(regions.filter({hasText:'VPN'})).toBeVisible();
+  await expect(regions.filter({hasText:'به رایگان'})).toHaveCount(2);
+  expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

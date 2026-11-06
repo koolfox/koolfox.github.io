@@ -948,6 +948,15 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && layout.translation_sha256==='e3bbaab7acbbc3eba807c7d8b6e322badf8304436ff18342fa7d243a02ffd567'){
     for(const region of regions){const i=region.block.source_lines[0];if(i===0){region.slot=[.05,.06,.95,.25];region.font=32;}else{const top=.49+(i-2)*.075;region.slot=[.05,top,.94,top+.07];region.font=23;}}
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===76
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='b38ccde06ed46820c245a7e33621daa298644dd44bc9f0ac937a828b553fee55'
+      && layout.translation_sha256==='ac4ab84da881cfcafb301f42b5bc5d6dc6cc4551f8cb3756f4c28328c86f5a79'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.05,.10,.95,.21];region.font=32;}
+      if(i===1){region.slot=region.block.fa.includes('VPN')?[.56,.25,.94,.34]:[.12,.25,.49,.31];region.font=16;region.align='center';}
+    }
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

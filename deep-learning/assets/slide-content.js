@@ -611,6 +611,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===2){region.slot=[.05,.26,.96,.33];region.font=18;region.manualAccents=[{text:'غیرخطی',color:'#ffc000'}];}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===32
+      && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
+      && record.source_text_sha256==='b201815716b1b07e7d6c081dbccc009402b464ec963270656759e5bf555b703f'
+      && layout.translation_sha256==='d578c46b3e4b88e91bf28c90584f4084bac7fcced39d2a51443c4ac033de6bf2'){
+    const slots={0:[.05,.06,.96,.235],2:[.05,.26,.97,.32],3:[.05,.33,.97,.39],5:[.15,.42,.53,.47],19:[.15,.47,.68,.52],14:[.535,.59,.98,.65],15:[.535,.65,.98,.75],17:[.535,.75,.98,.80],18:[.535,.81,.98,.87]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];if(i===0)region.font=29;else if(i===2||i===3)region.font=17;else if(slots[i])region.font=14;if(i===2){region.color='#ffffff';region.manualAccents=[{text:'مشتق‌پذیر',color:'#ffc000'},{text:'بهینه‌سازی',color:'#ffc000'}];}if(i===3)region.manualAccents=[{text:'سطح خطا',color:'#ffc000'}];}
+  }
   const xorLayouts={
     8:['d2b3197385ac54cba5e2883e08b575286ecb53ec32490248714c327d28b2f53b','414db0665fe15478a7298705f8437c61179a99157138f11dc87c6f4df357d677'],
     9:['0c34d94aedceba75167565b32f6a1aef6444728377f7c21ad3a0701f165a4e00','84e1ebe3a8d6fdd6ba5126dff88fc0cbdcd3d7ed8ab30e8aebdb215a07798ab9'],

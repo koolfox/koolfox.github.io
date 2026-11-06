@@ -174,3 +174,13 @@ test('session 3 linear function example preserves diagram and separate questions
  const labels=page.locator('#persian-page .reader-slide-text');
  for (const term of ['تابع h1','تابع h2','تابع o1']) await expect(labels.filter({hasText:term})).toBeVisible();
 });
+
+test('session 3 optimization slide keeps the plot and separated labels', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=32');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready && sourceSlideReader.page===32);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const labels=page.locator('#persian-page .reader-slide-text');
+ await expect(labels.filter({hasText:'چرا مشتق‌پذیر'})).toHaveCSS('color','rgb(255, 255, 255)');
+ await expect(labels.filter({hasText:'سطح خطا'}).locator('.reader-emphasis')).toHaveCSS('color','rgb(255, 192, 0)');
+ await expect(labels.filter({hasText:'نزول گرادیان'})).toBeVisible();
+});

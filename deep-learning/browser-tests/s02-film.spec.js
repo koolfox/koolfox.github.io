@@ -458,3 +458,17 @@ test('motivation quotation stays complete',async({browser})=>{
   }finally{await context.close();}
  }
 });
+
+test('perceptron context preserves diagram and both statements',async({browser})=>{
+ for(const width of [1440,390]){
+  const context=await browser.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390});
+  try{
+   const page=await context.newPage();await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=42');
+   await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===42);
+   if(width===390)await page.locator('[data-view-translation]').click();
+   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+   await expect(page.locator('#persian-page')).toContainText('چشم‌اندازهای ناتمام');
+   const overflow=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.filter(node=>node.scrollHeight>node.clientHeight+2||node.scrollWidth>node.clientWidth+2).map(node=>node.textContent));expect(overflow).toEqual([]);
+  }finally{await context.close();}
+ }
+});

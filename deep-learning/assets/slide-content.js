@@ -673,6 +673,16 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===1){region.color='#ffffff';region.manualAccents=[{text:'نتیجه‌ها… عموما ناامیدکننده بودند',color:'#ffc000'},{text:'احساس اجبار درمانگرانه',color:'#ffc000'},{text:'زدودن آنچه می‌ترسیدیم نخستین سایه‌های یک سوءبرداشت «کل‌گرایانه» یا «گشتالتی» باشد',color:'#ffc000'}];}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===42
+      && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
+      && record.source_text_sha256==='7b67d25d5a025f811ae28c89eed9c6fe23421b58264486f7df049dd79e681305'
+      && layout.translation_sha256==='7d15ad0b75141351b0aeda9277c9c4457bc4eeaab2deadc8035af1da826fac21'){
+    const slots={0:[.04,.08,.98,.22],1:[.04,.25,.96,.35],2:[.04,.79,.96,.95]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];
+      if(i===1){region.color='#ffffff';region.manualAccents=[{text:'پرسپترون‌های تعمیم‌پذیر کارآمد',color:'#ffc000'}];}
+      if(i===2){region.color='#ffffff';region.manualAccents=[{text:'ناتمام',color:'#ffc000'}];}
+    }
+  }
   return {reason: null, regions, layout, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

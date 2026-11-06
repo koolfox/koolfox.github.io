@@ -21,7 +21,9 @@ DEFAULT_MAX_COMPARISONS = 100_000
 
 def positional_identity(sequence_a, sequence_b):
     """Fraction of positions with identical residues; not an alignment score."""
-    return sum(a == b for a, b in zip(sequence_a, sequence_b, strict=False)) / len(sequence_a)
+    if not sequence_a or len(sequence_a) != len(sequence_b):
+        raise ValueError("Positional identity requires non-empty sequences of equal length")
+    return sum(a == b for a, b in zip(sequence_a, sequence_b, strict=True)) / len(sequence_a)
 
 
 def pairwise_sequence_similarity(records, threshold, max_comparisons):

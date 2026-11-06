@@ -191,3 +191,10 @@ def test_cap_applies_before_same_split_quadratic_work(tmp_path):
     rows = rows_for([("train", "AAAA"), ("train", "AAAC"), ("train", "AAAD")])
     with pytest.raises(ValueError, match="Comparison cap exceeded"):
         MODULE.audit(write(tmp_path, rows), similarity_threshold=0.5, max_comparisons=2)
+
+
+def test_positional_identity_requires_equal_nonempty_sequences():
+    with pytest.raises(ValueError, match="equal length"):
+        MODULE.positional_identity("AA", "A")
+    with pytest.raises(ValueError, match="non-empty"):
+        MODULE.positional_identity("", "")

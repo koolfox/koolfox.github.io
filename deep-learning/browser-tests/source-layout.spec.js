@@ -1027,3 +1027,14 @@ test('session 1 grading policies retain source emphasis and numerical details', 
   await expect(regions.filter({hasText:'بازبینی نمره'})).toBeVisible();
   expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('session 1 grading table exposes exact semantic values', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=78'); await ready(page);
+  const table=page.locator('#persian-page table');
+  await expect(table).toBeVisible();
+  await expect(table.locator('tbody tr')).toHaveCount(3);
+  await expect(table.locator('tbody tr').nth(0)).toContainText('25%');
+  await expect(table.locator('tbody tr').nth(1)).toContainText('45%');
+  await expect(table.locator('tbody tr').nth(2)).toContainText('30%');
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+});

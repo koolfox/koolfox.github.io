@@ -967,7 +967,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===78
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='3e6672c8e90af769505a90237127f2bc27368343fc4a4d4291e6c38c66310f52'
-      && layout.translation_sha256==='7002688b84393303c2ee12e63edbe4890dec1a3353c307e181362a4d4af8c6cb'){
+      && layout.translation_sha256==='40d8fec58c879396b42b249bddc7699a5f8f33ee07edf5ef6f874e13198f4239'){
     for(const region of regions){region.slot=[.05,.10,.95,.21];region.font=32;}
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===79
@@ -981,7 +981,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===78
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='3e6672c8e90af769505a90237127f2bc27368343fc4a4d4291e6c38c66310f52'
-      && layout.translation_sha256==='7002688b84393303c2ee12e63edbe4890dec1a3353c307e181362a4d4af8c6cb'){
+      && layout.translation_sha256==='40d8fec58c879396b42b249bddc7699a5f8f33ee07edf5ef6f874e13198f4239'){
     imageTranslations=[
       {rect:[.44,.41,.80,.47],text:'درصد نمره نهایی درس',background:'#fff',color:'#000',font:21,align:'center'},
       {rect:[.20,.50,.43,.56],text:'مجموعه مسئله‌ها',background:'#fff',color:'#000',font:19,align:'center'},

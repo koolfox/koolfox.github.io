@@ -59,8 +59,13 @@ def main():
     parser.add_argument("--size", type=float, nargs=3, required=True, metavar=("X", "Y", "Z"))
     parser.add_argument("--receptor-preparer", required=True)
     parser.add_argument("--vina", required=True)
+    parser.add_argument(
+        "--max-evals", type=int, default=0, help="Vina evaluations per search; 0 uses its heuristic"
+    )
     parser.add_argument("--output-dir", type=Path, required=True)
     args = parser.parse_args()
+    if args.max_evals < 0:
+        parser.error("--max-evals must be nonnegative")
     fasta_hash = None
     sequence_ids = {}
     if args.fasta:
@@ -107,6 +112,7 @@ def main():
         "inspector_sha256": sha(PROJECT / "src/peptide_lab/receptor_input.py"),
         "model_chemistry": "linear L, N+/C-, Asp/Glu -, Lys/Arg +, neutral His, reduced Cys",
         "sampling": "one ETKDGv3 conformer; Vina seed 42, CPU 1, exhaustiveness 2",
+        "vina_max_evals_per_run": args.max_evals,
         "limitations": [
             "Only one selected chain; no cofactors, waters, ligands or alternate conformations",
             "Receptor protonation, side chains, loops, assembly "
@@ -197,6 +203,8 @@ def main():
                 "2",
                 "--num_modes",
                 "3",
+                "--max_evals",
+                str(args.max_evals),
             ]
             for axis, center, size in zip("xyz", args.center, args.size, strict=True):
                 command += ["--center_" + axis, str(center), "--size_" + axis, str(size)]

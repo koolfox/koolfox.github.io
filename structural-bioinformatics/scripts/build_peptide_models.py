@@ -42,7 +42,11 @@ def build(sequence, seed=42):
     params = AllChem.ETKDGv3()
     params.randomSeed = seed
     if AllChem.EmbedMolecule(molecule, params) != 0:
-        raise ValueError("Conformer generation failed")
+        # Larger peptides can fail distance-geometry initialization. Retry with
+        # the same seed and random starting coordinates, still failing closed.
+        params.useRandomCoords = True
+        if AllChem.EmbedMolecule(molecule, params) != 0:
+            raise ValueError("Conformer generation failed")
     if not AllChem.MMFFHasAllMoleculeParams(molecule):
         raise ValueError("MMFF94 parameters unavailable")
     if AllChem.MMFFOptimizeMolecule(molecule, maxIters=10000 if len(sequence) > 12 else 1000) != 0:
@@ -67,7 +71,8 @@ def main():
         "seed": 42,
         "chemistry": "linear L residues; free N+ and C-; Asp/Glu -, Lys/Arg +; "
         "neutral histidine; reduced cysteine; no caps or disulfides",
-        "method": "one ETKDGv3 conformer, MMFF94 optimization; "
+        "method": "one ETKDGv3 conformer (random-coordinate retry on embedding failure), "
+        "MMFF94 optimization; "
         "maximum 10000 iterations for length 13, otherwise 1000",
         "limitations": "fixed protonation and one conformer are not docking validation",
         "candidates": [],

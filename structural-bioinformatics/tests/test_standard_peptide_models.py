@@ -61,3 +61,42 @@ def test_thirteen_residue_pilot_builds_a_three_dimensional_conformer():
         if atom.GetPDBResidueInfo() is not None
     }
     assert residue_numbers == set(range(1, 14))
+
+
+def test_ubiquitin_fragment_builds_and_prepares_for_docking():
+    meeko = pytest.importorskip("meeko")
+    molecule, charge = models.build("MQIFVKTLTGKTI")
+    assert charge == 2
+    assert molecule.GetNumConformers() == 1
+    setups = meeko.MoleculePreparation().prepare(molecule)
+    assert len(setups) == 1
+    pdbqt, ok, error = meeko.PDBQTWriterLegacy.write_string(setups[0])
+    assert ok, error
+    assert "TORSDOF" in pdbqt
+
+
+def test_embedding_retries_with_random_coordinates(monkeypatch):
+    embed = models.AllChem.EmbedMolecule
+    attempts = []
+
+    def fail_first(molecule, params):
+        attempts.append((params.useRandomCoords, params.randomSeed))
+        return -1 if len(attempts) == 1 else embed(molecule, params)
+
+    monkeypatch.setattr(models.AllChem, "EmbedMolecule", fail_first)
+    molecule, _ = models.build("AC")
+    assert molecule.GetNumConformers() == 1
+    assert attempts == [(False, 42), (True, 42)]
+
+
+def test_embedding_reports_failure_after_retry(monkeypatch):
+    attempts = []
+
+    def fail(molecule, params):
+        attempts.append(params.useRandomCoords)
+        return -1
+
+    monkeypatch.setattr(models.AllChem, "EmbedMolecule", fail)
+    with pytest.raises(ValueError, match="Conformer generation failed"):
+        models.build("AC")
+    assert attempts == [False, True]

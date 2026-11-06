@@ -23,6 +23,7 @@ from rdkit import Chem, rdBase
 
 PROJECT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT / "src"))
+from peptide_lab.pdbqt_torsions import inspect_torsions  # noqa: E402
 from peptide_lab.receptor_input import inspect_pdb  # noqa: E402
 
 spec = importlib.util.spec_from_file_location(
@@ -137,6 +138,7 @@ def main():
         "workflow_sha256": sha(Path(__file__)),
         "model_builder_sha256": sha(PROJECT / "scripts/build_peptide_models.py"),
         "inspector_sha256": sha(PROJECT / "src/peptide_lab/receptor_input.py"),
+        "torsion_inspector_sha256": sha(PROJECT / "src/peptide_lab/pdbqt_torsions.py"),
         "model_chemistry": "linear L, N+/C-, Asp/Glu -, Lys/Arg +, neutral His, reduced Cys",
         "sampling": "one ETKDGv3 conformer; Vina seed 42, CPU 1, exhaustiveness 2",
         "vina_max_evals_per_run": args.max_evals,
@@ -213,6 +215,9 @@ def main():
                 raise ValueError(f"Ligand preparation failed: {error}")
             ligand = directory / "ligand.pdbqt"
             ligand.write_text(pdbqt)
+            row["ligand_sha256"] = sha(ligand)
+            row["torsion_diagnostic"] = inspect_torsions(pdbqt)
+            save()
             pose = directory / "poses.pdbqt"
             command = [
                 args.vina,

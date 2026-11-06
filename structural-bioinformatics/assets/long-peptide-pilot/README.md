@@ -200,3 +200,40 @@ the output directory must not exist:
 
 The original receptor includes the native 1–13 fragment and this artificial
 self-derived peptide is not a benchmark; translations do not model unbinding.
+
+## Torsion complexity diagnostic (2026-11-06)
+
+The actual `bounded-1000000/MQIFVKTLTGKTI/ligand.pdbqt` declares
+`TORSDOF 57`. A direct offline audit counts 57 `BRANCH` and 57 matching,
+properly nested `ENDBRANCH` records. Its SHA-256 is
+`95f77fa164dc841c0b5455cc524a1600e5f3c62fade6488e2a99ece67493aa31`.
+These are distinct reported quantities: TORSDOF is a declared value; branch
+records describe the torsion tree. Their equality here does not establish that
+all possible PDBQT chemistry must have equal values, nor does this count
+validate stereochemistry, conformer sampling, or biological activity.
+
+The workflow now records both counts, their comparison and the ligand hash
+before launching Vina, so the diagnostic survives a later docking failure.
+Malformed, missing, duplicate or negative TORSDOF records and malformed or
+incorrectly nested branch records produce explicit errors. A count mismatch is
+reported for review, not used as an automatic rejection: format- or
+chemistry-specific conventions can affect its interpretation. The diagnostic is
+not a full PDBQT or chemical validator and has no optional numerical size gate.
+
+A fresh real run with the documented 1000-evaluation command and Vina 1.2.7
+recorded the same ligand hash and 57/57 counts in
+`torsion-workflow-report.json`; its original clash screen still failed at
+0.588778 Å and 44 heavy-atom pairs below 2 Å. This run used the revised workflow
+and inspector hashes recorded in that report; its unmodified report is retained,
+while its other artifacts remain in `/private/tmp/long-peptide-torsion-report-1106`.
+The earlier reports are historical and were not rewritten. The new test checks
+the retained report against the earlier real ligand by hash and independently
+recounts its records; synthetic cases exercise invalid and inconsistent inputs.
+
+Ravindranath et al., [AutoDockFR (2015), cross-docking experiments](https://pmc.ncbi.nlm.nih.gov/articles/PMC4667975/),
+describe a hard-coded 32-rotatable-bond limit for **AutoDock**, and state that
+**AutoDock Vina has no implementation limit on the number of rotatable bonds it
+can search**. The number 32 is therefore not a Vina acceptance threshold here.
+Greater search dimensionality is a complexity consideration, not a demonstrated
+cause of the observed clashes; this diagnostic cannot determine that cause or
+show that a search has sampled the pose space adequately.

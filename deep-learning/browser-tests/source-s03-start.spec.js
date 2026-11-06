@@ -137,3 +137,12 @@ test('session 3 retains network structure and the highlighted historical obstacl
   await expect(accents.first()).toHaveCSS('color','rgb(255, 192, 0)');
  }
 });
+
+test('session 3 historical training slide retains all three accounts', async ({page}) => {
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=26');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready && sourceSlideReader.page===26);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ const labels=page.locator('#persian-page .reader-slide-text');
+ for (const name of ['Rosenblatt','Werbos','LeCun and Parker']) await expect(labels.filter({hasText:name})).toBeVisible();
+ await expect(labels.filter({hasText:'روش تصحیح خطای پس‌انتشاری'}).locator('.reader-emphasis').first()).toHaveCSS('color','rgb(255, 192, 0)');
+});

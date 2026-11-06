@@ -135,7 +135,7 @@ async function paintPersianLayout(source,canonicalSource,id,selected){
   targets.forEach((target,number)=>{const [l,t,r,b]=target.line.rect;if(x0>=l-.004&&x1<=r+.004&&y0>=t-.004&&y1<=b+.004){selectedOps.add(index);covered.add(number);}});
  }
  // Missing browser-font ink bounds can still be proved by a unique complete glyph sequence.
- const key=value=>value.normalize('NFKC').replace(/[\s\u0000]/g,'');
+ const key=value=>value.normalize('NFKC').replace(/\ufffe/g,'-').replace(/[\s\u0000]/g,'');
  const glyphs=value=>Array.isArray(value)?value.map(glyphs).join(''):(value&&typeof value==='object'&&typeof value.unicode==='string'?value.unicode:'');
  let stream='';const runs=[];
  for(let index=0;index<list.fnArray.length;index++)if(textOps.has(list.fnArray[index])){

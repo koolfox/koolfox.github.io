@@ -297,6 +297,30 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     region.slot = [left,top,Math.max(right,region.rect[2]),Math.max(bottom,region.rect[3])];
   }
   // Reviewed placements for the four consecutive gradient-descent diagrams.
+  if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===26
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='9d5930cab1aa34127bf92484723905d0ccaab9703e996e0f2c2410b807039b63'
+      && layout.translation_sha256==='f9040e8b5708c91c9f829727fd824b0dcc115e39ac633f4e0053f57f82cd3186') {
+    for (const region of regions) {
+      const index=region.block.source_lines[0];
+      if(index===1){region.slot=[.05,.23,.97,.31];region.font=19;region.manualAccents=[{text:'tanh',color:'#ffc000'}];}
+      if(index===2){region.slot=[.08,.31,.97,.39];region.font=19;}
+    }
+  }
+  // Keep the longer Persian caption above the unrolled RNN figure.
+  const s04CaptionReview = {
+    19:['a001823222275e73cf0a5b3ccab0df575dc507fde195f7bffcee0a23d5b103ae','af9b1f02985b90f015d4474fa5ccc464703ce6099c79b17c50a38349e7e1a03e'],
+    16:['5605488fd9bd2cd7352a205b14ac64ecf37b6827dec615023844f0810851e872','d72366e8f7c87c51feef6a199f079b060b27b4b77ec0910d047d37d2db209516'],
+    24:['8e4ae230d6a1eae89defb6b041d9c3860127b7f38380d1d360d577098648f14d','73d324917f54b73ee472be6f6b769acba976a0e836d67d1f6b0c173a08e992cf'],
+    25:['8e4ae230d6a1eae89defb6b041d9c3860127b7f38380d1d360d577098648f14d','73d324917f54b73ee472be6f6b769acba976a0e836d67d1f6b0c173a08e992cf'],
+  }[record.number];
+  if (s04CaptionReview && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256===s04CaptionReview[0] && layout.translation_sha256===s04CaptionReview[1]) {
+    for (const region of regions) if (region.block.fa.startsWith('• ')) {
+      region.slot=[.05,.23,.97,.34]; region.font=record.number===19?21:23;
+    }
+  }
   // Both hashes bind these coordinates to the exact source text and translation.
   const reviewed = {
     39:['e99475b68b4d829815dc80e4ff71d0bd1f2ab3dac640d392fd945288a6303f4b','79b1d56908f4d2a69815eb118de60754e9b30ecd7a132bc7803e7466d5b70fc8'],

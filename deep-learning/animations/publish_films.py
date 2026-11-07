@@ -79,6 +79,7 @@ def main():
             'scene': scene})
     # This film has its own render script and source-specific metadata.
     published.append(json.loads((ROOT / 'animations/convolution-code.record.json').read_text()))
+    published.append(json.loads((ROOT / 'animations/rnn-parity.record.json').read_text()))
     published.append(json.loads((ROOT / 'animations/train-test.record.json').read_text()))
     published.append(json.loads((ROOT / 'animations/capacity-boundary.record.json').read_text()))
     (ROOT / 'animations/manifest.json').write_text(json.dumps({'schema_version': 1, 'films': published}, ensure_ascii=False, indent=2) + '\n')

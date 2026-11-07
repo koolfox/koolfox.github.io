@@ -804,6 +804,7 @@ def build(output, root=ROOT):
         "source-reader.js",
         "slide-offline-cache.js",
         "reader-fullscreen.js",
+        "s01-first-page-689c5542412903e7.jpg",
         "slide-content.js",
         "source-reader.css",
         "vazirmatn-slide.woff2",

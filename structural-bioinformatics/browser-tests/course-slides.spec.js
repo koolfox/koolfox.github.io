@@ -2,6 +2,51 @@ import { test, expect } from '@playwright/test';
 
 const root = '/structural-bioinformatics/';
 
+for (const width of [390, 1280]) {
+  test(`assembly choice explains every answer at ${width}px`, async ({page}) => {
+    await page.setViewportSize({width, height:844});
+    const errors = []; page.on('pageerror', error => errors.push(error.message));
+    await page.goto(root + 'assets/course-slides.html?topic=12');
+    await expect(page.locator('#lesson-deck')).toHaveAttribute('aria-busy', 'false');
+    const index = await page.locator('#slide-select option[data-kind=assembly-choice]').getAttribute('value');
+    await page.locator('#slide-select').selectOption(index);
+    const slide = page.locator('#lesson-slide section:visible');
+    const button = slide.getByRole('button', {name:'بررسی انتخاب'});
+    await button.click();
+    await expect(slide.getByRole('status')).toContainText('ابتدا یک گزینه');
+    for (const [choice, expected] of [['asu', 'فقط یک نسخه'], ['assembly', 'به تنهایی عملکرد را ثابت نمی‌کند'], ['neighbors', 'هر همسایه شریک زیستی']]) {
+      await page.locator('#assembly-choice').selectOption(choice);
+      await expect(slide.getByRole('status')).toBeEmpty();
+      await button.click();
+      await expect(slide.getByRole('status')).toContainText(expected);
+    }
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
+    expect(errors).toEqual([]);
+  });
+}
+
+test('the crystallography exercise explains each model choice on mobile', async ({page}) => {
+  await page.setViewportSize({width:390,height:844});
+  await page.goto(root + 'assets/course-slides.html?topic=11');
+  await expect(page.locator('#lesson-deck')).toHaveAttribute('aria-busy', 'false');
+  const index = await page.locator('#slide-select option[data-kind=structure-interpretation]').getAttribute('value');
+  await page.locator('#slide-select').selectOption(index);
+  const slide = page.locator('#lesson-slide section:visible');
+  await slide.getByRole('button', {name:'بررسی انتخاب'}).click();
+  await expect(slide.getByRole('status')).toContainText('ابتدا یک گزینه');
+  await page.locator('#structure-choice').selectOption('a');
+  await slide.getByRole('button', {name:'بررسی انتخاب'}).click();
+  await expect(slide.getByRole('status')).toContainText('مختصات حلقه وجود ندارد');
+  await page.locator('#structure-choice').selectOption('b');
+  await expect(slide.getByRole('status')).toBeEmpty();
+  await slide.getByRole('button', {name:'بررسی انتخاب'}).click();
+  await expect(slide.getByRole('status')).toContainText('به‌تنهایی کافی نیست');
+  await page.locator('#structure-choice').selectOption('either');
+  await slide.getByRole('button', {name:'بررسی انتخاب'}).click();
+  await expect(slide.getByRole('status')).toContainText('اطلاعات یکسانی ندارند');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
+});
+
 test('the course opens a slide view of its own general lesson', async ({page}) => {
   await page.goto(root + 'course.html?topic=1');
   const link = page.locator('#course-slide-link');

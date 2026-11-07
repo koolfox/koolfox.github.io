@@ -212,3 +212,113 @@ test('MNIST mobile controls expose real training and the browsable dataset',asyn
  });
  expect(stdout).toContain('PASS real CPU MNIST batch');
 });
+
+test('lesson one activity draws on the source figure with pointer and keyboard',async({browser})=>{
+ for(const width of [1440,390]){
+  const context=await browser.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390});
+  const page=await context.newPage();
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=53');
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===53);
+  const toggle=page.locator('[data-capacity-toggle]');await expect(toggle).toBeVisible();await toggle.click();
+  const area=page.locator('.capacity-overlay rect[role=application]');await expect(area).toBeVisible();
+  const box=await area.boundingBox();expect(box).not.toBeNull();
+  for(const mode of ['line','parabola','curve']){
+   await page.locator(`[data-capacity-mode="${mode}"]`).click();
+   await page.mouse.move(box.x+box.width*.25,box.y+box.height*.3);await page.mouse.down();
+   await page.mouse.move(box.x+box.width*.7,box.y+box.height*.7,{steps:6});await page.mouse.up();
+   await expect(page.locator(`[data-boundary="${mode}"]`)).toHaveAttribute('d',/^M .+/);
+  }
+  await page.getByRole('button',{name:'پاک کردن',exact:true}).click();
+  await expect(page.locator('[data-boundary=line]')).toHaveAttribute('d','');
+  await page.locator('[data-capacity-mode=line]').click();await area.focus();await page.keyboard.press('Enter');await page.keyboard.press('ArrowRight');await page.keyboard.press('ArrowDown');await page.keyboard.press('Enter');
+  await expect(page.locator('[data-boundary=line]')).toHaveAttribute('d',/^M .+ L .+/);
+  await page.locator('[data-next-page]').click();await expect(toggle).toBeHidden();await expect(page.locator('.capacity-overlay')).toBeHidden();
+  await context.close();
+ }
+});
+
+test('lesson one page 53 notebook runs its editable boundary equations',async({page})=>{
+ test.setTimeout(120000);
+ await page.goto('/deep-learning/terms/spring-2026/s01/practice/?source-page=53#code');
+ await page.locator('[data-notebook-run-all]').click();
+ await expect.poll(()=>page.evaluate(()=>window.studentNotebook?.record?.ok),{timeout:90000}).toBe(true);
+ const result=await page.evaluate(()=>studentNotebook.record.outputs.at(-1).result);
+ expect(result).toEqual({x:[-2,-1,0,1,2],line:[-2,-1,0,1,2],parabola:[4,1,0,1,4]});
+});
+
+test('lesson one source questions open on their matching pages',async({page})=>{
+ for(const [number,expected] of [[32,'دیدن'],[35,'قاعده'],[36,'موازی'],[37,'موازی'],[42,'برچسب'],[43,'ضربدر'],[49,'محبوبیت'],[53,'نمادهای'],[57,'خاکستری'],[65,'ارزیابی'],[83,'خوراکی یا سمی'],[84,'خوراکی یا سمی']]){
+  await page.goto(`/deep-learning/terms/spring-2026/s01/practice/?source-page=${number}#questions`);
+  const questions=page.locator('[data-notebook-question]');await expect(questions.first()).toBeVisible();
+  await expect(questions.filter({hasText:expected}).first()).toBeVisible();
+  expect(await questions.locator('input[type=radio]').count()).toBeGreaterThanOrEqual(2);
+ }
+});
+
+test('lesson one questions remain usable in presentation and mobile views',async({browser})=>{
+ test.setTimeout(120000);
+ const numbers=[32,35,36,37,39,40,41,42,43,45,49,53,56,57,58,59,60,65,83,84];
+ for(const [width,present] of [[1440,true],[390,true],[390,false]]){
+  const context=await browser.newContext({viewport:{width,height:844},isMobile:width===390,hasTouch:width===390});
+  const page=await context.newPage();await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=32');
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+  if(present){await page.locator('[data-source-only-toggle]').click();await expect(page.locator('body')).toHaveAttribute('data-presenting','true');}
+  for(const number of numbers){
+   await page.evaluate(n=>location.hash=`page=${n}`,number);
+   await page.waitForFunction(n=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===n,number);
+   const questions=page.locator('[data-reader-section=questions]');await expect(questions).toBeVisible();await expect(questions).not.toHaveAttribute('aria-disabled','true');await questions.click();
+   const frame=page.frameLocator('[data-reader-tools-frame]');await expect(frame.locator('[data-notebook-question]').first()).toBeVisible();
+   expect(await frame.locator('input[type=radio]').count()).toBeGreaterThanOrEqual(2);
+   await page.locator('[data-reader-section=slides]').click();await page.waitForFunction(n=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===n,number);
+  }
+  await page.evaluate(()=>location.hash='page=53');await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===53);
+  await page.locator('[data-capacity-toggle]').click();const area=page.locator('.capacity-overlay rect[role=application]');const box=await area.boundingBox();expect(box).not.toBeNull();
+  await page.mouse.move(box.x+box.width*.2,box.y+box.height*.3);await page.mouse.down();await page.mouse.move(box.x+box.width*.8,box.y+box.height*.7,{steps:5});await page.mouse.up();
+  const line=page.locator('[data-boundary=line]');await expect(line).toHaveAttribute('d',/^M .+ L .+/);
+  await page.locator('[data-reader-section=questions]').click();await expect(page.frameLocator('[data-reader-tools-frame]').locator('[data-notebook-question]').first()).toBeVisible();
+  await page.locator('[data-reader-section=slides]').click();await expect(line).toHaveAttribute('d',/^M .+ L .+/);
+  await context.close();
+ }
+});
+
+test('session one film opens from its relevant slide and plays',async({page})=>{
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=40');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+ await page.locator('[data-source-interactive="train-test"]').click();
+ const film=page.frameLocator('[data-reader-tools-frame]');
+ const video=film.locator('video');
+ await film.getByRole('button',{name:'آموزش',exact:true}).click();
+ await expect.poll(()=>video.evaluate(element=>element.currentTime)).toBeGreaterThanOrEqual(5.9);
+ await video.evaluate(element=>element.play());
+ await expect.poll(()=>video.evaluate(element=>element.currentTime)).toBeGreaterThan(6.1);
+ expect(await video.evaluate(element=>element.error)).toBeNull();
+});
+
+test('lesson one boundary film stays available beside the slide, questions and notebook',async({browser})=>{
+ test.setTimeout(120000);
+ for(const width of [1440,390]){
+  const context=await browser.newContext({viewport:{width,height:900},isMobile:width===390,hasTouch:width===390});
+  const page=await context.newPage();await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=53');await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+  await page.locator('[data-source-only-toggle]').click();await page.locator('[data-capacity-toggle]').click();
+  await expect(page.locator('.capacity-overlay')).toBeVisible();await page.locator('[data-source-interactive=capacity-boundary]').click();
+  let film=page.frameLocator('[data-reader-tools-frame]');let video=film.locator('video');await expect(video).toBeVisible();
+  await film.getByRole('button',{name:'نمونه کد',exact:true}).click();await expect.poll(()=>video.evaluate(v=>v.currentTime)).toBeGreaterThanOrEqual(14);
+  await video.evaluate(v=>v.play());await expect.poll(()=>video.evaluate(v=>v.currentTime)).toBeGreaterThan(14.3);expect(await video.evaluate(v=>v.error)).toBeNull();
+  await page.locator('[data-reader-section=questions]').click();await expect(page.frameLocator('[data-reader-tools-frame]').locator('[data-notebook-question]').first()).toBeVisible();
+  await page.locator('[data-reader-section=slides]').click();await expect(page.locator('.capacity-overlay')).toBeVisible();await page.locator('[data-page-experiment]').click();
+  const notebook=page.frameLocator('[data-reader-tools-frame]');await notebook.locator('.nb-film summary').click();film=notebook.frameLocator('[data-capacity-film]');video=film.locator('video');await expect(video).toBeVisible();
+  const editor=notebook.locator('[data-notebook-code]').first();await editor.click();await editor.fill('x = 2\n');
+  await expect(notebook.locator('.nb-film-note')).toContainText('کد تغییر کرده');await context.close();
+ }
+});
+
+test('lesson one training notebook and film open on their five matching slides',async({page})=>{
+ test.setTimeout(120000);
+ for(const number of [39,40,41,42,43]){
+  await page.goto(`/deep-learning/terms/spring-2026/s01/slides/#page=${number}`);await page.waitForFunction(n=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===n,number);
+  await expect(page.locator('[data-page-experiment]')).toBeVisible();await page.locator('[data-page-experiment]').click();
+  const notebook=page.frameLocator('[data-reader-tools-frame]');await expect(notebook.locator('[data-notebook-run-all]')).toBeVisible();
+  await notebook.locator('.nb-film summary').click();const film=notebook.frameLocator('[data-lesson-one-film="train-test"]');await expect(film.locator('video')).toBeVisible();
+  if(number===40){await notebook.locator('[data-notebook-run-all]').click();await expect.poll(()=>notebook.locator('[data-notebook-output]').count(),{timeout:90000}).toBeGreaterThan(0);}
+ }
+});

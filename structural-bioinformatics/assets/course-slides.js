@@ -90,6 +90,48 @@ function evidenceExercise() {
   });
   section.append(button, status); return section;
 }
+function structureInterpretationExercise() {
+  const section = element('section'); section.dataset.kind = 'structure-interpretation';
+  section.append(element('h2', 'کدام مدل برای این پرسش مناسب‌تر است؟'));
+  section.append(element('p', 'مثال فرضی: می‌خواهیم فاصله را در یک حلقه بررسی کنیم. هر دو مدل سازه و حالت مولکولی مناسب دارند. مدل A تفکیک‌پذیری ۱٫۸ آنگستروم دارد، اما حلقه در آن مدل نشده است. مدل B با تفکیک‌پذیری ۲٫۵ آنگستروم، حلقه را دارد و پشتیبانی محلی آن قابل بررسی است.'));
+  const label = element('label', 'انتخاب شما برای شروع بررسی حلقه'); label.htmlFor = 'structure-choice';
+  const select = element('select'); select.id = label.htmlFor;
+  [['', 'انتخاب کنید'], ['a', 'مدل A'], ['b', 'مدل B'], ['either', 'هر دو به یک اندازه']].forEach(([value, text]) => { const option = element('option', text); option.value = value; select.append(option); });
+  const button = element('button', 'بررسی انتخاب'); button.type = 'button';
+  const feedback = element('p'); feedback.setAttribute('role', 'status'); feedback.setAttribute('aria-live', 'polite');
+  select.addEventListener('change', () => { feedback.textContent = ''; });
+  button.addEventListener('click', () => {
+    const answers = {
+      '': 'ابتدا یک گزینه انتخاب کنید.',
+      a: 'دوباره بررسی کنید: در A مختصات حلقه وجود ندارد؛ عدد کلی کوچک‌تر جای اطلاعات محلی را نمی‌گیرد.',
+      b: 'انتخاب مناسبی برای شروع است: در B حلقه مدل شده است. پیش از گزارش فاصله، نقشه، حالت‌های جایگزین و اعتبارسنجی همان محل را بررسی کنید؛ وجود مختصات به‌تنهایی کافی نیست.',
+      either: 'دوباره بررسی کنید: A برای حلقه مورد نظر مختصاتی ندارد، پس دو مدل برای این پرسش اطلاعات یکسانی ندارند.'
+    };
+    feedback.textContent = answers[select.value];
+  });
+  section.append(label, select, button, feedback); return section;
+}
+function assemblyExercise() {
+  const section = element('section'); section.dataset.kind = 'assembly-choice';
+  section.append(element('h2', 'کدام فایل برای بررسی رابط مناسب است؟'));
+  section.append(element('p', 'در این مثال فرضی، فایل واحد نامتقارن یک زنجیره دارد. رکورد توضیح می‌دهد که مجموعه زیستی پیشنهادی از دو نسخه همین زنجیره با یک تبدیل ساخته می‌شود. هدف، بررسی رابط میان دو نسخه است.'));
+  const label = element('label', 'انتخاب شما'); label.htmlFor = 'assembly-choice';
+  const select = element('select'); select.id = label.htmlFor;
+  [['', 'انتخاب کنید'], ['asu', 'فقط فایل واحد نامتقارن'], ['assembly', 'فایل مجموعه زیستی پیشنهادی'], ['neighbors', 'همه همسایه‌های بلور']].forEach(([value, text]) => { const option = element('option', text); option.value = value; select.append(option); });
+  const button = element('button', 'بررسی انتخاب'); button.type = 'button';
+  const feedback = element('p'); feedback.setAttribute('role', 'status'); feedback.setAttribute('aria-live', 'polite');
+  select.addEventListener('change', () => { feedback.textContent = ''; });
+  button.addEventListener('click', () => {
+    const answers = {
+      '': 'ابتدا یک گزینه انتخاب کنید.',
+      asu: 'دوباره بررسی کنید: در فایل فرضی فقط یک نسخه هست و رابط دو نسخه دیده نمی‌شود.',
+      assembly: 'برای شروع مناسب است: دو نسخه در فایل پیشنهادی هستند. شناسه زنجیره‌ها، تبدیل و شواهد مجموعه را بررسی کنید؛ این انتخاب به تنهایی عملکرد را ثابت نمی‌کند.',
+      neighbors: 'دوباره بررسی کنید: نزدیک بودن در بلور به تنهایی نشان نمی‌دهد هر همسایه شریک زیستی است.'
+    };
+    feedback.textContent = answers[select.value];
+  });
+  section.append(label, select, button, feedback); return section;
+}
 function reverseComplementExercise() {
   const section = element('section'); section.dataset.kind = 'reverse-complement';
   section.append(element('h2', 'مکمل معکوس را خودتان پیدا کنید'));
@@ -159,7 +201,7 @@ async function load() {
     const source = await response.text(); if (ticket !== revision) return;
     if (!window.markdownit || !source.trim()) throw Error('متن درس برای نمایش آماده نیست.');
     const textSlides = makeTextSlides(source, sourceUrl); if (!textSlides.length) throw Error('متن درس خالی است.');
-    slides = [...textSlides, ...(topic.session === 1 ? [evidenceExercise()] : []), ...(topic.session === 5 ? [reverseComplementExercise()] : []), selfCheck(topic)]; if (labs.has(topic.laboratory)) slides.push(labSlide(topic)); else if (topic.block === 'docking') slides.push(dockingSlide());
+    slides = [...textSlides, ...(topic.session === 1 ? [evidenceExercise()] : []), ...(topic.session === 5 ? [reverseComplementExercise()] : []), ...(topic.session === 11 ? [structureInterpretationExercise()] : []), ...(topic.session === 12 ? [assemblyExercise()] : []), selfCheck(topic)]; if (labs.has(topic.laboratory)) slides.push(labSlide(topic)); else if (topic.block === 'docking') slides.push(dockingSlide());
     $('lesson-slide').replaceChildren(...slides);
     $('lesson-title').textContent=topic.title; document.title=`${topic.title} | اسلاید درس`;
     const block = syllabus.blocks.find(item => item.id === topic.block); $('chapter-title').textContent=block?.title || ''; $('chapter-title').hidden=!block || block.title === topic.title;

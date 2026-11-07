@@ -128,3 +128,16 @@ test('activation plots remain visible with readable source-matched captions on m
   await expect(captions.filter({hasText:'Sigmoid'})).toBeVisible();
   await expect(captions.locator('span').filter({hasText:'tanh'}).first()).toHaveCSS('color','rgb(255, 192, 0)');
 });
+
+test('sequence-length caption fits above its RNN figure on mobile', async ({page}) => {
+  await page.setViewportSize({width:390,height:850});
+  await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=19');
+  await page.waitForFunction(() => window.sourceSlideReader?.ready);
+  await page.locator('[data-view-translation]').click();
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+  const caption=page.locator('#persian-page .reader-slide-text').filter({hasText:'از نظر نظری'});
+  await expect(caption).toBeVisible();
+  const measured=await caption.evaluate(node=>({bottom:parseFloat(node.style.top)+parseFloat(node.style.height),fits:node.scrollHeight<=node.clientHeight+2 && node.scrollWidth<=node.clientWidth+2}));
+  expect(measured.fits).toBe(true);
+  expect(measured.bottom).toBeLessThanOrEqual(0.34 * 540 + 1);
+});

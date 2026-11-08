@@ -27,6 +27,7 @@ class SourcePagePayloadsTest(unittest.TestCase):
         self.assertEqual(json.loads((directory / 'manifest.json').read_bytes()), manifest)
         self.assertEqual(manifest['reference_targets'], self.payload['reference_targets'])
         self.assertEqual(manifest['source'], self.payload['source'])
+        self.assertEqual([entry['title'] for entry in manifest['pages']], ['صفحه اول', ''])
         for entry, original in zip(manifest['pages'], self.payload['pages']):
             data = (directory / entry['file']).read_bytes()
             self.assertEqual(hashlib.sha256(data).hexdigest(), entry['sha256'])

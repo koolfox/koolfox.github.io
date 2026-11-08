@@ -268,3 +268,40 @@ test('reverse-complement feedback is cleared after changing either sequence', as
   await page.getByRole('button',{name:'بررسی مکمل معکوس'}).click();
   await expect(feedback).toContainText('دوباره');
 });
+
+test('UniProt record exercise teaches fields, gives feedback and restores answers', async ({page}) => {
+  await page.setViewportSize({width:390,height:844});
+  await page.goto(root + 'assets/course-slides.html?topic=10');
+  await expect(page.locator('#lesson-deck')).toHaveAttribute('aria-busy','false');
+  const index = await page.locator('#slide-select option[data-kind=uniprot-record]').getAttribute('value');
+  await page.locator('#slide-select').selectOption(index);
+  const slide = page.locator('#lesson-slide section:visible');
+  await expect(slide).toContainText('توالی واقعی رکورد نیستند');
+  await slide.getByRole('button',{name:'بررسی کارت'}).click();
+  await expect(slide.locator('.uniprot-question p').first()).toContainText('ابتدا');
+  for (const [i, choice] of ['organism','organism','isoform','sequence'].entries()) await page.locator(`#uniprot-${i}`).selectOption(choice);
+  await slide.getByRole('button',{name:'بررسی کارت'}).click();
+  await expect(slide.locator('.uniprot-question p').first()).toContainText('دوباره بررسی');
+  await expect(slide.locator('.uniprot-question p').nth(2)).toContainText('وجود ایزوفرم دیگر');
+  await page.locator('#uniprot-0').selectOption('accession');
+  await expect(slide.locator('.uniprot-question p').first()).toBeEmpty();
+  await slide.getByRole('button',{name:'بررسی کارت'}).click();
+  await expect(slide.locator('.uniprot-question p').first()).toContainText('درست است');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
+  await page.reload();
+  await expect(page.locator('#uniprot-0')).toHaveValue('accession');
+  await expect(page.locator('#uniprot-3')).toHaveValue('sequence');
+});
+
+test('UniProt exercise works when storage is blocked', async ({page}) => {
+  await page.addInitScript(() => { Storage.prototype.setItem = () => { throw Error('blocked'); }; });
+  await page.goto(root + 'assets/course-slides.html?topic=10');
+  await expect(page.locator('#lesson-deck')).toHaveAttribute('aria-busy','false');
+  const index = await page.locator('#slide-select option[data-kind=uniprot-record]').getAttribute('value');
+  await page.locator('#slide-select').selectOption(index);
+  await page.locator('#uniprot-0').selectOption('accession');
+  const slide = page.locator('#lesson-slide section:visible');
+  await expect(slide.getByRole('status')).toContainText('ذخیره ممکن نشد');
+  await slide.getByRole('button',{name:'بررسی کارت'}).click();
+  await expect(slide.locator('.uniprot-question p').first()).toContainText('درست است');
+});

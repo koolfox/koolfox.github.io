@@ -1,0 +1,41 @@
+{
+  "status": "requires_further_validation",
+  "sequence": "TWNSGHID",
+  "seed": 42,
+  "started_at_utc": "2026-11-08T06:03:19.761781+00:00",
+  "rdkit_version": "2026.09.1",
+  "python_version": "3.12.15 (main, Oct 13 2026, 16:47:20) [Clang 21.1.8 ]",
+  "platform": "macOS-26.5.1-arm64-arm-64bit",
+  "builder": "scripts/build_peptide_models.py",
+  "builder_sha256": "dfb992dc5104dfd1cf29508adf3b76a6f58b3ba9399733b46b9b701a01a85980",
+  "method": "RDKit MolFromSequence, explicit H, ETKDGv3 seed 42, one conformer, MMFF94 max 5000 iterations; retry after 1000-iteration failure",
+  "chemistry": "linear L sequence, uncapped N+ and C-, Asp-, neutral histidine; no solvent or receptor",
+  "input_coordinates": null,
+  "input_sequence_sha256": "963ee6ed06c71f236e59c1f86c857d1f9a4d35a5ebee45b478786591f50dcce1",
+  "output_path": "assets/manual-adalimumab-sequence-model.sdf",
+  "output_sha256": "e4bc38a2e0a4f152b87299288e19fc6b1b2770fd4370008f44b484c3703b8df4",
+  "qc_status": "passed_basic_checks",
+  "limitations": [
+    "One stochastic conformer, not a validated prediction of the free peptide ensemble.",
+    "No receptor, docking, binding, affinity, or experimental validation.",
+    "Fixed protonation and vacuum force field; no solvent or sampling of alternatives."
+  ],
+  "formal_charge": -1,
+  "qc": {
+    "sdf_roundtrip": "passed",
+    "isomeric_graph_matches_generated_input": true,
+    "atom_count_with_hydrogens": 121,
+    "heavy_atom_count": 66,
+    "bond_count": 123,
+    "finite_coordinates": true,
+    "minimum_bond_angstrom": 0.9749993538459393,
+    "maximum_bond_angstrom": 1.5569461455040763,
+    "bond_screen_angstrom": [
+      0.65,
+      2.0
+    ],
+    "mmff94_energy_kcal_per_mol": -23.863052999922203,
+    "optimization": "converged within 5000 iterations; builder fails otherwise"
+  },
+  "finished_at_utc": "2026-11-08T06:03:20.649603+00:00"
+}

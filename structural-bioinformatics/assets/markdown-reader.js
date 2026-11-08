@@ -5,6 +5,7 @@ import { isolateScientificText, scientificDiagramSource, setDiagramDirection } f
 import { linkGlossaryTerms } from './glossary-terms.js';
 // Repository-owned Markdown only; optional rendering libraries load on demand.
 export const DOCUMENTS = [
+  ["manual-peptide-study.fa.md", "نمونه دستی آدالیموماب تا پپتید", "پژوهش"],
   ["peptide-agent-research.fa.md", "طرح عامل پژوهشی پپتید", "پژوهش پس از مبانی"],
   ["qwen35-bioops-evaluation.fa.md", "پروتکل ارزیابی Qwen 3.5 برای BioOps", "پژوهش پس از مبانی"],
   ["standard-peptide-models.fa.md", "ساخت مدل اولیهٔ پپتیدهای استاندارد", "ابزارها و منابع"],
@@ -287,7 +288,7 @@ function prepareContent(container, sourceURL) {
     table.before(region);
     region.append(table);
   }
-  if (!['/glossary.fa.md','/course-sessions.fa.md','/docking-protocol.fa.md'].some(path => sourceURL.pathname.endsWith(path))) linkGlossaryTerms(container);
+  if (!['/glossary.fa.md','/course-sessions.fa.md','/docking-protocol.fa.md','/manual-peptide-study.fa.md'].some(path => sourceURL.pathname.endsWith(path))) linkGlossaryTerms(container);
   isolateScientificText(container);
 }
 

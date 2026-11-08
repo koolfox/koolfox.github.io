@@ -98,7 +98,7 @@ def practice_page(term, row, license_text="", asset_revision=""):
     return f'''<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>کارگاه آموزشی دیپ لرنینگ · {escape(row['title_fa'])}</title><link rel="stylesheet" href="{BASE}/assets/course.css"><link rel="stylesheet" href="{BASE}/assets/notebook.css?v={asset_revision}"><link rel="stylesheet" href="{BASE}/assets/practice.css?v={asset_revision}"><script type="module" src="{BASE}/assets/practice.js?v={asset_revision}"></script></head>
 <body class="practice-page"><header><h1>{escape(unit['title_fa'])}</h1><nav data-related-labs></nav></header>
-<main id="practice-notebook"></main><footer><a href="{config['reader']}#page={unit['source_page']}" data-return-slide>بازگشت به اسلاید</a></footer>
+<main id="practice-notebook"></main><footer><a href="{config['reader']}#page={unit['source_page']}" data-return-slide aria-label="بازگشت به اسلاید" title="بازگشت به اسلاید"><svg class="practice-back-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m0 0 6-6m-6 6 6 6"/></svg><span>بازگشت به اسلاید</span></a></footer>
 <script type="application/json" id="practice-config">{encoded}</script></body></html>'''
 
 

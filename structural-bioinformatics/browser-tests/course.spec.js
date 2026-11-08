@@ -130,10 +130,12 @@ test('library search and full documents do not require a chapter selection',asyn
 });
 
 test('research, paper reviews, datasets and docking have separate primary content',async({page})=>{
- await page.goto(`${root}research.html`);await expect(page.locator('.research-summary')).toContainText('رابط آدالیموماب–TNF-α');await expect(page.locator('#molecular-stage,#quiz-form,#datasets-table')).toHaveCount(0);
- await expect(page.locator('.research-summary')).toContainText('TNFR1 و TNFR2');
- await expect(page.locator('#reading-status')).toHaveAttribute('data-document','peptide-workshop.fa.md');
- await expect(page.getByRole('link',{name:'LocalFold',exact:true})).toHaveAttribute('href','https://localfold.org/');
+ await page.goto(`${root}research.html`);await expect(page.locator('.research-summary')).toContainText('آدالیموماب');await expect(page.locator('#molecular-stage,#quiz-form,#datasets-table')).toHaveCount(0);
+ await expect(page.locator('.research-summary')).toContainText('آموزش مدل');
+ await expect(page.locator('#reading-status')).toHaveAttribute('data-document','manual-peptide-study.fa.md');
+ await expect(page.locator('#reading')).toContainText('TWNSGHID');
+ await expect(page.locator('#reading a[href*="glossary.fa.md"]')).toHaveCount(0);
+ await expect(page.getByRole('link',{name:'مدل ساخته شده فقط از توالی'})).toHaveAttribute('href',/manual-adalimumab-sequence-model\.sdf$/);
  await expect(page.locator('#research-history')).not.toHaveAttribute('open','');
  await page.locator('#research-history > summary').click();await expect(page.locator('#evidence-bridge')).toContainText('TOP2A');
  await page.goto(`${root}papers.html`);await expect(page.locator('#paper-list')).toHaveAttribute('data-state','ready');await expect(page.locator('#sessions,#quiz-form')).toHaveCount(0);

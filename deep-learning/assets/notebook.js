@@ -167,7 +167,25 @@ export function mountNotebook(root, options) {
   install.type = clearPackages.type = 'button'; install.dataset.notebookInstall = '';
   const packageStatus = node('p', 'nb-status'); packageStatus.setAttribute('role', 'status');
   packageRow.append(packageInput, install, clearPackages); packageTools.append(packageSummary, packageHelp, packageRow, packageStatus);
-  code.append(actions, status, hint, errorOutput, list, tools, packageTools);
+  const utilityTools = node('div', 'nb-utility-tools');
+  utilityTools.append(tools, packageTools);
+  const iconPaths = {
+    play: 'M8 5v14l11-7z', stop: 'M6 6h12v12H6z', add: 'M12 5v14M5 12h14',
+    settings: 'M4 7h16M4 17h16M9 4v6M15 14v6', restart: 'M20 7v5h-5M19 12a7 7 0 1 1-2-5',
+    versions: 'M5 3h10l4 4v14H5zM14 3v5h5M8 12h8M8 16h8',
+    packages: 'M12 3 3 7.5v9L12 21l9-4.5v-9zM3 7.5l9 4.5 9-4.5M12 12v9'
+  };
+  function compactControl(element, icon, label) {
+    const text = node('span', 'nb-control-label', label);
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', '0 0 24 24'); svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('class', 'nb-control-icon');
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', iconPaths[icon]); svg.append(path);
+    element.replaceChildren(svg, text); element.setAttribute('aria-label', label); element.title = label;
+  }
+  for (const [element, icon, label] of [[runAll, 'play', 'اجرای همه سلول‌ها'], [capture, 'settings', 'کنترل‌ها به تنظیمات'], [add, 'add', 'افزودن سلول'], [stop, 'stop', 'توقف پایتون'], [restart, 'restart', 'راه‌اندازی پایتون'], [summary, 'versions', 'نسخه‌ها و دریافت نوت‌بوک'], [packageSummary, 'packages', 'بسته‌های پایتون']]) compactControl(element, icon, label);
+  code.append(actions, status, hint, errorOutput, list, utilityTools);
   root.append(modes, code, quiz);
 
   function message(text, error = false) { status.textContent = text; status.dataset.error = String(error); }

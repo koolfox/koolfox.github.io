@@ -146,6 +146,7 @@ def render_pages(project=PROJECT):
             + "".join(
                 link(d["title"], f"{section['page']}?document={d['file']}&chapter=all#reading")
                 for d in section["documents"]
+                if not d.get("archived")
             )
             + "</nav>"
         )
@@ -249,9 +250,9 @@ def render_pages(project=PROJECT):
 <p>{html.escape(section["question"])}</p>
 <p>{html.escape(section["summary"])}</p>
 </section>"""
-                + fragment("peptide-notebook")
                 + docnav
                 + reader(section)
+                + fragment("peptide-notebook")
             )
             scripts = ["peptide-notebook.js"]
             parallel = json.loads(
@@ -281,6 +282,12 @@ def render_pages(project=PROJECT):
                 "<h2>پرسش مطالعهٔ پیشین</h2><p>"
                 + html.escape(previous_study["question"])
                 + "</p>"
+                + "<h2>متنهای مطالعات پیشین</h2>"
+                + "".join(
+                    link(d["title"], f"research.html?document={d['file']}&chapter=all#reading")
+                    for d in section["documents"]
+                    if d.get("archived")
+                )
                 + "".join(application)
                 + fragment("evidence")
             )

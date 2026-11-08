@@ -1,0 +1,25 @@
+{
+  "status": "failed",
+  "sequence": "TWNSGHID",
+  "seed": 42,
+  "started_at_utc": "2026-11-08T06:02:32.277018+00:00",
+  "rdkit_version": "2026.09.1",
+  "python_version": "3.12.15 (main, Oct 13 2026, 16:47:20) [Clang 21.1.8 ]",
+  "platform": "macOS-26.5.1-arm64-arm-64bit",
+  "builder": "scripts/build_peptide_models.py",
+  "builder_sha256": "dfb992dc5104dfd1cf29508adf3b76a6f58b3ba9399733b46b9b701a01a85980",
+  "method": "RDKit MolFromSequence, explicit H, ETKDGv3 seed 42, one conformer, MMFF94 max 1000 iterations",
+  "chemistry": "linear L sequence, uncapped N+ and C-, Asp-, neutral histidine; no solvent or receptor",
+  "input_coordinates": null,
+  "input_sequence_sha256": "963ee6ed06c71f236e59c1f86c857d1f9a4d35a5ebee45b478786591f50dcce1",
+  "output_path": null,
+  "output_sha256": null,
+  "qc_status": "not_run",
+  "limitations": [
+    "One stochastic conformer, not a validated prediction of the free peptide ensemble.",
+    "No receptor, docking, binding, affinity, or experimental validation.",
+    "Fixed protonation and vacuum force field; no solvent or sampling of alternatives."
+  ],
+  "error": "MMFF94 optimization did not converge",
+  "finished_at_utc": "2026-11-08T06:02:33.231862+00:00"
+}

@@ -1,0 +1,54 @@
+name: Slide browser inventory calibration
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/slide-audit-calibration.yml
+      - deep-learning/browser-tests/slide-audit.mjs
+
+permissions:
+  contents: read
+
+jobs:
+  calibration:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: astral-sh/setup-uv@v10.3.0
+        with:
+          version: '0.11.2'
+      - name: Prepare pinned public laboratory assets
+        run: |
+          uv run --frozen --project deep-learning/playgrounds python deep-learning/scripts/prepare_shinylive_assets.py --archive "${{ runner.temp }}/danna-shinylive/shinylive-0.10.15.tar.gz"
+          uv run --frozen --project deep-learning/playgrounds python deep-learning/scripts/export_playgrounds.py --output deep-learning/results/shinylive
+      - name: Build deep-learning site
+        run: uv run --no-project --with pypdf==6.21.4 python scripts/build_pages.py --project deep-learning --output dist/pages
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: deep-learning/browser-tests/package-lock.json
+      - run: npm ci --prefix deep-learning/browser-tests
+      - run: npx --prefix deep-learning/browser-tests playwright install --with-deps chromium
+      - name: Measure five slides in two viewports
+        run: |
+          mkdir -p audit-report
+          python3 -m http.server 8000 --bind 127.0.0.1 --directory dist/pages > /tmp/slide-audit-http.log 2>&1 &
+          node deep-learning/browser-tests/slide-audit.mjs --base-url http://127.0.0.1:8000 --build-id "$GITHUB_SHA" --sessions 1 --pages 1-5 --viewports 390x844,1440x900 --output audit-report/calibration.jsonl
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          rows = [json.loads(line) for line in Path('audit-report/calibration.jsonl').read_text().splitlines()]
+          assert len(rows) == 10
+          assert all(row['status'] != 'error' and row.get('layout') for row in rows), rows
+          assert all(row['visual_review'] == 'not_performed' for row in rows)
+          PY
+      - name: Upload diagnostic measurements and error screenshots
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: slide-calibration-${{ github.sha }}
+          path: audit-report/
+          if-no-files-found: ignore
+          retention-days: 3

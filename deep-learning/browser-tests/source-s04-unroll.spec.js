@@ -29,6 +29,24 @@ test('sequence examples translate their visible image captions', async ({page},t
   await page.screenshot({path:testInfo.outputPath('sequence-image-captions-9.png')});
 });
 
+test('text analysis example places its Persian review inside the image', async ({page},testInfo) => {
+  await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=8');
+  await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 8);
+  const review=page.locator('#persian-page .reader-image-translation').filter({hasText:'بازگشت لوک'});
+  await expect(review).toBeVisible();
+  expect(await review.evaluate(node=>node.scrollHeight<=node.clientHeight+2 && node.scrollWidth<=node.clientWidth+2)).toBeTruthy();
+  await page.screenshot({path:testInfo.outputPath('text-analysis-image-8.png')});
+});
+
+test('historical diagram translates the corresponding weights label', async ({page},testInfo) => {
+  await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=11');
+  await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 11);
+  const label=page.locator('#persian-page .reader-image-translation').filter({hasText:'مجموعه وزن های متناظر'});
+  await expect(label).toBeVisible();
+  expect(await label.evaluate(node=>node.scrollHeight<=node.clientHeight+2 && node.scrollWidth<=node.clientWidth+2)).toBeTruthy();
+  await page.screenshot({path:testInfo.outputPath('corresponding-weights-11.png')});
+});
+
 for(const width of [1440,390]){
   test(`RNN unfolding retains each step and emphasis at ${width}px`,async({page},testInfo)=>{
     await page.setViewportSize({width,height:850});

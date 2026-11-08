@@ -2109,6 +2109,18 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     imageTranslations.push({rect:[.666,.554,.842,.626],text:'امروز سرگرم کننده است.',background:'#fff',color:'#000',font:20,align:'center'});
     imageTranslations.push({rect:[.682,.672,.825,.704],text:'چینی (سنتی)',background:'#fff',color:'#555',font:11,align:'center'});
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===8
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='f59288a393682d132c08d2cc0e0d0221c6c5c9f487962c56f1fbf4548bdd2ca4'
+      && layout.translation_sha256==='eee9d0525d3fc02628ba01aefcf52c1e509dd678133992da1879e71327800e2d'){
+    imageTranslations.push({rect:[.514,.338,.738,.477],text:'آنچه درباره The Last Jedi برایم از همه جالب تر است، بازگشت لوک در نقش مربی به جای شاگرد است؛ او با شکست در این نقش تازه دست و پنجه نرم می کند و بعد می خواهد آموزگاری خردمند و صبور باشد.',background:'#fff',color:'#242424',font:9,align:'right'});
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===11
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='5858cd7d5cdaa9c344a3c7883001961c4abed3c9aefd0f631d1389d58913418f'
+      && layout.translation_sha256==='abfefdee7e6fec256d27d0a323083d02663d2e627392e9f3fed690fe765b4a34'){
+    imageTranslations.push({rect:[.75,.341,.815,.405],text:'مجموعه وزن های متناظر',background:'#fff',color:'#000',font:8,align:'center'});
+  }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

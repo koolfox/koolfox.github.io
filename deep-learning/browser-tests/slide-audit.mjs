@@ -31,6 +31,8 @@ function numbers(value, max) {
 
 async function main() {
   const args = options(process.argv.slice(2));
+  const variant = args.variant || 'normal';
+  if (!['normal', 'baseline', 'candidate'].includes(variant)) throw Error('Invalid variant');
   const base = new URL(args['base-url']);
   if (!['http:', 'https:'].includes(base.protocol)) throw Error('Base URL must use HTTP(S)');
   const sessions = numbers(args.sessions, 99), pages = numbers(args.pages, 500);
@@ -67,9 +69,21 @@ async function main() {
       if (completed.has(key)) continue;
       const context = await browser.newContext({ viewport });
       const page = await context.newPage();
+      let retryHookSeen = false;
+      if (variant !== 'normal') {
+        await page.route('**/source-reader.js*', async route => {
+          const response = await route.fetch();
+          let body = await response.text();
+          const needle = 'const expanded=expandSourceLayout(plan);';
+          if (!body.includes(needle)) throw Error('Expected retry hook not found');
+          retryHookSeen = true;
+          if (variant === 'baseline') body = body.replace(needle, 'const expanded=null;');
+          await route.fulfill({ response, body });
+        });
+      }
       const errors = [];
       page.on('pageerror', error => errors.push(error.message));
-      const record = { schema: 1, key, build_id: args['build-id'], url, session: id, page: number,
+      const record = { schema: 1, key, build_id: args['build-id'], variant, url, session: id, page: number,
         viewport, browser: `chromium ${browser.version()}`, time_utc: new Date().toISOString(),
         status: 'error', visual_review: 'not_performed', findings: [] };
       try {
@@ -79,6 +93,7 @@ async function main() {
         await page.waitForFunction(n => window.sourceSlideReader?.ready &&
           window.sourceSlideReader.renderedPage === n && window.sourceSlideReader.page === n &&
           document.querySelector('#persian-page')?.dataset.layout !== 'pending', number, { timeout: 45000 });
+        if (variant !== 'normal' && !retryHookSeen) throw Error('Retry hook was not observed');
         const result = await page.evaluate(async () => {
           await document.fonts.ready;
           await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));

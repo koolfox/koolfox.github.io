@@ -295,3 +295,20 @@ for (const viewport of [{width:1440,height:900},{width:390,height:844}]) {
   expect(await nodes.evaluateAll(items=>items.every(item=>item.scrollWidth<=item.clientWidth+2 && item.scrollHeight<=item.clientHeight+2))).toBeTruthy();
  });
 }
+
+for (const viewport of [{width:1440,height:900},{width:390,height:844}]) {
+ test(`session 3 agenda keeps source colors at ${viewport.width}px`, async ({page}) => {
+  await page.setViewportSize(viewport);
+  for(const number of [3,4]){
+   await page.goto(`/deep-learning/terms/spring-2026/s03/slides/#page=${number}`);
+   await page.waitForFunction(n=>window.sourceSlideReader?.ready && sourceSlideReader.page===n,number);
+   if(viewport.width<500){const old=await page.locator('#persian-page .reader-slide-stage').elementHandle();await page.locator('[data-view-translation]').click();await page.waitForFunction(node=>!node.isConnected,old)}
+   const slide=page.locator('#persian-page'), nodes=slide.locator('.reader-slide-text');
+   await expect(slide).toHaveAttribute('data-layout','source-canvas');
+   await expect(nodes).toHaveCount(5);
+   await expect(nodes.nth(1)).toHaveCSS('color','rgb(255, 255, 255)');
+   await expect(nodes.nth(2)).toHaveCSS('color',number===4?'rgb(127, 127, 127)':'rgb(255, 255, 255)');
+   expect(await nodes.evaluateAll(items=>items.every(item=>item.scrollWidth<=item.clientWidth+2 && item.scrollHeight<=item.clientHeight+2))).toBeTruthy();
+  }
+ });
+}

@@ -386,9 +386,10 @@
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "partial",
+      "question_coverage": "complete",
       "question_ids": [
-        "page-19-detail"
+        "page-19-detail",
+        "page-19-diagram-sequence"
       ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
@@ -429,14 +430,16 @@
       "number": 21,
       "source_text_sha256": "4785a25c64c3b8fd958cd111aac59c3b7944d41eb04459eff0f473e81e03a0dd",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "partial",
+      "question_ids": [
+        "truth-first"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -448,20 +451,23 @@
         "image_label_indices": [
           1
         ]
-      }
+      },
+      "review_basis": "source_slide_visual_and_text"
     },
     {
       "number": 22,
       "source_text_sha256": "4785a25c64c3b8fd958cd111aac59c3b7944d41eb04459eff0f473e81e03a0dd",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "partial",
+      "question_ids": [
+        "truth-second"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -473,20 +479,23 @@
         "image_label_indices": [
           1
         ]
-      }
+      },
+      "review_basis": "source_slide_visual_and_text"
     },
     {
       "number": 23,
       "source_text_sha256": "4785a25c64c3b8fd958cd111aac59c3b7944d41eb04459eff0f473e81e03a0dd",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "partial",
+      "question_ids": [
+        "truth-third"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -498,7 +507,8 @@
         "image_label_indices": [
           1
         ]
-      }
+      },
+      "review_basis": "source_slide_visual_and_text"
     },
     {
       "number": 24,
@@ -556,20 +566,22 @@
       "number": 26,
       "source_text_sha256": "aa6ce1e48e27e1a092afb455c357e4fba3a684b194ca8aa5cb39533fd1cffa24",
       "classification": "worked_example",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "partial",
+      "question_ids": [
+        "update-first"
+      ],
       "example_ids": [
         "majority-epoch"
       ],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
-      "review_basis": "source_text_and_example_arithmetic",
+      "review_basis": "source_slide_visual_and_text",
       "review_scope": "source_prompt_inventory",
       "explicit_prompt_candidates": {
         "source_line_indices": [
@@ -639,20 +651,22 @@
       "number": 29,
       "source_text_sha256": "a98650e960cb99d33876a8b47dbdbcd4f036bb396a70b5c47bbb4638691f3bbb",
       "classification": "worked_example",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "partial",
+      "question_ids": [
+        "update-second"
+      ],
       "example_ids": [
         "majority-epoch"
       ],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
-      "review_basis": "source_text_and_example_arithmetic",
+      "review_basis": "source_slide_visual_and_text",
       "review_scope": "source_prompt_inventory",
       "explicit_prompt_candidates": {
         "source_line_indices": [
@@ -701,14 +715,16 @@
       ],
       "question_coverage": "partial",
       "question_ids": [
-        "majority-epoch-epoch"
+        "majority-epoch-epoch",
+        "epoch-count",
+        "epoch-unchanged"
       ],
       "example_ids": [
         "majority-epoch"
       ],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
-      "review_basis": "source_text_and_example_arithmetic",
+      "review_basis": "source_slide_visual_and_text",
       "review_scope": "source_prompt_inventory",
       "explicit_prompt_candidates": {
         "source_line_indices": [
@@ -1316,6 +1332,181 @@
       "pages": [
         31
       ]
+    },
+    {
+      "id": "truth-first",
+      "source_kind": "original",
+      "source_page": 21,
+      "pages": [
+        21
+      ],
+      "prompt_fa": "هدف ورودی [1,0,0] در قانون اکثریت چیست؟",
+      "solution_fa": "فقط یک ورودی 1 است؛ برای خروجی +1 دست‌کم دو ورودی 1 لازم است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "−1",
+          "+1",
+          "0"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true,
+      "source_question_kind": "source_specific_question",
+      "adaptation_kind": "source_specific_critical_reading_or_activity_check"
+    },
+    {
+      "id": "truth-second",
+      "source_kind": "original",
+      "source_page": 22,
+      "pages": [
+        22
+      ],
+      "prompt_fa": "هدف ورودی [1,0,1] در قانون اکثریت چیست؟",
+      "solution_fa": "دو ورودی 1 هستند، بنابراین هدف +1 است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "−1",
+          "+1",
+          "0"
+        ],
+        "correct_index": 1
+      },
+      "reviewed": true,
+      "source_question_kind": "source_specific_question",
+      "adaptation_kind": "source_specific_critical_reading_or_activity_check"
+    },
+    {
+      "id": "truth-third",
+      "source_kind": "original",
+      "source_page": 23,
+      "pages": [
+        23
+      ],
+      "prompt_fa": "هدف ورودی [1,1,0] در قانون اکثریت چیست؟",
+      "solution_fa": "دو ورودی 1 هستند، بنابراین هدف +1 است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "0",
+          "−1",
+          "+1"
+        ],
+        "correct_index": 2
+      },
+      "reviewed": true,
+      "source_question_kind": "source_specific_question",
+      "adaptation_kind": "source_specific_critical_reading_or_activity_check"
+    },
+    {
+      "id": "update-first",
+      "source_kind": "original",
+      "source_page": 26,
+      "pages": [
+        26
+      ],
+      "prompt_fa": "آیا پس از نمونه اول پارامترها تغییر می‌کنند؟",
+      "solution_fa": "خطا −2 است؛ با نرخ مثبت، بایاس و وزن ورودی فعال تغییر می‌کنند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "بله؛ هدف −1 و پیش‌بینی +1 است",
+          "خیر؛ هدف و پیش‌بینی برابرند",
+          "همیشه بدون توجه به خطا تغییر نمی‌کنند"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true,
+      "source_question_kind": "source_specific_question",
+      "adaptation_kind": "source_specific_critical_reading_or_activity_check"
+    },
+    {
+      "id": "update-second",
+      "source_kind": "original",
+      "source_page": 29,
+      "pages": [
+        29
+      ],
+      "prompt_fa": "آیا پس از نمونه دوم پارامترها تغییر می‌کنند؟",
+      "solution_fa": "خطا +2 است؛ بایاس و وزن‌های مربوط به ورودی‌های فعال تغییر می‌کنند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "خیر؛ هدف و پیش‌بینی یکسان‌اند",
+          "بله؛ هدف +1 و پیش‌بینی −1 است",
+          "خیر؛ چون ورودی سوم 1 است"
+        ],
+        "correct_index": 1
+      },
+      "reviewed": true,
+      "source_question_kind": "source_specific_question",
+      "adaptation_kind": "source_specific_critical_reading_or_activity_check"
+    },
+    {
+      "id": "epoch-count",
+      "source_kind": "original",
+      "source_page": 31,
+      "pages": [
+        31
+      ],
+      "prompt_fa": "در جدول آموزش یک دور چند نمونه وجود دارد؟",
+      "solution_fa": "جدول هشت ترکیب برای سه ورودی دودویی نشان می‌دهد.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "۴",
+          "۸",
+          "۱۶"
+        ],
+        "correct_index": 1
+      },
+      "reviewed": true,
+      "source_question_kind": "source_specific_question",
+      "adaptation_kind": "source_specific_critical_reading_or_activity_check"
+    },
+    {
+      "id": "epoch-unchanged",
+      "source_kind": "original",
+      "source_page": 31,
+      "pages": [
+        31
+      ],
+      "prompt_fa": "کدام توصیف با خود جدول به‌روزرسانی سازگار است؟",
+      "solution_fa": "در جدول، نتیجه پس از نمونه دوم با پس از نمونه اول تفاوت دارد؛ سپس نمونه‌های سوم و چهارم خطای صفر دارند و وزن‌ها همان مقدار پس از نمونه دوم می‌مانند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "وزن‌ها در نمونه دوم هم عوض نشدند",
+          "وزن‌های پس از گام‌های ۲، ۳ و ۴ برابرند، اما گام دوم نسبت به گام اول تغییر کرده است",
+          "همه وزن‌ها در همه گام‌ها تغییر می‌کنند"
+        ],
+        "correct_index": 1
+      },
+      "reviewed": true,
+      "source_question_kind": "source_specific_question",
+      "adaptation_kind": "source_specific_critical_reading_or_activity_check"
+    },
+    {
+      "id": "page-19-diagram-sequence",
+      "source_kind": "original",
+      "source_page": 19,
+      "pages": [
+        19
+      ],
+      "prompt_fa": "در شکل‌های ۲، ۳ و ۴، به ترتیب مدل قبلی خطا می‌کرد و مدل تغییر کرد؟",
+      "solution_fa": "طبق شکل، در ۲ بله و مدل تغییر کرد؛ در ۳ خیر و مدل تغییر نکرد؛ در ۴ بله و مدل تغییر کرد.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "۲: بله و تغییر کرد؛ ۳: خیر و تغییر نکرد؛ ۴: بله و تغییر کرد",
+          "۲: خیر؛ ۳: بله؛ ۴: خیر",
+          "در هر سه شکل مدل تغییر نکرد",
+          "در هر سه شکل مدل تغییر کرد"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
     }
   ]
 }

@@ -444,6 +444,123 @@
           "label_fa": "نمونه کد"
         }
       ]
+    },
+    {
+      "id": "perceptron-steps",
+      "title_fa": "دو گام آموزش پرسپترون",
+      "source": {
+        "term": "spring-2026",
+        "session": "s02",
+        "pages": [
+          25,
+          26,
+          27,
+          28,
+          29,
+          30
+        ],
+        "pdf_sha256": "fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477",
+        "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/02-Artificial-Neurons.pdf"
+      },
+      "video": {
+        "path": "assets/media/perceptron-steps.mp4",
+        "bytes": 677911,
+        "sha256": "d0a60db29e75d2e2492097eb403b976382943fc367925623aca7df49a764f93d"
+      },
+      "captions": {
+        "path": "assets/media/perceptron-steps.fa.vtt",
+        "bytes": 593,
+        "sha256": "a43501db52f0f632c01d3ebb64a60e35328cc54a74f25df5ce47b247907c273e"
+      },
+      "duration_seconds": 20.25,
+      "transcript_fa": [
+        "نمونه اول: هدف منفی یک و پیش‌بینی مثبت یک است. امتیاز صفر به مثبت یک می‌رود.",
+        "با نرخ ۰٫۱ بایاس و وزن ورودی اول به منفی ۰٫۲ تغییر می‌کنند.",
+        "در نمونه دوم امتیاز منفی ۰٫۴ است و مدل منفی یک پیش‌بینی می‌کند.",
+        "هدف مثبت یک است؛ وزن‌های جدید صفر، صفر، صفر و ۰٫۲ هستند."
+      ],
+      "chapters": [
+        {
+          "time": 0.1,
+          "label_fa": "نمونه اول"
+        },
+        {
+          "time": 3.8,
+          "label_fa": "اصلاح اول"
+        },
+        {
+          "time": 8.8,
+          "label_fa": "نمونه دوم"
+        },
+        {
+          "time": 10.1,
+          "label_fa": "اصلاح دوم"
+        }
+      ],
+      "license": "Independent educational explanation; source credited. University logo is not relicensed.",
+      "render": {
+        "engine": "Manim Community",
+        "version": "0.20.1",
+        "resolution": [
+          1920,
+          1080
+        ],
+        "fps": 24
+      },
+      "scene": "PerceptronSteps"
+    },
+    {
+      "id": "xor-boundary",
+      "title_fa": "چرا XOR با یک خط جدا نمی‌شود؟",
+      "source": {
+        "term": "spring-2026",
+        "session": "s02",
+        "pages": [
+          44
+        ],
+        "pdf_sha256": "fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477",
+        "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/02-Artificial-Neurons.pdf"
+      },
+      "video": {
+        "path": "assets/media/xor-boundary.mp4",
+        "bytes": 264084,
+        "sha256": "30cb4b650d81a62b72037203dbfc215bdf9a4574882dcd24fe923ea8060838ac"
+      },
+      "captions": {
+        "path": "assets/media/xor-boundary.fa.vtt",
+        "bytes": 515,
+        "sha256": "836ca79b0417d754621a004f1bca61838ebffc5150e8db8a67122a6ce899154f"
+      },
+      "duration_seconds": 21.0,
+      "transcript_fa": [
+        "خروجی XOR فقط زمانی یک است که دقیقا یکی از دو ورودی یک باشد.",
+        "هیچ خطی نمی‌تواند دو کلاس XOR را از هم جدا کند؛ خط نقطه‌چین فقط یک نمونه است.",
+        "از شرط‌های سه نقطه نتیجه می‌شود خروجی نقطه چهارم یک است، در حالی که جدول XOR مقدار صفر می‌خواهد."
+      ],
+      "chapters": [
+        {
+          "time": 0,
+          "label_fa": "جدول درستی"
+        },
+        {
+          "time": 7,
+          "label_fa": "مرز تصمیم"
+        },
+        {
+          "time": 14,
+          "label_fa": "دلیل جبری"
+        }
+      ],
+      "license": "Independent educational explanation; source credited. University logo is not relicensed.",
+      "render": {
+        "engine": "Chromium and ffmpeg",
+        "resolution": [
+          1920,
+          1080
+        ],
+        "fps": 24
+      },
+      "scene": "xor-boundary.html"
     }
   ]
 }

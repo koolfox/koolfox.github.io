@@ -406,6 +406,54 @@
       "verified": true,
       "fa": "در نمونه دوم، داده صفحه قبل [5,24] است؛ با وزن ۰٫۱ برای هر ورودی، مجموع وزنی برابر \\(0.1(5+24)=2.9\\) است. عبارت [5,4] و مقدار 0.9 در این اسلاید اشتباه چاپ شده‌اند.",
       "verification": "Source page 18 shows sample [5,24] and page 19 shows the centered values consistent with that sample. With the same 0.1 weights implied by the first and third weighted sums, the second weighted sum is 2.9."
+    },
+    {
+      "session_id": "s02",
+      "page": 31,
+      "source_sha256": "fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "سطرهای ۲ تا ۴ جدول، وزن‌های پس از آن گام‌ها را نشان می‌دهند و با هم برابرند؛ اما نمونه ۲ نسبت به وزن‌های پس از نمونه ۱ به‌روزرسانی غیرصفر داشته است. تغییر نکردن وزن فقط برای نمونه‌های ۳ و ۴ در این بخش رخ می‌دهد.",
+      "verification": "Source page 31 weight rows and source pages 27–30 inspected; reproducing the displayed update rule confirms sample 2 changes the weights and samples 3 and 4 do not."
+    },
+    {
+      "session_id": "s02",
+      "page": 11,
+      "source_sha256": "fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "عبارت اسلاید درباره نخستین رایانه دیجیتال دقیق نیست: رایانه دیجیتال برنامه‌پذیر الکترومکانیکی Z3 در سال ۱۹۴۱ تکمیل شد. عنوان «نخستین» به تعریف نوع رایانه بستگی دارد.",
+      "references": [
+        {
+          "label_fa": "موزه تاریخ رایانه: Z3",
+          "url": "https://www.computerhistory.org/tdih/may/12/"
+        }
+      ],
+      "verification": "Computer History Museum identifies Z3 as a program-controlled electromechanical digital computer completed in 1941."
+    },
+    {
+      "session_id": "s02",
+      "page": 16,
+      "source_sha256": "fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "برچسب‌های خروجی به تنهایی آستانه امتیاز را تعیین نمی‌کنند. برای نمونه می‌توان با برچسب‌های صفر و یک نیز امتیاز وزن‌دار را با صفر مقایسه کرد؛ مقدار آستانه به تعریف امتیاز و تابع تصمیم بستگی دارد.",
+      "references": [
+        {
+          "label_fa": "مستند پرسپترون scikit-learn",
+          "url": "https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Perceptron.html"
+        }
+      ],
+      "verification": "The scikit-learn perceptron predicts its second class when its binary decision score is positive, independently of the numeric class labels."
+    },
+    {
+      "session_id": "s02",
+      "page": 17,
+      "source_sha256": "fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "در صفحه پیش تابع خروجی φ فقط مقدارهای منفی یک و مثبت یک دارد؛ بنابراین برچسب φ(wᵀx)=۰ در شکل با آن تعریف سازگار نیست. مرز تصمیم را می‌توان با امتیاز پیش از اعمال تابع، یعنی wᵀx=۰، نشان داد.",
+      "verification": "Source page 16 defines the step output as +1 or -1; source page 17 labels its boundary φ(wᵀx)=0. The pre-activation wᵀx=0 is the boundary in page 16."
     }
   ]
 }

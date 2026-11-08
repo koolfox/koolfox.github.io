@@ -20,6 +20,15 @@ for (const number of [26,27]) test(`activation plot labels stay on the figure on
   await page.screenshot({path:testInfo.outputPath(`activation-labels-${number}.png`)});
 });
 
+test('sequence examples translate their visible image captions', async ({page},testInfo) => {
+  await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=9');
+  await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 9);
+  const labels=page.locator('#persian-page .reader-image-translation');
+  for(const text of ['هواداران دوآتشه','امروز سرگرم کننده است','چینی (سنتی)'])await expect(labels.filter({hasText:text})).toBeVisible();
+  expect(await labels.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2 && node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+  await page.screenshot({path:testInfo.outputPath('sequence-image-captions-9.png')});
+});
+
 for(const width of [1440,390]){
   test(`RNN unfolding retains each step and emphasis at ${width}px`,async({page},testInfo)=>{
     await page.setViewportSize({width,height:850});

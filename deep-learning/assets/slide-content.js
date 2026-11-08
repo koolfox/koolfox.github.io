@@ -2052,6 +2052,14 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       imageTranslations.push({rect:[.644,.396,.721,.42],text:'مشتق ها',background:'#fff',color:'#000',font:11,align:'center'});
     }else imageTranslations.push({rect:[.788,.014,.91,.037],text:'تابع های فعال سازی',background:'#fff',color:'#000',font:11,align:'center'});
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===9
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='410c138d3bae03bbf04cea0268a0aad126b7765878a047dd5b13214742fdeae4'
+      && layout.translation_sha256==='cf0bd70b30b2110ff865caa2c7286655fab93363533eb2a3b1f88ed9d873ae28'){
+    imageTranslations.push({rect:[.35,.578,.605,.647],text:'هواداران دوآتشه عاشق آن می شوند؛ برای بقیه، وقت گذرانی نسبتا خوبی است.',background:'#fff',color:'#242424',font:11,align:'right'});
+    imageTranslations.push({rect:[.666,.554,.842,.626],text:'امروز سرگرم کننده است.',background:'#fff',color:'#000',font:20,align:'center'});
+    imageTranslations.push({rect:[.682,.672,.825,.704],text:'چینی (سنتی)',background:'#fff',color:'#555',font:11,align:'center'});
+  }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

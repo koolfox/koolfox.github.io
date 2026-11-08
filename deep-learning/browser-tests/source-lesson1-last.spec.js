@@ -22,6 +22,21 @@ test('session 1 agenda keeps the bilingual bullet readable without overlap', asy
   }
 });
 
+test('session 1 image translations retain their overlays after copy cleanup', async ({ page }) => {
+  for (const width of [390, 1400]) {
+    await page.setViewportSize({ width, height: 850 });
+    for (const [number, count] of [[5, 4], [7, 4], [8, 3], [9, 4], [10, 2], [11, 4]]) {
+      await page.goto(`/deep-learning/terms/spring-2026/s01/slides/#page=${number}`);
+      await page.waitForFunction(n => window.sourceSlideReader?.ready && window.sourceSlideReader.page === n, number);
+      if (width === 390) await page.locator('[data-view-translation]').click();
+      await expect(page.locator('#persian-page')).toHaveAttribute('data-layout', 'source-canvas-figure-companion');
+      await expect(page.locator('.reader-image-translation')).toHaveCount(count);
+      const translated = await page.locator('.reader-image-translation').allTextContents();
+      expect(translated.join('')).not.toMatch(/[\u064b-\u065f\u0670\u06c0]/u);
+    }
+  }
+});
+
 test('session 1 closing agenda keeps the source colors and Persian layout', async ({ page }) => {
   await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=86');
   await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 86);

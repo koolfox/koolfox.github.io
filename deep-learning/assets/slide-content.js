@@ -1791,6 +1791,27 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===(initial?15:21)){region.slot=[.54,.85,.62,.91];region.font=14;region.align='center';}
     }
   }
+  const s04EquationPage = {
+    20:['4455d89ddc5a7631938d69d35dcb803fde488ea095877b8c86025b2d143e9887','b5bf499c0e849bccad923032cc5ec5d2755e95f66caa49856ef15a98d7fb5a8f'],
+    21:['0627decd1b300c238a7a1a9dedeaa81545ee43f6af0bfcd04985a2a6bda596ee','de8c88447ffd4d892a7bc2133760200f6cad58b2da9eea80ac660a3c1879d601'],
+  }[record.number];
+  if(s04EquationPage && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256===s04EquationPage[0] && layout.translation_sha256===s04EquationPage[1]){
+    const slots={6:[.06,.68,.14,.79],8:[.155,.68,.225,.79],10:[.225,.68,.335,.79],12:[.06,.52,.29,.57]};
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(region.block.kind==='heading'){region.slot=[.04,.09,.97,.22];region.font=30;}
+      else if(i===(record.number===20?1:0)){region.slot=[.06,.40,.37,.51];region.font=17;}
+      else if(slots[i]){region.slot=slots[i];region.font=13;}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===23
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='f411a58014188bf6197229cbfd37912ad6ae94a88e9226571565ffa434a34e4f'
+      && layout.translation_sha256==='4b588bac1af1f56b28ed8b4887fe9ef2806a92901ef4bec05610661c47eb7490'){
+    const caption=regions.find(region=>region.block.source_lines[0]===3);
+    if(caption){caption.slot=[.05,.23,.97,.34];caption.font=20;caption.manualAccents=[{text:'U',color:'#00b050'},{text:'V',color:'#0432ff'},{text:'W',color:'#ff0000'},{text:'بین لایه‌ها متفاوت است',color:'#ffc000'}];}
+  }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

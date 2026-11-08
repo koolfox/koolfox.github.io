@@ -57,6 +57,7 @@ jobs:
         run: |
           node deep-learning/math-tools/check_source_math.mjs
           node --test deep-learning/models/tests/*.test.mjs
+          node --test deep-learning/tests/slide-offline-cache.test.mjs
       - run: npx --prefix deep-learning/browser-tests playwright install --with-deps chromium
       - name: Check independent public component
         run: |

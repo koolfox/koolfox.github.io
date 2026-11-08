@@ -302,6 +302,15 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && layout.translation_sha256==='37674bba2804012ac9e8d757ab682f65800705096874da76336c2c84b5d8d0d8') {
     const memory=regions.find(region=>region.block.source_lines[0]===3);
     if(memory)memory.manualAccents=[{text:'حافظه',color:'#ffc000'}];
+    const example=regions.find(region=>region.block.source_lines[0]===2);
+    if(example){example.slot=[.04,.48,.245,.56];example.font=17;}
+  }
+  if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===7
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='6e99def376ea4f393f4b9e30d6260f35808a7a1a336623a1254f23154d96d983'
+      && layout.translation_sha256==='cd40141acd5b669261aaa36200b6e55169020eae9f04f48f624205cd0404f272'){
+    const accents={1:['شبکه‌های پیش‌خور','مناسب نیستند'],2:['حافظه ندارند'],3:['اندازه ورودی ثابت است']};
+    for(const region of regions){const i=region.block.source_lines[0];if(accents[i])region.manualAccents=accents[i].map(text=>({text,color:'#ffc000'}));}
   }
   if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===9
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'

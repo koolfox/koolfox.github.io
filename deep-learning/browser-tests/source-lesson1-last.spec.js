@@ -1,5 +1,27 @@
 import { test, expect } from '@playwright/test';
 
+test('session 1 agenda keeps the bilingual bullet readable without overlap', async ({ page }) => {
+  for (const width of [390, 1400]) {
+    await page.setViewportSize({ width, height: 850 });
+    for (const number of [2, 3]) {
+      await page.goto(`/deep-learning/terms/spring-2026/s01/slides/#page=${number}`);
+      await page.waitForFunction(n => window.sourceSlideReader?.ready && window.sourceSlideReader.page === n, number);
+      if (width === 390) await page.locator('[data-view-translation]').click();
+      await expect(page.locator('#persian-page')).toHaveAttribute('data-layout', 'source-canvas');
+      const item = page.locator('.reader-slide-text[data-source-lines="2"]');
+      await expect(item).toContainText('Neural Networks and Deep Learning');
+      const fit = await item.evaluate(element => ({
+        lineHeight: parseFloat(getComputedStyle(element).lineHeight),
+        fontSize: parseFloat(getComputedStyle(element).fontSize),
+        height: element.clientHeight,
+        content: element.scrollHeight,
+      }));
+      expect(fit.lineHeight / fit.fontSize).toBeGreaterThanOrEqual(1.19);
+      expect(fit.content).toBeLessThanOrEqual(fit.height + 1);
+    }
+  }
+});
+
 test('session 1 closing agenda keeps the source colors and Persian layout', async ({ page }) => {
   await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=86');
   await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 86);

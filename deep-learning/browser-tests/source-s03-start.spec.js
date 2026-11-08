@@ -34,6 +34,12 @@ test('session 3 source review keeps the image and colored quotation', async ({pa
  await expect(quote).toHaveCSS('color','rgb(255, 255, 255)');
  await expect(quote.locator('.reader-emphasis').first()).toHaveCSS('color','rgb(255, 192, 0)');
  await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
+ const labels=page.locator('#persian-page .reader-image-translation');
+ await expect(labels).toHaveCount(5);
+ await expect(labels.nth(0)).toContainText('هندسه محاسباتی');
+ await expect(labels.nth(2)).toContainText('$12.00');
+ await expect(labels.nth(2)).toContainText('$4.95');
+ expect(await labels.evaluateAll(items=>items.every(item=>item.scrollWidth<=item.clientWidth+2 && item.scrollHeight<=item.clientHeight+2))).toBeTruthy();
 });
 
 test('session 3 timeline preserves the source figure and historic labels', async ({page}) => {

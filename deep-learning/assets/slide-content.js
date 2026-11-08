@@ -1791,6 +1791,23 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===(initial?15:21)){region.slot=[.54,.85,.62,.91];region.font=14;region.align='center';}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===27
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='9bacaf5cc01a0ab665ecd3f39ec648b9e51f59ee7d020ea0027cad7fe7ba59de'
+      && layout.translation_sha256==='4c73ac498ec0e05b3d17ffa3717014ef04a1ee3ac015505a6199885b232524dd'){
+    const slots={0:[.04,.09,.65,.22],2:[.12,.85,.24,.91],5:[.10,.59,.17,.64],6:[.05,.28,.65,.37],8:[.05,.37,.65,.43],15:[.21,.59,.29,.64],20:[.26,.85,.36,.91],23:[.37,.85,.48,.91],25:[.33,.59,.41,.64],27:[.46,.59,.53,.64],31:[.49,.86,.60,.92],33:[.56,.59,.64,.64],34:[.10,.93,.66,.98]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===0?28:i===6||i===8?15:i===34?16:13;}if(i===34)region.manualAccents=[{text:'حافظه',color:'#ff40ff'}];}
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===28
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='7d982bfcd5fd0660621c2fa65887a8919b0358403fe7968ffb4b34d6c5e00e95'
+      && layout.translation_sha256==='f6c55e44675c6ba192be0da43044de7e3e47e85a35cc3435a2556b9bfe1ffe6b'){
+    const slots={0:[.04,.09,.97,.22],1:[.05,.26,.96,.34],2:[.05,.93,.38,.97],3:[.265,.80,.47,.89],5:[.32,.66,.47,.78],8:[.30,.39,.47,.48]};
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(slots[i]){region.slot=slots[i];region.font=i===0?29:i===1?19:i===2?20:14;}
+      if(i===2)region.manualAccents=[{text:'سه',color:'#ffc000'},{text:'جدید',color:'#ff0000'},{text:'جز',color:'#00b050'}];
+    }
+  }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

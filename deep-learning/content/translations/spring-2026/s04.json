@@ -1333,44 +1333,68 @@
       "blocks": [
         {
           "source_lines": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            14,
-            15,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24,
-            25,
-            26,
-            27,
-            29,
-            30,
-            31,
-            32,
-            33,
-            34
+            0
           ],
-          "kind": "text",
-          "fa": "مثال 1: پیش‌بینی زوجیت (Parity)\n-1 (ورودی 1)؛ u=3؛ s0 = +1 (زوج).\n• حالت حافظه (sₜ) باید چگونه تغییر کند تا زوج‌بودن (+1) یا فردبودن (-1) تعداد 1ها در دنباله را نشان دهد؟\n• ورودی «1» به‌صورت «-1» و ورودی «0» به‌صورت +1 رمزگذاری می‌شود.\ns1 = −1 (فرد)؛ u=3؛ +1 (ورودی 0).\nu=3؛ -1 (ورودی 1)؛ s2 = −1 (فرد)؛ s3 = 1 (زوج).\nu=3؛ -1 (ورودی 1)؛ s4 = −1 (فرد).\nنوآوری: شبکه عصبی حافظه دارد!"
+          "kind": "heading",
+          "fa": "مثال 1: پیش بینی زوجیت (Parity)"
         },
         {
           "source_lines": [
-            12,
-            13
+            1
           ],
-          "kind": "reference",
-          "fa": "https://dustinstansbury.github.io/theclevermachine/deri\nvation-common-neural-network-activation-functions"
+          "kind": "text",
+          "fa": "-1"
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "(ورودی 1)"
+        },
+        {
+          "source_lines": [
+            3
+          ],
+          "kind": "text",
+          "fa": "u=3"
+        },
+        {
+          "source_lines": [
+            4
+          ],
+          "kind": "text",
+          "fa": "s0 = +1"
+        },
+        {
+          "source_lines": [
+            5
+          ],
+          "kind": "text",
+          "fa": "(زوج)"
+        },
+        {
+          "source_lines": [
+            6,
+            7
+          ],
+          "kind": "text",
+          "fa": "• حالت حافظه (sₜ) باید چگونه تغییر کند تا زوج بودن (+1) یا فرد بودن (-1) تعداد 1ها در دنباله را نشان دهد؟"
+        },
+        {
+          "source_lines": [
+            8
+          ],
+          "kind": "text",
+          "fa": "• ورودی «1» به صورت «-1» و ورودی «0» به صورت +1 رمزگذاری می شود."
+        },
+        {
+          "source_lines": [
+            9
+          ],
+          "kind": "math",
+          "fa": "s1 = tanh 3 ⋅ −1 ⋅ 1 ≈ −1",
+          "latex": "s_1=\\tanh(3\\cdot-1\\cdot1)\\approx-1"
         },
         {
           "source_lines": [
@@ -1383,11 +1407,25 @@
         },
         {
           "source_lines": [
-            9
+            12,
+            13
           ],
-          "kind": "math",
-          "fa": "s1 = tanh 3 ⋅ −1 ⋅ 1 ≈ −1",
-          "latex": "s_1=\\tanh(3\\cdot-1\\cdot1)\\approx-1"
+          "kind": "reference",
+          "fa": "https://dustinstansbury.github.io/theclevermachine/deri\nvation-common-neural-network-activation-functions"
+        },
+        {
+          "source_lines": [
+            14
+          ],
+          "kind": "text",
+          "fa": "s1 = −1"
+        },
+        {
+          "source_lines": [
+            15
+          ],
+          "kind": "text",
+          "fa": "(فرد)"
         },
         {
           "source_lines": [
@@ -1407,11 +1445,123 @@
         },
         {
           "source_lines": [
+            18
+          ],
+          "kind": "text",
+          "fa": "u=3"
+        },
+        {
+          "source_lines": [
+            19
+          ],
+          "kind": "text",
+          "fa": "+1"
+        },
+        {
+          "source_lines": [
+            20
+          ],
+          "kind": "text",
+          "fa": "(ورودی 0)"
+        },
+        {
+          "source_lines": [
+            21
+          ],
+          "kind": "text",
+          "fa": "u=3"
+        },
+        {
+          "source_lines": [
+            22
+          ],
+          "kind": "text",
+          "fa": "-1"
+        },
+        {
+          "source_lines": [
+            23
+          ],
+          "kind": "text",
+          "fa": "(ورودی 1)"
+        },
+        {
+          "source_lines": [
+            24
+          ],
+          "kind": "text",
+          "fa": "s2 = −1"
+        },
+        {
+          "source_lines": [
+            25
+          ],
+          "kind": "text",
+          "fa": "(فرد)"
+        },
+        {
+          "source_lines": [
+            26
+          ],
+          "kind": "text",
+          "fa": "s3 = 1"
+        },
+        {
+          "source_lines": [
+            27
+          ],
+          "kind": "text",
+          "fa": "(زوج)"
+        },
+        {
+          "source_lines": [
             28
           ],
           "kind": "math",
           "fa": "s4 = tanh 3 ⋅ −1 ⋅ 1 ≈ −1",
           "latex": "s_4=\\tanh(3\\cdot-1\\cdot1)\\approx-1"
+        },
+        {
+          "source_lines": [
+            29
+          ],
+          "kind": "text",
+          "fa": "u=3"
+        },
+        {
+          "source_lines": [
+            30
+          ],
+          "kind": "text",
+          "fa": "-1"
+        },
+        {
+          "source_lines": [
+            31
+          ],
+          "kind": "text",
+          "fa": "(ورودی 1)"
+        },
+        {
+          "source_lines": [
+            32
+          ],
+          "kind": "text",
+          "fa": "s4 = −1"
+        },
+        {
+          "source_lines": [
+            33
+          ],
+          "kind": "text",
+          "fa": "(فرد)"
+        },
+        {
+          "source_lines": [
+            34
+          ],
+          "kind": "text",
+          "fa": "نوآوری: شبکه عصبی حافظه دارد!"
         }
       ],
       "image_text": [
@@ -1433,22 +1583,46 @@
             0
           ],
           "kind": "heading",
-          "fa": "مثال 2: پیش‌بینی نویسه بعدی دنباله"
+          "fa": "مثال 2: پیش بینی نویسه بعدی دنباله"
         },
         {
           "source_lines": [
-            1,
-            2,
+            1
+          ],
+          "kind": "text",
+          "fa": "• هدف: پیش بینی نویسه بعدی متن، یعنی تکمیل خودکار متن."
+        },
+        {
+          "source_lines": [
+            2
+          ],
+          "kind": "text",
+          "fa": "• سه جز جدید"
+        },
+        {
+          "source_lines": [
             3,
-            4,
+            4
+          ],
+          "kind": "text",
+          "fa": "بازنمایی تک داغ (One-hot)؛ ورودی"
+        },
+        {
+          "source_lines": [
             5,
             6,
-            7,
+            7
+          ],
+          "kind": "text",
+          "fa": "tanh؛ تابع فعال سازی"
+        },
+        {
+          "source_lines": [
             8,
             9
           ],
           "kind": "text",
-          "fa": "• هدف: پیش‌بینی نویسه بعدی متن؛ یعنی تکمیل خودکار متن.\n• سه جز تازه:\nبازنمایی تک‌داغ (One-hot) برای ورودی؛ tanh به‌عنوان تابع فعال‌سازی (Activation Function)؛ سافت‌مکس (Softmax) در لایه خروجی."
+          "fa": "سافت مکس (Softmax)؛ لایه خروجی"
         },
         {
           "source_lines": [

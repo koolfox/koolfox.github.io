@@ -205,7 +205,7 @@ async function paintPersianLayout(source,canonicalSource,id,selected){
  if(config.term==='spring-2026' && config.session==='s04' && selected===9
    && config.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
    && record.source_text_sha256==='410c138d3bae03bbf04cea0268a0aad126b7765878a047dd5b13214742fdeae4'
-   && record.source_layout?.translation_sha256==='cf0bd70b30b2110ff865caa2c7286655fab93363533eb2a3b1f88ed9d873ae28') targets.forEach((target,number)=>{
+   && record.source_layout?.translation_sha256==='df4ec58ba8dc796caefe7a9721857e9837a6c03eff4be4cab1b4997f4b2f6ba1') targets.forEach((target,number)=>{
   if(covered.has(number))return;
   const needle=key(target.line.text??record.lines[target.line.index]);if(!needle||!boxes)return;
   const [l,t,r,b]=target.line.rect,candidates=[];

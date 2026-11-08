@@ -1219,7 +1219,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===6
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
-      && record.source_text_sha256==='f6f11ea7d4965b4c5f5be9dd187202f219133da7b01eba95d2dd2d0728688852' && layout.translation_sha256==='6fdb505d07abe92a5427eb56f908bd21e4797304c7c8a3eb1ab74a9b51e4335a'){
+      && record.source_text_sha256==='f6f11ea7d4965b4c5f5be9dd187202f219133da7b01eba95d2dd2d0728688852' && layout.translation_sha256==='a3b4c638594616a77fd1be22c379df02e41c93e662d559bd25d0c97160b32914'){
     const slots={2:[.03,.705,.48,.83],5:[.03,.84,.48,.99],8:[.52,.705,.98,.83],11:[.52,.84,.98,.99]};
     for(const region of regions){
       const index=region.block.source_lines[0],slot=slots[index];if(slot)region.slot=slot;
@@ -1240,7 +1240,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===10
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
-      && record.source_text_sha256==='7486dbcc6c89a18b80591440d4c6acf94edabab3efdecaaad11b904f69b2a9b4' && layout.translation_sha256==='ddfdfbdb001fde38430e216e1814e133a8466674af3be3a8c32a953bd8b57280'){
+      && record.source_text_sha256==='7486dbcc6c89a18b80591440d4c6acf94edabab3efdecaaad11b904f69b2a9b4' && layout.translation_sha256==='d6979a87748b9cedd820db2ea53fcfaf56a28b3f0edbcb92e46fcf3e8282529a'){
     for(const region of regions){
       if(region.block.source_lines[0]===0)region.slot=[.07,.66,.32,.83];
       if(region.block.source_lines[0]===3){region.slot=[.02,.83,.98,.99];region.color='#ffffff';region.manualAccents=[{text:'هدف طراحی، ساخت و ارزیابی مدلی الکترونیکی از مغز',color:'#ffc000'},{text:'توانایی «یادگیری» پاسخ‌ها',color:'#ffc000'}];}
@@ -1423,7 +1423,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===39
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
       && record.source_text_sha256==='58ccbab42c7bec48abd230b06de28b7663667df2e405bd517c6e4c264bc98409'
-      && layout.translation_sha256==='be5c1cf4406e7af1b3e06a72456861d8323ce8aa906f6c4229680a8638e0812b'){
+      && layout.translation_sha256==='ada84ab18d0728abcbb10733bc838055bfa7679e7b71522a98d875e04780be2c'){
     const slots={0:[.04,.08,.62,.22],1:[.01,.76,.42,.96],6:[.42,.76,.64,.95]};
     for(const region of regions){const slot=slots[region.block.source_lines[0]];if(slot)region.slot=slot;}
   }

@@ -1,11 +1,12 @@
 import {test,expect} from '@playwright/test';
 
 test('session two scientist dates keep chronological left-to-right order',async({page})=>{
- await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=12');
- await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===12);
- const nodes=page.locator('#persian-page .reader-slide-text bdi[dir="ltr"]');
- await expect(nodes.filter({hasText:'1898-1969'})).toHaveCount(1);
- await expect(nodes.filter({hasText:'1923-1969'})).toHaveCount(1);
+ for(const [number,dates] of [[6,['1852-1934','1889-1977']],[10,['1928-1971']],[12,['1898-1969','1923-1969']],[39,['1927-2016','1928-2016']]]){
+  await page.goto(`/deep-learning/terms/spring-2026/s02/slides/#page=${number}`);
+  await page.waitForFunction(n=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===n,number);
+  const nodes=page.locator('#persian-page .reader-slide-text bdi[dir="ltr"]');
+  for(const date of dates)await expect(nodes.filter({hasText:date})).toHaveCount(1);
+ }
 });
 
 for(const viewport of [{width:1440,height:900},{width:390,height:844}]){

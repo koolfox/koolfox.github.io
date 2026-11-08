@@ -1323,7 +1323,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===26
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
       && record.source_text_sha256==='aa6ce1e48e27e1a092afb455c357e4fba3a684b194ca8aa5cb39533fd1cffa24'
-      && layout.translation_sha256==='6fb6bafe437481e5e7f43e35f7f28261d420c2b0ceb667b54b0f970855991eff'){
+      && layout.translation_sha256==='00e7949f33d3b1b553762f21e9f024f3db45f8c4afb3fe36d46c76d6f7a60331'){
     const slots={0:[.04,.08,.98,.22],1:[.04,.25,.34,.35],10:[.49,.70,.97,.81]};
     for(const region of regions){const slot=slots[region.block.source_lines[0]];if(slot)region.slot=slot;}
   }
@@ -1337,14 +1337,14 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===25
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
       && record.source_text_sha256==='2cad152c61a38d12e6a4731bef915519043cc4e3cfcc15ff0e08aac823119df6'
-      && layout.translation_sha256==='0a45a25468bb6b08768378a96044c9dbc4599960838355c81976d0875f9a961f'){
+      && layout.translation_sha256==='5fae403bc76081cd993dc3f4878d6d2c2b0a0a5eec47c019f02c5ed23d8052b0'){
     const slots={0:[.04,.08,.98,.22],1:[.04,.25,.96,.34],6:[.15,.66,.39,.735],7:[.15,.735,.39,.805],8:[.40,.68,.94,.80]};
     for(const region of regions){const slot=slots[region.block.source_lines[0]];if(slot)region.slot=slot;}
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===27
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
       && record.source_text_sha256==='acdf48d99db30f58775e656099087d394641548e5b00a128e1af063e75f83247'
-      && layout.translation_sha256==='9bc9115d0ab30854d4e4084d27a311f64320bd01d4e03af5bc0e7e255ca7db85'){
+      && layout.translation_sha256==='615c9587313af8fdaf876b51e7dd6053367a7e31f0be17c8cb1059f5409f2dbe'){
     const slots={0:[.04,.08,.98,.22],10:[.04,.25,.34,.35],6:[.08,.57,.75,.65]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];
       if(i===10){region.maskSourceLines=[10];region.clearRect=[.07,.26,.34,.35];}
@@ -1353,14 +1353,14 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===28
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
       && record.source_text_sha256==='8b2400cf470e8ddd46a4c7b622788970f16fa12104f0f5d919f6b742f5f2ddee'
-      && layout.translation_sha256==='01c51cd7619d52d70bc95726a8d1bac585302a49e14b036d9b7301333963c5ec'){
+      && layout.translation_sha256==='c0fc44732cee3bf689c35ab79d1f759958a6b622994a126863b230092767ac9c'){
     const slots={0:[.04,.08,.98,.22],1:[.04,.25,.96,.34],6:[.15,.66,.39,.735],7:[.15,.735,.39,.805],8:[.40,.68,.94,.80]};
     for(const region of regions){const slot=slots[region.block.source_lines[0]];if(slot)region.slot=slot;}
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===29
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
       && record.source_text_sha256==='a98650e960cb99d33876a8b47dbdbcd4f036bb396a70b5c47bbb4638691f3bbb'
-      && layout.translation_sha256==='72ea1f34e14e0d5e0f1764182870a813e4c49053a8f95fe13db2e9852f6365d8'){
+      && layout.translation_sha256==='43be63eebdea3587ad69e8a82990dfd673d5759da2f6b0969c81bac93affd985'){
     const slots={0:[.04,.08,.98,.22],10:[.04,.25,.34,.35],6:[.49,.70,.97,.81]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];
       if(i===10){region.maskSourceLines=[10];region.clearRect=[.07,.26,.34,.35];}
@@ -1369,7 +1369,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===30
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
       && record.source_text_sha256==='022d53bce28d324c6003bccb7c1d4bb189d4a44047d9d5a65b1f914dfe85a12b'
-      && layout.translation_sha256==='aa4f0e1afc51c19ae099aecc2e8b3efe725eee2675e01368b92a98d4384ddbf7'){
+      && layout.translation_sha256==='60c4d77388105c362083b80af11191ca9a63737e66cd78ee20461e87260d272f'){
     const slots={0:[.04,.08,.98,.22],11:[.04,.25,.34,.35]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];
       if(i===11){region.maskSourceLines=[11];region.clearRect=[.07,.26,.34,.35];}
@@ -1392,14 +1392,14 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===33
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
       && record.source_text_sha256==='abbf1196293ace9df43ff5f4fadfee253d93a8a02858f87764455c621f7ecf55'
-      && layout.translation_sha256==='ff4ee8fda132c7b0b2f51836127342a052b976e6416e1d99d7027cb99e393447'){
+      && layout.translation_sha256==='02ef1f002e6587995f48eaa45a876464687fb2aab130e3b5aa155e53c1f9f3d5'){
     const slots={3:[.02,.08,.98,.22],0:[.02,.77,.49,.92],2:[.02,.92,.49,.98],4:[.51,.77,.98,.92],6:[.51,.92,.98,.98]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];if(i===3)region.font=30;}
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===34
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
       && record.source_text_sha256==='fcc1d6b4edf7711202471af906a40b0be01dfda1b1baa2799ecd1291d20dbfa0'
-      && layout.translation_sha256==='37ce1ca44d4e76666350e1dcb01ae255d95f4a4ac56784e040570b2524615ab6'){
+      && layout.translation_sha256==='427ae935c2c94d266656fd0f842616a49599091c456725f19eb473a1617ee5e2'){
     for(const region of regions){const i=region.block.source_lines[0];if(i===0)region.slot=[.04,.08,.98,.22];
       if(i===1){region.slot=[.04,.34,.96,.80];region.color='#ffffff';region.manualAccents=[{text:'بررسی ساختارهای فیزیکی و اصول عصب‌پویایی مربوط است که زیربنای «هوش طبیعی» هستند',color:'#ffc000'},{text:'پرسپترون پیش از هر چیز مدلی از مغز است',color:'#ffc000'},{text:'ما را قادر می‌کند شرایط فیزیکی پدیدآمدن ویژگی‌های روان‌شناختی گوناگون را تعیین کنیم',color:'#ffc000'}];}
     }
@@ -1407,14 +1407,14 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===35
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
       && record.source_text_sha256==='b97544e601ee854e01a65de63b54c46ee0f8c7fc81079f10ff3cacfc0deac74c'
-      && layout.translation_sha256==='883a268572aa8a9013701772451a07ec9981876d3b7763c073fb7bfa7cdeb41a'){
+      && layout.translation_sha256==='7732a5a041d9f977ea3bb484d333924da0136640e69d7c9d28f9554216279f8b'){
     const slots={0:[.03,.055,.46,.25],2:[.03,.49,.46,.57]};
     for(const region of regions){const slot=slots[region.block.source_lines[0]];if(slot)region.slot=slot;}
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===37
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
       && record.source_text_sha256==='7d0e1385360f7dbc13695b23d3722c295f594c2d58bbcfb6e870b16af434ba2f'
-      && layout.translation_sha256==='4c1a7dffa343cba0179f7907ed76acfe77d9d10064aa453b56b67c8a3a09648c'){
+      && layout.translation_sha256==='8f96107d7e614b0c8c5d730b9aadceab29fda4330ae92f626adc8a44f4af471b'){
     const slots={0:[.03,.08,.98,.22],1:[.015,.22,.65,.57],10:[.015,.57,.65,.655],11:[.015,.655,.65,.93],18:[.015,.94,.65,.99],20:[.67,.23,.99,.29]};
     for(const region of regions){const i=region.block.source_lines[0],slot=slots[i];if(slot)region.slot=slot;if(i===1||i===11){region.scrollable=true;region.color='#ffffff';}
       if(i===1)region.manualAccents=[{text:'ظرف سه تا هشت سال، ماشینی با هوش عمومی یک انسان معمولی خواهیم داشت',color:'#ffc000'},{text:'ظرف چند ماه در سطح نابغه خواهد بود و چند ماه بعد، قدرت‌هایش محاسبه‌ناپذیر خواهند شد',color:'#ffc000'},{text:'اگر خوش‌شانس باشیم، شاید تصمیم بگیرند ما را به‌عنوان حیوان خانگی نگه دارند',color:'#ffc000'}];
@@ -1439,10 +1439,10 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===41
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
       && record.source_text_sha256==='13b7e29ff24fef2edffe12ce54d7ba54d434537a541d7ecd319cc34d5c7f9310'
-      && layout.translation_sha256==='7d86687217d44e6c57ae1c5f758c5fc8e065fdaa7760b23d48e84f42297e5533'){
+      && layout.translation_sha256==='e2dbfd81eb74316833e11250dc45924d0283972276cfec25660129f4a4e64478'){
     const slots={0:[.04,.08,.98,.22],1:[.05,.28,.96,.84],12:[.05,.85,.96,.93]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];
-      if(i===1){region.color='#ffffff';region.manualAccents=[{text:'نتیجه‌ها… عموما ناامیدکننده بودند',color:'#ffc000'},{text:'احساس اجبار درمانگرانه',color:'#ffc000'},{text:'زدودن آنچه می‌ترسیدیم نخستین سایه‌های یک سوءبرداشت «کل‌گرایانه» یا «گشتالتی» باشد',color:'#ffc000'}];}
+      if(i===1){region.color='#ffffff';region.manualAccents=[{text:'نتیجه‌ها… عموما ناامیدکننده بودند',color:'#ffc000'},{text:'احساس اجبار درمانگرانه',color:'#ffc000'},{text:'زدودن آنچه می‌ترسیدیم نخستین سایه‌های یک برداشت نادرست «کل‌گرایانه» یا «گشتالتی» باشد',color:'#ffc000'}];}
     }
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===42
@@ -1465,7 +1465,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===44
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
       && record.source_text_sha256==='b2d62cf2778b077bbf87a91d6df2ecdc732366dcec06c0a8628478c527037999'
-      && layout.translation_sha256==='ac4805593a58eb2babc1cd7686cf63262fe622fc5075ccc4333b5b0d743c1303'){
+      && layout.translation_sha256==='4b73b184b48f26f525c26b2111322e5dc02fe2c33095bcaddcb9a18c14c9813f'){
     const slots={0:[.03,.08,.98,.22],10:[.10,.82,.90,.96]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];if(i===0)region.font=30;
       if(i===10){region.color='#ffffff';region.manualAccents=[{text:'داوطلب',color:'#ffc000'},{text:'خطی',color:'#ffc000'}];}
@@ -1474,13 +1474,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===45
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
       && record.source_text_sha256==='e6a1cd42063ff8e2a9ffe805d8a0f434201629bdeeb295ef73342265b0b7581a'
-      && layout.translation_sha256==='737a35d48062886ce511122b9efb8fb34dd7581f7ef3f94febda006712b9adae'){
+      && layout.translation_sha256==='f62a52f171a7fe3e31c9e0f58ec4e95e92b14237f3e260775827b685974c084f'){
     for(const region of regions){if(region.block.source_lines[0]===0){region.slot=[.02,.44,.39,.66];region.color='#ffffff';region.manualAccents=[{text:'با پرسپترون تک‌لایه (Single Layer Perceptron) ناممکن است',color:'#ffc000'}];}}
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===46
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
       && record.source_text_sha256==='b9e9c21f5700b8a6d2e7fdf31710ec221de393d1cee4c86946448ddd4775180a'
-      && layout.translation_sha256==='afb5a857c524c95f3866442444819836b5fbcf265bfdcf8e02d99a849df75ef2'){
+      && layout.translation_sha256==='c0fbadc713e040610ba2a2a325149cf6e6cf856173f140f4aec6d0319cebe89e'){
     const slots={0:[.03,.08,.98,.22],1:[.53,.41,.97,.53],2:[.53,.57,.97,.72]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];if(i===0)region.font=29;
       if(i===1){region.color='#ffffff';region.manualAccents=[{text:'نهادهای تامین مالی',color:'#ffc000'}];}
@@ -1490,7 +1490,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===47
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
       && record.source_text_sha256==='8586d2b7414ae644105a506666c4d782224c365e4bea2579025183b27a61f57a'
-      && layout.translation_sha256==='4418015150cde8d38a3e78696587ace7bfe650f21d394c40cd1174a145e305b2'){
+      && layout.translation_sha256==='5052ee48c66976fef819e6b854cbc4fa481c87695c3fe2f9a227c2da8c754f5a'){
     for(const region of regions){const i=region.block.source_lines[0];if(i===0)region.slot=[.04,.08,.63,.22];
       if(i===1){region.slot=[.03,.28,.64,.87];region.color='#ffffff';region.manualAccents=[{text:'پیشرفت به‌سبب نبود نظریه‌های بنیادی کافی، از پیش عملا متوقف شده بود',color:'#ffc000'},{text:'درس‌های این کتاب به حوزه نیروی تازه دادند',color:'#ffc000'},{text:'هیچ‌کس نتوانسته بود توضیح دهد چرا آن‌ها می‌توانستند بازشناسی بعضی انواع الگوها را یاد بگیرند و بعضی دیگر را نه',color:'#ffc000'}];}
     }
@@ -1498,7 +1498,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===49
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
       && record.source_text_sha256==='08a245281a6684133e9041e76e7b78b26955aa9beb0c431eb262501e39422390'
-      && layout.translation_sha256==='ddfb809ca90555239fb4a039c1dd7f6dd756bcac5bc321bb7fd26312451a29c6'){
+      && layout.translation_sha256==='45b154890ff3d145e4484f62c82399ade0d229d520c6709df2f68a34b5462f0f'){
     const slots={0:[.04,.08,.98,.22],1:[.04,.46,.96,.58],3:[.04,.64,.96,.76]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];
       if(i===1){region.color='#ffffff';region.manualAccents=[{text:'راهنمای تکلیف آزمایشگاهی 1',color:'#ffc000'}];}

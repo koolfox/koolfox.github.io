@@ -1,5 +1,17 @@
 import { test, expect } from '@playwright/test';
 
+test('clinical note slide keeps its translated figure after a copy update', async ({ page }) => {
+  for (const width of [390, 1400]) {
+    await page.setViewportSize({ width, height: 850 });
+    await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=14');
+    await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 14);
+    if (width === 390) await page.locator('[data-view-translation]').click();
+    await expect(page.locator('#persian-page')).toHaveAttribute('data-layout', 'source-canvas-figure-companion');
+    await expect(page.locator('.reader-image-translation').first()).toContainText('مستندسازی بالینی');
+    await expect(page.locator('.reader-figure-content')).toContainText('برنامه من');
+  }
+});
+
 test('session 1 agenda keeps the bilingual bullet readable without overlap', async ({ page }) => {
   for (const width of [390, 1400]) {
     await page.setViewportSize({ width, height: 850 });

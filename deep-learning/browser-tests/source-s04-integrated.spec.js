@@ -17,8 +17,17 @@ test('RNN comparison retains each caption and both diagrams', async ({page}) => 
     await expect(slide.locator('.reader-slide-text')).toHaveCount(7);
     for(const text of ['Feedforward Network','Recurrent Network','اتصال های دارای تاخیر زمانی'])
       await expect(slide.locator('.reader-slide-text').filter({hasText:text}).first()).toBeVisible();
+    for(const term of ['Feedforward Network','Recurrent Network']){
+      const isolated=slide.locator('.reader-slide-text bdi').filter({hasText:term});
+      await expect(isolated).toHaveCount(1);
+      await expect(isolated).toHaveCSS('white-space','nowrap');
+      const label=isolated.locator('..');
+      const fit=await label.evaluate(node=>({font:parseFloat(getComputedStyle(node).fontSize),fits:node.scrollWidth<=node.clientWidth+2 && node.scrollHeight<=node.clientHeight+2}));
+      expect(fit.font).toBeGreaterThanOrEqual(18);expect(fit.fits).toBe(true);
+    }
     await expect(slide.locator('.reader-emphasis').filter({hasText:'افزودن حالت پنهان'})).toHaveCSS('color','rgb(255, 192, 0)');
     await expect(slide.locator('.reader-slide-text').filter({hasText:'اتصال های دارای تاخیر زمانی'})).toHaveCSS('color','rgb(255, 192, 0)');
+    await slide.locator('.reader-slide-holder').screenshot({path:test.info().outputPath(`s04-page12-updated-${width}.png`)});
   }
 });
 

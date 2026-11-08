@@ -79,6 +79,9 @@ async function main() {
           let body = await response.text();
           const needle = 'const expanded=expandSourceLayout(plan);';
           if (!body.includes(needle)) throw Error('Expected retry hook not found');
+          const fit = 'if(!expanded||!fitSourceLayout(slide.stage))';
+          if (!body.includes(fit)) throw Error('Expected final fit check not found');
+          body = body.replace(fit, `window.__fitDiagnostics=[...slide.stage.querySelectorAll('.reader-slide-text')].filter(n=>n.scrollHeight>n.clientHeight+2||n.scrollWidth>n.clientWidth+2).map(n=>({lines:n.dataset.sourceLines,text:n.textContent,width:n.clientWidth,height:n.clientHeight,scrollWidth:n.scrollWidth,scrollHeight:n.scrollHeight,font:getComputedStyle(n).fontSize}));${fit}`);
           retryHookSeen = true;
           if (variant === 'baseline' && !baselineModule) body = body.replace(needle, 'const expanded=null;');
           await route.fulfill({ response, body });
@@ -126,7 +129,7 @@ async function main() {
             source_sha256: window.sourceSlideReader.sourceSha256 || null,
             translation_url: config.translationUrl || null, translation_sha256, font_status: document.fonts.status,
             font_faces: [...document.fonts].map(face => ({ family: face.family, status: face.status })),
-            root_direction: getComputedStyle(root).direction, text, images };
+            root_direction: getComputedStyle(root).direction, text, images, fit_diagnostics:window.__fitDiagnostics || [] };
         });
         Object.assign(record, result);
         record.page_errors = errors;

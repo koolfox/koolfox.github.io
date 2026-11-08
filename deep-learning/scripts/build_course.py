@@ -15,6 +15,7 @@ from source_catalog import ROOT
 from workshops import load_workshops
 from local_slides import load_slides
 from source_reader import load_source_translation, source_reader_page
+from source_page_payloads import build_page_payloads
 from student_practice import choice_question, practice_page, knowledge_page
 
 BASE = "/deep-learning"
@@ -748,6 +749,8 @@ def build(output, root=ROOT):
                 destination = output / f"source-translations/{term['id']}/{row['id']}.json"
                 destination.parent.mkdir(parents=True, exist_ok=True)
                 destination.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+                if term["id"] == "spring-2026":
+                    build_page_payloads(output, payload)
                 pdf = payload["source"]["local_url"].removeprefix(BASE + "/")
                 target = output / pdf
                 target.parent.mkdir(parents=True, exist_ok=True)

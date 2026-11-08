@@ -123,9 +123,20 @@ if(['spring-2026/s02/majority-truth','spring-2026/s02/majority-epoch','spring-20
   panel.append(summary,note,frame);document.querySelector('#practice-notebook .nb-cells').before(panel);
   panel.addEventListener('toggle',()=>{if(panel.open&&!frame.getAttribute('src'))frame.src='/deep-learning/animations/perceptron-steps/?notebook=1';});
 }
-function section() { if (location.hash === '#questions') book.showQuiz(); else book.showCode(); }
-section(); window.addEventListener('hashchange', section);
 const returnLink=document.querySelector('[data-return-slide]');returnLink.href=config.reader+'#page='+returnPage;
+const practiceFooter=returnLink.parentElement, utilityTools=document.querySelector('.nb-utility-tools');
+function placeReturnLink(quiz) {
+  (quiz ? practiceFooter : utilityTools).append(returnLink);
+  practiceFooter.hidden = !quiz;
+}
+function section() {
+  const quiz = location.hash === '#questions' || config.codeAvailable === false;
+  if (quiz) book.showQuiz(); else book.showCode();
+  placeReturnLink(quiz);
+}
+document.querySelector('[role="tab"][id$="-tab-code"]').addEventListener('click',()=>placeReturnLink(false));
+document.querySelector('[role="tab"][id$="-tab-quiz"]').addEventListener('click',()=>placeReturnLink(true));
+section(); window.addEventListener('hashchange', section);
 returnLink.addEventListener('click', event => { if (parent !== window) { event.preventDefault(); goToSource(returnPage,true); } });
 for (const lab of config.related_labs) {
   const link = document.createElement('a'); link.textContent = 'آزمایش زندهٔ مرتبط';

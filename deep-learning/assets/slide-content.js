@@ -1915,9 +1915,9 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='7d982bfcd5fd0660621c2fa65887a8919b0358403fe7968ffb4b34d6c5e00e95'
       && layout.translation_sha256==='f6c55e44675c6ba192be0da43044de7e3e47e85a35cc3435a2556b9bfe1ffe6b'){
-    const slots={0:[.04,.09,.97,.22],1:[.05,.26,.96,.34],2:[.05,.93,.38,.97],3:[.265,.80,.47,.89],5:[.32,.66,.47,.78],8:[.30,.39,.47,.48]};
+    const slots={0:[.04,.09,.97,.22],1:[.05,.26,.96,.34],2:[.05,.93,.38,.97],3:[.265,.80,.47,.89],5:[.39,.68,.47,.79],8:[.30,.39,.47,.48]};
     for(const region of regions){const i=region.block.source_lines[0];
-      if(slots[i]){region.slot=slots[i];region.font=i===0?29:i===1?19:i===2?20:14;}
+      if(slots[i]){region.slot=slots[i];region.font=i===0?29:i===1?19:i===2?20:i===5?12:14;}
       if(i===2)region.manualAccents=[{text:'سه',color:'#ffc000'},{text:'جدید',color:'#ff0000'},{text:'جز',color:'#00b050'}];
     }
   }
@@ -2106,7 +2106,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && record.source_text_sha256==='410c138d3bae03bbf04cea0268a0aad126b7765878a047dd5b13214742fdeae4'
       && layout.translation_sha256==='cf0bd70b30b2110ff865caa2c7286655fab93363533eb2a3b1f88ed9d873ae28'){
     imageTranslations.push({rect:[.35,.578,.605,.647],text:'هواداران دوآتشه عاشق آن می شوند؛ برای بقیه، وقت گذرانی نسبتا خوبی است.',background:'#fff',color:'#242424',font:11,align:'right'});
-    imageTranslations.push({rect:[.666,.554,.842,.626],text:'امروز سرگرم کننده است.',background:'#fff',color:'#000',font:20,align:'center'});
+    imageTranslations.push({rect:[.666,.554,.842,.626],text:'امروز سرگرم کننده است.',background:'#fff',color:'#000',font:15,align:'center'});
     imageTranslations.push({rect:[.682,.672,.825,.704],text:'چینی (سنتی)',background:'#fff',color:'#555',font:11,align:'center'});
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===8

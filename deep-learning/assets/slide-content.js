@@ -1102,7 +1102,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
         {rect:[.122,.482,.191,.518],text:'نمونه 1',background:'#fff',color:'#000',font:13,align:'center'},
         {rect:[.195,.563,.265,.598],text:'نمونه 2',background:'#fff',color:'#000',font:13,align:'center'},
         {rect:[.265,.645,.335,.680],text:'نمونه 3',background:'#fff',color:'#000',font:13,align:'center'},
-        {rect:[.309,.775,.405,.810],text:'نمونه N-L',background:'#fff',color:'#000',font:13,align:'center'},
+        {rect:[.303,.765,.405,.820],text:'نمونه N-L',background:'#fff',color:'#000',font:13,align:'center'},
         {rect:[.606,.848,.650,.883],text:'ورودی',background:'#fff',color:'#000',font:13,align:'center'},
         {rect:[.840,.848,.889,.883],text:'خروجی',background:'#fff',color:'#000',font:13,align:'center'},
       ];

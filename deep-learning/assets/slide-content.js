@@ -1966,6 +1966,23 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const slots={0:[.04,.09,.97,.22],1:[.05,.27,.90,.33],2:[.08,.33,.90,.38],3:[.08,.91,.90,.97]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===0?29:17;}}
   }
+  const s04LossPages={
+    46:['1dbeeff27313648aa4c8fc2c709d2dde451d290640282403ca00fa11af6dd05d','9645e6aa8f2b7c2d7f9be22671856452e3cf29e6f4224459ba74bf0af3835b08'],
+    47:['8a995a60a5373c0b7a1971029e924ffba5fbe2802e54ff4ce5c55142d72b928b','0d21e8d03deef8d9256b6db0f62788808a3afa0c16e10598925a35504686e714'],
+    48:['6176f3222e881d36bdfcfe70fdec5ab9bc5d1d9fd411c67369a1f8b29703f5cd','7f86cf3a7b62e4fb83c4392ac02ba6745292dc61866922c2a5969b2830abbb6b'],
+    49:['4fdce9f31e171ff862fe6de311c88311a1109a35381e640cc1eb664f148741ad','87685a6b64c7d184230588a999caacf1222ac2dce796187476668007117c7ab5'],
+    51:['7c48fc0319dc86b9c82dea38dba41d70c07f0e6e941262498f1f7b86259201ed','21a247833794829d1dee1e919e1bfe3fbadf563905bbba95b83a91236026ec7f'],
+  }[record.number];
+  if(s04LossPages && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256===s04LossPages[0] && layout.translation_sha256===s04LossPages[1]){
+    const byPage={46:{0:[.04,.09,.97,.22],10:[.67,.50,.98,.72]},47:{9:[.04,.06,.97,.24],1:[.68,.39,.87,.44],2:[.42,.29,.74,.34],3:[.04,.34,.40,.39],4:[.55,.58,.82,.68],6:[.05,.73,.40,.88],11:[.46,.80,.97,.90]},48:{11:[.04,.06,.97,.24],0:[.05,.35,.47,.50],3:[.05,.58,.47,.64],4:[.05,.65,.47,.70],5:[.08,.70,.47,.75],6:[.05,.76,.47,.82],7:[.08,.82,.47,.88],9:[.65,.42,.96,.52]},49:{0:[.04,.09,.97,.22],1:[.05,.27,.90,.33],2:[.09,.38,.86,.46],3:[.09,.49,.86,.57],4:[.09,.61,.86,.79],7:[.09,.83,.86,.90]},51:{2:[.10,.42,.31,.46],3:[.10,.46,.31,.55],5:[.10,.59,.31,.65]}};
+    const slots=byPage[record.number];
+    for(const region of regions){const i=region.block.source_lines[0];if(!slots[i])continue;region.slot=slots[i];region.font=region.block.kind==='heading'?28:record.number===49?17:record.number===46?16:14;
+      if(record.number===46&&i===10)region.manualAccents=[{text:'هدف',color:'#ffc000'}];
+      if(record.number===49&&i===0){region.color='#ffffff';region.manualAccents=[{text:'این روش اغلب شکست می خورد',color:'#ffc000'},{text:'چرا',color:'#ffc000'}];}
+    }
+  }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

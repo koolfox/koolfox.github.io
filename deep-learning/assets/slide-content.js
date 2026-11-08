@@ -510,7 +510,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   }
   const s01TitleReview={
     14:['766169dcca47dd0f8949d0481e883b01b40ea73afd686cc4c7f6f2a7de71e6eb','250e9b89f3d5dbbd37838e4d7e9ff2f2691e3360993d6079c3abf4ae29b94a3f',[.04,.09,.96,.205],30],
-    19:['a2e55bbba08b55ea9c01ab2d28267bedaf666acd16d3f971a809ca68b67fde8b','2087ae62e9f77f266d3deb4b8e77b306a22fcacd53733a2f55962ba674ba02e3',[.02,.10,.40,.22],26],
+    19:['a2e55bbba08b55ea9c01ab2d28267bedaf666acd16d3f971a809ca68b67fde8b','cd36588eda1926328aa1293054ac487b75906335b99c8c78ede6b202899e448c',[.02,.10,.40,.22],26],
   }[record.number];
   if(s01TitleReview && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01'
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
@@ -1149,7 +1149,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===19
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='a2e55bbba08b55ea9c01ab2d28267bedaf666acd16d3f971a809ca68b67fde8b'
-      && layout.translation_sha256==='2087ae62e9f77f266d3deb4b8e77b306a22fcacd53733a2f55962ba674ba02e3'){
+      && layout.translation_sha256==='cd36588eda1926328aa1293054ac487b75906335b99c8c78ede6b202899e448c'){
     const [heading,description]=record.image_text[0].fa.split('؛');
     imageTranslations=[
       {rect:[.48,.04,.91,.11],text:heading,background:'#5c74cb',color:'#fff',font:25,align:'center'},
@@ -1161,7 +1161,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===20
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='2e37398adde30d4ea9d1eb093600f809eea2d545f558149912581637fd7d32de'
-      && layout.translation_sha256==='2696d9c10922b51a0bafcc5e707b6fc9084c8a21435af130bc5e73acc9f08343'){
+      && layout.translation_sha256==='b66df3f72328650bd5fbc862348bcf0a04a91c6edf8d63a4a3d0af5824f5e849'){
     imageTranslations=[
       {rect:[.07,.69,.63,.89],text:'تبدیل رایگان آنلاین عکس به صفحه رنگ‌آمیزی',background:'linear-gradient(105deg,#f69ca9,#f98997)',color:'#fff',font:32},
     ];

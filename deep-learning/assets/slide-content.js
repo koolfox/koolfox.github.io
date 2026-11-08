@@ -1251,9 +1251,10 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && record.source_text_sha256==='c28695f15f907b74514e7097378eee67bd4f5348f708379d1fc7c34bda60b7da' && layout.translation_sha256==='602dc6300ea0f23c85f10559af2dbe2117ee5205a7337475e5a59668c4ce883e'){
     for(const region of regions){
       const index=region.block.source_lines[0];
-      if(index===2){region.color='#ffffff';region.manualAccents=[{text:'مدل نورون زیستی',color:'#ffc000'}];}
-      if(index===3){region.color='#ffffff';region.manualAccents=[{text:'رایانه دیجیتال',color:'#ffc000'}];}
-      if(index===4){region.color='#ffffff';region.manualAccents=[{text:'الگوی یادگیری «نورون‌هایی که با هم شلیک می‌کنند، به هم متصل می‌شوند»',color:'#ffc000'}];}
+      if(index===0){region.slot=[.076,.06,.95,.245];region.font=38;}
+      if(index===2){region.slot=[.076,.40,.61,.51];region.font=27;region.color='#ffffff';region.manualAccents=[{text:'مدل نورون زیستی',color:'#ffc000'}];}
+      if(index===3){region.slot=[.076,.55,.94,.66];region.font=28;region.color='#ffffff';region.manualAccents=[{text:'رایانه دیجیتال',color:'#ffc000'}];}
+      if(index===4){region.slot=[.076,.70,.95,.96];region.font=26;region.color='#ffffff';region.manualAccents=[{text:'الگوی یادگیری «نورون‌هایی که با هم شلیک می‌کنند، به هم متصل می‌شوند»',color:'#ffc000'}];}
     }
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===12

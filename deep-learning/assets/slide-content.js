@@ -1706,6 +1706,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const slots={0:[.05,.10,.96,.21],1:[.07,.27,.96,.38],3:[.07,.39,.96,.45],8:[.09,.53,.54,.58],14:[.09,.72,.54,.77],15:[.09,.77,.54,.83],16:[.09,.83,.54,.93]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];region.font=i===0?33:([1,3].includes(i)?18:14);if(i===1){region.color='#ffffff';region.manualAccents=[{text:'گرادیان',color:'#ffc000'},{text:'مشتق‌های جزئی برای چند متغیر',color:'#ffc000'}];}if(i===3)region.manualAccents=[{text:'مشتق',color:'#ffc000'}];}
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===2
+      && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
+      && record.source_text_sha256==='4544921747d18808b5c990cc7d584d2cfa755f0125df556e37d8395d3d671f92'
+      && layout.translation_sha256==='ecff732a3b478a95c85e5132fdd64fc1179a453fb6cef4a9b99983ecabf36cc7'){
+    const slots={0:[.05,.10,.95,.20],1:[.08,.27,.94,.33],2:[.11,.335,.96,.39],3:[.11,.39,.96,.445],4:[.11,.445,.96,.50],5:[.11,.50,.96,.555],6:[.08,.63,.94,.69],7:[.11,.70,.96,.76],8:[.08,.82,.94,.88]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];region.font=i===0?36:([1,6,8].includes(i)?25:21);}
+  }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===47
       && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
       && record.source_text_sha256==='6d80a5e0824a451c2b95a6e52d38ea78895a9a6d9d43b02de94ed05d0c9622b9'

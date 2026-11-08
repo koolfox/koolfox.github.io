@@ -1207,7 +1207,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===2
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
       && record.source_text_sha256==='a9a67f6e81b05125d6e74f2676bd4180b7f015dabc06ab3ea8cdda2167c89c35'
-      && layout.translation_sha256==='8021c46a51bbfdec84e87b6a29ea2b2323c7859b15c2fb16a2fd668018ad5c3c'){
+      && layout.translation_sha256==='b332662cf563cad86fbbe3676bf3794913875154a09a211f1b2bb1c5869cb580'){
     const vertical=[[.105,.215],[.27,.335],[.335,.395],[.395,.455],[.455,.515],[.515,.575],[.63,.695],[.695,.765],[.82,.89]];
     for(const region of regions){const index=region.block.source_lines[0];const [top,bottom]=vertical[index];const nested=[2,3,4,5,7].includes(index);region.slot=[.05,top,nested?.88:.94,bottom];}
   }
@@ -1223,18 +1223,18 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===7
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
-      && record.source_text_sha256==='8b11b7ea0307482bb13cc03c5b7201a3c374838a70d1ac3a6bce4fd2a317aeff' && layout.translation_sha256==='c64a405889f4db34be38c012aa0c56ec2a54d92f544e18db46329bab89fd65a9'){
+      && record.source_text_sha256==='8b11b7ea0307482bb13cc03c5b7201a3c374838a70d1ac3a6bce4fd2a317aeff' && layout.translation_sha256==='03c1668840dcbcc7f33a9db2425a7925ef17eb142664480a3c2f17d7f343da1a'){
     const slots={3:[.03,.84,.48,.99],11:[.52,.84,.98,.99],14:[.67,.29,.98,.48],17:[.67,.70,.98,.78]};
     for(const region of regions){const slot=slots[region.block.source_lines[0]];if(slot)region.slot=slot;}
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===8
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
-      && record.source_text_sha256==='5fe7e43e304598fdd8f19b618a43e0e1e164b9d0aa28408b08f2d2dc1d9a3b09' && layout.translation_sha256==='0592cd3f463c9fffbb0c43f8f1f34bc51ee798dbaf13dba6001a4ad624114acc'){
+      && record.source_text_sha256==='5fe7e43e304598fdd8f19b618a43e0e1e164b9d0aa28408b08f2d2dc1d9a3b09' && layout.translation_sha256==='dfa211ce4cc357f19dc0bfd2e8a37d4d017d9b20e421c88291a81849824fc9aa'){
     for(const region of regions)if(region.block.source_lines[0]===1){region.slot=[.18,.92,.85,.98];region.linkTarget='https://youtu.be/oa6rvUJlg7o?t=8';}
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===10
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
-      && record.source_text_sha256==='7486dbcc6c89a18b80591440d4c6acf94edabab3efdecaaad11b904f69b2a9b4' && layout.translation_sha256==='1e1d291d37c2faeccac097bf350eeed7b379cada1f3acb912a297f0702d4a2cb'){
+      && record.source_text_sha256==='7486dbcc6c89a18b80591440d4c6acf94edabab3efdecaaad11b904f69b2a9b4' && layout.translation_sha256==='ddfdfbdb001fde38430e216e1814e133a8466674af3be3a8c32a953bd8b57280'){
     for(const region of regions){
       if(region.block.source_lines[0]===0)region.slot=[.07,.66,.32,.83];
       if(region.block.source_lines[0]===3){region.slot=[.02,.83,.98,.99];region.color='#ffffff';region.manualAccents=[{text:'هدف طراحی، ساخت و ارزیابی مدلی الکترونیکی از مغز',color:'#ffc000'},{text:'توانایی «یادگیری» پاسخ‌ها',color:'#ffc000'}];}

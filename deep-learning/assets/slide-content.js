@@ -1071,6 +1071,19 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     for(const region of regions){const i=region.block.source_lines[0];region.slot=slots[i];region.font=i===0?32:[1,6,9].includes(i)?23:19;if(i!==0)region.align='center';}
   }
   let imageTranslations=[];
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===5
+      && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
+      && record.source_text_sha256==='7223ce84f8bda3a3f91278b27d701d9882a532dba5b6959f918a45133a92646e'
+      && layout.translation_sha256==='4a810fb1270142b79e306799a189a762e6d1146124a9d435a3ac5e4f548413ef'){
+    const labels=record.image_text[0].fa.split('؛').map(text=>text.trim());
+    imageTranslations=[
+      {rect:[.44,.34,.48,.375],text:labels[0],background:'#fff',color:'#000',font:10},
+      {rect:[.465,.38,.53,.415],text:labels[1],background:'#fff',color:'#000',font:10},
+      {rect:[.53,.58,.59,.615],text:labels[2],background:'#fff',color:'#000',font:10},
+      {rect:[.465,.805,.60,.835],text:labels[3],background:'#fff',color:'#000',font:9},
+      {rect:[.465,.835,.60,.865],text:labels[4],background:'#fff',color:'#000',font:9},
+    ];
+  }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===78
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='3e6672c8e90af769505a90237127f2bc27368343fc4a4d4291e6c38c66310f52'

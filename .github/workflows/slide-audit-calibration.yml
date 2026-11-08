@@ -49,7 +49,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          name=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts" --paginate --jq '.artifacts[] | select(.expired == false) | .name' | grep -F "slide-inventory-$GITHUB_SHA-attempt-" | sort -V | tail -1)
+          name=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts" --paginate --jq '.artifacts[] | select(.expired == false) | .name' | { grep -F "slide-inventory-$GITHUB_SHA-attempt-" || true; } | sort -V | tail -1)
           if [ -n "$name" ]; then gh run download "$GITHUB_RUN_ID" --name "$name" --dir audit-report; fi
       - name: Inventory all source pages
         run: |

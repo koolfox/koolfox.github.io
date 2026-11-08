@@ -1620,7 +1620,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===23
       && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
       && record.source_text_sha256==='89c08c49c3e7bb9eaddf42a3bf087d552752d44b37187c2d676b8a9832d58b33'
-      && layout.translation_sha256==='1a67d57852ca7aceddaa2c3081eb09903516f8250404f732eb66edc9fd89d937'){
+      && layout.translation_sha256==='2464954aa6728f4527e29070e8a8425c88097d6d824378e5ae419be01662c27e'){
     for(const region of regions){const i=region.block.source_lines[0];
       if(i===0){region.slot=[.05,.10,.95,.21];region.font=33;}
       if(i===1){region.slot=[.46,.26,.97,.32];region.font=19;region.manualAccents=[{text:'هدف',color:'#ffc000'}];}
@@ -1631,7 +1631,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===24
       && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
       && record.source_text_sha256==='2122eb5c5573331881a7e3edd7f30c665856aa1096635bb85ba519879da54041'
-      && layout.translation_sha256==='6da542d0d375c77c1bd8f717477a12d46e4ade463fd2ea93958e9642c5a0a610'){
+      && layout.translation_sha256==='7c70feb088e5b7fdb1b8dc2f2f650b7bfc93aea61fb5078a7e36e3c833fd8960'){
     for(const region of regions){const i=region.block.source_lines[0];
       if(i===0){region.slot=[.05,.05,.95,.25];region.font=30;}
       if(i===2){region.slot=[.50,.45,.97,.56];region.font=18;region.manualAccents=[{text:'تمام‌متصل',color:'#ffc000'}];}
@@ -1641,10 +1641,10 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===25
       && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
       && record.source_text_sha256==='b7f21a8953abe540ddf19a5d8417d6bf096b30b0599a94994cbf83dd86cd0c93'
-      && layout.translation_sha256==='bac3183f58480f3a2e9626a7fa58a49f3cd6e70c4c1a8437e88b1c975eece07b'){
+      && layout.translation_sha256==='4591b1a2857cae839ca8c301763ce4fc04c6c7e904a82d2a5737889cc0d1b5ce'){
     for(const region of regions){const i=region.block.source_lines[0];
       if(i===0){region.slot=[.05,.10,.95,.21];region.font=33;}
-      if(i===1){region.slot=[.09,.33,.81,.47];region.font=18;region.manualAccents=[{text:'دشواری مسئله',color:'#ffc000'}];}
+      if(i===1){region.slot=[.09,.33,.81,.47];region.font=18;region.manualAccents=[{text:'دشواری مساله',color:'#ffc000'}];}
       if(i===3){region.slot=[.08,.53,.94,.68];region.font=18;region.manualAccents=[{text:'به‌رسمیت‌شناخته‌شدن',color:'#ffc000'}];}
       if(i===5){region.slot=[.08,.74,.94,.89];region.font=18;region.manualAccents=[{text:'تامین مالی',color:'#ffc000'}];}
     }
@@ -1652,14 +1652,14 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===26
       && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
       && record.source_text_sha256==='c28428154a1b18f3a976cac0ccd29eedfc8f9cf07be95b9c2dd50b139e9c782c'
-      && layout.translation_sha256==='5b1e02f1d1300cb8e23f7fbf489cf36a5409fe66a98a53f9aa0a6f43e7e15335'){
+      && layout.translation_sha256==='4a09fb2246bfdc825a09558b83cea391f8cbfeb1aaa0f9b4f68635d399a5fef4'){
     const slots={0:[.05,.10,.97,.21],1:[.08,.26,.96,.32],2:[.10,.32,.96,.61],8:[.08,.61,.96,.67],9:[.10,.67,.96,.76],11:[.10,.76,.96,.81],12:[.08,.81,.96,.87],13:[.10,.87,.96,.94]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];region.font=i===0?33:([1,8,12].includes(i)?19:17);if(i===2){region.color='#ffffff';region.manualAccents=[{text:'روش تصحیح خطای پس‌انتشاری',color:'#ffc000'},{text:'شاید بهبود چشمگیری در عملکرد حاصل شود',color:'#ffc000'}];}}
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===27
       && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
       && record.source_text_sha256==='1d3838ef5880e2a72216250d03f4f9c577d7009867b981b0a2159efe58a3c020'
-      && layout.translation_sha256==='5e007360ec6865d5bce3616732269fe38c32c074b25de8c9e3d306c8f0233f86'){
+      && layout.translation_sha256==='090646666ff401af1498b334616dc1a84993f425722439830299f43d5c23dcba'){
     for(const region of regions){const i=region.block.source_lines[0];
       if(i===0){region.slot=[.05,.10,.95,.21];region.font=33;}
       if(i>=1){region.slot=[.075,region.rect[1]-.01,.96,region.rect[3]+.025];region.font=20;}

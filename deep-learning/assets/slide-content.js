@@ -1794,6 +1794,28 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 
+export function expandSourceLayout(plan) {
+  if (plan.reason) return null;
+  const overlaps=(a,b)=>a[0]<b[2]&&a[2]>b[0]&&a[1]<b[3]&&a[3]>b[1];
+  const regions=plan.regions.map(region=>({...region,slot:[...region.slot]}));
+  let changed=false;
+  for(const region of regions){
+    if(region.rotate||region.clearRect)continue;
+    const [left,top,right,bottom]=region.slot,owned=new Set(region.block.source_lines);
+    const obstacles=[...plan.layout.images,...(plan.layout.graphics||[]),
+      ...plan.layout.lines.filter(line=>!owned.has(line.index)),
+      ...(plan.imageTranslations||[]),...regions.filter(other=>other!==region).map(other=>({rect:other.slot}))]
+      .map(item=>item.rect).filter(rect=>Array.isArray(rect)&&rect.length===4);
+    if(obstacles.some(rect=>overlaps(region.slot,rect)))continue;
+    const boundary=Math.max(.03,left-(right-left)*.5,
+      ...obstacles.filter(rect=>rect[1]<bottom&&rect[3]>top&&rect[2]<=left).map(rect=>rect[2]+.004));
+    const candidate=[boundary,top,right,bottom];
+    if(boundary>=left||obstacles.some(rect=>overlaps(candidate,rect)))continue;
+    region.slot=candidate;changed=true;
+  }
+  return changed?{...plan,regions}:null;
+}
+
 export function createSourceLayout(record, plan) {
   const stage = element('div', 'reader-slide-stage');
   const width = 960, height = width * plan.layout.height / plan.layout.width;

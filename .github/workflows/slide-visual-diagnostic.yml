@@ -1,0 +1,26 @@
+name: Targeted slide visual diagnostic
+on:
+  push:
+    branches: [codex/s03-page5-visual]
+    paths: [.github/workflows/slide-visual-diagnostic.yml, deep-learning/browser-tests/s03-page5-diagnostic.mjs]
+permissions:
+  contents: read
+jobs:
+  screenshot:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '24'
+      - run: npm ci --prefix deep-learning/browser-tests
+      - run: npx --prefix deep-learning/browser-tests playwright install --with-deps chromium
+      - run: node deep-learning/browser-tests/s03-page5-diagnostic.mjs
+      - uses: actions/upload-artifact@v7.0.2
+        if: always()
+        with:
+          name: s03-page5-visual
+          path: /tmp/s03-page5-*.png
+          if-no-files-found: error
+          retention-days: 3

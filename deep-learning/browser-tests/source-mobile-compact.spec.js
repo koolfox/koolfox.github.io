@@ -29,7 +29,7 @@ for (const viewport of [{width:320,height:568},{width:390,height:844},{width:568
    await page.locator('.reader-sections [data-reader-section=lab]').click();await expect(page.locator('[data-reader-tools-frame]')).toBeVisible();
    await page.locator('.reader-sections [data-reader-section=slides]').click();
    const full=page.locator('[data-fullscreen]');await full.click();await expect(full).toHaveAttribute('aria-pressed','true');
-   await expect(page.locator('[data-zoom-in]')).toBeVisible();expect(await full.evaluate(node=>getComputedStyle(node).backgroundImage)).not.toBe('none');await full.click();await expect(full).toHaveAttribute('aria-pressed','false');
+   await expect(page.locator('.reader-toolbar')).toBeHidden();await expect(page.locator('[data-focus-exit]')).toBeVisible();await page.locator('[data-focus-exit]').click();await expect(full).toHaveAttribute('aria-pressed','false');
    const back=page.locator('.reader-heading>a');await back.focus();await expect(back).toBeFocused();await page.keyboard.press('Tab');
    expect(await page.evaluate(()=>document.activeElement!==document.body)).toBe(true);
   } finally {await context.close();}
@@ -54,7 +54,69 @@ test('fullscreen fallback keeps mobile controls and exits with Escape',async({br
   await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===25);
   await page.evaluate(()=>Object.defineProperty(document.documentElement,'requestFullscreen',{value:undefined,configurable:true}));
   const full=page.locator('[data-fullscreen]');await full.click();await expect(full).toHaveAttribute('aria-pressed','true');
-  await expect(page.locator('[data-zoom-in]')).toBeVisible();await page.keyboard.press('Escape');
+  await expect(page.locator('.reader-toolbar')).toBeHidden();await expect(page.locator('[data-focus-exit]')).toBeVisible();await page.keyboard.press('Escape');
   await expect(full).toHaveAttribute('aria-pressed','false');await expect(full).toBeFocused();
  }finally{await context.close();}
+});
+
+test('fullscreen gallery keeps navigation and language controls available',async({page},testInfo)=>{
+ await page.setViewportSize({width:390,height:844});
+ await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=2');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===2);
+ await expect(page.locator('.reader-heading h1')).toContainText('۲');
+ await page.evaluate(()=>Object.defineProperty(document.documentElement,'requestFullscreen',{value:undefined,configurable:true}));
+ await page.locator('[data-fullscreen]').click();
+ await expect(page.locator('.reader-header')).toBeHidden();await expect(page.locator('.reader-toolbar')).toBeHidden();
+ await expect(page.locator('[data-focus-exit]')).toBeFocused();
+ for(const button of await page.locator('.reader-focus-controls button:visible').all()){
+  const box=await button.boundingBox();expect(box.width).toBeGreaterThanOrEqual(44);expect(box.height).toBeGreaterThanOrEqual(44);
+ }
+ await expect(page.locator('[data-focus-position]')).toContainText('۲');
+ await page.locator('[data-focus-view=both]').click();
+ await expect(page.locator('[data-focus-view=both]')).toHaveAttribute('aria-pressed','true');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===2);
+ await expect(page.locator('#translation-panel')).toBeVisible();await expect(page.locator('#original-panel')).toBeVisible();
+ const exit=await page.locator('[data-focus-exit]').boundingBox();const slide=await page.locator('#persian-page').boundingBox();
+ expect(exit.y+exit.height).toBeLessThanOrEqual(slide.y);
+ await page.screenshot({path:testInfo.outputPath('fullscreen-gallery-mobile.png')});
+ await page.locator('[data-focus-next]').click();await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===3);
+ await page.locator('[data-focus-exit]').click();await expect(page.locator('.reader-toolbar')).toBeVisible();
+ await expect(page.locator('[data-view-both]')).toHaveAttribute('aria-pressed','true');
+});
+
+for(const viewport of [{width:390,height:844},{width:844,height:390}])test(`mobile shows both languages with Persian first at ${viewport.width}x${viewport.height}`,async({page},testInfo)=>{
+ await page.setViewportSize(viewport);
+ await page.goto('/deep-learning/terms/spring-2026/s08/slides/#page=4');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===4);
+ await page.locator('[data-view-both]').click();
+ await expect(page.locator('[data-view-both]')).toHaveAttribute('aria-pressed','true');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===4);
+ await expect(page.locator('#translation-panel')).toBeVisible();
+ await expect(page.locator('#original-panel')).toBeVisible();
+ const boxes=await page.evaluate(()=>{
+  const fa=document.querySelector('#translation-panel').getBoundingClientRect(),en=document.querySelector('#original-panel').getBoundingClientRect();
+  return {faTop:fa.top,faBottom:fa.bottom,enTop:en.top,scroll:document.querySelector('.reader-layout').scrollHeight,client:document.querySelector('.reader-layout').clientHeight};
+ });
+ expect(boxes.faTop).toBeLessThan(boxes.enTop);expect(boxes.faBottom).toBeLessThanOrEqual(boxes.enTop+1);expect(boxes.scroll).toBeGreaterThan(boxes.client);
+ await page.screenshot({path:testInfo.outputPath(`both-languages-${viewport.width}.png`)});
+ await page.locator('[data-next-page]').click();await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===5);
+ await expect(page.locator('[data-view-both]')).toHaveAttribute('aria-pressed','true');
+ await page.locator('[data-source-only-toggle]').click();await expect(page.locator('[data-view-source]')).toHaveAttribute('aria-pressed','true');
+ await page.locator('[data-source-only-toggle]').click();await expect(page.locator('[data-view-both]')).toHaveAttribute('aria-pressed','true');
+});
+
+test('slow page load shows a placeholder and clears it after completion',async({page})=>{
+ let release;const gate=new Promise(resolve=>{release=resolve;});let requested;
+ const seen=new Promise(resolve=>{requested=resolve;});
+ await page.route('**/s06-pages/manifest.json*',async route=>{requested();await gate;await route.continue();});
+ try{
+  await page.goto('/deep-learning/terms/spring-2026/s06/slides/#page=2',{waitUntil:'domcontentloaded'});
+  await seen;
+  await expect(page.locator('#original-panel .reader-placeholder')).toBeVisible();
+  await expect(page.locator('#original-panel')).toHaveAttribute('aria-busy','true');
+  release();
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===2);
+  await expect(page.locator('#original-panel .reader-placeholder')).toBeHidden();
+  await expect(page.locator('#original-panel')).toHaveAttribute('aria-busy','false');
+ }finally{release();}
 });

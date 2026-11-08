@@ -52,6 +52,8 @@ test('other source page failures remain visible and offer retry', async ({page})
  await inject(page,'await pdf.getPage(selected)',"await Promise.reject(new Error('injected page failure'))");
  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=2');
  await expect(page.locator('[data-reader-status]')).toHaveAttribute('data-error','true');
+ await expect(page.locator('#original-panel .reader-placeholder')).toBeHidden();
+ await expect(page.locator('#original-panel')).toHaveAttribute('aria-busy','false');
  await expect(page.locator('[data-retry-load]')).toBeVisible();
  await expect(page.locator('.source-cover-fallback')).toHaveCount(0);
 });

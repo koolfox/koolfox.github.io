@@ -117,8 +117,8 @@ test('mobile fullscreen and Persian view remain usable offline', async ({ page, 
  const fullscreen = page.locator('[data-fullscreen]');
  await fullscreen.click();
  await expect(fullscreen).toHaveAttribute('aria-pressed', 'true');
- await page.locator('[data-view-translation]').click();
+ await page.locator('[data-focus-view=translation]').click();
  await expect(page.locator('#translation-panel')).toBeVisible();
- await fullscreen.click();
+ await page.locator('[data-focus-exit]').click();
  await expect(fullscreen).toHaveAttribute('aria-pressed', 'false');
 });

@@ -1,5 +1,14 @@
 import { test, expect } from '@playwright/test';
 
+for (const number of [3, 4]) test(`lesson 4 agenda ${number} keeps the English term together`, async ({ page }, testInfo) => {
+  await page.goto(`/deep-learning/terms/spring-2026/s04/slides/#page=${number}`);
+  await page.waitForFunction(n => window.sourceSlideReader?.ready && window.sourceSlideReader.page === n, number);
+  const term = page.locator('#persian-page .reader-slide-text bdi').filter({hasText: 'Recurrent Neural Networks; RNNs'});
+  await expect(term).toHaveCount(1);
+  await expect(term).toHaveCSS('white-space', 'nowrap');
+  await page.screenshot({path: testInfo.outputPath(`lesson4-page${number}.png`)});
+});
+
 test('lesson 4 title and attribution retain separate centered source lines', async ({ page }, testInfo) => {
   await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=1');
   await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 1);

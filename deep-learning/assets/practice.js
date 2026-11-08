@@ -114,9 +114,20 @@ if(lessonOneFilm){
   panel.append(summary,note,frame);cells.before(panel);panel.addEventListener('toggle',()=>{if(panel.open&&!frame.getAttribute('src'))frame.src=`/deep-learning/animations/${lessonOneFilm.id}/?notebook=1`;});
   cells.addEventListener('input',()=>queueMicrotask(update));new MutationObserver(update).observe(cells,{childList:true});update();
 }
-function section() { if (location.hash === '#questions') book.showQuiz(); else book.showCode(); }
-section(); window.addEventListener('hashchange', section);
 const returnLink=document.querySelector('[data-return-slide]');returnLink.href=config.reader+'#page='+returnPage;
+const practiceFooter=returnLink.parentElement, utilityTools=document.querySelector('.nb-utility-tools');
+function placeReturnLink(quiz) {
+  (quiz ? practiceFooter : utilityTools).append(returnLink);
+  practiceFooter.hidden = !quiz;
+}
+function section() {
+  const quiz = location.hash === '#questions' || config.codeAvailable === false;
+  if (quiz) book.showQuiz(); else book.showCode();
+  placeReturnLink(quiz);
+}
+document.querySelector('[role="tab"][id$="-tab-code"]').addEventListener('click',()=>placeReturnLink(false));
+document.querySelector('[role="tab"][id$="-tab-quiz"]').addEventListener('click',()=>placeReturnLink(true));
+section(); window.addEventListener('hashchange', section);
 returnLink.addEventListener('click', event => { if (parent !== window) { event.preventDefault(); goToSource(returnPage,true); } });
 for (const lab of config.related_labs) {
   const link = document.createElement('a'); link.textContent = 'آزمایش زندهٔ مرتبط';

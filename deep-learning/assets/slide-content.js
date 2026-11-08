@@ -1071,6 +1071,16 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     for(const region of regions){const i=region.block.source_lines[0];region.slot=slots[i];region.font=i===0?32:[1,6,9].includes(i)?23:19;if(i!==0)region.align='center';}
   }
   let imageTranslations=[];
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===6
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='54b822b737f3a34ef6cc599bf9919c7e348900d49d62c72a87cfd38fc35506c2'
+      && layout.translation_sha256==='f115323bd73d34d629c3ad8f9e6209183632a32ef594c4c8920bd72483e38b6f'){
+    imageTranslations=[
+      {rect:[.434,.238,.57,.263],text:'Copilot Enterprise در دسترس است',background:'#08032d',color:'#fff',font:10,align:'center'},
+      {rect:[.305,.279,.701,.391],text:'پرکاربردترین ابزار هوش مصنوعی برای توسعه دهندگان در جهان',background:'linear-gradient(#100344,#1d0969)',color:'#fff',font:25,align:'center'},
+      {rect:[.444,.421,.557,.454],text:'شروع کار با Copilot',background:'#fff',color:'#101018',font:10,align:'center'},
+    ];
+  }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===78
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='3e6672c8e90af769505a90237127f2bc27368343fc4a4d4291e6c38c66310f52'

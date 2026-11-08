@@ -10,6 +10,7 @@ GlobalWorkerOptions.workerSrc=new URL('./vendor/pdfjs/pdf.worker.min.mjs',import
 let pdf=null,canonicalPdf=null,payload=null,page=1,renderedPage=0,zoom=1,serial=0,task=null,closed=false,lastWidth=720,references=false;
 let presenting=false,view=matchMedia('(max-width:760px)').matches?'source':'both',readingView=view;
 let playing=false,playSequence=null,playTimer=null,layoutTask=null,customTool=false,translationFallback=[];
+let translationSequence=0,translationController=null,loadTranslationPage=null;
 const fa=n=>new Intl.NumberFormat('fa-IR',{useGrouping:false}).format(n);
 const clamp=n=>Math.max(1,Math.min(config.pageCount,n));
 function fromHash(){const match=location.hash.match(/^#page=(\d+)$/);return match?clamp(Number(match[1])):1;}
@@ -236,7 +237,7 @@ async function showCoverFallback(id,selected){
  return true;
 }
 async function renderOriginal(){
- if(!pdf||!payload||closed||references)return;
+ if(!pdf||!payload||!payload.pages[page-1]||closed||references)return;
  const id=++serial,selected=page;lastObservedSize=readerSize();clearTimeout(resizeTimer);
  if(layoutTask){layoutTask.cancel();try{await layoutTask.promise;}catch{}layoutTask=null;}
  if(task){task.cancel();try{await task.promise;}catch{}task=null;}
@@ -293,13 +294,13 @@ async function renderOriginal(){
 }
 function leaveReferences(){references=false;document.querySelector('.reader-layout').hidden=false;$('#reader-references').hidden=true;}
 function showReferences(update=true){
- selectSection('slides');references=true;serial++;task?.cancel();task=null;
+ selectSection('slides');references=true;serial++;translationSequence++;translationController?.abort();task?.cancel();task=null;
  document.querySelector('.reader-layout').hidden=true;$('#reader-references').hidden=false;
  controls();message('منابع');if(update)history.replaceState(null,'','#sources');
 }
 function nextPage(){if(references)return;if(page===config.pageCount)showReferences();else go(page+1);}
 function previousPage(){go(references?config.pageCount:page-1);}
-function go(number,update=true,fromPlayback=false){
+async function go(number,update=true,fromPlayback=false){
  if(!fromPlayback)stopPlayback();
  if(!Number.isInteger(number))return;leaveReferences();
  const previousSection=document.body.dataset.readerSection,changed=clamp(number)!==page;
@@ -310,9 +311,18 @@ function go(number,update=true,fromPlayback=false){
   const available=previousSection==='lab'?config.interactivePages:config.questionPages;
   selectSection(!Array.isArray(available)||available.includes(page)?previousSection:'slides');
  }
- renderedPage=0;controls();renderTranslation();
+ renderedPage=0;controls();
+ const selected=page,sequence=++translationSequence;translationController?.abort();translationController=new AbortController();
+ serial++;task?.cancel();layoutTask?.cancel();persian.replaceChildren();translationFallback=[];persian.dataset.page=String(selected);delete persian.dataset.layout;
+ canvas.getContext('2d')?.clearRect(0,0,canvas.width,canvas.height);links.replaceChildren();document.documentElement.dataset.readerReady='false';message(`در حال بارگیری صفحه ${fa(selected)}…`);
  try{localStorage.setItem('danna-slide-position:v1',JSON.stringify({term:config.term,session:config.session,page}));}catch{}
- if(update)history.replaceState(null,'',`#page=${page}`);window.dispatchEvent(new CustomEvent('danna:source-page',{detail:{term:config.term,session:config.session,page}}));renderOriginal();
+ if(update)history.replaceState(null,'',`#page=${page}`);window.dispatchEvent(new CustomEvent('danna:source-page',{detail:{term:config.term,session:config.session,page}}));
+ try{await loadTranslationPage(selected,translationController.signal);if(closed||references||sequence!==translationSequence||page!==selected)return;
+  const record=payload.pages[selected-1],option=[...picker.options].find(item=>item.value===String(selected));
+  const heading=record.blocks.find(b=>b.kind==='heading')?.fa||record.blocks.find(b=>b.kind!=='not_visible'&&b.fa)?.fa?.split('\n').find(line=>!/^https?:/.test(line))||'';
+  if(option)option.textContent=fa(selected)+(heading?' · '+heading.slice(0,100):'');
+  renderTranslation();renderOriginal();}
+ catch(error){if(closed||sequence!==translationSequence||error?.name==='AbortError')return;console.warn('Translation unavailable',error);message('بارگیری ترجمه انجام نشد؛ دوباره تلاش کن.',true);$('[data-retry-load]').hidden=false;}
 }
 function syncPanels(){
  const slides=document.body.dataset.readerSection==='slides',translated=view==='translation';
@@ -377,10 +387,71 @@ function releasePage(){
  old.controller.abort();
  old.promise.then(value=>Promise.all(value.tasks.map(item=>item.destroy()))).catch(()=>{});
 }
+async function loadTranslationIndex(){
+ let legacyPromise=null;
+ const legacy=()=>legacyPromise??=(async()=>{
+  const response=await fetch(config.translationUrl,{signal:loadingController.signal});
+  if(!response.ok)throw Error('translation unavailable');
+  const data=await response.json();
+  if(data.source?.sha256!==config.sourceSha256||data.pages?.length!==config.pageCount)throw Error('translation identity mismatch');
+  return data;
+ })();
+ const useLegacy=async()=>{
+  const data=await legacy();
+  loadTranslationPage=async number=>{payload.pages[number-1]=data.pages[number-1];};
+  return data;
+ };
+ if(config.term!=='spring-2026'||config.pageFiles===false||!globalThis.crypto?.subtle)return useLegacy();
+ const root=`/deep-learning/source-pages/${config.term}/${config.session}/`;
+ const manifestUrl=root+'manifest.json?sha='+config.sourceSha256;
+ let storage=null;
+ try{storage=await caches.open('danna-persian-page-data-v1');}catch(error){console.warn('Translation cache unavailable',error);}
+ let index;
+ try{
+  let response;
+  try{response=await fetch(manifestUrl,{signal:loadingController.signal,cache:'no-cache'});}
+  catch(error){if(error?.name==='AbortError')throw error;response=await storage?.match(manifestUrl);if(!response)throw error;}
+  if(!response.ok||response.status!==200)throw Error('translation manifest unavailable');
+  index=await response.json();
+  if(index.schema_version!==1||index.term_id!==config.term||index.session_id!==config.session||index.source?.sha256!==config.sourceSha256||index.page_count!==config.pageCount||index.pages?.length!==config.pageCount||!index.pages.every((entry,i)=>entry.number===i+1&&/^[a-f0-9]{64}$/.test(entry.sha256)&&entry.file===String(i+1).padStart(3,'0')+'-'+entry.sha256+'.json'&&(entry.title===undefined||(typeof entry.title==='string'&&entry.title.length<=200))))throw Error('translation manifest identity mismatch');
+  try{await storage?.put(manifestUrl,new Response(JSON.stringify(index),{headers:{'Content-Type':'application/json'}}));}catch(error){console.warn('Translation index cache write failed',error);}
+ }catch(error){if(error?.name==='AbortError')throw error;console.warn('Page translation index unavailable; using session translation',error);return useLegacy();}
+ for(const option of picker.options){const n=Number(option.value),title=index.pages[n-1]?.title;if(title)option.textContent=fa(n)+' · '+title;}
+ const data={source:index.source,pages:Array(config.pageCount),reference_targets:index.reference_targets||{}};
+ loadTranslationPage=async(number,signal)=>{
+  if(data.pages[number-1])return;
+  try{
+   const entry=index.pages[number-1],url=root+entry.file;
+   const valid=async bytes=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),byte=>byte.toString(16).padStart(2,'0')).join('')===entry.sha256;
+   let bytes=null;
+   try{const cached=await storage?.match(url);if(cached)bytes=await cached.arrayBuffer();}catch(error){console.warn('Translation page cache read failed',error);}
+   if(bytes&&!await valid(bytes)){try{await storage?.delete(url);}catch{}bytes=null;}
+   if(!bytes){
+    const response=await fetch(url,{signal});
+    if(!response.ok||response.status!==200)throw Error('translation page unavailable');
+    bytes=await response.arrayBuffer();
+    if(!await valid(bytes))throw Error('translation page hash mismatch');
+    try{await storage?.put(url,new Response(bytes.slice(0),{headers:{'Content-Type':'application/json'}}));}catch(error){console.warn('Translation page cache write failed',error);}
+   }
+   const record=JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(bytes));
+   if(record.schema_version!==1||record.term_id!==config.term||record.session_id!==config.session||record.source_sha256!==config.sourceSha256||record.page?.number!==number||!Array.isArray(record.page.lines)||!Array.isArray(record.page.blocks))throw Error('translation page identity mismatch');
+   if(signal.aborted)throw new DOMException('Aborted','AbortError');
+   data.pages[number-1]=record.page;
+  }catch(error){
+   if(error?.name==='AbortError'||signal.aborted)throw error;
+   console.warn('Page translation unavailable; using session translation',error);
+   const original=await legacy();
+   if(signal.aborted)throw new DOMException('Aborted','AbortError');
+   data.pages[number-1]=original.pages[number-1];
+   configureReferences(original.reference_targets);
+  }
+ };
+ return data;
+}
 async function loadSources(){
  const paged=config.term==='spring-2026'&&config.pageFiles!==false;
  const pageRoot=`/deep-learning/assets/danna/spring-2026/${config.session}-pages/`;
- const translation=fetch(config.translationUrl,{signal:loadingController.signal}).then(response=>{if(!response.ok)throw Error('translation unavailable');return response.json();});
+ const translation=loadTranslationIndex();
  const {url,...options}=documentOptions;
  // The downloaded package already contains every PDF locally. Its reader keeps
  // the original URL/range path and does not duplicate those files in browser storage.
@@ -424,12 +495,12 @@ async function loadSources(){
 loadSources().then(([document,canonicalDocument,data])=>{
  if(data.source?.sha256!==config.sourceSha256||document.numPages!==config.pageCount||data.pages?.length!==config.pageCount)throw Error('source/translation identity mismatch');
  pdf=document;canonicalPdf=canonicalDocument;payload=data;configureReferences(data.reference_targets);progress.hidden=true;
- for(const option of picker.options){if(option.value==='sources')continue;const record=data.pages[Number(option.value)-1];const heading=record.blocks.find(b=>b.kind==='heading')?.fa||record.blocks.find(b=>b.kind!=='not_visible'&&b.fa)?.fa?.split('\n').find(s=>!/^https?:/.test(s))||'';option.textContent=fa(Number(option.value))+(heading?' · '+heading.slice(0,100):'');}
+ for(const option of picker.options){if(option.value==='sources')continue;const record=data.pages[Number(option.value)-1];if(!record)continue;const heading=record.blocks.find(b=>b.kind==='heading')?.fa||record.blocks.find(b=>b.kind!=='not_visible'&&b.fa)?.fa?.split('\n').find(s=>!/^https?:/.test(s))||'';option.textContent=fa(Number(option.value))+(heading?' · '+heading.slice(0,100):'');}
  if(location.hash==='#sources')showReferences(false);else go(page,false);
 }).catch(()=>{progress.hidden=true;message('بارگیری اسلایدها انجام نشد؛ دوباره تلاش کن.',true);$('[data-retry-load]').hidden=false;});
 window.addEventListener('pagehide',event=>{
  stopPlayback();if(event.persisted)return;
- closed=true;loadingController.abort();serial++;clearTimeout(resizeTimer);
+ closed=true;loadingController.abort();translationController?.abort();translationSequence++;serial++;clearTimeout(resizeTimer);
  // PDF.js render cancellation settles asynchronously. Destroying its workers
  // first can race the canvas task during rapid navigation or window close.
  const renders=[task,layoutTask].filter(Boolean);

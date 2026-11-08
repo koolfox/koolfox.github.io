@@ -493,7 +493,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===4
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='cb37288320326d69b2a3cf49758e02d4af85a994fa33f569d65454eec9f4d46c'
-      && layout.translation_sha256==='bbee7d130870101735d56f84c0a730f0351a6e4594863799d165956e696b98e8'){
+      && layout.translation_sha256==='8a812ba33427b7a64f9a70cfb39e934667f8d7fa5dc928e6b5f7f2e32e869735'){
     for(const region of regions){
       const index=region.block.source_lines[0];
       if(index>0){region.align='center';region.slot=[.06,.43+(index-1)*.09,.94,.52+(index-1)*.09];}
@@ -1056,7 +1056,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===5
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='d63d4b5c01249f0dd295bd5ab96bfdba336fdaf5da802ebce1fea51264725914'
-      && layout.translation_sha256==='69176de0c02bc368a77f415655258cb84993e0d8f3f1708eb395812f97574324'){
+      && layout.translation_sha256==='2a2eb746299711dedff48034e43dd71db74b8f0346b91e204d73d7559cd2557a'){
     const [gemini,copilot]=record.image_text[2].fa.split('؛');
     imageTranslations=[
       {rect:[.17,.34,.82,.389],text:record.image_text[0].fa,background:'#282a2c',color:'#fff',font:21},
@@ -1068,7 +1068,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===7
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='3d4e3a1b6181f4af554a89968295cc2694d87716a35eef5d824fddfae1e23a14'
-      && layout.translation_sha256==='0c918ddb540920c44a65eb808a2cf82560edc0a6772616943e058a8788e52c39'){
+      && layout.translation_sha256==='c6efb1a8d0c6cd4795dcf51f05a0bc636604b1e051d1ff8ee3386f0ab2122cd9'){
     imageTranslations=[
       {rect:[.18,.31,.82,.51],text:'ابزار نوشتن هوش مصنوعی با هوشمندی بی‌همتای داستان‌گویی را بیازمایید.',background:'#f0eddf',color:'#34291d',font:29,align:'center',accents:[{text:'هوش مصنوعی',color:'#04b9df'},{text:'بی‌همتای',color:'#d928d9'}]},
       {rect:[.23,.51,.77,.55],text:'Sudowrite همان شریک نوشتن بدون قضاوتی است که همیشه می‌خواستید.',background:'#f0eddf',color:'#716854',font:12,align:'center'},
@@ -1079,7 +1079,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===8
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='612229f89f94d28bbd69eab27a2fb1a89ab36a740e36ab47370affa774e8521d'
-      && layout.translation_sha256==='330712f176311beb7b47a09f61501bfef46fa2a717dec41d4f04af4a5e679a69'){
+      && layout.translation_sha256==='6732dcd455295c0ea4889346a8b9cb34b33441de68a7c7d8767574f687a99a08'){
     const [label,title]=record.image_text[1].fa.split('؛');
     imageTranslations=[
       {rect:[.21,.47,.79,.52],text:label,background:'#030319',color:'#b0b0c1',font:15},
@@ -1090,7 +1090,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===9
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='434e82ab1b169fea82a230f936eae28f8b5e87fb8f9b85a19d6b14fd4086e701'
-      && layout.translation_sha256==='5601cfe635fa66eea4d7f4a74c804ed8be3dd805f6984cdbd343d02ec346276c'){
+      && layout.translation_sha256==='3c3b56dcac41f106e712e175414b57d1358966592de4eb8aceb751112851d20f'){
     const [heading,subheading]=record.image_text[1].fa.split('. ');
     imageTranslations=[
       {rect:[.40,.33,.77,.39],text:heading,background:'#091517',color:'#f3f5f5',font:20,align:'center'},
@@ -1102,7 +1102,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===11
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='d36c30e80c8a929e9f3c5db555427aa977dc964e078dc2969e26c48d7081b43b'
-      && layout.translation_sha256==='6d73a0822341e45520def1a8f091bbf2855710a65030cda0c9e112176df0c896'){
+      && layout.translation_sha256==='be6c59b6177e370ace7ca41b5557f6e2f3d474c2749823c70db72f599ed036cb'){
     imageTranslations=[
       {rect:[.09,.47,.58,.78],text:'نمره‌های بهتر در ۳۰ روز، یا بازگرداندن پولتان',background:'#f7f7f7',color:'#111',font:37},
       {rect:[.09,.80,.58,.87],text:'پرامپت‌های هوش مصنوعی که ChatGPT، Claude یا Gemini را به آموزگار شخصی شما تبدیل می‌کنند. استفاده‌شده توسط بیش از ۶۰۰ دانش‌آموز و دانشجو در بیش از ۵۰ موضوع.',background:'#f7f7f7',color:'#666',font:12},
@@ -1178,7 +1178,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===10
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='872bff1955f2607d81954fc8c98cba5d588656411a0531fd803e8f38568f4294'
-      && layout.translation_sha256==='90192ae9c3d74f7d201ac88293ce1c12d5bdcbc9c40c005ea1d52a91ecbd58b4'){
+      && layout.translation_sha256==='7cab9e252705a05921d0452fed8dc3518d197ffdd4682c0c0ad81881d6cb513c'){
     imageTranslations=[
       {rect:[.27,.335,.67,.39],text:'یک پرسش پزشکی بپرسید…',background:'#303030',color:'#c7c7c7',font:10},
       {rect:[.30,.70,.70,.75],text:'پلتفرم پیشتاز اطلاعات پزشکی',background:'#1b1b1b',color:'#fff',font:15,align:'center'},

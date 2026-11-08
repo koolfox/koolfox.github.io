@@ -777,7 +777,7 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
 <button type="button" data-focus-exit aria-label="خروج از تمام صفحه"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h5V4m11 5h-5V4M4 15h5v5m11-5h-5v5"/></svg></button>
 <button type="button" data-focus-experiment aria-label="کاوش این اسلاید" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 8a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-8V3M8 15h8"/></svg></button>
 <span data-focus-position aria-hidden="true"></span>
-<div class="reader-focus-languages" role="group" aria-label="زبان نمایش اسلاید"><button type="button" data-focus-view="translation">فارسی</button><button type="button" data-focus-view="source">English</button><button type="button" data-focus-view="both">هر دو</button></div>
+<div class="reader-focus-languages" role="group" aria-label="کنترل نمایش اسلاید"><button type="button" data-focus-zoom-out aria-label="کوچک نمایی اسلاید" title="کوچک نمایی"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button><button type="button" data-focus-zoom-in aria-label="بزرگ نمایی اسلاید" title="بزرگ نمایی"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg></button><button type="button" data-focus-zoom-fit aria-label="نمایش کامل اسلاید" title="نمایش کامل">۱۰۰٪</button><button type="button" data-focus-view="translation">فارسی</button><button type="button" data-focus-view="source">English</button><button type="button" data-focus-view="both">هر دو</button></div>
 </nav>
 <div class="reader-layout">
 <section id="original-panel" class="reader-original" aria-label="اسلاید" aria-busy="true">

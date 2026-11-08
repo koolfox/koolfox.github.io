@@ -115,8 +115,24 @@ async function paintPersianLayout(source,canonicalSource,id,selected){
  const fallback=translationFallback;let slide=createSourceLayout(record,plan);
  const tableState=[...persian.querySelectorAll('.reader-table-viewport')].map(node=>({left:node.scrollLeft,top:node.scrollTop,focused:document.activeElement===node}));
  const previousCompanion=persian.querySelector('.reader-figure-labels');
+ const previousTranscript=persian.querySelector('.reader-mobile-transcript');
+ let transcript=null;
+ if(config.term==='spring-2026'&&config.session==='s04'&&fallback.some(node=>node.nodeType===1)){
+  transcript=element('details','reader-mobile-transcript');
+  const summary=element('summary','','متن درشت');transcript.append(summary);
+  const content=element('div','reader-mobile-transcript-content');
+  for(const node of fallback)content.append(node.cloneNode(true));
+  if(selected===36&&record.source_text_sha256==='1fc9bb5b31167061761a0f704cd78f000ff7871b715987edad1bb71d55bc17dc'){
+   const fa='0.419748؛ 0.194682؛ 0.162429؛ 0.223141',en='0.419748; 0.194682; 0.162429; 0.223141';
+   const item=record.image_text?.find(label=>label.fa===fa&&label.en===en);
+   const line=[...content.querySelectorAll('.reader-image-text')].find(node=>node.textContent===fa);
+   if(item&&line){line.textContent=en;line.dir='ltr';line.style.textAlign='left';}
+  }
+  transcript.append(content);transcript.open=!!previousTranscript?.open;
+ }
  if(previousCompanion&&slide.companion)slide.companion.open=previousCompanion.open;
  function install(...nodes){
+  if(transcript&&nodes[0]?.classList?.contains('reader-slide-holder'))nodes.push(transcript);
   persian.replaceChildren(...nodes);
   persian.querySelectorAll('.reader-table-viewport').forEach((node,index)=>{const state=tableState[index];if(!state)return;if(state.focused)node.focus({preventScroll:true});node.scrollLeft=state.left;node.scrollTop=state.top;});
  }
@@ -189,7 +205,7 @@ async function paintPersianLayout(source,canonicalSource,id,selected){
  if(config.term==='spring-2026' && config.session==='s04' && selected===9
    && config.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
    && record.source_text_sha256==='410c138d3bae03bbf04cea0268a0aad126b7765878a047dd5b13214742fdeae4'
-   && record.source_layout?.translation_sha256==='cf0bd70b30b2110ff865caa2c7286655fab93363533eb2a3b1f88ed9d873ae28') targets.forEach((target,number)=>{
+   && record.source_layout?.translation_sha256==='df4ec58ba8dc796caefe7a9721857e9837a6c03eff4be4cab1b4997f4b2f6ba1') targets.forEach((target,number)=>{
   if(covered.has(number))return;
   const needle=key(target.line.text??record.lines[target.line.index]);if(!needle||!boxes)return;
   const [l,t,r,b]=target.line.rect,candidates=[];
@@ -228,6 +244,9 @@ function controls(){
  document.querySelector('.reader-focus-languages').hidden=references;
  $('[data-next-page]').textContent=!references&&page===config.pageCount?'منابع':'بعدی';
  $('[data-page-total]').hidden=references;$('[data-page-count]').textContent=fa(config.pageCount);$('[data-zoom-out]').disabled=references||zoom<=1;$('[data-zoom-in]').disabled=references||zoom>=3;
+ if($('[data-focus-zoom-out]'))$('[data-focus-zoom-out]').disabled=references||zoom<=1;
+ if($('[data-focus-zoom-in]'))$('[data-focus-zoom-in]').disabled=references||zoom>=3;
+ if($('[data-focus-zoom-fit]'))$('[data-focus-zoom-fit]').disabled=references||zoom<=1;
  $('[data-source-only-toggle]').disabled=references;document.querySelector('.reader-view-controls').hidden=references;
  status.hidden=references;progress.hidden=references||Boolean(pdf&&payload);
  canvas.setAttribute('aria-label',`صفحهٔ ${fa(page)} از ${fa(config.pageCount)}، اسلاید`);
@@ -407,6 +426,9 @@ $('[data-view-both]').addEventListener('click',()=>setView('both'));
 $('[data-focus-prev]').addEventListener('click',previousPage);$('[data-focus-next]').addEventListener('click',nextPage);
 $('[data-focus-exit]').addEventListener('click',()=>$('[data-fullscreen]').click());
 $('[data-focus-experiment]').addEventListener('click',()=>selectSection('explore'));
+$('[data-focus-zoom-in]')?.addEventListener('click',()=>$('[data-zoom-in]').click());
+$('[data-focus-zoom-out]')?.addEventListener('click',()=>$('[data-zoom-out]').click());
+$('[data-focus-zoom-fit]')?.addEventListener('click',()=>{zoom=1;controls();renderOriginal();});
 document.querySelectorAll('[data-focus-view]').forEach(button=>button.addEventListener('click',()=>setView(button.dataset.focusView)));
 setupFullscreen($('[data-fullscreen]'));
 new MutationObserver(()=>{

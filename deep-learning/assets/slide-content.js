@@ -299,7 +299,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===6
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='3386702c731ad98f8b816ce00160f295c2713499941019417261d4020201dbbb'
-      && layout.translation_sha256==='37674bba2804012ac9e8d757ab682f65800705096874da76336c2c84b5d8d0d8') {
+      && layout.translation_sha256==='c68ddf9f4a181164afdf448ddc2981ba5f17322effecac800c00cc6013fd06f8') {
     const memory=regions.find(region=>region.block.source_lines[0]===3);
     if(memory)memory.manualAccents=[{text:'حافظه',color:'#ffc000'}];
     const example=regions.find(region=>region.block.source_lines[0]===2);
@@ -308,14 +308,14 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===7
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='6e99def376ea4f393f4b9e30d6260f35808a7a1a336623a1254f23154d96d983'
-      && layout.translation_sha256==='cd40141acd5b669261aaa36200b6e55169020eae9f04f48f624205cd0404f272'){
+      && layout.translation_sha256==='ac6d3fdb6b8a800ad6218d37774d33b7eeee145c5bbf42716ee2dbe1ae12f12b'){
     const accents={1:['شبکه‌های پیش‌خور','مناسب نیستند'],2:['حافظه ندارند'],3:['اندازه ورودی ثابت است']};
     for(const region of regions){const i=region.block.source_lines[0];if(accents[i])region.manualAccents=accents[i].map(text=>({text,color:'#ffc000'}));}
   }
   if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===9
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='410c138d3bae03bbf04cea0268a0aad126b7765878a047dd5b13214742fdeae4'
-      && layout.translation_sha256==='cf0bd70b30b2110ff865caa2c7286655fab93363533eb2a3b1f88ed9d873ae28') {
+      && layout.translation_sha256==='df4ec58ba8dc796caefe7a9721857e9837a6c03eff4be4cab1b4997f4b2f6ba1') {
     for (const region of regions) {const i=region.block.source_lines[0];if(i>=2 && i<=13){const group=Math.floor((i-2)/4),row=(i-2)%4,columns=[[.04,.29],[.66,.97],[.34,.63]],[left,right]=columns[group],top=.335+row*.044;region.slot=[left,top,right,top+.042];region.font=row===0?17:16;}else if(i===14){region.slot=[.025,.837,.29,.96];region.font=14;}else if(i===17){region.slot=[.335,.877,.62,.93];region.font=14;}}
   }
   if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===2
@@ -1080,6 +1080,80 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     for(const region of regions){const i=region.block.source_lines[0];region.slot=slots[i];region.font=i===0?32:[1,6,9].includes(i)?23:19;if(i!==0)region.align='center';}
   }
   let imageTranslations=[];
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'){
+    if(record.number===39 && record.source_text_sha256==='3b46f7af0c6aeaffd78c64f1ded81ca6631c965366fd08d3b50f218d195d2deb'
+        && layout.translation_sha256==='bb2e007bee053e5e8003d762cd001cd99a66363d50e89954d8c13bf191059811'){
+      const labels=record.image_text[0].fa.split('؛');
+      const boxes=[[.087,.244,.190,.286],[.226,.244,.348,.286],[.395,.244,.517,.286],[.595,.244,.735,.286],[.805,.244,.947,.286]];
+      imageTranslations=labels.map((text,index)=>({rect:boxes[index],text:text.trim(),background:'#fff',color:'#000',font:16,align:'center'}));
+    }
+    if(record.number===40 && record.source_text_sha256==='652dd588a0207a30da560ebf6fb724f94fdc4c8cb505c3675e3360b21aefa17b'
+        && layout.translation_sha256==='10aa574186791f0efdd1f3d7b30b37af033b9b1cc9cf5edf2a161b785a19f0cc'){
+      imageTranslations=[
+        {rect:[.303,.825,.346,.855],text:'عمق',background:'#fff',color:'#000',font:14,align:'center'},
+        {rect:[.469,.936,.506,.963],text:'زمان',background:'#fff',color:'#000',font:14,align:'center'},
+      ];
+    }
+    if(record.number===42 && record.source_text_sha256==='f6b19ce219de43934205645e317793cd69e4cee83ee89bbd2fa30d43ce7beb27'
+        && layout.translation_sha256==='6085a3f9308181e77ab8f0055a2bdcebba52c12dd3382db2f370a3517dcf52a3'){
+      imageTranslations=[
+        {rect:[.123,.402,.179,.436],text:'داده ها',background:'#fff',color:'#000',font:13,align:'center'},
+        {rect:[.122,.482,.191,.518],text:'نمونه 1',background:'#fff',color:'#000',font:13,align:'center'},
+        {rect:[.195,.563,.265,.598],text:'نمونه 2',background:'#fff',color:'#000',font:13,align:'center'},
+        {rect:[.265,.645,.335,.680],text:'نمونه 3',background:'#fff',color:'#000',font:13,align:'center'},
+        {rect:[.303,.765,.405,.820],text:'نمونه N-L',background:'#fff',color:'#000',font:13,align:'center'},
+        {rect:[.606,.848,.650,.883],text:'ورودی',background:'#fff',color:'#000',font:13,align:'center'},
+        {rect:[.840,.848,.889,.883],text:'خروجی',background:'#fff',color:'#000',font:13,align:'center'},
+      ];
+    }
+    if(record.number===44 && record.source_text_sha256==='d76c7367a57fde21aa8f039871c97d1eeee7397f1bbe020208bef2b98aedfd1e'
+        && layout.translation_sha256==='fa3c63736d5486dffe075512c789afbc15f8e96d2ee7c8d530b0aa6195faa3aa'){
+      imageTranslations=[{rect:[.361,.621,.407,.657],text:'بازکردن',background:'#fff',color:'#000',font:11,align:'center'}];
+    }
+    if(record.number===61 && record.source_text_sha256==='e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
+        && layout.translation_sha256==='964920c96f52d60c9c43c67ac8f49db4d87777ea0d7edc04a72289cf0f8daf5d'){
+      imageTranslations=[{rect:[.38,.69,.62,.81],text:'پایان',background:'transparent',color:'#fff',font:46,align:'center'}];
+    }
+    const gates={
+      55:['6bda73a2802b1b64c71d142c9476486ad3134b694f2530283f3ded2929f3e41b','aa1a92c82df85613ece56ee54d912657c7c179dc354d8a56388c37a9add2e2bb'],
+      56:['fe58256f415717435184a8727809426f68031475be569201a2a5945e06c6ff91','10d17ce59e2af29b835f45d64453bf3f4119113ba091efbe07c793c66396b64e'],
+      57:['4e9b8a7809c17dd2b8e804a4c97bad90d5aa458cca1dd7a0856582e937bdc775','038c1f85cef47022492f6ac740c7f3ca1805d0ba1d0573061e2c0e144625c018'],
+    }[record.number];
+    if(gates && record.source_text_sha256===gates[0] && layout.translation_sha256===gates[1]){
+      imageTranslations=[
+        {rect:[.237,.508,.28,.553],text:'ورودی',background:'#d8e6f7',color:'#000',font:12,align:'center'},
+        {rect:[.375,.508,.420,.573],text:'دروازه ورودی',background:'#d8e6f7',color:'#000',font:10,align:'center'},
+        {rect:[.503,.508,.549,.573],text:'دروازه فراموشی',background:'#d8e6f7',color:'#000',font:10,align:'center'},
+        {rect:[.610,.508,.666,.573],text:'دروازه خروجی',background:'#d8e6f7',color:'#000',font:10,align:'center'},
+      ];
+    }
+    const paperTitles={
+      51:['7c48fc0319dc86b9c82dea38dba41d70c07f0e6e941262498f1f7b86259201ed','21a247833794829d1dee1e919e1bfe3fbadf563905bbba95b83a91236026ec7f'],
+      52:['43baa7f794793ecf04301f18d2fca9262c86b502783df9117a443b78ea176110','1ca05d22f7263d7c1c956453bf3c9670967365cc38325c1c5e4c26db5457a9ef'],
+      53:['fee2965e1f874f5609c73f9fe1dc34e7ff21039d0f23526e1969199cca977131','3428bf155bb4384c3866b7eaff1d567d53feb3fe9def87679b640895c921312d'],
+    }[record.number];
+    if(paperTitles && record.source_text_sha256===paperTitles[0] && layout.translation_sha256===paperTitles[1]){
+      imageTranslations.push(
+        {rect:[.218,.141,.36,.209],text:'',background:'#fff',color:'#000',font:19,align:'center'},
+        {rect:[.369,.141,.553,.209],text:'بلندمدت',background:'#fff',color:'#000',font:24,align:'center'},
+        {rect:[.565,.141,.786,.209],text:'یادگیری وابستگی های',background:'#fff',color:'#000',font:19,align:'center'},
+        {rect:[.226,.223,.783,.282],text:'با نزول گرادیان دشوار است',background:'#fff',color:'#000',font:25,align:'center'},
+      );
+      if(record.number===51)imageTranslations.push({rect:[.469,.388,.544,.414],text:'مشتق ها',background:'#fff',color:'#000',font:11,align:'center'});
+      if(record.number===52)imageTranslations.push(
+        {rect:[.382,.402,.426,.438],text:'ورودی',background:'#fff',color:'#000',font:11,align:'center'},
+        {rect:[.49,.402,.55,.438],text:'پنهان 1',background:'#fff',color:'#000',font:11,align:'center'},
+        {rect:[.602,.402,.665,.438],text:'پنهان 2',background:'#fff',color:'#000',font:11,align:'center'},
+        {rect:[.722,.402,.774,.438],text:'خروجی',background:'#fff',color:'#000',font:11,align:'center'},
+        {rect:[.889,.477,.925,.512],text:'خطا',background:'#fff',color:'#000',font:11,align:'center'},
+      );
+    }
+    if(record.number===54 && record.source_text_sha256==='61f5f434f391e004fed09cc5c282511c123de4e73b7921eefe013b30d418f61d'
+        && layout.translation_sha256==='b61f042706e967ebc31350bd57f310fe0afcde246f81a00683722ed90350cb16'){
+      imageTranslations.push({rect:[.222,.228,.779,.305],text:'حافظه بلند کوتاه مدت (Long Short-Term Memory)',background:'#fff',color:'#000',font:21,align:'center'});
+    }
+  }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===78
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='3e6672c8e90af769505a90237127f2bc27368343fc4a4d4291e6c38c66310f52'
@@ -1866,9 +1940,9 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='7d982bfcd5fd0660621c2fa65887a8919b0358403fe7968ffb4b34d6c5e00e95'
       && layout.translation_sha256==='f6c55e44675c6ba192be0da43044de7e3e47e85a35cc3435a2556b9bfe1ffe6b'){
-    const slots={0:[.04,.09,.97,.22],1:[.05,.26,.96,.34],2:[.05,.93,.38,.97],3:[.265,.80,.47,.89],5:[.32,.66,.47,.78],8:[.30,.39,.47,.48]};
+    const slots={0:[.04,.09,.97,.22],1:[.05,.26,.96,.34],2:[.05,.93,.38,.97],3:[.265,.80,.47,.89],5:[.39,.68,.47,.79],8:[.30,.39,.47,.48]};
     for(const region of regions){const i=region.block.source_lines[0];
-      if(slots[i]){region.slot=slots[i];region.font=i===0?29:i===1?19:i===2?20:14;}
+      if(slots[i]){region.slot=slots[i];region.font=i===0?29:i===1?19:i===2?20:i===5?12:14;}
       if(i===2)region.manualAccents=[{text:'سه',color:'#ffc000'},{text:'جدید',color:'#ff0000'},{text:'جز',color:'#00b050'}];
     }
   }
@@ -1929,7 +2003,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   const s04SequencePages={
     35:['0f85273a22defe53ca50c9de8b873fab373185ccbeb1661e8895eee37cfdd408','61ebb785e46abcc502ae5d3eff0bd720e55055c9f99501e9cd0c0ec8618a01b0'],
     38:['3b03884cb8f26ded9d19c5874b72d7a869402b57b999219fad5c810ffbe5267b','e12378d2c8e87be936cedd8511723dbd9a0a695fd2d43d9c5be9e477bc678482'],
-    39:['3b46f7af0c6aeaffd78c64f1ded81ca6631c965366fd08d3b50f218d195d2deb','47e6f4983d47a2c37252bc141a4ed107bb2ff79c7052440c23fd3d214345f767'],
+    39:['3b46f7af0c6aeaffd78c64f1ded81ca6631c965366fd08d3b50f218d195d2deb','bb2e007bee053e5e8003d762cd001cd99a66363d50e89954d8c13bf191059811'],
   }[record.number];
   if(s04SequencePages && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
@@ -1947,7 +2021,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   }
   const s04BpttPages={
     41:['f5d069d5fbf417904854f0ba16af8c06005c1d5a2df7bbe81d52254e32f16b01','48e2a9ab00364888de43f19fa92a870ac343ba079e33038c52ea32b89c5f3b7d',[7,0,1,2,3,6,8]],
-    43:['fba713664fb38064ef0c40cf3f2df1415a8b79c09042950c22d1f2aa07f33553','e5884953e71008d02c12d6699b8b7c6267dea4199bda112c92b9da0ccf305297',[0,3,4,5,6,9,1]],
+    43:['fba713664fb38064ef0c40cf3f2df1415a8b79c09042950c22d1f2aa07f33553','0195eb7936ab6b904861aa7919097b29fddd223b9aa30f50f99a5f85082b8ee8',[0,3,4,5,6,9,1]],
     45:['f1645e75a8358b064d9d06826ad6c66a60fbbf202fd4abc9da4adf0033dc11ff','b4fdc75ada88cbde96e3961ef8ecadf411c28da8bc81aefc8adfeae011119097',[0,1,2,3,4,7,8]],
   }[record.number];
   if(s04BpttPages && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
@@ -1998,7 +2072,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     55:['6bda73a2802b1b64c71d142c9476486ad3134b694f2530283f3ded2929f3e41b','aa1a92c82df85613ece56ee54d912657c7c179dc354d8a56388c37a9add2e2bb'],
     56:['fe58256f415717435184a8727809426f68031475be569201a2a5945e06c6ff91','10d17ce59e2af29b835f45d64453bf3f4119113ba091efbe07c793c66396b64e'],
     57:['4e9b8a7809c17dd2b8e804a4c97bad90d5aa458cca1dd7a0856582e937bdc775','038c1f85cef47022492f6ac740c7f3ca1805d0ba1d0573061e2c0e144625c018'],
-    58:['ff883b721fb5ff47b14381387f73db6f38eafbea5648e3eb224356ceeaa01b6d','ac52407e0690558cd2ae8f278443fa7cce2b7ed9acf179410a0900be695853ab'],
+    58:['ff883b721fb5ff47b14381387f73db6f38eafbea5648e3eb224356ceeaa01b6d','b7b04c298a5081d7ce5f2cf144abd9429a44b513377b9a20df620f8019075124'],
   }[record.number];
   if(s04GatePages && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
@@ -2022,6 +2096,56 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===0){region.slot=[.04,.09,.97,.22];region.font=28;region.keepTermsTogether=true;}
       if(i===2){region.slot=[.34,.40,.47,.52];region.font=12;region.align='center';}
     }
+  }
+  const s04FigureLabels = {
+    15:['58ed64d51139f7f36e374a9ef97ce219384ee3d246aaad2a30c502ed0b65a74e','d4e001fec2823dc3813a0d802b3617efccfaacf86481a0e18571a5321f65e804'],
+    16:['5605488fd9bd2cd7352a205b14ac64ecf37b6827dec615023844f0810851e872','d72366e8f7c87c51feef6a199f079b060b27b4b77ec0910d047d37d2db209516'],
+    17:['fee7296cda17c18dad9d011f8d618bb93efdef9d6da66d27b0366268a2eb1b56','423f55cb74a10fe08157593b16631a1058cf92f4da5ae0443219dbe440922af0'],
+    18:['7ccb2c073dac7f3c5493e44b60c022b14a57b0d8a9a693ada38e147e8fe5cd1b','0d1606d4f6d6672fef613381ad511cf3c4f8439437653bc93271b0da5c86e213'],
+    19:['a001823222275e73cf0a5b3ccab0df575dc507fde195f7bffcee0a23d5b103ae','af9b1f02985b90f015d4474fa5ccc464703ce6099c79b17c50a38349e7e1a03e'],
+    22:['ecee341c50e3187c81d84c5269117461f339617db4dd8fecbf0510c4bea2c67d','6734909eab8f8fe9a1570790213f80b2311e141f7fe949a32fc652e54831b9ea'],
+    23:['f411a58014188bf6197229cbfd37912ad6ae94a88e9226571565ffa434a34e4f','4b588bac1af1f56b28ed8b4887fe9ef2806a92901ef4bec05610661c47eb7490'],
+    24:['8e4ae230d6a1eae89defb6b041d9c3860127b7f38380d1d360d577098648f14d','73d324917f54b73ee472be6f6b769acba976a0e836d67d1f6b0c173a08e992cf'],
+    25:['8e4ae230d6a1eae89defb6b041d9c3860127b7f38380d1d360d577098648f14d','73d324917f54b73ee472be6f6b769acba976a0e836d67d1f6b0c173a08e992cf'],
+    28:['7d982bfcd5fd0660621c2fa65887a8919b0358403fe7968ffb4b34d6c5e00e95','f6c55e44675c6ba192be0da43044de7e3e47e85a35cc3435a2556b9bfe1ffe6b'],
+  }[record.number];
+  if(s04FigureLabels && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256===s04FigureLabels[0] && layout.translation_sha256===s04FigureLabels[1]){
+    imageTranslations.push({rect:[.258,.695,.35,.741],text:'بازکردن',background:'#fff',color:'#000',font:20,align:'center'});
+  }
+  const s04PlotLabels={
+    26:['9d5930cab1aa34127bf92484723905d0ccaab9703e996e0f2c2410b807039b63','f9040e8b5708c91c9f829727fd824b0dcc115e39ac633f4e0053f57f82cd3186'],
+    27:['9bacaf5cc01a0ab665ecd3f39ec648b9e51f59ee7d020ea0027cad7fe7ba59de','4c73ac498ec0e05b3d17ffa3717014ef04a1ee3ac015505a6199885b232524dd'],
+  }[record.number];
+  if(s04PlotLabels && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256===s04PlotLabels[0] && layout.translation_sha256===s04PlotLabels[1]){
+    if(record.number===26){
+      imageTranslations.push({rect:[.258,.396,.392,.42],text:'تابع های فعال سازی',background:'#fff',color:'#000',font:11,align:'center'});
+      imageTranslations.push({rect:[.644,.396,.721,.42],text:'مشتق ها',background:'#fff',color:'#000',font:11,align:'center'});
+    }else imageTranslations.push({rect:[.788,.014,.91,.037],text:'تابع های فعال سازی',background:'#fff',color:'#000',font:11,align:'center'});
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===9
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='410c138d3bae03bbf04cea0268a0aad126b7765878a047dd5b13214742fdeae4'
+      && layout.translation_sha256==='df4ec58ba8dc796caefe7a9721857e9837a6c03eff4be4cab1b4997f4b2f6ba1'){
+    imageTranslations.push({rect:[.35,.578,.605,.647],text:'هواداران دوآتشه عاشق آن می شوند؛ برای بقیه، وقت گذرانی نسبتا خوبی است.',background:'#fff',color:'#242424',font:11,align:'right'});
+    imageTranslations.push({rect:[.666,.554,.842,.626],text:'امروز سرگرم کننده است.',background:'#fff',color:'#000',font:15,align:'center'});
+    imageTranslations.push({rect:[.682,.672,.825,.704],text:'چینی (سنتی)',background:'#fff',color:'#555',font:11,align:'center'});
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===8
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='f59288a393682d132c08d2cc0e0d0221c6c5c9f487962c56f1fbf4548bdd2ca4'
+      && layout.translation_sha256==='f4115f9bf90dbdcfb5148de830dbc9916099210031efa64e788853d08404b1ec'){
+    imageTranslations.push({rect:[.081,.32,.226,.357],text:'پیش بینی چندروزه',background:'#14203e',color:'#fff',font:15,align:'center'});
+    imageTranslations.push({rect:[.514,.338,.738,.477],text:'آنچه درباره The Last Jedi برایم از همه جالب تر است، بازگشت لوک در نقش مربی به جای شاگرد است؛ او با شکست در این نقش تازه دست و پنجه نرم می کند و بعد می خواهد آموزگاری خردمند و صبور باشد.',background:'#fff',color:'#242424',font:9,align:'right'});
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===11
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='5858cd7d5cdaa9c344a3c7883001961c4abed3c9aefd0f631d1389d58913418f'
+      && layout.translation_sha256==='abfefdee7e6fec256d27d0a323083d02663d2e627392e9f3fed690fe765b4a34'){
+    imageTranslations.push({rect:[.75,.341,.815,.405],text:'مجموعه وزن های متناظر',background:'#fff',color:'#000',font:8,align:'center'});
   }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }

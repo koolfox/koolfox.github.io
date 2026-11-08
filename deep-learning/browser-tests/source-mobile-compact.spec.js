@@ -68,6 +68,9 @@ test('fullscreen gallery keeps navigation and language controls available',async
  await page.locator('[data-fullscreen]').click();
  await expect(page.locator('.reader-header')).toBeHidden();await expect(page.locator('.reader-toolbar')).toBeHidden();
  await expect(page.locator('[data-focus-exit]')).toBeFocused();
+ for(const button of await page.locator('.reader-focus-controls button:visible').all()){
+  const box=await button.boundingBox();expect(box.width).toBeGreaterThanOrEqual(44);expect(box.height).toBeGreaterThanOrEqual(44);
+ }
  await expect(page.locator('[data-focus-position]')).toContainText('۲');
  await page.locator('[data-focus-view=both]').click();
  await expect(page.locator('[data-focus-view=both]')).toHaveAttribute('aria-pressed','true');

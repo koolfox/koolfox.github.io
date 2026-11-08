@@ -1071,6 +1071,18 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     for(const region of regions){const i=region.block.source_lines[0];region.slot=slots[i];region.font=i===0?32:[1,6,9].includes(i)?23:19;if(i!==0)region.align='center';}
   }
   let imageTranslations=[];
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===34
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='b52364a06033fe1870847d084611c5451a3a10e528ac69c2f03a2791c4f4bde0'
+      && layout.translation_sha256==='f80efe88defb697c5d8bc301a694afb3d19bb785b9a38a88ee41dcf926789417'){
+    imageTranslations=[
+      {rect:[.199,.621,.307,.711],text:'بررسی مساله',background:'#f3f3f3',color:'#000',font:15,align:'center'},
+      {rect:[.37,.621,.48,.711],text:'نوشتن قواعد',background:'#f2cdce',color:'#000',font:15,align:'center'},
+      {rect:[.592,.637,.681,.693],text:'ارزیابی',background:'#f3f3f3',color:'#000',font:15,align:'center'},
+      {rect:[.392,.834,.50,.921],text:'تحلیل خطاها',background:'#f3f3f3',color:'#000',font:15,align:'center'},
+      {rect:[.585,.381,.694,.476],text:'راه اندازی',background:'#f3f3f3',color:'#000',font:15,align:'center'},
+    ];
+  }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===78
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='3e6672c8e90af769505a90237127f2bc27368343fc4a4d4291e6c38c66310f52'

@@ -1,5 +1,14 @@
 import { test, expect } from '@playwright/test';
 
+test('session 1 medical assistant image keeps the translated interface in place', async ({ page }, testInfo) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=10');
+  await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 10);
+  const labels = page.locator('#persian-page .reader-image-translation');
+  await expect(labels).toHaveCount(8);
+  await expect(labels.filter({ hasText: 'پلتفرم پیشتاز اطلاعات پزشکی' })).toBeVisible();
+  await page.screenshot({path: testInfo.outputPath('lesson1-page10.png')});
+});
+
 test('clinical note slide keeps its translated figure after a copy update', async ({ page }) => {
   for (const width of [390, 1400]) {
     await page.setViewportSize({ width, height: 850 });

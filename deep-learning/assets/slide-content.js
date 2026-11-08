@@ -1071,6 +1071,21 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     for(const region of regions){const i=region.block.source_lines[0];region.slot=slots[i];region.font=i===0?32:[1,6,9].includes(i)?23:19;if(i!==0)region.align='center';}
   }
   let imageTranslations=[];
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===10
+      && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
+      && record.source_text_sha256==='872bff1955f2607d81954fc8c98cba5d588656411a0531fd803e8f38568f4294'
+      && layout.translation_sha256==='7cab9e252705a05921d0452fed8dc3518d197ffdd4682c0c0ad81881d6cb513c'){
+    imageTranslations=[
+      {rect:[.273,.348,.64,.386],text:'یک پرسش پزشکی بپرسید...',background:'#303030',color:'#b7b7b7',font:11},
+      {rect:[.285,.445,.38,.471],text:'نوشتن نامه مجوز',background:'#1e1d1d',color:'#fff',font:7,align:'center'},
+      {rect:[.408,.445,.522,.471],text:'پرسش درباره عوارض دارو',background:'#1e1d1d',color:'#fff',font:7,align:'center'},
+      {rect:[.55,.445,.719,.471],text:'بررسی دوباره با مشورت همکار',background:'#1e1d1d',color:'#fff',font:7,align:'center'},
+      {rect:[.433,.501,.555,.524],text:'قابلیت‌های بیشتر',background:'#1e1d1d',color:'#fff',font:8,align:'center'},
+      {rect:[.32,.707,.677,.754],text:'پلتفرم پیشتاز اطلاعات پزشکی',background:'#1e1d1d',color:'#fff',font:16,align:'center'},
+      {rect:[.242,.891,.466,.952],text:'محتوای چندرسانه‌ای و یافته‌های بالینی The New England Journal of Medicine',background:'#1e1d1d',color:'#fff',font:9,align:'center'},
+      {rect:[.516,.891,.761,.952],text:'محتوای چندرسانه‌ای و یافته‌های بالینی JAMA و مجلات تخصصی آن',background:'#1e1d1d',color:'#fff',font:9,align:'center'},
+    ];
+  }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===78
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='3e6672c8e90af769505a90237127f2bc27368343fc4a4d4291e6c38c66310f52'

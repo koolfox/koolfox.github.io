@@ -90,6 +90,37 @@ function evidenceExercise() {
   });
   section.append(button, status); return section;
 }
+function uniprotExercise() {
+  const section = element('section'); section.dataset.kind = 'uniprot-record';
+  section.append(element('h2', 'کارت رکورد را بخوانید'));
+  section.append(element('p', 'کارت آموزشی بر پایه رکورد G5EE07: جاندار Caenorhabditis elegans؛ شناسه رکورد G5EE07؛ شناسه توالی نماینده G5EE07-1. این رکورد بیش از یک ایزوفرم دارد.'));
+  section.append(element('p', 'در این بخش یک نمونه فرضی از حروف توالی را می بینید: ACDEFG. این حروف توالی واقعی رکورد نیستند. برای هر پرسش پاسخ را انتخاب و سپس بررسی کنید.'));
+  const items = [
+    ['کدام مورد شناسه دسترسی رکورد است؟', 'accession', 'G5EE07 شناسه رکورد است؛ پسوند -1 در G5EE07-1 به توالی ایزوفرم اشاره دارد.'],
+    ['کدام مورد نام جاندار است؟', 'organism', 'Caenorhabditis elegans نام علمی جاندار است.'],
+    ['کدام مورد شناسه توالی نماینده است؟', 'isoform', 'G5EE07-1 شناسه توالی ایزوفرم انتخاب شده به عنوان نماینده است؛ وجود ایزوفرم دیگر را رد نمی کند.'],
+    ['کدام مورد نمونه ترتیب اسیدهای آمینه است؟', 'sequence', 'ACDEFG در این تمرین فقط یک توالی فرضی است؛ حروف آن ترتیب واحدها را نشان می دهند.']
+  ];
+  const choices = [['', 'انتخاب کنید'], ['accession', 'G5EE07'], ['organism', 'Caenorhabditis elegans'], ['isoform', 'G5EE07-1'], ['sequence', 'ACDEFG']];
+  const key = 'structural-course-uniprot-record-v1';
+  let saved = []; try { const value = JSON.parse(localStorage.getItem(key) || '[]'); if (Array.isArray(value)) saved = value; } catch { /* Keep the exercise usable without storage. */ }
+  const controls = [], feedbacks = [];
+  const save = element('p', 'انتخاب ها در همین مرورگر ذخیره می شوند.'); save.setAttribute('role', 'status');
+  items.forEach(([question], index) => {
+    const group = element('div'); group.className = 'uniprot-question';
+    const label = element('label', question); label.htmlFor = `uniprot-${index}`;
+    const select = element('select'); select.id = label.htmlFor;
+    choices.forEach(([value, text]) => { const option = element('option', text); option.value = value; select.append(option); });
+    if (choices.some(([value]) => value === saved[index])) select.value = saved[index];
+    const feedback = element('p'); feedback.setAttribute('aria-live', 'polite');
+    select.addEventListener('change', () => { feedback.textContent = ''; try { localStorage.setItem(key, JSON.stringify(controls.map(control => control.value))); save.textContent = 'انتخاب ها در همین مرورگر ذخیره شدند.'; } catch { save.textContent = 'ذخیره ممکن نشد؛ تا زمان باز بودن صفحه می توانید تمرین کنید.'; } });
+    controls.push(select); feedbacks.push(feedback); group.append(label, select, feedback); section.append(group);
+  });
+  const button = element('button', 'بررسی کارت'); button.type = 'button';
+  button.addEventListener('click', () => { items.forEach(([, answer, explanation], index) => { const value = controls[index].value; feedbacks[index].textContent = value ? (value === answer ? 'درست است. ' : 'دوباره بررسی کنید. ') + explanation : 'ابتدا یک گزینه انتخاب کنید.'; }); });
+  const link = element('a', 'منبع رسمی نمونه ایزوفرم'); link.href = 'https://www.ebi.ac.uk/training/online/courses/uniprot-exploring-protein-sequence-and-functional-info/exploring-a-uniprotkb-entry/the-entry-view/sequence-isoforms/';
+  const source = element('p'); source.append(link); section.append(button, save, source); return section;
+}
 function structureInterpretationExercise() {
   const section = element('section'); section.dataset.kind = 'structure-interpretation';
   section.append(element('h2', 'کدام مدل برای این پرسش مناسب‌تر است؟'));
@@ -201,7 +232,7 @@ async function load() {
     const source = await response.text(); if (ticket !== revision) return;
     if (!window.markdownit || !source.trim()) throw Error('متن درس برای نمایش آماده نیست.');
     const textSlides = makeTextSlides(source, sourceUrl); if (!textSlides.length) throw Error('متن درس خالی است.');
-    slides = [...textSlides, ...(topic.session === 1 ? [evidenceExercise()] : []), ...(topic.session === 5 ? [reverseComplementExercise()] : []), ...(topic.session === 11 ? [structureInterpretationExercise()] : []), ...(topic.session === 12 ? [assemblyExercise()] : []), selfCheck(topic)]; if (labs.has(topic.laboratory)) slides.push(labSlide(topic)); else if (topic.block === 'docking') slides.push(dockingSlide());
+    slides = [...textSlides, ...(topic.session === 1 ? [evidenceExercise()] : []), ...(topic.session === 5 ? [reverseComplementExercise()] : []), ...(topic.session === 10 ? [uniprotExercise()] : []), ...(topic.session === 11 ? [structureInterpretationExercise()] : []), ...(topic.session === 12 ? [assemblyExercise()] : []), selfCheck(topic)]; if (labs.has(topic.laboratory)) slides.push(labSlide(topic)); else if (topic.block === 'docking') slides.push(dockingSlide());
     $('lesson-slide').replaceChildren(...slides);
     $('lesson-title').textContent=topic.title; document.title=`${topic.title} | اسلاید درس`;
     const block = syllabus.blocks.find(item => item.id === topic.block); $('chapter-title').textContent=block?.title || ''; $('chapter-title').hidden=!block || block.title === topic.title;

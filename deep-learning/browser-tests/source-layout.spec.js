@@ -1063,6 +1063,21 @@ test('overflow retry preserves source obstacles and does not mutate the original
  expect(result.slot[0]).toBeLessThan(.5);
 });
 
+test('overflow retry can use empty space below without crossing another source region',async({page})=>{
+ await page.goto(deck+'#page=2');await ready(page);
+ const result=await page.evaluate(async()=>{
+  const {expandSourceLayout}=await import('/deep-learning/assets/slide-content.js');
+  const region={block:{source_lines:[0],fa:'نمونه'},slot:[.1,.2,.6,.3]};
+  const plan={reason:null,regions:[region],layout:{images:[{rect:[.1,.34,.6,.5]}],graphics:[],lines:[]},imageTranslations:[]};
+  const expanded=expandSourceLayout(plan);
+  return {original:region.slot,slot:expanded.regions[0].slot};
+ });
+ expect(result.original).toEqual([.1,.2,.6,.3]);
+ expect(result.slot[0]).toBe(.03);
+ expect(result.slot[3]).toBeGreaterThan(.3);
+ expect(result.slot[3]).toBeLessThanOrEqual(.336);
+});
+
 test('overflow retry retains the source slide on representative pages',async({page},testInfo)=>{
  await page.setViewportSize({width:390,height:844});
  for(const [session,number] of [['s03',15],['s09',1]]){

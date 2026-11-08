@@ -28,7 +28,24 @@ a, b = atoms(reference_qt), atoms(pose_qt)
 if not a or a.keys() != b.keys():
     raise ValueError("اتم‌های متناظر برابر نیستند")
 rmsd = math.sqrt(sum(math.dist(a[i], b[i])**2 for i in a) / len(a))
-print("اتم‌ها:", len(a), "| RMSD:", round(rmsd, 4), "Å")`}
+print("اتم‌ها:", len(a), "| RMSD:", round(rmsd, 4), "Å")`},
+ {title:'۴ · خواندن قطعه آدالیموماب',explain:'شماره ابتدا و انتها را تغییر دهید تا توالی زنجیره H را از فایل 3WD5 بخوانید. این محاسبه داکینگ یا سنجش اتصال نیست.',code:`names = {"ALA":"A", "ARG":"R", "ASN":"N", "ASP":"D", "CYS":"C", "GLU":"E", "GLN":"Q", "GLY":"G", "HIS":"H", "ILE":"I", "LEU":"L", "LYS":"K", "MET":"M", "PHE":"F", "PRO":"P", "SER":"S", "THR":"T", "TRP":"W", "TYR":"Y", "VAL":"V"}
+start = 52
+end = 59
+if not (1 <= end - start + 1 <= 12):
+    raise ValueError("طول قطعه باید بین ۱ تا ۱۲ باشد")
+residues = {}
+for line in adalimumab_pdb.splitlines():
+    if line.startswith("ATOM  ") and line[21] == "H" and not line[26].strip() and line[16] in (" ", "A") and float(line[54:60]) > 0 and line[12:16].strip() == "CA":
+        number = int(line[22:26])
+        if start <= number <= end:
+            if number in residues:
+                raise ValueError("جایگاه تکراری یا حالت جایگزین وجود دارد")
+            residues[number] = names[line[17:20].strip()]
+if set(residues) != set(range(start, end + 1)):
+    raise ValueError("یک جایگاه یا مختصات آن در فایل پیدا نشد")
+print("زنجیره H:", start, "تا", end)
+print("توالی:", "".join(residues[n] for n in range(start, end + 1)))`}
 ];
 const root=document.querySelector('#peptide-cells');
 if(root){

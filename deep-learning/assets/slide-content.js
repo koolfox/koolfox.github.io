@@ -296,6 +296,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     }
     region.slot = [left,top,Math.max(right,region.rect[2]),Math.max(bottom,region.rect[3])];
   }
+  if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===6
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='3386702c731ad98f8b816ce00160f295c2713499941019417261d4020201dbbb'
+      && layout.translation_sha256==='37674bba2804012ac9e8d757ab682f65800705096874da76336c2c84b5d8d0d8') {
+    const memory=regions.find(region=>region.block.source_lines[0]===3);
+    if(memory)memory.manualAccents=[{text:'حافظه',color:'#ffc000'}];
+  }
   // Reviewed placements for the four consecutive gradient-descent diagrams.
   if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===26
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'

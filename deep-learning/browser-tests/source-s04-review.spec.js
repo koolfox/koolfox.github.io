@@ -141,3 +141,27 @@ test('sequence-length caption fits above its RNN figure on mobile', async ({page
   expect(measured.fits).toBe(true);
   expect(measured.bottom).toBeLessThanOrEqual(0.34 * 540 + 1);
 });
+
+test('review and parity example retain separate source regions on desktop and mobile', async ({page}) => {
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({width, height:850});
+    for (const number of [2, 6]) {
+      await page.goto(`/deep-learning/terms/spring-2026/s04/slides/#page=${number}`);
+      await page.waitForFunction(n => window.sourceSlideReader?.ready && window.sourceSlideReader.page === n, number);
+      if (width === 390) {
+        const previous = await page.locator('#persian-page .reader-slide-stage').elementHandle();
+        await page.locator('[data-view-translation]').click();
+        if (previous) await page.waitForFunction(node => !node.isConnected, previous);
+        await page.waitForFunction(n => window.sourceSlideReader?.ready && window.sourceSlideReader.page === n, number);
+      }
+      const slide=page.locator('#persian-page');
+      await expect(slide).toHaveAttribute('data-layout',number===2?'source-canvas':'source-canvas-figure-companion');
+      await expect(slide.locator('.reader-slide-text')).toHaveCount(number===2?9:4);
+      if(number===6){
+        await expect(slide.locator('.reader-slide-background')).toBeVisible();
+        const memory=slide.locator('.reader-emphasis').filter({hasText:'حافظه'});
+        await expect(memory).toHaveCSS('color','rgb(255, 192, 0)');
+      }
+    }
+  }
+});

@@ -19,6 +19,7 @@ test('RNN comparison retains each caption and both diagrams', async ({page}) => 
       await expect(slide.locator('.reader-slide-text').filter({hasText:text}).first()).toBeVisible();
     await expect(slide.locator('.reader-emphasis').filter({hasText:'افزودن حالت پنهان'})).toHaveCSS('color','rgb(255, 192, 0)');
     await expect(slide.locator('.reader-slide-text').filter({hasText:'اتصال های دارای تاخیر زمانی'})).toHaveCSS('color','rgb(255, 192, 0)');
+    await slide.locator('.reader-slide-holder').screenshot({path:test.info().outputPath(`s04-page12-persian-${width}.png`)});
   }
 });
 

@@ -1,5 +1,17 @@
 import { test, expect } from '@playwright/test';
 
+test('lesson 4 title and attribution retain separate centered source lines', async ({ page }, testInfo) => {
+  await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=1');
+  await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 1);
+  const stage = page.locator('#persian-page');
+  await expect(stage).toHaveAttribute('data-layout', 'source-canvas');
+  for (const term of ['Recurrent Neural Networks', 'دستاورد حافظه', 'Danna Gurari', 'University of Colorado Boulder', '2026']) {
+    await expect(stage.locator('.reader-slide-text').filter({hasText: term})).toBeVisible();
+  }
+  expect(await stage.locator('.reader-slide-text').evaluateAll(nodes => nodes.every(node => node.scrollHeight <= node.clientHeight + 2))).toBeTruthy();
+  await page.screenshot({path: testInfo.outputPath('lesson4-page1.png')});
+});
+
 for (const width of [1440, 390]) {
   test(`RNN parameter question keeps the diagram at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 850 });

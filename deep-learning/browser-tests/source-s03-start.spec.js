@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 for (const viewport of [{width:1440,height:900},{width:390,height:844}]) {
- test(`session 3 opening slides preserve source layout at ${viewport.width}px`, async ({ page }) => {
+ test(`session 3 opening slides preserve source layout at ${viewport.width}px`, async ({ page }, testInfo) => {
   await page.setViewportSize(viewport);
   for (const number of [1, 5]) {
    await page.goto(`/deep-learning/terms/spring-2026/s03/slides/#page=${number}`);
@@ -22,6 +22,7 @@ for (const viewport of [{width:1440,height:900},{width:390,height:844}]) {
     const labels=page.locator('#persian-page .reader-image-translation');
     await expect(labels).toHaveCount(5);
     for (const label of ['مغز','نخاع','سلول عصبی','دستگاه عصبی مرکزی','دستگاه عصبی محیطی']) await expect(labels.filter({hasText:label})).toHaveCount(1);
+    await page.screenshot({path:testInfo.outputPath(`s03-page5-${viewport.width}.png`)});
    }
    expect(await nodes.evaluateAll(items=>items.every(item=>item.scrollWidth<=item.clientWidth+2 && item.scrollHeight<=item.clientHeight+2))).toBeTruthy();
   }

@@ -440,15 +440,17 @@
     {
       "topic": 20,
       "path": "docs/course/session-20.fa.md",
-      "sha256": "e16ea11655740905dd3423c7b63cf3b1c624263dad1b281929b02d4f5099a0b9",
+      "sha256": "d961bacc80bc7e89a69f27d16aad3e56c833b5eafdcc602360ff4ae559cc8abc",
       "source_ids": [
         "md"
       ],
       "case_lesson_path": "docs/research-notes/lesson-context/topic-20.fa.md",
       "case_lesson_sha256": "00efaa85725745bcfd4b40e7aa103ea8d06e80e582db986a8d8a071cb7a67dc4",
-      "word_count_whitespace": 828,
+      "word_count_whitespace": 960,
       "external_reference_urls": [
-        "https://manual.gromacs.org/current/reference-manual/algorithms/molecular-dynamics.html"
+        "https://manual.gromacs.org/2024.5/user-guide/system-preparation.html",
+        "https://manual.gromacs.org/2024.5/reference-manual/algorithms/molecular-dynamics.html",
+        "https://docs.openmm.org/8.0.0/userguide/application/02_running_sims.html#constraints"
       ]
     },
     {
@@ -723,5 +725,25 @@
     "page_checked_utc": "2026-11-06",
     "page_observation": "R-work 0.185 (DCC), R-observed 0.176 (Depositor); R-free absent from displayed snapshot.",
     "note": "API and page checks are separate; page rendering was read via web tool, not retained or hashed."
+  },
+  "lesson_20_md_preparation": {
+    "checked_at_utc": "2026-11-08T09:02:30Z",
+    "scope": "General MD preparation, equilibration, timestep and calculation exercise; no simulation results.",
+    "sources": [
+      {
+        "url": "https://manual.gromacs.org/2024.5/user-guide/system-preparation.html",
+        "role": "System preparation, minimization and staged equilibration."
+      },
+      {
+        "url": "https://manual.gromacs.org/2024.5/reference-manual/algorithms/molecular-dynamics.html",
+        "role": "Integration and temperature/pressure coupling limitations."
+      },
+      {
+        "url": "https://docs.openmm.org/8.0.0/userguide/application/02_running_sims.html#constraints",
+        "role": "Bond constraints and timestep depend on the integration method."
+      }
+    ],
+    "example_input": "assets/course/gromacs/nvt.mdp",
+    "note": "Documentation checked online; pages not retained or byte-hashed. Numerical example calculated from local input; not an executed simulation."
   }
 }

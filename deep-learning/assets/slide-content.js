@@ -315,7 +315,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===9
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='410c138d3bae03bbf04cea0268a0aad126b7765878a047dd5b13214742fdeae4'
-      && layout.translation_sha256==='e1ff50a1984de0c5ad563472740bd26c9bdf8774baeabe8508aed56a5ff34005') {
+      && layout.translation_sha256==='df4ec58ba8dc796caefe7a9721857e9837a6c03eff4be4cab1b4997f4b2f6ba1') {
     for (const region of regions) {const i=region.block.source_lines[0];if(i>=2 && i<=13){const group=Math.floor((i-2)/4),row=(i-2)%4,columns=[[.04,.29],[.66,.97],[.34,.63]],[left,right]=columns[group],top=.335+row*.044;region.slot=[left,top,right,top+.042];region.font=row===0?17:16;}else if(i===14){region.slot=[.025,.837,.29,.96];region.font=14;}else if(i===17){region.slot=[.335,.877,.62,.93];region.font=14;}}
   }
   if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===2
@@ -1929,7 +1929,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   const s04SequencePages={
     35:['0f85273a22defe53ca50c9de8b873fab373185ccbeb1661e8895eee37cfdd408','61ebb785e46abcc502ae5d3eff0bd720e55055c9f99501e9cd0c0ec8618a01b0'],
     38:['3b03884cb8f26ded9d19c5874b72d7a869402b57b999219fad5c810ffbe5267b','e12378d2c8e87be936cedd8511723dbd9a0a695fd2d43d9c5be9e477bc678482'],
-    39:['3b46f7af0c6aeaffd78c64f1ded81ca6631c965366fd08d3b50f218d195d2deb','47e6f4983d47a2c37252bc141a4ed107bb2ff79c7052440c23fd3d214345f767'],
+    39:['3b46f7af0c6aeaffd78c64f1ded81ca6631c965366fd08d3b50f218d195d2deb','bb2e007bee053e5e8003d762cd001cd99a66363d50e89954d8c13bf191059811'],
   }[record.number];
   if(s04SequencePages && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
@@ -1947,7 +1947,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   }
   const s04BpttPages={
     41:['f5d069d5fbf417904854f0ba16af8c06005c1d5a2df7bbe81d52254e32f16b01','48e2a9ab00364888de43f19fa92a870ac343ba079e33038c52ea32b89c5f3b7d',[7,0,1,2,3,6,8]],
-    43:['fba713664fb38064ef0c40cf3f2df1415a8b79c09042950c22d1f2aa07f33553','e5884953e71008d02c12d6699b8b7c6267dea4199bda112c92b9da0ccf305297',[0,3,4,5,6,9,1]],
+    43:['fba713664fb38064ef0c40cf3f2df1415a8b79c09042950c22d1f2aa07f33553','0195eb7936ab6b904861aa7919097b29fddd223b9aa30f50f99a5f85082b8ee8',[0,3,4,5,6,9,1]],
     45:['f1645e75a8358b064d9d06826ad6c66a60fbbf202fd4abc9da4adf0033dc11ff','b4fdc75ada88cbde96e3961ef8ecadf411c28da8bc81aefc8adfeae011119097',[0,1,2,3,4,7,8]],
   }[record.number];
   if(s04BpttPages && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
@@ -1998,7 +1998,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     55:['6bda73a2802b1b64c71d142c9476486ad3134b694f2530283f3ded2929f3e41b','aa1a92c82df85613ece56ee54d912657c7c179dc354d8a56388c37a9add2e2bb'],
     56:['fe58256f415717435184a8727809426f68031475be569201a2a5945e06c6ff91','10d17ce59e2af29b835f45d64453bf3f4119113ba091efbe07c793c66396b64e'],
     57:['4e9b8a7809c17dd2b8e804a4c97bad90d5aa458cca1dd7a0856582e937bdc775','038c1f85cef47022492f6ac740c7f3ca1805d0ba1d0573061e2c0e144625c018'],
-    58:['ff883b721fb5ff47b14381387f73db6f38eafbea5648e3eb224356ceeaa01b6d','ac52407e0690558cd2ae8f278443fa7cce2b7ed9acf179410a0900be695853ab'],
+    58:['ff883b721fb5ff47b14381387f73db6f38eafbea5648e3eb224356ceeaa01b6d','b7b04c298a5081d7ce5f2cf144abd9429a44b513377b9a20df620f8019075124'],
   }[record.number];
   if(s04GatePages && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'

@@ -18,3 +18,4 @@ class LessonFourSpellingTests(unittest.TestCase):
                     with self.subTest(page=page['number'], group=group, text=text[:30]):
                         self.assertNotRegex(text, re.compile(r'[ءأإؤئۀ\u064b-\u065f\u0670]'))
                         self.assertNotIn('مسیله', text)
+                        self.assertNotIn('تاحدی', text)

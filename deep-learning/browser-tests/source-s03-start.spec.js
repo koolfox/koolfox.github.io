@@ -275,3 +275,23 @@ test('session 3 descent step keeps the source graph and evaluated gradient', asy
  await expect(page.locator('#persian-page .reader-slide-text').filter({hasText:'f′(2) = 13'})).toBeVisible();
  await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
 });
+
+for (const viewport of [{width:1440,height:900},{width:390,height:844}]) {
+ test(`session 3 review slide keeps its source hierarchy at ${viewport.width}px`, async ({page}) => {
+  await page.setViewportSize(viewport);
+  await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=2');
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready && sourceSlideReader.page===2);
+  if(viewport.width<500){
+   const old=await page.locator('#persian-page .reader-slide-stage').elementHandle();
+   await page.locator('[data-view-translation]').click();
+   await page.waitForFunction(node=>!node.isConnected,old);
+  }
+  const slide=page.locator('#persian-page');
+  await expect(slide).toHaveAttribute('data-layout','source-canvas');
+  await expect(slide.locator('.reader-slide-background')).toBeVisible();
+  const nodes=slide.locator('.reader-slide-text');
+  await expect(nodes).toHaveCount(9);
+  for(const term of ['مرور','1957','1969','PyTorch','Canvas','پرسشی دارید']) await expect(nodes.filter({hasText:term})).toBeVisible();
+  expect(await nodes.evaluateAll(items=>items.every(item=>item.scrollWidth<=item.clientWidth+2 && item.scrollHeight<=item.clientHeight+2))).toBeTruthy();
+ });
+}

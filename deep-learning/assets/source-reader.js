@@ -240,6 +240,7 @@ function controls(){
  $('[data-page-total]').hidden=references;$('[data-page-count]').textContent=fa(config.pageCount);$('[data-zoom-out]').disabled=references||zoom<=1;$('[data-zoom-in]').disabled=references||zoom>=3;
  if($('[data-focus-zoom-out]'))$('[data-focus-zoom-out]').disabled=references||zoom<=1;
  if($('[data-focus-zoom-in]'))$('[data-focus-zoom-in]').disabled=references||zoom>=3;
+ if($('[data-focus-zoom-fit]'))$('[data-focus-zoom-fit]').disabled=references||zoom<=1;
  $('[data-source-only-toggle]').disabled=references;document.querySelector('.reader-view-controls').hidden=references;
  status.hidden=references;progress.hidden=references||Boolean(pdf&&payload);
  canvas.setAttribute('aria-label',`صفحهٔ ${fa(page)} از ${fa(config.pageCount)}، اسلاید`);
@@ -421,6 +422,7 @@ $('[data-focus-exit]').addEventListener('click',()=>$('[data-fullscreen]').click
 $('[data-focus-experiment]').addEventListener('click',()=>selectSection('explore'));
 $('[data-focus-zoom-in]')?.addEventListener('click',()=>$('[data-zoom-in]').click());
 $('[data-focus-zoom-out]')?.addEventListener('click',()=>$('[data-zoom-out]').click());
+$('[data-focus-zoom-fit]')?.addEventListener('click',()=>{zoom=1;controls();renderOriginal();});
 document.querySelectorAll('[data-focus-view]').forEach(button=>button.addEventListener('click',()=>setView(button.dataset.focusView)));
 setupFullscreen($('[data-fullscreen]'));
 new MutationObserver(()=>{

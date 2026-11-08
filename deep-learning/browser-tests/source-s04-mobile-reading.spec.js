@@ -35,12 +35,33 @@ test('mobile fullscreen zoom enlarges the original slide and its diagram', async
   await page.locator('[data-fullscreen]').click();
   const holder=page.locator('#persian-page .reader-slide-holder');
   await expect(holder).toBeVisible();
+  const panelBox=await page.locator('#translation-panel').boundingBox();
+  const controlsBox=await page.locator('.reader-focus-languages').boundingBox();
+  expect(panelBox.y+panelBox.height).toBeLessThanOrEqual(controlsBox.y+2);
   const initial=(await holder.boundingBox()).width;
   await page.locator('[data-focus-zoom-in]').click();
   await expect.poll(async()=> (await holder.boundingBox())?.width || 0).toBeGreaterThan(initial*1.2);
   const panel=page.locator('#translation-panel');
   expect(await panel.evaluate(e=>e.scrollWidth>e.clientWidth)).toBeTruthy();
   await page.screenshot({path:testInfo.outputPath('s04-mobile-fullscreen-zoom.png')});
-  await page.locator('[data-focus-zoom-out]').click();
+  await page.locator('[data-focus-zoom-fit]').click();
   await expect.poll(async()=> (await holder.boundingBox())?.width || 0).toBeLessThan(initial*1.05);
+});
+
+test('mobile transcript preserves LTR math and is reachable in fullscreen', async ({page}, testInfo) => {
+  await page.setViewportSize({width:390,height:844});
+  await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=36');
+  await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 36);
+  await page.locator('[data-view-translation]').click();
+  await page.evaluate(()=>Object.defineProperty(document.documentElement,'requestFullscreen',{value:undefined,configurable:true}));
+  await page.locator('[data-fullscreen]').click();
+  const summary=page.locator('.reader-mobile-transcript summary');
+  await summary.scrollIntoViewIfNeeded();
+  await summary.click();
+  const formula=page.locator('.reader-mobile-transcript .reader-math').first();
+  await expect(formula).toBeVisible();
+  await expect(formula).toHaveCSS('direction','ltr');
+  await expect(formula).toContainText('y');
+  await formula.scrollIntoViewIfNeeded();
+  await page.screenshot({path:testInfo.outputPath('s04-mobile-formula.png')});
 });

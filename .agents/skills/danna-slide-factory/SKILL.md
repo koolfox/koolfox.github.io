@@ -11,6 +11,10 @@ Work from the current repository state, the source PDF and the user's current sc
 
 Run `python3 deep-learning/scripts/inventory_spring_2026.py --output /tmp/spring26-inventory` in a fresh output directory. Add `--artifact /path/to/built/deep-learning` to verify generated page files. JSONL describes each source page; the summary records source commit, hashes, translation/layout metadata, PDF policy and artifact verification. Treat `not_observed` as unknown. Confirm the script and its options on the current branch before invoking it; if absent, find the corresponding implementation.
 
+## Batch page data
+
+Run `python3 deep-learning/scripts/build_slide_pages.py --output /tmp/slide-page-stage` to build every session, or add `--session s01` for a narrow run. Use a fresh output directory. Each record is hash-verified after writing; the summary reports the number of page-data files. This is a staging build of reader JSON, not a rendered slide, PDF build, visual comparison or scientific approval. Prefer the remote runner for the full course.
+
 ## Batch triage
 
 Generate candidates with `python3 deep-learning/scripts/propose_slide_segments.py --root deep-learning --output /tmp/slide-proposals.jsonl`, then combine them with a scanner report using `python3 deep-learning/scripts/triage_slide_batch.py --scan deep-learning/browser-tests/slide-inventory-2026-11-08.json --proposals /tmp/slide-proposals.jsonl --output /tmp/slide-triage.json`. Use fresh output paths. Group repeated findings before fixing shared renderer behavior. The checked-in scan is historical: it is not evidence that the current commit still fails or passes. Confirm representative cases on the current build, preserve collision and readability guards, and rerun affected batches. Candidates require review and never change slides by themselves.

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>فهرست اسلایدهای بهار ۲۰۲۶</title>
+<style>
+/*FONT*/
+:root{color-scheme:light;--ink:#111827;--muted:#526075;--blue:#2563eb;--border:#e5e7eb}*{box-sizing:border-box}body{margin:0;background:#f5f5f7;color:var(--ink);font:16px/1.7 Arad,Tahoma,sans-serif}main{max-width:1280px;margin:auto;padding:clamp(20px,4vw,48px)}h1{font-size:clamp(1.3rem,3vw,1.9rem);margin:0 0 8px}p{margin:0;color:var(--muted)}.toolbar{display:flex;flex-wrap:wrap;gap:14px;margin:24px 0 18px}label{display:flex;flex-direction:column;gap:5px;color:var(--ink);font-size:.88rem}input,select{min-height:44px;padding:8px 12px;border:1px solid #b8c5d9;border-radius:7px;background:white;color:var(--ink);font:inherit}input{width:min(360px,85vw)}:focus-visible{outline:3px solid #2563eb;outline-offset:2px}.count{margin-bottom:12px;color:var(--ink);font-weight:bold}.table-wrap{overflow:auto;background:#fff;border:1px solid var(--border);border-radius:8px}table{width:100%;border-collapse:collapse;min-width:680px;text-align:right}th,td{padding:12px 14px;border-bottom:1px solid var(--border);vertical-align:top}th{background:#f9fafb;font-size:.88rem;white-space:nowrap}tr:last-child td{border-bottom:0}a{color:var(--blue);text-underline-offset:3px}td small{display:block;color:var(--muted)}.status{white-space:nowrap}.empty{padding:20px;color:var(--muted)}[hidden]{display:none!important}@media(max-width:700px){main{padding:18px 14px}table{min-width:0}thead{display:none}tr{display:block;border-bottom:1px solid var(--border);padding:12px}td{display:block;border:0;padding:2px 0}td:before{content:attr(data-label) '؛ ';color:var(--muted);font-size:.85rem}td:first-child:before{content:none}.status{white-space:normal}}
+</style>
+</head><body><main>
+<h1>فهرست اسلایدهای بهار ۲۰۲۶</h1>
+<p>وضعیت نمایش هر صفحه بررسی نشده است. وضعیت PDF بر اساس سیاست ساخت و در صورت انتخاب، فایل‌های ساخت محلی است.</p>
+<div class="toolbar"><label>جستجو در جلسه و صفحه<input id="search" type="search" autocomplete="off" placeholder="عنوان یا شماره صفحه"></label><label>سیاست فایل PDF<select id="policy"><option value="">همه صفحه‌ها</option><option value="individual_pdf">صفحه مستقل</option><option value="full_pdf">فایل کامل جلسه</option></select></label></div>
+<div class="count" id="count" aria-live="polite"></div>
+<div class="table-wrap"><table><thead><tr><th>جلسه و صفحه</th><th>عنوان صفحه</th><th>وضعیت PDF</th><th>وضعیت رندر</th></tr></thead><tbody id="rows">
+<!--ROWS-->
+</tbody></table><p class="empty" id="empty" hidden>صفحه‌ای با این فیلتر پیدا نشد.</p></div>
+</main><script>
+const search=document.querySelector('#search'),policy=document.querySelector('#policy'),rows=[...document.querySelectorAll('#rows tr')],count=document.querySelector('#count'),empty=document.querySelector('#empty');
+const normalize=value=>value.toLocaleLowerCase('fa').replace(/[۰-۹٠-٩]/g,c=>String('۰۱۲۳۴۵۶۷۸۹٠١٢٣٤٥٦٧٨٩'.indexOf(c)%10));
+function filter(){const query=normalize(search.value.trim()),selected=policy.value;let n=0;for(const row of rows){const match=(!query||normalize(row.textContent).includes(query))&&(!selected||row.dataset.policy===selected);row.hidden=!match;if(match)n++}count.textContent=`${new Intl.NumberFormat('fa-IR').format(n)} صفحه`;empty.hidden=n!==0}
+search.addEventListener('input',filter);policy.addEventListener('change',filter);filter();
+</script></body></html>

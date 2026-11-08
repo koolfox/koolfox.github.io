@@ -1,6 +1,8 @@
 """Inventory source, translation and slide geometry; no rendering is inferred."""
 import argparse
+import base64
 import hashlib
+import html
 import json
 import subprocess
 from collections import Counter
@@ -20,6 +22,8 @@ def inventory(root, artifact=None):
     identity = json.loads((root / 'data/metadata/spring-2026-slide-identity.json').read_text())
     fallbacks = json.loads((root / 'data/metadata/spring-2026-page-fallbacks.json').read_text())
     rows = []
+    schedule = json.loads((root / 'data/metadata/spring-2026.json').read_text())['term']['schedule']
+    titles = {entry['id']: entry.get('title_fa', '') for entry in schedule}
     for source in identity['records']:
         session = source['session_id']
         pdf = root / 'assets/danna/spring-2026' / f'{session}.pdf'
@@ -55,7 +59,8 @@ def inventory(root, artifact=None):
                         page_file = page_dir / f'{n:03}.pdf'
                         artifact_status = 'missing' if not page_file.is_file() else 'hash_match' if digest(page_file) == artifact_hash else 'hash_mismatch'
             rows.append({
-                'term': 'spring-2026', 'session': session, 'page': n,
+                'term': 'spring-2026', 'session': session, 'session_title': titles.get(session, ''), 'page': n,
+                'page_title': next((block['fa'] for block in t['blocks'] if block['kind']=='heading' and block.get('fa')), ''),
                 'source_url': source['url'], 'source_pdf_sha256': pdf_hash,
                 'source_page_text_sha256': p['source_text_sha256'],
                 'translation_present': True, 'translation_block_count': len(t['blocks']),
@@ -69,6 +74,27 @@ def inventory(root, artifact=None):
                 'render_status': 'not_observed', 'render_fallback_reason': None,
             })
     return rows
+
+
+def render_html(rows):
+    template = (ROOT / 'scripts/inventory_spring_2026_view.html').read_text(encoding='utf-8')
+    items = []
+    statuses = {'not_checked': 'بررسی نشده', 'manifest_missing': 'نمایه موجود نیست',
+                'full_pdf_manifest_fallback': 'فایل کامل جلسه', 'missing': 'فایل موجود نیست',
+                'hash_match': 'هش فایل تایید شد', 'hash_mismatch': 'هش فایل متفاوت است'}
+    for row in rows:
+        session = html.escape(row['session'])
+        page = row['page']
+        title = html.escape(row['session_title'])
+        heading = html.escape(row['page_title']) or '—'
+        policy = row['page_pdf_policy']
+        policy_label = 'صفحه مستقل' if policy == 'individual_pdf' else 'فایل کامل جلسه'
+        status = statuses[row['artifact_page_pdf_status']]
+        url = f'https://koolfox.github.io/deep-learning/terms/spring-2026/{session}/slides/#page={page}'
+        items.append(f'<tr data-policy="{policy}"><td><a href="{url}">{session} · صفحه {page}</a><small>{title}</small></td><td data-label="عنوان صفحه">{heading}</td><td class="status" data-label="PDF">{policy_label}<small>{status}</small></td><td class="status" data-label="رندر">بررسی نشده</td></tr>')
+    font = base64.b64encode((ROOT.parent / 'assets/fonts/arad.woff2').read_bytes()).decode('ascii')
+    rule = "@font-face{font-family:Arad;src:url(data:font/woff2;base64," + font + ") format('woff2');font-display:swap}"
+    return template.replace('/*FONT*/', rule).replace('<!--ROWS-->', '\n'.join(items))
 
 
 def main():
@@ -93,6 +119,7 @@ def main():
                'translation_text_reviewed_flags': dict(sorted(Counter(str(r['text_reviewed_flag']) for r in rows).items())),
                'layout_visual_reviewed_flags': dict(sorted(Counter(str(r['layout_visual_reviewed_flag']) for r in rows).items())),
                'note': 'Review flags are metadata, not visual acceptance. Runtime and live deployment were not observed.'}
+    (out / 'index.html').write_text(render_html(rows), encoding='utf-8')
     (out / 'summary.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True)+'\n', encoding='utf-8')
     print(json.dumps(summary, ensure_ascii=False))
 

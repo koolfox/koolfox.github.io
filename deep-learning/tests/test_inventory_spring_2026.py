@@ -6,7 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
-from inventory_spring_2026 import inventory
+from inventory_spring_2026 import inventory, render_html
 
 
 class InventoryTest(unittest.TestCase):
@@ -20,6 +20,15 @@ class InventoryTest(unittest.TestCase):
         self.assertTrue(all(row['render_status'] == 'not_observed' and row['render_fallback_reason'] is None for row in first))
         self.assertTrue(all(row['artifact_page_pdf_status'] == 'not_checked' for row in first))
         self.assertEqual(len({(row['session'], row['page']) for row in first}), 1303)
+
+    def test_html_has_page_links_unreviewed_state_and_escapes_titles(self):
+        rows = inventory(ROOT)
+        rows[0]['session_title'] = '<script>alert(1)</script>'
+        result = render_html(rows[:1])
+        self.assertIn('spring-2026/s01/slides/#page=1', result)
+        self.assertIn('بررسی نشده', result)
+        self.assertIn('&lt;script&gt;alert(1)&lt;/script&gt;', result)
+        self.assertNotIn('<script>alert(1)</script>', result)
 
     def test_missing_artifact_manifests_are_not_reported_as_present(self):
         with tempfile.TemporaryDirectory() as folder:

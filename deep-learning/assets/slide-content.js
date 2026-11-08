@@ -1983,6 +1983,17 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(record.number===49&&i===0){region.color='#ffffff';region.manualAccents=[{text:'این روش اغلب شکست می خورد',color:'#ffc000'},{text:'چرا',color:'#ffc000'}];}
     }
   }
+  const s04VanishingPages={
+    52:['43baa7f794793ecf04301f18d2fca9262c86b502783df9117a443b78ea176110','1ca05d22f7263d7c1c956453bf3c9670967365cc38325c1c5e4c26db5457a9ef'],
+    53:['fee2965e1f874f5609c73f9fe1dc34e7ff21039d0f23526e1969199cca977131','3428bf155bb4384c3866b7eaff1d567d53feb3fe9def87679b640895c921312d'],
+    54:['61f5f434f391e004fed09cc5c282511c123de4e73b7921eefe013b30d418f61d','b61f042706e967ebc31350bd57f310fe0afcde246f81a00683722ed90350cb16'],
+  }[record.number];
+  if(s04VanishingPages && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256===s04VanishingPages[0] && layout.translation_sha256===s04VanishingPages[1]){
+    const byPage={52:{0:[.11,.42,.32,.55],4:[.11,.61,.33,.74],7:[.35,.76,.97,.82],8:[.01,.84,.99,.96]},53:{0:[.10,.54,.44,.59],1:[.10,.59,.44,.68],4:[.01,.84,.99,.96]},54:{0:[.08,.86,.96,.94]}};
+    for(const region of regions){const i=region.block.source_lines[0],slot=byPage[record.number][i];if(slot){region.slot=slot;region.font=(record.number===54?19:((record.number===52&&i===8)||(record.number===53&&i===4))?17:14);}if((record.number===52&&i===8)||(record.number===53&&i===4))region.manualAccents=[{text:'نگرانی',color:'#ffc000'}];}
+  }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

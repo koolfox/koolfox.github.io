@@ -52,7 +52,12 @@ def build_page_payloads(output: Path, payload: dict) -> dict:
         digest = hashlib.sha256(content).hexdigest()
         filename = f"{page['number']:03}-{digest}.json"
         write_atomic(directory / filename, content)
-        entries.append({'number': page['number'], 'file': filename, 'sha256': digest})
+        blocks = page.get('blocks', [])
+        heading = next((block.get('fa') for block in blocks if block.get('kind') == 'heading' and block.get('fa')), None)
+        if not heading:
+            text = next((block.get('fa') for block in blocks if block.get('kind') != 'not_visible' and block.get('fa')), '')
+            heading = next((line for line in text.split('\n') if not line.startswith(('http:', 'https:'))), '')
+        entries.append({'number': page['number'], 'file': filename, 'sha256': digest, 'title': heading[:100]})
     manifest = {'schema_version': 1, 'term_id': term, 'session_id': session,
                 'source': source, 'page_count': len(pages),
                 'reference_targets': references, 'pages': entries}

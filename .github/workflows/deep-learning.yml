@@ -36,8 +36,15 @@ jobs:
       - uses: astral-sh/setup-uv@v10.3.0
         with:
           version: '0.11.2'
+      - name: Cache pinned Shinylive archive
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/danna-shinylive/shinylive-0.10.15.tar.gz
+          key: danna-shinylive-0.10.15-92deba97423ef2baba39df1806372af320cd6f0e751f4a36f3a7faf2645ea19b
       - name: Export only deep learning laboratories
-        run: uv run --frozen --project deep-learning/playgrounds python deep-learning/scripts/export_playgrounds.py --output deep-learning/results/shinylive
+        run: |
+          uv run --frozen --project deep-learning/playgrounds python deep-learning/scripts/prepare_shinylive_assets.py --archive "${{ runner.temp }}/danna-shinylive/shinylive-0.10.15.tar.gz"
+          uv run --frozen --project deep-learning/playgrounds python deep-learning/scripts/export_playgrounds.py --output deep-learning/results/shinylive
       - name: Assemble only this project
         run: uv run --no-project --with pypdf==6.21.4 python scripts/build_pages.py --project deep-learning --output dist/pages
       - uses: actions/setup-node@v7.1.0

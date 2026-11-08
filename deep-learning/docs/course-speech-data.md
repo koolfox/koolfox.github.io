@@ -26,3 +26,11 @@ python3 deep-learning/scripts/fetch_mana_sample.py --output /tmp/mana-audit --li
 ```
 
 نسخه مخزن هنگام دریافت از API مشاهده می‌شود؛ سرویس ردیف‌ها بازگرداندن همان نسخه خاص را تضمین نمی‌کند. پیش از هر استفاده آموزشی باید اصالت فایل‌های دریافت‌شده و انطباقشان با نسخه انتخابی مستقل بررسی شود.
+
+برای بررسی فایل‌های صوتی بازبینی‌شده، دستور زیر مسیر و هش WAV، وجود متن گفتار، گوینده، وضعیت بازبینی تلفظ و حقوق، و نبود تکرار دقیق صوت و متن میان بخش‌ها را کنترل می‌کند:
+
+```sh
+python3 deep-learning/scripts/validate_speech_manifest.py reviewed.jsonl --audio-root /path/to/audio
+```
+
+در هر رکورد تاییدشده فیلدهای `spoken_text_fa`، `speaker_id`، `rights`، `audio_path`، `audio_sha256`، `split`، `review_status` و `pronunciation_reviewed` لازم هستند. این بررسی ماشینی جای شنیدن، بررسی حقوق یا داوری علمی را نمی‌گیرد.

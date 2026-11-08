@@ -1269,7 +1269,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===13
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
-      && record.source_text_sha256==='faa6a39540825108d5432a3596d6c0183876b5d0a738af123515a321bb2f6e78' && layout.translation_sha256==='8c67e64b1346eab6b97439d0e32bf4ff76247c21651f86779de203bfe39c305b'){
+      && record.source_text_sha256==='faa6a39540825108d5432a3596d6c0183876b5d0a738af123515a321bb2f6e78' && layout.translation_sha256==='fb748a988caaa594d80740695ad0c8deb4b1243ab53728394c4b41527a692e18'){
     const slots={1:[.04,.27,.97,.59],8:[.04,.60,.97,.68],9:[.04,.70,.97,.75],10:[.04,.75,.97,.81],11:[.04,.81,.97,.86],12:[.04,.86,.97,.92]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];if(i>=9&&i<=12)region.font=17;
       if(i===1){region.color='#ffffff';region.manualAccents=[{text:'شناخت ما از جهان',color:'#ffff00'},{text:'ناقص',color:'#ffff00'},{text:'این ناآگاهی',color:'#00ff00'},{text:'شناخت ما را سودمند می‌کند',color:'#00ff00'},{text:'نقش مغزها',color:'#ffc000'},{text:'هر ایده و هر احساس با فعالیت درون آن شبکه تحقق می‌یابد',color:'#ffc000'},{text:'با تعیین شبکه',color:'#00ffff'}];}
@@ -1277,9 +1277,9 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===14
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
-      && record.source_text_sha256==='ea0f2d1cf3fad3cd038d3957f552026ffabc0e2fbb8bf8bd40489a59303ef502' && layout.translation_sha256==='7d886c174bd767e23c090809dcc48504459e92778f7e7584a54cdfccb483f642'){
+      && record.source_text_sha256==='ea0f2d1cf3fad3cd038d3957f552026ffabc0e2fbb8bf8bd40489a59303ef502' && layout.translation_sha256==='e86d00ee633bcd55c2ed40a2633fa4a7bed7c36e089c3f57f48d6b9eb820cf62'){
     for(const region of regions){const i=region.block.source_lines[0];
-      if(i===1){region.slot=[.04,.25,.97,.39];region.color='#ffffff';region.manualAccents=[{text:'جست‌وجوی فراگیر (Brute-force Search)',color:'#ffc000'},{text:'حافظهٔ رایانه‌ها محدود است',color:'#ffc000'}];}
+      if(i===1){region.slot=[.04,.25,.97,.39];region.color='#ffffff';region.manualAccents=[{text:'جست‌وجوی فراگیر (Brute-force Search)',color:'#ffc000'},{text:'حافظه رایانه‌ها محدود است',color:'#ffc000'}];}
       if(i===3){region.slot=[.04,.83,.97,.98];region.color='#ffffff';region.manualAccents=[{text:'یادگیری',color:'#ffc000'},{text:'لازم است',color:'#ffc000'}];}
     }
   }

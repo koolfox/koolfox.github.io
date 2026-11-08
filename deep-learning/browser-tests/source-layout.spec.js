@@ -1068,9 +1068,10 @@ test('overflow retry retains the source slide on representative pages',async({pa
  for(const [session,number] of [['s03',15],['s09',1]]){
   await page.goto(`/deep-learning/terms/spring-2026/${session}/slides/#page=${number}`);await ready(page);
   await page.locator('[data-view-translation]').click();
+  await expect(page.locator('#persian-page')).toBeVisible();
   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout',/^source-canvas/);
-  const overflow=await page.locator('#persian-page .reader-slide-text').evaluateAll(nodes=>nodes.some(node=>node.scrollWidth>node.clientWidth+2||node.scrollHeight>node.clientHeight+2));
-  expect(overflow).toBeFalsy();
   await page.screenshot({path:testInfo.outputPath(`${session}-${number}-mobile.png`)});
+  const overflow=await page.locator('#persian-page .reader-slide-text').evaluateAll(nodes=>nodes.filter(node=>node.scrollWidth>node.clientWidth+2||node.scrollHeight>node.clientHeight+2).map(node=>({text:node.textContent,clientWidth:node.clientWidth,scrollWidth:node.scrollWidth,clientHeight:node.clientHeight,scrollHeight:node.scrollHeight})));
+  expect(overflow).toEqual([]);
  }
 });

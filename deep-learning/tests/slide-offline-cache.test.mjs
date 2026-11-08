@@ -33,3 +33,12 @@ test('does not hide aborts or a changed missing index behind cached data', async
  globalThis.fetch = async () => { throw new DOMException('Aborted', 'AbortError'); };
  await assert.rejects(readPdfManifest(url, source, 2, signal), {name: 'AbortError'});
 });
+
+test('works without storage online and falls back on a server failure', async () => {
+ globalThis.caches = {open: async () => { throw new Error('quota'); }};
+ globalThis.fetch = async () => new Response(JSON.stringify(manifest));
+ assert.deepEqual(await readPdfManifest(url, source, 2), manifest);
+ globalThis.caches = {open: async () => ({match: async () => new Response(JSON.stringify(manifest))})};
+ globalThis.fetch = async () => new Response('', {status: 503});
+ assert.deepEqual(await readPdfManifest(url, source, 2), manifest);
+});

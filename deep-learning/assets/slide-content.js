@@ -1128,6 +1128,31 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
         {rect:[.610,.508,.666,.573],text:'دروازه خروجی',background:'#d8e6f7',color:'#000',font:10,align:'center'},
       ];
     }
+    const paperTitles={
+      51:['7c48fc0319dc86b9c82dea38dba41d70c07f0e6e941262498f1f7b86259201ed','21a247833794829d1dee1e919e1bfe3fbadf563905bbba95b83a91236026ec7f'],
+      52:['43baa7f794793ecf04301f18d2fca9262c86b502783df9117a443b78ea176110','1ca05d22f7263d7c1c956453bf3c9670967365cc38325c1c5e4c26db5457a9ef'],
+      53:['fee2965e1f874f5609c73f9fe1dc34e7ff21039d0f23526e1969199cca977131','3428bf155bb4384c3866b7eaff1d567d53feb3fe9def87679b640895c921312d'],
+    }[record.number];
+    if(paperTitles && record.source_text_sha256===paperTitles[0] && layout.translation_sha256===paperTitles[1]){
+      imageTranslations.push(
+        {rect:[.218,.141,.36,.209],text:'',background:'#fff',color:'#000',font:19,align:'center'},
+        {rect:[.369,.141,.553,.209],text:'بلندمدت',background:'#fff',color:'#000',font:24,align:'center'},
+        {rect:[.565,.141,.786,.209],text:'یادگیری وابستگی های',background:'#fff',color:'#000',font:19,align:'center'},
+        {rect:[.226,.223,.783,.282],text:'با نزول گرادیان دشوار است',background:'#fff',color:'#000',font:25,align:'center'},
+      );
+      if(record.number===51)imageTranslations.push({rect:[.469,.388,.544,.414],text:'مشتق ها',background:'#fff',color:'#000',font:11,align:'center'});
+      if(record.number===52)imageTranslations.push(
+        {rect:[.382,.402,.426,.438],text:'ورودی',background:'#fff',color:'#000',font:11,align:'center'},
+        {rect:[.49,.402,.55,.438],text:'پنهان 1',background:'#fff',color:'#000',font:11,align:'center'},
+        {rect:[.602,.402,.665,.438],text:'پنهان 2',background:'#fff',color:'#000',font:11,align:'center'},
+        {rect:[.722,.402,.774,.438],text:'خروجی',background:'#fff',color:'#000',font:11,align:'center'},
+        {rect:[.889,.477,.925,.512],text:'خطا',background:'#fff',color:'#000',font:11,align:'center'},
+      );
+    }
+    if(record.number===54 && record.source_text_sha256==='61f5f434f391e004fed09cc5c282511c123de4e73b7921eefe013b30d418f61d'
+        && layout.translation_sha256==='b61f042706e967ebc31350bd57f310fe0afcde246f81a00683722ed90350cb16'){
+      imageTranslations.push({rect:[.222,.228,.779,.305],text:'حافظه بلند کوتاه مدت (Long Short-Term Memory)',background:'#fff',color:'#000',font:21,align:'center'});
+    }
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===78
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

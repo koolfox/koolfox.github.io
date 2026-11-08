@@ -1048,3 +1048,29 @@ test('session 1 experience timeline preserves the four eras and source images', 
   await expect(regions.filter({hasText:'استادیار'})).toBeVisible();
   expect(await regions.evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2&&node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+test('overflow retry preserves source obstacles and does not mutate the original plan',async({page})=>{
+ await page.goto(deck+'#page=2');await ready(page);
+ const result=await page.evaluate(async()=>{
+  const {expandSourceLayout}=await import('/deep-learning/assets/slide-content.js');
+  const block={source_lines:[0],fa:'نمونه'},region={block,slot:[.5,.2,.7,.3]};
+  const plan={reason:null,regions:[region],layout:{images:[{rect:[.32,.2,.4,.3]}],graphics:[],lines:[]},imageTranslations:[]};
+  const expanded=expandSourceLayout(plan);
+  return {original:region.slot,slot:expanded.regions[0].slot};
+ });
+ expect(result.original).toEqual([.5,.2,.7,.3]);
+ expect(result.slot[0]).toBeGreaterThanOrEqual(.404);
+ expect(result.slot[0]).toBeLessThan(.5);
+});
+
+test('overflow retry retains the source slide on representative pages',async({page},testInfo)=>{
+ await page.setViewportSize({width:390,height:844});
+ for(const [session,number] of [['s03',15],['s09',1]]){
+  await page.goto(`/deep-learning/terms/spring-2026/${session}/slides/#page=${number}`);await ready(page);
+  await page.locator('[data-view-translation]').click();
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout',/^source-canvas/);
+  const overflow=await page.locator('#persian-page .reader-slide-text').evaluateAll(nodes=>nodes.some(node=>node.scrollWidth>node.clientWidth+2||node.scrollHeight>node.clientHeight+2));
+  expect(overflow).toBeFalsy();
+  await testInfo.attach(`${session}-${number}-mobile`,{body:await page.screenshot(),contentType:'image/png'});
+ }
+});

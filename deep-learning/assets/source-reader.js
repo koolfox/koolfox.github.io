@@ -1,7 +1,7 @@
 import {setupFullscreen} from './reader-fullscreen.js';
 import {getDocument,GlobalWorkerOptions,OPS} from './vendor/pdfjs/pdf.min.mjs';
 import {readPdf,readPdfManifest} from './slide-offline-cache.js';
-import {addText, math, renderBlocks, renderTable, configureReferences, referenceTarget, sourceLayoutPlan, createSourceLayout, fitSourceLayout} from './slide-content.js';
+import {addText, math, renderBlocks, renderTable, configureReferences, referenceTarget, sourceLayoutPlan, expandSourceLayout, createSourceLayout, fitSourceLayout} from './slide-content.js';
 
 const $=s=>document.querySelector(s),config=JSON.parse($('#source-reader-config').textContent);
 const canvas=$('#source-canvas'),links=$('#source-links'),persian=$('#persian-page'),status=$('[data-reader-status]');
@@ -103,10 +103,10 @@ function styleTranslationFallback(record){
  }
 }
 async function paintPersianLayout(source,canonicalSource,id,selected){
- const record=payload.pages[selected-1],plan=sourceLayoutPlan(record,config);
+ const record=payload.pages[selected-1];let plan=sourceLayoutPlan(record,config);
  persian.dataset.layout=plan.reason||'pending';
  if(plan.reason){persian.replaceChildren(...translationFallback);paintSourceCrops();return;}
- const fallback=translationFallback,slide=createSourceLayout(record,plan);
+ const fallback=translationFallback;let slide=createSourceLayout(record,plan);
  const tableState=[...persian.querySelectorAll('.reader-table-viewport')].map(node=>({left:node.scrollLeft,top:node.scrollTop,focused:document.activeElement===node}));
  const previousCompanion=persian.querySelector('.reader-figure-labels');
  if(previousCompanion&&slide.companion)slide.companion.open=previousCompanion.open;
@@ -121,7 +121,17 @@ async function paintPersianLayout(source,canonicalSource,id,selected){
  slide.stage.style.transform=`scale(${scale})`;
  await document.fonts.ready;
  if(id!==serial||page!==selected)return;
- if(!fitSourceLayout(slide.stage)){install(...fallback);paintSourceCrops();persian.dataset.layout='text-overflow';return;}
+ if(!fitSourceLayout(slide.stage)){
+  const expanded=expandSourceLayout(plan);
+  if(expanded){
+   plan=expanded;slide=createSourceLayout(record,plan);
+   if(previousCompanion&&slide.companion)slide.companion.open=previousCompanion.open;
+   slide.holder.style.width=available+'px';slide.holder.style.height=slide.height*scale+'px';
+   slide.stage.style.transform=`scale(${scale})`;
+   install(slide.holder,...(slide.companion?[slide.companion]:[]),...fallback.filter(node=>node.nodeType===1&&node.matches('.reader-editorial')));
+  }
+  if(!expanded||!fitSourceLayout(slide.stage)){install(...fallback);paintSourceCrops();persian.dataset.layout='text-overflow';return;}
+ }
  const measured=document.createElement('canvas'),measureViewport=source.getViewport({scale:slide.width/source.getViewport({scale:1}).width});
  measured.width=Math.ceil(measureViewport.width);measured.height=Math.ceil(measureViewport.height);
  const measurement=source.render({canvasContext:measured.getContext('2d'),viewport:measureViewport,recordOperations:true});layoutTask=measurement;

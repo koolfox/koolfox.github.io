@@ -1,6 +1,7 @@
 """Check a GPU environment without using speech data or external code."""
 
 import json
+import importlib.metadata
 import platform
 import shutil
 import sys
@@ -21,7 +22,13 @@ def collect(require_cuda=True):
         "cuda_available": available,
         "devices": [],
         "working_free_bytes": shutil.disk_usage("/kaggle/working" if Path("/kaggle/working").exists() else ".").free,
+        "packages": {},
     }
+    for name in ("transformers", "tokenizers", "safetensors", "numpy", "soundfile", "accelerate"):
+        try:
+            report["packages"][name] = importlib.metadata.version(name)
+        except importlib.metadata.PackageNotFoundError:
+            report["packages"][name] = None
     if require_cuda and not available:
         raise RuntimeError("CUDA is required for this preflight")
     device = torch.device("cuda:0" if available else "cpu")

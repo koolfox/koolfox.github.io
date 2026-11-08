@@ -1791,6 +1791,86 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===(initial?15:21)){region.slot=[.54,.85,.62,.91];region.font=14;region.align='center';}
     }
   }
+  if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===12
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='e9d8b7a8bf6c31d8c782e49b48b13ceb8b497293093571a07da18a6b360b7f9f'
+      && layout.translation_sha256==='ea2be1abec593c7ed63897de1e81804b2f08834f73589c2d248e9cce91a02a6d') {
+    const slots={0:[.04,.09,.97,.22],1:[.07,.41,.34,.48],2:[.07,.48,.34,.57],4:[.48,.41,.74,.48],5:[.48,.48,.74,.57],7:[.48,.57,.74,.70],10:[.04,.26,.96,.36]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===0?30:i===10?18:16;}if(i===10)region.manualAccents=[{text:'افزودن حالت پنهان',color:'#ffc000'}];}
+  }
+  if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===13
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='aaecda53dc8046c4b654f3082dfc3eab7a002066129d774e815a216b12801df9'
+      && layout.translation_sha256==='94b3f036de4bec665c5fb05dbde1dcdce136ad3cbe4779fa2df6d785fd803393') {
+    const slots={0:[.04,.09,.97,.22],1:[.065,.40,.39,.51],6:[.07,.68,.145,.78],8:[.17,.68,.235,.78],10:[.235,.68,.335,.78],12:[.07,.52,.28,.57],13:[.48,.41,.74,.48],14:[.48,.48,.74,.57],16:[.48,.57,.74,.70],19:[.04,.26,.96,.36]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===0?30:i===19?18:i===1?17:i>=6&&i<=12?13:16;}if(i===19)region.manualAccents=[{text:'افزودن حالت پنهان',color:'#ffc000'}];}
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===14
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='58ed64d51139f7f36e374a9ef97ce219384ee3d246aaad2a30c502ed0b65a74e'
+      && layout.translation_sha256==='9004cfdcb725c2fcefffb69c33bd08231d151952bc9b3d9e7bb0501c63ea779a'){
+    for(const region of regions)if(region.block.fa.startsWith('• ')){region.slot=[.05,.23,.97,.34];region.font=23;region.manualAccents=[{text:'افزودن حالت پنهان',color:'#ffc000'}];}
+  }
+  const s04Unrolled = {
+    15:['58ed64d51139f7f36e374a9ef97ce219384ee3d246aaad2a30c502ed0b65a74e','d4e001fec2823dc3813a0d802b3617efccfaacf86481a0e18571a5321f65e804'],
+    16:['5605488fd9bd2cd7352a205b14ac64ecf37b6827dec615023844f0810851e872','d72366e8f7c87c51feef6a199f079b060b27b4b77ec0910d047d37d2db209516'],
+    17:['fee7296cda17c18dad9d011f8d618bb93efdef9d6da66d27b0366268a2eb1b56','423f55cb74a10fe08157593b16631a1058cf92f4da5ae0443219dbe440922af0'],
+    18:['7ccb2c073dac7f3c5493e44b60c022b14a57b0d8a9a693ada38e147e8fe5cd1b','0d1606d4f6d6672fef613381ad511cf3c4f8439437653bc93271b0da5c86e213'],
+  }[record.number];
+  if(s04Unrolled && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256===s04Unrolled[0] && layout.translation_sha256===s04Unrolled[1]){
+    for(const region of regions){
+      if(region.block.fa.startsWith('• ')){region.slot=[.05,.23,.97,.34];region.font=23;region.manualAccents=[{text:'افزودن حالت پنهان',color:'#ffc000'}];}
+      if(record.number===18 && region.block.source_lines[0]===4){region.slot=[.04,.91,.96,.97];region.font=16;}
+    }
+  }
+  const s04EquationPage = {
+    20:['4455d89ddc5a7631938d69d35dcb803fde488ea095877b8c86025b2d143e9887','b5bf499c0e849bccad923032cc5ec5d2755e95f66caa49856ef15a98d7fb5a8f'],
+    21:['0627decd1b300c238a7a1a9dedeaa81545ee43f6af0bfcd04985a2a6bda596ee','de8c88447ffd4d892a7bc2133760200f6cad58b2da9eea80ac660a3c1879d601'],
+  }[record.number];
+  if(s04EquationPage && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256===s04EquationPage[0] && layout.translation_sha256===s04EquationPage[1]){
+    const slots={6:[.06,.68,.14,.79],8:[.155,.68,.225,.79],10:[.225,.68,.335,.79],12:[.06,.52,.29,.57]};
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(region.block.kind==='heading'){region.slot=[.04,.09,.97,.22];region.font=30;}
+      else if(i===(record.number===20?1:0)){region.slot=[.06,.40,.37,.51];region.font=17;}
+      else if(slots[i]){region.slot=slots[i];region.font=13;}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===23
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='f411a58014188bf6197229cbfd37912ad6ae94a88e9226571565ffa434a34e4f'
+      && layout.translation_sha256==='4b588bac1af1f56b28ed8b4887fe9ef2806a92901ef4bec05610661c47eb7490'){
+    const caption=regions.find(region=>region.block.source_lines[0]===3);
+    if(caption){caption.slot=[.05,.23,.97,.34];caption.font=20;caption.manualAccents=[{text:'U',color:'#00b050'},{text:'V',color:'#0432ff'},{text:'W',color:'#ff0000'},{text:'بین لایه‌ها متفاوت است',color:'#ffc000'}];}
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===27
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='9bacaf5cc01a0ab665ecd3f39ec648b9e51f59ee7d020ea0027cad7fe7ba59de'
+      && layout.translation_sha256==='4c73ac498ec0e05b3d17ffa3717014ef04a1ee3ac015505a6199885b232524dd'){
+    const slots={0:[.04,.09,.65,.22],2:[.12,.85,.24,.91],5:[.10,.59,.17,.64],6:[.05,.28,.65,.37],8:[.05,.37,.65,.43],15:[.21,.59,.29,.64],20:[.26,.85,.36,.91],23:[.37,.85,.48,.91],25:[.33,.59,.41,.64],27:[.46,.59,.53,.64],31:[.49,.86,.60,.92],33:[.56,.59,.64,.64],34:[.10,.93,.66,.98]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===0?28:i===6||i===8?15:i===34?16:13;}if(i===34)region.manualAccents=[{text:'حافظه',color:'#ff40ff'}];}
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===28
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='7d982bfcd5fd0660621c2fa65887a8919b0358403fe7968ffb4b34d6c5e00e95'
+      && layout.translation_sha256==='f6c55e44675c6ba192be0da43044de7e3e47e85a35cc3435a2556b9bfe1ffe6b'){
+    const slots={0:[.04,.09,.97,.22],1:[.05,.26,.96,.34],2:[.05,.93,.38,.97],3:[.265,.80,.47,.89],5:[.32,.66,.47,.78],8:[.30,.39,.47,.48]};
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(slots[i]){region.slot=slots[i];region.font=i===0?29:i===1?19:i===2?20:14;}
+      if(i===2)region.manualAccents=[{text:'سه',color:'#ffc000'},{text:'جدید',color:'#ff0000'},{text:'جز',color:'#00b050'}];
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===29
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='1bbc60eddf13c88486e7b3d480159ae1658e706268de78e911076cf4b77e7eea'
+      && layout.translation_sha256==='a2ce043cf352514016a57cd57c8f2bd15336fb219921e21c627ffb89dbab6a1c'){
+    const slots={0:[.04,.09,.97,.22],1:[.05,.27,.96,.33],2:[.08,.33,.96,.38],3:[.08,.38,.96,.43],4:[.08,.43,.96,.48],5:[.05,.49,.96,.55],10:[.07,.81,.29,.87]};
+    const accents={1:'بردار تک داغ',2:'توکن سازی',3:'واژگان',4:'داده را به بردار تبدیل کنید'};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===0?29:i===1||i===5?19:16;}if(accents[i])region.manualAccents=[{text:accents[i],color:'#ffc000'}];}
+  }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

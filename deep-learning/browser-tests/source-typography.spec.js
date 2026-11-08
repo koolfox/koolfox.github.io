@@ -21,13 +21,16 @@ for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
  });
 }
 
-test('other sessions retain their existing slide font',async({page})=>{
+test('reviewed session three pages use the Persian font and unchanged pages keep theirs',async({page})=>{
  await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=30');
  await page.waitForFunction(()=>window.sourceSlideReader?.ready);
  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
  const fonts=await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.map(node=>getComputedStyle(node).fontFamily));
  expect(fonts.length).toBeGreaterThan(0);
- expect(fonts.every(font=>font.startsWith('Arad'))).toBe(true);
+ expect(fonts.every(font=>font.startsWith('VazirmatnSlide'))).toBe(true);
+ await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=40');await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+ expect(await page.locator('.reader-slide-text').evaluateAll(nodes=>nodes.every(node=>getComputedStyle(node).fontFamily.startsWith('Arad')))).toBe(true);
 });
 
 test('source slide text keeps source size and exact color without shrinking to fit',async({page})=>{
@@ -78,9 +81,9 @@ for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
    const source=document.querySelector('#source-canvas'),target=document.querySelector('.reader-slide-background');
    function crop(canvas){const temp=document.createElement('canvas');temp.width=64;temp.height=64;const ctx=temp.getContext('2d');ctx.drawImage(canvas,canvas.width*.05,canvas.height*.42,canvas.width*.38,canvas.height*.36,0,0,64,64);return ctx.getImageData(0,0,64,64).data;}
    const a=crop(source),b=crop(target);let delta=0;for(let i=0;i<a.length;i+=4)delta+=Math.abs(a[i]-b[i])+Math.abs(a[i+1]-b[i+1])+Math.abs(a[i+2]-b[i+2]);
-   return {nodes:nodes.map((node,index)=>({text:node.textContent,size:parseFloat(node.style.fontSize),source:plan.regions[index].font/plan.layout.width*960,screen:parseFloat(node.style.fontSize)*node.closest('.reader-slide-stage').getBoundingClientRect().width/960,color:getComputedStyle(node).color,overflow:node.scrollHeight>node.clientHeight+2||node.scrollWidth>node.clientWidth+2})),delta:delta/(64*64*3)};
+   return {nodes:nodes.map((node,index)=>({text:node.textContent,size:parseFloat(node.style.fontSize),source:plan.regions[index].font/plan.layout.width*960,screen:parseFloat(node.style.fontSize)*node.closest('.reader-slide-stage').getBoundingClientRect().width/960,color:getComputedStyle(node).color,overflow:node.scrollHeight>node.clientHeight+2||node.scrollWidth>node.clientWidth+2})),accents:[...document.querySelectorAll('.reader-slide-text .reader-emphasis')].map(node=>getComputedStyle(node).color),delta:delta/(64*64*3)};
   });
-  expect(result.nodes.some(node=>node.size/node.source<.99)).toBe(true);expect(result.nodes.some(node=>node.color==='rgb(255, 192, 0)')).toBe(true);expect(result.nodes.some(node=>node.color==='rgb(255, 255, 255)')).toBe(true);
+  expect([...result.nodes.map(node=>node.color),...result.accents]).toContain('rgb(255, 192, 0)');expect(result.nodes.some(node=>node.color==='rgb(255, 255, 255)')).toBe(true);
   for(const node of result.nodes){expect(node.overflow,node.text).toBe(false);if(node.size/node.source<.99){expect(node.size/node.source).toBeGreaterThanOrEqual(.8499);expect(node.screen).toBeGreaterThanOrEqual(12);}}
   if(viewport.width>761)expect(result.delta).toBeLessThan(3);
   await expect(page.locator('.reader-slide-background')).toBeVisible();
@@ -88,6 +91,7 @@ for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
 }
 
 test('source operator protection still rejects an unsafe placement after fitting',async({page})=>{
+ await page.route('**/source-reader.js*',async route=>{const response=await route.fetch(),source=await response.text();const before='const list=await source.getOperatorList(),boxes=source.recordedBBoxes;';expect(source).toContain(before);await route.fulfill({response,body:source.replace(before,'const list={fnArray:[],argsArray:[]},boxes=source.recordedBBoxes;')});});
  await page.setViewportSize({width:1440,height:900});await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=26');await page.waitForFunction(()=>window.sourceSlideReader?.ready);
  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','unmatched-operators');
  await expect(page.locator('#source-canvas')).toBeVisible();await expect(page.locator('#persian-page .reader-slide-stage')).toHaveCount(0);

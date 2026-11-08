@@ -498,6 +498,7 @@ class SourceReaderTests(unittest.TestCase):
         self.assertNotIn('<script>alert("x")</script>', html)
         self.assertIn("&lt;/script&gt;&lt;script&gt;", html)
         self.assertIn("استاد: دکتر نگار مجمع", html)
+        self.assertIn('<h1><bdi>۱</bdi> - ', html)
         self.assertIn('<footer class="reader-presenter">ارایه دهنده: حسام شینی</footer>', html)
         self.assertLess(html.index("استاد: دکتر نگار مجمع"), html.index("<h1>"))
         self.assertIn("Danna Gurari", html)
@@ -509,6 +510,7 @@ class SourceReaderTests(unittest.TestCase):
             "data-reader-status", "data-pdf-progress", "data-prev-page", "data-next-page",
             "data-page-select", "data-page-count", "data-view-source", "data-view-translation",
             "data-fullscreen", "data-print", "data-zoom-in", "data-zoom-out",
+            "data-focus-prev", "data-focus-next", "data-focus-exit", "data-focus-position",
         ):
             self.assertEqual(len(parser.attr(attr)), 1, attr)
         self.assertEqual(parser.attr("data-view-both")[0][1]["aria-pressed"], "true")

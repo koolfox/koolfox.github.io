@@ -198,6 +198,9 @@ function paintSourceCrops(){
 }
 function controls(){
  picker.value=references?'sources':String(page);$('[data-prev-page]').disabled=!references&&page===1;$('[data-next-page]').disabled=references;
+ $('[data-focus-prev]').disabled=!references&&page===1;$('[data-focus-next]').disabled=references;
+ $('[data-focus-position]').textContent=fa(Number(config.session.slice(1)))+' · '+(references?'منابع':fa(page)+' / '+fa(config.pageCount));
+ document.querySelector('.reader-focus-languages').hidden=references;
  $('[data-next-page]').textContent=!references&&page===config.pageCount?'منابع':'بعدی';
  $('[data-page-total]').hidden=references;$('[data-page-count]').textContent=fa(config.pageCount);$('[data-zoom-out]').disabled=references||zoom<=1;$('[data-zoom-in]').disabled=references||zoom>=3;
  $('[data-source-only-toggle]').disabled=references;document.querySelector('.reader-view-controls').hidden=references;
@@ -205,6 +208,7 @@ function controls(){
  canvas.setAttribute('aria-label',`صفحهٔ ${fa(page)} از ${fa(config.pageCount)}، اسلاید`);
  $('[data-print]').disabled=!references&&renderedPage!==page;
  $('[data-page-experiment]').hidden=references||!config.interactivePages?.includes(page);
+ $('[data-focus-experiment]').hidden=references||!config.interactivePages?.includes(page);
  for(const section of ['lab','questions']){
   const control=document.querySelector(`.reader-sections [data-reader-section="${section}"]`);if(!control)continue;
   const pages=section==='lab'?config.interactivePages:config.questionPages;
@@ -342,6 +346,7 @@ function syncPanels(){
  $('#translation-panel').hidden=slides?view==='source':!translated;
  document.querySelector('.reader-tools-panel').hidden=slides;
  for(const [selector,value] of [['[data-view-source]','source'],['[data-view-translation]','translation'],['[data-view-both]','both']])$(selector).setAttribute('aria-pressed',String(view===value));
+ document.querySelectorAll('[data-focus-view]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.focusView===view)));
  $('[data-source-only-toggle]').setAttribute('aria-pressed',String(presenting));
 }
 function setView(value){clearTimeout(resizeTimer);view=value;if(compact()&&document.body.dataset.readerSection!=='slides')selectSection('slides');syncPanels();renderOriginal();}
@@ -374,7 +379,16 @@ $('[data-retry-load]').addEventListener('click',()=>location.reload());
 $('[data-zoom-in]').addEventListener('click',()=>{zoom=Math.min(3,zoom+.25);controls();renderOriginal();});$('[data-zoom-out]').addEventListener('click',()=>{zoom=Math.max(1,zoom-.25);controls();renderOriginal();});
 $('[data-view-source]').addEventListener('click',()=>setView('source'));$('[data-view-translation]').addEventListener('click',()=>setView('translation'));
 $('[data-view-both]').addEventListener('click',()=>setView('both'));
+$('[data-focus-prev]').addEventListener('click',previousPage);$('[data-focus-next]').addEventListener('click',nextPage);
+$('[data-focus-exit]').addEventListener('click',()=>$('[data-fullscreen]').click());
+$('[data-focus-experiment]').addEventListener('click',()=>selectSection('explore'));
+document.querySelectorAll('[data-focus-view]').forEach(button=>button.addEventListener('click',()=>setView(button.dataset.focusView)));
 setupFullscreen($('[data-fullscreen]'));
+new MutationObserver(()=>{
+ if(!compact()||document.body.dataset.readerSection!=='slides')return;
+ const target=document.body.dataset.immersive==='true'?$('[data-focus-exit]'):$('[data-fullscreen]');
+ target.focus({preventScroll:true});
+}).observe(document.body,{attributes:true,attributeFilter:['data-immersive']});
 $('[data-print]').addEventListener('click',async()=>{if(!references&&renderedPage!==page)return;await document.fonts.ready;window.print();});
 document.addEventListener('keydown',event=>{if(event.defaultPrevented||event.shiftKey||event.altKey||event.ctrlKey||event.metaKey||event.target.closest('.reader-table-viewport')||/INPUT|TEXTAREA|SELECT|BUTTON|A/.test(event.target.tagName))return;const action={ArrowLeft:nextPage,PageDown:nextPage,ArrowRight:previousPage,PageUp:previousPage,Home:()=>go(1),End:()=>go(config.pageCount)}[event.key];if(action){event.preventDefault();action();}});
 window.addEventListener('hashchange',()=>location.hash==='#sources'?showReferences(false):go(fromHash(),false));

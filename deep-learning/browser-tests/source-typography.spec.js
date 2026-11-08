@@ -1,5 +1,34 @@
 import {test,expect} from '@playwright/test';
 
+test('session two scientist dates keep chronological left-to-right order',async({page})=>{
+ for(const [number,dates] of [[6,['1852-1934','1889-1977']],[10,['1928-1971']],[12,['1898-1969','1923-1969']],[39,['1927-2016','1928-2016']]]){
+  await page.goto(`/deep-learning/terms/spring-2026/s02/slides/#page=${number}`);
+  await page.waitForFunction(n=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===n,number);
+  const nodes=page.locator('#persian-page .reader-slide-text bdi[dir="ltr"]');
+  for(const date of dates)await expect(nodes.filter({hasText:date})).toHaveCount(1);
+ }
+});
+
+for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
+ test(`session two history slide retains source layout at ${viewport.width}px`,async({page})=>{
+  await page.setViewportSize(viewport);
+  await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=11');
+  if(viewport.width<761)await page.locator('[data-view-translation]').click();
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===11);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const result=await page.locator('#persian-page .reader-slide-text').evaluateAll(nodes=>({
+   texts:nodes.map(node=>node.textContent),
+   overflow:nodes.some(node=>node.scrollHeight>node.clientHeight+2||node.scrollWidth>node.clientWidth+2),
+   accents:nodes.flatMap(node=>[...node.querySelectorAll('.reader-emphasis')].map(mark=>getComputedStyle(mark).color))
+  }));
+  expect(result.texts.join(' ')).toContain('مدل نورون زیستی');
+  expect(result.texts.join(' ')).toContain('The Organization of Behavior');
+  expect(result.overflow).toBe(false);
+  expect(result.accents).toContain('rgb(255, 192, 0)');
+  await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
+ });
+}
+
 for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
  test(`session two agenda headings respect RTL at ${viewport.width}px`,async({page})=>{
   await page.setViewportSize(viewport);

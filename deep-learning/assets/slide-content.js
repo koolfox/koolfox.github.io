@@ -1713,6 +1713,18 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const title=regions.find(region=>region.block.kind==='heading' && region.block.source_lines.length===1 && region.block.source_lines[0]===6);
     if(title){title.slot=[.05,.10,.96,.21];title.font=31;}
   }
+  const descentHeadingVersions={
+    39:['e99475b68b4d829815dc80e4ff71d0bd1f2ab3dac640d392fd945288a6303f4b','79b1d56908f4d2a69815eb118de60754e9b30ecd7a132bc7803e7466d5b70fc8',5],
+    40:['764cf46efc021ad48a92db78891affa2b6a5a3bd9292cb4d2f98dcc3d7346b30','6d4bcc8790819ad8d12b8ad6063e85bba527127ed7bae74248736704661843c4',5],
+    41:['e99475b68b4d829815dc80e4ff71d0bd1f2ab3dac640d392fd945288a6303f4b','79b1d56908f4d2a69815eb118de60754e9b30ecd7a132bc7803e7466d5b70fc8',5],
+    42:['24fc7b83ba2cd24db3a2e54bfc710cf1647bc2967f2e4cf01eaaca8c51208a54','b37b42737e9f0b619ec9dc48e9eefaffc99a92636bd54d13b06f6e65f1de3f75',0],
+  }[record.number];
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && descentHeadingVersions
+      && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
+      && record.source_text_sha256===descentHeadingVersions[0] && layout.translation_sha256===descentHeadingVersions[1]){
+    const title=regions.find(region=>region.block.kind==='heading' && region.block.source_lines.length===1 && region.block.source_lines[0]===descentHeadingVersions[2]);
+    if(title){title.slot=[.01,.10,.99,.21];}
+  }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===47
       && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
       && record.source_text_sha256==='6d80a5e0824a451c2b95a6e52d38ea78895a9a6d9d43b02de94ed05d0c9622b9'

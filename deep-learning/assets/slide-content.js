@@ -1125,7 +1125,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===16
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='f39a4db60396e44d6b59c10c606887936c89b2b5b529f1b4ea0366c1a17b7527'
-      && layout.translation_sha256==='856793c0adf6086f16d7f5d1ce9c9459280a906da47a2f76c32f93a7194ef4ba'){
+      && layout.translation_sha256==='d782263a14bfd96537cd6e18059d60dab66cddcdee1003c785981193bcc765a6'){
     const parts=record.image_text[0].fa.split('؛');
     imageTranslations=[
       {rect:[.44,.405,.58,.45],text:'رزرو نمایش',background:'#000',color:'#fff',font:10,align:'center'},

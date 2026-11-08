@@ -66,7 +66,7 @@ export function renderNotebookResult(root, result) {
         points.forEach((number,i)=>{
           const dot=document.createElementNS(ns,'circle');dot.setAttribute('cx',xy[i][0]);dot.setAttribute('cy',xy[i][1]);dot.setAttribute('r','7');
           dot.setAttribute('class','nb-line-point');dot.setAttribute('tabindex','0');dot.setAttribute('role','button');
-          dot.setAttribute('aria-label',`${name}[${i}] = ${number}`);
+          dot.setAttribute('aria-label',`نقطه نمودار ${name}[${i}] = ${number}`);
           dot.addEventListener('click',()=>select(number,i));dot.addEventListener('focus',()=>select(number,i));
           dot.addEventListener('pointerenter',()=>select(number,i));
           dot.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();select(number,i);}});

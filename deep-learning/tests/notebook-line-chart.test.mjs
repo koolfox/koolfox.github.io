@@ -16,7 +16,7 @@ const root=new Node('div');
 renderNotebookResult(root,{loss:[3,-2,0.123456789123456]});
 const svg=find(root,x=>x.tag==='svg');assert(svg);
 const dots=all(svg,x=>x.tag==='circle');assert.equal(dots.length,3);
-assert.equal(dots[1].attributes['aria-label'],'loss[1] = -2');
+assert.equal(dots[1].attributes['aria-label'],'نقطه نمودار loss[1] = -2');
 assert(Number(dots[0].attributes.cy)<Number(dots[2].attributes.cy));
 assert(Number(dots[2].attributes.cy)<Number(dots[1].attributes.cy));
 dots[2].listeners.focus();assert.equal(find(root,x=>x.className==='nb-result-readout').textContent,'loss[2] = 0.123456789123456');

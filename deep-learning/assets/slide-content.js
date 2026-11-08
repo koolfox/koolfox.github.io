@@ -1911,6 +1911,12 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const slots={0:[.04,.19,.96,.33],1:[.10,.32,.90,.43],2:[.12,.60,.88,.68],3:[.08,.685,.92,.745],4:[.20,.75,.80,.80]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.align='center';region.font=i===0?35:i===1?40:i===2?25:21;region.keepTermsTogether=true;}}
   }
+  if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && [3,4].includes(record.number)
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='c35a993287a515e411449c7b8b31a0adcea96a5641d87102f686216e24af03b0'
+      && layout.translation_sha256==='1faf934bc6bf9fb06389fb918b681649d3bb44990f064be609759cfafb90d336'){
+    for(const region of regions)if(region.block.source_lines[0]>0){region.slot=[.04,region.slot[1],.96,region.slot[3]];region.keepTermsTogether=true;}
+  }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

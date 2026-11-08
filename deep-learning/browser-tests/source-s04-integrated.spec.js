@@ -78,3 +78,12 @@ test('lesson 4 title and attribution retain separate centered source lines', asy
   expect(await stage.locator('.reader-slide-text').evaluateAll(nodes => nodes.every(node => node.scrollHeight <= node.clientHeight + 2))).toBeTruthy();
   await page.screenshot({path: testInfo.outputPath('lesson4-page1.png')});
 });
+
+for (const number of [3, 4]) test(`lesson 4 agenda ${number} keeps the English term together`, async ({ page }, testInfo) => {
+  await page.goto(`/deep-learning/terms/spring-2026/s04/slides/#page=${number}`);
+  await page.waitForFunction(n => window.sourceSlideReader?.ready && window.sourceSlideReader.page === n, number);
+  const term = page.locator('#persian-page .reader-slide-text bdi').filter({hasText: 'Recurrent Neural Networks; RNNs'});
+  await expect(term).toHaveCount(1);
+  await expect(term).toHaveCSS('white-space', 'nowrap');
+  await page.screenshot({path: testInfo.outputPath(`lesson4-page${number}.png`)});
+});

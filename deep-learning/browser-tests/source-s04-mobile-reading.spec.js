@@ -62,6 +62,13 @@ test('mobile transcript preserves LTR math and is reachable in fullscreen', asyn
   await expect(formula).toBeVisible();
   await expect(formula).toHaveCSS('direction','ltr');
   await expect(formula).toContainText('y');
+  const values=page.locator('.reader-mobile-transcript .reader-image-text[dir=ltr]');
+  await expect(values).toHaveText('0.419748; 0.194682; 0.162429; 0.223141');
+  const order=await values.evaluate(node=>{
+    const text=node.firstChild,starts=['0.419748','0.194682','0.162429','0.223141'].map(value=>text.textContent.indexOf(value));
+    return starts.map(start=>{const range=document.createRange();range.setStart(text,start);range.setEnd(text,start+8);const box=range.getBoundingClientRect();return {top:box.top,left:box.left};});
+  });
+  expect(order).toEqual([...order].sort((a,b)=>a.top-b.top||a.left-b.left));
   await formula.scrollIntoViewIfNeeded();
   await page.screenshot({path:testInfo.outputPath('s04-mobile-formula.png')});
 });

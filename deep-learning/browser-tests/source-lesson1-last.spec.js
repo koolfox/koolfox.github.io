@@ -22,14 +22,16 @@ test('session 1 agenda keeps the bilingual bullet readable without overlap', asy
       await expect(page.locator('#persian-page')).toHaveAttribute('data-layout', 'source-canvas');
       const item = page.locator('.reader-slide-text[data-source-lines="2"]');
       await expect(item).toContainText('Neural Networks and Deep Learning');
-      const fit = await item.evaluate(element => ({
-        lineHeight: parseFloat(getComputedStyle(element).lineHeight),
-        fontSize: parseFloat(getComputedStyle(element).fontSize),
-        height: element.clientHeight,
-        content: element.scrollHeight,
-      }));
-      expect(fit.lineHeight / fit.fontSize).toBeGreaterThanOrEqual(1.19);
-      expect(fit.content).toBeLessThanOrEqual(fit.height + 1);
+      await expect.poll(() => page.evaluate(expectedPage => {
+        const reader = window.sourceSlideReader;
+        const element = document.querySelector('#persian-page .reader-slide-text[data-source-lines="2"]');
+        if (!reader?.ready || reader.renderedPage !== expectedPage || document.body.dataset.loading === 'true' || !element?.isConnected) return false;
+        const style = getComputedStyle(element);
+        const lineHeight = parseFloat(style.lineHeight);
+        const fontSize = parseFloat(style.fontSize);
+        return Number.isFinite(lineHeight) && Number.isFinite(fontSize) && fontSize > 0
+          && lineHeight / fontSize >= 1.19 && element.scrollHeight <= element.clientHeight + 1;
+      }, number), { message: 'The current rendered bullet must have readable line spacing and no vertical overflow' }).toBe(true);
     }
   }
 });

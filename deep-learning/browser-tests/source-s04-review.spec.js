@@ -206,3 +206,23 @@ test('sequence types preserve the three source examples and repeated labels', as
     await expect(slide.locator('.reader-slide-text').filter({hasText:'خروجی: دنباله'})).toHaveCount(2);
   }
 });
+
+test('history slide retains the diagram and source color emphasis', async ({page}) => {
+  for(const width of [1440,390]){
+    await page.setViewportSize({width,height:850});
+    await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=11');
+    await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+    if(width===390){
+      const previous=await page.locator('#persian-page .reader-slide-stage').elementHandle();
+      await page.locator('[data-view-translation]').click();
+      if(previous)await page.waitForFunction(node=>!node.isConnected,previous);
+      await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+    }
+    const slide=page.locator('#persian-page');
+    await expect(slide).toHaveAttribute('data-layout','source-canvas-figure-companion');
+    await expect(slide.locator('.reader-slide-background')).toBeVisible();
+    await expect(slide.locator('.reader-slide-text')).toHaveCount(5);
+    for(const year of ['1962','1982','1986'])await expect(slide.locator('.reader-slide-text').filter({hasText:year})).toBeVisible();
+    await expect(slide.locator('.reader-emphasis').filter({hasText:'اتصال بازگشتی'})).toHaveCSS('color','rgb(255, 192, 0)');
+  }
+});

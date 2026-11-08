@@ -309,6 +309,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && layout.translation_sha256==='cf0bd70b30b2110ff865caa2c7286655fab93363533eb2a3b1f88ed9d873ae28') {
     for (const region of regions) {const i=region.block.source_lines[0];if(i>=2 && i<=13){const group=Math.floor((i-2)/4),row=(i-2)%4,columns=[[.04,.29],[.66,.97],[.34,.63]],[left,right]=columns[group],top=.335+row*.044;region.slot=[left,top,right,top+.042];region.font=row===0?15:14;}else if(i===14){region.slot=[.025,.837,.29,.96];region.font=14;}else if(i===17){region.slot=[.335,.877,.62,.93];region.font=14;}}
   }
+  if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===11
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='5858cd7d5cdaa9c344a3c7883001961c4abed3c9aefd0f631d1389d58913418f'
+      && layout.translation_sha256==='abfefdee7e6fec256d27d0a323083d02663d2e627392e9f3fed690fe765b4a34') {
+    const slots={0:[.04,.08,.97,.24],1:[.04,.27,.63,.40],3:[.04,.45,.63,.55],4:[.04,.59,.63,.71],6:[.04,.77,.63,.89]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===0?32:20;}if(i===1){region.color='#ffffff';region.manualAccents=[{text:'اتصال بازگشتی',color:'#ffc000'}];}}
+  }
   // Reviewed placements for the four consecutive gradient-descent diagrams.
   if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===26
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'

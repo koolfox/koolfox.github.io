@@ -112,6 +112,42 @@ class SourceWorkshopTests(unittest.TestCase):
             self.assertEqual(question['answer']['options_fa'][question['answer']['correct_index']], 'o')
             self.assertIn('[0.05, 0.1, 0.2, 0.65]', question['prompt_fa'])
         self.assertEqual(example['reference']['prediction'], 'o')
+        rnn = next(item for item in unit['source_examples'] if item['id'] == 'character-choice-rnn')
+        for question in [next(q for q in rnn['questions'] if q['id'] == 'choice'),
+                         next(q for q in unit['activities']['questions'] if q['id'] == 'character-choice-rnn-choice')]:
+            self.assertIn('31 که o', question['solution_fa'])
+            self.assertNotIn('31 که e', question['solution_fa'])
+
+    def test_rnn_persian_text_and_example_code_have_no_diacritics(self):
+        import re
+        unwanted = re.compile(r"[\u064b-\u065fئأإءۀ]")
+        def check(value, key='', persian=False):
+            persian = persian or key == 'fa' or key.endswith('_fa')
+            if isinstance(value, dict):
+                for name, item in value.items():
+                    check(item, name, persian)
+            elif isinstance(value, list):
+                for item in value:
+                    check(item, key, persian)
+            elif persian and isinstance(value, str):
+                self.assertIsNone(unwanted.search(value), value)
+        for folder in ['translations', 'activities', 'workshops']:
+            check(json.loads((ROOT / f'content/{folder}/spring-2026/s04.json').read_text()))
+        for file in (ROOT / 'workshops/spring-2026').glob('s04*.py'):
+            self.assertIsNone(unwanted.search(file.read_text()), str(file))
+
+    def test_rnn_worked_pages_keep_source_linked_multiple_choice(self):
+        unit = load_workshops('spring-2026', ROOT, execute=True, session_ids=['s04'])['s04']
+        example = next(item for item in unit['source_examples'] if item['id'] == 'hidden-steps')
+        self.assertEqual(example['pages'], [33, 34, 35, 36])
+        questions = {item['id']: item for item in unit['activities']['questions']}
+        for number in [34, 35, 36]:
+            page = unit['activities']['pages'][number - 1]
+            self.assertTrue(page['question_ids'])
+            self.assertEqual(page['question_coverage'], 'not_applicable')
+            for identity in page['question_ids']:
+                self.assertEqual(questions[identity]['answer']['kind'], 'choice')
+                self.assertEqual(questions[identity]['source_page'], number)
 
     def test_page_example_executes_its_own_hash_pinned_source_and_rejects_stale_code(self):
         import hashlib

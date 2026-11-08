@@ -2,6 +2,7 @@
 const courseRoot=new URL('../',import.meta.url);
 const config=JSON.parse(document.querySelector('#source-reader-config').textContent);
 const films=[
+ {id:'rnn-parity',session:'s04',pages:[27],title:'پخش حافظه زوجیت'},
  {id:'capacity-boundary',session:'s01',pages:[53],title:'فیلم مرز تصمیم'},
  {id:'train-test',session:'s01',pages:[39,40,41,42,43],title:'فیلم آموزش و آزمون'},
  {id:'backpropagation',session:'s03',pages:Array.from({length:16},(_,i)=>69+i),title:'پخش پس‌انتشار'},

@@ -76,6 +76,8 @@ test('fullscreen gallery keeps navigation and language controls available',async
  await expect(page.locator('[data-focus-view=both]')).toHaveAttribute('aria-pressed','true');
  await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===2);
  await expect(page.locator('#translation-panel')).toBeVisible();await expect(page.locator('#original-panel')).toBeVisible();
+ const exit=await page.locator('[data-focus-exit]').boundingBox();const slide=await page.locator('#persian-page').boundingBox();
+ expect(exit.y+exit.height).toBeLessThanOrEqual(slide.y);
  await page.screenshot({path:testInfo.outputPath('fullscreen-gallery-mobile.png')});
  await page.locator('[data-focus-next]').click();await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===3);
  await page.locator('[data-focus-exit]').click();await expect(page.locator('.reader-toolbar')).toBeVisible();

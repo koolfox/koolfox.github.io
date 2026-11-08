@@ -1107,6 +1107,23 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
         {rect:[.840,.848,.889,.883],text:'خروجی',background:'#fff',color:'#000',font:13,align:'center'},
       ];
     }
+    if(record.number===44 && record.source_text_sha256==='d76c7367a57fde21aa8f039871c97d1eeee7397f1bbe020208bef2b98aedfd1e'
+        && layout.translation_sha256==='fa3c63736d5486dffe075512c789afbc15f8e96d2ee7c8d530b0aa6195faa3aa'){
+      imageTranslations=[{rect:[.361,.621,.407,.657],text:'بازکردن',background:'#fff',color:'#000',font:11,align:'center'}];
+    }
+    const gates={
+      55:['6bda73a2802b1b64c71d142c9476486ad3134b694f2530283f3ded2929f3e41b','aa1a92c82df85613ece56ee54d912657c7c179dc354d8a56388c37a9add2e2bb'],
+      56:['fe58256f415717435184a8727809426f68031475be569201a2a5945e06c6ff91','10d17ce59e2af29b835f45d64453bf3f4119113ba091efbe07c793c66396b64e'],
+      57:['4e9b8a7809c17dd2b8e804a4c97bad90d5aa458cca1dd7a0856582e937bdc775','038c1f85cef47022492f6ac740c7f3ca1805d0ba1d0573061e2c0e144625c018'],
+    }[record.number];
+    if(gates && record.source_text_sha256===gates[0] && layout.translation_sha256===gates[1]){
+      imageTranslations=[
+        {rect:[.237,.508,.28,.553],text:'ورودی',background:'#d8e6f7',color:'#000',font:12,align:'center'},
+        {rect:[.375,.508,.420,.573],text:'دروازه ورودی',background:'#d8e6f7',color:'#000',font:10,align:'center'},
+        {rect:[.503,.508,.549,.573],text:'دروازه فراموشی',background:'#d8e6f7',color:'#000',font:10,align:'center'},
+        {rect:[.610,.508,.666,.573],text:'دروازه خروجی',background:'#d8e6f7',color:'#000',font:10,align:'center'},
+      ];
+    }
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===78
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'

@@ -2023,6 +2023,23 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===2){region.slot=[.34,.40,.47,.52];region.font=12;region.align='center';}
     }
   }
+  const s04FigureLabels = {
+    15:['58ed64d51139f7f36e374a9ef97ce219384ee3d246aaad2a30c502ed0b65a74e','d4e001fec2823dc3813a0d802b3617efccfaacf86481a0e18571a5321f65e804'],
+    16:['5605488fd9bd2cd7352a205b14ac64ecf37b6827dec615023844f0810851e872','d72366e8f7c87c51feef6a199f079b060b27b4b77ec0910d047d37d2db209516'],
+    17:['fee7296cda17c18dad9d011f8d618bb93efdef9d6da66d27b0366268a2eb1b56','423f55cb74a10fe08157593b16631a1058cf92f4da5ae0443219dbe440922af0'],
+    18:['7ccb2c073dac7f3c5493e44b60c022b14a57b0d8a9a693ada38e147e8fe5cd1b','0d1606d4f6d6672fef613381ad511cf3c4f8439437653bc93271b0da5c86e213'],
+    19:['a001823222275e73cf0a5b3ccab0df575dc507fde195f7bffcee0a23d5b103ae','af9b1f02985b90f015d4474fa5ccc464703ce6099c79b17c50a38349e7e1a03e'],
+    22:['ecee341c50e3187c81d84c5269117461f339617db4dd8fecbf0510c4bea2c67d','6734909eab8f8fe9a1570790213f80b2311e141f7fe949a32fc652e54831b9ea'],
+    23:['f411a58014188bf6197229cbfd37912ad6ae94a88e9226571565ffa434a34e4f','4b588bac1af1f56b28ed8b4887fe9ef2806a92901ef4bec05610661c47eb7490'],
+    24:['8e4ae230d6a1eae89defb6b041d9c3860127b7f38380d1d360d577098648f14d','73d324917f54b73ee472be6f6b769acba976a0e836d67d1f6b0c173a08e992cf'],
+    25:['8e4ae230d6a1eae89defb6b041d9c3860127b7f38380d1d360d577098648f14d','73d324917f54b73ee472be6f6b769acba976a0e836d67d1f6b0c173a08e992cf'],
+    28:['7d982bfcd5fd0660621c2fa65887a8919b0358403fe7968ffb4b34d6c5e00e95','f6c55e44675c6ba192be0da43044de7e3e47e85a35cc3435a2556b9bfe1ffe6b'],
+  }[record.number];
+  if(s04FigureLabels && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256===s04FigureLabels[0] && layout.translation_sha256===s04FigureLabels[1]){
+    imageTranslations.push({rect:[.258,.695,.35,.741],text:'بازکردن',background:'#fff',color:'#000',font:20,align:'center'});
+  }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

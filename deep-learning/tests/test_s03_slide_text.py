@@ -9,7 +9,7 @@ class LessonThreeSlideTextTest(unittest.TestCase):
         root = Path(__file__).resolve().parents[1] / 'content'
         translations = json.loads((root / 'translations/spring-2026/s03.json').read_text())['pages']
         layouts = json.loads((root / 'source-layout/spring-2026/s03.json').read_text())['pages']
-        for number in range(13, 18):
+        for number in range(13, 23):
             slide = translations[number - 1]
             self.assertEqual(slide['number'], number)
             for item in slide['blocks'] + slide.get('image_text', []):

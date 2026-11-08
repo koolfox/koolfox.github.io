@@ -1,0 +1,71 @@
+name: Compare slide layout retries
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/slide-layout-paired.yml
+      - deep-learning/assets/slide-content.js
+      - deep-learning/browser-tests/slide-audit-paired.mjs
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: astral-sh/setup-uv@v10.3.0
+        with:
+          version: '0.11.2'
+      - name: Prepare course artifacts
+        run: |
+          uv run --frozen --project deep-learning/playgrounds python deep-learning/scripts/prepare_shinylive_assets.py --archive "${{ runner.temp }}/danna-shinylive/shinylive-0.10.15.tar.gz"
+          uv run --frozen --project deep-learning/playgrounds python deep-learning/scripts/export_playgrounds.py --output deep-learning/results/shinylive
+          uv run --no-project --with pypdf==6.21.4 python scripts/build_pages.py --project deep-learning --output dist/pages
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: deep-learning/browser-tests/package-lock.json
+      - run: npm ci --prefix deep-learning/browser-tests
+      - run: npx --prefix deep-learning/browser-tests playwright install --with-deps chromium
+      - name: Compare existing and proposed layouts
+        run: |
+          git fetch --depth=1 origin 9b5ab8e0c8cedc744ad4d1942c7950681b7ca13e
+          git show 9b5ab8e0c8cedc744ad4d1942c7950681b7ca13e:deep-learning/assets/slide-content.js > "$RUNNER_TEMP/slide-content-baseline.js"
+          mkdir -p paired-report
+          python3 -m http.server 8000 --bind 127.0.0.1 --directory dist/pages > /tmp/paired-http.log 2>&1 &
+          for entry in 3:15 4:36,44 5:40,69 6:46 9:1,2,5 12:1,2 18:1,2 26:1,2; do
+            session=${entry%%:*}; pages=${entry#*:}
+            node deep-learning/browser-tests/slide-audit-paired.mjs --base-url http://127.0.0.1:8000 --build-id "$GITHUB_SHA-baseline" --sessions "$session" --pages "$pages" --viewports 390x844,1440x900 --variant baseline --baseline-module "$RUNNER_TEMP/slide-content-baseline.js" --snapshot-all true --output paired-report/baseline.jsonl
+            node deep-learning/browser-tests/slide-audit-paired.mjs --base-url http://127.0.0.1:8000 --build-id "$GITHUB_SHA-candidate" --sessions "$session" --pages "$pages" --viewports 390x844,1440x900 --variant candidate --snapshot-all true --output paired-report/candidate.jsonl
+          done
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          def load(name):
+              rows = [json.loads(line) for line in Path(f'paired-report/{name}.jsonl').read_text().splitlines()]
+              assert all(row['status'] != 'error' for row in rows), rows
+              return {(r['session'], r['page'], r['viewport']['width'], r['viewport']['height']): r for r in rows}
+          before, after = load('baseline'), load('candidate')
+          assert len(before) == 30 and before.keys() == after.keys()
+          assert all(before[k]['source_sha256'] and before[k]['translation_sha256'] and before[k]['source_sha256'] == after[k]['source_sha256'] and before[k]['translation_sha256'] == after[k]['translation_sha256'] for k in before)
+          good = {'source-canvas', 'source-canvas-figure-companion'}
+          improved = [k for k in before if before[k]['layout'] == 'text-overflow' and after[k]['layout'] in good]
+          regressed = [k for k in before if before[k]['layout'] in good and after[k]['layout'] not in good]
+          summary = {'pairs': len(before), 'improved': improved, 'regressed': regressed, 'note': 'Automated measurements; visual and scientific review are separate.'}
+          Path('paired-report/comparison.json').write_text(json.dumps(summary, indent=2) + '\n')
+          print(json.dumps(summary))
+          assert not regressed, regressed
+          PY
+      - name: Preserve measurements and screenshots
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: paired-layout-${{ github.sha }}
+          path: paired-report/
+          if-no-files-found: ignore
+          retention-days: 7

@@ -788,6 +788,6 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
 </section>
 <noscript><p>برای نمایش اسلایدها، جاوااسکریپت را فعال کن.</p></noscript>
 </main>
-<footer class="reader-attribution"><p>ارایه دهنده: حسام شینی</p></footer>
+<footer class="reader-presenter">ارایه دهنده: حسام شینی</footer>
 <script id="source-reader-config" type="application/json">{encoded}</script>
 </body></html>'''

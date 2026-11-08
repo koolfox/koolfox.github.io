@@ -200,7 +200,8 @@ test('sequence types preserve the three source examples and repeated labels', as
     const slide=page.locator('#persian-page');
     await expect(slide).toHaveAttribute('data-layout','source-canvas-figure-companion');
     await expect(slide.locator('.reader-slide-background')).toBeVisible();
-    await expect(slide.locator('.reader-slide-text')).toHaveCount(15);
+    await expect(slide.locator('.reader-slide-text:not(.reader-image-translation)')).toHaveCount(15);
+    await expect(slide.locator('.reader-image-translation')).toHaveCount(3);
     for(const text of ['One-to-Many','Many-to-One','Many-to-Many','38.5','مثبت؟ منفی؟ خنثی؟'])
       await expect(slide.locator('.reader-slide-text').filter({hasText:text})).toBeVisible();
     await expect(slide.locator('.reader-slide-text').filter({hasText:'ورودی: دنباله'})).toHaveCount(2);
@@ -222,7 +223,8 @@ test('history slide retains the diagram and source color emphasis', async ({page
     const slide=page.locator('#persian-page');
     await expect(slide).toHaveAttribute('data-layout','source-canvas-figure-companion');
     await expect(slide.locator('.reader-slide-background')).toBeVisible();
-    await expect(slide.locator('.reader-slide-text')).toHaveCount(5);
+    await expect(slide.locator('.reader-slide-text:not(.reader-image-translation)')).toHaveCount(5);
+    await expect(slide.locator('.reader-image-translation')).toHaveCount(1);
     for(const year of ['1962','1982','1986'])await expect(slide.locator('.reader-slide-text').filter({hasText:year})).toBeVisible();
     await expect(slide.locator('.reader-emphasis').filter({hasText:'اتصال بازگشتی'})).toHaveCSS('color','rgb(255, 192, 0)');
   }

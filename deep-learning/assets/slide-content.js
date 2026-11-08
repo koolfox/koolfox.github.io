@@ -503,14 +503,14 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===13
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='a446f994291fe2033fe08f7ebffd845639d0ba5a4f14fe5ea71abc743c0feebf'
-      && layout.translation_sha256==='1945a5e7443b4fd60df7744c340748e5be1274c3cf23fa6386c716525ea40bd7'){
+      && layout.translation_sha256==='9455399902fc938b9d50640862240352d9ebaced1420106dcdd28252ed80a332'){
     for(const region of regions)if(region.block.kind==='heading'){
       region.slot=[.04,.09,.96,.205];region.font=33;region.keepTermsTogether=true;
     }
   }
   const s01TitleReview={
-    14:['766169dcca47dd0f8949d0481e883b01b40ea73afd686cc4c7f6f2a7de71e6eb','1628326d1ab32c33dfe78e62320213b30f9b51f26a6e0d85d9a3e9eab667044c',[.04,.09,.96,.205],30],
-    19:['a2e55bbba08b55ea9c01ab2d28267bedaf666acd16d3f971a809ca68b67fde8b','2087ae62e9f77f266d3deb4b8e77b306a22fcacd53733a2f55962ba674ba02e3',[.02,.10,.40,.22],26],
+    14:['766169dcca47dd0f8949d0481e883b01b40ea73afd686cc4c7f6f2a7de71e6eb','250e9b89f3d5dbbd37838e4d7e9ff2f2691e3360993d6079c3abf4ae29b94a3f',[.04,.09,.96,.205],30],
+    19:['a2e55bbba08b55ea9c01ab2d28267bedaf666acd16d3f971a809ca68b67fde8b','cd36588eda1926328aa1293054ac487b75906335b99c8c78ede6b202899e448c',[.02,.10,.40,.22],26],
   }[record.number];
   if(s01TitleReview && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01'
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
@@ -1113,7 +1113,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===14
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='766169dcca47dd0f8949d0481e883b01b40ea73afd686cc4c7f6f2a7de71e6eb'
-      && layout.translation_sha256==='1628326d1ab32c33dfe78e62320213b30f9b51f26a6e0d85d9a3e9eab667044c'){
+      && layout.translation_sha256==='250e9b89f3d5dbbd37838e4d7e9ff2f2691e3360993d6079c3abf4ae29b94a3f'){
     const [heading,body]=record.image_text[0].fa.split('؛');
     imageTranslations=[
       {rect:[.025,.36,.33,.59],text:heading,background:'linear-gradient(100deg,#b9e9fa,#c4ebfb)',color:'#075883',font:24,accents:[{text:'با تصوری تازه',color:'#09a6e7'}]},
@@ -1125,7 +1125,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===16
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='f39a4db60396e44d6b59c10c606887936c89b2b5b529f1b4ea0366c1a17b7527'
-      && layout.translation_sha256==='856793c0adf6086f16d7f5d1ce9c9459280a906da47a2f76c32f93a7194ef4ba'){
+      && layout.translation_sha256==='d782263a14bfd96537cd6e18059d60dab66cddcdee1003c785981193bcc765a6'){
     const parts=record.image_text[0].fa.split('؛');
     imageTranslations=[
       {rect:[.44,.405,.58,.45],text:'رزرو نمایش',background:'#000',color:'#fff',font:10,align:'center'},
@@ -1149,7 +1149,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===19
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='a2e55bbba08b55ea9c01ab2d28267bedaf666acd16d3f971a809ca68b67fde8b'
-      && layout.translation_sha256==='2087ae62e9f77f266d3deb4b8e77b306a22fcacd53733a2f55962ba674ba02e3'){
+      && layout.translation_sha256==='cd36588eda1926328aa1293054ac487b75906335b99c8c78ede6b202899e448c'){
     const [heading,description]=record.image_text[0].fa.split('؛');
     imageTranslations=[
       {rect:[.48,.04,.91,.11],text:heading,background:'#5c74cb',color:'#fff',font:25,align:'center'},
@@ -1161,7 +1161,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===20
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='2e37398adde30d4ea9d1eb093600f809eea2d545f558149912581637fd7d32de'
-      && layout.translation_sha256==='2696d9c10922b51a0bafcc5e707b6fc9084c8a21435af130bc5e73acc9f08343'){
+      && layout.translation_sha256==='b66df3f72328650bd5fbc862348bcf0a04a91c6edf8d63a4a3d0af5824f5e849'){
     imageTranslations=[
       {rect:[.07,.69,.63,.89],text:'تبدیل رایگان آنلاین عکس به صفحه رنگ‌آمیزی',background:'linear-gradient(105deg,#f69ca9,#f98997)',color:'#fff',font:32},
     ];

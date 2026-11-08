@@ -253,7 +253,11 @@ def term_page(term):
         if any(r.get("local_slides") or r.get("source_reader") for r in term["schedule"])
         else ""
     )
-    inventory_link = link(term_url(term) + "inventory/", "فهرست صفحه ها") if term["id"] == "spring-2026" else ""
+    inventory_link = (
+        link(term_url(term) + "inventory/", "فهرست صفحه ها")
+        if term["id"] == "spring-2026" and any(r.get("source_reader") for r in term["schedule"])
+        else ""
+    )
     body = f"""<div class="term-heading"><h1>{e(term["title_fa"])}</h1>
 <p class="lead">{e(TERM_SUMMARIES[term["id"]])}</p><div class="inline-links">
 {link(term["course_url"], "برنامه رسمی این ترم ", True)}{link(term["syllabus_url"], "سیلابس اصلی ", True)}

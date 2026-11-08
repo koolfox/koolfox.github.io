@@ -165,3 +165,22 @@ test('review and parity example retain separate source regions on desktop and mo
     }
   }
 });
+
+test('sequential examples keep their four images and separate Persian labels', async ({page}) => {
+  for(const width of [1440,390]){
+    await page.setViewportSize({width,height:850});
+    await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=8');
+    await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+    if(width===390){
+      const previous=await page.locator('#persian-page .reader-slide-stage').elementHandle();
+      await page.locator('[data-view-translation]').click();
+      if(previous)await page.waitForFunction(node=>!node.isConnected,previous);
+      await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+    }
+    const slide=page.locator('#persian-page');
+    await expect(slide).toHaveAttribute('data-layout','source-canvas-figure-companion');
+    await expect(slide.locator('.reader-slide-background')).toBeVisible();
+    for(const text of ['بازار سهام','پردازش صوت','پیش بینی هوا','تحلیل متن'])
+      await expect(slide.locator('.reader-slide-text').filter({hasText:text})).toBeVisible();
+  }
+});

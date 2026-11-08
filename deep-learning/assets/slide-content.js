@@ -296,6 +296,20 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     }
     region.slot = [left,top,Math.max(right,region.rect[2]),Math.max(bottom,region.rect[3])];
   }
+  const s04Unrolled = {
+    15:['58ed64d51139f7f36e374a9ef97ce219384ee3d246aaad2a30c502ed0b65a74e','d4e001fec2823dc3813a0d802b3617efccfaacf86481a0e18571a5321f65e804'],
+    16:['5605488fd9bd2cd7352a205b14ac64ecf37b6827dec615023844f0810851e872','d72366e8f7c87c51feef6a199f079b060b27b4b77ec0910d047d37d2db209516'],
+    17:['fee7296cda17c18dad9d011f8d618bb93efdef9d6da66d27b0366268a2eb1b56','423f55cb74a10fe08157593b16631a1058cf92f4da5ae0443219dbe440922af0'],
+    18:['7ccb2c073dac7f3c5493e44b60c022b14a57b0d8a9a693ada38e147e8fe5cd1b','0d1606d4f6d6672fef613381ad511cf3c4f8439437653bc93271b0da5c86e213'],
+  }[record.number];
+  if(s04Unrolled && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256===s04Unrolled[0] && layout.translation_sha256===s04Unrolled[1]){
+    for(const region of regions){
+      if(region.block.fa.startsWith('• ')){region.slot=[.05,.23,.97,.34];region.font=23;region.manualAccents=[{text:'افزودن حالت پنهان',color:'#ffc000'}];}
+      if(record.number===18 && region.block.source_lines[0]===4){region.slot=[.04,.91,.96,.97];region.font=16;}
+    }
+  }
   if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===6
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='3386702c731ad98f8b816ce00160f295c2713499941019417261d4020201dbbb'

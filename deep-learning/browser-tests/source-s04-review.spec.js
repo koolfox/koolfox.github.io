@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 
+
 for (const width of [1440, 390]) {
   test(`RNN parameter question keeps the diagram at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 850 });
@@ -225,5 +226,28 @@ test('history slide retains the diagram and source color emphasis', async ({page
     await expect(slide.locator('.reader-slide-text')).toHaveCount(5);
     for(const year of ['1962','1982','1986'])await expect(slide.locator('.reader-slide-text').filter({hasText:year})).toBeVisible();
     await expect(slide.locator('.reader-emphasis').filter({hasText:'اتصال بازگشتی'})).toHaveCSS('color','rgb(255, 192, 0)');
+  }
+});
+
+test('RNN state equation keeps the diagram and its separate colored labels', async ({page}) => {
+  for(const width of [1440,390]){
+    await page.setViewportSize({width,height:850});
+    await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=13');
+    await page.waitForFunction(()=>window.sourceSlideReader?.ready && window.sourceSlideReader.page===13);
+    if(width===390){
+      const previous=await page.locator('#persian-page .reader-slide-stage').elementHandle();
+      await page.locator('[data-view-translation]').click();
+      if(previous)await page.waitForFunction(node=>!node.isConnected,previous);
+      await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+    }
+    const slide=page.locator('#persian-page');
+    await expect(slide).toHaveAttribute('data-layout','source-canvas');
+    await expect(slide.locator('.reader-slide-background')).toBeVisible();
+    for(const text of ['حالت جدید','حالت قبلی','ورودی در گام زمانی','پارامترهای مدل'])
+      await expect(slide.locator('.reader-slide-text').filter({hasText:text})).toBeVisible();
+    await expect(slide.locator('.reader-slide-text').filter({hasText:'حالت جدید'})).toHaveCSS('color','rgb(255, 192, 0)');
+    await expect(slide.locator('.reader-slide-text').filter({hasText:'ورودی در گام زمانی'})).toHaveCSS('color','rgb(0, 176, 240)');
+    await expect(slide.locator('.reader-slide-text').filter({hasText:'پارامترهای مدل'})).toHaveCSS('color','rgb(255, 0, 0)');
+    await expect(slide.locator('.reader-figure-content')).toContainText('s');
   }
 });

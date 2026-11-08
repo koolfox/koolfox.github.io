@@ -1,6 +1,7 @@
 name: Slide browser inventory calibration
 
 on:
+  workflow_dispatch:
   pull_request:
     paths:
       - .github/workflows/slide-audit-calibration.yml
@@ -60,8 +61,29 @@ jobs:
               print(int(Path(path).stem[1:]), len(json.loads(Path(path).read_text())['pages']))
           PY
           while read -r session count; do
-            node deep-learning/browser-tests/slide-audit.mjs --base-url http://127.0.0.1:8000 --build-id "$GITHUB_SHA" --sessions "$session" --pages "1-$count" --viewports 390x844,1440x900 --output audit-report/inventory.jsonl
+            for variant in baseline candidate; do
+              node deep-learning/browser-tests/slide-audit.mjs --base-url http://127.0.0.1:8000 --build-id "$GITHUB_SHA-$variant" --sessions "$session" --pages "1-$count" --viewports 390x844,1440x900 --variant "$variant" --output "audit-report/$variant.jsonl"
+            done
           done < /tmp/slide-sessions.txt
+      - name: Compare paired page measurements
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          def load(name):
+              rows = [json.loads(line) for line in Path(f'audit-report/{name}.jsonl').read_text().splitlines()]
+              assert all(row['status'] != 'error' and row['variant'] == name for row in rows)
+              return {(r['session'], r['page'], r['viewport']['width'], r['viewport']['height']): r for r in rows}
+          before, after = load('baseline'), load('candidate')
+          assert len(before) == 2606 and before.keys() == after.keys()
+          assert all(before[k]['source_sha256'] and before[k]['translation_sha256'] and before[k]['source_sha256'] == after[k]['source_sha256'] and before[k]['translation_sha256'] == after[k]['translation_sha256'] for k in before)
+          good = {'source-canvas', 'source-canvas-figure-companion'}
+          improved = [k for k in before if before[k]['layout'] == 'text-overflow' and after[k]['layout'] in good]
+          regressed = [k for k in before if before[k]['layout'] in good and after[k]['layout'] not in good]
+          summary = {'paired_observations': len(before), 'recovered_overflow': len(improved), 'layout_regressions': len(regressed), 'improved': improved, 'regressed': regressed, 'note': 'Machine measurements only; visual and scientific review not performed.'}
+          Path('audit-report/comparison.json').write_text(json.dumps(summary, indent=2) + '\n')
+          print(json.dumps({k: v for k, v in summary.items() if k not in ('improved', 'regressed')}))
+          PY
       - name: Upload diagnostic measurements and error screenshots
         if: always()
         uses: actions/upload-artifact@v7.0.2

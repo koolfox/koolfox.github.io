@@ -1,6 +1,6 @@
 import {setupFullscreen} from './reader-fullscreen.js';
 import {getDocument,GlobalWorkerOptions,OPS} from './vendor/pdfjs/pdf.min.mjs';
-import {readPdf} from './slide-offline-cache.js';
+import {readPdf,readPdfManifest} from './slide-offline-cache.js';
 import {addText, math, renderBlocks, renderTable, configureReferences, referenceTarget, sourceLayoutPlan, createSourceLayout, fitSourceLayout} from './slide-content.js';
 
 const $=s=>document.querySelector(s),config=JSON.parse($('#source-reader-config').textContent);
@@ -462,8 +462,7 @@ async function loadSources(){
   return [document,canonicalDocument,data];
  }
  if(paged){
-  const [manifest,data]=await Promise.all([fetch(pageRoot+'manifest.json?sha='+config.sourceSha256,{signal:loadingController.signal}).then(response=>{if(!response.ok)throw Error('page index unavailable');return response.json();}),translation]);
-  if(manifest.source_sha256!==config.sourceSha256||manifest.page_count!==config.pageCount||manifest.pages?.length!==config.pageCount||!manifest.pages.every(value=>value===null||/^[0-9a-f]{64}$/.test(value)))throw Error('page identity mismatch');
+  const [manifest,data]=await Promise.all([readPdfManifest(pageRoot+'manifest.json?sha='+config.sourceSha256,config.sourceSha256,config.pageCount,loadingController.signal),translation]);
   async function loadPage(number){
    if(!Number.isInteger(number)||number<1||number>config.pageCount)throw Error('invalid page');
    if(!pageLoad||pageLoad.number!==number){

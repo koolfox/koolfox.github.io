@@ -1791,6 +1791,14 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===(initial?15:21)){region.slot=[.54,.85,.62,.91];region.font=14;region.align='center';}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===29
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='1bbc60eddf13c88486e7b3d480159ae1658e706268de78e911076cf4b77e7eea'
+      && layout.translation_sha256==='a2ce043cf352514016a57cd57c8f2bd15336fb219921e21c627ffb89dbab6a1c'){
+    const slots={0:[.04,.09,.97,.22],1:[.05,.27,.96,.33],2:[.08,.33,.96,.38],3:[.08,.38,.96,.43],4:[.08,.43,.96,.48],5:[.05,.49,.96,.55],10:[.07,.81,.29,.87]};
+    const accents={1:'بردار تک داغ',2:'توکن سازی',3:'واژگان',4:'داده را به بردار تبدیل کنید'};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===0?29:i===1||i===5?19:16;}if(accents[i])region.manualAccents=[{text:accents[i],color:'#ffc000'}];}
+  }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

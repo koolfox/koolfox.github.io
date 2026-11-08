@@ -8,8 +8,8 @@ TRANSLATION = Path(__file__).resolve().parents[1] / "content" / "translations" /
 
 
 class LessonTwoFirstPagesTests(unittest.TestCase):
-    def test_first_fourteen_pages_have_no_diacritics_in_persian_text(self):
-        pages = json.loads(TRANSLATION.read_text(encoding="utf-8"))["pages"][:14]
+    def test_first_seventeen_pages_have_no_diacritics_in_persian_text(self):
+        pages = json.loads(TRANSLATION.read_text(encoding="utf-8"))["pages"][:17]
         for page in pages:
             for section in ("blocks", "image_text"):
                 for record in page.get(section, []):

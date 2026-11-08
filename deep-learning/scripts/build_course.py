@@ -253,10 +253,11 @@ def term_page(term):
         if any(r.get("local_slides") or r.get("source_reader") for r in term["schedule"])
         else ""
     )
+    inventory_link = link(term_url(term) + "inventory/", "فهرست صفحه ها") if term["id"] == "spring-2026" else ""
     body = f"""<div class="term-heading"><h1>{e(term["title_fa"])}</h1>
 <p class="lead">{e(TERM_SUMMARIES[term["id"]])}</p><div class="inline-links">
 {link(term["course_url"], "برنامه رسمی این ترم ", True)}{link(term["syllabus_url"], "سیلابس اصلی ", True)}
-{link(term_url(term) + "foundations/", "مرور پیش‌نیازها")}{link(term_url(term) + "project/", "پروژه پایانی")}{bundle}</div></div>
+{link(term_url(term) + "foundations/", "مرور پیش‌نیازها")}{link(term_url(term) + "project/", "پروژه پایانی")}{inventory_link}{bundle}</div></div>
 <ol class="session-list">{"".join(items)}</ol>{progress_tools()}"""
     return page(
         term["title_fa"],
@@ -873,6 +874,10 @@ def build(output, root=ROOT):
     if readers.get("spring-2026"):
         from source_page_pdfs import build_source_pages
         build_source_pages(root, output, readers["spring-2026"])
+        from inventory_spring_2026 import inventory, render_html
+        inventory_path = output / "terms/spring-2026/inventory/index.html"
+        inventory_path.parent.mkdir(parents=True, exist_ok=True)
+        inventory_path.write_text(render_html(inventory(root, output)), encoding="utf-8")
 
     package_slides(output, root)
     if os.environ.get("DANNA_SOURCE_DRAFT") != "1":

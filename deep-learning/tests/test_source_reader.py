@@ -498,6 +498,8 @@ class SourceReaderTests(unittest.TestCase):
         self.assertNotIn('<script>alert("x")</script>', html)
         self.assertIn("&lt;/script&gt;&lt;script&gt;", html)
         self.assertIn("استاد: دکتر نگار مجمع", html)
+        self.assertIn('<footer class="reader-presenter">ارایه دهنده: حسام شینی</footer>', html)
+        self.assertLess(html.index("استاد: دکتر نگار مجمع"), html.index("<h1>"))
         self.assertIn("Danna Gurari", html)
         self.assertIn('src="/deep-learning/assets/university-logo.png"', html)
         self.assertNotIn("HIDDEN EXTRACTION MUST NOT BE RENDERED", html)

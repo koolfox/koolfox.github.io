@@ -29,9 +29,13 @@
       "prompt_fa": "در نسخهٔ اولیه مقدار delta چند است؟",
       "solution_fa": "0.1 × (-1 - 1) = -0.2.",
       "answer": {
-        "kind": "number",
-        "value": -0.2,
-        "tolerance": 1e-06
+        "kind": "choice",
+        "options_fa": [
+          "-0.2",
+          "0",
+          "+0.2"
+        ],
+        "correct_index": 0
       },
       "source_page": 27
     },
@@ -54,15 +58,16 @@
     {
       "id": "explain",
       "source_kind": "original",
-      "prompt_fa": "چرا قاعدهٔ پرسپترون برای پیش‌بینی درست، وزن و بایاس را تغییر نمی‌دهد؟ یک مثال از همین کد بیاور.",
+      "prompt_fa": "اگر target در نسخه اولیه 1 باشد، چرا وزن و بایاس تغییر نمی‌کنند؟",
       "solution_fa": "اگر target با before برابر باشد، اختلاف آن‌ها صفر است؛ بنابراین delta و همهٔ افزایش‌های وزن و بایاس صفر می‌شوند. با target=1 در نسخهٔ اولیه این حالت دیده می‌شود.",
       "answer": {
-        "kind": "manual",
-        "criteria_fa": [
-          "نوشتن target-before",
-          "صفرشدن delta",
-          "مثال مشخص از کد"
-        ]
+        "kind": "choice",
+        "options_fa": [
+          "چون target و پیش‌بینی هر دو 1 هستند و delta صفر می‌شود",
+          "چون نرخ یادگیری صفر است",
+          "چون همه ورودی‌ها صفر هستند"
+        ],
+        "correct_index": 0
       },
       "source_page": 20
     }
@@ -457,6 +462,223 @@
               "چون تمام وزن‌ها همیشه صفرند",
               "چون نرخ یادگیری حذف می‌شود",
               "چون امتیازصفر به+1 می‌رود و خطای گردکردن می‌تواند مسیر بعدی را تغییر دهد"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "majority-truth",
+      "title_fa": "جدول هدف اکثریت",
+      "pages": [
+        21,
+        22,
+        23
+      ],
+      "code_file": "s02_majority_truth.py",
+      "prediction_fa": "پیش از اجرا خروجی ردیف‌های علامت سوال را با قانون حداقل دو ۱ پیدا کن.",
+      "limits_fa": "این جدول قانون هدف را نشان می‌دهد؛ هنوز هیچ مدل یا وزنی آموزش ندیده است.",
+      "starter_sha256": "3985278ae3a026202d5ff791dc8f13aa5e36c4af2b2953252ea924e2dbb4fee8",
+      "reference": {
+        "inputs": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "targets": [
+          -1,
+          1,
+          1,
+          1,
+          -1,
+          -1,
+          1,
+          -1
+        ]
+      },
+      "questions": [
+        {
+          "id": "first",
+          "source_kind": "original",
+          "source_page": 21,
+          "prompt_fa": "هدف ورودی [1,0,0] در مدل اکثریت چند است؟",
+          "solution_fa": "فقط یک ورودی برابر 1 است، پس هدف −1 می‌شود.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "−1",
+              "+1",
+              "0"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "second",
+          "source_kind": "original",
+          "source_page": 22,
+          "prompt_fa": "هدف ورودی [1,0,1] در مدل اکثریت چند است؟",
+          "solution_fa": "دو ورودی برابر 1 هستند، پس هدف +1 می‌شود.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "−1",
+              "+1",
+              "0"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "third",
+          "source_kind": "original",
+          "source_page": 23,
+          "prompt_fa": "هدف ورودی [1,1,0] در مدل اکثریت چند است؟",
+          "solution_fa": "دو ورودی برابر 1 هستند، پس هدف +1 می‌شود.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "0",
+              "−1",
+              "+1"
+            ],
+            "correct_index": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "xor-boundary",
+      "title_fa": "مرز تصمیم XOR",
+      "pages": [
+        44
+      ],
+      "code_file": "s02_xor_boundary.py",
+      "prediction_fa": "پیش از اجرا خروجی هر چهار ورودی را با خط اولیه پیش‌بینی کن.",
+      "limits_fa": "این مثال یک خط را بررسی می‌کند؛ برای اثبات ناممکن بودن همه خط‌ها از استدلال اسلاید و فیلم استفاده کن.",
+      "starter_sha256": "d86eddcf14fb023d4334437057db40b68a008bbdec359b4ee5ad070310f4bc2f",
+      "reference": {
+        "inputs": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "targets": [
+          0,
+          1,
+          1,
+          0
+        ],
+        "scores": [
+          -0.5,
+          0.5,
+          0.5,
+          1.5
+        ],
+        "predictions": [
+          0,
+          1,
+          1,
+          1
+        ],
+        "correct": 3
+      },
+      "questions": [
+        {
+          "id": "prediction",
+          "source_kind": "original",
+          "source_page": 44,
+          "prompt_fa": "با وزن‌های اولیه، خروجی مدل برای ورودی [1,1] چیست؟",
+          "solution_fa": "امتیاز 1.5 است و چون نامنفی است، پیش‌بینی 1 می‌شود.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "0",
+              "1",
+              "-1"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "accuracy",
+          "source_kind": "original",
+          "source_page": 44,
+          "prompt_fa": "از چهار ردیف، خط اولیه چند ردیف را درست پیش‌بینی می‌کند؟",
+          "solution_fa": "سه ردیف درست و ردیف [1,1] نادرست است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "2",
+              "3",
+              "4"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "boundary",
+          "source_kind": "original",
+          "source_page": 44,
+          "prompt_fa": "آیا تغییر وزن و بایاس یک پرسپترون تک‌لایه می‌تواند همه ردیف‌های XOR را درست کند؟",
+          "solution_fa": "خیر؛ دو کلاس XOR خطی جداپذیر نیستند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "بله، با بایاس مناسب",
+              "بله، با وزن‌های بسیار بزرگ",
+              "خیر، هیچ خطی دو کلاس را جدا نمی‌کند"
             ],
             "correct_index": 2
           }

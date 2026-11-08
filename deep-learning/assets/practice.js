@@ -114,6 +114,15 @@ if(lessonOneFilm){
   panel.append(summary,note,frame);cells.before(panel);panel.addEventListener('toggle',()=>{if(panel.open&&!frame.getAttribute('src'))frame.src=`/deep-learning/animations/${lessonOneFilm.id}/?notebook=1`;});
   cells.addEventListener('input',()=>queueMicrotask(update));new MutationObserver(update).observe(cells,{childList:true});update();
 }
+if(['spring-2026/s02/majority-truth','spring-2026/s02/majority-epoch','spring-2026/s02/majority-epochs'].includes(config.key)){
+  const panel=document.createElement('details'),summary=document.createElement('summary');
+  const note=document.createElement('p'),frame=document.createElement('iframe');
+  panel.className='nb-film';summary.textContent='فیلم دو گام آموزش';
+  note.className='nb-film-note';note.textContent='دو نمونه اول با وزن اولیه و نرخ یادگیری اسلاید نشان داده می‌شوند؛ با تغییر کد، اعداد فیلم ثابت می‌مانند.';
+  frame.title='فیلم آموزش پرسپترون';frame.dataset.perceptronFilm='';frame.loading='lazy';frame.allowFullscreen=true;
+  panel.append(summary,note,frame);document.querySelector('#practice-notebook .nb-cells').before(panel);
+  panel.addEventListener('toggle',()=>{if(panel.open&&!frame.getAttribute('src'))frame.src='/deep-learning/animations/perceptron-steps/?notebook=1';});
+}
 const returnLink=document.querySelector('[data-return-slide]');returnLink.href=config.reader+'#page='+returnPage;
 const practiceFooter=returnLink.parentElement, utilityTools=document.querySelector('.nb-utility-tools');
 function placeReturnLink(quiz) {

@@ -745,8 +745,7 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
 <a class="skip" href="#reader">رفتن به اسلاید و ترجمه</a>
 <header class="reader-header">
 <div class="reader-heading"><a href="{BASE}/terms/{term_id}/" aria-label="بازگشت به فهرست اسلایدها" title="فهرست اسلایدها">فهرست اسلایدها</a>
-<p>{e(term.get('title_fa', TERM_TITLES[term_id]))}</p><h1>{e(title)}</h1>
-<p class="reader-instructor">استاد: دکتر نگار مجمع</p></div>
+<p>{e(term.get('title_fa', TERM_TITLES[term_id]))}</p><p class="reader-instructor">استاد: دکتر نگار مجمع</p><h1>{e(title)}</h1></div>
 <img class="deck-logo" src="{BASE}/assets/university-logo.png" alt="نشان مؤسسه آموزش عالی نقش جهان" width="100" height="104">
 <nav class="reader-sections" aria-label="بخش‌های درس"><button type="button" data-reader-section="slides" aria-pressed="true">اسلاید</button>{workshop_link}<a href="{BASE}/knowledge/" role="button" data-reader-section="knowledge" aria-pressed="false">کتابخانهٔ دانش</a></nav>
 </header>
@@ -789,5 +788,6 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
 </section>
 <noscript><p>برای نمایش اسلایدها، جاوااسکریپت را فعال کن.</p></noscript>
 </main>
+<footer class="reader-presenter">ارایه دهنده: حسام شینی</footer>
 <script id="source-reader-config" type="application/json">{encoded}</script>
 </body></html>'''

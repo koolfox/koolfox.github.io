@@ -15,6 +15,7 @@ from source_catalog import ROOT
 from workshops import load_workshops
 from local_slides import load_slides
 from source_reader import load_source_translation, source_reader_page
+from source_page_payloads import build_page_payloads
 from student_practice import choice_question, practice_page, knowledge_page
 
 BASE = "/deep-learning"
@@ -252,10 +253,15 @@ def term_page(term):
         if any(r.get("local_slides") or r.get("source_reader") for r in term["schedule"])
         else ""
     )
+    inventory_link = (
+        link(term_url(term) + "inventory/", "فهرست صفحه ها")
+        if term["id"] == "spring-2026" and any(r.get("source_reader") for r in term["schedule"])
+        else ""
+    )
     body = f"""<div class="term-heading"><h1>{e(term["title_fa"])}</h1>
 <p class="lead">{e(TERM_SUMMARIES[term["id"]])}</p><div class="inline-links">
 {link(term["course_url"], "برنامه رسمی این ترم ", True)}{link(term["syllabus_url"], "سیلابس اصلی ", True)}
-{link(term_url(term) + "foundations/", "مرور پیش‌نیازها")}{link(term_url(term) + "project/", "پروژه پایانی")}{bundle}</div></div>
+{link(term_url(term) + "foundations/", "مرور پیش‌نیازها")}{link(term_url(term) + "project/", "پروژه پایانی")}{inventory_link}{bundle}</div></div>
 <ol class="session-list">{"".join(items)}</ol>{progress_tools()}"""
     return page(
         term["title_fa"],
@@ -748,6 +754,8 @@ def build(output, root=ROOT):
                 destination = output / f"source-translations/{term['id']}/{row['id']}.json"
                 destination.parent.mkdir(parents=True, exist_ok=True)
                 destination.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+                if term["id"] == "spring-2026":
+                    build_page_payloads(output, payload)
                 pdf = payload["source"]["local_url"].removeprefix(BASE + "/")
                 target = output / pdf
                 target.parent.mkdir(parents=True, exist_ok=True)
@@ -870,6 +878,10 @@ def build(output, root=ROOT):
     if readers.get("spring-2026"):
         from source_page_pdfs import build_source_pages
         build_source_pages(root, output, readers["spring-2026"])
+        from inventory_spring_2026 import inventory, render_html
+        inventory_path = output / "terms/spring-2026/inventory/index.html"
+        inventory_path.parent.mkdir(parents=True, exist_ok=True)
+        inventory_path.write_text(render_html(inventory(root, output)), encoding="utf-8")
 
     package_slides(output, root)
     if os.environ.get("DANNA_SOURCE_DRAFT") != "1":

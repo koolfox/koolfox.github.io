@@ -32,6 +32,15 @@ test('the reader still loads online when persistent storage is unavailable', asy
  await page.waitForFunction(() => window.sourceSlideReader?.ready);
 });
 
+test('a visited slide reloads when the PDF index is unreachable', async ({ page }) => {
+ await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=40');
+ await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 40);
+ await page.route('**/s01-pages/manifest.json*', route => route.abort('internetdisconnected'));
+ await page.reload();
+ await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 40);
+ await expect(page.locator('#persian-page')).toHaveAttribute('data-page', '40');
+});
+
 test('a corrupted cached page is discarded and fetched again', async ({ page }) => {
  const pdfs = [];
  page.on('response', response => { if (response.url().includes('/s01-pages/040.pdf?sha=')) pdfs.push(response); });

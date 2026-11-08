@@ -1520,7 +1520,9 @@ export function createSourceLayout(record, plan) {
         const term=element('bdi');term.dir=persian.test(chunk)?'rtl':'ltr';
         addText(term,chunk,presentation,{sourceColors:true});node.append(term);
       }
-    }else addText(node, region.block.fa, presentation, {sourceColors:true});
+    }else if(region.linkTarget){const link=element('a');link.href=region.linkTarget;link.target='_blank';link.rel='noopener noreferrer';link.textContent=region.block.fa;link.style.color='inherit';node.append(link);}
+    else addText(node, region.block.fa, presentation, {sourceColors:true});
+    if(region.rotate)node.style.transform=`rotate(${region.rotate}deg)`;
     if(region.keepTermsTogether)node.querySelectorAll('bdi').forEach(term=>{term.style.whiteSpace='nowrap';});
     stage.append(node);
   }

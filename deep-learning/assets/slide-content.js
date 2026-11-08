@@ -2138,6 +2138,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='f59288a393682d132c08d2cc0e0d0221c6c5c9f487962c56f1fbf4548bdd2ca4'
       && layout.translation_sha256==='f4115f9bf90dbdcfb5148de830dbc9916099210031efa64e788853d08404b1ec'){
+    imageTranslations.push({rect:[.081,.32,.226,.357],text:'پیش بینی چندروزه',background:'#14203e',color:'#fff',font:15,align:'center'});
     imageTranslations.push({rect:[.514,.338,.738,.477],text:'آنچه درباره The Last Jedi برایم از همه جالب تر است، بازگشت لوک در نقش مربی به جای شاگرد است؛ او با شکست در این نقش تازه دست و پنجه نرم می کند و بعد می خواهد آموزگاری خردمند و صبور باشد.',background:'#fff',color:'#242424',font:9,align:'right'});
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===11

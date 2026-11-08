@@ -155,6 +155,7 @@ test('review and parity example retain separate source regions on desktop and mo
         await page.waitForFunction(n => window.sourceSlideReader?.ready && window.sourceSlideReader.page === n, number);
       }
       const slide=page.locator('#persian-page');
+      await page.screenshot({path:test.info().outputPath(`s04-page-${number}-${width}.png`)});
       await expect(slide).toHaveAttribute('data-layout',number===2?'source-canvas':'source-canvas-figure-companion');
       await expect(slide.locator('.reader-slide-text')).toHaveCount(number===2?9:4);
       if(number===6){

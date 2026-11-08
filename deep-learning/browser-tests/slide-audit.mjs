@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // A browser inventory, not a visual or scientific approval of a slide.
 import { chromium } from '@playwright/test';
-import { appendFile, mkdir, readFile } from 'node:fs/promises';
+import { appendFile, mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 
@@ -41,6 +41,14 @@ async function main() {
   });
   const output = path.resolve(args.output), snapshots = `${output}.snapshots`;
   await mkdir(path.dirname(output), { recursive: true });
+  let snapshotCount = 0, snapshotBytes = 0;
+  try {
+    for (const name of await readdir(snapshots)) {
+      if (!name.endsWith('.png')) continue;
+      snapshotCount++;
+      snapshotBytes += (await stat(path.join(snapshots, name))).size;
+    }
+  } catch (error) { if (error.code !== 'ENOENT') throw error; }
   const completed = new Set();
   try {
     for (const line of (await readFile(output, 'utf8')).split('\n')) {
@@ -120,10 +128,20 @@ async function main() {
       }
       if (record.status === 'fail' || record.status === 'error') {
         try {
-          await mkdir(snapshots, { recursive: true });
-          const file = `${id}-${number}-${viewport.width}x${viewport.height}-${createHash('sha256').update(key).digest('hex').slice(0, 10)}.png`;
-          await page.screenshot({ path: path.join(snapshots, file) });
-          record.snapshot = path.join(snapshots, file);
+          if (snapshotCount >= 50 || snapshotBytes >= 20 * 1024 * 1024) {
+            record.snapshot_skipped = 'snapshot budget exhausted';
+          } else {
+            const data = await page.screenshot();
+            if (snapshotBytes + data.length > 20 * 1024 * 1024) {
+              record.snapshot_skipped = 'snapshot would exceed 20 MiB budget';
+            } else {
+              await mkdir(snapshots, { recursive: true });
+              const file = `${id}-${number}-${viewport.width}x${viewport.height}-${createHash('sha256').update(key).digest('hex').slice(0, 10)}.png`;
+              await writeFile(path.join(snapshots, file), data);
+              snapshotCount++; snapshotBytes += data.length;
+              record.snapshot = path.join(snapshots, file);
+            }
+          }
         } catch (error) { record.snapshot_error = error.message; }
       }
       await appendFile(output, `${JSON.stringify(record)}\n`);

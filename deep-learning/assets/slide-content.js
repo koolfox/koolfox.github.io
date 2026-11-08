@@ -1275,7 +1275,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
       && record.source_text_sha256==='92ebeaf9627cb289ee35656e664ee26cb08116aee10cf6caba64d756550fe2eb' && layout.translation_sha256==='cc4713164bfa8349043915897ccb8ec32e82e1a1ccabc2f67844891374a24283'){
     const slots={1:[.04,.25,.65,.36],2:[.04,.41,.33,.50],3:[.06,.62,.22,.70],4:[.07,.76,.255,.83],5:[.61,.81,.98,.99],9:[.02,.86,.59,.98]};
-    for(const region of regions){const slot=slots[region.block.source_lines[0]];if(slot)region.slot=slot;}
+    for(const region of regions){const i=region.block.source_lines[0],slot=slots[i];if(slot)region.slot=slot;if([1,4,5,9].includes(i))region.font*=.9;}
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===17
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'

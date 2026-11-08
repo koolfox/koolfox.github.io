@@ -36,13 +36,19 @@ test('session 3 source review keeps the image and colored quotation', async ({pa
  await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
 });
 
-test('session 3 timeline preserves the source figure and historic labels', async ({page}) => {
+test('session 3 timeline preserves the source figure and historic labels', async ({page},testInfo) => {
  await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=7');
  await page.waitForFunction(()=>window.sourceSlideReader?.ready && sourceSlideReader.page===7);
  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
  const regions=page.locator('#persian-page .reader-slide-text');
  for (const name of ['روزنبلات','ویدرو','هاوکینز','نیلسون','مینسکی']) await expect(regions.filter({hasText:name})).toBeVisible();
  await expect(regions.filter({hasText:'۲ لایه پنهان'})).toHaveCSS('color','rgb(255, 0, 0)');
+ const labels=page.locator('#persian-page .reader-image-translation');
+ await expect(labels).toHaveCount(3);
+ await expect(labels.nth(1)).toContainText('95');
+ await expect(labels.nth(2)).toContainText('97');
+ expect(await labels.evaluateAll(items=>items.every(item=>item.scrollWidth<=item.clientWidth+2 && item.scrollHeight<=item.clientHeight+2))).toBeTruthy();
+ await page.screenshot({path:testInfo.outputPath('s03-page7-persian.png')});
 });
 
 test('session 3 XOR slide keeps its source diagram and truth table on mobile', async ({page}) => {

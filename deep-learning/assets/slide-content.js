@@ -1574,6 +1574,11 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && layout.translation_sha256==='847827d2070a64cee5f7a0e196bee576ac9a623d38e1d04d2771f58074aae669'){
     const slots={0:[.05,.10,.95,.21],1:[.05,.25,.95,.32],3:[.14,.69,.57,.74],4:[.13,.74,.57,.85],7:[.14,.88,.56,.95],8:[.25,.95,.48,.999],9:[.07,.34,.47,.385],10:[.06,.385,.48,.51],14:[.49,.455,.79,.525],17:[.81,.70,.95,.81]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];region.font=i===0?33:i===1?18:14;if(i!==0&&i!==1)region.align='center';}
+    imageTranslations=[
+      {rect:[.503,.32,.777,.37],text:'6 ماشین‌های لایه‌ای',background:'#f3eee5',color:'#171717',font:14,align:'center'},
+      {rect:[.53,.385,.777,.418],text:'6.1 شبکه‌های لایه‌ای TLUها، 95',background:'#f3eee5',color:'#171717',font:11,align:'center'},
+      {rect:[.53,.418,.777,.449],text:'6.2 ماشین‌های کمیته‌ای، 97',background:'#f3eee5',color:'#171717',font:11,align:'center'},
+    ];
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===13
       && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'

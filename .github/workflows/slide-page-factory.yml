@@ -1,0 +1,36 @@
+name: Slide page data factory
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'deep-learning/scripts/build_slide_pages.py'
+      - 'deep-learning/scripts/source_page_payloads.py'
+      - 'deep-learning/scripts/source_reader.py'
+      - 'deep-learning/content/translations/spring-2026/**'
+      - '.github/workflows/slide-page-factory.yml'
+permissions:
+  contents: read
+jobs:
+  page-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify every source page and generated hash
+        run: |
+          python3 deep-learning/scripts/build_slide_pages.py --output "$RUNNER_TEMP/slide-pages"
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          identity = json.loads(Path('deep-learning/data/metadata/spring-2026-slide-identity.json').read_text())
+          summary = json.loads((Path(os.environ['RUNNER_TEMP']) / 'slide-pages/build-summary.json').read_text())
+          assert summary['pages'] == sum(item['page_count'] for item in identity['records'])
+          assert len(summary['sessions']) == len(identity['records'])
+          print(f"Verified {summary['pages']} page-data files across {len(summary['sessions'])} sessions")
+          PY
+      - name: Keep small verification summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: slide-page-data-summary
+          path: ${{ runner.temp }}/slide-pages/build-summary.json
+          retention-days: 30

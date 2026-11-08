@@ -1111,6 +1111,10 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
         && layout.translation_sha256==='fa3c63736d5486dffe075512c789afbc15f8e96d2ee7c8d530b0aa6195faa3aa'){
       imageTranslations=[{rect:[.361,.621,.407,.657],text:'بازکردن',background:'#fff',color:'#000',font:11,align:'center'}];
     }
+    if(record.number===61 && record.source_text_sha256==='e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
+        && layout.translation_sha256==='964920c96f52d60c9c43c67ac8f49db4d87777ea0d7edc04a72289cf0f8daf5d'){
+      imageTranslations=[{rect:[.38,.69,.62,.81],text:'پایان',background:'transparent',color:'#fff',font:46,align:'center'}];
+    }
     const gates={
       55:['6bda73a2802b1b64c71d142c9476486ad3134b694f2530283f3ded2929f3e41b','aa1a92c82df85613ece56ee54d912657c7c179dc354d8a56388c37a9add2e2bb'],
       56:['fe58256f415717435184a8727809426f68031475be569201a2a5945e06c6ff91','10d17ce59e2af29b835f45d64453bf3f4119113ba091efbe07c793c66396b64e'],

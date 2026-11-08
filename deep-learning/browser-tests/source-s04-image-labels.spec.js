@@ -8,6 +8,7 @@ for (const [number, labels] of [
   [55, ['ورودی', 'دروازه ورودی', 'دروازه فراموشی', 'دروازه خروجی']],
   [56, ['ورودی', 'دروازه ورودی', 'دروازه فراموشی', 'دروازه خروجی']],
   [57, ['ورودی', 'دروازه ورودی', 'دروازه فراموشی', 'دروازه خروجی']],
+  [61, ['پایان']],
 ]) {
   test(`lesson 4 slide ${number} keeps translated labels on the source figure`, async ({ page }, testInfo) => {
     await page.goto(`/deep-learning/terms/spring-2026/s04/slides/#page=${number}`);

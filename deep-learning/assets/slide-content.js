@@ -325,6 +325,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const slots={0:[.04,.08,.97,.24],1:[.04,.27,.63,.40],3:[.04,.45,.63,.55],4:[.04,.59,.63,.71],6:[.04,.77,.63,.89]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===0?32:20;}if(i===1){region.color='#ffffff';region.manualAccents=[{text:'اتصال بازگشتی',color:'#ffc000'}];}}
   }
+  if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===12
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='e9d8b7a8bf6c31d8c782e49b48b13ceb8b497293093571a07da18a6b360b7f9f'
+      && layout.translation_sha256==='ea2be1abec593c7ed63897de1e81804b2f08834f73589c2d248e9cce91a02a6d') {
+    const slots={0:[.04,.09,.97,.22],1:[.07,.41,.34,.48],2:[.07,.48,.34,.57],4:[.48,.41,.74,.48],5:[.48,.48,.74,.57],7:[.48,.57,.74,.70],10:[.04,.26,.96,.36]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===0?30:i===10?18:16;}if(i===10)region.manualAccents=[{text:'افزودن حالت پنهان',color:'#ffc000'}];}
+  }
   // Reviewed placements for the four consecutive gradient-descent diagrams.
   if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===26
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'

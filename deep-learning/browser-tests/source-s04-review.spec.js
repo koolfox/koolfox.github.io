@@ -1,5 +1,27 @@
 import { test, expect } from '@playwright/test';
 
+test('RNN comparison retains each caption and both diagrams', async ({page}) => {
+  for(const width of [1440,390]){
+    await page.setViewportSize({width,height:850});
+    await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=12');
+    await page.waitForFunction(()=>window.sourceSlideReader?.ready && window.sourceSlideReader.page===12);
+    if(width===390){
+      const previous=await page.locator('#persian-page .reader-slide-stage').elementHandle();
+      await page.locator('[data-view-translation]').click();
+      if(previous)await page.waitForFunction(node=>!node.isConnected,previous);
+      await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+    }
+    const slide=page.locator('#persian-page');
+    await expect(slide).toHaveAttribute('data-layout','source-canvas-figure-companion');
+    await expect(slide.locator('.reader-slide-background')).toBeVisible();
+    await expect(slide.locator('.reader-slide-text')).toHaveCount(7);
+    for(const text of ['Feedforward Network','Recurrent Network','اتصال های دارای تاخیر زمانی'])
+      await expect(slide.locator('.reader-slide-text').filter({hasText:text}).first()).toBeVisible();
+    await expect(slide.locator('.reader-emphasis').filter({hasText:'افزودن حالت پنهان'})).toHaveCSS('color','rgb(255, 192, 0)');
+    await expect(slide.locator('.reader-slide-text').filter({hasText:'اتصال های دارای تاخیر زمانی'})).toHaveCSS('color','rgb(255, 192, 0)');
+  }
+});
+
 for (const width of [1440, 390]) {
   test(`RNN parameter question keeps the diagram at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 850 });

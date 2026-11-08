@@ -82,6 +82,8 @@ def main():
     published.append(json.loads((ROOT / 'animations/rnn-parity.record.json').read_text()))
     published.append(json.loads((ROOT / 'animations/train-test.record.json').read_text()))
     published.append(json.loads((ROOT / 'animations/capacity-boundary.record.json').read_text()))
+    published.append(json.loads((ROOT / 'animations/perceptron-steps.record.json').read_text()))
+    published.append(json.loads((ROOT / 'animations/xor-boundary.record.json').read_text()))
     (ROOT / 'animations/manifest.json').write_text(json.dumps({'schema_version': 1, 'films': published}, ensure_ascii=False, indent=2) + '\n')
 
 

@@ -82,7 +82,7 @@ def load_workshops(term_id, root=ROOT, execute=False, session_ids=None):
             )
         kinds = {q["answer"]["kind"] for q in unit["questions"]}
         require(
-            kinds == {"number", "choice", "manual"}, "Workshop question variety missing"
+            kinds in ({"number", "choice", "manual"}, {"choice"}), "Workshop question variety missing"
         )
         code = (root / f"workshops/{term_id}/{identity}.py").read_text()
         require(

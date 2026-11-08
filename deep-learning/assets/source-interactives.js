@@ -2,6 +2,8 @@
 const courseRoot=new URL('../',import.meta.url);
 const config=JSON.parse(document.querySelector('#source-reader-config').textContent);
 const films=[
+ {id:'perceptron-steps',session:'s02',pages:[25,26,27,28,29,30],title:'فیلم دو گام پرسپترون'},
+ {id:'xor-boundary',session:'s02',pages:[44],title:'فیلم مرز تصمیم XOR'},
  {id:'rnn-parity',session:'s04',pages:[27],title:'پخش حافظه زوجیت'},
  {id:'capacity-boundary',session:'s01',pages:[53],title:'فیلم مرز تصمیم'},
  {id:'train-test',session:'s01',pages:[39,40,41,42,43],title:'فیلم آموزش و آزمون'},

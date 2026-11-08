@@ -11,6 +11,15 @@ test('unrolled diagrams place the Persian label over the source word', async ({p
   }
 });
 
+for (const number of [26,27]) test(`activation plot labels stay on the figure on page ${number}`, async ({page},testInfo) => {
+  await page.goto(`/deep-learning/terms/spring-2026/s04/slides/#page=${number}`);
+  await page.waitForFunction(n => window.sourceSlideReader?.ready && window.sourceSlideReader.page === n, number);
+  const labels=page.locator('#persian-page .reader-image-translation');
+  await expect(labels.filter({hasText:'تابع های فعال سازی'})).toHaveCount(1);
+  if(number===26)await expect(labels.filter({hasText:'مشتق ها'})).toHaveCount(1);
+  await page.screenshot({path:testInfo.outputPath(`activation-labels-${number}.png`)});
+});
+
 for(const width of [1440,390]){
   test(`RNN unfolding retains each step and emphasis at ${width}px`,async({page},testInfo)=>{
     await page.setViewportSize({width,height:850});

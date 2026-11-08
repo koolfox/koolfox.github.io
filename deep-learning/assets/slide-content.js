@@ -2089,6 +2089,18 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && record.source_text_sha256===s04FigureLabels[0] && layout.translation_sha256===s04FigureLabels[1]){
     imageTranslations.push({rect:[.258,.695,.35,.741],text:'بازکردن',background:'#fff',color:'#000',font:20,align:'center'});
   }
+  const s04PlotLabels={
+    26:['9d5930cab1aa34127bf92484723905d0ccaab9703e996e0f2c2410b807039b63','f9040e8b5708c91c9f829727fd824b0dcc115e39ac633f4e0053f57f82cd3186'],
+    27:['9bacaf5cc01a0ab665ecd3f39ec648b9e51f59ee7d020ea0027cad7fe7ba59de','4c73ac498ec0e05b3d17ffa3717014ef04a1ee3ac015505a6199885b232524dd'],
+  }[record.number];
+  if(s04PlotLabels && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256===s04PlotLabels[0] && layout.translation_sha256===s04PlotLabels[1]){
+    if(record.number===26){
+      imageTranslations.push({rect:[.258,.396,.392,.42],text:'تابع های فعال سازی',background:'#fff',color:'#000',font:11,align:'center'});
+      imageTranslations.push({rect:[.644,.396,.721,.42],text:'مشتق ها',background:'#fff',color:'#000',font:11,align:'center'});
+    }else imageTranslations.push({rect:[.788,.014,.91,.037],text:'تابع های فعال سازی',background:'#fff',color:'#000',font:11,align:'center'});
+  }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

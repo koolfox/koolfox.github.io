@@ -1814,7 +1814,7 @@ export function expandSourceLayout(plan) {
       region.slot=candidate;left=boundary;changed=true;
     }
     // Preserve the top edge and use only empty space below the translated text.
-    const floor=Math.min(.97,bottom+(bottom-top)*.5,
+    const floor=Math.min(.995,bottom+(bottom-top)*.5,
       ...obstacles.filter(rect=>rect[0]<right&&rect[2]>left&&rect[1]>=bottom).map(rect=>rect[1]-.004));
     const taller=[left,top,right,floor];
     if(floor>bottom&&!obstacles.some(rect=>overlaps(taller,rect))){region.slot=taller;changed=true;}

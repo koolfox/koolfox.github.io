@@ -1078,6 +1078,18 @@ test('overflow retry can use empty space below without crossing another source r
  expect(result.slot[3]).toBeLessThanOrEqual(.336);
 });
 
+test('overflow retry can use clear space near the bottom of the slide',async({page})=>{
+ await page.goto(deck+'#page=2');await ready(page);
+ const slot=await page.evaluate(async()=>{
+  const {expandSourceLayout}=await import('/deep-learning/assets/slide-content.js');
+  const region={block:{source_lines:[0],fa:'نمونه'},slot:[.17,.93,.97,.974]};
+  const plan={reason:null,regions:[region],layout:{images:[],graphics:[],lines:[]},imageTranslations:[]};
+  return expandSourceLayout(plan).regions[0].slot;
+ });
+ expect(slot[3]).toBeGreaterThanOrEqual(.982);
+ expect(slot[3]).toBeLessThanOrEqual(.995);
+});
+
 test('overflow retry retains the source slide on representative pages',async({page},testInfo)=>{
  await page.setViewportSize({width:390,height:844});
  for(const [session,number] of [['s03',15],['s09',1]]){

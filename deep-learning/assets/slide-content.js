@@ -1083,7 +1083,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'){
     if(record.number===39 && record.source_text_sha256==='3b46f7af0c6aeaffd78c64f1ded81ca6631c965366fd08d3b50f218d195d2deb'
-        && layout.translation_sha256==='47e6f4983d47a2c37252bc141a4ed107bb2ff79c7052440c23fd3d214345f767'){
+        && layout.translation_sha256==='bb2e007bee053e5e8003d762cd001cd99a66363d50e89954d8c13bf191059811'){
       const labels=record.image_text[0].fa.split('؛');
       const boxes=[[.087,.244,.190,.286],[.226,.244,.348,.286],[.395,.244,.517,.286],[.595,.244,.735,.286],[.805,.244,.947,.286]];
       imageTranslations=labels.map((text,index)=>({rect:boxes[index],text:text.trim(),background:'#fff',color:'#000',font:16,align:'center'}));
@@ -2104,7 +2104,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===9
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='410c138d3bae03bbf04cea0268a0aad126b7765878a047dd5b13214742fdeae4'
-      && layout.translation_sha256==='e1ff50a1984de0c5ad563472740bd26c9bdf8774baeabe8508aed56a5ff34005'){
+      && layout.translation_sha256==='df4ec58ba8dc796caefe7a9721857e9837a6c03eff4be4cab1b4997f4b2f6ba1'){
     imageTranslations.push({rect:[.35,.578,.605,.647],text:'هواداران دوآتشه عاشق آن می شوند؛ برای بقیه، وقت گذرانی نسبتا خوبی است.',background:'#fff',color:'#242424',font:11,align:'right'});
     imageTranslations.push({rect:[.666,.554,.842,.626],text:'امروز سرگرم کننده است.',background:'#fff',color:'#000',font:15,align:'center'});
     imageTranslations.push({rect:[.682,.672,.825,.704],text:'چینی (سنتی)',background:'#fff',color:'#555',font:11,align:'center'});
@@ -2112,7 +2112,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===8
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='f59288a393682d132c08d2cc0e0d0221c6c5c9f487962c56f1fbf4548bdd2ca4'
-      && layout.translation_sha256==='74aaea2d6112602ba29eb3863d9454ac76168e753041521b4f7d55638e3f0365'){
+      && layout.translation_sha256==='f4115f9bf90dbdcfb5148de830dbc9916099210031efa64e788853d08404b1ec'){
     imageTranslations.push({rect:[.514,.338,.738,.477],text:'آنچه درباره The Last Jedi برایم از همه جالب تر است، بازگشت لوک در نقش مربی به جای شاگرد است؛ او با شکست در این نقش تازه دست و پنجه نرم می کند و بعد می خواهد آموزگاری خردمند و صبور باشد.',background:'#fff',color:'#242424',font:9,align:'right'});
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===11

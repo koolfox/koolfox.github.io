@@ -1,6 +1,47 @@
 import {test,expect} from '@playwright/test';
 
 for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
+ test(`session two agenda headings respect RTL at ${viewport.width}px`,async({page})=>{
+  await page.setViewportSize(viewport);
+  for(const number of [3,4,9]){
+   await page.goto(`/deep-learning/terms/spring-2026/s02/slides/#page=${number}`);
+   if(viewport.width<761)await page.locator('[data-view-translation]').click();
+   await page.waitForFunction(n=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===n,number);
+   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+   const geometry=await page.evaluate(()=>{
+    const stage=document.querySelector('#persian-page .reader-slide-stage').getBoundingClientRect();
+    const title=[...document.querySelectorAll('#persian-page .reader-slide-text')].find(node=>node.textContent.includes('موضوع'));
+    const box=title.getBoundingClientRect();
+    return {right:(box.right-stage.left)/stage.width,overflow:title.scrollWidth>title.clientWidth+2||title.scrollHeight>title.clientHeight+2};
+   });
+   expect(geometry.right).toBeGreaterThan(.85);expect(geometry.overflow).toBe(false);
+  }
+ });
+}
+
+for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
+ test(`session two cover follows the centered source layout at ${viewport.width}px`,async({page})=>{
+  await page.setViewportSize(viewport);
+  await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=1');
+  if(viewport.width<761)await page.locator('[data-view-translation]').click();
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+  const result=await page.evaluate(async()=>{
+   await document.fonts.ready;
+   const canvas=document.querySelector('#persian-page .reader-slide-stage');
+   const nodes=[...document.querySelectorAll('#persian-page .reader-slide-text')].filter(n=>n.textContent.trim());
+   const bounds=canvas.getBoundingClientRect();
+   return {texts:nodes.map(n=>n.textContent.trim()),fonts:nodes.map(n=>getComputedStyle(n).fontFamily),
+    centers:nodes.map(n=>{const r=n.getBoundingClientRect();return Math.abs((r.left+r.right)/2-(bounds.left+bounds.right)/2)/bounds.width}),
+    overflow:nodes.some(n=>n.scrollHeight>n.clientHeight+2||n.scrollWidth>n.clientWidth+2)};
+  });
+  expect(result.texts.join(' ')).toContain('جرقه');expect(result.texts.join(' ')).toContain('Danna Gurari');
+  expect(result.fonts.every(font=>font.startsWith('VazirmatnSlide'))).toBe(true);
+  expect(result.centers.every(distance=>distance<0.03)).toBe(true);expect(result.overflow).toBe(false);
+ });
+}
+
+for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
  test(`slide font loads without changing reader controls at ${viewport.width}px`,async({page})=>{
   await page.setViewportSize(viewport);
   await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=30');

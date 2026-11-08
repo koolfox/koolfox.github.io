@@ -1,6 +1,10 @@
 import { test, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { readPdfManifest } from '../assets/slide-offline-cache.js';
+import { readFile } from 'node:fs/promises';
+
+// Load the browser module without changing how the repository treats .js files.
+const moduleText = await readFile(new URL('../assets/slide-offline-cache.js', import.meta.url), 'utf8');
+const { readPdfManifest } = await import(`data:text/javascript;base64,${Buffer.from(moduleText).toString('base64')}`);
 
 const source = 'a'.repeat(64);
 const url = 'https://example.test/manifest.json?sha=' + source;

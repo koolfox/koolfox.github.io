@@ -1945,6 +1945,27 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(record.number===39){const slots={1:[.05,.78,.96,.83],2:[.05,.83,.96,.89],3:[.05,.89,.96,.96]};if(slots[i]){region.slot=slots[i];region.font=17;}}
     }
   }
+  const s04BpttPages={
+    41:['f5d069d5fbf417904854f0ba16af8c06005c1d5a2df7bbe81d52254e32f16b01','48e2a9ab00364888de43f19fa92a870ac343ba079e33038c52ea32b89c5f3b7d',[7,0,1,2,3,6,8]],
+    43:['fba713664fb38064ef0c40cf3f2df1415a8b79c09042950c22d1f2aa07f33553','e5884953e71008d02c12d6699b8b7c6267dea4199bda112c92b9da0ccf305297',[0,3,4,5,6,9,1]],
+    45:['f1645e75a8358b064d9d06826ad6c66a60fbbf202fd4abc9da4adf0033dc11ff','b4fdc75ada88cbde96e3961ef8ecadf411c28da8bc81aefc8adfeae011119097',[0,1,2,3,4,7,8]],
+  }[record.number];
+  if(s04BpttPages && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256===s04BpttPages[0] && layout.translation_sha256===s04BpttPages[1]){
+    const slots=[[.04,.09,.97,.22],[.05,.27,.90,.33],[.09,.38,.86,.46],[.09,.49,.68,.57],[.09,.61,.75,.79],[.09,.83,.85,.90],[.70,.47,.99,.60]];
+    for(const region of regions){const part=s04BpttPages[2].indexOf(region.block.source_lines[0]);if(part<0)continue;region.slot=slots[part];region.font=part===0?29:part===6?14:17;
+      if(part===2)region.manualAccents=[{text:'شبکه بازشده',color:'#ffc000'}];
+      if(part===4)region.manualAccents=[{text:'اشتراک وزن با جمع گرادیان ها در همه گام های زمانی',color:'#ffc000'}];
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===42
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='f6b19ce219de43934205645e317793cd69e4cee83ee89bbd2fa30d43ce7beb27'
+      && layout.translation_sha256==='6085a3f9308181e77ab8f0055a2bdcebba52c12dd3382db2f370a3517dcf52a3'){
+    const slots={0:[.04,.09,.97,.22],1:[.05,.27,.90,.33],2:[.08,.33,.90,.38],3:[.08,.91,.90,.97]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===0?29:17;}}
+  }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

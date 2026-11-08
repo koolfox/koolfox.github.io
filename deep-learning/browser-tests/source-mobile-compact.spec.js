@@ -58,3 +58,39 @@ test('fullscreen fallback keeps mobile controls and exits with Escape',async({br
   await expect(full).toHaveAttribute('aria-pressed','false');await expect(full).toBeFocused();
  }finally{await context.close();}
 });
+
+for(const viewport of [{width:390,height:844},{width:844,height:390}])test(`mobile shows both languages with Persian first at ${viewport.width}x${viewport.height}`,async({page},testInfo)=>{
+ await page.setViewportSize(viewport);
+ await page.goto('/deep-learning/terms/spring-2026/s08/slides/#page=4');
+ await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===4);
+ await page.locator('[data-view-both]').click();
+ await expect(page.locator('[data-view-both]')).toHaveAttribute('aria-pressed','true');
+ await expect(page.locator('#translation-panel')).toBeVisible();
+ await expect(page.locator('#original-panel')).toBeVisible();
+ const boxes=await page.evaluate(()=>{
+  const fa=document.querySelector('#translation-panel').getBoundingClientRect(),en=document.querySelector('#original-panel').getBoundingClientRect();
+  return {faTop:fa.top,faBottom:fa.bottom,enTop:en.top,scroll:document.querySelector('.reader-layout').scrollHeight,client:document.querySelector('.reader-layout').clientHeight};
+ });
+ expect(boxes.faTop).toBeLessThan(boxes.enTop);expect(boxes.faBottom).toBeLessThanOrEqual(boxes.enTop+1);expect(boxes.scroll).toBeGreaterThan(boxes.client);
+ await page.screenshot({path:testInfo.outputPath(`both-languages-${viewport.width}.png`)});
+ await page.locator('[data-next-page]').click();await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===5);
+ await expect(page.locator('[data-view-both]')).toHaveAttribute('aria-pressed','true');
+ await page.locator('[data-source-only-toggle]').click();await expect(page.locator('[data-view-source]')).toHaveAttribute('aria-pressed','true');
+ await page.locator('[data-source-only-toggle]').click();await expect(page.locator('[data-view-both]')).toHaveAttribute('aria-pressed','true');
+});
+
+test('slow page load shows a placeholder and clears it after completion',async({page})=>{
+ let release;const gate=new Promise(resolve=>{release=resolve;});let requested;
+ const seen=new Promise(resolve=>{requested=resolve;});
+ await page.route('**/s06-pages/manifest.json*',async route=>{requested();await gate;await route.continue();});
+ try{
+  await page.goto('/deep-learning/terms/spring-2026/s06/slides/#page=2',{waitUntil:'domcontentloaded'});
+  await seen;
+  await expect(page.locator('#original-panel .reader-placeholder')).toBeVisible();
+  await expect(page.locator('#original-panel')).toHaveAttribute('aria-busy','true');
+  release();
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===2);
+  await expect(page.locator('#original-panel .reader-placeholder')).toBeHidden();
+  await expect(page.locator('#original-panel')).toHaveAttribute('aria-busy','false');
+ }finally{release();}
+});

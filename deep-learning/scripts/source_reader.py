@@ -741,7 +741,7 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
 <link rel="stylesheet" href="{BASE}/assets/vendor/katex/katex.min.css">
 <link rel="stylesheet" href="{BASE}/assets/practice.css{asset_query}">
 <script type="module" src="{BASE}/assets/source-reader.js{asset_query}"></script>{interactives_script}</head>
-<body class="source-reader" data-course-term="{e(term['id'])}" data-course-session="{e(row['id'])}" data-mobile-view="source" data-reader-section="slides">
+<body class="source-reader" data-course-term="{e(term['id'])}" data-course-session="{e(row['id'])}" data-mobile-view="source" data-reader-section="slides" data-loading="true">
 <a class="skip" href="#reader">رفتن به اسلاید و ترجمه</a>
 <header class="reader-header">
 <div class="reader-heading"><a href="{BASE}/terms/{term_id}/" aria-label="بازگشت به فهرست اسلایدها" title="فهرست اسلایدها">فهرست اسلایدها</a>
@@ -766,16 +766,18 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
 <div class="reader-view-controls" role="group" aria-label="زبان نمایش اسلاید">
 <button type="button" data-view-source aria-pressed="false" aria-controls="original-panel">English</button>
 <button type="button" data-view-translation aria-pressed="false" aria-controls="translation-panel">فارسی</button>
-<button type="button" data-view-both aria-pressed="true" aria-controls="original-panel translation-panel">کنار هم</button>
+<button type="button" data-view-both aria-pressed="true" aria-controls="original-panel translation-panel">هر دو</button>
 </div></div>
 <p role="status" aria-live="polite" data-reader-status>در حال بارگیری اسلاید و ترجمه…</p>
 <progress data-pdf-progress max="100" value="0" aria-label="پیشرفت بارگیری اسلاید"></progress>
 <div class="reader-layout">
-<section id="original-panel" class="reader-original" aria-label="اسلاید">
+<section id="original-panel" class="reader-original" aria-label="اسلاید" aria-busy="true">
+<div class="reader-placeholder" aria-hidden="true"><span></span><span></span><span></span></div>
 <div class="source-page"><canvas id="source-canvas" width="960" height="540" role="img" aria-label="صفحهٔ اسلاید"></canvas>
 <div id="source-links" aria-label="پیوندهای اسلاید"></div></div>
 </section>
-<section id="translation-panel" class="reader-translation" aria-label="ترجمهٔ فارسی">
+<section id="translation-panel" class="reader-translation" aria-label="ترجمهٔ فارسی" aria-busy="true">
+<div class="reader-placeholder" aria-hidden="true"><span></span><span></span><span></span></div>
 <div id="persian-page" dir="rtl"></div>
 <details class="reader-source-text"><summary>متن انگلیسی</summary>
 <div data-source-text lang="en" dir="ltr"></div></details>

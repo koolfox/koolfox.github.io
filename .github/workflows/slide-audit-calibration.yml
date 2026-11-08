@@ -8,11 +8,12 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   calibration:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 330
     steps:
       - uses: actions/checkout@v7.0.1
       - uses: astral-sh/setup-uv@v10.3.0
@@ -44,11 +45,28 @@ jobs:
           assert all(row['status'] != 'error' and row.get('layout') for row in rows), rows
           assert all(row['visual_review'] == 'not_performed' for row in rows)
           PY
+      - name: Restore progress from an earlier attempt of this run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          name=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts" --paginate --jq '.artifacts[] | select(.expired == false) | .name' | grep -F "slide-inventory-$GITHUB_SHA-attempt-" | sort -V | tail -1)
+          if [ -n "$name" ]; then gh run download "$GITHUB_RUN_ID" --name "$name" --dir audit-report; fi
+      - name: Inventory all source pages
+        run: |
+          python3 - <<'PY' > /tmp/slide-sessions.txt
+          import glob, json
+          from pathlib import Path
+          for path in sorted(glob.glob('deep-learning/content/source-slides/spring-2026/s*.json')):
+              print(int(Path(path).stem[1:]), len(json.loads(Path(path).read_text())['pages']))
+          PY
+          while read -r session count; do
+            node deep-learning/browser-tests/slide-audit.mjs --base-url http://127.0.0.1:8000 --build-id "$GITHUB_SHA" --sessions "$session" --pages "1-$count" --viewports 390x844,1440x900 --output audit-report/inventory.jsonl
+          done < /tmp/slide-sessions.txt
       - name: Upload diagnostic measurements and error screenshots
         if: always()
         uses: actions/upload-artifact@v7.0.2
         with:
-          name: slide-calibration-${{ github.sha }}
+          name: slide-inventory-${{ github.sha }}-attempt-${{ github.run_attempt }}
           path: audit-report/
           if-no-files-found: ignore
           retention-days: 3

@@ -129,6 +129,7 @@ async function main() {
       await appendFile(output, `${JSON.stringify(record)}\n`);
       console.log(`${id} page ${number} ${viewport.width}x${viewport.height}: ${record.status}`);
       await context.close();
+      if (!browser.isConnected()) throw Error('Browser disconnected; progress was saved and the scan stopped');
     }
   } finally { await browser.close(); }
 }

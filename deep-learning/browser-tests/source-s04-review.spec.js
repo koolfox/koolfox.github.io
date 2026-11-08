@@ -184,3 +184,25 @@ test('sequential examples keep their four images and separate Persian labels', a
       await expect(slide.locator('.reader-slide-text').filter({hasText:text})).toBeVisible();
   }
 });
+
+test('sequence types preserve the three source examples and repeated labels', async ({page}) => {
+  for(const width of [1440,390]){
+    await page.setViewportSize({width,height:850});
+    await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=9');
+    await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+    if(width===390){
+      const previous=await page.locator('#persian-page .reader-slide-stage').elementHandle();
+      await page.locator('[data-view-translation]').click();
+      if(previous)await page.waitForFunction(node=>!node.isConnected,previous);
+      await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+    }
+    const slide=page.locator('#persian-page');
+    await expect(slide).toHaveAttribute('data-layout','source-canvas-figure-companion');
+    await expect(slide.locator('.reader-slide-background')).toBeVisible();
+    await expect(slide.locator('.reader-slide-text')).toHaveCount(15);
+    for(const text of ['One-to-Many','Many-to-One','Many-to-Many','38.5','مثبت؟ منفی؟ خنثی؟'])
+      await expect(slide.locator('.reader-slide-text').filter({hasText:text})).toBeVisible();
+    await expect(slide.locator('.reader-slide-text').filter({hasText:'ورودی: دنباله'})).toHaveCount(2);
+    await expect(slide.locator('.reader-slide-text').filter({hasText:'خروجی: دنباله'})).toHaveCount(2);
+  }
+});

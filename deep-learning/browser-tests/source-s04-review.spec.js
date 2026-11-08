@@ -241,7 +241,7 @@ test('RNN state equation keeps the diagram and its separate colored labels', asy
       await page.waitForFunction(()=>window.sourceSlideReader?.ready);
     }
     const slide=page.locator('#persian-page');
-    await expect(slide).toHaveAttribute('data-layout','source-canvas-figure-companion');
+    await expect(slide).toHaveAttribute('data-layout','source-canvas');
     await expect(slide.locator('.reader-slide-background')).toBeVisible();
     for(const text of ['حالت جدید','حالت قبلی','ورودی در گام زمانی','پارامترهای مدل'])
       await expect(slide.locator('.reader-slide-text').filter({hasText:text})).toBeVisible();

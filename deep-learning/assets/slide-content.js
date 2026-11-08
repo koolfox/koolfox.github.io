@@ -1302,7 +1302,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===19
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
-      && record.source_text_sha256==='7a6eb9e84aafb5aef3adefcb2ce8d3b9308b736058d2b8c61b7059adc048a3c9' && layout.translation_sha256==='739c7d7bdf533b8fab1b8780e1f731872d20840c7f4a2c197488f822c3618b27'){
+      && record.source_text_sha256==='7a6eb9e84aafb5aef3adefcb2ce8d3b9308b736058d2b8c61b7059adc048a3c9' && layout.translation_sha256==='59793b3f5a5929105a03e7b9f3d72b678d3912e78a16a288185a3ccbda7abb53'){
     const slots={1:[.04,.25,.97,.39],4:[.65,.49,.99,.60],6:[.01,.78,.31,.89],8:[.65,.78,.99,.89],10:[.10,.48,.31,.60]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];
       if(i===0){region.slot=[.04,.08,.98,.22];region.font=30;}
@@ -1310,7 +1310,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===8){region.clearRect=[.65,.83,.82,.875];region.maskSourceLines=[9];}
     }
   }
-  const trueModelHashes={21:'c48301a8ad99eca5186b14425af66eae4664d89dcc66bb138fde66dff66e1fef',22:'cdaaabdb69ab67ec3fa90cd594e9ea0ecf7bc1ab6169d6a2a250bdc628219b2b',23:'ebad0c094a2f23f2a4916525c4a293960da79f3605b3baf37f8987ba17e6ba2d',24:'73e30984b49d1a8c3440eb5bc13074f72e5e84f4321a84add2e5a51ab5c07492'};
+  const trueModelHashes={21:'cb239412a46c2cbd9aacd70783d609f63fd3296bfffe3e1eea9345f4e77da60d',22:'fda54424bca8df574d45802651899c059b02a47326392fc6cc2e8a9a306f5bf3',23:'ad3e7d9148433bedfffed0a1c9e0885856574bfc85900ec8406af537afbc5f3a',24:'ab60a838f7f61876bc4199fd0547f7cb1a9dee169c74cf062be23ea302baa54f'};
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02'
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
       && trueModelHashes[record.number]===layout.translation_sha256){
@@ -1330,7 +1330,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s02' && record.number===20
       && sourceIdentity.sourceSha256==='fd1415e6b0888e50a952c805477237eb48aa145a85926a931f435b6f112dc477'
       && record.source_text_sha256==='51c21430a260eb3982d4b11ea5fcfc837b9ed629e162530c6ff066409c6ddd41'
-      && layout.translation_sha256==='0fcc873299a8b3ef5a503d6a0d437d35fe96550ec333ef0878b373032f1763a6'){
+      && layout.translation_sha256==='1dfed53ba066a5a7d3c4c1f2acde4f7981ddf85035f7389703ab29aaefec2a99'){
     const slots={0:[.04,.08,.96,.22],1:[.04,.24,.96,.40],3:[.04,.435,.96,.51],4:[.06,.50,.45,.56],5:[.08,.56,.60,.645],6:[.08,.66,.45,.74],7:[.04,.85,.96,.96],9:[.58,.765,.97,.845],11:[.68,.56,.98,.615],12:[.68,.615,.98,.68]};
     for(const region of regions){const i=region.block.source_lines[0],slot=slots[i];if(slot)region.slot=slot;if(i===0)region.font=30;}
   }

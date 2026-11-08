@@ -8,13 +8,13 @@ TRANSLATION = Path(__file__).resolve().parents[1] / "content" / "translations" /
 
 
 class LessonTwoFirstPagesTests(unittest.TestCase):
-    def test_first_seventeen_pages_have_no_diacritics_in_persian_text(self):
-        pages = json.loads(TRANSLATION.read_text(encoding="utf-8"))["pages"][:17]
+    def test_first_twenty_four_pages_have_no_diacritics_in_persian_text(self):
+        pages = json.loads(TRANSLATION.read_text(encoding="utf-8"))["pages"][:24]
         for page in pages:
             for section in ("blocks", "image_text"):
                 for record in page.get(section, []):
                     with self.subTest(page=page["number"], section=section):
-                        self.assertIsNone(re.search(r"[\u064b-\u065f\u0670\u0626\u0624\u0623\u0625\u06c0]", record.get("fa", "")))
+                        self.assertIsNone(re.search(r"[\u064b-\u065f\u0670\u0621\u0626\u0624\u0623\u0625\u06c0]", record.get("fa", "")))
 
 
 if __name__ == "__main__":

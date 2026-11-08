@@ -47,6 +47,32 @@ export function renderNotebookResult(root, result) {
         });plot.append(table);
         if(value.length>32||value[0].length>32)plot.append(element('p','nb-status','نمایش ۳۲ سطر و ستون نخست؛ همهٔ مقدارها در دادهٔ خام هستند.'));
       }else{
+        // The horizontal position is the vector index; no time axis is assumed.
+        const points=value.slice(0,32), ns='http://www.w3.org/2000/svg';
+        const svg=document.createElementNS(ns,'svg');svg.classList.add('nb-result-line');
+        svg.setAttribute('viewBox','0 0 600 210');svg.setAttribute('role','group');
+        svg.setAttribute('aria-label',`نمودار ${name} بر حسب شماره مقدار`);
+        const scale=Math.max(...points.map(Math.abs))||1;
+        const normalized=points.map(number=>number/scale);
+        const low=Math.min(...normalized), high=Math.max(...normalized), span=high-low;
+        const xy=normalized.map((number,i)=>[40+(points.length===1?260:i*520/(points.length-1)),span?175-(number-low)/span*140:105]);
+        [[format(Math.max(...points)),40,20],[format(Math.min(...points)),40,204],['0',40,192],[String(points.length-1),560,192]].forEach(([label,x,y])=>{
+          const text=document.createElementNS(ns,'text');text.setAttribute('x',x);text.setAttribute('y',y);text.setAttribute('class','nb-line-label');text.textContent=label;svg.append(text);
+        });
+        const line=document.createElementNS(ns,'polyline');
+        line.setAttribute('points',xy.map(([x,y])=>`${x},${y}`).join(' '));
+        line.setAttribute('class','nb-line-path');svg.append(line);
+        const select=(number,i)=>{readout.textContent=`${name}[${i}] = ${number}`;readout.dir='ltr';};
+        points.forEach((number,i)=>{
+          const dot=document.createElementNS(ns,'circle');dot.setAttribute('cx',xy[i][0]);dot.setAttribute('cy',xy[i][1]);dot.setAttribute('r','7');
+          dot.setAttribute('class','nb-line-point');dot.setAttribute('tabindex','0');dot.setAttribute('role','button');
+          dot.setAttribute('aria-label',`${name}[${i}] = ${number}`);
+          dot.addEventListener('click',()=>select(number,i));dot.addEventListener('focus',()=>select(number,i));
+          dot.addEventListener('pointerenter',()=>select(number,i));
+          dot.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();select(number,i);}});
+          svg.append(dot);
+        });
+        const heading=element('p','nb-line-caption','مقدار بر اساس شماره در بردار');heading.dir='rtl';plot.append(heading,svg);
         const chart=element('div','nb-result-bars');chart.dir='ltr';chart.setAttribute('aria-label',name);
         const sample=value.slice(0,32),maximum=Math.max(1e-15,...sample.map(Math.abs));
         sample.forEach((number,i)=>{

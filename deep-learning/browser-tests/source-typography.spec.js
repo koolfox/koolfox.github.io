@@ -1,6 +1,25 @@
 import {test,expect} from '@playwright/test';
 
 for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
+ test(`session two agenda headings respect RTL at ${viewport.width}px`,async({page})=>{
+  await page.setViewportSize(viewport);
+  for(const number of [3,4,9]){
+   await page.goto(`/deep-learning/terms/spring-2026/s02/slides/#page=${number}`);
+   if(viewport.width<761)await page.locator('[data-view-translation]').click();
+   await page.waitForFunction(n=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===n,number);
+   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas');
+   const geometry=await page.evaluate(()=>{
+    const stage=document.querySelector('#persian-page .reader-slide-stage').getBoundingClientRect();
+    const title=[...document.querySelectorAll('#persian-page .reader-slide-text')].find(node=>node.textContent.includes('موضوع'));
+    const box=title.getBoundingClientRect();
+    return {right:(box.right-stage.left)/stage.width,overflow:title.scrollWidth>title.clientWidth+2||title.scrollHeight>title.clientHeight+2};
+   });
+   expect(geometry.right).toBeGreaterThan(.85);expect(geometry.overflow).toBe(false);
+  }
+ });
+}
+
+for(const viewport of [{width:1440,height:900},{width:390,height:844}]){
  test(`session two cover follows the centered source layout at ${viewport.width}px`,async({page})=>{
   await page.setViewportSize(viewport);
   await page.goto('/deep-learning/terms/spring-2026/s02/slides/#page=1');

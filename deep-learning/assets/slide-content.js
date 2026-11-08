@@ -1803,16 +1803,16 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===12
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='e9d8b7a8bf6c31d8c782e49b48b13ceb8b497293093571a07da18a6b360b7f9f'
-      && layout.translation_sha256==='ea2be1abec593c7ed63897de1e81804b2f08834f73589c2d248e9cce91a02a6d') {
-    const slots={0:[.04,.09,.97,.22],1:[.015,.40,.34,.49],2:[.015,.49,.34,.57],4:[.46,.40,.745,.49],5:[.46,.49,.745,.57],7:[.46,.57,.745,.70],10:[.04,.26,.96,.36]};
-    for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===0?32:i===10?20:18;}if(i===1||i===4)region.keepTermsTogether=true;if(i===10)region.manualAccents=[{text:'افزودن حالت پنهان',color:'#ffc000'}];}
+      && layout.translation_sha256==='d228be82837246307e0255dd3e52e4dd6266736e334101c2e0a6a3ba83428081') {
+    const slots={0:[.04,.09,.97,.235],1:[.015,.40,.34,.49],2:[.015,.49,.34,.57],4:[.46,.40,.745,.49],5:[.46,.49,.745,.57],7:[.46,.57,.745,.70],10:[.04,.26,.96,.36]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===0?32:i===10?20:18;}if(i===0||i===1||i===4)region.keepTermsTogether=true;if(i===10)region.manualAccents=[{text:'افزودن حالت پنهان',color:'#ffc000'}];}
   }
   if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===13
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='aaecda53dc8046c4b654f3082dfc3eab7a002066129d774e815a216b12801df9'
-      && layout.translation_sha256==='94b3f036de4bec665c5fb05dbde1dcdce136ad3cbe4779fa2df6d785fd803393') {
-    const slots={0:[.04,.09,.97,.22],1:[.065,.40,.39,.51],6:[.07,.68,.145,.78],8:[.17,.68,.235,.78],10:[.235,.68,.335,.78],12:[.07,.52,.28,.57],13:[.48,.41,.74,.48],14:[.48,.48,.74,.57],16:[.48,.57,.74,.70],19:[.04,.26,.96,.36]};
-    for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===0?30:i===19?18:i===1?17:i>=6&&i<=12?13:16;}if(i===19)region.manualAccents=[{text:'افزودن حالت پنهان',color:'#ffc000'}];}
+      && layout.translation_sha256==='176789d044727c916db47fd05ebfb2cb7575b5999e2856234db55ac025220e97') {
+    const slots={0:[.04,.09,.97,.235],1:[.065,.40,.39,.51],6:[.07,.68,.145,.78],8:[.17,.68,.235,.78],10:[.235,.68,.335,.78],12:[.07,.52,.28,.57],13:[.48,.41,.74,.48],14:[.48,.48,.74,.57],16:[.48,.57,.74,.70],19:[.04,.26,.96,.36]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===0?30:i===19?18:i===1?17:i>=6&&i<=12?13:16;}if(i===0)region.keepTermsTogether=true;if(i===19)region.manualAccents=[{text:'افزودن حالت پنهان',color:'#ffc000'}];}
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===14
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'

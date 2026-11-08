@@ -106,3 +106,10 @@ test('lesson 4 parity example preserves highlighted limitations', async ({ page 
   }
   await page.screenshot({path: testInfo.outputPath('lesson4-page7.png')});
 });
+
+for(const number of [12,13])test(`lesson 4 page ${number} keeps the bilingual title together`,async({page})=>{
+ await page.goto(`/deep-learning/terms/spring-2026/s04/slides/#page=${number}`);
+ await page.waitForFunction(n=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===n,number);
+ const term=page.locator('#persian-page .reader-slide-text bdi').filter({hasText:'Recurrent Neural Networks; RNNs'});
+ await expect(term).toHaveCount(1);await expect(term).toHaveCSS('white-space','nowrap');
+});

@@ -1080,6 +1080,34 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     for(const region of regions){const i=region.block.source_lines[0];region.slot=slots[i];region.font=i===0?32:[1,6,9].includes(i)?23:19;if(i!==0)region.align='center';}
   }
   let imageTranslations=[];
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'){
+    if(record.number===39 && record.source_text_sha256==='3b46f7af0c6aeaffd78c64f1ded81ca6631c965366fd08d3b50f218d195d2deb'
+        && layout.translation_sha256==='47e6f4983d47a2c37252bc141a4ed107bb2ff79c7052440c23fd3d214345f767'){
+      const labels=record.image_text[0].fa.split('؛');
+      const boxes=[[.087,.244,.190,.286],[.226,.244,.348,.286],[.395,.244,.517,.286],[.595,.244,.735,.286],[.805,.244,.947,.286]];
+      imageTranslations=labels.map((text,index)=>({rect:boxes[index],text:text.trim(),background:'#fff',color:'#000',font:16,align:'center'}));
+    }
+    if(record.number===40 && record.source_text_sha256==='652dd588a0207a30da560ebf6fb724f94fdc4c8cb505c3675e3360b21aefa17b'
+        && layout.translation_sha256==='10aa574186791f0efdd1f3d7b30b37af033b9b1cc9cf5edf2a161b785a19f0cc'){
+      imageTranslations=[
+        {rect:[.303,.825,.346,.855],text:'عمق',background:'#fff',color:'#000',font:14,align:'center'},
+        {rect:[.469,.936,.506,.963],text:'زمان',background:'#fff',color:'#000',font:14,align:'center'},
+      ];
+    }
+    if(record.number===42 && record.source_text_sha256==='f6b19ce219de43934205645e317793cd69e4cee83ee89bbd2fa30d43ce7beb27'
+        && layout.translation_sha256==='6085a3f9308181e77ab8f0055a2bdcebba52c12dd3382db2f370a3517dcf52a3'){
+      imageTranslations=[
+        {rect:[.123,.402,.179,.436],text:'داده ها',background:'#fff',color:'#000',font:13,align:'center'},
+        {rect:[.122,.482,.191,.518],text:'نمونه 1',background:'#fff',color:'#000',font:13,align:'center'},
+        {rect:[.195,.563,.265,.598],text:'نمونه 2',background:'#fff',color:'#000',font:13,align:'center'},
+        {rect:[.265,.645,.335,.680],text:'نمونه 3',background:'#fff',color:'#000',font:13,align:'center'},
+        {rect:[.309,.775,.405,.810],text:'نمونه N-L',background:'#fff',color:'#000',font:13,align:'center'},
+        {rect:[.606,.848,.650,.883],text:'ورودی',background:'#fff',color:'#000',font:13,align:'center'},
+        {rect:[.840,.848,.889,.883],text:'خروجی',background:'#fff',color:'#000',font:13,align:'center'},
+      ];
+    }
+  }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s01' && record.number===78
       && sourceIdentity.sourceSha256==='33f07553c15df2d9f37960fd45d54e5df3ab795eacea91a82af3cc1ffea9c593'
       && record.source_text_sha256==='3e6672c8e90af769505a90237127f2bc27368343fc4a4d4291e6c38c66310f52'

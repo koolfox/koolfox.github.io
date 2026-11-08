@@ -185,6 +185,8 @@ test('answer slides retain their parent heading and keyboard navigation moves fo
   const slides = page.locator('#lesson-slide section[data-kind=lesson]');
   const answer = slides.filter({has: page.locator('h3').filter({hasText:'توضیح پاسخ'})}).first();
   await expect(answer.locator('h2')).toHaveText('خودآزمایی');
+  const answerIndex = await answer.evaluate(node => [...node.parentElement.children].indexOf(node));
+  await expect(page.locator('#slide-select option').nth(answerIndex)).toContainText('توضیح پاسخ');
   await page.locator('body').click({position:{x:5,y:5}});
   await page.keyboard.press('ArrowLeft');
   await expect(page.locator('#lesson-slide')).toBeFocused();

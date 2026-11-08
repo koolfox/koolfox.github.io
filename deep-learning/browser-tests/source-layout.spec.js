@@ -1071,6 +1071,6 @@ test('overflow retry retains the source slide on representative pages',async({pa
   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout',/^source-canvas/);
   const overflow=await page.locator('#persian-page .reader-slide-text').evaluateAll(nodes=>nodes.some(node=>node.scrollWidth>node.clientWidth+2||node.scrollHeight>node.clientHeight+2));
   expect(overflow).toBeFalsy();
-  await testInfo.attach(`${session}-${number}-mobile`,{body:await page.screenshot(),contentType:'image/png'});
+  await page.screenshot({path:testInfo.outputPath(`${session}-${number}-mobile.png`)});
  }
 });

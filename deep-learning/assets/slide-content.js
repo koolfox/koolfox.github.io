@@ -1926,6 +1926,25 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && layout.translation_sha256==='1faf934bc6bf9fb06389fb918b681649d3bb44990f064be609759cfafb90d336'){
     for(const region of regions)if(region.block.source_lines[0]>0){region.slot=[.04,region.slot[1],.96,region.slot[3]];region.keepTermsTogether=true;}
   }
+  const s04SequencePages={
+    35:['0f85273a22defe53ca50c9de8b873fab373185ccbeb1661e8895eee37cfdd408','61ebb785e46abcc502ae5d3eff0bd720e55055c9f99501e9cd0c0ec8618a01b0'],
+    38:['3b03884cb8f26ded9d19c5874b72d7a869402b57b999219fad5c810ffbe5267b','e12378d2c8e87be936cedd8511723dbd9a0a695fd2d43d9c5be9e477bc678482'],
+    39:['3b46f7af0c6aeaffd78c64f1ded81ca6631c965366fd08d3b50f218d195d2deb','47e6f4983d47a2c37252bc141a4ed107bb2ff79c7052440c23fd3d214345f767'],
+  }[record.number];
+  if(s04SequencePages && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256===s04SequencePages[0] && layout.translation_sha256===s04SequencePages[1]){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(region.block.kind==='heading'){region.slot=[.04,.09,.97,.19];region.font=29;}
+      if(record.number===35){
+        if(i===0){region.slot=[.34,.25,.46,.30];region.font=13;}
+        if(i===2){region.slot=region.block.fa.startsWith('یادآوری')?[.35,.195,.70,.25]:[.02,.195,.30,.25];region.font=14;}
+        if(i===3){region.slot=[.03,.32,.26,.36];region.font=13;}
+      }
+      if(record.number===38){const slots={0:[.67,.55,.99,.67],5:[.67,.71,.99,.76],6:[.67,.76,.99,.80],7:[.67,.80,.99,.845],8:[.67,.845,.99,.90]};if(slots[i]){region.slot=slots[i];region.font=13;}}
+      if(record.number===39){const slots={1:[.05,.78,.96,.83],2:[.05,.83,.96,.89],3:[.05,.89,.96,.96]};if(slots[i]){region.slot=slots[i];region.font=17;}}
+    }
+  }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

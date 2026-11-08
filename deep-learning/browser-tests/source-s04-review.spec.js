@@ -1,5 +1,15 @@
 import { test, expect } from '@playwright/test';
 
+test('lesson 4 parity example preserves highlighted limitations', async ({ page }, testInfo) => {
+  await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=7');
+  await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 7);
+  const emphasis = page.locator('#persian-page .reader-emphasis');
+  for (const term of ['شبکه‌های پیش‌خور', 'حافظه ندارند', 'اندازه ورودی ثابت است']) {
+    await expect(emphasis.filter({hasText: term})).toHaveCSS('color', 'rgb(255, 192, 0)');
+  }
+  await page.screenshot({path: testInfo.outputPath('lesson4-page7.png')});
+});
+
 for (const number of [3, 4]) test(`lesson 4 agenda ${number} keeps the English term together`, async ({ page }, testInfo) => {
   await page.goto(`/deep-learning/terms/spring-2026/s04/slides/#page=${number}`);
   await page.waitForFunction(n => window.sourceSlideReader?.ready && window.sourceSlideReader.page === n, number);

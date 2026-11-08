@@ -1,5 +1,14 @@
 import { test, expect } from '@playwright/test';
 
+test('session 1 Copilot image displays Persian headings in place', async ({ page }, testInfo) => {
+  await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=6');
+  await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 6);
+  const labels = page.locator('#persian-page .reader-image-translation');
+  await expect(labels).toHaveCount(3);
+  await expect(labels.nth(1)).toContainText('پرکاربردترین ابزار هوش مصنوعی');
+  await page.screenshot({path: testInfo.outputPath('lesson1-page6.png')});
+});
+
 test('clinical note slide keeps its translated figure after a copy update', async ({ page }) => {
   for (const width of [390, 1400]) {
     await page.setViewportSize({ width, height: 850 });

@@ -1,0 +1,407 @@
+{
+  "status": "exploratory_not_validated",
+  "failures": [],
+  "started_utc": "2026-11-08T06:29:31.169608+00:00",
+  "limitations": [
+    "exploratory_not_validated; single seed, low search budget, one conformer",
+    "search region derived from bound 3WD5 reference: known-site bias",
+    "7TA3 monomer omits TNF trimer neighbors and uses five modeled sidechains",
+    "scores and contacts are not affinity, binding proof, or replacement evidence"
+  ],
+  "source_urls": [
+    "https://files.rcsb.org/download/3WD5.pdb",
+    "https://files.rcsb.org/download/7TA3.pdb"
+  ],
+  "script_sha256": "02767928b20fc54ac1def2716117c2199750033aa4d69b3d852a852b69e28570",
+  "versions": {
+    "rdkit": "2026.9.1",
+    "meeko": "0.8.0",
+    "biopython": "1.86",
+    "numpy": "2.5.4"
+  },
+  "tools": {
+    "vina": {
+      "sha256": "dbeeececfb8bd6e4da871335d1af5fe95f8c5d34955a7ba328272d4e39131a7b",
+      "version": "AutoDock Vina v1.2.7"
+    },
+    "mk_prepare_ligand.py": {
+      "sha256": "2a487d12690337f2c3de1acda05bfbca60d8b0792e0f9072a533b98cda7d375e"
+    },
+    "mk_export.py": {
+      "sha256": "9e25d9bdda9c943590ee6c84750869f65407d81962ea9aa46b1004d0c7547131"
+    }
+  },
+  "inputs": {
+    "3wd5": {
+      "path": "assets/3wd5.pdb",
+      "sha256": "fae6eee1b06b8cba0a466280dbc32563efaa54ec639afd921cb610d17debd216"
+    },
+    "7ta3": {
+      "path": "assets/tnf-peptide/7ta3.pdb",
+      "sha256": "3c90d11838c88ebb5501319b367c6ac89e16c67c9a84aa22d17d5a4708052de4"
+    },
+    "repaired": {
+      "path": "assets/tnf-peptide/receptor-repaired.pdb",
+      "sha256": "d99ecc346c2a59e1dae4569db461b4b295b8ab9d2b0674414d8cd92a33ed97ca"
+    },
+    "receptor": {
+      "path": "assets/tnf-peptide/receptor.pdbqt",
+      "sha256": "ef6112549c988297f3911490d9a5466cfcb9fbce65c262608f1b4963e7785e06"
+    },
+    "peptide": {
+      "path": "assets/manual-adalimumab-sequence-model.sdf",
+      "sha256": "e4bc38a2e0a4f152b87299288e19fc6b1b2770fd4370008f44b484c3703b8df4"
+    },
+    "model_report": {
+      "path": "data/processed/manual-adalimumab-model.json",
+      "sha256": "ab9c6b255edd81ba92b60cc28d8c9db45ededb46e5c01a95aa4a72a723a0f2b7"
+    },
+    "repair_report": {
+      "path": "data/processed/tnf-receptor-repair.json",
+      "sha256": "c9a7abadadff1c7a756fb0d98e9b6df20d778616e8100bbefee082b4574f96c3"
+    },
+    "preparation": {
+      "path": "data/metadata/tnf-peptide-preparation.json",
+      "sha256": "3b4ae7305ecd35a05ad4c00471e99a09f2150bf8c4d999d49533d8dd16535b5c"
+    },
+    "redock_report": {
+      "path": "data/processed/tnf-peptide-redock.json",
+      "sha256": "5e6c2899681018e29b52395ed90ccb5eb122d9568436cc5f79daf76cd0ee969e"
+    }
+  },
+  "receptor_qc": {
+    "pdb_heavy_count": 1111,
+    "pdbqt_heavy_count": 1111,
+    "missing": [],
+    "extra": [],
+    "coordinate_mismatches": [],
+    "element_mismatches": [],
+    "equivalent_terminal_oxygen_swaps": [
+      [
+        "B",
+        " 157 ",
+        "LEU",
+        "O"
+      ],
+      [
+        "B",
+        " 157 ",
+        "LEU",
+        "OXT"
+      ]
+    ],
+    "tolerance_angstrom": 0.002,
+    "passed": true
+  },
+  "input_qc": {
+    "graph_and_specified_stereo_match": true,
+    "spatial_stereo_match": true,
+    "bond_range_angstrom": [
+      0.9749993538459393,
+      1.5569461455040763
+    ],
+    "bad_bonds": [],
+    "nonlocal_overlaps": [],
+    "nonlocal_rule": "heavy pairs >=4 bonds apart, distance < 0.75 sum of RDKit vdW radii",
+    "failures": [],
+    "geometry_clean": true
+  },
+  "alignment": {
+    "matched_ca": 141,
+    "ca_rmsd_angstrom": 1.5440784561304537,
+    "mismatches_3wd5_7ta3_min_distance_to_fragment_angstrom": [
+      [
+        31,
+        "ASP",
+        "ARG",
+        14.223
+      ]
+    ],
+    "missing_7ta3_residue_min_distance_to_fragment_angstrom": [
+      [
+        6,
+        17.678
+      ],
+      [
+        7,
+        19.534
+      ],
+      [
+        103,
+        27.795
+      ],
+      [
+        104,
+        25.597
+      ],
+      [
+        105,
+        27.266
+      ],
+      [
+        106,
+        24.602
+      ],
+      [
+        107,
+        28.922
+      ],
+      [
+        108,
+        29.364
+      ],
+      [
+        109,
+        25.407
+      ],
+      [
+        110,
+        20.953
+      ]
+    ],
+    "rotation_3wd5_to_7ta3": [
+      [
+        -0.010359008703932084,
+        -0.42124881638275213,
+        0.9068859496291698
+      ],
+      [
+        0.2465283148693459,
+        -0.8800154535855751,
+        -0.40595146436274204
+      ],
+      [
+        0.9690802241849495,
+        0.21936781018805843,
+        0.11296584858683444
+      ]
+    ],
+    "translation_3wd5_to_7ta3": [
+      -35.64676073726595,
+      -34.570136070994835,
+      -28.69119578044087
+    ]
+  },
+  "center_angstrom": [
+    -2.0443561164910626,
+    -46.377946629671044,
+    -35.39407456057991
+  ],
+  "size_angstrom": [
+    24.0,
+    24.140740659948094,
+    28.379835678710116
+  ],
+  "parameters": {
+    "seed": 42,
+    "cpu": 1,
+    "exhaustiveness": 1,
+    "max_evals": 25000,
+    "num_modes": 3
+  },
+  "receptor_limitations": {
+    "method": "local experimental-copy side-chain templating",
+    "residues": [
+      {
+        "residue": 31,
+        "source_chain": "D",
+        "anchors": [
+          "N",
+          "CA",
+          "C",
+          "CB"
+        ],
+        "anchor_rmsd_angstrom": 0.03156780106984253,
+        "added": [
+          "CG",
+          "CD",
+          "NE",
+          "CZ",
+          "NH1",
+          "NH2"
+        ]
+      },
+      {
+        "residue": 72,
+        "source_chain": "D",
+        "anchors": [
+          "N",
+          "CA",
+          "C",
+          "CB"
+        ],
+        "anchor_rmsd_angstrom": 0.010357133238887995,
+        "added": [
+          "OG1",
+          "CG2"
+        ]
+      },
+      {
+        "residue": 88,
+        "source_chain": "D",
+        "anchors": [
+          "N",
+          "CA",
+          "C",
+          "CB"
+        ],
+        "anchor_rmsd_angstrom": 0.0201104702976216,
+        "added": [
+          "CG",
+          "CD",
+          "OE1",
+          "NE2"
+        ]
+      },
+      {
+        "residue": 102,
+        "source_chain": "D",
+        "anchors": [
+          "N",
+          "CA",
+          "C",
+          "CB"
+        ],
+        "anchor_rmsd_angstrom": 0.004627107107374661,
+        "added": [
+          "CG",
+          "CD",
+          "OE1",
+          "NE2"
+        ]
+      },
+      {
+        "residue": 112,
+        "source_chain": "D",
+        "anchors": [
+          "N",
+          "CA",
+          "C",
+          "CB"
+        ],
+        "anchor_rmsd_angstrom": 0.00595905227857671,
+        "added": [
+          "CG",
+          "CD",
+          "CE",
+          "NZ"
+        ]
+      }
+    ],
+    "existing_atoms_moved": false,
+    "backbone_loops_rebuilt": false,
+    "limitation": "Added side chains are modeled from a second crystal copy, not directly observed in B",
+    "rejected_alternative": "PDBFixer seed 0 created 1.66 angstrom Arg31/Asn34 N-N clash; not used"
+  },
+  "ligand_chemistry": "linear L sequence, uncapped N+ and C-, Asp-, neutral histidine; no solvent or receptor",
+  "commands": {
+    "path_placeholders": "<project>: structural-bioinformatics; <output>: new directory; <tool-dir>: configured directory of executables",
+    "prepare": [
+      "<tool-dir>/mk_prepare_ligand.py",
+      "-i",
+      "<project>/assets/manual-adalimumab-sequence-model.sdf",
+      "-o",
+      "<output>/ligand.pdbqt"
+    ],
+    "vina": [
+      "<tool-dir>/vina",
+      "--receptor",
+      "<project>/assets/tnf-peptide/receptor.pdbqt",
+      "--ligand",
+      "<output>/ligand.pdbqt",
+      "--out",
+      "<output>/poses.pdbqt",
+      "--seed",
+      "42",
+      "--cpu",
+      "1",
+      "--exhaustiveness",
+      "1",
+      "--max_evals",
+      "25000",
+      "--num_modes",
+      "3",
+      "--center_x",
+      "-2.0443561164910626",
+      "--center_y",
+      "-46.377946629671044",
+      "--center_z",
+      "-35.39407456057991",
+      "--size_x",
+      "24.0",
+      "--size_y",
+      "24.140740659948094",
+      "--size_z",
+      "28.379835678710116"
+    ],
+    "export": [
+      "<tool-dir>/mk_export.py",
+      "<output>/poses.pdbqt",
+      "-s",
+      "<output>/poses.sdf"
+    ]
+  },
+  "torsdof": 30,
+  "pose_qc": [
+    {
+      "graph_and_specified_stereo_match": true,
+      "spatial_stereo_match": true,
+      "bond_range_angstrom": [
+        0.9745337346649421,
+        1.5567334389676333
+      ],
+      "bad_bonds": [],
+      "nonlocal_overlaps": [],
+      "nonlocal_rule": "heavy pairs >=4 bonds apart, distance < 0.75 sum of RDKit vdW radii",
+      "failures": [
+        "heavy atom outside search box"
+      ],
+      "geometry_clean": false,
+      "pdbqt_sdf_coordinates": {
+        "passed": true,
+        "max_distance_angstrom": 0.0,
+        "mapped_heavy_atoms": 66,
+        "tolerance_angstrom": 0.002
+      },
+      "receptor_min_heavy_distance_angstrom": 2.7586390822067117,
+      "receptor_pairs_below_2_angstrom": 0,
+      "receptor_pairs_within_4_5_angstrom": 110,
+      "centroid_distance_to_reference_fragment_angstrom": 4.215519456274411,
+      "heavy_atoms_outside_box": 1
+    },
+    {
+      "graph_and_specified_stereo_match": true,
+      "spatial_stereo_match": true,
+      "bond_range_angstrom": [
+        0.9743454212957492,
+        1.5559916452217877
+      ],
+      "bad_bonds": [],
+      "nonlocal_overlaps": [],
+      "nonlocal_rule": "heavy pairs >=4 bonds apart, distance < 0.75 sum of RDKit vdW radii",
+      "failures": [],
+      "geometry_clean": true,
+      "pdbqt_sdf_coordinates": {
+        "passed": true,
+        "max_distance_angstrom": 0.0,
+        "mapped_heavy_atoms": 66,
+        "tolerance_angstrom": 0.002
+      },
+      "receptor_min_heavy_distance_angstrom": 2.738804053605058,
+      "receptor_pairs_below_2_angstrom": 0,
+      "receptor_pairs_within_4_5_angstrom": 40,
+      "centroid_distance_to_reference_fragment_angstrom": 2.9287535048113758,
+      "heavy_atoms_outside_box": 0
+    }
+  ],
+  "geometry_clean_pose_count": 1,
+  "finished_utc": "2026-11-08T06:29:38.636785+00:00",
+  "outputs_sha256": {
+    "vina.log": "e386fff272d342d8831c3e39f34bef778582dc744557aa65b88b4d64a039dcd5",
+    "poses.sdf": "abacbd0f77edc00ee6adb8fc8dace0cf3678c69826e8297e7cc1a953effcc66d",
+    "poses.pdbqt": "cc8b6031db4023e52e6d64f6adfe221687ec56ccfb97edf046de4b29cfa56f06",
+    "export.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "ligand.pdbqt": "01745e40754266e608d4825a0ba2e7d56c6462e009ad6725e870ff0e5ad7e1ee",
+    "prepare.log": "8f13b69c763278d183de36bb0149cb01e2557ff091944fa32edea3812f1eda92"
+  }
+}

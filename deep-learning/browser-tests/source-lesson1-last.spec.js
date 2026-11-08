@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('session 1 manual-rule flowchart retains its translated steps', async ({ page }) => {
+test('session 1 manual-rule flowchart retains its translated steps', async ({ page }, testInfo) => {
   await page.goto('/deep-learning/terms/spring-2026/s01/slides/#page=34');
   await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 34);
   const labels = page.locator('#persian-page .reader-image-translation');
@@ -8,6 +8,7 @@ test('session 1 manual-rule flowchart retains its translated steps', async ({ pa
   for (const text of ['بررسی مساله', 'نوشتن قواعد', 'ارزیابی', 'تحلیل خطاها', 'راه اندازی']) {
     await expect(labels.filter({ hasText: text })).toBeVisible();
   }
+  await page.screenshot({path: testInfo.outputPath('lesson1-page34.png')});
 });
 
 test('clinical note slide keeps its translated figure after a copy update', async ({ page }) => {

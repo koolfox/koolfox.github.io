@@ -1730,7 +1730,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && record.source_text_sha256==='6d80a5e0824a451c2b95a6e52d38ea78895a9a6d9d43b02de94ed05d0c9622b9'
       && layout.translation_sha256==='3b863af7a87abf49688b4ac7f44d661b2d95a991454fe7b15e0c00cd85d477a9'){
     const slots={0:[.05,.10,.96,.21],1:[.07,.27,.96,.38],3:[.07,.39,.96,.45],8:[.09,.53,.54,.58],14:[.09,.72,.56,.765],15:[.09,.765,.56,.805],16:[.09,.805,.56,.845],17:[.09,.845,.56,.885],18:[.09,.895,.56,.94],19:[.09,.94,.56,.99]};
-    for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];region.font=i===0?33:([1,3].includes(i)?18:12);if(i===1){region.color='#ffffff';region.manualAccents=[{text:'گرادیان',color:'#ffc000'},{text:'مشتق‌های جزئی برای چند متغیر',color:'#ffc000'}];}if(i===3)region.manualAccents=[{text:'مشتق',color:'#ffc000'}];}
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];region.font=i===0?33:([1,3].includes(i)?18:14);if(i===1){region.color='#ffffff';region.manualAccents=[{text:'گرادیان',color:'#ffc000'},{text:'مشتق‌های جزئی برای چند متغیر',color:'#ffc000'}];}if(i===3)region.manualAccents=[{text:'مشتق',color:'#ffc000'}];}
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===48
       && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
@@ -1738,6 +1738,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && layout.translation_sha256==='121c4a0c62c870d136a478bdf5b26320d3057e86f81450905890f0a3083a2115'){
     const slots={0:[.05,.10,.96,.21],1:[.07,.27,.96,.38],3:[.07,.39,.96,.45],8:[.09,.53,.54,.58],14:[.09,.72,.56,.77],15:[.09,.78,.56,.87],17:[.09,.87,.56,.91]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];region.font=i===0?33:([1,3].includes(i)?18:13);if(i===1){region.color='#ffffff';region.manualAccents=[{text:'گرادیان',color:'#ffc000'},{text:'مشتق‌های جزئی برای چند متغیر',color:'#ffc000'}];}if(i===3)region.manualAccents=[{text:'مشتق',color:'#ffc000'}];}
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && record.number===49
+      && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'
+      && record.source_text_sha256==='7b90a3de66d4a1351e0c1837ad80cc720dccf89399ea358a94fc843d727c023e'
+      && layout.translation_sha256==='8658cc42bddd11386bb8fa5b0c2ef17d950592d8e8afa23cbf972ea3dc9701f0'){
+    const slots={0:[.05,.10,.96,.21],1:[.07,.27,.96,.38],3:[.07,.39,.96,.45],7:[.09,.53,.54,.58],13:[.04,.72,.55,.76],14:[.04,.76,.55,.80],15:[.04,.80,.55,.84],16:[.04,.84,.55,.88],17:[.04,.88,.55,.93],18:[.04,.93,.55,.99]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];region.font=i===0?33:([1,3].includes(i)?18:14);if(i===1){region.color='#ffffff';region.manualAccents=[{text:'گرادیان',color:'#ffc000'},{text:'مشتق‌های جزئی برای چند متغیر',color:'#ffc000'}];}if(i===3)region.manualAccents=[{text:'مشتق',color:'#ffc000'}];}
   }
   const xorLayouts={
     8:['d2b3197385ac54cba5e2883e08b575286ecb53ec32490248714c327d28b2f53b','414db0665fe15478a7298705f8437c61179a99157138f11dc87c6f4df357d677'],

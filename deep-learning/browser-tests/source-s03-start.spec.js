@@ -345,3 +345,18 @@ for (const viewport of [{width:1440,height:900},{width:390,height:844}]) {
   }
  });
 }
+
+for (const viewport of [{width:1440,height:900},{width:390,height:844}]) {
+ test(`session 3 page 49 retains the gradient plot and values at ${viewport.width}px`, async ({page}) => {
+  await page.setViewportSize(viewport);
+  await page.goto('/deep-learning/terms/spring-2026/s03/slides/#page=49');
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready && sourceSlideReader.page===49);
+  if(viewport.width<500){const old=await page.locator('#persian-page .reader-slide-stage').elementHandle();await page.locator('[data-view-translation]').click();await page.waitForFunction(node=>!node.isConnected,old)}
+  const slide=page.locator('#persian-page');
+  await expect(slide).toHaveAttribute('data-layout','source-canvas');
+  await expect(slide.locator('.reader-slide-background')).toBeVisible();
+  const text=await slide.textContent();
+  for(const value of ['8.8904','8.989004','8.99890004','10.96','10.996','10.9996']) expect(text).toContain(value);
+  expect(await slide.locator('.reader-slide-text').evaluateAll(items=>items.every(item=>item.scrollWidth<=item.clientWidth+2 && item.scrollHeight<=item.clientHeight+2))).toBeTruthy();
+ });
+}

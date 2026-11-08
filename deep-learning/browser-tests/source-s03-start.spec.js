@@ -19,6 +19,9 @@ for (const viewport of [{width:1440,height:900},{width:390,height:844}]) {
    } else {
     await expect(nodes.filter({hasText:'100,000,000,000'})).toBeVisible();
     await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
+    const labels=page.locator('#persian-page .reader-image-translation');
+    await expect(labels).toHaveCount(5);
+    for (const label of ['مغز','نخاع','سلول عصبی','دستگاه عصبی مرکزی','دستگاه عصبی محیطی']) await expect(labels.filter({hasText:label})).toHaveCount(1);
    }
    expect(await nodes.evaluateAll(items=>items.every(item=>item.scrollWidth<=item.clientWidth+2 && item.scrollHeight<=item.clientHeight+2))).toBeTruthy();
   }

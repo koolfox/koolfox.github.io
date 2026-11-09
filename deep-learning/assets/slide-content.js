@@ -1079,6 +1079,34 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const slots={0:[.05,.10,.95,.21],1:[.34,.67,.59,.73],2:[.30,.74,.63,.97],6:[.34,.44,.59,.50],7:[.26,.51,.67,.63],9:[.34,.26,.59,.32],10:[.24,.33,.69,.40]};
     for(const region of regions){const i=region.block.source_lines[0];region.slot=slots[i];region.font=i===0?32:[1,6,9].includes(i)?23:19;if(i!==0)region.align='center';}
   }
+  const s05Networks={"41":["251c99ab2cd44a32244cf344081e9e3059aeaf0dabf06ab79f132bff7beee917","217cd3dd45fd1179eaf416231996f14a249056c7812e67effb581c15da1206e5"],"42":["780bda5e890d663eddb901d99a49ca468e37eaa728657624da7f8428353f1a15","55b05d12951cbe2ea3f6dd86fa3db5e09c515b9e9d82eaa15db78d07ed6fd996"],"43":["0df77321705824fd65241a1bb8e35baee50c6fd4d0ed8d2c4c6778c11849661c","6e2c0f6a223ba1fef5aebe10fa6f243babc24bcc0f0174c336a8cff0a16615fa"],"44":["9904a2b5880e7af0ed488bf66e20b8362ff6d038b1ef507cc944f22d0fd2ff3c","42463716baaa2313801b0b683649355b71e9e26dc76e4a107ca34f3e58709492"],"45":["e372fb51286c6803aee84a9515c506ec159e0efb4660f4aa574c3bb78997e20c","ac6778cfc6b6138f4a69fd9f07c971e0df1af1792b807d0e693cc5bcb7afe895"]}[record.number];
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s05' && s05Networks
+      && sourceIdentity.sourceSha256==='f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7'
+      && record.source_text_sha256===s05Networks[0] && layout.translation_sha256===s05Networks[1]){
+    for(const region of regions){const i=region.block.source_lines[0],n=record.number;
+      if(i===0){region.slot=[.04,.09,.96,.23];region.font=32;}
+      if(n===41 && i===1){region.slot=region.block.fa.startsWith('ورودی')?[.04,.65,.12,.73]:[.21,.65,.30,.73];region.font=18;region.align='center';}
+      if(n===41 && i===2){region.slot=[.39,.62,.49,.73];region.font=17;region.align='center';}
+      if(n>=43 && i===1){region.slot=[.09,.27,.18,.33];region.font=18;region.align='center';}
+      if(n===43 && i===3){region.slot=[.30,.35,.42,.41];region.font=18;region.align='center';}
+      if(n>=44 && i===4){region.slot=[.30,.20,.42,.26];region.font=18;region.align='center';}
+      if(n===43 && i===5){region.slot=[.64,.36,.99,.55];region.font=18;}
+      if(n===44 && i===7){region.slot=[.28,.88,.98,.99];region.font=18;region.align='center';}
+      if(n===45 && i===7){region.slot=[.02,.81,.30,.95];region.font=17;region.align='center';}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s05' && record.number===49
+      && sourceIdentity.sourceSha256==='f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7'
+      && record.source_text_sha256==='d21fe764db739bc690ada9a61e12f4227e04a07aea5a91db6db797f2f3222ff6'
+      && layout.translation_sha256==='cbf280cb62991772c72f750eaba3c77e8abbb65920f5a53becf3bd0f79fe06de'){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===0){region.slot=[.04,.09,.96,.23];region.font=32;}
+      if(i===1){region.slot=[.05,.26,.95,.325];region.font=19;}
+      if(i===2){region.slot=[.05,.325,.95,.39];region.font=19;}
+      if(i===3){region.slot=[.04,.39,.96,.46];region.font=16;}
+      if(i===4){region.slot=[.04,.46,.16,.51];region.font=16;}
+    }
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'){

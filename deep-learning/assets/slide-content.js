@@ -1114,6 +1114,16 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===5 && region.block.fa.startsWith('توجه')){region.slot=[.72,.60,.99,.78];region.font=15;}
     }
   }
+  const s05FilterHashes={27:['86093944cd0d0f1382f128953d4f21d6b5e4be722ac83454d02c59e6eb738703','65028ef7c0310c6cc3e47eda034987144cac2b6e0ef07a3a535509b07a8dbacd'],28:['96f254df9fb6aed925265152feddcad92610a5a263c99d6578147bfdb355a054','dbda397c3893520663076b8c667959ed44ef7bf5399abca269c9d14a9e582a3e'],29:['f99b3bbc274d9be1b619b276b0a277565ac9cabb3ed0fc2337bed3b484ce92bc','def554425466fcccc3aa89fa4b99a5b7afca18d9368103f7613eafa0970595e0'],30:['4f89a8aaceb62d86d58d2c4a8f1e1eb32d5dbf7b3d8648fd45ca8721af50a75e','1b2b8c20ed74451385a92c3002f6ef8251ed0a74a8365a9697d796a2ac8da6a2']}[record.number];
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s05' && s05FilterHashes
+      && sourceIdentity.sourceSha256==='f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7'
+      && record.source_text_sha256===s05FilterHashes[0] && layout.translation_sha256===s05FilterHashes[1]){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===4){region.slot=[.17,.47,.33,.54];region.font=18;region.align='center';}
+      if(i===13 && region.block.fa.startsWith('ورودی')){region.slot=[.40,.47,.53,.54];region.font=18;region.align='center';}
+      if(i===13 && region.block.fa.startsWith('نقشه')){region.slot=[.66,.47,.84,.54];region.font=18;region.align='center';}
+    }
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'){

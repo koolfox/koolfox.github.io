@@ -1089,6 +1089,12 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===13 && region.block.fa.startsWith('نقشه')){region.slot=[.66,.47,.84,.54];region.font=18;region.align='center';}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s05' && record.number===40
+      && sourceIdentity.sourceSha256==='f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7'
+      && record.source_text_sha256==='f933f44d413f9e1e2268537b1cbb8f481396916beae1353b48250bb57e711b72'
+      && layout.translation_sha256==='39d691be5fb3191d3a895af963907edc71c6a155a23ecad575a0e0b927c645c1'){
+    for(const region of regions){if(region.block.source_lines[0]===1){region.slot=[.10,.91,.90,.99];region.font=18;region.align='center';}}
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'){

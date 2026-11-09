@@ -877,15 +877,21 @@
       "number": 37,
       "source_text_sha256": "8c3ff0749941d7c49e2a033a2faca0b748f9a6ad9701df0c20bea2cbdc797ec9",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
-      "example_ids": [],
+      "question_coverage": "partial",
+      "question_ids": [
+        "source-pattern-highest",
+        "source-pattern-window",
+        "source-pattern-threshold"
+      ],
+      "example_ids": [
+        "source-pattern"
+      ],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
       "review_scope": "source_prompt_inventory",
@@ -895,7 +901,9 @@
           19
         ],
         "image_label_indices": []
-      }
+      },
+      "review_basis": "rendered_source_figure_and_exact_arithmetic",
+      "prompt_reconciliation": "source_question_explored_without_assumed_threshold"
     },
     {
       "number": 38,
@@ -2458,6 +2466,66 @@
       "reviewed": true,
       "pages": [
         10
+      ]
+    },
+    {
+      "id": "source-pattern-highest",
+      "source_kind": "original",
+      "source_page": 37,
+      "prompt_fa": "در نقشه ویژگی اسلاید، بزرگترین پاسخ چند است؟",
+      "solution_fa": "چهار خانه پاسخ 4 دارند؛ این بزرگترین عدد نقشه است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "2",
+          "3",
+          "4"
+        ],
+        "correct_index": 2
+      },
+      "reviewed": true,
+      "pages": [
+        37
+      ]
+    },
+    {
+      "id": "source-pattern-window",
+      "source_kind": "original",
+      "source_page": 37,
+      "prompt_fa": "برای خانه سطر صفر و ستون صفر، پنجره ورودی کدام است؟",
+      "solution_fa": "سه سطر و سه ستون نخست تصویر انتخاب می‌شوند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "[[1,1,1],[0,1,1],[0,0,1]]",
+          "[[1,1,0],[1,1,1],[0,1,1]]",
+          "[[0,0,1],[0,0,1],[0,1,1]]"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true,
+      "pages": [
+        37
+      ]
+    },
+    {
+      "id": "source-pattern-threshold",
+      "source_kind": "original",
+      "source_page": 37,
+      "prompt_fa": "آیا خود اسلاید آستانه عددی برای تشخیص حضور الگو تعیین کرده است؟",
+      "solution_fa": "اسلاید پاسخ بزرگ را مطرح می‌کند، ولی آستانه عددی مشخصی نمی‌دهد.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "بله، 4",
+          "بله، 5",
+          "خیر"
+        ],
+        "correct_index": 2
+      },
+      "reviewed": true,
+      "pages": [
+        37
       ]
     }
   ]

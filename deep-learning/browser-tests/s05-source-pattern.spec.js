@@ -9,10 +9,12 @@ test('slide 37 explores the selected source window and its response', async ({ p
   await expect(frame.locator('[data-notebook-run-all]')).toBeVisible();
   const codeFrame = page.frames().find(item => item.url().includes('/practice/'));
   await codeFrame.waitForFunction(() => window.studentNotebook?.cells);
-  const sources = await codeFrame.evaluate(() => window.studentNotebook.cells.map(cell => cell.source));
-  const index = sources.findIndex(source => source.includes('selected_row = 0'));
-  expect(index).toBeGreaterThanOrEqual(0);
-  await codeFrame.locator('[data-notebook-code]').nth(index).fill(sources[index].replace('selected_row = 0', 'selected_row = 1').replace('selected_column = 0', 'selected_column = 2'));
+  for (const [before, after] of [['selected_row = 0', 'selected_row = 1'], ['selected_column = 0', 'selected_column = 2']]) {
+    const current = await codeFrame.evaluate(() => window.studentNotebook.cells.map(cell => cell.source));
+    const index = current.findIndex(source => source.includes(before));
+    expect(index).toBeGreaterThanOrEqual(0);
+    await codeFrame.locator('[data-notebook-code]').nth(index).fill(current[index].replace(before, after));
+  }
   await codeFrame.locator('[data-notebook-run-all]').click();
   await codeFrame.waitForFunction(() => window.studentNotebook.record?.ok, null, { timeout: 90000 });
   const result = await codeFrame.evaluate(() => window.studentNotebook.record.outputs.at(-1).result);

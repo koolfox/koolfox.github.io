@@ -481,6 +481,15 @@
       "verified": true,
       "fa": "در صفحه پیش تابع خروجی φ فقط مقدارهای منفی یک و مثبت یک دارد؛ بنابراین برچسب φ(wᵀx)=۰ در شکل با آن تعریف سازگار نیست. مرز تصمیم را می‌توان با امتیاز پیش از اعمال تابع، یعنی wᵀx=۰، نشان داد.",
       "verification": "Source page 16 defines the step output as +1 or -1; source page 17 labels its boundary φ(wᵀx)=0. The pre-activation wᵀx=0 is the boundary in page 16."
+    },
+    {
+      "session_id": "s05",
+      "page": 49,
+      "source_sha256": "f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "تجمیع بیشینه برای هر جابه جایی خروجی یکسان تضمین نمی کند. اگر ویژگی از مرز پنجره تجمیع عبور کند، مکان آن در خروجی می تواند تغییر کند؛ شکل بالا یک نمونه با خروجی یکسان را نشان می دهد.",
+      "verification": "A one-dimensional max-pooling counterexample with pool size 2 and stride 2: [1,0,0,0] pools to [1,0], while the shifted input [0,0,1,0] pools to [0,1]."
     }
   ]
 }

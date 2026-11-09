@@ -1079,6 +1079,16 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const slots={0:[.05,.10,.95,.21],1:[.34,.67,.59,.73],2:[.30,.74,.63,.97],6:[.34,.44,.59,.50],7:[.26,.51,.67,.63],9:[.34,.26,.59,.32],10:[.24,.33,.69,.40]};
     for(const region of regions){const i=region.block.source_lines[0];region.slot=slots[i];region.font=i===0?32:[1,6,9].includes(i)?23:19;if(i!==0)region.align='center';}
   }
+  const s05FilterContinuation={"31":["3a2f6d79f2d434b8fc6fdfb00b75a6b4c48768c7ac32fa6797582899162808de","4e43c3f8a26a74f0cc6eb6182fa2c53232fc0bf995d70a44f44cd9bc415f201a"],"32":["790d7c1defecba9091c7f164ca9a55d555703fddf677da31025502d069674cc4","027737573ca33fd4f6357f3ab0fb308e35c7794a1ecb553dd63ff27a24c9362a"],"33":["591a52d77c8034e0911e249daaea0f8d17b6bb599fd560f0797d0f3e0c285b94","a1a94d126d58b4b56e61e1a23f6c56679194f596a2d4a951eca57e8365aead70"],"34":["cdbb7988811e5c31bf82e1f6422e88bb13a27c756ead5a5db343bb0ef02df1b0","cf1dd91c6b9cc15993d84df47855e0e9ae3594297d3009d7fcef7e94b585b119"],"35":["52841b2d89d1e0c16c4c26d2aed9020319d749210909852af9d691800bb273bb","f56c3dea3d3e3ae158d13d3f08f83e44450f886572dea8936fabe94a42a40829"],"36":["f8ca0fcf853b151de6ace9f96cc62c9d69e335640574077a184811a42459f47c","b5b19865229e0010d71669b320966fec7b2ddacf5978bd49f177ce9a422710bb"],"37":["8c3ff0749941d7c49e2a033a2faca0b748f9a6ad9701df0c20bea2cbdc797ec9","6418143f6de8dd3c44599ec7ffd6f3375f99ae6fb7c9e29c98e3bee049c67122"]}[record.number];
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s05' && s05FilterContinuation
+      && sourceIdentity.sourceSha256==='f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7'
+      && record.source_text_sha256===s05FilterContinuation[0] && layout.translation_sha256===s05FilterContinuation[1]){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(i===4){region.slot=[.17,.47,.33,.54];region.font=18;region.align='center';}
+      if(i===13 && region.block.fa.startsWith('ورودی')){region.slot=[.40,.47,.53,.54];region.font=18;region.align='center';}
+      if(i===13 && region.block.fa.startsWith('نقشه')){region.slot=[.66,.47,.84,.54];region.font=18;region.align='center';}
+    }
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'){

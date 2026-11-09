@@ -676,6 +676,89 @@
           }
         }
       ]
+    },
+    {
+      "id": "cross-entropy",
+      "title_fa": "کاوش آنتروپی متقاطع و احتمال کلاس درست",
+      "pages": [
+        46,
+        47,
+        48
+      ],
+      "code_file": "s04_cross_entropy.py",
+      "starter_sha256": "a6d254506e99d1ec86e0f1b2d15dc65e6a23be49a58f6789d7d8b0b494e23391",
+      "reference": {
+        "target": "e",
+        "probability": 0.1,
+        "loss_ln": 2.3025850929940455,
+        "loss_log10": 1.0,
+        "curve_probabilities": [
+          0.01,
+          0.05,
+          0.1,
+          0.2,
+          0.5,
+          1.0
+        ],
+        "curve_loss": [
+          4.605170185988091,
+          2.995732273553991,
+          2.3025850929940455,
+          1.6094379124341003,
+          0.6931471805599453,
+          -0.0
+        ]
+      },
+      "questions": [
+        {
+          "id": "figure",
+          "source_kind": "original",
+          "source_page": 46,
+          "prompt_fa": "در توزیع شکل، احتمال حرف o چقدر است؟",
+          "solution_fa": "در شکل مقدار o برابر 0.65 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "0.05",
+              "0.1",
+              "0.65"
+            ],
+            "correct_index": 2
+          }
+        },
+        {
+          "id": "one-hot",
+          "source_kind": "original",
+          "source_page": 47,
+          "prompt_fa": "اگر هدف one-hot باشد، زیان آنتروپی متقاطع به چه عبارتی تبدیل میشود؟",
+          "solution_fa": "فقط جمله کلاس درست باقی میماند: منفی لگاریتم احتمال آن کلاس.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "منفی لگاریتم احتمال کلاس درست",
+              "جمع همه احتمال ها",
+              "احتمال بزرگترین کلاس"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "range",
+          "source_kind": "original",
+          "source_page": 48,
+          "prompt_fa": "وقتی احتمال کلاس درست به صفر نزدیک شود زیان چه میشود؟",
+          "solution_fa": "منفی لگاریتم طبیعی به سمت بینهایت میرود؛ در احتمال مثبت، مقدار متناهی است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "به صفر نزدیک میشود",
+              "به سمت بینهایت افزایش می یابد",
+              "همیشه برابر یک است"
+            ],
+            "correct_index": 1
+          }
+        }
+      ]
     }
   ]
 }

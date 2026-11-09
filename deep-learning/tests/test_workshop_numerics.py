@@ -420,8 +420,14 @@ class WorkshopNumericalTests(unittest.TestCase):
 
     def test_source_convolution_grid_and_shared_weight_count(self):
         scope = execute("s05")
+        self.assertEqual(scope["result"]["feature_map"], [[4, 3, 4], [2, 4, 3], [2, 3, 4]])
+        self.assertEqual(scope["result"]["weight_count"], 9)
         self.assertEqual(scope["result"]["source_feature_map"], [[4, 3, 4], [2, 4, 3], [2, 3, 4]])
         self.assertEqual(scope["result"]["source_weight_count"], 9)
+        self.assertEqual(scope["correlate"](scope["image"], scope["kernel"], 2), [[4, 4], [2, 4]])
+        changed_kernel = [[1, 0, 1], [0, 1, 0], [1, 0, -1]]
+        self.assertEqual(scope["correlate"](scope["image"], changed_kernel, 1),
+                         [[2, 1, 2], [0, 2, 3], [0, 3, 4]])
         # A rectangular all-one filter sums each horizontal pair, with no flip.
         self.assertEqual(scope["correlate"]([[1, 2, 3], [4, 5, 6]], [[1, 1]], 1), [[3, 5], [9, 11]])
         for values, kernel, stride in [([], [[1]], 1), ([[1, 2], [3]], [[1]], 1), ([[1]], [[1, 2]], 1), ([[1]], [[1]], 0)]:

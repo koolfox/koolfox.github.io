@@ -1987,6 +1987,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       else if(slots[i]){region.slot=slots[i];region.font=i===5||i===7?18:13;}
     }
   }
+  if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s05' && record.number===1
+      && sourceIdentity.sourceSha256==='f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7'
+      && record.source_text_sha256==='8b164107255622992616ea16711f18e111c483b75c23b15742895f2563ef9b0d'
+      && layout.translation_sha256==='5b0285036445feb75055bda9b32a04b0b1113e40467bb2b850bc932a1e56a848'){
+    const slots={0:[.04,.22,.96,.48],2:[.12,.60,.88,.68],3:[.08,.685,.92,.745],4:[.20,.75,.80,.80]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.align='center';region.font=i===0?35:i===2?25:21;region.keepTermsTogether=true;}}
+  }
   if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===1
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='63d01824a8df3538efa44d7f1f5f51556ac56d610e5bd0de32470f6c535e30f5'

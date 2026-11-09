@@ -16,8 +16,11 @@ old_contribution = forget_gate * previous_cell
 new_contribution = input_gate * candidate
 cell = old_contribution + new_contribution
 hidden = output_gate * math.tanh(cell)
+# مشتق مسیر مستقیم با ثابت گرفتن دروازه ها؛ این مشتق کل شبکه نیست.
+direct_derivative = forget_gate
 print('این سلول شماتیک است؛ مقادیر فرض آموزشی هستند و مدلی آموزش داده نشده است.')
 print('صفر و یک برای دروازه های sigmoid حالت حدی و ایده آل هستند.')
+print('با ثابت گرفتن دروازه ها، مشتق مسیر مستقیم نسبت به حالت قبلی:', direct_derivative, '؛ مشتق کل شبکه نیست.')
 print('فراموشی صفر فقط سهم گذشته را حذف میکند؛ ورودی جدید هنوز میتواند غیرصفر باشد.')
 result = {'old_contribution': old_contribution, 'new_contribution': new_contribution,
-          'cell': cell, 'hidden': hidden}
+          'cell': cell, 'hidden': hidden, 'direct_derivative': direct_derivative}

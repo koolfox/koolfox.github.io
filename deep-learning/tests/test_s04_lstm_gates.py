@@ -22,10 +22,13 @@ class GatesTest(unittest.TestCase):
         result, text = run(0, 1)
         self.assertAlmostEqual(result['cell'], 0.6)
         self.assertEqual(result['new_contribution'], 0)
+        self.assertEqual(result['direct_derivative'], 1)
+        self.assertIn('مشتق کل شبکه نیست', text)
         self.assertIn('فرض آموزشی', text)
         result, _ = run(1, 0)
         self.assertAlmostEqual(result['cell'], -0.4)
         self.assertEqual(result['old_contribution'], 0)
+        self.assertEqual(result['direct_derivative'], 0)
         self.assertAlmostEqual(result['hidden'], 0.5 * math.tanh(-0.4))
 
     def test_output_gate_and_invalid_gate(self):

@@ -1,0 +1,55 @@
+name: Render lesson five pooling film
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - .github/workflows/lesson5-pooling-film.yml
+      - deep-learning/animations/pooling_render.mjs
+      - deep-learning/animations/pooling_source_example.py
+      - deep-learning/assets/media/pooling-s05p48.fa.vtt
+      - deep-learning/tests/test_pooling_film_source.py
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: deep-learning/browser-tests/package-lock.json
+      - run: npm ci --prefix deep-learning/browser-tests
+      - run: npx --prefix deep-learning/browser-tests playwright install --with-deps chromium
+      - name: Verify the numeric source example
+        run: python3 -m unittest discover -s deep-learning/tests -p 'test_pooling_film_source.py' -v
+      - name: Render silent film and stage previews
+        shell: bash
+        run: |
+          set -euo pipefail
+          command -v ffmpeg
+          python3 -m http.server 8000 --bind 127.0.0.1 > /tmp/pooling-http.log 2>&1 &
+          curl --fail --silent --retry 10 --retry-delay 1 --retry-connrefused http://127.0.0.1:8000/ > /dev/null
+          POOLING_SITE=http://127.0.0.1:8000 node deep-learning/animations/pooling_render.mjs "$RUNNER_TEMP/pooling-film"
+          ffprobe -v error -show_entries format=duration:stream=codec_type,width,height -of json "$RUNNER_TEMP/pooling-film/pooling-s05p48.mp4" > "$RUNNER_TEMP/pooling-film/probe.json"
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          probe = json.loads((Path(os.environ['RUNNER_TEMP']) / 'pooling-film/probe.json').read_text())
+          assert 37.5 <= float(probe['format']['duration']) <= 38.5
+          assert [(stream['codec_type'], stream.get('width'), stream.get('height')) for stream in probe['streams']] == [('video', 1280, 720)]
+          PY
+      - uses: actions/upload-artifact@v7.0.2
+        with:
+          name: lesson5-pooling-film-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/pooling-film/pooling-s05p48.mp4
+            ${{ runner.temp }}/pooling-film/probe.json
+            ${{ runner.temp }}/pooling-film/stage-*.png
+          if-no-files-found: error
+          retention-days: 3

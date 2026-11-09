@@ -11,7 +11,7 @@ if (!site || !output) throw Error('Set POOLING_SITE and provide an output direct
 const data = JSON.parse(execFileSync('python3', ['deep-learning/animations/pooling_source_example.py'], { encoding: 'utf8' }));
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({ headless: true });
-const page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
+const page = await browser.newPage({ viewport: { width: 1280, height: 720 }, deviceScaleFactor: 1.5 });
 await page.goto(site, { waitUntil: 'domcontentloaded' });
 await page.setContent(`<!doctype html><html lang="fa" dir="rtl"><meta charset="utf-8"><style>
 @font-face{font-family:Arad;src:url('${site}/assets/fonts/arad.woff2')}

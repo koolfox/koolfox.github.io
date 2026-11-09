@@ -46,7 +46,7 @@ jobs:
           from pathlib import Path
           probe = json.loads((Path(os.environ['RUNNER_TEMP']) / 'pooling-film/probe.json').read_text())
           assert 37.5 <= float(probe['format']['duration']) <= 38.5
-          assert [(stream['codec_type'], stream.get('width'), stream.get('height')) for stream in probe['streams']] == [('video', 1280, 720)]
+          assert [(stream['codec_type'], stream.get('width'), stream.get('height')) for stream in probe['streams']] == [('video', 1920, 1080)]
           PY
       - uses: actions/upload-artifact@v7.0.2
         with:

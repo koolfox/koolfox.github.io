@@ -9,6 +9,13 @@ test('pooling film is linked only to the source example slide', async ({ page })
   const frame = page.frameLocator('[data-reader-tools-frame]');
   await expect(frame.locator('video source')).toHaveAttribute('src', /pooling-s05p48\.mp4/);
   await expect(frame.locator('video track')).toHaveAttribute('src', /pooling-s05p48\.fa\.vtt/);
+  const video = frame.locator('video');
+  await video.evaluate(async (element) => {
+    element.muted = true;
+    await element.play();
+  });
+  await expect.poll(() => video.evaluate((element) => element.currentTime)).toBeGreaterThan(0);
+  await expect.poll(() => video.evaluate((element) => element.duration)).toBeCloseTo(38, 0);
   await page.goto('/deep-learning/terms/spring-2026/s05/slides/#page=49');
   await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 49);
   await expect(page.locator('[data-source-interactive="pooling-s05p48"]')).toHaveCount(0);

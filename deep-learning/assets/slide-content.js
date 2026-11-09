@@ -2000,6 +2000,24 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(s05EarlyReviewed && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s05'
       && sourceIdentity.sourceSha256==='f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7'
       && record.source_text_sha256===s05EarlyReviewed[0] && layout.translation_sha256===s05EarlyReviewed[1]){
+    if(record.number>=6 && record.number<=8){
+      imageTranslations.push(
+        {rect:[.412,.499,.500,.546],text:'سیگنال الکتریکی مغز',background:'#fff',color:'#000',font:9,align:'center'},
+        {rect:[.315,.562,.424,.592],text:'الکترود ثبت',background:'#fff',color:'#000',font:10,align:'center'},
+        {rect:[.338,.610,.405,.660],text:'ناحیه دیداری مغز',background:'#fff',color:'#000',font:9,align:'center'},
+        {rect:[.310,.830,.364,.865],text:'محرک',background:'#fff',color:'#000',font:10,align:'center'},
+      );
+    }
+    if(record.number===9){
+      imageTranslations.push(
+        {rect:[.301,.518,.426,.593],text:'سلول های فوق پیچیده',background:'#fff',color:'#000',font:10,align:'center'},
+        {rect:[.302,.632,.427,.681],text:'سلول های پیچیده',background:'#fff',color:'#000',font:10,align:'center'},
+        {rect:[.302,.708,.405,.755],text:'سلول های ساده',background:'#fff',color:'#000',font:10,align:'center'},
+        {rect:[.646,.507,.726,.545],text:'سطح بالا',background:'#fff',color:'#000',font:10,align:'center'},
+        {rect:[.646,.627,.726,.665],text:'سطح میانی',background:'#fff',color:'#000',font:10,align:'center'},
+        {rect:[.646,.766,.726,.804],text:'سطح پایین',background:'#fff',color:'#000',font:10,align:'center'},
+      );
+    }
     for(const region of regions){
       const i=region.block.source_lines[0],n=record.number;
       if(n<=4){region.slot=i===0?[.05,.10,.95,.20]:[.04,.265+(i-1)*.142,.96,.395+(i-1)*.142];region.font=i===0?33:20;region.keepTermsTogether=true;continue;}

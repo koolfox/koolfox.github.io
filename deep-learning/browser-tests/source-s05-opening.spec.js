@@ -18,6 +18,8 @@ for (const width of [390, 1440]) test(`lesson 5 opening retains the source layou
       await expect(slide.locator('.reader-slide-text').filter({hasText:'مساله:'})).toBeVisible();
       await expect(slide.locator('.reader-slide-text').filter({hasText:'ناوردایی'})).toBeVisible();
     }
+    if (number >= 6 && number <= 8) await expect(slide.locator('.reader-image-translation')).toHaveCount(4);
+    if (number === 9) await expect(slide.locator('.reader-image-translation')).toHaveCount(6);
     if (number === 10) {
       await expect(slide.locator('.reader-slide-text').filter({hasText:'دو ورودی کاملا متفاوت'})).toBeVisible();
       await expect(slide.locator('.reader-slide-text').filter({hasText:'افزایش داده آموزش'})).toBeVisible();

@@ -1,15 +1,18 @@
-# فیلتر وارونه نمی‌شود؛ این عمل همبستگی متقابل (Cross-correlation) است.
-# داده‌ها ساختگی‌اند.
-# این آرایهٔ کوچک نقش تصویر تک‌کاناله را دارد؛ فقط یک خانه را تغییر بده.
-image = [[1, 2, 0], [0, 1, 3], [2, 0, 1]]
-# همین چهار وزن در همهٔ مکان‌ها مشترک‌اند؛ وزن پایین راست را -1 کن.
-kernel = [[1, 0], [0, 1]]
-# گام 1 یعنی یک خانه جابه‌جایی؛ گام 2 تعداد مکان‌های ارزیابی را کمتر می‌کند.
+# تصویر و فیلتر همان مثال صفحه های 27 تا 36 هستند.
+image = [
+    [1, 1, 1, 0, 0],
+    [0, 1, 1, 1, 0],
+    [0, 0, 1, 1, 1],
+    [0, 0, 1, 1, 0],
+    [0, 1, 1, 0, 0],
+]
+kernel = [[1, 0, 1], [0, 1, 0], [1, 0, 1]]
+# گام 1 فیلتر را هر بار یک خانه حرکت می دهد؛ برای آزمایش آن را 2 کنید.
 stride = 1
 
 
 def correlate(values, weights, step):
-    # بدون حاشیه‌گذاری، فقط پنجره‌هایی را می‌گیریم که کاملاً داخل ورودی‌اند.
+    # فیلتر وارونه نمی شود: این محاسبه همبستگی متقابل است.
     if type(step) is not int or step < 1:
         raise ValueError("گام باید عدد صحیح مثبت باشد.")
     if not values or not values[0] or not weights or not weights[0]:
@@ -21,35 +24,31 @@ def correlate(values, weights, step):
     ):
         raise ValueError("سطرهای هر ماتریس باید طول یکسان داشته باشند.")
     if kernel_height > height or kernel_width > width:
-        raise ValueError("فیلتر باید بدون حاشیه‌گذاری در ورودی جا شود.")
+        raise ValueError("فیلتر باید بدون حاشیه گذاری در ورودی جا شود.")
+
     output = []
+    # فقط پنجره هایی بررسی می شوند که کامل داخل تصویر هستند.
     for row in range(0, height - kernel_height + 1, step):
-        line = []
+        output_row = []
         for column in range(0, width - kernel_width + 1, step):
-            # ضرب خانه‌های متناظر و سپس جمع؛ فیلتر در هر مکان دوباره استفاده می‌شود.
-            response = sum(
-                values[row + i][column + j] * weights[i][j]
-                for i in range(kernel_height) for j in range(kernel_width)
-            )
-            line.append(response)
-        output.append(line)
+            response = 0
+            for i in range(kernel_height):
+                for j in range(kernel_width):
+                    # خانه های متناظر را ضرب و نتیجه ها را جمع کنید.
+                    response += values[row + i][column + j] * weights[i][j]
+            output_row.append(response)
+        output.append(output_row)
     return output
 
 
+# وزن ها در همه پنجره ها مشترک اند؛ بایاس و حاشیه گذاری نداریم.
 feature_map = correlate(image, kernel, stride)
-# تعداد وزن مستقل به تعداد خانه‌های فیلتر وابسته است، نه تعداد پنجره‌ها.
-result = {"feature_map": feature_map, "weight_count": sum(len(row) for row in kernel)}
-
-# خود مثال صفحات 27 تا 36: آرایهٔ 5×5 و فیلتر 3×3، بدون تغییر ترتیب خانه‌ها.
-# مثال کوچک بالاتر مستقل است؛ این آرایه‌ها مستقیماً از شکل اصلی خوانده شده‌اند.
-source_image = [
-    [1, 1, 1, 0, 0],
-    [0, 1, 1, 1, 0],
-    [0, 0, 1, 1, 1],
-    [0, 0, 1, 1, 0],
-    [0, 1, 1, 0, 0],
-]
-source_kernel = [[1, 0, 1], [0, 1, 0], [1, 0, 1]]
-result["source_feature_map"] = correlate(source_image, source_kernel, step=1)
-result["source_weight_count"] = sum(len(row) for row in source_kernel)
+weight_count = sum(len(row) for row in kernel)
+# گام 1 را هم جداگانه برای مقایسه با جدول مرجع نگه می داریم.
+result = {
+    "feature_map": feature_map,
+    "weight_count": weight_count,
+    "source_feature_map": correlate(image, kernel, 1),
+    "source_weight_count": weight_count,
+}
 print(result)

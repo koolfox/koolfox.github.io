@@ -820,6 +820,90 @@
           }
         }
       ]
+    },
+    {
+      "id": "lstm-gates",
+      "title_fa": "کاوش شماتیک دروازه های LSTM",
+      "pages": [
+        55,
+        56,
+        57
+      ],
+      "code_file": "s04_lstm_gates.py",
+      "starter_sha256": "9b3c3250199af8f29c05675f25e4a4f7402d6e3401619fcd0a3cf6ef2ab72e89",
+      "reference": {
+        "old_contribution": 0.44999999999999996,
+        "new_contribution": -0.1,
+        "cell": 0.35,
+        "hidden": 0.1681877721681661,
+        "direct_derivative": 0.75
+      },
+      "questions": [
+        {
+          "id": "input-zero",
+          "source_kind": "original",
+          "source_page": 55,
+          "prompt_fa": "وقتی دروازه ورودی صفر باشد، کدام سهم حذف میشود؟",
+          "solution_fa": "فقط سهم کاندید جدید حذف میشود؛ سهم حافظه قبلی مستقل است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "سهم کاندید جدید",
+              "همه حافظه قبلی",
+              "همیشه کل خروجی"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "forget-zero",
+          "source_kind": "original",
+          "source_page": 56,
+          "prompt_fa": "اگر دروازه فراموشی صفر باشد، آیا حالت سلول حتما صفر میشود؟",
+          "solution_fa": "خیر، سهم جدید میتواند همچنان غیرصفر باشد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "بله همیشه",
+              "خیر، سهم ورودی جدید میتواند بماند",
+              "فقط اگر دروازه خروج یک باشد"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "output",
+          "source_kind": "original",
+          "source_page": 56,
+          "prompt_fa": "دروازه خروج چه چیزی را در فرمول h کنترل میکند؟",
+          "solution_fa": "دروازه خروج مقدار tanh حالت سلول را برای ساخت حالت پنهان مقیاس میکند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "سهم نمایش داده شده از حالت سلول",
+              "حذف قطعی همه ورودی ها",
+              "تعداد گامهای زمان"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "direct-path",
+          "source_kind": "original",
+          "source_page": 57,
+          "prompt_fa": "با ثابت گرفتن دروازه ها، مشتق مسیر مستقیم حالت سلول نسبت به حالت قبلی چیست؟",
+          "solution_fa": "این مشتق برابر دروازه فراموشی است؛ مشتق کل شبکه میتواند مسیرهای دیگری نیز داشته باشد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "دروازه فراموشی",
+              "دروازه ورودی",
+              "همیشه صفر"
+            ],
+            "correct_index": 0
+          }
+        }
+      ]
     }
   ]
 }

@@ -1,5 +1,5 @@
 # حالت بازگشتی زوجیت را با هر ورودی به‌روز می‌کند.
-from math import tanh
+from math import isfinite, tanh
 
 # دنباله خود صفحه 27؛ برای آزمایش فقط 0 و 1 بگذار.
 sequence = [1, 0, 1, 1]
@@ -7,8 +7,12 @@ sequence = [1, 0, 1, 1]
 u = 3.0
 # حالت مثبت آغاز یعنی هنوز تعداد 1 ها زوج است: صفر عدد 1 دیده‌ایم.
 state = 1.0
+if not isfinite(u) or not isfinite(state):
+    raise ValueError("وزن و حالت آغاز باید عدد متناهی باشند.")
 states = []
 predicted_odd = []
+expected_odd = []
+one_count = 0
 for bit in sequence:
     if bit not in (0, 1):
         raise ValueError("اعضای دنباله باید فقط 0 یا 1 باشند.")
@@ -17,7 +21,14 @@ for bit in sequence:
     # حالت پیشین همراه ورودی تازه وارد تابع می‌شود؛ حذف state حافظه را از بین می‌برد.
     state = tanh(u * encoded * state)
     states.append(state)
-    # علامت منفی برای شمار فرد و علامت مثبت برای شمار زوج است.
-    predicted_odd.append(int(state < 0))
+    # علامت منفی نشانه فرد و مثبت نشانه زوج است؛ حالت صفر زوجیت را مشخص نمی‌کند.
+    predicted_odd.append(None if state == 0 else int(state < 0))
+    # شمار واقعی را فقط برای مقایسه با نتیجه شبکه نگه می‌داریم.
+    one_count += bit
+    expected_odd.append(one_count % 2)
 
-result = {"states": states, "predicted_odd": predicted_odd}
+# هر گام را با پاسخ درست مقایسه کن؛ None یعنی حالت، زوجیت را مشخص نکرده است.
+correct = [prediction == expected if prediction is not None else None
+           for prediction, expected in zip(predicted_odd, expected_odd)]
+result = {"states": states, "predicted_odd": predicted_odd,
+          "expected_odd": expected_odd, "correct": correct}

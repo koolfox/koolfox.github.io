@@ -1079,6 +1079,32 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const slots={0:[.05,.10,.95,.21],1:[.34,.67,.59,.73],2:[.30,.74,.63,.97],6:[.34,.44,.59,.50],7:[.26,.51,.67,.63],9:[.34,.26,.59,.32],10:[.24,.33,.69,.40]};
     for(const region of regions){const i=region.block.source_lines[0];region.slot=slots[i];region.font=i===0?32:[1,6,9].includes(i)?23:19;if(i!==0)region.align='center';}
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s05' && [64,74,75].includes(record.number)
+      && sourceIdentity.sourceSha256==='f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7'
+      && record.source_text_sha256==='666b30d38aa77ec692a8809766da2c7d0819f8609d3e596ccf462466c4c7df2c'
+      && layout.translation_sha256==='6018e16ffe9ba3659a722df65adaa58ce782e699f1779b78538c91408bfd7992'){
+    for(const region of regions){const i=region.block.source_lines[0];region.slot=i===0?[.05,.10,.95,.20]:[.04,.265+(i-1)*.142,.96,.395+(i-1)*.142];region.font=i===0?33:20;region.keepTermsTogether=true;}
+  }
+  const s05LenetReview={61:['67f768219e48a783e3ca760c364a8dd28ea02013ee2468eda7843e0395379c79','e57d24d900eca856e796380752a52fcd14ad51b25bb28f4c5368f3e4e9333665'],67:['661efe6eb99c60d2540cef55a2eb85e9b345d3bf9102b5c3fe03182087b77d8e','183228a933fe63be130a9fdbdc5e307e3d70a40bad54c2b01217e788b58db3d5'],69:['99069e8ef992315273e975fa9379cdd56b9bcc9fc6f1ad21c9f6cc937e1d4cce','1467e198cbe23ba79cb3f0e4055d39dbdfbdbace4bf121f898f94fecac17a7fa']}[record.number];
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s05' && s05LenetReview
+      && sourceIdentity.sourceSha256==='f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7'
+      && record.source_text_sha256===s05LenetReview[0] && layout.translation_sha256===s05LenetReview[1]){
+    for(const region of regions){const i=region.block.source_lines[0],n=record.number;
+      if(n===61 && i===1){region.slot=region.block.fa.startsWith('ورودی')?[.04,.65,.12,.73]:[.21,.65,.30,.73];region.font=18;region.align='center';}
+      if(n===61 && i===2){region.slot=[.39,.62,.49,.73];region.font=17;region.align='center';}
+      if(n===61 && i===5){region.slot=[.40,.76,.71,.96];region.font=16;}
+      if(n===67 && i===2){region.slot=[.66,.36,.95,.43];region.font=18;region.align='center';}
+      if(n===67 && i===3){region.slot=[.22,.82,.55,.90];region.font=17;region.align='center';}
+      if(n===67 && i===4){region.slot=[.76,.46,.96,.59];region.font=16;region.align='center';}
+      if(n===69 && i===2){region.slot=[.20,.82,.68,.90];region.font=16;region.align='center';}
+    }
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s05' && record.number===68
+      && sourceIdentity.sourceSha256==='f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7'
+      && record.source_text_sha256==='9d79b648542fb6d1647656e2cd1c09d68d1f37d1a9d335b3cc90080bf7725eb4'
+      && layout.translation_sha256==='4b1fba13da2dbe5752589751ec21f7fff5bc0bafa359c474a2069a5e4f4e3e68'){
+    for(const region of regions){if(region.block.source_lines[0]===4 && region.block.fa.startsWith('بین')){region.slot=[.04,.958,.60,.998];region.font=16;}}
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'){

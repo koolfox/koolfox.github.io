@@ -1085,6 +1085,15 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && layout.translation_sha256==='6018e16ffe9ba3659a722df65adaa58ce782e699f1779b78538c91408bfd7992'){
     for(const region of regions){const i=region.block.source_lines[0];region.slot=i===0?[.05,.10,.95,.20]:[.04,.265+(i-1)*.142,.96,.395+(i-1)*.142];region.font=i===0?33:20;region.keepTermsTogether=true;}
   }
+  const s05StrideHashes={56:['d30cffbc1e282872d51d6d3eb08efa9b3ef79583005efbb13af3f1835d182367','b6bd5ba5e0d62e13c6044c0d19c9cb19dc70ca7fa0b7ef045c16e498fed32da2'],57:['473472ae22a471a42aa5c41ba60f63b2889446d71221a11ab9dc7dc0eb12bdf8','421ca249667bf83c3b966b939a962bea0c186cb713da522a30a6c3654cf07344']}[record.number];
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s05' && s05StrideHashes
+      && sourceIdentity.sourceSha256==='f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7'
+      && record.source_text_sha256===s05StrideHashes[0] && layout.translation_sha256===s05StrideHashes[1]){
+    for(const region of regions){const i=region.block.source_lines[0];
+      if(record.number===56 && i===3){region.slot=[.05,.85,.77,.97];region.font=17;}
+      if(record.number===57 && i===5){region.slot=[.40,.76,.98,.995];region.font=16;region.align='center';}
+    }
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'){

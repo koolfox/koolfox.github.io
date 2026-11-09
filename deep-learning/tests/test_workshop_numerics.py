@@ -157,7 +157,11 @@ class WorkshopNumericalTests(unittest.TestCase):
         self.assertEqual((shared["conv_weights"], shared["dense_weights"]), (4, 36))
         # Two 3-channel filters contain six 2-D slices but still only two output maps.
         channel = execute("s05_channel_count", {"filters = 1": "filters = 2"})["result"]
-        self.assertEqual(channel, {"filters": 2, "kernels": 6, "feature_maps": 2, "weights_without_bias": 54})
+        self.assertEqual(channel, {"filters": 2, "kernels": 6, "feature_maps": 2,
+                                   "weights_without_bias": 54, "red_channel_response": 2})
+        red_channel = execute("s05_channel_count")
+        self.assertEqual(red_channel["red_patch"], [[4, 9, 2], [5, 6, 2], [2, 4, 5]])
+        self.assertEqual(red_channel["result"]["red_channel_response"], 2)
         cost = execute("s05_rgb_compute")["result"]
         self.assertEqual(cost["total_multiplications"], 24883200)
         wider = execute("s05_rgb_compute", {"width = 1280": "width = 2560"})["result"]
@@ -420,8 +424,14 @@ class WorkshopNumericalTests(unittest.TestCase):
 
     def test_source_convolution_grid_and_shared_weight_count(self):
         scope = execute("s05")
+        self.assertEqual(scope["result"]["feature_map"], [[4, 3, 4], [2, 4, 3], [2, 3, 4]])
+        self.assertEqual(scope["result"]["weight_count"], 9)
         self.assertEqual(scope["result"]["source_feature_map"], [[4, 3, 4], [2, 4, 3], [2, 3, 4]])
         self.assertEqual(scope["result"]["source_weight_count"], 9)
+        self.assertEqual(scope["correlate"](scope["image"], scope["kernel"], 2), [[4, 4], [2, 4]])
+        changed_kernel = [[1, 0, 1], [0, 1, 0], [1, 0, -1]]
+        self.assertEqual(scope["correlate"](scope["image"], changed_kernel, 1),
+                         [[2, 1, 2], [0, 2, 3], [0, 3, 4]])
         # A rectangular all-one filter sums each horizontal pair, with no flip.
         self.assertEqual(scope["correlate"]([[1, 2, 3], [4, 5, 6]], [[1, 1]], 1), [[3, 5], [9, 11]])
         for values, kernel, stride in [([], [[1]], 1), ([[1, 2], [3]], [[1]], 1), ([[1]], [[1, 2]], 1), ([[1]], [[1]], 0)]:

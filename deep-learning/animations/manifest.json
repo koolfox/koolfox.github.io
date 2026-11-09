@@ -625,6 +625,74 @@
         "fps": 24
       },
       "scene": "xor-boundary.html"
+    },
+    {
+      "id": "pooling-s05p48",
+      "title_fa": "بیشینه‌گیری (Max Pooling)",
+      "source": {
+        "term": "spring-2026",
+        "session": "s05",
+        "pages": [
+          48
+        ],
+        "pdf_sha256": "f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7",
+        "url": "https://home.cs.colorado.edu/~DrG/Courses/2026-Spring-NN/05-Convolutional-Neural-Networks.pdf"
+      },
+      "video": {
+        "path": "assets/media/pooling-s05p48.mp4",
+        "bytes": 312396,
+        "sha256": "ec73ab9228f1fc9be3ba441296da66ecb0f22c63d8443387a9bc3f9c5e032d85"
+      },
+      "captions": {
+        "path": "assets/media/pooling-s05p48.fa.vtt",
+        "bytes": 778,
+        "sha256": "e27e96c8f6f8396887e706f98e286199a3c930205ea47ed73c5b27ae76936707"
+      },
+      "duration_seconds": 38.0,
+      "transcript_fa": [
+        "در این مثال، روی ماتریس اسلاید، بیشینه هر پنجره دو در دو را پیدا می کنیم.",
+        "پنجره بالا و چپ: بیشینه ۱، ۱، ۵ و ۶ برابر ۶ است.",
+        "پنجره بالا و راست: بیشینه ۲، ۴، ۷ و ۸ برابر ۸ است.",
+        "پنجره پایین و چپ: بیشینه ۳، ۲، ۱ و ۲ برابر ۳ است.",
+        "پنجره پایین و راست: بیشینه ۱، ۰، ۳ و ۴ برابر ۴ است.",
+        "با پنجره و گام ۲، خروجی دو در دو به دست می آید: ۶ و ۸، سپس ۳ و ۴."
+      ],
+      "chapters": [
+        {
+          "time": 0.0,
+          "label_fa": "ورودی"
+        },
+        {
+          "time": 4.0,
+          "label_fa": "پنجره ۱"
+        },
+        {
+          "time": 11.0,
+          "label_fa": "پنجره ۲"
+        },
+        {
+          "time": 18.0,
+          "label_fa": "پنجره ۳"
+        },
+        {
+          "time": 25.0,
+          "label_fa": "پنجره ۴"
+        },
+        {
+          "time": 32.0,
+          "label_fa": "خروجی"
+        }
+      ],
+      "license": "CC BY-NC-SA; source adaptation, source version unspecified",
+      "render": {
+        "engine": "Chromium, Playwright and FFmpeg",
+        "resolution": [
+          1920,
+          1080
+        ],
+        "fps": 24
+      },
+      "scene": "pooling_render.mjs"
     }
   ]
 }

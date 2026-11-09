@@ -2019,6 +2019,68 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       else if(slots[i]){region.slot=slots[i];region.font=i===5||i===7?18:13;}
     }
   }
+  const s05EarlyReviewed={
+    3:['666b30d38aa77ec692a8809766da2c7d0819f8609d3e596ccf462466c4c7df2c','6018e16ffe9ba3659a722df65adaa58ce782e699f1779b78538c91408bfd7992'],
+    4:['666b30d38aa77ec692a8809766da2c7d0819f8609d3e596ccf462466c4c7df2c','6018e16ffe9ba3659a722df65adaa58ce782e699f1779b78538c91408bfd7992'],
+    5:['f35a98f5c3c9fc8ed5a48e49d69cabbf596426a115cc4a373e593d9c908b38e8','a833a18278cc3c2692c853046f614a78aa5a5377d1f833a55743cf5cadc9427c'],
+    6:['781f14ef69e01b46b6c1e8120a11a47c628a6c1a40df30439ff331155f7677f0','e02d7633c5ea671223da7ca47df36e82dc79044277c05b5e72826ff900265c62'],
+    7:['1db08da2466e4949c4ef9f51bb66a1090e5a592398e0d87356e836f21346b589','971be62cbda927817c17dcb6dfcd839bc3a6c1f2c096426a134dc4d1b69f1624'],
+    8:['e7abb0bb16c1b7b50dcd599dfccea0a3e10caf961f0bdce7995a5e45d1d74194','2e93fcbcf16d426371eea4b6213d36826beb9387aeb3094523e9b1319842cdcf'],
+    9:['718f97086e49e6b621ed3be173fe60d9bba909b54c2d60e566bb8ea5f82b543b','29dea48b3edb115fca3a9f1145e520047843caaedb42257cb6c8bcdc7c4d1eab'],
+    10:['e668330f831023bb82d46ddff5dc59e97a8d598bc0a5851f50d5a14183f3fe2a','767054d45ad013fb0fa9b5790aa68cf2deeb04dccf3a9fcac0532dcb4bde62c0'],
+  }[record.number];
+  if(s05EarlyReviewed && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s05'
+      && sourceIdentity.sourceSha256==='f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7'
+      && record.source_text_sha256===s05EarlyReviewed[0] && layout.translation_sha256===s05EarlyReviewed[1]){
+    if(record.number>=6 && record.number<=8){
+      imageTranslations.push(
+        {rect:[.412,.499,.500,.546],text:'سیگنال الکتریکی مغز',background:'#fff',color:'#000',font:9,align:'center'},
+        {rect:[.315,.562,.424,.592],text:'الکترود ثبت',background:'#fff',color:'#000',font:10,align:'center'},
+        {rect:[.338,.610,.405,.660],text:'ناحیه دیداری مغز',background:'#fff',color:'#000',font:9,align:'center'},
+        {rect:[.310,.830,.364,.865],text:'محرک',background:'#fff',color:'#000',font:10,align:'center'},
+      );
+    }
+    if(record.number===9){
+      imageTranslations.push(
+        {rect:[.301,.518,.426,.593],text:'سلول های فوق پیچیده',background:'#fff',color:'#000',font:10,align:'center'},
+        {rect:[.302,.632,.427,.681],text:'سلول های پیچیده',background:'#fff',color:'#000',font:10,align:'center'},
+        {rect:[.302,.708,.405,.755],text:'سلول های ساده',background:'#fff',color:'#000',font:10,align:'center'},
+        {rect:[.646,.507,.726,.545],text:'سطح بالا',background:'#fff',color:'#000',font:10,align:'center'},
+        {rect:[.646,.627,.726,.665],text:'سطح میانی',background:'#fff',color:'#000',font:10,align:'center'},
+        {rect:[.646,.766,.726,.804],text:'سطح پایین',background:'#fff',color:'#000',font:10,align:'center'},
+      );
+    }
+    for(const region of regions){
+      const i=region.block.source_lines[0],n=record.number;
+      if(n<=4){region.slot=i===0?[.05,.10,.95,.20]:[.04,.265+(i-1)*.142,.96,.395+(i-1)*.142];region.font=i===0?33:20;region.keepTermsTogether=true;continue;}
+      if(i===0){region.slot=[.04,.10,.96,.21];region.font=33;region.keepTermsTogether=true;}
+      if(i===1){region.slot=[.05,.26,.50,.325];region.font=18;}
+      if(i===2){region.slot=[.09,.325,.49,.39];region.font=17;}
+      if(i===3){region.slot=n===10?[.04,.45,.96,.52]:[.04,.385,.96,.45];region.font=17;}
+      if(n===5 && i===10){region.slot=[.05,.89,.42,.98];region.font=14;region.align='center';region.keepTermsTogether=true;}
+      if(n===5 && i===13){region.slot=[.50,.925,.97,.985];region.font=14;region.align='center';}
+      if(n>=6 && n<=8 && i===10){region.slot=[.07,.65,.30,.72];region.font=17;}
+      if((n===6||n===7) && i===13){region.slot=[.55,.47,.96,.615];region.font=15;}
+      if(n===9 && i===8){region.slot=[.15,.85,.85,.98];region.font=17;region.keepTermsTogether=true;}
+      if(n===10 && i===12){region.slot=[.20,.57,.40,.64];region.font=14;}
+      if(n===10 && i===13){region.slot=[.20,.70,.40,.77];region.font=14;}
+      if(n===10 && i===15){region.slot=region.block.fa.startsWith('دو ورودی')?[.09,.88,.43,.965]:[.54,.88,.97,.98];region.font=14;region.keepTermsTogether=true;}
+    }
+  }
+  if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s05' && record.number===2
+      && sourceIdentity.sourceSha256==='f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7'
+      && record.source_text_sha256==='a425071cd8ba09ee16114db96fd45c9c4f8c57fc0c1fd1cd594e4dfce778c365'
+      && layout.translation_sha256==='78d218563ac84b82badb80f5e303c4b397fec09f49093ea7537ee56aaf569279'){
+    const y={0:[.10,.21],1:[.25,.31],2:[.31,.385],3:[.385,.46],4:[.46,.535],5:[.535,.60],6:[.60,.655],7:[.655,.71],8:[.71,.765],9:[.81,.88]};
+    for(const region of regions){const i=region.block.source_lines[0];if(y[i]){region.slot=[.04,y[i][0],.96,y[i][1]];region.font=i===0?35:20;region.keepTermsTogether=true;}}
+  }
+  if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s05' && record.number===1
+      && sourceIdentity.sourceSha256==='f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7'
+      && record.source_text_sha256==='8b164107255622992616ea16711f18e111c483b75c23b15742895f2563ef9b0d'
+      && layout.translation_sha256==='5b0285036445feb75055bda9b32a04b0b1113e40467bb2b850bc932a1e56a848'){
+    const slots={0:[.04,.22,.96,.48],2:[.12,.60,.88,.68],3:[.08,.685,.92,.745],4:[.20,.75,.80,.80]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.align='center';region.font=i===0?35:i===2?25:21;region.keepTermsTogether=true;}}
+  }
   if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===1
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='63d01824a8df3538efa44d7f1f5f51556ac56d610e5bd0de32470f6c535e30f5'

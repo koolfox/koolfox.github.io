@@ -597,6 +597,85 @@
           }
         }
       ]
+    },
+    {
+      "id": "sequence-variants",
+      "title_fa": "کاوش شماتیک آرایش ورودی و خروجی",
+      "pages": [
+        39
+      ],
+      "code_file": "s04_sequence_variants.py",
+      "starter_sha256": "a7c4048af1177f36cacf0be6b04614fefc410416776429dcda905d7922d24bda",
+      "reference": {
+        "variant": "many-to-many-delayed",
+        "input_steps": 3,
+        "output_steps": 3,
+        "timeline_steps": 5,
+        "input_positions": [
+          1,
+          1,
+          1,
+          0,
+          0
+        ],
+        "output_positions": [
+          0,
+          0,
+          1,
+          1,
+          1
+        ]
+      },
+      "questions": [
+        {
+          "id": "page-39-concept",
+          "source_kind": "original",
+          "source_page": 39,
+          "prompt_fa": "برای برچسب‌گذاری احساس یک جمله، کدام الگوی ورودی/خروجی مناسب است؟",
+          "solution_fa": "چند توکن ورودی به یک برچسب جمله تبدیل می‌شوند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "یک‌به‌چند",
+              "یک‌به‌یک بدون توالی",
+              "چندبه‌یک"
+            ],
+            "correct_index": 2
+          }
+        },
+        {
+          "id": "many-many-types",
+          "source_kind": "original",
+          "source_page": 39,
+          "prompt_fa": "کدام تمایز بین دو گونه چندبه‌چند درست است؟",
+          "solution_fa": "برای برچسب هر فریم می‌توان خروجی هم‌تراز داشت؛ در ترجمه خروجی پس از رمزگذاری و با طول مستقل تولید می‌شود.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "هر دو الزاما یک خروجی دارند",
+              "برچسب‌گذاری هم‌تراز برای هرگام در برابر رمزگذار/رمزگشای توالی با طول متفاوت",
+              "هیچ‌کدام توالی ورودی ندارند"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "aligned",
+          "source_kind": "original",
+          "source_page": 39,
+          "prompt_fa": "در شکل چندبه چند هم تراز، برای هر گام ورودی چه چیزی نشان داده شده است؟",
+          "solution_fa": "شکل برای هر یک از سه گام ورودی، یک خروجی هم تراز دارد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "یک خروجی در همان گام",
+              "فقط یک خروجی پس از همه گام ها",
+              "هیچ خروجی"
+            ],
+            "correct_index": 0
+          }
+        }
+      ]
     }
   ]
 }

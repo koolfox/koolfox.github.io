@@ -26,6 +26,10 @@ jobs:
           cache-dependency-path: deep-learning/browser-tests/package-lock.json
       - run: npm ci --prefix deep-learning/browser-tests
       - run: npx --prefix deep-learning/browser-tests playwright install --with-deps chromium
+      - name: Install video encoder on the runner
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
       - name: Verify the numeric source example
         run: python3 -m unittest discover -s deep-learning/tests -p 'test_pooling_film_source.py' -v
       - name: Render silent film and stage previews

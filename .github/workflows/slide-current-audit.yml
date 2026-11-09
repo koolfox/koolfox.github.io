@@ -1,0 +1,113 @@
+name: Current slide browser inventory
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_sha:
+        description: Full 40-character commit SHA of the public course to scan
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  current-inventory:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 100
+    env:
+      SOURCE_SHA: ${{ inputs.source_sha }}
+    steps:
+      - name: Validate requested source identity
+        shell: bash
+        run: |
+          if [[ ! "$SOURCE_SHA" =~ ^[0-9a-f]{40}$ ]]; then
+            echo 'source_sha must be a full lowercase commit SHA' >&2
+            exit 1
+          fi
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ inputs.source_sha }}
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Confirm checked-out identity
+        run: test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
+      - uses: astral-sh/setup-uv@v10.3.0
+        with:
+          version: '0.11.2'
+      - name: Prepare public laboratory assets
+        run: |
+          uv run --frozen --project deep-learning/playgrounds python deep-learning/scripts/prepare_shinylive_assets.py --archive "${{ runner.temp }}/danna-shinylive/shinylive-0.10.15.tar.gz"
+          uv run --frozen --project deep-learning/playgrounds python deep-learning/scripts/export_playgrounds.py --output deep-learning/results/shinylive
+      - name: Build public deep-learning site
+        run: uv run --no-project --with pypdf==6.21.4 python scripts/build_pages.py --project deep-learning --output dist/pages
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: deep-learning/browser-tests/package-lock.json
+      - run: npm ci --prefix deep-learning/browser-tests
+      - run: npx --prefix deep-learning/browser-tests playwright install --with-deps chromium
+      - name: Measure each page once in each viewport
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p audit-report
+          python3 - <<'PY' > /tmp/slide-current-sessions.txt
+          import glob, json
+          from pathlib import Path
+          for filename in sorted(glob.glob('deep-learning/content/source-slides/spring-2026/s*.json')):
+              path = Path(filename)
+              print(int(path.stem[1:]), len(json.loads(path.read_text())['pages']))
+          PY
+          test -s /tmp/slide-current-sessions.txt
+          python3 -m http.server 8000 --bind 127.0.0.1 --directory dist/pages > /tmp/slide-current-http.log 2>&1 &
+          curl --fail --silent --retry 10 --retry-delay 1 --retry-connrefused http://127.0.0.1:8000/ > /dev/null
+          while read -r session count; do
+            node deep-learning/browser-tests/slide-audit.mjs \
+              --base-url http://127.0.0.1:8000 --build-id "$SOURCE_SHA" \
+              --sessions "$session" --pages "1-$count" \
+              --viewports 390x844,1440x900 --variant normal \
+              --output audit-report/current.jsonl
+          done < /tmp/slide-current-sessions.txt
+      - name: Summarize measurements without visual approval
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import collections, json, os
+          from pathlib import Path
+          expected = sum(int(line.split()[1]) for line in Path('/tmp/slide-current-sessions.txt').read_text().splitlines()) * 2
+          rows = [json.loads(line) for line in Path('audit-report/current.jsonl').read_text().splitlines()]
+          keys = {row['key'] for row in rows}
+          assert len(rows) == expected and len(keys) == expected, 'Incomplete or duplicate measurements'
+          assert all(row['build_id'] == os.environ['SOURCE_SHA'] and row['variant'] == 'normal' for row in rows)
+          assert all(row['visual_review'] == 'not_performed' for row in rows)
+          summary = {
+              'source_sha': os.environ['SOURCE_SHA'],
+              'pages': expected // 2,
+              'observations': len(rows),
+              'viewports': ['390x844', '1440x900'],
+              'statuses': dict(collections.Counter(row['status'] for row in rows)),
+              'findings': dict(collections.Counter(f['kind'] for row in rows for f in row['findings'])),
+              'missing_source_hashes': sum(not row.get('source_sha256') for row in rows),
+              'missing_translation_hashes': sum(not row.get('translation_sha256') for row in rows),
+              'visual_review': 'not_performed',
+              'scientific_review': 'not_performed',
+              'physical_ios_review': 'not_performed',
+              'note': 'Browser measurements only; not approval of content, reading order, fidelity, or readability.',
+          }
+          Path('audit-report/summary.json').write_text(json.dumps(summary, indent=2) + '\n')
+          print(json.dumps(summary))
+          if any(row['status'] == 'error' for row in rows):
+              raise SystemExit('Some pages could not be measured; see the report')
+          PY
+      - name: Upload bounded measurement report
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: current-slide-inventory-${{ inputs.source_sha }}
+          path: |
+            audit-report/current.jsonl
+            audit-report/summary.json
+          if-no-files-found: ignore
+          retention-days: 3

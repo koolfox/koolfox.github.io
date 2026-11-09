@@ -157,7 +157,11 @@ class WorkshopNumericalTests(unittest.TestCase):
         self.assertEqual((shared["conv_weights"], shared["dense_weights"]), (4, 36))
         # Two 3-channel filters contain six 2-D slices but still only two output maps.
         channel = execute("s05_channel_count", {"filters = 1": "filters = 2"})["result"]
-        self.assertEqual(channel, {"filters": 2, "kernels": 6, "feature_maps": 2, "weights_without_bias": 54})
+        self.assertEqual(channel, {"filters": 2, "kernels": 6, "feature_maps": 2,
+                                   "weights_without_bias": 54, "red_channel_response": 2})
+        red_channel = execute("s05_channel_count")
+        self.assertEqual(red_channel["red_patch"], [[4, 9, 2], [5, 6, 2], [2, 4, 5]])
+        self.assertEqual(red_channel["result"]["red_channel_response"], 2)
         cost = execute("s05_rgb_compute")["result"]
         self.assertEqual(cost["total_multiplications"], 24883200)
         wider = execute("s05_rgb_compute", {"width = 1280": "width = 2560"})["result"]

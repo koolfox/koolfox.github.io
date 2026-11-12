@@ -54,6 +54,7 @@ test('session 3 XOR slide keeps its source diagram and truth table on mobile', a
  await page.waitForFunction(node=>!node.isConnected,old);
  await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
  await expect(page.locator('#persian-page .reader-slide-background')).toBeVisible();
+ await expect(page.locator('#persian-page .reader-slide-text').filter({hasText:'Thresholding'})).toBeVisible();
  await expect(page.locator('#persian-page .reader-slide-text').filter({hasText:'بایاس'})).toHaveCount(3);
  const rows=page.locator('#persian-page table tbody tr');
  await expect(rows).toHaveCount(4);
@@ -65,6 +66,7 @@ test('session 3 XOR examples keep each highlighted case and the source layout', 
   await page.goto(`/deep-learning/terms/spring-2026/s03/slides/#page=${number}`);
   await page.waitForFunction(expected=>window.sourceSlideReader?.ready && sourceSlideReader.page===expected,number);
   await expect(page.locator('#persian-page')).toHaveAttribute('data-layout','source-canvas-figure-companion');
+  await expect(page.locator('#persian-page .reader-slide-text').filter({hasText:'Thresholding'})).toBeVisible();
   await expect(page.locator('#persian-page .reader-slide-text').filter({hasText:'بایاس'})).toHaveCount(3);
   expect(await page.locator('#persian-page table tbody tr').allTextContents()).toEqual(['000','011','101','110']);
  }

@@ -1855,11 +1855,11 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i])region.slot=slots[i];region.font=i===0?33:([1,3].includes(i)?18:13);if(i===1){region.color='#ffffff';region.manualAccents=[{text:'گرادیان',color:'#ffc000'},{text:'مشتق‌های جزئی برای چند متغیر',color:'#ffc000'}];}if(i===3)region.manualAccents=[{text:'مشتق',color:'#ffc000'}];}
   }
   const xorLayouts={
-    8:['d2b3197385ac54cba5e2883e08b575286ecb53ec32490248714c327d28b2f53b','414db0665fe15478a7298705f8437c61179a99157138f11dc87c6f4df357d677'],
-    9:['0c34d94aedceba75167565b32f6a1aef6444728377f7c21ad3a0701f165a4e00','84e1ebe3a8d6fdd6ba5126dff88fc0cbdcd3d7ed8ab30e8aebdb215a07798ab9'],
-    10:['edce9583e309c4b00d27b9eb6c32488fde269855a22643f14037c23501079a6c','043ede2ec24efffcd76ba0273a9a7cd05459606565501134e12106aef1d2b03b'],
-    11:['3a52b8b9d36531075480f1da0f27608e5ebeaed2eb5df0a7d20fd1b21d03a652','7e3dd4420fcff2257e0d6c5772aa3f8220a0f87d221ff7954f1dd9e2b71bc2d4'],
-    12:['624022a61eacf81b47635f2c0dfe811c12ce9d5544b8aa8325b78e07d3400159','8b35176d091c3bafb333f00033612101b8858c43e1b9fe85c027a6f04af4954d'],
+    8:['d2b3197385ac54cba5e2883e08b575286ecb53ec32490248714c327d28b2f53b','16a8dbc1ba6a0805c5d181213567941707fa391419374393844e380e129e944c'],
+    9:['0c34d94aedceba75167565b32f6a1aef6444728377f7c21ad3a0701f165a4e00','2d0f04eb9394c7ca7af7f4d4760146230a8719041dd9a66665325d845757bba7'],
+    10:['edce9583e309c4b00d27b9eb6c32488fde269855a22643f14037c23501079a6c','8c7cf3d9d91b3723e1dc3c7d04ff19854367b3c7d86ac61d9f79efdf27104f3e'],
+    11:['3a52b8b9d36531075480f1da0f27608e5ebeaed2eb5df0a7d20fd1b21d03a652','d6d83fa55cd3a1222125c4aef1ebc1ca17654dfa97c5fff9ff6d5923a52b2e93'],
+    12:['624022a61eacf81b47635f2c0dfe811c12ce9d5544b8aa8325b78e07d3400159','fc6ba96d24f9b90d8b163fe1b8cac965c04f84b3c358e9b254f5ba95dd763452'],
   }[record.number];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s03' && xorLayouts
       && sourceIdentity.sourceSha256==='92289c9dc36c9774490e123c0be7ed7980770f2fb5f13b7bdfbb391937e452b0'

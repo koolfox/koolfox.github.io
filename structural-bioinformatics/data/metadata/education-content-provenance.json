@@ -86,6 +86,18 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/27260412/",
       "checked_at_utc": "2026-11-06T14:03:47Z"
     },
+    "caffeine_pubchem": {
+      "title": "PubChem PUG-REST caffeine compound properties",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/2519/property/MolecularFormula,MolecularWeight/JSON",
+      "retrieved_at_utc": "2026-11-08T08:28:39.385256+00:00",
+      "sha256": "0636a4867cb28b56bf361aeb8c6bf029b6fa9b7874e542c1f6df21ef96052a45"
+    },
+    "caffeine_rcsb": {
+      "title": "RCSB chemical component CFF",
+      "url": "https://www.rcsb.org/ligand/CFF",
+      "retrieved_at_utc": "2026-11-08T08:28:36.271126+00:00",
+      "sha256": "4dbeeaa77e4d726bbb438ca78c99ff665d66dd176470d3c2783bded2c8661adb"
+    },
     "folding_funnels_1997": {
       "title": "Shoemaker, Wang and Wolynes (1997); Structural correlations in protein folding funnels",
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC19590/",
@@ -323,17 +335,21 @@
     {
       "topic": 13,
       "path": "docs/course/session-13.fa.md",
-      "sha256": "d6ba4f8d8c1d0f974ee5a05d3a5003d95d983aa2389f277450efac346ed325b9",
+      "sha256": "61d3276d0d396856971800898c234a63ccea0d968769806f4a0aab089ebe6ca8",
       "source_ids": [
         "chem",
-        "vina"
+        "vina",
+        "caffeine_pubchem",
+        "caffeine_rcsb"
       ],
       "case_lesson_path": "docs/research-notes/lesson-context/topic-13.fa.md",
       "case_lesson_sha256": "aeb8ae04cefa978760db386cdc7c16d0347bdd73941809ab7d41501e85cec835",
-      "word_count_whitespace": 858,
+      "word_count_whitespace": 1368,
       "external_reference_urls": [
         "https://autodock-vina.readthedocs.io/en/latest/docking_basic.html",
-        "https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest"
+        "https://pubchem.ncbi.nlm.nih.gov/compound/2519",
+        "https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest",
+        "https://www.rcsb.org/ligand/CFF"
       ]
     },
     {
@@ -627,7 +643,7 @@
     "tcl": "The arithmetic example was executed with local tclsh and returned mean = 4.0. VMD-specific commands were checked against the official atomselect/measure manual; VMD itself was not run.",
     "binding": "Specific binding references added from indexed source excerpts for the one-step kinetic model and the mutation free-energy definition; fresh full-page access returned CAPTCHA/redirect failures. No full-text review claimed."
   },
-  "last_revised_at_utc": "2026-11-06T21:03:44.273527+00:00",
+  "last_revised_at_utc": "2026-11-08T08:19:08.885662+00:00",
   "teaching_assets": [
     {
       "path": "assets/course/figures/contact-network.svg",

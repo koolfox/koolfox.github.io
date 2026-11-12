@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {parseManifest,serializeManifest,relativeAudioPath,issues} from './core.mjs';
+const row={id:'demo',display_text_fa:'متن نمایشی',spoken_text_fa:'متنِ گفتار',speaker_id:'speaker',rights:'CC0 source',audio_path:'audio/test.wav',audio_sha256:'a'.repeat(64),split:'train',review_status:'approved',pronunciation_reviewed:true,unknown:42};
+assert.deepEqual(parseManifest(serializeManifest([row])),[row]);
+assert.deepEqual(issues(row),[]);
+for(const path of ['/tmp/a.wav','../a.wav','a/../b','https://a','a\\b','a//b'])assert.equal(relativeAudioPath(path),false);
+assert.equal(relativeAudioPath('audio/a.wav'),true);
+assert(issues({...row,pronunciation_reviewed:false}).includes('pronunciation_reviewed'));
+assert(issues({...row,rights:'review_required'}).includes('rights'));
+assert.throws(()=>parseManifest('{broken'));
+assert.throws(()=>parseManifest('[]'));
+assert.throws(()=>parseManifest('\n'));
+console.log('speech review core checks passed');

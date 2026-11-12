@@ -2219,7 +2219,7 @@ export function expandSourceLayout(plan) {
   let changed=false;
   for(const region of regions){
     if(region.rotate||region.clearRect)continue;
-    const [left,top,right,bottom]=region.slot,owned=new Set(region.block.source_lines);
+    let [left,top,right,bottom]=region.slot;const owned=new Set(region.block.source_lines);
     const obstacles=[...plan.layout.images,...(plan.layout.graphics||[]),
       ...plan.layout.lines.filter(line=>!owned.has(line.index)),
       ...(plan.imageTranslations||[]),...regions.filter(other=>other!==region).map(other=>({rect:other.slot}))]
@@ -2228,8 +2228,14 @@ export function expandSourceLayout(plan) {
     const boundary=Math.max(.03,left-(right-left)*.5,
       ...obstacles.filter(rect=>rect[1]<bottom&&rect[3]>top&&rect[2]<=left).map(rect=>rect[2]+.004));
     const candidate=[boundary,top,right,bottom];
-    if(boundary>=left||obstacles.some(rect=>overlaps(candidate,rect)))continue;
-    region.slot=candidate;changed=true;
+    if(boundary<left&&!obstacles.some(rect=>overlaps(candidate,rect))){
+      region.slot=candidate;left=boundary;changed=true;
+    }
+    // Preserve the top edge and use only empty space below the translated text.
+    const floor=Math.min(.995,bottom+(bottom-top)*.5,
+      ...obstacles.filter(rect=>rect[0]<right&&rect[2]>left&&rect[1]>=bottom).map(rect=>rect[1]-.004));
+    const taller=[left,top,right,floor];
+    if(floor>bottom&&!obstacles.some(rect=>overlaps(taller,rect))){region.slot=taller;changed=true;}
   }
   return changed?{...plan,regions}:null;
 }

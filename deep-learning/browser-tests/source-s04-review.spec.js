@@ -209,6 +209,28 @@ test('sequence types preserve the three source examples and repeated labels', as
   }
 });
 
+test('first RNN time step keeps its diagram and highlighted hidden state', async ({page}) => {
+  for(const width of [1440,390]){
+    await page.setViewportSize({width,height:850});
+    await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=14');
+    await page.waitForFunction(()=>window.sourceSlideReader?.ready && window.sourceSlideReader.page===14);
+    if(width===390){
+      const previous=await page.locator('#persian-page .reader-slide-stage').elementHandle();
+      await page.locator('[data-view-translation]').click();
+      if(previous)await page.waitForFunction(node=>!node.isConnected,previous);
+      await page.waitForFunction(()=>window.sourceSlideReader?.ready);
+    }
+    const slide=page.locator('#persian-page');
+    await expect(slide).toHaveAttribute('data-layout','source-canvas-figure-companion');
+    await expect(slide.locator('.reader-slide-background')).toBeVisible();
+    await expect(slide.locator('.reader-emphasis').filter({hasText:'افزودن حالت پنهان'})).toHaveCSS('color','rgb(255, 192, 0)');
+    const caption=slide.locator('.reader-slide-text').filter({hasText:'ایده اصلی'});
+    const fit=await caption.evaluate(node=>({bottom:parseFloat(node.style.top)+parseFloat(node.style.height),fits:node.scrollHeight<=node.clientHeight+2 && node.scrollWidth<=node.clientWidth+2}));
+    expect(fit.fits).toBe(true);
+    expect(fit.bottom).toBeLessThanOrEqual(.35*540+1);
+  }
+});
+
 test('history slide retains the diagram and source color emphasis', async ({page}) => {
   for(const width of [1440,390]){
     await page.setViewportSize({width,height:850});

@@ -347,6 +347,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   }
   // Keep the longer Persian caption above the unrolled RNN figure.
   const s04CaptionReview = {
+    14:['58ed64d51139f7f36e374a9ef97ce219384ee3d246aaad2a30c502ed0b65a74e','9004cfdcb725c2fcefffb69c33bd08231d151952bc9b3d9e7bb0501c63ea779a'],
     19:['a001823222275e73cf0a5b3ccab0df575dc507fde195f7bffcee0a23d5b103ae','af9b1f02985b90f015d4474fa5ccc464703ce6099c79b17c50a38349e7e1a03e'],
     16:['5605488fd9bd2cd7352a205b14ac64ecf37b6827dec615023844f0810851e872','d72366e8f7c87c51feef6a199f079b060b27b4b77ec0910d047d37d2db209516'],
     24:['8e4ae230d6a1eae89defb6b041d9c3860127b7f38380d1d360d577098648f14d','73d324917f54b73ee472be6f6b769acba976a0e836d67d1f6b0c173a08e992cf'],
@@ -357,6 +358,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && record.source_text_sha256===s04CaptionReview[0] && layout.translation_sha256===s04CaptionReview[1]) {
     for (const region of regions) if (region.block.fa.startsWith('• ')) {
       region.slot=[.05,.23,.97,.34]; region.font=record.number===19?21:23;
+      if(record.number===14)region.manualAccents=[{text:'افزودن حالت پنهان',color:'#ffc000'}];
     }
   }
   // Both hashes bind these coordinates to the exact source text and translation.

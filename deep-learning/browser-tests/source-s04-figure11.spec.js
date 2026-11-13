@@ -1,6 +1,6 @@
 import {test, expect} from '@playwright/test';
 
-for (const [width, height] of [[1280, 720], [1920, 1080]]) {
+for (const [width, height] of [[1024, 768], [1280, 720], [1920, 1080]]) {
   test(`lesson four figure 11 caption is readable at ${width}`, async ({page}, testInfo) => {
     await page.setViewportSize({width, height});
     await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=11');

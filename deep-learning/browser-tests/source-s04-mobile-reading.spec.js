@@ -1,6 +1,6 @@
 import {test, expect} from '@playwright/test';
 
-for (const number of [6, 7, 8, 9]) {
+for (const number of [6, 7, 8, 9, 36, 37]) {
   test(`large text follows lesson four slide ${number}`, async ({page}) => {
     await page.setViewportSize({width:390,height:844});
     await page.goto(`/deep-learning/terms/spring-2026/s04/slides/#page=${number}`);
@@ -13,6 +13,9 @@ for (const number of [6, 7, 8, 9]) {
     await expect.poll(() => holder.evaluate(el => el.nextElementSibling?.classList.contains('reader-mobile-transcript'))).toBe(true);
     await transcript.locator('summary').click();
     await expect(transcript).toHaveAttribute('open', '');
+    if (number === 36 || number === 37) {
+      await expect(transcript.locator('.reader-image-text[dir=ltr]')).toHaveText('0.419748; 0.194682; 0.162429; 0.223141');
+    }
     await expect(holder).toBeVisible();
   });
 }

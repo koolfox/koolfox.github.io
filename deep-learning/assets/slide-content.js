@@ -1246,7 +1246,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && sourceIdentity.sourceSha256==='f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7'
       && record.source_text_sha256===s05CellsHashes[0] && layout.translation_sha256===s05CellsHashes[1]){
     for(const region of regions){const i=region.block.source_lines[0],n=record.number;
-      if(i===0){region.slot=[.04,.10,.96,.21];region.font=32;}
+      if(i===0){region.slot=[.04,.10,.96,.24];region.font=32;}
       if(i===1){region.slot=[.04,.26,.96,.33];region.font=18;}
       if(i===2){region.slot=[.04,.33,.96,.43];region.font=16;}
       if(i===4){region.slot=[.78,.95,.99,.995];region.font=13;}

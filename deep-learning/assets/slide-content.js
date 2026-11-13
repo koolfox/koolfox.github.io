@@ -2326,8 +2326,8 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='1fc9bb5b31167061761a0f704cd78f000ff7871b715987edad1bb71d55bc17dc'
       && layout.translation_sha256==='953b4ff315115f1a6d4d9714bfcd49d2cb79f775c3ded101af08caf9f96a10ba'){
-    const slots={6:[.04,.09,.97,.19],4:[.40,.40,.625,.53],1:[.53,.70,.765,.90]};
-    for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===6?30:14;}}
+    const slots={6:[.04,.09,.97,.19],4:[.40,.40,.625,.53],1:[.40,.70,.765,.90]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===6?30:i===1?20:14;}}
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===44
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'

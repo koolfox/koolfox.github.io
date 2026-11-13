@@ -948,13 +948,15 @@
       "number": 39,
       "source_text_sha256": "ed5a02b908f9bbf93cf61bf18b998ce514afbef19d8200595612f4a73cf17e03",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "partial",
+      "question_ids": [
+        "filters-identity-39"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -964,19 +966,23 @@
           0
         ],
         "image_label_indices": []
-      }
+      },
+      "review_basis": "source_text_and_rendered_figure_original_study_question",
+      "prompt_reconciliation": "source_question_partially_addressed_by_original_study_question"
     },
     {
       "number": 40,
       "source_text_sha256": "f933f44d413f9e1e2268537b1cbb8f481396916beae1353b48250bb57e711b72",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "partial",
+      "question_ids": [
+        "filter-demo-40"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -986,7 +992,9 @@
           0
         ],
         "image_label_indices": []
-      }
+      },
+      "review_basis": "source_text_and_rendered_figure_original_study_question",
+      "prompt_reconciliation": "source_question_partially_addressed_by_original_study_question"
     },
     {
       "number": 41,
@@ -1302,12 +1310,13 @@
       ],
       "question_coverage": "partial",
       "question_ids": [
-        "page-54-concept"
+        "page-54-concept",
+        "padding-border-information-54"
       ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
-      "review_basis": "source_text_study_check",
+      "review_basis": "source_text_and_rendered_figure_original_study_question",
       "review_scope": "source_prompt_inventory",
       "explicit_prompt_candidates": {
         "source_line_indices": [
@@ -1315,7 +1324,8 @@
           3
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "source_question_partially_addressed_by_original_study_question"
     },
     {
       "number": 55,
@@ -1611,12 +1621,14 @@
       ],
       "question_coverage": "partial",
       "question_ids": [
-        "page-68-concept"
+        "page-68-concept",
+        "lenet-first-filter-count-68",
+        "lenet-first-filter-size-68"
       ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
-      "review_basis": "source_text_study_check",
+      "review_basis": "source_text_and_rendered_figure_original_study_question",
       "review_scope": "source_prompt_inventory",
       "explicit_prompt_candidates": {
         "source_line_indices": [
@@ -1625,7 +1637,8 @@
           4
         ],
         "image_label_indices": []
-      }
+      },
+      "prompt_reconciliation": "source_question_partially_addressed_by_original_study_question"
     },
     {
       "number": 69,
@@ -1678,13 +1691,15 @@
       "number": 71,
       "source_text_sha256": "e6deb73627a334bdc6b72f943170ba686622c0d9761e953844751e4c3f024c61",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "partial",
+      "question_ids": [
+        "lenet-training-convergence-71"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -1694,7 +1709,9 @@
           2
         ],
         "image_label_indices": []
-      }
+      },
+      "review_basis": "source_text_and_rendered_figure_original_study_question",
+      "prompt_reconciliation": "source_question_partially_addressed_by_original_study_question"
     },
     {
       "number": 72,
@@ -2786,6 +2803,126 @@
       },
       "reviewed": true,
       "verification_source": "https://princetonuniversity.github.io/NEU-PSY-502/_static/pdf/Class%204/LeCunn1998.pdf"
+    },
+    {
+      "id": "filters-identity-39",
+      "source_kind": "original",
+      "source_page": 39,
+      "pages": [
+        39
+      ],
+      "prompt_fa": "در جدول اسلاید، کدام فیلتر تصویر را بدون تغییر در ناحیه داخلی عبور میدهد؟",
+      "solution_fa": "در فیلتر همانی (Identity)، وزن مرکز ۱ و وزنهای دیگر صفرند؛ با فرض نبود تغییر اضافی، پیکسل متناظر عبور میکند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "فیلتر همانی با وزن مرکز ۱ و بقیه صفر",
+          "فیلتر میانگین گیر با همه وزنهای برابر",
+          "فیلتر تشخیص لبه با وزنهای مثبت و منفی"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "filter-demo-40",
+      "source_kind": "original",
+      "source_page": 40,
+      "pages": [
+        40
+      ],
+      "prompt_fa": "در تصویر ابزار اسلاید، کدام نوع فیلتر انتخاب شده است؟",
+      "solution_fa": "در فهرست تصویر، گزینه Sharpen دیده میشود که برای برجسته کردن جزییات به کار میرود.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "Sharpen برای تیزتر کردن تصویر",
+          "Blur برای محو کردن تصویر",
+          "Identity برای عبور بدون تغییر"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "padding-border-information-54",
+      "source_kind": "original",
+      "source_page": 54,
+      "pages": [
+        54
+      ],
+      "prompt_fa": "هنگام افزودن حاشیه صفر برای حفظ اندازه، درباره اطلاعات مرزی چه نکته ای مهم است؟",
+      "solution_fa": "مقدارهای افزوده شده مشاهده جدید از تصویر نیستند و میتوانند پاسخ نزدیک مرز را تحت تاثیر قرار دهند؛ باید بررسی کرد اطلاعات مرزی برای مساله ارزشمند است یا نه.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "صفرهای افزوده مشاهده جدید نیستند و اثر آنها در مرز باید بررسی شود",
+          "حاشیه صفر همیشه اطلاعات واقعی بیرون تصویر را بازسازی میکند",
+          "حاشیه صفر همیشه کیفیت مدل را بدون بررسی بهتر میکند"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "lenet-first-filter-count-68",
+      "source_kind": "original",
+      "source_page": 68,
+      "pages": [
+        68
+      ],
+      "prompt_fa": "طبق شکل LeNet-5 در اسلاید، از ورودی تا نخستین لایه کانولوشن چند فیلتر به کار میرود؟",
+      "solution_fa": "در شکل ۶ نقشه ویژگی برای لایه C1 و در متن ۶ فیلتر نشان داده شده است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "۶",
+          "۱",
+          "۱۶"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "lenet-first-filter-size-68",
+      "source_kind": "original",
+      "source_page": 68,
+      "pages": [
+        68
+      ],
+      "prompt_fa": "طبق اسلاید، هر فیلتر نخستین لایه کانولوشن LeNet-5 چه اندازه ای دارد؟",
+      "solution_fa": "متن اسلاید ۶ فیلتر ۵×۵ و محاسبه ۶×۵×۵+۶=۱۵۶ را نشان میدهد.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "۵×۵",
+          "۲×۲",
+          "۱۰×۱۰"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "lenet-training-convergence-71",
+      "source_kind": "original",
+      "source_page": 71,
+      "pages": [
+        71
+      ],
+      "prompt_fa": "با نگاه تقریبی به نمودار اسلاید، خطای آموزش در کدام بازه به بخش نسبتا تخت منحنی رسیده است؟",
+      "solution_fa": "در نمودار، حدود تکرارهای ۱۴ تا ۲۰ منحنی آموزش نسبت به ابتدای کار تغییر اندکی دارد؛ این خواندن تقریبی نمودار است و آستانه ریاضی همگرایی را ثابت نمیکند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "حدود ۱۴ تا ۲۰ تکرار مجموعه آموزش",
+          "فقط تکرار ۱ تا ۲",
+          "پیش از نخستین تکرار"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
     }
   ]
 }

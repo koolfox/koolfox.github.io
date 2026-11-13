@@ -38,6 +38,13 @@ for (const width of [390, 1440]) test(`CNN review retains its source canvas at $
   const slide=page.locator('#persian-page');
   await expect(slide).toHaveAttribute('data-layout','source-canvas');
   await expect(slide.locator('.reader-slide-text')).toHaveCount(10);
+  const reading=slide.locator('.reader-mobile-transcript');
+  if(width===390){
+    await expect(reading).toBeVisible();
+    await reading.locator('summary').click();
+    await expect(reading.locator('.reader-mobile-transcript-content')).toContainText('مجموعه مساله');
+    await expect(reading.locator('.reader-copy').first()).toHaveCSS('font-size', /^(16|19)px$/);
+  }else await expect(reading).toBeHidden();
   for(const text of ['مجموعه مساله', 'داده دنباله ای', 'PyTorch']) await expect(slide.locator('.reader-slide-text').filter({hasText:text})).toBeVisible();
   expect(await slide.locator('.reader-slide-text').evaluateAll(nodes=>nodes.every(node=>node.scrollHeight<=node.clientHeight+2))).toBeTruthy();
   await page.screenshot({path:testInfo.outputPath(`s05-review-${width}.png`)});

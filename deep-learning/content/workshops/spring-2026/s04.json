@@ -820,6 +820,156 @@
           }
         }
       ]
+    },
+    {
+      "id": "lstm-gates",
+      "title_fa": "کاوش شماتیک دروازه های LSTM",
+      "pages": [
+        55,
+        56,
+        57
+      ],
+      "code_file": "s04_lstm_gates.py",
+      "starter_sha256": "9b3c3250199af8f29c05675f25e4a4f7402d6e3401619fcd0a3cf6ef2ab72e89",
+      "reference": {
+        "old_contribution": 0.44999999999999996,
+        "new_contribution": -0.1,
+        "cell": 0.35,
+        "hidden": 0.1681877721681661,
+        "direct_derivative": 0.75
+      },
+      "questions": [
+        {
+          "id": "input-zero",
+          "source_kind": "original",
+          "source_page": 55,
+          "prompt_fa": "وقتی دروازه ورودی صفر باشد، کدام سهم حذف میشود؟",
+          "solution_fa": "فقط سهم کاندید جدید حذف میشود؛ سهم حافظه قبلی مستقل است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "سهم کاندید جدید",
+              "همه حافظه قبلی",
+              "همیشه کل خروجی"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "forget-zero",
+          "source_kind": "original",
+          "source_page": 56,
+          "prompt_fa": "اگر دروازه فراموشی صفر باشد، آیا حالت سلول حتما صفر میشود؟",
+          "solution_fa": "خیر، سهم جدید میتواند همچنان غیرصفر باشد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "بله همیشه",
+              "خیر، سهم ورودی جدید میتواند بماند",
+              "فقط اگر دروازه خروج یک باشد"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "output",
+          "source_kind": "original",
+          "source_page": 56,
+          "prompt_fa": "دروازه خروج چه چیزی را در فرمول h کنترل میکند؟",
+          "solution_fa": "دروازه خروج مقدار tanh حالت سلول را برای ساخت حالت پنهان مقیاس میکند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "سهم نمایش داده شده از حالت سلول",
+              "حذف قطعی همه ورودی ها",
+              "تعداد گامهای زمان"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "direct-path",
+          "source_kind": "original",
+          "source_page": 57,
+          "prompt_fa": "با ثابت گرفتن دروازه ها، مشتق مسیر مستقیم حالت سلول نسبت به حالت قبلی چیست؟",
+          "solution_fa": "این مشتق برابر دروازه فراموشی است؛ مشتق کل شبکه میتواند مسیرهای دیگری نیز داشته باشد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "دروازه فراموشی",
+              "دروازه ورودی",
+              "همیشه صفر"
+            ],
+            "correct_index": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "gru-diagram",
+      "title_fa": "کاوش دروازه های GRU",
+      "pages": [
+        58
+      ],
+      "code_file": "s04_gru_diagram.py",
+      "starter_sha256": "124a3e42a03be0aab3ce4d2bc2e851ee3263699463875f8a1169931bd29e67d5",
+      "reference": {
+        "reset_state": 0.3,
+        "candidate": 0.5153592780074098,
+        "old_contribution": 0.44999999999999996,
+        "new_contribution": 0.12883981950185244,
+        "hidden": 0.5788398195018524
+      },
+      "questions": [
+        {
+          "id": "reset",
+          "source_kind": "original",
+          "source_page": 58,
+          "prompt_fa": "دروازه reset در این مثال کدام سهم را به محاسبه کاندید میرساند؟",
+          "solution_fa": "reset حالت پنهان قبلی را پیش از سهم بازگشتی کاندید کنترل میکند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "حالت پنهان قبلی",
+              "فقط تعداد گامها",
+              "فقط خروجی softmax"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "update",
+          "source_kind": "original",
+          "source_page": 58,
+          "prompt_fa": "در قرارداد شکل اسلاید، اگر z به صفر میل کند کدام سهم باقی میماند؟",
+          "solution_fa": "در قرارداد شکل، 1-z سهم قبلی است و z سهم کاندید.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "حالت قبلی",
+              "فقط کاندید",
+              "همیشه صفر"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "convention",
+          "source_kind": "original",
+          "source_page": 58,
+          "prompt_fa": "در معادله 7 مقاله Cho، ضریب z کدام سهم را وزن میدهد؟",
+          "solution_fa": "در مقاله z سهم حالت قبلی است و نسبت به نامگذاری شکل مکمل است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "حالت قبلی",
+              "کاندید جدید",
+              "زیان شبکه"
+            ],
+            "correct_index": 0
+          }
+        }
+      ]
     }
   ]
 }

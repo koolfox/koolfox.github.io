@@ -13,6 +13,16 @@ from source_activities import load_activities
 
 
 class SourceActivityTests(unittest.TestCase):
+    def test_lesson_four_sequence_input_question_is_linked_to_source_page(self):
+        document = load_activities(ROOT, "spring-2026", "s04")
+        page = document["pages"][40]
+        by_id = {question["id"]: question for question in document["questions"]}
+        self.assertIn("bptt-sequence-input", page["question_ids"])
+        question = by_id["bptt-sequence-input"]
+        self.assertEqual(question["source_page"], 41)
+        self.assertEqual(question["answer"]["kind"], "choice")
+        self.assertIn("پارامترهای مشترک", question["answer"]["options_fa"][question["answer"]["correct_index"]])
+
     def test_every_source_page_has_an_explicit_hash_bound_review_state(self):
         total = 0
         for path in sorted((ROOT / "content/activities/spring-2026").glob("*.json")):

@@ -119,6 +119,7 @@ async function paintPersianLayout(source,canonicalSource,id,selected){
  let transcript=null;
  if(config.term==='spring-2026'&&['s04','s05'].includes(config.session)&&fallback.some(node=>node.nodeType===1)){
   transcript=element('details','reader-mobile-transcript');
+  if(config.session==='s05'&&[15,16,17].includes(selected))transcript.classList.add('reader-desktop-transcript');
   const summary=element('summary','','متن درشت');transcript.append(summary);
   const content=element('div','reader-mobile-transcript-content');
   for(const node of fallback){if(node.nodeType===1&&node.matches('.reader-editorial'))continue;content.append(node.cloneNode(true));}

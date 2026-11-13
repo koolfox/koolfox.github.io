@@ -420,14 +420,16 @@
       "number": 19,
       "source_text_sha256": "d6132ec938b3e68d2abd8f968291b1acb842c7701af2d72003acc6510e9cbce0",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "partial",
+      "question_ids": [
+        "neo-k1-pattern-19"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -437,20 +439,24 @@
           4
         ],
         "image_label_indices": []
-      }
+      },
+      "review_basis": "source_pdf_figure_visual_review_original_study_question",
+      "prompt_reconciliation": "source_question_partially_addressed_by_original_study_question"
     },
     {
       "number": 20,
       "source_text_sha256": "7308e64f251373a23d77ed62f1933ff798e745532e17b83df83b7682c2915f56",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "partial",
+      "question_ids": [
+        "neo-k1-complex-20"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -460,20 +466,24 @@
           4
         ],
         "image_label_indices": []
-      }
+      },
+      "review_basis": "source_pdf_figure_visual_review_original_study_question",
+      "prompt_reconciliation": "source_question_partially_addressed_by_original_study_question"
     },
     {
       "number": 21,
       "source_text_sha256": "7a536322fc55e75450801d8cc24e594feaab9978fa55acecaea631d5a17a2313",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "partial",
+      "question_ids": [
+        "neo-target-pattern-21"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -483,7 +493,9 @@
           4
         ],
         "image_label_indices": []
-      }
+      },
+      "review_basis": "source_pdf_figure_visual_review_original_study_question",
+      "prompt_reconciliation": "source_question_partially_addressed_by_original_study_question"
     },
     {
       "number": 22,
@@ -2919,6 +2931,66 @@
           "حدود ۱۴ تا ۲۰ تکرار مجموعه آموزش",
           "فقط تکرار ۱ تا ۲",
           "پیش از نخستین تکرار"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "neo-k1-pattern-19",
+      "source_kind": "original",
+      "source_page": 19,
+      "pages": [
+        19
+      ],
+      "prompt_fa": "در شکل اسلاید، الگوی هدف نشان داده شده برای k=1 کدام بخش از حرف A است؟",
+      "solution_fa": "در شکل ردیف k=1 نماد زاویه بالای حرف A را نشان میدهد.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "زاویه بالای حرف A",
+          "فقط یک دایره کامل",
+          "فقط یک خط افقی جدا"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "neo-k1-complex-20",
+      "source_kind": "original",
+      "source_page": 20,
+      "pages": [
+        20
+      ],
+      "prompt_fa": "طبق شکل اسلاید، چرا سلول پیچیده در ردیف k=1 پاسخ میدهد؟",
+      "solution_fa": "نشان پاسخ سلول ساده k=1 درون ناحیه هدف سلول پیچیده قرار دارد؛ معیار اسلاید وجود الگو دست کم در یک بخش ناحیه است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "پاسخ متناظر الگو درون ناحیه هدف قرار دارد",
+          "تمام نقاط ناحیه باید همزمان صفر باشند",
+          "هیچ پاسخی از سلول ساده به ناحیه هدف نمیرسد"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "neo-target-pattern-21",
+      "source_kind": "original",
+      "source_page": 21,
+      "pages": [
+        21
+      ],
+      "prompt_fa": "در نمونه شکل اسلاید، الگوی ترکیبی هدف در مرحله بالاتر کدام است؟",
+      "solution_fa": "شکل ورودی و نماد داخل واحد مرحله بالاتر الگوی حرف A را نشان میدهند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "حرف A",
+          "حرف B",
+          "عدد ۷"
         ],
         "correct_index": 0
       },

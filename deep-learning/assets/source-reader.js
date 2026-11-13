@@ -121,7 +121,7 @@ async function paintPersianLayout(source,canonicalSource,id,selected){
   transcript=element('details','reader-mobile-transcript');
   const summary=element('summary','','متن درشت');transcript.append(summary);
   const content=element('div','reader-mobile-transcript-content');
-  for(const node of fallback)content.append(node.cloneNode(true));
+  for(const node of fallback){if(node.nodeType===1&&node.matches('.reader-editorial'))continue;content.append(node.cloneNode(true));}
   if(selected===36&&record.source_text_sha256==='1fc9bb5b31167061761a0f704cd78f000ff7871b715987edad1bb71d55bc17dc'){
    const fa='0.419748؛ 0.194682؛ 0.162429؛ 0.223141',en='0.419748; 0.194682; 0.162429; 0.223141';
    const item=record.image_text?.find(label=>label.fa===fa&&label.en===en);

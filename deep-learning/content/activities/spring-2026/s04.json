@@ -926,6 +926,7 @@
       ],
       "question_coverage": "complete",
       "question_ids": [
+        "bptt-sequence-input",
         "bptt-inputs"
       ],
       "example_ids": [],
@@ -1642,6 +1643,24 @@
           "هیچ‌کدام توالی ورودی ندارند"
         ],
         "correct_index": 1
+      },
+      "reviewed": true
+    },
+    {
+      "id": "bptt-sequence-input",
+      "source_kind": "original",
+      "source_page": 41,
+      "pages": [41],
+      "prompt_fa": "برای پشتیبانی از ورودی دنباله در آموزش شبکه بازگشتی، ورودی چگونه پردازش میشود؟",
+      "solution_fa": "شبکه در گامهای زمانی باز میشود؛ در هر گام ورودی همان گام و حالت قبلی دریافت میشوند و پارامترها در زمان مشترک میمانند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "پردازش گام به گام دنباله با حالت قبلی و پارامترهای مشترک",
+          "حذف همه ورودیها به جز اولین عضو دنباله",
+          "استفاده از وزن مستقل و بی ارتباط برای هر گام"
+        ],
+        "correct_index": 0
       },
       "reviewed": true
     },

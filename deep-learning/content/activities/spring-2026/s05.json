@@ -1631,13 +1631,15 @@
       "number": 69,
       "source_text_sha256": "99069e8ef992315273e975fa9379cdd56b9bcc9fc6f1ad21c9f6cc937e1d4cce",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "partial",
+      "question_ids": [
+        "lenet-subsampling-size-69"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -1647,7 +1649,9 @@
           2
         ],
         "image_label_indices": []
-      }
+      },
+      "review_basis": "source_figure_and_original_lenet_paper_original_study_question",
+      "prompt_reconciliation": "source_question_addressed_by_original_study_question"
     },
     {
       "number": 70,
@@ -2761,6 +2765,27 @@
         "correct_index": 0
       },
       "reviewed": true
+    },
+    {
+      "id": "lenet-subsampling-size-69",
+      "source_kind": "original",
+      "source_page": 69,
+      "pages": [
+        69
+      ],
+      "prompt_fa": "در معماری اصلی LeNet-5، اندازه همسایگی لایه زیرنمونه گیری S2 چند است؟",
+      "solution_fa": "مقاله اصلی LeNet-5 میدان پذیرش ۲×۲ بدون همپوشانی را برای هر واحد S2 بیان میکند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "۲×۲",
+          "۳×۳",
+          "۵×۵"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true,
+      "verification_source": "https://princetonuniversity.github.io/NEU-PSY-502/_static/pdf/Class%204/LeCunn1998.pdf"
     }
   ]
 }

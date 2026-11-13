@@ -1071,13 +1071,15 @@
       "number": 45,
       "source_text_sha256": "e372fb51286c6803aee84a9515c506ec159e0efb4660f4aa574c3bb78997e20c",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "partial",
+      "question_ids": [
+        "source-input-channels-45"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -1087,7 +1089,9 @@
           8
         ],
         "image_label_indices": []
-      }
+      },
+      "review_basis": "source_text_question_and_original_multiple_choice",
+      "prompt_reconciliation": "explicit_source_question_addressed_in_original_study_question"
     },
     {
       "number": 46,
@@ -1672,14 +1676,16 @@
       "number": 72,
       "source_text_sha256": "82421ec9d8bd9e6dd0fca948068b22b202204ae3d000788ee481889d2db40d5b",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "partial",
+      "question_ids": [
+        "lenet-errors-72"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -1689,7 +1695,9 @@
           4
         ],
         "image_label_indices": []
-      }
+      },
+      "review_basis": "source_text_question_and_original_multiple_choice",
+      "prompt_reconciliation": "explicit_source_question_addressed_in_original_study_question"
     },
     {
       "number": 73,
@@ -2593,6 +2601,46 @@
       "pages": [
         38
       ]
+    },
+    {
+      "id": "source-input-channels-45",
+      "source_kind": "original",
+      "source_page": 45,
+      "pages": [
+        45
+      ],
+      "prompt_fa": "در یک لایه کانولوشن، برای ساخت یک نقشه ویژگی از ورودی چندکاناله چه میکنیم؟",
+      "solution_fa": "برای هر کانال ورودی یک بخش متناظر از فیلتر داریم؛ پاسخ کانالها جمع میشود و سپس بایاس و تابع فعال ساز اعمال میشوند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "پاسخ فیلترهای متناظر کانالها را جمع میکنیم و سپس بایاس و تابع فعال ساز را اعمال میکنیم",
+          "فقط کانال اول را نگه میداریم و بقیه را حذف میکنیم",
+          "برای هر کانال، یک خروجی مستقل میگیریم و هرگز آنها را جمع نمیکنیم"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "lenet-errors-72",
+      "source_kind": "original",
+      "source_page": 72,
+      "pages": [
+        72
+      ],
+      "prompt_fa": "طبق اسلاید تحلیل LeNet-5، کدام دو عامل میتوانند در خطای پیش بینی نقش داشته باشند؟",
+      "solution_fa": "اسلاید به ابهام نمونه و بازنمایی ناکافی آن در داده آموزش اشاره میکند؛ اینها توضیحهای ممکن هستند، نه اثبات علت هر خطا.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "ابهام نمونه و بازنمایی ناکافی در داده آموزش",
+          "فقط تعداد لایه های شبکه، بدون توجه به داده",
+          "فقط تغییر نام فایل تصویر"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
     }
   ]
 }

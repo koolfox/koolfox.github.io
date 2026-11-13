@@ -341,14 +341,16 @@
       "number": 16,
       "source_text_sha256": "2ff011eaf2adc363ed336978b004adc09f21372a59bca191dcec2c73dc9e2dff",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "partial",
+      "question_ids": [
+        "source-complex-cell-16"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -363,7 +365,9 @@
           13
         ],
         "image_label_indices": []
-      }
+      },
+      "review_basis": "source_text_and_rendered_figure_original_study_question",
+      "prompt_reconciliation": "source_question_partially_addressed_by_original_study_question"
     },
     {
       "number": 17,
@@ -388,14 +392,16 @@
       "number": 18,
       "source_text_sha256": "a7890e6fa0ae769c8c9a26c7e5ab54923b767e4b0460de3058156848d3c773e2",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "partial",
+      "question_ids": [
+        "source-neocognitron-18"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -406,7 +412,9 @@
           5
         ],
         "image_label_indices": []
-      }
+      },
+      "review_basis": "source_text_and_rendered_figure_original_study_question",
+      "prompt_reconciliation": "source_question_partially_addressed_by_original_study_question"
     },
     {
       "number": 19,
@@ -502,14 +510,16 @@
       "number": 23,
       "source_text_sha256": "c1ce961521853cffea4a5c0a4fa447200fd7f602cef6eb1558ad00c235e5977c",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "partial",
+      "question_ids": [
+        "source-waldo-search-23"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -519,7 +529,9 @@
           2
         ],
         "image_label_indices": []
-      }
+      },
+      "review_basis": "source_text_and_rendered_figure_original_study_question",
+      "prompt_reconciliation": "source_question_partially_addressed_by_original_study_question"
     },
     {
       "number": 24,
@@ -1462,14 +1474,16 @@
       "number": 62,
       "source_text_sha256": "d939f6b63b5a74b901f6ca192d495b3b062e83aa572c7c779e5fb0f2622c2553",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "partial",
+      "question_ids": [
+        "source-pooling-backward-62"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -1479,7 +1493,9 @@
           11
         ],
         "image_label_indices": []
-      }
+      },
+      "review_basis": "source_text_and_rendered_figure_original_study_question",
+      "prompt_reconciliation": "source_question_partially_addressed_by_original_study_question"
     },
     {
       "number": 63,
@@ -1562,13 +1578,15 @@
       "number": 67,
       "source_text_sha256": "661efe6eb99c60d2540cef55a2eb85e9b345d3bf9102b5c3fe03182087b77d8e",
       "classification": "conceptual_question",
-      "review_status": "pending",
+      "review_status": "reviewed",
       "candidate_signals": [
         "source_question_index",
         "question_text"
       ],
-      "question_coverage": "pending",
-      "question_ids": [],
+      "question_coverage": "partial",
+      "question_ids": [
+        "source-lenet-output-67"
+      ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
       "private_material_refs": [],
@@ -1578,7 +1596,9 @@
           5
         ],
         "image_label_indices": []
-      }
+      },
+      "review_basis": "source_text_and_rendered_figure_original_study_question",
+      "prompt_reconciliation": "source_question_partially_addressed_by_original_study_question"
     },
     {
       "number": 68,
@@ -2637,6 +2657,106 @@
           "ابهام نمونه و بازنمایی ناکافی در داده آموزش",
           "فقط تعداد لایه های شبکه، بدون توجه به داده",
           "فقط تغییر نام فایل تصویر"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "source-complex-cell-16",
+      "source_kind": "original",
+      "source_page": 16,
+      "pages": [
+        16
+      ],
+      "prompt_fa": "در مثال اسلاید، سلول پیچیده چه زمانی فعال میشود؟",
+      "solution_fa": "وقتی الگوی مورد نظر دست کم در یک بخش از ناحیه پوشش آن پیدا شود.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "وقتی الگو دست کم در یک بخش ناحیه دیده شود",
+          "فقط وقتی تمام مکانهای تصویر یکسان باشند",
+          "فقط وقتی هیچ بخشی از ناحیه الگو را نداشته باشد"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "source-neocognitron-18",
+      "source_kind": "original",
+      "source_page": 18,
+      "pages": [
+        18
+      ],
+      "prompt_fa": "در شکل اسلاید، ورودی نمونه و خروجی نهایی به ترتیب چه چیزی را نشان میدهند؟",
+      "solution_fa": "ورودی شکل حرف A را نشان میدهد و خروجی نهایی، پاسخ به همان الگو است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "تصویر حرف A و پاسخ به الگوی A",
+          "تصویر عدد ۷ و پاسخ به الگوی B",
+          "تصویر خالی و پاسخ به نبود الگو"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "source-waldo-search-23",
+      "source_kind": "original",
+      "source_page": 23,
+      "pages": [
+        23
+      ],
+      "prompt_fa": "برای یافتن الگوی هدف در مثال والدو، نقش لایه ساده چیست؟",
+      "solution_fa": "هدف اسلاید پاسخ دادن در مکانهایی از تصویر است که الگوی مورد نظر را نشان میدهند.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "بررسی مکانهای تصویر برای یافتن الگوی مورد نظر",
+          "نادیده گرفتن موقعیتهای تصویر و نگه داشتن یک پیکسل ثابت",
+          "انتخاب تصادفی یک مکان بدون بررسی الگو"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "source-pooling-backward-62",
+      "source_kind": "original",
+      "source_page": 62,
+      "pages": [
+        62
+      ],
+      "prompt_fa": "در پس انتشار از لایه تجمیع یا عملیات دارای گام، گرادیان چگونه عبور میکند؟",
+      "solution_fa": "گرادیان باید مطابق مشتق همان عملیات و مسیرهای انتخاب شده در گذر رو به جلو منتشر شود؛ برای بیشینه گیری، مسیر عنصر بیشینه در نظر گرفته میشود.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "با در نظر گرفتن مشتق عملیات و مسیرهای آن در گذر رو به جلو",
+          "با حذف همیشگی تمام گرادیانهای پیش از لایه تجمیع",
+          "با برابر فرض کردن همه وزنهای لایه های قبلی با صفر"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "source-lenet-output-67",
+      "source_kind": "original",
+      "source_page": 67,
+      "pages": [
+        67
+      ],
+      "prompt_fa": "طبق شکل معماری LeNet-5 در اسلاید، لایه خروجی چند مقدار دارد؟",
+      "solution_fa": "روی شکل کنار خروجی عدد ۱۰ ثبت شده است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "۱۰",
+          "۵",
+          "۸۴"
         ],
         "correct_index": 0
       },

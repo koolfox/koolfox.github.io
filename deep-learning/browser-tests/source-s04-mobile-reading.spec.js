@@ -1,6 +1,6 @@
 import {test, expect} from '@playwright/test';
 
-for (const number of [6, 7, 8, 9]) {
+for (const number of [6, 7, 8, 9, 26, 27]) {
   test(`large text follows lesson four slide ${number}`, async ({page}) => {
     await page.setViewportSize({width:390,height:844});
     await page.goto(`/deep-learning/terms/spring-2026/s04/slides/#page=${number}`);

@@ -117,7 +117,7 @@ async function paintPersianLayout(source,canonicalSource,id,selected){
  const previousCompanion=persian.querySelector('.reader-figure-labels');
  const previousTranscript=persian.querySelector('.reader-mobile-transcript');
  let transcript=null;
- if(config.term==='spring-2026'&&config.session==='s04'&&fallback.some(node=>node.nodeType===1)){
+ if(config.term==='spring-2026'&&['s04','s05'].includes(config.session)&&fallback.some(node=>node.nodeType===1)){
   transcript=element('details','reader-mobile-transcript');
   const summary=element('summary','','متن درشت');transcript.append(summary);
   const content=element('div','reader-mobile-transcript-content');

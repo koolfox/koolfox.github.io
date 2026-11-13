@@ -133,7 +133,7 @@ async function paintPersianLayout(source,canonicalSource,id,selected){
  if(previousCompanion&&slide.companion)slide.companion.open=previousCompanion.open;
  function install(...nodes){
   if(transcript&&nodes[0]?.classList?.contains('reader-slide-holder')){
-   if(config.session==='s04'&&selected>=6&&selected<=9)nodes.splice(1,0,transcript);
+   if(config.session==='s04'&&((selected>=6&&selected<=9)||selected===26||selected===27))nodes.splice(1,0,transcript);
    else nodes.push(transcript);
   }
   persian.replaceChildren(...nodes);

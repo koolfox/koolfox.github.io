@@ -132,7 +132,10 @@ async function paintPersianLayout(source,canonicalSource,id,selected){
  }
  if(previousCompanion&&slide.companion)slide.companion.open=previousCompanion.open;
  function install(...nodes){
-  if(transcript&&nodes[0]?.classList?.contains('reader-slide-holder'))nodes.push(transcript);
+  if(transcript&&nodes[0]?.classList?.contains('reader-slide-holder')){
+   if(selected>=6&&selected<=9)nodes.splice(1,0,transcript);
+   else nodes.push(transcript);
+  }
   persian.replaceChildren(...nodes);
   persian.querySelectorAll('.reader-table-viewport').forEach((node,index)=>{const state=tableState[index];if(!state)return;if(state.focused)node.focus({preventScroll:true});node.scrollLeft=state.left;node.scrollTop=state.top;});
  }

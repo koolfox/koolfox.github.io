@@ -1241,6 +1241,23 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && layout.translation_sha256==='4b1fba13da2dbe5752589751ec21f7fff5bc0bafa359c474a2069a5e4f4e3e68'){
     for(const region of regions){if(region.block.source_lines[0]===4 && region.block.fa.startsWith('بین')){region.slot=[.04,.958,.60,.998];region.font=16;}}
   }
+  const s05CellsHashes={15:['218de1606529ad3e8d1f1bc3d3e2e64bda2c6fce42cb7a8f9e8ea11c3741e52b','9b5b19cc30d82add783084c50e6953096d72193fbeab6910185722af3b1fec90'],16:['2ff011eaf2adc363ed336978b004adc09f21372a59bca191dcec2c73dc9e2dff','594cf80d7918963d6c4e2dcc2809659ae70f4e9d6b8abf1d27c7ff7074cdd96e'],17:['597ef07910b308050583b06338fff57ff568dc1d7a30c9375e84f72b1eee8c9a','34a80dfcfd2d12506410b50f65cc8bfb420ded04efe5dd13a34325ffe3e0bef9']}[record.number];
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s05' && s05CellsHashes
+      && sourceIdentity.sourceSha256==='f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7'
+      && record.source_text_sha256===s05CellsHashes[0] && layout.translation_sha256===s05CellsHashes[1]){
+    for(const region of regions){const i=region.block.source_lines[0],n=record.number;
+      if(i===0){region.slot=[.04,.10,.96,.21];region.font=32;}
+      if(i===1){region.slot=[.04,.26,.96,.33];region.font=18;}
+      if(i===2){region.slot=[.04,.33,.96,.43];region.font=16;}
+      if(i===4){region.slot=[.78,.95,.99,.995];region.font=13;}
+      if(n===15 && i===5){region.slot=[.005,.67,.22,.90];region.font=13;}
+      if(n===16 && i===5){region.slot=[.005,.72,.22,.91];region.font=12;}
+      if(n===17 && i===5){region.slot=[.76,.48,.99,.56];region.font=15;}
+      if(n===17 && i===6){region.slot=[.76,.55,.99,.70];region.font=13;}
+      if(n===17 && i===9){region.slot=[.76,.70,.99,.88];region.font=13;}
+      if((n===15 && i===8)||(n===16 && i===14)||(n===17 && i===12)){region.slot=[.21,.91,.80,.99];region.font=16;region.align='center';}
+    }
+  }
   let imageTranslations=[];
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'){

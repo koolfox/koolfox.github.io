@@ -122,7 +122,7 @@ async function paintPersianLayout(source,canonicalSource,id,selected){
   const summary=element('summary','','متن درشت');transcript.append(summary);
   const content=element('div','reader-mobile-transcript-content');
   for(const node of fallback)content.append(node.cloneNode(true));
-  if(selected===36&&record.source_text_sha256==='1fc9bb5b31167061761a0f704cd78f000ff7871b715987edad1bb71d55bc17dc'){
+  if((selected===36&&record.source_text_sha256==='1fc9bb5b31167061761a0f704cd78f000ff7871b715987edad1bb71d55bc17dc')||(selected===37&&record.source_text_sha256==='eb0be28e9cdc0b33ef5dabd8734de68430d4533216833b659a21f535570a8864')){
    const fa='0.419748؛ 0.194682؛ 0.162429؛ 0.223141',en='0.419748; 0.194682; 0.162429; 0.223141';
    const item=record.image_text?.find(label=>label.fa===fa&&label.en===en);
    const line=[...content.querySelectorAll('.reader-image-text')].find(node=>node.textContent===fa);
@@ -133,7 +133,7 @@ async function paintPersianLayout(source,canonicalSource,id,selected){
  if(previousCompanion&&slide.companion)slide.companion.open=previousCompanion.open;
  function install(...nodes){
   if(transcript&&nodes[0]?.classList?.contains('reader-slide-holder')){
-   if(selected>=6&&selected<=9)nodes.splice(1,0,transcript);
+   if((selected>=6&&selected<=9)||selected===36||selected===37)nodes.splice(1,0,transcript);
    else nodes.push(transcript);
   }
   persian.replaceChildren(...nodes);

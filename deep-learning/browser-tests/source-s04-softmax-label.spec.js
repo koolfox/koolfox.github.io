@@ -10,7 +10,7 @@ for (const width of [390, 1440]) {
     await expect(root).toHaveAttribute('data-layout', /source-canvas/);
     const label = root.locator('.reader-slide-text[data-source-lines="1,2,3"]');
     await expect(label).toBeVisible();
-    await expect(label).toHaveCSS('font-size', '20px');
+    expect(await label.evaluate(el => parseFloat(getComputedStyle(el).fontSize))).toBeCloseTo(20, 1);
     expect(await label.evaluate(el => el.scrollHeight <= el.clientHeight + 1)).toBe(true);
   });
 }

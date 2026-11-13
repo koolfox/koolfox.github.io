@@ -330,7 +330,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===11
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='5858cd7d5cdaa9c344a3c7883001961c4abed3c9aefd0f631d1389d58913418f'
-      && layout.translation_sha256==='abfefdee7e6fec256d27d0a323083d02663d2e627392e9f3fed690fe765b4a34') {
+      && layout.translation_sha256==='b5962b5278e15cfe4918f22414e36990c123168673bc6551916218cdd720404f') {
     const slots={0:[.04,.08,.97,.24],1:[.04,.27,.63,.40],3:[.04,.45,.63,.55],4:[.04,.59,.63,.71],6:[.04,.77,.63,.89]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===0?32:20;}if(i===1){region.color='#ffffff';region.manualAccents=[{text:'اتصال بازگشتی',color:'#ffc000'}];}}
   }
@@ -2385,7 +2385,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===11
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='5858cd7d5cdaa9c344a3c7883001961c4abed3c9aefd0f631d1389d58913418f'
-      && layout.translation_sha256==='abfefdee7e6fec256d27d0a323083d02663d2e627392e9f3fed690fe765b4a34'){
+      && layout.translation_sha256==='b5962b5278e15cfe4918f22414e36990c123168673bc6551916218cdd720404f'){
     imageTranslations.push({rect:[.75,.341,.815,.405],text:'مجموعه وزن های متناظر',background:'#fff',color:'#000',font:8,align:'center'});
   }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};

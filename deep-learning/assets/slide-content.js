@@ -2101,7 +2101,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===28
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='7d982bfcd5fd0660621c2fa65887a8919b0358403fe7968ffb4b34d6c5e00e95'
-      && layout.translation_sha256==='f6c55e44675c6ba192be0da43044de7e3e47e85a35cc3435a2556b9bfe1ffe6b'){
+      && layout.translation_sha256==='8645f17b4d72e6b07960cd66de94d3acd54fc047de4160c3848a2dc816764e9c'){
     const slots={0:[.04,.09,.97,.22],1:[.05,.26,.96,.34],2:[.05,.93,.38,.97],3:[.265,.80,.47,.89],5:[.39,.68,.47,.79],8:[.30,.39,.47,.48]};
     for(const region of regions){const i=region.block.source_lines[0];
       if(slots[i]){region.slot=slots[i];region.font=i===0?29:i===1?19:i===2?20:i===5?12:14;}
@@ -2331,7 +2331,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     23:['f411a58014188bf6197229cbfd37912ad6ae94a88e9226571565ffa434a34e4f','4b588bac1af1f56b28ed8b4887fe9ef2806a92901ef4bec05610661c47eb7490'],
     24:['8e4ae230d6a1eae89defb6b041d9c3860127b7f38380d1d360d577098648f14d','73d324917f54b73ee472be6f6b769acba976a0e836d67d1f6b0c173a08e992cf'],
     25:['8e4ae230d6a1eae89defb6b041d9c3860127b7f38380d1d360d577098648f14d','73d324917f54b73ee472be6f6b769acba976a0e836d67d1f6b0c173a08e992cf'],
-    28:['7d982bfcd5fd0660621c2fa65887a8919b0358403fe7968ffb4b34d6c5e00e95','f6c55e44675c6ba192be0da43044de7e3e47e85a35cc3435a2556b9bfe1ffe6b'],
+    28:['7d982bfcd5fd0660621c2fa65887a8919b0358403fe7968ffb4b34d6c5e00e95','8645f17b4d72e6b07960cd66de94d3acd54fc047de4160c3848a2dc816764e9c'],
   }[record.number];
   if(s04FigureLabels && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'

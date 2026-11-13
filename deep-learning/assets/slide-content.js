@@ -2371,6 +2371,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && layout.translation_sha256==='abfefdee7e6fec256d27d0a323083d02663d2e627392e9f3fed690fe765b4a34'){
     imageTranslations.push({rect:[.75,.341,.815,.405],text:'مجموعه وزن های متناظر',background:'#fff',color:'#000',font:8,align:'center'});
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===15
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='58ed64d51139f7f36e374a9ef97ce219384ee3d246aaad2a30c502ed0b65a74e'
+      && layout.translation_sha256==='d4e001fec2823dc3813a0d802b3617efccfaacf86481a0e18571a5321f65e804'
+      && record.image_text?.some(item=>item.en==='Unfold' && item.fa==='بازکردن (Unfold)')){
+    imageTranslations.push({rect:[.258,.68,.362,.75],text:'بازکردن',background:'#fff',color:'#000',font:22,align:'center'});
+  }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 

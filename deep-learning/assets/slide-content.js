@@ -2329,6 +2329,12 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     const slots={6:[.04,.09,.97,.19],4:[.40,.40,.625,.53],1:[.53,.70,.765,.90]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===6?30:14;}}
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===37
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='eb0be28e9cdc0b33ef5dabd8734de68430d4533216833b659a21f535570a8864'
+      && layout.translation_sha256==='0f868ae9081174c5643c18249f1506e05cc893a8a15f303f38d44b940e4e946f'){
+    for(const region of regions){if(region.block.source_lines[0]===1){region.slot=[.40,.70,.76,.90];region.font=20;}}
+  }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===44
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='d76c7367a57fde21aa8f039871c97d1eeee7397f1bbe020208bef2b98aedfd1e'

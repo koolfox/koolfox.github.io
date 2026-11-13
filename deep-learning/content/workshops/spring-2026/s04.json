@@ -531,12 +531,13 @@
     },
     {
       "id": "vanishing-gradient",
-      "title_fa": "ضرب مشتق ها در پس انتشار زمانی",
+      "title_fa": "کاوش مشتقها و محوشدن گرادیان",
       "pages": [
+        51,
         52
       ],
       "code_file": "s04_vanishing_gradient.py",
-      "starter_sha256": "e92459f209125c33f621c0367d4d986083217d7d8163dfc253de71ab2e06aa19",
+      "starter_sha256": "33bdd56e9471e6700f2079dbc9b7e2606a3509dbcef365cbcc9ed2c293589af5",
       "reference": {
         "signals": [
           0.25,
@@ -545,7 +546,51 @@
           0.00390625
         ],
         "final": 0.00390625,
-        "rounded_source": 0.004
+        "rounded_source": 0.004,
+        "points": [
+          -4,
+          -3,
+          -2,
+          -1,
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "linear_derivative": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "sigmoid_derivative": [
+          0.017662706213291118,
+          0.04517665973091214,
+          0.1049935854035065,
+          0.19661193324148185,
+          0.25,
+          0.19661193324148185,
+          0.10499358540350662,
+          0.045176659730912,
+          0.017662706213291107
+        ],
+        "tanh_derivative": [
+          0.0013409506830258655,
+          0.009866037165440211,
+          0.07065082485316443,
+          0.41997434161402614,
+          1.0,
+          0.41997434161402614,
+          0.07065082485316443,
+          0.009866037165440211,
+          0.0013409506830258655
+        ]
       },
       "questions": [
         {
@@ -592,6 +637,22 @@
               "کوچک تر می شود",
               "ثابت می ماند",
               "همیشه بزرگ تر می شود"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "sigmoid-peak",
+          "source_kind": "original",
+          "source_page": 51,
+          "prompt_fa": "بیشترین مشتق سیگمویید در نمودار چه مقداری است؟",
+          "solution_fa": "مشتق سیگمویید در ورودی صفر برابر 0.25 و بیشینه است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "0.25",
+              "1",
+              "4"
             ],
             "correct_index": 0
           }
@@ -671,6 +732,239 @@
               "یک خروجی در همان گام",
               "فقط یک خروجی پس از همه گام ها",
               "هیچ خروجی"
+            ],
+            "correct_index": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "cross-entropy",
+      "title_fa": "کاوش آنتروپی متقاطع و احتمال کلاس درست",
+      "pages": [
+        46,
+        47,
+        48
+      ],
+      "code_file": "s04_cross_entropy.py",
+      "starter_sha256": "a6d254506e99d1ec86e0f1b2d15dc65e6a23be49a58f6789d7d8b0b494e23391",
+      "reference": {
+        "target": "e",
+        "probability": 0.1,
+        "loss_ln": 2.3025850929940455,
+        "loss_log10": 1.0,
+        "curve_probabilities": [
+          0.01,
+          0.05,
+          0.1,
+          0.2,
+          0.5,
+          1.0
+        ],
+        "curve_loss": [
+          4.605170185988091,
+          2.995732273553991,
+          2.3025850929940455,
+          1.6094379124341003,
+          0.6931471805599453,
+          -0.0
+        ]
+      },
+      "questions": [
+        {
+          "id": "figure",
+          "source_kind": "original",
+          "source_page": 46,
+          "prompt_fa": "در توزیع شکل، احتمال حرف o چقدر است؟",
+          "solution_fa": "در شکل مقدار o برابر 0.65 است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "0.05",
+              "0.1",
+              "0.65"
+            ],
+            "correct_index": 2
+          }
+        },
+        {
+          "id": "one-hot",
+          "source_kind": "original",
+          "source_page": 47,
+          "prompt_fa": "اگر هدف one-hot باشد، زیان آنتروپی متقاطع به چه عبارتی تبدیل میشود؟",
+          "solution_fa": "فقط جمله کلاس درست باقی میماند: منفی لگاریتم احتمال آن کلاس.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "منفی لگاریتم احتمال کلاس درست",
+              "جمع همه احتمال ها",
+              "احتمال بزرگترین کلاس"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "range",
+          "source_kind": "original",
+          "source_page": 48,
+          "prompt_fa": "وقتی احتمال کلاس درست به صفر نزدیک شود زیان چه میشود؟",
+          "solution_fa": "منفی لگاریتم طبیعی به سمت بینهایت میرود؛ در احتمال مثبت، مقدار متناهی است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "به صفر نزدیک میشود",
+              "به سمت بینهایت افزایش می یابد",
+              "همیشه برابر یک است"
+            ],
+            "correct_index": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "lstm-gates",
+      "title_fa": "کاوش شماتیک دروازه های LSTM",
+      "pages": [
+        55,
+        56,
+        57
+      ],
+      "code_file": "s04_lstm_gates.py",
+      "starter_sha256": "9b3c3250199af8f29c05675f25e4a4f7402d6e3401619fcd0a3cf6ef2ab72e89",
+      "reference": {
+        "old_contribution": 0.44999999999999996,
+        "new_contribution": -0.1,
+        "cell": 0.35,
+        "hidden": 0.1681877721681661,
+        "direct_derivative": 0.75
+      },
+      "questions": [
+        {
+          "id": "input-zero",
+          "source_kind": "original",
+          "source_page": 55,
+          "prompt_fa": "وقتی دروازه ورودی صفر باشد، کدام سهم حذف میشود؟",
+          "solution_fa": "فقط سهم کاندید جدید حذف میشود؛ سهم حافظه قبلی مستقل است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "سهم کاندید جدید",
+              "همه حافظه قبلی",
+              "همیشه کل خروجی"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "forget-zero",
+          "source_kind": "original",
+          "source_page": 56,
+          "prompt_fa": "اگر دروازه فراموشی صفر باشد، آیا حالت سلول حتما صفر میشود؟",
+          "solution_fa": "خیر، سهم جدید میتواند همچنان غیرصفر باشد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "بله همیشه",
+              "خیر، سهم ورودی جدید میتواند بماند",
+              "فقط اگر دروازه خروج یک باشد"
+            ],
+            "correct_index": 1
+          }
+        },
+        {
+          "id": "output",
+          "source_kind": "original",
+          "source_page": 56,
+          "prompt_fa": "دروازه خروج چه چیزی را در فرمول h کنترل میکند؟",
+          "solution_fa": "دروازه خروج مقدار tanh حالت سلول را برای ساخت حالت پنهان مقیاس میکند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "سهم نمایش داده شده از حالت سلول",
+              "حذف قطعی همه ورودی ها",
+              "تعداد گامهای زمان"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "direct-path",
+          "source_kind": "original",
+          "source_page": 57,
+          "prompt_fa": "با ثابت گرفتن دروازه ها، مشتق مسیر مستقیم حالت سلول نسبت به حالت قبلی چیست؟",
+          "solution_fa": "این مشتق برابر دروازه فراموشی است؛ مشتق کل شبکه میتواند مسیرهای دیگری نیز داشته باشد.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "دروازه فراموشی",
+              "دروازه ورودی",
+              "همیشه صفر"
+            ],
+            "correct_index": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "gru-diagram",
+      "title_fa": "کاوش دروازه های GRU",
+      "pages": [
+        58
+      ],
+      "code_file": "s04_gru_diagram.py",
+      "starter_sha256": "124a3e42a03be0aab3ce4d2bc2e851ee3263699463875f8a1169931bd29e67d5",
+      "reference": {
+        "reset_state": 0.3,
+        "candidate": 0.5153592780074098,
+        "old_contribution": 0.44999999999999996,
+        "new_contribution": 0.12883981950185244,
+        "hidden": 0.5788398195018524
+      },
+      "questions": [
+        {
+          "id": "reset",
+          "source_kind": "original",
+          "source_page": 58,
+          "prompt_fa": "دروازه reset در این مثال کدام سهم را به محاسبه کاندید میرساند؟",
+          "solution_fa": "reset حالت پنهان قبلی را پیش از سهم بازگشتی کاندید کنترل میکند.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "حالت پنهان قبلی",
+              "فقط تعداد گامها",
+              "فقط خروجی softmax"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "update",
+          "source_kind": "original",
+          "source_page": 58,
+          "prompt_fa": "در قرارداد شکل اسلاید، اگر z به صفر میل کند کدام سهم باقی میماند؟",
+          "solution_fa": "در قرارداد شکل، 1-z سهم قبلی است و z سهم کاندید.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "حالت قبلی",
+              "فقط کاندید",
+              "همیشه صفر"
+            ],
+            "correct_index": 0
+          }
+        },
+        {
+          "id": "convention",
+          "source_kind": "original",
+          "source_page": 58,
+          "prompt_fa": "در معادله 7 مقاله Cho، ضریب z کدام سهم را وزن میدهد؟",
+          "solution_fa": "در مقاله z سهم حالت قبلی است و نسبت به نامگذاری شکل مکمل است.",
+          "answer": {
+            "kind": "choice",
+            "options_fa": [
+              "حالت قبلی",
+              "کاندید جدید",
+              "زیان شبکه"
             ],
             "correct_index": 0
           }

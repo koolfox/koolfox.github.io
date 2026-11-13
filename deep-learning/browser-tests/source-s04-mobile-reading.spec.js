@@ -1,5 +1,22 @@
 import {test, expect} from '@playwright/test';
 
+for (const number of [6, 7, 8, 9]) {
+  test(`large text follows lesson four slide ${number}`, async ({page}) => {
+    await page.setViewportSize({width:390,height:844});
+    await page.goto(`/deep-learning/terms/spring-2026/s04/slides/#page=${number}`);
+    await page.waitForFunction(n => window.sourceSlideReader?.ready && window.sourceSlideReader.page === n, number);
+    await page.locator('[data-view-translation]').click();
+    const holder=page.locator('#persian-page .reader-slide-holder');
+    const transcript=page.locator('#persian-page .reader-mobile-transcript');
+    await expect(holder).toBeVisible();
+    await expect(transcript).toBeVisible();
+    await expect.poll(() => holder.evaluate(el => el.nextElementSibling?.classList.contains('reader-mobile-transcript'))).toBe(true);
+    await transcript.locator('summary').click();
+    await expect(transcript).toHaveAttribute('open', '');
+    await expect(holder).toBeVisible();
+  });
+}
+
 test('mobile can expand the same slide text without replacing the diagram', async ({page}, testInfo) => {
   await page.setViewportSize({width:390,height:844});
   await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=9');

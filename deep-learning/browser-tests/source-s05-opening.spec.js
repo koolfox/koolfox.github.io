@@ -64,3 +64,22 @@ for (const width of [390, 1440]) test(`CNN opening slide retains readable center
   expect(await slide.locator('.reader-slide-text').evaluateAll(nodes => nodes.every(node => node.scrollHeight <= node.clientHeight + 2))).toBeTruthy();
   await page.screenshot({path:testInfo.outputPath(`s05-opening-${width}.png`)});
 });
+
+for (const [width,height] of [[1280,720],[1920,1080],[1024,768]]) test(`visual-cortex figure labels remain readable at ${width}x${height}`, async ({page}) => {
+  await page.setViewportSize({width,height});
+  for (const number of [6,7,8]) {
+    await page.goto(`/deep-learning/terms/spring-2026/s05/slides/#page=${number}`);
+    await page.waitForFunction(n => window.sourceSlideReader?.ready && window.sourceSlideReader.renderedPage === n, number);
+    await page.locator('[data-view-translation]').click();
+    const slide=page.locator('#persian-page');
+    await expect(slide).toHaveAttribute('data-layout','source-canvas-figure-companion');
+    const labels=slide.locator('.reader-image-translation');
+    await expect(labels).toHaveCount(4);
+    await expect.poll(async () => labels.evaluateAll(nodes => nodes.every(node => {
+      const rect=node.getBoundingClientRect();
+      const scale=node.offsetWidth ? rect.width/node.offsetWidth : 0;
+      return parseFloat(getComputedStyle(node).fontSize)*scale>=11.5 &&
+        node.scrollHeight<=node.clientHeight+2 && node.scrollWidth<=node.clientWidth+2;
+    }))).toBe(true);
+  }
+});

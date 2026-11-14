@@ -2181,10 +2181,10 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && record.source_text_sha256===s05EarlyReviewed[0] && layout.translation_sha256===s05EarlyReviewed[1]){
     if(record.number>=6 && record.number<=8){
       imageTranslations.push(
-        {rect:[.412,.499,.500,.546],text:'سیگنال الکتریکی مغز',background:'#fff',color:'#000',font:9,align:'center'},
-        {rect:[.315,.562,.424,.592],text:'الکترود ثبت',background:'#fff',color:'#000',font:10,align:'center'},
-        {rect:[.338,.610,.405,.660],text:'ناحیه دیداری مغز',background:'#fff',color:'#000',font:9,align:'center'},
-        {rect:[.310,.830,.364,.865],text:'محرک',background:'#fff',color:'#000',font:10,align:'center'},
+        {rect:[.390,.490,.520,.550],text:'سیگنال الکتریکی مغز',background:'#fff',color:'#000',font:12,align:'center'},
+        {rect:[.300,.552,.435,.600],text:'الکترود ثبت',background:'#fff',color:'#000',font:12,align:'center'},
+        {rect:[.315,.605,.420,.670],text:'ناحیه دیداری مغز',background:'#fff',color:'#000',font:12,align:'center'},
+        {rect:[.300,.820,.375,.875],text:'محرک',background:'#fff',color:'#000',font:12,align:'center'},
       );
     }
     if(record.number===9){

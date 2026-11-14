@@ -222,6 +222,7 @@
       ],
       "question_coverage": "partial",
       "question_ids": [
+        "translated-digit",
         "flatten-translation-before",
         "flatten-translation-shift",
         "flatten-translation-invariance"
@@ -349,7 +350,8 @@
       ],
       "question_coverage": "partial",
       "question_ids": [
-        "source-complex-cell-16"
+        "source-complex-cell-16",
+        "source-complex-unknown-row-16"
       ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
@@ -1971,7 +1973,8 @@
         6,
         7,
         8,
-        9
+        9,
+        10
       ]
     },
     {
@@ -2991,6 +2994,26 @@
           "حرف A",
           "حرف B",
           "عدد ۷"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "source-complex-unknown-row-16",
+      "source_kind": "original",
+      "source_page": 16,
+      "pages": [
+        16
+      ],
+      "prompt_fa": "در جدول اسلاید، آیا میتوان تعیین کرد دست کم یک ردیف فقط از عدد ۱ تشکیل شده است؟",
+      "solution_fa": "خیر. مقدار خانه ها با علامت سوال نشان داده شده است. اگر دست کم یک ردیف تماما ۱ باشد، شرط مثال برقرار است، اما از این جدول نمیتوان درباره برقراری آن نتیجه گرفت.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "خیر، چون مقدار خانه ها مشخص نیست",
+          "بله، حتما یک ردیف فقط ۱ دارد",
+          "خیر، چون همه خانه ها صفر هستند"
         ],
         "correct_index": 0
       },

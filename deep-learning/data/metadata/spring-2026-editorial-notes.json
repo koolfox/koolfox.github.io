@@ -499,6 +499,21 @@
       "verified": true,
       "fa": "تجمیع بیشینه برای هر جابه جایی خروجی یکسان تضمین نمی کند. اگر ویژگی از مرز پنجره تجمیع عبور کند، مکان آن در خروجی می تواند تغییر کند؛ شکل بالا یک نمونه با خروجی یکسان را نشان می دهد.",
       "verification": "A one-dimensional max-pooling counterexample with pool size 2 and stride 2: [1,0,0,0] pools to [1,0], while the shifted input [0,0,1,0] pools to [0,1]."
+    },
+    {
+      "session_id": "s05",
+      "page": 13,
+      "source_sha256": "f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7",
+      "kind": "source_correction",
+      "verified": true,
+      "fa": "اشتراک وزن در کانولوشن، در شرایط مناسب و دور از مرز، هموردایی انتقال (Translation Equivariance) میدهد: با جابه جایی ورودی، نقشه ویژگی هم جابه جا میشود. این به تنهایی ناوردایی کامل خروجی شبکه را تضمین نمیکند؛ تجمیع محلی فقط برای بعضی جابه جاییها حساسیت را کم میکند.",
+      "references": [
+        {
+          "label_fa": "مقاله شبکه های کانولوشنی هموردا",
+          "url": "https://proceedings.mlr.press/v48/cohenc16.html"
+        }
+      ],
+      "verification": "Cohen and Welling (2016) describe translation equivariance of convolutional layers up to edge effects; local pooling alone does not guarantee invariance for arbitrary shifts."
     }
   ]
 }

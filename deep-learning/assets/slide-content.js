@@ -1259,6 +1259,18 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
     }
   }
   let imageTranslations=[];
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s05' && record.number===71
+      && sourceIdentity.sourceSha256==='f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7'
+      && record.source_text_sha256==='e6deb73627a334bdc6b72f943170ba686622c0d9761e953844751e4c3f024c61'
+      && layout.translation_sha256==='6446883defde8028fef82eda8d21613546e0b192d04b14791ca78967d17655c5'){
+    imageTranslations.push(
+      {rect:[.505,.25,.66,.30],text:'نرخ خطا (%)',background:'#fff',color:'#000',font:19,align:'center'},
+      {rect:[.89,.715,.96,.76],text:'آزمون',background:'#fff',color:'#0000ff',font:18,align:'center'},
+      {rect:[.89,.77,.98,.82],text:'آموزش',background:'#fff',color:'#ed3022',font:18,align:'center'},
+      {rect:[.75,.875,.98,.93],text:'تکرارهای مجموعه آموزش',background:'#fff',color:'#000',font:17,align:'center'},
+    );
+  }
+
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'){
     if(record.number===39 && record.source_text_sha256==='3b46f7af0c6aeaffd78c64f1ded81ca6631c965366fd08d3b50f218d195d2deb'
@@ -2181,10 +2193,10 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && record.source_text_sha256===s05EarlyReviewed[0] && layout.translation_sha256===s05EarlyReviewed[1]){
     if(record.number>=6 && record.number<=8){
       imageTranslations.push(
-        {rect:[.412,.499,.500,.546],text:'سیگنال الکتریکی مغز',background:'#fff',color:'#000',font:9,align:'center'},
-        {rect:[.315,.562,.424,.592],text:'الکترود ثبت',background:'#fff',color:'#000',font:10,align:'center'},
-        {rect:[.338,.610,.405,.660],text:'ناحیه دیداری مغز',background:'#fff',color:'#000',font:9,align:'center'},
-        {rect:[.310,.830,.364,.865],text:'محرک',background:'#fff',color:'#000',font:10,align:'center'},
+        {rect:[.390,.490,.520,.550],text:'سیگنال الکتریکی مغز',background:'#fff',color:'#000',font:12,align:'center'},
+        {rect:[.300,.552,.435,.600],text:'الکترود ثبت',background:'#fff',color:'#000',font:12,align:'center'},
+        {rect:[.315,.605,.420,.670],text:'ناحیه دیداری مغز',background:'#fff',color:'#000',font:12,align:'center'},
+        {rect:[.300,.820,.375,.875],text:'محرک',background:'#fff',color:'#000',font:12,align:'center'},
       );
     }
     if(record.number===9){

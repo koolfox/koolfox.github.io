@@ -13,6 +13,16 @@ from source_activities import load_activities
 
 
 class SourceActivityTests(unittest.TestCase):
+    def test_lesson_five_repeated_digit_and_unknown_grid(self):
+        document = load_activities(ROOT, "spring-2026", "s05")
+        questions = {question["id"]: question for question in document["questions"]}
+        self.assertIn("translated-digit", document["pages"][9]["question_ids"])
+        digit = questions["translated-digit"]["answer"]
+        self.assertEqual(digit["options_fa"][digit["correct_index"]], "3")
+        self.assertIn("source-complex-unknown-row-16", document["pages"][15]["question_ids"])
+        grid = questions["source-complex-unknown-row-16"]["answer"]
+        self.assertIn("مشخص نیست", grid["options_fa"][grid["correct_index"]])
+
     def test_lesson_four_sequence_input_question_is_linked_to_source_page(self):
         document = load_activities(ROOT, "spring-2026", "s04")
         page = document["pages"][40]

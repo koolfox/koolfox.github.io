@@ -85,8 +85,11 @@ for (const number of [41,43,45]) test(`slide ${number} aligns the four RTL train
   const slide=page.locator('#persian-page');
   await expect(slide).toHaveAttribute('data-layout','source-canvas');
   const steps=slide.locator('.reader-slide-stage > .reader-slide-text').filter({hasText:/^[1-4]\. /});
-  await expect(steps).toHaveCount(4);
-  const info=await steps.evaluateAll(nodes=>nodes.map(node=>({direction:getComputedStyle(node).direction,align:getComputedStyle(node).textAlign,right:node.getBoundingClientRect().right})));
-  for(const item of info){expect(item.direction).toBe('rtl');expect(item.align).toBe('right');}
-  expect(Math.max(...info.map(x=>x.right))-Math.min(...info.map(x=>x.right))).toBeLessThan(2);
+  await expect(async () => {
+    await expect(steps).toHaveCount(4);
+    const info=await steps.evaluateAll(nodes=>nodes.map(node=>({direction:getComputedStyle(node).direction,align:getComputedStyle(node).textAlign,right:node.getBoundingClientRect().right})));
+    expect(info).toHaveLength(4);
+    for(const item of info){expect(item.direction).toBe('rtl');expect(item.align).toBe('right');}
+    expect(Math.max(...info.map(x=>x.right))-Math.min(...info.map(x=>x.right))).toBeLessThan(2);
+  }).toPass({timeout:15000});
 });

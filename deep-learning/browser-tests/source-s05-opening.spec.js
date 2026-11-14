@@ -100,3 +100,21 @@ for (const [width,height] of [[1280,720],[1920,1080],[1024,768]]) test(`CNN revi
   expect(await slide.locator('.reader-slide-text').evaluateAll(nodes=>nodes.every(node=>
     node.scrollHeight<=node.clientHeight+2 && node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
 });
+
+for (const [width,height] of [[1280,720],[1920,1080],[1024,768]]) test(`CNN figure labels and text regions fit at ${width}x${height}`, async ({page}) => {
+  await page.setViewportSize({width,height});
+  for (const [number,count] of [[39,4],[46,3],[47,6],[53,3]]) {
+    await page.goto(`/deep-learning/terms/spring-2026/s05/slides/#page=${number}`);
+    await page.waitForFunction(n=>window.sourceSlideReader?.ready && window.sourceSlideReader.renderedPage===n,number);
+    const labels=page.locator('#persian-page .reader-image-translation');
+    await expect(labels).toHaveCount(count);
+    expect(await labels.evaluateAll(nodes=>nodes.every(node=>node.scrollWidth<=node.clientWidth+2 && node.scrollHeight<=node.clientHeight+2))).toBeTruthy();
+  }
+  for (const [number,a,b] of [[57,'1,2,3','5,6,7'],[62,'7','9,10,11']]) {
+    await page.goto(`/deep-learning/terms/spring-2026/s05/slides/#page=${number}`);
+    await page.waitForFunction(n=>window.sourceSlideReader?.ready && window.sourceSlideReader.renderedPage===n,number);
+    const rect=async lines=>page.locator(`#persian-page .reader-slide-text[data-source-lines="${lines}"]`).evaluate(el=>el.getBoundingClientRect().toJSON());
+    const first=await rect(a), second=await rect(b);
+    expect(first.right<=second.left+2 || second.right<=first.left+2 || first.bottom<=second.top+2 || second.bottom<=first.top+2).toBeTruthy();
+  }
+});

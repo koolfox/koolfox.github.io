@@ -1,8 +1,8 @@
 import {test, expect} from '@playwright/test';
 
-for (const width of [390, 1440]) {
-  test(`lesson four slide 37 softmax label fits at ${width}`, async ({page}) => {
-    await page.setViewportSize({width, height: 900});
+for (const [width, height] of [[390, 844], [1024, 768], [1280, 720], [1920, 1080]]) {
+  test(`lesson four slide 37 softmax label fits at ${width}`, async ({page}, testInfo) => {
+    await page.setViewportSize({width, height});
     await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=37');
     await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 37);
     if (width === 390) await page.locator('[data-view-translation]').click();
@@ -12,5 +12,6 @@ for (const width of [390, 1440]) {
     await expect(label).toBeVisible();
     expect(await label.evaluate(el => parseFloat(getComputedStyle(el).fontSize))).toBeCloseTo(20, 1);
     expect(await label.evaluate(el => el.scrollHeight <= el.clientHeight + 1)).toBe(true);
+    await root.screenshot({path:testInfo.outputPath(`softmax-${width}x${height}.png`)});
   });
 }

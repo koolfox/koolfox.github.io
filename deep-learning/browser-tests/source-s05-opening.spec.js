@@ -64,3 +64,20 @@ for (const width of [390, 1440]) test(`CNN opening slide retains readable center
   expect(await slide.locator('.reader-slide-text').evaluateAll(nodes => nodes.every(node => node.scrollHeight <= node.clientHeight + 2))).toBeTruthy();
   await page.screenshot({path:testInfo.outputPath(`s05-opening-${width}.png`)});
 });
+
+for (const [width,height] of [[1280,720],[1920,1080],[1024,768]]) test(`CNN review preserves section grouping at ${width}x${height}`, async ({page}) => {
+  await page.setViewportSize({width,height});
+  await page.goto('/deep-learning/terms/spring-2026/s05/slides/#page=2');
+  await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.renderedPage === 2);
+  const slide=page.locator('#persian-page');
+  await expect(slide).toHaveAttribute('data-layout','source-canvas');
+  const boxes=await slide.locator('.reader-slide-text').evaluateAll(nodes=>Object.fromEntries(nodes.map(node=>{
+    const rect=node.getBoundingClientRect();return [node.dataset.sourceLines,{top:rect.top,bottom:rect.bottom,right:rect.right}];
+  })));
+  expect(boxes['6'].top-boxes['5'].bottom).toBeGreaterThan(10);
+  expect(boxes['9'].top-boxes['8'].bottom).toBeGreaterThan(10);
+  expect(boxes['1'].right-boxes['2'].right).toBeGreaterThan(5);
+  expect(boxes['6'].right-boxes['7'].right).toBeGreaterThan(5);
+  expect(await slide.locator('.reader-slide-text').evaluateAll(nodes=>nodes.every(node=>
+    node.scrollHeight<=node.clientHeight+2 && node.scrollWidth<=node.clientWidth+2))).toBeTruthy();
+});

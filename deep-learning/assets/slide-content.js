@@ -2218,8 +2218,8 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && sourceIdentity.sourceSha256==='f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7'
       && record.source_text_sha256==='a425071cd8ba09ee16114db96fd45c9c4f8c57fc0c1fd1cd594e4dfce778c365'
       && layout.translation_sha256==='78d218563ac84b82badb80f5e303c4b397fec09f49093ea7537ee56aaf569279'){
-    const y={0:[.10,.21],1:[.25,.31],2:[.31,.385],3:[.385,.46],4:[.46,.535],5:[.535,.60],6:[.60,.655],7:[.655,.71],8:[.71,.765],9:[.81,.88]};
-    for(const region of regions){const i=region.block.source_lines[0];if(y[i]){region.slot=[.04,y[i][0],.96,y[i][1]];region.font=i===0?35:20;region.keepTermsTogether=true;}}
+    const y={0:[.10,.21],1:[.25,.31],2:[.31,.37],3:[.37,.43],4:[.43,.51],5:[.51,.57],6:[.63,.68],7:[.68,.735],8:[.735,.79],9:[.855,.92]};
+    for(const region of regions){const i=region.block.source_lines[0];if(y[i]){const nested=[2,3,4,5,7,8].includes(i);region.slot=[.04,y[i][0],nested?.92:.96,y[i][1]];region.font=i===0?35:20;region.keepTermsTogether=true;}}
   }
   if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s05' && record.number===1
       && sourceIdentity.sourceSha256==='f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7'

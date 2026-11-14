@@ -2145,7 +2145,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===0){region.slot=[.04,.09,.97,.22];region.font=29;}
       if(i===1){region.slot=[.05,.26,.96,.34];region.font=19;region.manualAccents=[{text:'سافت مکس',color:'#ffc000'}];}
       if(record.number===30 && i===3){region.slot=[.50,.37,.97,.53];region.font=17;}
-      if(record.number===31 && i===2){region.slot=[.70,.43,.99,.55];region.font=15;}
+      if(record.number===31 && i===2){region.slot=[.70,.445,.99,.55];region.font=17;}
       if(record.number===31 && i===13){region.slot=[.57,.90,.76,.96];region.font=14;}
       if(record.number===32 && i===9){region.slot=[.64,.42,.99,.52];region.font=15;}
       if(record.number===32 && i===11){region.slot=[.64,.77,.99,.92];region.font=15;}
@@ -2334,6 +2334,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && record.source_text_sha256==='eb0be28e9cdc0b33ef5dabd8734de68430d4533216833b659a21f535570a8864'
       && layout.translation_sha256==='0f868ae9081174c5643c18249f1506e05cc893a8a15f303f38d44b940e4e946f'){
     for(const region of regions){if(region.block.source_lines[0]===1){region.slot=[.40,.70,.76,.90];region.font=20;}}
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===38
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='3b03884cb8f26ded9d19c5874b72d7a869402b57b999219fad5c810ffbe5267b'
+      && layout.translation_sha256==='e12378d2c8e87be936cedd8511723dbd9a0a695fd2d43d9c5be9e477bc678482'){
+    const slots={0:[.66,.52,.99,.67,17],5:[.66,.69,.99,.76,16],6:[.66,.76,.99,.80,15],7:[.66,.80,.99,.85,15],8:[.66,.85,.99,.94,15]};
+    for(const region of regions){const slot=slots[region.block.source_lines[0]];if(slot){region.slot=slot.slice(0,4);region.font=slot[4];}}
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===44
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'

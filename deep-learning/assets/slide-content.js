@@ -2102,6 +2102,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===(initial?15:21)){region.slot=[.54,.85,.62,.91];region.font=14;region.align='center';}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===2
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='8611e0e0ce4fdd5e231bf198538073ee93da99da61d59cf90c61f2cc30d5f819'
+      && layout.translation_sha256==='dce6d92f50da1911ffb44c1d8493253c52cad650ba8888b17345ead51b4c0d8e'){
+    const slots={0:[.04,.10,.96,.21],1:[.04,.26,.96,.33],2:[.04,.33,.92,.39],3:[.04,.39,.92,.45],4:[.04,.45,.92,.51],5:[.04,.51,.92,.57],6:[.04,.62,.96,.69],7:[.04,.69,.92,.76],8:[.04,.81,.96,.89]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.align='right';region.font=i===0?34:i===1||i===6||i===8?23:19;}}
+  }
   if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===12
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='e9d8b7a8bf6c31d8c782e49b48b13ceb8b497293093571a07da18a6b360b7f9f'
@@ -2180,7 +2187,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && layout.translation_sha256==='a2ce043cf352514016a57cd57c8f2bd15336fb219921e21c627ffb89dbab6a1c'){
     const slots={0:[.04,.09,.97,.22],1:[.05,.27,.96,.33],2:[.08,.33,.96,.38],3:[.08,.38,.96,.43],4:[.08,.43,.96,.48],5:[.05,.49,.96,.55],10:[.07,.81,.29,.87]};
     const accents={1:'بردار تک داغ',2:'توکن سازی',3:'واژگان',4:'داده را به بردار تبدیل کنید'};
-    for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===0?29:i===1||i===5?19:16;}if(accents[i])region.manualAccents=[{text:accents[i],color:'#ffc000'}];}
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===0?29:i===1||i===5?19:16;}if(accents[i])region.manualAccents=[{text:accents[i],color:'#ffc000'}];if(i===2)region.ltrSequence='“hello” → “h”, “e”, “l”, “l”, “o”';}
   }
   const s04SoftmaxSlides={
     30:['dd468b0092ae98495015dfb7b4d3943f8f7139f83ed682535bf60d0e52b1eeef','99e27f56949c04ed1433549afc152e64ba6e3e9fb37f7d45190c5c2b8c1c82a6'],
@@ -2288,7 +2295,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='c35a993287a515e411449c7b8b31a0adcea96a5641d87102f686216e24af03b0'
       && layout.translation_sha256==='1faf934bc6bf9fb06389fb918b681649d3bb44990f064be609759cfafb90d336'){
-    for(const region of regions)if(region.block.source_lines[0]>0){region.slot=[.04,region.slot[1],.96,region.slot[3]];region.keepTermsTogether=true;}
+    for(const region of regions){region.slot=[.04,region.slot[1],.96,region.slot[3]];region.align='right';if(region.block.source_lines[0]>0)region.keepTermsTogether=true;}
   }
   const s04SequencePages={
     35:['0f85273a22defe53ca50c9de8b873fab373185ccbeb1661e8895eee37cfdd408','61ebb785e46abcc502ae5d3eff0bd720e55055c9f99501e9cd0c0ec8618a01b0'],
@@ -2309,6 +2316,12 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(record.number===39){const slots={1:[.05,.78,.96,.83],2:[.05,.83,.96,.89],3:[.05,.89,.96,.96]};if(slots[i]){region.slot=slots[i];region.font=17;}}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===40
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='652dd588a0207a30da560ebf6fb724f94fdc4c8cb505c3675e3360b21aefa17b'
+      && layout.translation_sha256==='10aa574186791f0efdd1f3d7b30b37af033b9b1cc9cf5edf2a161b785a19f0cc'){
+    for(const region of regions)if(region.block.source_lines[0]===0){region.keepTermsTogether=true;region.slot=[.04,.06,.97,.24];region.font=32;}
+  }
   const s04BpttPages={
     41:['f5d069d5fbf417904854f0ba16af8c06005c1d5a2df7bbe81d52254e32f16b01','48e2a9ab00364888de43f19fa92a870ac343ba079e33038c52ea32b89c5f3b7d',[7,0,1,2,3,6,8]],
     43:['fba713664fb38064ef0c40cf3f2df1415a8b79c09042950c22d1f2aa07f33553','0195eb7936ab6b904861aa7919097b29fddd223b9aa30f50f99a5f85082b8ee8',[0,3,4,5,6,9,1]],
@@ -2317,7 +2330,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(s04BpttPages && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256===s04BpttPages[0] && layout.translation_sha256===s04BpttPages[1]){
-    const slots=[[.04,.09,.97,.22],[.05,.27,.90,.33],[.09,.38,.86,.46],[.09,.49,.68,.57],[.09,.61,.75,.79],[.09,.83,.85,.90],[.70,.47,.99,.60]];
+    const slots=[[.04,.09,.97,.22],[.05,.27,.90,.33],[.04,.38,.68,.46],[.04,.49,.68,.57],[.04,.61,.68,.79],[.04,.83,.68,.90],[.70,.47,.99,.60]];
     for(const region of regions){const part=s04BpttPages[2].indexOf(region.block.source_lines[0]);if(part<0)continue;region.slot=slots[part];region.font=part===0?29:part===6?14:17;
       if(part===2)region.manualAccents=[{text:'شبکه بازشده',color:'#ffc000'}];
       if(part===4)region.manualAccents=[{text:'اشتراک وزن با جمع گرادیان ها در همه گام های زمانی',color:'#ffc000'}];
@@ -2450,6 +2463,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && layout.translation_sha256==='b5962b5278e15cfe4918f22414e36990c123168673bc6551916218cdd720404f'){
     imageTranslations.push({rect:[.75,.341,.815,.405],text:'مجموعه وزن های متناظر',background:'#fff',color:'#000',font:8,align:'center'});
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && [14,15,16,17,18,24,25,26,27].includes(record.number)){
+    for(const region of regions)if(region.block.kind==='heading'){
+      const box=region.slot||region.rect;region.slot=[.04,box[1],.96,box[3]];region.align='right';
+    }
+  }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }
 
@@ -2504,6 +2524,11 @@ export function createSourceLayout(record, plan) {
         const term=element('bdi');term.dir=persian.test(chunk)?'rtl':'ltr';
         addText(term,chunk,presentation,{sourceColors:true});node.append(term);
       }
+    }else if(region.ltrSequence && region.block.fa.includes(region.ltrSequence)){
+      const [before,after]=region.block.fa.split(region.ltrSequence);
+      addText(node,before,presentation,{sourceColors:true});
+      const sequence=element('bdi');sequence.dir='ltr';sequence.textContent=region.ltrSequence;node.append(sequence);
+      addText(node,after,presentation,{sourceColors:true});
     }else if(region.linkTarget){const link=element('a');link.href=region.linkTarget;link.target='_blank';link.rel='noopener noreferrer';link.textContent=region.block.fa;link.style.color='inherit';node.append(link);}
     else addText(node, region.block.fa, presentation, {sourceColors:true});
     if(region.rotate)node.style.transform=`rotate(${region.rotate}deg)`;

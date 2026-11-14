@@ -205,6 +205,10 @@ def _translation_page(source_page, translated_page, session, require_reviewed):
         "image_text_reviewed": image_reviewed,
         "text_reviewed": text_reviewed,
     }
+    navigation_title = translated_page.get("navigation_title")
+    if navigation_title is not None:
+        require(isinstance(navigation_title, str) and 0 < len(navigation_title) <= 100, f"{location}: invalid navigation title")
+        result["navigation_title"] = navigation_title
     tables = translated_page.get("tables", [])
     require(isinstance(tables, list), f"{location}: invalid tables")
     used_labels = set()

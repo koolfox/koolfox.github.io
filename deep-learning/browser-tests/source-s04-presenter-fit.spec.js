@@ -15,3 +15,12 @@ for (const [width, height] of [[1024, 768], [1280, 720], [1920, 1080]]) {
     })).toBe(true);
   });
 }
+
+test('navigation titles remain meaningful after opening the last slides', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=51');
+  await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 51);
+  await expect(page.locator('[data-page-select] option[value="51"]')).toContainText('توابع فعال ساز و گرادیان');
+  await page.locator('[data-page-select]').selectOption('61');
+  await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 61);
+  await expect(page.locator('[data-page-select] option[value="61"]')).toContainText('پایان');
+});

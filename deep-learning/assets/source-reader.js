@@ -141,7 +141,15 @@ async function paintPersianLayout(source,canonicalSource,id,selected){
   persian.querySelectorAll('.reader-table-viewport').forEach((node,index)=>{const state=tableState[index];if(!state)return;if(state.focused)node.focus({preventScroll:true});node.scrollLeft=state.left;node.scrollTop=state.top;});
  }
  install(slide.holder,...(slide.companion?[slide.companion]:[]),...fallback.filter(node=>node.nodeType===1&&node.matches('.reader-editorial')));
- const available=Math.max(280,document.querySelector('.reader-translation').clientWidth-32)*zoom;
+ let available=Math.max(280,document.querySelector('.reader-translation').clientWidth-32)*zoom;
+ // Fit the Persian canvas vertically in desktop presentation mode.
+ if(presenting && view==='translation' && !compact() && zoom===1){
+  const pane=document.querySelector('.reader-translation'),style=getComputedStyle(pane);
+  const contentWidth=pane.clientWidth-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight);
+  const top=Math.max(0,slide.holder.getBoundingClientRect().top);
+  const height=Math.max(100,window.innerHeight-top-16);
+  available=Math.min(available,contentWidth,height*slide.width/slide.height);
+ }
  const scale=available/slide.width;
  slide.holder.style.width=available+'px';slide.holder.style.height=slide.height*scale+'px';
  slide.stage.style.transform=`scale(${scale})`;

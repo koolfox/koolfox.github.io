@@ -2063,7 +2063,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===13
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='aaecda53dc8046c4b654f3082dfc3eab7a002066129d774e815a216b12801df9'
-      && layout.translation_sha256==='176789d044727c916db47fd05ebfb2cb7575b5999e2856234db55ac025220e97') {
+      && layout.translation_sha256==='5cdc58c70e62d76905e151731a335a0d86f3c8fc05ea56beed4473e50b4f4f9a') {
     const slots={0:[.04,.09,.97,.235],1:[.065,.40,.39,.51],6:[.07,.68,.145,.78],8:[.17,.68,.235,.78],10:[.235,.68,.335,.78],12:[.07,.52,.28,.57],13:[.48,.41,.74,.48],14:[.48,.48,.74,.57],16:[.48,.57,.74,.70],19:[.04,.26,.96,.36]};
     for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===0?30:i===19?18:i===1?17:i>=6&&i<=12?13:16;}if(i===0)region.keepTermsTogether=true;if(i===19)region.manualAccents=[{text:'افزودن حالت پنهان',color:'#ffc000'}];}
   }

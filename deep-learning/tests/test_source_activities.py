@@ -23,6 +23,23 @@ class SourceActivityTests(unittest.TestCase):
         grid = questions["source-complex-unknown-row-16"]["answer"]
         self.assertIn("مشخص نیست", grid["options_fa"][grid["correct_index"]])
 
+    def test_neocognitron_questions_cover_all_five_source_rows(self):
+        document = load_activities(ROOT, "spring-2026", "s05")
+        questions = {question["id"]: question for question in document["questions"]}
+        for number, kind in ((19, "pattern"), (20, "complex")):
+            page = document["pages"][number - 1]
+            self.assertEqual(page["question_coverage"], "complete")
+            self.assertEqual(page["question_ids"], [f"neo-k{k}-{kind}-{number}" for k in range(1, 6)])
+            for identity in page["question_ids"]:
+                self.assertEqual(questions[identity]["source_page"], number)
+                self.assertTrue(questions[identity]["reviewed"])
+        for k in range(2, 6):
+            answer = questions[f"neo-k{k}-complex-20"]["answer"]
+            self.assertEqual(answer["correct_index"], 0 if k < 4 else 1)
+        for k, side in ((2, "چپ"), (3, "راست"), (4, "چپ"), (5, "راست")):
+            answer = questions[f"neo-k{k}-pattern-19"]["answer"]
+            self.assertIn(side, answer["options_fa"][answer["correct_index"]])
+
     def test_lesson_four_sequence_input_question_is_linked_to_source_page(self):
         document = load_activities(ROOT, "spring-2026", "s04")
         page = document["pages"][40]

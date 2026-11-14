@@ -118,3 +118,19 @@ for (const [width,height] of [[1280,720],[1920,1080],[1024,768]]) test(`CNN figu
     expect(first.right<=second.left+2 || second.right<=first.left+2 || first.bottom<=second.top+2 || second.bottom<=first.top+2).toBeTruthy();
   }
 });
+
+for (const [width,height] of [[1280,720],[1920,1080],[1024,768]]) test(`CNN example labels remain clear at ${width}x${height}`, async ({page}) => {
+  await page.setViewportSize({width,height});
+  await page.goto('/deep-learning/terms/spring-2026/s05/slides/#page=10');
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready && window.sourceSlideReader.renderedPage===10);
+  const slide=page.locator('#persian-page .reader-slide-stage');
+  const label=slide.locator('.reader-slide-text[data-source-lines="12"]');
+  const outer=await slide.boundingBox(), inner=await label.boundingBox();
+  expect((inner.x+inner.width-outer.x)/outer.width).toBeLessThan(.38);
+  await page.goto('/deep-learning/terms/spring-2026/s05/slides/#page=27');
+  await page.waitForFunction(()=>window.sourceSlideReader?.ready && window.sourceSlideReader.renderedPage===27);
+  const labels=page.locator('#persian-page .reader-image-translation');
+  await expect(labels).toHaveCount(2);
+  await expect(labels.nth(0)).toHaveText('پاسخ');
+  await expect(labels.nth(1)).toHaveText('پاسخ');
+});

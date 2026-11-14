@@ -30,3 +30,18 @@ test('hello tokenization preserves left-to-right order in Persian text', async (
   await expect(sequence).toHaveCount(1);
   await expect(line).toHaveCSS('direction','rtl');
 });
+
+test('slide 40 keeps the English term together inside its RTL heading', async ({page}) => {
+  await page.setViewportSize({width:1280,height:720});
+  await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=40');
+  await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 40);
+  await page.locator('[data-view-translation]').click();
+  const slide = page.locator('#persian-page');
+  await expect(slide).toHaveAttribute('data-layout', 'source-canvas-figure-companion');
+  const heading = slide.locator('.reader-slide-text[data-source-lines="0,1"]');
+  await expect(heading).toHaveCSS('direction', 'rtl');
+  const term = heading.locator('bdi[dir=ltr]').filter({hasText:'(Hidden Layers)'});
+  await expect(term).toHaveCount(1);
+  await expect(term).toHaveCSS('white-space', 'nowrap');
+  expect(await term.evaluate(node => node.getClientRects().length)).toBe(1);
+});

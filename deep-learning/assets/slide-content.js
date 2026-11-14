@@ -2309,6 +2309,12 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(record.number===39){const slots={1:[.05,.78,.96,.83],2:[.05,.83,.96,.89],3:[.05,.89,.96,.96]};if(slots[i]){region.slot=slots[i];region.font=17;}}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===40
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='652dd588a0207a30da560ebf6fb724f94fdc4c8cb505c3675e3360b21aefa17b'
+      && layout.translation_sha256==='10aa574186791f0efdd1f3d7b30b37af033b9b1cc9cf5edf2a161b785a19f0cc'){
+    for(const region of regions)if(region.block.source_lines[0]===0){region.keepTermsTogether=true;region.slot=[.04,.06,.97,.24];region.font=32;}
+  }
   const s04BpttPages={
     41:['f5d069d5fbf417904854f0ba16af8c06005c1d5a2df7bbe81d52254e32f16b01','48e2a9ab00364888de43f19fa92a870ac343ba079e33038c52ea32b89c5f3b7d',[7,0,1,2,3,6,8]],
     43:['fba713664fb38064ef0c40cf3f2df1415a8b79c09042950c22d1f2aa07f33553','0195eb7936ab6b904861aa7919097b29fddd223b9aa30f50f99a5f85082b8ee8',[0,3,4,5,6,9,1]],

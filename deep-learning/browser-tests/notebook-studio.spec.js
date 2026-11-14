@@ -413,3 +413,32 @@ test('notebook interface text keeps shortcuts readable without changing question
   await expect(first.locator('.feedback')).toContainText(original.questions[0].explanation);
   expect(await page.evaluate(()=>window.studentNotebook.cells.map(cell=>cell.source))).toEqual(cells);
 });
+
+test('every lesson five slide exploration runs its linked Python example',async({page})=>{
+  test.setTimeout(480000);
+  await page.setViewportSize({width:1280,height:720});
+  const examples=[[10,'flatten-translation'],[27,'source-convolution'],[37,'source-pattern'],[38,'shift-equivariance'],
+    [42,'shared-weights'],[47,'channel-count'],[48,'source-pooling'],[55,'rgb-compute']];
+  function compare(actual,expected){
+    if(typeof expected==='number'){expect(actual).toBeCloseTo(expected,12);return;}
+    if(expected&&typeof expected==='object'){
+      expect(Object.keys(actual).sort()).toEqual(Object.keys(expected).sort());
+      for(const key of Object.keys(expected))compare(actual[key],expected[key]);
+    }else expect(actual).toEqual(expected);
+  }
+  for(const [number,id] of examples){
+    await page.goto(`/deep-learning/terms/spring-2026/s05/slides/#page=${number}`);
+    await page.waitForFunction(n=>window.sourceSlideReader?.ready && window.sourceSlideReader.renderedPage===n,number);
+    await page.locator('.reader-sections [data-reader-section=lab]').click();
+    const frame=page.frameLocator('[data-reader-tools-frame]');
+    await expect(frame.locator('[data-notebook-run-all]')).toBeVisible();
+    const notebook=page.frames().find(item=>item.url().includes('/practice/'));
+    await notebook.waitForFunction(()=>window.studentNotebook?.cells);
+    const reference=await notebook.evaluate(id=>JSON.parse(document.querySelector('#practice-config').textContent).page_notebooks.find(example=>example.key.endsWith('/'+id)).reference,id);
+    await frame.locator('[data-notebook-run-all]').click();
+    await notebook.waitForFunction(()=>window.studentNotebook.record?.ok,null,{timeout:90000});
+    compare(await notebook.evaluate(()=>window.studentNotebook.record.outputs.at(-1).result),reference);
+    await frame.getByRole('tab',{name:'آزمون تستی',exact:true}).click();
+    expect(await frame.locator('[data-notebook-question]').count()).toBeGreaterThan(0);
+  }
+});

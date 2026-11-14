@@ -2102,6 +2102,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===(initial?15:21)){region.slot=[.54,.85,.62,.91];region.font=14;region.align='center';}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===2
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && record.source_text_sha256==='8611e0e0ce4fdd5e231bf198538073ee93da99da61d59cf90c61f2cc30d5f819'
+      && layout.translation_sha256==='dce6d92f50da1911ffb44c1d8493253c52cad650ba8888b17345ead51b4c0d8e'){
+    const slots={0:[.04,.10,.96,.21],1:[.04,.26,.96,.33],2:[.04,.33,.92,.39],3:[.04,.39,.92,.45],4:[.04,.45,.92,.51],5:[.04,.51,.92,.57],6:[.04,.62,.96,.69],7:[.04,.69,.92,.76],8:[.04,.81,.96,.89]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.align='right';region.font=i===0?34:i===1||i===6||i===8?23:19;}}
+  }
   if (sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===12
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='e9d8b7a8bf6c31d8c782e49b48b13ceb8b497293093571a07da18a6b360b7f9f'
@@ -2288,7 +2295,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='c35a993287a515e411449c7b8b31a0adcea96a5641d87102f686216e24af03b0'
       && layout.translation_sha256==='1faf934bc6bf9fb06389fb918b681649d3bb44990f064be609759cfafb90d336'){
-    for(const region of regions)if(region.block.source_lines[0]>0){region.slot=[.04,region.slot[1],.96,region.slot[3]];region.keepTermsTogether=true;}
+    for(const region of regions){region.slot=[.04,region.slot[1],.96,region.slot[3]];region.align='right';if(region.block.source_lines[0]>0)region.keepTermsTogether=true;}
   }
   const s04SequencePages={
     35:['0f85273a22defe53ca50c9de8b873fab373185ccbeb1661e8895eee37cfdd408','61ebb785e46abcc502ae5d3eff0bd720e55055c9f99501e9cd0c0ec8618a01b0'],
@@ -2455,6 +2462,13 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && record.source_text_sha256==='5858cd7d5cdaa9c344a3c7883001961c4abed3c9aefd0f631d1389d58913418f'
       && layout.translation_sha256==='b5962b5278e15cfe4918f22414e36990c123168673bc6551916218cdd720404f'){
     imageTranslations.push({rect:[.75,.341,.815,.405],text:'مجموعه وزن های متناظر',background:'#fff',color:'#000',font:8,align:'center'});
+  }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
+      && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
+      && [14,15,16,17,18,24,25,26,27].includes(record.number)){
+    for(const region of regions)if(region.block.kind==='heading'){
+      const box=region.slot||region.rect;region.slot=[.04,box[1],.96,box[3]];region.align='right';
+    }
   }
   return {reason: null, regions, layout, imageTranslations, figureLabels: record.image_text || [], tables:record.tables || [], nativeMath:record.blocks.filter(block=>block.kind!=='not_visible'&&block.latex&&(!persian.test(block.fa||'')||block.source_fragments))};
 }

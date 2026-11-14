@@ -45,3 +45,34 @@ test('slide 40 keeps the English term together inside its RTL heading', async ({
   await expect(term).toHaveCSS('white-space', 'nowrap');
   expect(await term.evaluate(node => node.getClientRects().length)).toBe(1);
 });
+
+test('review slide aligns Persian groups from the right with nested items indented', async ({page}) => {
+  await page.setViewportSize({width:1280,height:720});
+  await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=2');
+  await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 2);
+  await page.locator('[data-view-translation]').click();
+  const slide = page.locator('#persian-page');
+  await expect(slide).toHaveAttribute('data-layout','source-canvas');
+  const title = slide.locator('.reader-slide-text[data-source-lines="0"]');
+  const parent = slide.locator('.reader-slide-text[data-source-lines="1"]');
+  const child = slide.locator('.reader-slide-text[data-source-lines="2"]');
+  for (const node of [title,parent,child]) {
+    await expect(node).toHaveCSS('direction','rtl');
+    await expect(node).toHaveCSS('text-align','right');
+  }
+  const bounds = await Promise.all([title,parent,child].map(node=>node.boundingBox()));
+  expect(Math.abs((bounds[0].x+bounds[0].width)-(bounds[1].x+bounds[1].width))).toBeLessThan(2);
+  expect(bounds[2].x+bounds[2].width).toBeLessThan(bounds[1].x+bounds[1].width-5);
+});
+
+for (const number of [3,14,24,26]) test(`slide ${number} aligns its Persian heading right`, async ({page}) => {
+  await page.setViewportSize({width:1280,height:720});
+  await page.goto(`/deep-learning/terms/spring-2026/s04/slides/#page=${number}`);
+  await page.waitForFunction(n=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===n,number);
+  await page.locator('[data-view-translation]').click();
+  const slide=page.locator('#persian-page'), heading=slide.locator('.reader-slide-text[data-source-lines="0"]');
+  await expect(heading).toHaveCSS('direction','rtl');
+  await expect(heading).toHaveCSS('text-align','right');
+  const [outer,box]=await Promise.all([slide.locator('.reader-slide-stage').boundingBox(),heading.boundingBox()]);
+  expect(box.x+box.width).toBeGreaterThan(outer.x+outer.width*.9);
+});

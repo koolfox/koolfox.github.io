@@ -1212,7 +1212,8 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && record.source_text_sha256===s05StrideHashes[0] && layout.translation_sha256===s05StrideHashes[1]){
     for(const region of regions){const i=region.block.source_lines[0];
       if(record.number===56 && i===3){region.slot=[.05,.85,.77,.97];region.font=17;}
-      if(record.number===57 && i===5){region.slot=[.40,.76,.98,.995];region.font=16;region.align='center';}
+      if(record.number===57 && i===1){region.slot=[.02,.79,.39,.98];region.font=15;region.align='center';}
+      if(record.number===57 && i===5){region.slot=[.41,.79,.99,.98];region.font=15;region.align='center';}
     }
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s05' && [64,74,75].includes(record.number)
@@ -1230,7 +1231,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(n===61 && i===2){region.slot=[.39,.62,.49,.73];region.font=17;region.align='center';}
       if(n===61 && i===5){region.slot=[.40,.76,.71,.96];region.font=16;}
       if(n===67 && i===2){region.slot=[.66,.36,.95,.43];region.font=18;region.align='center';}
-      if(n===67 && i===3){region.slot=[.22,.82,.55,.90];region.font=17;region.align='center';}
+      if(n===67 && i===3){region.slot=[.20,.83,.60,.875];region.font=14;region.align='center';}
       if(n===67 && i===4){region.slot=[.76,.46,.96,.59];region.font=16;region.align='center';}
       if(n===69 && i===2){region.slot=[.20,.82,.68,.90];region.font=16;region.align='center';}
     }
@@ -1250,7 +1251,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(i===1){region.slot=[.04,.26,.96,.33];region.font=18;}
       if(i===2){region.slot=[.04,.33,.96,.43];region.font=16;}
       if(i===4){region.slot=[.78,.95,.99,.995];region.font=13;}
-      if(n===15 && i===5){region.slot=[.005,.67,.22,.90];region.font=13;}
+      if(n===15 && i===5){region.slot=[.008,.70,.21,.85];region.font=15;region.align='center';}
       if(n===16 && i===5){region.slot=[.005,.72,.22,.91];region.font=12;}
       if(n===17 && i===5){region.slot=[.76,.48,.99,.56];region.font=15;}
       if(n===17 && i===6){region.slot=[.76,.55,.99,.70];region.font=13;}
@@ -1258,7 +1259,43 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if((n===15 && i===8)||(n===16 && i===14)||(n===17 && i===12)){region.slot=[.21,.91,.80,.99];region.font=16;region.align='center';}
     }
   }
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s05' && record.number===62
+      && sourceIdentity.sourceSha256==='f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7'
+      && record.source_text_sha256==='d939f6b63b5a74b901f6ca192d495b3b062e83aa572c7c779e5fb0f2622c2553'
+      && layout.translation_sha256==='31f596c68db078e346d48478403ee030bd38e106d0faf9539e31d3ca433fa796'){
+    for(const region of regions){
+      const i=region.block.source_lines[0];
+      if(i===7){region.slot=[.08,.87,.75,.96];region.font=18;}
+      if(i===9){region.slot=[.78,.62,.99,.85];region.font=15;}
+    }
+  }
   let imageTranslations=[];
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s05' && record.number===27
+      && sourceIdentity.sourceSha256==='f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7'
+      && record.source_text_sha256==='86093944cd0d0f1382f128953d4f21d6b5e4be722ac83454d02c59e6eb738703'
+      && layout.translation_sha256==='65028ef7c0310c6cc3e47eda034987144cac2b6e0ef07a3a535509b07a8dbacd'){
+    imageTranslations.push(
+      {rect:[.178,.887,.26,.928],text:'پاسخ',background:'#000',color:'#fff',font:16,align:'center'},
+      {rect:[.178,.932,.26,.973],text:'پاسخ',background:'#000',color:'#fff',font:16,align:'center'}
+    );
+  }
+  const s05FigureLabelHashes={
+    39:['ed5a02b908f9bbf93cf61bf18b998ce514afbef19d8200595612f4a73cf17e03','4bcaefd5c11b474ebf97c1de3a3a853ee23910760019289cef20037123c570b9'],
+    46:['638daa30ae3bd8787283983fb08b08c2b518b1f8dbb303324007f240013020bb','40a7382db00d0c1ac416b33532f6809706e102f59628998c932d1396c9f33dfa'],
+    47:['7dace07ff37e579f456cd70cd80ba56c45d536a9708d10c0b52e68d0608d2b6f','5d2dd8edf34b817c14e52db20095d550a510c480f2a52fc350041173bc08fd5a'],
+    53:['8279d72c325cd717ecd34f956503501a3f5836092e68fe069347ce67f278f1cb','f32b1f334b4de8b042d96a2e494a521b0aa198e0dc4de80025b99357ab649757']
+  }[record.number];
+  if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s05' && s05FigureLabelHashes
+      && sourceIdentity.sourceSha256==='f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7'
+      && record.source_text_sha256===s05FigureLabelHashes[0] && layout.translation_sha256===s05FigureLabelHashes[1]){
+    const labels={
+      39:[[[.455,.32,.565,.36],'همانی'],[[.455,.49,.565,.53],'تشخیص لبه'],[[.455,.67,.565,.71],'تیز کردن'],[[.455,.825,.565,.895],'محو جعبه ای\n(نرمال شده)']],
+      46:[[[.905,.47,.99,.52],'کانال آبی'],[[.90,.625,.99,.68],'کانال سبز'],[[.52,.76,.65,.795],'کانال قرمز']],
+      47:[[[.165,.225,.225,.26],'ورودی'],[[.455,.225,.52,.26],'فیلتر'],[[.675,.225,.755,.26],'خروجی'],[[.41,.55,.535,.58],'پارامترها'],[[.41,.59,.465,.625],'اندازه'],[[.41,.625,.51,.66],'تعداد کانال']],
+      53:[[[.21,.58,.29,.665],'کانولوشن\nReLU'],[[.46,.59,.54,.675],'کانولوشن\nReLU'],[[.70,.59,.78,.675],'کانولوشن\nReLU']]
+    }[record.number];
+    for(const [rect,text] of labels)imageTranslations.push({rect,text,background:'#fff',color:'#111',font:14,align:'center'});
+  }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s05' && record.number===71
       && sourceIdentity.sourceSha256==='f736f7c4b6be0a031d8faf340a1f5737542a69e74ed59346d9c208028adfcec7'
       && record.source_text_sha256==='e6deb73627a334bdc6b72f943170ba686622c0d9761e953844751e4c3f024c61'
@@ -2221,7 +2258,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       if(n>=6 && n<=8 && i===10){region.slot=[.07,.65,.30,.72];region.font=17;}
       if((n===6||n===7) && i===13){region.slot=[.55,.47,.96,.615];region.font=15;}
       if(n===9 && i===8){region.slot=[.15,.85,.85,.98];region.font=17;region.keepTermsTogether=true;}
-      if(n===10 && i===12){region.slot=[.20,.57,.40,.64];region.font=14;}
+      if(n===10 && i===12){region.slot=[.205,.57,.355,.63];region.font=12;region.align='center';}
       if(n===10 && i===13){region.slot=[.20,.70,.40,.77];region.font=14;}
       if(n===10 && i===15){region.slot=region.block.fa.startsWith('دو ورودی')?[.09,.88,.43,.965]:[.54,.88,.97,.98];region.font=14;region.keepTermsTogether=true;}
     }

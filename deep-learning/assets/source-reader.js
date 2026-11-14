@@ -147,7 +147,9 @@ async function paintPersianLayout(source,canonicalSource,id,selected){
   const pane=document.querySelector('.reader-translation'),style=getComputedStyle(pane);
   const contentWidth=pane.clientWidth-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight);
   const top=Math.max(0,slide.holder.getBoundingClientRect().top);
-  const height=Math.max(100,window.innerHeight-top-16);
+  const footer=document.querySelector('.reader-presenter');
+  const bottom=footer?.getClientRects().length ? Math.min(window.innerHeight,footer.getBoundingClientRect().top) : window.innerHeight;
+  const height=Math.max(100,bottom-top-8);
   available=Math.min(available,contentWidth,height*slide.width/slide.height);
  }
  const scale=available/slide.width;

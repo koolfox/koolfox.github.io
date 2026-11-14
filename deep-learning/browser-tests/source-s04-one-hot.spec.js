@@ -76,3 +76,17 @@ for (const number of [3,14,24,26]) test(`slide ${number} aligns its Persian head
   const [outer,box]=await Promise.all([slide.locator('.reader-slide-stage').boundingBox(),heading.boundingBox()]);
   expect(box.x+box.width).toBeGreaterThan(outer.x+outer.width*.9);
 });
+
+for (const number of [41,43,45]) test(`slide ${number} aligns the four RTL training steps`, async ({page}) => {
+  await page.setViewportSize({width:1280,height:720});
+  await page.goto(`/deep-learning/terms/spring-2026/s04/slides/#page=${number}`);
+  await page.waitForFunction(n=>window.sourceSlideReader?.ready&&window.sourceSlideReader.page===n,number);
+  await page.locator('[data-view-translation]').click();
+  const slide=page.locator('#persian-page');
+  await expect(slide).toHaveAttribute('data-layout','source-canvas');
+  const steps=slide.locator('.reader-slide-stage > .reader-slide-text').filter({hasText:/^[1-4]\. /});
+  await expect(steps).toHaveCount(4);
+  const info=await steps.evaluateAll(nodes=>nodes.map(node=>({direction:getComputedStyle(node).direction,align:getComputedStyle(node).textAlign,right:node.getBoundingClientRect().right})));
+  for(const item of info){expect(item.direction).toBe('rtl');expect(item.align).toBe('right');}
+  expect(Math.max(...info.map(x=>x.right))-Math.min(...info.map(x=>x.right))).toBeLessThan(2);
+});

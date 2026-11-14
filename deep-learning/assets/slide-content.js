@@ -2330,7 +2330,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   if(s04BpttPages && sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256===s04BpttPages[0] && layout.translation_sha256===s04BpttPages[1]){
-    const slots=[[.04,.09,.97,.22],[.05,.27,.90,.33],[.09,.38,.86,.46],[.09,.49,.68,.57],[.09,.61,.75,.79],[.09,.83,.85,.90],[.70,.47,.99,.60]];
+    const slots=[[.04,.09,.97,.22],[.05,.27,.90,.33],[.04,.38,.68,.46],[.04,.49,.68,.57],[.04,.61,.68,.79],[.04,.83,.68,.90],[.70,.47,.99,.60]];
     for(const region of regions){const part=s04BpttPages[2].indexOf(region.block.source_lines[0]);if(part<0)continue;region.slot=slots[part];region.font=part===0?29:part===6?14:17;
       if(part===2)region.manualAccents=[{text:'شبکه بازشده',color:'#ffc000'}];
       if(part===4)region.manualAccents=[{text:'اشتراک وزن با جمع گرادیان ها در همه گام های زمانی',color:'#ffc000'}];

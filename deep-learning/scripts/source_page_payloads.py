@@ -53,7 +53,7 @@ def build_page_payloads(output: Path, payload: dict) -> dict:
         filename = f"{page['number']:03}-{digest}.json"
         write_atomic(directory / filename, content)
         blocks = page.get('blocks', [])
-        heading = next((block.get('fa') for block in blocks if block.get('kind') == 'heading' and block.get('fa')), None)
+        heading = page.get('navigation_title') or next((block.get('fa') for block in blocks if block.get('kind') == 'heading' and block.get('fa')), None)
         if not heading:
             text = next((block.get('fa') for block in blocks if block.get('kind') != 'not_visible' and block.get('fa')), '')
             heading = next((line for line in text.split('\n') if not line.startswith(('http:', 'https:'))), '')

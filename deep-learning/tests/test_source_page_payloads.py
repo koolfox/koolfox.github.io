@@ -40,6 +40,14 @@ class SourcePagePayloadsTest(unittest.TestCase):
         self.assertEqual(before[0], updated['pages'][0]['sha256'])
         self.assertNotEqual(before[1], updated['pages'][1]['sha256'])
 
+    def test_explicit_navigation_title_survives_page_packaging(self):
+        self.payload['pages'][1]['navigation_title'] = 'پایان'
+        manifest = build_page_payloads(self.root, self.payload)
+        entry = manifest['pages'][1]
+        self.assertEqual(entry['title'], 'پایان')
+        data = json.loads((self.root / 'source-pages/spring-2026/s04' / entry['file']).read_text())
+        self.assertEqual(data['page']['navigation_title'], 'پایان')
+
     def test_invalid_identity_and_page_sequences_are_rejected(self):
         for key, value in [('term_id', '../other'), ('session_id', 's04/..')]:
             with self.assertRaises(ValueError):

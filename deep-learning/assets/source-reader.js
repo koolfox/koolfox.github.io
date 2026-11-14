@@ -147,7 +147,9 @@ async function paintPersianLayout(source,canonicalSource,id,selected){
   const pane=document.querySelector('.reader-translation'),style=getComputedStyle(pane);
   const contentWidth=pane.clientWidth-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight);
   const top=Math.max(0,slide.holder.getBoundingClientRect().top);
-  const height=Math.max(100,window.innerHeight-top-16);
+  const footer=document.querySelector('.reader-presenter');
+  const bottom=footer?.getClientRects().length ? Math.min(window.innerHeight,footer.getBoundingClientRect().top) : window.innerHeight;
+  const height=Math.max(100,bottom-top-8);
   available=Math.min(available,contentWidth,height*slide.width/slide.height);
  }
  const scale=available/slide.width;
@@ -388,7 +390,7 @@ async function go(number,update=true,fromPlayback=false){
  if(update)history.replaceState(null,'',`#page=${page}`);window.dispatchEvent(new CustomEvent('danna:source-page',{detail:{term:config.term,session:config.session,page}}));
  try{await loadTranslationPage(selected,translationController.signal);if(closed||references||sequence!==translationSequence||page!==selected)return;
   const record=payload.pages[selected-1],option=[...picker.options].find(item=>item.value===String(selected));
-  const heading=record.blocks.find(b=>b.kind==='heading')?.fa||record.blocks.find(b=>b.kind!=='not_visible'&&b.fa)?.fa?.split('\n').find(line=>!/^https?:/.test(line))||'';
+  const heading=record.navigation_title||record.blocks.find(b=>b.kind==='heading')?.fa||record.blocks.find(b=>b.kind!=='not_visible'&&b.fa)?.fa?.split('\n').find(line=>!/^https?:/.test(line))||'';
   if(option)option.textContent=fa(selected)+(heading?' · '+heading.slice(0,100):'');
   renderTranslation();renderOriginal();}
  catch(error){if(closed||sequence!==translationSequence||error?.name==='AbortError')return;setLoading(false);console.warn('Translation unavailable',error);message('بارگیری ترجمه انجام نشد؛ دوباره تلاش کن.',true);$('[data-retry-load]').hidden=false;}

@@ -2180,7 +2180,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && layout.translation_sha256==='a2ce043cf352514016a57cd57c8f2bd15336fb219921e21c627ffb89dbab6a1c'){
     const slots={0:[.04,.09,.97,.22],1:[.05,.27,.96,.33],2:[.08,.33,.96,.38],3:[.08,.38,.96,.43],4:[.08,.43,.96,.48],5:[.05,.49,.96,.55],10:[.07,.81,.29,.87]};
     const accents={1:'بردار تک داغ',2:'توکن سازی',3:'واژگان',4:'داده را به بردار تبدیل کنید'};
-    for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===0?29:i===1||i===5?19:16;}if(accents[i])region.manualAccents=[{text:accents[i],color:'#ffc000'}];}
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===0?29:i===1||i===5?19:16;}if(accents[i])region.manualAccents=[{text:accents[i],color:'#ffc000'}];if(i===2)region.ltrSequence='“hello” → “h”, “e”, “l”, “l”, “o”';}
   }
   const s04SoftmaxSlides={
     30:['dd468b0092ae98495015dfb7b4d3943f8f7139f83ed682535bf60d0e52b1eeef','99e27f56949c04ed1433549afc152e64ba6e3e9fb37f7d45190c5c2b8c1c82a6'],
@@ -2504,6 +2504,11 @@ export function createSourceLayout(record, plan) {
         const term=element('bdi');term.dir=persian.test(chunk)?'rtl':'ltr';
         addText(term,chunk,presentation,{sourceColors:true});node.append(term);
       }
+    }else if(region.ltrSequence && region.block.fa.includes(region.ltrSequence)){
+      const [before,after]=region.block.fa.split(region.ltrSequence);
+      addText(node,before,presentation,{sourceColors:true});
+      const sequence=element('bdi');sequence.dir='ltr';sequence.textContent=region.ltrSequence;node.append(sequence);
+      addText(node,after,presentation,{sourceColors:true});
     }else if(region.linkTarget){const link=element('a');link.href=region.linkTarget;link.target='_blank';link.rel='noopener noreferrer';link.textContent=region.block.fa;link.style.color='inherit';node.append(link);}
     else addText(node, region.block.fa, presentation, {sourceColors:true});
     if(region.rotate)node.style.transform=`rotate(${region.rotate}deg)`;

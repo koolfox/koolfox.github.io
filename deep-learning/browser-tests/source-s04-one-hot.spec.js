@@ -19,3 +19,14 @@ for(const width of [1440,390]){
     await slide.locator('.reader-slide-holder').screenshot({path:testInfo.outputPath(`s04-page29-${width}.png`)});
   });
 }
+
+test('hello tokenization preserves left-to-right order in Persian text', async ({page}) => {
+  await page.setViewportSize({width:1280,height:720});
+  await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=29');
+  await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 29);
+  await page.locator('[data-view-translation]').click();
+  const line = page.locator('#persian-page .reader-slide-text').filter({hasText:'توکن سازی'});
+  const sequence = line.locator('bdi[dir=ltr]').filter({hasText:'“hello” → “h”, “e”, “l”, “l”, “o”'});
+  await expect(sequence).toHaveCount(1);
+  await expect(line).toHaveCSS('direction','rtl');
+});

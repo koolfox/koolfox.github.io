@@ -9,7 +9,7 @@ test('Shinylive review shows real selected poses and matching PyMOL download', a
   const frame = page.frameLocator('iframe');
   const canvas = frame.locator('#molecule-viewer');
   await expect(canvas).toHaveAttribute('data-state', 'ready', { timeout: 90000 });
-  await expect(frame.locator('#result-values')).toHaveAttribute('data-candidate', 'TWNSGHID');
+  await expect(frame.locator('#result-values')).toHaveAttribute('data-candidate', 'TWNSGHID', { timeout: 90000 });
   await expect(frame.locator('#result-values')).toContainText('-2.425');
   await frame.locator('#candidate').selectOption('DIHGNSWT');
   await frame.locator('#pose').selectOption('2');

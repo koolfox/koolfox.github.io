@@ -34,21 +34,9 @@ def stage_bioml(destination):
     www = destination / "www"
     vendor = www / "vendor"
     vendor.mkdir(parents=True, exist_ok=True)
-    for name in ("three.module.js", "three.core.js", "OrbitControls.js"):
+    for name in ("three.module.js", "three.core.js", "THREE-LICENSE.txt"):
         shutil.copyfile(PROJECT / "assets/vendor" / name, vendor / name)
     shutil.copyfile(PROJECT.parent / "assets/fonts/arad.woff2", www / "arad.woff2")
-    scene = (PROJECT / "assets/molecular-scene.js").read_text()
-    if scene.count('from "three";') != 1:
-        raise ValueError("Molecular viewer import differs from expected source")
-    (www / "molecular-scene.js").write_text(
-        scene.replace('from "three";', 'from "./vendor/three.module.js";', 1)
-    )
-    controls = (vendor / "OrbitControls.js").read_text()
-    if controls.count("from 'three';") != 1:
-        raise ValueError("OrbitControls import differs from expected source")
-    (vendor / "OrbitControls.js").write_text(
-        controls.replace("from 'three';", "from './three.module.js';", 1)
-    )
     report = json.loads((PROJECT / "data/processed/bioml-review.json").read_text())
     generate = runpy.run_path(str(PROJECT / "scripts/build_bioml_pymol.py"))["generate"]
     for sequence in ("TWNSGHID", "DIHGNSWT"):

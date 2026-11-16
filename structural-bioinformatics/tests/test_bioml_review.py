@@ -51,5 +51,5 @@ def test_review_staging_verifies_and_prepares_six_pymol_scenes(tmp_path):
             assert f"pose_{sequence}_{pose}" in script
             assert "binding or inhibition is not established" in script
     assert (target / "www/vendor/three.module.js").exists()
-    assert 'from "./vendor/three.module.js";' in (target / "www/molecular-scene.js").read_text()
+    assert (target / "www/vendor/three.core.js").exists()
     assert not list(target.rglob("__pycache__"))

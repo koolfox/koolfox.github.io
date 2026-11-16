@@ -55,8 +55,9 @@ async function main() {
   if (!window.molstar) throw Error('Mol* unavailable');
   const receptor = pdbFromPdbqt(await get('data/receptor.pdbqt'));
   viewer = await molstar.Viewer.create('molecule-viewer', {
-    extensions: [], customFormats: [], layoutIsExpanded: false, layoutShowControls: false,
-    layoutShowSequence: false, layoutShowLog: false, layoutShowLeftPanel: false,
+    extensions: [], customFormats: [], layoutIsExpanded: false, layoutShowControls: true,
+    layoutShowSequence: true, layoutShowLog: false, layoutShowLeftPanel: false,
+    collapseRightPanel: true,
     layoutShowRemoteState: false, viewportShowExpand: false, viewportShowControls: false,
     viewportShowSettings: false, viewportShowSelectionMode: false, viewportShowAnimation: false,
     viewportShowTrajectoryControls: false, viewportShowScreenshotControls: false,

@@ -11,6 +11,20 @@ test('Shinylive review shows real selected poses and matching PyMOL download', a
   await expect(canvas).toHaveAttribute('data-state', 'ready', { timeout: 90000 });
   await expect(frame.locator('#result-values')).toHaveAttribute('data-candidate', 'TWNSGHID', { timeout: 90000 });
   await expect(frame.locator('#result-values')).toContainText('-2.425');
+  const sequence = frame.locator('#molecule-viewer .msp-sequence');
+  const structureChoice = sequence.locator('select').first();
+  const residues = sequence.locator('[data-seqid]');
+  await expect(sequence).toBeVisible();
+  await expect(structureChoice.locator('option')).toHaveText(['TNF receptor', 'TWNSGHID']);
+  await expect(residues).toHaveCount(142);
+  await structureChoice.focus();
+  await expect(structureChoice).toBeFocused();
+  await structureChoice.selectOption({ label: 'TWNSGHID' });
+  await expect(residues).toHaveCount(8);
+  await expect.poll(async () => (await residues.allTextContents()).join('').replace(/\u200b/g, ''))
+    .toBe('TWNSGHID');
+  await residues.first().click();
+  await expect(residues.first()).toHaveClass(/msp-sequence-residue-focused/);
   await frame.locator('#candidate').selectOption('DIHGNSWT');
   await frame.locator('#pose').selectOption('2');
   await expect(frame.locator('#result-values')).toHaveAttribute('data-candidate', 'DIHGNSWT');

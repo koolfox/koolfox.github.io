@@ -50,6 +50,8 @@ def test_review_staging_verifies_and_prepares_six_pymol_scenes(tmp_path):
             script = (data / f"{sequence}-{pose}.pml").read_text(encoding="ascii")
             assert f"pose_{sequence}_{pose}" in script
             assert "binding or inhibition is not established" in script
-    assert (target / "www/vendor/three.module.js").exists()
-    assert (target / "www/vendor/three.core.js").exists()
+    for name in ("molstar.js", "molstar.css", "LICENSE.txt"):
+        assert (target / "www/vendor/molstar" / name).read_bytes() == (
+            PROJECT / "assets/vendor/molstar" / name
+        ).read_bytes()
     assert not list(target.rglob("__pycache__"))

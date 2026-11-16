@@ -34,8 +34,7 @@ def stage_bioml(destination):
     www = destination / "www"
     vendor = www / "vendor"
     vendor.mkdir(parents=True, exist_ok=True)
-    for name in ("three.module.js", "three.core.js", "THREE-LICENSE.txt"):
-        shutil.copyfile(PROJECT / "assets/vendor" / name, vendor / name)
+    shutil.copytree(PROJECT / "assets/vendor/molstar", vendor / "molstar", dirs_exist_ok=True)
     shutil.copyfile(PROJECT.parent / "assets/fonts/arad.woff2", www / "arad.woff2")
     report = json.loads((PROJECT / "data/processed/bioml-review.json").read_text())
     generate = runpy.run_path(str(PROJECT / "scripts/build_bioml_pymol.py"))["generate"]

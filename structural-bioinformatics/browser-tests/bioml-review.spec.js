@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('Shinylive review shows real selected poses and matching PyMOL download', async ({ page }) => {
-  test.setTimeout(150000);
+  test.setTimeout(360000);
   await page.goto('/structural-bioinformatics/research.html');
   await page.getByRole('link', { name: 'بازبینی سه بعدی نمونه آدالیموماب و TNF' }).click();
   await expect(page).toHaveURL(/runtime\/bioml-review\//);
@@ -11,13 +11,43 @@ test('Shinylive review shows real selected poses and matching PyMOL download', a
   await expect(canvas).toHaveAttribute('data-state', 'ready', { timeout: 90000 });
   await expect(frame.locator('#result-values')).toHaveAttribute('data-candidate', 'TWNSGHID', { timeout: 90000 });
   await expect(frame.locator('#result-values')).toContainText('-2.425');
+  const sequence = frame.locator('#molecule-viewer .msp-sequence');
+  const structureChoice = sequence.locator('select').first();
+  const residues = sequence.locator('[data-seqid]');
+  await expect(sequence).toBeVisible();
+  await expect(structureChoice.locator('option')).toHaveText(['TNF receptor', 'TWNSGHID']);
+  await expect(residues).toHaveCount(142);
+  await structureChoice.focus();
+  await expect(structureChoice).toBeFocused();
+  await structureChoice.selectOption({ label: 'TWNSGHID' });
+  await expect(residues).toHaveCount(8);
+  await expect.poll(async () => (await residues.allTextContents()).join('').replace(/\u200b/g, ''))
+    .toBe('TWNSGHID');
+  await residues.first().click();
+  await expect(residues.first()).toHaveClass(/msp-sequence-residue-focused/);
   await frame.locator('#candidate').selectOption('DIHGNSWT');
   await frame.locator('#pose').selectOption('2');
   await expect(frame.locator('#result-values')).toHaveAttribute('data-candidate', 'DIHGNSWT');
   await expect(frame.locator('#result-values')).toHaveAttribute('data-pose', '2');
   await expect(frame.locator('#result-values')).toContainText('-1.737');
-  await expect(canvas).toHaveAttribute('data-candidate', 'DIHGNSWT');
-  await expect(canvas).toHaveAttribute('data-pose', '2');
+  const expectPoseReady = async (sequence, pose) => {
+    // Match one snapshot: a previous pose can still have data-state=ready.
+    await expect(frame.locator(
+      `#molecule-viewer[data-state="ready"][data-candidate="${sequence}"][data-pose="${pose}"]`
+    )).toHaveCount(1, { timeout: 30000 });
+    await expect(canvas).toHaveAttribute('data-receptor-atoms', '1111');
+    await expect(canvas).toHaveAttribute('data-peptide-atoms', '66');
+  };
+  await expectPoseReady('DIHGNSWT', '2');
+  for (const sequence of ['TWNSGHID', 'DIHGNSWT']) {
+    await frame.locator('#candidate').selectOption(sequence);
+    for (const pose of ['1', '2', '3']) {
+      await frame.locator('#pose').selectOption(pose);
+      await expectPoseReady(sequence, pose);
+    }
+  }
+  await frame.locator('#candidate').selectOption('DIHGNSWT');
+  await frame.locator('#pose').selectOption('2');
   await expect(frame.getByRole('link', { name: /دریافت فایل آماده.*PyMOL/ }))
     .toHaveAttribute('href', 'data/DIHGNSWT-2.pml');
   await expect(frame.getByText(/میل اتصال آزمایشگاهی یا اثر درمانی نیست/)).toBeVisible();

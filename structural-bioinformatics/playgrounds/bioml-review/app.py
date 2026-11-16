@@ -65,7 +65,7 @@ app_ui = ui.page_fluid(
                     {
                         "id": "molecule-viewer",
                         "data-state": "loading",
-                        "role": "img",
+                        "role": "group",
                         "aria-label": "نمای نواری گیرنده و نمای اتم و پیوند پپتید انتخاب‌شده",
                     },
                     "در حال آماده‌سازی نمایشگر…",

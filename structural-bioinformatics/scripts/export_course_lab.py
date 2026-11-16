@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import runpy
 import shutil
 import subprocess
 import tempfile
@@ -24,6 +25,26 @@ def stage(destination):
         shutil.copyfile(source, destination / name)
 
 
+def stage_bioml(destination):
+    shutil.copytree(
+        PROJECT / "playgrounds/bioml-review",
+        destination,
+        ignore=shutil.ignore_patterns("__pycache__", "*.pyc"),
+    )
+    www = destination / "www"
+    vendor = www / "vendor"
+    vendor.mkdir(parents=True, exist_ok=True)
+    for name in ("three.module.js", "three.core.js", "THREE-LICENSE.txt"):
+        shutil.copyfile(PROJECT / "assets/vendor" / name, vendor / name)
+    shutil.copyfile(PROJECT.parent / "assets/fonts/arad.woff2", www / "arad.woff2")
+    report = json.loads((PROJECT / "data/processed/bioml-review.json").read_text())
+    generate = runpy.run_path(str(PROJECT / "scripts/build_bioml_pymol.py"))["generate"]
+    for sequence in ("TWNSGHID", "DIHGNSWT"):
+        for pose in (1, 2, 3):
+            script = generate(report, www / "data", [(sequence, pose)])
+            (www / "data" / f"{sequence}-{pose}.pml").write_text(script, encoding="ascii")
+
+
 def export(output):
     if output.exists() and any(output.iterdir()):
         raise ValueError("Choose an empty export directory")
@@ -35,10 +56,20 @@ def export(output):
         source = Path(temporary) / "concepts"
         stage(source)
         subprocess.run([executable, "export", str(source), str(output / "concepts")], check=True)
+        review = Path(temporary) / "bioml-review"
+        stage_bioml(review)
+        subprocess.run(
+            [executable, "export", str(review), str(output / "bioml-review")], check=True
+        )
     runtime_lock = json.loads((output / "concepts/shinylive/pyodide/pyodide-lock.json").read_text())
     vendor = json.loads((PROJECT / "data/metadata/code-editor-vendor.json").read_text())
     if runtime_lock["info"]["version"] != vendor["pyodide_loader_version"]:
         raise ValueError("The code worker loader must match the exported Pyodide runtime")
+    review_lock = json.loads(
+        (output / "bioml-review/shinylive/pyodide/pyodide-lock.json").read_text()
+    )
+    if review_lock["info"]["version"] != vendor["pyodide_loader_version"]:
+        raise ValueError("BioML review must use the same pinned Pyodide runtime")
     index = output / "concepts/index.html"
     shell = (PROJECT / "playgrounds/runtime-help.html").read_text()
     index.write_text(

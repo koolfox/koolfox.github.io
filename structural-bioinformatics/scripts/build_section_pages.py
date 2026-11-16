@@ -245,6 +245,9 @@ def render_pages(project=PROJECT):
             body = (
                 '<p><a href="assets/peptide-workflow.html">'
                 "مسیر عملی تولید پپتید، داکینگ و بررسی سه‌بعدی</a></p>\n"
+                '<p><a href="runtime/bioml-review/">بازبینی سه بعدی نمونه آدالیموماب و TNF'
+                "</a> — دو پپتید و حالتهای از پیش محاسبه شده را با Shiny "
+                "در مرورگر بررسی کنید.</p>\n"
                 + f"""<section class="research-summary">
 <h2>پرسش فعلی</h2>
 <p>{html.escape(section["question"])}</p>

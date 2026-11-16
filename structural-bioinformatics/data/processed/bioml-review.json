@@ -1,0 +1,75 @@
+{
+  "source": "https://www.rcsb.org/structure/7TA3",
+  "source_original": "https://www.rcsb.org/structure/3WD5",
+  "input_source_commit": "c516122729b96446214822d23078f2a248de24b1",
+  "full_report_sha256": "499b2cbed57c4c028491f210458127450adeeb46cbdbab22e7491d2bf951ed38",
+  "note": "Exploratory output from prepared 7TA3 TNF monomer. Candidate from 3WD5 H:52-59; control unverified. Geometry and scores do not establish binding.",
+  "same_receptor_preparation": true,
+  "patches": {
+    "builder_sha256": "aba58871ff1796993d92862c617a63bc140b7a44bcc0dac05bb66c2a32f77824",
+    "workflow_sha256": "8178430d83d3b6eaccc729c827debd055cd1ab018010bd352bf7beb628874553",
+    "mmff_max_iterations": 5000,
+    "vina_max_evals": 25000,
+    "reason": "same bounded rerun for both arms after nonconvergence and timeout"
+  },
+  "arms": {
+    "TWNSGHID": {
+      "returncode": 0,
+      "report": {
+        "status": "requires_further_validation",
+        "receptor_pdbqt_sha256": "ef6112549c988297f3911490d9a5466cfcb9fbce65c262608f1b4963e7785e06",
+        "candidates": [
+          {
+            "sequence": "TWNSGHID",
+            "status": "requires_further_validation",
+            "poses_sha256": "1c5d911727d7115ad49341f5ff39373cdab7c6c603cccdcba34595a100a4ff01",
+            "poses": [
+              {
+                "vina_score_kcal_mol": -2.425,
+                "minimum_heavy_atom_distance_angstrom": 2.822622893693026
+              },
+              {
+                "vina_score_kcal_mol": -2.19,
+                "minimum_heavy_atom_distance_angstrom": 3.0268191224452083
+              },
+              {
+                "vina_score_kcal_mol": -1.901,
+                "minimum_heavy_atom_distance_angstrom": 2.9298133046322246
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "DIHGNSWT": {
+      "returncode": 0,
+      "report": {
+        "status": "requires_further_validation",
+        "receptor_pdbqt_sha256": "ef6112549c988297f3911490d9a5466cfcb9fbce65c262608f1b4963e7785e06",
+        "candidates": [
+          {
+            "sequence": "DIHGNSWT",
+            "status": "requires_further_validation",
+            "poses_sha256": "fa1b974526208e754b8bc52940f7eb1ef63ca0c4f9ed92617818ea3198cf937f",
+            "poses": [
+              {
+                "vina_score_kcal_mol": -1.822,
+                "minimum_heavy_atom_distance_angstrom": 2.823174277298517
+              },
+              {
+                "vina_score_kcal_mol": -1.737,
+                "minimum_heavy_atom_distance_angstrom": 2.8811827432497235
+              },
+              {
+                "vina_score_kcal_mol": 0.506,
+                "minimum_heavy_atom_distance_angstrom": 2.8494102898670137
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "run_finished_at_utc": "2026-11-16T13:05:49Z",
+  "project_result_read_utc": "2026-11-16T13:57:30Z"
+}

@@ -14,7 +14,9 @@ DISTANCES = {
 app_ui = ui.page_fluid(
     ui.tags.head(
         ui.tags.meta(charset="utf-8"),
+        ui.tags.link(rel="stylesheet", href="vendor/molstar/molstar.css"),
         ui.tags.link(rel="stylesheet", href="app.css"),
+        ui.tags.script(src="vendor/molstar/molstar.js"),
         ui.tags.script(type="module", src="viewer.js"),
     ),
     ui.div(
@@ -80,13 +82,13 @@ app_ui = ui.page_fluid(
                         "id": "molecule-viewer",
                         "data-state": "loading",
                         "role": "img",
-                        "aria-label": "نمای اتم‌های گیرنده و پپتید انتخاب‌شده",
+                        "aria-label": "نمای نواری گیرنده و نمای اتم و پیوند پپتید انتخاب‌شده",
                     },
                     "در حال آماده‌سازی نمایشگر…",
                 ),
                 ui.p(
-                    "برای چرخش بکشید؛ با چرخ ماوس بزرگ نمایی کنید. اتمها به صورت نقطه "
-                    "نشان داده میشوند؛ پیوندها رسم نشده اند.",
+                    "برای چرخش بکشید؛ با چرخ ماوس بزرگ‌نمایی کنید. پیوندهای پپتید و "
+                    "ساختار ثانویهٔ گیرنده برای نمایش تخمین زده می‌شوند و اعتبارسنجی نشده‌اند.",
                     class_="small",
                 ),
             ),

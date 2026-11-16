@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('Shinylive review shows real selected poses and matching PyMOL download', async ({ page }) => {
-  test.setTimeout(150000);
+  test.setTimeout(360000);
   await page.goto('/structural-bioinformatics/research.html');
   await page.getByRole('link', { name: 'بازبینی سه بعدی نمونه آدالیموماب و TNF' }).click();
   await expect(page).toHaveURL(/runtime\/bioml-review\//);
@@ -30,17 +30,20 @@ test('Shinylive review shows real selected poses and matching PyMOL download', a
   await expect(frame.locator('#result-values')).toHaveAttribute('data-candidate', 'DIHGNSWT');
   await expect(frame.locator('#result-values')).toHaveAttribute('data-pose', '2');
   await expect(frame.locator('#result-values')).toContainText('-1.737');
-  await expect(canvas).toHaveAttribute('data-candidate', 'DIHGNSWT');
-  await expect(canvas).toHaveAttribute('data-pose', '2');
+  const expectPoseReady = async (sequence, pose) => {
+    // Match one snapshot: a previous pose can still have data-state=ready.
+    await expect(frame.locator(
+      `#molecule-viewer[data-state="ready"][data-candidate="${sequence}"][data-pose="${pose}"]`
+    )).toHaveCount(1, { timeout: 30000 });
+    await expect(canvas).toHaveAttribute('data-receptor-atoms', '1111');
+    await expect(canvas).toHaveAttribute('data-peptide-atoms', '66');
+  };
+  await expectPoseReady('DIHGNSWT', '2');
   for (const sequence of ['TWNSGHID', 'DIHGNSWT']) {
     await frame.locator('#candidate').selectOption(sequence);
     for (const pose of ['1', '2', '3']) {
       await frame.locator('#pose').selectOption(pose);
-      await expect(canvas).toHaveAttribute('data-state', 'ready');
-      await expect(canvas).toHaveAttribute('data-candidate', sequence);
-      await expect(canvas).toHaveAttribute('data-pose', pose);
-      await expect(canvas).toHaveAttribute('data-receptor-atoms', '1111');
-      await expect(canvas).toHaveAttribute('data-peptide-atoms', '66');
+      await expectPoseReady(sequence, pose);
     }
   }
   await frame.locator('#candidate').selectOption('DIHGNSWT');

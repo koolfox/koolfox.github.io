@@ -133,14 +133,18 @@ def server(input, output, session):
                 "data-pose": str(i + 1),
             },
             ui.div(
-                ui.span("امتیاز Vina"), ui.strong(f"{SCORES[seq][i]:.3f}"), ui.small("kcal/mol")
+                ui.span("امتیاز Vina"),
+                ui.strong(f"{SCORES[seq][i]:.3f}"),
+                ui.tags.small("kcal/mol"),
             ),
             ui.div(
                 ui.span("کمترین فاصله اتم سنگین"),
                 ui.strong(f"{DISTANCES[seq][i]:.3f}"),
-                ui.small("Å"),
+                ui.tags.small("Å"),
             ),
-            ui.div(ui.span("اتم سنگین بیرون جعبه"), ui.strong("0"), ui.small("از ۶۶ اتم پپتید")),
+            ui.div(
+                ui.span("اتم سنگین بیرون جعبه"), ui.strong("0"), ui.tags.small("از ۶۶ اتم پپتید")
+            ),
         )
 
     @render.ui

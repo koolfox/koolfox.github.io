@@ -20,7 +20,16 @@
   <main class="lesson-deck" id="lesson-deck" aria-busy="true">
     <p class="lesson-context" id="chapter-title"></p>
     <h1 id="lesson-title">در حال دریافت درس…</h1>
-    <p class="lesson-explanation">متن همین درسنامه را بخش‌به‌بخش بخوانید، خودآزمایی کنید و در مباحث دارای آزمایش، آن را باز کنید.</p>
+    <div class="lesson-tools">
+      <nav class="slide-shortcuts" aria-label="بخش‌های درس">
+        <button id="go-lesson" type="button" disabled>درس</button>
+        <button id="go-check" type="button" disabled>خودآزمایی</button>
+        <button id="go-lab" type="button" hidden disabled>آزمایشگاه</button>
+      </nav>
+      <details class="lesson-resources"><summary>منابع و راهنما</summary>
+        <div><a id="lesson-source" href="../course.html">متن اصلی درس</a><p>برای جابه‌جایی، از دکمه‌ها یا کلیدهای جهت‌دار استفاده کنید.</p></div>
+      </details>
+    </div>
     <div id="lesson-slide" class="lesson-slide" tabindex="-1"></div>
     <p id="slide-status" role="status" aria-live="polite">در حال آماده‌سازی…</p>
     <button id="retry-lesson" type="button" hidden>تلاش دوباره</button>

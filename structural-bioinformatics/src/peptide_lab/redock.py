@@ -25,6 +25,27 @@ def atoms(text):
     return result
 
 
+def atom_identities(text):
+    """Map each heavy-atom serial to its PDBQT identity, not just its coordinates."""
+    result = {}
+    for line in text.splitlines():
+        if not line.startswith(("ATOM  ", "HETATM")) or line.split()[-1] in ("H", "HD"):
+            continue
+        serial = int(line[6:11])
+        if serial in result:
+            raise ValueError(f"Duplicate PDBQT atom serial: {serial}")
+        result[serial] = (
+            line[21],
+            line[22:27],
+            line[17:20].strip(),
+            line[12:16].strip(),
+            line.split()[-1],
+        )
+    if not result:
+        raise ValueError("No heavy atoms")
+    return result
+
+
 def compare(reference, pose):
     """RMSD of identical atom IDs in the fixed receptor frame; no superposition."""
     if reference.keys() != pose.keys():
@@ -38,13 +59,17 @@ def compare(reference, pose):
 
 
 def score_files(reference_path, poses_path):
-    reference = atoms(Path(reference_path).read_text())
+    reference_text = Path(reference_path).read_text()
+    reference = atoms(reference_text)
+    identities = atom_identities(reference_text)
     text = Path(poses_path).read_text()
     models = re.findall(r"^MODEL\s+\d+\s*$(.*?)^ENDMDL\s*$", text, re.M | re.S)
     if not models:
         raise ValueError("No complete docking models")
     rows = []
     for i, model in enumerate(models, 1):
+        if atom_identities(model) != identities:
+            raise ValueError("PDBQT atom identities differ between reference and pose")
         score = re.search(r"^REMARK VINA RESULT:\s*([-+\d.]+)", model, re.M)
         if not score:
             raise ValueError("Docking score missing")

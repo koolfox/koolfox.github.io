@@ -132,3 +132,94 @@ def test_runner_records_failed_engine_instead_of_claiming_a_pose(tmp_path):
     assert manifest["status"] == "failed"
     assert manifest["exit_code"] == 7
     assert "comparison" not in manifest
+
+
+def test_score_rejects_changed_atom_identity_with_same_serial(tmp_path):
+    from peptide_lab.redock import score_files
+
+    line = "ATOM      1  CA  GLY A   1       1.000   2.000   3.000  1.00  0.00     0.000 C"
+    reference = tmp_path / "reference.pdbqt"
+    pose = tmp_path / "pose.pdbqt"
+    reference.write_text(line + "\n")
+    pose.write_text(
+        "MODEL 1\nREMARK VINA RESULT: -1.0 0 0\n" + line.replace(" CA ", " CB ") + "\nENDMDL\n"
+    )
+    with pytest.raises(ValueError, match="identities differ"):
+        score_files(reference, pose)
+
+
+def test_published_poses_and_rotated_start_in_receptor_frame():
+    import math
+    from pathlib import Path
+
+    from peptide_lab.redock import atom_identities
+
+    assets = Path(__file__).resolve().parents[1] / "assets/tnf-peptide"
+    names = ("reference.pdbqt", "native-pose.pdbqt", "rotated-start.pdbqt", "rotated-pose.pdbqt")
+    texts = {name: (assets / name).read_text() for name in names}
+    identities = {name: atom_identities(text) for name, text in texts.items()}
+    assert len(identities[names[0]]) == 253
+    assert all(identities[name] == identities[names[0]] for name in names)
+    coords = {name: atoms(text) for name, text in texts.items()}
+    assert compare(coords[names[0]], coords[names[1]]) == pytest.approx(0.1368105785)
+    assert compare(coords[names[0]], coords[names[3]]) == pytest.approx(0.1367980971)
+    assert compare(coords[names[0]], coords[names[2]]) == pytest.approx(13.23116188496)
+    # This fit checks only whether the start is a rigid transform, not pose RMSD.
+    import numpy as np
+
+    ids = sorted(coords[names[0]])
+    ref = np.array([coords[names[0]][i] for i in ids])
+    moved = np.array([coords[names[2]][i] for i in ids])
+    ref_centered, moved_centered = ref - ref.mean(axis=0), moved - moved.mean(axis=0)
+    u, _, vt = np.linalg.svd(moved_centered.T @ ref_centered)
+    handedness = np.eye(3)
+    handedness[2, 2] = np.linalg.det(u @ vt)
+    rotation = u @ handedness @ vt
+    assert np.linalg.det(rotation) == pytest.approx(1.0)
+    assert np.sqrt(np.mean(np.sum((moved_centered @ rotation - ref_centered) ** 2, axis=1))) < 1e-10
+    assert compare(coords[names[1]], coords[names[3]]) == pytest.approx(0.0002811608)
+    differences = [math.dist(coords[names[1]][i], coords[names[3]][i]) for i in coords[names[1]]]
+    assert sum(d > 0 for d in differences) == 20
+    assert max(differences) == pytest.approx(0.001)
+    assert all("TORSDOF 0" in text for text in texts.values())
+
+
+def test_published_receptor_frame_and_terminal_oxygen_swap():
+    import importlib.util
+    import math
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[1]
+    assets = root / "assets/tnf-peptide"
+    spec = importlib.util.spec_from_file_location("tnf_runner", root / "scripts/run_tnf_redock.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    receptor = module.heavy_atom_coordinates(assets / "receptor-repaired.pdb")
+    prepared = module.heavy_atom_coordinates(assets / "receptor.pdbqt", pdbqt=True)
+    assert module.validate_pdbqt_coordinates(
+        assets / "receptor-repaired.pdb", assets / "receptor.pdbqt", True
+    )["terminal_oxygen_names_swapped"]
+    for name, partner in (("O", "OXT"), ("OXT", "O")):
+        key = ("B", " 157 ", name)
+        partner_key = ("B", " 157 ", partner)
+        assert math.dist(receptor[key], prepared[partner_key]) == 0
+
+    source = {}
+    alternate_occupancies = set()
+    for line in (assets / "7ta3.pdb").read_text().splitlines():
+        if not line.startswith("ATOM  ") or line[21] != "B":
+            continue
+        if line[76:78].strip() in ("H", "D"):
+            continue
+        if line[22:26].strip() == "32" and line[16] in ("A", "B"):
+            alternate_occupancies.add((line[16], float(line[54:60])))
+        if line[16] not in (" ", "A"):
+            continue
+        key = (line[21], line[22:27], line[12:16].strip())
+        assert key not in source
+        source[key] = tuple(float(line[i : i + 8]) for i in (30, 38, 46))
+    assert alternate_occupancies == {("A", 0.41), ("B", 0.59)}
+    assert len(source) == 1091
+    assert source.keys() <= receptor.keys()
+    assert len(receptor.keys() - source.keys()) == 20
+    assert all(math.dist(xyz, receptor[key]) == 0 for key, xyz in source.items())

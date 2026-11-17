@@ -338,3 +338,13 @@ The course surface uses Read mode and preserves its scientific sources. The sele
 Course prose uses 19px on desktop, 18px on phones and a 2.05 line height, within 68ch. Explicit reading preferences use 21px or 23px. Compact navigation uses 0.85–0.96rem, with 44px controls; topic headings use clamp(1.5rem, 2.5vw, 2rem). These reading roles intentionally extend the research type scale. Inline scientific code remains isolated LTR. White paper, Arad and existing blue actions remain authoritative.
 
 Native answer disclosures, code copy/selection feedback and figure enlargement support the existing content. Figure frames use the portfolio's 10px item radius; dialogs use 12px. Print retains answers and original figures. No decorative motion or automatically inferred learning progress is introduced.
+
+## Shared interface contract, 2026-11-17
+
+This is guidance for future changes, not a claim that every surface already meets it. The general course (`course.html`, its slides and educational docking workshop) teaches independently of the project. Research (`research.html`, structures, datasets and the BioML review) has its own secondary navigation. Cross-links identify an optional application and give a clear return; they do not make the case study a prerequisite for the lesson. Keep existing direct URLs.
+
+Use the existing Arad/RTL reading hierarchy, neutral surfaces and blue controls above; do not force scientific chain colors into UI status colors. Headings name the reader's task; labels name an action or input. Place the input, current selection, output and its source/limits together. Keep tables and long LTR identifiers independently scrollable or isolated, without reversing their characters. Preserve source links, units, static material and the user's place when an optional viewer fails.
+
+For interactive work, distinguish idle, loading, ready, empty, invalid and error in text as applicable. Disable an action only while explaining why; changing an input must not leave an old output presented as current. An output identifies its inputs and whether it is an educational example, deposited observation, model or exploratory calculation. Provide a recoverable error and an accessible textual alternative when graphics are unavailable. Use semantic controls, visible focus, keyboard operation, labels, non-color status cues, adequate contrast and reduced-motion behavior; test these rather than assuming them from the design.
+
+The concrete state/input/output examples and verification checklist are in [BioML interface patterns](docs/bioml-interface-patterns.fa.md). Where an existing implementation falls short, that document names the limitation rather than treating this contract as evidence of implementation.

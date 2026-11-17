@@ -243,16 +243,28 @@ def render_pages(project=PROJECT):
                 (project / "data/metadata/research-thread.json").read_text()
             )
             body = (
-                '<p><a href="assets/peptide-workflow.html">'
-                "مسیر عملی تولید پپتید، داکینگ و بررسی سه‌بعدی</a></p>\n"
-                '<p><a href="runtime/bioml-review/">بازبینی سه بعدی نمونه آدالیموماب و TNF'
-                "</a> — دو پپتید و حالتهای از پیش محاسبه شده را با Shiny "
-                "در مرورگر بررسی کنید.</p>\n"
-                + f"""<section class="research-summary">
+                f"""<section class="research-summary">
 <h2>پرسش فعلی</h2>
 <p>{html.escape(section["question"])}</p>
-<p>{html.escape(section["summary"])}</p>
+<details><summary>محدوده مطالعه</summary><p>{html.escape(section["summary"])}</p></details>
 </section>"""
+                + """<section class="research-workflow" aria-labelledby="workflow-title">
+<div class="workflow-heading"><h2 id="workflow-title">از ساختار تا گزارش</h2>
+<p>یک نمونه را گام به گام دنبال کنید.</p></div>
+<ol class="workflow-steps">
+<li><strong>انتخاب قطعه</strong><p>توالی و جایگاه آن در آدالیموماب</p>
+<a href="research.html?document=manual-peptide-study.fa.md&amp;chapter=all#reading">
+خواندن نمونه دستی</a></li>
+<li><strong>ساخت و داکینگ</strong><p>تولید نامزد و اجرای محلی</p>
+<a href="assets/peptide-workflow.html">مسیر عملی تولید پپتید، داکینگ و بررسی سه‌بعدی</a></li>
+<li><strong>بررسی نتیجه</strong><p>حالتهای ذخیره شده و فایلها</p>
+<a href="runtime/bioml-review/">بازبینی سه بعدی نمونه آدالیموماب و TNF</a></li>
+<li><strong>گزارش و عامل</strong><p>ثبت روش، خطاها و طرح ارزیابی</p>
+<a href="research.html?document=peptide-agent-research.fa.md&amp;chapter=all#reading">
+طرح پژوهشی عامل پپتید</a>
+<a href="research.html?document=paper-writing-guide.fa.md&amp;chapter=all#reading">
+راهنمای نگارش مقاله</a></li>
+</ol></section>"""
                 + docnav
                 + reader(section)
                 + fragment("peptide-notebook")

@@ -2,6 +2,21 @@ import { expect, test } from "@playwright/test";
 
 const route = "/structural-bioinformatics/";
 
+for (const width of [390, 1280]) {
+    test(`research workflow links remain usable at ${width}px`, async ({ page }) => {
+        await page.setViewportSize({ width, height: 900 });
+        await page.goto(`${route}research.html`);
+        const workflow = page.locator(".research-workflow");
+        await expect(workflow.locator("li")).toHaveCount(4);
+        await expect(workflow.getByRole("link", { name: "بازبینی سه بعدی نمونه آدالیموماب و TNF" }))
+            .toHaveAttribute("href", "runtime/bioml-review/");
+        await workflow.getByRole("link", { name: "خواندن نمونه دستی" }).click();
+        await expect(page.locator("#document-select")).toHaveValue("manual-peptide-study.fa.md");
+        await expect(page.locator("#reading")).toBeInViewport();
+        expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    });
+}
+
 async function ready(page) {
     await page.goto(`${route}#lab`);
     await expect(page.locator("html")).toHaveAttribute("data-research-state", "ready");

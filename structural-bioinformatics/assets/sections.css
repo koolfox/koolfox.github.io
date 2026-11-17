@@ -60,3 +60,20 @@ html:has(body.separated-site),body.research-page.separated-site { overflow:visib
 .separated-site #learning-applications details>a { display:inline-block; margin:8px 0 8px 24px; }
 @media(max-width:850px) { .separated-site #research-nav,.separated-site #education-nav {width:calc(100% - 32px);gap:4px 18px;font-size:.88rem;} }
 @media print { .separated-site #research-nav,.separated-site #education-nav {display:none;} }
+
+/* The research entry follows the actual tools in the order a reader uses them. */
+.separated-site .research-summary details { margin-top:12px; }
+.separated-site .research-summary summary { cursor:pointer; font-weight:650; min-height:44px; }
+.separated-site .research-workflow { margin:30px 0 34px; }
+.separated-site .workflow-heading { display:flex; align-items:baseline; gap:12px 24px; flex-wrap:wrap; }
+.separated-site .workflow-heading h2 { margin:0; font-size:1.3rem; }
+.separated-site .workflow-heading p { margin:0; color:#465973; }
+.separated-site .workflow-steps { list-style:none; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:0; padding:0; margin:16px 0 0; border-block:1px solid #dce2eb; }
+.separated-site .workflow-steps li { min-width:0; padding:20px 16px; border-inline-start:1px solid #dce2eb; }
+.separated-site .workflow-steps li:first-child { border-inline-start:0; padding-inline-start:0; }
+.separated-site .workflow-steps strong { display:block; font-size:1.03rem; }
+.separated-site .workflow-steps p { color:#465973; margin:6px 0 12px; line-height:1.8; }
+.separated-site .workflow-steps a { display:block; min-height:44px; line-height:1.8; text-underline-offset:4px; }
+.separated-site .workflow-steps a:focus-visible,.separated-site .research-summary summary:focus-visible { outline:3px solid #245dc4; outline-offset:3px; }
+@media(max-width:850px) { .separated-site .workflow-steps { grid-template-columns:repeat(2,minmax(0,1fr)); } .separated-site .workflow-steps li:nth-child(3) { border-inline-start:0; padding-inline-start:0; } .separated-site .workflow-steps li:nth-child(n+3) { border-top:1px solid #dce2eb; } }
+@media(max-width:520px) { .separated-site .workflow-steps { grid-template-columns:1fr; } .separated-site .workflow-steps li { border-inline-start:0; border-top:1px solid #dce2eb; padding:16px 0; } .separated-site .workflow-steps li:first-child { border-top:0; } }

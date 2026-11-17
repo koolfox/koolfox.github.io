@@ -141,3 +141,18 @@ for (const width of [1440, 390]) {
     }
   });
 }
+
+test('mobile chapter navigation remains scrollable and follows the selected topic', async ({page}) => {
+  await page.setViewportSize({width: 390, height: 844});
+  await open(page, 8);
+  const contents = page.locator('#contents');
+  await contents.locator('summary').first().click();
+  const list = page.locator('#sessions');
+  const dimensions = await list.evaluate(node => ({height: node.clientHeight, scroll: node.scrollHeight}));
+  expect(dimensions.scroll).toBeGreaterThan(dimensions.height);
+  await page.locator('#sessions > details').nth(0).locator('summary').click();
+  await page.locator('#sessions a[data-topic="1"]').click();
+  await expect(page.locator('#session-title')).toContainText('آشنایی');
+  await expect(page.locator('#sessions a[data-topic="1"]')).toHaveAttribute('aria-current', 'page');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});

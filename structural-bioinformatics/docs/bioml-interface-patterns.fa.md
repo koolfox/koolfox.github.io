@@ -35,4 +35,4 @@
 3. توضیح متنی معادل برای اطلاعات لازم نمودار یا نمای سه‌بعدی، همراه منبع و واحد؛ عملیات ضروری فقط وابسته به ماوس، رنگ یا حرکت نباشد. حرکت اختیاری و احترام به کاهش حرکت.
 4. در مرورگر، مسیر درس و پژوهش، تغییر ورودی و تطابق خروجی، وضعیت بارگذاری و شکست، دسترسی صفحه‌کلید، نمایش موبایل و بازگشت از پنجره یا ابزار را بررسی کنید. برای viewer وابسته به WebGL، خطا و جایگزین را نیز بررسی کنید. نتیجه هر آزمون را به همان سطح مشاهده محدود کنید.
 
-منابع قرارداد: [`PRODUCT.md`](../PRODUCT.md)، [`DESIGN.md`](../DESIGN.md)، [راهنمای بازبینی BioML](../playgrounds/bioml-review/README.md)، [داده خروجی](../data/processed/bioml-review.json) و [تعریف درس](../data/metadata/learning-course.json).
+منابع قرارداد: [`PRODUCT.md`](https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/PRODUCT.md)، [`DESIGN.md`](https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/DESIGN.md)، [راهنمای بازبینی BioML](https://github.com/koolfox/koolfox.github.io/blob/main/structural-bioinformatics/playgrounds/bioml-review/README.md)، [داده خروجی](../data/processed/bioml-review.json) و [تعریف درس](../data/metadata/learning-course.json).

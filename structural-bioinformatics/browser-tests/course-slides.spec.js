@@ -85,7 +85,7 @@ test('self-check notes persist locally and the lesson lab loads only on request'
   const checkIndex = await page.locator('#slide-select option[data-kind=check]').getAttribute('value');
   await page.locator('#slide-select').selectOption(String(checkIndex));
   await page.locator('#own-slide-answer').fill('توالی و ساختار دو نوع داده‌اند');
-  await page.locator('summary').click();
+  await page.locator('#lesson-slide summary').click();
   await expect(page.locator('#lesson-slide details')).toContainText('خیر');
   await page.reload();
   await expect(page.locator('#own-slide-answer')).toHaveValue('توالی و ساختار دو نوع داده‌اند');
@@ -304,4 +304,27 @@ test('UniProt exercise works when storage is blocked', async ({page}) => {
   await expect(slide.getByRole('status')).toContainText('ذخیره ممکن نشد');
   await slide.getByRole('button',{name:'بررسی کارت'}).click();
   await expect(slide.locator('.uniprot-question p').first()).toContainText('درست است');
+});
+
+test('slide shortcuts and keyboard respect interactive controls', async ({page}) => {
+  await page.setViewportSize({width:390,height:844});
+  await page.goto(root + 'assets/course-slides.html?topic=1');
+  await expect(page.locator('#lesson-deck')).toHaveAttribute('aria-busy','false');
+  await page.locator('#go-check').click();
+  await expect(page.locator('#lesson-slide section:visible')).toHaveAttribute('data-kind','check');
+  await page.locator('#own-slide-answer').focus();
+  const hash = new URL(page.url()).hash;
+  await page.keyboard.press('Home');
+  expect(new URL(page.url()).hash).toBe(hash);
+  await page.locator('#go-lab').click();
+  await expect(page.locator('#lesson-slide section:visible')).toHaveAttribute('data-kind','lab');
+  await page.locator('#go-lesson').click();
+  await expect(page.locator('#go-lesson')).toHaveAttribute('aria-current','true');
+  await page.locator('.lesson-resources summary').click();
+  await expect(page.locator('#lesson-source')).toHaveAttribute('href', /session-01\.fa\.md$/);
+  await page.locator('#lesson-source').focus();
+  const before = new URL(page.url()).hash;
+  await page.keyboard.press('ArrowLeft');
+  expect(new URL(page.url()).hash).toBe(before);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
 });

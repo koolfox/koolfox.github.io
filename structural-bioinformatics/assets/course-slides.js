@@ -19,6 +19,9 @@ function show(index, update = true) {
   $('previous-slide').disabled = current === 0;
   $('next-slide').disabled = current === slides.length - 1;
   $('slide-select').value = String(current);
+  for (const [id, kind] of [['go-lesson', 'lesson'], ['go-check', 'check'], ['go-lab', 'lab']]) {
+    $(id).setAttribute('aria-current', (kind === 'lesson' ? slides[current].dataset.kind !== 'check' && slides[current].dataset.kind !== 'lab' : slides[current].dataset.kind === kind) ? 'true' : 'false');
+  }
   $('slide-progress').textContent = `${(current + 1).toLocaleString('fa-IR')} / ${slides.length.toLocaleString('fa-IR')}`;
   if (update) history.replaceState(null, '', `?topic=${topic.session}#slide-${current + 1}`);
 }
@@ -217,7 +220,7 @@ function labSlide(active) {
 }
 async function load() {
   const ticket = ++revision; $('lesson-deck').setAttribute('aria-busy','true'); $('lesson-title').textContent='در حال دریافت درس…'; $('chapter-title').textContent=''; $('lesson-slide').replaceChildren(); $('slide-status').textContent='در حال دریافت درس…'; $('retry-lesson').hidden=true;
-  $('previous-slide').disabled=true; $('next-slide').disabled=true; $('slide-select').disabled=true; $('print-lesson').disabled=true; slides=[];
+  $('previous-slide').disabled=true; $('next-slide').disabled=true; $('slide-select').disabled=true; $('print-lesson').disabled=true; ['go-lesson','go-check','go-lab'].forEach(id => { $(id).disabled=true; $(id).removeAttribute('aria-current'); }); $('go-lab').hidden=true; slides=[];
   try {
     if (!course || !syllabus) {
       const responses = await Promise.all([fetch('../data/metadata/learning-course.json'), fetch('../data/metadata/course-syllabus.json')]);
@@ -240,6 +243,9 @@ async function load() {
     for (const chapter of syllabus.blocks) { const group=element('optgroup'); group.label=chapter.title; for (const item of course.sessions.filter(value => value.block === chapter.id)) { const option=element('option',item.title); option.value=String(item.session); group.append(option); } select.append(group); }
     select.value=String(topic.session); select.disabled=false;
     $('back-to-lesson').href=`../course.html?topic=${topic.session}`;
+    $('lesson-source').href=sourceUrl.href;
+    $('go-lesson').disabled=false; $('go-check').disabled=false;
+    $('go-lab').hidden=!slides.some(slide => slide.dataset.kind === 'lab'); $('go-lab').disabled=$('go-lab').hidden;
     const slideSelect=$('slide-select'); slideSelect.replaceChildren(); slides.forEach((slide,index) => { const title=slide.querySelector('h2,h3,h4,h5,h6')?.textContent || 'متن درس'; const option=element('option',`${(index+1).toLocaleString('fa-IR')} · ${title}`); option.value=String(index); option.dataset.kind=slide.dataset.kind || 'lesson'; slideSelect.append(option); });
     slideSelect.disabled=false; $('print-lesson').disabled=false; $('slide-status').textContent=''; $('lesson-deck').setAttribute('aria-busy','false');
     const requestedSlide=Number(location.hash.match(/^#slide-(\d+)$/)?.[1] || 1); show(Number.isInteger(requestedSlide) ? requestedSlide-1 : 0);
@@ -250,7 +256,10 @@ $('next-slide').addEventListener('click',()=>show(current+1));
 $('slide-select').addEventListener('change',event=>show(Number(event.target.value)));
 $('lesson-select').addEventListener('change',event=>{ history.pushState(null,'',`?topic=${event.target.value}#slide-1`); load(); });
 $('retry-lesson').addEventListener('click',load);
+for (const [id, kind] of [['go-lesson', 'lesson'], ['go-check', 'check'], ['go-lab', 'lab']]) {
+  $(id).addEventListener('click', () => { const index=slides.findIndex(slide => slide.dataset.kind === kind); if (index >= 0) show(index); });
+}
 $('print-lesson').addEventListener('click',()=>window.print());
 window.addEventListener('popstate',load);
-document.addEventListener('keydown',event=>{ if(event.altKey||event.ctrlKey||event.metaKey||/INPUT|TEXTAREA|SELECT|BUTTON/.test(event.target.tagName)||event.target.isContentEditable)return; const actions={ArrowLeft:()=>show(current+1),ArrowRight:()=>show(current-1),Home:()=>show(0),End:()=>show(slides.length-1)}; if(actions[event.key]){event.preventDefault();actions[event.key](); $('lesson-slide').focus({preventScroll:true});} });
+document.addEventListener('keydown',event=>{ if(event.defaultPrevented||event.altKey||event.ctrlKey||event.metaKey||event.shiftKey||event.target.closest('input, textarea, select, button, a, summary, [contenteditable]:not([contenteditable="false"])'))return; const actions={ArrowLeft:()=>show(current+1),ArrowRight:()=>show(current-1),Home:()=>show(0),End:()=>show(slides.length-1)}; if(actions[event.key]){event.preventDefault();actions[event.key](); $('lesson-slide').focus({preventScroll:true});} });
 load();

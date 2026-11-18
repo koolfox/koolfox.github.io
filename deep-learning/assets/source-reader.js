@@ -422,6 +422,7 @@ function selectSection(section,toolUrl=null){
 }
 document.querySelectorAll('.reader-sections [data-reader-section]').forEach(button=>button.addEventListener('click',event=>{event.preventDefault();selectSection(button.dataset.readerSection);}));
 document.querySelectorAll('.reader-sections a[role=button]').forEach(button=>button.addEventListener('keydown',event=>{if(event.key===' '){event.preventDefault();button.click();}}));
+$('[data-return-slide]').addEventListener('click',()=>selectSection('slides'));
 $('[data-page-experiment]').addEventListener('click',()=>selectSection('explore'));
 $('[data-play-slides]').addEventListener('click',()=>{
  if(playing){stopPlayback();return;}

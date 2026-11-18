@@ -4,6 +4,7 @@ const config=JSON.parse(document.querySelector('#source-reader-config').textCont
 const films=[
  {id:'perceptron-steps',session:'s02',pages:[25,26,27,28,29,30],title:'فیلم دو گام پرسپترون'},
  {id:'xor-boundary',session:'s02',pages:[44],title:'فیلم مرز تصمیم XOR'},
+ {id:'rnn-parity',session:'s04',pages:[27],title:'پخش حافظه زوجیت'},
  {id:'s04-parity-dialogue',session:'s04',pages:[27],title:'گفت‌وگوی زوجیت'},
  {id:'s04-rnn-overview',session:'s04',pages:[12,41,51,55,58],title:'گفت‌وگوی شبکه بازگشتی'},
  {id:'s04-character-dialogue',session:'s04',pages:[29,31,47],title:'گفت‌وگوی پیش‌بینی حرف'},

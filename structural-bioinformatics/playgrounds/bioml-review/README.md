@@ -14,6 +14,8 @@
 
 صادرکننده Mol* محلی شامل JavaScript، CSS و مجوز آن را از `assets/vendor/molstar/` به `www/vendor/molstar/` همراه فونت کپی می‌کند. اجرا به HTTP یا سرور ایستای Shinylive نیاز دارد و از CDN استفاده نمی‌کند.
 
+تابع `stage_bioml` در `scripts/export_course_lab.py` شیوه‌نامه مشترک `assets/bioml-ui.css` را به `www/bioml-ui.css` در پوشه موقت ساخت کپی می‌کند. برنامه آن را پیش از `app.css` بار می‌کند. برای پیش‌نمایش کامل محلی، برنامه را از پوشه آماده‌شده یا خروجی صادرکننده اجرا کنید.
+
 صادرکننده مورد اعتماد باید شش فایل `www/data/TWNSGHID-{1,2,3}.pml` و `www/data/DIHGNSWT-{1,2,3}.pml` را تولید و در stage بگذارد؛ این پوشه آنها را تولید نمی‌کند. پیوندها به این نام‌ها اشاره می‌کنند و پیش از staging ممکن است 404 باشند. اجرای PyMOL و سازگاری واقعی فایل‌ها تست نشده است.
 
 شناسه‌های ورودی Shiny: `candidate`, `pose`. خروجی‌های Shiny: `result`, `pose_download`, `pymol_download`. فرزند `result-values` دارای `data-candidate` و `data-pose` است. `molecule-viewer` پس از رسم دارای `data-state="ready"` و `data-candidate` و `data-pose` متناظر است؛ خطای WebGL یا فایل `data-state="error"` می‌دهد. گیرنده به صورت نواری و پپتید به صورت اتم و پیوند نمایش داده می‌شود. مختصات بدون هم‌ترازی حفظ می‌شوند؛ اتم‌های هیدروژن حذف می‌شوند. پیوندها و ساختار ثانویه برای نمایش تخمین زده می‌شوند و اعتبارسنجی نشده‌اند. برای تست iframe، تا ready صبر کنید، هر دو select را تغییر دهید و هم داده‌های viewer و هم result-values را بررسی کنید.

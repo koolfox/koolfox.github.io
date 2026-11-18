@@ -1,16 +1,221 @@
-@font-face{font-family:Arad;src:url('arad.woff2')}
-*{box-sizing:border-box}
-body{margin:0;background:#f5f7f7;color:#183433;font-family:Arad,system-ui,sans-serif}
-.shell{max-width:1280px;margin:auto;padding:30px 24px 64px}
-h1{font-size:clamp(1.65rem,3vw,2.35rem);line-height:1.5;margin:0 0 10px}
-h2{font-size:1.13rem;margin:0 0 18px}h3{font-size:1rem;margin:24px 0 10px}
-.warning{background:#fff4df;border:1px solid #e8d5b0;border-radius:10px;padding:10px 16px;margin-bottom:20px;line-height:1.9}
-.layout{display:grid;grid-template-columns:minmax(260px,310px) minmax(0,1fr);gap:22px;align-items:start}
-.panel{background:#fff;border:1px solid #dce7e5;border-radius:14px;padding:20px}
-.controls label{display:block;margin:15px 0 6px}.controls select{width:100%;padding:10px;border:1px solid #abc3bf;border-radius:8px;background:#fff;direction:ltr;color:#173332}
-.metrics{margin:20px 0;display:grid}.metrics>div{padding:11px 0;border-bottom:1px solid #e6eeec;display:flex;align-items:center;gap:7px}.metrics span{flex:1}.metrics strong{direction:ltr;font-size:1.14rem;font-variant-numeric:tabular-nums}.metrics small,.small{color:#516b69}.small{line-height:1.9;font-size:.88rem;margin:10px 0 0}
-.visual-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}.visual-head span{font-size:.85rem;color:#516b69}
-#molecule-viewer{height:510px;background:#eef4f5;border-radius:8px;overflow:hidden;position:relative;direction:ltr}#molecule-viewer canvas{width:100%;height:100%;touch-action:none}
-.methods{margin-top:20px;line-height:2;border-top:1px solid #d4e1df;padding:15px 2px}.methods summary{cursor:pointer;font-weight:700}.methods p{max-width:75ch;margin:10px 0}
-a{color:#006a63;text-underline-offset:3px}a:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #157f78;outline-offset:3px}
-@media(max-width:800px){.layout{grid-template-columns:1fr}.visual{grid-row:1}#molecule-viewer{height:380px}.shell{padding:20px 14px 48px}}
+@font-face {
+  font-family: arad;
+  src: url("arad.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+.bio-review {
+  max-inline-size: var(--bio-frame);
+  min-block-size: 100vh;
+  margin-inline: auto;
+  padding: var(--bio-gutter) 0 3rem;
+  line-height: 1.7;
+}
+
+.bio-review h1 {
+  margin: 0;
+  font-size: clamp(1.45rem, 2.7vw, 2.05rem);
+  line-height: 1.55;
+}
+
+.bio-review h2 {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.5;
+}
+
+.review-note {
+  margin: 0.375rem 0 1rem;
+  color: var(--bio-muted);
+}
+
+.bio-review .layout {
+  display: grid;
+  grid-template-columns: minmax(18rem, 21rem) minmax(0, 1fr);
+  align-items: start;
+  gap: var(--bio-space-4);
+}
+
+.bio-review .panel {
+  min-inline-size: 0;
+  padding: clamp(var(--bio-space-3), 2vw, var(--bio-space-4));
+  border: 1px solid var(--bio-line);
+  border-radius: var(--bio-radius);
+  background: var(--bio-surface);
+}
+
+.bio-review .controls h2 {
+  margin-block-end: 0.625rem;
+}
+
+.bio-review .controls .shiny-input-container {
+  width: 100%;
+  margin-block-end: 0.625rem;
+}
+
+.bio-review .controls label {
+  display: block;
+  margin-block-end: 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.bio-review .controls select {
+  inline-size: 100%;
+  min-block-size: var(--bio-target);
+  border: 1px solid var(--bio-border);
+  border-radius: var(--bio-control-radius);
+  background-color: var(--bio-surface);
+  color: var(--bio-ink);
+  font: inherit;
+  font-size: 0.9rem;
+}
+
+.bio-review #candidate {
+  direction: ltr;
+}
+
+.bio-review .metrics {
+  margin: 0.875rem 0 0;
+  font-size: 0.875rem;
+}
+
+.bio-review .metrics > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 0.75rem;
+  padding-block: 0.5rem;
+  border-block-start: 1px solid var(--bio-line);
+}
+
+.bio-review .metrics dt {
+  font-weight: 500;
+}
+
+.bio-review .metrics dd {
+  margin: 0;
+  color: var(--bio-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.bio-review .metrics strong {
+  color: var(--bio-ink);
+}
+
+.bio-review .visual-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  margin-block-end: 0.625rem;
+}
+
+.bio-review .visual-head span,
+.bio-review .viewer-help {
+  color: var(--bio-muted);
+  font-size: 0.875rem;
+}
+
+#molecule-viewer {
+  height: clamp(24rem, 42vw, 31.875rem);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--bio-line);
+  border-radius: var(--bio-control-radius);
+  background: var(--bio-code);
+  direction: ltr;
+}
+
+#molecule-viewer canvas {
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+#molecule-viewer > .bio-status {
+  margin: var(--bio-space-3);
+  direction: rtl;
+}
+
+#molecule-viewer[data-state="error"] {
+  height: auto;
+  padding: var(--bio-space-3);
+  background: var(--bio-error-soft);
+  color: var(--bio-error);
+  direction: rtl;
+}
+
+.bio-review .viewer-help {
+  margin: 0.5rem 0 0;
+}
+
+#molecule-viewer[data-state="error"] + .viewer-help {
+  display: none;
+}
+
+.bio-review .downloads {
+  margin-block-start: 0.875rem;
+  padding-block-start: 0.75rem;
+  border-block-start: 1px solid var(--bio-line);
+}
+
+.bio-review .downloads h3 {
+  margin: 0 0 0.375rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.bio-review .download-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem 0.5rem;
+}
+
+.bio-review .download-links a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--bio-target);
+  padding: 0.25rem 0.625rem;
+  border: 1px solid var(--bio-border);
+  border-radius: var(--bio-control-radius);
+  font-size: 0.875rem;
+}
+
+.bio-review .download-links a:hover {
+  background: var(--bio-accent-soft);
+}
+
+.bio-review .controls select:focus-visible {
+  box-shadow: none;
+}
+
+.bio-review .methods {
+  margin-block-start: var(--bio-space-4);
+  border-block-start: 1px solid var(--bio-line);
+}
+
+.bio-review .methods summary {
+  min-block-size: var(--bio-target);
+  padding-block: 0.625rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.bio-review .methods p {
+  max-inline-size: 75ch;
+  margin: 0 0 0.625rem;
+}
+
+@media (max-width: 48rem) {
+  .bio-review .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #molecule-viewer {
+    height: 23.75rem;
+  }
+}

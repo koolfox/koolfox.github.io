@@ -35,6 +35,7 @@ def stage_bioml(destination):
     vendor = www / "vendor"
     vendor.mkdir(parents=True, exist_ok=True)
     shutil.copytree(PROJECT / "assets/vendor/molstar", vendor / "molstar", dirs_exist_ok=True)
+    shutil.copyfile(PROJECT / "assets/bioml-ui.css", www / "bioml-ui.css")
     shutil.copyfile(PROJECT.parent / "assets/fonts/arad.woff2", www / "arad.woff2")
     report = json.loads((PROJECT / "data/processed/bioml-review.json").read_text())
     generate = runpy.run_path(str(PROJECT / "scripts/build_bioml_pymol.py"))["generate"]

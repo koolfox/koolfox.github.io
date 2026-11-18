@@ -80,7 +80,7 @@ def main():
     # This film has its own render script and source-specific metadata.
     published.append(json.loads((ROOT / 'animations/convolution-code.record.json').read_text()))
     published.append(json.loads((ROOT / 'animations/rnn-parity.record.json').read_text()))
-    for name in ('s04-parity-dialogue', 's04-rnn-overview', 's04-character-dialogue', 's04-gates-dialogue', 's04-sequences-dialogue'):
+    for name in ('s04-parity-dialogue', 's04-rnn-overview', 's04-character-dialogue', 's04-gates-dialogue', 's04-sequences-dialogue', 's04-hidden-dialogue'):
         published.append(json.loads((ROOT / f'animations/{name}.record.json').read_text()))
     published.append(json.loads((ROOT / 'animations/train-test.record.json').read_text()))
     published.append(json.loads((ROOT / 'animations/capacity-boundary.record.json').read_text()))

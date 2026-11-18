@@ -8,6 +8,7 @@ const films=[
  {id:'s04-rnn-overview',session:'s04',pages:[12,41,51,55,58],title:'گفت‌وگوی شبکه بازگشتی'},
  {id:'s04-character-dialogue',session:'s04',pages:[29,31,47],title:'گفت‌وگوی پیش‌بینی حرف'},
  {id:'s04-gates-dialogue',session:'s04',pages:[55,56,58],title:'گفت‌وگوی دروازه‌ها'},
+ {id:'s04-sequences-dialogue',session:'s04',pages:[5,7,9,39],title:'گفت‌وگوی مسئله‌های دنباله‌ای'},
  {id:'capacity-boundary',session:'s01',pages:[53],title:'فیلم مرز تصمیم'},
  {id:'train-test',session:'s01',pages:[39,40,41,42,43],title:'فیلم آموزش و آزمون'},
  {id:'backpropagation',session:'s03',pages:Array.from({length:16},(_,i)=>69+i),title:'پخش پس‌انتشار'},

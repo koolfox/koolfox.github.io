@@ -2,6 +2,20 @@
 name: "Structural Bioinformatics Research Atlas"
 description: "Persian research reading with source-linked scientific media and an experimental-coordinate laboratory."
 colors:
+  bio-canvas: "#f2f5f7"
+  bio-surface: "#ffffff"
+  bio-ink: "#152637"
+  bio-muted: "#45596b"
+  bio-line: "#d4dfe5"
+  bio-border: "#8296a4"
+  bio-accent: "#1b5b67"
+  bio-accent-strong: "#104751"
+  bio-accent-soft: "#e3f0f0"
+  bio-code: "#edf3f5"
+  bio-inverse: "#f3fbfb"
+  bio-inverse-muted: "#c1dadd"
+  bio-error: "#8d263c"
+  bio-error-soft: "#fcecef"
   accent: "#2563eb"
   link: "#245dc4"
   link-hover: "#164498"
@@ -351,7 +365,7 @@ The concrete state/input/output examples and verification checklist are in [BioM
 
 ## Shared web styles
 
-[`assets/bioml-ui.css`](assets/bioml-ui.css) defines the active palette and component styles for elements inside `.bio-ui`. It is the source for the page shell, course reader, course slides and molecular review. Use canvas behind the interface, surface for reading or data, ink for text, and muted for supporting labels. The current selection and the primary action use teal. `--bio-line` separates content and `--bio-border` outlines controls. Use the inverse text tokens on an ink background. Retain the structural viewer's own legend.
+[`assets/bioml-ui.css`](assets/bioml-ui.css) defines the active palette and component styles for elements inside `.bio-ui`. It is the source for the page shell, course reader, course slides, workbench and molecular viewers. Use canvas behind the interface, surface for reading or data, ink for text, and muted for supporting labels. The current selection and the primary action use teal. `--bio-line` separates content and `--bio-border` outlines controls. Use the inverse text tokens on an ink background. Retain the structural viewer's own legend.
 
 Use `.bio-action` for the main action in a section. Keep native labels on inputs and the shared focus outline on interactive elements. Use `.bio-data` with `bdi` or `dir="ltr"` for sequences, codes and scientific numbers. For a textual status, pair `.bio-status` with a meaningful message and use `data-state="error"` for failures. Add a live region when a status changes asynchronously.
 

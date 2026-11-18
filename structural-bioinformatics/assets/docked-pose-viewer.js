@@ -1,7 +1,16 @@
 import { MolecularScene } from './molecular-scene.js';
 const $ = id => document.getElementById(id);
-let scene, targetText = '', poseTexts = [], requestId = 0;
 const status = $('pose-status');
+const description = $('sample-description');
+const stage = $('pose-stage');
+const select = $('pose-select');
+const reset = $('reset-view');
+const downloadStatus = $('download-status');
+const backLink = $('back-to-research');
+const decoder = new TextDecoder();
+let scene;
+let result;
+let requestId = 0;
 function parseCA(text, chainId) {
  const residues=[]; const seen=new Set(); const chains=new Set();
  for(const line of text.split(/\r?\n/)) {
@@ -26,33 +35,218 @@ function splitPoses(text) {
  const blocks=[...text.matchAll(/^MODEL\s+\d+\s*$([\s\S]*?)^ENDMDL\s*$/gm)].map(m=>m[1]);
  if(!blocks.length) throw Error('حالت کامل MODEL در فایل PDBQT پیدا نشد.');return blocks;
 }
-function draw() {
- const n=Number($('pose-select').value); const target=parseCA(targetText,'T');const peptide=parseCA(poseTexts[n],'P');
- $('pose-stage').hidden=false;scene.setStructure({id:'docked-pose',chains:[target,peptide]});scene.setChainColor('T','#245cb7');scene.setChainColor('P','#e16b29');
- status.textContent=`حالت ${n+1} از ${poseTexts.length}؛ هدف ${target.residues.length} و پپتید ${peptide.residues.length} اتم Cα. چرخش، حرکت دوربین است.`;
- $('reset-view').disabled=false;
+
+async function readReport(path) {
+  const response = await fetch(path);
+  if (!response.ok) throw Error('گزارش این اجرا در دسترس نیست.');
+  return response.json();
 }
-function setData(target,poses) {
- targetText=target;poseTexts=splitPoses(poses);const select=$('pose-select');select.replaceChildren();
- poseTexts.forEach((_,i)=>{const o=document.createElement('option');o.value=String(i);o.textContent=`حالت ${i+1}`;select.append(o)});select.disabled=false;draw();
+
+async function verifyFile(path, expectedHash) {
+  if (!globalThis.crypto?.subtle) throw Error('این مرورگر نمی‌تواند هش فایل را بررسی کند.');
+  const response = await fetch(path);
+  if (!response.ok) throw Error('یکی از فایل‌های این نتیجه در دسترس نیست.');
+  const bytes = await response.arrayBuffer();
+  const digest = await crypto.subtle.digest('SHA-256', bytes);
+  const hash = Array.from(new Uint8Array(digest), byte => byte.toString(16).padStart(2, '0')).join('');
+  if (hash !== expectedHash) throw Error('هش فایل با گزارش این نتیجه همخوان نیست.');
+  return bytes;
 }
-async function sample(){
- const current=++requestId;status.textContent='در حال بارگذاری نمونه…';
- try {const rs=await Promise.all(['docked-ac-visualization/receptor.pdb','general-docking-demo/AC/poses.pdbqt'].map(u=>fetch(u)));if(rs.some(r=>!r.ok))throw Error('فایل نمونه در دسترس نیست.');const target=await rs[0].text(),poses=await rs[1].text();if(current===requestId)setData(target,poses)}catch(e){if(current===requestId){$('pose-stage').hidden=true;status.textContent='نمایش انجام نشد: '+e.message}}
+
+async function readRecordedFiles(targetPath, targetHash, posesPath, posesHash) {
+  const [target, poses] = await Promise.all([
+    verifyFile(targetPath, targetHash),
+    verifyFile(posesPath, posesHash),
+  ]);
+  return {
+    targetText: decoder.decode(target),
+    posesText: decoder.decode(poses),
+    targetPath,
+    posesPath,
+  };
 }
+
+async function readSaved(sequence, batch) {
+  const folder = `peptide-ops-39-demo/docking/batch-00000${batch}/docking/`;
+  const report = await readReport(folder + 'report.json');
+  const candidate = report.candidates?.find(row => row.sequence === sequence);
+  if (candidate?.status !== 'requires_further_validation' || !candidate.poses?.length) {
+    throw Error('نتیجهٔ این توالی در گزارش دسته پیدا نشد. دوباره از فهرست نامزدها انتخاب کنید.');
+  }
+  const files = await readRecordedFiles(
+    folder + 'selected-chain.pdb', report.selected_pdb_sha256,
+    folder + sequence + '/poses.pdbqt', candidate.poses_sha256,
+  );
+  return {
+    ...files,
+    sequence,
+    poseCount: candidate.poses.length,
+    description: `نتیجهٔ ثبت‌شدهٔ ${sequence} در هدف آزمایشی 1UBQ.`,
+  };
+}
+
+async function readSample() {
+  const folder = 'docked-ac-visualization/';
+  const manifest = await readReport(folder + 'manifest.json');
+  if (manifest.sequence !== 'AC' || !manifest.files?.length) {
+    throw Error('گزارش خروجی سه‌بعدی با نمونهٔ AC همخوان نیست.');
+  }
+  const files = await readRecordedFiles(
+    folder + 'receptor.pdb', manifest.source_receptor_sha256,
+    'general-docking-demo/AC/poses.pdbqt', manifest.source_poses_sha256,
+  );
+  const sdfPaths = await Promise.all(manifest.files.map(async (entry, index) => {
+    const name = `pose-${index + 1}.sdf`;
+    if (entry.pose !== index + 1 || entry.sdf !== name) return null;
+    try {
+      await verifyFile(folder + name, entry.sdf_sha256);
+      return folder + name;
+    } catch {
+      return null;
+    }
+  }));
+  return {
+    ...files,
+    sequence: 'AC',
+    poseCount: manifest.files.length,
+    sdfPaths,
+    description: 'نمونهٔ آمادهٔ AC در هدف آزمایشی 1UBQ.',
+  };
+}
+
+async function readLocalFiles() {
+  const [target] = $('target-file').files;
+  const [poses] = $('pose-file').files;
+  if (!target || !poses) throw Error('هر دو فایل را انتخاب کنید.');
+  if (target.size > 10000000 || poses.size > 10000000) {
+    throw Error('اندازهٔ هر فایل باید کمتر از ۱۰ مگابایت باشد.');
+  }
+  return {
+    targetText: await target.text(),
+    posesText: await poses.text(),
+    description: 'فایل‌های انتخابی شما. هویت پپتید و مطابقت فایل‌ها خودکار بررسی نمی‌شود.',
+  };
+}
+
+function setDownload(id, path, label, filename) {
+  const link = $(id);
+  link.hidden = !path;
+  if (path) link.href = path;
+  else link.removeAttribute('href');
+  link.download = path ? filename : '';
+  link.textContent = path ? label : '';
+}
+
+function updateDownloads() {
+  const index = Number(select.value);
+  const sequence = result?.sequence;
+  const sdf = result?.sdfPaths?.[index];
+  setDownload('download-target', result?.targetPath, 'دریافت گیرندهٔ 1UBQ همین اجرا (PDB)', `${sequence}-receptor.pdb`);
+  setDownload('download-poses', result?.posesPath, `دریافت همهٔ حالت‌های ${sequence} (PDBQT)`, `${sequence}-poses.pdbqt`);
+  setDownload('download-sdf', sdf, `دریافت حالت ${index + 1} از ${sequence} (SDF)`, `${sequence}-pose-${index + 1}.sdf`);
+  if (result?.posesPath) {
+    downloadStatus.textContent = sdf
+      ? 'فایل PDBQT همهٔ حالت‌ها را دارد. فایل SDF مربوط به حالت انتخابی است.'
+      : 'فایل SDF تأییدشده برای این حالت در دسترس نیست. از فایل PDBQT همین اجرا استفاده کنید.';
+  } else if (result) {
+    downloadStatus.textContent = 'برای بررسی خارج از مرورگر، از فایل‌های اصلی انتخاب‌شده استفاده کنید.';
+  }
+}
+
+function renderPose() {
+  updateDownloads();
+  const index = Number(select.value);
+  const position = `حالت ${index + 1} از ${result.poses.length}`;
+  try {
+    if (!scene) throw Error('نمای سه‌بعدی در این مرورگر در دسترس نیست.');
+    const peptide = parseCA(result.poses[index], 'P');
+    stage.hidden = false;
+    scene.setStructure({id: 'docked-pose', chains: [result.target, peptide]});
+    scene.setChainColor('T', '#245cb7');
+    scene.setChainColor('P', '#e16b29');
+    status.textContent = `${position}؛ هدف ${result.target.residues.length} و پپتید ${peptide.residues.length} اتم Cα. چرخش، حرکت دوربین است.`;
+    status.removeAttribute('data-state');
+    reset.disabled = false;
+  } catch (error) {
+    stage.hidden = true;
+    stage.dataset.state = 'error';
+    reset.disabled = true;
+    status.dataset.state = 'error';
+    status.textContent = `${position}؛ ${error.message}`;
+  }
+}
+
+async function load(label, read) {
+  const current = ++requestId;
+  result = undefined;
+  description.textContent = label;
+  select.replaceChildren();
+  select.disabled = true;
+  reset.disabled = true;
+  stage.hidden = true;
+  stage.dataset.state = 'loading';
+  status.removeAttribute('data-state');
+  status.textContent = 'در حال بررسی فایل‌ها…';
+  downloadStatus.textContent = '';
+  updateDownloads();
+
+  try {
+    const data = await read();
+    if (current !== requestId) return;
+    const poses = splitPoses(data.posesText);
+    if (data.poseCount !== undefined && poses.length !== data.poseCount) {
+      throw Error('شمار حالت‌ها در فایل و گزارش یکسان نیست.');
+    }
+    result = { ...data, poses, target: parseCA(data.targetText, 'T') };
+    description.textContent = data.description + ' در نمای سه‌بعدی، مسیر Cα هدف آبی و مسیر پپتید نارنجی است.';
+    poses.forEach((_, index) => select.add(new Option(`حالت ${index + 1}`, String(index))));
+    select.disabled = false;
+    renderPose();
+  } catch (error) {
+    if (current !== requestId) return;
+    stage.dataset.state = 'error';
+    status.dataset.state = 'error';
+    status.textContent = 'نمایش انجام نشد: ' + error.message;
+    if (read !== readLocalFiles) {
+      downloadStatus.textContent = 'پیوندهای دریافت غیرفعال‌اند. صفحه را دوباره بارگذاری کنید یا به فهرست نامزدها برگردید.';
+    }
+  }
+}
+
 try {
- scene=new MolecularScene($('pose-stage'),{descriptionIds:'pose-status'});
- $('pose-select').addEventListener('change',()=>{try{draw()}catch(e){$('pose-stage').hidden=true;status.textContent=e.message}});
- $('load-sample').addEventListener('click',sample);$('reset-view').addEventListener('click',()=>scene.resetView());
- $('load-files').addEventListener('click',async()=>{const current=++requestId;try{const a=$('target-file').files[0],b=$('pose-file').files[0];if(!a||!b)throw Error('هر دو فایل را انتخاب کنید.');if(a.size>10000000||b.size>10000000)throw Error('اندازهٔ هر فایل باید کمتر از ۱۰ مگابایت باشد.');const target=await a.text(),poses=await b.text();if(current===requestId)setData(target,poses)}catch(e){if(current===requestId){$('pose-stage').hidden=true;status.textContent='نمایش انجام نشد: '+e.message}}});
- const params=new URLSearchParams(location.search);
- const sequence=params.get('sequence'),batch=params.get('batch');
- if(params.get('demo')==='39' && /^[ACDEFGHIKLMNPQRSTVWY]{2}$/.test(sequence||'') && /^(1|2)$/.test(batch||'')) {
-  const current=++requestId;
-  const folder=`peptide-ops-39-demo/docking/batch-00000${batch}/docking/`;
-  status.textContent='در حال بارگذاری نتیجهٔ ثبت‌شده…';
-  Promise.all([fetch(folder+'report.json'),fetch(folder+'selected-chain.pdb'),fetch(folder+sequence+'/poses.pdbqt')])
-   .then(async rs=>{if(rs.some(r=>!r.ok))throw Error('فایل نتیجه در دسترس نیست.');const report=await rs[0].json();if(!report.candidates.some(row=>row.sequence===sequence))throw Error('توالی در گزارش این دسته نیست.');const [target,poses]=await Promise.all([rs[1].text(),rs[2].text()]);if(current===requestId){setData(target,poses);$('sample-description').textContent=`نتیجهٔ ثبت‌شدهٔ ${sequence} در هدف آزمایشی 1UBQ؛ آبی هدف و نارنجی پپتید است.`}})
-   .catch(e=>{if(current===requestId){$('pose-stage').hidden=true;status.textContent='نمایش انجام نشد: '+e.message}});
- } else sample();
-}catch(e){status.textContent='نمای سه‌بعدی در این مرورگر در دسترس نیست. فایل‌های SDF را دریافت کنید.'}
+  const { MolecularScene } = await import('./molecular-scene.js');
+  scene = new MolecularScene(stage, {descriptionIds: 'pose-status'});
+  scene.addEventListener('viewererror', () => {
+    scene = undefined;
+    if (result) renderPose();
+  });
+} catch {
+  // Recorded files and pose selection remain available without the renderer.
+}
+
+select.addEventListener('change', renderPose);
+reset.addEventListener('click', () => scene.resetView());
+$('load-files').addEventListener('click', () => load('فایل‌های انتخابی شما', readLocalFiles));
+$('load-sample').addEventListener('click', () => {
+  history.replaceState(null, '', location.pathname);
+  backLink.href = '../research.html';
+  backLink.textContent = 'بازگشت به پژوهش';
+  load('نمونهٔ درخواستی AC', readSample);
+});
+
+const params = new URLSearchParams(location.search);
+if (['demo', 'sequence', 'batch'].some(name => params.has(name))) {
+  backLink.href = 'peptide-workflow.html';
+  backLink.textContent = 'بازگشت به فهرست نامزدها';
+  const sequence = params.get('sequence');
+  const batch = params.get('batch');
+  if (params.get('demo') === '39' && /^[ACDEFGHIKLMNPQRSTVWY]{2}$/.test(sequence) && /^[12]$/.test(batch)) {
+    load(`نتیجهٔ درخواستی ${sequence}`, () => readSaved(sequence, batch));
+  } else {
+    load('انتخاب نتیجهٔ ثبت‌شده', () => {
+      throw Error('نشانی نتیجه معتبر نیست. دوباره از فهرست نامزدها انتخاب کنید.');
+    });
+  }
+} else {
+  load('نمونهٔ درخواستی AC', readSample);
+}

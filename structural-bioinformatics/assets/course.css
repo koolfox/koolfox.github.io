@@ -1,5 +1,5 @@
 @font-face{font-family:Arad;src:url('/assets/fonts/arad.woff2') format('woff2');font-weight:100 900;font-display:swap}
-.restored-course{font-family:Arad,system-ui,sans-serif;color:#111827;background:#f5f5f7;line-height:1.95;font-size:17px;--blue:#245dc4;--line:#dce2eb}
+.restored-course{font-family:Arad,system-ui,sans-serif;color:#111827;background:#f5f5f7;line-height:1.95;font-size:17px;--blue:var(--bio-accent, #245dc4);--line:var(--bio-line, #dce2eb)}
 .restored-course *{box-sizing:border-box}
 .restored-course{margin:0}
 .restored-course a{color:var(--blue);text-underline-offset:4px}
@@ -160,7 +160,7 @@
 
 /* Course reading: emphasize location and make existing navigation easier to scan. */
 body[data-section="course"] #course-topics .reading-navigator {
-  border-inline-end: 1px solid #dce2eb;
+  border-inline-end: 1px solid var(--bio-line, #dce2eb);
   padding-inline: 12px 24px;
 }
 body[data-section="course"] #course-topics .reading-navigator > details > summary {
@@ -169,16 +169,16 @@ body[data-section="course"] #course-topics .reading-navigator > details > summar
 }
 body[data-section="course"] #course-topics .reading-navigator summary:hover,
 body[data-section="course"] #course-topics .reading-navigator a:hover {
-  background: #edf2fc;
+  background: var(--bio-accent-soft, #edf2fc);
 }
 body[data-section="course"] #course-topics #sessions a[aria-current="page"],
 body[data-section="course"] #course-topics #lesson-outline a[aria-current="location"] {
-  border-inline-start: 1px solid #245dc4;
-  background: #e7effd;
-  color: #164498;
+  border-inline-start: 1px solid var(--bio-accent, #245dc4);
+  background: var(--bio-accent-soft, #e7effd);
+  color: var(--bio-accent-strong, #164498);
 }
 body[data-section="course"] #course-topics #position {
-  color: #465b78;
+  color: var(--bio-muted, #465b78);
   font-size: .85rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
@@ -186,22 +186,22 @@ body[data-section="course"] #course-topics #position {
 body[data-section="course"] #course-topics .lesson-reading-tools {
   gap: 8px 18px;
   padding: 10px 14px;
-  background: #f8fafd;
-  border: 1px solid #dce2eb;
+  background: var(--bio-canvas, #f8fafd);
+  border: 1px solid var(--bio-line, #dce2eb);
   border-radius: 8px;
 }
 body[data-section="course"] #course-topics .next-steps a {
   display: inline-flex;
   align-items: center;
   padding: 8px 16px;
-  border: 1px solid #bec9d9;
+  border: 1px solid var(--bio-border, #bec9d9);
   border-radius: 8px;
   text-decoration: none;
   font-weight: 650;
 }
 body[data-section="course"] #course-topics .next-steps a[href]:hover {
-  background: #edf2fc;
-  border-color: #245dc4;
+  background: var(--bio-accent-soft, #edf2fc);
+  border-color: var(--bio-accent, #245dc4);
 }
 body[data-section="course"] #course-topics .next-steps a:not([href]) {
   visibility: hidden;
@@ -211,7 +211,7 @@ body[data-section="course"] #course-topics .next-steps a:not([href]) {
     gap: 0 12px;
     padding: 0;
     border-inline-end: 0;
-    border-bottom: 1px solid #dce2eb;
+    border-bottom: 1px solid var(--bio-line, #dce2eb);
   }
   body[data-section="course"] #course-topics .reading-navigator > details > summary {
     padding: 7px 4px;

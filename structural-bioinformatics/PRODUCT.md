@@ -12,7 +12,7 @@ A novice MSc student, classmates and readers learning structural bioinformatics.
 
 The user's 2026-10-25 clarification defines exactly two primary navigation choices: general education and research. `course.html` is titled سرفصل آموزشی. Its nine chapter headings and ordering follow the Sharif 40553 syllabus. General lessons teach structural bioinformatics independently; molecular docking belongs to this area. The continuous textbook and its chapter links stay in education, including legacy document URLs. The research glossary is not injected into general reading. Self-checks and mathematical examples do not rely on adalimumab, TOP2A or named project papers.
 
-`research.html` applies the learning to the adalimumab/TOP2A narrative review. Project datasets, molecular viewers, case exercises, paper reviews, library and presentations are research descendants with their own usable URLs. Their secondary navigation is not a set of primary peers to the course. `education-research-map.json` describes the optional application of each chapter and its manuscript output. No global chapter context hides tools or changes the course.
+`research.html` opens the current antibody-to-peptide study with adalimumab and TNF as its worked case. The path leads to the manual example, local workbench, saved molecular results and article/evaluation plan. Project datasets, viewers, case exercises, paper reviews, library and presentations stay available by direct URL. The earlier adalimumab/TOP2A review and its optional chapter applications remain accessible as prior work.
 
 ## Content
 
@@ -20,7 +20,7 @@ General lesson sources live in `docs/course/`. Previous project-specific lesson 
 
 ## State and evidence
 
-General education progress has a separate localStorage key. Existing research quiz attempts and notes are preserved. No accounts, uploads or proficiency locks. Preserve coordinate provenance, raw-data exclusions and the distinction between geometry, RNA, enzyme activity and clinical effects. The survey is a focused narrative draft; no new biological execution or completed systematic review is implied.
+General education progress has a separate localStorage key. Existing research quiz attempts and notes are preserved. The public site runs teaching exercises and displays saved research outputs. Report the structure, chain, tool version, parameters and observed status with every research result. Claims about language model routing, docking geometry and biological activity require distinct evidence.
 
 ## Acceptance
 

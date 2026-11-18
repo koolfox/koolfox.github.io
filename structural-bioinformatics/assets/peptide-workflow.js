@@ -16,9 +16,19 @@ try {
     for (const value of [candidate.sequence, candidate.change, String(result.poses.length)]) {
       const td = document.createElement('td'); td.textContent = value; tr.append(td);
     }
-    const td = document.createElement('td'); const link = document.createElement('a');
+    const td = document.createElement('td');
+    const link = document.createElement('a');
     const params = new URLSearchParams({ demo: '39', sequence: candidate.sequence, batch: String(result.batch) });
-    link.href = 'docked-pose-viewer.html?' + params; link.textContent = 'نمایش سه‌بعدی'; td.append(link); tr.append(td); tbody.append(tr);
+    const label = document.createElement('span');
+    const sequence = document.createElement('bdi');
+    sequence.dir = 'ltr';
+    sequence.textContent = candidate.sequence;
+    label.append('نمایش سه‌بعدی ', sequence);
+    link.href = 'docked-pose-viewer.html?' + params;
+    link.append(label);
+    td.append(link);
+    tr.append(td);
+    tbody.append(tr);
   }
   status.textContent = `${rows.size} نامزد با خروجی ثبت‌شده؛ هرکدام را می‌توانید باز کنید.`;
 } catch (error) { tbody.replaceChildren(); status.textContent = 'خواندن نتایج انجام نشد: ' + error.message; }

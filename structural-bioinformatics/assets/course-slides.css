@@ -1,46 +1,465 @@
-.lesson-toolbar{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;max-width:76rem;margin:1rem auto;padding:0 1rem}
-.lesson-toolbar select,.slide-controls select{max-width:min(100%,34rem)}
-.lesson-toolbar button,.lesson-toolbar select,.slide-controls button,.slide-controls select,.lesson-slide button{font:inherit;min-height:2.75rem}
-.lesson-deck{max-width:76rem;margin:2rem auto;padding:0 1rem 4rem}
-.lesson-context{color:#1e4ea9;font-weight:700}.lesson-deck h1{margin:.3rem 0 .7rem}.lesson-explanation{max-width:75ch;line-height:1.9}
-.lesson-slide{margin-top:1.6rem;padding:clamp(1.2rem,3vw,2.5rem);border:1px solid #dce2eb;border-radius:12px;background:#fff;min-height:18rem;line-height:2;font-size:1.12rem;overflow-wrap:anywhere}
-.lesson-slide h2,.lesson-slide h3,.lesson-slide h4{line-height:1.5;margin:0 0 1rem}.lesson-slide p,.lesson-slide li{max-width:78ch}.lesson-slide pre{direction:ltr;text-align:left;overflow:auto;padding:1rem;background:#f0f3f8;border-radius:8px}.lesson-slide code{unicode-bidi:isolate}.lesson-slide table{display:block;overflow-x:auto;max-width:100%}.lesson-slide img{max-width:100%;height:auto}
-.slide-controls{display:flex;flex-wrap:wrap;align-items:center;gap:.8rem;margin-top:1rem}.slide-controls #next-slide{margin-inline-start:auto}.lesson-slide textarea{display:block;width:min(100%,52rem);min-height:8rem;font:inherit;margin:.8rem 0}.lesson-slide details{margin-top:1rem}.lesson-slide iframe{display:block;width:100%;height:44rem;border:1px solid #dce2eb;margin-top:1rem}.lesson-slide button:focus-visible,.lesson-toolbar :focus-visible,.slide-controls :focus-visible{outline:3px solid #245dc4;outline-offset:3px}
-@media(max-width:600px){.lesson-deck{margin-top:1rem}.lesson-slide{min-height:14rem;padding:1rem}.lesson-slide iframe{height:34rem}.slide-controls #next-slide{margin-inline-start:0}}
-@media print{.lesson-toolbar,.slide-controls,#slide-status,#retry-lesson,.lesson-explanation,.lesson-slide button,.lesson-slide iframe{display:none!important}.lesson-slide{border:0;min-height:0;padding:0}}
-
-.evidence-question{margin:1.2rem 0;max-width:52rem}.evidence-question label{display:block;font-weight:700}.evidence-question select{font:inherit;max-width:100%;min-height:2.75rem;margin-top:.4rem}.evidence-question p{margin:.6rem 0;color:#183d82}
-
-.lesson-slide input[type=text]{display:block;width:min(100%,24rem);min-height:2.75rem;margin:.4rem 0 1rem;padding:.4rem .7rem;font:inherit;letter-spacing:.04em}
-
-/* The slide remains the main reading surface; supporting paths stay nearby. */
-.lesson-toolbar{max-width:78rem;margin:0 auto;padding:1rem;gap:.75rem;border-bottom:1px solid #dce2eb}
-.lesson-toolbar #back-to-lesson{margin-inline-end:auto}
-.lesson-deck{max-width:78rem;margin:1.25rem auto;padding-bottom:3rem}
-.lesson-deck h1{font-size:1.5rem;line-height:1.6;margin:.15rem 0 1rem}
-.lesson-context{font-size:.85rem;margin:0}
-.lesson-tools{display:flex;align-items:start;justify-content:space-between;gap:1rem;margin-bottom:.8rem}
-.slide-shortcuts{display:flex;flex-wrap:wrap;gap:.35rem}
-.slide-shortcuts button{font:inherit;min-height:2.75rem;padding:.4rem 1rem;background:transparent;color:#344860;border:1px solid transparent;border-radius:8px;cursor:pointer}
-.slide-shortcuts button[aria-current=true]{background:#e9effd;color:#17489e;border-color:#b9caeb;font-weight:700}
-.slide-shortcuts button:disabled{opacity:.55;cursor:default}
-.lesson-resources{position:relative;max-width:100%}
-.lesson-resources summary{cursor:pointer;min-height:2.75rem;padding:.4rem .7rem;color:#245dc4}
-.lesson-resources>div{position:absolute;z-index:2;inset-inline-end:0;width:min(21rem,85vw);padding:1rem;background:#fff;border:1px solid #bec9d9;border-radius:8px;box-shadow:0 8px 22px #1723391c}
-.lesson-resources p{margin:.5rem 0 0;line-height:1.8}
-.lesson-slide{margin-top:0;min-height:clamp(22rem,48vh,36rem);padding:clamp(1.4rem,4vw,3.5rem);font-size:1.12rem;line-height:2.05}
-.lesson-slide section>h2:first-child{font-size:1.45rem;margin-bottom:1.5rem}
-.lesson-slide section>h3,.lesson-slide section>h4{color:#40546f;font-size:1.08rem}
-.lesson-slide p,.lesson-slide li{max-width:72ch}
-.lesson-slide label{display:block;margin-top:.8rem}
-.lesson-slide select,.lesson-slide input,.lesson-slide textarea{font:inherit;max-width:100%;min-height:2.75rem}
-.slide-controls{gap:.65rem;margin-top:1rem}
-.slide-controls #slide-progress{font-variant-numeric:tabular-nums;color:#40546f}
-.lesson-slide :focus-visible,.lesson-tools :focus-visible{outline:3px solid #245dc4;outline-offset:3px}
-::selection{background:#c9dafa;color:#111827}
-@media(max-width:600px){
- .lesson-toolbar{gap:.5rem}.lesson-toolbar #back-to-lesson{width:100%}.lesson-toolbar label{font-size:.9rem}.lesson-toolbar select{flex:1;min-width:0}.lesson-toolbar #print-lesson{margin-inline-start:auto}
- .lesson-deck{margin-top:1rem}.lesson-deck h1{font-size:1.25rem}.lesson-tools{align-items:center;flex-wrap:wrap}.lesson-slide{min-height:17rem;padding:1.25rem;font-size:1rem}.lesson-slide section>h2:first-child{font-size:1.2rem}
- .slide-controls{display:grid;grid-template-columns:auto 1fr auto}.slide-controls label{grid-column:1}.slide-controls select{grid-column:2 / 4;min-width:0;width:100%}.slide-controls #previous-slide{grid-column:1;grid-row:2}.slide-controls #slide-progress{grid-column:2;grid-row:2;text-align:center}.slide-controls #next-slide{grid-column:3;grid-row:2}
+.lesson-toolbar,
+.lesson-deck {
+  max-inline-size: var(--bio-frame);
+  margin-inline: auto;
+  padding-inline: var(--bio-gutter);
 }
-@media print{.lesson-tools{display:none!important}}
+
+.lesson-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--bio-space-2) var(--bio-space-3);
+  padding-block: var(--bio-space-3);
+  border-block-end: 1px solid var(--bio-line);
+  font-size: .875rem;
+}
+
+.lesson-toolbar a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--bio-target);
+  margin-inline-end: auto;
+}
+
+.lesson-picker {
+  display: flex;
+  align-items: center;
+  gap: var(--bio-space-2);
+  min-inline-size: 0;
+}
+
+.lesson-picker label {
+  flex-shrink: 0;
+  color: var(--bio-muted);
+}
+
+.lesson-picker select {
+  min-inline-size: 0;
+  max-inline-size: 100%;
+}
+
+.lesson-toolbar .lesson-picker {
+  flex: 0 1 28rem;
+}
+
+.lesson-picker select {
+  flex: 1;
+}
+
+/* These fields and quiet actions stay local to the slide interface. */
+.bio-ui :is(.lesson-toolbar, .lesson-deck) :is(select, input, textarea, button:not(.bio-action)) {
+  min-block-size: var(--bio-target);
+  border: 1px solid var(--bio-border);
+  border-radius: var(--bio-control-radius);
+  color: var(--bio-ink);
+  background: var(--bio-surface);
+  font: inherit;
+  line-height: 1.5;
+}
+
+.bio-ui :is(.lesson-toolbar, .lesson-deck) button:not(.bio-action) {
+  padding: var(--bio-space-2) var(--bio-space-3);
+  color: var(--bio-accent-strong);
+  white-space: normal;
+}
+
+.bio-ui :is(.lesson-toolbar, .lesson-deck) button:not(.bio-action):enabled:hover {
+  border-color: var(--bio-accent);
+  background: var(--bio-accent-soft);
+}
+
+.bio-ui :is(.lesson-toolbar, .lesson-deck) :is(select, button:not(.bio-action)):disabled {
+  border-color: var(--bio-line);
+  color: var(--bio-muted);
+  background: var(--bio-code);
+}
+
+.lesson-deck {
+  padding-block: clamp(1rem, 2.5vw, 2rem) 2.5rem;
+}
+
+.lesson-deck h1 {
+  font-size: clamp(1.35rem, 2.35vw, 2.05rem);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.lesson-context {
+  margin: var(--bio-space-1) 0 0;
+  color: var(--bio-muted);
+  font-size: .875rem;
+}
+
+.lesson-context:empty {
+  margin: 0;
+}
+
+.lesson-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--bio-space-2);
+  margin-block: var(--bio-space-3);
+  font-size: .875rem;
+}
+
+.slide-shortcuts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--bio-space-1);
+}
+
+.bio-ui .lesson-deck .slide-shortcuts button:enabled {
+  border-color: transparent;
+  background: transparent;
+  color: var(--bio-muted);
+}
+
+.bio-ui .lesson-deck .slide-shortcuts button:enabled:hover,
+.bio-ui .lesson-deck .slide-shortcuts button[aria-current="true"] {
+  border-color: var(--bio-accent);
+  background: var(--bio-accent-soft);
+  color: var(--bio-accent-strong);
+}
+
+.bio-ui .lesson-deck .slide-shortcuts button[aria-current="true"] {
+  font-weight: 700;
+}
+
+.lesson-resources {
+  display: block;
+  position: relative;
+  max-inline-size: 100%;
+  margin: 0;
+}
+
+.lesson-resources summary,
+.lesson-slide summary {
+  min-block-size: var(--bio-target);
+  padding-block: var(--bio-space-2);
+  color: var(--bio-accent);
+  cursor: pointer;
+}
+
+.lesson-resources summary {
+  padding-inline: var(--bio-space-2);
+}
+
+.lesson-resources > div {
+  position: absolute;
+  z-index: 2;
+  inset-inline-end: 0;
+  inline-size: min(21rem, calc(100vw - 2 * var(--bio-gutter)));
+  padding: var(--bio-space-3) var(--bio-space-4);
+  border: 1px solid var(--bio-border);
+  border-radius: var(--bio-control-radius);
+  background: var(--bio-surface);
+}
+
+.lesson-resources a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--bio-target);
+}
+
+.lesson-resources p {
+  margin: 0;
+  color: var(--bio-muted);
+}
+
+.lesson-slide {
+  min-block-size: clamp(18rem, 46vh, 29rem);
+  padding: clamp(1.25rem, 4.5vw, 3.75rem);
+  border: 1px solid var(--bio-line);
+  border-radius: var(--bio-radius);
+  background: var(--bio-surface);
+  font-size: 1.1875rem;
+  line-height: 2;
+  overflow-wrap: anywhere;
+}
+
+.lesson-slide:empty {
+  display: none;
+}
+
+.lesson-slide section:not([data-kind="lab"]) {
+  max-inline-size: 68ch;
+  margin-inline: auto;
+}
+
+.lesson-slide :is(h2, h3, h4, h5, h6) {
+  margin: 0 0 var(--bio-space-2);
+  line-height: 1.55;
+}
+
+.lesson-slide h2 {
+  font-size: clamp(1.3rem, 2.25vw, 1.85rem);
+}
+
+.lesson-slide :is(h3, h4, h5, h6) {
+  font-size: 1.08em;
+  color: var(--bio-muted);
+}
+
+.lesson-slide section > :last-child {
+  margin-block-end: 0;
+}
+
+.lesson-slide :is(p, li) {
+  max-inline-size: 68ch;
+}
+
+.lesson-slide :is(ul, ol) {
+  padding-inline-start: 1.6em;
+}
+
+.lesson-slide li + li {
+  margin-block-start: .35em;
+}
+
+.lesson-slide pre {
+  padding: var(--bio-space-4);
+  border-radius: var(--bio-control-radius);
+  background: var(--bio-code);
+  direction: ltr;
+  text-align: left;
+  line-height: 1.75;
+}
+
+.lesson-slide code {
+  font: .88em var(--bio-mono);
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+.lesson-slide :not(pre) > code {
+  padding: .12em .25em;
+  border-radius: 4px;
+  background: var(--bio-code);
+}
+
+.bio-ui .lesson-slide :is(pre, table) {
+  overflow-x: auto;
+  max-inline-size: 100%;
+  scrollbar-color: var(--bio-border) var(--bio-code);
+}
+
+.bio-ui .lesson-slide table {
+  display: block;
+  inline-size: fit-content;
+  min-inline-size: 0;
+  border-block-end: 1px solid var(--bio-line);
+  font-size: .9rem;
+  overflow-wrap: normal;
+}
+
+.bio-ui .lesson-slide :is(th, td) {
+  padding: var(--bio-space-2) var(--bio-space-3);
+}
+
+.lesson-slide table code {
+  white-space: nowrap;
+}
+
+.bio-ui .lesson-slide th,
+.bio-ui .lesson-slide tbody tr:nth-child(even) {
+  background: var(--bio-code);
+  color: var(--bio-ink);
+}
+
+.bio-ui .lesson-slide td {
+  border-color: var(--bio-line);
+}
+
+.bio-ui .lesson-slide td:first-child {
+  width: auto;
+}
+
+.lesson-slide img {
+  max-inline-size: 100%;
+  block-size: auto;
+}
+
+.lesson-slide label {
+  display: block;
+  margin-block-start: var(--bio-space-3);
+  font-weight: 650;
+}
+
+.lesson-slide select,
+.lesson-slide input,
+.bio-ui .lesson-slide textarea {
+  max-inline-size: 100%;
+  margin-block: var(--bio-space-1) var(--bio-space-3);
+  padding: var(--bio-space-2) var(--bio-space-3);
+  caret-color: var(--bio-accent);
+}
+
+.lesson-slide textarea {
+  display: block;
+  min-block-size: 8rem;
+  direction: rtl;
+}
+
+.lesson-slide input[type="text"] {
+  display: block;
+  inline-size: min(100%, 24rem);
+  font-family: var(--bio-mono);
+  letter-spacing: .04em;
+}
+
+.lesson-slide details {
+  margin-block-start: var(--bio-space-4);
+  padding-block-start: var(--bio-space-2);
+  border-block-start: 1px solid var(--bio-line);
+}
+
+.lesson-slide iframe {
+  display: block;
+  inline-size: 100%;
+  block-size: 44rem;
+  margin-block-start: var(--bio-space-4);
+  border: 1px solid var(--bio-line);
+}
+
+.lesson-slide :is([role="status"], .evidence-question p, .uniprot-question p),
+#slide-status {
+  color: var(--bio-muted);
+}
+
+.lesson-slide p:empty {
+  margin: 0;
+}
+
+#slide-status {
+  margin: 0;
+}
+
+#slide-status:not(:empty) {
+  margin-block: var(--bio-space-3);
+}
+
+.slide-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto auto;
+  align-items: center;
+  gap: var(--bio-space-2);
+  margin-block-start: var(--bio-space-3);
+  font-size: .875rem;
+}
+
+.slide-controls .lesson-picker {
+  max-inline-size: 30rem;
+  margin-inline-end: var(--bio-space-3);
+}
+
+.slide-controls button {
+  min-inline-size: 4.5rem;
+}
+
+#slide-progress {
+  min-inline-size: 5ch;
+  color: var(--bio-muted);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 40rem) {
+  .lesson-toolbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .lesson-toolbar .lesson-picker {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .lesson-toolbar #print-lesson {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .lesson-slide {
+    min-block-size: 14rem;
+    font-size: 1.125rem;
+    line-height: 1.85;
+  }
+
+  .lesson-slide iframe {
+    block-size: 34rem;
+  }
+
+  .slide-controls {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  .slide-controls .lesson-picker {
+    grid-column: 1 / -1;
+    max-inline-size: none;
+    margin-inline-end: 0;
+  }
+
+  .lesson-resources[open] {
+    flex-basis: 100%;
+  }
+
+  .lesson-resources > div {
+    position: static;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bio-ui :is(.lesson-toolbar, .lesson-deck) button {
+    transition: none;
+  }
+}
+
+@media print {
+  body.bio-ui {
+    background: var(--bio-surface);
+  }
+
+  .lesson-toolbar,
+  .lesson-tools,
+  .slide-controls,
+  #slide-status,
+  #retry-lesson,
+  .lesson-slide :is(button, iframe) {
+    display: none !important;
+  }
+
+  .lesson-deck,
+  .lesson-slide {
+    min-block-size: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .lesson-slide {
+    margin-block-start: 1rem;
+    font-size: 12pt;
+  }
+
+  .lesson-slide section:not([data-kind="lab"]) {
+    max-inline-size: none;
+  }
+
+  .lesson-slide pre {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .bio-ui .lesson-slide table {
+    display: table;
+    inline-size: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .lesson-slide table code {
+    white-space: normal;
+  }
+}

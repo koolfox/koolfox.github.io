@@ -77,6 +77,17 @@ def render_pages(project=PROJECT):
             "nav": nav,
             "subnav": subnav,
             "body": body,
+            "heading": (
+                ""
+                if ident == "research"
+                else '<header class="page-heading">'
+                + (
+                    f'<p class="course-label">{html.escape(title)}</p>'
+                    if ident == "course"
+                    else f"<h1>{html.escape(title)}</h1>"
+                )
+                + f"<p>{html.escape(description)}</p></header>"
+            ),
         }
         template = (project / "templates/page.html").read_text()
         if ident == "research":
@@ -86,10 +97,6 @@ def render_pages(project=PROJECT):
                 '<link rel="stylesheet" href="assets/peptide-notebook.css">',
             )
         if ident == "course":
-            template = template.replace(
-                '<header class="page-heading"><h1>@@title@@</h1>',
-                '<header class="page-heading"><p class="course-label">@@title@@</p>',
-            )
             template = template.replace(
                 '<link rel="stylesheet" href="assets/sections.css">',
                 '<link rel="stylesheet" href="assets/sections.css">\n'
@@ -133,8 +140,7 @@ def render_pages(project=PROJECT):
     pages["index.html"] = shell(
         "home",
         "بیوانفورماتیک ساختاری",
-        "آموزش عمومی درس را مطالعه کنید؛ کاربرد آموخته‌ها در مطالعهٔ آدالیموماب و TOP2A "
-        "در مسیر پژوهش دنبال می‌شود.",
+        "درسنامه و آزمایشهای آموزشی، در کنار یک مطالعه محاسباتی از آدالیموماب تا پپتید.",
         home,
         ["legacy-routes.js"],
     )
@@ -243,29 +249,33 @@ def render_pages(project=PROJECT):
                 (project / "data/metadata/research-thread.json").read_text()
             )
             body = (
-                f"""<section class="research-summary">
-<h2>پرسش فعلی</h2>
+                f"""<div class="research-workbench">
+<section class="research-summary" aria-labelledby="research-title">
+<h1 id="research-title">از آدالیموماب تا پپتید</h1>
 <p>{html.escape(section["question"])}</p>
+<a class="bio-action"
+href="research.html?document=manual-peptide-study.fa.md&amp;chapter=all#reading">
+شروع از نمونه دستی</a>
 <details><summary>محدوده مطالعه</summary><p>{html.escape(section["summary"])}</p></details>
-</section>"""
-                + """<section class="research-workflow" aria-labelledby="workflow-title">
-<div class="workflow-heading"><h2 id="workflow-title">از ساختار تا گزارش</h2>
-<p>یک نمونه را گام به گام دنبال کنید.</p></div>
-<ol class="workflow-steps">
-<li><strong>انتخاب قطعه</strong><p>توالی و جایگاه آن در آدالیموماب</p>
+</section>
+<section class="research-workflow" aria-labelledby="workflow-title">
+<h2 id="workflow-title">از ساختار تا گزارش</h2>
+<ol class="workflow-steps" role="list">
+<li><span class="workflow-number" aria-hidden="true">۱</span><div>
 <a href="research.html?document=manual-peptide-study.fa.md&amp;chapter=all#reading">
-خواندن نمونه دستی</a></li>
-<li><strong>ساخت و داکینگ</strong><p>تولید نامزد و اجرای محلی</p>
-<a href="assets/peptide-workflow.html">مسیر عملی تولید پپتید، داکینگ و بررسی سه‌بعدی</a></li>
-<li><strong>بررسی نتیجه</strong><p>حالتهای ذخیره شده و فایلها</p>
-<a href="runtime/bioml-review/">بازبینی سه بعدی نمونه آدالیموماب و TNF</a></li>
-<li><strong>گزارش و عامل</strong><p>ثبت روش، خطاها و طرح ارزیابی</p>
+خواندن نمونه دستی</a>
+<p>انتخاب قطعه و خواندن توالی از <bdi class="bio-data">3WD5</bdi></p></div></li>
+<li><span class="workflow-number" aria-hidden="true">۲</span><div>
+<a href="assets/peptide-workflow.html">ساخت مدل و داکینگ</a>
+<p>تولید نامزد و اجرای محلی</p></div></li>
+<li><span class="workflow-number" aria-hidden="true">۳</span><div>
+<a href="runtime/bioml-review/">بازبینی سه بعدی نمونه آدالیموماب و TNF</a>
+<p>مختصات ذخیره شده، امتیازها و فایل PyMOL</p></div></li>
+<li><span class="workflow-number" aria-hidden="true">۴</span><div>
 <a href="research.html?document=peptide-agent-research.fa.md&amp;chapter=all#reading">
-طرح پژوهشی عامل پپتید</a>
-<a href="research.html?document=paper-writing-guide.fa.md&amp;chapter=all#reading">
-راهنمای نگارش مقاله</a></li>
-</ol></section>"""
-                + docnav
+طرح مقاله و ارزیابی مدل</a>
+<p>ثبت آزمایش و معیار ارزیابی مدل</p></div></li>
+</ol></section></div>"""
                 + reader(section)
                 + fragment("peptide-notebook")
             )

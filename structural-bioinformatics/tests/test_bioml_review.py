@@ -29,10 +29,13 @@ def test_displayed_values_match_recorded_run():
         ]
 
 
-def test_review_staging_verifies_and_prepares_six_pymol_scenes(tmp_path):
+def test_review_staging_includes_shared_css_and_six_verified_pymol_scenes(tmp_path):
     exporter = runpy.run_path(str(PROJECT / "scripts/export_course_lab.py"))
     target = tmp_path / "staged"
     exporter["stage_bioml"](target)
+    assert (target / "www/bioml-ui.css").read_bytes() == (
+        PROJECT / "assets/bioml-ui.css"
+    ).read_bytes()
     report = json.loads((PROJECT / "data/processed/bioml-review.json").read_text())
     data = target / "www/data"
     for sequence in ("TWNSGHID", "DIHGNSWT"):

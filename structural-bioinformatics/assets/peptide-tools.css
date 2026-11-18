@@ -1,0 +1,86 @@
+/* The saved-run workbench and local structure viewer share the research shell. */
+.peptide-tools main {
+  width: min(var(--bio-frame), 100% - 2 * var(--bio-gutter));
+  margin: var(--bio-space-6) auto 4rem;
+}
+
+.peptide-tools main > a:first-child {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--bio-target);
+  font-size: .875rem;
+}
+
+.peptide-tools h1 {
+  margin: var(--bio-space-2) 0 var(--bio-space-3);
+  font-size: clamp(1.55rem, 3vw, 2.35rem);
+  line-height: 1.55;
+}
+
+.peptide-tools main > :is(p, ol) { max-width: 72ch; line-height: 1.9; }
+.peptide-tools h2 { margin-block-start: var(--bio-space-8); }
+.peptide-tools code { direction: ltr; unicode-bidi: isolate; font-family: var(--bio-mono); }
+.peptide-tools .path { padding-inline-start: 1.5rem; }
+.peptide-tools p.path { padding-inline-start: 0; }
+.peptide-tools ol.path li { margin-block: var(--bio-space-2); }
+
+.peptide-tools .table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--bio-line);
+  border-radius: var(--bio-radius);
+  background: var(--bio-surface);
+}
+
+.peptide-tools table { border-collapse: collapse; width: 100%; }
+.peptide-tools :is(th, td) {
+  border-bottom: 1px solid var(--bio-line);
+  padding: var(--bio-space-2) var(--bio-space-4);
+  text-align: start;
+}
+.peptide-tools th { background: var(--bio-code); }
+.peptide-tools tbody tr:last-child td { border-block-end: 0; }
+.peptide-tools td a { display: inline-flex; align-items: center; min-height: var(--bio-target); }
+.peptide-tools :is(th, td):first-child { white-space: nowrap; }
+
+.peptide-tools .viewer-grid {
+  display: grid;
+  grid-template-columns: minmax(16rem, .75fr) minmax(0, 1.65fr);
+  gap: var(--bio-space-6);
+  align-items: start;
+}
+
+.peptide-tools .controls {
+  display: grid;
+  gap: var(--bio-space-2);
+  min-width: 0;
+  padding: var(--bio-space-4);
+  border: 1px solid var(--bio-line);
+  border-radius: var(--bio-radius);
+  background: var(--bio-surface);
+}
+
+.peptide-tools .controls label { margin-block-start: var(--bio-space-1); font-weight: 650; }
+.peptide-tools .controls :is(input, select, button) { max-width: 100%; min-height: var(--bio-target); font: inherit; }
+.peptide-tools .controls :is(button, select) { border-color: var(--bio-border); border-radius: var(--bio-control-radius); }
+.peptide-tools .controls button:enabled {
+  background: var(--bio-surface);
+  color: var(--bio-accent-strong);
+}
+.peptide-tools .controls button:enabled:hover { background: var(--bio-accent-soft); }
+.peptide-tools #load-files:enabled { background: var(--bio-accent); color: var(--bio-inverse); }
+.peptide-tools #load-files:enabled:hover { background: var(--bio-accent-strong); }
+.peptide-tools #pose-stage {
+  position: relative;
+  height: clamp(23rem, 57vh, 36rem);
+  min-width: 0;
+  border: 1px solid var(--bio-line);
+  border-radius: var(--bio-radius);
+  background: var(--bio-surface);
+}
+.peptide-tools #pose-stage canvas { width: 100%; height: 100%; display: block; }
+.peptide-tools .note { background: var(--bio-code); border-radius: var(--bio-control-radius); padding: var(--bio-space-3); }
+
+@media (max-width: 700px) {
+  .peptide-tools .viewer-grid { grid-template-columns: 1fr; gap: var(--bio-space-4); }
+  .peptide-tools #pose-stage { height: 23rem; }
+}

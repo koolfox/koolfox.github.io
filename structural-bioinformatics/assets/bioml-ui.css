@@ -1,0 +1,67 @@
+/* Shared across the structural bioinformatics pages, slides and review app. */
+.bio-ui {
+  --bio-canvas: #f2f5f7;
+  --bio-surface: #fff;
+  --bio-ink: #152637;
+  --bio-muted: #45596b;
+  --bio-line: #d4dfe5;
+  --bio-border: #8296a4;
+  --bio-accent: #1b5b67;
+  --bio-accent-strong: #104751;
+  --bio-accent-soft: #e3f0f0;
+  --bio-code: #edf3f5;
+  --bio-inverse: #f3fbfb;
+  --bio-inverse-muted: #c1dadd;
+  --bio-error: #8d263c;
+  --bio-error-soft: #fcecef;
+  --bio-radius: 12px;
+  --bio-control-radius: 8px;
+  --bio-target: 44px;
+  --bio-font: arad, system-ui, sans-serif;
+  --bio-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --bio-space-1: 4px;
+  --bio-space-2: 8px;
+  --bio-space-3: 12px;
+  --bio-space-4: 16px;
+  --bio-space-6: 24px;
+  --bio-space-8: 32px;
+  --bio-frame: 78rem;
+  --bio-gutter: clamp(1rem, 3vw, 2rem);
+  background-color: var(--bio-canvas);
+  color: var(--bio-ink);
+  font-family: var(--bio-font);
+  accent-color: var(--bio-accent);
+}
+
+.bio-ui ::selection { background: var(--bio-accent-soft); color: var(--bio-ink); }
+.bio-ui :focus-visible { outline: 3px solid var(--bio-accent); outline-offset: 3px; }
+.bio-ui a { color: var(--bio-accent); text-underline-offset: .2em; }
+.bio-ui a:hover { color: var(--bio-accent-strong); }
+.bio-ui .bio-data { font-family: var(--bio-mono); font-variant-numeric: tabular-nums; unicode-bidi: isolate; }
+
+.bio-ui .bio-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--bio-space-2);
+  min-height: var(--bio-target);
+  padding: var(--bio-space-2) var(--bio-space-4);
+  border: 1px solid var(--bio-accent);
+  border-radius: var(--bio-control-radius);
+  background: var(--bio-accent);
+  color: var(--bio-inverse);
+  font: inherit;
+  font-weight: 650;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.bio-ui .bio-action:hover { background: var(--bio-accent-strong); color: var(--bio-inverse); }
+.bio-ui .bio-action:disabled { background: var(--bio-code); border-color: var(--bio-line); color: var(--bio-muted); }
+.bio-ui .bio-status {
+  padding: var(--bio-space-2) var(--bio-space-3);
+  border-radius: var(--bio-control-radius);
+  background: var(--bio-accent-soft);
+  color: var(--bio-accent-strong);
+}
+.bio-ui .bio-status[data-state="error"] { background: var(--bio-error-soft); color: var(--bio-error); }

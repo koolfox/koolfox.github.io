@@ -7,10 +7,13 @@ for (const width of [390, 1280]) {
         await page.setViewportSize({ width, height: 900 });
         await page.goto(`${route}research.html`);
         const workflow = page.locator(".research-workflow");
-        await expect(workflow.locator("li")).toHaveCount(4);
+        await expect(workflow.getByRole("listitem")).toHaveCount(4);
+        await expect(page.locator("body")).toHaveCSS("background-color", "rgb(242, 245, 247)");
         await expect(workflow.getByRole("link", { name: "بازبینی سه بعدی نمونه آدالیموماب و TNF" }))
             .toHaveAttribute("href", "runtime/bioml-review/");
-        await workflow.getByRole("link", { name: "خواندن نمونه دستی" }).click();
+        const start = page.getByRole("link", { name: "شروع از نمونه دستی" });
+        await start.focus();
+        await page.keyboard.press("Enter");
         await expect(page.locator("#document-select")).toHaveValue("manual-peptide-study.fa.md");
         await expect(page.locator("#reading")).toBeInViewport();
         expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);

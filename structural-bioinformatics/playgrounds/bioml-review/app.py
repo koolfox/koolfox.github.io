@@ -15,22 +15,26 @@ app_ui = ui.page_fluid(
     ui.tags.head(
         ui.tags.meta(charset="utf-8"),
         ui.tags.link(rel="stylesheet", href="vendor/molstar/molstar.css"),
+        ui.tags.link(rel="stylesheet", href="bioml-ui.css"),
         ui.tags.link(rel="stylesheet", href="app.css"),
         ui.tags.script(src="vendor/molstar/molstar.js"),
         ui.tags.script(type="module", src="viewer.js"),
     ),
-    ui.div(
-        {"dir": "rtl", "lang": "fa", "class": "shell"},
-        ui.h1("بررسی پپتید و TNF"),
-        ui.div(
-            {"class": "warning"},
-            "این نتیجه اکتشافی است؛ امتیاز Vina، میل اتصال آزمایشگاهی یا اثر درمانی نیست.",
+    ui.tags.main(
+        {"dir": "rtl", "lang": "fa", "class": "bio-review"},
+        ui.tags.header(
+            ui.h1("بازبینی پپتید و TNF"),
+            ui.p(
+                "این نتیجه اکتشافی است. امتیاز Vina نشان‌دهنده میل اتصال آزمایشگاهی "
+                "یا اثر درمانی نیست.",
+                class_="review-note",
+            ),
         ),
         ui.div(
             {"class": "layout"},
-            ui.div(
+            ui.tags.section(
                 {"class": "panel controls"},
-                ui.h2("انتخاب نمونه"),
+                ui.h2("نمونه و نتایج"),
                 ui.input_select(
                     "candidate",
                     "پپتید",
@@ -42,24 +46,18 @@ app_ui = ui.page_fluid(
                 ),
                 ui.input_select(
                     "pose",
-                    "حالت داکینگ",
+                    "حالت ذخیره‌شده",
                     {"1": "حالت ۱", "2": "حالت ۲", "3": "حالت ۳"},
                     selectize=False,
                 ),
                 ui.output_ui("result"),
-                ui.h3("فایل‌های مختصات"),
-                ui.a("دریافت گیرنده PDBQT", href="data/receptor.pdbqt", download="receptor.pdbqt"),
-                ui.br(),
-                ui.output_ui("pose_download"),
-                ui.br(),
-                ui.output_ui("pymol_download"),
             ),
-            ui.div(
+            ui.tags.section(
                 {"class": "panel visual"},
                 ui.div(
                     {"class": "visual-head"},
                     ui.h2("نمای سه‌بعدی"),
-                    ui.span("گیرنده · آبی  /  پپتید · نارنجی"),
+                    ui.span("گیرنده آبی، پپتید نارنجی"),
                 ),
                 ui.div(
                     {
@@ -68,17 +66,31 @@ app_ui = ui.page_fluid(
                         "role": "group",
                         "aria-label": "نمای نواری گیرنده و نمای اتم و پیوند پپتید انتخاب‌شده",
                     },
-                    "در حال آماده‌سازی نمایشگر…",
+                    ui.div("در حال بارگذاری نمای سه‌بعدی…", class_="bio-status", role="status"),
                 ),
                 ui.p(
-                    "مدل را بچرخانید یا روی یک اسید آمینه در نوار توالی کلیک کنید.",
-                    class_="small",
+                    "مدل را بچرخانید یا یک اسید آمینه را در نوار توالی انتخاب کنید.",
+                    class_="viewer-help",
+                ),
+                ui.div(
+                    {"class": "downloads"},
+                    ui.h3("دریافت فایل‌ها"),
+                    ui.div(
+                        ui.a(
+                            "گیرنده PDBQT",
+                            href="data/receptor.pdbqt",
+                            download="receptor.pdbqt",
+                        ),
+                        ui.output_ui("pose_download"),
+                        ui.output_ui("pymol_download"),
+                        class_="download-links",
+                    ),
                 ),
             ),
         ),
         ui.tags.details(
             {"class": "methods"},
-            ui.tags.summary("درباره داده و محدودیتها"),
+            ui.tags.summary("منبع داده و محدودیت‌ها"),
             ui.p(
                 "گیرنده یک مونومر TNF آماده شده از 7TA3 است. توالی درهم ریخته "
                 "ترکیب یکسانی دارد، اما کنترل منفی تجربی تایید شده نیست."
@@ -110,6 +122,8 @@ app_ui = ui.page_fluid(
             ),
         ),
     ),
+    class_="bio-ui",
+    lang="fa",
 )
 
 
@@ -118,7 +132,7 @@ def server(input, output, session):
     def result():
         seq = input.candidate()
         i = int(input.pose()) - 1
-        return ui.div(
+        return ui.tags.dl(
             {
                 "class": "metrics",
                 "id": "result-values",
@@ -126,17 +140,18 @@ def server(input, output, session):
                 "data-pose": str(i + 1),
             },
             ui.div(
-                ui.span("امتیاز Vina"),
-                ui.strong(f"{SCORES[seq][i]:.3f}"),
-                ui.tags.small("kcal/mol"),
+                ui.tags.dt("امتیاز Vina"),
+                ui.tags.dd(
+                    ui.tags.bdi(ui.strong(f"{SCORES[seq][i]:.3f}"), " kcal/mol", dir="ltr"),
+                ),
             ),
             ui.div(
-                ui.span("کمترین فاصله اتم سنگین"),
-                ui.strong(f"{DISTANCES[seq][i]:.3f}"),
-                ui.tags.small("Å"),
+                ui.tags.dt("کمترین فاصله اتم سنگین"),
+                ui.tags.dd(ui.tags.bdi(ui.strong(f"{DISTANCES[seq][i]:.3f}"), " Å", dir="ltr")),
             ),
             ui.div(
-                ui.span("اتم سنگین بیرون جعبه"), ui.strong("0"), ui.tags.small("از ۶۶ اتم پپتید")
+                ui.tags.dt("اتم سنگین بیرون جعبه"),
+                ui.tags.dd(ui.strong("0"), " از ۶۶ اتم پپتید"),
             ),
         )
 
@@ -145,13 +160,15 @@ def server(input, output, session):
         seq = input.candidate()
         pose = int(input.pose())
         return ui.a(
-            "دریافت فایل آماده PyMOL", href=f"data/{seq}-{pose}.pml", download=f"{seq}-{pose}.pml"
+            "دریافت فایل آماده PyMOL (حالت انتخابی)",
+            href=f"data/{seq}-{pose}.pml",
+            download=f"{seq}-{pose}.pml",
         )
 
     @render.ui
     def pose_download():
         seq = input.candidate()
-        return ui.a("دریافت سه حالت پپتید PDBQT", href=f"data/{seq}.pdbqt", download=f"{seq}.pdbqt")
+        return ui.a("سه حالت پپتید PDBQT", href=f"data/{seq}.pdbqt", download=f"{seq}.pdbqt")
 
 
 app = App(app_ui, server, static_assets=HERE / "www")

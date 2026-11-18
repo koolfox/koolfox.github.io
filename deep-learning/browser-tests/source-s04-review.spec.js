@@ -248,3 +248,15 @@ test('history slide retains the diagram and source color emphasis', async ({page
     await expect(slide.locator('.reader-emphasis').filter({hasText:'اتصال بازگشتی'})).toHaveCSS('color','rgb(255, 192, 0)');
   }
 });
+
+
+test('shared film identifies linked pages and jumps after the last one', async ({page}) => {
+  await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=33');
+  await page.waitForFunction(() => window.sourceSlideReader?.ready);
+  await page.locator('[data-source-interactive="s04-hidden-dialogue"]').click();
+  await expect(page.locator('.source-film-pages')).toHaveText('اسلایدهای مرتبط: ۳۳، ۳۵، ۳۶، ۳۷');
+  await page.getByRole('button', {name:'رفتن به اسلاید ۳۸'}).click();
+  await expect(page).toHaveURL(/#page=38$/);
+  await expect(page.locator('#translation-panel')).toBeVisible();
+  await expect(page.locator('.source-film-navigation')).toBeHidden();
+});

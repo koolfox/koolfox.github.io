@@ -23,6 +23,24 @@ const training=[{id:'mnist-training',session:'s05',pages:[70],title:'آموزش 
 let catalog=[];
 const host=document.createElement('span');host.className='source-page-tools';
 document.querySelector('.reader-toolbar').append(host);
+const filmNavigation=document.createElement('div');
+filmNavigation.className='source-film-navigation';filmNavigation.hidden=true;
+const filmPages=document.createElement('span');filmPages.className='source-film-pages';
+const filmNext=document.createElement('button');filmNext.type='button';filmNext.className='reader-return-slide';
+filmNavigation.append(filmPages,filmNext);
+document.querySelector('[data-return-slide]').insertAdjacentElement('afterend',filmNavigation);
+new MutationObserver(()=>{if(document.body.dataset.readerSection==='slides')filmNavigation.hidden=true;}).observe(document.body,{attributes:true,attributeFilter:['data-reader-section']});
+const persianNumber=number=>new Intl.NumberFormat('fa-IR').format(number);
+function openFilm(entry){
+ const pages=[...entry.pages].sort((a,b)=>a-b),next=pages.at(-1)+1;
+ filmPages.textContent='اسلایدهای مرتبط: '+pages.map(persianNumber).join('، ');
+ filmNext.hidden=next>window.sourceSlideReader.pageCount;
+ filmNext.textContent='رفتن به اسلاید '+persianNumber(next);
+ filmNext.onclick=()=>window.sourceSlideReader.goToSlide(next);
+ window.sourceSlideReader.openTool(new URL(`${entry.kind}/${entry.id}/`,courseRoot).href);
+ filmNavigation.hidden=false;
+}
+
 function update(page){
  host.replaceChildren();
  for(const entry of [...films.map(item=>({...item,kind:'animations'})),...catalog.map(item=>({...item,kind:'models'})),...training]){
@@ -33,7 +51,7 @@ function update(page){
    button.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4zM10 9l5 3-5 3z"/></svg><span>ویدیو</span>';
   }
   button.dataset.sourceInteractive=entry.id;
-  button.addEventListener('click',()=>window.sourceSlideReader.openTool(new URL(entry.route||`${entry.kind}/${entry.id}/`,courseRoot).href));
+  button.addEventListener('click',()=>{if(entry.kind==='animations'&&entry.session==='s04')openFilm(entry);else{filmNavigation.hidden=true;window.sourceSlideReader.openTool(new URL(entry.route||`${entry.kind}/${entry.id}/`,courseRoot).href);}});
   host.append(button);
  }
 }

@@ -295,3 +295,7 @@ html:has(body.source-reader),body.source-reader{height:100%;overflow:hidden}.sou
 .source-film-button::after{content:"";position:absolute;inset:0;border:2px solid #4e7fc7;border-radius:inherit;pointer-events:none;animation:film-ripple 3s ease-out infinite}
 @keyframes film-ripple{0%,35%{opacity:.55;transform:scale(1)}80%,100%{opacity:0;transform:scale(1.12)}}
 @media(prefers-reduced-motion:reduce){.source-film-button::after{animation:none;opacity:0}}
+@media screen and (max-height:500px){
+ .source-reader[data-reader-section]:not([data-reader-section=slides]) .reader-layout{overflow:auto}
+ .reader-tools-panel:not([hidden]){min-height:160px}
+}

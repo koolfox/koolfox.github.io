@@ -62,6 +62,13 @@
 .peptide-tools .controls label { margin-block-start: var(--bio-space-1); font-weight: 650; }
 .peptide-tools .controls :is(input, select, button) { max-width: 100%; min-height: var(--bio-target); font: inherit; }
 .peptide-tools .controls :is(button, select) { border-color: var(--bio-border); border-radius: var(--bio-control-radius); }
+.peptide-tools .controls button:enabled {
+  background: var(--bio-surface);
+  color: var(--bio-accent-strong);
+}
+.peptide-tools .controls button:enabled:hover { background: var(--bio-accent-soft); }
+.peptide-tools #load-files:enabled { background: var(--bio-accent); color: var(--bio-inverse); }
+.peptide-tools #load-files:enabled:hover { background: var(--bio-accent-strong); }
 .peptide-tools #pose-stage {
   position: relative;
   height: clamp(23rem, 57vh, 36rem);

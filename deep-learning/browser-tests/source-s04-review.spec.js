@@ -82,16 +82,35 @@ test('parity film is attached to the source page and plays its worked example', 
   await page.setViewportSize({width:390, height:850});
   await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=27');
   await page.waitForFunction(() => window.sourceSlideReader?.ready);
-  await page.locator('[data-source-interactive="rnn-parity"]').click();
+  await page.locator('[data-source-interactive="s04-parity-dialogue"]').click();
   const film = page.frameLocator('[data-reader-tools-frame]');
   await expect(film.locator('video')).toBeVisible();
   await expect(film.locator('[data-film-time]')).toHaveCount(4);
   await film.locator('[data-film-time]').nth(2).click();
-  await expect.poll(() => film.locator('video').evaluate(video => video.currentTime)).toBeCloseTo(5, 0);
+  await expect.poll(() => film.locator('video').evaluate(video => video.currentTime)).toBeCloseTo(35.5, 0);
   await expect(film.locator('track[kind="captions"]')).toHaveAttribute('srclang', 'fa');
   await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=28');
   await page.waitForFunction(() => window.sourceSlideReader?.ready);
-  await expect(page.locator('[data-source-interactive="rnn-parity"]')).toHaveCount(0);
+  await expect(page.locator('[data-source-interactive="s04-parity-dialogue"]')).toHaveCount(0);
+});
+
+test('film control is labeled and return button stays clear of the video', async ({page}) => {
+  await page.setViewportSize({width:1280,height:720});
+  await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=27');
+  await page.waitForFunction(() => window.sourceSlideReader?.ready);
+  const control = page.locator('[data-source-interactive="s04-parity-dialogue"]');
+  await expect(control).toHaveText('ویدیو');
+  await expect(control).toHaveAttribute('aria-label', 'گفت‌وگوی زوجیت');
+  await control.click();
+  const button = page.locator('[data-return-slide]');
+  const frame = page.locator('[data-reader-tools-frame]');
+  await expect(button).toBeVisible();
+  await expect(frame).toBeVisible();
+  const [buttonBox, frameBox] = await Promise.all([button.boundingBox(), frame.boundingBox()]);
+  expect(buttonBox.y + buttonBox.height).toBeLessThanOrEqual(frameBox.y);
+  await button.click();
+  await expect(page.locator('#translation-panel')).toBeVisible();
+  await expect(page).toHaveURL(/#page=27$/);
 });
 
 test('slide 52 notebook separates the exact gradient from source rounding', async ({page}) => {

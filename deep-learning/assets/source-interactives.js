@@ -4,9 +4,8 @@ const config=JSON.parse(document.querySelector('#source-reader-config').textCont
 const films=[
  {id:'perceptron-steps',session:'s02',pages:[25,26,27,28,29,30],title:'فیلم دو گام پرسپترون'},
  {id:'xor-boundary',session:'s02',pages:[44],title:'فیلم مرز تصمیم XOR'},
- {id:'rnn-parity',session:'s04',pages:[27],title:'پخش حافظه زوجیت'},
  {id:'s04-parity-dialogue',session:'s04',pages:[27],title:'گفت‌وگوی زوجیت'},
- {id:'s04-rnn-overview',session:'s04',pages:[12,41,51,55,58],title:'گفت‌وگوی شبکه بازگشتی'},
+ {id:'s04-rnn-overview',session:'s04',pages:[12,41,51],title:'گفت‌وگوی شبکه بازگشتی'},
  {id:'s04-character-dialogue',session:'s04',pages:[29,31,47],title:'گفت‌وگوی پیش‌بینی حرف'},
  {id:'s04-gates-dialogue',session:'s04',pages:[55,56,58],title:'گفت‌وگوی دروازه‌ها'},
  {id:'s04-sequences-dialogue',session:'s04',pages:[5,7,9,39],title:'گفت‌وگوی مسئله‌های دنباله‌ای'},
@@ -29,6 +28,10 @@ function update(page){
  for(const entry of [...films.map(item=>({...item,kind:'animations'})),...catalog.map(item=>({...item,kind:'models'})),...training]){
   if(config.term!=='spring-2026'||entry.session!==config.session||!entry.pages.includes(page))continue;
   const button=document.createElement('button');button.type='button';button.textContent=entry.title;
+  if(entry.kind==='animations'&&entry.session==='s04'){
+   button.classList.add('source-film-button');button.setAttribute('aria-label',entry.title);button.title=entry.title;
+   button.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4zM10 9l5 3-5 3z"/></svg><span>ویدیو</span>';
+  }
   button.dataset.sourceInteractive=entry.id;
   button.addEventListener('click',()=>window.sourceSlideReader.openTool(new URL(entry.route||`${entry.kind}/${entry.id}/`,courseRoot).href));
   host.append(button);

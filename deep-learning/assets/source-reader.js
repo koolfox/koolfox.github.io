@@ -595,7 +595,7 @@ window.addEventListener('pagehide',event=>{
   if(canonicalLoading&&canonicalLoading!==loading)canonicalLoading.destroy().catch(()=>{});
  });
 });
-window.sourceSlideReader={openTool(raw,section='lab'){const url=new URL(raw,location.href);if(url.origin!==location.origin||!['http:','https:'].includes(url.protocol)||!['lab','explore','questions','knowledge'].includes(section))throw Error('Invalid slide tool');selectSection(section,url.href);},get page(){return page;},get renderedPage(){return renderedPage;},get pageCount(){return config.pageCount;},get sourceSha256(){return config.sourceSha256;},get ready(){return Boolean(pdf&&payload&&(references||renderedPage===page));}};
+window.sourceSlideReader={goToSlide(number){go(number);selectSection('slides');},openTool(raw,section='lab'){const url=new URL(raw,location.href);if(url.origin!==location.origin||!['http:','https:'].includes(url.protocol)||!['lab','explore','questions','knowledge'].includes(section))throw Error('Invalid slide tool');selectSection(section,url.href);},get page(){return page;},get renderedPage(){return renderedPage;},get pageCount(){return config.pageCount;},get sourceSha256(){return config.sourceSha256;},get ready(){return Boolean(pdf&&payload&&(references||renderedPage===page));}};
 controls();
 syncPanels();
 if(location.hash==='#sources')showReferences(false);

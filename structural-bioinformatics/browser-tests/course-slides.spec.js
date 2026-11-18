@@ -79,6 +79,26 @@ test('the slide reader retains every non-heading lesson block in order', async (
   expect(actual.some(text => text.includes('atomselect'))).toBeTruthy();
 });
 
+test('wide lesson tables scroll within a narrow slide and print without navigation', async ({page}) => {
+  await page.setViewportSize({width:320,height:844});
+  await page.goto(root + 'assets/course-slides.html?topic=8');
+  await expect(page.locator('#lesson-deck')).toHaveAttribute('aria-busy','false');
+  const slides = page.locator('#lesson-slide section');
+  const tableIndex = await slides.evaluateAll(sections => sections.findIndex(section => section.querySelector('table')));
+  await page.locator('#slide-select').selectOption(String(tableIndex));
+  const table = slides.locator('table:visible');
+  await expect(table).toBeVisible();
+  expect(await table.evaluate(node => node.scrollWidth > node.clientWidth)).toBe(true);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
+
+  await page.emulateMedia({media:'print'});
+  await expect(slides.filter({visible:true})).toHaveCount(1);
+  await expect(table).toHaveCSS('display','table');
+  await expect(table).toBeVisible();
+  await expect(page.locator('.lesson-toolbar')).toBeHidden();
+  await expect(page.locator('.slide-controls')).toBeHidden();
+});
+
 test('self-check notes persist locally and the lesson lab loads only on request', async ({page}) => {
   await page.goto(root + 'assets/course-slides.html?topic=1');
   await expect(page.locator('#lesson-deck')).toHaveAttribute('aria-busy','false');

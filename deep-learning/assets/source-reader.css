@@ -286,5 +286,16 @@ html:has(body.source-reader),body.source-reader{height:100%;overflow:hidden}.sou
  .reader-focus-languages button[aria-pressed=true]{background:#edf3ff;color:#194fc3}
 }
 
-.reader-return-slide{position:absolute;z-index:3;top:8px;inset-inline-end:12px;padding:6px 12px;border:1px solid #cad3e1;border-radius:6px;background:#fff;color:#172134;font:inherit;cursor:pointer}
-.reader-tools-panel{position:relative}
+.reader-tools-panel:not([hidden]){display:grid;grid-template-rows:auto minmax(0,1fr)}
+.reader-return-slide{justify-self:end;margin:8px 12px;padding:6px 12px;border:1px solid #cad3e1;border-radius:6px;background:#fff;color:#172134;font:inherit;cursor:pointer}
+.reader-tools-panel iframe{min-height:0}
+
+.source-film-button{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:6px;isolation:isolate;border-color:#2c62b8!important;color:#234f9b;white-space:nowrap}
+.source-film-button svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.source-film-button::after{content:"";position:absolute;inset:0;border:2px solid #4e7fc7;border-radius:inherit;pointer-events:none;animation:film-ripple 3s ease-out infinite}
+@keyframes film-ripple{0%,35%{opacity:.55;transform:scale(1)}80%,100%{opacity:0;transform:scale(1.12)}}
+@media(prefers-reduced-motion:reduce){.source-film-button::after{animation:none;opacity:0}}
+@media screen and (max-height:500px){
+ .source-reader[data-reader-section]:not([data-reader-section=slides]) .reader-layout{overflow:auto}
+ .reader-tools-panel:not([hidden]){min-height:160px}
+}

@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class ParityFilmTests(unittest.TestCase):
     def test_film_uses_the_source_notebook_values(self):
-        record = json.loads((ROOT / 'animations/rnn-parity.record.json').read_text())
+        record = json.loads((ROOT / 'animations/s04-parity-dialogue.record.json').read_text())
         manifest = json.loads((ROOT / 'animations/manifest.json').read_text())
         self.assertIn(record, manifest['films'])
         notebook = runpy.run_path(str(ROOT / 'workshops/spring-2026/s04_parity.py'))['result']

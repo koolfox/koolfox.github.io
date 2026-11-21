@@ -43,7 +43,7 @@ test('slide 40 keeps the English term together inside its RTL heading', async ({
   const term = heading.locator('bdi[dir=ltr]').filter({hasText:'(Hidden Layers)'});
   await expect(term).toHaveCount(1);
   await expect(term).toHaveCSS('white-space', 'nowrap');
-  expect(await term.evaluate(node => node.getClientRects().length)).toBe(1);
+  await expect.poll(() => term.evaluate(node => node.getClientRects().length)).toBe(1);
 });
 
 test('review slide aligns Persian groups from the right with nested items indented', async ({page}) => {

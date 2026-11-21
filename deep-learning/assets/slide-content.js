@@ -2465,7 +2465,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04'
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
-      && [14,15,16,17,18,24,25,26,27].includes(record.number)){
+      && [14,15,16,17,18,24,25,26].includes(record.number)){
     for(const region of regions)if(region.block.kind==='heading'){
       const box=region.slot||region.rect;region.slot=[.04,box[1],.96,box[3]];region.align='right';
     }

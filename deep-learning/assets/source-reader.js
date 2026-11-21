@@ -1,7 +1,7 @@
 import {setupFullscreen} from './reader-fullscreen.js';
 import {getDocument,GlobalWorkerOptions,OPS} from './vendor/pdfjs/pdf.min.mjs';
 import {readPdf,readPdfManifest} from './slide-offline-cache.js';
-import {addText, math, renderBlocks, renderTable, configureReferences, referenceTarget, sourceLayoutPlan, expandSourceLayout, createSourceLayout, fitSourceLayout} from './slide-content.js';
+const {addText, math, renderBlocks, renderTable, configureReferences, referenceTarget, sourceLayoutPlan, expandSourceLayout, createSourceLayout, fitSourceLayout} = await import(new URL('./slide-content.js' + new URL(import.meta.url).search, import.meta.url));
 
 const $=s=>document.querySelector(s),config=JSON.parse($('#source-reader-config').textContent);
 const canvas=$('#source-canvas'),links=$('#source-links'),persian=$('#persian-page'),status=$('[data-reader-status]');

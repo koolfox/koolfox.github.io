@@ -185,7 +185,7 @@ export function mountNotebook(root, options) {
     element.replaceChildren(svg, text); element.setAttribute('aria-label', label); element.title = label;
   }
   for (const [element, icon, label] of [[runAll, 'play', 'اجرای همه سلول‌ها'], [capture, 'settings', 'کنترل‌ها به تنظیمات'], [add, 'add', 'افزودن سلول'], [stop, 'stop', 'توقف پایتون'], [restart, 'restart', 'راه‌اندازی پایتون'], [summary, 'versions', 'نسخه‌ها و دریافت نوت‌بوک'], [packageSummary, 'packages', 'بسته‌های پایتون']]) compactControl(element, icon, label);
-  code.append(actions, status, hint, errorOutput, list, utilityTools);
+  code.append(actions, utilityTools, status, hint, errorOutput, list);
   root.append(modes, code, quiz);
 
   function message(text, error = false) { status.textContent = text; status.dataset.error = String(error); }

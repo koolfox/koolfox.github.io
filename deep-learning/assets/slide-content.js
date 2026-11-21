@@ -2168,8 +2168,8 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='9bacaf5cc01a0ab665ecd3f39ec648b9e51f59ee7d020ea0027cad7fe7ba59de'
       && layout.translation_sha256==='4c73ac498ec0e05b3d17ffa3717014ef04a1ee3ac015505a6199885b232524dd'){
-    const slots={0:[.04,.09,.65,.22],2:[.12,.85,.24,.91],5:[.10,.59,.17,.64],6:[.05,.28,.65,.37],8:[.05,.37,.65,.43],15:[.21,.59,.29,.64],20:[.26,.85,.36,.91],23:[.37,.85,.48,.91],25:[.33,.59,.41,.64],27:[.46,.59,.53,.64],31:[.49,.86,.60,.92],33:[.56,.59,.64,.64],34:[.10,.93,.66,.98]};
-    for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===0?28:i===6||i===8?15:i===34?16:13;}if(i===34)region.manualAccents=[{text:'حافظه',color:'#ff40ff'}];}
+    const slots={0:[.04,.09,.60,.22],2:[.12,.85,.24,.91],5:[.10,.59,.17,.64],6:[.05,.28,.65,.37],8:[.05,.37,.65,.43],15:[.21,.59,.29,.64],20:[.26,.85,.36,.91],23:[.37,.85,.48,.91],25:[.33,.59,.41,.64],27:[.46,.59,.53,.64],31:[.49,.86,.60,.92],33:[.56,.59,.64,.64],34:[.10,.93,.66,.98]};
+    for(const region of regions){const i=region.block.source_lines[0];if(slots[i]){region.slot=slots[i];region.font=i===0?24:i===6||i===8?15:i===34?16:13;}if(i===34)region.manualAccents=[{text:'حافظه',color:'#ff40ff'}];}
   }
   if(sourceIdentity.term==='spring-2026' && sourceIdentity.session==='s04' && record.number===28
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
@@ -2320,7 +2320,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='652dd588a0207a30da560ebf6fb724f94fdc4c8cb505c3675e3360b21aefa17b'
       && layout.translation_sha256==='10aa574186791f0efdd1f3d7b30b37af033b9b1cc9cf5edf2a161b785a19f0cc'){
-    for(const region of regions)if(region.block.source_lines[0]===0){region.keepTermsTogether=true;region.slot=[.04,.06,.97,.24];region.font=32;}
+    for(const region of regions)if(region.block.source_lines[0]===0){region.keepTermsTogether=true;region.slot=[.04,.055,.97,.255];region.font=23;}
   }
   const s04BpttPages={
     41:['f5d069d5fbf417904854f0ba16af8c06005c1d5a2df7bbe81d52254e32f16b01','48e2a9ab00364888de43f19fa92a870ac343ba079e33038c52ea32b89c5f3b7d',[7,0,1,2,3,6,8]],

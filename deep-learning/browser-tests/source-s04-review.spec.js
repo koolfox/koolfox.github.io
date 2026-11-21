@@ -260,3 +260,22 @@ test('shared film identifies linked pages and jumps after the last one', async (
   await expect(page.locator('#translation-panel')).toBeVisible();
   await expect(page.locator('.source-film-navigation')).toBeHidden();
 });
+
+test('slide 27 title clears the source figure and slide 40 keeps its diagram', async ({page}) => {
+  await page.setViewportSize({width:1280,height:720});
+  for (const number of [27,40]) {
+    await page.goto(`/deep-learning/terms/spring-2026/s04/slides/#page=${number}`);
+    await page.waitForFunction(n => window.sourceSlideReader?.ready && window.sourceSlideReader.page === n, number);
+    const slide=page.locator('#persian-page');
+    await expect(slide).toHaveAttribute('data-layout','source-canvas-figure-companion');
+    await expect(slide.locator('.reader-slide-background')).toBeVisible();
+    const heading=slide.locator('.reader-slide-text').filter({hasText:number===27?'پیش بینی زوجیت':'تعداد لایه‌های پنهان'}).first();
+    await expect(heading).toBeVisible();
+    const fit=await heading.evaluate(node=>({width:node.scrollWidth<=node.clientWidth+2,height:node.scrollHeight<=node.clientHeight+2}));
+    expect(fit).toEqual({width:true,height:true});
+    if(number===27){
+      const title=await heading.boundingBox(), stage=await slide.locator('.reader-slide-stage').boundingBox();
+      expect(title.x+title.width).toBeLessThan(stage.x+stage.width*.6722);
+    }
+  }
+});

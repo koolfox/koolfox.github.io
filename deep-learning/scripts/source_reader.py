@@ -766,6 +766,7 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
 <button type="button" data-print aria-label="چاپ" title="چاپ">چاپ</button>
 <button type="button" data-source-only-toggle aria-label="نمای ارائه" title="نمای ارائه" aria-pressed="false">نمای ارائه</button>
 <button type="button" data-page-experiment title="کاوش این اسلاید" hidden>کاوش این اسلاید</button>
+<button type="button" class="reader-return-slide" data-return-slide hidden>بازگشت به اسلاید</button>
 <button type="button" data-play-slides aria-pressed="false" hidden>پخش مراحل</button>
 <button type="button" data-retry-load hidden>تلاش دوباره</button>
 <div class="reader-view-controls" role="group" aria-label="زبان نمایش اسلاید">
@@ -794,7 +795,7 @@ def source_reader_page(term, row, identity, payload, asset_revision=""):
 <div id="persian-page" dir="rtl"></div>
 <details class="reader-source-text"><summary>متن انگلیسی</summary>
 <div data-source-text lang="en" dir="ltr"></div></details>
-</section><section class="reader-tools-panel" aria-label="ابزار کنار اسلاید" hidden><button type="button" class="reader-return-slide" data-return-slide>بازگشت به اسلاید</button><iframe title="ابزار انتخابی درس" data-reader-tools-frame></iframe></section></div>
+</section><section class="reader-tools-panel" aria-label="ابزار کنار اسلاید" hidden><iframe title="ابزار انتخابی درس" data-reader-tools-frame></iframe></section></div>
 <section id="reader-references" class="reader-references" aria-labelledby="references-heading" hidden>
 <h2 id="references-heading">منابع</h2>
 <p>دانا گوراری (<bdi lang="en" dir="ltr">Danna Gurari</bdi>) · دانشگاه کلرادو بولدر · {e(term.get('title_fa', TERM_TITLES[term_id]))}</p>

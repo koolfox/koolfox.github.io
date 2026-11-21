@@ -403,6 +403,7 @@ function syncPanels(){
  $('#original-panel').hidden=slides?translated:translated;
  $('#translation-panel').hidden=slides?view==='source':!translated;
  document.querySelector('.reader-tools-panel').hidden=slides;
+ $('[data-return-slide]').hidden=slides;
  for(const [selector,value] of [['[data-view-source]','source'],['[data-view-translation]','translation'],['[data-view-both]','both']])$(selector).setAttribute('aria-pressed',String(view===value));
  document.querySelectorAll('[data-focus-view]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.focusView===view)));
  $('[data-source-only-toggle]').setAttribute('aria-pressed',String(presenting));

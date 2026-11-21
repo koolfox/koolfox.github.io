@@ -124,10 +124,10 @@ if(['spring-2026/s02/majority-truth','spring-2026/s02/majority-epoch','spring-20
   panel.addEventListener('toggle',()=>{if(panel.open&&!frame.getAttribute('src'))frame.src='/deep-learning/animations/perceptron-steps/?notebook=1';});
 }
 const returnLink=document.querySelector('[data-return-slide]');returnLink.href=config.reader+'#page='+returnPage;
-const practiceFooter=returnLink.parentElement, utilityTools=document.querySelector('.nb-utility-tools');
+const practiceFooter=returnLink.parentElement, notebookActions=document.querySelector('.nb-actions'), practiceHeader=document.querySelector('.practice-page > header');
 function placeReturnLink(quiz) {
-  (quiz ? practiceFooter : utilityTools).append(returnLink);
-  practiceFooter.hidden = !quiz;
+  (quiz ? practiceHeader : notebookActions).append(returnLink);
+  practiceFooter.hidden = true;
 }
 function section() {
   const quiz = location.hash === '#questions' || config.codeAvailable === false;

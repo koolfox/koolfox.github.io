@@ -428,9 +428,13 @@
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "partial",
+      "question_coverage": "complete",
       "question_ids": [
-        "neo-k1-pattern-19"
+        "neo-k1-pattern-19",
+        "neo-k2-pattern-19",
+        "neo-k3-pattern-19",
+        "neo-k4-pattern-19",
+        "neo-k5-pattern-19"
       ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
@@ -442,8 +446,8 @@
         ],
         "image_label_indices": []
       },
-      "review_basis": "source_pdf_figure_visual_review_original_study_question",
-      "prompt_reconciliation": "source_question_partially_addressed_by_original_study_question"
+      "review_basis": "source_pdf_figure_visual_review_all_five_feature_planes",
+      "prompt_reconciliation": "all_five_visible_feature_rows_addressed_by_original_study_questions"
     },
     {
       "number": 20,
@@ -455,9 +459,13 @@
         "question_text",
         "worked_example_text"
       ],
-      "question_coverage": "partial",
+      "question_coverage": "complete",
       "question_ids": [
-        "neo-k1-complex-20"
+        "neo-k1-complex-20",
+        "neo-k2-complex-20",
+        "neo-k3-complex-20",
+        "neo-k4-complex-20",
+        "neo-k5-complex-20"
       ],
       "example_ids": [],
       "source_material_state": "public_pdf_available",
@@ -469,8 +477,8 @@
         ],
         "image_label_indices": []
       },
-      "review_basis": "source_pdf_figure_visual_review_original_study_question",
-      "prompt_reconciliation": "source_question_partially_addressed_by_original_study_question"
+      "review_basis": "source_pdf_figure_visual_review_all_five_feature_planes",
+      "prompt_reconciliation": "all_five_visible_feature_rows_addressed_by_original_study_questions"
     },
     {
       "number": 21,
@@ -3016,6 +3024,166 @@
           "خیر، چون همه خانه ها صفر هستند"
         ],
         "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "neo-k2-pattern-19",
+      "source_kind": "original",
+      "source_page": 19,
+      "pages": [
+        19
+      ],
+      "prompt_fa": "در شکل اسلاید، الگوی هدف ردیف k=2 کدام بخش از حرف A است؟",
+      "solution_fa": "در ردیف k=2، خطوط اتصال از محل اتصال خط میانی A به ساقه مایل سمت چپ در ورودی به صفحه ویژگی متناظر میرسند. دایره دور نماد، مرز نمایش سلول است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "محل اتصال خط میانی A به ساقه مایل سمت چپ",
+          "زاویه بالای حرف A",
+          "کل حرف A در مرحله بالاتر"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "neo-k2-complex-20",
+      "source_kind": "original",
+      "source_page": 20,
+      "pages": [
+        20
+      ],
+      "prompt_fa": "در ردیف k=2 شکل، آیا الگو در ناحیه هدف مشخص شده با دایره بزرگ قرار دارد و پاسخ متناظر را ایجاد میکند؟",
+      "solution_fa": "الگوی محل اتصال خط میانی A به ساقه مایل سمت چپ درون دایره بزرگ ناحیه هدف قرار دارد. پس شرط وجود ویژگی در این ناحیه برقرار است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "بله، ویژگی متناظر درون ناحیه هدف است",
+          "خیر، ویژگی متناظر بیرون ناحیه هدف است",
+          "فقط وقتی همه پنج نوع ویژگی در یک نقطه باشند"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "neo-k3-pattern-19",
+      "source_kind": "original",
+      "source_page": 19,
+      "pages": [
+        19
+      ],
+      "prompt_fa": "در شکل اسلاید، الگوی هدف ردیف k=3 کدام بخش از حرف A است؟",
+      "solution_fa": "در ردیف k=3، خطوط اتصال از محل اتصال خط میانی A به ساقه مایل سمت راست در ورودی به صفحه ویژگی متناظر میرسند. دایره دور نماد، مرز نمایش سلول است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "محل اتصال خط میانی A به ساقه مایل سمت راست",
+          "زاویه بالای حرف A",
+          "کل حرف A در مرحله بالاتر"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "neo-k3-complex-20",
+      "source_kind": "original",
+      "source_page": 20,
+      "pages": [
+        20
+      ],
+      "prompt_fa": "در ردیف k=3 شکل، آیا الگو در ناحیه هدف مشخص شده با دایره بزرگ قرار دارد و پاسخ متناظر را ایجاد میکند؟",
+      "solution_fa": "الگوی محل اتصال خط میانی A به ساقه مایل سمت راست درون دایره بزرگ ناحیه هدف قرار دارد. پس شرط وجود ویژگی در این ناحیه برقرار است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "بله، ویژگی متناظر درون ناحیه هدف است",
+          "خیر، ویژگی متناظر بیرون ناحیه هدف است",
+          "فقط وقتی همه پنج نوع ویژگی در یک نقطه باشند"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "neo-k4-pattern-19",
+      "source_kind": "original",
+      "source_page": 19,
+      "pages": [
+        19
+      ],
+      "prompt_fa": "در شکل اسلاید، الگوی هدف ردیف k=4 کدام بخش از حرف A است؟",
+      "solution_fa": "در ردیف k=4، خطوط اتصال از بخش پایین ساقه مایل سمت چپ A در ورودی به صفحه ویژگی متناظر میرسند. دایره دور نماد، مرز نمایش سلول است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "بخش پایین ساقه مایل سمت چپ A",
+          "زاویه بالای حرف A",
+          "کل حرف A در مرحله بالاتر"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "neo-k4-complex-20",
+      "source_kind": "original",
+      "source_page": 20,
+      "pages": [
+        20
+      ],
+      "prompt_fa": "در ردیف k=4 شکل، آیا الگو در ناحیه هدف مشخص شده با دایره بزرگ قرار دارد و پاسخ متناظر را ایجاد میکند؟",
+      "solution_fa": "الگوی بخش پایین ساقه مایل سمت چپ A بیرون دایره بزرگ ناحیه هدف قرار دارد. پس برای این ناحیه پاسخ ایجاد نمیکند. این نتیجه به معنی نبود ویژگی در کل تصویر یا بی پاسخ بودن همه سلول های آن صفحه نیست.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "بله، ویژگی متناظر درون ناحیه هدف است",
+          "خیر، ویژگی متناظر بیرون ناحیه هدف است",
+          "فقط وقتی همه پنج نوع ویژگی در یک نقطه باشند"
+        ],
+        "correct_index": 1
+      },
+      "reviewed": true
+    },
+    {
+      "id": "neo-k5-pattern-19",
+      "source_kind": "original",
+      "source_page": 19,
+      "pages": [
+        19
+      ],
+      "prompt_fa": "در شکل اسلاید، الگوی هدف ردیف k=5 کدام بخش از حرف A است؟",
+      "solution_fa": "در ردیف k=5، خطوط اتصال از بخش پایین ساقه مایل سمت راست A در ورودی به صفحه ویژگی متناظر میرسند. دایره دور نماد، مرز نمایش سلول است.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "بخش پایین ساقه مایل سمت راست A",
+          "زاویه بالای حرف A",
+          "کل حرف A در مرحله بالاتر"
+        ],
+        "correct_index": 0
+      },
+      "reviewed": true
+    },
+    {
+      "id": "neo-k5-complex-20",
+      "source_kind": "original",
+      "source_page": 20,
+      "pages": [
+        20
+      ],
+      "prompt_fa": "در ردیف k=5 شکل، آیا الگو در ناحیه هدف مشخص شده با دایره بزرگ قرار دارد و پاسخ متناظر را ایجاد میکند؟",
+      "solution_fa": "الگوی بخش پایین ساقه مایل سمت راست A بیرون دایره بزرگ ناحیه هدف قرار دارد. پس برای این ناحیه پاسخ ایجاد نمیکند. این نتیجه به معنی نبود ویژگی در کل تصویر یا بی پاسخ بودن همه سلول های آن صفحه نیست.",
+      "answer": {
+        "kind": "choice",
+        "options_fa": [
+          "بله، ویژگی متناظر درون ناحیه هدف است",
+          "خیر، ویژگی متناظر بیرون ناحیه هدف است",
+          "فقط وقتی همه پنج نوع ویژگی در یک نقطه باشند"
+        ],
+        "correct_index": 1
       },
       "reviewed": true
     }

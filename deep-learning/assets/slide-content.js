@@ -1320,7 +1320,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
         && layout.translation_sha256==='10aa574186791f0efdd1f3d7b30b37af033b9b1cc9cf5edf2a161b785a19f0cc'){
       imageTranslations=[
         {rect:[.303,.825,.346,.855],text:'عمق',background:'#fff',color:'#000',font:14,align:'center'},
-        {rect:[.469,.936,.506,.963],text:'زمان',background:'#fff',color:'#000',font:14,align:'center'},
+        {rect:[.469,.928,.506,.963],text:'زمان',background:'#fff',color:'#000',font:14,align:'center'},
       ];
     }
     if(record.number===42 && record.source_text_sha256==='f6b19ce219de43934205645e317793cd69e4cee83ee89bbd2fa30d43ce7beb27'
@@ -2320,7 +2320,7 @@ export function sourceLayoutPlan(record, sourceIdentity = {}) {
       && sourceIdentity.sourceSha256==='4dcd6bb4b6322d6b7e5d30b5f636d2f23678991dfc353b9ca1cbcec41fb41ff5'
       && record.source_text_sha256==='652dd588a0207a30da560ebf6fb724f94fdc4c8cb505c3675e3360b21aefa17b'
       && layout.translation_sha256==='10aa574186791f0efdd1f3d7b30b37af033b9b1cc9cf5edf2a161b785a19f0cc'){
-    for(const region of regions)if(region.block.source_lines[0]===0){region.keepTermsTogether=true;region.slot=[.04,.055,.97,.255];region.font=18;}
+    for(const region of regions)if(region.block.source_lines[0]===0){region.keepTermsTogether=true;region.slot=[.04,.055,.97,.255];region.font=28;}
   }
   const s04BpttPages={
     41:['f5d069d5fbf417904854f0ba16af8c06005c1d5a2df7bbe81d52254e32f16b01','48e2a9ab00364888de43f19fa92a870ac343ba079e33038c52ea32b89c5f3b7d',[7,0,1,2,3,6,8]],

@@ -93,3 +93,18 @@ for (const number of [41,43,45]) test(`slide ${number} aligns the four RTL train
     expect(Math.max(...info.map(x=>x.right))-Math.min(...info.map(x=>x.right))).toBeLessThan(2);
   }).toPass({timeout:15000});
 });
+
+test('slide 40 diagram labels fit with the course font', async ({page}) => {
+  await page.setViewportSize({width:1280,height:720});
+  await page.goto('/deep-learning/terms/spring-2026/s04/slides/#page=40');
+  await page.waitForFunction(() => window.sourceSlideReader?.ready && window.sourceSlideReader.page === 40);
+  await page.evaluate(() => document.fonts.ready);
+  const slide=page.locator('#persian-page');
+  await expect(slide).toHaveAttribute('data-layout','source-canvas-figure-companion');
+  await expect(slide.locator('.reader-slide-background')).toBeVisible();
+  for(const label of ['عمق','زمان']){
+    const item=slide.locator('.reader-image-translation').filter({hasText:label});
+    await expect(item).toHaveCount(1);
+    await expect.poll(()=>item.evaluate(node=>node.scrollHeight-node.clientHeight)).toBeLessThanOrEqual(2);
+  }
+});
